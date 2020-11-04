@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_de_Descripcion_de_Evidencia_CC" value="Detalle de Descripcion de Evidencia CC"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Numero_de_Evidencia" value="Numero de Evidencia"></resource>
+  <resource culture="es-es" name="Descripcion_de_la_Evidencia" value="Descripción de la Evidencia"></resource>
+  <resource culture="es-es" name="Origen" value="Origen (Estado en el que se Encontraba)"></resource>
+  <resource culture="es-es" name="Descripcion" value="Descripción"></resource>
+  <resource culture="es-es" name="Examen_Solicitado" value="Examen(es) Solicitado(s)"></resource>
+  <resource culture="es-es" name="Codigo_de_Barras" value="Código de Barras"></resource>
+  <resource culture="es-es" name="Archivo_de_Foto" value="Archivo de Foto"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

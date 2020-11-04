@@ -1,0 +1,507 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_Historico_JAModel
+@{
+
+    string Fecha = "";
+    if (Model.Fecha == "")
+    { Model.Fecha = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+ List<SelectListItem> varSpartan_User_Usuario = null;
+    if (ViewBag.Spartan_Users_Usuario != null)
+    { varSpartan_User_Usuario = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle Historico JA
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_Historico_JARemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_Historico_JAPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle Historico JA
+								<button onclick="Detalle_Historico_JAGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_Historico_JABusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_Historico_JAResources.Detalle_Historico_JA</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_Historico_JADisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_Historico_JAPropertyBusinessModal" id="Detalle_Historico_JAPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_Historico_JABusinessRule-form" onclick="Detalle_Historico_JAGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Historico_JAPropertyModal" id="Detalle_Historico_JAPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Historico_JABusinessRuleModal" id="Detalle_Historico_JABusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Historico_JAAddBusinessRuleModal" id="Detalle_Historico_JAAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_Historico_JA", FormMethod.Post, new { id = "CreateDetalle_Historico_JA", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_Historico_JACreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Historico_JAResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="264901" data-field-name="@Resources.Detalle_Historico_JAResources.Clave">
+                                    <label class="form-control" for="Detalle_Historico_JAClave" id="Detalle_Historico_JAClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Historico_JAResources.Fecha</label>
+                                <div class="col-sm-8" data-field-id="Fecha" data-attribute="264902" data-field-name="@Resources.Detalle_Historico_JAResources.Fecha">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_Historico_JAFecha" readonly="readonly" name="Detalle_Historico_JAFecha" type="text" value="@Model.Fecha">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divHora">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Historico_JAResources.Hora</label>
+                                <div class="col-sm-8" data-field-id="Hora" data-attribute="264903" data-field-name="@Resources.Detalle_Historico_JAResources.Hora">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="Detalle_Historico_JAHora" readonly="readonly" name="Detalle_Historico_JAHora" type="text" data-autoclose="true" value="@Model.Hora">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divUsuario">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Historico_JAResources.Usuario</label>
+                                <div class="col-sm-8" data-field-id="Usuario" data-attribute="264904" data-field-name="@Resources.Detalle_Historico_JAResources.Usuario">
+                                    <select class='fullWidth AutoCompleteSpartan_User form-control select2-dropdown' data-val="true" id="Detalle_Historico_JAUsuario" name="Detalle_Historico_JAUsuario">
+                                        <option value="@Model.Usuario">@(Model.UsuarioName??Model.UsuarioName)</option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="form-group" id="divEstatus">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Historico_JAResources.Estatus</label>
+                                <div class="col-sm-8" data-field-id="Estatus" data-attribute="264905" data-field-name="@Resources.Detalle_Historico_JAResources.Estatus">
+                                    <input class="form-control" id="Detalle_Historico_JAEstatus" name="Detalle_Historico_JAEstatus" type="text" value="@Model.Estatus">
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_Historico_JAConfigureSave" name="Detalle_Historico_JAConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_Historico_JAConfigureType" />
+												<input type="hidden" id="hdnDetalle_Historico_JABusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_Historico_JABusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_Historico_JABusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_Historico_JAGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_Historico_JABusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_Historico_JA.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_Historico_JAGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_Historico_JACreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/SolicitudCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_Historico_JARowElement = "Detalle_Historico_JAPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_Historico_JARowElement + "')){ Detalle_Historico_JAInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+            $('#Detalle_Historico_JAFecha').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Detalle_Historico_JAHora').clockpicker();
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+       var AutoCompleteUsuarioData =[];
+       $(".AutoCompleteDetalle_Historico_JA_Usuario").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_Historico_JA/GetDetalle_Historico_JA_Usuario_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Historico_JA_Usuario_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Historico_JA_Usuario");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_Historico_JAData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_Historico_JA").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_Historico_JA")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_Historico_JACreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_Historico_JA/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_Historico_JAPropertyBag", "Detalle_Historico_JA")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_Historico_JAGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_Historico_JABusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_Historico_JABusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_Historico_JABusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_Historico_JABusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Historico_JABusinessRuleFieldName').val(), ObjectId: '45190', Attribute: $('#hdnDetalle_Historico_JABusinessRuleAttribute').val(), Screen: 'Detalle_Historico_JA' }, function (data) {
+                $(".Detalle_Historico_JABusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_Historico_JAGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_Historico_JABusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_Historico_JABusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_Historico_JABusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_Historico_JABusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Historico_JABusinessRuleFieldName').val(), ObjectId: '45190', Attribute: $('#hdnDetalle_Historico_JABusinessRuleAttribute').val(), Screen: 'Detalle_Historico_JA' }, function (data) {
+                $(".Detalle_Historico_JAAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_Historico_JABusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Historico_JABusinessRuleFieldName').val(), ObjectId: '45190', Attribute: $('#hdnDetalle_Historico_JABusinessRuleAttribute').val(), Screen: 'Detalle_Historico_JA' }, function (data) {
+				$(".Detalle_Historico_JABusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_Historico_JA/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_Historico_JA/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_Historico_JA/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_Historico_JAConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_Historico_JAConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_Historico_JA/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_Historico_JAConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_Historico_JA/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_Historico_JA' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_Historico_JA' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_Historico_JAConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_Historico_JAConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_Historico_JA').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_Historico_JABusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_Historico_JABusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_Historico_JABusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

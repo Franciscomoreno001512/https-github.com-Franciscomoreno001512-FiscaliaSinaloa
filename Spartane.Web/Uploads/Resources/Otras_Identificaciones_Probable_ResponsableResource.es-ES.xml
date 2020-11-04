@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Otras_Identificaciones_Probable_Responsable" value="Otras Identificaciones Probable Responsable"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Tipo_de_identificacion" value="Tipo de identificación"></resource>
+  <resource culture="es-es" name="Descripcion" value="Descripción"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

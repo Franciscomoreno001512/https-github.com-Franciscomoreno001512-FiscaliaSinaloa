@@ -1,0 +1,344 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.DelitoAdvanceSearchModel
+@{
+    List<SelectListItem> varTitulo_del_Delito_Titulo_del_Delito = null;
+    if (ViewBag.Titulo_del_Delitos_Titulo_del_Delito != null)
+    { varTitulo_del_Delito_Titulo_del_Delito = (List<SelectListItem>)ViewBag.Titulo_del_Delitos_Titulo_del_Delito; }
+    List<SelectListItem> varGrupo_del_Delito_Grupo_del_Delito = null;
+    if (ViewBag.Grupo_del_Delitos_Grupo_del_Delito != null)
+    { varGrupo_del_Delito_Grupo_del_Delito = (List<SelectListItem>)ViewBag.Grupo_del_Delitos_Grupo_del_Delito; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Delito", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.DelitoResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.DelitoResources.Titulo_del_Delito</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Titulo_del_DelitoFilter, filters, new { @class = "form-control", @id = "ddlTitulo_del_DelitoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTitulo_del_Delito, new { @class = "form-control", @type = "text", @id = "txtAdvanceTitulo_del_Delito" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTitulo_del_Delito_Titulo_del_Delito!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTitulo_del_DelitoMultiple, varTitulo_del_Delito_Titulo_del_Delito,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTitulo_del_Delito"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.DelitoResources.Grupo_del_Delito</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Grupo_del_DelitoFilter, filters, new { @class = "form-control", @id = "ddlGrupo_del_DelitoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceGrupo_del_Delito, new { @class = "form-control", @type = "text", @id = "txtAdvanceGrupo_del_Delito" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varGrupo_del_Delito_Grupo_del_Delito!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceGrupo_del_DelitoMultiple, varGrupo_del_Delito_Grupo_del_Delito,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceGrupo_del_Delito"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.DelitoResources.Descripcion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
+                    @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Delito/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.DelitoClaveTo = $("#txtAdvanceToClave").val();
+        }
+        advanceSearch.Titulo_del_DelitoSearchType = 0;
+        if ($('#ddlAdvanceTitulo_del_Delito').val().length > 0 || $("#txtAdvanceTitulo_del_Delito").val() == "") {
+
+
+            if (isDelitoTextSearch) {
+                advanceSearch.Titulo_del_DelitoName = $("#txtAdvanceTitulo_del_Delito").val();
+                advanceSearch.Titulo_del_DelitoNameSearchType = $("#ddlAdvanceTitulo_del_Delito").val();
+                advanceSearch.Titulo_del_DelitoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Titulo_del_DelitoToSearch = $("#ddlAdvanceTitulo_del_Delito").val();
+                advanceSearch.Titulo_del_DelitoSearchType = 2;
+            }
+        }
+        advanceSearch.Grupo_del_DelitoSearchType = 0;
+        if ($('#ddlAdvanceGrupo_del_Delito').val().length > 0 || $("#txtAdvanceGrupo_del_Delito").val() == "") {
+
+
+            if (isDelitoTextSearch) {
+                advanceSearch.Grupo_del_DelitoName = $("#txtAdvanceGrupo_del_Delito").val();
+                advanceSearch.Grupo_del_DelitoNameSearchType = $("#ddlAdvanceGrupo_del_Delito").val();
+                advanceSearch.Grupo_del_DelitoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Grupo_del_DelitoToSearch = $("#ddlAdvanceGrupo_del_Delito").val();
+                advanceSearch.Grupo_del_DelitoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceDescripcion").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoDescripcion = $("#txtAdvanceDescripcion").val();
+            advanceSearch.DelitoDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
+        }
+        if ($("#ddlAdvanceGrave").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoGrave = $("#ddlAdvanceGrave").val();
+        }
+        if ($("#ddlAdvanceAlto_Impacto").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoAlto_Impacto = $("#ddlAdvanceAlto_Impacto").val();
+        }
+        if ($("#ddlAdvanceAlta_Incidencia").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoAlta_Incidencia = $("#ddlAdvanceAlta_Incidencia").val();
+        }
+        if ($("#ddlAdvanceTentativa").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoTentativa = $("#ddlAdvanceTentativa").val();
+        }
+        if ($("#ddlAdvanceActivo").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoActivo = $("#ddlAdvanceActivo").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblDelito').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isDelitoTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceTitulo_del_Delito").keypress(function () {
+            isDelitoTextSearch = true;
+            $("#ddlAdvanceTitulo_del_Delito").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTitulo_del_Delito").change(function () {
+            isDelitoTextSearch = false;
+            $("#txtAdvanceTitulo_del_Delito").val('');
+        });
+        $("#txtAdvanceGrupo_del_Delito").keypress(function () {
+            isDelitoTextSearch = true;
+            $("#ddlAdvanceGrupo_del_Delito").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceGrupo_del_Delito").change(function () {
+            isDelitoTextSearch = false;
+            $("#txtAdvanceGrupo_del_Delito").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

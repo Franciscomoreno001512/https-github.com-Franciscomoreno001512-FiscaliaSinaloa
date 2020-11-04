@@ -1,0 +1,820 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Control_de_CitasModel
+@{
+
+/*
+    string Fecha_de_Registro = "";
+    if (Model.Fecha_de_Registro == "")
+    { Model.Fecha_de_Registro = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_la_Cita = "";
+    if (Model.Fecha_de_la_Cita == "")
+    { Model.Fecha_de_la_Cita = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+*/
+    List<SelectListItem> varSpartan_User_Usuario_que_Atiende = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Atiende != null)
+    { varSpartan_User_Usuario_que_Atiende = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Atiende; }
+    List<SelectListItem> varOrigen_de_Invitacion_Proceso = null;
+    if (ViewBag.Origen_de_Invitacions_Proceso != null)
+    { varOrigen_de_Invitacion_Proceso = (List<SelectListItem>)ViewBag.Origen_de_Invitacions_Proceso; }
+
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.Control_de_CitasResources.Control_de_Citas
+                <button onclick="Control_de_CitasGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Control_de_CitasBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Control_de_CitasResources.Control_de_Citas</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="Control_de_CitasDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in Control_de_CitasPropertyBusinessModal" id="Control_de_CitasPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Control_de_CitasBusinessRule-form" onclick="Control_de_CitasGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Control_de_CitasBusinessRuleModal" id="Control_de_CitasBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Control_de_Citas", FormMethod.Post, new { id = "CreateControl_de_Citas", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Control_de_CitasCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Control_de_CitasResources.TabDatos_Generales</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divFolio">
+                                <label class="col-sm-2 control-label">@Resources.Control_de_CitasResources.Folio</label>
+                                <div class="col-sm-8" data-field-id="Folio" data-attribute="266138" data-field-name="@Resources.Control_de_CitasResources.Folio">
+                                    <label class="form-control" for="Folio" id="lblFolio">
+                                    @if (Model.Folio== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Folio</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFecha_de_Registro">
+                                <label class="col-sm-2 control-label">@Resources.Control_de_CitasResources.Fecha_de_Registro</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Registro" data-attribute="266139" data-field-name="@Resources.Control_de_CitasResources.Fecha_de_Registro">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Registro"  name="Fecha_de_Registro" type="text" value="@Model.Fecha_de_Registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Registro">
+                                <label class="col-sm-2 control-label">@Resources.Control_de_CitasResources.Hora_de_Registro</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Registro" data-attribute="266140" data-field-name="@Resources.Control_de_CitasResources.Hora_de_Registro">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Hora_de_Registro"  name="Hora_de_Registro" type="text" data-autoclose="true" value="@Model.Hora_de_Registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divUsuario_que_Atiende">
+                                <label class="col-sm-2 control-label">@Resources.Control_de_CitasResources.Usuario_que_Atiende</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Atiende" data-attribute="266141" data-field-name="@Resources.Control_de_CitasResources.Usuario_que_Atiende">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Usuario que Atiende must be a number." data-val-required="The Usuario que Atiende field is required." id="Usuario_que_Atiende" name="Usuario_que_Atiende">
+                                        <option value=""></option>
+                                        @if (varSpartan_User_Usuario_que_Atiende != null){ 
+                                            foreach (var itemUsuario_que_Atiende in varSpartan_User_Usuario_que_Atiende)
+                                            {
+                                                if (itemUsuario_que_Atiende.Value == Convert.ToString(Model.Usuario_que_Atiende))
+                                                {
+                                                    <option value="@itemUsuario_que_Atiende.Value" selected>@itemUsuario_que_Atiende.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemUsuario_que_Atiende.Value">@itemUsuario_que_Atiende.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Usuario_que_Atiende" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266141).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Atiende');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divFecha_de_la_Cita">
+                                <label class="col-sm-2 control-label">@Resources.Control_de_CitasResources.Fecha_de_la_Cita</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_la_Cita" data-attribute="266142" data-field-name="@Resources.Control_de_CitasResources.Fecha_de_la_Cita">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_la_Cita"  name="Fecha_de_la_Cita" type="text" value="@Model.Fecha_de_la_Cita">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_la_Cita">
+                                <label class="col-sm-2 control-label">@Resources.Control_de_CitasResources.Hora_de_la_Cita</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_la_Cita" data-attribute="266143" data-field-name="@Resources.Control_de_CitasResources.Hora_de_la_Cita">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Hora_de_la_Cita"  name="Hora_de_la_Cita" type="text" data-autoclose="true" value="@Model.Hora_de_la_Cita">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divProceso">
+                                <label class="col-sm-2 control-label">@Resources.Control_de_CitasResources.Proceso</label>
+                                <div class="col-sm-8" data-field-id="Proceso" data-attribute="266144" data-field-name="@Resources.Control_de_CitasResources.Proceso">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Proceso must be a number." data-val-required="The Proceso field is required." id="Proceso" name="Proceso">
+                                        <option value=""></option>
+                                        @if (varOrigen_de_Invitacion_Proceso != null){ 
+                                            foreach (var itemProceso in varOrigen_de_Invitacion_Proceso)
+                                            {
+                                                if (itemProceso.Value == Convert.ToString(Model.Proceso))
+                                                {
+                                                    <option value="@itemProceso.Value" selected>@itemProceso.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemProceso.Value">@itemProceso.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Proceso" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266144).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Origen_de_Invitacion', 'Proceso');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divNumero_de_Expediente">
+                                <label class="col-sm-2 control-label">@Resources.Control_de_CitasResources.Numero_de_Expediente</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Expediente" data-attribute="266145" data-field-name="@Resources.Control_de_CitasResources.Numero_de_Expediente">
+                                    <input class="form-control Datos_Generales" id="Numero_de_Expediente" name="Numero_de_Expediente" type="text" value="@Model.Numero_de_Expediente">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_de_Expediente" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divTipo_de_Cita">
+                                <label class="col-sm-2 control-label">@Resources.Control_de_CitasResources.Tipo_de_Cita</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Cita" data-attribute="266146" data-field-name="@Resources.Control_de_CitasResources.Tipo_de_Cita">
+                                    <input class="form-control Datos_Generales" id="Tipo_de_Cita" name="Tipo_de_Cita" type="text" value="@Model.Tipo_de_Cita">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Cita" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCita">
+                                <label class="col-sm-2 control-label">@Resources.Control_de_CitasResources.Cita</label>
+                                <div class="col-sm-8" data-field-id="Cita" data-attribute="266147" data-field-name="@Resources.Control_de_CitasResources.Cita">
+                                    <textarea id="Cita" name="Cita" class="form-control Datos_Generales" rows="4" cols="50">@Model.Cita</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Cita" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCumplida">
+                                <label class="col-sm-2 control-label">@Resources.Control_de_CitasResources.Cumplida</label>
+                                <div class="col-sm-8" data-field-id="Cumplida" data-attribute="266148" data-field-name="@Resources.Control_de_CitasResources.Cumplida">
+                                    @Html.CheckBoxFor(m => m.Cumplida, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divObservaciones">
+                                <label class="col-sm-2 control-label">@Resources.Control_de_CitasResources.Observaciones</label>
+                                <div class="col-sm-8" data-field-id="Observaciones" data-attribute="266149" data-field-name="@Resources.Control_de_CitasResources.Observaciones">
+                                    <textarea id="Observaciones" name="Observaciones" class="form-control Datos_Generales" rows="4" cols="50">@Model.Observaciones</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Folio" id="ReferenceFolio" />
+                                <input type="hidden" value="@Model.Folio" name="Folio" id="FolioId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Control_de_CitasGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Control_de_CitasCreateForm');"  />
+									<button onclick="Control_de_CitasGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Control_de_CitasBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Control_de_CitasGuardarYNuevo" onclick="return checkClientValidate('Control_de_CitasCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Control_de_CitasGuardarYCopia" onclick="return checkClientValidate('Control_de_CitasCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnControl_de_CitasBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnControl_de_CitasBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnControl_de_CitasBusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Control_de_CitasCancelar" name="Control_de_CitasCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                <button onclick="Control_de_CitasGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Control_de_CitasBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Control_de_Citas.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Control_de_CitasGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Control_de_CitasCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_Generales = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45352');
+		   
+		   
+			
+             @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+             }
+             EjecutarValidacionesAlComienzo();
+                         $('#Fecha_de_Registro').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_de_Registro').clockpicker();
+            $('#Fecha_de_la_Cita').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_de_la_Cita').clockpicker();
+
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#Control_de_CitasGuardarYNuevo').hide();
+                $('#Control_de_CitasGuardarYCopia').hide();
+                $('#Control_de_CitasCancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#Control_de_CitasGuardar').val('Actualizar Seccion ' + '@Resources.Control_de_CitasResources.Control_de_Citas' )
+            }
+
+			
+			
+
+        });
+
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/Control_de_Citas/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+
+        function SendControl_de_CitasData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateControl_de_Citas").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateControl_de_Citas")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#ReferenceFolio").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_Generales && !checkClientValidate('Control_de_CitasCreateForm', 'Datos_Generales')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+            }
+			
+			
+			if (Tab_Datos_Generales)
+				Save_Datos_Generales(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Control_de_Citas/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".Control_de_CitasBusinessRuleModal").html(data);
+			});
+		}
+                function Control_de_CitasGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45352');
+			$('#Screen').val('Control_de_Citas');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function Control_de_CitasBackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/Control_de_Citas/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Control_de_Citas/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Control_de_Citas/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Control_de_Citas/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Control_de_Citas/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateControl_de_Citas').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        Control_de_CitasGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_Generales()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Control_de_Citas/Get_Datos_Generales")?Id=" + $("#ReferenceFolio").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Folio').val(result.data.Folio);
+                    $('#Fecha_de_Registro').val(result.data.Fecha_de_Registro);
+                    $('#Hora_de_Registro').val(result.data.Hora_de_Registro);
+                    $('#Usuario_que_Atiende').val(result.data.Usuario_que_Atiende);
+                    $('#Fecha_de_la_Cita').val(result.data.Fecha_de_la_Cita);
+                    $('#Hora_de_la_Cita').val(result.data.Hora_de_la_Cita);
+                    $('#Proceso').val(result.data.Proceso);
+                    $('#Numero_de_Expediente').val(result.data.Numero_de_Expediente);
+                    $('#Tipo_de_Cita').val(result.data.Tipo_de_Cita);
+                    $('#Cita').val(result.data.Cita);
+                    $('#Cumplida').prop('checked', result.data.Cumplida);
+                    $('#Observaciones').val(result.data.Observaciones);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_Generales(newId) {
+			var data = new FormData();
+			data.append('Folio', newId);
+			                data.append('Fecha_de_Registro', $('#Fecha_de_Registro').val());
+                data.append('Hora_de_Registro', $('#Hora_de_Registro').val());
+                data.append('Usuario_que_Atiende', $('#Usuario_que_Atiende').val());
+                data.append('Fecha_de_la_Cita', $('#Fecha_de_la_Cita').val());
+                data.append('Hora_de_la_Cita', $('#Hora_de_la_Cita').val());
+                data.append('Proceso', $('#Proceso').val());
+                data.append('Numero_de_Expediente', $('#Numero_de_Expediente').val());
+                data.append('Tipo_de_Cita', $('#Tipo_de_Cita').val());
+                data.append('Cita', $('#Cita').val());
+                data.append('Cumplida', $('#Cumplida').prop('checked'));
+                data.append('Observaciones', $('#Observaciones').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Control_de_Citas/Post_Datos_Generales")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="Control_de_Citas_cmbLabelSelect" name="Control_de_Citas_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

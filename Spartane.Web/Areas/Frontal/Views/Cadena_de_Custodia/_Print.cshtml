@@ -1,0 +1,614 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Cadena_de_CustodiaGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.NUC
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.NIC
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Delito_Referencia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Fecha
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Hora
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Lugar_Exacto_del_Levantamiento
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Condicion_y_Ubicacion
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Levantada_por
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Cargo
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Asignar
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Folio_NUE
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Unidad_Policial
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Caracterististicas_del_indicio
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Condiciones_De_Manejo
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Numero_de_Parte
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.CUIP
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Observaciones
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Longitud
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Latitud
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Clima
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Grados
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Fijacion_Planimetrica
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Mensaje
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Unidad_Administrativa
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Entidad_Federativa
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Numero_de_Oficio
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Fecha_CC
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Hora_CC
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Motivo_de_Intervencion
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Otro
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Estatus
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Nombre_Completo
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Usuario_que_Registra
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.FAE
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Fecha_de_la_Emergencia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Hora_de_la_Emergencia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Fuente
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Telefono
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Celular
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Correo_Electronico
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Red_Social
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Medio_Masivo
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Cargo_de_la_Autoridad
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Tipo_de_Emergencia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Descripcion_de_la_Emergencia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Probables_Detenidos
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Fecha_de_la_Detencion
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Hora_de_la_Detencion
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Pais_Emergencia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Estado_Emergencia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Municipio_Emergencia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Colonia_Emergencia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Calle_Emergencia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Entre_Calle_Emergencia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Y_Calle_Emergencia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Latitud_Emergencia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Longitud_Emergencia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Nombre_de_la_Autoridad
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Especifique
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Tipo_de_Agente
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Area
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Unidad
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Zona
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Agente_Investigador
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Narrativa_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Probable_Delito_Principal
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Fecha_de_Asignacion
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Hora_de_Asignacion
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Estatus_NUE
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Inicio_de_Cadena_de_Custodia
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Calidad_de_quien_aporta
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Fecha_del_arribo
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Hora_del_arribo
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Descripcion_de_recoleccion
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Movil_para_Traslado
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Servidor_Publico_que_Preserva
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Servidor_Publico_que_Busca
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Servidor_Publico_que_Localiza
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Servidor_Publico_que_Recolecta
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Servidor_Publico_que_Traslada
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Preservacion
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Busqueda
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Localizacion
+            </td>
+            <td class="column1">
+                @Resources.Cadena_de_CustodiaResources.Recoleccion
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.NUC
+                    </td>
+                    <td>
+                        @item.NIC
+                    </td>
+                    <td>
+                        @item.Delito_ReferenciaDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha
+                    </td>
+                    <td>
+                        @item.Hora
+                    </td>
+                    <td>
+                        @item.Lugar_Exacto_del_Levantamiento
+                    </td>
+                    <td>
+                        @item.Condicion_y_Ubicacion
+                    </td>
+                    <td>
+                        @item.Levantada_por
+                    </td>
+                    <td>
+                        @item.CargoTipo_de_Cargo
+                    </td>
+                    <td>
+                        @item.Asignar
+                    </td>
+                    <td>
+                        @item.Folio_NUE
+                    </td>
+                    <td>
+                        @item.Unidad_PolicialUnidad_Policial
+                    </td>
+                    <td>
+                        @item.Caracterististicas_del_indicio
+                    </td>
+                    <td>
+                        @item.Condiciones_De_Manejo
+                    </td>
+                    <td>
+                        @item.Numero_de_Parte
+                    </td>
+                    <td>
+                        @item.CUIP
+                    </td>
+                    <td>
+                        @item.Observaciones
+                    </td>
+                    <td>
+                        @item.Longitud
+                    </td>
+                    <td>
+                        @item.Latitud
+                    </td>
+                    <td>
+                        @item.Clima
+                    </td>
+                    <td>
+                        @item.Grados
+                    </td>
+                    <td>
+                        @item.Fijacion_Planimetrica
+                    </td>
+                    <td>
+                        @item.Mensaje
+                    </td>
+                    <td>
+                        @item.Unidad_AdministrativaDescripcion
+                    </td>
+                    <td>
+                        @item.Entidad_FederativaNombre
+                    </td>
+                    <td>
+                        @item.MunicipioNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Oficio
+                    </td>
+                    <td>
+                        @item.Fecha_CC
+                    </td>
+                    <td>
+                        @item.Hora_CC
+                    </td>
+                    <td>
+                        @item.Motivo_de_IntervencionDescripcion
+                    </td>
+                    <td>
+                        @item.Otro
+                    </td>
+                    <td>
+                        @item.EstatusEstatus
+                    </td>
+                    <td>
+                        @item.Nombre_Completo
+                    </td>
+                    <td>
+                        @item.Usuario_que_Registra
+                    </td>
+                    <td>
+                        @item.FAE
+                    </td>
+                    <td>
+                        @item.Fecha_de_la_Emergencia
+                    </td>
+                    <td>
+                        @item.Hora_de_la_Emergencia
+                    </td>
+                    <td>
+                        @item.Fuente
+                    </td>
+                    <td>
+                        @item.Telefono
+                    </td>
+                    <td>
+                        @item.Celular
+                    </td>
+                    <td>
+                        @item.Correo_Electronico
+                    </td>
+                    <td>
+                        @item.Red_Social
+                    </td>
+                    <td>
+                        @item.Medio_Masivo
+                    </td>
+                    <td>
+                        @item.Cargo_de_la_Autoridad
+                    </td>
+                    <td>
+                        @item.Tipo_de_Emergencia
+                    </td>
+                    <td>
+                        @item.Descripcion_de_la_Emergencia
+                    </td>
+                    <td>
+                        @item.Probables_Detenidos
+                    </td>
+                    <td>
+                        @item.Fecha_de_la_Detencion
+                    </td>
+                    <td>
+                        @item.Hora_de_la_Detencion
+                    </td>
+                    <td>
+                        @item.Pais_Emergencia
+                    </td>
+                    <td>
+                        @item.Estado_Emergencia
+                    </td>
+                    <td>
+                        @item.Municipio_Emergencia
+                    </td>
+                    <td>
+                        @item.Colonia_Emergencia
+                    </td>
+                    <td>
+                        @item.Calle_Emergencia
+                    </td>
+                    <td>
+                        @item.Entre_Calle_Emergencia
+                    </td>
+                    <td>
+                        @item.Y_Calle_Emergencia
+                    </td>
+                    <td>
+                        @item.Latitud_Emergencia
+                    </td>
+                    <td>
+                        @item.Longitud_Emergencia
+                    </td>
+                    <td>
+                        @item.Nombre_de_la_Autoridad
+                    </td>
+                    <td>
+                        @item.Especifique
+                    </td>
+                    <td>
+                        @item.Tipo_de_Agente
+                    </td>
+                    <td>
+                        @item.Area
+                    </td>
+                    <td>
+                        @item.Unidad
+                    </td>
+                    <td>
+                        @item.Zona
+                    </td>
+                    <td>
+                        @item.Agente_Investigador
+                    </td>
+                    <td>
+                        @item.Narrativa_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Probable_Delito_Principal
+                    </td>
+                    <td>
+                        @item.Fecha_de_Asignacion
+                    </td>
+                    <td>
+                        @item.Hora_de_Asignacion
+                    </td>
+                    <td>
+                        @item.Estatus_NUE
+                    </td>
+                    <td>
+                        @item.Inicio_de_Cadena_de_CustodiaDescripcion
+                    </td>
+                    <td>
+                        @item.Calidad_de_quien_aportaDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_del_arribo
+                    </td>
+                    <td>
+                        @item.Hora_del_arribo
+                    </td>
+                    <td>
+                        @item.Descripcion_de_recoleccionDescripcion
+                    </td>
+                    <td>
+                        @item.Movil_para_TrasladoDescripcion
+                    </td>
+                    <td>
+                        @item.Servidor_Publico_que_Preserva
+                    </td>
+                    <td>
+                        @item.Servidor_Publico_que_Busca
+                    </td>
+                    <td>
+                        @item.Servidor_Publico_que_Localiza
+                    </td>
+                    <td>
+                        @item.Servidor_Publico_que_Recolecta
+                    </td>
+                    <td>
+                        @item.Servidor_Publico_que_Traslada
+                    </td>
+                    <td>
+                        @item.Preservacion
+                    </td>
+                    <td>
+                        @item.Busqueda
+                    </td>
+                    <td>
+                        @item.Localizacion
+                    </td>
+                    <td>
+                        @item.Recoleccion
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

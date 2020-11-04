@@ -1,0 +1,750 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Errores_de_ReplicacionModel
+@{
+
+/*
+    string Fecha_del_Error = "";
+    if (Model.Fecha_del_Error == "")
+    { Model.Fecha_del_Error = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+*/
+    List<SelectListItem> varSpartan_User_Usuario = null;
+    if (ViewBag.Spartan_Users_Usuario != null)
+    { varSpartan_User_Usuario = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario; }
+
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.Errores_de_ReplicacionResources.Errores_de_Replicacion
+                <button onclick="Errores_de_ReplicacionGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Errores_de_ReplicacionBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Errores_de_ReplicacionResources.Errores_de_Replicacion</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="Errores_de_ReplicacionDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in Errores_de_ReplicacionPropertyBusinessModal" id="Errores_de_ReplicacionPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Errores_de_ReplicacionBusinessRule-form" onclick="Errores_de_ReplicacionGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Errores_de_ReplicacionBusinessRuleModal" id="Errores_de_ReplicacionBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Errores_de_Replicacion", FormMethod.Post, new { id = "CreateErrores_de_Replicacion", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Errores_de_ReplicacionCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Errores_de_ReplicacionResources.TabDatos_Generales</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Errores_de_ReplicacionResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="265178" data-field-name="@Resources.Errores_de_ReplicacionResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divID_del_Dispositivo">
+                                <label class="col-sm-2 control-label">@Resources.Errores_de_ReplicacionResources.ID_del_Dispositivo</label>
+                                <div class="col-sm-8" data-field-id="ID_del_Dispositivo" data-attribute="265179" data-field-name="@Resources.Errores_de_ReplicacionResources.ID_del_Dispositivo">
+                                    <input class="form-control Datos_Generales" id="ID_del_Dispositivo" name="ID_del_Dispositivo" type="text" value="@Model.ID_del_Dispositivo">
+                                    @*<span class="field-validation-valid" data-valmsg-for="ID_del_Dispositivo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divUsuario">
+                                <label class="col-sm-2 control-label">@Resources.Errores_de_ReplicacionResources.Usuario</label>
+                                <div class="col-sm-8" data-field-id="Usuario" data-attribute="265180" data-field-name="@Resources.Errores_de_ReplicacionResources.Usuario">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Usuario must be a number." data-val-required="The Usuario field is required." id="Usuario" name="Usuario">
+                                        <option value=""></option>
+                                        @if (varSpartan_User_Usuario != null){ 
+                                            foreach (var itemUsuario in varSpartan_User_Usuario)
+                                            {
+                                                if (itemUsuario.Value == Convert.ToString(Model.Usuario))
+                                                {
+                                                    <option value="@itemUsuario.Value" selected>@itemUsuario.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemUsuario.Value">@itemUsuario.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Usuario" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 265180).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divFecha_del_Error">
+                                <label class="col-sm-2 control-label">@Resources.Errores_de_ReplicacionResources.Fecha_del_Error</label>
+                                <div class="col-sm-8" data-field-id="Fecha_del_Error" data-attribute="265181" data-field-name="@Resources.Errores_de_ReplicacionResources.Fecha_del_Error">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_del_Error"  name="Fecha_del_Error" type="text" value="@Model.Fecha_del_Error">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_del_Error">
+                                <label class="col-sm-2 control-label">@Resources.Errores_de_ReplicacionResources.Hora_del_Error</label>
+                                <div class="col-sm-8" data-field-id="Hora_del_Error" data-attribute="265182" data-field-name="@Resources.Errores_de_ReplicacionResources.Hora_del_Error">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Hora_del_Error"  name="Hora_del_Error" type="text" data-autoclose="true" value="@Model.Hora_del_Error">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCampo_con_Error">
+                                <label class="col-sm-2 control-label">@Resources.Errores_de_ReplicacionResources.Campo_con_Error</label>
+                                <div class="col-sm-8" data-field-id="Campo_con_Error" data-attribute="265183" data-field-name="@Resources.Errores_de_ReplicacionResources.Campo_con_Error">
+                                    <input class="form-control Datos_Generales" id="Campo_con_Error" name="Campo_con_Error" type="text" value="@Model.Campo_con_Error">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Campo_con_Error" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divValor_del_Campo_en_Dispositivo">
+                                <label class="col-sm-2 control-label">@Resources.Errores_de_ReplicacionResources.Valor_del_Campo_en_Dispositivo</label>
+                                <div class="col-sm-8" data-field-id="Valor_del_Campo_en_Dispositivo" data-attribute="265184" data-field-name="@Resources.Errores_de_ReplicacionResources.Valor_del_Campo_en_Dispositivo">
+                                    <input class="form-control Datos_Generales" id="Valor_del_Campo_en_Dispositivo" name="Valor_del_Campo_en_Dispositivo" type="text" value="@Model.Valor_del_Campo_en_Dispositivo">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Valor_del_Campo_en_Dispositivo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divValor_del_Campo_en_Web">
+                                <label class="col-sm-2 control-label">@Resources.Errores_de_ReplicacionResources.Valor_del_Campo_en_Web</label>
+                                <div class="col-sm-8" data-field-id="Valor_del_Campo_en_Web" data-attribute="265185" data-field-name="@Resources.Errores_de_ReplicacionResources.Valor_del_Campo_en_Web">
+                                    <input class="form-control Datos_Generales" id="Valor_del_Campo_en_Web" name="Valor_del_Campo_en_Web" type="text" value="@Model.Valor_del_Campo_en_Web">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Valor_del_Campo_en_Web" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFolio">
+                                <label class="col-sm-2 control-label">@Resources.Errores_de_ReplicacionResources.Folio</label>
+                                <div class="col-sm-8" data-field-id="Folio" data-attribute="265186" data-field-name="@Resources.Errores_de_ReplicacionResources.Folio">
+                                    <input class="form-control inputNumber Datos_Generales" id="Folio" name="Folio" type="text" value="@Model.Folio">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Folio" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+                                <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Errores_de_ReplicacionGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Errores_de_ReplicacionCreateForm');"  />
+									<button onclick="Errores_de_ReplicacionGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Errores_de_ReplicacionBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Errores_de_ReplicacionGuardarYNuevo" onclick="return checkClientValidate('Errores_de_ReplicacionCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Errores_de_ReplicacionGuardarYCopia" onclick="return checkClientValidate('Errores_de_ReplicacionCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnErrores_de_ReplicacionBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnErrores_de_ReplicacionBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnErrores_de_ReplicacionBusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Errores_de_ReplicacionCancelar" name="Errores_de_ReplicacionCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                <button onclick="Errores_de_ReplicacionGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Errores_de_ReplicacionBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Errores_de_Replicacion.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Errores_de_ReplicacionGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Errores_de_ReplicacionCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_Generales = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45235');
+		   
+		   
+			
+             @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+             }
+             EjecutarValidacionesAlComienzo();
+                         $('#Fecha_del_Error').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_del_Error').clockpicker();
+
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#Errores_de_ReplicacionGuardarYNuevo').hide();
+                $('#Errores_de_ReplicacionGuardarYCopia').hide();
+                $('#Errores_de_ReplicacionCancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#Errores_de_ReplicacionGuardar').val('Actualizar Seccion ' + '@Resources.Errores_de_ReplicacionResources.Errores_de_Replicacion' )
+            }
+
+			
+			
+
+        });
+
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/Errores_de_Replicacion/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+
+        function SendErrores_de_ReplicacionData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateErrores_de_Replicacion").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateErrores_de_Replicacion")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#ReferenceClave").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_Generales && !checkClientValidate('Errores_de_ReplicacionCreateForm', 'Datos_Generales')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+            }
+			
+			
+			if (Tab_Datos_Generales)
+				Save_Datos_Generales(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Errores_de_Replicacion/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".Errores_de_ReplicacionBusinessRuleModal").html(data);
+			});
+		}
+                function Errores_de_ReplicacionGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45235');
+			$('#Screen').val('Errores_de_Replicacion');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function Errores_de_ReplicacionBackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/Errores_de_Replicacion/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Errores_de_Replicacion/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Errores_de_Replicacion/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Errores_de_Replicacion/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Errores_de_Replicacion/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateErrores_de_Replicacion').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        Errores_de_ReplicacionGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_Generales()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Errores_de_Replicacion/Get_Datos_Generales")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#ID_del_Dispositivo').val(result.data.ID_del_Dispositivo);
+                    $('#Usuario').val(result.data.Usuario);
+                    $('#Fecha_del_Error').val(result.data.Fecha_del_Error);
+                    $('#Hora_del_Error').val(result.data.Hora_del_Error);
+                    $('#Campo_con_Error').val(result.data.Campo_con_Error);
+                    $('#Valor_del_Campo_en_Dispositivo').val(result.data.Valor_del_Campo_en_Dispositivo);
+                    $('#Valor_del_Campo_en_Web').val(result.data.Valor_del_Campo_en_Web);
+                    $('#Folio').val(result.data.Folio);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_Generales(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('ID_del_Dispositivo', $('#ID_del_Dispositivo').val());
+                data.append('Usuario', $('#Usuario').val());
+                data.append('Fecha_del_Error', $('#Fecha_del_Error').val());
+                data.append('Hora_del_Error', $('#Hora_del_Error').val());
+                data.append('Campo_con_Error', $('#Campo_con_Error').val());
+                data.append('Valor_del_Campo_en_Dispositivo', $('#Valor_del_Campo_en_Dispositivo').val());
+                data.append('Valor_del_Campo_en_Web', $('#Valor_del_Campo_en_Web').val());
+                data.append('Folio', $('#Folio').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Errores_de_Replicacion/Post_Datos_Generales")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="Errores_de_Replicacion_cmbLabelSelect" name="Errores_de_Replicacion_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

@@ -1,0 +1,1138 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Calendario_de_CitasModel
+@{
+
+/*
+
+*/
+
+    Permission permissionDetalle_de_Asignacion_de_Citas = ViewBag.PermissionDetalle_de_Asignacion_de_Citas;
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.Calendario_de_CitasResources.Calendario_de_Citas
+                <button onclick="Calendario_de_CitasGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Calendario_de_CitasResources.Calendario_de_Citas</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="Calendario_de_CitasDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in Calendario_de_CitasPropertyBusinessModal" id="Calendario_de_CitasPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form" onclick="Calendario_de_CitasGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Calendario_de_CitasBusinessRuleModal" id="Calendario_de_CitasBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+                    <div aria-hidden="true" class="modal fade in AddDetalle_de_Asignacion_de_CitasModal" id="AddDetalle_de_Asignacion_de_Citas-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Calendario_de_Citas", FormMethod.Post, new { id = "CreateCalendario_de_Citas", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Calendario_de_CitasCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Calendario_de_CitasResources.TabDatos_Generales</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Calendario_de_CitasResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="263511" data-field-name="@Resources.Calendario_de_CitasResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="divCalendario_de_CitasC">
+                            <div class="ibox-title">
+                                <h5>@Resources.Calendario_de_CitasResources.Calendario_de_CitasC</h5>
+                                <div class="ibox-tools">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+									@if (permissionDetalle_de_Asignacion_de_Citas.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_de_Asignacion_de_CitasfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_de_Asignacion_de_CitasAddRow btn btn-primary">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </a>
+                                    }
+                                    <button onclick="Calendario_de_CitasGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '263512')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>
+									@if (permissionDetalle_de_Asignacion_de_Citas.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_de_Asignacion_de_CitasfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_de_Asignacion_de_Citas-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
+                                            <i class="glyphicon glyphicon-new-window"></i>
+                                        </a>
+                                    }  
+                                </div>
+
+                                <br />
+
+                                <div style='overflow-x: auto;'>
+                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_de_Asignacion_de_CitasGrid">
+                                        <thead>
+                                            <tr>
+                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+
+
+                                                <th class="Numero_de_EmpleadoHeader"><span>
+<button type="button" data-attribute="263523" data-field-id="Detalle_de_Asignacion_de_CitasNumero_de_Empleado" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Numero_de_Empleado" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Asignacion_de_CitasResources.Numero_de_Empleado">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Asignacion_de_CitasResources.Numero_de_Empleado</span></th>
+                                                <th class="Nombre_de_EmpleadoHeader"><span>
+<button type="button" data-attribute="263524" data-field-id="Detalle_de_Asignacion_de_CitasNombre_de_Empleado" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Nombre_de_Empleado" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Asignacion_de_CitasResources.Nombre_de_Empleado">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>
+@Resources.Detalle_de_Asignacion_de_CitasResources.Nombre_de_Empleado</span></th>
+                                                <th class="LunesHeader"><span>
+<button type="button" data-attribute="263525" data-field-id="Detalle_de_Asignacion_de_CitasLunes" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Lunes" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Asignacion_de_CitasResources.Lunes">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Asignacion_de_CitasResources.Lunes</span></th>
+                                                <th class="MartesHeader"><span>
+<button type="button" data-attribute="263526" data-field-id="Detalle_de_Asignacion_de_CitasMartes" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Martes" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Asignacion_de_CitasResources.Martes">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Asignacion_de_CitasResources.Martes</span></th>
+                                                <th class="MiercolesHeader"><span>
+<button type="button" data-attribute="263527" data-field-id="Detalle_de_Asignacion_de_CitasMiercoles" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Miercoles" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Asignacion_de_CitasResources.Miercoles">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Asignacion_de_CitasResources.Miercoles</span></th>
+                                                <th class="JuevesHeader"><span>
+<button type="button" data-attribute="263528" data-field-id="Detalle_de_Asignacion_de_CitasJueves" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Jueves" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Asignacion_de_CitasResources.Jueves">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Asignacion_de_CitasResources.Jueves</span></th>
+                                                <th class="ViernesHeader"><span>
+<button type="button" data-attribute="263529" data-field-id="Detalle_de_Asignacion_de_CitasViernes" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Viernes" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Asignacion_de_CitasResources.Viernes">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Asignacion_de_CitasResources.Viernes</span></th>
+                                                <th class="SabadoHeader"><span>
+<button type="button" data-attribute="263530" data-field-id="Detalle_de_Asignacion_de_CitasSabado" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Sabado" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Asignacion_de_CitasResources.Sabado">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Asignacion_de_CitasResources.Sabado</span></th>
+                                                <th class="DomingoHeader"><span>
+<button type="button" data-attribute="263531" data-field-id="Detalle_de_Asignacion_de_CitasDomingo" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Domingo" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Asignacion_de_CitasResources.Domingo">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Asignacion_de_CitasResources.Domingo</span></th>
+                                                <th class="Hora_InicioHeader"><span>
+<button type="button" data-attribute="263532" data-field-id="Detalle_de_Asignacion_de_CitasHora_Inicio" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Hora_Inicio" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Asignacion_de_CitasResources.Hora_Inicio">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Asignacion_de_CitasResources.Hora_Inicio</span></th>
+                                                <th class="Hora_FinHeader"><span>
+<button type="button" data-attribute="263533" data-field-id="Detalle_de_Asignacion_de_CitasHora_Fin" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Hora_Fin" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Asignacion_de_CitasResources.Hora_Fin">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Asignacion_de_CitasResources.Hora_Fin</span></th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="form-group" id="divPertenece_a">
+                                <label class="col-sm-2 control-label">@Resources.Calendario_de_CitasResources.Pertenece_a</label>
+                                <div class="col-sm-8" data-field-id="Pertenece_a" data-attribute="263513" data-field-name="@Resources.Calendario_de_CitasResources.Pertenece_a">
+                                    <input class="form-control inputNumber Datos_Generales" id="Pertenece_a" name="Pertenece_a" type="text" value="@Model.Pertenece_a">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Pertenece_a" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+                                <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Calendario_de_CitasGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Calendario_de_CitasCreateForm');"  />
+									<button onclick="Calendario_de_CitasGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Calendario_de_CitasGuardarYNuevo" onclick="return checkClientValidate('Calendario_de_CitasCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Calendario_de_CitasGuardarYCopia" onclick="return checkClientValidate('Calendario_de_CitasCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnCalendario_de_CitasBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnCalendario_de_CitasBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnCalendario_de_CitasBusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Calendario_de_CitasCancelar" name="Calendario_de_CitasCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                <button onclick="Calendario_de_CitasGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Calendario_de_CitasBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Calendario_de_Citas.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Calendario_de_CitasGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Calendario_de_CitasCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_Generales = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45081');
+		                 
+            GetDetalle_de_Asignacion_de_Citas_UsuarioItem();
+
+
+
+
+
+
+
+
+
+
+           
+              showDetalle_de_Asignacion_de_CitasGrid(null);
+
+		   
+			
+             @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+             }
+             EjecutarValidacionesAlComienzo();
+             
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#Calendario_de_CitasGuardarYNuevo').hide();
+                $('#Calendario_de_CitasGuardarYCopia').hide();
+                $('#Calendario_de_CitasCancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#Calendario_de_CitasGuardar').val('Actualizar Seccion ' + '@Resources.Calendario_de_CitasResources.Calendario_de_Citas' )
+            }
+
+			
+			
+
+        });
+
+        var Detalle_de_Asignacion_de_CitasinsertRowCurrentIndex = -1;
+        var Detalle_de_Asignacion_de_CitasDataDataTable;
+        function getDetalle_de_Asignacion_de_CitasData() {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Calendario_de_Citas/GetDetalle_de_Asignacion_de_Citas")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    Detalle_de_Asignacion_de_CitasDataDataTable = result.data;
+                    showDetalle_de_Asignacion_de_CitasGrid(result.data);
+                    $('#Detalle_de_Asignacion_de_CitasGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_de_Asignacion_de_CitasGrid .gridDatePicker').attr("readonly", "");
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+        function Detalle_de_Asignacion_de_CitasGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+            var columnData = [];
+            var counter = 0;
+            var inputData = "<input type='text' class='fullWidth form-control' />";
+
+           columnData[counter++] = $($(GetDetalle_de_Asignacion_de_Citas_UsuarioDropDown()).val(data.Numero_de_Empleado)).addClass('Numero_de_Empleado inputNumber').attr('id', nameOfTable + 'Numero_de_Empleado' + rowIndex).attr('data-field', 'Numero_de_Empleado').after($.parseHTML(addNew('Detalle_de_Asignacion_de_Citas', 'Usuario','Numero_de_Empleado', 263523)));
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Nombre_de_Empleado)).addClass('Nombre_de_Empleado inputNumber').attr('id', nameOfTable + 'Nombre_de_Empleado' + rowIndex).attr('data-field', 'Nombre_de_Empleado');
+              columnData[counter++] = $($($.parseHTML(GetGridCheckBox())).prop('checked', (data.Lunes=="true" || data.Lunes==true)? 'checked': ''? 'checked': '')).addClass('Lunes').attr('id', nameOfTable + 'Lunes' + rowIndex).attr('data-field', 'Lunes');
+              columnData[counter++] = $($($.parseHTML(GetGridCheckBox())).prop('checked', (data.Martes=="true" || data.Martes==true)? 'checked': ''? 'checked': '')).addClass('Martes').attr('id', nameOfTable + 'Martes' + rowIndex).attr('data-field', 'Martes');
+              columnData[counter++] = $($($.parseHTML(GetGridCheckBox())).prop('checked', (data.Miercoles=="true" || data.Miercoles==true)? 'checked': ''? 'checked': '')).addClass('Miercoles').attr('id', nameOfTable + 'Miercoles' + rowIndex).attr('data-field', 'Miercoles');
+              columnData[counter++] = $($($.parseHTML(GetGridCheckBox())).prop('checked', (data.Jueves=="true" || data.Jueves==true)? 'checked': ''? 'checked': '')).addClass('Jueves').attr('id', nameOfTable + 'Jueves' + rowIndex).attr('data-field', 'Jueves');
+              columnData[counter++] = $($($.parseHTML(GetGridCheckBox())).prop('checked', (data.Viernes=="true" || data.Viernes==true)? 'checked': ''? 'checked': '')).addClass('Viernes').attr('id', nameOfTable + 'Viernes' + rowIndex).attr('data-field', 'Viernes');
+              columnData[counter++] = $($($.parseHTML(GetGridCheckBox())).prop('checked', (data.Sabado=="true" || data.Sabado==true)? 'checked': ''? 'checked': '')).addClass('Sabado').attr('id', nameOfTable + 'Sabado' + rowIndex).attr('data-field', 'Sabado');
+              columnData[counter++] = $($($.parseHTML(GetGridCheckBox())).prop('checked', (data.Domingo=="true" || data.Domingo==true)? 'checked': ''? 'checked': '')).addClass('Domingo').attr('id', nameOfTable + 'Domingo' + rowIndex).attr('data-field', 'Domingo');
+            columnData[counter++] = $($($.parseHTML(GetGridTimePicker())).val(data.Hora_Inicio)).addClass('Hora_Inicio').attr('id', nameOfTable + 'Hora_Inicio' + rowIndex).attr('data-field', 'Hora_Inicio');
+            columnData[counter++] = $($($.parseHTML(GetGridTimePicker())).val(data.Hora_Fin)).addClass('Hora_Fin').attr('id', nameOfTable + 'Hora_Fin' + rowIndex).attr('data-field', 'Hora_Fin');
+
+            return columnData;
+        }
+
+
+
+        function GetFileInfo(fileData, fileUploadData) {
+
+            var $div = $("<div>");
+            if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+                //<i class="fa fa-times-circle" id='removeFileAttachment'>
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+
+            } else if (fileUploadData != null) {
+                return $.parseHTML(GetFileUploader());
+            } else {
+                $div.append("<label>" + fileData.FileName + "</label>");
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+            }
+        }
+
+        var removedDetalle_de_Asignacion_de_CitasData = [];
+        function Detalle_de_Asignacion_de_CitasDeleteRow(rowIndex, row) {
+            var rowIndexTable = Detalle_de_Asignacion_de_CitasTable.fnGetPosition($(row).parent().parent()[0]);
+            var permission = {            
+                 Delete: '@permissionDetalle_de_Asignacion_de_Citas.Delete' == 'True'
+            };
+            if (!permission.Delete || isConsultMode)
+                return;            
+            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+              if (EjecutarValidacionesAlEliminarMRDetalle_de_Asignacion_de_Citas('Detalle_de_Asignacion_de_Citas_', '_' + rowIndex)) {
+                var prevData = Detalle_de_Asignacion_de_CitasTable.fnGetData(rowIndexTable );
+                removedDetalle_de_Asignacion_de_CitasData.push(prevData);
+                Detalle_de_Asignacion_de_CitasTable.fnDeleteRow(rowIndexTable );
+				showDetalle_de_Asignacion_de_CitasGrid(Detalle_de_Asignacion_de_CitasTable.fnGetData());
+              }
+            }
+			initiateUIControls();
+        }
+
+        function Detalle_de_Asignacion_de_CitasrowCreationGrid(row, data, index) {
+            var permission =  {            
+                 Edit: '@permissionDetalle_de_Asignacion_de_Citas.Edit' == 'True',
+                 Delete: '@permissionDetalle_de_Asignacion_de_Citas.Delete' == 'True'
+            };
+            setDetalle_de_Asignacion_de_CitasValidation();
+            var Detalle_de_Asignacion_de_CitasRowElement = "Detalle_de_Asignacion_de_Citas_" + index.toString();
+            $(row).addClass(Detalle_de_Asignacion_de_CitasRowElement);
+            var nameOfTable='Detalle_de_Asignacion_de_Citas_';
+            var rowIndex = '_' + index;
+            Detalle_de_Asignacion_de_CitasinsertRowCurrentIndex = index;
+
+            row.innerHTML = "";
+
+            if (data.IsInsertRow) {
+
+                if (row.childNodes.length != 0) {
+                    for (var i = 0; i < row.childNodes.length; i++) {
+                        row.childNodes[i].remove();
+                    }
+                }
+                var controls = GetInsertDetalle_de_Asignacion_de_CitasRowControls(index);
+                var actionColInsert = $('<td>');
+
+                var abc = "if(dynamicFieldValidation('" + Detalle_de_Asignacion_de_CitasRowElement + "')){ Detalle_de_Asignacion_de_CitasInsertRow(" + index + "); }";
+                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
+                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_de_Asignacion_de_CitasCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                actionColInsert.appendTo(row);
+
+                for (i = 0; i < controls.length; i++) {
+					var idHeader = $(controls[i]).data('field') + 'Header';
+					if($(controls[i]).length > 1){
+						idHeader = $($(controls[i])[1]).data('field') + 'Header';
+					}					
+
+					var classe = ($('#Detalle_de_Asignacion_de_CitasGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_de_Asignacion_de_CitasGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+				   
+					if ($(controls[i]).next().length > 0) {
+					    var div = $(controls[i]).next();
+					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+					}else
+					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+					
+                }
+                $('#Detalle_de_Asignacion_de_CitasGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('#Detalle_de_Asignacion_de_CitasGrid .gridDatePicker').attr("readonly", "");
+                return;
+            }
+
+            var actionCol = $('<td>');
+			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_de_Asignacion_de_CitasEditRow(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                edit = "";
+            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_de_Asignacion_de_Citas-form' onclick='Detalle_de_Asignacion_de_CitasEditRowPopup(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                editPopUp = "";
+            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_de_Asignacion_de_CitasDeleteRow(" + index + ", this)'>";
+            if (!permission.Delete || isConsultMode)
+                eliminar = "";
+            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+			if ($('.Action' + 'Header').css('display') != 'none')
+				actionCol.appendTo(row);
+
+            if ($('.Numero_de_Empleado' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Numero_de_Empleado'+rowIndex+'">').text(GetDetalle_de_Asignacion_de_Citas_UsuarioName(data.Numero_de_Empleado)).appendTo(row);
+	    else 
+		$('<td style="display:none;" id="'+nameOfTable+'Numero_de_Empleado'+rowIndex+'">').text(GetDetalle_de_Asignacion_de_Citas_UsuarioName(data.Numero_de_Empleado)).appendTo(row);
+            if ($('.Nombre_de_Empleado' + 'Header').css('display') != 'none')
+                $('<td class="dt-right"  id="'+nameOfTable+'Nombre_de_Empleado'+rowIndex+'">').text(data.Nombre_de_Empleado).appendTo(row);
+            else 
+                 $('<td class="dt-right" style="display:none;"  id="'+nameOfTable+'Nombre_de_Empleado'+rowIndex+'">').text(data.Nombre_de_Empleado).appendTo(row);
+            if ($('.Lunes' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Lunes'+rowIndex+'">').text(data.Lunes).appendTo(row);
+            else
+                $('<td style="display:none;" id="'+nameOfTable+'Lunes'+rowIndex+'">').text(data.Lunes).appendTo(row);
+            if ($('.Martes' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Martes'+rowIndex+'">').text(data.Martes).appendTo(row);
+            else
+                $('<td style="display:none;" id="'+nameOfTable+'Martes'+rowIndex+'">').text(data.Martes).appendTo(row);
+            if ($('.Miercoles' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Miercoles'+rowIndex+'">').text(data.Miercoles).appendTo(row);
+            else
+                $('<td style="display:none;" id="'+nameOfTable+'Miercoles'+rowIndex+'">').text(data.Miercoles).appendTo(row);
+            if ($('.Jueves' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Jueves'+rowIndex+'">').text(data.Jueves).appendTo(row);
+            else
+                $('<td style="display:none;" id="'+nameOfTable+'Jueves'+rowIndex+'">').text(data.Jueves).appendTo(row);
+            if ($('.Viernes' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Viernes'+rowIndex+'">').text(data.Viernes).appendTo(row);
+            else
+                $('<td style="display:none;" id="'+nameOfTable+'Viernes'+rowIndex+'">').text(data.Viernes).appendTo(row);
+            if ($('.Sabado' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Sabado'+rowIndex+'">').text(data.Sabado).appendTo(row);
+            else
+                $('<td style="display:none;" id="'+nameOfTable+'Sabado'+rowIndex+'">').text(data.Sabado).appendTo(row);
+            if ($('.Domingo' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Domingo'+rowIndex+'">').text(data.Domingo).appendTo(row);
+            else
+                $('<td style="display:none;" id="'+nameOfTable+'Domingo'+rowIndex+'">').text(data.Domingo).appendTo(row);
+            if ($('.Hora_Inicio' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Hora_Inicio'+rowIndex+'">').text(data.Hora_Inicio).appendTo(row);
+            else
+                $('<td style="display:none;" id="'+nameOfTable+'Hora_Inicio'+rowIndex+'">').text(data.Hora_Inicio).appendTo(row);
+            if ($('.Hora_Fin' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Hora_Fin'+rowIndex+'">').text(data.Hora_Fin).appendTo(row);
+            else
+                $('<td style="display:none;" id="'+nameOfTable+'Hora_Fin'+rowIndex+'">').text(data.Hora_Fin).appendTo(row);
+
+        }
+
+        var Detalle_de_Asignacion_de_CitasTable;
+        function showDetalle_de_Asignacion_de_CitasGrid(dataSet) {
+            //removedDetalle_de_Asignacion_de_CitasData = [];
+            Detalle_de_Asignacion_de_CitasTable = $('#Detalle_de_Asignacion_de_CitasGrid').dataTable({
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [
+                ],
+                "createdRow": Detalle_de_Asignacion_de_CitasrowCreationGrid,
+                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+                data: dataSet,
+                "columns": [
+                    { "data": null, 'visible': true, "orderable": false },
+
+                    { "data": "Numero_de_Empleado", "orderable": false },
+                    { "data": "Nombre_de_Empleado", "className": "dt-right", "orderable": false },
+                    { "data": "Lunes", "orderable": false },
+                    { "data": "Martes", "orderable": false },
+                    { "data": "Miercoles", "orderable": false },
+                    { "data": "Jueves", "orderable": false },
+                    { "data": "Viernes", "orderable": false },
+                    { "data": "Sabado", "orderable": false },
+                    { "data": "Domingo", "orderable": false },
+                    { "data": "Hora_Inicio", "orderable": false },
+                    { "data": "Hora_Fin", "orderable": false },
+
+                ],
+                "order": [[0, "asc"]],
+                "language": {
+                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                    "zeroRecords": "@Resources.Resources.NothingFound",
+                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                    "infoEmpty": "@Resources.Resources.NoRecords",
+                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                    "sSearch": "@Resources.Resources.Search",
+                    "paginate": {
+                        "previous": "@Resources.Resources.Previous",
+                        "next": "@Resources.Resources.Next"
+                    }
+                },
+				"bDestroy": true,
+                "fnDrawCallback": function (settings) {
+                    setDetalle_de_Asignacion_de_CitasValidation();
+                }
+            }).on('init.dt', function (e, data) {
+                $('a').tooltip();
+            }).on('draw.dt', function () {
+                $('#Detalle_de_Asignacion_de_CitasGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+            });
+        }
+
+
+    var Detalle_de_Asignacion_de_Citas_UsuarioItems;
+        function GetDetalle_de_Asignacion_de_Citas_UsuarioItem() {
+            Detalle_de_Asignacion_de_Citas_UsuarioItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Calendario_de_Citas/GetDetalle_de_Asignacion_de_Citas_UsuarioAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_de_Asignacion_de_Citas_UsuarioItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+
+
+
+
+
+
+
+
+
+
+        var Detalle_de_Asignacion_de_CitasData = [];
+        var Detalle_de_Asignacion_de_CitasdeletedItem = [];
+        var Detalle_de_Asignacion_de_CitasDataMain = [];
+        var Detalle_de_Asignacion_de_CitasDataMainPages = [];
+        var Detalle_de_Asignacion_de_CitasnewItemCount = 0;
+        var Detalle_de_Asignacion_de_CitasmaxItemIndex = 0;
+        var Detalle_de_Asignacion_de_CitasDataMainInitialized = false;
+
+        function SendDetalle_de_Asignacion_de_Citas(callBack, ClaveId) {
+            Detalle_de_Asignacion_de_CitasData = GetDetalle_de_Asignacion_de_CitasFromDataTable();
+
+            if (Detalle_de_Asignacion_de_CitasData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
+                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
+                    ClaveId = $("#ReferenceClave").val();                
+                if ($("#ReferenceClave").val() == '')
+                    $("#ReferenceClave").val('0');
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Calendario_de_Citas/PostDetalle_de_Asignacion_de_Citas?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
+                    type: 'POST',
+                    data: GetDetalle_de_Asignacion_de_Citas(),
+                    async: true,
+                    success: function (result) {
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            } else {
+                //showNotification("@Resources.Resources.SaveSuccess", "success");
+                //callBack(ClaveId);
+            }
+            return true;
+        }
+
+        function GetAddDetalle_de_Asignacion_de_CitasPopup(currentRowIndex, mode, id) {
+
+            $.ajax({
+                url: "@Url.Action("AddDetalle_de_Asignacion_de_Citas", "Detalle_de_Asignacion_de_Citas")",
+                type: "GET",
+                async: false,
+                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+                success: function (data) {
+                    $(".AddDetalle_de_Asignacion_de_CitasModal").html(data);
+                },
+                error: function () {
+
+                }
+            });
+
+            @*$.get('@Url.Action("AddDetalle_de_Asignacion_de_Citas", "Detalle_de_Asignacion_de_Citas")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddDetalle_de_Asignacion_de_CitasModal").html(data);
+            });*@
+        }
+
+        function ShowMessagePendingRowDetalle_de_Asignacion_de_Citas()
+        {
+            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Calendario de CitasC"))')
+	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Calendario de CitasC"))', "warning");
+        }
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/Calendario_de_Citas/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+
+        function SendCalendario_de_CitasData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateCalendario_de_Citas").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateCalendario_de_Citas")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#ReferenceClave").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_Generales && !checkClientValidate('Calendario_de_CitasCreateForm', 'Datos_Generales')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+            }
+			
+			
+			if (Tab_Datos_Generales)
+				Save_Datos_Generales(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Calendario_de_Citas/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".Calendario_de_CitasBusinessRuleModal").html(data);
+			});
+		}
+                function Calendario_de_CitasGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45081');
+			$('#Screen').val('Calendario_de_Citas');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function Calendario_de_CitasBackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/Calendario_de_Citas/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Calendario_de_Citas/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Calendario_de_Citas/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Calendario_de_Citas/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Calendario_de_Citas/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateCalendario_de_Citas').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        Calendario_de_CitasGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_Generales()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Calendario_de_Citas/Get_Datos_Generales")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    Detalle_de_Asignacion_de_CitasDataDataTable = result.Calendario_de_CitasC;
+                    showDetalle_de_Asignacion_de_CitasGrid(result.Calendario_de_CitasC);
+                    $('#Detalle_de_Asignacion_de_CitasGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_de_Asignacion_de_CitasGrid .gridDatePicker').attr("readonly", "");
+                    $('#Pertenece_a').val(result.data.Pertenece_a);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_Generales(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Pertenece_a', $('#Pertenece_a').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Calendario_de_Citas/Post_Datos_Generales")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
+					} else {
+						newId = result;
+                    					    SendDetalle_de_Asignacion_de_Citas(null, newId);
+
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="Calendario_de_Citas_cmbLabelSelect" name="Calendario_de_Citas_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_del_Certificado_CC" value="Detalle del Certificado CC"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Certificado" value="Certificado"></resource>
+  <resource culture="es-es" name="Archivo" value="Archivo"></resource>
+  <resource culture="es-es" name="Fecha" value="Fecha"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

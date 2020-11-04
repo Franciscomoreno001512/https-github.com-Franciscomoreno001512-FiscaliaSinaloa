@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Spartan_Record_Detail_Management" value="Editor de Gestión Detallada de Registros"></resource>
+  <resource culture="es-es" name="Process_Id" value="Id"></resource>
+  <resource culture="es-es" name="Register_Date" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Register_Hour" value="Hora de Registro"></resource>
+  <resource culture="es-es" name="Register_User" value="Usuario que Registra"></resource>
+  <resource culture="es-es" name="Description" value="Descripción"></resource>
+  <resource culture="es-es" name="Object" value="Proceso"></resource>
+  <resource culture="es-es" name="Reference_Label" value="Etiqueta Referencia"></resource>
+  <resource culture="es-es" name="Reference_Field" value="Reference Field"></resource>
+  <resource culture="es-es" name="Filters" value="Filtros"></resource>
+  <resource culture="es-es" name="Search_Result" value="Resultado de Búsqueda"></resource>
+  <resource culture="es-es" name="Search_Result_Query" value="Query Resultado de Búsqueda"></resource>
+  <resource culture="es-es" name="Image_Field" value="Campo para Imagen"></resource>
+  <resource culture="es-es" name="Data_Detail" value="Detalle de Datos"></resource>
+  <resource culture="es-es" name="Query_Data_Detail" value="Query Detalle Datos"></resource>
+  <resource culture="es-es" name="Detail" value="Detalle"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="es-es" name="TabBusqueda" value="Búsqueda"></resource>
+<resource culture="es-es" name="TabInformacion_General" value="Información General"></resource>
+<resource culture="es-es" name="TabOperaciones" value="Operaciones"></resource>
+
+</resources>

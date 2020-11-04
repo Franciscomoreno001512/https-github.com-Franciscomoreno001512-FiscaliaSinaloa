@@ -1,0 +1,710 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Detalle_de_Datos_de_la_Victima_MPIGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Paterno
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Materno
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_Completo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_de_Nacimiento
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Edad
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Sexo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_Civil
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nacionalidad
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Escolaridad
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Ocupacion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Telefono
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Extencion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Celular
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Correo_Electronico
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Incapaz
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Paterno_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Materno_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_Completo_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_de_Nacimiento_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Edad_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Sexo_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_Civil_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Identificacion_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_de_Identificacion_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nacionalidad_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Escolaridad_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Ocupacion_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Localidad_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Telefono_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Extencion_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Celular_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Correo_Electronico_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Compareciente
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Narrativa_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Titulo_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Prioridad_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Hora_Aproximada_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Entre_Calle_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Y_Calle_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Latitud_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Longitud_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Lugar_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Proteccion_de_Datos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Paterno_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Materno_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_de_Nacimiento_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Edad_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Sexo_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_Civil_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Identificacion_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_de_Identificacion_de_Persona_Mora
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nacionalidad_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Escolaridad_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Ocupacion_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Entre_Calle_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Y_Calle_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Longitud_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Latitud_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Telefono_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Extension_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Celular_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Correo_Electronico_de_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Persona_Moral_Victima
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Nombre
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno
+                    </td>
+                    <td>
+                        @item.Apellido_Materno
+                    </td>
+                    <td>
+                        @item.Nombre_Completo
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento
+                    </td>
+                    <td>
+                        @item.Edad
+                    </td>
+                    <td>
+                        @item.SexoDescripcion
+                    </td>
+                    <td>
+                        @item.Estado_CivilDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_IdentificacionNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion
+                    </td>
+                    <td>
+                        @item.NacionalidadNacionalidadC
+                    </td>
+                    <td>
+                        @item.EscolaridadDescripcion
+                    </td>
+                    <td>
+                        @item.OcupacionDescripcion
+                    </td>
+                    <td>
+                        @item.PaisNombre
+                    </td>
+                    <td>
+                        @item.EstadoNombre
+                    </td>
+                    <td>
+                        @item.MunicipioNombre
+                    </td>
+                    <td>
+                        @item.ColoniaNombre
+                    </td>
+                    <td>
+                        @item.Codigo_Postal
+                    </td>
+                    <td>
+                        @item.Calle
+                    </td>
+                    <td>
+                        @item.Numero_Exterior
+                    </td>
+                    <td>
+                        @item.Numero_Interior
+                    </td>
+                    <td>
+                        @item.Telefono
+                    </td>
+                    <td>
+                        @item.Extencion
+                    </td>
+                    <td>
+                        @item.Celular
+                    </td>
+                    <td>
+                        @item.Correo_Electronico
+                    </td>
+                    <td>
+                        @item.Incapaz
+                    </td>
+                    <td>
+                        @item.Nombre_del_Tutor
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno_del_Tutor
+                    </td>
+                    <td>
+                        @item.Apellido_Materno_del_Tutor
+                    </td>
+                    <td>
+                        @item.Nombre_Completo_del_Tutor
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento_del_Tutor
+                    </td>
+                    <td>
+                        @item.Edad_del_Tutor
+                    </td>
+                    <td>
+                        @item.Sexo_del_TutorDescripcion
+                    </td>
+                    <td>
+                        @item.Estado_Civil_del_TutorDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_Identificacion_del_TutorNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion_del_Tutor
+                    </td>
+                    <td>
+                        @item.Nacionalidad_del_TutorNacionalidadC
+                    </td>
+                    <td>
+                        @item.Escolaridad_del_TutorDescripcion
+                    </td>
+                    <td>
+                        @item.Ocupacion_del_TutorDescripcion
+                    </td>
+                    <td>
+                        @item.Pais_del_TutorNombre
+                    </td>
+                    <td>
+                        @item.Estado_del_TutorNombre
+                    </td>
+                    <td>
+                        @item.Municipio_del_TutorNombre
+                    </td>
+                    <td>
+                        @item.Localidad_del_TutorDescripcion
+                    </td>
+                    <td>
+                        @item.Colonia_del_TutorNombre
+                    </td>
+                    <td>
+                        @item.Codigo_Postal_del_Tutor
+                    </td>
+                    <td>
+                        @item.Calle_del_Tutor
+                    </td>
+                    <td>
+                        @item.Numero_Exterior_del_Tutor
+                    </td>
+                    <td>
+                        @item.Numero_Interior_del_Tutor
+                    </td>
+                    <td>
+                        @item.Telefono_del_Tutor
+                    </td>
+                    <td>
+                        @item.Extencion_del_Tutor
+                    </td>
+                    <td>
+                        @item.Celular_del_Tutor
+                    </td>
+                    <td>
+                        @item.Correo_Electronico_del_Tutor
+                    </td>
+                    <td>
+                        @item.Tipo_de_ComparecienteDescripcion
+                    </td>
+                    <td>
+                        @item.Narrativa_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Titulo_del_Hecho
+                    </td>
+                    <td>
+                        @item.Prioridad_del_HechoDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_del_Hecho
+                    </td>
+                    <td>
+                        @item.Hora_Aproximada_del_Hecho
+                    </td>
+                    <td>
+                        @item.Pais_de_los_HechosNombre
+                    </td>
+                    <td>
+                        @item.Estado_de_los_HechosNombre
+                    </td>
+                    <td>
+                        @item.Municipio_de_los_HechosNombre
+                    </td>
+                    <td>
+                        @item.Colonia_de_los_HechosNombre
+                    </td>
+                    <td>
+                        @item.Codigo_Postal_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Calle_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Entre_Calle_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Y_Calle_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Numero_Exterior_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Numero_Interior_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Latitud_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Longitud_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Tipo_de_Lugar_del_HechoDescripcion
+                    </td>
+                    <td>
+                        @item.Proteccion_de_Datos
+                    </td>
+                    <td>
+                        @item.Nombre_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Apellido_Materno_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Edad_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Sexo_de_Persona_MoralDescripcion
+                    </td>
+                    <td>
+                        @item.Estado_Civil_de_Persona_MoralDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_Identificacion_de_Persona_MoralNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion_de_Persona_Mora
+                    </td>
+                    <td>
+                        @item.Nacionalidad_de_Persona_MoralNacionalidadC
+                    </td>
+                    <td>
+                        @item.Escolaridad_de_Persona_MoralDescripcion
+                    </td>
+                    <td>
+                        @item.Ocupacion_de_Persona_MoralDescripcion
+                    </td>
+                    <td>
+                        @item.Pais_de_Persona_MoralNombre
+                    </td>
+                    <td>
+                        @item.Estado_de_Persona_MoralNombre
+                    </td>
+                    <td>
+                        @item.Municipio_de_Persona_MoralNombre
+                    </td>
+                    <td>
+                        @item.Colonia_de_Persona_MoralNombre
+                    </td>
+                    <td>
+                        @item.Codigo_Postal_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Calle_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Numero_Exterior_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Numero_Interior_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Entre_Calle_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Y_Calle_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Longitud_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Latitud_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Telefono_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Extension_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Celular_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Correo_Electronico_de_Persona_Moral
+                    </td>
+                    <td>
+                        @item.Persona_Moral_Victima
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

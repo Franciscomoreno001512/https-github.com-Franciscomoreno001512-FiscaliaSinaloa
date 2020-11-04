@@ -1,0 +1,1993 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+ <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+ <PropertyGroup>
+ <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+ <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+ <ProjectGuid>{7E1DD863-3658-407F-A096-DB0276B52201}</ProjectGuid>
+ <OutputType>Library</OutputType>
+ <AppDesignerFolder>Properties</AppDesignerFolder>
+ <RootNamespace>Spartane.Services</RootNamespace>
+ <AssemblyName>Spartane.Services</AssemblyName>
+ <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+ <FileAlignment>512</FileAlignment>
+ <SccProjectName>SAK</SccProjectName>
+ <SccLocalPath>SAK</SccLocalPath>
+ <SccAuxPath>SAK</SccAuxPath>
+ <SccProvider>SAK</SccProvider>
+ </PropertyGroup>
+ <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+ <DebugSymbols>true</DebugSymbols>
+ <DebugType>full</DebugType>
+ <Optimize>false</Optimize>
+ <OutputPath>bin\Debug\</OutputPath>
+ <DefineConstants>DEBUG;TRACE</DefineConstants>
+ <ErrorReport>prompt</ErrorReport>
+ <WarningLevel>4</WarningLevel>
+ </PropertyGroup>
+ <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+ <DebugType>pdbonly</DebugType>
+ <Optimize>true</Optimize>
+ <OutputPath>bin\Release\</OutputPath>
+ <DefineConstants>TRACE</DefineConstants>
+ <ErrorReport>prompt</ErrorReport>
+ <WarningLevel>4</WarningLevel>
+ </PropertyGroup>
+ <ItemGroup>
+ <Reference Include="System" />
+ <Reference Include="System.Core" />
+ <Reference Include="System.Linq.Dynamic">
+ <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Web" />
+ <Reference Include="System.Windows.Forms" />
+ <Reference Include="System.Xml.Linq" />
+ <Reference Include="System.Data.DataSetExtensions" />
+ <Reference Include="Microsoft.CSharp" />
+ <Reference Include="System.Data" />
+ <Reference Include="System.Xml" />
+ </ItemGroup>
+ <ItemGroup>
+ <Compile Include="Authentication\FormsAuthenticationService.cs" />
+ <Compile Include="Authentication\IAuthenticationService.cs" />
+ <Compile Include="Binnacle\BinnacleService.cs" />
+ <Compile Include="Binnacle\IBinnacleService.cs" />
+ <Compile Include="BusinessRules\BusinessRulesService.cs" />
+ <Compile Include="BusinessRules\IBusinessRulesService.cs" />
+ <Compile Include="Business_Rule_Creation\Business_Rule_CreationService.cs" />
+ <Compile Include="Business_Rule_Creation\IBusiness_Rule_CreationService.cs" />
+ <Compile Include="Common\ISpartanControlTypeService.cs" />
+ <Compile Include="Common\ISpartanFileService.cs" />
+ <Compile Include="Common\ISpartanMethodTypeService.cs" />
+ <Compile Include="Common\ISpartanObjectService.cs" />
+ <Compile Include="Common\ISpartanObjectStatusService.cs" />
+ <Compile Include="Common\ISpartanSystemService.cs" />
+ <Compile Include="Common\Mock\MockSpartanControlTypeService.cs" />
+ <Compile Include="Common\Mock\MockSpartanFileService.cs" />
+ <Compile Include="Common\Mock\MockSpartanMethodTypeService.cs" />
+ <Compile Include="Common\Mock\MockSpartanObjectService.cs" />
+ <Compile Include="Common\Mock\MockSpartanObjectStatusService.cs" />
+ <Compile Include="Common\Mock\MockSpartanSystemService.cs" />
+ <Compile Include="Archivos\ArchivosService.cs" />
+ <Compile Include="Archivos\IArchivosService.cs" />
+ <Compile Include="CustomAuthentication\CustomAuthenticationService.cs" />
+ <Compile Include="CustomAuthentication\ICustomAuthenticationService.cs" />
+ <Compile Include="Dashboard_Config_Detail\Dashboard_Config_DetailService.cs" />
+ <Compile Include="Dashboard_Config_Detail\IDashboard_Config_DetailService.cs" />
+ <Compile Include="Dashboard_Editor\Dashboard_EditorService.cs" />
+ <Compile Include="Dashboard_Editor\IDashboard_EditorService.cs" />
+ <Compile Include="Dashboard_Status\Dashboard_StatusService.cs" />
+ <Compile Include="Dashboard_Status\IDashboard_StatusService.cs" />
+ <Compile Include="Events\EventPublisher.cs" />
+ <Compile Include="Events\IConsumer.cs" />
+ <Compile Include="Events\IEventPublisher.cs" />
+ <Compile Include="Events\ISubscriptionService.cs" />
+ <Compile Include="Events\SubscriptionService.cs" />
+ <Compile Include="Filters\ITTDependentFilterService.cs" />
+ <Compile Include="Filters\ITTDetailFilterService.cs" />
+ <Compile Include="Filters\ITTFilterService.cs" />
+ <Compile Include="Filters\TTDependentFilterService.cs" />
+ <Compile Include="Filters\TTDetailFilterService.cs" />
+ <Compile Include="Filters\TTFilterService.cs" />
+ <Compile Include="Language\ITTLanguageService.cs" />
+ <Compile Include="Language\ISpartanSystemLanguageService.cs" />
+ <Compile Include="Language\Mock\MockSpartanSystemLanguageService.cs" />
+ <Compile Include="Language\TTLanguageService.cs" />
+ <Compile Include="Notice\ISpartanNoticeService.cs" />
+ <Compile Include="Notice\ISpartanNoticeStatusService.cs" />
+ <Compile Include="Notice\ISpartanNoticeTypeService.cs" />
+ <Compile Include="Notice\Mock\MockSpartanNoticeService.cs" />
+ <Compile Include="Notice\Mock\MockSpartanNoticeStatusService.cs" />
+ <Compile Include="Notice\Mock\MockSpartanNoticeTypeService.cs" />
+ <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+ <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+ <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+ <Compile Include="Properties\AssemblyInfo.cs" />
+ <Compile Include="Search\ITTSearchAdvancedDataService.cs" />
+ <Compile Include="Search\TTSearchAdvancedDataService.cs" />
+ <Compile Include="Security\IModuleDataService.cs" />
+ <Compile Include="Security\IPermissionService.cs" />
+ <Compile Include="Security\Mock\MockSpartanModuleService.cs" />
+ <Compile Include="Security\Mock\MockSpartanUserRoleService.cs" />
+ <Compile Include="Security\Mock\MockSpartanUserRoleStatusService.cs" />
+ <Compile Include="Security\SpartanModuleService.cs" />
+ <Compile Include="Security\PermissionService.cs" />
+ <Compile Include="Security\ISpartanUserRoleService.cs" />
+ <Compile Include="Security\ISpartanUserRoleStatusService.cs" />
+ <Compile Include="SpartanChangePasswordAutorizationEstatus\ISpartanChangePasswordAutorizationEstatusService.cs" />
+ <Compile Include="SpartanChangePasswordAutorizationEstatus\SpartanChangePasswordAutorizationEstatusService.cs" />
+ <Compile Include="SpartanObject\ISpartanObjectService.cs" />
+ <Compile Include="SpartanObject\SpartanObjectService.cs" />
+ <Compile Include="Spartan_Attribute_Control_Type\ISpartan_Attribute_Control_TypeService.cs" />
+ <Compile Include="Spartan_Attribute_Control_Type\Spartan_Attribute_Control_TypeService.cs" />
+ <Compile Include="Spartan_Attribute_Type\ISpartan_Attribute_TypeService.cs" />
+ <Compile Include="Spartan_Attribute_Type\Spartan_Attribute_TypeService.cs" />
+ <Compile Include="Spartan_Bitacora_SQL\ISpartan_Bitacora_SQLService.cs" />
+ <Compile Include="Spartan_Bitacora_SQL\Spartan_Bitacora_SQLService.cs" />
+ <Compile Include="Spartan_BR_Actions_False_Detail\ISpartan_BR_Actions_False_DetailService.cs" />
+ <Compile Include="Spartan_BR_Actions_False_Detail\Spartan_BR_Actions_False_DetailService.cs" />
+ <Compile Include="Spartan_BR_Actions_True_Detail\ISpartan_BR_Actions_True_DetailService.cs" />
+ <Compile Include="Spartan_BR_Actions_True_Detail\Spartan_BR_Actions_True_DetailService.cs" />
+ <Compile Include="Spartan_BR_Action\ISpartan_BR_ActionService.cs" />
+ <Compile Include="Spartan_BR_Action\Spartan_BR_ActionService.cs" />
+ <Compile Include="Spartan_BR_Action_Classification\ISpartan_BR_Action_ClassificationService.cs" />
+ <Compile Include="Spartan_BR_Action_Classification\Spartan_BR_Action_ClassificationService.cs" />
+ <Compile Include="Spartan_BR_Action_Configuration_Detail\ISpartan_BR_Action_Configuration_DetailService.cs" />
+ <Compile Include="Spartan_BR_Action_Configuration_Detail\Spartan_BR_Action_Configuration_DetailService.cs" />
+ <Compile Include="Spartan_BR_Action_Param_Type\ISpartan_BR_Action_Param_TypeService.cs" />
+ <Compile Include="Spartan_BR_Action_Param_Type\Spartan_BR_Action_Param_TypeService.cs" />
+ <Compile Include="Spartan_BR_Action_Result\ISpartan_BR_Action_ResultService.cs" />
+ <Compile Include="Spartan_BR_Action_Result\Spartan_BR_Action_ResultService.cs" />
+ <Compile Include="Spartan_BR_Attribute_Restrictions_Detail\ISpartan_BR_Attribute_Restrictions_DetailService.cs" />
+ <Compile Include="Spartan_BR_Attribute_Restrictions_Detail\Spartan_BR_Attribute_Restrictions_DetailService.cs" />
+ <Compile Include="Spartan_BR_Complexity\ISpartan_BR_ComplexityService.cs" />
+ <Compile Include="Spartan_BR_Complexity\Spartan_BR_ComplexityService.cs" />
+ <Compile Include="Spartan_BR_Conditions_Detail\ISpartan_BR_Conditions_DetailService.cs" />
+ <Compile Include="Spartan_BR_Conditions_Detail\Spartan_BR_Conditions_DetailService.cs" />
+ <Compile Include="Spartan_BR_Condition\ISpartan_BR_ConditionService.cs" />
+ <Compile Include="Spartan_BR_Condition\Spartan_BR_ConditionService.cs" />
+ <Compile Include="Spartan_BR_Condition_Operator\ISpartan_BR_Condition_OperatorService.cs" />
+ <Compile Include="Spartan_BR_Condition_Operator\Spartan_BR_Condition_OperatorService.cs" />
+ <Compile Include="Spartan_BR_Event_Restrictions_Detail\ISpartan_BR_Event_Restrictions_DetailService.cs" />
+ <Compile Include="Spartan_BR_Event_Restrictions_Detail\Spartan_BR_Event_Restrictions_DetailService.cs" />
+ <Compile Include="Spartan_BR_History\ISpartan_BR_HistoryService.cs" />
+ <Compile Include="Spartan_BR_History\Spartan_BR_HistoryService.cs" />
+ <Compile Include="Spartan_BR_Modifications_Log\ISpartan_BR_Modifications_LogService.cs" />
+ <Compile Include="Spartan_BR_Modifications_Log\Spartan_BR_Modifications_LogService.cs" />
+ <Compile Include="Spartan_BR_Operation\ISpartan_BR_OperationService.cs" />
+ <Compile Include="Spartan_BR_Operation\Spartan_BR_OperationService.cs" />
+ <Compile Include="Spartan_BR_Operation_Detail\ISpartan_BR_Operation_DetailService.cs" />
+ <Compile Include="Spartan_BR_Operation_Detail\Spartan_BR_Operation_DetailService.cs" />
+ <Compile Include="Spartan_BR_Operation_Restrictions_Detail\ISpartan_BR_Operation_Restrictions_DetailService.cs" />
+ <Compile Include="Spartan_BR_Operation_Restrictions_Detail\Spartan_BR_Operation_Restrictions_DetailService.cs" />
+ <Compile Include="Spartan_BR_Operator_Type\ISpartan_BR_Operator_TypeService.cs" />
+ <Compile Include="Spartan_BR_Operator_Type\Spartan_BR_Operator_TypeService.cs" />
+ <Compile Include="Spartan_BR_Peer_Review\ISpartan_BR_Peer_ReviewService.cs" />
+ <Compile Include="Spartan_BR_Peer_Review\Spartan_BR_Peer_ReviewService.cs" />
+ <Compile Include="Spartan_BR_Presentation_Control_Type\ISpartan_BR_Presentation_Control_TypeService.cs" />
+ <Compile Include="Spartan_BR_Presentation_Control_Type\Spartan_BR_Presentation_Control_TypeService.cs" />
+ <Compile Include="Spartan_BR_Process_Event\ISpartan_BR_Process_EventService.cs" />
+ <Compile Include="Spartan_BR_Process_Event\Spartan_BR_Process_EventService.cs" />
+ <Compile Include="Spartan_BR_Process_Event_Detail\ISpartan_BR_Process_Event_DetailService.cs" />
+ <Compile Include="Spartan_BR_Process_Event_Detail\Spartan_BR_Process_Event_DetailService.cs" />
+ <Compile Include="Spartan_BR_Rejection_Reason\ISpartan_BR_Rejection_ReasonService.cs" />
+ <Compile Include="Spartan_BR_Rejection_Reason\Spartan_BR_Rejection_ReasonService.cs" />
+ <Compile Include="Spartan_BR_Scope\ISpartan_BR_ScopeService.cs" />
+ <Compile Include="Spartan_BR_Scope\Spartan_BR_ScopeService.cs" />
+ <Compile Include="Spartan_BR_Scope_Detail\ISpartan_BR_Scope_DetailService.cs" />
+ <Compile Include="Spartan_BR_Scope_Detail\Spartan_BR_Scope_DetailService.cs" />
+ <Compile Include="Spartan_BR_Status\ISpartan_BR_StatusService.cs" />
+ <Compile Include="Spartan_BR_Status\Spartan_BR_StatusService.cs" />
+ <Compile Include="Spartan_BR_Testing\ISpartan_BR_TestingService.cs" />
+ <Compile Include="Spartan_BR_Testing\Spartan_BR_TestingService.cs" />
+ <Compile Include="Spartan_BR_Type_History\ISpartan_BR_Type_HistoryService.cs" />
+ <Compile Include="Spartan_BR_Type_History\Spartan_BR_Type_HistoryService.cs" />
+ <Compile Include="Spartan_Business_Rule\ISpartan_Business_RuleService.cs" />
+ <Compile Include="Spartan_Business_Rule\Spartan_Business_RuleService.cs" />
+ <Compile Include="Spartan_ChangePasswordAutorization\ISpartan_ChangePasswordAutorizationService.cs" />
+ <Compile Include="Spartan_ChangePasswordAutorization\Spartan_ChangePasswordAutorizationService.cs" />
+ <Compile Include="Spartan_Report_Advance_Filter\ISpartan_Report_Advance_FilterService.cs" />
+ <Compile Include="Spartan_Report_Advance_Filter\Spartan_Report_Advance_FilterService.cs" />
+ <Compile Include="Spartan_Settings\ISpartan_SettingsService.cs" />
+ <Compile Include="Spartan_Settings\Spartan_SettingsService.cs" />
+ <Compile Include="Spartan_Traduction_Concept_Type\ISpartan_Traduction_Concept_TypeService.cs" />
+ <Compile Include="Spartan_Traduction_Concept_Type\Spartan_Traduction_Concept_TypeService.cs" />
+ <Compile Include="Spartan_Traduction_Detail\ISpartan_Traduction_DetailService.cs" />
+ <Compile Include="Spartan_Traduction_Detail\Spartan_Traduction_DetailService.cs" />
+ <Compile Include="Spartan_Traduction_Language\ISpartan_Traduction_LanguageService.cs" />
+ <Compile Include="Spartan_Traduction_Language\Spartan_Traduction_LanguageService.cs" />
+ <Compile Include="Spartan_Traduction_Object\ISpartan_Traduction_ObjectService.cs" />
+ <Compile Include="Spartan_Traduction_Object\Spartan_Traduction_ObjectService.cs" />
+ <Compile Include="Spartan_Traduction_Object_Type\ISpartan_Traduction_Object_TypeService.cs" />
+ <Compile Include="Spartan_Traduction_Object_Type\Spartan_Traduction_Object_TypeService.cs" />
+ <Compile Include="Spartan_Traduction_Process\ISpartan_Traduction_ProcessService.cs" />
+ <Compile Include="Spartan_Traduction_Process\Spartan_Traduction_ProcessService.cs" />
+ <Compile Include="Spartan_Traduction_Process_Data\ISpartan_Traduction_Process_DataService.cs" />
+ <Compile Include="Spartan_Traduction_Process_Data\Spartan_Traduction_Process_DataService.cs" />
+ <Compile Include="Spartan_Traduction_Process_Workflow\ISpartan_Traduction_Process_WorkflowService.cs" />
+ <Compile Include="Spartan_Traduction_Process_Workflow\Spartan_Traduction_Process_WorkflowService.cs" />
+ <Compile Include="Spartan_User\ISpartan_UserService.cs" />
+ <Compile Include="Spartan_User\Spartan_UserService.cs" />
+ <Compile Include="Spartan_User_Historical_Password\ISpartan_User_Historical_PasswordService.cs" />
+ <Compile Include="Spartan_User_Historical_Password\Spartan_User_Historical_PasswordService.cs" />
+ <Compile Include="Spartan_User_Role\ISpartan_User_RoleService.cs" />
+ <Compile Include="Spartan_User_Role\Spartan_User_RoleService.cs" />
+ <Compile Include="Spartan_User_Role_Status\ISpartan_User_Role_StatusService.cs" />
+ <Compile Include="Spartan_User_Role_Status\Spartan_User_Role_StatusService.cs" />
+ <Compile Include="Spartan_User_Status\ISpartan_User_StatusService.cs" />
+ <Compile Include="Spartan_User_Status\Spartan_User_StatusService.cs" />
+ <Compile Include="Spartan_WorkFlow\ISpartan_WorkFlowService.cs" />
+ <Compile Include="Spartan_WorkFlow\Spartan_WorkFlowService.cs" />
+ <Compile Include="Spartan_WorkFlow_Conditions_by_State\ISpartan_WorkFlow_Conditions_by_StateService.cs" />
+ <Compile Include="Spartan_WorkFlow_Conditions_by_State\Spartan_WorkFlow_Conditions_by_StateService.cs" />
+ <Compile Include="Spartan_WorkFlow_Condition\ISpartan_WorkFlow_ConditionService.cs" />
+ <Compile Include="Spartan_WorkFlow_Condition\Spartan_WorkFlow_ConditionService.cs" />
+ <Compile Include="Spartan_WorkFlow_Condition_Operator\ISpartan_WorkFlow_Condition_OperatorService.cs" />
+ <Compile Include="Spartan_WorkFlow_Condition_Operator\Spartan_WorkFlow_Condition_OperatorService.cs" />
+ <Compile Include="Spartan_WorkFlow_Information_by_State\ISpartan_WorkFlow_Information_by_StateService.cs" />
+ <Compile Include="Spartan_WorkFlow_Information_by_State\Spartan_WorkFlow_Information_by_StateService.cs" />
+ <Compile Include="Spartan_WorkFlow_Matrix_of_States\ISpartan_WorkFlow_Matrix_of_StatesService.cs" />
+ <Compile Include="Spartan_WorkFlow_Matrix_of_States\Spartan_WorkFlow_Matrix_of_StatesService.cs" />
+ <Compile Include="Spartan_WorkFlow_Operator\ISpartan_WorkFlow_OperatorService.cs" />
+ <Compile Include="Spartan_WorkFlow_Operator\Spartan_WorkFlow_OperatorService.cs" />
+ <Compile Include="Spartan_WorkFlow_Phases\ISpartan_WorkFlow_PhasesService.cs" />
+ <Compile Include="Spartan_WorkFlow_Phases\Spartan_WorkFlow_PhasesService.cs" />
+ <Compile Include="Spartan_WorkFlow_Phase_Status\ISpartan_WorkFlow_Phase_StatusService.cs" />
+ <Compile Include="Spartan_WorkFlow_Phase_Status\Spartan_WorkFlow_Phase_StatusService.cs" />
+ <Compile Include="Spartan_WorkFlow_Phase_Type\ISpartan_WorkFlow_Phase_TypeService.cs" />
+ <Compile Include="Spartan_WorkFlow_Phase_Type\Spartan_WorkFlow_Phase_TypeService.cs" />
+ <Compile Include="Spartan_WorkFlow_Roles_by_State\ISpartan_WorkFlow_Roles_by_StateService.cs" />
+ <Compile Include="Spartan_WorkFlow_Roles_by_State\Spartan_WorkFlow_Roles_by_StateService.cs" />
+ <Compile Include="Spartan_WorkFlow_State\ISpartan_WorkFlow_StateService.cs" />
+ <Compile Include="Spartan_WorkFlow_State\Spartan_WorkFlow_StateService.cs" />
+ <Compile Include="Spartan_WorkFlow_Status\ISpartan_WorkFlow_StatusService.cs" />
+ <Compile Include="Spartan_WorkFlow_Status\Spartan_WorkFlow_StatusService.cs" />
+ <Compile Include="Spartan_WorkFlow_Type_Flow_Control\ISpartan_WorkFlow_Type_Flow_ControlService.cs" />
+ <Compile Include="Spartan_WorkFlow_Type_Flow_Control\Spartan_WorkFlow_Type_Flow_ControlService.cs" />
+ <Compile Include="Spartan_WorkFlow_Type_Work_Distribution\ISpartan_WorkFlow_Type_Work_DistributionService.cs" />
+ <Compile Include="Spartan_WorkFlow_Type_Work_Distribution\Spartan_WorkFlow_Type_Work_DistributionService.cs" />
+ <Compile Include="Templates\ITTTemplatePrintExcelFieldService.cs" />
+ <Compile Include="Templates\ITTTemplatePrintExcelService.cs" />
+ <Compile Include="Templates\TTTemplatePrintExcelFieldService.cs" />
+ <Compile Include="Templates\TTTemplatePrintExcelService.cs" />
+ <Compile Include="Template_Dashboard_Detail\ITemplate_Dashboard_DetailService.cs" />
+ <Compile Include="Template_Dashboard_Detail\Template_Dashboard_DetailService.cs" />
+ <Compile Include="Template_Dashboard_Editor\ITemplate_Dashboard_EditorService.cs" />
+ <Compile Include="Template_Dashboard_Editor\Template_Dashboard_EditorService.cs" />
+ <Compile Include="TTArchivos\ITTArchivosService.cs" />
+ <Compile Include="TTArchivos\TTArchivosService.cs" />
+ <Compile Include="User\ISpartanUserService.cs" />
+ <Compile Include="User\ISpartanUserAlertService.cs" />
+ <Compile Include="User\ISpartanUserAlertStatusService.cs" />
+ <Compile Include="User\ISpartanUserAlertTypeService.cs" />
+ <Compile Include="User\ISpartanUserFavoriteListService.cs" />
+ <Compile Include="User\ISpartanUserFavoriteObjectService.cs" />
+ <Compile Include="User\ISpartanUserMostUsedObjectService.cs" />
+ <Compile Include="User\ISpartanUserQuickLinkService.cs" />
+ <Compile Include="User\ISpartanUserStatusService.cs" />
+ <Compile Include="User\Mock\MockSpartanUserService.cs" />
+ <Compile Include="User\Mock\MockSpartanUserAlertService.cs" />
+ <Compile Include="User\Mock\MockSpartanUserAlertStatusService.cs" />
+ <Compile Include="User\Mock\MockSpartanUserAlertTypeService.cs" />
+ <Compile Include="User\Mock\MockSpartanUserFavoriteListService.cs" />
+ <Compile Include="User\Mock\MockSpartanUserFavoriteObjectService.cs" />
+ <Compile Include="User\Mock\MockSpartanUserMostUsedObjectService.cs" />
+ <Compile Include="User\Mock\MockSpartanUserQuickLinkService.cs" />
+ <Compile Include="User\Mock\MockSpartanUserStatusService.cs" />
+ <Compile Include="User\SpartaneUserService.cs" />
+ <Compile Include="User\UserService.cs" />
+ <Compile Include="User\IUserService.cs" />
+ <Compile Include="Spartan_Format\ISpartan_FormatService.cs" />
+ <Compile Include="Spartan_Format\Spartan_FormatService.cs" />
+ <Compile Include="Spartan_Format_Type\ISpartan_Format_TypeService.cs" />
+ <Compile Include="Spartan_Format_Type\Spartan_Format_TypeService.cs" />
+ <Compile Include="Spartan_Metadata\ISpartan_MetadataService.cs" />
+ <Compile Include="Spartan_Metadata\Spartan_MetadataService.cs" />
+ <Compile Include="Spartan_Format_Configuration\ISpartan_Format_ConfigurationService.cs" />
+ <Compile Include="Spartan_Format_Configuration\Spartan_Format_ConfigurationService.cs" />
+ <Compile Include="Spartan_Format_Field\ISpartan_Format_FieldService.cs" />
+ <Compile Include="Spartan_Format_Field\Spartan_Format_FieldService.cs" />
+ <Compile Include="Spartan_Format_Permission_Type\ISpartan_Format_Permission_TypeService.cs" />
+ <Compile Include="Spartan_Format_Permission_Type\Spartan_Format_Permission_TypeService.cs" />
+ <Compile Include="Spartan_Format_Permissions\ISpartan_Format_PermissionsService.cs" />
+ <Compile Include="Spartan_Format_Permissions\Spartan_Format_PermissionsService.cs" />
+ <Compile Include="Spartan_Report\ISpartan_ReportService.cs" />
+ <Compile Include="Spartan_Report\Spartan_ReportService.cs" />
+ <Compile Include="Spartan_Report_Field_Type\ISpartan_Report_Field_TypeService.cs" />
+ <Compile Include="Spartan_Report_Field_Type\Spartan_Report_Field_TypeService.cs" />
+ <Compile Include="Spartan_Report_Fields_Detail\ISpartan_Report_Fields_DetailService.cs" />
+ <Compile Include="Spartan_Report_Fields_Detail\Spartan_Report_Fields_DetailService.cs" />
+ <Compile Include="Spartan_Report_Format\ISpartan_Report_FormatService.cs" />
+ <Compile Include="Spartan_Report_Format\Spartan_Report_FormatService.cs" />
+ <Compile Include="Spartan_Report_Function\ISpartan_Report_FunctionService.cs" />
+ <Compile Include="Spartan_Report_Function\Spartan_Report_FunctionService.cs" />
+ <Compile Include="Spartan_Report_Order_Type\ISpartan_Report_Order_TypeService.cs" />
+ <Compile Include="Spartan_Report_Order_Type\Spartan_Report_Order_TypeService.cs" />
+ <Compile Include="Spartan_Report_Permission_Type\ISpartan_Report_Permission_TypeService.cs" />
+ <Compile Include="Spartan_Report_Permission_Type\Spartan_Report_Permission_TypeService.cs" />
+ <Compile Include="Spartan_Report_Permissions\ISpartan_Report_PermissionsService.cs" />
+ <Compile Include="Spartan_Report_Permissions\Spartan_Report_PermissionsService.cs" />
+ <Compile Include="Spartan_Report_Presentation_Type\ISpartan_Report_Presentation_TypeService.cs" />
+ <Compile Include="Spartan_Report_Presentation_Type\Spartan_Report_Presentation_TypeService.cs" />
+ <Compile Include="Spartan_Report_Presentation_View\ISpartan_Report_Presentation_ViewService.cs" />
+ <Compile Include="Spartan_Report_Presentation_View\Spartan_Report_Presentation_ViewService.cs" />
+ <Compile Include="Spartan_Report_Status\ISpartan_Report_StatusService.cs" />
+ <Compile Include="Spartan_Report_Status\Spartan_Report_StatusService.cs" />
+ <Compile Include="Dialecto\IDialectoService.cs" />
+<Compile Include="Dialecto\DialectoService.cs" />
+<Compile Include="Barba\IBarbaService.cs" />
+<Compile Include="Barba\BarbaService.cs" />
+<Compile Include="Boca\IBocaService.cs" />
+<Compile Include="Boca\BocaService.cs" />
+<Compile Include="PasaTurnos\IPasaTurnosService.cs" />
+<Compile Include="PasaTurnos\PasaTurnosService.cs" />
+<Compile Include="A_Tiempo\IA_TiempoService.cs" />
+<Compile Include="A_Tiempo\A_TiempoService.cs" />
+<Compile Include="Abogado\IAbogadoService.cs" />
+<Compile Include="Abogado\AbogadoService.cs" />
+<Compile Include="Acta_de_Lectura_de_Derechos\IActa_de_Lectura_de_DerechosService.cs" />
+<Compile Include="Acta_de_Lectura_de_Derechos\Acta_de_Lectura_de_DerechosService.cs" />
+<Compile Include="Adicciones\IAdiccionesService.cs" />
+<Compile Include="Adicciones\AdiccionesService.cs" />
+<Compile Include="Adicciones_de_Involucrado\IAdicciones_de_InvolucradoService.cs" />
+<Compile Include="Adicciones_de_Involucrado\Adicciones_de_InvolucradoService.cs" />
+<Compile Include="Adicciones_Probable_Responsable\IAdicciones_Probable_ResponsableService.cs" />
+<Compile Include="Adicciones_Probable_Responsable\Adicciones_Probable_ResponsableService.cs" />
+<Compile Include="Agencia\IAgenciaService.cs" />
+<Compile Include="Agencia\AgenciaService.cs" />
+<Compile Include="Agente_del_Ministerio_Publico\IAgente_del_Ministerio_PublicoService.cs" />
+<Compile Include="Agente_del_Ministerio_Publico\Agente_del_Ministerio_PublicoService.cs" />
+<Compile Include="Agravantes\IAgravantesService.cs" />
+<Compile Include="Agravantes\AgravantesService.cs" />
+<Compile Include="Agravantes_del_Delito\IAgravantes_del_DelitoService.cs" />
+<Compile Include="Agravantes_del_Delito\Agravantes_del_DelitoService.cs" />
+<Compile Include="Anteojos\IAnteojosService.cs" />
+<Compile Include="Anteojos\AnteojosService.cs" />
+<Compile Include="Articulo\IArticuloService.cs" />
+<Compile Include="Articulo\ArticuloService.cs" />
+<Compile Include="Aseguradora_de_Vehiculo\IAseguradora_de_VehiculoService.cs" />
+<Compile Include="Aseguradora_de_Vehiculo\Aseguradora_de_VehiculoService.cs" />
+<Compile Include="Asignacion_de_Turnos\IAsignacion_de_TurnosService.cs" />
+<Compile Include="Asignacion_de_Turnos\Asignacion_de_TurnosService.cs" />
+<Compile Include="Audiencia_de_Control_Fundamento\IAudiencia_de_Control_FundamentoService.cs" />
+<Compile Include="Audiencia_de_Control_Fundamento\Audiencia_de_Control_FundamentoService.cs" />
+<Compile Include="Audiencia_de_Control_Hechos\IAudiencia_de_Control_HechosService.cs" />
+<Compile Include="Audiencia_de_Control_Hechos\Audiencia_de_Control_HechosService.cs" />
+<Compile Include="Audiencia_de_Control_Procedimiento\IAudiencia_de_Control_ProcedimientoService.cs" />
+<Compile Include="Audiencia_de_Control_Procedimiento\Audiencia_de_Control_ProcedimientoService.cs" />
+<Compile Include="Audiencia_de_Control_Reiteracion\IAudiencia_de_Control_ReiteracionService.cs" />
+<Compile Include="Audiencia_de_Control_Reiteracion\Audiencia_de_Control_ReiteracionService.cs" />
+<Compile Include="Audiencia_de_Control_Solicitud\IAudiencia_de_Control_SolicitudService.cs" />
+<Compile Include="Audiencia_de_Control_Solicitud\Audiencia_de_Control_SolicitudService.cs" />
+<Compile Include="Autoridad\IAutoridadService.cs" />
+<Compile Include="Autoridad\AutoridadService.cs" />
+<Compile Include="Solicitud\ISolicitudService.cs" />
+<Compile Include="Solicitud\SolicitudService.cs" />
+<Compile Include="Bigote\IBigoteService.cs" />
+<Compile Include="Bigote\BigoteService.cs" />
+<Compile Include="Binario\IBinarioService.cs" />
+<Compile Include="Binario\BinarioService.cs" />
+<Compile Include="Bitacora_de_Sincronizacion\IBitacora_de_SincronizacionService.cs" />
+<Compile Include="Bitacora_de_Sincronizacion\Bitacora_de_SincronizacionService.cs" />
+<Compile Include="Bitacora_de_Usuarios\IBitacora_de_UsuariosService.cs" />
+<Compile Include="Bitacora_de_Usuarios\Bitacora_de_UsuariosService.cs" />
+<Compile Include="Cadena_de_Custodia\ICadena_de_CustodiaService.cs" />
+<Compile Include="Cadena_de_Custodia\Cadena_de_CustodiaService.cs" />
+<Compile Include="Calendario\ICalendarioService.cs" />
+<Compile Include="Calendario\CalendarioService.cs" />
+<Compile Include="Calendario_de_Citas\ICalendario_de_CitasService.cs" />
+<Compile Include="Calendario_de_Citas\Calendario_de_CitasService.cs" />
+<Compile Include="Calidad_Migratoria\ICalidad_MigratoriaService.cs" />
+<Compile Include="Calidad_Migratoria\Calidad_MigratoriaService.cs" />
+<Compile Include="Calvicie\ICalvicieService.cs" />
+<Compile Include="Calvicie\CalvicieService.cs" />
+<Compile Include="Cantidad_Cabello\ICantidad_CabelloService.cs" />
+<Compile Include="Cantidad_Cabello\Cantidad_CabelloService.cs" />
+<Compile Include="Carga_de_Documentos_Lectura_de_Derechos\ICarga_de_Documentos_Lectura_de_DerechosService.cs" />
+<Compile Include="Carga_de_Documentos_Lectura_de_Derechos\Carga_de_Documentos_Lectura_de_DerechosService.cs" />
+<Compile Include="Carga_de_Documentos_de_Legislacion\ICarga_de_Documentos_de_LegislacionService.cs" />
+<Compile Include="Carga_de_Documentos_de_Legislacion\Carga_de_Documentos_de_LegislacionService.cs" />
+<Compile Include="Catalogo_de_Estatus_de_Folio\ICatalogo_de_Estatus_de_FolioService.cs" />
+<Compile Include="Catalogo_de_Estatus_de_Folio\Catalogo_de_Estatus_de_FolioService.cs" />
+<Compile Include="Catalogo_de_Estatus_de_Traslado\ICatalogo_de_Estatus_de_TrasladoService.cs" />
+<Compile Include="Catalogo_de_Estatus_de_Traslado\Catalogo_de_Estatus_de_TrasladoService.cs" />
+<Compile Include="Catalogo_de_Inicio_de_Cadena_de_Custodia\ICatalogo_de_Inicio_de_Cadena_de_CustodiaService.cs" />
+<Compile Include="Catalogo_de_Inicio_de_Cadena_de_Custodia\Catalogo_de_Inicio_de_Cadena_de_CustodiaService.cs" />
+<Compile Include="Catalogo_de_Movil_para_traslado\ICatalogo_de_Movil_para_trasladoService.cs" />
+<Compile Include="Catalogo_de_Movil_para_traslado\Catalogo_de_Movil_para_trasladoService.cs" />
+<Compile Include="Catalogo_de_Recoleccion\ICatalogo_de_RecoleccionService.cs" />
+<Compile Include="Catalogo_de_Recoleccion\Catalogo_de_RecoleccionService.cs" />
+<Compile Include="Catalogo_Estatus_CC\ICatalogo_Estatus_CCService.cs" />
+<Compile Include="Catalogo_Estatus_CC\Catalogo_Estatus_CCService.cs" />
+<Compile Include="Catalogo_Estatus_de_Replicacion\ICatalogo_Estatus_de_ReplicacionService.cs" />
+<Compile Include="Catalogo_Estatus_de_Replicacion\Catalogo_Estatus_de_ReplicacionService.cs" />
+<Compile Include="Catalogo_Estatus_Detenido_MPI\ICatalogo_Estatus_Detenido_MPIService.cs" />
+<Compile Include="Catalogo_Estatus_Detenido_MPI\Catalogo_Estatus_Detenido_MPIService.cs" />
+<Compile Include="Catalogo_Motivo_de_Intervencion_CC\ICatalogo_Motivo_de_Intervencion_CCService.cs" />
+<Compile Include="Catalogo_Motivo_de_Intervencion_CC\Catalogo_Motivo_de_Intervencion_CCService.cs" />
+<Compile Include="Catalogo_Numero_de_Preguntas\ICatalogo_Numero_de_PreguntasService.cs" />
+<Compile Include="Catalogo_Numero_de_Preguntas\Catalogo_Numero_de_PreguntasService.cs" />
+<Compile Include="Catalogo_Respuesta\ICatalogo_RespuestaService.cs" />
+<Compile Include="Catalogo_Respuesta\Catalogo_RespuestaService.cs" />
+<Compile Include="Catalogo_Tipo_de_Cargo_CC\ICatalogo_Tipo_de_Cargo_CCService.cs" />
+<Compile Include="Catalogo_Tipo_de_Cargo_CC\Catalogo_Tipo_de_Cargo_CCService.cs" />
+<Compile Include="Catalogo_Tipo_de_Embalaje_CC\ICatalogo_Tipo_de_Embalaje_CCService.cs" />
+<Compile Include="Catalogo_Tipo_de_Embalaje_CC\Catalogo_Tipo_de_Embalaje_CCService.cs" />
+<Compile Include="Catalogo_Tipo_de_Fijacion_CC\ICatalogo_Tipo_de_Fijacion_CCService.cs" />
+<Compile Include="Catalogo_Tipo_de_Fijacion_CC\Catalogo_Tipo_de_Fijacion_CCService.cs" />
+<Compile Include="Catalogo_Tipo_de_Indicio_CC\ICatalogo_Tipo_de_Indicio_CCService.cs" />
+<Compile Include="Catalogo_Tipo_de_Indicio_CC\Catalogo_Tipo_de_Indicio_CCService.cs" />
+<Compile Include="Catalogo_Unidad_Administrativa_CC\ICatalogo_Unidad_Administrativa_CCService.cs" />
+<Compile Include="Catalogo_Unidad_Administrativa_CC\Catalogo_Unidad_Administrativa_CCService.cs" />
+<Compile Include="Catalogo_Unidad_Policial\ICatalogo_Unidad_PolicialService.cs" />
+<Compile Include="Catalogo_Unidad_Policial\Catalogo_Unidad_PolicialService.cs" />
+<Compile Include="Causas_de_Interrupcion\ICausas_de_InterrupcionService.cs" />
+<Compile Include="Causas_de_Interrupcion\Causas_de_InterrupcionService.cs" />
+<Compile Include="Cejas\ICejasService.cs" />
+<Compile Include="Cejas\CejasService.cs" />
+<Compile Include="Certifica_Defuncion\ICertifica_DefuncionService.cs" />
+<Compile Include="Certifica_Defuncion\Certifica_DefuncionService.cs" />
+<Compile Include="Circunstancia_Defuncion\ICircunstancia_DefuncionService.cs" />
+<Compile Include="Circunstancia_Defuncion\Circunstancia_DefuncionService.cs" />
+<Compile Include="Circunstancia_del_Delito\ICircunstancia_del_DelitoService.cs" />
+<Compile Include="Circunstancia_del_Delito\Circunstancia_del_DelitoService.cs" />
+<Compile Include="Circunstancia_Vehiculo\ICircunstancia_VehiculoService.cs" />
+<Compile Include="Circunstancia_Vehiculo\Circunstancia_VehiculoService.cs" />
+<Compile Include="Circunstancias\ICircunstanciasService.cs" />
+<Compile Include="Circunstancias\CircunstanciasService.cs" />
+<Compile Include="Circunstancias_del_Delito\ICircunstancias_del_DelitoService.cs" />
+<Compile Include="Circunstancias_del_Delito\Circunstancias_del_DelitoService.cs" />
+<Compile Include="Especifica_Vehiculo\IEspecifica_VehiculoService.cs" />
+<Compile Include="Especifica_Vehiculo\Especifica_VehiculoService.cs" />
+<Compile Include="Clasificacion_en_Orden_de_Resultado\IClasificacion_en_Orden_de_ResultadoService.cs" />
+<Compile Include="Clasificacion_en_Orden_de_Resultado\Clasificacion_en_Orden_de_ResultadoService.cs" />
+<Compile Include="Codigo_Postal\ICodigo_PostalService.cs" />
+<Compile Include="Codigo_Postal\Codigo_PostalService.cs" />
+<Compile Include="Colonia\IColoniaService.cs" />
+<Compile Include="Colonia\ColoniaService.cs" />
+<Compile Include="Color_de_Cabello\IColor_de_CabelloService.cs" />
+<Compile Include="Color_de_Cabello\Color_de_CabelloService.cs" />
+<Compile Include="Color_Ojos\IColor_OjosService.cs" />
+<Compile Include="Color_Ojos\Color_OjosService.cs" />
+<Compile Include="Color_Piel\IColor_PielService.cs" />
+<Compile Include="Color_Piel\Color_PielService.cs" />
+<Compile Include="Color_Vehiculo\IColor_VehiculoService.cs" />
+<Compile Include="Color_Vehiculo\Color_VehiculoService.cs" />
+<Compile Include="Compareciente\IComparecienteService.cs" />
+<Compile Include="Compareciente\ComparecienteService.cs" />
+<Compile Include="Complexion\IComplexionService.cs" />
+<Compile Include="Complexion\ComplexionService.cs" />
+<Compile Include="Concurso\IConcursoService.cs" />
+<Compile Include="Concurso\ConcursoService.cs" />
+<Compile Include="Consecuencia_Defuncion\IConsecuencia_DefuncionService.cs" />
+<Compile Include="Consecuencia_Defuncion\Consecuencia_DefuncionService.cs" />
+<Compile Include="Contingencia\IContingenciaService.cs" />
+<Compile Include="Contingencia\ContingenciaService.cs" />
+<Compile Include="Control_de_Tiempos_JA\IControl_de_Tiempos_JAService.cs" />
+<Compile Include="Control_de_Tiempos_JA\Control_de_Tiempos_JAService.cs" />
+<Compile Include="Registro_de_Tiempo_por_Estatus\IRegistro_de_Tiempo_por_EstatusService.cs" />
+<Compile Include="Registro_de_Tiempo_por_Estatus\Registro_de_Tiempo_por_EstatusService.cs" />
+<Compile Include="Convenio\IConvenioService.cs" />
+<Compile Include="Convenio\ConvenioService.cs" />
+<Compile Include="Corporacion\ICorporacionService.cs" />
+<Compile Include="Corporacion\CorporacionService.cs" />
+<Compile Include="Correccion_de_Error_en_Estatus\ICorreccion_de_Error_en_EstatusService.cs" />
+<Compile Include="Correccion_de_Error_en_Estatus\Correccion_de_Error_en_EstatusService.cs" />
+<Compile Include="Cumplimiento\ICumplimientoService.cs" />
+<Compile Include="Cumplimiento\CumplimientoService.cs" />
+<Compile Include="Datos_Personales_Adicionales_Involucrado\IDatos_Personales_Adicionales_InvolucradoService.cs" />
+<Compile Include="Datos_Personales_Adicionales_Involucrado\Datos_Personales_Adicionales_InvolucradoService.cs" />
+<Compile Include="Datos_Personales_Adicionales_Probable_Responsable\IDatos_Personales_Adicionales_Probable_ResponsableService.cs" />
+<Compile Include="Datos_Personales_Adicionales_Probable_Responsable\Datos_Personales_Adicionales_Probable_ResponsableService.cs" />
+<Compile Include="Delegacion\IDelegacionService.cs" />
+<Compile Include="Delegacion\DelegacionService.cs" />
+<Compile Include="Delito\IDelitoService.cs" />
+<Compile Include="Delito\DelitoService.cs" />
+<Compile Include="Delito_Principal_MPI\IDelito_Principal_MPIService.cs" />
+<Compile Include="Delito_Principal_MPI\Delito_Principal_MPIService.cs" />
+<Compile Include="Delitos_Violencia_Genero\IDelitos_Violencia_GeneroService.cs" />
+<Compile Include="Delitos_Violencia_Genero\Delitos_Violencia_GeneroService.cs" />
+<Compile Include="Descarga_de_Archivo\IDescarga_de_ArchivoService.cs" />
+<Compile Include="Descarga_de_Archivo\Descarga_de_ArchivoService.cs" />
+<Compile Include="Detalle_Bitacora_de_Canalizacion_MPI\IDetalle_Bitacora_de_Canalizacion_MPIService.cs" />
+<Compile Include="Detalle_Bitacora_de_Canalizacion_MPI\Detalle_Bitacora_de_Canalizacion_MPIService.cs" />
+<Compile Include="Detalle_Datos_de_Delito_MPI\IDetalle_Datos_de_Delito_MPIService.cs" />
+<Compile Include="Detalle_Datos_de_Delito_MPI\Detalle_Datos_de_Delito_MPIService.cs" />
+<Compile Include="Detalle_de_Abogado\IDetalle_de_AbogadoService.cs" />
+<Compile Include="Detalle_de_Abogado\Detalle_de_AbogadoService.cs" />
+<Compile Include="Detalle_de_Agente_del_Ministerio_Publico\IDetalle_de_Agente_del_Ministerio_PublicoService.cs" />
+<Compile Include="Detalle_de_Agente_del_Ministerio_Publico\Detalle_de_Agente_del_Ministerio_PublicoService.cs" />
+<Compile Include="Detalle_de_Asignacion_de_Citas\IDetalle_de_Asignacion_de_CitasService.cs" />
+<Compile Include="Detalle_de_Asignacion_de_Citas\Detalle_de_Asignacion_de_CitasService.cs" />
+<Compile Include="Detalle_de_Asignacion_de_Especialista\IDetalle_de_Asignacion_de_EspecialistaService.cs" />
+<Compile Include="Detalle_de_Asignacion_de_Especialista\Detalle_de_Asignacion_de_EspecialistaService.cs" />
+<Compile Include="Detalle_de_Bitacora_de_Cambios\IDetalle_de_Bitacora_de_CambiosService.cs" />
+<Compile Include="Detalle_de_Bitacora_de_Cambios\Detalle_de_Bitacora_de_CambiosService.cs" />
+<Compile Include="Detalle_de_Canalizar_Estatus\IDetalle_de_Canalizar_EstatusService.cs" />
+<Compile Include="Detalle_de_Canalizar_Estatus\Detalle_de_Canalizar_EstatusService.cs" />
+<Compile Include="Detalle_de_Citatorio_Audiencias\IDetalle_de_Citatorio_AudienciasService.cs" />
+<Compile Include="Detalle_de_Citatorio_Audiencias\Detalle_de_Citatorio_AudienciasService.cs" />
+<Compile Include="Detalle_de_Coincidencias\IDetalle_de_CoincidenciasService.cs" />
+<Compile Include="Detalle_de_Coincidencias\Detalle_de_CoincidenciasService.cs" />
+<Compile Include="Detalle_de_coincidencias_a\IDetalle_de_coincidencias_aService.cs" />
+<Compile Include="Detalle_de_coincidencias_a\Detalle_de_coincidencias_aService.cs" />
+<Compile Include="Detalle_de_Coincidencias_MPI\IDetalle_de_Coincidencias_MPIService.cs" />
+<Compile Include="Detalle_de_Coincidencias_MPI\Detalle_de_Coincidencias_MPIService.cs" />
+<Compile Include="Detalle_de_Datos_de_la_Victima_MPI\IDetalle_de_Datos_de_la_Victima_MPIService.cs" />
+<Compile Include="Detalle_de_Datos_de_la_Victima_MPI\Detalle_de_Datos_de_la_Victima_MPIService.cs" />
+<Compile Include="Detalle_de_Datos_de_Tutor\IDetalle_de_Datos_de_TutorService.cs" />
+<Compile Include="Detalle_de_Datos_de_Tutor\Detalle_de_Datos_de_TutorService.cs" />
+<Compile Include="Detalle_de_Datos_del_Imputado_MPI\IDetalle_de_Datos_del_Imputado_MPIService.cs" />
+<Compile Include="Detalle_de_Datos_del_Imputado_MPI\Detalle_de_Datos_del_Imputado_MPIService.cs" />
+<Compile Include="Detalle_de_Datos_del_Imputado_CC\IDetalle_de_Datos_del_Imputado_CCService.cs" />
+<Compile Include="Detalle_de_Datos_del_Imputado_CC\Detalle_de_Datos_del_Imputado_CCService.cs" />
+<Compile Include="Detalle_de_Datos_del_Testigo_CC\IDetalle_de_Datos_del_Testigo_CCService.cs" />
+<Compile Include="Detalle_de_Datos_del_Testigo_CC\Detalle_de_Datos_del_Testigo_CCService.cs" />
+<Compile Include="Detalle_de_Datos_del_Testigo_MPI\IDetalle_de_Datos_del_Testigo_MPIService.cs" />
+<Compile Include="Detalle_de_Datos_del_Testigo_MPI\Detalle_de_Datos_del_Testigo_MPIService.cs" />
+<Compile Include="Detalle_de_Datos_Generales\IDetalle_de_Datos_GeneralesService.cs" />
+<Compile Include="Detalle_de_Datos_Generales\Detalle_de_Datos_GeneralesService.cs" />
+<Compile Include="Detalle_de_Delito\IDetalle_de_DelitoService.cs" />
+<Compile Include="Detalle_de_Delito\Detalle_de_DelitoService.cs" />
+<Compile Include="Detalle_de_Delito_de_Justicia\IDetalle_de_Delito_de_JusticiaService.cs" />
+<Compile Include="Detalle_de_Delito_de_Justicia\Detalle_de_Delito_de_JusticiaService.cs" />
+<Compile Include="Detalle_de_Descarga_de_Archivo\IDetalle_de_Descarga_de_ArchivoService.cs" />
+<Compile Include="Detalle_de_Descarga_de_Archivo\Detalle_de_Descarga_de_ArchivoService.cs" />
+<Compile Include="Detalle_de_Descripcion_de_Evidencia_CC\IDetalle_de_Descripcion_de_Evidencia_CCService.cs" />
+<Compile Include="Detalle_de_Descripcion_de_Evidencia_CC\Detalle_de_Descripcion_de_Evidencia_CCService.cs" />
+<Compile Include="Detalle_de_Desestimacion\IDetalle_de_DesestimacionService.cs" />
+<Compile Include="Detalle_de_Desestimacion\Detalle_de_DesestimacionService.cs" />
+<Compile Include="Detalle_de_Devolucion_de_Indicios\IDetalle_de_Devolucion_de_IndiciosService.cs" />
+<Compile Include="Detalle_de_Devolucion_de_Indicios\Detalle_de_Devolucion_de_IndiciosService.cs" />
+<Compile Include="Detalle_de_Documento_MPO\IDetalle_de_Documento_MPOService.cs" />
+<Compile Include="Detalle_de_Documento_MPO\Detalle_de_Documento_MPOService.cs" />
+<Compile Include="Detalle_de_documentos\IDetalle_de_documentosService.cs" />
+<Compile Include="Detalle_de_documentos\Detalle_de_documentosService.cs" />
+<Compile Include="Detalle_de_Documentos_de_Legislacion\IDetalle_de_Documentos_de_LegislacionService.cs" />
+<Compile Include="Detalle_de_Documentos_de_Legislacion\Detalle_de_Documentos_de_LegislacionService.cs" />
+<Compile Include="Detalle_de_Documentos_de_MPO\IDetalle_de_Documentos_de_MPOService.cs" />
+<Compile Include="Detalle_de_Documentos_de_MPO\Detalle_de_Documentos_de_MPOService.cs" />
+<Compile Include="Detalle_de_Documentos_MPI\IDetalle_de_Documentos_MPIService.cs" />
+<Compile Include="Detalle_de_Documentos_MPI\Detalle_de_Documentos_MPIService.cs" />
+<Compile Include="Detalle_de_Documentos_MPO\IDetalle_de_Documentos_MPOService.cs" />
+<Compile Include="Detalle_de_Documentos_MPO\Detalle_de_Documentos_MPOService.cs" />
+<Compile Include="Detalle_de_Folio_Asignado_de_Usuario\IDetalle_de_Folio_Asignado_de_UsuarioService.cs" />
+<Compile Include="Detalle_de_Folio_Asignado_de_Usuario\Detalle_de_Folio_Asignado_de_UsuarioService.cs" />
+<Compile Include="Detalle_de_Folio_NUE_CC\IDetalle_de_Folio_NUE_CCService.cs" />
+<Compile Include="Detalle_de_Folio_NUE_CC\Detalle_de_Folio_NUE_CCService.cs" />
+<Compile Include="Detalle_de_Fotos_CC\IDetalle_de_Fotos_CCService.cs" />
+<Compile Include="Detalle_de_Fotos_CC\Detalle_de_Fotos_CCService.cs" />
+<Compile Include="Detalle_de_Fotos_de_Emergencia_CC\IDetalle_de_Fotos_de_Emergencia_CCService.cs" />
+<Compile Include="Detalle_de_Fotos_de_Emergencia_CC\Detalle_de_Fotos_de_Emergencia_CCService.cs" />
+<Compile Include="Detalle_de_Galeria_de_Detenidos\IDetalle_de_Galeria_de_DetenidosService.cs" />
+<Compile Include="Detalle_de_Galeria_de_Detenidos\Detalle_de_Galeria_de_DetenidosService.cs" />
+<Compile Include="Detalle_de_Galeria_de_Intervinientes\IDetalle_de_Galeria_de_IntervinientesService.cs" />
+<Compile Include="Detalle_de_Galeria_de_Intervinientes\Detalle_de_Galeria_de_IntervinientesService.cs" />
+<Compile Include="Detalle_de_Galeria_de_Testigos\IDetalle_de_Galeria_de_TestigosService.cs" />
+<Compile Include="Detalle_de_Galeria_de_Testigos\Detalle_de_Galeria_de_TestigosService.cs" />
+<Compile Include="Detalle_de_Hechos_Audiencia_Inicial\IDetalle_de_Hechos_Audiencia_InicialService.cs" />
+<Compile Include="Detalle_de_Hechos_Audiencia_Inicial\Detalle_de_Hechos_Audiencia_InicialService.cs" />
+<Compile Include="Detalle_de_Historial_de_Emergencia_CC\IDetalle_de_Historial_de_Emergencia_CCService.cs" />
+<Compile Include="Detalle_de_Historial_de_Emergencia_CC\Detalle_de_Historial_de_Emergencia_CCService.cs" />
+<Compile Include="Detalle_de_Imputado\IDetalle_de_ImputadoService.cs" />
+<Compile Include="Detalle_de_Imputado\Detalle_de_ImputadoService.cs" />
+<Compile Include="Detalle_de_Indicios\IDetalle_de_IndiciosService.cs" />
+<Compile Include="Detalle_de_Indicios\Detalle_de_IndiciosService.cs" />
+<Compile Include="Detalle_de_IPH_MPI\IDetalle_de_IPH_MPIService.cs" />
+<Compile Include="Detalle_de_IPH_MPI\Detalle_de_IPH_MPIService.cs" />
+<Compile Include="Detalle_de_Lista_de_Asignaciones\IDetalle_de_Lista_de_AsignacionesService.cs" />
+<Compile Include="Detalle_de_Lista_de_Asignaciones\Detalle_de_Lista_de_AsignacionesService.cs" />
+<Compile Include="Detalle_de_Lista_de_Documentos_CC\IDetalle_de_Lista_de_Documentos_CCService.cs" />
+<Compile Include="Detalle_de_Lista_de_Documentos_CC\Detalle_de_Lista_de_Documentos_CCService.cs" />
+<Compile Include="Detalle_de_Mensaje_de_Historial\IDetalle_de_Mensaje_de_HistorialService.cs" />
+<Compile Include="Detalle_de_Mensaje_de_Historial\Detalle_de_Mensaje_de_HistorialService.cs" />
+<Compile Include="Detalle_de_Oficio_de_Servicio_Pericial\IDetalle_de_Oficio_de_Servicio_PericialService.cs" />
+<Compile Include="Detalle_de_Oficio_de_Servicio_Pericial\Detalle_de_Oficio_de_Servicio_PericialService.cs" />
+<Compile Include="Detalle_de_Persona_Moral\IDetalle_de_Persona_MoralService.cs" />
+<Compile Include="Detalle_de_Persona_Moral\Detalle_de_Persona_MoralService.cs" />
+<Compile Include="Detalle_de_Persona_Moral_JA\IDetalle_de_Persona_Moral_JAService.cs" />
+<Compile Include="Detalle_de_Persona_Moral_JA\Detalle_de_Persona_Moral_JAService.cs" />
+<Compile Include="Detalle_de_Persona_Moral_MPI\IDetalle_de_Persona_Moral_MPIService.cs" />
+<Compile Include="Detalle_de_Persona_Moral_MPI\Detalle_de_Persona_Moral_MPIService.cs" />
+<Compile Include="Detalle_de_Referencia\IDetalle_de_ReferenciaService.cs" />
+<Compile Include="Detalle_de_Referencia\Detalle_de_ReferenciaService.cs" />
+<Compile Include="Detalle_de_Registro_de_Intervinientes_CC\IDetalle_de_Registro_de_Intervinientes_CCService.cs" />
+<Compile Include="Detalle_de_Registro_de_Intervinientes_CC\Detalle_de_Registro_de_Intervinientes_CCService.cs" />
+<Compile Include="Detalle_de_Relaciones\IDetalle_de_RelacionesService.cs" />
+<Compile Include="Detalle_de_Relaciones\Detalle_de_RelacionesService.cs" />
+<Compile Include="Detalle_de_Requerido_en_Audiencias_MPI\IDetalle_de_Requerido_en_Audiencias_MPIService.cs" />
+<Compile Include="Detalle_de_Requerido_en_Audiencias_MPI\Detalle_de_Requerido_en_Audiencias_MPIService.cs" />
+<Compile Include="Detalle_de_Requerido_en_Comparecencia\IDetalle_de_Requerido_en_ComparecenciaService.cs" />
+<Compile Include="Detalle_de_Requerido_en_Comparecencia\Detalle_de_Requerido_en_ComparecenciaService.cs" />
+<Compile Include="Detalle_de_Requerido_en_Examen\IDetalle_de_Requerido_en_ExamenService.cs" />
+<Compile Include="Detalle_de_Requerido_en_Examen\Detalle_de_Requerido_en_ExamenService.cs" />
+<Compile Include="Detalle_de_Requerido_en_Invitaciones\IDetalle_de_Requerido_en_InvitacionesService.cs" />
+<Compile Include="Detalle_de_Requerido_en_Invitaciones\Detalle_de_Requerido_en_InvitacionesService.cs" />
+<Compile Include="Detalle_de_Requerido_en_Reuniones\IDetalle_de_Requerido_en_ReunionesService.cs" />
+<Compile Include="Detalle_de_Requerido_en_Reuniones\Detalle_de_Requerido_en_ReunionesService.cs" />
+<Compile Include="Detalle_de_Requeridos_Faltantes\IDetalle_de_Requeridos_FaltantesService.cs" />
+<Compile Include="Detalle_de_Requeridos_Faltantes\Detalle_de_Requeridos_FaltantesService.cs" />
+<Compile Include="Detalle_de_Retroalimentacion\IDetalle_de_RetroalimentacionService.cs" />
+<Compile Include="Detalle_de_Retroalimentacion\Detalle_de_RetroalimentacionService.cs" />
+<Compile Include="Detalle_de_Reuniones_de_Mediacion\IDetalle_de_Reuniones_de_MediacionService.cs" />
+<Compile Include="Detalle_de_Reuniones_de_Mediacion\Detalle_de_Reuniones_de_MediacionService.cs" />
+<Compile Include="Detalle_de_Seguimiento\IDetalle_de_SeguimientoService.cs" />
+<Compile Include="Detalle_de_Seguimiento\Detalle_de_SeguimientoService.cs" />
+<Compile Include="Detalle_de_Sentencias_Imputado_MPI\IDetalle_de_Sentencias_Imputado_MPIService.cs" />
+<Compile Include="Detalle_de_Sentencias_Imputado_MPI\Detalle_de_Sentencias_Imputado_MPIService.cs" />
+<Compile Include="Detalle_de_Servicio_de_Apoyo\IDetalle_de_Servicio_de_ApoyoService.cs" />
+<Compile Include="Detalle_de_Servicio_de_Apoyo\Detalle_de_Servicio_de_ApoyoService.cs" />
+<Compile Include="Detalle_de_Servicio_de_Apoyo_MPI\IDetalle_de_Servicio_de_Apoyo_MPIService.cs" />
+<Compile Include="Detalle_de_Servicio_de_Apoyo_MPI\Detalle_de_Servicio_de_Apoyo_MPIService.cs" />
+<Compile Include="Detalle_de_Servicios_Periciales\IDetalle_de_Servicios_PericialesService.cs" />
+<Compile Include="Detalle_de_Servicios_Periciales\Detalle_de_Servicios_PericialesService.cs" />
+<Compile Include="Detalle_de_Solicitante_en_Audiencias_JA\IDetalle_de_Solicitante_en_Audiencias_JAService.cs" />
+<Compile Include="Detalle_de_Solicitante_en_Audiencias_JA\Detalle_de_Solicitante_en_Audiencias_JAService.cs" />
+<Compile Include="Detalle_de_Solicitante_en_Audiencias_MPI\IDetalle_de_Solicitante_en_Audiencias_MPIService.cs" />
+<Compile Include="Detalle_de_Solicitante_en_Audiencias_MPI\Detalle_de_Solicitante_en_Audiencias_MPIService.cs" />
+<Compile Include="Detalle_de_Solicitante_en_Comparecencia\IDetalle_de_Solicitante_en_ComparecenciaService.cs" />
+<Compile Include="Detalle_de_Solicitante_en_Comparecencia\Detalle_de_Solicitante_en_ComparecenciaService.cs" />
+<Compile Include="Detalle_de_Solicitante_en_Examen\IDetalle_de_Solicitante_en_ExamenService.cs" />
+<Compile Include="Detalle_de_Solicitante_en_Examen\Detalle_de_Solicitante_en_ExamenService.cs" />
+<Compile Include="Detalle_de_Solicitante_en_Invitaciones\IDetalle_de_Solicitante_en_InvitacionesService.cs" />
+<Compile Include="Detalle_de_Solicitante_en_Invitaciones\Detalle_de_Solicitante_en_InvitacionesService.cs" />
+<Compile Include="Detalle_de_Solicitante_en_Reuniones\IDetalle_de_Solicitante_en_ReunionesService.cs" />
+<Compile Include="Detalle_de_Solicitante_en_Reuniones\Detalle_de_Solicitante_en_ReunionesService.cs" />
+<Compile Include="Detalle_de_Solicitante_Fundamentos_JA\IDetalle_de_Solicitante_Fundamentos_JAService.cs" />
+<Compile Include="Detalle_de_Solicitante_Fundamentos_JA\Detalle_de_Solicitante_Fundamentos_JAService.cs" />
+<Compile Include="Detalle_de_Solicitante_Procedimiento\IDetalle_de_Solicitante_ProcedimientoService.cs" />
+<Compile Include="Detalle_de_Solicitante_Procedimiento\Detalle_de_Solicitante_ProcedimientoService.cs" />
+<Compile Include="Detalle_de_Solicitante_Reiteracion_Salud\IDetalle_de_Solicitante_Reiteracion_SaludService.cs" />
+<Compile Include="Detalle_de_Solicitante_Reiteracion_Salud\Detalle_de_Solicitante_Reiteracion_SaludService.cs" />
+<Compile Include="Detalle_de_Solicitud_Bitacora_de_Coincid\IDetalle_de_Solicitud_Bitacora_de_CoincidService.cs" />
+<Compile Include="Detalle_de_Solicitud_Bitacora_de_Coincid\Detalle_de_Solicitud_Bitacora_de_CoincidService.cs" />
+<Compile Include="Detalle_de_Solicitud_Datos_de_Apoyo\IDetalle_de_Solicitud_Datos_de_ApoyoService.cs" />
+<Compile Include="Detalle_de_Solicitud_Datos_de_Apoyo\Detalle_de_Solicitud_Datos_de_ApoyoService.cs" />
+<Compile Include="Detalle_de_Solicitud_de_Indicio\IDetalle_de_Solicitud_de_IndicioService.cs" />
+<Compile Include="Detalle_de_Solicitud_de_Indicio\Detalle_de_Solicitud_de_IndicioService.cs" />
+<Compile Include="Detalle_de_Solicitud_Representante_Legal\IDetalle_de_Solicitud_Representante_LegalService.cs" />
+<Compile Include="Detalle_de_Solicitud_Representante_Legal\Detalle_de_Solicitud_Representante_LegalService.cs" />
+<Compile Include="Detalle_de_Solicitud_Requerido\IDetalle_de_Solicitud_RequeridoService.cs" />
+<Compile Include="Detalle_de_Solicitud_Requerido\Detalle_de_Solicitud_RequeridoService.cs" />
+<Compile Include="Detalle_de_Solicitud_Seguimiento\IDetalle_de_Solicitud_SeguimientoService.cs" />
+<Compile Include="Detalle_de_Solicitud_Seguimiento\Detalle_de_Solicitud_SeguimientoService.cs" />
+<Compile Include="Detalle_de_Solicitud_Solicitante\IDetalle_de_Solicitud_SolicitanteService.cs" />
+<Compile Include="Detalle_de_Solicitud_Solicitante\Detalle_de_Solicitud_SolicitanteService.cs" />
+<Compile Include="Detalle_de_Solicitudes_de_Comparecencia\IDetalle_de_Solicitudes_de_ComparecenciaService.cs" />
+<Compile Include="Detalle_de_Solicitudes_de_Comparecencia\Detalle_de_Solicitudes_de_ComparecenciaService.cs" />
+<Compile Include="Detalle_de_Solicitudes_de_Invitaciones\IDetalle_de_Solicitudes_de_InvitacionesService.cs" />
+<Compile Include="Detalle_de_Solicitudes_de_Invitaciones\Detalle_de_Solicitudes_de_InvitacionesService.cs" />
+<Compile Include="Detalle_de_Traslado_de_CC\IDetalle_de_Traslado_de_CCService.cs" />
+<Compile Include="Detalle_de_Traslado_de_CC\Detalle_de_Traslado_de_CCService.cs" />
+<Compile Include="Detalle_de_Tutor\IDetalle_de_TutorService.cs" />
+<Compile Include="Detalle_de_Tutor\Detalle_de_TutorService.cs" />
+<Compile Include="Detalle_de_Videos_CC\IDetalle_de_Videos_CCService.cs" />
+<Compile Include="Detalle_de_Videos_CC\Detalle_de_Videos_CCService.cs" />
+<Compile Include="Detalle_del_Abogado_Imputado_MPI\IDetalle_del_Abogado_Imputado_MPIService.cs" />
+<Compile Include="Detalle_del_Abogado_Imputado_MPI\Detalle_del_Abogado_Imputado_MPIService.cs" />
+<Compile Include="Detalle_del_Abogado_Victima_MPI\IDetalle_del_Abogado_Victima_MPIService.cs" />
+<Compile Include="Detalle_del_Abogado_Victima_MPI\Detalle_del_Abogado_Victima_MPIService.cs" />
+<Compile Include="Detalle_del_Certificado_CC\IDetalle_del_Certificado_CCService.cs" />
+<Compile Include="Detalle_del_Certificado_CC\Detalle_del_Certificado_CCService.cs" />
+<Compile Include="Detalle_del_Indicio\IDetalle_del_IndicioService.cs" />
+<Compile Include="Detalle_del_Indicio\Detalle_del_IndicioService.cs" />
+<Compile Include="Detalle_Historico_JA\IDetalle_Historico_JAService.cs" />
+<Compile Include="Detalle_Historico_JA\Detalle_Historico_JAService.cs" />
+<Compile Include="Detalle_Historico_MPO\IDetalle_Historico_MPOService.cs" />
+<Compile Include="Detalle_Historico_MPO\Detalle_Historico_MPOService.cs" />
+<Compile Include="Diligencias\IDiligenciasService.cs" />
+<Compile Include="Diligencias\DiligenciasService.cs" />
+<Compile Include="Director_de_Agencia\IDirector_de_AgenciaService.cs" />
+<Compile Include="Director_de_Agencia\Director_de_AgenciaService.cs" />
+<Compile Include="Discapacidades_Fisicas\IDiscapacidades_FisicasService.cs" />
+<Compile Include="Discapacidades_Fisicas\Discapacidades_FisicasService.cs" />
+<Compile Include="Discapacidades_Mentales\IDiscapacidades_MentalesService.cs" />
+<Compile Include="Discapacidades_Mentales\Discapacidades_MentalesService.cs" />
+<Compile Include="Discapacidades_Psicosociales\IDiscapacidades_PsicosocialesService.cs" />
+<Compile Include="Discapacidades_Psicosociales\Discapacidades_PsicosocialesService.cs" />
+<Compile Include="Discapacidades_Sensoriales\IDiscapacidades_SensorialesService.cs" />
+<Compile Include="Discapacidades_Sensoriales\Discapacidades_SensorialesService.cs" />
+<Compile Include="Distrito_Judicial\IDistrito_JudicialService.cs" />
+<Compile Include="Distrito_Judicial\Distrito_JudicialService.cs" />
+<Compile Include="Encuesta\IEncuestaService.cs" />
+<Compile Include="Encuesta\EncuestaService.cs" />
+<Compile Include="Elemento_Robado\IElemento_RobadoService.cs" />
+<Compile Include="Elemento_Robado\Elemento_RobadoService.cs" />
+<Compile Include="Elementos_Comision_Delito\IElementos_Comision_DelitoService.cs" />
+<Compile Include="Elementos_Comision_Delito\Elementos_Comision_DelitoService.cs" />
+<Compile Include="Encuesta1\IEncuesta1Service.cs" />
+<Compile Include="Encuesta1\Encuesta1Service.cs" />
+<Compile Include="Errores_de_Replicacion\IErrores_de_ReplicacionService.cs" />
+<Compile Include="Errores_de_Replicacion\Errores_de_ReplicacionService.cs" />
+<Compile Include="Escolaridad\IEscolaridadService.cs" />
+<Compile Include="Escolaridad\EscolaridadService.cs" />
+<Compile Include="Especialidad\IEspecialidadService.cs" />
+<Compile Include="Especialidad\EspecialidadService.cs" />
+<Compile Include="Especialidad_MP\IEspecialidad_MPService.cs" />
+<Compile Include="Especialidad_MP\Especialidad_MPService.cs" />
+<Compile Include="Especialista_de_Justicia_Alternativa\IEspecialista_de_Justicia_AlternativaService.cs" />
+<Compile Include="Especialista_de_Justicia_Alternativa\Especialista_de_Justicia_AlternativaService.cs" />
+<Compile Include="Estado\IEstadoService.cs" />
+<Compile Include="Estado\EstadoService.cs" />
+<Compile Include="Estado_Civil\IEstado_CivilService.cs" />
+<Compile Include="Estado_Civil\Estado_CivilService.cs" />
+<Compile Include="Estado_de_Involucrado\IEstado_de_InvolucradoService.cs" />
+<Compile Include="Estado_de_Involucrado\Estado_de_InvolucradoService.cs" />
+<Compile Include="Estatus\IEstatusService.cs" />
+<Compile Include="Estatus\EstatusService.cs" />
+<Compile Include="Estatus_de_Actualizacion_de_Documento\IEstatus_de_Actualizacion_de_DocumentoService.cs" />
+<Compile Include="Estatus_de_Actualizacion_de_Documento\Estatus_de_Actualizacion_de_DocumentoService.cs" />
+<Compile Include="Estatus_de_Asignacion\IEstatus_de_AsignacionService.cs" />
+<Compile Include="Estatus_de_Asignacion\Estatus_de_AsignacionService.cs" />
+<Compile Include="Estatus_de_Cita_Invitaciones\IEstatus_de_Cita_InvitacionesService.cs" />
+<Compile Include="Estatus_de_Cita_Invitaciones\Estatus_de_Cita_InvitacionesService.cs" />
+<Compile Include="Estatus_Detalle_Documentos_Legislacion\IEstatus_Detalle_Documentos_LegislacionService.cs" />
+<Compile Include="Estatus_Detalle_Documentos_Legislacion\Estatus_Detalle_Documentos_LegislacionService.cs" />
+<Compile Include="Estatus_de_Documento\IEstatus_de_DocumentoService.cs" />
+<Compile Include="Estatus_de_Documento\Estatus_de_DocumentoService.cs" />
+<Compile Include="Estatus_de_Expediente\IEstatus_de_ExpedienteService.cs" />
+<Compile Include="Estatus_de_Expediente\Estatus_de_ExpedienteService.cs" />
+<Compile Include="Estatus_de_Expediente_Inicial\IEstatus_de_Expediente_InicialService.cs" />
+<Compile Include="Estatus_de_Expediente_Inicial\Estatus_de_Expediente_InicialService.cs" />
+<Compile Include="Estatus_de_Expediente_para_Reuniones\IEstatus_de_Expediente_para_ReunionesService.cs" />
+<Compile Include="Estatus_de_Expediente_para_Reuniones\Estatus_de_Expediente_para_ReunionesService.cs" />
+<Compile Include="Estatus_de_Indicio\IEstatus_de_IndicioService.cs" />
+<Compile Include="Estatus_de_Indicio\Estatus_de_IndicioService.cs" />
+<Compile Include="Estatus_de_Notificacion\IEstatus_de_NotificacionService.cs" />
+<Compile Include="Estatus_de_Notificacion\Estatus_de_NotificacionService.cs" />
+<Compile Include="Estatus_de_Turno\IEstatus_de_TurnoService.cs" />
+<Compile Include="Estatus_de_Turno\Estatus_de_TurnoService.cs" />
+<Compile Include="Estatus_del_Dictamen\IEstatus_del_DictamenService.cs" />
+<Compile Include="Estatus_del_Dictamen\Estatus_del_DictamenService.cs" />
+<Compile Include="Estatus_del_Imputado\IEstatus_del_ImputadoService.cs" />
+<Compile Include="Estatus_del_Imputado\Estatus_del_ImputadoService.cs" />
+<Compile Include="Estatus_Orientador\IEstatus_OrientadorService.cs" />
+<Compile Include="Estatus_Orientador\Estatus_OrientadorService.cs" />
+<Compile Include="Estatus_Solicitud\IEstatus_SolicitudService.cs" />
+<Compile Include="Estatus_Solicitud\Estatus_SolicitudService.cs" />
+<Compile Include="Estudios_Superiores\IEstudios_SuperioresService.cs" />
+<Compile Include="Estudios_Superiores\Estudios_SuperioresService.cs" />
+<Compile Include="Etnia\IEtniaService.cs" />
+<Compile Include="Etnia\EtniaService.cs" />
+<Compile Include="Expediente_Inicial\IExpediente_InicialService.cs" />
+<Compile Include="Expediente_Inicial\Expediente_InicialService.cs" />
+<Compile Include="Forma_Accion_Delito\IForma_Accion_DelitoService.cs" />
+<Compile Include="Forma_Accion_Delito\Forma_Accion_DelitoService.cs" />
+<Compile Include="Forma_Comision_Delito\IForma_Comision_DelitoService.cs" />
+<Compile Include="Forma_Comision_Delito\Forma_Comision_DelitoService.cs" />
+<Compile Include="Forma_Cara\IForma_CaraService.cs" />
+<Compile Include="Forma_Cara\Forma_CaraService.cs" />
+<Compile Include="Forma_de_Menton\IForma_de_MentonService.cs" />
+<Compile Include="Forma_de_Menton\Forma_de_MentonService.cs" />
+<Compile Include="Forma_de_Nariz\IForma_de_NarizService.cs" />
+<Compile Include="Forma_de_Nariz\Forma_de_NarizService.cs" />
+<Compile Include="Froma_Ojos\IFroma_OjosService.cs" />
+<Compile Include="Froma_Ojos\Froma_OjosService.cs" />
+<Compile Include="Forma_Orejas\IForma_OrejasService.cs" />
+<Compile Include="Forma_Orejas\Forma_OrejasService.cs" />
+<Compile Include="Forma_Cabello\IForma_CabelloService.cs" />
+<Compile Include="Forma_Cabello\Forma_CabelloService.cs" />
+<Compile Include="Formato_de_Control\IFormato_de_ControlService.cs" />
+<Compile Include="Formato_de_Control\Formato_de_ControlService.cs" />
+<Compile Include="Formato_de_Seguimiento\IFormato_de_SeguimientoService.cs" />
+<Compile Include="Formato_de_Seguimiento\Formato_de_SeguimientoService.cs" />
+<Compile Include="Frente\IFrenteService.cs" />
+<Compile Include="Frente\FrenteService.cs" />
+<Compile Include="Grosor_de_Labios\IGrosor_de_LabiosService.cs" />
+<Compile Include="Grosor_de_Labios\Grosor_de_LabiosService.cs" />
+<Compile Include="Grupo_al_que_Pertenece\IGrupo_al_que_PerteneceService.cs" />
+<Compile Include="Grupo_al_que_Pertenece\Grupo_al_que_PerteneceService.cs" />
+<Compile Include="Grupo_del_Delito\IGrupo_del_DelitoService.cs" />
+<Compile Include="Grupo_del_Delito\Grupo_del_DelitoService.cs" />
+<Compile Include="Grupo_Vulnerable\IGrupo_VulnerableService.cs" />
+<Compile Include="Grupo_Vulnerable\Grupo_VulnerableService.cs" />
+<Compile Include="Historial_de_Conversacion\IHistorial_de_ConversacionService.cs" />
+<Compile Include="Historial_de_Conversacion\Historial_de_ConversacionService.cs" />
+<Compile Include="Identificacion\IIdentificacionService.cs" />
+<Compile Include="Identificacion\IdentificacionService.cs" />
+<Compile Include="Idioma\IIdiomaService.cs" />
+<Compile Include="Idioma\IdiomaService.cs" />
+<Compile Include="Implantacion_Cabello\IImplantacion_CabelloService.cs" />
+<Compile Include="Implantacion_Cabello\Implantacion_CabelloService.cs" />
+<Compile Include="Indicios\IIndiciosService.cs" />
+<Compile Include="Indicios\IndiciosService.cs" />
+<Compile Include="Indicios_para_MPI\IIndicios_para_MPIService.cs" />
+<Compile Include="Indicios_para_MPI\Indicios_para_MPIService.cs" />
+<Compile Include="Indigena\IIndigenaService.cs" />
+<Compile Include="Indigena\IndigenaService.cs" />
+<Compile Include="Juez_de_Control\IJuez_de_ControlService.cs" />
+<Compile Include="Juez_de_Control\Juez_de_ControlService.cs" />
+<Compile Include="Labios\ILabiosService.cs" />
+<Compile Include="Labios\LabiosService.cs" />
+<Compile Include="Largo_de_Cabello\ILargo_de_CabelloService.cs" />
+<Compile Include="Largo_de_Cabello\Largo_de_CabelloService.cs" />
+<Compile Include="Localidad\ILocalidadService.cs" />
+<Compile Include="Localidad\LocalidadService.cs" />
+<Compile Include="Lugar_de_Detencion\ILugar_de_DetencionService.cs" />
+<Compile Include="Lugar_de_Detencion\Lugar_de_DetencionService.cs" />
+<Compile Include="Lugar_del_Robo\ILugar_del_RoboService.cs" />
+<Compile Include="Lugar_del_Robo\Lugar_del_RoboService.cs" />
+<Compile Include="Lugar_Tipo\ILugar_TipoService.cs" />
+<Compile Include="Lugar_Tipo\Lugar_TipoService.cs" />
+<Compile Include="Lugares\ILugaresService.cs" />
+<Compile Include="Lugares\LugaresService.cs" />
+<Compile Include="Lugares_Frecuentes_Involucrado\ILugares_Frecuentes_InvolucradoService.cs" />
+<Compile Include="Lugares_Frecuentes_Involucrado\Lugares_Frecuentes_InvolucradoService.cs" />
+<Compile Include="Lugares_Frecuentes_Probable_Responsable\ILugares_Frecuentes_Probable_ResponsableService.cs" />
+<Compile Include="Lugares_Frecuentes_Probable_Responsable\Lugares_Frecuentes_Probable_ResponsableService.cs" />
+<Compile Include="Marca_del_Vehiculo\IMarca_del_VehiculoService.cs" />
+<Compile Include="Marca_del_Vehiculo\Marca_del_VehiculoService.cs" />
+<Compile Include="Medidas_Cautelares\IMedidas_CautelaresService.cs" />
+<Compile Include="Medidas_Cautelares\Medidas_CautelaresService.cs" />
+<Compile Include="Medios_Alternativos\IMedios_AlternativosService.cs" />
+<Compile Include="Medios_Alternativos\Medios_AlternativosService.cs" />
+<Compile Include="Menton\IMentonService.cs" />
+<Compile Include="Menton\MentonService.cs" />
+<Compile Include="Meses\IMesesService.cs" />
+<Compile Include="Meses\MesesService.cs" />
+<Compile Include="Jefes_de_Usuarios_del_Sistema\IJefes_de_Usuarios_del_SistemaService.cs" />
+<Compile Include="Jefes_de_Usuarios_del_Sistema\Jefes_de_Usuarios_del_SistemaService.cs" />
+<Compile Include="Modalidad_de_Robo_de_Vehiculo\IModalidad_de_Robo_de_VehiculoService.cs" />
+<Compile Include="Modalidad_de_Robo_de_Vehiculo\Modalidad_de_Robo_de_VehiculoService.cs" />
+<Compile Include="Modalidad_Delito\IModalidad_DelitoService.cs" />
+<Compile Include="Modalidad_Delito\Modalidad_DelitoService.cs" />
+<Compile Include="Modulo\IModuloService.cs" />
+<Compile Include="Modulo\ModuloService.cs" />
+<Compile Include="Modulo_de_Atencion_Inicial\IModulo_de_Atencion_InicialService.cs" />
+<Compile Include="Modulo_de_Atencion_Inicial\Modulo_de_Atencion_InicialService.cs" />
+<Compile Include="Motivo_de_no_Acuerdo\IMotivo_de_no_AcuerdoService.cs" />
+<Compile Include="Motivo_de_no_Acuerdo\Motivo_de_no_AcuerdoService.cs" />
+<Compile Include="Motivo_de_No_Canalizacion\IMotivo_de_No_CanalizacionService.cs" />
+<Compile Include="Motivo_de_No_Canalizacion\Motivo_de_No_CanalizacionService.cs" />
+<Compile Include="Motivo_de_Vehiculo\IMotivo_de_VehiculoService.cs" />
+<Compile Include="Motivo_de_Vehiculo\Motivo_de_VehiculoService.cs" />
+<Compile Include="Motivo_Finalizacion_Turno\IMotivo_Finalizacion_TurnoService.cs" />
+<Compile Include="Motivo_Finalizacion_Turno\Motivo_Finalizacion_TurnoService.cs" />
+<Compile Include="Municipio\IMunicipioService.cs" />
+<Compile Include="Municipio\MunicipioService.cs" />
+<Compile Include="Nacionalidad\INacionalidadService.cs" />
+<Compile Include="Nacionalidad\NacionalidadService.cs" />
+<Compile Include="Nariz_Base\INariz_BaseService.cs" />
+<Compile Include="Nariz_Base\Nariz_BaseService.cs" />
+<Compile Include="Nombre_Comparecencia\INombre_ComparecenciaService.cs" />
+<Compile Include="Nombre_Comparecencia\Nombre_ComparecenciaService.cs" />
+<Compile Include="Ocupacion\IOcupacionService.cs" />
+<Compile Include="Ocupacion\OcupacionService.cs" />
+<Compile Include="Ojos\IOjosService.cs" />
+<Compile Include="Ojos\OjosService.cs" />
+<Compile Include="Orientador\IOrientadorService.cs" />
+<Compile Include="Orientador\OrientadorService.cs" />
+<Compile Include="Otras_Identificaciones_Involucrado\IOtras_Identificaciones_InvolucradoService.cs" />
+<Compile Include="Otras_Identificaciones_Involucrado\Otras_Identificaciones_InvolucradoService.cs" />
+<Compile Include="Otras_Identificaciones_Probable_Responsable\IOtras_Identificaciones_Probable_ResponsableService.cs" />
+<Compile Include="Otras_Identificaciones_Probable_Responsable\Otras_Identificaciones_Probable_ResponsableService.cs" />
+<Compile Include="Otros_Domicilios_Involucrado\IOtros_Domicilios_InvolucradoService.cs" />
+<Compile Include="Otros_Domicilios_Involucrado\Otros_Domicilios_InvolucradoService.cs" />
+<Compile Include="Otros_Domicilios_Probable_Responsable\IOtros_Domicilios_Probable_ResponsableService.cs" />
+<Compile Include="Otros_Domicilios_Probable_Responsable\Otros_Domicilios_Probable_ResponsableService.cs" />
+<Compile Include="Otros_Nombres\IOtros_NombresService.cs" />
+<Compile Include="Otros_Nombres\Otros_NombresService.cs" />
+<Compile Include="Pais\IPaisService.cs" />
+<Compile Include="Pais\PaisService.cs" />
+<Compile Include="Parentesco\IParentescoService.cs" />
+<Compile Include="Parentesco\ParentescoService.cs" />
+<Compile Include="Periodicidad\IPeriodicidadService.cs" />
+<Compile Include="Periodicidad\PeriodicidadService.cs" />
+<Compile Include="Prioridad_del_Hecho\IPrioridad_del_HechoService.cs" />
+<Compile Include="Prioridad_del_Hecho\Prioridad_del_HechoService.cs" />
+<Compile Include="Procedencia_del_Vehiculo\IProcedencia_del_VehiculoService.cs" />
+<Compile Include="Procedencia_del_Vehiculo\Procedencia_del_VehiculoService.cs" />
+<Compile Include="Razon_de\IRazon_deService.cs" />
+<Compile Include="Razon_de\Razon_deService.cs" />
+<Compile Include="Razon_de_Incumplimiento\IRazon_de_IncumplimientoService.cs" />
+<Compile Include="Razon_de_Incumplimiento\Razon_de_IncumplimientoService.cs" />
+<Compile Include="Recepcionistas\IRecepcionistasService.cs" />
+<Compile Include="Recepcionistas\RecepcionistasService.cs" />
+<Compile Include="Redes_Sociales\IRedes_SocialesService.cs" />
+<Compile Include="Redes_Sociales\Redes_SocialesService.cs" />
+<Compile Include="Region\IRegionService.cs" />
+<Compile Include="Region\RegionService.cs" />
+<Compile Include="Modulo_Atencion_Inicial\IModulo_Atencion_InicialService.cs" />
+<Compile Include="Modulo_Atencion_Inicial\Modulo_Atencion_InicialService.cs" />
+<Compile Include="Registro_de_Coincidencias\IRegistro_de_CoincidenciasService.cs" />
+<Compile Include="Registro_de_Coincidencias\Registro_de_CoincidenciasService.cs" />
+<Compile Include="Usuario\IUsuarioService.cs" />
+<Compile Include="Usuario\UsuarioService.cs" />
+<Compile Include="Religion\IReligionService.cs" />
+<Compile Include="Religion\ReligionService.cs" />
+<Compile Include="Reporte_Principal\IReporte_PrincipalService.cs" />
+<Compile Include="Reporte_Principal\Reporte_PrincipalService.cs" />
+<Compile Include="Requerido\IRequeridoService.cs" />
+<Compile Include="Requerido\RequeridoService.cs" />
+<Compile Include="Requerido_MPI\IRequerido_MPIService.cs" />
+<Compile Include="Requerido_MPI\Requerido_MPIService.cs" />
+<Compile Include="Requeridos_que_no_Asisten\IRequeridos_que_no_AsistenService.cs" />
+<Compile Include="Requeridos_que_no_Asisten\Requeridos_que_no_AsistenService.cs" />
+<Compile Include="Respuesta\IRespuestaService.cs" />
+<Compile Include="Respuesta\RespuestaService.cs" />
+<Compile Include="Rol_de_Diligencia\IRol_de_DiligenciaService.cs" />
+<Compile Include="Rol_de_Diligencia\Rol_de_DiligenciaService.cs" />
+<Compile Include="Sentencia\ISentenciaService.cs" />
+<Compile Include="Sentencia\SentenciaService.cs" />
+<Compile Include="Senas_Particulares\ISenas_ParticularesService.cs" />
+<Compile Include="Senas_Particulares\Senas_ParticularesService.cs" />
+<Compile Include="Servicio_del_Vehiculo\IServicio_del_VehiculoService.cs" />
+<Compile Include="Servicio_del_Vehiculo\Servicio_del_VehiculoService.cs" />
+<Compile Include="Servicio_Medico\IServicio_MedicoService.cs" />
+<Compile Include="Servicio_Medico\Servicio_MedicoService.cs" />
+<Compile Include="Servicios_Alternativos\IServicios_AlternativosService.cs" />
+<Compile Include="Servicios_Alternativos\Servicios_AlternativosService.cs" />
+<Compile Include="Servicios_de_Apoyo\IServicios_de_ApoyoService.cs" />
+<Compile Include="Servicios_de_Apoyo\Servicios_de_ApoyoService.cs" />
+<Compile Include="Servicios_Periciales\IServicios_PericialesService.cs" />
+<Compile Include="Servicios_Periciales\Servicios_PericialesService.cs" />
+<Compile Include="Agravantes_del_Delito_MASC\IAgravantes_del_Delito_MASCService.cs" />
+<Compile Include="Agravantes_del_Delito_MASC\Agravantes_del_Delito_MASCService.cs" />
+<Compile Include="Circunstancias_del_Delito_MASC\ICircunstancias_del_Delito_MASCService.cs" />
+<Compile Include="Circunstancias_del_Delito_MASC\Circunstancias_del_Delito_MASCService.cs" />
+<Compile Include="Datos_Personales_Adicionales_Requerido_MASC\IDatos_Personales_Adicionales_Requerido_MASCService.cs" />
+<Compile Include="Datos_Personales_Adicionales_Requerido_MASC\Datos_Personales_Adicionales_Requerido_MASCService.cs" />
+<Compile Include="Datos_Personales_Adicionales_Solicitante_MASC\IDatos_Personales_Adicionales_Solicitante_MASCService.cs" />
+<Compile Include="Datos_Personales_Adicionales_Solicitante_MASC\Datos_Personales_Adicionales_Solicitante_MASCService.cs" />
+<Compile Include="Genero\IGeneroService.cs" />
+<Compile Include="Genero\GeneroService.cs" />
+<Compile Include="Tipo_de_Identificacion\ITipo_de_IdentificacionService.cs" />
+<Compile Include="Tipo_de_Identificacion\Tipo_de_IdentificacionService.cs" />
+<Compile Include="Turnos\ITurnosService.cs" />
+<Compile Include="Turnos\TurnosService.cs" />
+<Compile Include="Situacion_Fisica\ISituacion_FisicaService.cs" />
+<Compile Include="Situacion_Fisica\Situacion_FisicaService.cs" />
+<Compile Include="Solicitante\ISolicitanteService.cs" />
+<Compile Include="Solicitante\SolicitanteService.cs" />
+<Compile Include="Solicitante_MPI\ISolicitante_MPIService.cs" />
+<Compile Include="Solicitante_MPI\Solicitante_MPIService.cs" />
+<Compile Include="Solicitud_de_Servicios_de_Apoyo\ISolicitud_de_Servicios_de_ApoyoService.cs" />
+<Compile Include="Solicitud_de_Servicios_de_Apoyo\Solicitud_de_Servicios_de_ApoyoService.cs" />
+<Compile Include="Sub_Marca_del_Vehiculo\ISub_Marca_del_VehiculoService.cs" />
+<Compile Include="Sub_Marca_del_Vehiculo\Sub_Marca_del_VehiculoService.cs" />
+<Compile Include="Tamano_de_Cejas\ITamano_de_CejasService.cs" />
+<Compile Include="Tamano_de_Cejas\Tamano_de_CejasService.cs" />
+<Compile Include="Tamano_de_Nariz\ITamano_de_NarizService.cs" />
+<Compile Include="Tamano_de_Nariz\Tamano_de_NarizService.cs" />
+<Compile Include="Tamano_Orejas\ITamano_OrejasService.cs" />
+<Compile Include="Tamano_Orejas\Tamano_OrejasService.cs" />
+<Compile Include="Tipo_Lobulo\ITipo_LobuloService.cs" />
+<Compile Include="Tipo_Lobulo\Tipo_LobuloService.cs" />
+<Compile Include="Tipo_de_Acuerdo\ITipo_de_AcuerdoService.cs" />
+<Compile Include="Tipo_de_Acuerdo\Tipo_de_AcuerdoService.cs" />
+<Compile Include="Tipo_de_Atencion\ITipo_de_AtencionService.cs" />
+<Compile Include="Tipo_de_Atencion\Tipo_de_AtencionService.cs" />
+<Compile Include="Tipo_Cara\ITipo_CaraService.cs" />
+<Compile Include="Tipo_Cara\Tipo_CaraService.cs" />
+<Compile Include="Tipo_de_Carretera\ITipo_de_CarreteraService.cs" />
+<Compile Include="Tipo_de_Carretera\Tipo_de_CarreteraService.cs" />
+<Compile Include="Tipo_de_Comparecencia\ITipo_de_ComparecenciaService.cs" />
+<Compile Include="Tipo_de_Comparecencia\Tipo_de_ComparecenciaService.cs" />
+<Compile Include="Tipo_de_Compareciente\ITipo_de_ComparecienteService.cs" />
+<Compile Include="Tipo_de_Compareciente\Tipo_de_ComparecienteService.cs" />
+<Compile Include="Tipo_de_Denuncia\ITipo_de_DenunciaService.cs" />
+<Compile Include="Tipo_de_Denuncia\Tipo_de_DenunciaService.cs" />
+<Compile Include="Tipo_de_Diligencia_MASC\ITipo_de_Diligencia_MASCService.cs" />
+<Compile Include="Tipo_de_Diligencia_MASC\Tipo_de_Diligencia_MASCService.cs" />
+<Compile Include="Tipo_de_Expediente\ITipo_de_ExpedienteService.cs" />
+<Compile Include="Tipo_de_Expediente\Tipo_de_ExpedienteService.cs" />
+<Compile Include="Tipo_de_Funcion\ITipo_de_FuncionService.cs" />
+<Compile Include="Tipo_de_Funcion\Tipo_de_FuncionService.cs" />
+<Compile Include="Tipo_de_Inimputabilidad\ITipo_de_InimputabilidadService.cs" />
+<Compile Include="Tipo_de_Inimputabilidad\Tipo_de_InimputabilidadService.cs" />
+<Compile Include="Tipo_de_Instancia\ITipo_de_InstanciaService.cs" />
+<Compile Include="Tipo_de_Instancia\Tipo_de_InstanciaService.cs" />
+<Compile Include="Tipo_de_Invitacion\ITipo_de_InvitacionService.cs" />
+<Compile Include="Tipo_de_Invitacion\Tipo_de_InvitacionService.cs" />
+<Compile Include="Tipo_de_Lugar_del_Robo\ITipo_de_Lugar_del_RoboService.cs" />
+<Compile Include="Tipo_de_Lugar_del_Robo\Tipo_de_Lugar_del_RoboService.cs" />
+<Compile Include="Tipo_de_Mecanismo_Alterno\ITipo_de_Mecanismo_AlternoService.cs" />
+<Compile Include="Tipo_de_Mecanismo_Alterno\Tipo_de_Mecanismo_AlternoService.cs" />
+<Compile Include="Tipo_de_Notificacion\ITipo_de_NotificacionService.cs" />
+<Compile Include="Tipo_de_Notificacion\Tipo_de_NotificacionService.cs" />
+<Compile Include="Tipo_de_Oficio\ITipo_de_OficioService.cs" />
+<Compile Include="Tipo_de_Oficio\Tipo_de_OficioService.cs" />
+<Compile Include="Tipo_de_Oficios\ITipo_de_OficiosService.cs" />
+<Compile Include="Tipo_de_Oficios\Tipo_de_OficiosService.cs" />
+<Compile Include="Tipo_de_Persona\ITipo_de_PersonaService.cs" />
+<Compile Include="Tipo_de_Persona\Tipo_de_PersonaService.cs" />
+<Compile Include="Tipo_de_Robo\ITipo_de_RoboService.cs" />
+<Compile Include="Tipo_de_Robo\Tipo_de_RoboService.cs" />
+<Compile Include="Tipo_de_Seguimiento\ITipo_de_SeguimientoService.cs" />
+<Compile Include="Tipo_de_Seguimiento\Tipo_de_SeguimientoService.cs" />
+<Compile Include="Tipo_de_Servicio_de_Apoyo\ITipo_de_Servicio_de_ApoyoService.cs" />
+<Compile Include="Tipo_de_Servicio_de_Apoyo\Tipo_de_Servicio_de_ApoyoService.cs" />
+<Compile Include="Tipo_de_Sesion\ITipo_de_SesionService.cs" />
+<Compile Include="Tipo_de_Sesion\Tipo_de_SesionService.cs" />
+<Compile Include="Tipo_de_Tramite\ITipo_de_TramiteService.cs" />
+<Compile Include="Tipo_de_Tramite\Tipo_de_TramiteService.cs" />
+<Compile Include="Tipo_de_Urgencia\ITipo_de_UrgenciaService.cs" />
+<Compile Include="Tipo_de_Urgencia\Tipo_de_UrgenciaService.cs" />
+<Compile Include="Tipo_de_Vehiculo\ITipo_de_VehiculoService.cs" />
+<Compile Include="Tipo_de_Vehiculo\Tipo_de_VehiculoService.cs" />
+<Compile Include="Tipo_Delito\ITipo_DelitoService.cs" />
+<Compile Include="Tipo_Delito\Tipo_DelitoService.cs" />
+<Compile Include="Titulo_del_Delito\ITitulo_del_DelitoService.cs" />
+<Compile Include="Titulo_del_Delito\Titulo_del_DelitoService.cs" />
+<Compile Include="TTFolioConsecutivo\ITTFolioConsecutivoService.cs" />
+<Compile Include="TTFolioConsecutivo\TTFolioConsecutivoService.cs" />
+<Compile Include="Unidad\IUnidadService.cs" />
+<Compile Include="Unidad\UnidadService.cs" />
+<Compile Include="Vigencia\IVigenciaService.cs" />
+<Compile Include="Vigencia\VigenciaService.cs" />
+<Compile Include="Violencia_de_Genero\IViolencia_de_GeneroService.cs" />
+<Compile Include="Violencia_de_Genero\Violencia_de_GeneroService.cs" />
+<Compile Include="Zona\IZonaService.cs" />
+<Compile Include="Zona\ZonaService.cs" />
+<Compile Include="Control_de_Citas\IControl_de_CitasService.cs" />
+<Compile Include="Control_de_Citas\Control_de_CitasService.cs" />
+<Compile Include="Control_de_Documentos\IControl_de_DocumentosService.cs" />
+<Compile Include="Control_de_Documentos\Control_de_DocumentosService.cs" />
+<Compile Include="Detalle_Historial_Control_de_Documentos\IDetalle_Historial_Control_de_DocumentosService.cs" />
+<Compile Include="Detalle_Historial_Control_de_Documentos\Detalle_Historial_Control_de_DocumentosService.cs" />
+<Compile Include="Origen_de_Invitacion\IOrigen_de_InvitacionService.cs" />
+<Compile Include="Origen_de_Invitacion\Origen_de_InvitacionService.cs" />
+<Compile Include="Documento_Extraviado\IDocumento_ExtraviadoService.cs" />
+<Compile Include="Documento_Extraviado\Documento_ExtraviadoService.cs" />
+<Compile Include="Spartan_Object_ByPass\ISpartan_Object_ByPassService.cs" />
+<Compile Include="Spartan_Object_ByPass\Spartan_Object_ByPassService.cs" />
+<Compile Include="Spartan_Attribute_Bypass\ISpartan_Attribute_BypassService.cs" />
+<Compile Include="Spartan_Attribute_Bypass\Spartan_Attribute_BypassService.cs" />
+<Compile Include="Spartan_Record_Detail_Management\ISpartan_Record_Detail_ManagementService.cs" />
+<Compile Include="Spartan_Record_Detail_Management\Spartan_Record_Detail_ManagementService.cs" />
+<Compile Include="Spartan_RDM_Filters_Detail\ISpartan_RDM_Filters_DetailService.cs" />
+<Compile Include="Spartan_RDM_Filters_Detail\Spartan_RDM_Filters_DetailService.cs" />
+<Compile Include="Spartan_RDM_Operations_Detail\ISpartan_RDM_Operations_DetailService.cs" />
+<Compile Include="Spartan_RDM_Operations_Detail\Spartan_RDM_Operations_DetailService.cs" />
+<Compile Include="Adicciones_de_Solicitante_MASC\IAdicciones_de_Solicitante_MASCService.cs" />
+<Compile Include="Adicciones_de_Solicitante_MASC\Adicciones_de_Solicitante_MASCService.cs" />
+<Compile Include="Adicciones_Requerido_MASC\IAdicciones_Requerido_MASCService.cs" />
+<Compile Include="Adicciones_Requerido_MASC\Adicciones_Requerido_MASCService.cs" />
+<Compile Include="Detalle_de_Invitado_de_Notificacion\IDetalle_de_Invitado_de_NotificacionService.cs" />
+<Compile Include="Detalle_de_Invitado_de_Notificacion\Detalle_de_Invitado_de_NotificacionService.cs" />
+<Compile Include="Dilgencia_MASC\IDilgencia_MASCService.cs" />
+<Compile Include="Dilgencia_MASC\Dilgencia_MASCService.cs" />
+<Compile Include="Detalle_Diligencias_MASC\IDetalle_Diligencias_MASCService.cs" />
+<Compile Include="Detalle_Diligencias_MASC\Detalle_Diligencias_MASCService.cs" />
+<Compile Include="Incidente_con_Invitacion\IIncidente_con_InvitacionService.cs" />
+<Compile Include="Incidente_con_Invitacion\Incidente_con_InvitacionService.cs" />
+<Compile Include="Lugares_Frecuentes_Requerido_MASC\ILugares_Frecuentes_Requerido_MASCService.cs" />
+<Compile Include="Lugares_Frecuentes_Requerido_MASC\Lugares_Frecuentes_Requerido_MASCService.cs" />
+<Compile Include="Lugares_Frecuentes_Solicitante_MASC\ILugares_Frecuentes_Solicitante_MASCService.cs" />
+<Compile Include="Lugares_Frecuentes_Solicitante_MASC\Lugares_Frecuentes_Solicitante_MASCService.cs" />
+<Compile Include="Otras_Identificaciones_Requerido_MASC\IOtras_Identificaciones_Requerido_MASCService.cs" />
+<Compile Include="Otras_Identificaciones_Requerido_MASC\Otras_Identificaciones_Requerido_MASCService.cs" />
+<Compile Include="Otras_Identificaciones_Solicitante_MASC\IOtras_Identificaciones_Solicitante_MASCService.cs" />
+<Compile Include="Otras_Identificaciones_Solicitante_MASC\Otras_Identificaciones_Solicitante_MASCService.cs" />
+<Compile Include="Otros_Domicilios_Requeridos_MASC\IOtros_Domicilios_Requeridos_MASCService.cs" />
+<Compile Include="Otros_Domicilios_Requeridos_MASC\Otros_Domicilios_Requeridos_MASCService.cs" />
+<Compile Include="Otros_Domicilios_Solicitante_MASC\IOtros_Domicilios_Solicitante_MASCService.cs" />
+<Compile Include="Otros_Domicilios_Solicitante_MASC\Otros_Domicilios_Solicitante_MASCService.cs" />
+<Compile Include="Otros_Nombres_Requerido_MASC\IOtros_Nombres_Requerido_MASCService.cs" />
+<Compile Include="Otros_Nombres_Requerido_MASC\Otros_Nombres_Requerido_MASCService.cs" />
+<Compile Include="Recepcion_de_Pago_MASC\IRecepcion_de_Pago_MASCService.cs" />
+<Compile Include="Recepcion_de_Pago_MASC\Recepcion_de_Pago_MASCService.cs" />
+<Compile Include="Resultado_de_Notificacion\IResultado_de_NotificacionService.cs" />
+<Compile Include="Resultado_de_Notificacion\Resultado_de_NotificacionService.cs" />
+<Compile Include="Solicitud_de_Notificacion\ISolicitud_de_NotificacionService.cs" />
+<Compile Include="Solicitud_de_Notificacion\Solicitud_de_NotificacionService.cs" />
+<Compile Include="Relacion_Unidad_Usuario\IRelacion_Unidad_UsuarioService.cs" />
+<Compile Include="Relacion_Unidad_Usuario\Relacion_Unidad_UsuarioService.cs" />
+<Compile Include="Resultado_de_Revision\IResultado_de_RevisionService.cs" />
+<Compile Include="Resultado_de_Revision\Resultado_de_RevisionService.cs" />
+<Compile Include="Acuerdos_MASC\IAcuerdos_MASCService.cs" />
+<Compile Include="Acuerdos_MASC\Acuerdos_MASCService.cs" />
+<Compile Include="Detalle_Requerido_Acuerdo\IDetalle_Requerido_AcuerdoService.cs" />
+<Compile Include="Detalle_Requerido_Acuerdo\Detalle_Requerido_AcuerdoService.cs" />
+<Compile Include="Detalle_Solicitante_Acuerdo\IDetalle_Solicitante_AcuerdoService.cs" />
+<Compile Include="Detalle_Solicitante_Acuerdo\Detalle_Solicitante_AcuerdoService.cs" />
+<Compile Include="Tipo_de_Conclusion_Anticipada\ITipo_de_Conclusion_AnticipadaService.cs" />
+<Compile Include="Tipo_de_Conclusion_Anticipada\Tipo_de_Conclusion_AnticipadaService.cs" />
+<Compile Include="Detalle_Documentos_Solicitantes\IDetalle_Documentos_SolicitantesService.cs" />
+<Compile Include="Detalle_Documentos_Solicitantes\Detalle_Documentos_SolicitantesService.cs" />
+<Compile Include="Detalle_Documentos_Requeridos\IDetalle_Documentos_RequeridosService.cs" />
+<Compile Include="Detalle_Documentos_Requeridos\Detalle_Documentos_RequeridosService.cs" />
+<Compile Include="Formato_de_Denuncia\IFormato_de_DenunciaService.cs" />
+<Compile Include="Formato_de_Denuncia\Formato_de_DenunciaService.cs" />
+<Compile Include="Unidad_de_Atenciòn\IUnidad_de_AtenciònService.cs" />
+<Compile Include="Unidad_de_Atenciòn\Unidad_de_AtenciònService.cs" />
+<Compile Include="Unidad_de_Atencion\IUnidad_de_AtencionService.cs" />
+<Compile Include="Unidad_de_Atencion\Unidad_de_AtencionService.cs" />
+<Compile Include="Tipo_de_Documento\ITipo_de_DocumentoService.cs" />
+<Compile Include="Tipo_de_Documento\Tipo_de_DocumentoService.cs" />
+<Compile Include="Documento\IDocumentoService.cs" />
+<Compile Include="Documento\DocumentoService.cs" />
+<Compile Include="Detalle_Involucrados_en_Documentos\IDetalle_Involucrados_en_DocumentosService.cs" />
+<Compile Include="Detalle_Involucrados_en_Documentos\Detalle_Involucrados_en_DocumentosService.cs" />
+<Compile Include="Detalle_Probable_Responsable_de_Documentos\IDetalle_Probable_Responsable_de_DocumentosService.cs" />
+<Compile Include="Detalle_Probable_Responsable_de_Documentos\Detalle_Probable_Responsable_de_DocumentosService.cs" />
+<Compile Include="Detalle_Delitos_de_Documentos\IDetalle_Delitos_de_DocumentosService.cs" />
+<Compile Include="Detalle_Delitos_de_Documentos\Detalle_Delitos_de_DocumentosService.cs" />
+<!--@@INCLUDE@@-->
+ </ItemGroup>
+ <ItemGroup>
+ <ProjectReference Include="..\Spartane.Core\Spartane.Core.csproj">
+ <Project>{f56309fb-9e43-42e5-a65d-4aaa70f95c9b}</Project>
+ <Name>Spartane.Core</Name>
+ </ProjectReference>
+ <ProjectReference Include="..\Spartane.Data\Spartane.Data.csproj">
+ <Project>{63f55cc4-7b31-4195-91ee-3a5c31b9c0fc}</Project>
+ <Name>Spartane.Data</Name>
+ </ProjectReference>
+ </ItemGroup>
+ <ItemGroup>
+ <None Include="app.config" />
+ <None Include="bin\Debug\Spartane.Services.dll.config" />
+ <None Include="bin\Release\Spartane.Services.dll.config" />
+ <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+ <None Include="obj\Debug\Spartane.Services.csprojResolveAssemblyReference.cache" />
+ <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+ <None Include="obj\Release\Spartane.Services.csprojResolveAssemblyReference.cache" />
+ <None Include="packages.config" />
+ </ItemGroup>
+ <ItemGroup>
+ <Content Include="bin\Debug\Autofac.dll" />
+ <Content Include="bin\Debug\Autofac.Integration.Mvc.dll" />
+ <Content Include="bin\Debug\Autofac.Integration.Mvc.xml" />
+ <Content Include="bin\Debug\Autofac.xml" />
+ <Content Include="bin\Debug\EntityFramework.dll" />
+ <Content Include="bin\Debug\EntityFramework.xml" />
+ <Content Include="bin\Debug\GoldParser.dll" />
+ <Content Include="bin\Debug\Kackman.RuntimeTypeLoader.dll" />
+ <Content Include="bin\Debug\log4net.dll" />
+ <Content Include="bin\Debug\log4net.xml" />
+ <Content Include="bin\Debug\Spartane.Core.dll" />
+ <Content Include="bin\Debug\Spartane.Core.pdb" />
+ <Content Include="bin\Debug\Spartane.Data.dll" />
+ <Content Include="bin\Debug\Spartane.Data.pdb" />
+ <Content Include="bin\Debug\Spartane.Services.dll" />
+ <Content Include="bin\Debug\Spartane.Services.pdb" />
+ <Content Include="bin\Debug\SqlLinq.dll" />
+ <Content Include="bin\Debug\System.Linq.Dynamic.dll" />
+ <Content Include="bin\Debug\System.Web.Mvc.dll" />
+ <Content Include="bin\Debug\System.Web.Mvc.xml" />
+ <Content Include="bin\Debug\System.Web.Razor.dll" />
+ <Content Include="bin\Debug\System.Web.Razor.xml" />
+ <Content Include="bin\Debug\System.Web.WebPages.Deployment.dll" />
+ <Content Include="bin\Debug\System.Web.WebPages.Deployment.xml" />
+ <Content Include="bin\Debug\System.Web.WebPages.dll" />
+ <Content Include="bin\Debug\System.Web.WebPages.Razor.dll" />
+ <Content Include="bin\Debug\System.Web.WebPages.Razor.xml" />
+ <Content Include="bin\Debug\System.Web.WebPages.xml" />
+ <Content Include="bin\Release\Autofac.dll" />
+ <Content Include="bin\Release\Autofac.Integration.Mvc.dll" />
+ <Content Include="bin\Release\Autofac.Integration.Mvc.xml" />
+ <Content Include="bin\Release\Autofac.xml" />
+ <Content Include="bin\Release\EntityFramework.dll" />
+ <Content Include="bin\Release\EntityFramework.xml" />
+ <Content Include="bin\Release\GoldParser.dll" />
+ <Content Include="bin\Release\Kackman.RuntimeTypeLoader.dll" />
+ <Content Include="bin\Release\log4net.dll" />
+ <Content Include="bin\Release\log4net.xml" />
+ <Content Include="bin\Release\Spartane.Core.dll" />
+ <Content Include="bin\Release\Spartane.Core.pdb" />
+ <Content Include="bin\Release\Spartane.Data.dll" />
+ <Content Include="bin\Release\Spartane.Data.pdb" />
+ <Content Include="bin\Release\Spartane.Services.dll" />
+ <Content Include="bin\Release\Spartane.Services.pdb" />
+ <Content Include="bin\Release\SqlLinq.dll" />
+ <Content Include="bin\Release\System.Linq.Dynamic.dll" />
+ <Content Include="bin\Release\System.Web.Mvc.dll" />
+ <Content Include="bin\Release\System.Web.Mvc.xml" />
+ <Content Include="bin\Release\System.Web.Razor.dll" />
+ <Content Include="bin\Release\System.Web.Razor.xml" />
+ <Content Include="bin\Release\System.Web.WebPages.Deployment.dll" />
+ <Content Include="bin\Release\System.Web.WebPages.Deployment.xml" />
+ <Content Include="bin\Release\System.Web.WebPages.dll" />
+ <Content Include="bin\Release\System.Web.WebPages.Razor.dll" />
+ <Content Include="bin\Release\System.Web.WebPages.Razor.xml" />
+ <Content Include="bin\Release\System.Web.WebPages.xml" />
+ <Content Include="obj\Debug\Spartane.Services.csproj.FileListAbsolute.txt" />
+ <Content Include="obj\Debug\Spartane.Services.dll" />
+ <Content Include="obj\Debug\Spartane.Services.pdb" />
+ <Content Include="obj\Release\Spartane.Services.csproj.FileListAbsolute.txt" />
+ <Content Include="obj\Release\Spartane.Services.dll" />
+ <Content Include="obj\Release\Spartane.Services.pdb" />
+ </ItemGroup>
+ <ItemGroup>
+ <Folder Include="obj\Debug\TempPE\" />
+ <Folder Include="obj\Release\TempPE\" />
+ </ItemGroup>
+ <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+ <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+ Other similar extension points exist, see Microsoft.Common.targets.
+ <Target Name="BeforeBuild">
+ </Target>
+ <Target Name="AfterBuild">
+ </Target>
+ -->
+</Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,541 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Servicios_PericialesModel
+@{
+
+    string Fecha_del_Dictamen = "";
+    if (Model.Fecha_del_Dictamen == "")
+    { Model.Fecha_del_Dictamen = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+    List<SelectListItem> varServicios_Periciales_Servicio = null;
+    if (ViewBag.Servicios_Pericialess_Servicio != null)
+    { varServicios_Periciales_Servicio = (List<SelectListItem>)ViewBag.Servicios_Pericialess_Servicio; }
+    List<SelectListItem> varEstatus_del_Dictamen_Estatus_del_Dictamen = null;
+    if (ViewBag.Estatus_del_Dictamens_Estatus_del_Dictamen != null)
+    { varEstatus_del_Dictamen_Estatus_del_Dictamen = (List<SelectListItem>)ViewBag.Estatus_del_Dictamens_Estatus_del_Dictamen; }
+    List<SelectListItem> varRol_de_Diligencia_Rol_de_Donde_Proviene = null;
+    if (ViewBag.Rol_de_Diligencias_Rol_de_Donde_Proviene != null)
+    { varRol_de_Diligencia_Rol_de_Donde_Proviene = (List<SelectListItem>)ViewBag.Rol_de_Diligencias_Rol_de_Donde_Proviene; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Servicios Periciales
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_Servicios_PericialesRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_Servicios_PericialesPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Servicios Periciales
+								<button onclick="Detalle_de_Servicios_PericialesGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Servicios_PericialesBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_Servicios_PericialesResources.Detalle_de_Servicios_Periciales</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_Servicios_PericialesDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_Servicios_PericialesPropertyBusinessModal" id="Detalle_de_Servicios_PericialesPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_Servicios_PericialesBusinessRule-form" onclick="Detalle_de_Servicios_PericialesGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Servicios_PericialesPropertyModal" id="Detalle_de_Servicios_PericialesPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Servicios_PericialesBusinessRuleModal" id="Detalle_de_Servicios_PericialesBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Servicios_PericialesAddBusinessRuleModal" id="Detalle_de_Servicios_PericialesAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Servicios_Periciales", FormMethod.Post, new { id = "CreateDetalle_de_Servicios_Periciales", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_Servicios_PericialesCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Servicios_PericialesResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="264736" data-field-name="@Resources.Detalle_de_Servicios_PericialesResources.Clave">
+                                    <label class="form-control" for="Detalle_de_Servicios_PericialesClave" id="Detalle_de_Servicios_PericialesClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divServicio">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Servicios_PericialesResources.Servicio</label>
+	<div class="col-sm-8" data-field-id="Servicio" data-attribute="264737" data-field-name="@Resources.Detalle_de_Servicios_PericialesResources.Servicio">
+		<select class="form-control" data-val="true" data-val-number="The field Servicio must be a number." data-val-required="The Servicio field is required." id="Detalle_de_Servicios_PericialesServicio" name="Detalle_de_Servicios_PericialesServicio">
+			<option value=""></option>
+			@if (varServicios_Periciales_Servicio != null){ 
+				foreach (var itemServicio in varServicios_Periciales_Servicio)
+				{
+					if (itemServicio.Value == Convert.ToString(Model.Servicio))
+					{
+						<option value="@itemServicio.Value" selected>@itemServicio.Text</option>
+					}
+					else
+					{
+						<option value="@itemServicio.Value">@itemServicio.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEspecialista">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Servicios_PericialesResources.Especialista</label>
+	<div class="col-sm-8" data-field-id="Especialista" data-attribute="264738" data-field-name="@Resources.Detalle_de_Servicios_PericialesResources.Especialista">
+		<input class="form-control inputNumber" id="Detalle_de_Servicios_PericialesEspecialista" name="Detalle_de_Servicios_PericialesEspecialista" type="text" value="@Model.Especialista">
+	</div>
+</div>
+<div class="form-group" id="divEstatus_del_Dictamen">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Servicios_PericialesResources.Estatus_del_Dictamen</label>
+	<div class="col-sm-8" data-field-id="Estatus_del_Dictamen" data-attribute="264739" data-field-name="@Resources.Detalle_de_Servicios_PericialesResources.Estatus_del_Dictamen">
+		<select class="form-control" data-val="true" data-val-number="The field Estatus del Dictamen must be a number." data-val-required="The Estatus del Dictamen field is required." id="Detalle_de_Servicios_PericialesEstatus_del_Dictamen" name="Detalle_de_Servicios_PericialesEstatus_del_Dictamen">
+			<option value=""></option>
+			@if (varEstatus_del_Dictamen_Estatus_del_Dictamen != null){ 
+				foreach (var itemEstatus_del_Dictamen in varEstatus_del_Dictamen_Estatus_del_Dictamen)
+				{
+					if (itemEstatus_del_Dictamen.Value == Convert.ToString(Model.Estatus_del_Dictamen))
+					{
+						<option value="@itemEstatus_del_Dictamen.Value" selected>@itemEstatus_del_Dictamen.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstatus_del_Dictamen.Value">@itemEstatus_del_Dictamen.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divObservaciones">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Servicios_PericialesResources.Observaciones</label>
+                                <div class="col-sm-8" data-field-id="Observaciones" data-attribute="264740" data-field-name="@Resources.Detalle_de_Servicios_PericialesResources.Observaciones">
+                                    <input class="form-control" id="Detalle_de_Servicios_PericialesObservaciones" name="Detalle_de_Servicios_PericialesObservaciones" type="text" value="@Model.Observaciones">
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_del_Dictamen">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Servicios_PericialesResources.Fecha_del_Dictamen</label>
+                                <div class="col-sm-8" data-field-id="Fecha_del_Dictamen" data-attribute="264741" data-field-name="@Resources.Detalle_de_Servicios_PericialesResources.Fecha_del_Dictamen">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Servicios_PericialesFecha_del_Dictamen" readonly="readonly" name="Detalle_de_Servicios_PericialesFecha_del_Dictamen" type="text" value="@Model.Fecha_del_Dictamen">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divDictamen">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Servicios_PericialesResources.Dictamen</label>
+	<div class="col-sm-8" data-field-id="Dictamen" data-attribute="264742" data-field-name="@Resources.Detalle_de_Servicios_PericialesResources.Dictamen">
+		<input class="form-control inputNumber" id="Detalle_de_Servicios_PericialesDictamen" name="Detalle_de_Servicios_PericialesDictamen" type="text" value="@Model.Dictamen">
+	</div>
+</div>
+<div class="form-group" id="divRol_de_Donde_Proviene">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Servicios_PericialesResources.Rol_de_Donde_Proviene</label>
+	<div class="col-sm-8" data-field-id="Rol_de_Donde_Proviene" data-attribute="264743" data-field-name="@Resources.Detalle_de_Servicios_PericialesResources.Rol_de_Donde_Proviene">
+		<select class="form-control" data-val="true" data-val-number="The field Rol de Donde Proviene must be a number." data-val-required="The Rol de Donde Proviene field is required." id="Detalle_de_Servicios_PericialesRol_de_Donde_Proviene" name="Detalle_de_Servicios_PericialesRol_de_Donde_Proviene">
+			<option value=""></option>
+			@if (varRol_de_Diligencia_Rol_de_Donde_Proviene != null){ 
+				foreach (var itemRol_de_Donde_Proviene in varRol_de_Diligencia_Rol_de_Donde_Proviene)
+				{
+					if (itemRol_de_Donde_Proviene.Value == Convert.ToString(Model.Rol_de_Donde_Proviene))
+					{
+						<option value="@itemRol_de_Donde_Proviene.Value" selected>@itemRol_de_Donde_Proviene.Text</option>
+					}
+					else
+					{
+						<option value="@itemRol_de_Donde_Proviene.Value">@itemRol_de_Donde_Proviene.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divObservacionesD">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Servicios_PericialesResources.ObservacionesD</label>
+                                <div class="col-sm-8" data-field-id="ObservacionesD" data-attribute="264745" data-field-name="@Resources.Detalle_de_Servicios_PericialesResources.ObservacionesD">
+                                    <input class="form-control" id="Detalle_de_Servicios_PericialesObservacionesD" name="Detalle_de_Servicios_PericialesObservacionesD" type="text" value="@Model.ObservacionesD">
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_Servicios_PericialesConfigureSave" name="Detalle_de_Servicios_PericialesConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_Servicios_PericialesConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_Servicios_PericialesBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_Servicios_PericialesBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_Servicios_PericialesBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_Servicios_PericialesGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Servicios_PericialesBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Servicios_Periciales.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Servicios_PericialesGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Servicios_PericialesCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Expediente_InicialCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_Servicios_PericialesRowElement = "Detalle_de_Servicios_PericialesPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_Servicios_PericialesRowElement + "')){ Detalle_de_Servicios_PericialesInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+            $('#Detalle_de_Servicios_PericialesFecha_del_Dictamen').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_de_Servicios_PericialesData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Servicios_Periciales").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Servicios_Periciales")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_Servicios_PericialesCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Servicios_Periciales/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_Servicios_PericialesPropertyBag", "Detalle_de_Servicios_Periciales")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_Servicios_PericialesGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_Servicios_PericialesBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Servicios_PericialesBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Servicios_PericialesBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_Servicios_PericialesBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Servicios_PericialesBusinessRuleFieldName').val(), ObjectId: '45157', Attribute: $('#hdnDetalle_de_Servicios_PericialesBusinessRuleAttribute').val(), Screen: 'Detalle_de_Servicios_Periciales' }, function (data) {
+                $(".Detalle_de_Servicios_PericialesBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_Servicios_PericialesGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_Servicios_PericialesBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Servicios_PericialesBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Servicios_PericialesBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Servicios_PericialesBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Servicios_PericialesBusinessRuleFieldName').val(), ObjectId: '45157', Attribute: $('#hdnDetalle_de_Servicios_PericialesBusinessRuleAttribute').val(), Screen: 'Detalle_de_Servicios_Periciales' }, function (data) {
+                $(".Detalle_de_Servicios_PericialesAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Servicios_PericialesBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Servicios_PericialesBusinessRuleFieldName').val(), ObjectId: '45157', Attribute: $('#hdnDetalle_de_Servicios_PericialesBusinessRuleAttribute').val(), Screen: 'Detalle_de_Servicios_Periciales' }, function (data) {
+				$(".Detalle_de_Servicios_PericialesBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Servicios_Periciales/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Servicios_Periciales/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Servicios_Periciales/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_Servicios_PericialesConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_Servicios_PericialesConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Servicios_Periciales/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_Servicios_PericialesConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Servicios_Periciales/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Servicios_Periciales' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Servicios_Periciales' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_Servicios_PericialesConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_Servicios_PericialesConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Servicios_Periciales').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_Servicios_PericialesBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_Servicios_PericialesBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_Servicios_PericialesBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_de_Reuniones_de_Mediacion" value="Reuniones"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Numero_de_Expediente" value="Número de Expediente"></resource>
+  <resource culture="es-es" name="Lugar" value="Lugar"></resource>
+  <resource culture="es-es" name="Fecha" value="Fecha"></resource>
+  <resource culture="es-es" name="Hora" value="Hora"></resource>
+  <resource culture="es-es" name="Especialista" value="Facilitador"></resource>
+  <resource culture="es-es" name="Mecanismo_Alterno" value="Mecanismo Alterno"></resource>
+  <resource culture="es-es" name="Tipo_de_Sesion" value="Tipo de Sesión"></resource>
+  <resource culture="es-es" name="Solicitanter" value="Solicitante"></resource>
+  <resource culture="es-es" name="Requeridor" value="Requerido"></resource>
+  <resource culture="es-es" name="Cumplimiento" value="Cumplimiento"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Archivo_adjunto" value="Archivo adjunto"></resource>
+  <resource culture="es-es" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="es-es" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

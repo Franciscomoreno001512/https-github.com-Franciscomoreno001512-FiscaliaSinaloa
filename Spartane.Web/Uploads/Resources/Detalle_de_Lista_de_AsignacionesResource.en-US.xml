@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Lista_de_Asignaciones" value="Detalle de Lista de Asignaciones de CC"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Numero_de_Asignacion" value="Número de Asignación"></resource>
+  <resource culture="en-US" name="Nombre" value="Nombre"></resource>
+  <resource culture="en-US" name="Realizado" value="Realizado"></resource>
+  <resource culture="en-US" name="Especifique" value="Especifique"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

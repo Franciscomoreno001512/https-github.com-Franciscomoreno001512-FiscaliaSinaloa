@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Solicitud_de_Servicios_de_Apoyo" value="Solicitud de Servicios de Apoyo"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Tipo_de_Servicio" value="Tipo de Servicio"></resource>
+  <resource culture="es-es" name="Dictamen" value="Dictamen"></resource>
+  <resource culture="es-es" name="Responsable" value="Responsable"></resource>
+  <resource culture="es-es" name="Clave_MR" value="Clave MR"></resource>
+  <resource culture="es-es" name="Compareciente" value="Compareciente"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -1,0 +1,1255 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_Datos_de_Delito_MPIModel
+@{
+
+    string Fecha_Levantamiento = "";
+    if (Model.Fecha_Levantamiento == "")
+    { Model.Fecha_Levantamiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+    List<SelectListItem> varTipo_Delito_Tipo_de_Delito = null;
+    if (ViewBag.Tipo_Delitos_Tipo_de_Delito != null)
+    { varTipo_Delito_Tipo_de_Delito = (List<SelectListItem>)ViewBag.Tipo_Delitos_Tipo_de_Delito; }
+    List<SelectListItem> varGrupo_del_Delito_Grupo_Delito = null;
+    if (ViewBag.Grupo_del_Delitos_Grupo_Delito != null)
+    { varGrupo_del_Delito_Grupo_Delito = (List<SelectListItem>)ViewBag.Grupo_del_Delitos_Grupo_Delito; }
+    List<SelectListItem> varDelito_Delito = null;
+    if (ViewBag.Delitos_Delito != null)
+    { varDelito_Delito = (List<SelectListItem>)ViewBag.Delitos_Delito; }
+    List<SelectListItem> varCircunstancia_del_Delito_Circunstancia_Delito = null;
+    if (ViewBag.Circunstancia_del_Delitos_Circunstancia_Delito != null)
+    { varCircunstancia_del_Delito_Circunstancia_Delito = (List<SelectListItem>)ViewBag.Circunstancia_del_Delitos_Circunstancia_Delito; }
+    List<SelectListItem> varForma_Comision_Delito_Forma_Comision_Delito = null;
+    if (ViewBag.Forma_Comision_Delitos_Forma_Comision_Delito != null)
+    { varForma_Comision_Delito_Forma_Comision_Delito = (List<SelectListItem>)ViewBag.Forma_Comision_Delitos_Forma_Comision_Delito; }
+    List<SelectListItem> varForma_Accion_Delito_Forma_Accion_Delito = null;
+    if (ViewBag.Forma_Accion_Delitos_Forma_Accion_Delito != null)
+    { varForma_Accion_Delito_Forma_Accion_Delito = (List<SelectListItem>)ViewBag.Forma_Accion_Delitos_Forma_Accion_Delito; }
+    List<SelectListItem> varModalidad_Delito_Modalidad_Delito = null;
+    if (ViewBag.Modalidad_Delitos_Modalidad_Delito != null)
+    { varModalidad_Delito_Modalidad_Delito = (List<SelectListItem>)ViewBag.Modalidad_Delitos_Modalidad_Delito; }
+    List<SelectListItem> varElementos_Comision_Delito_Elementos_Comision_Delito = null;
+    if (ViewBag.Elementos_Comision_Delitos_Elementos_Comision_Delito != null)
+    { varElementos_Comision_Delito_Elementos_Comision_Delito = (List<SelectListItem>)ViewBag.Elementos_Comision_Delitos_Elementos_Comision_Delito; }
+    List<SelectListItem> varCircunstancia_Vehiculo_Circunstancia_de_Vehiculo = null;
+    if (ViewBag.Circunstancia_Vehiculos_Circunstancia_de_Vehiculo != null)
+    { varCircunstancia_Vehiculo_Circunstancia_de_Vehiculo = (List<SelectListItem>)ViewBag.Circunstancia_Vehiculos_Circunstancia_de_Vehiculo; }
+    List<SelectListItem> varEspecifica_Vehiculo_Clase = null;
+    if (ViewBag.Especifica_Vehiculos_Clase != null)
+    { varEspecifica_Vehiculo_Clase = (List<SelectListItem>)ViewBag.Especifica_Vehiculos_Clase; }
+    List<SelectListItem> varMarca_del_Vehiculo_Marca = null;
+    if (ViewBag.Marca_del_Vehiculos_Marca != null)
+    { varMarca_del_Vehiculo_Marca = (List<SelectListItem>)ViewBag.Marca_del_Vehiculos_Marca; }
+    List<SelectListItem> varSub_Marca_del_Vehiculo_Sub_Marca = null;
+    if (ViewBag.Sub_Marca_del_Vehiculos_Sub_Marca != null)
+    { varSub_Marca_del_Vehiculo_Sub_Marca = (List<SelectListItem>)ViewBag.Sub_Marca_del_Vehiculos_Sub_Marca; }
+    List<SelectListItem> varTipo_de_Vehiculo_Tipo_de_Vehiculo = null;
+    if (ViewBag.Tipo_de_Vehiculos_Tipo_de_Vehiculo != null)
+    { varTipo_de_Vehiculo_Tipo_de_Vehiculo = (List<SelectListItem>)ViewBag.Tipo_de_Vehiculos_Tipo_de_Vehiculo; }
+    List<SelectListItem> varColor_Vehiculo_Color = null;
+    if (ViewBag.Color_Vehiculos_Color != null)
+    { varColor_Vehiculo_Color = (List<SelectListItem>)ViewBag.Color_Vehiculos_Color; }
+    List<SelectListItem> varEstado_Estado_de_Origen_de_las_Placas = null;
+    if (ViewBag.Estados_Estado_de_Origen_de_las_Placas != null)
+    { varEstado_Estado_de_Origen_de_las_Placas = (List<SelectListItem>)ViewBag.Estados_Estado_de_Origen_de_las_Placas; }
+    List<SelectListItem> varAseguradora_de_Vehiculo_Nombre_de_la_Aseguradora = null;
+    if (ViewBag.Aseguradora_de_Vehiculos_Nombre_de_la_Aseguradora != null)
+    { varAseguradora_de_Vehiculo_Nombre_de_la_Aseguradora = (List<SelectListItem>)ViewBag.Aseguradora_de_Vehiculos_Nombre_de_la_Aseguradora; }
+    List<SelectListItem> varServicio_del_Vehiculo_Tipo_de_Servicio = null;
+    if (ViewBag.Servicio_del_Vehiculos_Tipo_de_Servicio != null)
+    { varServicio_del_Vehiculo_Tipo_de_Servicio = (List<SelectListItem>)ViewBag.Servicio_del_Vehiculos_Tipo_de_Servicio; }
+    List<SelectListItem> varProcedencia_del_Vehiculo_Procedencia = null;
+    if (ViewBag.Procedencia_del_Vehiculos_Procedencia != null)
+    { varProcedencia_del_Vehiculo_Procedencia = (List<SelectListItem>)ViewBag.Procedencia_del_Vehiculos_Procedencia; }
+    List<SelectListItem> varModalidad_de_Robo_de_Vehiculo_Modalidad_del_Robo = null;
+    if (ViewBag.Modalidad_de_Robo_de_Vehiculos_Modalidad_del_Robo != null)
+    { varModalidad_de_Robo_de_Vehiculo_Modalidad_del_Robo = (List<SelectListItem>)ViewBag.Modalidad_de_Robo_de_Vehiculos_Modalidad_del_Robo; }
+    List<SelectListItem> varCircunstancia_Defuncion_Circunstancia_Defuncion = null;
+    if (ViewBag.Circunstancia_Defuncions_Circunstancia_Defuncion != null)
+    { varCircunstancia_Defuncion_Circunstancia_Defuncion = (List<SelectListItem>)ViewBag.Circunstancia_Defuncions_Circunstancia_Defuncion; }
+    List<SelectListItem> varConsecuencia_Defuncion_Consecuencia_Defuncion = null;
+    if (ViewBag.Consecuencia_Defuncions_Consecuencia_Defuncion != null)
+    { varConsecuencia_Defuncion_Consecuencia_Defuncion = (List<SelectListItem>)ViewBag.Consecuencia_Defuncions_Consecuencia_Defuncion; }
+    List<SelectListItem> varLugar_Tipo_Tipo_de_Lugar_del_Hecho = null;
+    if (ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho != null)
+    { varLugar_Tipo_Tipo_de_Lugar_del_Hecho = (List<SelectListItem>)ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho; }
+    List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+    List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+    List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+    List<SelectListItem> varZona_Zona = null;
+    if (ViewBag.Zonas_Zona != null)
+    { varZona_Zona = (List<SelectListItem>)ViewBag.Zonas_Zona; }
+    List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle Datos de Delito MPI
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_Datos_de_Delito_MPIRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_Datos_de_Delito_MPIPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle Datos de Delito MPI
+								<button onclick="Detalle_Datos_de_Delito_MPIGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_Datos_de_Delito_MPIBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_Datos_de_Delito_MPIResources.Detalle_Datos_de_Delito_MPI</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_Datos_de_Delito_MPIDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_Datos_de_Delito_MPIPropertyBusinessModal" id="Detalle_Datos_de_Delito_MPIPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_Datos_de_Delito_MPIBusinessRule-form" onclick="Detalle_Datos_de_Delito_MPIGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Datos_de_Delito_MPIPropertyModal" id="Detalle_Datos_de_Delito_MPIPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Datos_de_Delito_MPIBusinessRuleModal" id="Detalle_Datos_de_Delito_MPIBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Datos_de_Delito_MPIAddBusinessRuleModal" id="Detalle_Datos_de_Delito_MPIAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_Datos_de_Delito_MPI", FormMethod.Post, new { id = "CreateDetalle_Datos_de_Delito_MPI", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_Datos_de_Delito_MPICreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="263957" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Clave">
+                                    <label class="form-control" for="Detalle_Datos_de_Delito_MPIClave" id="Detalle_Datos_de_Delito_MPIClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divTipo_de_Delito">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Tipo_de_Delito</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Delito" data-attribute="263958" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Tipo_de_Delito">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Delito must be a number." data-val-required="The Tipo de Delito field is required." id="Detalle_Datos_de_Delito_MPITipo_de_Delito" name="Detalle_Datos_de_Delito_MPITipo_de_Delito">
+			<option value=""></option>
+			@if (varTipo_Delito_Tipo_de_Delito != null){ 
+				foreach (var itemTipo_de_Delito in varTipo_Delito_Tipo_de_Delito)
+				{
+					if (itemTipo_de_Delito.Value == Convert.ToString(Model.Tipo_de_Delito))
+					{
+						<option value="@itemTipo_de_Delito.Value" selected>@itemTipo_de_Delito.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Delito.Value">@itemTipo_de_Delito.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divGrupo_Delito">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Grupo_Delito</label>
+	<div class="col-sm-8" data-field-id="Grupo_Delito" data-attribute="263959" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Grupo_Delito">
+		<select class="form-control" data-val="true" data-val-number="The field Grupo Delito must be a number." data-val-required="The Grupo Delito field is required." id="Detalle_Datos_de_Delito_MPIGrupo_Delito" name="Detalle_Datos_de_Delito_MPIGrupo_Delito">
+			<option value=""></option>
+			@if (varGrupo_del_Delito_Grupo_Delito != null){ 
+				foreach (var itemGrupo_Delito in varGrupo_del_Delito_Grupo_Delito)
+				{
+					if (itemGrupo_Delito.Value == Convert.ToString(Model.Grupo_Delito))
+					{
+						<option value="@itemGrupo_Delito.Value" selected>@itemGrupo_Delito.Text</option>
+					}
+					else
+					{
+						<option value="@itemGrupo_Delito.Value">@itemGrupo_Delito.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divDelito">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Delito</label>
+	<div class="col-sm-8" data-field-id="Delito" data-attribute="263960" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Delito">
+		<select class="form-control" data-val="true" data-val-number="The field Delito must be a number." data-val-required="The Delito field is required." id="Detalle_Datos_de_Delito_MPIDelito" name="Detalle_Datos_de_Delito_MPIDelito">
+			<option value=""></option>
+			@if (varDelito_Delito != null){ 
+				foreach (var itemDelito in varDelito_Delito)
+				{
+					if (itemDelito.Value == Convert.ToString(Model.Delito))
+					{
+						<option value="@itemDelito.Value" selected>@itemDelito.Text</option>
+					}
+					else
+					{
+						<option value="@itemDelito.Value">@itemDelito.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCircunstancia_Delito">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Circunstancia_Delito</label>
+	<div class="col-sm-8" data-field-id="Circunstancia_Delito" data-attribute="263961" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Circunstancia_Delito">
+		<select class="form-control" data-val="true" data-val-number="The field Circunstancia Delito must be a number." data-val-required="The Circunstancia Delito field is required." id="Detalle_Datos_de_Delito_MPICircunstancia_Delito" name="Detalle_Datos_de_Delito_MPICircunstancia_Delito">
+			<option value=""></option>
+			@if (varCircunstancia_del_Delito_Circunstancia_Delito != null){ 
+				foreach (var itemCircunstancia_Delito in varCircunstancia_del_Delito_Circunstancia_Delito)
+				{
+					if (itemCircunstancia_Delito.Value == Convert.ToString(Model.Circunstancia_Delito))
+					{
+						<option value="@itemCircunstancia_Delito.Value" selected>@itemCircunstancia_Delito.Text</option>
+					}
+					else
+					{
+						<option value="@itemCircunstancia_Delito.Value">@itemCircunstancia_Delito.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divDelito_Principal">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Delito_Principal</label>
+                                <div class="col-sm-8" data-field-id="Delito_Principal" data-attribute="263962" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Delito_Principal">
+                                    @Html.CheckBoxFor(m => m.Delito_Principal, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divForma_Comision_Delito">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Forma_Comision_Delito</label>
+	<div class="col-sm-8" data-field-id="Forma_Comision_Delito" data-attribute="263963" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Forma_Comision_Delito">
+		<select class="form-control" data-val="true" data-val-number="The field Forma Comisión Delito must be a number." data-val-required="The Forma Comisión Delito field is required." id="Detalle_Datos_de_Delito_MPIForma_Comision_Delito" name="Detalle_Datos_de_Delito_MPIForma_Comision_Delito">
+			<option value=""></option>
+			@if (varForma_Comision_Delito_Forma_Comision_Delito != null){ 
+				foreach (var itemForma_Comision_Delito in varForma_Comision_Delito_Forma_Comision_Delito)
+				{
+					if (itemForma_Comision_Delito.Value == Convert.ToString(Model.Forma_Comision_Delito))
+					{
+						<option value="@itemForma_Comision_Delito.Value" selected>@itemForma_Comision_Delito.Text</option>
+					}
+					else
+					{
+						<option value="@itemForma_Comision_Delito.Value">@itemForma_Comision_Delito.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divForma_Accion_Delito">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Forma_Accion_Delito</label>
+	<div class="col-sm-8" data-field-id="Forma_Accion_Delito" data-attribute="263964" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Forma_Accion_Delito">
+		<select class="form-control" data-val="true" data-val-number="The field Forma Acción Delito must be a number." data-val-required="The Forma Acción Delito field is required." id="Detalle_Datos_de_Delito_MPIForma_Accion_Delito" name="Detalle_Datos_de_Delito_MPIForma_Accion_Delito">
+			<option value=""></option>
+			@if (varForma_Accion_Delito_Forma_Accion_Delito != null){ 
+				foreach (var itemForma_Accion_Delito in varForma_Accion_Delito_Forma_Accion_Delito)
+				{
+					if (itemForma_Accion_Delito.Value == Convert.ToString(Model.Forma_Accion_Delito))
+					{
+						<option value="@itemForma_Accion_Delito.Value" selected>@itemForma_Accion_Delito.Text</option>
+					}
+					else
+					{
+						<option value="@itemForma_Accion_Delito.Value">@itemForma_Accion_Delito.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divModalidad_Delito">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Modalidad_Delito</label>
+	<div class="col-sm-8" data-field-id="Modalidad_Delito" data-attribute="263965" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Modalidad_Delito">
+		<select class="form-control" data-val="true" data-val-number="The field Modalidad Delito must be a number." data-val-required="The Modalidad Delito field is required." id="Detalle_Datos_de_Delito_MPIModalidad_Delito" name="Detalle_Datos_de_Delito_MPIModalidad_Delito">
+			<option value=""></option>
+			@if (varModalidad_Delito_Modalidad_Delito != null){ 
+				foreach (var itemModalidad_Delito in varModalidad_Delito_Modalidad_Delito)
+				{
+					if (itemModalidad_Delito.Value == Convert.ToString(Model.Modalidad_Delito))
+					{
+						<option value="@itemModalidad_Delito.Value" selected>@itemModalidad_Delito.Text</option>
+					}
+					else
+					{
+						<option value="@itemModalidad_Delito.Value">@itemModalidad_Delito.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divElementos_Comision_Delito">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Elementos_Comision_Delito</label>
+	<div class="col-sm-8" data-field-id="Elementos_Comision_Delito" data-attribute="263966" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Elementos_Comision_Delito">
+		<select class="form-control" data-val="true" data-val-number="The field Elementos Comisión Delito must be a number." data-val-required="The Elementos Comisión Delito field is required." id="Detalle_Datos_de_Delito_MPIElementos_Comision_Delito" name="Detalle_Datos_de_Delito_MPIElementos_Comision_Delito">
+			<option value=""></option>
+			@if (varElementos_Comision_Delito_Elementos_Comision_Delito != null){ 
+				foreach (var itemElementos_Comision_Delito in varElementos_Comision_Delito_Elementos_Comision_Delito)
+				{
+					if (itemElementos_Comision_Delito.Value == Convert.ToString(Model.Elementos_Comision_Delito))
+					{
+						<option value="@itemElementos_Comision_Delito.Value" selected>@itemElementos_Comision_Delito.Text</option>
+					}
+					else
+					{
+						<option value="@itemElementos_Comision_Delito.Value">@itemElementos_Comision_Delito.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMonto">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Monto</label>
+                                <div class="col-sm-8" data-field-id="Monto" data-attribute="263967" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Monto">
+                                    <input class="form-control col-md-12 inputNumber" id="Detalle_Datos_de_Delito_MPIMonto" name="Detalle_Datos_de_Delito_MPIMonto" type="text" min="0.00" max="999999.99" value="@Model.Monto.ToString()">
+                                </div>
+                            </div>
+<div class="form-group" id="divViolencia_de_Genero">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Violencia_de_Genero</label>
+                                <div class="col-sm-8" data-field-id="Violencia_de_Genero" data-attribute="263968" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Violencia_de_Genero">
+                                    @Html.CheckBoxFor(m => m.Violencia_de_Genero, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divRobo_de_Vehiculo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Robo_de_Vehiculo</label>
+                                <div class="col-sm-8" data-field-id="Robo_de_Vehiculo" data-attribute="263969" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Robo_de_Vehiculo">
+                                    @Html.CheckBoxFor(m => m.Robo_de_Vehiculo, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divLevantamiento_de_Cadaver">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Levantamiento_de_Cadaver</label>
+                                <div class="col-sm-8" data-field-id="Levantamiento_de_Cadaver" data-attribute="263970" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Levantamiento_de_Cadaver">
+                                    @Html.CheckBoxFor(m => m.Levantamiento_de_Cadaver, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divCircunstancia_de_Vehiculo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Circunstancia_de_Vehiculo</label>
+	<div class="col-sm-8" data-field-id="Circunstancia_de_Vehiculo" data-attribute="263971" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Circunstancia_de_Vehiculo">
+		<select class="form-control" data-val="true" data-val-number="The field Circunstancia de Robo de Vehículo must be a number." data-val-required="The Circunstancia de Robo de Vehículo field is required." id="Detalle_Datos_de_Delito_MPICircunstancia_de_Vehiculo" name="Detalle_Datos_de_Delito_MPICircunstancia_de_Vehiculo">
+			<option value=""></option>
+			@if (varCircunstancia_Vehiculo_Circunstancia_de_Vehiculo != null){ 
+				foreach (var itemCircunstancia_de_Vehiculo in varCircunstancia_Vehiculo_Circunstancia_de_Vehiculo)
+				{
+					if (itemCircunstancia_de_Vehiculo.Value == Convert.ToString(Model.Circunstancia_de_Vehiculo))
+					{
+						<option value="@itemCircunstancia_de_Vehiculo.Value" selected>@itemCircunstancia_de_Vehiculo.Text</option>
+					}
+					else
+					{
+						<option value="@itemCircunstancia_de_Vehiculo.Value">@itemCircunstancia_de_Vehiculo.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divClase">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Clase</label>
+	<div class="col-sm-8" data-field-id="Clase" data-attribute="263972" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Clase">
+		<select class="form-control" data-val="true" data-val-number="The field Clase must be a number." data-val-required="The Clase field is required." id="Detalle_Datos_de_Delito_MPIClase" name="Detalle_Datos_de_Delito_MPIClase">
+			<option value=""></option>
+			@if (varEspecifica_Vehiculo_Clase != null){ 
+				foreach (var itemClase in varEspecifica_Vehiculo_Clase)
+				{
+					if (itemClase.Value == Convert.ToString(Model.Clase))
+					{
+						<option value="@itemClase.Value" selected>@itemClase.Text</option>
+					}
+					else
+					{
+						<option value="@itemClase.Value">@itemClase.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divVehiculo_Robado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Vehiculo_Robado</label>
+                                <div class="col-sm-8" data-field-id="Vehiculo_Robado" data-attribute="263973" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Vehiculo_Robado">
+                                    @Html.CheckBoxFor(m => m.Vehiculo_Robado, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divMarca">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Marca</label>
+	<div class="col-sm-8" data-field-id="Marca" data-attribute="263974" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Marca">
+		<select class="form-control" data-val="true" data-val-number="The field Marca must be a number." data-val-required="The Marca field is required." id="Detalle_Datos_de_Delito_MPIMarca" name="Detalle_Datos_de_Delito_MPIMarca">
+			<option value=""></option>
+			@if (varMarca_del_Vehiculo_Marca != null){ 
+				foreach (var itemMarca in varMarca_del_Vehiculo_Marca)
+				{
+					if (itemMarca.Value == Convert.ToString(Model.Marca))
+					{
+						<option value="@itemMarca.Value" selected>@itemMarca.Text</option>
+					}
+					else
+					{
+						<option value="@itemMarca.Value">@itemMarca.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divSub_Marca">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Sub_Marca</label>
+	<div class="col-sm-8" data-field-id="Sub_Marca" data-attribute="263975" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Sub_Marca">
+		<select class="form-control" data-val="true" data-val-number="The field Sub Marca must be a number." data-val-required="The Sub Marca field is required." id="Detalle_Datos_de_Delito_MPISub_Marca" name="Detalle_Datos_de_Delito_MPISub_Marca">
+			<option value=""></option>
+			@if (varSub_Marca_del_Vehiculo_Sub_Marca != null){ 
+				foreach (var itemSub_Marca in varSub_Marca_del_Vehiculo_Sub_Marca)
+				{
+					if (itemSub_Marca.Value == Convert.ToString(Model.Sub_Marca))
+					{
+						<option value="@itemSub_Marca.Value" selected>@itemSub_Marca.Text</option>
+					}
+					else
+					{
+						<option value="@itemSub_Marca.Value">@itemSub_Marca.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divTipo_de_Vehiculo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Tipo_de_Vehiculo</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Vehiculo" data-attribute="263976" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Tipo_de_Vehiculo">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Vehículo must be a number." data-val-required="The Tipo de Vehículo field is required." id="Detalle_Datos_de_Delito_MPITipo_de_Vehiculo" name="Detalle_Datos_de_Delito_MPITipo_de_Vehiculo">
+			<option value=""></option>
+			@if (varTipo_de_Vehiculo_Tipo_de_Vehiculo != null){ 
+				foreach (var itemTipo_de_Vehiculo in varTipo_de_Vehiculo_Tipo_de_Vehiculo)
+				{
+					if (itemTipo_de_Vehiculo.Value == Convert.ToString(Model.Tipo_de_Vehiculo))
+					{
+						<option value="@itemTipo_de_Vehiculo.Value" selected>@itemTipo_de_Vehiculo.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Vehiculo.Value">@itemTipo_de_Vehiculo.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divModelo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Modelo</label>
+	<div class="col-sm-8" data-field-id="Modelo" data-attribute="263977" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Modelo">
+		<input class="form-control inputNumber" id="Detalle_Datos_de_Delito_MPIModelo" name="Detalle_Datos_de_Delito_MPIModelo" type="text" value="@Model.Modelo">
+	</div>
+</div>
+<div class="form-group" id="divColor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Color</label>
+	<div class="col-sm-8" data-field-id="Color" data-attribute="263978" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Color">
+		<select class="form-control" data-val="true" data-val-number="The field Color must be a number." data-val-required="The Color field is required." id="Detalle_Datos_de_Delito_MPIColor" name="Detalle_Datos_de_Delito_MPIColor">
+			<option value=""></option>
+			@if (varColor_Vehiculo_Color != null){ 
+				foreach (var itemColor in varColor_Vehiculo_Color)
+				{
+					if (itemColor.Value == Convert.ToString(Model.Color))
+					{
+						<option value="@itemColor.Value" selected>@itemColor.Text</option>
+					}
+					else
+					{
+						<option value="@itemColor.Value">@itemColor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divPlacas">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Placas</label>
+                                <div class="col-sm-8" data-field-id="Placas" data-attribute="263979" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Placas">
+                                    <input class="form-control" id="Detalle_Datos_de_Delito_MPIPlacas" name="Detalle_Datos_de_Delito_MPIPlacas" type="text" value="@Model.Placas">
+                                </div>
+                            </div>
+<div class="form-group" id="divEstado_de_Origen_de_las_Placas">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Estado_de_Origen_de_las_Placas</label>
+	<div class="col-sm-8" data-field-id="Estado_de_Origen_de_las_Placas" data-attribute="263980" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Estado_de_Origen_de_las_Placas">
+		<select class="form-control" data-val="true" data-val-number="The field Estado de Origen de las Placas must be a number." data-val-required="The Estado de Origen de las Placas field is required." id="Detalle_Datos_de_Delito_MPIEstado_de_Origen_de_las_Placas" name="Detalle_Datos_de_Delito_MPIEstado_de_Origen_de_las_Placas">
+			<option value=""></option>
+			@if (varEstado_Estado_de_Origen_de_las_Placas != null){ 
+				foreach (var itemEstado_de_Origen_de_las_Placas in varEstado_Estado_de_Origen_de_las_Placas)
+				{
+					if (itemEstado_de_Origen_de_las_Placas.Value == Convert.ToString(Model.Estado_de_Origen_de_las_Placas))
+					{
+						<option value="@itemEstado_de_Origen_de_las_Placas.Value" selected>@itemEstado_de_Origen_de_las_Placas.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_de_Origen_de_las_Placas.Value">@itemEstado_de_Origen_de_las_Placas.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMotor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Motor</label>
+                                <div class="col-sm-8" data-field-id="Motor" data-attribute="263981" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Motor">
+                                    <input class="form-control" id="Detalle_Datos_de_Delito_MPIMotor" name="Detalle_Datos_de_Delito_MPIMotor" type="text" value="@Model.Motor">
+                                </div>
+                            </div>
+<div class="form-group" id="divSerie">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Serie</label>
+                                <div class="col-sm-8" data-field-id="Serie" data-attribute="263982" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Serie">
+                                    <input class="form-control" id="Detalle_Datos_de_Delito_MPISerie" name="Detalle_Datos_de_Delito_MPISerie" type="text" value="@Model.Serie">
+                                </div>
+                            </div>
+<div class="form-group" id="divEl_Vehiculo_esta_Asegurado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.El_Vehiculo_esta_Asegurado</label>
+                                <div class="col-sm-8" data-field-id="El_Vehiculo_esta_Asegurado" data-attribute="263983" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.El_Vehiculo_esta_Asegurado">
+                                    @Html.CheckBoxFor(m => m.El_Vehiculo_esta_Asegurado, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre_de_la_Aseguradora">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Nombre_de_la_Aseguradora</label>
+	<div class="col-sm-8" data-field-id="Nombre_de_la_Aseguradora" data-attribute="263984" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Nombre_de_la_Aseguradora">
+		<select class="form-control" data-val="true" data-val-number="The field Nombre de la Aseguradora must be a number." data-val-required="The Nombre de la Aseguradora field is required." id="Detalle_Datos_de_Delito_MPINombre_de_la_Aseguradora" name="Detalle_Datos_de_Delito_MPINombre_de_la_Aseguradora">
+			<option value=""></option>
+			@if (varAseguradora_de_Vehiculo_Nombre_de_la_Aseguradora != null){ 
+				foreach (var itemNombre_de_la_Aseguradora in varAseguradora_de_Vehiculo_Nombre_de_la_Aseguradora)
+				{
+					if (itemNombre_de_la_Aseguradora.Value == Convert.ToString(Model.Nombre_de_la_Aseguradora))
+					{
+						<option value="@itemNombre_de_la_Aseguradora.Value" selected>@itemNombre_de_la_Aseguradora.Text</option>
+					}
+					else
+					{
+						<option value="@itemNombre_de_la_Aseguradora.Value">@itemNombre_de_la_Aseguradora.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divTipo_de_Servicio">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Tipo_de_Servicio</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Servicio" data-attribute="263985" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Tipo_de_Servicio">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Servicio must be a number." data-val-required="The Tipo de Servicio field is required." id="Detalle_Datos_de_Delito_MPITipo_de_Servicio" name="Detalle_Datos_de_Delito_MPITipo_de_Servicio">
+			<option value=""></option>
+			@if (varServicio_del_Vehiculo_Tipo_de_Servicio != null){ 
+				foreach (var itemTipo_de_Servicio in varServicio_del_Vehiculo_Tipo_de_Servicio)
+				{
+					if (itemTipo_de_Servicio.Value == Convert.ToString(Model.Tipo_de_Servicio))
+					{
+						<option value="@itemTipo_de_Servicio.Value" selected>@itemTipo_de_Servicio.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Servicio.Value">@itemTipo_de_Servicio.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divRuta_del_Servicio_Publico">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Ruta_del_Servicio_Publico</label>
+                                <div class="col-sm-8" data-field-id="Ruta_del_Servicio_Publico" data-attribute="263986" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Ruta_del_Servicio_Publico">
+                                    <input class="form-control" id="Detalle_Datos_de_Delito_MPIRuta_del_Servicio_Publico" name="Detalle_Datos_de_Delito_MPIRuta_del_Servicio_Publico" type="text" value="@Model.Ruta_del_Servicio_Publico">
+                                </div>
+                            </div>
+<div class="form-group" id="divProcedencia">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Procedencia</label>
+	<div class="col-sm-8" data-field-id="Procedencia" data-attribute="263987" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Procedencia">
+		<select class="form-control" data-val="true" data-val-number="The field Procedencia must be a number." data-val-required="The Procedencia field is required." id="Detalle_Datos_de_Delito_MPIProcedencia" name="Detalle_Datos_de_Delito_MPIProcedencia">
+			<option value=""></option>
+			@if (varProcedencia_del_Vehiculo_Procedencia != null){ 
+				foreach (var itemProcedencia in varProcedencia_del_Vehiculo_Procedencia)
+				{
+					if (itemProcedencia.Value == Convert.ToString(Model.Procedencia))
+					{
+						<option value="@itemProcedencia.Value" selected>@itemProcedencia.Text</option>
+					}
+					else
+					{
+						<option value="@itemProcedencia.Value">@itemProcedencia.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMercancia">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Mercancia</label>
+                                <div class="col-sm-8" data-field-id="Mercancia" data-attribute="263988" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Mercancia">
+                                    @Html.CheckBoxFor(m => m.Mercancia, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divDescripcion_de_lo_que_Transportaba">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Descripcion_de_lo_que_Transportaba</label>
+                                <div class="col-sm-8" data-field-id="Descripcion_de_lo_que_Transportaba" data-attribute="263989" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Descripcion_de_lo_que_Transportaba">
+                                    <input class="form-control" id="Detalle_Datos_de_Delito_MPIDescripcion_de_lo_que_Transportaba" name="Detalle_Datos_de_Delito_MPIDescripcion_de_lo_que_Transportaba" type="text" value="@Model.Descripcion_de_lo_que_Transportaba">
+                                </div>
+                            </div>
+<div class="form-group" id="divMonto_de_la_Carga">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Monto_de_la_Carga</label>
+                                <div class="col-sm-8" data-field-id="Monto_de_la_Carga" data-attribute="263990" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Monto_de_la_Carga">
+                                    <input class="form-control col-md-12 inputNumber" id="Detalle_Datos_de_Delito_MPIMonto_de_la_Carga" name="Detalle_Datos_de_Delito_MPIMonto_de_la_Carga" type="text" min="0.00" max="999999.99" value="@Model.Monto_de_la_Carga.ToString()">
+                                </div>
+                            </div>
+<div class="form-group" id="divSenas_Particulares">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Senas_Particulares</label>
+                                <div class="col-sm-8" data-field-id="Senas_Particulares" data-attribute="263991" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Senas_Particulares">
+                                    <input class="form-control" id="Detalle_Datos_de_Delito_MPISenas_Particulares" name="Detalle_Datos_de_Delito_MPISenas_Particulares" type="text" value="@Model.Senas_Particulares">
+                                </div>
+                            </div>
+<div class="form-group" id="divModalidad_del_Robo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Modalidad_del_Robo</label>
+	<div class="col-sm-8" data-field-id="Modalidad_del_Robo" data-attribute="263992" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Modalidad_del_Robo">
+		<select class="form-control" data-val="true" data-val-number="The field Modalidad del Robo must be a number." data-val-required="The Modalidad del Robo field is required." id="Detalle_Datos_de_Delito_MPIModalidad_del_Robo" name="Detalle_Datos_de_Delito_MPIModalidad_del_Robo">
+			<option value=""></option>
+			@if (varModalidad_de_Robo_de_Vehiculo_Modalidad_del_Robo != null){ 
+				foreach (var itemModalidad_del_Robo in varModalidad_de_Robo_de_Vehiculo_Modalidad_del_Robo)
+				{
+					if (itemModalidad_del_Robo.Value == Convert.ToString(Model.Modalidad_del_Robo))
+					{
+						<option value="@itemModalidad_del_Robo.Value" selected>@itemModalidad_del_Robo.Text</option>
+					}
+					else
+					{
+						<option value="@itemModalidad_del_Robo.Value">@itemModalidad_del_Robo.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCausa_de_Muerte">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Causa_de_Muerte</label>
+                                <div class="col-sm-8" data-field-id="Causa_de_Muerte" data-attribute="263993" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Causa_de_Muerte">
+                                    <input class="form-control" id="Detalle_Datos_de_Delito_MPICausa_de_Muerte" name="Detalle_Datos_de_Delito_MPICausa_de_Muerte" type="text" value="@Model.Causa_de_Muerte">
+                                </div>
+                            </div>
+<div class="form-group" id="divCircunstancia_Defuncion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Circunstancia_Defuncion</label>
+	<div class="col-sm-8" data-field-id="Circunstancia_Defuncion" data-attribute="263994" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Circunstancia_Defuncion">
+		<select class="form-control" data-val="true" data-val-number="The field Circunstancia Defunción must be a number." data-val-required="The Circunstancia Defunción field is required." id="Detalle_Datos_de_Delito_MPICircunstancia_Defuncion" name="Detalle_Datos_de_Delito_MPICircunstancia_Defuncion">
+			<option value=""></option>
+			@if (varCircunstancia_Defuncion_Circunstancia_Defuncion != null){ 
+				foreach (var itemCircunstancia_Defuncion in varCircunstancia_Defuncion_Circunstancia_Defuncion)
+				{
+					if (itemCircunstancia_Defuncion.Value == Convert.ToString(Model.Circunstancia_Defuncion))
+					{
+						<option value="@itemCircunstancia_Defuncion.Value" selected>@itemCircunstancia_Defuncion.Text</option>
+					}
+					else
+					{
+						<option value="@itemCircunstancia_Defuncion.Value">@itemCircunstancia_Defuncion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divConsecuencia_Defuncion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Consecuencia_Defuncion</label>
+	<div class="col-sm-8" data-field-id="Consecuencia_Defuncion" data-attribute="263995" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Consecuencia_Defuncion">
+		<select class="form-control" data-val="true" data-val-number="The field Consecuencia Defunción must be a number." data-val-required="The Consecuencia Defunción field is required." id="Detalle_Datos_de_Delito_MPIConsecuencia_Defuncion" name="Detalle_Datos_de_Delito_MPIConsecuencia_Defuncion">
+			<option value=""></option>
+			@if (varConsecuencia_Defuncion_Consecuencia_Defuncion != null){ 
+				foreach (var itemConsecuencia_Defuncion in varConsecuencia_Defuncion_Consecuencia_Defuncion)
+				{
+					if (itemConsecuencia_Defuncion.Value == Convert.ToString(Model.Consecuencia_Defuncion))
+					{
+						<option value="@itemConsecuencia_Defuncion.Value" selected>@itemConsecuencia_Defuncion.Text</option>
+					}
+					else
+					{
+						<option value="@itemConsecuencia_Defuncion.Value">@itemConsecuencia_Defuncion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divFecha_Levantamiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Fecha_Levantamiento</label>
+                                <div class="col-sm-8" data-field-id="Fecha_Levantamiento" data-attribute="263996" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Fecha_Levantamiento">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_Datos_de_Delito_MPIFecha_Levantamiento" readonly="readonly" name="Detalle_Datos_de_Delito_MPIFecha_Levantamiento" type="text" value="@Model.Fecha_Levantamiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divHora_Levantamiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Hora_Levantamiento</label>
+                                <div class="col-sm-8" data-field-id="Hora_Levantamiento" data-attribute="263997" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Hora_Levantamiento">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="Detalle_Datos_de_Delito_MPIHora_Levantamiento" readonly="readonly" name="Detalle_Datos_de_Delito_MPIHora_Levantamiento" type="text" data-autoclose="true" value="@Model.Hora_Levantamiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divTipo_de_Lugar_del_Hecho">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Tipo_de_Lugar_del_Hecho</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Lugar_del_Hecho" data-attribute="263998" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Tipo_de_Lugar_del_Hecho">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Lugar del Hecho must be a number." data-val-required="The Tipo de Lugar del Hecho field is required." id="Detalle_Datos_de_Delito_MPITipo_de_Lugar_del_Hecho" name="Detalle_Datos_de_Delito_MPITipo_de_Lugar_del_Hecho">
+			<option value=""></option>
+			@if (varLugar_Tipo_Tipo_de_Lugar_del_Hecho != null){ 
+				foreach (var itemTipo_de_Lugar_del_Hecho in varLugar_Tipo_Tipo_de_Lugar_del_Hecho)
+				{
+					if (itemTipo_de_Lugar_del_Hecho.Value == Convert.ToString(Model.Tipo_de_Lugar_del_Hecho))
+					{
+						<option value="@itemTipo_de_Lugar_del_Hecho.Value" selected>@itemTipo_de_Lugar_del_Hecho.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Lugar_del_Hecho.Value">@itemTipo_de_Lugar_del_Hecho.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divPais">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Pais</label>
+	<div class="col-sm-8" data-field-id="Pais" data-attribute="263999" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Pais">
+		<select class="form-control" data-val="true" data-val-number="The field País must be a number." data-val-required="The País field is required." id="Detalle_Datos_de_Delito_MPIPais" name="Detalle_Datos_de_Delito_MPIPais">
+			<option value=""></option>
+			@if (varPais_Pais != null){ 
+				foreach (var itemPais in varPais_Pais)
+				{
+					if (itemPais.Value == Convert.ToString(Model.Pais))
+					{
+						<option value="@itemPais.Value" selected>@itemPais.Text</option>
+					}
+					else
+					{
+						<option value="@itemPais.Value">@itemPais.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Estado</label>
+	<div class="col-sm-8" data-field-id="Estado" data-attribute="264000" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Estado">
+		<select class="form-control" data-val="true" data-val-number="The field Estado must be a number." data-val-required="The Estado field is required." id="Detalle_Datos_de_Delito_MPIEstado" name="Detalle_Datos_de_Delito_MPIEstado">
+			<option value=""></option>
+			@if (varEstado_Estado != null){ 
+				foreach (var itemEstado in varEstado_Estado)
+				{
+					if (itemEstado.Value == Convert.ToString(Model.Estado))
+					{
+						<option value="@itemEstado.Value" selected>@itemEstado.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado.Value">@itemEstado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMunicipio">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Municipio</label>
+	<div class="col-sm-8" data-field-id="Municipio" data-attribute="264001" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Municipio">
+		<select class="form-control" data-val="true" data-val-number="The field Municipio must be a number." data-val-required="The Municipio field is required." id="Detalle_Datos_de_Delito_MPIMunicipio" name="Detalle_Datos_de_Delito_MPIMunicipio">
+			<option value=""></option>
+			@if (varMunicipio_Municipio != null){ 
+				foreach (var itemMunicipio in varMunicipio_Municipio)
+				{
+					if (itemMunicipio.Value == Convert.ToString(Model.Municipio))
+					{
+						<option value="@itemMunicipio.Value" selected>@itemMunicipio.Text</option>
+					}
+					else
+					{
+						<option value="@itemMunicipio.Value">@itemMunicipio.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divZona">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Zona</label>
+	<div class="col-sm-8" data-field-id="Zona" data-attribute="264002" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Zona">
+		<select class="form-control" data-val="true" data-val-number="The field Zona must be a number." data-val-required="The Zona field is required." id="Detalle_Datos_de_Delito_MPIZona" name="Detalle_Datos_de_Delito_MPIZona">
+			<option value=""></option>
+			@if (varZona_Zona != null){ 
+				foreach (var itemZona in varZona_Zona)
+				{
+					if (itemZona.Value == Convert.ToString(Model.Zona))
+					{
+						<option value="@itemZona.Value" selected>@itemZona.Text</option>
+					}
+					else
+					{
+						<option value="@itemZona.Value">@itemZona.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divColonia">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Colonia</label>
+	<div class="col-sm-8" data-field-id="Colonia" data-attribute="264003" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Colonia">
+		<select class="form-control" data-val="true" data-val-number="The field Colonia must be a number." data-val-required="The Colonia field is required." id="Detalle_Datos_de_Delito_MPIColonia" name="Detalle_Datos_de_Delito_MPIColonia">
+			<option value=""></option>
+			@if (varColonia_Colonia != null){ 
+				foreach (var itemColonia in varColonia_Colonia)
+				{
+					if (itemColonia.Value == Convert.ToString(Model.Colonia))
+					{
+						<option value="@itemColonia.Value" selected>@itemColonia.Text</option>
+					}
+					else
+					{
+						<option value="@itemColonia.Value">@itemColonia.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divColonia_no_Catalogada">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Colonia_no_Catalogada</label>
+                                <div class="col-sm-8" data-field-id="Colonia_no_Catalogada" data-attribute="264004" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Colonia_no_Catalogada">
+                                    <input class="form-control" id="Detalle_Datos_de_Delito_MPIColonia_no_Catalogada" name="Detalle_Datos_de_Delito_MPIColonia_no_Catalogada" type="text" value="@Model.Colonia_no_Catalogada">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Exterior">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Numero_Exterior</label>
+	<div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="264005" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Numero_Exterior">
+		<input class="form-control inputNumber" id="Detalle_Datos_de_Delito_MPINumero_Exterior" name="Detalle_Datos_de_Delito_MPINumero_Exterior" type="text" value="@Model.Numero_Exterior">
+	</div>
+</div>
+<div class="form-group" id="divNumero_Interior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Numero_Interior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior" data-attribute="264006" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Numero_Interior">
+                                    <input class="form-control" id="Detalle_Datos_de_Delito_MPINumero_Interior" name="Detalle_Datos_de_Delito_MPINumero_Interior" type="text" value="@Model.Numero_Interior">
+                                </div>
+                            </div>
+<div class="form-group" id="divNecropsia">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Necropsia</label>
+                                <div class="col-sm-8" data-field-id="Necropsia" data-attribute="264007" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Necropsia">
+                                    <input class="form-control" id="Detalle_Datos_de_Delito_MPINecropsia" name="Detalle_Datos_de_Delito_MPINecropsia" type="text" value="@Model.Necropsia">
+                                </div>
+                            </div>
+<div class="form-group" id="divCronotanatodiagnostico">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Cronotanatodiagnostico</label>
+                                <div class="col-sm-8" data-field-id="Cronotanatodiagnostico" data-attribute="264008" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Cronotanatodiagnostico">
+                                    <input class="form-control" id="Detalle_Datos_de_Delito_MPICronotanatodiagnostico" name="Detalle_Datos_de_Delito_MPICronotanatodiagnostico" type="text" value="@Model.Cronotanatodiagnostico">
+                                </div>
+                            </div>
+<div class="form-group" id="divRuta">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Ruta</label>
+                                <div class="col-sm-8" data-field-id="Ruta" data-attribute="264009" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Ruta">
+                                    <input class="form-control" id="Detalle_Datos_de_Delito_MPIRuta" name="Detalle_Datos_de_Delito_MPIRuta" type="text" value="@Model.Ruta">
+                                </div>
+                            </div>
+<div class="form-group" id="divEstado_del_Conductor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Estado_del_Conductor</label>
+                                <div class="col-sm-8" data-field-id="Estado_del_Conductor" data-attribute="264010" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Estado_del_Conductor">
+                                    @Html.CheckBoxFor(m => m.Estado_del_Conductor, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divCodigo_Postal">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Datos_de_Delito_MPIResources.Codigo_Postal</label>
+	<div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="264012" data-field-name="@Resources.Detalle_Datos_de_Delito_MPIResources.Codigo_Postal">
+		<input class="form-control inputNumber" id="Detalle_Datos_de_Delito_MPICodigo_Postal" name="Detalle_Datos_de_Delito_MPICodigo_Postal" type="text" value="@Model.Codigo_Postal">
+	</div>
+</div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_Datos_de_Delito_MPIConfigureSave" name="Detalle_Datos_de_Delito_MPIConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_Datos_de_Delito_MPIConfigureType" />
+												<input type="hidden" id="hdnDetalle_Datos_de_Delito_MPIBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_Datos_de_Delito_MPIBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_Datos_de_Delito_MPIBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_Datos_de_Delito_MPIGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_Datos_de_Delito_MPIBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_Datos_de_Delito_MPI.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_Datos_de_Delito_MPIGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_Datos_de_Delito_MPICreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Expediente_InicialCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_Datos_de_Delito_MPIRowElement = "Detalle_Datos_de_Delito_MPIPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_Datos_de_Delito_MPIRowElement + "')){ Detalle_Datos_de_Delito_MPIInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+            $('#Detalle_Datos_de_Delito_MPIFecha_Levantamiento').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Detalle_Datos_de_Delito_MPIHora_Levantamiento').clockpicker();
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_Datos_de_Delito_MPIData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_Datos_de_Delito_MPI").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_Datos_de_Delito_MPI")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_Datos_de_Delito_MPICreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_Datos_de_Delito_MPI/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_Datos_de_Delito_MPIPropertyBag", "Detalle_Datos_de_Delito_MPI")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_Datos_de_Delito_MPIGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleFieldName').val(), ObjectId: '45118', Attribute: $('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_Datos_de_Delito_MPI' }, function (data) {
+                $(".Detalle_Datos_de_Delito_MPIBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_Datos_de_Delito_MPIGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleFieldName').val(), ObjectId: '45118', Attribute: $('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_Datos_de_Delito_MPI' }, function (data) {
+                $(".Detalle_Datos_de_Delito_MPIAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleFieldName').val(), ObjectId: '45118', Attribute: $('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_Datos_de_Delito_MPI' }, function (data) {
+				$(".Detalle_Datos_de_Delito_MPIBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_Datos_de_Delito_MPI/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_Datos_de_Delito_MPI/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_Datos_de_Delito_MPI/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_Datos_de_Delito_MPIConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_Datos_de_Delito_MPIConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_Datos_de_Delito_MPI/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_Datos_de_Delito_MPIConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_Datos_de_Delito_MPI/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_Datos_de_Delito_MPI' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_Datos_de_Delito_MPI' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_Datos_de_Delito_MPIConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_Datos_de_Delito_MPIConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_Datos_de_Delito_MPI').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_Datos_de_Delito_MPIBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

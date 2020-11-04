@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Requerido_en_Audiencias_MPI" value="Detalle de Requerido en Audiencias MPI"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Nombre" value="Nombre"></resource>
+  <resource culture="en-US" name="Direccion" value="Dirección"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

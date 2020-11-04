@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Compareciente" value="Compareciente"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Nombre_Completo" value="Nombre Completo"></resource>
+  <resource culture="en-US" name="Registro_de_Atencion_Inicial" value="Registro de Atención Inicial"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

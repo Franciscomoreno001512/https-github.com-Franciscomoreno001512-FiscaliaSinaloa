@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_de_IPH_MPI" value="Detalle de IPH MPI"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>   <resource culture="es-es" name="NUE" value="NUE"></resource>   <resource culture="es-es" name="Folio" value="Folio"></resource>   <resource culture="es-es" name="Fecha" value="Fecha"></resource>   <resource culture="es-es" name="Documentos" value="Documentos"></resource>   <resource culture="es-es" name="Archivo" value="Archivo"></resource>   <resource culture="es-es" name="Hora" value="Hora"></resource> 
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

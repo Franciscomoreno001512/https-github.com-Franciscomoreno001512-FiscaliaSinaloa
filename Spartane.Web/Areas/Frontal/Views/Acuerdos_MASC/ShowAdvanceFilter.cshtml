@@ -1,0 +1,740 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Acuerdos_MASCAdvanceSearchModel
+@{
+ List<SelectListItem> varSolicitud_Numero_de_Expediente = null;
+    if (ViewBag.Solicituds_Numero_de_Expediente != null)
+    { varSolicitud_Numero_de_Expediente = (List<SelectListItem>)ViewBag.Solicituds_Numero_de_Expediente; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
+    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
+    List<SelectListItem> varTipo_de_Acuerdo_Tipo_de_Acuerdo = null;
+    if (ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo != null)
+    { varTipo_de_Acuerdo_Tipo_de_Acuerdo = (List<SelectListItem>)ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo; }
+    List<SelectListItem> varPeriodicidad_Periodicidad = null;
+    if (ViewBag.Periodicidads_Periodicidad != null)
+    { varPeriodicidad_Periodicidad = (List<SelectListItem>)ViewBag.Periodicidads_Periodicidad; }
+ List<SelectListItem> varSpartan_User_Personal_de_Seguimiento_Asignado = null;
+    if (ViewBag.Spartan_Users_Personal_de_Seguimiento_Asignado != null)
+    { varSpartan_User_Personal_de_Seguimiento_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_Personal_de_Seguimiento_Asignado; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Revisa = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Revisa != null)
+    { varSpartan_User_Usuario_que_Revisa = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Revisa; }
+    List<SelectListItem> varResultado_de_Revision_Resultado = null;
+    if (ViewBag.Resultado_de_Revisions_Resultado != null)
+    { varResultado_de_Revision_Resultado = (List<SelectListItem>)ViewBag.Resultado_de_Revisions_Resultado; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Acuerdos_MASC", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Acuerdos_MASCResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+ List<SelectListItem> varSolicitud_Numero_de_Expediente = null;
+    if (ViewBag.Solicituds_Numero_de_Expediente != null)
+    { varSolicitud_Numero_de_Expediente = (List<SelectListItem>)ViewBag.Solicituds_Numero_de_Expediente; }
+        <div class="MarginBottom ">
+            <h3>@Resources.Acuerdos_MASCResources.Fecha_de_Registro</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Registro" name="FromFecha_de_Registro" type="text" value="@Model.FromFecha_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Registro" name="ToFecha_de_Registro" type="text" value="@Model.ToFecha_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Acuerdos_MASCResources.Hora_de_Registro</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_Registro" name="FromHora_de_Registro" type="text" value="@Model.FromHora_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_Registro" name="ToHora_de_Registro" type="text" value="@Model.ToHora_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
+    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Acuerdos_MASCResources.Tipo_de_Acuerdo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_AcuerdoFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_AcuerdoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Acuerdo, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Acuerdo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Acuerdo_Tipo_de_Acuerdo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_AcuerdoMultiple, varTipo_de_Acuerdo_Tipo_de_Acuerdo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Acuerdo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acuerdos_MASCResources.Lugar_Acordado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Lugar_AcordadoFilter, filters, new { @class = "form-control", @id = "ddlLugar_AcordadoFilter" })
+                    @Html.TextBoxFor(m => m.Lugar_Acordado, new { @class = "form-control", @type = "text", @id = "txtLugar_Acordado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acuerdos_MASCResources.Domicilio_Acordado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Domicilio_AcordadoFilter, filters, new { @class = "form-control", @id = "ddlDomicilio_AcordadoFilter" })
+                    @Html.TextBoxFor(m => m.Domicilio_Acordado, new { @class = "form-control", @type = "text", @id = "txtDomicilio_Acordado" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Acuerdos_MASCResources.Hora_de_Acuerdo</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_Acuerdo" name="FromHora_de_Acuerdo" type="text" value="@Model.FromHora_de_Acuerdo" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_Acuerdo" name="ToHora_de_Acuerdo" type="text" value="@Model.ToHora_de_Acuerdo" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Acuerdos_MASCResources.Fecha_de_Inicio_de_Acuerdo</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Inicio_de_Acuerdo" name="FromFecha_de_Inicio_de_Acuerdo" type="text" value="@Model.FromFecha_de_Inicio_de_Acuerdo" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Inicio_de_Acuerdo" name="ToFecha_de_Inicio_de_Acuerdo" type="text" value="@Model.ToFecha_de_Inicio_de_Acuerdo" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Acuerdos_MASCResources.Parcialidades</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromParcialidades, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromParcialidades" })
+                    @Html.ValidationMessageFor(m => m.FromParcialidades)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToParcialidades, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToParcialidades", @data_min = "txtAdvanceFromParcialidades" })
+                    @Html.ValidationMessageFor(m => m.ToParcialidades)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acuerdos_MASCResources.Periodicidad</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.PeriodicidadFilter, filters, new { @class = "form-control", @id = "ddlPeriodicidadFilter" })
+                    @Html.TextBoxFor(m => m.AdvancePeriodicidad, new { @class = "form-control", @type = "text", @id = "txtAdvancePeriodicidad" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varPeriodicidad_Periodicidad!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvancePeriodicidadMultiple, varPeriodicidad_Periodicidad,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancePeriodicidad"
+                        });
+                    }
+                </div>
+ List<SelectListItem> varSpartan_User_Personal_de_Seguimiento_Asignado = null;
+    if (ViewBag.Spartan_Users_Personal_de_Seguimiento_Asignado != null)
+    { varSpartan_User_Personal_de_Seguimiento_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_Personal_de_Seguimiento_Asignado; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Acuerdos_MASCResources.Comentarios</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ComentariosFilter, filters, new { @class = "form-control", @id = "ddlComentariosFilter" })
+                    @Html.TextBoxFor(m => m.Comentarios, new { @class = "form-control", @type = "text", @id = "txtComentarios" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Acuerdos_MASCResources.Fecha_de_Cumplimiento_de_Acuerdo</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Cumplimiento_de_Acuerdo" name="FromFecha_de_Cumplimiento_de_Acuerdo" type="text" value="@Model.FromFecha_de_Cumplimiento_de_Acuerdo" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Cumplimiento_de_Acuerdo" name="ToFecha_de_Cumplimiento_de_Acuerdo" type="text" value="@Model.ToFecha_de_Cumplimiento_de_Acuerdo" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Acuerdos_MASCResources.Fecha_de_Revision</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Revision" name="FromFecha_de_Revision" type="text" value="@Model.FromFecha_de_Revision" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Revision" name="ToFecha_de_Revision" type="text" value="@Model.ToFecha_de_Revision" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Acuerdos_MASCResources.Hora_de_Revision</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_Revision" name="FromHora_de_Revision" type="text" value="@Model.FromHora_de_Revision" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_Revision" name="ToHora_de_Revision" type="text" value="@Model.ToHora_de_Revision" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_Revisa = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Revisa != null)
+    { varSpartan_User_Usuario_que_Revisa = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Revisa; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Acuerdos_MASCResources.Resultado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ResultadoFilter, filters, new { @class = "form-control", @id = "ddlResultadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceResultado, new { @class = "form-control", @type = "text", @id = "txtAdvanceResultado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varResultado_de_Revision_Resultado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceResultadoMultiple, varResultado_de_Revision_Resultado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceResultado"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acuerdos_MASCResources.Motivo_de_Rechazo_de_Acuerdo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Motivo_de_Rechazo_de_AcuerdoFilter, filters, new { @class = "form-control", @id = "ddlMotivo_de_Rechazo_de_AcuerdoFilter" })
+                    @Html.TextBoxFor(m => m.Motivo_de_Rechazo_de_Acuerdo, new { @class = "form-control", @type = "text", @id = "txtMotivo_de_Rechazo_de_Acuerdo" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Acuerdos_MASC/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.Acuerdos_MASCClaveTo = $("#txtAdvanceToClave").val();
+        }
+        advanceSearch.Numero_de_ExpedienteSearchType = 0;
+        if ($('#ddlAdvanceNumero_de_Expediente').val().length > 0 || $("#txtAdvanceNumero_de_Expediente").val() == "") {
+
+
+            if (isAcuerdos_MASCTextSearch) {
+                advanceSearch.Numero_de_ExpedienteName = $("#txtAdvanceNumero_de_Expediente").val();
+                advanceSearch.Numero_de_ExpedienteNameSearchType = $("#ddlAdvanceNumero_de_Expediente").val();
+                advanceSearch.Numero_de_ExpedienteSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Numero_de_ExpedienteToSearch = $("#ddlAdvanceNumero_de_Expediente").val();
+                advanceSearch.Numero_de_ExpedienteSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromFecha_de_Registro").val() != "" || $("#txtAdvanceToFecha_de_Registro").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCFecha_de_RegistroFrom = $("#txtAdvanceFromFecha_de_Registro").val();
+            advanceSearch.Acuerdos_MASCFecha_de_RegistroTo = $("#txtAdvanceToFecha_de_Registro").val();
+        }
+        if ($("#txtAdvanceHora_de_Registro").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCHora_de_Registro = $("#txtAdvanceHora_de_Registro").val();
+            advanceSearch.Acuerdos_MASCHora_de_RegistroSearchType = $("#ddlAdvanceHora_de_RegistroFilter").val();
+        }
+        advanceSearch.Usuario_que_RegistraSearchType = 0;
+        if ($('#ddlAdvanceUsuario_que_Registra').val().length > 0 || $("#txtAdvanceUsuario_que_Registra").val() == "") {
+
+
+            if (isAcuerdos_MASCTextSearch) {
+                advanceSearch.Usuario_que_RegistraName = $("#txtAdvanceUsuario_que_Registra").val();
+                advanceSearch.Usuario_que_RegistraNameSearchType = $("#ddlAdvanceUsuario_que_Registra").val();
+                advanceSearch.Usuario_que_RegistraSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Usuario_que_RegistraToSearch = $("#ddlAdvanceUsuario_que_Registra").val();
+                advanceSearch.Usuario_que_RegistraSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_de_AcuerdoSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Acuerdo').val().length > 0 || $("#txtAdvanceTipo_de_Acuerdo").val() == "") {
+
+
+            if (isAcuerdos_MASCTextSearch) {
+                advanceSearch.Tipo_de_AcuerdoName = $("#txtAdvanceTipo_de_Acuerdo").val();
+                advanceSearch.Tipo_de_AcuerdoNameSearchType = $("#ddlAdvanceTipo_de_Acuerdo").val();
+                advanceSearch.Tipo_de_AcuerdoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_AcuerdoToSearch = $("#ddlAdvanceTipo_de_Acuerdo").val();
+                advanceSearch.Tipo_de_AcuerdoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceLugar_Acordado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCLugar_Acordado = $("#txtAdvanceLugar_Acordado").val();
+            advanceSearch.Acuerdos_MASCLugar_AcordadoSearchType = $("#ddlAdvanceLugar_AcordadoFilter").val();
+        }
+        if ($("#txtAdvanceDomicilio_Acordado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCDomicilio_Acordado = $("#txtAdvanceDomicilio_Acordado").val();
+            advanceSearch.Acuerdos_MASCDomicilio_AcordadoSearchType = $("#ddlAdvanceDomicilio_AcordadoFilter").val();
+        }
+        if ($("#txtAdvanceHora_de_Acuerdo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCHora_de_Acuerdo = $("#txtAdvanceHora_de_Acuerdo").val();
+            advanceSearch.Acuerdos_MASCHora_de_AcuerdoSearchType = $("#ddlAdvanceHora_de_AcuerdoFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Inicio_de_Acuerdo").val() != "" || $("#txtAdvanceToFecha_de_Inicio_de_Acuerdo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCFecha_de_Inicio_de_AcuerdoFrom = $("#txtAdvanceFromFecha_de_Inicio_de_Acuerdo").val();
+            advanceSearch.Acuerdos_MASCFecha_de_Inicio_de_AcuerdoTo = $("#txtAdvanceToFecha_de_Inicio_de_Acuerdo").val();
+        }
+        if ($("#txtAdvanceFromMonto_Total").val() != "" || $("#txtAdvanceToMonto_Total").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCMonto_TotalFrom = $("#txtAdvanceFromMonto_Total").val();
+            advanceSearch.Acuerdos_MASCMonto_TotalTo = $("#txtAdvanceToMonto_Total").val();
+        }
+        if ($("#txtAdvanceFromParcialidades").val() != "" || $("#txtAdvanceToParcialidades").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCParcialidadesFrom = $("#txtAdvanceFromParcialidades").val();
+            advanceSearch.Acuerdos_MASCParcialidadesTo = $("#txtAdvanceToParcialidades").val();
+        }
+        advanceSearch.PeriodicidadSearchType = 0;
+        if ($('#ddlAdvancePeriodicidad').val().length > 0 || $("#txtAdvancePeriodicidad").val() == "") {
+
+
+            if (isAcuerdos_MASCTextSearch) {
+                advanceSearch.PeriodicidadName = $("#txtAdvancePeriodicidad").val();
+                advanceSearch.PeriodicidadNameSearchType = $("#ddlAdvancePeriodicidad").val();
+                advanceSearch.PeriodicidadSearchType = 1;
+            }
+            else {
+
+                advanceSearch.PeriodicidadToSearch = $("#ddlAdvancePeriodicidad").val();
+                advanceSearch.PeriodicidadSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromMonto_de_la_Parcialidad").val() != "" || $("#txtAdvanceToMonto_de_la_Parcialidad").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCMonto_de_la_ParcialidadFrom = $("#txtAdvanceFromMonto_de_la_Parcialidad").val();
+            advanceSearch.Acuerdos_MASCMonto_de_la_ParcialidadTo = $("#txtAdvanceToMonto_de_la_Parcialidad").val();
+        }
+        advanceSearch.Personal_de_Seguimiento_AsignadoSearchType = 0;
+        if ($('#ddlAdvancePersonal_de_Seguimiento_Asignado').val().length > 0 || $("#txtAdvancePersonal_de_Seguimiento_Asignado").val() == "") {
+
+
+            if (isAcuerdos_MASCTextSearch) {
+                advanceSearch.Personal_de_Seguimiento_AsignadoName = $("#txtAdvancePersonal_de_Seguimiento_Asignado").val();
+                advanceSearch.Personal_de_Seguimiento_AsignadoNameSearchType = $("#ddlAdvancePersonal_de_Seguimiento_Asignado").val();
+                advanceSearch.Personal_de_Seguimiento_AsignadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Personal_de_Seguimiento_AsignadoToSearch = $("#ddlAdvancePersonal_de_Seguimiento_Asignado").val();
+                advanceSearch.Personal_de_Seguimiento_AsignadoSearchType = 2;
+            }
+        }
+        advanceSearch.AcuerdoSearchType = 0;
+        if ($('#ddlAdvanceAcuerdo').val().length > 0 || $("#txtAdvanceAcuerdo").val() == "") {
+
+
+            if (isAcuerdos_MASCTextSearch) {
+                advanceSearch.AcuerdoName = $("#txtAdvanceAcuerdo").val();
+                advanceSearch.AcuerdoNameSearchType = $("#ddlAdvanceAcuerdo").val();
+                advanceSearch.AcuerdoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.AcuerdoToSearch = $("#ddlAdvanceAcuerdo").val();
+                advanceSearch.AcuerdoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceComentarios").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCComentarios = $("#txtAdvanceComentarios").val();
+            advanceSearch.Acuerdos_MASCComentariosSearchType = $("#ddlAdvanceComentariosFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Cumplimiento_de_Acuerdo").val() != "" || $("#txtAdvanceToFecha_de_Cumplimiento_de_Acuerdo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCFecha_de_Cumplimiento_de_AcuerdoFrom = $("#txtAdvanceFromFecha_de_Cumplimiento_de_Acuerdo").val();
+            advanceSearch.Acuerdos_MASCFecha_de_Cumplimiento_de_AcuerdoTo = $("#txtAdvanceToFecha_de_Cumplimiento_de_Acuerdo").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Revision").val() != "" || $("#txtAdvanceToFecha_de_Revision").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCFecha_de_RevisionFrom = $("#txtAdvanceFromFecha_de_Revision").val();
+            advanceSearch.Acuerdos_MASCFecha_de_RevisionTo = $("#txtAdvanceToFecha_de_Revision").val();
+        }
+        if ($("#txtAdvanceHora_de_Revision").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCHora_de_Revision = $("#txtAdvanceHora_de_Revision").val();
+            advanceSearch.Acuerdos_MASCHora_de_RevisionSearchType = $("#ddlAdvanceHora_de_RevisionFilter").val();
+        }
+        advanceSearch.Usuario_que_RevisaSearchType = 0;
+        if ($('#ddlAdvanceUsuario_que_Revisa').val().length > 0 || $("#txtAdvanceUsuario_que_Revisa").val() == "") {
+
+
+            if (isAcuerdos_MASCTextSearch) {
+                advanceSearch.Usuario_que_RevisaName = $("#txtAdvanceUsuario_que_Revisa").val();
+                advanceSearch.Usuario_que_RevisaNameSearchType = $("#ddlAdvanceUsuario_que_Revisa").val();
+                advanceSearch.Usuario_que_RevisaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Usuario_que_RevisaToSearch = $("#ddlAdvanceUsuario_que_Revisa").val();
+                advanceSearch.Usuario_que_RevisaSearchType = 2;
+            }
+        }
+        advanceSearch.ResultadoSearchType = 0;
+        if ($('#ddlAdvanceResultado').val().length > 0 || $("#txtAdvanceResultado").val() == "") {
+
+
+            if (isAcuerdos_MASCTextSearch) {
+                advanceSearch.ResultadoName = $("#txtAdvanceResultado").val();
+                advanceSearch.ResultadoNameSearchType = $("#ddlAdvanceResultado").val();
+                advanceSearch.ResultadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ResultadoToSearch = $("#ddlAdvanceResultado").val();
+                advanceSearch.ResultadoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceMotivo_de_Rechazo_de_Acuerdo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acuerdos_MASCMotivo_de_Rechazo_de_Acuerdo = $("#txtAdvanceMotivo_de_Rechazo_de_Acuerdo").val();
+            advanceSearch.Acuerdos_MASCMotivo_de_Rechazo_de_AcuerdoSearchType = $("#ddlAdvanceMotivo_de_Rechazo_de_AcuerdoFilter").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblAcuerdos_MASC').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isAcuerdos_MASCTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceNumero_de_Expediente").keypress(function () {
+            isAcuerdos_MASCTextSearch = true;
+            $("#ddlAdvanceNumero_de_Expediente").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceNumero_de_Expediente").change(function () {
+            isAcuerdos_MASCTextSearch = false;
+            $("#txtAdvanceNumero_de_Expediente").val('');
+        });
+        $("#txtAdvanceUsuario_que_Registra").keypress(function () {
+            isAcuerdos_MASCTextSearch = true;
+            $("#ddlAdvanceUsuario_que_Registra").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceUsuario_que_Registra").change(function () {
+            isAcuerdos_MASCTextSearch = false;
+            $("#txtAdvanceUsuario_que_Registra").val('');
+        });
+        $("#txtAdvanceTipo_de_Acuerdo").keypress(function () {
+            isAcuerdos_MASCTextSearch = true;
+            $("#ddlAdvanceTipo_de_Acuerdo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Acuerdo").change(function () {
+            isAcuerdos_MASCTextSearch = false;
+            $("#txtAdvanceTipo_de_Acuerdo").val('');
+        });
+        $("#txtAdvancePeriodicidad").keypress(function () {
+            isAcuerdos_MASCTextSearch = true;
+            $("#ddlAdvancePeriodicidad").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePeriodicidad").change(function () {
+            isAcuerdos_MASCTextSearch = false;
+            $("#txtAdvancePeriodicidad").val('');
+        });
+        $("#txtAdvancePersonal_de_Seguimiento_Asignado").keypress(function () {
+            isAcuerdos_MASCTextSearch = true;
+            $("#ddlAdvancePersonal_de_Seguimiento_Asignado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePersonal_de_Seguimiento_Asignado").change(function () {
+            isAcuerdos_MASCTextSearch = false;
+            $("#txtAdvancePersonal_de_Seguimiento_Asignado").val('');
+        });
+        $("#txtAdvanceUsuario_que_Revisa").keypress(function () {
+            isAcuerdos_MASCTextSearch = true;
+            $("#ddlAdvanceUsuario_que_Revisa").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceUsuario_que_Revisa").change(function () {
+            isAcuerdos_MASCTextSearch = false;
+            $("#txtAdvanceUsuario_que_Revisa").val('');
+        });
+        $("#txtAdvanceResultado").keypress(function () {
+            isAcuerdos_MASCTextSearch = true;
+            $("#ddlAdvanceResultado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceResultado").change(function () {
+            isAcuerdos_MASCTextSearch = false;
+            $("#txtAdvanceResultado").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

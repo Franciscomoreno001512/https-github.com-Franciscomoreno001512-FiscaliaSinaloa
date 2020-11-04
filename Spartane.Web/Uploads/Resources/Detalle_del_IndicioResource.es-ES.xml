@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_del_Indicio" value="Detalle del Indicio"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Numero_de_Indicio" value="Número de Indicio"></resource>
+  <resource culture="es-es" name="Nombre_del_Indicio" value="Nombre del Indicio"></resource>
+  <resource culture="es-es" name="Descripcion_del_Indicio" value="Descripción del Indicio"></resource>
+  <resource culture="es-es" name="Motivo" value="Motivo"></resource>
+  <resource culture="es-es" name="Estatus" value="Estatus"></resource>
+  <resource culture="es-es" name="Ubicacion_de_Indicio" value="Ubicación de Indicio"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

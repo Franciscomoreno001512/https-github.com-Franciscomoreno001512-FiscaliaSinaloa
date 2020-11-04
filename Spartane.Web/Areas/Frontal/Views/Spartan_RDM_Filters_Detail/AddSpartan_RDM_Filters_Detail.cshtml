@@ -1,0 +1,477 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Spartan_RDM_Filters_DetailModel
+@{
+
+
+    List<SelectListItem> varSpartan_Attribute_Bypass_Field_Name = null;
+    if (ViewBag.Spartan_Attribute_Bypasss_Field_Name != null)
+    { varSpartan_Attribute_Bypass_Field_Name = (List<SelectListItem>)ViewBag.Spartan_Attribute_Bypasss_Field_Name; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Spartan RDM Filters Detail
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Spartan_RDM_Filters_DetailRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Spartan_RDM_Filters_DetailPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Spartan RDM Filters Detail
+								<button onclick="Spartan_RDM_Filters_DetailGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Spartan_RDM_Filters_DetailBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Spartan_RDM_Filters_DetailResources.Spartan_RDM_Filters_Detail</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Spartan_RDM_Filters_DetailDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Spartan_RDM_Filters_DetailPropertyBusinessModal" id="Spartan_RDM_Filters_DetailPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Spartan_RDM_Filters_DetailBusinessRule-form" onclick="Spartan_RDM_Filters_DetailGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Spartan_RDM_Filters_DetailPropertyModal" id="Spartan_RDM_Filters_DetailPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Spartan_RDM_Filters_DetailBusinessRuleModal" id="Spartan_RDM_Filters_DetailBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Spartan_RDM_Filters_DetailAddBusinessRuleModal" id="Spartan_RDM_Filters_DetailAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Spartan_RDM_Filters_Detail", FormMethod.Post, new { id = "CreateSpartan_RDM_Filters_Detail", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Spartan_RDM_Filters_DetailCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divFilters_Detail_Id">
+                                <label class="col-sm-2 control-label">@Resources.Spartan_RDM_Filters_DetailResources.Filters_Detail_Id</label>
+                                <div class="col-sm-8" data-field-id="Filters_Detail_Id" data-attribute="266249" data-field-name="@Resources.Spartan_RDM_Filters_DetailResources.Filters_Detail_Id">
+                                    <label class="form-control" for="Spartan_RDM_Filters_DetailFilters_Detail_Id" id="Spartan_RDM_Filters_DetailFilters_Detail_Id">@Model.Filters_Detail_Id</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divField_Name">
+	<label class="col-sm-2 control-label">@Resources.Spartan_RDM_Filters_DetailResources.Field_Name</label>
+	<div class="col-sm-8" data-field-id="Field_Name" data-attribute="266251" data-field-name="@Resources.Spartan_RDM_Filters_DetailResources.Field_Name">
+		<select class="form-control" data-val="true" data-val-number="The field Field Name must be a number." data-val-required="The Field Name field is required." id="Spartan_RDM_Filters_DetailField_Name" name="Spartan_RDM_Filters_DetailField_Name">
+			<option value=""></option>
+			@if (varSpartan_Attribute_Bypass_Field_Name != null){ 
+				foreach (var itemField_Name in varSpartan_Attribute_Bypass_Field_Name)
+				{
+					if (itemField_Name.Value == Convert.ToString(Model.Field_Name))
+					{
+						<option value="@itemField_Name.Value" selected>@itemField_Name.Text</option>
+					}
+					else
+					{
+						<option value="@itemField_Name.Value">@itemField_Name.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divField_Label">
+                                <label class="col-sm-2 control-label">@Resources.Spartan_RDM_Filters_DetailResources.Field_Label</label>
+                                <div class="col-sm-8" data-field-id="Field_Label" data-attribute="266252" data-field-name="@Resources.Spartan_RDM_Filters_DetailResources.Field_Label">
+                                    <input class="form-control" id="Spartan_RDM_Filters_DetailField_Label" name="Spartan_RDM_Filters_DetailField_Label" type="text" value="@Model.Field_Label">
+                                </div>
+                            </div>
+<div class="form-group" id="divOrder_Shown">
+	<label class="col-sm-2 control-label">@Resources.Spartan_RDM_Filters_DetailResources.Order_Shown</label>
+	<div class="col-sm-8" data-field-id="Order_Shown" data-attribute="266253" data-field-name="@Resources.Spartan_RDM_Filters_DetailResources.Order_Shown">
+		<input class="form-control inputNumber" id="Spartan_RDM_Filters_DetailOrder_Shown" name="Spartan_RDM_Filters_DetailOrder_Shown" type="text" value="@Model.Order_Shown">
+	</div>
+</div>
+<div class="form-group" id="divField_Path">
+                                <label class="col-sm-2 control-label">@Resources.Spartan_RDM_Filters_DetailResources.Field_Path</label>
+                                <div class="col-sm-8" data-field-id="Field_Path" data-attribute="266254" data-field-name="@Resources.Spartan_RDM_Filters_DetailResources.Field_Path">
+                                    <input class="form-control" id="Spartan_RDM_Filters_DetailField_Path" name="Spartan_RDM_Filters_DetailField_Path" type="text" value="@Model.Field_Path">
+                                </div>
+                            </div>
+<div class="form-group" id="divPhysical_Field_Name">
+                                <label class="col-sm-2 control-label">@Resources.Spartan_RDM_Filters_DetailResources.Physical_Field_Name</label>
+                                <div class="col-sm-8" data-field-id="Physical_Field_Name" data-attribute="266255" data-field-name="@Resources.Spartan_RDM_Filters_DetailResources.Physical_Field_Name">
+                                    <input class="form-control" id="Spartan_RDM_Filters_DetailPhysical_Field_Name" name="Spartan_RDM_Filters_DetailPhysical_Field_Name" type="text" value="@Model.Physical_Field_Name">
+                                </div>
+                            </div>
+<div class="form-group" id="divLogical_Field_Name">
+                                <label class="col-sm-2 control-label">@Resources.Spartan_RDM_Filters_DetailResources.Logical_Field_Name</label>
+                                <div class="col-sm-8" data-field-id="Logical_Field_Name" data-attribute="266256" data-field-name="@Resources.Spartan_RDM_Filters_DetailResources.Logical_Field_Name">
+                                    <input class="form-control" id="Spartan_RDM_Filters_DetailLogical_Field_Name" name="Spartan_RDM_Filters_DetailLogical_Field_Name" type="text" value="@Model.Logical_Field_Name">
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Filters_Detail_Id" id="ReferenceFilters_Detail_Id" />
+												<input type="hidden" value="@Model.Filters_Detail_Id" name="Filters_Detail_Id" id="Filters_Detail_IdId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Spartan_RDM_Filters_DetailConfigureSave" name="Spartan_RDM_Filters_DetailConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnSpartan_RDM_Filters_DetailConfigureType" />
+												<input type="hidden" id="hdnSpartan_RDM_Filters_DetailBusinessRuleFieldId" />
+												<input type="hidden" id="hdnSpartan_RDM_Filters_DetailBusinessRuleFieldName" />
+												<input type="hidden" id="hdnSpartan_RDM_Filters_DetailBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Spartan_RDM_Filters_DetailGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Spartan_RDM_Filters_DetailBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Spartan_RDM_Filters_Detail.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Spartan_RDM_Filters_DetailGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Spartan_RDM_Filters_DetailCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Spartan_Record_Detail_ManagementCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Spartan_RDM_Filters_DetailRowElement = "Spartan_RDM_Filters_DetailPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Spartan_RDM_Filters_DetailRowElement + "')){ Spartan_RDM_Filters_DetailInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendSpartan_RDM_Filters_DetailData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateSpartan_RDM_Filters_Detail").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateSpartan_RDM_Filters_Detail")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Spartan_RDM_Filters_DetailCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Spartan_RDM_Filters_Detail/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Spartan_RDM_Filters_DetailPropertyBag", "Spartan_RDM_Filters_Detail")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Spartan_RDM_Filters_DetailGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnSpartan_RDM_Filters_DetailBusinessRuleFieldId').val(FieldId);
+				$('#hdnSpartan_RDM_Filters_DetailBusinessRuleFieldName').val(FieldName);
+				$('#hdnSpartan_RDM_Filters_DetailBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnSpartan_RDM_Filters_DetailBusinessRuleFieldId').val(), FieldName: $('#hdnSpartan_RDM_Filters_DetailBusinessRuleFieldName').val(), ObjectId: '45362', Attribute: $('#hdnSpartan_RDM_Filters_DetailBusinessRuleAttribute').val(), Screen: 'Spartan_RDM_Filters_Detail' }, function (data) {
+                $(".Spartan_RDM_Filters_DetailBusinessRuleModal").html(data);
+            });
+        }
+        function Spartan_RDM_Filters_DetailGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnSpartan_RDM_Filters_DetailBusinessRuleFieldId').val(FieldId);
+				$('#hdnSpartan_RDM_Filters_DetailBusinessRuleFieldName').val(FieldName);
+				$('#hdnSpartan_RDM_Filters_DetailBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnSpartan_RDM_Filters_DetailBusinessRuleFieldId').val(), FieldName: $('#hdnSpartan_RDM_Filters_DetailBusinessRuleFieldName').val(), ObjectId: '45362', Attribute: $('#hdnSpartan_RDM_Filters_DetailBusinessRuleAttribute').val(), Screen: 'Spartan_RDM_Filters_Detail' }, function (data) {
+                $(".Spartan_RDM_Filters_DetailAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnSpartan_RDM_Filters_DetailBusinessRuleFieldId').val(), FieldName: $('#hdnSpartan_RDM_Filters_DetailBusinessRuleFieldName').val(), ObjectId: '45362', Attribute: $('#hdnSpartan_RDM_Filters_DetailBusinessRuleAttribute').val(), Screen: 'Spartan_RDM_Filters_Detail' }, function (data) {
+				$(".Spartan_RDM_Filters_DetailBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Spartan_RDM_Filters_Detail/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Spartan_RDM_Filters_Detail/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Spartan_RDM_Filters_Detail/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnSpartan_RDM_Filters_DetailConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnSpartan_RDM_Filters_DetailConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Spartan_RDM_Filters_Detail/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnSpartan_RDM_Filters_DetailConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Spartan_RDM_Filters_Detail/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Spartan_RDM_Filters_Detail' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Spartan_RDM_Filters_Detail' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Spartan_RDM_Filters_DetailConfigureSave').text('Save Settings');
+                    $('#hdnSpartan_RDM_Filters_DetailConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateSpartan_RDM_Filters_Detail').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnSpartan_RDM_Filters_DetailBusinessRuleFieldId').val(fieldId);
+			$('#hdnSpartan_RDM_Filters_DetailBusinessRuleFieldName').val(fieldName);
+			$('#hdnSpartan_RDM_Filters_DetailBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

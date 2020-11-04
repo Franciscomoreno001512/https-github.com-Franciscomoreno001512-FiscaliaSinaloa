@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Historico_JA" value="Detalle Historico JA"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Fecha" value="Fecha"></resource>
+  <resource culture="en-US" name="Hora" value="Hora"></resource>
+  <resource culture="en-US" name="Usuario" value="Usuario"></resource>
+  <resource culture="en-US" name="Estatus" value="Estatus"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_Diligencias_MASC" value="Diligencias"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Solicitud" value="Número de Expediente"></resource>
+  <resource culture="es-es" name="Fecha" value="Fecha"></resource>
+  <resource culture="es-es" name="Hora" value="Hora"></resource>
+  <resource culture="es-es" name="Facilitador" value="Facilitador"></resource>
+  <resource culture="es-es" name="Tipo_de_Diligencia" value="Tipo de Diligencia"></resource>
+  <resource culture="es-es" name="Diligencia" value="Diligencia"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

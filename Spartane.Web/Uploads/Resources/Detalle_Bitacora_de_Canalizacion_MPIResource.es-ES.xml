@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_Bitacora_de_Canalizacion_MPI" value="Detalle Bitacora de Canalizacion MPI"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Fecha_de_Cambio_de_Estatus" value="Fecha de Cambio de Estatus"></resource>
+  <resource culture="es-es" name="Hora_de_Cambio_de_Estatus" value="Hora de Cambio de Estatus"></resource>
+  <resource culture="es-es" name="Estatus_Interno" value="Estatus Interno"></resource>
+  <resource culture="es-es" name="Estatus_de_Canalizacion" value="Estatus de Canalización"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

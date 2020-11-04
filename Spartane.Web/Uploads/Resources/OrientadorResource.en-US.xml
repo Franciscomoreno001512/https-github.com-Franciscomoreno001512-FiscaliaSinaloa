@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Orientador" value="Orientador"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="en-US" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="en-US" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="en-US" name="Atencion_Medica" value="¿Requiere Atención Médica?"></resource>
+  <resource culture="en-US" name="Atencion_Psicologica" value="¿Requiere Atención Psicológica?"></resource>
+  <resource culture="en-US" name="Traductor" value="¿Requiere Traductor?"></resource>
+  <resource culture="en-US" name="Narrativa_DM" value="Narrativa"></resource>
+  <resource culture="en-US" name="Narrativa_DP" value="Narrativa"></resource>
+  <resource culture="en-US" name="Idioma" value="Idioma o Dialecto"></resource>
+  <resource culture="en-US" name="Nombre" value="Nombre(s)"></resource>
+  <resource culture="en-US" name="Apellido_Paterno" value="Apellido Paterno"></resource>
+  <resource culture="en-US" name="Apellido_Materno" value="Apellido Materno"></resource>
+  <resource culture="en-US" name="Fecha_de_Nacimiento" value="Fecha de Nacimiento"></resource>
+  <resource culture="en-US" name="Edad" value="Edad"></resource>
+  <resource culture="en-US" name="Sexo" value="Sexo"></resource>
+  <resource culture="en-US" name="Estado_Civil" value="Estado Civil"></resource>
+  <resource culture="en-US" name="Tipo_de_Identificacion" value="Tipo de Identificación"></resource>
+  <resource culture="en-US" name="Numero_de_Identificacion" value="Número de Identificación"></resource>
+  <resource culture="en-US" name="Nacionalidad" value="Nacionalidad"></resource>
+  <resource culture="en-US" name="Escolaridad" value="Escolaridad"></resource>
+  <resource culture="en-US" name="Ocupacion" value="Ocupación"></resource>
+  <resource culture="en-US" name="Calle" value="Calle"></resource>
+  <resource culture="en-US" name="Numero_Exterior" value="N° Exterior"></resource>
+  <resource culture="en-US" name="Numero_Interior" value="N° Interior"></resource>
+  <resource culture="en-US" name="Colonia" value="Colonia"></resource>
+  <resource culture="en-US" name="Codigo_Postal" value="C.P."></resource>
+  <resource culture="en-US" name="Localidad" value="Localidad"></resource>
+  <resource culture="en-US" name="Municipio" value="Municipio"></resource>
+  <resource culture="en-US" name="Estado" value="Estado"></resource>
+  <resource culture="en-US" name="Telefono" value="Teléfono"></resource>
+  <resource culture="en-US" name="Celular" value="Celular"></resource>
+  <resource culture="en-US" name="Correo_Electronico" value="Correo Electrónico"></resource>
+  <resource culture="en-US" name="Fecha_del_Hecho" value="Fecha del Hecho"></resource>
+  <resource culture="en-US" name="Hora_Aproximada_del_Hecho" value="Hora Aproximada del Hecho"></resource>
+  <resource culture="en-US" name="Tipo_de_Lugar_del_Hecho" value="Tipo de Lugar del Hecho"></resource>
+  <resource culture="en-US" name="Calle2" value="Calle"></resource>
+  <resource culture="en-US" name="Numero_Exterior2" value="N° Exterior"></resource>
+  <resource culture="en-US" name="Numero_Interior2" value="N° Interior"></resource>
+  <resource culture="en-US" name="Colonia2" value="Colonia"></resource>
+  <resource culture="en-US" name="Codigo_Postal2" value="C.P."></resource>
+  <resource culture="en-US" name="Zona" value="Zona"></resource>
+  <resource culture="en-US" name="Municipio2" value="Municipio"></resource>
+  <resource culture="en-US" name="Estado2" value="Estado"></resource>
+  <resource culture="en-US" name="Grupo_Delito" value="Grupo Delito"></resource>
+  <resource culture="en-US" name="Delito" value="Delito"></resource>
+  <resource culture="en-US" name="Circunstancia" value="Circunstancia"></resource>
+  <resource culture="en-US" name="Tipo_Delito" value="Tipo Delito"></resource>
+  <resource culture="en-US" name="Forma_Comision_Delito" value="Forma Comision Delito"></resource>
+  <resource culture="en-US" name="Forma_Accion_Delito" value="Forma Acción Delito"></resource>
+  <resource culture="en-US" name="Modalidad_Delito" value="Modalidad Delito"></resource>
+  <resource culture="en-US" name="Elementos_Comision_Delito" value="Elementos Comisión Delito"></resource>
+  <resource culture="en-US" name="Monto" value="Monto"></resource>
+  <resource culture="en-US" name="HViolencia_de_Genero" value="Hubo Violencia de Genero"></resource>
+  <resource culture="en-US" name="Calificacion_del_Delito" value="Calificación del Delito"></resource>
+  <resource culture="en-US" name="CircunstanciaV" value="Circunstancia"></resource>
+  <resource culture="en-US" name="Clase_Especifica" value="Clase Especifica"></resource>
+  <resource culture="en-US" name="Marca" value="Marca"></resource>
+  <resource culture="en-US" name="Sub_Marca" value="Sub Marca"></resource>
+  <resource culture="en-US" name="Tipo_de_Vehiculo" value="Tipo de Vehículo"></resource>
+  <resource culture="en-US" name="Modelo" value="Modelo"></resource>
+  <resource culture="en-US" name="Color" value="Color"></resource>
+  <resource culture="en-US" name="Placas" value="Placas"></resource>
+  <resource culture="en-US" name="Estado_Placas" value="Estado de Origen de las Placas"></resource>
+  <resource culture="en-US" name="Vehiculo_Robado" value="El Vehículo es Robado"></resource>
+  <resource culture="en-US" name="Seguro" value="¿El Vehiculó está Asegurado?"></resource>
+  <resource culture="en-US" name="Aseguradora" value="Nombre de la Aseguradora"></resource>
+  <resource culture="en-US" name="Tipo_de_Servicio" value="Tipo de Servicio"></resource>
+  <resource culture="en-US" name="Ruta_del_Servicio_Publico" value="Ruta del Servicio Público"></resource>
+  <resource culture="en-US" name="Mercancia" value="El Vehículo Transportaba Mercancía"></resource>
+  <resource culture="en-US" name="Descripcion" value="Descripción de lo que Transportaba"></resource>
+  <resource culture="en-US" name="Monto_de_la_Carga" value="Monto de la Carga"></resource>
+  <resource culture="en-US" name="Senas_Particulares" value="Señas Particulares"></resource>
+  <resource culture="en-US" name="Modalidad_del_Robo" value="Modalidad del Robo"></resource>
+  <resource culture="en-US" name="Circunstancia_Defuncion" value="Circunstancia de Defunción"></resource>
+  <resource culture="en-US" name="Consecuencia_Defuncion" value="Consecuencia Defunción"></resource>
+  <resource culture="en-US" name="Fecha_Levantamiento" value="Fecha Levantamiento"></resource>
+  <resource culture="en-US" name="Hora_Levantamiento" value="Hora Levantamiento"></resource>
+  <resource culture="en-US" name="Domicilio" value="Domicilio"></resource>
+  <resource culture="en-US" name="Numero_Interior3" value="Número Int"></resource>
+  <resource culture="en-US" name="Numero_Exterior3" value="Número Ext"></resource>
+  <resource culture="en-US" name="Colonia3" value="Colonia"></resource>
+  <resource culture="en-US" name="Colonia_no_Catalogada" value="Colonia no Catalogada"></resource>
+  <resource culture="en-US" name="Zona2" value="Zona"></resource>
+  <resource culture="en-US" name="Municipio3" value="Municipio"></resource>
+  <resource culture="en-US" name="Estado3" value="Estado"></resource>
+  <resource culture="en-US" name="Necropsia" value="Necropsia"></resource>
+  <resource culture="en-US" name="Cronotanatodiagnostico" value="Cronotanatodiagnóstico"></resource>
+  <resource culture="en-US" name="Ruta" value="Ruta"></resource>
+  <resource culture="en-US" name="Estado_Operador" value="El Operador Conducía en Estado de Ebriedad"></resource>
+  <resource culture="en-US" name="Delito_Principal_o_Secundario" value="Es Delito Principal"></resource>
+  <resource culture="en-US" name="Concurso" value="Concurso"></resource>
+  <resource culture="en-US" name="Compareciente" value="Tipo de Compareciente"></resource>
+  <resource culture="en-US" name="NombreC" value="Nombre"></resource>
+  <resource culture="en-US" name="Apellido_PaternoC" value="Apellido Paterno"></resource>
+  <resource culture="en-US" name="Apellido_MaternoC" value="Apellido Materno"></resource>
+  <resource culture="en-US" name="NombreT" value="Nombre del Tutor"></resource>
+  <resource culture="en-US" name="Apellido_PaternoT" value="Apellido Paterno del Tutor"></resource>
+  <resource culture="en-US" name="Apellido_MaternoT" value="Apellido Materno del Tutor"></resource>
+  <resource culture="en-US" name="CalleC" value="Calle"></resource>
+  <resource culture="en-US" name="Numero_ExteriorC" value="N° Exterior"></resource>
+  <resource culture="en-US" name="Numero_InteriorC" value="N° Interior"></resource>
+  <resource culture="en-US" name="ColoniaC" value="Colonia"></resource>
+  <resource culture="en-US" name="Codigo_PostalC" value="C.P."></resource>
+  <resource culture="en-US" name="ZonaC" value="Zona"></resource>
+  <resource culture="en-US" name="MunicipioC" value="Municipio"></resource>
+  <resource culture="en-US" name="EstadoC" value="Estado"></resource>
+  <resource culture="en-US" name="NarrativaC" value="Narrativa Breve de los Hechos"></resource>
+  <resource culture="en-US" name="Conocido" value="Conocido"></resource>
+  <resource culture="en-US" name="Desconocido" value="Desconocido"></resource>
+  <resource culture="en-US" name="Numero_de_Imputados" value="Número de Imputado(s)"></resource>
+  <resource culture="en-US" name="Procedencia" value="Procedencia"></resource>
+  <resource culture="en-US" name="Motor" value="Motor"></resource>
+  <resource culture="en-US" name="Serie" value="Serie"></resource>
+  <resource culture="en-US" name="Causa_de_Muerte" value="Causa de Muerte"></resource>
+  <resource culture="en-US" name="Entre_Calle" value="Entre Calle"></resource>
+  <resource culture="en-US" name="Entre_Calle2" value="Y Calle"></resource>
+  <resource culture="en-US" name="Autoriza" value="Autoriza o no Autoriza Servicio"></resource>
+  <resource culture="en-US" name="Autoriza2" value="Autoriza o no Autoriza Servicio"></resource>
+  <resource culture="en-US" name="Autoriza3" value="Autoriza o no Autoriza Servicio"></resource>
+  <resource culture="en-US" name="Menor_de_Edad" value="Menor de Edad"></resource>
+
+<resource culture="en-US" name="TabDatos_de_Servicios_de_Apoyo" value="Datos de Servicios de Apoyo"></resource>
+<resource culture="en-US" name="TabDatos_del_Imputado" value="Datos del Imputado"></resource>
+<resource culture="en-US" name="TabDatos_de_los_Hechos" value="Datos de los Hechos"></resource>
+<resource culture="en-US" name="TabDatos_del_Delito" value="Datos del Delito"></resource>
+<resource culture="en-US" name="TabDatos_de_Robo_de_Vehiculo" value="Datos de Robo de Vehículo"></resource>
+<resource culture="en-US" name="TabDatos_de_Levantamiento_de_Cadaver" value="Datos de Levantamiento de Cadáver"></resource>
+<resource culture="en-US" name="TabImputado" value="Imputado"></resource>
+
+</resources>

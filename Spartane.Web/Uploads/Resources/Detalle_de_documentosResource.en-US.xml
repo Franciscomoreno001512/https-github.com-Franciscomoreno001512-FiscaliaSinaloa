@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_documentos" value="Documentos"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Solicitud" value="Número de Expediente"></resource>
+  <resource culture="en-US" name="Fecha" value="Fecha"></resource>
+  <resource culture="en-US" name="Hora_de_Registro" value="Hora"></resource>
+  <resource culture="en-US" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="en-US" name="Tipo_de_Documento" value="Tipo de Documento"></resource>
+  <resource culture="en-US" name="Documento" value="Documento"></resource>
+  <resource culture="en-US" name="Solicitante" value="Solicitante"></resource>
+  <resource culture="en-US" name="Requerido" value="Requerido"></resource>
+  <resource culture="en-US" name="Archivo_Adjunto" value="Archivo Adjunto"></resource>
+  <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="en-US" name="Archivo" value="Archivo"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

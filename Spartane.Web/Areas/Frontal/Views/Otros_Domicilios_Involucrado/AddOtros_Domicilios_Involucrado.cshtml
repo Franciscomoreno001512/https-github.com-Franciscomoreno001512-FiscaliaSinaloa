@@ -1,0 +1,629 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Otros_Domicilios_InvolucradoModel
+@{
+
+
+ List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+ List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varColonia_Poblacion = null;
+    if (ViewBag.Colonias_Poblacion != null)
+    { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
+ List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Otros Domicilios Involucrado
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Otros_Domicilios_InvolucradoRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Otros_Domicilios_InvolucradoPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Otros Domicilios Involucrado
+								<button onclick="Otros_Domicilios_InvolucradoGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Otros_Domicilios_InvolucradoBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Otros_Domicilios_InvolucradoResources.Otros_Domicilios_Involucrado</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Otros_Domicilios_InvolucradoDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Otros_Domicilios_InvolucradoPropertyBusinessModal" id="Otros_Domicilios_InvolucradoPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Otros_Domicilios_InvolucradoBusinessRule-form" onclick="Otros_Domicilios_InvolucradoGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Otros_Domicilios_InvolucradoPropertyModal" id="Otros_Domicilios_InvolucradoPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Otros_Domicilios_InvolucradoBusinessRuleModal" id="Otros_Domicilios_InvolucradoBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Otros_Domicilios_InvolucradoAddBusinessRuleModal" id="Otros_Domicilios_InvolucradoAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Otros_Domicilios_Involucrado", FormMethod.Post, new { id = "CreateOtros_Domicilios_Involucrado", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Otros_Domicilios_InvolucradoCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Otros_Domicilios_InvolucradoResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="265662" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Clave">
+                                    <label class="form-control" for="Otros_Domicilios_InvolucradoClave" id="Otros_Domicilios_InvolucradoClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divEstado">
+                                <label class="col-sm-2 control-label">@Resources.Otros_Domicilios_InvolucradoResources.Estado</label>
+                                <div class="col-sm-8" data-field-id="Estado" data-attribute="265664" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Estado">
+                                    <select class='fullWidth AutoCompleteEstado form-control select2-dropdown' data-val="true" id="Otros_Domicilios_InvolucradoEstado" name="Otros_Domicilios_InvolucradoEstado">
+                                        <option value="@Model.Estado">@(Model.EstadoNombre??Model.EstadoNombre)</option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="form-group" id="divMunicipio">
+                                <label class="col-sm-2 control-label">@Resources.Otros_Domicilios_InvolucradoResources.Municipio</label>
+                                <div class="col-sm-8" data-field-id="Municipio" data-attribute="265665" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Municipio">
+                                    <select class='fullWidth AutoCompleteMunicipio form-control select2-dropdown' data-val="true" id="Otros_Domicilios_InvolucradoMunicipio" name="Otros_Domicilios_InvolucradoMunicipio">
+                                        <option value="@Model.Municipio">@(Model.MunicipioNombre??Model.MunicipioNombre)</option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="form-group" id="divPoblacion">
+                                <label class="col-sm-2 control-label">@Resources.Otros_Domicilios_InvolucradoResources.Poblacion</label>
+                                <div class="col-sm-8" data-field-id="Poblacion" data-attribute="265666" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Poblacion">
+                                    <select class='fullWidth AutoCompleteColonia form-control select2-dropdown' data-val="true" id="Otros_Domicilios_InvolucradoPoblacion" name="Otros_Domicilios_InvolucradoPoblacion">
+                                        <option value="@Model.Poblacion">@(Model.PoblacionNombre??Model.PoblacionNombre)</option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="form-group" id="divColonia">
+                                <label class="col-sm-2 control-label">@Resources.Otros_Domicilios_InvolucradoResources.Colonia</label>
+                                <div class="col-sm-8" data-field-id="Colonia" data-attribute="265667" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Colonia">
+                                    <select class='fullWidth AutoCompleteColonia form-control select2-dropdown' data-val="true" id="Otros_Domicilios_InvolucradoColonia" name="Otros_Domicilios_InvolucradoColonia">
+                                        <option value="@Model.Colonia">@(Model.ColoniaNombre??Model.ColoniaNombre)</option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="form-group" id="divCodigo_Postal">
+	<label class="col-sm-2 control-label">@Resources.Otros_Domicilios_InvolucradoResources.Codigo_Postal</label>
+	<div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="265668" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Codigo_Postal">
+		<input class="form-control inputNumber" id="Otros_Domicilios_InvolucradoCodigo_Postal" name="Otros_Domicilios_InvolucradoCodigo_Postal" type="text" value="@Model.Codigo_Postal">
+	</div>
+</div>
+<div class="form-group" id="divCalle">
+                                <label class="col-sm-2 control-label">@Resources.Otros_Domicilios_InvolucradoResources.Calle</label>
+                                <div class="col-sm-8" data-field-id="Calle" data-attribute="265669" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Calle">
+                                    <input class="form-control" id="Otros_Domicilios_InvolucradoCalle" name="Otros_Domicilios_InvolucradoCalle" type="text" value="@Model.Calle">
+                                </div>
+                            </div>
+<div class="form-group" id="divEntre_Calle">
+                                <label class="col-sm-2 control-label">@Resources.Otros_Domicilios_InvolucradoResources.Entre_Calle</label>
+                                <div class="col-sm-8" data-field-id="Entre_Calle" data-attribute="265670" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Entre_Calle">
+                                    <input class="form-control" id="Otros_Domicilios_InvolucradoEntre_Calle" name="Otros_Domicilios_InvolucradoEntre_Calle" type="text" value="@Model.Entre_Calle">
+                                </div>
+                            </div>
+<div class="form-group" id="divY_Calle">
+                                <label class="col-sm-2 control-label">@Resources.Otros_Domicilios_InvolucradoResources.Y_Calle</label>
+                                <div class="col-sm-8" data-field-id="Y_Calle" data-attribute="265671" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Y_Calle">
+                                    <input class="form-control" id="Otros_Domicilios_InvolucradoY_Calle" name="Otros_Domicilios_InvolucradoY_Calle" type="text" value="@Model.Y_Calle">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Exterior">
+                                <label class="col-sm-2 control-label">@Resources.Otros_Domicilios_InvolucradoResources.Numero_Exterior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="265672" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Numero_Exterior">
+                                    <input class="form-control" id="Otros_Domicilios_InvolucradoNumero_Exterior" name="Otros_Domicilios_InvolucradoNumero_Exterior" type="text" value="@Model.Numero_Exterior">
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Otros_Domicilios_InvolucradoConfigureSave" name="Otros_Domicilios_InvolucradoConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnOtros_Domicilios_InvolucradoConfigureType" />
+												<input type="hidden" id="hdnOtros_Domicilios_InvolucradoBusinessRuleFieldId" />
+												<input type="hidden" id="hdnOtros_Domicilios_InvolucradoBusinessRuleFieldName" />
+												<input type="hidden" id="hdnOtros_Domicilios_InvolucradoBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Otros_Domicilios_InvolucradoGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Otros_Domicilios_InvolucradoBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Otros_Domicilios_Involucrado.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Otros_Domicilios_InvolucradoGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Otros_Domicilios_InvolucradoCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Datos_GeneralesCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Otros_Domicilios_InvolucradoRowElement = "Otros_Domicilios_InvolucradoPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Otros_Domicilios_InvolucradoRowElement + "')){ Otros_Domicilios_InvolucradoInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+       var AutoCompleteEstadoData =[];
+       $(".AutoCompleteOtros_Domicilios_Involucrado_Estado").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Otros_Domicilios_Involucrado/GetOtros_Domicilios_Involucrado_Estado_Estado")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteOtros_Domicilios_Involucrado_Estado_EstadoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteOtros_Domicilios_Involucrado_Estado");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteMunicipioData =[];
+       $(".AutoCompleteOtros_Domicilios_Involucrado_Municipio").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Otros_Domicilios_Involucrado/GetOtros_Domicilios_Involucrado_Municipio_Municipio")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteOtros_Domicilios_Involucrado_Municipio_MunicipioData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteOtros_Domicilios_Involucrado_Municipio");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompletePoblacionData =[];
+       $(".AutoCompleteOtros_Domicilios_Involucrado_Poblacion").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Otros_Domicilios_Involucrado/GetOtros_Domicilios_Involucrado_Poblacion_Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteOtros_Domicilios_Involucrado_Poblacion_ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteOtros_Domicilios_Involucrado_Poblacion");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteColoniaData =[];
+       $(".AutoCompleteOtros_Domicilios_Involucrado_Colonia").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Otros_Domicilios_Involucrado/GetOtros_Domicilios_Involucrado_Colonia_Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteOtros_Domicilios_Involucrado_Colonia_ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteOtros_Domicilios_Involucrado_Colonia");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendOtros_Domicilios_InvolucradoData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateOtros_Domicilios_Involucrado").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateOtros_Domicilios_Involucrado")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Otros_Domicilios_InvolucradoCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Otros_Domicilios_Involucrado/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Otros_Domicilios_InvolucradoPropertyBag", "Otros_Domicilios_Involucrado")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Otros_Domicilios_InvolucradoGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnOtros_Domicilios_InvolucradoBusinessRuleFieldId').val(FieldId);
+				$('#hdnOtros_Domicilios_InvolucradoBusinessRuleFieldName').val(FieldName);
+				$('#hdnOtros_Domicilios_InvolucradoBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnOtros_Domicilios_InvolucradoBusinessRuleFieldId').val(), FieldName: $('#hdnOtros_Domicilios_InvolucradoBusinessRuleFieldName').val(), ObjectId: '45299', Attribute: $('#hdnOtros_Domicilios_InvolucradoBusinessRuleAttribute').val(), Screen: 'Otros_Domicilios_Involucrado' }, function (data) {
+                $(".Otros_Domicilios_InvolucradoBusinessRuleModal").html(data);
+            });
+        }
+        function Otros_Domicilios_InvolucradoGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnOtros_Domicilios_InvolucradoBusinessRuleFieldId').val(FieldId);
+				$('#hdnOtros_Domicilios_InvolucradoBusinessRuleFieldName').val(FieldName);
+				$('#hdnOtros_Domicilios_InvolucradoBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnOtros_Domicilios_InvolucradoBusinessRuleFieldId').val(), FieldName: $('#hdnOtros_Domicilios_InvolucradoBusinessRuleFieldName').val(), ObjectId: '45299', Attribute: $('#hdnOtros_Domicilios_InvolucradoBusinessRuleAttribute').val(), Screen: 'Otros_Domicilios_Involucrado' }, function (data) {
+                $(".Otros_Domicilios_InvolucradoAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnOtros_Domicilios_InvolucradoBusinessRuleFieldId').val(), FieldName: $('#hdnOtros_Domicilios_InvolucradoBusinessRuleFieldName').val(), ObjectId: '45299', Attribute: $('#hdnOtros_Domicilios_InvolucradoBusinessRuleAttribute').val(), Screen: 'Otros_Domicilios_Involucrado' }, function (data) {
+				$(".Otros_Domicilios_InvolucradoBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Otros_Domicilios_Involucrado/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Otros_Domicilios_Involucrado/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Otros_Domicilios_Involucrado/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnOtros_Domicilios_InvolucradoConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnOtros_Domicilios_InvolucradoConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Otros_Domicilios_Involucrado/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnOtros_Domicilios_InvolucradoConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Otros_Domicilios_Involucrado/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Otros_Domicilios_Involucrado' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Otros_Domicilios_Involucrado' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Otros_Domicilios_InvolucradoConfigureSave').text('Save Settings');
+                    $('#hdnOtros_Domicilios_InvolucradoConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateOtros_Domicilios_Involucrado').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnOtros_Domicilios_InvolucradoBusinessRuleFieldId').val(fieldId);
+			$('#hdnOtros_Domicilios_InvolucradoBusinessRuleFieldName').val(fieldName);
+			$('#hdnOtros_Domicilios_InvolucradoBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Indicios" value="Indicios"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="es-es" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="es-es" name="NUC" value="NUC"></resource>
+  <resource culture="es-es" name="NIC" value="NIC"></resource>
+  <resource culture="es-es" name="Delegacion" value="Delegación"></resource>
+  <resource culture="es-es" name="Agencia" value="Agencia"></resource>
+  <resource culture="es-es" name="Clave_Indicio" value="Clave Indicio"></resource>
+  <resource culture="es-es" name="IndiciosC" value="IndiciosC"></resource>
+  <resource culture="es-es" name="Solicitudes" value="Solicitudes"></resource>
+  <resource culture="es-es" name="Devoluciones" value="Devoluciones"></resource>
+
+<resource culture="es-es" name="TabRegistro_de_Indicios" value="Registro de Indicios"></resource>
+<resource culture="es-es" name="TabDatos_Indicios" value="Datos Indicios"></resource>
+<resource culture="es-es" name="TabSolicitud_de_Indicios" value="Solicitud de Indicios"></resource>
+<resource culture="es-es" name="TabDevolucion_de_Indicios" value="Devolución de Indicios"></resource>
+
+</resources>

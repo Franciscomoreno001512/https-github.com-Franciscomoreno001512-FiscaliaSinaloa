@@ -1,0 +1,1387 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Solicitud_Representante_LegalModel
+@{
+
+/*
+    string Fecha_de_Nacimiento = "";
+    if (Model.Fecha_de_Nacimiento == "")
+    { Model.Fecha_de_Nacimiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+*/
+ List<SelectListItem> varSolicitud_Numero_de_Expediente = null;
+    if (ViewBag.Solicituds_Numero_de_Expediente != null)
+    { varSolicitud_Numero_de_Expediente = (List<SelectListItem>)ViewBag.Solicituds_Numero_de_Expediente; }
+    List<SelectListItem> varGenero_Sexo = null;
+    if (ViewBag.Generos_Sexo != null)
+    { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
+    List<SelectListItem> varEstado_Civil_Estado_Civil = null;
+    if (ViewBag.Estado_Civils_Estado_Civil != null)
+    { varEstado_Civil_Estado_Civil = (List<SelectListItem>)ViewBag.Estado_Civils_Estado_Civil; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion; }
+    List<SelectListItem> varNacionalidad_Nacionalidad = null;
+    if (ViewBag.Nacionalidads_Nacionalidad != null)
+    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
+    List<SelectListItem> varEscolaridad_Escolaridad = null;
+    if (ViewBag.Escolaridads_Escolaridad != null)
+    { varEscolaridad_Escolaridad = (List<SelectListItem>)ViewBag.Escolaridads_Escolaridad; }
+    List<SelectListItem> varOcupacion_Ocupacion = null;
+    if (ViewBag.Ocupacions_Ocupacion != null)
+    { varOcupacion_Ocupacion = (List<SelectListItem>)ViewBag.Ocupacions_Ocupacion; }
+ List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+ List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+ List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varColonia_Colonia_ = null;
+    if (ViewBag.Colonias_Colonia_ != null)
+    { varColonia_Colonia_ = (List<SelectListItem>)ViewBag.Colonias_Colonia_; }
+ List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.Detalle_de_Solicitud_Representante_LegalResources.Detalle_de_Solicitud_Representante_Legal
+                <button onclick="Detalle_de_Solicitud_Representante_LegalGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitud_Representante_LegalBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Detalle_de_Solicitud_Representante_LegalResources.Detalle_de_Solicitud_Representante_Legal</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="Detalle_de_Solicitud_Representante_LegalDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in Detalle_de_Solicitud_Representante_LegalPropertyBusinessModal" id="Detalle_de_Solicitud_Representante_LegalPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Detalle_de_Solicitud_Representante_LegalBusinessRule-form" onclick="Detalle_de_Solicitud_Representante_LegalGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitud_Representante_LegalBusinessRuleModal" id="Detalle_de_Solicitud_Representante_LegalBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Detalle_de_Solicitud_Representante_Legal", FormMethod.Post, new { id = "CreateDetalle_de_Solicitud_Representante_Legal", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Detalle_de_Solicitud_Representante_LegalCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Detalle_de_Solicitud_Representante_LegalResources.TabDatos_Generales</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="263668" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" id="dividRegistroAT">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.idRegistroAT</label>
+                                <div class="col-sm-8" data-field-id="idRegistroAT" data-attribute="266623" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.idRegistroAT">
+                                    <input class="form-control inputNumber Datos_Generales" id="idRegistroAT" name="idRegistroAT" type="text" value="@Model.idRegistroAT">
+                                    @*<span class="field-validation-valid" data-valmsg-for="idRegistroAT" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="dividRegistroUI">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.idRegistroUI</label>
+                                <div class="col-sm-8" data-field-id="idRegistroUI" data-attribute="266624" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.idRegistroUI">
+                                    <input class="form-control inputNumber Datos_Generales" id="idRegistroUI" name="idRegistroUI" type="text" value="@Model.idRegistroUI">
+                                    @*<span class="field-validation-valid" data-valmsg-for="idRegistroUI" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+				<div class="form-group" id="divNumero_de_Expediente">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Numero_de_Expediente</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Expediente" data-attribute="263697" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Numero_de_Expediente">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitud_Representante_Legal_Numero_de_Expediente form-control select2-dropdown Datos_Generales' data-val="true" id="Numero_de_Expediente" name="Numero_de_Expediente">
+                                        <option value="@Model.Numero_de_Expediente">@(Model.Numero_de_ExpedienteNumero_de_Folio??Model.Numero_de_ExpedienteNumero_de_Folio)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263697).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud', 'Numero_de_Expediente');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divNombre">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Nombre</label>
+                                <div class="col-sm-8" data-field-id="Nombre" data-attribute="263669" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Nombre">
+                                    <input class="form-control Datos_Generales" id="Nombre" name="Nombre" type="text" value="@Model.Nombre">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Nombre" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divApellido_Paterno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Apellido_Paterno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Paterno" data-attribute="263670" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Apellido_Paterno">
+                                    <input class="form-control Datos_Generales" id="Apellido_Paterno" name="Apellido_Paterno" type="text" value="@Model.Apellido_Paterno">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Apellido_Paterno" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divApellido_Materno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Apellido_Materno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Materno" data-attribute="263671" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Apellido_Materno">
+                                    <input class="form-control Datos_Generales" id="Apellido_Materno" name="Apellido_Materno" type="text" value="@Model.Apellido_Materno">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Apellido_Materno" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFecha_de_Nacimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Fecha_de_Nacimiento</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Nacimiento" data-attribute="263672" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Fecha_de_Nacimiento">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Nacimiento"  name="Fecha_de_Nacimiento" type="text" value="@Model.Fecha_de_Nacimiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divEdad">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Edad</label>
+                                <div class="col-sm-8" data-field-id="Edad" data-attribute="263673" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Edad">
+                                    <input class="form-control inputNumber Datos_Generales" id="Edad" name="Edad" type="text" value="@Model.Edad">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Edad" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divSexo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Sexo</label>
+                                <div class="col-sm-8" data-field-id="Sexo" data-attribute="263674" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Sexo">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Sexo must be a number." data-val-required="The Sexo field is required." id="Sexo" name="Sexo">
+                                        <option value=""></option>
+                                        @if (varGenero_Sexo != null){ 
+                                            foreach (var itemSexo in varGenero_Sexo)
+                                            {
+                                                if (itemSexo.Value == Convert.ToString(Model.Sexo))
+                                                {
+                                                    <option value="@itemSexo.Value" selected>@itemSexo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemSexo.Value">@itemSexo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Sexo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263674).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Genero', 'Sexo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divEstado_Civil">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Estado_Civil</label>
+                                <div class="col-sm-8" data-field-id="Estado_Civil" data-attribute="263675" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Estado_Civil">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Estado Civil must be a number." data-val-required="The Estado Civil field is required." id="Estado_Civil" name="Estado_Civil">
+                                        <option value=""></option>
+                                        @if (varEstado_Civil_Estado_Civil != null){ 
+                                            foreach (var itemEstado_Civil in varEstado_Civil_Estado_Civil)
+                                            {
+                                                if (itemEstado_Civil.Value == Convert.ToString(Model.Estado_Civil))
+                                                {
+                                                    <option value="@itemEstado_Civil.Value" selected>@itemEstado_Civil.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemEstado_Civil.Value">@itemEstado_Civil.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Estado_Civil" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263675).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Estado_Civil', 'Estado_Civil');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo_de_Identificacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Tipo_de_Identificacion</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Identificacion" data-attribute="263676" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Tipo_de_Identificacion">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Identificación must be a number." data-val-required="The Tipo de Identificación field is required." id="Tipo_de_Identificacion" name="Tipo_de_Identificacion">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Identificacion_Tipo_de_Identificacion != null){ 
+                                            foreach (var itemTipo_de_Identificacion in varTipo_de_Identificacion_Tipo_de_Identificacion)
+                                            {
+                                                if (itemTipo_de_Identificacion.Value == Convert.ToString(Model.Tipo_de_Identificacion))
+                                                {
+                                                    <option value="@itemTipo_de_Identificacion.Value" selected>@itemTipo_de_Identificacion.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Identificacion.Value">@itemTipo_de_Identificacion.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Identificacion" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263676).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Identificacion', 'Tipo_de_Identificacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divNumero_de_Identificacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Numero_de_Identificacion</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Identificacion" data-attribute="263677" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Numero_de_Identificacion">
+                                    <input class="form-control Datos_Generales" id="Numero_de_Identificacion" name="Numero_de_Identificacion" type="text" value="@Model.Numero_de_Identificacion">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_de_Identificacion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNacionalidad">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Nacionalidad</label>
+                                <div class="col-sm-8" data-field-id="Nacionalidad" data-attribute="263678" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Nacionalidad">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Nacionalidad must be a number." data-val-required="The Nacionalidad field is required." id="Nacionalidad" name="Nacionalidad">
+                                        <option value=""></option>
+                                        @if (varNacionalidad_Nacionalidad != null){ 
+                                            foreach (var itemNacionalidad in varNacionalidad_Nacionalidad)
+                                            {
+                                                if (itemNacionalidad.Value == Convert.ToString(Model.Nacionalidad))
+                                                {
+                                                    <option value="@itemNacionalidad.Value" selected>@itemNacionalidad.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemNacionalidad.Value">@itemNacionalidad.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Nacionalidad" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263678).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Nacionalidad', 'Nacionalidad');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divEscolaridad">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Escolaridad</label>
+                                <div class="col-sm-8" data-field-id="Escolaridad" data-attribute="263679" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Escolaridad">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Escolaridad must be a number." data-val-required="The Escolaridad field is required." id="Escolaridad" name="Escolaridad">
+                                        <option value=""></option>
+                                        @if (varEscolaridad_Escolaridad != null){ 
+                                            foreach (var itemEscolaridad in varEscolaridad_Escolaridad)
+                                            {
+                                                if (itemEscolaridad.Value == Convert.ToString(Model.Escolaridad))
+                                                {
+                                                    <option value="@itemEscolaridad.Value" selected>@itemEscolaridad.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemEscolaridad.Value">@itemEscolaridad.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Escolaridad" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263679).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Escolaridad', 'Escolaridad');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divOcupacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Ocupacion</label>
+                                <div class="col-sm-8" data-field-id="Ocupacion" data-attribute="263680" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Ocupacion">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Ocupación must be a number." data-val-required="The Ocupación field is required." id="Ocupacion" name="Ocupacion">
+                                        <option value=""></option>
+                                        @if (varOcupacion_Ocupacion != null){ 
+                                            foreach (var itemOcupacion in varOcupacion_Ocupacion)
+                                            {
+                                                if (itemOcupacion.Value == Convert.ToString(Model.Ocupacion))
+                                                {
+                                                    <option value="@itemOcupacion.Value" selected>@itemOcupacion.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemOcupacion.Value">@itemOcupacion.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Ocupacion" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263680).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Ocupacion', 'Ocupacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divPais">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Pais</label>
+                                <div class="col-sm-8" data-field-id="Pais" data-attribute="263681" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Pais">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitud_Representante_Legal_Pais form-control select2-dropdown Datos_Generales' data-val="true" id="Pais" name="Pais">
+                                        <option value="@Model.Pais">@(Model.PaisNombre??Model.PaisNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263681).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Pais', 'Pais');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divEstado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Estado</label>
+                                <div class="col-sm-8" data-field-id="Estado" data-attribute="263682" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Estado">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitud_Representante_Legal_Estado form-control select2-dropdown Datos_Generales' data-val="true" id="Estado" name="Estado">
+                                        <option value="@Model.Estado">@(Model.EstadoNombre??Model.EstadoNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263682).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Estado', 'Estado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divMunicipio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Municipio</label>
+                                <div class="col-sm-8" data-field-id="Municipio" data-attribute="263683" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Municipio">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitud_Representante_Legal_Municipio form-control select2-dropdown Datos_Generales' data-val="true" id="Municipio" name="Municipio">
+                                        <option value="@Model.Municipio">@(Model.MunicipioNombre??Model.MunicipioNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263683).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Municipio', 'Municipio');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divColonia_">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Colonia_</label>
+                                <div class="col-sm-8" data-field-id="Colonia_" data-attribute="265987" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Colonia_">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitud_Representante_Legal_Colonia_ form-control select2-dropdown Datos_Generales' data-val="true" id="Colonia_" name="Colonia_">
+                                        <option value="@Model.Colonia_">@(Model.Colonia_Nombre??Model.Colonia_Nombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 265987).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Colonia_');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divCodigo_Postal">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Codigo_Postal</label>
+                                <div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="263684" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Codigo_Postal">
+                                    <input class="form-control inputNumber Datos_Generales" id="Codigo_Postal" name="Codigo_Postal" type="text" value="@Model.Codigo_Postal">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Codigo_Postal" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+				<div class="form-group" id="divColonia">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Colonia</label>
+                                <div class="col-sm-8" data-field-id="Colonia" data-attribute="263685" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Colonia">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitud_Representante_Legal_Colonia form-control select2-dropdown Datos_Generales' data-val="true" id="Colonia" name="Colonia">
+                                        <option value="@Model.Colonia">@(Model.ColoniaNombre??Model.ColoniaNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263685).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Colonia');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divCalle">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Calle</label>
+                                <div class="col-sm-8" data-field-id="Calle" data-attribute="263686" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Calle">
+                                    <input class="form-control Datos_Generales" id="Calle" name="Calle" type="text" value="@Model.Calle">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Calle" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNumero_Exterior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Numero_Exterior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="263687" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Numero_Exterior">
+                                    <input class="form-control Datos_Generales" id="Numero_Exterior" name="Numero_Exterior" type="text" value="@Model.Numero_Exterior">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_Exterior" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNumero_Interior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Numero_Interior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior" data-attribute="263688" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Numero_Interior">
+                                    <input class="form-control Datos_Generales" id="Numero_Interior" name="Numero_Interior" type="text" value="@Model.Numero_Interior">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_Interior" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divEntre_Calle">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Entre_Calle</label>
+                                <div class="col-sm-8" data-field-id="Entre_Calle" data-attribute="263689" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Entre_Calle">
+                                    <input class="form-control Datos_Generales" id="Entre_Calle" name="Entre_Calle" type="text" value="@Model.Entre_Calle">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Entre_Calle" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divY_Calle">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Y_Calle</label>
+                                <div class="col-sm-8" data-field-id="Y_Calle" data-attribute="263690" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Y_Calle">
+                                    <input class="form-control Datos_Generales" id="Y_Calle" name="Y_Calle" type="text" value="@Model.Y_Calle">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Y_Calle" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divLongitud">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Longitud</label>
+                                <div class="col-sm-8" data-field-id="Longitud" data-attribute="263691" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Longitud">
+                                    <input class="form-control Datos_Generales" id="Longitud" name="Longitud" type="text" value="@Model.Longitud">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Longitud" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divLatitud">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Latitud</label>
+                                <div class="col-sm-8" data-field-id="Latitud" data-attribute="263692" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Latitud">
+                                    <input class="form-control Datos_Generales" id="Latitud" name="Latitud" type="text" value="@Model.Latitud">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Latitud" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divTelefono">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Telefono</label>
+                                <div class="col-sm-8" data-field-id="Telefono" data-attribute="263693" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Telefono">
+                                    <input class="form-control Datos_Generales" id="Telefono" name="Telefono" type="text" value="@Model.Telefono">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Telefono" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divExtencion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Extencion</label>
+                                <div class="col-sm-8" data-field-id="Extencion" data-attribute="263694" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Extencion">
+                                    <input class="form-control Datos_Generales" id="Extencion" name="Extencion" type="text" value="@Model.Extencion">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Extencion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCelular">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Celular</label>
+                                <div class="col-sm-8" data-field-id="Celular" data-attribute="263695" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Celular">
+                                    <input class="form-control Datos_Generales" id="Celular" name="Celular" type="text" value="@Model.Celular">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Celular" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCorreo_Electronico">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Representante_LegalResources.Correo_Electronico</label>
+                                <div class="col-sm-8" data-field-id="Correo_Electronico" data-attribute="263696" data-field-name="@Resources.Detalle_de_Solicitud_Representante_LegalResources.Correo_Electronico">
+                                    <input class="form-control Datos_Generales" id="Correo_Electronico" name="Correo_Electronico" type="text" value="@Model.Correo_Electronico">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Correo_Electronico" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+                                <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Detalle_de_Solicitud_Representante_LegalGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Detalle_de_Solicitud_Representante_LegalCreateForm');"  />
+									<button onclick="Detalle_de_Solicitud_Representante_LegalGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitud_Representante_LegalBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Detalle_de_Solicitud_Representante_LegalGuardarYNuevo" onclick="return checkClientValidate('Detalle_de_Solicitud_Representante_LegalCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Detalle_de_Solicitud_Representante_LegalGuardarYCopia" onclick="return checkClientValidate('Detalle_de_Solicitud_Representante_LegalCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnDetalle_de_Solicitud_Representante_LegalBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnDetalle_de_Solicitud_Representante_LegalBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnDetalle_de_Solicitud_Representante_LegalBusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Detalle_de_Solicitud_Representante_LegalCancelar" name="Detalle_de_Solicitud_Representante_LegalCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                <button onclick="Detalle_de_Solicitud_Representante_LegalGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitud_Representante_LegalBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Solicitud_Representante_Legal.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Solicitud_Representante_LegalGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Solicitud_Representante_LegalCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_Generales = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45092');
+		    
+		   
+                        $('#Fecha_de_Nacimiento').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#Detalle_de_Solicitud_Representante_LegalGuardarYNuevo').hide();
+                $('#Detalle_de_Solicitud_Representante_LegalGuardarYCopia').hide();
+                $('#Detalle_de_Solicitud_Representante_LegalCancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#Detalle_de_Solicitud_Representante_LegalGuardar').val('Actualizar Seccion ' + '@Resources.Detalle_de_Solicitud_Representante_LegalResources.Detalle_de_Solicitud_Representante_Legal' )
+            }
+
+			
+			       var AutoCompleteNumero_de_ExpedienteData =[];
+       $(".AutoCompleteDetalle_de_Solicitud_Representante_Legal_Numero_de_Expediente").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/GetDetalle_de_Solicitud_Representante_Legal_Numero_de_Expediente_Solicitud")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Solicitud_Representante_Legal_Numero_de_Expediente_SolicitudData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitud_Representante_Legal_Numero_de_Expediente");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompletePaisData =[];
+       $(".AutoCompleteDetalle_de_Solicitud_Representante_Legal_Pais").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/GetDetalle_de_Solicitud_Representante_Legal_Pais_Pais")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Solicitud_Representante_Legal_Pais_PaisData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitud_Representante_Legal_Pais");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteEstadoData =[];
+       $(".AutoCompleteDetalle_de_Solicitud_Representante_Legal_Estado").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/GetDetalle_de_Solicitud_Representante_Legal_Estado_Estado")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Solicitud_Representante_Legal_Estado_EstadoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitud_Representante_Legal_Estado");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteMunicipioData =[];
+       $(".AutoCompleteDetalle_de_Solicitud_Representante_Legal_Municipio").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/GetDetalle_de_Solicitud_Representante_Legal_Municipio_Municipio")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Solicitud_Representante_Legal_Municipio_MunicipioData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitud_Representante_Legal_Municipio");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteColonia_Data =[];
+       $(".AutoCompleteDetalle_de_Solicitud_Representante_Legal_Colonia_").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/GetDetalle_de_Solicitud_Representante_Legal_Colonia__Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Solicitud_Representante_Legal_Colonia__ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitud_Representante_Legal_Colonia_");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteColoniaData =[];
+       $(".AutoCompleteDetalle_de_Solicitud_Representante_Legal_Colonia").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/GetDetalle_de_Solicitud_Representante_Legal_Colonia_Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Solicitud_Representante_Legal_Colonia_ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitud_Representante_Legal_Colonia");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
+        });
+
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+
+        function SendDetalle_de_Solicitud_Representante_LegalData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Solicitud_Representante_Legal").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Solicitud_Representante_Legal")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#ReferenceClave").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_Generales && !checkClientValidate('Detalle_de_Solicitud_Representante_LegalCreateForm', 'Datos_Generales')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+            }
+			
+			
+			if (Tab_Datos_Generales)
+				Save_Datos_Generales(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".Detalle_de_Solicitud_Representante_LegalBusinessRuleModal").html(data);
+			});
+		}
+                function Detalle_de_Solicitud_Representante_LegalGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45092');
+			$('#Screen').val('Detalle_de_Solicitud_Representante_Legal');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function Detalle_de_Solicitud_Representante_LegalBackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Solicitud_Representante_Legal').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        Detalle_de_Solicitud_Representante_LegalGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_Generales()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/Get_Datos_Generales")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#idRegistroAT').val(result.data.idRegistroAT);
+                    $('#idRegistroUI').val(result.data.idRegistroUI);
+                    var control = $('#Numero_de_Expediente');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Numero_de_Expediente).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Numero_de_Expediente).trigger('change');
+                    }, 3000);
+                    $('#Nombre').val(result.data.Nombre);
+                    $('#Apellido_Paterno').val(result.data.Apellido_Paterno);
+                    $('#Apellido_Materno').val(result.data.Apellido_Materno);
+                    $('#Fecha_de_Nacimiento').val(result.data.Fecha_de_Nacimiento);
+                    $('#Edad').val(result.data.Edad);
+                    $('#Sexo').val(result.data.Sexo);
+                    $('#Estado_Civil').val(result.data.Estado_Civil);
+                    $('#Tipo_de_Identificacion').val(result.data.Tipo_de_Identificacion);
+                    $('#Numero_de_Identificacion').val(result.data.Numero_de_Identificacion);
+                    $('#Nacionalidad').val(result.data.Nacionalidad);
+                    $('#Escolaridad').val(result.data.Escolaridad);
+                    $('#Ocupacion').val(result.data.Ocupacion);
+                    var control = $('#Pais');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Pais).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Pais).trigger('change');
+                    }, 3000);
+                    var control = $('#Estado');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Estado).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Estado).trigger('change');
+                    }, 3000);
+                    var control = $('#Municipio');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Municipio).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Municipio).trigger('change');
+                    }, 3000);
+                    var control = $('#Colonia_');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Colonia_).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Colonia_).trigger('change');
+                    }, 3000);
+                    $('#Codigo_Postal').val(result.data.Codigo_Postal);
+                    var control = $('#Colonia');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Colonia).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Colonia).trigger('change');
+                    }, 3000);
+                    $('#Calle').val(result.data.Calle);
+                    $('#Numero_Exterior').val(result.data.Numero_Exterior);
+                    $('#Numero_Interior').val(result.data.Numero_Interior);
+                    $('#Entre_Calle').val(result.data.Entre_Calle);
+                    $('#Y_Calle').val(result.data.Y_Calle);
+                    $('#Longitud').val(result.data.Longitud);
+                    $('#Latitud').val(result.data.Latitud);
+                    $('#Telefono').val(result.data.Telefono);
+                    $('#Extencion').val(result.data.Extencion);
+                    $('#Celular').val(result.data.Celular);
+                    $('#Correo_Electronico').val(result.data.Correo_Electronico);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_Generales(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('idRegistroAT', $('#idRegistroAT').val());
+                data.append('idRegistroUI', $('#idRegistroUI').val());
+                data.append('Numero_de_Expediente', $('#Numero_de_Expediente').val());
+                data.append('Nombre', $('#Nombre').val());
+                data.append('Apellido_Paterno', $('#Apellido_Paterno').val());
+                data.append('Apellido_Materno', $('#Apellido_Materno').val());
+                data.append('Fecha_de_Nacimiento', $('#Fecha_de_Nacimiento').val());
+                data.append('Edad', $('#Edad').val());
+                data.append('Sexo', $('#Sexo').val());
+                data.append('Estado_Civil', $('#Estado_Civil').val());
+                data.append('Tipo_de_Identificacion', $('#Tipo_de_Identificacion').val());
+                data.append('Numero_de_Identificacion', $('#Numero_de_Identificacion').val());
+                data.append('Nacionalidad', $('#Nacionalidad').val());
+                data.append('Escolaridad', $('#Escolaridad').val());
+                data.append('Ocupacion', $('#Ocupacion').val());
+                data.append('Pais', $('#Pais').val());
+                data.append('Estado', $('#Estado').val());
+                data.append('Municipio', $('#Municipio').val());
+                data.append('Colonia_', $('#Colonia_').val());
+                data.append('Codigo_Postal', $('#Codigo_Postal').val());
+                data.append('Colonia', $('#Colonia').val());
+                data.append('Calle', $('#Calle').val());
+                data.append('Numero_Exterior', $('#Numero_Exterior').val());
+                data.append('Numero_Interior', $('#Numero_Interior').val());
+                data.append('Entre_Calle', $('#Entre_Calle').val());
+                data.append('Y_Calle', $('#Y_Calle').val());
+                data.append('Longitud', $('#Longitud').val());
+                data.append('Latitud', $('#Latitud').val());
+                data.append('Telefono', $('#Telefono').val());
+                data.append('Extencion', $('#Extencion').val());
+                data.append('Celular', $('#Celular').val());
+                data.append('Correo_Electronico', $('#Correo_Electronico').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Detalle_de_Solicitud_Representante_Legal/Post_Datos_Generales")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="Detalle_de_Solicitud_Representante_Legal_cmbLabelSelect" name="Detalle_de_Solicitud_Representante_Legal_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

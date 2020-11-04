@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Documentos_MPI" value="Detalle de Documentos MPI"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Fecha" value="Fecha"></resource>
+  <resource culture="en-US" name="Documento" value="Documento"></resource>
+  <resource culture="en-US" name="Archivo" value="Archivo"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

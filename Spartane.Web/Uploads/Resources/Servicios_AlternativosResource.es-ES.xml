@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Servicios_Alternativos" value="Servicios Alternativos"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="CJusticia_Alternativa" value="El Caso Puede ser Canalizado a Justicia Alternativa"></resource>
+  <resource culture="es-es" name="Medios_Alternativos" value="Canalizarse a Medios Alternativos"></resource>
+  <resource culture="es-es" name="Motivo" value="Motivo"></resource>
+  <resource culture="es-es" name="Derechos" value="Se Informaron los Derechos"></resource>
+  <resource culture="es-es" name="Procedimiento" value="Se Informó el Procedimiento"></resource>
+  <resource culture="es-es" name="Solicita_Medios_Alternativos" value="Se Solicita el Servicio de Medios Alternativos"></resource>
+  <resource culture="es-es" name="Se_Canaliza" value="Se le Canaliza a"></resource>
+  <resource culture="es-es" name="Investigacion_con_Detenido" value="Inicio de Investigación con Detenido"></resource>
+  <resource culture="es-es" name="Investigacion_sin_Detenido" value="Inicio de Investigación sin Detenido"></resource>
+  <resource culture="es-es" name="Turnar_a_Justicia_Alternativa" value="Se Turna a Justicia Alternativa"></resource>
+  <resource culture="es-es" name="Instancia_Externa" value="Se Canaliza a Instancia Externa"></resource>
+
+<resource culture="es-es" name="TabDatos_de_Canalizacion" value="Datos de Canalización"></resource>
+
+</resources>

@@ -1,0 +1,525 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_DesestimacionModel
+@{
+
+
+    List<SelectListItem> varDetalle_de_Datos_Generales_Nombre_Completo = null;
+    if (ViewBag.Detalle_de_Datos_Generaless_Nombre_Completo != null)
+    { varDetalle_de_Datos_Generales_Nombre_Completo = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Nombre_Completo; }
+    List<SelectListItem> varA_Tiempo_Causal_de_Interrupcion = null;
+    if (ViewBag.A_Tiempos_Causal_de_Interrupcion != null)
+    { varA_Tiempo_Causal_de_Interrupcion = (List<SelectListItem>)ViewBag.A_Tiempos_Causal_de_Interrupcion; }
+    List<SelectListItem> varCausas_de_Interrupcion_Causa_de_Interrupcion = null;
+    if (ViewBag.Causas_de_Interrupcions_Causa_de_Interrupcion != null)
+    { varCausas_de_Interrupcion_Causa_de_Interrupcion = (List<SelectListItem>)ViewBag.Causas_de_Interrupcions_Causa_de_Interrupcion; }
+    List<SelectListItem> varA_Tiempo_Datos_Insuficientes = null;
+    if (ViewBag.A_Tiempos_Datos_Insuficientes != null)
+    { varA_Tiempo_Datos_Insuficientes = (List<SelectListItem>)ViewBag.A_Tiempos_Datos_Insuficientes; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Desestimación
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_DesestimacionRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_DesestimacionPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Desestimación
+								<button onclick="Detalle_de_DesestimacionGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_DesestimacionBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_DesestimacionResources.Detalle_de_Desestimacion</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_DesestimacionDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_DesestimacionPropertyBusinessModal" id="Detalle_de_DesestimacionPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_DesestimacionBusinessRule-form" onclick="Detalle_de_DesestimacionGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_DesestimacionPropertyModal" id="Detalle_de_DesestimacionPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_DesestimacionBusinessRuleModal" id="Detalle_de_DesestimacionBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_DesestimacionAddBusinessRuleModal" id="Detalle_de_DesestimacionAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Desestimacion", FormMethod.Post, new { id = "CreateDetalle_de_Desestimacion", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_DesestimacionCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_DesestimacionResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="264913" data-field-name="@Resources.Detalle_de_DesestimacionResources.Clave">
+                                    <label class="form-control" for="Detalle_de_DesestimacionClave" id="Detalle_de_DesestimacionClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre_Completo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_DesestimacionResources.Nombre_Completo</label>
+	<div class="col-sm-8" data-field-id="Nombre_Completo" data-attribute="264914" data-field-name="@Resources.Detalle_de_DesestimacionResources.Nombre_Completo">
+		<select class="form-control" data-val="true" data-val-number="The field Nombre Completo must be a number." data-val-required="The Nombre Completo field is required." id="Detalle_de_DesestimacionNombre_Completo" name="Detalle_de_DesestimacionNombre_Completo">
+			<option value=""></option>
+			@if (varDetalle_de_Datos_Generales_Nombre_Completo != null){ 
+				foreach (var itemNombre_Completo in varDetalle_de_Datos_Generales_Nombre_Completo)
+				{
+					if (itemNombre_Completo.Value == Convert.ToString(Model.Nombre_Completo))
+					{
+						<option value="@itemNombre_Completo.Value" selected>@itemNombre_Completo.Text</option>
+					}
+					else
+					{
+						<option value="@itemNombre_Completo.Value">@itemNombre_Completo.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCausal_de_Interrupcion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_DesestimacionResources.Causal_de_Interrupcion</label>
+	<div class="col-sm-8" data-field-id="Causal_de_Interrupcion" data-attribute="264916" data-field-name="@Resources.Detalle_de_DesestimacionResources.Causal_de_Interrupcion">
+		<select class="form-control" data-val="true" data-val-number="The field Existe una Causal de Interrupción must be a number." data-val-required="The Existe una Causal de Interrupción field is required." id="Detalle_de_DesestimacionCausal_de_Interrupcion" name="Detalle_de_DesestimacionCausal_de_Interrupcion">
+			<option value=""></option>
+			@if (varA_Tiempo_Causal_de_Interrupcion != null){ 
+				foreach (var itemCausal_de_Interrupcion in varA_Tiempo_Causal_de_Interrupcion)
+				{
+					if (itemCausal_de_Interrupcion.Value == Convert.ToString(Model.Causal_de_Interrupcion))
+					{
+						<option value="@itemCausal_de_Interrupcion.Value" selected>@itemCausal_de_Interrupcion.Text</option>
+					}
+					else
+					{
+						<option value="@itemCausal_de_Interrupcion.Value">@itemCausal_de_Interrupcion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCausa_de_Interrupcion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_DesestimacionResources.Causa_de_Interrupcion</label>
+	<div class="col-sm-8" data-field-id="Causa_de_Interrupcion" data-attribute="264917" data-field-name="@Resources.Detalle_de_DesestimacionResources.Causa_de_Interrupcion">
+		<select class="form-control" data-val="true" data-val-number="The field Causa de Interrupción must be a number." data-val-required="The Causa de Interrupción field is required." id="Detalle_de_DesestimacionCausa_de_Interrupcion" name="Detalle_de_DesestimacionCausa_de_Interrupcion">
+			<option value=""></option>
+			@if (varCausas_de_Interrupcion_Causa_de_Interrupcion != null){ 
+				foreach (var itemCausa_de_Interrupcion in varCausas_de_Interrupcion_Causa_de_Interrupcion)
+				{
+					if (itemCausa_de_Interrupcion.Value == Convert.ToString(Model.Causa_de_Interrupcion))
+					{
+						<option value="@itemCausa_de_Interrupcion.Value" selected>@itemCausa_de_Interrupcion.Text</option>
+					}
+					else
+					{
+						<option value="@itemCausa_de_Interrupcion.Value">@itemCausa_de_Interrupcion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divDatos_Insuficientes">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_DesestimacionResources.Datos_Insuficientes</label>
+	<div class="col-sm-8" data-field-id="Datos_Insuficientes" data-attribute="264918" data-field-name="@Resources.Detalle_de_DesestimacionResources.Datos_Insuficientes">
+		<select class="form-control" data-val="true" data-val-number="The field Datos Insuficientes para Establecer Líneas de Investigación must be a number." data-val-required="The Datos Insuficientes para Establecer Líneas de Investigación field is required." id="Detalle_de_DesestimacionDatos_Insuficientes" name="Detalle_de_DesestimacionDatos_Insuficientes">
+			<option value=""></option>
+			@if (varA_Tiempo_Datos_Insuficientes != null){ 
+				foreach (var itemDatos_Insuficientes in varA_Tiempo_Datos_Insuficientes)
+				{
+					if (itemDatos_Insuficientes.Value == Convert.ToString(Model.Datos_Insuficientes))
+					{
+						<option value="@itemDatos_Insuficientes.Value" selected>@itemDatos_Insuficientes.Text</option>
+					}
+					else
+					{
+						<option value="@itemDatos_Insuficientes.Value">@itemDatos_Insuficientes.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divActualizacion_de_Sobreseimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_DesestimacionResources.Actualizacion_de_Sobreseimiento</label>
+                                <div class="col-sm-8" data-field-id="Actualizacion_de_Sobreseimiento" data-attribute="264919" data-field-name="@Resources.Detalle_de_DesestimacionResources.Actualizacion_de_Sobreseimiento">
+                                    <input class="form-control" id="Detalle_de_DesestimacionActualizacion_de_Sobreseimiento" name="Detalle_de_DesestimacionActualizacion_de_Sobreseimiento" type="text" value="@Model.Actualizacion_de_Sobreseimiento">
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_DesestimacionConfigureSave" name="Detalle_de_DesestimacionConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_DesestimacionConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_DesestimacionBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_DesestimacionBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_DesestimacionBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_DesestimacionGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_DesestimacionBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Desestimacion.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_DesestimacionGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_DesestimacionCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Modulo_Atencion_InicialCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_DesestimacionRowElement = "Detalle_de_DesestimacionPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_DesestimacionRowElement + "')){ Detalle_de_DesestimacionInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_de_DesestimacionData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Desestimacion").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Desestimacion")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_DesestimacionCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Desestimacion/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_DesestimacionPropertyBag", "Detalle_de_Desestimacion")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_DesestimacionGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_DesestimacionBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_DesestimacionBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_DesestimacionBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_DesestimacionBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_DesestimacionBusinessRuleFieldName').val(), ObjectId: '45192', Attribute: $('#hdnDetalle_de_DesestimacionBusinessRuleAttribute').val(), Screen: 'Detalle_de_Desestimacion' }, function (data) {
+                $(".Detalle_de_DesestimacionBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_DesestimacionGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_DesestimacionBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_DesestimacionBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_DesestimacionBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_DesestimacionBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_DesestimacionBusinessRuleFieldName').val(), ObjectId: '45192', Attribute: $('#hdnDetalle_de_DesestimacionBusinessRuleAttribute').val(), Screen: 'Detalle_de_Desestimacion' }, function (data) {
+                $(".Detalle_de_DesestimacionAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_DesestimacionBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_DesestimacionBusinessRuleFieldName').val(), ObjectId: '45192', Attribute: $('#hdnDetalle_de_DesestimacionBusinessRuleAttribute').val(), Screen: 'Detalle_de_Desestimacion' }, function (data) {
+				$(".Detalle_de_DesestimacionBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Desestimacion/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Desestimacion/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Desestimacion/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_DesestimacionConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_DesestimacionConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Desestimacion/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_DesestimacionConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Desestimacion/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Desestimacion' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Desestimacion' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_DesestimacionConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_DesestimacionConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Desestimacion').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_DesestimacionBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_DesestimacionBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_DesestimacionBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

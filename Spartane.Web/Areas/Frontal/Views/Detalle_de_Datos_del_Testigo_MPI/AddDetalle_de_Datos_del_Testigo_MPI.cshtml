@@ -1,0 +1,1389 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Datos_del_Testigo_MPIModel
+@{
+
+    string Fecha_de_Nacimiento = "";
+    if (Model.Fecha_de_Nacimiento == "")
+    { Model.Fecha_de_Nacimiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Nacimento_del_Tutor = "";
+    if (Model.Fecha_de_Nacimento_del_Tutor == "")
+    { Model.Fecha_de_Nacimento_del_Tutor = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_del_Hecho = "";
+    if (Model.Fecha_del_Hecho == "")
+    { Model.Fecha_del_Hecho = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+    List<SelectListItem> varGenero_Sexo = null;
+    if (ViewBag.Generos_Sexo != null)
+    { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
+    List<SelectListItem> varEstado_Civil_Estado_Civil = null;
+    if (ViewBag.Estado_Civils_Estado_Civil != null)
+    { varEstado_Civil_Estado_Civil = (List<SelectListItem>)ViewBag.Estado_Civils_Estado_Civil; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion; }
+    List<SelectListItem> varNacionalidad_Nacionalidad = null;
+    if (ViewBag.Nacionalidads_Nacionalidad != null)
+    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
+    List<SelectListItem> varEscolaridad_Escolaridad = null;
+    if (ViewBag.Escolaridads_Escolaridad != null)
+    { varEscolaridad_Escolaridad = (List<SelectListItem>)ViewBag.Escolaridads_Escolaridad; }
+    List<SelectListItem> varOcupacion_Ocupacion = null;
+    if (ViewBag.Ocupacions_Ocupacion != null)
+    { varOcupacion_Ocupacion = (List<SelectListItem>)ViewBag.Ocupacions_Ocupacion; }
+    List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+    List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+    List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+    List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+    List<SelectListItem> varGenero_Sexo_del_Tutor = null;
+    if (ViewBag.Generos_Sexo_del_Tutor != null)
+    { varGenero_Sexo_del_Tutor = (List<SelectListItem>)ViewBag.Generos_Sexo_del_Tutor; }
+    List<SelectListItem> varEstado_Civil_Estado_Civil_del_Tutor = null;
+    if (ViewBag.Estado_Civils_Estado_Civil_del_Tutor != null)
+    { varEstado_Civil_Estado_Civil_del_Tutor = (List<SelectListItem>)ViewBag.Estado_Civils_Estado_Civil_del_Tutor; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion_del_Tutor = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_del_Tutor != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion_del_Tutor = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_del_Tutor; }
+    List<SelectListItem> varNacionalidad_Nacionalidad_del_Tutor = null;
+    if (ViewBag.Nacionalidads_Nacionalidad_del_Tutor != null)
+    { varNacionalidad_Nacionalidad_del_Tutor = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad_del_Tutor; }
+    List<SelectListItem> varEscolaridad_Escolaridad_del_Tutor = null;
+    if (ViewBag.Escolaridads_Escolaridad_del_Tutor != null)
+    { varEscolaridad_Escolaridad_del_Tutor = (List<SelectListItem>)ViewBag.Escolaridads_Escolaridad_del_Tutor; }
+    List<SelectListItem> varOcupacion_Ocupacion_del_Tutor = null;
+    if (ViewBag.Ocupacions_Ocupacion_del_Tutor != null)
+    { varOcupacion_Ocupacion_del_Tutor = (List<SelectListItem>)ViewBag.Ocupacions_Ocupacion_del_Tutor; }
+    List<SelectListItem> varPais_Pais_del_Tutor = null;
+    if (ViewBag.Paiss_Pais_del_Tutor != null)
+    { varPais_Pais_del_Tutor = (List<SelectListItem>)ViewBag.Paiss_Pais_del_Tutor; }
+    List<SelectListItem> varEstado_Estado_del_Tutor = null;
+    if (ViewBag.Estados_Estado_del_Tutor != null)
+    { varEstado_Estado_del_Tutor = (List<SelectListItem>)ViewBag.Estados_Estado_del_Tutor; }
+    List<SelectListItem> varMunicipio_Municipio_del_Tutor = null;
+    if (ViewBag.Municipios_Municipio_del_Tutor != null)
+    { varMunicipio_Municipio_del_Tutor = (List<SelectListItem>)ViewBag.Municipios_Municipio_del_Tutor; }
+    List<SelectListItem> varColonia_Colonia_del_Tutor = null;
+    if (ViewBag.Colonias_Colonia_del_Tutor != null)
+    { varColonia_Colonia_del_Tutor = (List<SelectListItem>)ViewBag.Colonias_Colonia_del_Tutor; }
+    List<SelectListItem> varTipo_de_Compareciente_Tipo_de_Compareciente = null;
+    if (ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente != null)
+    { varTipo_de_Compareciente_Tipo_de_Compareciente = (List<SelectListItem>)ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente; }
+    List<SelectListItem> varPrioridad_del_Hecho_Prioridad_del_Hecho = null;
+    if (ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho != null)
+    { varPrioridad_del_Hecho_Prioridad_del_Hecho = (List<SelectListItem>)ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho; }
+    List<SelectListItem> varPais_Pais_del_Hecho = null;
+    if (ViewBag.Paiss_Pais_del_Hecho != null)
+    { varPais_Pais_del_Hecho = (List<SelectListItem>)ViewBag.Paiss_Pais_del_Hecho; }
+    List<SelectListItem> varEstado_Estado_del_Hecho = null;
+    if (ViewBag.Estados_Estado_del_Hecho != null)
+    { varEstado_Estado_del_Hecho = (List<SelectListItem>)ViewBag.Estados_Estado_del_Hecho; }
+    List<SelectListItem> varMunicipio_Municipio_del_Hecho = null;
+    if (ViewBag.Municipios_Municipio_del_Hecho != null)
+    { varMunicipio_Municipio_del_Hecho = (List<SelectListItem>)ViewBag.Municipios_Municipio_del_Hecho; }
+    List<SelectListItem> varColonia_Colonia_del_Hecho = null;
+    if (ViewBag.Colonias_Colonia_del_Hecho != null)
+    { varColonia_Colonia_del_Hecho = (List<SelectListItem>)ViewBag.Colonias_Colonia_del_Hecho; }
+    List<SelectListItem> varLugar_Tipo_Tipo_del_Lugar_del_Hecho = null;
+    if (ViewBag.Lugar_Tipos_Tipo_del_Lugar_del_Hecho != null)
+    { varLugar_Tipo_Tipo_del_Lugar_del_Hecho = (List<SelectListItem>)ViewBag.Lugar_Tipos_Tipo_del_Lugar_del_Hecho; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Datos del Testigo MPI
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_Datos_del_Testigo_MPIRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_Datos_del_Testigo_MPIPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Datos del Testigo MPI
+								<button onclick="Detalle_de_Datos_del_Testigo_MPIGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Datos_del_Testigo_MPIBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Detalle_de_Datos_del_Testigo_MPI</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_Datos_del_Testigo_MPIDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_Datos_del_Testigo_MPIPropertyBusinessModal" id="Detalle_de_Datos_del_Testigo_MPIPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_Datos_del_Testigo_MPIBusinessRule-form" onclick="Detalle_de_Datos_del_Testigo_MPIGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Datos_del_Testigo_MPIPropertyModal" id="Detalle_de_Datos_del_Testigo_MPIPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Datos_del_Testigo_MPIBusinessRuleModal" id="Detalle_de_Datos_del_Testigo_MPIBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Datos_del_Testigo_MPIAddBusinessRuleModal" id="Detalle_de_Datos_del_Testigo_MPIAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Datos_del_Testigo_MPI", FormMethod.Post, new { id = "CreateDetalle_de_Datos_del_Testigo_MPI", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_Datos_del_Testigo_MPICreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="264378" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Clave">
+                                    <label class="form-control" for="Detalle_de_Datos_del_Testigo_MPIClave" id="Detalle_de_Datos_del_Testigo_MPIClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Nombre</label>
+                                <div class="col-sm-8" data-field-id="Nombre" data-attribute="264379" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Nombre">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPINombre" name="Detalle_de_Datos_del_Testigo_MPINombre" type="text" value="@Model.Nombre">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Paterno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Apellido_Paterno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Paterno" data-attribute="264380" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Apellido_Paterno">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPIApellido_Paterno" name="Detalle_de_Datos_del_Testigo_MPIApellido_Paterno" type="text" value="@Model.Apellido_Paterno">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Materno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Apellido_Materno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Materno" data-attribute="264381" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Apellido_Materno">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPIApellido_Materno" name="Detalle_de_Datos_del_Testigo_MPIApellido_Materno" type="text" value="@Model.Apellido_Materno">
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre_Completo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Nombre_Completo</label>
+                                <div class="col-sm-8" data-field-id="Nombre_Completo" data-attribute="264382" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Nombre_Completo">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPINombre_Completo" name="Detalle_de_Datos_del_Testigo_MPINombre_Completo" type="text" value="@Model.Nombre_Completo">
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Nacimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Fecha_de_Nacimiento</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Nacimiento" data-attribute="264383" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Fecha_de_Nacimiento">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Datos_del_Testigo_MPIFecha_de_Nacimiento" readonly="readonly" name="Detalle_de_Datos_del_Testigo_MPIFecha_de_Nacimiento" type="text" value="@Model.Fecha_de_Nacimiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divEdad">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Edad</label>
+	<div class="col-sm-8" data-field-id="Edad" data-attribute="264384" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Edad">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_del_Testigo_MPIEdad" name="Detalle_de_Datos_del_Testigo_MPIEdad" type="text" value="@Model.Edad">
+	</div>
+</div>
+<div class="form-group" id="divSexo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Sexo</label>
+	<div class="col-sm-8" data-field-id="Sexo" data-attribute="264385" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Sexo">
+		<select class="form-control" data-val="true" data-val-number="The field Sexo must be a number." data-val-required="The Sexo field is required." id="Detalle_de_Datos_del_Testigo_MPISexo" name="Detalle_de_Datos_del_Testigo_MPISexo">
+			<option value=""></option>
+			@if (varGenero_Sexo != null){ 
+				foreach (var itemSexo in varGenero_Sexo)
+				{
+					if (itemSexo.Value == Convert.ToString(Model.Sexo))
+					{
+						<option value="@itemSexo.Value" selected>@itemSexo.Text</option>
+					}
+					else
+					{
+						<option value="@itemSexo.Value">@itemSexo.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado_Civil">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Estado_Civil</label>
+	<div class="col-sm-8" data-field-id="Estado_Civil" data-attribute="264386" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Estado_Civil">
+		<select class="form-control" data-val="true" data-val-number="The field Estado Civil must be a number." data-val-required="The Estado Civil field is required." id="Detalle_de_Datos_del_Testigo_MPIEstado_Civil" name="Detalle_de_Datos_del_Testigo_MPIEstado_Civil">
+			<option value=""></option>
+			@if (varEstado_Civil_Estado_Civil != null){ 
+				foreach (var itemEstado_Civil in varEstado_Civil_Estado_Civil)
+				{
+					if (itemEstado_Civil.Value == Convert.ToString(Model.Estado_Civil))
+					{
+						<option value="@itemEstado_Civil.Value" selected>@itemEstado_Civil.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_Civil.Value">@itemEstado_Civil.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divTipo_de_Identificacion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Tipo_de_Identificacion</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Identificacion" data-attribute="264387" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Tipo_de_Identificacion">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Identificación must be a number." data-val-required="The Tipo de Identificación field is required." id="Detalle_de_Datos_del_Testigo_MPITipo_de_Identificacion" name="Detalle_de_Datos_del_Testigo_MPITipo_de_Identificacion">
+			<option value=""></option>
+			@if (varTipo_de_Identificacion_Tipo_de_Identificacion != null){ 
+				foreach (var itemTipo_de_Identificacion in varTipo_de_Identificacion_Tipo_de_Identificacion)
+				{
+					if (itemTipo_de_Identificacion.Value == Convert.ToString(Model.Tipo_de_Identificacion))
+					{
+						<option value="@itemTipo_de_Identificacion.Value" selected>@itemTipo_de_Identificacion.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Identificacion.Value">@itemTipo_de_Identificacion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNumero_de_Identificacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_de_Identificacion</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Identificacion" data-attribute="264388" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_de_Identificacion">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPINumero_de_Identificacion" name="Detalle_de_Datos_del_Testigo_MPINumero_de_Identificacion" type="text" value="@Model.Numero_de_Identificacion">
+                                </div>
+                            </div>
+<div class="form-group" id="divNacionalidad">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Nacionalidad</label>
+	<div class="col-sm-8" data-field-id="Nacionalidad" data-attribute="264389" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Nacionalidad">
+		<select class="form-control" data-val="true" data-val-number="The field Nacionalidad must be a number." data-val-required="The Nacionalidad field is required." id="Detalle_de_Datos_del_Testigo_MPINacionalidad" name="Detalle_de_Datos_del_Testigo_MPINacionalidad">
+			<option value=""></option>
+			@if (varNacionalidad_Nacionalidad != null){ 
+				foreach (var itemNacionalidad in varNacionalidad_Nacionalidad)
+				{
+					if (itemNacionalidad.Value == Convert.ToString(Model.Nacionalidad))
+					{
+						<option value="@itemNacionalidad.Value" selected>@itemNacionalidad.Text</option>
+					}
+					else
+					{
+						<option value="@itemNacionalidad.Value">@itemNacionalidad.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEscolaridad">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Escolaridad</label>
+	<div class="col-sm-8" data-field-id="Escolaridad" data-attribute="264390" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Escolaridad">
+		<select class="form-control" data-val="true" data-val-number="The field Escolaridad must be a number." data-val-required="The Escolaridad field is required." id="Detalle_de_Datos_del_Testigo_MPIEscolaridad" name="Detalle_de_Datos_del_Testigo_MPIEscolaridad">
+			<option value=""></option>
+			@if (varEscolaridad_Escolaridad != null){ 
+				foreach (var itemEscolaridad in varEscolaridad_Escolaridad)
+				{
+					if (itemEscolaridad.Value == Convert.ToString(Model.Escolaridad))
+					{
+						<option value="@itemEscolaridad.Value" selected>@itemEscolaridad.Text</option>
+					}
+					else
+					{
+						<option value="@itemEscolaridad.Value">@itemEscolaridad.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divOcupacion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Ocupacion</label>
+	<div class="col-sm-8" data-field-id="Ocupacion" data-attribute="264391" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Ocupacion">
+		<select class="form-control" data-val="true" data-val-number="The field Ocupación must be a number." data-val-required="The Ocupación field is required." id="Detalle_de_Datos_del_Testigo_MPIOcupacion" name="Detalle_de_Datos_del_Testigo_MPIOcupacion">
+			<option value=""></option>
+			@if (varOcupacion_Ocupacion != null){ 
+				foreach (var itemOcupacion in varOcupacion_Ocupacion)
+				{
+					if (itemOcupacion.Value == Convert.ToString(Model.Ocupacion))
+					{
+						<option value="@itemOcupacion.Value" selected>@itemOcupacion.Text</option>
+					}
+					else
+					{
+						<option value="@itemOcupacion.Value">@itemOcupacion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divPais">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Pais</label>
+	<div class="col-sm-8" data-field-id="Pais" data-attribute="264392" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Pais">
+		<select class="form-control" data-val="true" data-val-number="The field País must be a number." data-val-required="The País field is required." id="Detalle_de_Datos_del_Testigo_MPIPais" name="Detalle_de_Datos_del_Testigo_MPIPais">
+			<option value=""></option>
+			@if (varPais_Pais != null){ 
+				foreach (var itemPais in varPais_Pais)
+				{
+					if (itemPais.Value == Convert.ToString(Model.Pais))
+					{
+						<option value="@itemPais.Value" selected>@itemPais.Text</option>
+					}
+					else
+					{
+						<option value="@itemPais.Value">@itemPais.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Estado</label>
+	<div class="col-sm-8" data-field-id="Estado" data-attribute="264393" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Estado">
+		<select class="form-control" data-val="true" data-val-number="The field Estado must be a number." data-val-required="The Estado field is required." id="Detalle_de_Datos_del_Testigo_MPIEstado" name="Detalle_de_Datos_del_Testigo_MPIEstado">
+			<option value=""></option>
+			@if (varEstado_Estado != null){ 
+				foreach (var itemEstado in varEstado_Estado)
+				{
+					if (itemEstado.Value == Convert.ToString(Model.Estado))
+					{
+						<option value="@itemEstado.Value" selected>@itemEstado.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado.Value">@itemEstado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMunicipio">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Municipio</label>
+	<div class="col-sm-8" data-field-id="Municipio" data-attribute="264394" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Municipio">
+		<select class="form-control" data-val="true" data-val-number="The field Municipio must be a number." data-val-required="The Municipio field is required." id="Detalle_de_Datos_del_Testigo_MPIMunicipio" name="Detalle_de_Datos_del_Testigo_MPIMunicipio">
+			<option value=""></option>
+			@if (varMunicipio_Municipio != null){ 
+				foreach (var itemMunicipio in varMunicipio_Municipio)
+				{
+					if (itemMunicipio.Value == Convert.ToString(Model.Municipio))
+					{
+						<option value="@itemMunicipio.Value" selected>@itemMunicipio.Text</option>
+					}
+					else
+					{
+						<option value="@itemMunicipio.Value">@itemMunicipio.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divColonia">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Colonia</label>
+	<div class="col-sm-8" data-field-id="Colonia" data-attribute="264395" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Colonia">
+		<select class="form-control" data-val="true" data-val-number="The field Colonia must be a number." data-val-required="The Colonia field is required." id="Detalle_de_Datos_del_Testigo_MPIColonia" name="Detalle_de_Datos_del_Testigo_MPIColonia">
+			<option value=""></option>
+			@if (varColonia_Colonia != null){ 
+				foreach (var itemColonia in varColonia_Colonia)
+				{
+					if (itemColonia.Value == Convert.ToString(Model.Colonia))
+					{
+						<option value="@itemColonia.Value" selected>@itemColonia.Text</option>
+					}
+					else
+					{
+						<option value="@itemColonia.Value">@itemColonia.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCodigo_Postal">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Codigo_Postal</label>
+	<div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="264396" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Codigo_Postal">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_del_Testigo_MPICodigo_Postal" name="Detalle_de_Datos_del_Testigo_MPICodigo_Postal" type="text" value="@Model.Codigo_Postal">
+	</div>
+</div>
+<div class="form-group" id="divCalle">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Calle</label>
+                                <div class="col-sm-8" data-field-id="Calle" data-attribute="264397" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Calle">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPICalle" name="Detalle_de_Datos_del_Testigo_MPICalle" type="text" value="@Model.Calle">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Exterior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_Exterior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="264398" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_Exterior">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPINumero_Exterior" name="Detalle_de_Datos_del_Testigo_MPINumero_Exterior" type="text" value="@Model.Numero_Exterior">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Interior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_Interior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior" data-attribute="264399" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_Interior">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPINumero_Interior" name="Detalle_de_Datos_del_Testigo_MPINumero_Interior" type="text" value="@Model.Numero_Interior">
+                                </div>
+                            </div>
+<div class="form-group" id="divTelefono">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Telefono</label>
+                                <div class="col-sm-8" data-field-id="Telefono" data-attribute="264400" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Telefono">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPITelefono" name="Detalle_de_Datos_del_Testigo_MPITelefono" type="text" value="@Model.Telefono">
+                                </div>
+                            </div>
+<div class="form-group" id="divExtencion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Extencion</label>
+	<div class="col-sm-8" data-field-id="Extencion" data-attribute="264401" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Extencion">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_del_Testigo_MPIExtencion" name="Detalle_de_Datos_del_Testigo_MPIExtencion" type="text" value="@Model.Extencion">
+	</div>
+</div>
+<div class="form-group" id="divCelular">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Celular</label>
+                                <div class="col-sm-8" data-field-id="Celular" data-attribute="264402" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Celular">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPICelular" name="Detalle_de_Datos_del_Testigo_MPICelular" type="text" value="@Model.Celular">
+                                </div>
+                            </div>
+<div class="form-group" id="divCorreo_Electronico">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Correo_Electronico</label>
+                                <div class="col-sm-8" data-field-id="Correo_Electronico" data-attribute="264403" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Correo_Electronico">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPICorreo_Electronico" name="Detalle_de_Datos_del_Testigo_MPICorreo_Electronico" type="text" value="@Model.Correo_Electronico">
+                                </div>
+                            </div>
+<div class="form-group" id="divIncapaz">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Incapaz</label>
+                                <div class="col-sm-8" data-field-id="Incapaz" data-attribute="264404" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Incapaz">
+                                    @Html.CheckBoxFor(m => m.Incapaz, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Nombre_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Nombre_del_Tutor" data-attribute="264405" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Nombre_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPINombre_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPINombre_del_Tutor" type="text" value="@Model.Nombre_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Paterno_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Apellido_Paterno_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Paterno_del_Tutor" data-attribute="264406" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Apellido_Paterno_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPIApellido_Paterno_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPIApellido_Paterno_del_Tutor" type="text" value="@Model.Apellido_Paterno_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Materno_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Apellido_Materno_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Materno_del_Tutor" data-attribute="264407" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Apellido_Materno_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPIApellido_Materno_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPIApellido_Materno_del_Tutor" type="text" value="@Model.Apellido_Materno_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre_Completo_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Nombre_Completo_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Nombre_Completo_del_Tutor" data-attribute="264408" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Nombre_Completo_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPINombre_Completo_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPINombre_Completo_del_Tutor" type="text" value="@Model.Nombre_Completo_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Nacimento_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Fecha_de_Nacimento_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Nacimento_del_Tutor" data-attribute="264409" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Fecha_de_Nacimento_del_Tutor">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Datos_del_Testigo_MPIFecha_de_Nacimento_del_Tutor" readonly="readonly" name="Detalle_de_Datos_del_Testigo_MPIFecha_de_Nacimento_del_Tutor" type="text" value="@Model.Fecha_de_Nacimento_del_Tutor">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divEdad_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Edad_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Edad_del_Tutor" data-attribute="264410" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Edad_del_Tutor">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_del_Testigo_MPIEdad_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPIEdad_del_Tutor" type="text" value="@Model.Edad_del_Tutor">
+	</div>
+</div>
+<div class="form-group" id="divSexo_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Sexo_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Sexo_del_Tutor" data-attribute="264411" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Sexo_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Sexo must be a number." data-val-required="The Sexo field is required." id="Detalle_de_Datos_del_Testigo_MPISexo_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPISexo_del_Tutor">
+			<option value=""></option>
+			@if (varGenero_Sexo_del_Tutor != null){ 
+				foreach (var itemSexo_del_Tutor in varGenero_Sexo_del_Tutor)
+				{
+					if (itemSexo_del_Tutor.Value == Convert.ToString(Model.Sexo_del_Tutor))
+					{
+						<option value="@itemSexo_del_Tutor.Value" selected>@itemSexo_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemSexo_del_Tutor.Value">@itemSexo_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado_Civil_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Estado_Civil_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Estado_Civil_del_Tutor" data-attribute="264412" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Estado_Civil_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Estado Civil must be a number." data-val-required="The Estado Civil field is required." id="Detalle_de_Datos_del_Testigo_MPIEstado_Civil_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPIEstado_Civil_del_Tutor">
+			<option value=""></option>
+			@if (varEstado_Civil_Estado_Civil_del_Tutor != null){ 
+				foreach (var itemEstado_Civil_del_Tutor in varEstado_Civil_Estado_Civil_del_Tutor)
+				{
+					if (itemEstado_Civil_del_Tutor.Value == Convert.ToString(Model.Estado_Civil_del_Tutor))
+					{
+						<option value="@itemEstado_Civil_del_Tutor.Value" selected>@itemEstado_Civil_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_Civil_del_Tutor.Value">@itemEstado_Civil_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divTipo_de_Identificacion_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Tipo_de_Identificacion_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Identificacion_del_Tutor" data-attribute="264413" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Tipo_de_Identificacion_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Identificación must be a number." data-val-required="The Tipo de Identificación field is required." id="Detalle_de_Datos_del_Testigo_MPITipo_de_Identificacion_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPITipo_de_Identificacion_del_Tutor">
+			<option value=""></option>
+			@if (varTipo_de_Identificacion_Tipo_de_Identificacion_del_Tutor != null){ 
+				foreach (var itemTipo_de_Identificacion_del_Tutor in varTipo_de_Identificacion_Tipo_de_Identificacion_del_Tutor)
+				{
+					if (itemTipo_de_Identificacion_del_Tutor.Value == Convert.ToString(Model.Tipo_de_Identificacion_del_Tutor))
+					{
+						<option value="@itemTipo_de_Identificacion_del_Tutor.Value" selected>@itemTipo_de_Identificacion_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Identificacion_del_Tutor.Value">@itemTipo_de_Identificacion_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNumero_de_Identificacion_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_de_Identificacion_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Identificacion_del_Tutor" data-attribute="264414" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_de_Identificacion_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPINumero_de_Identificacion_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPINumero_de_Identificacion_del_Tutor" type="text" value="@Model.Numero_de_Identificacion_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divNacionalidad_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Nacionalidad_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Nacionalidad_del_Tutor" data-attribute="264415" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Nacionalidad_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Nacionalidad must be a number." data-val-required="The Nacionalidad field is required." id="Detalle_de_Datos_del_Testigo_MPINacionalidad_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPINacionalidad_del_Tutor">
+			<option value=""></option>
+			@if (varNacionalidad_Nacionalidad_del_Tutor != null){ 
+				foreach (var itemNacionalidad_del_Tutor in varNacionalidad_Nacionalidad_del_Tutor)
+				{
+					if (itemNacionalidad_del_Tutor.Value == Convert.ToString(Model.Nacionalidad_del_Tutor))
+					{
+						<option value="@itemNacionalidad_del_Tutor.Value" selected>@itemNacionalidad_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemNacionalidad_del_Tutor.Value">@itemNacionalidad_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEscolaridad_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Escolaridad_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Escolaridad_del_Tutor" data-attribute="264416" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Escolaridad_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Escolaridad must be a number." data-val-required="The Escolaridad field is required." id="Detalle_de_Datos_del_Testigo_MPIEscolaridad_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPIEscolaridad_del_Tutor">
+			<option value=""></option>
+			@if (varEscolaridad_Escolaridad_del_Tutor != null){ 
+				foreach (var itemEscolaridad_del_Tutor in varEscolaridad_Escolaridad_del_Tutor)
+				{
+					if (itemEscolaridad_del_Tutor.Value == Convert.ToString(Model.Escolaridad_del_Tutor))
+					{
+						<option value="@itemEscolaridad_del_Tutor.Value" selected>@itemEscolaridad_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemEscolaridad_del_Tutor.Value">@itemEscolaridad_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divOcupacion_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Ocupacion_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Ocupacion_del_Tutor" data-attribute="264417" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Ocupacion_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Ocupación must be a number." data-val-required="The Ocupación field is required." id="Detalle_de_Datos_del_Testigo_MPIOcupacion_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPIOcupacion_del_Tutor">
+			<option value=""></option>
+			@if (varOcupacion_Ocupacion_del_Tutor != null){ 
+				foreach (var itemOcupacion_del_Tutor in varOcupacion_Ocupacion_del_Tutor)
+				{
+					if (itemOcupacion_del_Tutor.Value == Convert.ToString(Model.Ocupacion_del_Tutor))
+					{
+						<option value="@itemOcupacion_del_Tutor.Value" selected>@itemOcupacion_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemOcupacion_del_Tutor.Value">@itemOcupacion_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divPais_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Pais_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Pais_del_Tutor" data-attribute="264418" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Pais_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field País must be a number." data-val-required="The País field is required." id="Detalle_de_Datos_del_Testigo_MPIPais_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPIPais_del_Tutor">
+			<option value=""></option>
+			@if (varPais_Pais_del_Tutor != null){ 
+				foreach (var itemPais_del_Tutor in varPais_Pais_del_Tutor)
+				{
+					if (itemPais_del_Tutor.Value == Convert.ToString(Model.Pais_del_Tutor))
+					{
+						<option value="@itemPais_del_Tutor.Value" selected>@itemPais_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemPais_del_Tutor.Value">@itemPais_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Estado_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Estado_del_Tutor" data-attribute="264419" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Estado_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Estado must be a number." data-val-required="The Estado field is required." id="Detalle_de_Datos_del_Testigo_MPIEstado_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPIEstado_del_Tutor">
+			<option value=""></option>
+			@if (varEstado_Estado_del_Tutor != null){ 
+				foreach (var itemEstado_del_Tutor in varEstado_Estado_del_Tutor)
+				{
+					if (itemEstado_del_Tutor.Value == Convert.ToString(Model.Estado_del_Tutor))
+					{
+						<option value="@itemEstado_del_Tutor.Value" selected>@itemEstado_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_del_Tutor.Value">@itemEstado_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMunicipio_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Municipio_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Municipio_del_Tutor" data-attribute="264420" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Municipio_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Municipio must be a number." data-val-required="The Municipio field is required." id="Detalle_de_Datos_del_Testigo_MPIMunicipio_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPIMunicipio_del_Tutor">
+			<option value=""></option>
+			@if (varMunicipio_Municipio_del_Tutor != null){ 
+				foreach (var itemMunicipio_del_Tutor in varMunicipio_Municipio_del_Tutor)
+				{
+					if (itemMunicipio_del_Tutor.Value == Convert.ToString(Model.Municipio_del_Tutor))
+					{
+						<option value="@itemMunicipio_del_Tutor.Value" selected>@itemMunicipio_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemMunicipio_del_Tutor.Value">@itemMunicipio_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divColonia_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Colonia_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Colonia_del_Tutor" data-attribute="264421" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Colonia_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Colonia must be a number." data-val-required="The Colonia field is required." id="Detalle_de_Datos_del_Testigo_MPIColonia_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPIColonia_del_Tutor">
+			<option value=""></option>
+			@if (varColonia_Colonia_del_Tutor != null){ 
+				foreach (var itemColonia_del_Tutor in varColonia_Colonia_del_Tutor)
+				{
+					if (itemColonia_del_Tutor.Value == Convert.ToString(Model.Colonia_del_Tutor))
+					{
+						<option value="@itemColonia_del_Tutor.Value" selected>@itemColonia_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemColonia_del_Tutor.Value">@itemColonia_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCodigo_Postal_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Codigo_Postal_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Codigo_Postal_del_Tutor" data-attribute="264422" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Codigo_Postal_del_Tutor">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_del_Testigo_MPICodigo_Postal_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPICodigo_Postal_del_Tutor" type="text" value="@Model.Codigo_Postal_del_Tutor">
+	</div>
+</div>
+<div class="form-group" id="divCalle_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Calle_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Calle_del_Tutor" data-attribute="264423" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Calle_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPICalle_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPICalle_del_Tutor" type="text" value="@Model.Calle_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Exterior_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_Exterior_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior_del_Tutor" data-attribute="264424" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_Exterior_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPINumero_Exterior_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPINumero_Exterior_del_Tutor" type="text" value="@Model.Numero_Exterior_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Interior_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_Interior_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior_del_Tutor" data-attribute="264425" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_Interior_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPINumero_Interior_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPINumero_Interior_del_Tutor" type="text" value="@Model.Numero_Interior_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divTelefono_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Telefono_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Telefono_del_Tutor" data-attribute="264426" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Telefono_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPITelefono_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPITelefono_del_Tutor" type="text" value="@Model.Telefono_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divExtencion_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Extencion_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Extencion_del_Tutor" data-attribute="264427" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Extencion_del_Tutor">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_del_Testigo_MPIExtencion_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPIExtencion_del_Tutor" type="text" value="@Model.Extencion_del_Tutor">
+	</div>
+</div>
+<div class="form-group" id="divCelular_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Celular_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Celular_del_Tutor" data-attribute="264428" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Celular_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPICelular_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPICelular_del_Tutor" type="text" value="@Model.Celular_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divCorreo_Electronico_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Correo_Electronico_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Correo_Electronico_del_Tutor" data-attribute="264429" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Correo_Electronico_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPICorreo_Electronico_del_Tutor" name="Detalle_de_Datos_del_Testigo_MPICorreo_Electronico_del_Tutor" type="text" value="@Model.Correo_Electronico_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divTipo_de_Compareciente">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Tipo_de_Compareciente</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Compareciente" data-attribute="264430" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Tipo_de_Compareciente">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Compareciente must be a number." data-val-required="The Tipo de Compareciente field is required." id="Detalle_de_Datos_del_Testigo_MPITipo_de_Compareciente" name="Detalle_de_Datos_del_Testigo_MPITipo_de_Compareciente">
+			<option value=""></option>
+			@if (varTipo_de_Compareciente_Tipo_de_Compareciente != null){ 
+				foreach (var itemTipo_de_Compareciente in varTipo_de_Compareciente_Tipo_de_Compareciente)
+				{
+					if (itemTipo_de_Compareciente.Value == Convert.ToString(Model.Tipo_de_Compareciente))
+					{
+						<option value="@itemTipo_de_Compareciente.Value" selected>@itemTipo_de_Compareciente.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Compareciente.Value">@itemTipo_de_Compareciente.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNarrativa_del_Testigo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Narrativa_del_Testigo</label>
+                                <div class="col-sm-8" data-field-id="Narrativa_del_Testigo" data-attribute="264431" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Narrativa_del_Testigo">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPINarrativa_del_Testigo" name="Detalle_de_Datos_del_Testigo_MPINarrativa_del_Testigo" type="text" value="@Model.Narrativa_del_Testigo">
+                                </div>
+                            </div>
+<div class="form-group" id="divTitulo_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Titulo_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Titulo_del_Hecho" data-attribute="264432" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Titulo_del_Hecho">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPITitulo_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPITitulo_del_Hecho" type="text" value="@Model.Titulo_del_Hecho">
+                                </div>
+                            </div>
+<div class="form-group" id="divPrioridad_del_Hecho">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Prioridad_del_Hecho</label>
+	<div class="col-sm-8" data-field-id="Prioridad_del_Hecho" data-attribute="264433" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Prioridad_del_Hecho">
+		<select class="form-control" data-val="true" data-val-number="The field Prioridad del Hecho must be a number." data-val-required="The Prioridad del Hecho field is required." id="Detalle_de_Datos_del_Testigo_MPIPrioridad_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPIPrioridad_del_Hecho">
+			<option value=""></option>
+			@if (varPrioridad_del_Hecho_Prioridad_del_Hecho != null){ 
+				foreach (var itemPrioridad_del_Hecho in varPrioridad_del_Hecho_Prioridad_del_Hecho)
+				{
+					if (itemPrioridad_del_Hecho.Value == Convert.ToString(Model.Prioridad_del_Hecho))
+					{
+						<option value="@itemPrioridad_del_Hecho.Value" selected>@itemPrioridad_del_Hecho.Text</option>
+					}
+					else
+					{
+						<option value="@itemPrioridad_del_Hecho.Value">@itemPrioridad_del_Hecho.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divFecha_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Fecha_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Fecha_del_Hecho" data-attribute="264434" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Fecha_del_Hecho">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Datos_del_Testigo_MPIFecha_del_Hecho" readonly="readonly" name="Detalle_de_Datos_del_Testigo_MPIFecha_del_Hecho" type="text" value="@Model.Fecha_del_Hecho">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divHora_Aproximada_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Hora_Aproximada_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Hora_Aproximada_del_Hecho" data-attribute="264435" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Hora_Aproximada_del_Hecho">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Datos_del_Testigo_MPIHora_Aproximada_del_Hecho" readonly="readonly" name="Detalle_de_Datos_del_Testigo_MPIHora_Aproximada_del_Hecho" type="text" data-autoclose="true" value="@Model.Hora_Aproximada_del_Hecho">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divPais_del_Hecho">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Pais_del_Hecho</label>
+	<div class="col-sm-8" data-field-id="Pais_del_Hecho" data-attribute="264436" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Pais_del_Hecho">
+		<select class="form-control" data-val="true" data-val-number="The field País must be a number." data-val-required="The País field is required." id="Detalle_de_Datos_del_Testigo_MPIPais_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPIPais_del_Hecho">
+			<option value=""></option>
+			@if (varPais_Pais_del_Hecho != null){ 
+				foreach (var itemPais_del_Hecho in varPais_Pais_del_Hecho)
+				{
+					if (itemPais_del_Hecho.Value == Convert.ToString(Model.Pais_del_Hecho))
+					{
+						<option value="@itemPais_del_Hecho.Value" selected>@itemPais_del_Hecho.Text</option>
+					}
+					else
+					{
+						<option value="@itemPais_del_Hecho.Value">@itemPais_del_Hecho.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado_del_Hecho">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Estado_del_Hecho</label>
+	<div class="col-sm-8" data-field-id="Estado_del_Hecho" data-attribute="264437" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Estado_del_Hecho">
+		<select class="form-control" data-val="true" data-val-number="The field Estado must be a number." data-val-required="The Estado field is required." id="Detalle_de_Datos_del_Testigo_MPIEstado_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPIEstado_del_Hecho">
+			<option value=""></option>
+			@if (varEstado_Estado_del_Hecho != null){ 
+				foreach (var itemEstado_del_Hecho in varEstado_Estado_del_Hecho)
+				{
+					if (itemEstado_del_Hecho.Value == Convert.ToString(Model.Estado_del_Hecho))
+					{
+						<option value="@itemEstado_del_Hecho.Value" selected>@itemEstado_del_Hecho.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_del_Hecho.Value">@itemEstado_del_Hecho.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMunicipio_del_Hecho">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Municipio_del_Hecho</label>
+	<div class="col-sm-8" data-field-id="Municipio_del_Hecho" data-attribute="264438" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Municipio_del_Hecho">
+		<select class="form-control" data-val="true" data-val-number="The field Municipio must be a number." data-val-required="The Municipio field is required." id="Detalle_de_Datos_del_Testigo_MPIMunicipio_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPIMunicipio_del_Hecho">
+			<option value=""></option>
+			@if (varMunicipio_Municipio_del_Hecho != null){ 
+				foreach (var itemMunicipio_del_Hecho in varMunicipio_Municipio_del_Hecho)
+				{
+					if (itemMunicipio_del_Hecho.Value == Convert.ToString(Model.Municipio_del_Hecho))
+					{
+						<option value="@itemMunicipio_del_Hecho.Value" selected>@itemMunicipio_del_Hecho.Text</option>
+					}
+					else
+					{
+						<option value="@itemMunicipio_del_Hecho.Value">@itemMunicipio_del_Hecho.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divColonia_del_Hecho">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Colonia_del_Hecho</label>
+	<div class="col-sm-8" data-field-id="Colonia_del_Hecho" data-attribute="264439" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Colonia_del_Hecho">
+		<select class="form-control" data-val="true" data-val-number="The field Colonia must be a number." data-val-required="The Colonia field is required." id="Detalle_de_Datos_del_Testigo_MPIColonia_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPIColonia_del_Hecho">
+			<option value=""></option>
+			@if (varColonia_Colonia_del_Hecho != null){ 
+				foreach (var itemColonia_del_Hecho in varColonia_Colonia_del_Hecho)
+				{
+					if (itemColonia_del_Hecho.Value == Convert.ToString(Model.Colonia_del_Hecho))
+					{
+						<option value="@itemColonia_del_Hecho.Value" selected>@itemColonia_del_Hecho.Text</option>
+					}
+					else
+					{
+						<option value="@itemColonia_del_Hecho.Value">@itemColonia_del_Hecho.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCodigo_Postal_del_Hecho">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Codigo_Postal_del_Hecho</label>
+	<div class="col-sm-8" data-field-id="Codigo_Postal_del_Hecho" data-attribute="264440" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Codigo_Postal_del_Hecho">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_del_Testigo_MPICodigo_Postal_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPICodigo_Postal_del_Hecho" type="text" value="@Model.Codigo_Postal_del_Hecho">
+	</div>
+</div>
+<div class="form-group" id="divCalle_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Calle_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Calle_del_Hecho" data-attribute="264441" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Calle_del_Hecho">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPICalle_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPICalle_del_Hecho" type="text" value="@Model.Calle_del_Hecho">
+                                </div>
+                            </div>
+<div class="form-group" id="divEntre_Calle_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Entre_Calle_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Entre_Calle_del_Hecho" data-attribute="264442" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Entre_Calle_del_Hecho">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPIEntre_Calle_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPIEntre_Calle_del_Hecho" type="text" value="@Model.Entre_Calle_del_Hecho">
+                                </div>
+                            </div>
+<div class="form-group" id="divY_Calle_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Y_Calle_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Y_Calle_del_Hecho" data-attribute="264443" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Y_Calle_del_Hecho">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPIY_Calle_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPIY_Calle_del_Hecho" type="text" value="@Model.Y_Calle_del_Hecho">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Exterior_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_Exterior_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior_del_Hecho" data-attribute="264444" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_Exterior_del_Hecho">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPINumero_Exterior_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPINumero_Exterior_del_Hecho" type="text" value="@Model.Numero_Exterior_del_Hecho">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Interior_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_Interior_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior_del_Hecho" data-attribute="264445" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Numero_Interior_del_Hecho">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPINumero_Interior_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPINumero_Interior_del_Hecho" type="text" value="@Model.Numero_Interior_del_Hecho">
+                                </div>
+                            </div>
+<div class="form-group" id="divLatitud_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Latitud_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Latitud_del_Hecho" data-attribute="264446" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Latitud_del_Hecho">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPILatitud_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPILatitud_del_Hecho" type="text" value="@Model.Latitud_del_Hecho">
+                                </div>
+                            </div>
+<div class="form-group" id="divLongitud_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Longitud_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Longitud_del_Hecho" data-attribute="264447" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Longitud_del_Hecho">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Testigo_MPILongitud_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPILongitud_del_Hecho" type="text" value="@Model.Longitud_del_Hecho">
+                                </div>
+                            </div>
+<div class="form-group" id="divTipo_del_Lugar_del_Hecho">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Tipo_del_Lugar_del_Hecho</label>
+	<div class="col-sm-8" data-field-id="Tipo_del_Lugar_del_Hecho" data-attribute="264448" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Tipo_del_Lugar_del_Hecho">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo del Lugar del Hecho must be a number." data-val-required="The Tipo del Lugar del Hecho field is required." id="Detalle_de_Datos_del_Testigo_MPITipo_del_Lugar_del_Hecho" name="Detalle_de_Datos_del_Testigo_MPITipo_del_Lugar_del_Hecho">
+			<option value=""></option>
+			@if (varLugar_Tipo_Tipo_del_Lugar_del_Hecho != null){ 
+				foreach (var itemTipo_del_Lugar_del_Hecho in varLugar_Tipo_Tipo_del_Lugar_del_Hecho)
+				{
+					if (itemTipo_del_Lugar_del_Hecho.Value == Convert.ToString(Model.Tipo_del_Lugar_del_Hecho))
+					{
+						<option value="@itemTipo_del_Lugar_del_Hecho.Value" selected>@itemTipo_del_Lugar_del_Hecho.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_del_Lugar_del_Hecho.Value">@itemTipo_del_Lugar_del_Hecho.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divProteccion_de_Datos">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Proteccion_de_Datos</label>
+                                <div class="col-sm-8" data-field-id="Proteccion_de_Datos" data-attribute="264449" data-field-name="@Resources.Detalle_de_Datos_del_Testigo_MPIResources.Proteccion_de_Datos">
+                                    @Html.CheckBoxFor(m => m.Proteccion_de_Datos, new { @class = "i-checks" })
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_Datos_del_Testigo_MPIConfigureSave" name="Detalle_de_Datos_del_Testigo_MPIConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_Datos_del_Testigo_MPIConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_Datos_del_Testigo_MPIGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Datos_del_Testigo_MPIBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Datos_del_Testigo_MPI.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Datos_del_Testigo_MPIGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Datos_del_Testigo_MPICreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Expediente_InicialCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_Datos_del_Testigo_MPIRowElement = "Detalle_de_Datos_del_Testigo_MPIPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_Datos_del_Testigo_MPIRowElement + "')){ Detalle_de_Datos_del_Testigo_MPIInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+            $('#Detalle_de_Datos_del_Testigo_MPIFecha_de_Nacimiento').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Detalle_de_Datos_del_Testigo_MPIFecha_de_Nacimento_del_Tutor').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Detalle_de_Datos_del_Testigo_MPIFecha_del_Hecho').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Detalle_de_Datos_del_Testigo_MPIHora_Aproximada_del_Hecho').clockpicker();
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_de_Datos_del_Testigo_MPIData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Datos_del_Testigo_MPI").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Datos_del_Testigo_MPI")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_Datos_del_Testigo_MPICreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Datos_del_Testigo_MPI/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_Datos_del_Testigo_MPIPropertyBag", "Detalle_de_Datos_del_Testigo_MPI")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_Datos_del_Testigo_MPIGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleFieldName').val(), ObjectId: '45130', Attribute: $('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_de_Datos_del_Testigo_MPI' }, function (data) {
+                $(".Detalle_de_Datos_del_Testigo_MPIBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_Datos_del_Testigo_MPIGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleFieldName').val(), ObjectId: '45130', Attribute: $('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_de_Datos_del_Testigo_MPI' }, function (data) {
+                $(".Detalle_de_Datos_del_Testigo_MPIAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleFieldName').val(), ObjectId: '45130', Attribute: $('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_de_Datos_del_Testigo_MPI' }, function (data) {
+				$(".Detalle_de_Datos_del_Testigo_MPIBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Datos_del_Testigo_MPI/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Datos_del_Testigo_MPI/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Datos_del_Testigo_MPI/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_Datos_del_Testigo_MPIConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_Datos_del_Testigo_MPIConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Datos_del_Testigo_MPI/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_Datos_del_Testigo_MPIConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Datos_del_Testigo_MPI/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Datos_del_Testigo_MPI' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Datos_del_Testigo_MPI' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_Datos_del_Testigo_MPIConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_Datos_del_Testigo_MPIConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Datos_del_Testigo_MPI').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_Datos_del_Testigo_MPIBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

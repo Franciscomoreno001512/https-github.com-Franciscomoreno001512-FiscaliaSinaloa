@@ -1,0 +1,839 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<style>
+    #TBodyDataToShow tr th {
+        line-height: 1em;
+        width: 30%;
+        padding: 5px;
+    }
+
+    #TBodyDataToShow tr td {
+        line-height: 1em;
+        width: 70%;
+        padding: 5px;
+    }
+
+    #TbodySearchResult tr {
+        cursor: pointer;
+    }
+
+    #BodyFieldSearch tr th {
+        padding: 3px 8px;
+    }
+
+    #BodyFieldSearch tr td {
+        padding: 3px 8px;
+    }
+
+    #btnSearch {
+        position: absolute;
+        right: 20px;
+    }
+
+    .app-main {
+        font-size: 12px;
+    }
+
+    a#btn_rg_info_busqueda_visualizar {
+        float: right;
+    }
+
+    a#btn_rg_info_busqueda_ocultar {
+        float: right;
+    }
+
+
+    .btn-circle {
+        display: block;
+        margin: 10px 10px 10px 10px;
+    }
+
+    button#btnSearch {
+        bottom: -76px;
+        margin: 0 0px 0 0;
+    }
+
+    .btn-nuevo {
+        margin: 0 10px 0 0;
+    }
+
+    img.img-ico-butons-detail {
+        height: 20px;
+    }
+
+    img.img-url-info {
+        height: 25px;
+        margin: -5px 0 0 -9px;
+    }
+
+
+    a#btn_rg_busqueda_ocultar {
+        margin: 0 5px 0 0;
+        float: right;
+    }
+
+    a#btn_rg_busqueda_visualizar {
+        margin: 0 5px 0 0;
+        float: right;
+    }
+
+
+    a#btn_rg_info_busqueda_ocultar {
+        margin: 0 0 0 10px;
+    }
+
+
+    a#btn_rg_info_busqueda_visualizar {
+        margin: 0 0 0 10px;
+    }
+</style>
+<div id="printFormatModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">@Resources.Resources.Print @Resources.Spartan_FormatResources.Format </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div id="spartan_formats" class="col-md-6 col-md-offset-0">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resources.Close</button>
+                    <button type="button" id="btnPrintFormat" class="btn btn-primary" onclick="return ExportToPdfFormats();">@Resources.Resources.Print @Resources.Resources.PDF</button>
+                </div>
+                <div class="row">
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    <div class="app-main">
+        <div class="app-main__outer">
+            <div class="app-main__inner">
+
+                <div class="row">
+
+
+                </div>
+
+                <div class="row">
+
+                    @*<a id="btn_rg_busqueda"> Busqueda < </a>*@
+
+                    <div id="region_busqueda" class="col-md-12 col-lg-8" style="padding-right: 5px;">
+                        <div id="cardSearch" class="mb-3 card" style="">
+                            <div class="card-header-tab card-header">
+                                <div class="card-header-title" style="font-weight: 800;">
+                                    <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
+                                    @*<a id="btn_rg_busqueda_ocultar" hidden="hidden" class="btn-primary btn-circle"> < </a>*@
+                                    <a class="btn btn-white " id="btn_rg_busqueda_ocultar">
+                                        <i class="fa fa-bars"></i>
+                                    </a>
+                                    <a class="btn btn-white " id="btn_rg_busqueda_visualizar" style="display: none;">
+                                        <i class="fa fa-bars"></i>
+                                    </a>
+
+                                    <label id="tituloprincipal" for="Name">Búsqueda</label>
+                                </div>
+
+                                <div style="width:100%;">
+                                    <a class="btn btn-white " id="btn_rg_info_busqueda_visualizar" style="display: none;">
+                                        <i class="fa fa-bars"></i>
+                                    </a>
+                                    <a class="btn btn-white " id="btn_rg_info_busqueda_ocultar">
+                                        <i class="fa fa-bars"></i>
+                                    </a>
+                                </div>
+
+
+                            </div>
+                            <div class="tab-content" id="panelsuperior">
+                                <div class="tab-pane  active show" id="tab-eg-55">
+
+                                    <div class="card-body" id="panelresultados">
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="tabs-eg-77">
+                                                <div style="overflow-y: auto;" class="panelbusqueda">
+
+                                                    <div class="col-lg-11">
+                                                        <table class="mb-0 table table-borderless">
+                                                            <thead>
+                                                            </thead>
+                                                            <tbody id="BodyFieldSearch"></tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <button class="btn-wide btn btn-success" id="btnSearch" style="float: left;">Buscar</button>
+                                                    </div>
+
+                                                </div>
+                                                <p style="font-weight:bold;position: relative;top: -10px;    width: 85px;">RESULTADOS</p>
+
+                                                <div class="scroll-area-sm" style="top: -15px;position: relative;">
+                                                    <div class="scrollbar-container">
+                                                        <div class="table-responsive" style="height: 180px;">
+                                                            <table style="width:100%;" class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                                <thead id="TheadSearchResult">
+                                                                </thead>
+                                                                <tbody id="TbodySearchResult"></tbody>
+                                                            </table>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div id="region_info_busqueda" class="col-md-12 col-lg-4" style="padding-left: 5px;">
+
+                        <div id="cardResults" class="mb-3 card" style="">
+                            <div class="card-header-tab card-header-tab-animation card-header">
+
+                                <div class="card-header-title" style="font-weight: 800;">
+                                    <i class="header-icon lnr-apartment icon-gradient bg-love-kiss"> </i>
+                                    <span id="labelResult"></span>
+                                </div>
+                                <div id="actionEdit" class="text-right" style="width:100%;">
+                                    <button class="btn-wide btn btn-success" onclick="EditRow()" id='btnEditarRegistro' style="float: right; display:none">Editar Registro</button>
+                                </div>
+
+
+                            </div>
+                            <div class="card-body" style="height: 40%;overflow: auto;" id="paneldatos">
+                                <div class="tab-content" style="height: 100%;">
+                                    <img id="ImageSearchData" src="" align="right" style="width: 30%;position: absolute;right: 25px;">
+                                    <div class="tab-pane show active" id="tabs-eg-77" style="height: 100%;">
+                                        <table class="mb-0 table table-borderless" style="position: relative;max-width: 100%;">
+                                            <thead>
+                                            </thead>
+                                            <tbody id="TBodyDataToShow"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="main-card mb-3 card" style="margin-top:10px;">
+                            <div class="card-header" style="font-weight: 800;">
+                                <div id="TabsBadget" class="btn-actions-pane-right" style="position: absolute;right: 0;">
+
+                                </div>
+                            </div>
+                            <div class="card-header" style="font-weight: 800;">
+                                <button id="new" class="btn-wide btn btn-success btn-nuevo" style="float: left; display:none;">Nuevo</button>
+                                <span id="LabelDetalle">DETALLE</span>
+                            </div>
+                            <div class="table-responsive" style="height:100px;">
+                                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                    <thead>
+                                        <tr id="TrColumnsDetail"></tr>
+                                    </thead>
+                                    <tbody id="TbodyDetails"></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="pathImage" value="@ViewBag.UrlImage" />
+<input type="hidden" id="wf" value="@ViewBag.WorkFlow" />
+<link href="~/Content/main.css" rel="stylesheet" />
+@Styles.Render("~/plugins/dataPickerStyles")
+@Styles.Render("~/plugins/clockpickerStyles")
+<script>
+
+    var statusRegionBusqueda = 1;
+    var sttusRegionInfoBusqueda = 1;
+	var alturaoriginal = 0;
+
+
+
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('#page-wrapper').css('height', '100%');
+            $('#page-wrapper').css('min-height', '100% !important');
+            $($('.table-responsive')[1]).height($('body').height() - $('#cardSearch').height() - 130)
+        }, 1000);
+
+        GetSearchFields(@ViewBag.idTablero);
+
+        //$('#BodyFieldSearch').on('click', '#btnSearch', function () {
+        $("#btnSearch").click(function () {
+            $('#TBodyDataToShow').empty();
+            $('#TbodyDetails').empty();
+            $('#TabsBadget').empty();
+            $('#ImageSearchData').prop('src', '');
+            $('#new').css('display', 'none');
+            GetResultSearchTable();
+        });
+
+        $('#TbodySearchResult').on('click', 'tr', function () {
+            debugger;
+            $('#TbodySearchResult tr').css('background-color', 'transparent');
+			$('#TbodySearchResult tr').css('font-weight', 'normal');
+            $(this).css('background-color', '#ddd');
+			$(this).css('font-weight', 'bold');
+            $('#TbodyDetails').empty();
+            $('#new').css('display', 'none');
+            GetDataToShow($($(this).find('td')[0]).html(), @ViewBag.idTablero);
+			DisabledAE($($(this).find('td')[2]).html());
+
+        });
+        $('#TabsBadget').on('click', 'button', function () {
+            $('#TabsBadget button').css('background-color', 'transparent');
+            $(this).css('background-color', '#ddd');
+            TabSelected = $(this).data('name');
+            ObjectSelected = $(this).data('object');
+            $('#LabelDetalle').html($(this).data('name'));
+
+            var role = @Session["USERROLEID"] != null ? @Session["USERROLEID"] : 0;
+            if ($('#LabelDetalle').text() == "Informe" && (role == 8 || role == 9 || role == 10 || role == 11)) {
+                FillDetailsByTab('Informes', 44799);
+                //FillDetailsByTab($(this).data('name'), $(this).data('object'));
+            } else {
+                FillDetailsByTab($(this).data('name'), $(this).data('object'));
+            }
+
+            if (HasValidaPersmiso_New(TabSelected, ObjectSelected, role) === true) {
+                $('#new').css('display', 'block');
+            }
+            else {
+                $('#new').css('display', 'none');
+            }
+
+
+
+        });//editDetails
+        $('#TbodyDetails').on('click', '.editDetails', function () {
+            var id = $(this).parent().parent().find('td:nth-child(2)').text();
+            GetCatalogName(ObjectSelected, $('#LabelDetalle').text());
+            GetCatalogPopup(id)
+        });
+        $('#TbodyDetails').on('click', '.printDetails', function () {
+            var idRecord = $(this).parent().parent().find('td:nth-child(2)').text();
+            GetCatalogName(ObjectSelected, $('#LabelDetalle').text());
+            GetFormats(idRecord);
+            $("#printFormatModal").data('idrecord', idRecord);
+        });
+        $('#new').click(function () {
+            var role = @Session["USERROLEID"] != null ? @Session["USERROLEID"] : 0;
+            if($('#LabelDetalle').text() == "Informe" && (role==8 || role==9 || role==10 || role==11)){
+                ObjectSelected=44799;
+                $('#LabelDetalle').text('Informes');
+            }
+            GetCatalogName(ObjectSelected, $('#LabelDetalle').text());
+            GetCatalogPopup(-1)
+        });
+        initiateUIControls();
+
+        //Collapso de columnas
+
+        $("#btn_rg_busqueda_ocultar").click(function () {
+			$('.panelbusqueda').hide();
+            $("#btn_rg_busqueda_visualizar").show();
+			$("#btn_rg_busqueda_ocultar").hide();
+			var altura=$("#paneldatos").height();
+			debugger;
+			if (altura==0)
+				altura=alturaoriginal;
+			$("#panelresultados").height(altura);
+        });
+
+
+        $("#btn_rg_busqueda_visualizar").click(function () {
+            $("#btn_rg_busqueda_visualizar").hide();
+            $("#btn_rg_busqueda_ocultar").show();
+			$('.panelbusqueda').show();
+        });
+
+        $("#btn_rg_info_busqueda_ocultar").click(function () {
+            $("#btn_rg_info_busqueda_ocultar").hide();
+            $("#btn_rg_info_busqueda_visualizar").show();
+			alturaoriginal=$("#paneldatos").height();
+			$("#region_info_busqueda").hide();
+			var ancho1=0;
+			var ancho2=0;
+			ancho1=$("#region_busqueda").width();
+			ancho2=$("#region_info_busqueda").width();
+			$("#region_busqueda").width(ancho1 + ancho2 + 10);
+        });
+
+
+        $("#btn_rg_info_busqueda_visualizar").click(function () {
+            $("#btn_rg_info_busqueda_ocultar").show();
+            $("#btn_rg_info_busqueda_visualizar").hide();
+			$("#region_info_busqueda").show();
+			var ancho1=0;
+			var ancho2=0;
+			ancho1=$("#region_busqueda").width();
+			ancho2=$("#region_info_busqueda").width();
+			$("#region_busqueda").width(ancho1 - ancho2 - 10);
+        });
+
+
+		var wf = $("#wf").val();
+		if (wf != null)
+		{
+			if (wf != '')
+			{
+				$("#tituloprincipal").html(wf);
+				$("#btn_rg_busqueda_ocultar").click();
+				GetResultSearchTable();
+			}
+		}
+
+
+    });
+
+    function GetCatalogName(object, detalle) {
+        $.ajax({
+            url: url_content + "Frontal/DynamicSearch/GetCatalog?objectId=" + object + "&detalle=" + detalle,
+            type: 'GET',
+            cache: false,
+            dataType: "json",
+            async: false,
+            success: function (result) {
+                ObjectSelectedName = result;
+            },
+            error: function (result) {
+                showNotification("Error buscando variable", "error");
+            }
+        });
+    }
+
+    function GetCatalogPopup(id) {
+        var edit = '';
+        var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        url = url.replace("Catalog", ObjectSelectedName);
+        if (id != -1) {
+            edit = '&Id=' + id;
+            url += edit;
+        }
+        window.open(htmlDecode(url), '_blank', 'left=300,top=50,width=1200,height=700,toolbar=0,resizable=0');
+
+    }
+    function RefreshCatalog(catalog, control, id) {
+        GetDataToShow(IdSelected, @ViewBag.idTablero);
+        FillDetailsByTab(TabSelected, ObjectSelected);
+    }
+
+    function EditRow() {
+        $.ajax({
+            url: url_content + "Frontal/DynamicSearch/EdtihRow?folio=" + IdSelected,
+            type: 'GET',
+            cache: false,
+            dataType: "json",
+            async: false,
+            success: function (result) {
+                GetCatalogName(result[0], $('#LabelDetalle').text());
+                GetCatalogPopup(result[1])
+            }
+        });
+    }
+
+
+    function GetDataToShow(folio, idTablero) {
+       IdSelected = folio;
+        $.ajax({
+            url: url_content + "Frontal/DynamicSearch/GetDataToShow?id=" + folio.toString() + "&idTablero=" + idTablero,
+            type: 'GET',
+            cache: false,
+            dataType: "json",
+            async: false,
+            success: function (result) {
+                var html = '';
+                var label = result.Label;
+                var labelValue = result.LabelValue;
+                $('#labelResult').html(label + ' ' + labelValue);
+                $('#btnEditarRegistro').css('display', 'block');
+
+                var image = result.Data[0];
+
+
+                if (image.Value == "") {
+                    $("#ImageSearchData").hide();
+                } else {
+                    $('#ImageSearchData').prop('src', image.Value);
+                }
+
+                var notimage = false;
+                $.each(result.Data, function (i, data) {
+                    if (notimage) {
+                        if (data.Value.indexOf('@@@@@@@@') < 0) {
+                            html += '<tr><th scope="col">' + data.Label + ':</th><td>' + data.Value + '</td></tr>';
+                        }
+                        else {
+                            if (data.Value.indexOf('@@@@@@@@_') >= 0) {
+                                var _urlImg = "../Images/" + data.Value.replace('@@@@@@@@_', '');
+                                html += '<tr></tr><tr><th scope="col" colspan="2" style="text-transform:uppercase;font-weight: bold;border-bottom: 1px solid #ccc;"><img src = "' + _urlImg + '" class="img-url-info" />' + ' ' + data.Label + '</th><td></td></tr><tr></tr>';
+                            } else {
+                                html += '<tr></tr><tr><th scope="col" colspan="2" style="text-transform:uppercase;font-weight: bold;border-bottom: 1px solid #ccc;">' + data.Label + '</th><td></td></tr><tr></tr>';
+                            }
+                        }
+                    }
+                    else
+                        notimage = true;
+                });
+
+                $('#TBodyDataToShow').html(html);
+                //DETAILS
+                html = '';
+                $.each(result.Details, function (i, data) {
+                    html += '<button class="mb-2 mr-2 btn btn-link" style="color: black; font-size:12px;padding:0px; " data-name="' + data.Label + '" data-object="' + data.ObjectId + '">' + '<img class="img-ico-butons-detail" src="' + data.Icon + '">' + ' ' + data.Label + '<span class="badge badge-pill badge-primary" style="background-color: black;font-size:9px;">' + data.Counter +'</span></button> &nbsp;';
+                });
+                $('#TabsBadget').html(html);
+            },
+            error: function (result) {
+                showNotification("Error buscando variable", "error");
+            }
+        });
+    }
+    var ObjectSelected = -1;
+    var ObjectSelectedName = '';
+    var TabSelected = '';
+    var IdSelected = "-1";
+    function FillDetailsByTab(idTab, object) {
+        ObjectSelected = object;
+        $.ajax({
+            url: url_content + "Frontal/DynamicSearch/GetDetalleBySearchResult?idTab=" + idTab,
+            type: 'GET',
+            cache: false,
+            dataType: "json",
+            async: false,
+            success: function (result) {
+                $('#TbodyDetails').html('');
+                $('#TrColumnsDetail').html('');
+                if (result[0].Details.Columns != null) {
+                    var htmlColumns = '';
+                    var htmlValues = '';
+                    htmlColumns += '<th class="text-center">Acción</th>';
+                    $.each(result[0].Details.Columns, function (i, c) {
+
+                        if(c == "Clave") {
+                            htmlColumns += '<th class="text-center" style="display:none;">' + c + '</th>';
+                        } else {
+                            htmlColumns += '<th class="text-center">' + c + '</th>';
+                        }
+
+                    });
+                    $('#TrColumnsDetail').html(htmlColumns);
+                    $.each(result[0].Details.ValuesColumns, function (i, v) {
+                        htmlValues += '<tr>';
+                        htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print"></i></a></td>';
+                        //htmlValues += '<td class="text-center"><button type="button" data-id="" class="btn btn-primary btn-sm editDetails"><i class="fa fa-edit"></i></button></td>';
+                        $.each(v.Values, function (i, v2) {
+                            if(i == 0) {
+                                htmlValues += '<td class="text-center text-muted" style="display:none;">' + v2 + '</td>';
+                            } else {
+                                htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
+                            }
+                        });
+                        htmlValues += '</tr>';
+                    });
+                    $('#TbodyDetails').html(htmlValues);
+                }
+                else {
+                    var html = '<td class="text-center text-muted"><div class="alert alert-danger" role="alert">No se encontraron resultados</div></td>';
+                    $('#TbodyDetails').html(html);
+                }
+            },
+            error: function (result) {
+                showNotification("Error buscando variable", "error");
+            }
+        });
+    }
+
+    function GetSearchFields(idTablero) {
+        $.ajax({
+            url: url_content + "Frontal/DynamicSearch/GetSearchFields?idTablero=" + idTablero,
+            type: 'GET',
+            cache: false,
+            dataType: "json",
+            async: false,
+            success: function (result) {
+                var html = '';
+                var count = 0;
+                $.each(result, function (i, data) {
+                    if (count == 0) {
+                        html += '<tr>';
+                    }
+                    if (count == 2) {
+                        html += '</tr>';
+                        html += '<tr>';
+                        count = 0;
+                    }
+                    if (data.TypeControl == "date") {
+                        html += '<th scope="row">' + data.Label + ':</th><td><div class="input-group date" style="width: 46%;display: inline-table;font-size:12px;"><input data-type="' + data.TypeControl + '" id="' + data.FieldDB + '_Desde" class="form-control col-md-12 field-search gridDatePicker" type="text"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>';
+                        html += '<span style="font-weight: bold;display: inline-table;margin: 4px;position: relative;top: -10px;"> A </span>'
+                        html += '<div class="input-group date" style="width: 47%;display: inline-table;;font-size:12px;"><input data-type="' + data.TypeControl + '" id="' + data.FieldDB + '_Hasta" class="form-control col-md-12 field-search gridDatePicker" type="text"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>';
+                        html += '</td>';
+                        count++;
+                    }
+                    if (data.TypeControl == "text") {
+                        html += '<th scope="row">' + data.Label + ':</th><td><input data-type="' + data.TypeControl + '" style="margin-left: 0px;width: 100%;font-size:12px;" class="form-control field-search" id="' + data.FieldDB + '" name="' + data.FieldDB + '" type="text"></td>';
+                        count++;
+                    }
+                    if (data.TypeControl == "number") {
+                        html += '<th scope="row">' + data.Label + ':</th><td><input data-type="' + data.TypeControl + '" style="margin-left: 0px;width: 100%;;font-size:12px;" class="form-control field-search" id="' + data.FieldDB + '" name="' + data.FieldDB + '" type="number"></td>';
+                        count++;
+                    }
+                    if (data.TypeControl == "combobox") {
+                        html += '<th scope="row">' + data.Label + ':</th><td><select id="' + data.FieldDB + '" class="form-control field-search combo" data-type="' + data.TypeControl + '"style="margin-left: 0px;width: 100%;font-size:12px;">' + data.Values + '</select></td>';
+                        count++;
+                    }
+                });
+
+                html += '</tr>'
+                //html += '<tr><th scope="row"><button class="btn-wide btn btn-success" id="btnSearch" style="float: left;">Buscar</button></th></tr>';
+
+                $('#BodyFieldSearch').html(html);
+                $('#cardResults').css('height', $('#cardSearch').height());
+            },
+            error: function (result) {
+                showNotification("Error buscando variable", "error");
+            }
+        });
+    }
+	
+	function DisabledAE(value) {
+        var replaced = value.toString().split(' ').join('');
+        //debugger;
+        console.log(replaced);
+        if (replaced == 'AtenciónaExtravío') {
+            console.log("True");
+            $("button[data-name='Servicios de Apoyo']").prop("disabled", true);
+            $("button[data-name='Probable Responsable']").prop("disabled", true);
+            $("button[data-name='Delitos']").prop("disabled", true);
+            $("button[data-name='Relaciones']").prop("disabled", true);
+            $("button[data-name='Documentos']").prop("disabled", true);
+            $("button[data-name='Desestimación']").prop("disabled", true);
+        }
+        else {
+            console.log("False");
+            $("button[data-name='Servicios de Apoyo']").prop("disabled", false);
+            $("button[data-name='Probable Responsable']").prop("disabled", false);
+            $("button[data-name='Delitos']").prop("disabled", false);
+            $("button[data-name='Relaciones']").prop("disabled", false);
+            $("button[data-name='Documentos']").prop("disabled", false);
+            $("button[data-name='Desestimación']").prop("disabled", false);
+            $("button[data-name='Involucrados']").prop("disabled", false);
+        }
+    }
+
+    function GetResultSearchTable() {
+
+        var inputs = $('#BodyFieldSearch .field-search');
+        var data = [];
+        $.each(inputs, function (i, s) {
+            var type = $(s).data('type');
+            var fieldDB = $(s).prop('id');
+            var value = $(s).val();
+            data.push(
+                {
+                    TypeControl: type,
+                    FieldDB: fieldDB,
+                    Value: value
+                }
+            );
+        });
+        $.ajax({
+            url: url_content + "Frontal/DynamicSearch/GetResultSearchTable",
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            async: true,
+            success: function (result) {
+                $('#TbodySearchResult').html('');
+                $('#TheadSearchResult').html('');
+                if (result.Columns != null) {
+                    var htmlColumns = '<tr>';
+                    var htmlValues = '';
+                    $.each(result.Columns, function (i, c) {
+                        htmlColumns += '<th class="text-center">' + c + '</th>';
+                    });
+                    htmlColumns += '</tr>';
+                    $('#TheadSearchResult').html(htmlColumns);
+                    $.each(result.ValuesColumns, function (i, v) {
+                        htmlValues += '<tr>';
+                        $.each(v.Values, function (i, v2) {
+                            htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
+                        });
+                        htmlValues += '</tr>';
+                    });
+                    $('#TbodySearchResult').html(htmlValues);
+                    $('#TheadSearchResult > tr > th:first-child').css('display', 'none')
+                    $('#TbodySearchResult tr > td:first-child').css('display', 'none')
+                }
+                else {
+                    var html = '<td class="text-center text-muted"><div class="alert alert-danger" role="alert">No se encontraron resultados</div></td>';
+                    $('#TbodySearchResult').html(html);
+                }
+            },
+            error: function (result) {
+                showNotification("Error buscando variable", "error");
+            }
+        });
+    }
+    function initiateUIControls() {
+        $('.gridDatePicker').datepicker({  isRTL: false, language: 'es',
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            /**/
+            format: "dd-mm-yyyy",
+            clearBtn: true
+        }).attr('readonly', 'true');
+        //Time Picker
+        $('.gridTimePicker').clockpicker();
+        $('.inputMoney').inputmask("currency", { greedy: false, prefix: "$", rightAlign: false });
+
+    }
+    var printAutomatically = false;
+    function GetFormats(idRecord) {
+        $('#spartan_formats').empty();
+        var res = '';
+        /*******************************************/
+        var query = ReplaceFLD('exec uspGetFormatosporTipo GLOBAL[SpartanRDMId],"GLOBAL[SpartanRDMProcess]",' + idRecord, '', '');
+        query = ReplaceFLDD(query, '', '');
+        query = ReplaceGLOBAL(query);
+        var data = {
+            query: query
+        }
+        $.ajax({
+            url: url_content + "Frontal/General/ExecuteQueryTable",
+            type: 'POST',
+            dataType: "json",
+            cache: false,
+            async: false,
+            data: data,
+            success: function (result) {
+                var jsonObj = $.parseJSON(result);
+
+                $.each(jsonObj, function (index, element) {
+                });
+                if (jsonObj.length === 0) {
+                    $('#btnPrintFormat').hide();
+                    $('#spartan_formats').append("<span>@Resources.Resources.NoFormatsFound</span>");
+
+                } else {
+                    if (jsonObj.length === 1)
+                    {
+                        printAutomatically = true;
+                        ExportToPdfFormats(jsonObj[0].formatid, idRecord);
+                        setTimeout(function () {
+
+                            $('#printFormatModal').modal('hide');
+                            $('#btnPrintFormat').hide();
+                        }, 1000);
+                    }
+                    else {
+                        $.each(jsonObj, function (index, element) {
+                            var div = "<div id=''>" +
+                                 "<label>" +
+                                    "<input type='checkbox' name='optradioFormat' value='" + element.formatid + "' />" + element.format_name +
+                                        "</label>" +
+                                    "</div>";
+
+                            $('#spartan_formats').append(div);
+                        });
+                    }
+                }
+                $("#printFormatModal").modal('show');
+            },
+            error: function (result) {
+                showNotification("Error ejecutando query", "error");
+            }
+        });
+        /********************************************/
+        //var q = EvaluaQuery('exec uspGetFormatosporTipo GLOBAL[SpartanRDMId],GLOBAL[SpartanRDMProcess],FolioSeleccionado', '', '');
+        @*var url = url_content + 'Frontal/' + ObjectSelectedName + '/GetFormats';
+        $.ajax({
+            url: url + '?RecordId=' + idRecord,
+            type: 'Get',
+            async: true,
+            contentType: "multipart/form-data",
+            success: function (result) {
+                if (result.length === 0)
+                    {
+                        $('#btnPrintFormat').hide();
+                        $('#spartan_formats').append("<span>@Resources.Resources.NoFormatsFound</span>");
+
+                    } else {
+                    $.each(result, function (index, element) {
+                        var div = "<div id=''>" +
+                             "<label>" +
+                                "<input type='checkbox' name='optradioFormat' value='" + element.Value + "' />" + element.Text +
+                                    "</label>" +
+                                "</div>";
+
+                        $('#spartan_formats').append(div);
+                    });
+                }
+                $("#printFormatModal").modal('show');
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });*@
+    }
+    function ExportToPdfFormats(formatId, recordId)
+    {
+        var RecordId = $("#printFormatModal").data('idrecord');
+        var FormatId = $("input:radio[name='optradioFormat']:checked").val();
+        if (formatId != undefined && formatId != null)
+        {
+            RecordId = recordId;
+            FormatId = formatId;
+            var url = url_content + 'Frontal/' + ObjectSelectedName + '/PrintFormats';
+            url = url + "?idFormat=" + FormatId + "&RecordId=" + RecordId;
+            var printWindow = window.open(url, 'Imprimir Formato _blank');
+            $('#printFormatModal').modal('hide');
+        }
+        else
+        {
+            RecordId = $("#printFormatModal").data('idrecord');
+            FormatId = $("input:radio[name='optradioFormat']:checked").val();
+            var i = 1;
+            $("input:checkbox[name='optradioFormat']:checked").each(function (index, item) {
+                if ($(item).is(':checked')) {
+                    var url = url_content + 'Frontal/' + ObjectSelectedName + '/PrintFormats';
+                    var FormatId = $(item).val();
+                    var url = url + "?idFormat=" + FormatId + "&RecordId=" + RecordId;
+                    var printWindow = window.open(url, 'Imprimir Formato ' + i.toString() + '_blank');
+                    i++;
+
+                }
+            });
+        }
+    }
+</script>

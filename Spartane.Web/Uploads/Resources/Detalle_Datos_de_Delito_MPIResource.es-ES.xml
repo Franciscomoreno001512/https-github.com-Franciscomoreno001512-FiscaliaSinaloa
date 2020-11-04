@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_Datos_de_Delito_MPI" value="Detalle Datos de Delito MPI"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Tipo_de_Delito" value="Tipo de Delito"></resource>
+  <resource culture="es-es" name="Grupo_Delito" value="Grupo Delito"></resource>
+  <resource culture="es-es" name="Delito" value="Delito"></resource>
+  <resource culture="es-es" name="Circunstancia_Delito" value="Circunstancia Delito"></resource>
+  <resource culture="es-es" name="Delito_Principal" value="Delito Principal"></resource>
+  <resource culture="es-es" name="Forma_Comision_Delito" value="Forma Comisión Delito"></resource>
+  <resource culture="es-es" name="Forma_Accion_Delito" value="Forma Acción Delito"></resource>
+  <resource culture="es-es" name="Modalidad_Delito" value="Modalidad Delito"></resource>
+  <resource culture="es-es" name="Elementos_Comision_Delito" value="Elementos Comisión Delito"></resource>
+  <resource culture="es-es" name="Monto" value="Monto"></resource>
+  <resource culture="es-es" name="Violencia_de_Genero" value="¿Hubo Violencia de Género? "></resource>
+  <resource culture="es-es" name="Robo_de_Vehiculo" value="Robo de Vehículo"></resource>
+  <resource culture="es-es" name="Levantamiento_de_Cadaver" value="Levantamiento de Cadáver"></resource>
+  <resource culture="es-es" name="Circunstancia_de_Vehiculo" value="Circunstancia de Robo de Vehículo"></resource>
+  <resource culture="es-es" name="Clase" value="Clase"></resource>
+  <resource culture="es-es" name="Vehiculo_Robado" value="¿El Vehículo es Robado?"></resource>
+  <resource culture="es-es" name="Marca" value="Marca"></resource>
+  <resource culture="es-es" name="Sub_Marca" value="Sub Marca"></resource>
+  <resource culture="es-es" name="Tipo_de_Vehiculo" value="Tipo de Vehículo"></resource>
+  <resource culture="es-es" name="Modelo" value="Modelo"></resource>
+  <resource culture="es-es" name="Color" value="Color"></resource>
+  <resource culture="es-es" name="Placas" value="Placas"></resource>
+  <resource culture="es-es" name="Estado_de_Origen_de_las_Placas" value="Estado de Origen de las Placas"></resource>
+  <resource culture="es-es" name="Motor" value="Motor"></resource>
+  <resource culture="es-es" name="Serie" value="Serie"></resource>
+  <resource culture="es-es" name="El_Vehiculo_esta_Asegurado" value="¿El Vehículo está Asegurado? "></resource>
+  <resource culture="es-es" name="Nombre_de_la_Aseguradora" value="Nombre de la Aseguradora"></resource>
+  <resource culture="es-es" name="Tipo_de_Servicio" value="Tipo de Servicio"></resource>
+  <resource culture="es-es" name="Ruta_del_Servicio_Publico" value="Ruta del Servicio Publico"></resource>
+  <resource culture="es-es" name="Procedencia" value="Procedencia"></resource>
+  <resource culture="es-es" name="Mercancia" value="¿El Vehiculo Transportaba Mercancía?  "></resource>
+  <resource culture="es-es" name="Descripcion_de_lo_que_Transportaba" value="Descripción de lo que Transportaba"></resource>
+  <resource culture="es-es" name="Monto_de_la_Carga" value="Monto de la Carga"></resource>
+  <resource culture="es-es" name="Senas_Particulares" value="Señas Particulares"></resource>
+  <resource culture="es-es" name="Modalidad_del_Robo" value="Modalidad del Robo"></resource>
+  <resource culture="es-es" name="Causa_de_Muerte" value="Causa de Muerte"></resource>
+  <resource culture="es-es" name="Circunstancia_Defuncion" value="Circunstancia Defunción"></resource>
+  <resource culture="es-es" name="Consecuencia_Defuncion" value="Consecuencia Defunción"></resource>
+  <resource culture="es-es" name="Fecha_Levantamiento" value="Fecha Levantamiento"></resource>
+  <resource culture="es-es" name="Hora_Levantamiento" value="Hora Levantamiento"></resource>
+  <resource culture="es-es" name="Tipo_de_Lugar_del_Hecho" value="Tipo de Lugar del Hecho"></resource>
+  <resource culture="es-es" name="Pais" value="País"></resource>
+  <resource culture="es-es" name="Estado" value="Estado"></resource>
+  <resource culture="es-es" name="Municipio" value="Municipio"></resource>
+  <resource culture="es-es" name="Zona" value="Zona"></resource>
+  <resource culture="es-es" name="Colonia" value="Colonia"></resource>
+  <resource culture="es-es" name="Colonia_no_Catalogada" value="Colonia no Catalogada"></resource>
+  <resource culture="es-es" name="Numero_Exterior" value="Número Exterior"></resource>
+  <resource culture="es-es" name="Numero_Interior" value="Número Interior"></resource>
+  <resource culture="es-es" name="Necropsia" value="Necropsia"></resource>
+  <resource culture="es-es" name="Cronotanatodiagnostico" value="Cronotanatodiagnóstico"></resource>
+  <resource culture="es-es" name="Ruta" value="Ruta"></resource>
+  <resource culture="es-es" name="Estado_del_Conductor" value="¿El Operador Conducía en Estado de Ebriedad?"></resource>
+  <resource culture="es-es" name="Codigo_Postal" value="Código Postal"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="es-es" name="TabDatos_de_Robo_de_Vehiculo" value="Datos de Robo de Vehículo"></resource>
+<resource culture="es-es" name="TabDatos_del_Levantamiento_del_Cadaver_" value="Datos del Levantamiento del Cadáver "></resource>
+
+</resources>

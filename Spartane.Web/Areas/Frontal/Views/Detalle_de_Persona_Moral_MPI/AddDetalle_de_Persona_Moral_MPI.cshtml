@@ -1,0 +1,621 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Persona_Moral_MPIModel
+@{
+
+
+    List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+    List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+    List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+    List<SelectListItem> varLocalidad_Localidad = null;
+    if (ViewBag.Localidads_Localidad != null)
+    { varLocalidad_Localidad = (List<SelectListItem>)ViewBag.Localidads_Localidad; }
+    List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Persona Moral MPI
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_Persona_Moral_MPIRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_Persona_Moral_MPIPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Persona Moral MPI
+								<button onclick="Detalle_de_Persona_Moral_MPIGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Persona_Moral_MPIBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_Persona_Moral_MPIResources.Detalle_de_Persona_Moral_MPI</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_Persona_Moral_MPIDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_Persona_Moral_MPIPropertyBusinessModal" id="Detalle_de_Persona_Moral_MPIPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_Persona_Moral_MPIBusinessRule-form" onclick="Detalle_de_Persona_Moral_MPIGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Persona_Moral_MPIPropertyModal" id="Detalle_de_Persona_Moral_MPIPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Persona_Moral_MPIBusinessRuleModal" id="Detalle_de_Persona_Moral_MPIBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Persona_Moral_MPIAddBusinessRuleModal" id="Detalle_de_Persona_Moral_MPIAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Persona_Moral_MPI", FormMethod.Post, new { id = "CreateDetalle_de_Persona_Moral_MPI", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_Persona_Moral_MPICreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="264199" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Clave">
+                                    <label class="form-control" for="Detalle_de_Persona_Moral_MPIClave" id="Detalle_de_Persona_Moral_MPIClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Nombre</label>
+                                <div class="col-sm-8" data-field-id="Nombre" data-attribute="264200" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Nombre">
+                                    <input class="form-control" id="Detalle_de_Persona_Moral_MPINombre" name="Detalle_de_Persona_Moral_MPINombre" type="text" value="@Model.Nombre">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Paterno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Apellido_Paterno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Paterno" data-attribute="264201" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Apellido_Paterno">
+                                    <input class="form-control" id="Detalle_de_Persona_Moral_MPIApellido_Paterno" name="Detalle_de_Persona_Moral_MPIApellido_Paterno" type="text" value="@Model.Apellido_Paterno">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Materno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Apellido_Materno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Materno" data-attribute="264202" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Apellido_Materno">
+                                    <input class="form-control" id="Detalle_de_Persona_Moral_MPIApellido_Materno" name="Detalle_de_Persona_Moral_MPIApellido_Materno" type="text" value="@Model.Apellido_Materno">
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre_Completo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Nombre_Completo</label>
+                                <div class="col-sm-8" data-field-id="Nombre_Completo" data-attribute="264203" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Nombre_Completo">
+                                    <input class="form-control" id="Detalle_de_Persona_Moral_MPINombre_Completo" name="Detalle_de_Persona_Moral_MPINombre_Completo" type="text" value="@Model.Nombre_Completo">
+                                </div>
+                            </div>
+<div class="form-group" id="divCalidad_Juridica">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Calidad_Juridica</label>
+                                <div class="col-sm-8" data-field-id="Calidad_Juridica" data-attribute="264204" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Calidad_Juridica">
+                                    <input class="form-control" id="Detalle_de_Persona_Moral_MPICalidad_Juridica" name="Detalle_de_Persona_Moral_MPICalidad_Juridica" type="text" value="@Model.Calidad_Juridica">
+                                </div>
+                            </div>
+<div class="form-group" id="divRazon_Social">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Razon_Social</label>
+                                <div class="col-sm-8" data-field-id="Razon_Social" data-attribute="264205" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Razon_Social">
+                                    <input class="form-control" id="Detalle_de_Persona_Moral_MPIRazon_Social" name="Detalle_de_Persona_Moral_MPIRazon_Social" type="text" value="@Model.Razon_Social">
+                                </div>
+                            </div>
+<div class="form-group" id="divPais">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Pais</label>
+	<div class="col-sm-8" data-field-id="Pais" data-attribute="264206" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Pais">
+		<select class="form-control" data-val="true" data-val-number="The field País must be a number." data-val-required="The País field is required." id="Detalle_de_Persona_Moral_MPIPais" name="Detalle_de_Persona_Moral_MPIPais">
+			<option value=""></option>
+			@if (varPais_Pais != null){ 
+				foreach (var itemPais in varPais_Pais)
+				{
+					if (itemPais.Value == Convert.ToString(Model.Pais))
+					{
+						<option value="@itemPais.Value" selected>@itemPais.Text</option>
+					}
+					else
+					{
+						<option value="@itemPais.Value">@itemPais.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Estado</label>
+	<div class="col-sm-8" data-field-id="Estado" data-attribute="264207" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Estado">
+		<select class="form-control" data-val="true" data-val-number="The field Estado must be a number." data-val-required="The Estado field is required." id="Detalle_de_Persona_Moral_MPIEstado" name="Detalle_de_Persona_Moral_MPIEstado">
+			<option value=""></option>
+			@if (varEstado_Estado != null){ 
+				foreach (var itemEstado in varEstado_Estado)
+				{
+					if (itemEstado.Value == Convert.ToString(Model.Estado))
+					{
+						<option value="@itemEstado.Value" selected>@itemEstado.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado.Value">@itemEstado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMunicipio">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Municipio</label>
+	<div class="col-sm-8" data-field-id="Municipio" data-attribute="264208" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Municipio">
+		<select class="form-control" data-val="true" data-val-number="The field Municipio must be a number." data-val-required="The Municipio field is required." id="Detalle_de_Persona_Moral_MPIMunicipio" name="Detalle_de_Persona_Moral_MPIMunicipio">
+			<option value=""></option>
+			@if (varMunicipio_Municipio != null){ 
+				foreach (var itemMunicipio in varMunicipio_Municipio)
+				{
+					if (itemMunicipio.Value == Convert.ToString(Model.Municipio))
+					{
+						<option value="@itemMunicipio.Value" selected>@itemMunicipio.Text</option>
+					}
+					else
+					{
+						<option value="@itemMunicipio.Value">@itemMunicipio.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divLocalidad">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Localidad</label>
+	<div class="col-sm-8" data-field-id="Localidad" data-attribute="264209" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Localidad">
+		<select class="form-control" data-val="true" data-val-number="The field Localidad must be a number." data-val-required="The Localidad field is required." id="Detalle_de_Persona_Moral_MPILocalidad" name="Detalle_de_Persona_Moral_MPILocalidad">
+			<option value=""></option>
+			@if (varLocalidad_Localidad != null){ 
+				foreach (var itemLocalidad in varLocalidad_Localidad)
+				{
+					if (itemLocalidad.Value == Convert.ToString(Model.Localidad))
+					{
+						<option value="@itemLocalidad.Value" selected>@itemLocalidad.Text</option>
+					}
+					else
+					{
+						<option value="@itemLocalidad.Value">@itemLocalidad.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divColonia">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Colonia</label>
+	<div class="col-sm-8" data-field-id="Colonia" data-attribute="264210" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Colonia">
+		<select class="form-control" data-val="true" data-val-number="The field Colonia must be a number." data-val-required="The Colonia field is required." id="Detalle_de_Persona_Moral_MPIColonia" name="Detalle_de_Persona_Moral_MPIColonia">
+			<option value=""></option>
+			@if (varColonia_Colonia != null){ 
+				foreach (var itemColonia in varColonia_Colonia)
+				{
+					if (itemColonia.Value == Convert.ToString(Model.Colonia))
+					{
+						<option value="@itemColonia.Value" selected>@itemColonia.Text</option>
+					}
+					else
+					{
+						<option value="@itemColonia.Value">@itemColonia.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCalle">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Calle</label>
+                                <div class="col-sm-8" data-field-id="Calle" data-attribute="264211" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Calle">
+                                    <input class="form-control" id="Detalle_de_Persona_Moral_MPICalle" name="Detalle_de_Persona_Moral_MPICalle" type="text" value="@Model.Calle">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Exterior">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Numero_Exterior</label>
+	<div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="264212" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Numero_Exterior">
+		<input class="form-control inputNumber" id="Detalle_de_Persona_Moral_MPINumero_Exterior" name="Detalle_de_Persona_Moral_MPINumero_Exterior" type="text" value="@Model.Numero_Exterior">
+	</div>
+</div>
+<div class="form-group" id="divNumero_Interior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Numero_Interior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior" data-attribute="264213" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Numero_Interior">
+                                    <input class="form-control" id="Detalle_de_Persona_Moral_MPINumero_Interior" name="Detalle_de_Persona_Moral_MPINumero_Interior" type="text" value="@Model.Numero_Interior">
+                                </div>
+                            </div>
+<div class="form-group" id="divTelefono">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Telefono</label>
+                                <div class="col-sm-8" data-field-id="Telefono" data-attribute="264214" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Telefono">
+                                    <input class="form-control" id="Detalle_de_Persona_Moral_MPITelefono" name="Detalle_de_Persona_Moral_MPITelefono" type="text" value="@Model.Telefono">
+                                </div>
+                            </div>
+<div class="form-group" id="divExtension">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Extension</label>
+	<div class="col-sm-8" data-field-id="Extension" data-attribute="264215" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Extension">
+		<input class="form-control inputNumber" id="Detalle_de_Persona_Moral_MPIExtension" name="Detalle_de_Persona_Moral_MPIExtension" type="text" value="@Model.Extension">
+	</div>
+</div>
+<div class="form-group" id="divCelular">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Celular</label>
+                                <div class="col-sm-8" data-field-id="Celular" data-attribute="264216" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Celular">
+                                    <input class="form-control" id="Detalle_de_Persona_Moral_MPICelular" name="Detalle_de_Persona_Moral_MPICelular" type="text" value="@Model.Celular">
+                                </div>
+                            </div>
+<div class="form-group" id="divCorreo_Electronico">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_MPIResources.Correo_Electronico</label>
+                                <div class="col-sm-8" data-field-id="Correo_Electronico" data-attribute="264217" data-field-name="@Resources.Detalle_de_Persona_Moral_MPIResources.Correo_Electronico">
+                                    <input class="form-control" id="Detalle_de_Persona_Moral_MPICorreo_Electronico" name="Detalle_de_Persona_Moral_MPICorreo_Electronico" type="text" value="@Model.Correo_Electronico">
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_Persona_Moral_MPIConfigureSave" name="Detalle_de_Persona_Moral_MPIConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_Persona_Moral_MPIConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_Persona_Moral_MPIBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_Persona_Moral_MPIBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_Persona_Moral_MPIBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_Persona_Moral_MPIGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Persona_Moral_MPIBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Persona_Moral_MPI.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Persona_Moral_MPIGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Persona_Moral_MPICreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Expediente_InicialCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_Persona_Moral_MPIRowElement = "Detalle_de_Persona_Moral_MPIPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_Persona_Moral_MPIRowElement + "')){ Detalle_de_Persona_Moral_MPIInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_de_Persona_Moral_MPIData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Persona_Moral_MPI").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Persona_Moral_MPI")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_Persona_Moral_MPICreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Persona_Moral_MPI/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_Persona_Moral_MPIPropertyBag", "Detalle_de_Persona_Moral_MPI")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_Persona_Moral_MPIGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleFieldName').val(), ObjectId: '45121', Attribute: $('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_de_Persona_Moral_MPI' }, function (data) {
+                $(".Detalle_de_Persona_Moral_MPIBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_Persona_Moral_MPIGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleFieldName').val(), ObjectId: '45121', Attribute: $('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_de_Persona_Moral_MPI' }, function (data) {
+                $(".Detalle_de_Persona_Moral_MPIAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleFieldName').val(), ObjectId: '45121', Attribute: $('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_de_Persona_Moral_MPI' }, function (data) {
+				$(".Detalle_de_Persona_Moral_MPIBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Persona_Moral_MPI/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Persona_Moral_MPI/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Persona_Moral_MPI/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_Persona_Moral_MPIConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_Persona_Moral_MPIConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Persona_Moral_MPI/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_Persona_Moral_MPIConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Persona_Moral_MPI/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Persona_Moral_MPI' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Persona_Moral_MPI' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_Persona_Moral_MPIConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_Persona_Moral_MPIConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Persona_Moral_MPI').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_Persona_Moral_MPIBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Otros_Domicilios_Solicitante_MASC" value="Otros Domicilios Solicitante MASC"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Estado" value="Estado"></resource>
+  <resource culture="es-es" name="Municipio" value="Municipio"></resource>
+  <resource culture="es-es" name="Poblacion" value="Población"></resource>
+  <resource culture="es-es" name="Colonia" value="Colonia"></resource>
+  <resource culture="es-es" name="Codigo_Postal" value="Código Postal"></resource>
+  <resource culture="es-es" name="Calle" value="Calle"></resource>
+  <resource culture="es-es" name="Entre_Calle" value="Entre Calle"></resource>
+  <resource culture="es-es" name="Y_Calle" value="Y Calle"></resource>
+  <resource culture="es-es" name="Numero_Exterior" value="Número Exterior"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

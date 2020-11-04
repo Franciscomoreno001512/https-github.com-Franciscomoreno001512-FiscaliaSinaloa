@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Dilgencia_MASC" value="Dilgencia MASC"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Descripcion" value="Descripción"></resource>
+  <resource culture="es-es" name="Tipo_de_Diligencia" value="Tipo de Diligencia"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_de_Solicitud_de_Indicio" value="Detalle de Solicitud de Indicio"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Fecha_de_Solicitud" value="Fecha de Solicitud"></resource>
+  <resource culture="es-es" name="Hora_de_Solicitud" value="Hora de Solicitud"></resource>
+  <resource culture="es-es" name="Nombre_del_Solicitante" value="Nombre del Solicitante"></resource>
+  <resource culture="es-es" name="Motivo" value="Motivo"></resource>
+  <resource culture="es-es" name="Numero_de_Indicio" value="Número de Indicio"></resource>
+  <resource culture="es-es" name="Nombre_de_Indicio" value="Nombre de Indicio"></resource>
+  <resource culture="es-es" name="Descripcion_de_Entrega_de_Indicio" value="Descripción de Entrega de Indicio"></resource>
+  <resource culture="es-es" name="Diligencia_que_Solicita" value="Diligencia que Solicita"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

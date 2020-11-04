@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Acta_de_Lectura_de_Derechos" value="Acta de Lectura de Derechos"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="NUC" value="NUC"></resource>
+  <resource culture="es-es" name="NIC" value="NIC"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Ubicacion" value="Ubicación"></resource>
+  <resource culture="es-es" name="Fecha" value="Fecha"></resource>
+  <resource culture="es-es" name="Hora" value="Hora"></resource>
+  <resource culture="es-es" name="Agente_de_la_PM" value="Agente de la PM"></resource>
+  <resource culture="es-es" name="Plaza_de_Adscripcion" value="Plaza de Adscripción"></resource>
+  <resource culture="es-es" name="Domicilio_de_la_Comandancia" value="Domicilio de la Comandancia"></resource>
+  <resource culture="es-es" name="Municipio" value="Municipio"></resource>
+  <resource culture="es-es" name="Estado" value="Estado"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

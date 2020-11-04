@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Spartan_RDM_Operations_Detail" value="Spartan RDM Operations Detail"></resource>
+  <resource culture="en-US" name="DetailId" value="DetailId"></resource>
+  <resource culture="en-US" name="Object_Name" value="Proceso"></resource>
+  <resource culture="en-US" name="Object_Label" value="Etiqueta"></resource>
+  <resource culture="en-US" name="Order_Shown" value="Orden"></resource>
+  <resource culture="en-US" name="Count_Query" value="Query Conteo"></resource>
+  <resource culture="en-US" name="Query_Data" value="Query Información"></resource>
+  <resource culture="en-US" name="Icono" value="Icono"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

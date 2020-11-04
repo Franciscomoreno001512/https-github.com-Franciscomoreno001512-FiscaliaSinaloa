@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Lista_de_Documentos_CC" value="Detalle de Lista de Documentos CC"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Fecha" value="Fecha"></resource>
+  <resource culture="en-US" name="Nombre_del_Archivo" value="Nombre del Archivo"></resource>
+  <resource culture="en-US" name="Archivo" value="Archivo"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

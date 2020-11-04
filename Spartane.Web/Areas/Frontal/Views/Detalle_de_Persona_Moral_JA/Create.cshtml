@@ -1,0 +1,1174 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Persona_Moral_JAModel
+@{
+
+/*
+
+*/
+ List<SelectListItem> varSolicitud_Solicitud = null;
+    if (ViewBag.Solicituds_Solicitud != null)
+    { varSolicitud_Solicitud = (List<SelectListItem>)ViewBag.Solicituds_Solicitud; }
+ List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+ List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+ List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varColonia_Poblacion = null;
+    if (ViewBag.Colonias_Poblacion != null)
+    { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
+ List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.Detalle_de_Persona_Moral_JAResources.Detalle_de_Persona_Moral_JA
+                <button onclick="Detalle_de_Persona_Moral_JAGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Persona_Moral_JABusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Detalle_de_Persona_Moral_JAResources.Detalle_de_Persona_Moral_JA</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="Detalle_de_Persona_Moral_JADisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in Detalle_de_Persona_Moral_JAPropertyBusinessModal" id="Detalle_de_Persona_Moral_JAPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Detalle_de_Persona_Moral_JABusinessRule-form" onclick="Detalle_de_Persona_Moral_JAGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Persona_Moral_JABusinessRuleModal" id="Detalle_de_Persona_Moral_JABusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Detalle_de_Persona_Moral_JA", FormMethod.Post, new { id = "CreateDetalle_de_Persona_Moral_JA", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Detalle_de_Persona_Moral_JACreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Detalle_de_Persona_Moral_JAResources.TabDatos_Generales</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="264986" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" id="dividRegistroAT">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.idRegistroAT</label>
+                                <div class="col-sm-8" data-field-id="idRegistroAT" data-attribute="266621" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.idRegistroAT">
+                                    <input class="form-control inputNumber Datos_Generales" id="idRegistroAT" name="idRegistroAT" type="text" value="@Model.idRegistroAT">
+                                    @*<span class="field-validation-valid" data-valmsg-for="idRegistroAT" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="dividRegistroUI">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.idRegistroUI</label>
+                                <div class="col-sm-8" data-field-id="idRegistroUI" data-attribute="266622" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.idRegistroUI">
+                                    <input class="form-control inputNumber Datos_Generales" id="idRegistroUI" name="idRegistroUI" type="text" value="@Model.idRegistroUI">
+                                    @*<span class="field-validation-valid" data-valmsg-for="idRegistroUI" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+				<div class="form-group" id="divSolicitud">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Solicitud" data-attribute="265004" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Solicitud">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Persona_Moral_JA_Solicitud form-control select2-dropdown Datos_Generales' data-val="true" id="Solicitud" name="Solicitud">
+                                        <option value="@Model.Solicitud">@(Model.SolicitudNumero_de_Folio??Model.SolicitudNumero_de_Folio)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 265004).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud', 'Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divNombre">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Nombre</label>
+                                <div class="col-sm-8" data-field-id="Nombre" data-attribute="264987" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Nombre">
+                                    <input class="form-control Datos_Generales" id="Nombre" name="Nombre" type="text" value="@Model.Nombre">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Nombre" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divApellido_Paterno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Apellido_Paterno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Paterno" data-attribute="264988" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Apellido_Paterno">
+                                    <input class="form-control Datos_Generales" id="Apellido_Paterno" name="Apellido_Paterno" type="text" value="@Model.Apellido_Paterno">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Apellido_Paterno" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divApellido_Materno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Apellido_Materno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Materno" data-attribute="264989" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Apellido_Materno">
+                                    <input class="form-control Datos_Generales" id="Apellido_Materno" name="Apellido_Materno" type="text" value="@Model.Apellido_Materno">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Apellido_Materno" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCalidad_Juridica">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Calidad_Juridica</label>
+                                <div class="col-sm-8" data-field-id="Calidad_Juridica" data-attribute="264990" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Calidad_Juridica">
+                                    <input class="form-control Datos_Generales" id="Calidad_Juridica" name="Calidad_Juridica" type="text" value="@Model.Calidad_Juridica">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Calidad_Juridica" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divRazon_Social">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Razon_Social</label>
+                                <div class="col-sm-8" data-field-id="Razon_Social" data-attribute="264991" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Razon_Social">
+                                    <input class="form-control Datos_Generales" id="Razon_Social" name="Razon_Social" type="text" value="@Model.Razon_Social">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Razon_Social" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCURP">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.CURP</label>
+                                <div class="col-sm-8" data-field-id="CURP" data-attribute="265005" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.CURP">
+                                    <input class="form-control Datos_Generales" id="CURP" name="CURP" type="text" value="@Model.CURP">
+                                    @*<span class="field-validation-valid" data-valmsg-for="CURP" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divRFC">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.RFC</label>
+                                <div class="col-sm-8" data-field-id="RFC" data-attribute="265006" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.RFC">
+                                    <input class="form-control Datos_Generales" id="RFC" name="RFC" type="text" value="@Model.RFC">
+                                    @*<span class="field-validation-valid" data-valmsg-for="RFC" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+				<div class="form-group" id="divPais">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Pais</label>
+                                <div class="col-sm-8" data-field-id="Pais" data-attribute="264992" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Pais">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Persona_Moral_JA_Pais form-control select2-dropdown Datos_Generales' data-val="true" id="Pais" name="Pais">
+                                        <option value="@Model.Pais">@(Model.PaisNombre??Model.PaisNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 264992).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Pais', 'Pais');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divEstado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Estado</label>
+                                <div class="col-sm-8" data-field-id="Estado" data-attribute="264993" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Estado">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Persona_Moral_JA_Estado form-control select2-dropdown Datos_Generales' data-val="true" id="Estado" name="Estado">
+                                        <option value="@Model.Estado">@(Model.EstadoNombre??Model.EstadoNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 264993).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Estado', 'Estado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divMunicipio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Municipio</label>
+                                <div class="col-sm-8" data-field-id="Municipio" data-attribute="264994" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Municipio">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Persona_Moral_JA_Municipio form-control select2-dropdown Datos_Generales' data-val="true" id="Municipio" name="Municipio">
+                                        <option value="@Model.Municipio">@(Model.MunicipioNombre??Model.MunicipioNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 264994).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Municipio', 'Municipio');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divPoblacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Poblacion</label>
+                                <div class="col-sm-8" data-field-id="Poblacion" data-attribute="265890" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Poblacion">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Persona_Moral_JA_Poblacion form-control select2-dropdown Datos_Generales' data-val="true" id="Poblacion" name="Poblacion">
+                                        <option value="@Model.Poblacion">@(Model.PoblacionNombre??Model.PoblacionNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 265890).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Poblacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divColonia">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Colonia</label>
+                                <div class="col-sm-8" data-field-id="Colonia" data-attribute="264995" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Colonia">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Persona_Moral_JA_Colonia form-control select2-dropdown Datos_Generales' data-val="true" id="Colonia" name="Colonia">
+                                        <option value="@Model.Colonia">@(Model.ColoniaNombre??Model.ColoniaNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 264995).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Colonia');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divCodigo_Postal">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Codigo_Postal</label>
+                                <div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="264996" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Codigo_Postal">
+                                    <input class="form-control inputNumber Datos_Generales" id="Codigo_Postal" name="Codigo_Postal" type="text" value="@Model.Codigo_Postal">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Codigo_Postal" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCalle">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Calle</label>
+                                <div class="col-sm-8" data-field-id="Calle" data-attribute="264997" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Calle">
+                                    <input class="form-control Datos_Generales" id="Calle" name="Calle" type="text" value="@Model.Calle">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Calle" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNumero_Exterior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Numero_Exterior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="264998" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Numero_Exterior">
+                                    <input class="form-control Datos_Generales" id="Numero_Exterior" name="Numero_Exterior" type="text" value="@Model.Numero_Exterior">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_Exterior" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNumero_Interior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Numero_Interior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior" data-attribute="264999" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Numero_Interior">
+                                    <input class="form-control Datos_Generales" id="Numero_Interior" name="Numero_Interior" type="text" value="@Model.Numero_Interior">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_Interior" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divReferencia">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Referencia</label>
+                                <div class="col-sm-8" data-field-id="Referencia" data-attribute="265891" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Referencia">
+                                    <input class="form-control Datos_Generales" id="Referencia" name="Referencia" type="text" value="@Model.Referencia">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Referencia" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divLatitud">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Latitud</label>
+                                <div class="col-sm-8" data-field-id="Latitud" data-attribute="265892" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Latitud">
+                                    <input class="form-control Datos_Generales" id="Latitud" name="Latitud" type="text" value="@Model.Latitud">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Latitud" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divLongitud">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Longitud</label>
+                                <div class="col-sm-8" data-field-id="Longitud" data-attribute="265893" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Longitud">
+                                    <input class="form-control Datos_Generales" id="Longitud" name="Longitud" type="text" value="@Model.Longitud">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Longitud" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divTelefono">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Telefono</label>
+                                <div class="col-sm-8" data-field-id="Telefono" data-attribute="265000" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Telefono">
+                                    <input class="form-control Datos_Generales" id="Telefono" name="Telefono" type="text" value="@Model.Telefono">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Telefono" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divExtension">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Extension</label>
+                                <div class="col-sm-8" data-field-id="Extension" data-attribute="265001" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Extension">
+                                    <input class="form-control inputNumber Datos_Generales" id="Extension" name="Extension" type="text" value="@Model.Extension">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Extension" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCelular">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Celular</label>
+                                <div class="col-sm-8" data-field-id="Celular" data-attribute="265002" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Celular">
+                                    <input class="form-control Datos_Generales" id="Celular" name="Celular" type="text" value="@Model.Celular">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Celular" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCorreo_Electronico">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Persona_Moral_JAResources.Correo_Electronico</label>
+                                <div class="col-sm-8" data-field-id="Correo_Electronico" data-attribute="265003" data-field-name="@Resources.Detalle_de_Persona_Moral_JAResources.Correo_Electronico">
+                                    <input class="form-control Datos_Generales" id="Correo_Electronico" name="Correo_Electronico" type="text" value="@Model.Correo_Electronico">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Correo_Electronico" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+                                <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Detalle_de_Persona_Moral_JAGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Detalle_de_Persona_Moral_JACreateForm');"  />
+									<button onclick="Detalle_de_Persona_Moral_JAGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Persona_Moral_JABusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Detalle_de_Persona_Moral_JAGuardarYNuevo" onclick="return checkClientValidate('Detalle_de_Persona_Moral_JACreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Detalle_de_Persona_Moral_JAGuardarYCopia" onclick="return checkClientValidate('Detalle_de_Persona_Moral_JACreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnDetalle_de_Persona_Moral_JABusinessRuleFieldId" />
+                                <input type="hidden" id="hdnDetalle_de_Persona_Moral_JABusinessRuleFieldName" />
+                                <input type="hidden" id="hdnDetalle_de_Persona_Moral_JABusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Detalle_de_Persona_Moral_JACancelar" name="Detalle_de_Persona_Moral_JACancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                <button onclick="Detalle_de_Persona_Moral_JAGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Persona_Moral_JABusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Persona_Moral_JA.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Persona_Moral_JAGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Persona_Moral_JACreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_Generales = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45208');
+		    
+		   
+            
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#Detalle_de_Persona_Moral_JAGuardarYNuevo').hide();
+                $('#Detalle_de_Persona_Moral_JAGuardarYCopia').hide();
+                $('#Detalle_de_Persona_Moral_JACancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#Detalle_de_Persona_Moral_JAGuardar').val('Actualizar Seccion ' + '@Resources.Detalle_de_Persona_Moral_JAResources.Detalle_de_Persona_Moral_JA' )
+            }
+
+			
+			       var AutoCompleteSolicitudData =[];
+       $(".AutoCompleteDetalle_de_Persona_Moral_JA_Solicitud").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/GetDetalle_de_Persona_Moral_JA_Solicitud_Solicitud")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Persona_Moral_JA_Solicitud_SolicitudData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Persona_Moral_JA_Solicitud");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompletePaisData =[];
+       $(".AutoCompleteDetalle_de_Persona_Moral_JA_Pais").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/GetDetalle_de_Persona_Moral_JA_Pais_Pais")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Persona_Moral_JA_Pais_PaisData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Persona_Moral_JA_Pais");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteEstadoData =[];
+       $(".AutoCompleteDetalle_de_Persona_Moral_JA_Estado").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/GetDetalle_de_Persona_Moral_JA_Estado_Estado")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Persona_Moral_JA_Estado_EstadoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Persona_Moral_JA_Estado");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteMunicipioData =[];
+       $(".AutoCompleteDetalle_de_Persona_Moral_JA_Municipio").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/GetDetalle_de_Persona_Moral_JA_Municipio_Municipio")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Persona_Moral_JA_Municipio_MunicipioData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Persona_Moral_JA_Municipio");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompletePoblacionData =[];
+       $(".AutoCompleteDetalle_de_Persona_Moral_JA_Poblacion").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/GetDetalle_de_Persona_Moral_JA_Poblacion_Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Persona_Moral_JA_Poblacion_ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Persona_Moral_JA_Poblacion");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteColoniaData =[];
+       $(".AutoCompleteDetalle_de_Persona_Moral_JA_Colonia").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/GetDetalle_de_Persona_Moral_JA_Colonia_Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Persona_Moral_JA_Colonia_ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Persona_Moral_JA_Colonia");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
+        });
+
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+
+        function SendDetalle_de_Persona_Moral_JAData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Persona_Moral_JA").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Persona_Moral_JA")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#ReferenceClave").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_Generales && !checkClientValidate('Detalle_de_Persona_Moral_JACreateForm', 'Datos_Generales')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+            }
+			
+			
+			if (Tab_Datos_Generales)
+				Save_Datos_Generales(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".Detalle_de_Persona_Moral_JABusinessRuleModal").html(data);
+			});
+		}
+                function Detalle_de_Persona_Moral_JAGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45208');
+			$('#Screen').val('Detalle_de_Persona_Moral_JA');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function Detalle_de_Persona_Moral_JABackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Persona_Moral_JA').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        Detalle_de_Persona_Moral_JAGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_Generales()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/Get_Datos_Generales")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#idRegistroAT').val(result.data.idRegistroAT);
+                    $('#idRegistroUI').val(result.data.idRegistroUI);
+                    var control = $('#Solicitud');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Solicitud).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Solicitud).trigger('change');
+                    }, 3000);
+                    $('#Nombre').val(result.data.Nombre);
+                    $('#Apellido_Paterno').val(result.data.Apellido_Paterno);
+                    $('#Apellido_Materno').val(result.data.Apellido_Materno);
+                    $('#Calidad_Juridica').val(result.data.Calidad_Juridica);
+                    $('#Razon_Social').val(result.data.Razon_Social);
+                    $('#CURP').val(result.data.CURP);
+                    $('#RFC').val(result.data.RFC);
+                    var control = $('#Pais');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Pais).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Pais).trigger('change');
+                    }, 3000);
+                    var control = $('#Estado');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Estado).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Estado).trigger('change');
+                    }, 3000);
+                    var control = $('#Municipio');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Municipio).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Municipio).trigger('change');
+                    }, 3000);
+                    var control = $('#Poblacion');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Poblacion).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Poblacion).trigger('change');
+                    }, 3000);
+                    var control = $('#Colonia');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Colonia).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Colonia).trigger('change');
+                    }, 3000);
+                    $('#Codigo_Postal').val(result.data.Codigo_Postal);
+                    $('#Calle').val(result.data.Calle);
+                    $('#Numero_Exterior').val(result.data.Numero_Exterior);
+                    $('#Numero_Interior').val(result.data.Numero_Interior);
+                    $('#Referencia').val(result.data.Referencia);
+                    $('#Latitud').val(result.data.Latitud);
+                    $('#Longitud').val(result.data.Longitud);
+                    $('#Telefono').val(result.data.Telefono);
+                    $('#Extension').val(result.data.Extension);
+                    $('#Celular').val(result.data.Celular);
+                    $('#Correo_Electronico').val(result.data.Correo_Electronico);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_Generales(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('idRegistroAT', $('#idRegistroAT').val());
+                data.append('idRegistroUI', $('#idRegistroUI').val());
+                data.append('Solicitud', $('#Solicitud').val());
+                data.append('Nombre', $('#Nombre').val());
+                data.append('Apellido_Paterno', $('#Apellido_Paterno').val());
+                data.append('Apellido_Materno', $('#Apellido_Materno').val());
+                data.append('Calidad_Juridica', $('#Calidad_Juridica').val());
+                data.append('Razon_Social', $('#Razon_Social').val());
+                data.append('CURP', $('#CURP').val());
+                data.append('RFC', $('#RFC').val());
+                data.append('Pais', $('#Pais').val());
+                data.append('Estado', $('#Estado').val());
+                data.append('Municipio', $('#Municipio').val());
+                data.append('Poblacion', $('#Poblacion').val());
+                data.append('Colonia', $('#Colonia').val());
+                data.append('Codigo_Postal', $('#Codigo_Postal').val());
+                data.append('Calle', $('#Calle').val());
+                data.append('Numero_Exterior', $('#Numero_Exterior').val());
+                data.append('Numero_Interior', $('#Numero_Interior').val());
+                data.append('Referencia', $('#Referencia').val());
+                data.append('Latitud', $('#Latitud').val());
+                data.append('Longitud', $('#Longitud').val());
+                data.append('Telefono', $('#Telefono').val());
+                data.append('Extension', $('#Extension').val());
+                data.append('Celular', $('#Celular').val());
+                data.append('Correo_Electronico', $('#Correo_Electronico').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Detalle_de_Persona_Moral_JA/Post_Datos_Generales")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="Detalle_de_Persona_Moral_JA_cmbLabelSelect" name="Detalle_de_Persona_Moral_JA_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

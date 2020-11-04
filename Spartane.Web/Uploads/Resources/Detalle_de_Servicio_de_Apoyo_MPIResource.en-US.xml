@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Servicio_de_Apoyo_MPI" value="Detalle de Servicio de Apoyo MPI"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Tipo_de_Servicio" value="Tipo de Diligencias de Servicios de Apoyo"></resource>
+  <resource culture="en-US" name="Dictamen" value="Dictamen"></resource>
+  <resource culture="en-US" name="Responsable" value="Responsable"></resource>
+  <resource culture="en-US" name="Victima" value="Victima"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

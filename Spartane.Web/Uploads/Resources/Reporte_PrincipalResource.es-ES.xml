@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Reporte_Principal" value="Reporte Principal"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Expediente" value="Expediente"></resource>
+  <resource culture="es-es" name="Total_de_Expedientes" value="Total de Expedientes"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Numero_de_Caso" value="Numero de Caso"></resource>
+  <resource culture="es-es" name="Creciente" value="Creciente"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

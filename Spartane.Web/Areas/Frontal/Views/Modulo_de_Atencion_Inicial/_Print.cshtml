@@ -1,0 +1,578 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Modulo_de_Atencion_InicialGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Folio
+            </td>
+                        <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Folio
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Fecha_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Hora_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.NUAT
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Usuario_que_Registra
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Nombre
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Apellido_Paterno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Apellido_Materno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Fecha_de_Nacimiento
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Edad
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Sexo
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Estado_Civil
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Tipo_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Numero_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Nacionalidad
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Escolaridad
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Ocupacion
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Calle
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Numero_Exterior
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Numero_Interior
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Colonia
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Codigo_Postal
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Zona
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Estado
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Telefono
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Celular
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Correo_Electronico
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Menor_de_Edad
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Representante_Legal
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Nombre_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Apellido_Paterno_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Apellido_Materno_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Fecha_de_Nacimiento_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Edad_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Sexo_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Estado_Civil_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Tipo_de_Identificacion_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Numero_de_Identificacion_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Nacionalidad_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Escolaridad_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Ocupacion_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Calle_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Numero_Exterior_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Numero_Interior_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Colonia_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Codigo_Postal_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Localidad_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Municipio_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Estado_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Telefono_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Celular_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Correo_Electronico_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Nombre_del_Representante
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Apellido_Paterno_del_Representante
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Apellido_Materno_del_Representante
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Calidad_Juridica
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Calle_del_Representante
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Numero_Exterior_del_Representante
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Numero_Interior_del_Representante
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Colonia_del_Representante
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Localidad_del_Representante
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Municipio_del_Representante
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Estado_del_Representante
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Telefono_del_Representante
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Celular_del_Representante
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Correo_Electronico_del_Representante
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Narrativa
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Atencion_Medica
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Atencion_Psicologica
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Requiere_Traductor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Tipo_de_Compareciente
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Estatus
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Turno_Asignado
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Unidad
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Municipio_Caso
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Tipo_de_Denuncia
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Numero_de_Expediente
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Poblacion
+            </td>
+            <td class="column1">
+                @Resources.Modulo_de_Atencion_InicialResources.Colonia_Hechos_MPO
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Folio
+                    </td>
+					                    <td>
+                        @item.Folio
+                    </td>
+                    <td>
+                        @item.Fecha_de_Registro
+                    </td>
+                    <td>
+                        @item.Hora_de_Registro
+                    </td>
+                    <td>
+                        @item.NUAT
+                    </td>
+                    <td>
+                        @item.Usuario_que_Registra
+                    </td>
+                    <td>
+                        @item.Nombre
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno
+                    </td>
+                    <td>
+                        @item.Apellido_Materno
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento
+                    </td>
+                    <td>
+                        @item.Edad
+                    </td>
+                    <td>
+                        @item.SexoDescripcion
+                    </td>
+                    <td>
+                        @item.Estado_CivilDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_IdentificacionNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion
+                    </td>
+                    <td>
+                        @item.NacionalidadNacionalidadC
+                    </td>
+                    <td>
+                        @item.EscolaridadDescripcion
+                    </td>
+                    <td>
+                        @item.OcupacionDescripcion
+                    </td>
+                    <td>
+                        @item.Calle
+                    </td>
+                    <td>
+                        @item.Numero_Exterior
+                    </td>
+                    <td>
+                        @item.Numero_Interior
+                    </td>
+                    <td>
+                        @item.ColoniaNombre
+                    </td>
+                    <td>
+                        @item.Codigo_Postal
+                    </td>
+                    <td>
+                        @item.ZonaDescripcion
+                    </td>
+                    <td>
+                        @item.MunicipioNombre
+                    </td>
+                    <td>
+                        @item.EstadoNombre
+                    </td>
+                    <td>
+                        @item.Telefono
+                    </td>
+                    <td>
+                        @item.Celular
+                    </td>
+                    <td>
+                        @item.Correo_Electronico
+                    </td>
+                    <td>
+                        @item.Menor_de_Edad
+                    </td>
+                    <td>
+                        @item.Representante_Legal
+                    </td>
+                    <td>
+                        @item.Nombre_del_Tutor
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno_del_Tutor
+                    </td>
+                    <td>
+                        @item.Apellido_Materno_del_Tutor
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento_del_Tutor
+                    </td>
+                    <td>
+                        @item.Edad_del_Tutor
+                    </td>
+                    <td>
+                        @item.Sexo_del_TutorDescripcion
+                    </td>
+                    <td>
+                        @item.Estado_Civil_del_TutorDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_Identificacion_del_TutorNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion_del_Tutor
+                    </td>
+                    <td>
+                        @item.Nacionalidad_del_TutorNacionalidadC
+                    </td>
+                    <td>
+                        @item.Escolaridad_del_TutorDescripcion
+                    </td>
+                    <td>
+                        @item.Ocupacion_del_TutorDescripcion
+                    </td>
+                    <td>
+                        @item.Calle_del_Tutor
+                    </td>
+                    <td>
+                        @item.Numero_Exterior_del_Tutor
+                    </td>
+                    <td>
+                        @item.Numero_Interior_del_Tutor
+                    </td>
+                    <td>
+                        @item.Colonia_del_TutorNombre
+                    </td>
+                    <td>
+                        @item.Codigo_Postal_del_Tutor
+                    </td>
+                    <td>
+                        @item.Localidad_del_TutorDescripcion
+                    </td>
+                    <td>
+                        @item.Municipio_del_TutorNombre
+                    </td>
+                    <td>
+                        @item.Estado_del_TutorNombre
+                    </td>
+                    <td>
+                        @item.Telefono_del_Tutor
+                    </td>
+                    <td>
+                        @item.Celular_del_Tutor
+                    </td>
+                    <td>
+                        @item.Correo_Electronico_del_Tutor
+                    </td>
+                    <td>
+                        @item.Nombre_del_Representante
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno_del_Representante
+                    </td>
+                    <td>
+                        @item.Apellido_Materno_del_Representante
+                    </td>
+                    <td>
+                        @item.Calidad_Juridica
+                    </td>
+                    <td>
+                        @item.Calle_del_Representante
+                    </td>
+                    <td>
+                        @item.Numero_Exterior_del_Representante
+                    </td>
+                    <td>
+                        @item.Numero_Interior_del_Representante
+                    </td>
+                    <td>
+                        @item.Colonia_del_RepresentanteNombre
+                    </td>
+                    <td>
+                        @item.Localidad_del_RepresentanteDescripcion
+                    </td>
+                    <td>
+                        @item.Municipio_del_RepresentanteNombre
+                    </td>
+                    <td>
+                        @item.Estado_del_RepresentanteNombre
+                    </td>
+                    <td>
+                        @item.Telefono_del_Representante
+                    </td>
+                    <td>
+                        @item.Celular_del_Representante
+                    </td>
+                    <td>
+                        @item.Correo_Electronico_del_Representante
+                    </td>
+                    <td>
+                        @item.Narrativa
+                    </td>
+                    <td>
+                        @item.Atencion_Medica
+                    </td>
+                    <td>
+                        @item.Atencion_Psicologica
+                    </td>
+                    <td>
+                        @item.Requiere_Traductor
+                    </td>
+                    <td>
+                        @item.Tipo_de_ComparecienteDescripcion
+                    </td>
+                    <td>
+                        @item.EstatusDescripcion
+                    </td>
+                    <td>
+                        @item.Turno_AsignadoNumero_de_Turno
+                    </td>
+                    <td>
+                        @item.UnidadDescripcion
+                    </td>
+                    <td>
+                        @item.Municipio_CasoNombre
+                    </td>
+                    <td>
+                        @item.Tipo_de_DenunciaDescripcion
+                    </td>
+                    <td>
+                        @item.Numero_de_Expediente
+                    </td>
+                    <td>
+                        @item.PoblacionNombre
+                    </td>
+                    <td>
+                        @item.Colonia_Hechos_MPONombre
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

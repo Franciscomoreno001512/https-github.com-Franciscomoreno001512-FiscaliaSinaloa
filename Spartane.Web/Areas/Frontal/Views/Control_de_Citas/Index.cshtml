@@ -1,0 +1,1144 @@
+﻿@using System.Collections.Generic
+@using System.Web.UI.WebControls
+@using Spartane.Core.Domain.Control_de_Citas;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Origen_de_Invitacion;
+
+@using Spartane.Core.Domain.Permission
+@using Spartane.Web.Areas.WebApiConsumer
+@using Spartane.Web.Helpers
+@{ ViewBag.Title = Resources.Resources.Index;
+    Permission permission = ViewBag.Permission;
+    var advanceSearch = (bool)ViewBag.AdvanceSearch; }
+<style>
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+    #calendar {
+        max-width: 1100px;
+        margin: 40px auto;
+        font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    }
+</style>
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>@Resources.Control_de_CitasResources.Control_de_Citas</h2>
+
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+
+            </li>
+            <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+    <strong>@Session["PhaseName"].ToString()</strong> }
+else
+{
+<strong>@Resources.Control_de_CitasResources.Control_de_Citas</strong>}
+
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+        @{ if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+            {
+<h2>&nbsp;</h2>
+                <button onclick="Control_de_CitasGetBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton" data-toggle="modal" data-target="#Control_de_CitasBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+                                <div aria-hidden="true" class="modal fade in Control_de_CitasPropertyBusinessModal" id="Control_de_CitasPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">
+                                                    Property & Business Rules
+                                                    <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+                                                    </div>
+                                                    <div class="clearfix col-sm-12">&nbsp;</div>
+                                                    <div class="col-sm-12">
+                                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Control_de_CitasBusinessRule-form" onclick="Control_de_CitasGetBusinessRule()">Business Rule</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                                <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                                </div>
+                                                                <div aria-hidden="true" data-backdrop="static" class="modal fade in Control_de_CitasBusinessRuleModal" id="Control_de_CitasBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                                                </div>
+                                                                                <div aria-hidden="true" data-backdrop="static" class="modal fade in Control_de_CitasAddBusinessRuleModal" id="Control_de_CitasAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                                                                </div> } }
+    </div>
+</div>
+
+<input type="hidden" value="List" name="Operation" id="Operation" />
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
+@*CODMANINI-ADD*@
+<link href="~/Scripts/FullCalendar/calendario.css" rel="stylesheet">
+<link rel='stylesheet' type='text/css' href='~/Scripts/FullCalendar/fullcalendar.css' />
+<link rel="stylesheet" href="~/fonts/font-awesome/css/all.css">
+@*CODMANFIN-ADD*@
+<span id="popupNotification"></span>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+
+                    <div id="jsGrid">
+                    </div>
+
+                    @* Model Start Here *@
+
+                    @using (Ajax.BeginForm("", "", new AjaxOptions { OnSuccess = "" }))
+                    {
+
+                    }
+
+                    @* Model Print Start*@
+                    <div id="exportModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="gridSystemModalLabel">@Resources.Resources.Export</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-3">@Resources.Resources.ExportOptions:</div>
+                                        <div class="col-md-8 col-md-offset-0">
+                                            <label class="">
+                                                <input type="radio" name="optradio" value="1" checked="true">@Resources.Resources.ExporOnlyCurrent
+                                            </label>
+                                            <label class="">
+                                                <input type="radio" name="optradio" value="0">@Resources.Resources.ExporAllRecords
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resources.Close</button>
+                                    <button type="button" id="btnPrint" class="btn btn-primary" onclick="return PrintDocument(3);">@Resources.Resources.Print</button>
+                                    <button type="button" id="btnPdf" class="btn btn-primary" onclick="return Export(1);">@Resources.Resources.Export</button>
+                                    <button type="button" id="btnExcel" class="btn btn-primary" onclick="return Export(2);">@Resources.Resources.Export</button>
+                                    <button type="button" id="btnCSV" class="btn btn-primary" onclick="return Export(4);">@Resources.Resources.Export</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+                    @* Model Print Format Start*@
+                    <div id="printFormatModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="gridSystemModalLabel">@Resources.Resources.Print @Resources.Spartan_FormatResources.Format </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div id="spartan_formats" class="col-md-6 col-md-offset-0">
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resources.Close</button>
+                                        <button type="button" id="btnPrint" class="btn btn-primary" onclick="return ExportToPdfFormats();">@Resources.Resources.Print @Resources.Resources.PDF</button>
+                                    </div>
+                                    <div class="row">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+                    <div id="botonera">
+                        @if (permission.New)
+                        {
+                    @Html.ActionLink(Resources.Resources.Create, "Create", "Control_de_Citas", new { @class = "btn btn-primary" })}
+                        @Html.ActionLink(@Resources.Resources.AdvanceSearch, "ShowAdvanceFilter", "Control_de_Citas", new { previousFilters = advanceSearch }, new { @class = ("btn btn-primary") })
+                        <button onclick="ClearFilter()" class=" btn btn-primary">@Resources.Resources.ClearFilter</button>
+
+                    </div>
+                  
+
+                    <div class="table-responsive">
+                        @*CODMANINI-ADD*@
+                        <div id="CalendarPrincipal">
+                            <div id="actividadesevento"></div>
+                            <div id="tooltips"></div>
+                            <div id='calendar'></div>
+                        </div>
+                        @*CODMANFIN-ADD*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+@Styles.Render("~/plugins/dataPickerStyles")
+@Styles.Render("~/plugins/clockpickerStyles")
+@Styles.Render("~/plugins/awesomeCheckboxStyles")
+
+@Scripts.Render("~/plugins/dataTables")
+@Scripts.Render("~/plugins/dataPicker")
+@Scripts.Render("~/plugins/clockpicker")
+@*@Scripts.Render("~/plugins/slimScroll")*@
+
+<script type="text/javascript" src="~/Scripts/Custom/tablePlugin.js"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Control_de_CitasIndexRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+
+@*CODMANINI-ADD*@
+<script type='text/javascript' src='~/Scripts/FullCalendar/moment.min.js'></script>
+<script type='text/javascript' src='~/Scripts/FullCalendar/fullcalendar.min.js'></script>
+<link href='~/Scripts/FullCalendar/main.css' rel='stylesheet' />
+<script src='~/Scripts/FullCalendar/main.js'></script>
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+<script type='text/javascript' src='~/Scripts/FullCalendar/locales/es.js'></script>
+@*CODMANFIN-ADD*@
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    div.dataTables_info {
+        display: inline-block;
+        float: left;
+    }
+</style>
+
+<script type="text/javascript">
+	var MRWhere = '';
+    var MROrder = '';
+    var table;
+    var currentFilter;
+     var permission = {
+        Consult: '@permission.Consult.ToString()' == 'True',
+        New: '@permission.New.ToString()' == 'True',
+        Edit: '@permission.Edit.ToString()' == 'True',
+        Delete: '@permission.Delete.ToString()' == 'True',
+        Export: '@permission.Export.ToString()' == 'True',
+        Print: '@permission.Print.ToString()' == 'True',
+        Configure: '@permission.Configure.ToString()' == 'True',
+    };
+
+    $(document).ready(function () {
+	$('.loading').show();
+        $("#frmAdvanceSearch").submit(function (e) {
+            e.preventDefault();
+            InitiateAdvanceSearch();
+        });
+        $('a').tooltip();
+        $("#AdminPrincipal").css("display", "none");
+        $("#CalendarPrincipal").css("display", "block");
+        llenarEventos();
+    });
+    /*CODMANINI-ADD*/
+
+        var datoSeleccionado = {
+        Folio :0,
+        Fecha_de_la_Cita :0,
+        Cita :0
+    };
+
+    var iEmpresaUsuario = 0;
+	var sNumeroEmpleado = "0";
+
+
+    function ObtenerRegistrosEnEvento(idEvento) {
+        var lRegistrosEventos = [];
+        var query = "exec sp_Get_Registro_en_Evento " + idEvento;
+        var res = '';
+        lRegistrosEventos = ExecuteQueryTabla(query);
+        RegistroEventosLugaresOcupados(lRegistrosEventos);
+    }
+
+    function RegistroEventosLugaresOcupados(RegistrosRealizados) {
+        for (var i = 0; i < RegistrosRealizados.length;i++) {
+            var idbutton = "#Detalle_Evento_" + RegistrosRealizados[i].Lugares_disponibles;
+            $(idbutton).css("background-color", "red");
+            $(idbutton).prop("disabled", true);
+            var text = $(idbutton).text();
+            $(idbutton).text(text.replace("Disponible", "No Disponible"));
+        }
+    }
+
+    function ObtenerEventos(calendar) {
+        var wherever = "";
+                var lEventosEmpresa = [];
+        var columns1 = [];
+        var datacolumns = { data: "Boton", name: "Boton" };
+        columns1.push(datacolumns);
+        var datacolumns1 = { data: "Folio", name: "Folio" };
+        columns1.push(datacolumns1);
+        var data1 = {
+            draw: 1,
+            start: 0,
+            length: 100,
+            order: "asc",
+            sortColumn: "-1",
+            columns: columns1,
+            MRWhere: wherever,
+            MROrder: "",
+            filters: "&Folio=",
+            AdvanceSearch: false
+        };
+        $.ajax({
+            url: "@Url.Content("~/Frontal/Control_de_Citas/GetControl_de_CitasList")",
+            method: 'Post',
+            data: { "sEcho": data1.draw, "iDisplayStart": data1.start, "iDisplayLength": data1.length, "sortDirection": data1.order, "sortColumn": data1.sortColumn, "columns": data1.columns, "where": data1.MRWhere, "order": data1.MROrder, "filters": data1.filters, "AdvanceSearch": data1.advanceSearch },
+            success: function (result) {
+                lEventosEmpresa = result.aaData;
+                console.log(lEventosEmpresa);
+                AgregaEventos(lEventosEmpresa, calendar);
+            },
+            error: function (result) {
+                alert("Error al obtener Citas");
+            }
+        });
+    }
+
+    var lActividadesEvento = [];
+    function ObtenerActividades(idEvento) {
+        $.ajax({
+            url: "@Url.Content("~/Frontal/Eventos/Get_Actividades")?Id=" + idEvento,
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            success: function (result) {
+                debugger;
+                console.log("Actividades Eventos");
+                lActividadesEvento = result.Actividades_del_Evento;
+                console.log(lActividadesEvento);
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            }
+        });
+    }
+
+    function ObtenerActividades2(idEvento) {
+        var query = "exec sp_Get_Actividades_por_Evento " + idEvento;
+        var res = '';
+        lActividadesEvento = ExecuteQueryTabla(query);
+        debugger;
+        return res;
+    }
+
+    function ExecuteQueryTabla(query) {
+        var resultados = [];
+        var data = {
+            query: query
+        }
+
+        $.ajax({
+            url: url_content + "Frontal/General/ExecuteQueryTable",
+            type: 'POST',
+            dataType: "json",
+            cache: false,
+            async: false,
+            data: data,
+            success: function (result) {
+                var jsonObj = $.parseJSON(result);
+                resultados = jsonObj;
+            },
+            error: function (result) {
+                showNotification("Error ejecutando query", "error");
+                res = "0";
+            }
+        });
+        return resultados;
+    }
+
+    function htmlEncode(value) {
+        // Create a in-memory element, set its inner text (which is automatically encoded)
+        // Then grab the encoded contents back out. The element never exists on the DOM.
+        return $('<textarea/>').text(value).html();
+    }
+    var initialDate = GetInitialDate();
+
+    function addZero(i) {
+        if (i < 10) {
+            i = '0' + i;
+        }
+        return i;
+    }
+
+    function GetInitialDate() {
+        var hoy = new Date();
+        var dd = hoy.getDate();
+        var mm = hoy.getMonth() + 1;
+        var yyyy = hoy.getFullYear();
+        dd = addZero(dd);
+        mm = addZero(mm);
+        return yyyy + '-' + mm + '-' + dd;
+    }
+
+    function llenarEventos() {
+        var calendarEl = document.getElementById('calendar');
+        var eventos = [{ Realizado: false, Fecha: '2020-08-05T00:00:00', CalendarioId:1}];
+        //var eventos = Function para obtener eventos por userID
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+            },
+            initialDate: initialDate,
+            navLinks: true,
+            businessHours: true,
+            editable: false,
+            selectable: true,
+            locale: 'es',
+            events: [
+            ],
+            eventClick: function (arg) {
+
+            },
+            eventContent: function (eventInfo) {
+                return { html: eventInfo.event.extendedProps.customHtml }
+            },
+        });
+        calendar.render();
+        ObtenerEventos(calendar);
+        $("#calendar").addClass("calendarPrincipal");
+        $(".fc-header-toolbar").find(".fc-toolbar-chunk").addClass("col-md-4");
+        $('.loading').hide();
+    }
+
+    var colorsValidos = ['#37d3ae', '#6699FF', '#fb815c', '#f3e22a', '#40c9a8'];
+    function CalcularRandomColor() {
+        return Math.floor(Math.random() * (5)) + 1;
+    }
+
+    var sHtmlToolTips = "";
+    function AgregaEventos(eventos, calendar) {
+        sHtmlToolTips = "";
+        for (var i = 0; i < eventos.length; i++) {
+            var fechaini = stringToDate(eventos[i].Fecha_de_la_Cita, "dd-mm-yyyy", "-");
+            var fechafin = stringToDate(eventos[i].Fecha_de_la_Cita, "dd-mm-yyyy", "-");
+            var contador = 0;
+            var color = colorsValidos[CalcularRandomColor()];
+            while (fechaini <= fechafin) {
+                var pasado = false;
+                if (fechaini < new Date())
+                    pasado = true;
+                var evento = {
+                    customHtml: getCustomHtml(eventos[i], pasado, i, contador, fechaini.toISOString().slice(0, 10), calendar, color),
+                    start: fechaini.toISOString().slice(0, 10),
+                    color: '#fff',
+                    title: "Hora: " + eventos[i].Hora_de_la_Cita + ", Tipo Cita: " + eventos[i].Tipo_de_Cita + ", Núm. Expediente: " + eventos[i].Numero_de_Expediente ,//"Hora: " + resultJson[i]["Hora_de_la_Cita"] + ", Tipo Cita: " + resultJson[i]["Tipo_de_Cita"] + ", Núm. Expediente: " + resultJson[i]["Numero_de_Expediente"]
+                    id: eventos[i].Folio
+                }
+                calendar.addEvent(evento);
+                fechaini.setDate(fechaini.getDate() + 1);
+                contador++;
+            }
+        }
+        $('#tooltips').html(sHtmlToolTips);
+    }
+
+    function stringToDate(_date, _format, _delimiter) {
+        var formatLowerCase = _format.toLowerCase();
+        var formatItems = formatLowerCase.split(_delimiter);
+        var dateItems = _date.split(_delimiter);
+        var monthIndex = formatItems.indexOf("mm");
+        var dayIndex = formatItems.indexOf("dd");
+        var yearIndex = formatItems.indexOf("yyyy");
+        var month = parseInt(dateItems[monthIndex]);
+        month -= 1;
+        var formatedDate = new Date(dateItems[yearIndex], month, dateItems[dayIndex]);
+        return formatedDate;
+    }
+
+
+    function getCustomHtml(obj, index, fecha) {
+        var popupevento = "'" + "tooltip_evento" + index + "'";
+        var sNombredelevento = "";
+        var sIconActividades = "";
+        var sIconhecho = "";
+        var cumplido = "NO";
+
+        //if (isMobile()) {
+        //    sIconhecho = '<i class="far fa-check-square"></i>';
+        //    sNombredelevento = '<i class="far fa-calendar-check"></i>';
+        //} else {
+        sIconhecho = '<strong> Hecho!! </strong>';
+        sNombredelevento = 'Expediente: ' + SeccionaTexto(obj.Numero_de_Expediente) + '<br>' +
+            'Tipo: ' + SeccionaTexto(obj.Tipo_de_Cita) + '<br>' +
+            'Hora: ' + SeccionaTexto(obj.Hora_de_la_Cita) ;
+        //}
+        var fecha1 = "'" + fecha + "'";
+        var html = '<div onclick="MuestraActividades(' + obj.Folio + ',event,' + fecha1 + ')" style="background-color: ' + '#111352' + ';  display:flex; flex-direction: column;align-items: center; solid #ffffff;">';
+        //if (pasado) {
+        //    html = html + '<span style= "font-size: 12px; color: black">' + sIconhecho + '</span>';
+        //}
+
+        if (obj.cumplido) { cumplido = "SI"; }
+
+        html = html + '<span onmouseover="highlight(' + popupevento + ',event)" onmouseout="unhighlight(' + popupevento + ')" style="font-size: 10px;color: white;">' + sNombredelevento + '  </span>';
+
+        html = html + "</div>";
+        popupevento = "tooltip_evento" + index;
+        sHtmlToolTips = sHtmlToolTips + '<div  id="' + popupevento + '" aria-hidden="true" x-placement="top" style="font-size: 10px;width:220px;background-color: #CDCDD3;z-index: 99999;position: absolute; display: none; top: 40; left: 5px;"><div class="tooltip-arrow" style="left: 75px;"></div><div class="tooltip-inner">' +
+            'Hora: ' + obj.Hora_de_la_Cita + ' <br> ' +
+            'Proceso: ' + obj.ProcesoDescripcion + '<br>' +
+            'Expediente: ' + obj.Numero_de_Expediente + '<br>' +
+            'Tipo: ' + obj.Tipo_de_Cita + '<br>' +
+            'Cita: ' + obj.Cita + '<br>' +
+            'Cumplida: ' + cumplido + '<br>' +
+            'Observaciones: ' + obj.Observaciones + '</div></div>';
+
+
+        return html;
+    }
+
+    function SeccionaTexto(Texto) {
+
+        var newTexto = "";
+        if (Texto.length < 23)
+            return Texto;
+        else {
+            newTexto = Texto.substring(0, 22) + "<br>";
+            if (Texto.length > 44)
+                newTexto = newTexto + Texto.substring(23, 41) + "...";
+            else
+                newTexto = newTexto + Texto.substring(23, 44);
+        }
+        return newTexto.toUpperCase();;
+    }
+
+    function isMobile() {
+        return (
+            (navigator.userAgent.match(/Android/i)) ||
+            (navigator.userAgent.match(/webOS/i)) ||
+            (navigator.userAgent.match(/iPhone/i)) ||
+            (navigator.userAgent.match(/iPod/i)) ||
+            (navigator.userAgent.match(/iPad/i)) ||
+            (navigator.userAgent.match(/BlackBerry/i))
+        );
+    }
+
+    function highlight(pupupshow, event) {
+        var x = event.clientX ;
+        var y = event.clientY - 30;
+        $("#" + pupupshow).css("top", y - $("#calendar").offset().top + document.documentElement.scrollTop);
+        $("#" + pupupshow).css("left", x - $("#calendar").offset().left);
+        $("#" + pupupshow).css("display", "block");
+    }
+
+    function unhighlight(pupuphide) {
+        $("#" + pupuphide).css("display", "none");
+    }
+
+    function OcultarActividades(pupupshow) {
+        $("#" + pupupshow).css("display", "none");
+    }
+
+    function MuestraActividades(idEvento, event, fecha) {
+
+        window.location = '@Url.Action("Create", "Control_de_Citas")?Id=' + idEvento ;
+
+    }
+
+	function llenaActividadesHorariosConferencia(idActividadEvento, idActividadEvento2, horaini,horafin) {
+        var res = "";
+        var sdisabled = '';
+        var sDisponible = ' Disponible';
+        if (role == 10 || role == 7)
+            sdisabled = ' disabled ';
+        else
+            sdisabled = '';
+
+        res = res + '<button type="button" style="border: 2px solid white;border-radius: 4px;padding: 3px 8px;background-color: green;color: white;" id="Detalle_Evento_' + idActividadEvento2 + '" onclick="RegistroenEvento(' + idActividadEvento2 + ',' + idActividadEvento2 + ')" class="btn btn-outline-primary"' + sdisabled + '>' + horaini + " " + horafin + sDisponible + '</button>';
+
+        return res;
+    }
+
+
+    function llenaActividadesHorarios(idActividadEvento, idActividadEvento2) {
+        getDetalle_Horarios_ActividadData(idActividadEvento);
+        var res = "";
+        var sdisabled = '';
+        for (var i = 0; i < lDetalle_Horarios_Actividad.length; i++) {
+            var sDisponible = ' Disponible';
+            if (role == 10 || role == 7)
+                sdisabled = ' disabled ';
+            else
+                sdisabled = '';
+            res = res + '<button type="button" style="border: 2px solid white;border-radius: 4px;padding: 3px 8px;background-color: green;color: white;" id="Detalle_Evento_' + lDetalle_Horarios_Actividad[i].Folio + '" onclick="RegistroenEvento(' + lDetalle_Horarios_Actividad[i].Folio + ',' + idActividadEvento + ')" class="btn btn-outline-primary"' + sdisabled + '>' + lDetalle_Horarios_Actividad[i].Hora_inicio + " " + lDetalle_Horarios_Actividad[i].Hora_fin + sDisponible + '</button>';
+        }
+        return res;
+    }
+
+    var lDetalle_Horarios_Actividad;
+    function getDetalle_Horarios_ActividadData(idActividadEvento) {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Actividades_del_Evento/GetDetalle_Horarios_Actividad")" + "?draw=1&start=1&length=2147483647&RelationId=" + idActividadEvento,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    lDetalle_Horarios_Actividad = result.data;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+    function RegistroenEvento(iddetalleevento,idActividadevento) {
+        datoSeleccionado.actividad = idActividadevento;
+        datoSeleccionado.detallehorario = iddetalleevento;
+        localStorage.setItem("SelCalendarHorario", JSON.stringify(datoSeleccionado));
+        var url = '@Url.Action("Create","Registro_en_Evento")';
+        window.location.href = url;
+    }
+
+    function CargaAux1() {
+
+    }
+
+    /*CODMANFIN-ADD*/
+    var advanceSearchQuery = "@(advanceSearch)", isControl_de_CitasTextSearch = true;
+
+    function ClearFilter() {
+
+        $('.filterData').each(function( index, element ){
+            if ($(this).attr('type') != 'checkbox') {
+                $(this).val('');
+            }
+            else {
+                $(this).attr('checked', false);
+            }
+        });
+        advanceSearchQuery = "False";
+        ClearFilterConfig();
+        table.search('').columns().search('').draw();
+    }
+
+    function ClearFilterConfig() {
+        $.ajax({
+            url: '@Url.Content("~/Frontal/Control_de_Citas/ClearAdvanceFilter")',
+            type: 'POST',
+            dataType: "json",
+            success: function (result) {
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                return null;
+            }
+        });
+    }
+
+    //Used to initiate advance function
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblControl_de_Citas').DataTable().draw();
+        return false;
+    }
+
+    function GetAdvanceSearchQuery() {
+        return advanceSearchQuery;
+    }
+
+    function VisibilityAdvanceSearch() {
+        $('#btnAdvanceSearch').click();
+        return false;
+    }
+
+    function Export(format) {
+	 var counter = 1;
+        currentFilter = table.page.info();
+		 var where= MRWhere;
+		var order = MROrder;
+
+        var queryString = GetQueryString();
+
+        var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Atiende =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_la_Cita = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_la_Cita = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Proceso =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Expediente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Cita =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cita =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cumplida = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+
+
+        var queryString = "&Folio=" + Folio
+        + "&Fecha_de_Registro=" + Fecha_de_Registro
+        + "&Hora_de_Registro=" + Hora_de_Registro
+        + "&Usuario_que_Atiende=" + Usuario_que_Atiende
+        + "&Fecha_de_la_Cita=" + Fecha_de_la_Cita
+        + "&Hora_de_la_Cita=" + Hora_de_la_Cita
+        + "&Proceso=" + Proceso
+        + "&Numero_de_Expediente=" + Numero_de_Expediente
+        + "&Tipo_de_Cita=" + Tipo_de_Cita
+        + "&Cita=" + Cita
+        + "&Cumplida=" + Cumplida
+        + "&Observaciones=" + Observaciones
+ + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
+
+        var url = "@Url.Content("~/Frontal/Control_de_Citas/Export?format=")" + format
+            + "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
+            + "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
+		    + "&where=" + where + "&order=" + order +
+			+ "&columnsVisible=" + table.columns().visible().join(",") + queryString;
+        window.open(url, '_blank');
+    };
+
+    function GetQueryString() {
+
+	 var counter = 0;
+        var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Atiende =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_la_Cita = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_la_Cita = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Proceso =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Expediente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Cita =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cita =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cumplida = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+
+
+        return "&Folio=" + Folio
+        + "&Fecha_de_Registro=" + Fecha_de_Registro
+        + "&Hora_de_Registro=" + Hora_de_Registro
+        + "&Usuario_que_Atiende=" + Usuario_que_Atiende
+        + "&Fecha_de_la_Cita=" + Fecha_de_la_Cita
+        + "&Hora_de_la_Cita=" + Hora_de_la_Cita
+        + "&Proceso=" + Proceso
+        + "&Numero_de_Expediente=" + Numero_de_Expediente
+        + "&Tipo_de_Cita=" + Tipo_de_Cita
+        + "&Cita=" + Cita
+        + "&Cumplida=" + Cumplida
+        + "&Observaciones=" + Observaciones
+;
+
+    }
+
+
+	$(document).on("click", ".editor_print", function () {
+		var idRecord = $(this).data('idrecord');
+        GetFormats(idRecord);
+        $("#printFormatModal").data('idrecord', idRecord);
+    });
+
+	function GetFormats(idRecord) {
+
+        $('#spartan_formats').empty();
+        $.ajax({
+            url: '@Url.Content("~/Frontal/Control_de_Citas/GetFormats?RecordId=")' + idRecord,
+            type: 'Get',
+            async: true,
+            contentType: "multipart/form-data",
+            success: function (result) {
+                if (result < 0) {
+
+                } else {
+                    $.each(result, function (index, element) {
+                        var div = "<div id=''>" +
+                             "<label>" +
+                                "<input type='checkbox' name='optradioFormat' value='" + element.Value + "' />" + element.Text +
+                                    "</label>" +
+                                "</div>";
+
+                        $('#spartan_formats').append(div);
+                    });
+                    $("#printFormatModal").modal('show');
+                }
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    }
+	 function ExportToPdfFormats()
+    {
+        var RecordId = $("#printFormatModal").data('idrecord');
+        var FormatId = $("input:radio[name='optradioFormat']:checked").val();
+        var i = 1;
+        $("input:checkbox[name='optradioFormat']:checked").each(function (index, item) {
+            if ($(item).is(':checked')) {
+                debugger
+                var FormatId = $(item).val();
+                var url = "@Url.Content("~/Frontal/Control_de_Citas/PrintFormats?idFormat=")" + FormatId + "&RecordId=" + RecordId;
+                var printWindow = window.open(url,'Imprimir Formato ' + i.toString() + '_blank');
+                i++;
+
+            }
+        });
+    }
+
+    function PrintDocument(format) {
+
+        var counter = 1;
+        currentFilter = table.page.info();
+
+		   var where = MRWhere;
+        var order = MROrder;
+
+		var queryString = GetQueryString();
+
+		var url = "@Url.Content("~/Frontal/Control_de_Citas/Print")?format=3"
+				+ "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
+				+ "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
+				+ "&where=" + where + "&order=" + order + queryString;
+
+        $.ajax({
+
+            url: url,
+            async:false,
+            success: function (data) {
+                var printWindow = window.open();
+                var title = '@Resources.Resources.PrintText';
+                printWindow.document.write('<title>' + title + '</title>');
+                printWindow.document.write(data);
+				printWindow.document.getElementById("columnsVisible").text = table.columns().visible().join(",");
+                printWindow.print();
+                //printWindow.close();
+
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
+
+    }
+
+    function SetTitle(printWindow) {
+        if (printWindow.document) {
+            printWindow.document.title = "Control de Citas Print";
+        } else {
+            setTimeout(SetTitle, 10);
+        }
+    }
+
+    Serialize = function (obj) {
+        var str = [];
+        for (var p in obj)
+            if (obj.hasOwnProperty(p)) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            }
+        return str.join("&");
+    }
+    function GetContentType() {
+        switch ($('#myModal #sel1').val()) {
+            case "1":
+                return "application/pdf; charset=utf-8";
+            case "2":
+                return "application/vnd.ms-excel; charset=utf-8";
+        }
+        return null;
+    }
+
+    var isInitialized = false;
+    var filterState = JSON.parse(localStorage.getItem("GRID_STATE_MANAGEMENT"));
+
+    $(function () {
+        //Popup
+        $("#btnExportPopUpOpen").click(function () {
+            $('#myModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-pdf", function (e, data) {
+
+            $("#btnPrint").hide();
+            $("#btnExcel").hide();
+            $("#btnPdf").show();
+            $("#btnCSV").hide();
+            $('#exportModal').modal('show');
+
+        });
+
+        $(document).on("click", ".buttons-print", function (e, data) {
+
+            $("#btnPdf").hide();
+            $("#btnExcel").hide();
+            $("#btnPrint").show();
+            $("#btnCSV").hide();
+            $('#exportModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-excel", function (e, data) {
+
+            $("#btnPdf").hide();
+            $("#btnExcel").show();
+            $("#btnPrint").hide();
+            $("#btnCSV").hide();
+            $(this).bind();
+            $('#exportModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-csv", function (e, data) {
+
+
+            $("#btnPdf").hide();
+            $("#btnExcel").hide();
+            $("#btnPrint").hide();
+            $("#btnCSV").show();
+            $('#exportModal').modal('show');
+
+        });
+
+		setFilterNew('tblControl_de_Citas');
+
+		var oDatatableStateData;
+        // initialize datatable variable
+        table = $('#tblControl_de_Citas').DataTable({
+            dom: '<"html5buttons"B>lTfgt<"bottom"ip>',
+            //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
+            buttons: [
+                { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                {
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+
+                        if (!permission.Print) {
+                            $(win.document.body).addClass('disabled');
+                            $(win.document.body).attr('disabled', 'true');
+                        }
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ],
+            "processing": true,
+            "serverSide": true,
+            "info": true,
+            "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "@Resources.Resources.All"]],
+			 "ajax": function (data, callback, settings, aoData) {
+                $.ajax({
+                    url: "@Url.Content("~/Frontal/Control_de_Citas/GetControl_de_CitasList")",
+                    method: 'Post',
+                    data: { "sEcho": data.draw, "iDisplayStart": data.start, "iDisplayLength": data.length, "sortDirection": data.order[0].dir, "sortColumn": data.order[0].column, "columns": data.columns, "where": MRWhere, "order": MROrder, "filters": GetQueryString(), "AdvanceSearch": GetAdvanceSearchQuery() }
+                }).done(callback);
+            },
+            "fnServerParams": function ( aoData ) {
+                //aoData.push({ "name": "AdvanceSearch", "value": GetAdvanceSearchQuery() });
+            },
+            "bStateSave": true,
+            "fnStateSave": function (oSettings, oData) {
+                localStorage.setItem(JSON.stringify(oData), 'Control_de_CitasDatatable_');
+            },
+            "fnStateLoad": function (oSettings) {
+                var data = localStorage.getItem('Control_de_CitasDatatable_');
+                return JSON.parse(data);
+            },
+            "fnStateLoaded": function (oSettings, oData) {
+                oDatatableStateData = oData;
+                setFilterState('tblControl_de_Citas', oDatatableStateData);
+            },
+            "aoColumns": [
+                {
+                    "data": null,
+                    "className": "center actionColumn text-nowrap",
+					"orderable": false,
+					"render": function (data, type, full, meta) {
+                        var edit = '<a title="@Resources.Resources.Edit" href="@Url.Action("Create", "Control_de_Citas")?Id=' + data.Folio + '" class="editor_edit edit-MR"><i class="fa fa-edit"></i></a>';
+                        if (!permission.Edit)
+                            edit = '';
+                        var consult = '<a title="@Resources.Resources.Consult" href="@Url.Action("Create", "Control_de_Citas")?Id=' + data.Folio + '&consult=1"  class="editor_remove"><i class="fa fa-male"></i></a>';
+                        if (!permission.Consult)
+                            consult = '';
+                        var print = '<a title="@Resources.Resources.Print" data-toggle="modal" data-target="#printFormatModal" data-idrecord="' + data.Folio + '"  class="editor_print print-MR"><i class="fa fa-print"></i></a>';
+                        if (!permission.Print)
+                            print = '';
+                        var del = '<a title="@Resources.Resources.Delete" onclick="DeleteControl_de_Citas(\'' + data.Folio + '\')" class="editor_remove eliminar-MR"><i class="fa fa-times"></i></a>';
+                        if (!permission.Delete)
+                            del = '';
+                        return edit + del + consult + print;
+                    }
+                },
+                { "data": "Folio", "orderable": true, "name": "Folio" }
+                ,{ "data": "Fecha_de_Registro", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Registro" }
+                ,{ "data": "Hora_de_Registro", "orderable": true, "name": "Hora_de_Registro" }
+                ,{ "data": "Usuario_que_AtiendeName", "orderable": true, "name": "Usuario_que_AtiendeName" }
+                ,{ "data": "Fecha_de_la_Cita", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_la_Cita" }
+                ,{ "data": "Hora_de_la_Cita", "orderable": true, "name": "Hora_de_la_Cita" }
+                ,{ "data": "ProcesoDescripcion", "orderable": true, "name": "ProcesoDescripcion" }
+                ,{ "data": "Numero_de_Expediente", "orderable": true, "name": "Numero_de_Expediente", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Tipo_de_Cita", "orderable": true, "name": "Tipo_de_Cita", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Cita", "orderable": true, "name": "Cita", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Cumplida", "orderable": true, "name": "Cumplida","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Observaciones", "orderable": true, "name": "Observaciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+
+            ],
+			"colReorder": true,
+            "order": [[1, "asc"]],
+			"scrollX": true,
+			"scrollY": '55vh',
+			"scrollCollapse": true,
+			"drawCallback": function( settings ) {
+			    $('.dataTables_scrollBody').animate({
+			        scrollTop: 0,
+			        scrollLeft: 0,
+			    }, '200');
+			},
+             "language": {
+                "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                "zeroRecords": " ",
+                "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                "infoEmpty": "@Resources.Resources.NoRecords",
+                "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                "paginate": {
+                    "previous": "@Resources.Resources.Previous",
+                    "next": "@Resources.Resources.Next"
+					},
+                    "buttons": {
+                        "copyTitle": "@Resources.Resources.CopyToClipboard",
+                        "copySuccess": {
+                            "_": "%d " + "@Resources.Resources.Copiedlines",
+                            "1": "1 " +  "@Resources.Resources.Copiedline"
+                        }
+                    }
+				}
+    }).on('init.dt', function (e, data) {
+        var classNamePDF = $(this).dataTableExt.buttons.pdfHtml5.className.split(" ");
+        var classNameExcel = $(this).dataTableExt.buttons.excelHtml5.className.split(" ");
+        var classNamePrint = $(this).dataTableExt.buttons.print.className.split(" ");
+        var classNameCSV = $(this).dataTableExt.buttons.csvHtml5.className.split(" ");
+        $('.' + classNamePDF[0]).unbind();
+        $('.' + classNameExcel[0]).unbind();
+        $('.' + classNamePrint[0]).unbind();
+        $('.' + classNameCSV[0]).unbind();
+        $('a').tooltip();
+        EjecutarValidacionesDespuesDeCrearLista();
+
+		$('#tblControl_de_Citas').show().css({
+            "width": "auto",
+            "min-width": "100%"
+        });
+
+        $('.loading').hide();
+	table.columns.adjust();
+    });
+
+		ApplySearch(table);
+		$('tfoot tr').insertAfter($('thead tr'));
+
+
+        $('.clockpicker').clockpicker();
+
+        $('.datepicker').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            format: "dd-mm-yyyy"
+        });
+    });
+
+    function DeleteControl_de_Citas(Folio) {
+       if (confirm(htmlDecode('@Resources.Resources.DeleteRecord'))) {
+            $.ajax({
+                url: '@Url.Content("~/Frontal/Control_de_Citas/Delete?id=")' + Folio,
+                type: 'DELETE',
+                success: function (result) {
+                    if (result) {
+                        table.draw();
+                        showNotification('@Resources.Resources.DeleteSuccess', "success");
+                    } else {
+                        showNotification('@Resources.Resources.DeleteError', "error");
+                    }
+
+                }
+            });
+        }
+    }
+</script>
+
+<script type="text/javascript">
+	function OpenRules() {
+        $.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+            $(".Control_de_CitasBusinessRuleModal").html(data);
+            $(".Control_de_CitasBusinessRuleModal").modal('show');
+        });
+    }
+    function Control_de_CitasGetBusinessRule() {
+        $('#FieldId').val();
+        $('#FieldName').val('');
+        $('#ObjectId').val('45352');
+        $('#Attribute').val('3');
+        $('#Screen').val('Control_de_Citas');
+        OpenRules();
+    }
+
+    function GetPropertyBag() {
+        $.get('@Url.Action("Control_de_CitasPropertyBag", "Control_de_Citas")', function (data) {
+            $(".PropertyModal").html(data);
+        });
+    }
+</script>
+
+
+<input type="hidden" id="FieldId" name="FieldId" value="" />
+<input type="hidden" id="FieldName" name="FieldName" value="" />
+<input type="hidden" id="ObjectId" name="ObjectId" value="" />
+<input type="hidden" id="Attribute" name="Attribute" value="" />
+<input type="hidden" id="Screen" name="Screen" value="" />
+@section Styles {
+
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/dataPicker")
+}
+

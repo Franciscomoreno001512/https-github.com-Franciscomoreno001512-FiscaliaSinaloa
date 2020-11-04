@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Cadena_de_Custodia" value="Cadena de Custodia"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="NUC" value="NUC"></resource>
+  <resource culture="es-es" name="NIC" value="NIC"></resource>
+  <resource culture="es-es" name="Delito_Referencia" value="Delito/Referencia"></resource>
+  <resource culture="es-es" name="Fecha" value="Fecha"></resource>
+  <resource culture="es-es" name="Hora" value="Hora"></resource>
+  <resource culture="es-es" name="Lugar_Exacto_del_Levantamiento" value="Lugar Exacto del Levatamiento u Obtención del Indicio o Muestra (Numero, Calle, Colonia)"></resource>
+  <resource culture="es-es" name="Condicion_y_Ubicacion" value="Condición y Ubicación Exacta del Levantamiento u Obtención del indicio o Prueba"></resource>
+  <resource culture="es-es" name="Levantada_por" value="Levantada por"></resource>
+  <resource culture="es-es" name="Cargo" value="Cargo"></resource>
+  <resource culture="es-es" name="Asignar" value="Asignar"></resource>
+  <resource culture="es-es" name="Folio_NUE" value="Folio NUE"></resource>
+  <resource culture="es-es" name="Unidad_Policial" value="Unidad Policial"></resource>
+  <resource culture="es-es" name="Caracterististicas_del_indicio" value="Caracteristísticas del indicio"></resource>
+  <resource culture="es-es" name="Condiciones_De_Manejo" value="Condiciones Especiales de Manejo"></resource>
+  <resource culture="es-es" name="Numero_de_Parte" value="No. De parte"></resource>
+  <resource culture="es-es" name="CUIP" value="CUIP"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="es-es" name="Longitud" value="Longitud"></resource>
+  <resource culture="es-es" name="Latitud" value="Latitud"></resource>
+  <resource culture="es-es" name="Clima" value="Clima"></resource>
+  <resource culture="es-es" name="Grados" value="Grados"></resource>
+  <resource culture="es-es" name="Certificado" value="Certificado"></resource>
+  <resource culture="es-es" name="Fijacion_Planimetrica" value="Fijacion Planimetrica"></resource>
+  <resource culture="es-es" name="Fotos" value="Fotos"></resource>
+  <resource culture="es-es" name="Videos" value="Videos"></resource>
+  <resource culture="es-es" name="Datos_del_Interviniente" value="Datos del Interviniente"></resource>
+  <resource culture="es-es" name="Mensaje" value="Mensaje"></resource>
+  <resource culture="es-es" name="Unidad_Administrativa" value="Unidad Administrativa"></resource>
+  <resource culture="es-es" name="Entidad_Federativa" value="Entidad Federativa"></resource>
+  <resource culture="es-es" name="Municipio" value="Municipio"></resource>
+  <resource culture="es-es" name="Numero_de_Oficio" value="Número de Oficio"></resource>
+  <resource culture="es-es" name="Fecha_CC" value="Fecha CC"></resource>
+  <resource culture="es-es" name="Hora_CC" value="Hora CC"></resource>
+  <resource culture="es-es" name="Motivo_de_Intervencion" value="Motivo de Intervención"></resource>
+  <resource culture="es-es" name="Descripcion_de_Evidencia" value="Descripción de Evidencia"></resource>
+  <resource culture="es-es" name="Lista_de_Documentos" value="Lista de Documentos"></resource>
+  <resource culture="es-es" name="Otro" value="Otro"></resource>
+  <resource culture="es-es" name="Estatus" value="Estatus"></resource>
+  <resource culture="es-es" name="Nombre_Completo" value="Nombre Completo"></resource>
+  <resource culture="es-es" name="Retroalimentacion" value="Retroalimentación"></resource>
+  <resource culture="es-es" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="es-es" name="FAE" value="Folio de Atención de Emergencia"></resource>
+  <resource culture="es-es" name="Fecha_de_la_Emergencia" value="Fecha de la Emergencia"></resource>
+  <resource culture="es-es" name="Hora_de_la_Emergencia" value="Hora de la Emergencia"></resource>
+  <resource culture="es-es" name="Fuente" value="Fuente"></resource>
+  <resource culture="es-es" name="Telefono" value="Teléfono"></resource>
+  <resource culture="es-es" name="Celular" value="Celular"></resource>
+  <resource culture="es-es" name="Correo_Electronico" value="Correo Electrónico"></resource>
+  <resource culture="es-es" name="Red_Social" value="Red Social"></resource>
+  <resource culture="es-es" name="Medio_Masivo" value="Medio Masivo"></resource>
+  <resource culture="es-es" name="Cargo_de_la_Autoridad" value="Cargo de la Autoridad"></resource>
+  <resource culture="es-es" name="Tipo_de_Emergencia" value="Tipo de Emergencia"></resource>
+  <resource culture="es-es" name="Descripcion_de_la_Emergencia" value="Descripción de la Emergencia"></resource>
+  <resource culture="es-es" name="Probables_Detenidos" value="Probables Detenidos"></resource>
+  <resource culture="es-es" name="Fecha_de_la_Detencion" value="Fecha de la Detención"></resource>
+  <resource culture="es-es" name="Hora_de_la_Detencion" value="Hora de la Detención"></resource>
+  <resource culture="es-es" name="Pais_Emergencia" value="País"></resource>
+  <resource culture="es-es" name="Estado_Emergencia" value="Estado"></resource>
+  <resource culture="es-es" name="Municipio_Emergencia" value="Municipio"></resource>
+  <resource culture="es-es" name="Colonia_Emergencia" value="Colonia"></resource>
+  <resource culture="es-es" name="Calle_Emergencia" value="Calle"></resource>
+  <resource culture="es-es" name="Entre_Calle_Emergencia" value="Entre Calle"></resource>
+  <resource culture="es-es" name="Y_Calle_Emergencia" value="Y Calle"></resource>
+  <resource culture="es-es" name="Latitud_Emergencia" value="Latitud"></resource>
+  <resource culture="es-es" name="Longitud_Emergencia" value="Longitud"></resource>
+  <resource culture="es-es" name="Puntos_de_Referencia" value="Puntos de Referencia"></resource>
+  <resource culture="es-es" name="Nombre_de_la_Autoridad" value="Nombre de la Autoridad"></resource>
+  <resource culture="es-es" name="Especifique" value="Especifique"></resource>
+  <resource culture="es-es" name="Tipo_de_Agente" value="Tipo de Agente"></resource>
+  <resource culture="es-es" name="Area" value="Área"></resource>
+  <resource culture="es-es" name="Unidad" value="Unidad"></resource>
+  <resource culture="es-es" name="Zona" value="Zona"></resource>
+  <resource culture="es-es" name="Agente_Investigador" value="Agente Investigador"></resource>
+  <resource culture="es-es" name="Narrativa_de_los_Hechos" value="Narrativa de los Hechos"></resource>
+  <resource culture="es-es" name="Probable_Delito_Principal" value="Probable Delito Principal"></resource>
+  <resource culture="es-es" name="Fotos_de_Evidencia" value="Fotos de Evidencia"></resource>
+  <resource culture="es-es" name="Historial_de_Movimientos" value="Historial de Movimientos"></resource>
+  <resource culture="es-es" name="Datos_del_Detenido" value="Datos del Detenido"></resource>
+  <resource culture="es-es" name="Datos_del_Testigo" value="Datos del Testigo"></resource>
+  <resource culture="es-es" name="Fecha_de_Asignacion" value="Fecha de Asignación"></resource>
+  <resource culture="es-es" name="Hora_de_Asignacion" value="Hora de Asignación"></resource>
+  <resource culture="es-es" name="Estatus_NUE" value="Estatus NUE"></resource>
+  <resource culture="es-es" name="Inicio_de_Cadena_de_Custodia" value="Inicio de Cadena de Custodia"></resource>
+  <resource culture="es-es" name="Calidad_de_quien_aporta" value="Calidad de quien aporta"></resource>
+  <resource culture="es-es" name="Fecha_del_arribo" value="Fecha del arribo"></resource>
+  <resource culture="es-es" name="Hora_del_arribo" value="Hora del arribo"></resource>
+  <resource culture="es-es" name="Descripcion_de_recoleccion" value="Descripción en la forma en la que se realiza la recolección"></resource>
+  <resource culture="es-es" name="Movil_para_Traslado" value="Móvil para Traslado"></resource>
+  <resource culture="es-es" name="Servidor_Publico_que_Preserva" value="Servidor Público que Preserva"></resource>
+  <resource culture="es-es" name="Servidor_Publico_que_Busca" value="Servidor Público que Busca"></resource>
+  <resource culture="es-es" name="Servidor_Publico_que_Localiza" value="Servidor Público que Localiza"></resource>
+  <resource culture="es-es" name="Servidor_Publico_que_Recolecta" value="Servidor Público que Recolecta"></resource>
+  <resource culture="es-es" name="Servidor_Publico_que_Traslada" value="Servidor Público que Traslada"></resource>
+  <resource culture="es-es" name="Preservacion" value="Preservación"></resource>
+  <resource culture="es-es" name="Busqueda" value="Búsqueda"></resource>
+  <resource culture="es-es" name="Localizacion" value="Localización"></resource>
+  <resource culture="es-es" name="Recoleccion" value="Recolección"></resource>
+  <resource culture="es-es" name="Tipo_de_embalaje" value="Tipo de embalaje"></resource>
+  <resource culture="es-es" name="Lista_de_Asignaciones" value="Lista de Asignaciones"></resource>
+  <resource culture="es-es" name="Tipo_de_Fijacion" value="Tipo de Fijacion"></resource>
+  <resource culture="es-es" name="Datos_de_Traslado" value="Datos de Traslado"></resource>
+  <resource culture="es-es" name="Tipo_de_Indicio" value="Tipo de Indicio"></resource>
+
+<resource culture="es-es" name="TabAsignacion" value="Asignación"></resource>
+<resource culture="es-es" name="TabCadena_de_Custodia" value="Cadena de Custodia"></resource>
+<resource culture="es-es" name="TabFijacion_Planimetrica" value="Fijacion Planimetrica"></resource>
+<resource culture="es-es" name="TabFotos" value="Fotos"></resource>
+<resource culture="es-es" name="TabVideos" value="Videos"></resource>
+<resource culture="es-es" name="TabRegistro_de_Intervinientes" value="Registro de Intervinientes"></resource>
+<resource culture="es-es" name="TabChat" value="Chat"></resource>
+<resource culture="es-es" name="TabDocumentos" value="Documentos"></resource>
+<resource culture="es-es" name="TabRetroalimentacion" value="Retroalimentación"></resource>
+<resource culture="es-es" name="TabRegistro_de_Emergencia" value="Registro de Emergencia"></resource>
+<resource culture="es-es" name="TabRegistro_de_Detenidos" value="Registro de Detenidos"></resource>
+<resource culture="es-es" name="TabRegistro_de_Testigos" value="Registro de Testigos"></resource>
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="es-es" name="TabAsignaciones" value="Asignaciones"></resource>
+<resource culture="es-es" name="TabDatos_de_Traslado" value="Datos de Traslado"></resource>
+
+</resources>

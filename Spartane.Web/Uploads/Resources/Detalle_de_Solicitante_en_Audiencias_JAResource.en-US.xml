@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Solicitante_en_Audiencias_JA" value="Detalle de Solicitante en Audiencias JA"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Nombre" value="Nombre"></resource>
+  <resource culture="en-US" name="Si" value="Si/No"></resource>
+  <resource culture="en-US" name="Archivo_Adjunto" value="Archivo Adjunto"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

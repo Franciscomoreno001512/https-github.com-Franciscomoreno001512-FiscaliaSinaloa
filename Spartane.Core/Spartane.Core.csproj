@@ -1,0 +1,2023 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+ <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+ <PropertyGroup>
+ <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+ <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+ <ProjectGuid>{F56309FB-9E43-42E5-A65D-4AAA70F95C9B}</ProjectGuid>
+ <OutputType>Library</OutputType>
+ <AppDesignerFolder>Properties</AppDesignerFolder>
+ <RootNamespace>Spartane.Core</RootNamespace>
+ <AssemblyName>Spartane.Core</AssemblyName>
+ <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+ <FileAlignment>512</FileAlignment>
+ <SccProjectName>SAK</SccProjectName>
+ <SccLocalPath>SAK</SccLocalPath>
+ <SccAuxPath>SAK</SccAuxPath>
+ <SccProvider>SAK</SccProvider>
+ </PropertyGroup>
+ <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+ <DebugSymbols>true</DebugSymbols>
+ <DebugType>full</DebugType>
+ <Optimize>false</Optimize>
+ <OutputPath>bin\Debug\</OutputPath>
+ <DefineConstants>DEBUG;TRACE</DefineConstants>
+ <ErrorReport>prompt</ErrorReport>
+ <WarningLevel>4</WarningLevel>
+ </PropertyGroup>
+ <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+ <DebugType>pdbonly</DebugType>
+ <Optimize>true</Optimize>
+ <OutputPath>bin\Release\</OutputPath>
+ <DefineConstants>TRACE</DefineConstants>
+ <ErrorReport>prompt</ErrorReport>
+ <WarningLevel>4</WarningLevel>
+ </PropertyGroup>
+ <ItemGroup>
+ <Reference Include="Autofac">
+ <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+ </Reference>
+ <Reference Include="Autofac.Integration.Mvc">
+ <HintPath>..\packages\Autofac.Mvc5.3.3.3\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+ </Reference>
+ <Reference Include="GoldParser">
+ <HintPath>..\packages\SqlLinq.1.0.2\lib\net45\GoldParser.dll</HintPath>
+ </Reference>
+ <Reference Include="Kackman.RuntimeTypeLoader">
+ <HintPath>..\packages\SqlLinq.1.0.2\lib\net45\Kackman.RuntimeTypeLoader.dll</HintPath>
+ </Reference>
+ <Reference Include="LinqStatistics">
+ <HintPath>..\packages\LinqStatistics.1.1.0\lib\net40\LinqStatistics.dll</HintPath>
+ </Reference>
+ <Reference Include="log4net">
+ <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+ <Private>True</Private>
+ <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+ </Reference>
+ <Reference Include="SqlLinq">
+ <HintPath>..\packages\SqlLinq.1.0.2\lib\net45\SqlLinq.dll</HintPath>
+ </Reference>
+ <Reference Include="System" />
+ <Reference Include="System.ComponentModel.DataAnnotations" />
+ <Reference Include="System.Configuration" />
+ <Reference Include="System.Core" />
+ <Reference Include="System.Drawing" />
+ <Reference Include="System.Web" />
+ <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+ <SpecificVersion>False</SpecificVersion>
+ <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.Helpers.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+ <SpecificVersion>False</SpecificVersion>
+ <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.0\lib\net45\System.Web.Mvc.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+ <SpecificVersion>False</SpecificVersion>
+ <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.0\lib\net45\System.Web.Razor.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+ <SpecificVersion>False</SpecificVersion>
+ <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+ <SpecificVersion>False</SpecificVersion>
+ <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+ <SpecificVersion>False</SpecificVersion>
+ <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Xml.Linq" />
+ <Reference Include="System.Data.DataSetExtensions" />
+ <Reference Include="Microsoft.CSharp" />
+ <Reference Include="System.Data" />
+ <Reference Include="System.Xml" />
+ </ItemGroup>
+ <ItemGroup>
+ <Compile Include="BaseEntity.cs" />
+ <Compile Include="Configuration\ISettings.cs" />
+ <Compile Include="Configuration\TTConfig.cs" />
+ <Compile Include="Data\BaseDataProviderManager.cs" />
+ <Compile Include="Data\DataSettings.cs" />
+ <Compile Include="Data\DataSettingsManager.cs" />
+ <Compile Include="Data\IDataProvider.cs" />
+ <Compile Include="Domain\Archivos\Archivos.cs" />
+ <Compile Include="Domain\Business_Rule_Creation\Business_Rule_Creation.cs" />
+ <Compile Include="Domain\Business_Rule_Creation\Business_Rule_CreationPagingModel.cs" />
+ <Compile Include="Domain\Common\Spartan_Control_Type.cs" />
+ <Compile Include="Domain\Common\Spartan_File.cs" />
+ <Compile Include="Domain\Common\Spartan_Method_Type.cs" />
+ <Compile Include="Domain\Common\Spartan_Object.cs" />
+ <Compile Include="Domain\Common\Spartan_Object_Status.cs" />
+ <Compile Include="Domain\Common\Spartan_Status.cs" />
+ <Compile Include="Domain\Common\Spartan_System.cs" />
+ <Compile Include="Domain\Dashboard_Config_Detail\Dashboard_Config_Detail.cs" />
+ <Compile Include="Domain\Dashboard_Config_Detail\Dashboard_Config_DetailPagingModel.cs" />
+ <Compile Include="Domain\Dashboard_Editor\Dashboard_Editor.cs" />
+ <Compile Include="Domain\Dashboard_Editor\Dashboard_EditorPagingModel.cs" />
+ <Compile Include="Domain\Dashboard_Status\Dashboard_Status.cs" />
+ <Compile Include="Domain\Dashboard_Status\Dashboard_StatusPagingModel.cs" />
+ <Compile Include="Domain\Permission\GlobalData.cs" />
+ <Compile Include="Domain\SpartanChangePasswordAutorizationEstatus\SpartanChangePasswordAutorizationEstatus.cs" />
+ <Compile Include="Domain\SpartanChangePasswordAutorizationEstatus\SpartanChangePasswordAutorizationEstatusPagingModel.cs" />
+ <Compile Include="Domain\SpartaneFile\Spartane_File.cs" />
+ <Compile Include="Domain\SpartanObject\SpartanObject.cs" />
+ <Compile Include="Domain\SpartanObject\SpartanObjectPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Additional_Menu\Spartan_Additional_Menu.cs" />
+ <Compile Include="Domain\Spartan_Additional_Menu\Spartan_Additional_MenuCollection.cs" />
+ <Compile Include="Domain\Spartan_Attribute_Control_Type\Spartan_Attribute_Control_Type.cs" />
+ <Compile Include="Domain\Spartan_Attribute_Control_Type\Spartan_Attribute_Control_TypePagingModel.cs" />
+ <Compile Include="Domain\Spartan_Attribute_Type\Spartan_Attribute_Type.cs" />
+ <Compile Include="Domain\Spartan_Attribute_Type\Spartan_Attribute_TypePagingModel.cs" />
+ <Compile Include="Domain\Spartan_Bitacora_SQL\Spartan_Bitacora_SQL.cs" />
+ <Compile Include="Domain\Spartan_Bitacora_SQL\Spartan_Bitacora_SQLPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Actions_False_Detail\Spartan_BR_Actions_False_Detail.cs" />
+ <Compile Include="Domain\Spartan_BR_Actions_False_Detail\Spartan_BR_Actions_False_DetailPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Actions_True_Detail\Spartan_BR_Actions_True_Detail.cs" />
+ <Compile Include="Domain\Spartan_BR_Actions_True_Detail\Spartan_BR_Actions_True_DetailPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Action\Spartan_BR_Action.cs" />
+ <Compile Include="Domain\Spartan_BR_Action\Spartan_BR_ActionPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Action_Classification\Spartan_BR_Action_Classification.cs" />
+ <Compile Include="Domain\Spartan_BR_Action_Classification\Spartan_BR_Action_ClassificationPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Action_Configuration_Detail\Spartan_BR_Action_Configuration_Detail.cs" />
+ <Compile Include="Domain\Spartan_BR_Action_Configuration_Detail\Spartan_BR_Action_Configuration_DetailPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Action_Param_Type\Spartan_BR_Action_Param_Type.cs" />
+ <Compile Include="Domain\Spartan_BR_Action_Param_Type\Spartan_BR_Action_Param_TypePagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Action_Result\Spartan_BR_Action_Result.cs" />
+ <Compile Include="Domain\Spartan_BR_Action_Result\Spartan_BR_Action_ResultPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Attribute_Restrictions_Detail\Spartan_BR_Attribute_Restrictions_Detail.cs" />
+ <Compile Include="Domain\Spartan_BR_Attribute_Restrictions_Detail\Spartan_BR_Attribute_Restrictions_DetailPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Complexity\Spartan_BR_Complexity.cs" />
+ <Compile Include="Domain\Spartan_BR_Complexity\Spartan_BR_ComplexityPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Conditions_Detail\Spartan_BR_Conditions_Detail.cs" />
+ <Compile Include="Domain\Spartan_BR_Conditions_Detail\Spartan_BR_Conditions_DetailPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Condition\Spartan_BR_Condition.cs" />
+ <Compile Include="Domain\Spartan_BR_Condition\Spartan_BR_ConditionPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Condition_Operator\Spartan_BR_Condition_Operator.cs" />
+ <Compile Include="Domain\Spartan_BR_Condition_Operator\Spartan_BR_Condition_OperatorPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Event_Restrictions_Detail\Spartan_BR_Event_Restrictions_Detail.cs" />
+ <Compile Include="Domain\Spartan_BR_Event_Restrictions_Detail\Spartan_BR_Event_Restrictions_DetailPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_History\Spartan_BR_History.cs" />
+ <Compile Include="Domain\Spartan_BR_History\Spartan_BR_HistoryPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Modifications_Log\Spartan_BR_Modifications_Log.cs" />
+ <Compile Include="Domain\Spartan_BR_Modifications_Log\Spartan_BR_Modifications_LogPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Operation\Spartan_BR_Operation.cs" />
+ <Compile Include="Domain\Spartan_BR_Operation\Spartan_BR_OperationPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Operation_Detail\Spartan_BR_Operation_Detail.cs" />
+ <Compile Include="Domain\Spartan_BR_Operation_Detail\Spartan_BR_Operation_DetailPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Operation_Restrictions_Detail\Spartan_BR_Operation_Restrictions_Detail.cs" />
+ <Compile Include="Domain\Spartan_BR_Operation_Restrictions_Detail\Spartan_BR_Operation_Restrictions_DetailPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Operator_Type\Spartan_BR_Operator_Type.cs" />
+ <Compile Include="Domain\Spartan_BR_Operator_Type\Spartan_BR_Operator_TypePagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Peer_Review\Spartan_BR_Peer_Review.cs" />
+ <Compile Include="Domain\Spartan_BR_Peer_Review\Spartan_BR_Peer_ReviewPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Presentation_Control_Type\Spartan_BR_Presentation_Control_Type.cs" />
+ <Compile Include="Domain\Spartan_BR_Presentation_Control_Type\Spartan_BR_Presentation_Control_TypePagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Process_Event\Spartan_BR_Process_Event.cs" />
+ <Compile Include="Domain\Spartan_BR_Process_Event\Spartan_BR_Process_EventPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Process_Event_Detail\Spartan_BR_Process_Event_Detail.cs" />
+ <Compile Include="Domain\Spartan_BR_Process_Event_Detail\Spartan_BR_Process_Event_DetailPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Rejection_Reason\Spartan_BR_Rejection_Reason.cs" />
+ <Compile Include="Domain\Spartan_BR_Rejection_Reason\Spartan_BR_Rejection_ReasonPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Scope\Spartan_BR_Scope.cs" />
+ <Compile Include="Domain\Spartan_BR_Scope\Spartan_BR_ScopePagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Scope_Detail\Spartan_BR_Scope_Detail.cs" />
+ <Compile Include="Domain\Spartan_BR_Scope_Detail\Spartan_BR_Scope_DetailPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Status\Spartan_BR_Status.cs" />
+ <Compile Include="Domain\Spartan_BR_Status\Spartan_BR_StatusPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Testing\Spartan_BR_Testing.cs" />
+ <Compile Include="Domain\Spartan_BR_Testing\Spartan_BR_TestingPagingModel.cs" />
+ <Compile Include="Domain\Spartan_BR_Type_History\Spartan_BR_Type_History.cs" />
+ <Compile Include="Domain\Spartan_BR_Type_History\Spartan_BR_Type_HistoryPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Business_Rule\Spartan_Business_Rule.cs" />
+ <Compile Include="Domain\Spartan_Business_Rule\Spartan_Business_RulePagingModel.cs" />
+ <Compile Include="Domain\Spartan_ChangePasswordAutorization\Spartan_ChangePasswordAutorization.cs" />
+ <Compile Include="Domain\Spartan_ChangePasswordAutorization\Spartan_ChangePasswordAutorizationPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Format_Related\Spartan_Format_Related.cs" />
+ <Compile Include="Domain\Spartan_Format_Related\Spartan_Format_RelatedPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Object\Spartan_Object.cs" />
+ <Compile Include="Domain\Spartan_Object\Spartan_ObjectPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Report_Advance_Filter\Spartan_Report_Advance_Filter.cs" />
+ <Compile Include="Domain\Spartan_Report_Advance_Filter\Spartan_Report_Advance_FilterPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Report_Filter\Spartan_Report_Filter.cs" />
+ <Compile Include="Domain\Spartan_Report_Filter\Spartan_Report_FilterPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Settings\Spartan_Settings.cs" />
+ <Compile Include="Domain\Spartan_Settings\Spartan_SettingsPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Concept_Type\Spartan_Traduction_Concept_Type.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Concept_Type\Spartan_Traduction_Concept_TypePagingModel.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Detail\Spartan_Traduction_Detail.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Detail\Spartan_Traduction_DetailPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Language\Spartan_Traduction_Language.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Language\Spartan_Traduction_LanguagePagingModel.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Object\Spartan_Traduction_Object.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Object\Spartan_Traduction_ObjectPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Object_Type\Spartan_Traduction_Object_Type.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Object_Type\Spartan_Traduction_Object_TypePagingModel.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Process\Spartan_Traduction_Process.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Process\Spartan_Traduction_ProcessPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Process_Data\Spartan_Traduction_Process_Data.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Process_Data\Spartan_Traduction_Process_DataPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Process_Workflow\Spartan_Traduction_Process_Workflow.cs" />
+ <Compile Include="Domain\Spartan_Traduction_Process_Workflow\Spartan_Traduction_Process_WorkflowPagingModel.cs" />
+ <Compile Include="Domain\Spartan_User\Spartan_User.cs" />
+ <Compile Include="Domain\Spartan_User\Spartan_UserPagingModel.cs" />
+ <Compile Include="Domain\Spartan_User_Historical_Password\Spartan_User_Historical_Password.cs" />
+ <Compile Include="Domain\Spartan_User_Historical_Password\Spartan_User_Historical_PasswordPagingModel.cs" />
+ <Compile Include="Domain\Spartan_User_Role\Spartan_User_Role.cs" />
+ <Compile Include="Domain\Spartan_User_Role\Spartan_User_RolePagingModel.cs" />
+ <Compile Include="Domain\Spartan_User_Role_Status\Spartan_User_Role_Status.cs" />
+ <Compile Include="Domain\Spartan_User_Role_Status\Spartan_User_Role_StatusPagingModel.cs" />
+ <Compile Include="Domain\Spartan_User_Status\Spartan_User_Status.cs" />
+ <Compile Include="Domain\Spartan_User_Status\Spartan_User_StatusPagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow\Spartan_WorkFlow.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow\Spartan_WorkFlowPagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Conditions_by_State\Spartan_WorkFlow_Conditions_by_State.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Conditions_by_State\Spartan_WorkFlow_Conditions_by_StatePagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Condition\Spartan_WorkFlow_Condition.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Condition\Spartan_WorkFlow_ConditionPagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Condition_Operator\Spartan_WorkFlow_Condition_Operator.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Condition_Operator\Spartan_WorkFlow_Condition_OperatorPagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Information_by_State\Spartan_WorkFlow_Information_by_State.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Information_by_State\Spartan_WorkFlow_Information_by_StatePagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Matrix_of_States\Spartan_WorkFlow_Matrix_of_States.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Matrix_of_States\Spartan_WorkFlow_Matrix_of_StatesPagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Operator\Spartan_WorkFlow_Operator.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Operator\Spartan_WorkFlow_OperatorPagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Phases\Spartan_WorkFlow_Phases.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Phases\Spartan_WorkFlow_PhasesPagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Phase_Status\Spartan_WorkFlow_Phase_Status.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Phase_Status\Spartan_WorkFlow_Phase_StatusPagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Phase_Type\Spartan_WorkFlow_Phase_Type.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Phase_Type\Spartan_WorkFlow_Phase_TypePagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Roles_by_State\Spartan_WorkFlow_Roles_by_State.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Roles_by_State\Spartan_WorkFlow_Roles_by_StatePagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_State\Spartan_WorkFlow_State.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_State\Spartan_WorkFlow_StatePagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Status\Spartan_WorkFlow_Status.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Status\Spartan_WorkFlow_StatusPagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Type_Flow_Control\Spartan_WorkFlow_Type_Flow_Control.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Type_Flow_Control\Spartan_WorkFlow_Type_Flow_ControlPagingModel.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Type_Work_Distribution\Spartan_WorkFlow_Type_Work_Distribution.cs" />
+ <Compile Include="Domain\Spartan_WorkFlow_Type_Work_Distribution\Spartan_WorkFlow_Type_Work_DistributionPagingModel.cs" />
+ <Compile Include="Domain\Template_Dashboard_Detail\Template_Dashboard_Detail.cs" />
+ <Compile Include="Domain\Template_Dashboard_Detail\Template_Dashboard_DetailPagingModel.cs" />
+ <Compile Include="Domain\Template_Dashboard_Editor\Template_Dashboard_Editor.cs" />
+ <Compile Include="Domain\Template_Dashboard_Editor\Template_Dashboard_EditorPagingModel.cs" />
+ <Compile Include="Domain\TTArchivos\TTArchivos.cs" />
+ <Compile Include="Domain\TTArchivos\TTArchivosPagingModel.cs" />
+ <Compile Include="Domain\UserRoleStatus\UserRoleStatus.cs" />
+ <Compile Include="Domain\User\Spartan_UserObject.cs" />
+ <Compile Include="Enums\ApplicationEnums.cs" />
+ <Compile Include="Domain\Language\SpartanLanguage.cs" />
+ <Compile Include="Domain\Language\Spartan_System_Language.cs" />
+ <Compile Include="Domain\Notice\Spartan_Notice.cs" />
+ <Compile Include="Domain\Notice\Spartan_Notice_Status.cs" />
+ <Compile Include="Domain\Notice\Spartan_Notice_Type.cs" />
+ <Compile Include="Domain\Permission\Permission.cs" />
+ <Compile Include="Domain\Security\Spartan_Module.cs" />
+ <Compile Include="Domain\Spartane_File\Spartane_File.cs" />
+ <Compile Include="Domain\SpartaneFunction\SpartaneFunction.cs" />
+ <Compile Include="Domain\SpartaneFunction\SpartaneFunctionPagingModel.cs" />
+ <Compile Include="Domain\SpartaneModuleObject\SpartaneModuleObject.cs" />
+ <Compile Include="Domain\SpartaneModuleObject\SpartaneModuleObjectPagingModel.cs" />
+ <Compile Include="Domain\SpartaneObject\SpartaneObject.cs" />
+ <Compile Include="Domain\SpartaneObject\SpartaneObjectPagingModel.cs" />
+ <Compile Include="Domain\SpartaneUserRoleModule\CustomDataHolder.cs" />
+ <Compile Include="Domain\SpartaneUserRoleModule\SpartaneUserRoleModule.cs" />
+ <Compile Include="Domain\SpartaneUserRoleModule\SpartaneUserRolePagingModel.cs" />
+ <Compile Include="Domain\SpartaneUserRoleObjectFunction\SpartaneUserRoleObjectFunctionPagingModel.cs" />
+ <Compile Include="Domain\SpartaneUserRoleObjectFunction\SpartaneUserRoleObjectFunction.cs" />
+ <Compile Include="Domain\SpartanModule\FlatObject.cs" />
+ <Compile Include="Domain\SpartanModule\SpartanModule.cs" />
+ <Compile Include="Domain\SpartanModule\SpartanModulePagingModel.cs" />
+ <Compile Include="Domain\SpartanUserRoleModuleObject\SpartaneUserRoleModuleObjectPagingModel.cs" />
+ <Compile Include="Domain\SpartanUserRoleModuleObject\SpartanUserRoleModuleObject.cs" />
+ <Compile Include="Domain\UserRole\EmpleadoPagingModel.cs" />
+ <Compile Include="Domain\UserRole\UserRole.cs" />
+ <Compile Include="Domain\User\Spartan_User_Alert.cs" />
+ <Compile Include="Domain\User\Spartan_User_Alert_Status.cs" />
+ <Compile Include="Domain\User\Spartan_User_Alert_Type.cs" />
+ <Compile Include="Domain\User\Spartan_User_Code.cs" />
+ <Compile Include="Domain\User\Spartan_User_Favorite_List.cs" />
+ <Compile Include="Domain\User\Spartan_User_Favorite_Object.cs" />
+ <Compile Include="Domain\User\Spartan_User_Most_Used_Object.cs" />
+ <Compile Include="Domain\User\Spartan_User_Quicklink.cs" />
+ <Compile Include="Domain\User\Spartan_User_Status.cs" />
+ <Compile Include="Domain\IRepository.cs" />
+ <Compile Include="Domain\Binnacle\BinnacleFields.cs" />
+ <Compile Include="Domain\Binnacle\BinnacleMode.cs" />
+ <Compile Include="Domain\Columns\spTtVistasObligatories_X_ProcessAndUser_Result.cs" />
+ <Compile Include="Domain\Columns\sp_selTTConfigurationAdvancedColumn_Relacion_TTConfigurationAdvancedColumn_Detalle_Result.cs" />
+ <Compile Include="Domain\Columns\sp_selTTConfigurationAdvancedColumn_Relacion_TTProceso_Result.cs" />
+ <Compile Include="Domain\Columns\TTConfigurationAdvancedColumn.cs" />
+ <Compile Include="Domain\Columns\TTConfigurationAdvancedColumn_Detalle.cs" />
+ <Compile Include="Domain\Controls\TypeControlPresentation.cs" />
+ <Compile Include="Domain\Data\DataLayerFieldsBitacora.cs" />
+ <Compile Include="Domain\Filters\DependentFilterType.cs" />
+ <Compile Include="Domain\Filters\FilDecimalFilterType.cs" />
+ <Compile Include="Domain\Filters\FillDateFilterType.cs" />
+ <Compile Include="Domain\Filters\FiltersProperties.cs" />
+ <Compile Include="Domain\Filters\FiltersPropertiesModeOrderFields.cs" />
+ <Compile Include="Domain\Filters\LogicFilterType.cs" />
+ <Compile Include="Domain\Filters\NumericFilterType.cs" />
+ <Compile Include="Domain\Filters\sp_selTTFiltro_Detalle_Relacion_TTDNT_Result.cs" />
+ <Compile Include="Domain\Filters\sp_selTTFiltro_Detalle_Relacion_TTFiltro_Result.cs" />
+ <Compile Include="Domain\Filters\sp_selTTFiltro_Detalle_Relacion_TTMes_Result.cs" />
+ <Compile Include="Domain\Filters\sp_selTTFiltro_Detalle_Relacion_TTMetadata_Result.cs" />
+ <Compile Include="Domain\Filters\sp_selTTFiltro_Detalle_Relacion_TTOperador_Result.cs" />
+ <Compile Include="Domain\Filters\sp_selTTFiltro_Detalle_Relacion_TTSI_NO_Result.cs" />
+ <Compile Include="Domain\Filters\sp_SelTTFiltro_Relacion_TTProceso_Result.cs" />
+ <Compile Include="Domain\Filters\StringFilterType.cs" />
+ <Compile Include="Domain\Filters\TTDependentFilter.cs" />
+ <Compile Include="Domain\Filters\TTDetailFilter.cs" />
+ <Compile Include="Domain\Filters\TTFilter.cs" />
+ <Compile Include="Domain\Filters\TypesTextFilter.cs" />
+ <Compile Include="Domain\Security\Spartan_User_Role.cs" />
+ <Compile Include="Domain\Security\Spartan_User_Role_Status.cs" />
+ <Compile Include="Domain\User\Spartan_User.cs" />
+ <Compile Include="Enums\Operation.cs" />
+ <Compile Include="Enums\Spartan_Object_Type.cs" />
+ <Compile Include="FilteredList.cs" />
+ <Compile Include="IFilteredList.cs" />
+ <Compile Include="Domain\Language\TraductorTypeDomain.cs" />
+ <Compile Include="Domain\Language\TTLanguage.cs" />
+ <Compile Include="Domain\Language\TTLanguageTraduction.cs" />
+ <Compile Include="Domain\Search\TTSearchAdvancedData.cs" />
+ <Compile Include="Domain\Search\TTSearchAdvancedDataDetails.cs" />
+ <Compile Include="Domain\Search\TTVista.cs" />
+ <Compile Include="Domain\Search\TTVista_Detalle.cs" />
+ <Compile Include="Domain\Search\TTVista_ListaDependientes.cs" />
+ <Compile Include="Domain\Search\TypeControlSearchAdvanced.cs" />
+ <Compile Include="Domain\Binnacle\BinnacleSQL.cs" />
+ <Compile Include="Domain\Security\spTTSecurity_DashPermited_Result.cs" />
+ <Compile Include="Domain\Security\spTTSecurity_ProcessPermited_Result.cs" />
+ <Compile Include="Domain\Templates\sp_selTTTemplatePrintExcel_Campos_Relacion_TTDNT_Result.cs" />
+ <Compile Include="Domain\Templates\sp_selTTTemplatePrintExcel_Campos_Relacion_TTMetadata_Result.cs" />
+ <Compile Include="Domain\Templates\sp_SelTTTemplatePrintExcel_Relacion_TTProceso_Result.cs" />
+ <Compile Include="Domain\Templates\TTTemplatePrintExcel.cs" />
+ <Compile Include="Domain\Templates\TTTemplatePrintExcelField.cs" />
+ <Compile Include="Domain\User\GlobalData.cs" />
+ <Compile Include="Domain\User\GlobalDataLanguages.cs" />
+ <Compile Include="Domain\User\TTUsuario.cs" />
+ <Compile Include="Domain\BusinessRule\BusinessRule.cs" />
+ <Compile Include="Domain\Security\DashBoardData.cs" />
+ <Compile Include="Domain\Security\ModulesData.cs" />
+ <Compile Include="Domain\Security\Operations.cs" />
+ <Compile Include="Domain\Security\spTTSecurity_ModulePermited_Result.cs" />
+ <Compile Include="Domain\Security\TTSecurityModeLog.cs" />
+ <Compile Include="Domain\Security\UserGroupsSystem.cs" />
+ <Compile Include="Exceptions\ExceptionBase.cs" />
+ <Compile Include="Exceptions\Repository\RepositoryException.cs" />
+ <Compile Include="Exceptions\Service\ServiceException.cs" />
+ <Compile Include="Infraestructure\AppDomainTypeFinder.cs" />
+ <Compile Include="Infraestructure\DependencyManagement\ContainerManager.cs" />
+ <Compile Include="Infraestructure\DependencyManagement\IDependencyRegistrar.cs" />
+ <Compile Include="Infraestructure\TTEngine.cs" />
+ <Compile Include="Infraestructure\EngineContext.cs" />
+ <Compile Include="Infraestructure\IEngine.cs" />
+ <Compile Include="Infraestructure\ITypeFinder.cs" />
+ <Compile Include="Infraestructure\Singleton.cs" />
+ <Compile Include="Infraestructure\WebAppTypeFinder.cs" />
+ <Compile Include="IPagedList.cs" />
+ <Compile Include="Log\ILoggerHelper.cs" />
+ <Compile Include="Log\LoggerHelper.cs" />
+ <Compile Include="PagedList.cs" />
+ <Compile Include="Properties\AssemblyInfo.cs" />
+ <Compile Include="SpartaneBaseEntity.cs" />
+ <Compile Include="Domain\Spartan_Format\Spartan_Format.cs" />
+ <Compile Include="Domain\Spartan_Format\Spartan_FormatPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Format_Type\Spartan_Format_Type.cs" />
+ <Compile Include="Domain\Spartan_Format_Type\Spartan_Format_TypePagingModel.cs" />
+ <Compile Include="Domain\Spartan_Metadata\Spartan_Metadata.cs" />
+ <Compile Include="Domain\Spartan_Metadata\Spartan_MetadataPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Format_Configuration\Spartan_Format_Configuration.cs" />
+ <Compile Include="Domain\Spartan_Format_Configuration\Spartan_Format_ConfigurationPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Format_Field\Spartan_Format_Field.cs" />
+ <Compile Include="Domain\Spartan_Format_Field\Spartan_Format_FieldPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Format_Permission_Type\Spartan_Format_Permission_Type.cs" />
+ <Compile Include="Domain\Spartan_Format_Permission_Type\Spartan_Format_Permission_TypePagingModel.cs" />
+ <Compile Include="Domain\Spartan_Format_Permissions\Spartan_Format_Permissions.cs" />
+ <Compile Include="Domain\Spartan_Format_Permissions\Spartan_Format_PermissionsPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Report\Spartan_Report.cs" />
+ <Compile Include="Domain\Spartan_Report\Spartan_ReportPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Report_Field_Type\Spartan_Report_Field_Type.cs" />
+ <Compile Include="Domain\Spartan_Report_Field_Type\Spartan_Report_Field_TypePagingModel.cs" />
+ <Compile Include="Domain\Spartan_Report_Fields_Detail\Spartan_Report_Fields_DetailPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Report_Fields_Detail\Spartan_Report_Fields_Detail.cs" />
+ <Compile Include="Domain\Spartan_Report_Format\Spartan_Report_Format.cs" />
+ <Compile Include="Domain\Spartan_Report_Format\Spartan_Report_FormatPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Report_Function\Spartan_Report_Function.cs" />
+ <Compile Include="Domain\Spartan_Report_Function\Spartan_Report_FunctionPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Report_Order_Type\Spartan_Report_Order_Type.cs" />
+ <Compile Include="Domain\Spartan_Report_Order_Type\Spartan_Report_Order_TypePagingModel.cs" />
+ <Compile Include="Domain\Spartan_Report_Permission_Type\Spartan_Report_Permission_Type.cs" />
+ <Compile Include="Domain\Spartan_Report_Permission_Type\Spartan_Report_Permission_TypePagingModel.cs" />
+ <Compile Include="Domain\Spartan_Report_Permissions\Spartan_Report_Permissions.cs" />
+ <Compile Include="Domain\Spartan_Report_Permissions\Spartan_Report_PermissionsPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Report_Presentation_Type\Spartan_Report_Presentation_Type.cs" />
+ <Compile Include="Domain\Spartan_Report_Presentation_Type\Spartan_Report_Presentation_TypePagingModel.cs" />
+ <Compile Include="Domain\Spartan_Report_Presentation_View\Spartan_Report_Presentation_View.cs" />
+ <Compile Include="Domain\Spartan_Report_Presentation_View\Spartan_Report_Presentation_ViewPagingModel.cs" />
+ <Compile Include="Domain\Spartan_Report_Status\Spartan_Report_Status.cs" />
+ <Compile Include="Domain\Spartan_Report_Status\Spartan_Report_StatusPagingModel.cs" />
+ <Compile Include="Domain\Dialecto\Dialecto.cs" />
+<Compile Include="Domain\Dialecto\DialectoPagingModel.cs" />
+<Compile Include="Domain\Barba\Barba.cs" />
+<Compile Include="Domain\Barba\BarbaPagingModel.cs" />
+<Compile Include="Domain\Boca\Boca.cs" />
+<Compile Include="Domain\Boca\BocaPagingModel.cs" />
+<Compile Include="Domain\PasaTurnos\PasaTurnos.cs" />
+<Compile Include="Domain\PasaTurnos\PasaTurnosPagingModel.cs" />
+<Compile Include="Domain\A_Tiempo\A_Tiempo.cs" />
+<Compile Include="Domain\A_Tiempo\A_TiempoPagingModel.cs" />
+<Compile Include="Domain\Abogado\Abogado.cs" />
+<Compile Include="Domain\Abogado\AbogadoPagingModel.cs" />
+<Compile Include="Domain\Acta_de_Lectura_de_Derechos\Acta_de_Lectura_de_Derechos.cs" />
+<Compile Include="Domain\Acta_de_Lectura_de_Derechos\Acta_de_Lectura_de_DerechosPagingModel.cs" />
+<Compile Include="Domain\Adicciones\Adicciones.cs" />
+<Compile Include="Domain\Adicciones\AdiccionesPagingModel.cs" />
+<Compile Include="Domain\Adicciones_de_Involucrado\Adicciones_de_InvolucradoPagingModel.cs" />
+<Compile Include="Domain\Adicciones_de_Involucrado\Adicciones_de_Involucrado.cs" />
+<Compile Include="Domain\Adicciones_Probable_Responsable\Adicciones_Probable_ResponsablePagingModel.cs" />
+<Compile Include="Domain\Adicciones_Probable_Responsable\Adicciones_Probable_Responsable.cs" />
+<Compile Include="Domain\Agencia\Agencia.cs" />
+<Compile Include="Domain\Agencia\AgenciaPagingModel.cs" />
+<Compile Include="Domain\Agente_del_Ministerio_Publico\Agente_del_Ministerio_Publico.cs" />
+<Compile Include="Domain\Agente_del_Ministerio_Publico\Agente_del_Ministerio_PublicoPagingModel.cs" />
+<Compile Include="Domain\Agravantes\Agravantes.cs" />
+<Compile Include="Domain\Agravantes\AgravantesPagingModel.cs" />
+<Compile Include="Domain\Agravantes_del_Delito\Agravantes_del_DelitoPagingModel.cs" />
+<Compile Include="Domain\Agravantes_del_Delito\Agravantes_del_Delito.cs" />
+<Compile Include="Domain\Anteojos\Anteojos.cs" />
+<Compile Include="Domain\Anteojos\AnteojosPagingModel.cs" />
+<Compile Include="Domain\Articulo\Articulo.cs" />
+<Compile Include="Domain\Articulo\ArticuloPagingModel.cs" />
+<Compile Include="Domain\Aseguradora_de_Vehiculo\Aseguradora_de_Vehiculo.cs" />
+<Compile Include="Domain\Aseguradora_de_Vehiculo\Aseguradora_de_VehiculoPagingModel.cs" />
+<Compile Include="Domain\Asignacion_de_Turnos\Asignacion_de_Turnos.cs" />
+<Compile Include="Domain\Asignacion_de_Turnos\Asignacion_de_TurnosPagingModel.cs" />
+<Compile Include="Domain\Audiencia_de_Control_Fundamento\Audiencia_de_Control_Fundamento.cs" />
+<Compile Include="Domain\Audiencia_de_Control_Fundamento\Audiencia_de_Control_FundamentoPagingModel.cs" />
+<Compile Include="Domain\Audiencia_de_Control_Hechos\Audiencia_de_Control_Hechos.cs" />
+<Compile Include="Domain\Audiencia_de_Control_Hechos\Audiencia_de_Control_HechosPagingModel.cs" />
+<Compile Include="Domain\Audiencia_de_Control_Procedimiento\Audiencia_de_Control_Procedimiento.cs" />
+<Compile Include="Domain\Audiencia_de_Control_Procedimiento\Audiencia_de_Control_ProcedimientoPagingModel.cs" />
+<Compile Include="Domain\Audiencia_de_Control_Reiteracion\Audiencia_de_Control_Reiteracion.cs" />
+<Compile Include="Domain\Audiencia_de_Control_Reiteracion\Audiencia_de_Control_ReiteracionPagingModel.cs" />
+<Compile Include="Domain\Audiencia_de_Control_Solicitud\Audiencia_de_Control_Solicitud.cs" />
+<Compile Include="Domain\Audiencia_de_Control_Solicitud\Audiencia_de_Control_SolicitudPagingModel.cs" />
+<Compile Include="Domain\Autoridad\Autoridad.cs" />
+<Compile Include="Domain\Autoridad\AutoridadPagingModel.cs" />
+<Compile Include="Domain\Solicitud\Solicitud.cs" />
+<Compile Include="Domain\Solicitud\SolicitudPagingModel.cs" />
+<Compile Include="Domain\Bigote\Bigote.cs" />
+<Compile Include="Domain\Bigote\BigotePagingModel.cs" />
+<Compile Include="Domain\Binario\Binario.cs" />
+<Compile Include="Domain\Binario\BinarioPagingModel.cs" />
+<Compile Include="Domain\Bitacora_de_Sincronizacion\Bitacora_de_Sincronizacion.cs" />
+<Compile Include="Domain\Bitacora_de_Sincronizacion\Bitacora_de_SincronizacionPagingModel.cs" />
+<Compile Include="Domain\Bitacora_de_Usuarios\Bitacora_de_Usuarios.cs" />
+<Compile Include="Domain\Bitacora_de_Usuarios\Bitacora_de_UsuariosPagingModel.cs" />
+<Compile Include="Domain\Cadena_de_Custodia\Cadena_de_Custodia.cs" />
+<Compile Include="Domain\Cadena_de_Custodia\Cadena_de_CustodiaPagingModel.cs" />
+<Compile Include="Domain\Calendario\Calendario.cs" />
+<Compile Include="Domain\Calendario\CalendarioPagingModel.cs" />
+<Compile Include="Domain\Calendario_de_Citas\Calendario_de_Citas.cs" />
+<Compile Include="Domain\Calendario_de_Citas\Calendario_de_CitasPagingModel.cs" />
+<Compile Include="Domain\Calidad_Migratoria\Calidad_Migratoria.cs" />
+<Compile Include="Domain\Calidad_Migratoria\Calidad_MigratoriaPagingModel.cs" />
+<Compile Include="Domain\Calvicie\Calvicie.cs" />
+<Compile Include="Domain\Calvicie\CalviciePagingModel.cs" />
+<Compile Include="Domain\Cantidad_Cabello\Cantidad_Cabello.cs" />
+<Compile Include="Domain\Cantidad_Cabello\Cantidad_CabelloPagingModel.cs" />
+<Compile Include="Domain\Carga_de_Documentos_Lectura_de_Derechos\Carga_de_Documentos_Lectura_de_Derechos.cs" />
+<Compile Include="Domain\Carga_de_Documentos_Lectura_de_Derechos\Carga_de_Documentos_Lectura_de_DerechosPagingModel.cs" />
+<Compile Include="Domain\Carga_de_Documentos_de_Legislacion\Carga_de_Documentos_de_Legislacion.cs" />
+<Compile Include="Domain\Carga_de_Documentos_de_Legislacion\Carga_de_Documentos_de_LegislacionPagingModel.cs" />
+<Compile Include="Domain\Catalogo_de_Estatus_de_Folio\Catalogo_de_Estatus_de_Folio.cs" />
+<Compile Include="Domain\Catalogo_de_Estatus_de_Folio\Catalogo_de_Estatus_de_FolioPagingModel.cs" />
+<Compile Include="Domain\Catalogo_de_Estatus_de_Traslado\Catalogo_de_Estatus_de_Traslado.cs" />
+<Compile Include="Domain\Catalogo_de_Estatus_de_Traslado\Catalogo_de_Estatus_de_TrasladoPagingModel.cs" />
+<Compile Include="Domain\Catalogo_de_Inicio_de_Cadena_de_Custodia\Catalogo_de_Inicio_de_Cadena_de_Custodia.cs" />
+<Compile Include="Domain\Catalogo_de_Inicio_de_Cadena_de_Custodia\Catalogo_de_Inicio_de_Cadena_de_CustodiaPagingModel.cs" />
+<Compile Include="Domain\Catalogo_de_Movil_para_traslado\Catalogo_de_Movil_para_traslado.cs" />
+<Compile Include="Domain\Catalogo_de_Movil_para_traslado\Catalogo_de_Movil_para_trasladoPagingModel.cs" />
+<Compile Include="Domain\Catalogo_de_Recoleccion\Catalogo_de_Recoleccion.cs" />
+<Compile Include="Domain\Catalogo_de_Recoleccion\Catalogo_de_RecoleccionPagingModel.cs" />
+<Compile Include="Domain\Catalogo_Estatus_CC\Catalogo_Estatus_CC.cs" />
+<Compile Include="Domain\Catalogo_Estatus_CC\Catalogo_Estatus_CCPagingModel.cs" />
+<Compile Include="Domain\Catalogo_Estatus_de_Replicacion\Catalogo_Estatus_de_Replicacion.cs" />
+<Compile Include="Domain\Catalogo_Estatus_de_Replicacion\Catalogo_Estatus_de_ReplicacionPagingModel.cs" />
+<Compile Include="Domain\Catalogo_Estatus_Detenido_MPI\Catalogo_Estatus_Detenido_MPI.cs" />
+<Compile Include="Domain\Catalogo_Estatus_Detenido_MPI\Catalogo_Estatus_Detenido_MPIPagingModel.cs" />
+<Compile Include="Domain\Catalogo_Motivo_de_Intervencion_CC\Catalogo_Motivo_de_Intervencion_CC.cs" />
+<Compile Include="Domain\Catalogo_Motivo_de_Intervencion_CC\Catalogo_Motivo_de_Intervencion_CCPagingModel.cs" />
+<Compile Include="Domain\Catalogo_Numero_de_Preguntas\Catalogo_Numero_de_Preguntas.cs" />
+<Compile Include="Domain\Catalogo_Numero_de_Preguntas\Catalogo_Numero_de_PreguntasPagingModel.cs" />
+<Compile Include="Domain\Catalogo_Respuesta\Catalogo_Respuesta.cs" />
+<Compile Include="Domain\Catalogo_Respuesta\Catalogo_RespuestaPagingModel.cs" />
+<Compile Include="Domain\Catalogo_Tipo_de_Cargo_CC\Catalogo_Tipo_de_Cargo_CC.cs" />
+<Compile Include="Domain\Catalogo_Tipo_de_Cargo_CC\Catalogo_Tipo_de_Cargo_CCPagingModel.cs" />
+<Compile Include="Domain\Catalogo_Tipo_de_Embalaje_CC\Catalogo_Tipo_de_Embalaje_CCPagingModel.cs" />
+<Compile Include="Domain\Catalogo_Tipo_de_Embalaje_CC\Catalogo_Tipo_de_Embalaje_CC.cs" />
+<Compile Include="Domain\Catalogo_Tipo_de_Fijacion_CC\Catalogo_Tipo_de_Fijacion_CCPagingModel.cs" />
+<Compile Include="Domain\Catalogo_Tipo_de_Fijacion_CC\Catalogo_Tipo_de_Fijacion_CC.cs" />
+<Compile Include="Domain\Catalogo_Tipo_de_Indicio_CC\Catalogo_Tipo_de_Indicio_CCPagingModel.cs" />
+<Compile Include="Domain\Catalogo_Tipo_de_Indicio_CC\Catalogo_Tipo_de_Indicio_CC.cs" />
+<Compile Include="Domain\Catalogo_Unidad_Administrativa_CC\Catalogo_Unidad_Administrativa_CC.cs" />
+<Compile Include="Domain\Catalogo_Unidad_Administrativa_CC\Catalogo_Unidad_Administrativa_CCPagingModel.cs" />
+<Compile Include="Domain\Catalogo_Unidad_Policial\Catalogo_Unidad_Policial.cs" />
+<Compile Include="Domain\Catalogo_Unidad_Policial\Catalogo_Unidad_PolicialPagingModel.cs" />
+<Compile Include="Domain\Causas_de_Interrupcion\Causas_de_Interrupcion.cs" />
+<Compile Include="Domain\Causas_de_Interrupcion\Causas_de_InterrupcionPagingModel.cs" />
+<Compile Include="Domain\Cejas\Cejas.cs" />
+<Compile Include="Domain\Cejas\CejasPagingModel.cs" />
+<Compile Include="Domain\Certifica_Defuncion\Certifica_Defuncion.cs" />
+<Compile Include="Domain\Certifica_Defuncion\Certifica_DefuncionPagingModel.cs" />
+<Compile Include="Domain\Circunstancia_Defuncion\Circunstancia_Defuncion.cs" />
+<Compile Include="Domain\Circunstancia_Defuncion\Circunstancia_DefuncionPagingModel.cs" />
+<Compile Include="Domain\Circunstancia_del_Delito\Circunstancia_del_Delito.cs" />
+<Compile Include="Domain\Circunstancia_del_Delito\Circunstancia_del_DelitoPagingModel.cs" />
+<Compile Include="Domain\Circunstancia_Vehiculo\Circunstancia_Vehiculo.cs" />
+<Compile Include="Domain\Circunstancia_Vehiculo\Circunstancia_VehiculoPagingModel.cs" />
+<Compile Include="Domain\Circunstancias\Circunstancias.cs" />
+<Compile Include="Domain\Circunstancias\CircunstanciasPagingModel.cs" />
+<Compile Include="Domain\Circunstancias_del_Delito\Circunstancias_del_DelitoPagingModel.cs" />
+<Compile Include="Domain\Circunstancias_del_Delito\Circunstancias_del_Delito.cs" />
+<Compile Include="Domain\Especifica_Vehiculo\Especifica_Vehiculo.cs" />
+<Compile Include="Domain\Especifica_Vehiculo\Especifica_VehiculoPagingModel.cs" />
+<Compile Include="Domain\Clasificacion_en_Orden_de_Resultado\Clasificacion_en_Orden_de_Resultado.cs" />
+<Compile Include="Domain\Clasificacion_en_Orden_de_Resultado\Clasificacion_en_Orden_de_ResultadoPagingModel.cs" />
+<Compile Include="Domain\Codigo_Postal\Codigo_Postal.cs" />
+<Compile Include="Domain\Codigo_Postal\Codigo_PostalPagingModel.cs" />
+<Compile Include="Domain\Colonia\Colonia.cs" />
+<Compile Include="Domain\Colonia\ColoniaPagingModel.cs" />
+<Compile Include="Domain\Color_de_Cabello\Color_de_Cabello.cs" />
+<Compile Include="Domain\Color_de_Cabello\Color_de_CabelloPagingModel.cs" />
+<Compile Include="Domain\Color_Ojos\Color_Ojos.cs" />
+<Compile Include="Domain\Color_Ojos\Color_OjosPagingModel.cs" />
+<Compile Include="Domain\Color_Piel\Color_Piel.cs" />
+<Compile Include="Domain\Color_Piel\Color_PielPagingModel.cs" />
+<Compile Include="Domain\Color_Vehiculo\Color_Vehiculo.cs" />
+<Compile Include="Domain\Color_Vehiculo\Color_VehiculoPagingModel.cs" />
+<Compile Include="Domain\Compareciente\Compareciente.cs" />
+<Compile Include="Domain\Compareciente\ComparecientePagingModel.cs" />
+<Compile Include="Domain\Complexion\Complexion.cs" />
+<Compile Include="Domain\Complexion\ComplexionPagingModel.cs" />
+<Compile Include="Domain\Concurso\Concurso.cs" />
+<Compile Include="Domain\Concurso\ConcursoPagingModel.cs" />
+<Compile Include="Domain\Consecuencia_Defuncion\Consecuencia_Defuncion.cs" />
+<Compile Include="Domain\Consecuencia_Defuncion\Consecuencia_DefuncionPagingModel.cs" />
+<Compile Include="Domain\Contingencia\Contingencia.cs" />
+<Compile Include="Domain\Contingencia\ContingenciaPagingModel.cs" />
+<Compile Include="Domain\Control_de_Tiempos_JA\Control_de_Tiempos_JA.cs" />
+<Compile Include="Domain\Control_de_Tiempos_JA\Control_de_Tiempos_JAPagingModel.cs" />
+<Compile Include="Domain\Registro_de_Tiempo_por_Estatus\Registro_de_Tiempo_por_Estatus.cs" />
+<Compile Include="Domain\Registro_de_Tiempo_por_Estatus\Registro_de_Tiempo_por_EstatusPagingModel.cs" />
+<Compile Include="Domain\Convenio\Convenio.cs" />
+<Compile Include="Domain\Convenio\ConvenioPagingModel.cs" />
+<Compile Include="Domain\Corporacion\Corporacion.cs" />
+<Compile Include="Domain\Corporacion\CorporacionPagingModel.cs" />
+<Compile Include="Domain\Correccion_de_Error_en_Estatus\Correccion_de_Error_en_Estatus.cs" />
+<Compile Include="Domain\Correccion_de_Error_en_Estatus\Correccion_de_Error_en_EstatusPagingModel.cs" />
+<Compile Include="Domain\Cumplimiento\Cumplimiento.cs" />
+<Compile Include="Domain\Cumplimiento\CumplimientoPagingModel.cs" />
+<Compile Include="Domain\Datos_Personales_Adicionales_Involucrado\Datos_Personales_Adicionales_InvolucradoPagingModel.cs" />
+<Compile Include="Domain\Datos_Personales_Adicionales_Involucrado\Datos_Personales_Adicionales_Involucrado.cs" />
+<Compile Include="Domain\Datos_Personales_Adicionales_Probable_Responsable\Datos_Personales_Adicionales_Probable_ResponsablePagingModel.cs" />
+<Compile Include="Domain\Datos_Personales_Adicionales_Probable_Responsable\Datos_Personales_Adicionales_Probable_Responsable.cs" />
+<Compile Include="Domain\Delegacion\Delegacion.cs" />
+<Compile Include="Domain\Delegacion\DelegacionPagingModel.cs" />
+<Compile Include="Domain\Delito\Delito.cs" />
+<Compile Include="Domain\Delito\DelitoPagingModel.cs" />
+<Compile Include="Domain\Delito_Principal_MPI\Delito_Principal_MPI.cs" />
+<Compile Include="Domain\Delito_Principal_MPI\Delito_Principal_MPIPagingModel.cs" />
+<Compile Include="Domain\Delitos_Violencia_Genero\Delitos_Violencia_Genero.cs" />
+<Compile Include="Domain\Delitos_Violencia_Genero\Delitos_Violencia_GeneroPagingModel.cs" />
+<Compile Include="Domain\Descarga_de_Archivo\Descarga_de_Archivo.cs" />
+<Compile Include="Domain\Descarga_de_Archivo\Descarga_de_ArchivoPagingModel.cs" />
+<Compile Include="Domain\Detalle_Bitacora_de_Canalizacion_MPI\Detalle_Bitacora_de_Canalizacion_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_Bitacora_de_Canalizacion_MPI\Detalle_Bitacora_de_Canalizacion_MPI.cs" />
+<Compile Include="Domain\Detalle_Datos_de_Delito_MPI\Detalle_Datos_de_Delito_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_Datos_de_Delito_MPI\Detalle_Datos_de_Delito_MPI.cs" />
+<Compile Include="Domain\Detalle_de_Abogado\Detalle_de_AbogadoPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Abogado\Detalle_de_Abogado.cs" />
+<Compile Include="Domain\Detalle_de_Agente_del_Ministerio_Publico\Detalle_de_Agente_del_Ministerio_PublicoPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Agente_del_Ministerio_Publico\Detalle_de_Agente_del_Ministerio_Publico.cs" />
+<Compile Include="Domain\Detalle_de_Asignacion_de_Citas\Detalle_de_Asignacion_de_CitasPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Asignacion_de_Citas\Detalle_de_Asignacion_de_Citas.cs" />
+<Compile Include="Domain\Detalle_de_Asignacion_de_Especialista\Detalle_de_Asignacion_de_EspecialistaPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Asignacion_de_Especialista\Detalle_de_Asignacion_de_Especialista.cs" />
+<Compile Include="Domain\Detalle_de_Bitacora_de_Cambios\Detalle_de_Bitacora_de_CambiosPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Bitacora_de_Cambios\Detalle_de_Bitacora_de_Cambios.cs" />
+<Compile Include="Domain\Detalle_de_Canalizar_Estatus\Detalle_de_Canalizar_EstatusPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Canalizar_Estatus\Detalle_de_Canalizar_Estatus.cs" />
+<Compile Include="Domain\Detalle_de_Citatorio_Audiencias\Detalle_de_Citatorio_AudienciasPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Citatorio_Audiencias\Detalle_de_Citatorio_Audiencias.cs" />
+<Compile Include="Domain\Detalle_de_Coincidencias\Detalle_de_CoincidenciasPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Coincidencias\Detalle_de_Coincidencias.cs" />
+<Compile Include="Domain\Detalle_de_coincidencias_a\Detalle_de_coincidencias_aPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_coincidencias_a\Detalle_de_coincidencias_a.cs" />
+<Compile Include="Domain\Detalle_de_Coincidencias_MPI\Detalle_de_Coincidencias_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Coincidencias_MPI\Detalle_de_Coincidencias_MPI.cs" />
+<Compile Include="Domain\Detalle_de_Datos_de_la_Victima_MPI\Detalle_de_Datos_de_la_Victima_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Datos_de_la_Victima_MPI\Detalle_de_Datos_de_la_Victima_MPI.cs" />
+<Compile Include="Domain\Detalle_de_Datos_de_Tutor\Detalle_de_Datos_de_Tutor.cs" />
+<Compile Include="Domain\Detalle_de_Datos_de_Tutor\Detalle_de_Datos_de_TutorPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Datos_del_Imputado_MPI\Detalle_de_Datos_del_Imputado_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Datos_del_Imputado_MPI\Detalle_de_Datos_del_Imputado_MPI.cs" />
+<Compile Include="Domain\Detalle_de_Datos_del_Imputado_CC\Detalle_de_Datos_del_Imputado_CCPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Datos_del_Imputado_CC\Detalle_de_Datos_del_Imputado_CC.cs" />
+<Compile Include="Domain\Detalle_de_Datos_del_Testigo_CC\Detalle_de_Datos_del_Testigo_CCPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Datos_del_Testigo_CC\Detalle_de_Datos_del_Testigo_CC.cs" />
+<Compile Include="Domain\Detalle_de_Datos_del_Testigo_MPI\Detalle_de_Datos_del_Testigo_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Datos_del_Testigo_MPI\Detalle_de_Datos_del_Testigo_MPI.cs" />
+<Compile Include="Domain\Detalle_de_Datos_Generales\Detalle_de_Datos_GeneralesPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Datos_Generales\Detalle_de_Datos_Generales.cs" />
+<Compile Include="Domain\Detalle_de_Delito\Detalle_de_DelitoPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Delito\Detalle_de_Delito.cs" />
+<Compile Include="Domain\Detalle_de_Delito_de_Justicia\Detalle_de_Delito_de_JusticiaPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Delito_de_Justicia\Detalle_de_Delito_de_Justicia.cs" />
+<Compile Include="Domain\Detalle_de_Descarga_de_Archivo\Detalle_de_Descarga_de_ArchivoPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Descarga_de_Archivo\Detalle_de_Descarga_de_Archivo.cs" />
+<Compile Include="Domain\Detalle_de_Descripcion_de_Evidencia_CC\Detalle_de_Descripcion_de_Evidencia_CCPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Descripcion_de_Evidencia_CC\Detalle_de_Descripcion_de_Evidencia_CC.cs" />
+<Compile Include="Domain\Detalle_de_Desestimacion\Detalle_de_DesestimacionPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Desestimacion\Detalle_de_Desestimacion.cs" />
+<Compile Include="Domain\Detalle_de_Devolucion_de_Indicios\Detalle_de_Devolucion_de_IndiciosPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Devolucion_de_Indicios\Detalle_de_Devolucion_de_Indicios.cs" />
+<Compile Include="Domain\Detalle_de_Documento_MPO\Detalle_de_Documento_MPOPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Documento_MPO\Detalle_de_Documento_MPO.cs" />
+<Compile Include="Domain\Detalle_de_documentos\Detalle_de_documentosPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_documentos\Detalle_de_documentos.cs" />
+<Compile Include="Domain\Detalle_de_Documentos_de_Legislacion\Detalle_de_Documentos_de_LegislacionPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Documentos_de_Legislacion\Detalle_de_Documentos_de_Legislacion.cs" />
+<Compile Include="Domain\Detalle_de_Documentos_de_MPO\Detalle_de_Documentos_de_MPOPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Documentos_de_MPO\Detalle_de_Documentos_de_MPO.cs" />
+<Compile Include="Domain\Detalle_de_Documentos_MPI\Detalle_de_Documentos_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Documentos_MPI\Detalle_de_Documentos_MPI.cs" />
+<Compile Include="Domain\Detalle_de_Documentos_MPO\Detalle_de_Documentos_MPOPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Documentos_MPO\Detalle_de_Documentos_MPO.cs" />
+<Compile Include="Domain\Detalle_de_Folio_Asignado_de_Usuario\Detalle_de_Folio_Asignado_de_UsuarioPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Folio_Asignado_de_Usuario\Detalle_de_Folio_Asignado_de_Usuario.cs" />
+<Compile Include="Domain\Detalle_de_Folio_NUE_CC\Detalle_de_Folio_NUE_CCPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Folio_NUE_CC\Detalle_de_Folio_NUE_CC.cs" />
+<Compile Include="Domain\Detalle_de_Fotos_CC\Detalle_de_Fotos_CCPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Fotos_CC\Detalle_de_Fotos_CC.cs" />
+<Compile Include="Domain\Detalle_de_Fotos_de_Emergencia_CC\Detalle_de_Fotos_de_Emergencia_CCPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Fotos_de_Emergencia_CC\Detalle_de_Fotos_de_Emergencia_CC.cs" />
+<Compile Include="Domain\Detalle_de_Galeria_de_Detenidos\Detalle_de_Galeria_de_DetenidosPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Galeria_de_Detenidos\Detalle_de_Galeria_de_Detenidos.cs" />
+<Compile Include="Domain\Detalle_de_Galeria_de_Intervinientes\Detalle_de_Galeria_de_IntervinientesPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Galeria_de_Intervinientes\Detalle_de_Galeria_de_Intervinientes.cs" />
+<Compile Include="Domain\Detalle_de_Galeria_de_Testigos\Detalle_de_Galeria_de_TestigosPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Galeria_de_Testigos\Detalle_de_Galeria_de_Testigos.cs" />
+<Compile Include="Domain\Detalle_de_Hechos_Audiencia_Inicial\Detalle_de_Hechos_Audiencia_InicialPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Hechos_Audiencia_Inicial\Detalle_de_Hechos_Audiencia_Inicial.cs" />
+<Compile Include="Domain\Detalle_de_Historial_de_Emergencia_CC\Detalle_de_Historial_de_Emergencia_CCPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Historial_de_Emergencia_CC\Detalle_de_Historial_de_Emergencia_CC.cs" />
+<Compile Include="Domain\Detalle_de_Imputado\Detalle_de_ImputadoPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Imputado\Detalle_de_Imputado.cs" />
+<Compile Include="Domain\Detalle_de_Indicios\Detalle_de_IndiciosPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Indicios\Detalle_de_Indicios.cs" />
+<Compile Include="Domain\Detalle_de_IPH_MPI\Detalle_de_IPH_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_IPH_MPI\Detalle_de_IPH_MPI.cs" />
+<Compile Include="Domain\Detalle_de_Lista_de_Asignaciones\Detalle_de_Lista_de_AsignacionesPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Lista_de_Asignaciones\Detalle_de_Lista_de_Asignaciones.cs" />
+<Compile Include="Domain\Detalle_de_Lista_de_Documentos_CC\Detalle_de_Lista_de_Documentos_CCPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Lista_de_Documentos_CC\Detalle_de_Lista_de_Documentos_CC.cs" />
+<Compile Include="Domain\Detalle_de_Mensaje_de_Historial\Detalle_de_Mensaje_de_HistorialPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Mensaje_de_Historial\Detalle_de_Mensaje_de_Historial.cs" />
+<Compile Include="Domain\Detalle_de_Oficio_de_Servicio_Pericial\Detalle_de_Oficio_de_Servicio_PericialPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Oficio_de_Servicio_Pericial\Detalle_de_Oficio_de_Servicio_Pericial.cs" />
+<Compile Include="Domain\Detalle_de_Persona_Moral\Detalle_de_Persona_MoralPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Persona_Moral\Detalle_de_Persona_Moral.cs" />
+<Compile Include="Domain\Detalle_de_Persona_Moral_JA\Detalle_de_Persona_Moral_JAPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Persona_Moral_JA\Detalle_de_Persona_Moral_JA.cs" />
+<Compile Include="Domain\Detalle_de_Persona_Moral_MPI\Detalle_de_Persona_Moral_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Persona_Moral_MPI\Detalle_de_Persona_Moral_MPI.cs" />
+<Compile Include="Domain\Detalle_de_Referencia\Detalle_de_ReferenciaPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Referencia\Detalle_de_Referencia.cs" />
+<Compile Include="Domain\Detalle_de_Registro_de_Intervinientes_CC\Detalle_de_Registro_de_Intervinientes_CCPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Registro_de_Intervinientes_CC\Detalle_de_Registro_de_Intervinientes_CC.cs" />
+<Compile Include="Domain\Detalle_de_Relaciones\Detalle_de_RelacionesPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Relaciones\Detalle_de_Relaciones.cs" />
+<Compile Include="Domain\Detalle_de_Requerido_en_Audiencias_MPI\Detalle_de_Requerido_en_Audiencias_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Requerido_en_Audiencias_MPI\Detalle_de_Requerido_en_Audiencias_MPI.cs" />
+<Compile Include="Domain\Detalle_de_Requerido_en_Comparecencia\Detalle_de_Requerido_en_ComparecenciaPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Requerido_en_Comparecencia\Detalle_de_Requerido_en_Comparecencia.cs" />
+<Compile Include="Domain\Detalle_de_Requerido_en_Examen\Detalle_de_Requerido_en_ExamenPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Requerido_en_Examen\Detalle_de_Requerido_en_Examen.cs" />
+<Compile Include="Domain\Detalle_de_Requerido_en_Invitaciones\Detalle_de_Requerido_en_InvitacionesPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Requerido_en_Invitaciones\Detalle_de_Requerido_en_Invitaciones.cs" />
+<Compile Include="Domain\Detalle_de_Requerido_en_Reuniones\Detalle_de_Requerido_en_ReunionesPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Requerido_en_Reuniones\Detalle_de_Requerido_en_Reuniones.cs" />
+<Compile Include="Domain\Detalle_de_Requeridos_Faltantes\Detalle_de_Requeridos_FaltantesPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Requeridos_Faltantes\Detalle_de_Requeridos_Faltantes.cs" />
+<Compile Include="Domain\Detalle_de_Retroalimentacion\Detalle_de_RetroalimentacionPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Retroalimentacion\Detalle_de_Retroalimentacion.cs" />
+<Compile Include="Domain\Detalle_de_Reuniones_de_Mediacion\Detalle_de_Reuniones_de_MediacionPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Reuniones_de_Mediacion\Detalle_de_Reuniones_de_Mediacion.cs" />
+<Compile Include="Domain\Detalle_de_Seguimiento\Detalle_de_SeguimientoPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Seguimiento\Detalle_de_Seguimiento.cs" />
+<Compile Include="Domain\Detalle_de_Sentencias_Imputado_MPI\Detalle_de_Sentencias_Imputado_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Sentencias_Imputado_MPI\Detalle_de_Sentencias_Imputado_MPI.cs" />
+<Compile Include="Domain\Detalle_de_Servicio_de_Apoyo\Detalle_de_Servicio_de_ApoyoPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Servicio_de_Apoyo\Detalle_de_Servicio_de_Apoyo.cs" />
+<Compile Include="Domain\Detalle_de_Servicio_de_Apoyo_MPI\Detalle_de_Servicio_de_Apoyo_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Servicio_de_Apoyo_MPI\Detalle_de_Servicio_de_Apoyo_MPI.cs" />
+<Compile Include="Domain\Detalle_de_Servicios_Periciales\Detalle_de_Servicios_PericialesPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Servicios_Periciales\Detalle_de_Servicios_Periciales.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_en_Audiencias_JA\Detalle_de_Solicitante_en_Audiencias_JAPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_en_Audiencias_JA\Detalle_de_Solicitante_en_Audiencias_JA.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_en_Audiencias_MPI\Detalle_de_Solicitante_en_Audiencias_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_en_Audiencias_MPI\Detalle_de_Solicitante_en_Audiencias_MPI.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_en_Comparecencia\Detalle_de_Solicitante_en_ComparecenciaPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_en_Comparecencia\Detalle_de_Solicitante_en_Comparecencia.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_en_Examen\Detalle_de_Solicitante_en_ExamenPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_en_Examen\Detalle_de_Solicitante_en_Examen.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_en_Invitaciones\Detalle_de_Solicitante_en_InvitacionesPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_en_Invitaciones\Detalle_de_Solicitante_en_Invitaciones.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_en_Reuniones\Detalle_de_Solicitante_en_ReunionesPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_en_Reuniones\Detalle_de_Solicitante_en_Reuniones.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_Fundamentos_JA\Detalle_de_Solicitante_Fundamentos_JAPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_Fundamentos_JA\Detalle_de_Solicitante_Fundamentos_JA.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_Procedimiento\Detalle_de_Solicitante_ProcedimientoPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_Procedimiento\Detalle_de_Solicitante_Procedimiento.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_Reiteracion_Salud\Detalle_de_Solicitante_Reiteracion_SaludPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitante_Reiteracion_Salud\Detalle_de_Solicitante_Reiteracion_Salud.cs" />
+<Compile Include="Domain\Detalle_de_Solicitud_Bitacora_de_Coincid\Detalle_de_Solicitud_Bitacora_de_CoincidPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitud_Bitacora_de_Coincid\Detalle_de_Solicitud_Bitacora_de_Coincid.cs" />
+<Compile Include="Domain\Detalle_de_Solicitud_Datos_de_Apoyo\Detalle_de_Solicitud_Datos_de_ApoyoPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitud_Datos_de_Apoyo\Detalle_de_Solicitud_Datos_de_Apoyo.cs" />
+<Compile Include="Domain\Detalle_de_Solicitud_de_Indicio\Detalle_de_Solicitud_de_IndicioPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitud_de_Indicio\Detalle_de_Solicitud_de_Indicio.cs" />
+<Compile Include="Domain\Detalle_de_Solicitud_Representante_Legal\Detalle_de_Solicitud_Representante_LegalPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitud_Representante_Legal\Detalle_de_Solicitud_Representante_Legal.cs" />
+<Compile Include="Domain\Detalle_de_Solicitud_Requerido\Detalle_de_Solicitud_RequeridoPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitud_Requerido\Detalle_de_Solicitud_Requerido.cs" />
+<Compile Include="Domain\Detalle_de_Solicitud_Seguimiento\Detalle_de_Solicitud_SeguimientoPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitud_Seguimiento\Detalle_de_Solicitud_Seguimiento.cs" />
+<Compile Include="Domain\Detalle_de_Solicitud_Solicitante\Detalle_de_Solicitud_SolicitantePagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitud_Solicitante\Detalle_de_Solicitud_Solicitante.cs" />
+<Compile Include="Domain\Detalle_de_Solicitudes_de_Comparecencia\Detalle_de_Solicitudes_de_ComparecenciaPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitudes_de_Comparecencia\Detalle_de_Solicitudes_de_Comparecencia.cs" />
+<Compile Include="Domain\Detalle_de_Solicitudes_de_Invitaciones\Detalle_de_Solicitudes_de_InvitacionesPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Solicitudes_de_Invitaciones\Detalle_de_Solicitudes_de_Invitaciones.cs" />
+<Compile Include="Domain\Detalle_de_Traslado_de_CC\Detalle_de_Traslado_de_CCPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Traslado_de_CC\Detalle_de_Traslado_de_CC.cs" />
+<Compile Include="Domain\Detalle_de_Tutor\Detalle_de_TutorPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Tutor\Detalle_de_Tutor.cs" />
+<Compile Include="Domain\Detalle_de_Videos_CC\Detalle_de_Videos_CCPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Videos_CC\Detalle_de_Videos_CC.cs" />
+<Compile Include="Domain\Detalle_del_Abogado_Imputado_MPI\Detalle_del_Abogado_Imputado_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_del_Abogado_Imputado_MPI\Detalle_del_Abogado_Imputado_MPI.cs" />
+<Compile Include="Domain\Detalle_del_Abogado_Victima_MPI\Detalle_del_Abogado_Victima_MPIPagingModel.cs" />
+<Compile Include="Domain\Detalle_del_Abogado_Victima_MPI\Detalle_del_Abogado_Victima_MPI.cs" />
+<Compile Include="Domain\Detalle_del_Certificado_CC\Detalle_del_Certificado_CCPagingModel.cs" />
+<Compile Include="Domain\Detalle_del_Certificado_CC\Detalle_del_Certificado_CC.cs" />
+<Compile Include="Domain\Detalle_del_Indicio\Detalle_del_IndicioPagingModel.cs" />
+<Compile Include="Domain\Detalle_del_Indicio\Detalle_del_Indicio.cs" />
+<Compile Include="Domain\Detalle_Historico_JA\Detalle_Historico_JAPagingModel.cs" />
+<Compile Include="Domain\Detalle_Historico_JA\Detalle_Historico_JA.cs" />
+<Compile Include="Domain\Detalle_Historico_MPO\Detalle_Historico_MPOPagingModel.cs" />
+<Compile Include="Domain\Detalle_Historico_MPO\Detalle_Historico_MPO.cs" />
+<Compile Include="Domain\Diligencias\Diligencias.cs" />
+<Compile Include="Domain\Diligencias\DiligenciasPagingModel.cs" />
+<Compile Include="Domain\Director_de_Agencia\Director_de_Agencia.cs" />
+<Compile Include="Domain\Director_de_Agencia\Director_de_AgenciaPagingModel.cs" />
+<Compile Include="Domain\Discapacidades_Fisicas\Discapacidades_Fisicas.cs" />
+<Compile Include="Domain\Discapacidades_Fisicas\Discapacidades_FisicasPagingModel.cs" />
+<Compile Include="Domain\Discapacidades_Mentales\Discapacidades_Mentales.cs" />
+<Compile Include="Domain\Discapacidades_Mentales\Discapacidades_MentalesPagingModel.cs" />
+<Compile Include="Domain\Discapacidades_Psicosociales\Discapacidades_Psicosociales.cs" />
+<Compile Include="Domain\Discapacidades_Psicosociales\Discapacidades_PsicosocialesPagingModel.cs" />
+<Compile Include="Domain\Discapacidades_Sensoriales\Discapacidades_Sensoriales.cs" />
+<Compile Include="Domain\Discapacidades_Sensoriales\Discapacidades_SensorialesPagingModel.cs" />
+<Compile Include="Domain\Distrito_Judicial\Distrito_Judicial.cs" />
+<Compile Include="Domain\Distrito_Judicial\Distrito_JudicialPagingModel.cs" />
+<Compile Include="Domain\Encuesta\Encuesta.cs" />
+<Compile Include="Domain\Encuesta\EncuestaPagingModel.cs" />
+<Compile Include="Domain\Elemento_Robado\Elemento_Robado.cs" />
+<Compile Include="Domain\Elemento_Robado\Elemento_RobadoPagingModel.cs" />
+<Compile Include="Domain\Elementos_Comision_Delito\Elementos_Comision_Delito.cs" />
+<Compile Include="Domain\Elementos_Comision_Delito\Elementos_Comision_DelitoPagingModel.cs" />
+<Compile Include="Domain\Encuesta1\Encuesta1.cs" />
+<Compile Include="Domain\Encuesta1\Encuesta1PagingModel.cs" />
+<Compile Include="Domain\Errores_de_Replicacion\Errores_de_Replicacion.cs" />
+<Compile Include="Domain\Errores_de_Replicacion\Errores_de_ReplicacionPagingModel.cs" />
+<Compile Include="Domain\Escolaridad\Escolaridad.cs" />
+<Compile Include="Domain\Escolaridad\EscolaridadPagingModel.cs" />
+<Compile Include="Domain\Especialidad\Especialidad.cs" />
+<Compile Include="Domain\Especialidad\EspecialidadPagingModel.cs" />
+<Compile Include="Domain\Especialidad_MP\Especialidad_MP.cs" />
+<Compile Include="Domain\Especialidad_MP\Especialidad_MPPagingModel.cs" />
+<Compile Include="Domain\Especialista_de_Justicia_Alternativa\Especialista_de_Justicia_Alternativa.cs" />
+<Compile Include="Domain\Especialista_de_Justicia_Alternativa\Especialista_de_Justicia_AlternativaPagingModel.cs" />
+<Compile Include="Domain\Estado\Estado.cs" />
+<Compile Include="Domain\Estado\EstadoPagingModel.cs" />
+<Compile Include="Domain\Estado_Civil\Estado_Civil.cs" />
+<Compile Include="Domain\Estado_Civil\Estado_CivilPagingModel.cs" />
+<Compile Include="Domain\Estado_de_Involucrado\Estado_de_Involucrado.cs" />
+<Compile Include="Domain\Estado_de_Involucrado\Estado_de_InvolucradoPagingModel.cs" />
+<Compile Include="Domain\Estatus\Estatus.cs" />
+<Compile Include="Domain\Estatus\EstatusPagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Actualizacion_de_Documento\Estatus_de_Actualizacion_de_Documento.cs" />
+<Compile Include="Domain\Estatus_de_Actualizacion_de_Documento\Estatus_de_Actualizacion_de_DocumentoPagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Asignacion\Estatus_de_Asignacion.cs" />
+<Compile Include="Domain\Estatus_de_Asignacion\Estatus_de_AsignacionPagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Cita_Invitaciones\Estatus_de_Cita_Invitaciones.cs" />
+<Compile Include="Domain\Estatus_de_Cita_Invitaciones\Estatus_de_Cita_InvitacionesPagingModel.cs" />
+<Compile Include="Domain\Estatus_Detalle_Documentos_Legislacion\Estatus_Detalle_Documentos_Legislacion.cs" />
+<Compile Include="Domain\Estatus_Detalle_Documentos_Legislacion\Estatus_Detalle_Documentos_LegislacionPagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Documento\Estatus_de_Documento.cs" />
+<Compile Include="Domain\Estatus_de_Documento\Estatus_de_DocumentoPagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Expediente\Estatus_de_Expediente.cs" />
+<Compile Include="Domain\Estatus_de_Expediente\Estatus_de_ExpedientePagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Expediente_Inicial\Estatus_de_Expediente_Inicial.cs" />
+<Compile Include="Domain\Estatus_de_Expediente_Inicial\Estatus_de_Expediente_InicialPagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Expediente_para_Reuniones\Estatus_de_Expediente_para_Reuniones.cs" />
+<Compile Include="Domain\Estatus_de_Expediente_para_Reuniones\Estatus_de_Expediente_para_ReunionesPagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Indicio\Estatus_de_Indicio.cs" />
+<Compile Include="Domain\Estatus_de_Indicio\Estatus_de_IndicioPagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Notificacion\Estatus_de_Notificacion.cs" />
+<Compile Include="Domain\Estatus_de_Notificacion\Estatus_de_NotificacionPagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Turno\Estatus_de_Turno.cs" />
+<Compile Include="Domain\Estatus_de_Turno\Estatus_de_TurnoPagingModel.cs" />
+<Compile Include="Domain\Estatus_del_Dictamen\Estatus_del_Dictamen.cs" />
+<Compile Include="Domain\Estatus_del_Dictamen\Estatus_del_DictamenPagingModel.cs" />
+<Compile Include="Domain\Estatus_del_Imputado\Estatus_del_Imputado.cs" />
+<Compile Include="Domain\Estatus_del_Imputado\Estatus_del_ImputadoPagingModel.cs" />
+<Compile Include="Domain\Estatus_Orientador\Estatus_Orientador.cs" />
+<Compile Include="Domain\Estatus_Orientador\Estatus_OrientadorPagingModel.cs" />
+<Compile Include="Domain\Estatus_Solicitud\Estatus_Solicitud.cs" />
+<Compile Include="Domain\Estatus_Solicitud\Estatus_SolicitudPagingModel.cs" />
+<Compile Include="Domain\Estudios_Superiores\Estudios_Superiores.cs" />
+<Compile Include="Domain\Estudios_Superiores\Estudios_SuperioresPagingModel.cs" />
+<Compile Include="Domain\Etnia\Etnia.cs" />
+<Compile Include="Domain\Etnia\EtniaPagingModel.cs" />
+<Compile Include="Domain\Expediente_Inicial\Expediente_Inicial.cs" />
+<Compile Include="Domain\Expediente_Inicial\Expediente_InicialPagingModel.cs" />
+<Compile Include="Domain\Forma_Accion_Delito\Forma_Accion_Delito.cs" />
+<Compile Include="Domain\Forma_Accion_Delito\Forma_Accion_DelitoPagingModel.cs" />
+<Compile Include="Domain\Forma_Comision_Delito\Forma_Comision_Delito.cs" />
+<Compile Include="Domain\Forma_Comision_Delito\Forma_Comision_DelitoPagingModel.cs" />
+<Compile Include="Domain\Forma_Cara\Forma_Cara.cs" />
+<Compile Include="Domain\Forma_Cara\Forma_CaraPagingModel.cs" />
+<Compile Include="Domain\Forma_de_Menton\Forma_de_Menton.cs" />
+<Compile Include="Domain\Forma_de_Menton\Forma_de_MentonPagingModel.cs" />
+<Compile Include="Domain\Forma_de_Nariz\Forma_de_Nariz.cs" />
+<Compile Include="Domain\Forma_de_Nariz\Forma_de_NarizPagingModel.cs" />
+<Compile Include="Domain\Froma_Ojos\Froma_Ojos.cs" />
+<Compile Include="Domain\Froma_Ojos\Froma_OjosPagingModel.cs" />
+<Compile Include="Domain\Forma_Orejas\Forma_Orejas.cs" />
+<Compile Include="Domain\Forma_Orejas\Forma_OrejasPagingModel.cs" />
+<Compile Include="Domain\Forma_Cabello\Forma_Cabello.cs" />
+<Compile Include="Domain\Forma_Cabello\Forma_CabelloPagingModel.cs" />
+<Compile Include="Domain\Formato_de_Control\Formato_de_Control.cs" />
+<Compile Include="Domain\Formato_de_Control\Formato_de_ControlPagingModel.cs" />
+<Compile Include="Domain\Formato_de_Seguimiento\Formato_de_Seguimiento.cs" />
+<Compile Include="Domain\Formato_de_Seguimiento\Formato_de_SeguimientoPagingModel.cs" />
+<Compile Include="Domain\Frente\Frente.cs" />
+<Compile Include="Domain\Frente\FrentePagingModel.cs" />
+<Compile Include="Domain\Grosor_de_Labios\Grosor_de_Labios.cs" />
+<Compile Include="Domain\Grosor_de_Labios\Grosor_de_LabiosPagingModel.cs" />
+<Compile Include="Domain\Grupo_al_que_Pertenece\Grupo_al_que_Pertenece.cs" />
+<Compile Include="Domain\Grupo_al_que_Pertenece\Grupo_al_que_PertenecePagingModel.cs" />
+<Compile Include="Domain\Grupo_del_Delito\Grupo_del_Delito.cs" />
+<Compile Include="Domain\Grupo_del_Delito\Grupo_del_DelitoPagingModel.cs" />
+<Compile Include="Domain\Grupo_Vulnerable\Grupo_Vulnerable.cs" />
+<Compile Include="Domain\Grupo_Vulnerable\Grupo_VulnerablePagingModel.cs" />
+<Compile Include="Domain\Historial_de_Conversacion\Historial_de_Conversacion.cs" />
+<Compile Include="Domain\Historial_de_Conversacion\Historial_de_ConversacionPagingModel.cs" />
+<Compile Include="Domain\Identificacion\Identificacion.cs" />
+<Compile Include="Domain\Identificacion\IdentificacionPagingModel.cs" />
+<Compile Include="Domain\Idioma\Idioma.cs" />
+<Compile Include="Domain\Idioma\IdiomaPagingModel.cs" />
+<Compile Include="Domain\Implantacion_Cabello\Implantacion_Cabello.cs" />
+<Compile Include="Domain\Implantacion_Cabello\Implantacion_CabelloPagingModel.cs" />
+<Compile Include="Domain\Indicios\Indicios.cs" />
+<Compile Include="Domain\Indicios\IndiciosPagingModel.cs" />
+<Compile Include="Domain\Indicios_para_MPI\Indicios_para_MPI.cs" />
+<Compile Include="Domain\Indicios_para_MPI\Indicios_para_MPIPagingModel.cs" />
+<Compile Include="Domain\Indigena\Indigena.cs" />
+<Compile Include="Domain\Indigena\IndigenaPagingModel.cs" />
+<Compile Include="Domain\Juez_de_Control\Juez_de_Control.cs" />
+<Compile Include="Domain\Juez_de_Control\Juez_de_ControlPagingModel.cs" />
+<Compile Include="Domain\Labios\Labios.cs" />
+<Compile Include="Domain\Labios\LabiosPagingModel.cs" />
+<Compile Include="Domain\Largo_de_Cabello\Largo_de_Cabello.cs" />
+<Compile Include="Domain\Largo_de_Cabello\Largo_de_CabelloPagingModel.cs" />
+<Compile Include="Domain\Localidad\Localidad.cs" />
+<Compile Include="Domain\Localidad\LocalidadPagingModel.cs" />
+<Compile Include="Domain\Lugar_de_Detencion\Lugar_de_DetencionPagingModel.cs" />
+<Compile Include="Domain\Lugar_de_Detencion\Lugar_de_Detencion.cs" />
+<Compile Include="Domain\Lugar_del_Robo\Lugar_del_Robo.cs" />
+<Compile Include="Domain\Lugar_del_Robo\Lugar_del_RoboPagingModel.cs" />
+<Compile Include="Domain\Lugar_Tipo\Lugar_Tipo.cs" />
+<Compile Include="Domain\Lugar_Tipo\Lugar_TipoPagingModel.cs" />
+<Compile Include="Domain\Lugares\Lugares.cs" />
+<Compile Include="Domain\Lugares\LugaresPagingModel.cs" />
+<Compile Include="Domain\Lugares_Frecuentes_Involucrado\Lugares_Frecuentes_InvolucradoPagingModel.cs" />
+<Compile Include="Domain\Lugares_Frecuentes_Involucrado\Lugares_Frecuentes_Involucrado.cs" />
+<Compile Include="Domain\Lugares_Frecuentes_Probable_Responsable\Lugares_Frecuentes_Probable_ResponsablePagingModel.cs" />
+<Compile Include="Domain\Lugares_Frecuentes_Probable_Responsable\Lugares_Frecuentes_Probable_Responsable.cs" />
+<Compile Include="Domain\Marca_del_Vehiculo\Marca_del_Vehiculo.cs" />
+<Compile Include="Domain\Marca_del_Vehiculo\Marca_del_VehiculoPagingModel.cs" />
+<Compile Include="Domain\Medidas_Cautelares\Medidas_Cautelares.cs" />
+<Compile Include="Domain\Medidas_Cautelares\Medidas_CautelaresPagingModel.cs" />
+<Compile Include="Domain\Medios_Alternativos\Medios_Alternativos.cs" />
+<Compile Include="Domain\Medios_Alternativos\Medios_AlternativosPagingModel.cs" />
+<Compile Include="Domain\Menton\Menton.cs" />
+<Compile Include="Domain\Menton\MentonPagingModel.cs" />
+<Compile Include="Domain\Meses\Meses.cs" />
+<Compile Include="Domain\Meses\MesesPagingModel.cs" />
+<Compile Include="Domain\Jefes_de_Usuarios_del_Sistema\Jefes_de_Usuarios_del_Sistema.cs" />
+<Compile Include="Domain\Jefes_de_Usuarios_del_Sistema\Jefes_de_Usuarios_del_SistemaPagingModel.cs" />
+<Compile Include="Domain\Modalidad_de_Robo_de_Vehiculo\Modalidad_de_Robo_de_Vehiculo.cs" />
+<Compile Include="Domain\Modalidad_de_Robo_de_Vehiculo\Modalidad_de_Robo_de_VehiculoPagingModel.cs" />
+<Compile Include="Domain\Modalidad_Delito\Modalidad_Delito.cs" />
+<Compile Include="Domain\Modalidad_Delito\Modalidad_DelitoPagingModel.cs" />
+<Compile Include="Domain\Modulo\Modulo.cs" />
+<Compile Include="Domain\Modulo\ModuloPagingModel.cs" />
+<Compile Include="Domain\Modulo_de_Atencion_Inicial\Modulo_de_Atencion_Inicial.cs" />
+<Compile Include="Domain\Modulo_de_Atencion_Inicial\Modulo_de_Atencion_InicialPagingModel.cs" />
+<Compile Include="Domain\Motivo_de_no_Acuerdo\Motivo_de_no_Acuerdo.cs" />
+<Compile Include="Domain\Motivo_de_no_Acuerdo\Motivo_de_no_AcuerdoPagingModel.cs" />
+<Compile Include="Domain\Motivo_de_No_Canalizacion\Motivo_de_No_Canalizacion.cs" />
+<Compile Include="Domain\Motivo_de_No_Canalizacion\Motivo_de_No_CanalizacionPagingModel.cs" />
+<Compile Include="Domain\Motivo_de_Vehiculo\Motivo_de_Vehiculo.cs" />
+<Compile Include="Domain\Motivo_de_Vehiculo\Motivo_de_VehiculoPagingModel.cs" />
+<Compile Include="Domain\Motivo_Finalizacion_Turno\Motivo_Finalizacion_Turno.cs" />
+<Compile Include="Domain\Motivo_Finalizacion_Turno\Motivo_Finalizacion_TurnoPagingModel.cs" />
+<Compile Include="Domain\Municipio\Municipio.cs" />
+<Compile Include="Domain\Municipio\MunicipioPagingModel.cs" />
+<Compile Include="Domain\Nacionalidad\Nacionalidad.cs" />
+<Compile Include="Domain\Nacionalidad\NacionalidadPagingModel.cs" />
+<Compile Include="Domain\Nariz_Base\Nariz_Base.cs" />
+<Compile Include="Domain\Nariz_Base\Nariz_BasePagingModel.cs" />
+<Compile Include="Domain\Nombre_Comparecencia\Nombre_Comparecencia.cs" />
+<Compile Include="Domain\Nombre_Comparecencia\Nombre_ComparecenciaPagingModel.cs" />
+<Compile Include="Domain\Ocupacion\Ocupacion.cs" />
+<Compile Include="Domain\Ocupacion\OcupacionPagingModel.cs" />
+<Compile Include="Domain\Ojos\Ojos.cs" />
+<Compile Include="Domain\Ojos\OjosPagingModel.cs" />
+<Compile Include="Domain\Orientador\Orientador.cs" />
+<Compile Include="Domain\Orientador\OrientadorPagingModel.cs" />
+<Compile Include="Domain\Otras_Identificaciones_Involucrado\Otras_Identificaciones_InvolucradoPagingModel.cs" />
+<Compile Include="Domain\Otras_Identificaciones_Involucrado\Otras_Identificaciones_Involucrado.cs" />
+<Compile Include="Domain\Otras_Identificaciones_Probable_Responsable\Otras_Identificaciones_Probable_ResponsablePagingModel.cs" />
+<Compile Include="Domain\Otras_Identificaciones_Probable_Responsable\Otras_Identificaciones_Probable_Responsable.cs" />
+<Compile Include="Domain\Otros_Domicilios_Involucrado\Otros_Domicilios_InvolucradoPagingModel.cs" />
+<Compile Include="Domain\Otros_Domicilios_Involucrado\Otros_Domicilios_Involucrado.cs" />
+<Compile Include="Domain\Otros_Domicilios_Probable_Responsable\Otros_Domicilios_Probable_ResponsablePagingModel.cs" />
+<Compile Include="Domain\Otros_Domicilios_Probable_Responsable\Otros_Domicilios_Probable_Responsable.cs" />
+<Compile Include="Domain\Otros_Nombres\Otros_NombresPagingModel.cs" />
+<Compile Include="Domain\Otros_Nombres\Otros_Nombres.cs" />
+<Compile Include="Domain\Pais\Pais.cs" />
+<Compile Include="Domain\Pais\PaisPagingModel.cs" />
+<Compile Include="Domain\Parentesco\Parentesco.cs" />
+<Compile Include="Domain\Parentesco\ParentescoPagingModel.cs" />
+<Compile Include="Domain\Periodicidad\Periodicidad.cs" />
+<Compile Include="Domain\Periodicidad\PeriodicidadPagingModel.cs" />
+<Compile Include="Domain\Prioridad_del_Hecho\Prioridad_del_Hecho.cs" />
+<Compile Include="Domain\Prioridad_del_Hecho\Prioridad_del_HechoPagingModel.cs" />
+<Compile Include="Domain\Procedencia_del_Vehiculo\Procedencia_del_Vehiculo.cs" />
+<Compile Include="Domain\Procedencia_del_Vehiculo\Procedencia_del_VehiculoPagingModel.cs" />
+<Compile Include="Domain\Razon_de\Razon_de.cs" />
+<Compile Include="Domain\Razon_de\Razon_dePagingModel.cs" />
+<Compile Include="Domain\Razon_de_Incumplimiento\Razon_de_Incumplimiento.cs" />
+<Compile Include="Domain\Razon_de_Incumplimiento\Razon_de_IncumplimientoPagingModel.cs" />
+<Compile Include="Domain\Recepcionistas\Recepcionistas.cs" />
+<Compile Include="Domain\Recepcionistas\RecepcionistasPagingModel.cs" />
+<Compile Include="Domain\Redes_Sociales\Redes_Sociales.cs" />
+<Compile Include="Domain\Redes_Sociales\Redes_SocialesPagingModel.cs" />
+<Compile Include="Domain\Region\Region.cs" />
+<Compile Include="Domain\Region\RegionPagingModel.cs" />
+<Compile Include="Domain\Modulo_Atencion_Inicial\Modulo_Atencion_Inicial.cs" />
+<Compile Include="Domain\Modulo_Atencion_Inicial\Modulo_Atencion_InicialPagingModel.cs" />
+<Compile Include="Domain\Registro_de_Coincidencias\Registro_de_Coincidencias.cs" />
+<Compile Include="Domain\Registro_de_Coincidencias\Registro_de_CoincidenciasPagingModel.cs" />
+<Compile Include="Domain\Usuario\Usuario.cs" />
+<Compile Include="Domain\Usuario\UsuarioPagingModel.cs" />
+<Compile Include="Domain\Religion\Religion.cs" />
+<Compile Include="Domain\Religion\ReligionPagingModel.cs" />
+<Compile Include="Domain\Reporte_Principal\Reporte_Principal.cs" />
+<Compile Include="Domain\Reporte_Principal\Reporte_PrincipalPagingModel.cs" />
+<Compile Include="Domain\Requerido\Requerido.cs" />
+<Compile Include="Domain\Requerido\RequeridoPagingModel.cs" />
+<Compile Include="Domain\Requerido_MPI\Requerido_MPI.cs" />
+<Compile Include="Domain\Requerido_MPI\Requerido_MPIPagingModel.cs" />
+<Compile Include="Domain\Requeridos_que_no_Asisten\Requeridos_que_no_Asisten.cs" />
+<Compile Include="Domain\Requeridos_que_no_Asisten\Requeridos_que_no_AsistenPagingModel.cs" />
+<Compile Include="Domain\Respuesta\Respuesta.cs" />
+<Compile Include="Domain\Respuesta\RespuestaPagingModel.cs" />
+<Compile Include="Domain\Rol_de_Diligencia\Rol_de_Diligencia.cs" />
+<Compile Include="Domain\Rol_de_Diligencia\Rol_de_DiligenciaPagingModel.cs" />
+<Compile Include="Domain\Sentencia\Sentencia.cs" />
+<Compile Include="Domain\Sentencia\SentenciaPagingModel.cs" />
+<Compile Include="Domain\Senas_Particulares\Senas_Particulares.cs" />
+<Compile Include="Domain\Senas_Particulares\Senas_ParticularesPagingModel.cs" />
+<Compile Include="Domain\Servicio_del_Vehiculo\Servicio_del_Vehiculo.cs" />
+<Compile Include="Domain\Servicio_del_Vehiculo\Servicio_del_VehiculoPagingModel.cs" />
+<Compile Include="Domain\Servicio_Medico\Servicio_Medico.cs" />
+<Compile Include="Domain\Servicio_Medico\Servicio_MedicoPagingModel.cs" />
+<Compile Include="Domain\Servicios_Alternativos\Servicios_Alternativos.cs" />
+<Compile Include="Domain\Servicios_Alternativos\Servicios_AlternativosPagingModel.cs" />
+<Compile Include="Domain\Servicios_de_Apoyo\Servicios_de_Apoyo.cs" />
+<Compile Include="Domain\Servicios_de_Apoyo\Servicios_de_ApoyoPagingModel.cs" />
+<Compile Include="Domain\Servicios_Periciales\Servicios_Periciales.cs" />
+<Compile Include="Domain\Servicios_Periciales\Servicios_PericialesPagingModel.cs" />
+<Compile Include="Domain\Agravantes_del_Delito_MASC\Agravantes_del_Delito_MASCPagingModel.cs" />
+<Compile Include="Domain\Agravantes_del_Delito_MASC\Agravantes_del_Delito_MASC.cs" />
+<Compile Include="Domain\Circunstancias_del_Delito_MASC\Circunstancias_del_Delito_MASCPagingModel.cs" />
+<Compile Include="Domain\Circunstancias_del_Delito_MASC\Circunstancias_del_Delito_MASC.cs" />
+<Compile Include="Domain\Datos_Personales_Adicionales_Requerido_MASC\Datos_Personales_Adicionales_Requerido_MASCPagingModel.cs" />
+<Compile Include="Domain\Datos_Personales_Adicionales_Requerido_MASC\Datos_Personales_Adicionales_Requerido_MASC.cs" />
+<Compile Include="Domain\Datos_Personales_Adicionales_Solicitante_MASC\Datos_Personales_Adicionales_Solicitante_MASCPagingModel.cs" />
+<Compile Include="Domain\Datos_Personales_Adicionales_Solicitante_MASC\Datos_Personales_Adicionales_Solicitante_MASC.cs" />
+<Compile Include="Domain\Genero\Genero.cs" />
+<Compile Include="Domain\Genero\GeneroPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Identificacion\Tipo_de_Identificacion.cs" />
+<Compile Include="Domain\Tipo_de_Identificacion\Tipo_de_IdentificacionPagingModel.cs" />
+<Compile Include="Domain\Turnos\Turnos.cs" />
+<Compile Include="Domain\Turnos\TurnosPagingModel.cs" />
+<Compile Include="Domain\Situacion_Fisica\Situacion_Fisica.cs" />
+<Compile Include="Domain\Situacion_Fisica\Situacion_FisicaPagingModel.cs" />
+<Compile Include="Domain\Solicitante\Solicitante.cs" />
+<Compile Include="Domain\Solicitante\SolicitantePagingModel.cs" />
+<Compile Include="Domain\Solicitante_MPI\Solicitante_MPI.cs" />
+<Compile Include="Domain\Solicitante_MPI\Solicitante_MPIPagingModel.cs" />
+<Compile Include="Domain\Solicitud_de_Servicios_de_Apoyo\Solicitud_de_Servicios_de_Apoyo.cs" />
+<Compile Include="Domain\Solicitud_de_Servicios_de_Apoyo\Solicitud_de_Servicios_de_ApoyoPagingModel.cs" />
+<Compile Include="Domain\Sub_Marca_del_Vehiculo\Sub_Marca_del_Vehiculo.cs" />
+<Compile Include="Domain\Sub_Marca_del_Vehiculo\Sub_Marca_del_VehiculoPagingModel.cs" />
+<Compile Include="Domain\Tamano_de_Cejas\Tamano_de_Cejas.cs" />
+<Compile Include="Domain\Tamano_de_Cejas\Tamano_de_CejasPagingModel.cs" />
+<Compile Include="Domain\Tamano_de_Nariz\Tamano_de_Nariz.cs" />
+<Compile Include="Domain\Tamano_de_Nariz\Tamano_de_NarizPagingModel.cs" />
+<Compile Include="Domain\Tamano_Orejas\Tamano_Orejas.cs" />
+<Compile Include="Domain\Tamano_Orejas\Tamano_OrejasPagingModel.cs" />
+<Compile Include="Domain\Tipo_Lobulo\Tipo_Lobulo.cs" />
+<Compile Include="Domain\Tipo_Lobulo\Tipo_LobuloPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Acuerdo\Tipo_de_Acuerdo.cs" />
+<Compile Include="Domain\Tipo_de_Acuerdo\Tipo_de_AcuerdoPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Atencion\Tipo_de_Atencion.cs" />
+<Compile Include="Domain\Tipo_de_Atencion\Tipo_de_AtencionPagingModel.cs" />
+<Compile Include="Domain\Tipo_Cara\Tipo_Cara.cs" />
+<Compile Include="Domain\Tipo_Cara\Tipo_CaraPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Carretera\Tipo_de_Carretera.cs" />
+<Compile Include="Domain\Tipo_de_Carretera\Tipo_de_CarreteraPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Comparecencia\Tipo_de_Comparecencia.cs" />
+<Compile Include="Domain\Tipo_de_Comparecencia\Tipo_de_ComparecenciaPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Compareciente\Tipo_de_Compareciente.cs" />
+<Compile Include="Domain\Tipo_de_Compareciente\Tipo_de_ComparecientePagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Denuncia\Tipo_de_Denuncia.cs" />
+<Compile Include="Domain\Tipo_de_Denuncia\Tipo_de_DenunciaPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Diligencia_MASC\Tipo_de_Diligencia_MASC.cs" />
+<Compile Include="Domain\Tipo_de_Diligencia_MASC\Tipo_de_Diligencia_MASCPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Expediente\Tipo_de_Expediente.cs" />
+<Compile Include="Domain\Tipo_de_Expediente\Tipo_de_ExpedientePagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Funcion\Tipo_de_Funcion.cs" />
+<Compile Include="Domain\Tipo_de_Funcion\Tipo_de_FuncionPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Inimputabilidad\Tipo_de_Inimputabilidad.cs" />
+<Compile Include="Domain\Tipo_de_Inimputabilidad\Tipo_de_InimputabilidadPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Instancia\Tipo_de_Instancia.cs" />
+<Compile Include="Domain\Tipo_de_Instancia\Tipo_de_InstanciaPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Invitacion\Tipo_de_Invitacion.cs" />
+<Compile Include="Domain\Tipo_de_Invitacion\Tipo_de_InvitacionPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Lugar_del_Robo\Tipo_de_Lugar_del_Robo.cs" />
+<Compile Include="Domain\Tipo_de_Lugar_del_Robo\Tipo_de_Lugar_del_RoboPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Mecanismo_Alterno\Tipo_de_Mecanismo_Alterno.cs" />
+<Compile Include="Domain\Tipo_de_Mecanismo_Alterno\Tipo_de_Mecanismo_AlternoPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Notificacion\Tipo_de_Notificacion.cs" />
+<Compile Include="Domain\Tipo_de_Notificacion\Tipo_de_NotificacionPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Oficio\Tipo_de_Oficio.cs" />
+<Compile Include="Domain\Tipo_de_Oficio\Tipo_de_OficioPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Oficios\Tipo_de_Oficios.cs" />
+<Compile Include="Domain\Tipo_de_Oficios\Tipo_de_OficiosPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Persona\Tipo_de_Persona.cs" />
+<Compile Include="Domain\Tipo_de_Persona\Tipo_de_PersonaPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Robo\Tipo_de_Robo.cs" />
+<Compile Include="Domain\Tipo_de_Robo\Tipo_de_RoboPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Seguimiento\Tipo_de_Seguimiento.cs" />
+<Compile Include="Domain\Tipo_de_Seguimiento\Tipo_de_SeguimientoPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Servicio_de_Apoyo\Tipo_de_Servicio_de_Apoyo.cs" />
+<Compile Include="Domain\Tipo_de_Servicio_de_Apoyo\Tipo_de_Servicio_de_ApoyoPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Sesion\Tipo_de_Sesion.cs" />
+<Compile Include="Domain\Tipo_de_Sesion\Tipo_de_SesionPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Tramite\Tipo_de_Tramite.cs" />
+<Compile Include="Domain\Tipo_de_Tramite\Tipo_de_TramitePagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Urgencia\Tipo_de_Urgencia.cs" />
+<Compile Include="Domain\Tipo_de_Urgencia\Tipo_de_UrgenciaPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Vehiculo\Tipo_de_Vehiculo.cs" />
+<Compile Include="Domain\Tipo_de_Vehiculo\Tipo_de_VehiculoPagingModel.cs" />
+<Compile Include="Domain\Tipo_Delito\Tipo_Delito.cs" />
+<Compile Include="Domain\Tipo_Delito\Tipo_DelitoPagingModel.cs" />
+<Compile Include="Domain\Titulo_del_Delito\Titulo_del_Delito.cs" />
+<Compile Include="Domain\Titulo_del_Delito\Titulo_del_DelitoPagingModel.cs" />
+<Compile Include="Domain\TTFolioConsecutivo\TTFolioConsecutivo.cs" />
+<Compile Include="Domain\TTFolioConsecutivo\TTFolioConsecutivoPagingModel.cs" />
+<Compile Include="Domain\Unidad\Unidad.cs" />
+<Compile Include="Domain\Unidad\UnidadPagingModel.cs" />
+<Compile Include="Domain\Vigencia\Vigencia.cs" />
+<Compile Include="Domain\Vigencia\VigenciaPagingModel.cs" />
+<Compile Include="Domain\Violencia_de_Genero\Violencia_de_Genero.cs" />
+<Compile Include="Domain\Violencia_de_Genero\Violencia_de_GeneroPagingModel.cs" />
+<Compile Include="Domain\Zona\Zona.cs" />
+<Compile Include="Domain\Zona\ZonaPagingModel.cs" />
+<Compile Include="Domain\Control_de_Citas\Control_de_Citas.cs" />
+<Compile Include="Domain\Control_de_Citas\Control_de_CitasPagingModel.cs" />
+<Compile Include="Domain\Control_de_Documentos\Control_de_Documentos.cs" />
+<Compile Include="Domain\Control_de_Documentos\Control_de_DocumentosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Historial_Control_de_Documentos\Detalle_Historial_Control_de_DocumentosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Historial_Control_de_Documentos\Detalle_Historial_Control_de_Documentos.cs" />
+<Compile Include="Domain\Origen_de_Invitacion\Origen_de_Invitacion.cs" />
+<Compile Include="Domain\Origen_de_Invitacion\Origen_de_InvitacionPagingModel.cs" />
+<Compile Include="Domain\Documento_Extraviado\Documento_Extraviado.cs" />
+<Compile Include="Domain\Documento_Extraviado\Documento_ExtraviadoPagingModel.cs" />
+<Compile Include="Domain\Spartan_Object_ByPass\Spartan_Object_ByPass.cs" />
+<Compile Include="Domain\Spartan_Object_ByPass\Spartan_Object_ByPassPagingModel.cs" />
+<Compile Include="Domain\Spartan_Attribute_Bypass\Spartan_Attribute_Bypass.cs" />
+<Compile Include="Domain\Spartan_Attribute_Bypass\Spartan_Attribute_BypassPagingModel.cs" />
+<Compile Include="Domain\Spartan_Record_Detail_Management\Spartan_Record_Detail_Management.cs" />
+<Compile Include="Domain\Spartan_Record_Detail_Management\Spartan_Record_Detail_ManagementPagingModel.cs" />
+<Compile Include="Domain\Spartan_RDM_Filters_Detail\Spartan_RDM_Filters_DetailPagingModel.cs" />
+<Compile Include="Domain\Spartan_RDM_Filters_Detail\Spartan_RDM_Filters_Detail.cs" />
+<Compile Include="Domain\Spartan_RDM_Operations_Detail\Spartan_RDM_Operations_DetailPagingModel.cs" />
+<Compile Include="Domain\Spartan_RDM_Operations_Detail\Spartan_RDM_Operations_Detail.cs" />
+<Compile Include="Domain\Adicciones_de_Solicitante_MASC\Adicciones_de_Solicitante_MASCPagingModel.cs" />
+<Compile Include="Domain\Adicciones_de_Solicitante_MASC\Adicciones_de_Solicitante_MASC.cs" />
+<Compile Include="Domain\Adicciones_Requerido_MASC\Adicciones_Requerido_MASCPagingModel.cs" />
+<Compile Include="Domain\Adicciones_Requerido_MASC\Adicciones_Requerido_MASC.cs" />
+<Compile Include="Domain\Detalle_de_Invitado_de_Notificacion\Detalle_de_Invitado_de_NotificacionPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Invitado_de_Notificacion\Detalle_de_Invitado_de_Notificacion.cs" />
+<Compile Include="Domain\Dilgencia_MASC\Dilgencia_MASC.cs" />
+<Compile Include="Domain\Dilgencia_MASC\Dilgencia_MASCPagingModel.cs" />
+<Compile Include="Domain\Detalle_Diligencias_MASC\Detalle_Diligencias_MASC.cs" />
+<Compile Include="Domain\Detalle_Diligencias_MASC\Detalle_Diligencias_MASCPagingModel.cs" />
+<Compile Include="Domain\Incidente_con_Invitacion\Incidente_con_Invitacion.cs" />
+<Compile Include="Domain\Incidente_con_Invitacion\Incidente_con_InvitacionPagingModel.cs" />
+<Compile Include="Domain\Lugares_Frecuentes_Requerido_MASC\Lugares_Frecuentes_Requerido_MASCPagingModel.cs" />
+<Compile Include="Domain\Lugares_Frecuentes_Requerido_MASC\Lugares_Frecuentes_Requerido_MASC.cs" />
+<Compile Include="Domain\Lugares_Frecuentes_Solicitante_MASC\Lugares_Frecuentes_Solicitante_MASCPagingModel.cs" />
+<Compile Include="Domain\Lugares_Frecuentes_Solicitante_MASC\Lugares_Frecuentes_Solicitante_MASC.cs" />
+<Compile Include="Domain\Otras_Identificaciones_Requerido_MASC\Otras_Identificaciones_Requerido_MASCPagingModel.cs" />
+<Compile Include="Domain\Otras_Identificaciones_Requerido_MASC\Otras_Identificaciones_Requerido_MASC.cs" />
+<Compile Include="Domain\Otras_Identificaciones_Solicitante_MASC\Otras_Identificaciones_Solicitante_MASCPagingModel.cs" />
+<Compile Include="Domain\Otras_Identificaciones_Solicitante_MASC\Otras_Identificaciones_Solicitante_MASC.cs" />
+<Compile Include="Domain\Otros_Domicilios_Requeridos_MASC\Otros_Domicilios_Requeridos_MASCPagingModel.cs" />
+<Compile Include="Domain\Otros_Domicilios_Requeridos_MASC\Otros_Domicilios_Requeridos_MASC.cs" />
+<Compile Include="Domain\Otros_Domicilios_Solicitante_MASC\Otros_Domicilios_Solicitante_MASCPagingModel.cs" />
+<Compile Include="Domain\Otros_Domicilios_Solicitante_MASC\Otros_Domicilios_Solicitante_MASC.cs" />
+<Compile Include="Domain\Otros_Nombres_Requerido_MASC\Otros_Nombres_Requerido_MASCPagingModel.cs" />
+<Compile Include="Domain\Otros_Nombres_Requerido_MASC\Otros_Nombres_Requerido_MASC.cs" />
+<Compile Include="Domain\Recepcion_de_Pago_MASC\Recepcion_de_Pago_MASC.cs" />
+<Compile Include="Domain\Recepcion_de_Pago_MASC\Recepcion_de_Pago_MASCPagingModel.cs" />
+<Compile Include="Domain\Resultado_de_Notificacion\Resultado_de_Notificacion.cs" />
+<Compile Include="Domain\Resultado_de_Notificacion\Resultado_de_NotificacionPagingModel.cs" />
+<Compile Include="Domain\Solicitud_de_Notificacion\Solicitud_de_Notificacion.cs" />
+<Compile Include="Domain\Solicitud_de_Notificacion\Solicitud_de_NotificacionPagingModel.cs" />
+<Compile Include="Domain\Relacion_Unidad_Usuario\Relacion_Unidad_Usuario.cs" />
+<Compile Include="Domain\Relacion_Unidad_Usuario\Relacion_Unidad_UsuarioPagingModel.cs" />
+<Compile Include="Domain\Resultado_de_Revision\Resultado_de_Revision.cs" />
+<Compile Include="Domain\Resultado_de_Revision\Resultado_de_RevisionPagingModel.cs" />
+<Compile Include="Domain\Acuerdos_MASC\Acuerdos_MASC.cs" />
+<Compile Include="Domain\Acuerdos_MASC\Acuerdos_MASCPagingModel.cs" />
+<Compile Include="Domain\Detalle_Requerido_Acuerdo\Detalle_Requerido_AcuerdoPagingModel.cs" />
+<Compile Include="Domain\Detalle_Requerido_Acuerdo\Detalle_Requerido_Acuerdo.cs" />
+<Compile Include="Domain\Detalle_Solicitante_Acuerdo\Detalle_Solicitante_AcuerdoPagingModel.cs" />
+<Compile Include="Domain\Detalle_Solicitante_Acuerdo\Detalle_Solicitante_Acuerdo.cs" />
+<Compile Include="Domain\Tipo_de_Conclusion_Anticipada\Tipo_de_Conclusion_Anticipada.cs" />
+<Compile Include="Domain\Tipo_de_Conclusion_Anticipada\Tipo_de_Conclusion_AnticipadaPagingModel.cs" />
+<Compile Include="Domain\Detalle_Documentos_Solicitantes\Detalle_Documentos_SolicitantesPagingModel.cs" />
+<Compile Include="Domain\Detalle_Documentos_Solicitantes\Detalle_Documentos_Solicitantes.cs" />
+<Compile Include="Domain\Detalle_Documentos_Requeridos\Detalle_Documentos_RequeridosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Documentos_Requeridos\Detalle_Documentos_Requeridos.cs" />
+<Compile Include="Domain\Formato_de_Denuncia\Formato_de_Denuncia.cs" />
+<Compile Include="Domain\Formato_de_Denuncia\Formato_de_DenunciaPagingModel.cs" />
+<Compile Include="Domain\Unidad_de_Atenciòn\Unidad_de_Atenciòn.cs" />
+<Compile Include="Domain\Unidad_de_Atenciòn\Unidad_de_AtenciònPagingModel.cs" />
+<Compile Include="Domain\Unidad_de_Atencion\Unidad_de_Atencion.cs" />
+<Compile Include="Domain\Unidad_de_Atencion\Unidad_de_AtencionPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Documento\Tipo_de_Documento.cs" />
+<Compile Include="Domain\Tipo_de_Documento\Tipo_de_DocumentoPagingModel.cs" />
+<Compile Include="Domain\Documento\Documento.cs" />
+<Compile Include="Domain\Documento\DocumentoPagingModel.cs" />
+<Compile Include="Domain\Detalle_Involucrados_en_Documentos\Detalle_Involucrados_en_DocumentosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Involucrados_en_Documentos\Detalle_Involucrados_en_Documentos.cs" />
+<Compile Include="Domain\Detalle_Probable_Responsable_de_Documentos\Detalle_Probable_Responsable_de_DocumentosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Probable_Responsable_de_Documentos\Detalle_Probable_Responsable_de_Documentos.cs" />
+<Compile Include="Domain\Detalle_Delitos_de_Documentos\Detalle_Delitos_de_DocumentosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Delitos_de_Documentos\Detalle_Delitos_de_Documentos.cs" />
+<!--@@INCLUDE@@-->
+ </ItemGroup>
+ <ItemGroup>
+ <None Include="app.config" />
+ <None Include="packages.config" />
+ </ItemGroup>
+ <ItemGroup>
+ <Folder Include="Domain\Authentication\" />
+ <Folder Include="Domain\Enums\" />
+ <Folder Include="Domain\StoredProcedure\" />
+ </ItemGroup>
+ <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+ <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+ Other similar extension points exist, see Microsoft.Common.targets.
+ <Target Name="BeforeBuild">
+ </Target>
+ <Target Name="AfterBuild">
+ </Target>
+ -->
+</Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

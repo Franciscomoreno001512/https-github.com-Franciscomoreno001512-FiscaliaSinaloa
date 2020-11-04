@@ -1,0 +1,2916 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Datos_de_la_Victima_MPIAdvanceSearchModel
+@{
+    List<SelectListItem> varGenero_Sexo = null;
+    if (ViewBag.Generos_Sexo != null)
+    { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
+    List<SelectListItem> varEstado_Civil_Estado_Civil = null;
+    if (ViewBag.Estado_Civils_Estado_Civil != null)
+    { varEstado_Civil_Estado_Civil = (List<SelectListItem>)ViewBag.Estado_Civils_Estado_Civil; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion; }
+    List<SelectListItem> varNacionalidad_Nacionalidad = null;
+    if (ViewBag.Nacionalidads_Nacionalidad != null)
+    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
+    List<SelectListItem> varEscolaridad_Escolaridad = null;
+    if (ViewBag.Escolaridads_Escolaridad != null)
+    { varEscolaridad_Escolaridad = (List<SelectListItem>)ViewBag.Escolaridads_Escolaridad; }
+    List<SelectListItem> varOcupacion_Ocupacion = null;
+    if (ViewBag.Ocupacions_Ocupacion != null)
+    { varOcupacion_Ocupacion = (List<SelectListItem>)ViewBag.Ocupacions_Ocupacion; }
+    List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+    List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+    List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+    List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+    List<SelectListItem> varGenero_Sexo_del_Tutor = null;
+    if (ViewBag.Generos_Sexo_del_Tutor != null)
+    { varGenero_Sexo_del_Tutor = (List<SelectListItem>)ViewBag.Generos_Sexo_del_Tutor; }
+    List<SelectListItem> varEstado_Civil_Estado_Civil_del_Tutor = null;
+    if (ViewBag.Estado_Civils_Estado_Civil_del_Tutor != null)
+    { varEstado_Civil_Estado_Civil_del_Tutor = (List<SelectListItem>)ViewBag.Estado_Civils_Estado_Civil_del_Tutor; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion_del_Tutor = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_del_Tutor != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion_del_Tutor = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_del_Tutor; }
+    List<SelectListItem> varNacionalidad_Nacionalidad_del_Tutor = null;
+    if (ViewBag.Nacionalidads_Nacionalidad_del_Tutor != null)
+    { varNacionalidad_Nacionalidad_del_Tutor = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad_del_Tutor; }
+    List<SelectListItem> varEscolaridad_Escolaridad_del_Tutor = null;
+    if (ViewBag.Escolaridads_Escolaridad_del_Tutor != null)
+    { varEscolaridad_Escolaridad_del_Tutor = (List<SelectListItem>)ViewBag.Escolaridads_Escolaridad_del_Tutor; }
+    List<SelectListItem> varOcupacion_Ocupacion_del_Tutor = null;
+    if (ViewBag.Ocupacions_Ocupacion_del_Tutor != null)
+    { varOcupacion_Ocupacion_del_Tutor = (List<SelectListItem>)ViewBag.Ocupacions_Ocupacion_del_Tutor; }
+    List<SelectListItem> varPais_Pais_del_Tutor = null;
+    if (ViewBag.Paiss_Pais_del_Tutor != null)
+    { varPais_Pais_del_Tutor = (List<SelectListItem>)ViewBag.Paiss_Pais_del_Tutor; }
+    List<SelectListItem> varEstado_Estado_del_Tutor = null;
+    if (ViewBag.Estados_Estado_del_Tutor != null)
+    { varEstado_Estado_del_Tutor = (List<SelectListItem>)ViewBag.Estados_Estado_del_Tutor; }
+    List<SelectListItem> varMunicipio_Municipio_del_Tutor = null;
+    if (ViewBag.Municipios_Municipio_del_Tutor != null)
+    { varMunicipio_Municipio_del_Tutor = (List<SelectListItem>)ViewBag.Municipios_Municipio_del_Tutor; }
+    List<SelectListItem> varLocalidad_Localidad_del_Tutor = null;
+    if (ViewBag.Localidads_Localidad_del_Tutor != null)
+    { varLocalidad_Localidad_del_Tutor = (List<SelectListItem>)ViewBag.Localidads_Localidad_del_Tutor; }
+    List<SelectListItem> varColonia_Colonia_del_Tutor = null;
+    if (ViewBag.Colonias_Colonia_del_Tutor != null)
+    { varColonia_Colonia_del_Tutor = (List<SelectListItem>)ViewBag.Colonias_Colonia_del_Tutor; }
+    List<SelectListItem> varTipo_de_Compareciente_Tipo_de_Compareciente = null;
+    if (ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente != null)
+    { varTipo_de_Compareciente_Tipo_de_Compareciente = (List<SelectListItem>)ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente; }
+    List<SelectListItem> varPrioridad_del_Hecho_Prioridad_del_Hecho = null;
+    if (ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho != null)
+    { varPrioridad_del_Hecho_Prioridad_del_Hecho = (List<SelectListItem>)ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho; }
+    List<SelectListItem> varPais_Pais_de_los_Hechos = null;
+    if (ViewBag.Paiss_Pais_de_los_Hechos != null)
+    { varPais_Pais_de_los_Hechos = (List<SelectListItem>)ViewBag.Paiss_Pais_de_los_Hechos; }
+    List<SelectListItem> varEstado_Estado_de_los_Hechos = null;
+    if (ViewBag.Estados_Estado_de_los_Hechos != null)
+    { varEstado_Estado_de_los_Hechos = (List<SelectListItem>)ViewBag.Estados_Estado_de_los_Hechos; }
+    List<SelectListItem> varMunicipio_Municipio_de_los_Hechos = null;
+    if (ViewBag.Municipios_Municipio_de_los_Hechos != null)
+    { varMunicipio_Municipio_de_los_Hechos = (List<SelectListItem>)ViewBag.Municipios_Municipio_de_los_Hechos; }
+    List<SelectListItem> varColonia_Colonia_de_los_Hechos = null;
+    if (ViewBag.Colonias_Colonia_de_los_Hechos != null)
+    { varColonia_Colonia_de_los_Hechos = (List<SelectListItem>)ViewBag.Colonias_Colonia_de_los_Hechos; }
+    List<SelectListItem> varLugar_Tipo_Tipo_de_Lugar_del_Hecho = null;
+    if (ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho != null)
+    { varLugar_Tipo_Tipo_de_Lugar_del_Hecho = (List<SelectListItem>)ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho; }
+    List<SelectListItem> varGenero_Sexo_de_Persona_Moral = null;
+    if (ViewBag.Generos_Sexo_de_Persona_Moral != null)
+    { varGenero_Sexo_de_Persona_Moral = (List<SelectListItem>)ViewBag.Generos_Sexo_de_Persona_Moral; }
+    List<SelectListItem> varEstado_Civil_Estado_Civil_de_Persona_Moral = null;
+    if (ViewBag.Estado_Civils_Estado_Civil_de_Persona_Moral != null)
+    { varEstado_Civil_Estado_Civil_de_Persona_Moral = (List<SelectListItem>)ViewBag.Estado_Civils_Estado_Civil_de_Persona_Moral; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion_de_Persona_Moral = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_de_Persona_Moral != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion_de_Persona_Moral = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_de_Persona_Moral; }
+    List<SelectListItem> varNacionalidad_Nacionalidad_de_Persona_Moral = null;
+    if (ViewBag.Nacionalidads_Nacionalidad_de_Persona_Moral != null)
+    { varNacionalidad_Nacionalidad_de_Persona_Moral = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad_de_Persona_Moral; }
+    List<SelectListItem> varEscolaridad_Escolaridad_de_Persona_Moral = null;
+    if (ViewBag.Escolaridads_Escolaridad_de_Persona_Moral != null)
+    { varEscolaridad_Escolaridad_de_Persona_Moral = (List<SelectListItem>)ViewBag.Escolaridads_Escolaridad_de_Persona_Moral; }
+    List<SelectListItem> varOcupacion_Ocupacion_de_Persona_Moral = null;
+    if (ViewBag.Ocupacions_Ocupacion_de_Persona_Moral != null)
+    { varOcupacion_Ocupacion_de_Persona_Moral = (List<SelectListItem>)ViewBag.Ocupacions_Ocupacion_de_Persona_Moral; }
+    List<SelectListItem> varPais_Pais_de_Persona_Moral = null;
+    if (ViewBag.Paiss_Pais_de_Persona_Moral != null)
+    { varPais_Pais_de_Persona_Moral = (List<SelectListItem>)ViewBag.Paiss_Pais_de_Persona_Moral; }
+    List<SelectListItem> varEstado_Estado_de_Persona_Moral = null;
+    if (ViewBag.Estados_Estado_de_Persona_Moral != null)
+    { varEstado_Estado_de_Persona_Moral = (List<SelectListItem>)ViewBag.Estados_Estado_de_Persona_Moral; }
+    List<SelectListItem> varMunicipio_Municipio_de_Persona_Moral = null;
+    if (ViewBag.Municipios_Municipio_de_Persona_Moral != null)
+    { varMunicipio_Municipio_de_Persona_Moral = (List<SelectListItem>)ViewBag.Municipios_Municipio_de_Persona_Moral; }
+    List<SelectListItem> varColonia_Colonia_de_Persona_Moral = null;
+    if (ViewBag.Colonias_Colonia_de_Persona_Moral != null)
+    { varColonia_Colonia_de_Persona_Moral = (List<SelectListItem>)ViewBag.Colonias_Colonia_de_Persona_Moral; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Detalle_de_Datos_de_la_Victima_MPI", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.NombreFilter, filters, new { @class = "form-control", @id = "ddlNombreFilter" })
+                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", @type = "text", @id = "txtNombre" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Paterno</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_PaternoFilter, filters, new { @class = "form-control", @id = "ddlApellido_PaternoFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Paterno, new { @class = "form-control", @type = "text", @id = "txtApellido_Paterno" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Materno</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_MaternoFilter, filters, new { @class = "form-control", @id = "ddlApellido_MaternoFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Materno, new { @class = "form-control", @type = "text", @id = "txtApellido_Materno" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_Completo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nombre_CompletoFilter, filters, new { @class = "form-control", @id = "ddlNombre_CompletoFilter" })
+                    @Html.TextBoxFor(m => m.Nombre_Completo, new { @class = "form-control", @type = "text", @id = "txtNombre_Completo" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_de_Nacimiento</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Nacimiento" name="FromFecha_de_Nacimiento" type="text" value="@Model.FromFecha_de_Nacimiento" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Nacimiento" name="ToFecha_de_Nacimiento" type="text" value="@Model.ToFecha_de_Nacimiento" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Edad</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromEdad, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromEdad" })
+                    @Html.ValidationMessageFor(m => m.FromEdad)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToEdad, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToEdad", @data_min = "txtAdvanceFromEdad" })
+                    @Html.ValidationMessageFor(m => m.ToEdad)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Sexo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.SexoFilter, filters, new { @class = "form-control", @id = "ddlSexoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceSexo, new { @class = "form-control", @type = "text", @id = "txtAdvanceSexo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varGenero_Sexo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceSexoMultiple, varGenero_Sexo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceSexo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_Civil</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Estado_CivilFilter, filters, new { @class = "form-control", @id = "ddlEstado_CivilFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEstado_Civil, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstado_Civil" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstado_Civil_Estado_Civil!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEstado_CivilMultiple, varEstado_Civil_Estado_Civil,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEstado_Civil"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Identificacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_IdentificacionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Identificacion, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Identificacion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Identificacion_Tipo_de_Identificacion!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_IdentificacionMultiple, varTipo_de_Identificacion_Tipo_de_Identificacion,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Identificacion"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_de_Identificacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_de_IdentificacionFilter, filters, new { @class = "form-control", @id = "ddlNumero_de_IdentificacionFilter" })
+                    @Html.TextBoxFor(m => m.Numero_de_Identificacion, new { @class = "form-control", @type = "text", @id = "txtNumero_de_Identificacion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nacionalidad</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.NacionalidadFilter, filters, new { @class = "form-control", @id = "ddlNacionalidadFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceNacionalidad, new { @class = "form-control", @type = "text", @id = "txtAdvanceNacionalidad" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varNacionalidad_Nacionalidad!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceNacionalidadMultiple, varNacionalidad_Nacionalidad,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceNacionalidad"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Escolaridad</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.EscolaridadFilter, filters, new { @class = "form-control", @id = "ddlEscolaridadFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEscolaridad, new { @class = "form-control", @type = "text", @id = "txtAdvanceEscolaridad" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEscolaridad_Escolaridad!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEscolaridadMultiple, varEscolaridad_Escolaridad,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEscolaridad"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Ocupacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.OcupacionFilter, filters, new { @class = "form-control", @id = "ddlOcupacionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceOcupacion, new { @class = "form-control", @type = "text", @id = "txtAdvanceOcupacion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varOcupacion_Ocupacion!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceOcupacionMultiple, varOcupacion_Ocupacion,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceOcupacion"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.PaisFilter, filters, new { @class = "form-control", @id = "ddlPaisFilter" })
+                    @Html.TextBoxFor(m => m.AdvancePais, new { @class = "form-control", @type = "text", @id = "txtAdvancePais" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varPais_Pais!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvancePaisMultiple, varPais_Pais,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancePais"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.EstadoFilter, filters, new { @class = "form-control", @id = "ddlEstadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEstado, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstado_Estado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEstadoMultiple, varEstado_Estado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEstado"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.MunicipioFilter, filters, new { @class = "form-control", @id = "ddlMunicipioFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMunicipio, new { @class = "form-control", @type = "text", @id = "txtAdvanceMunicipio" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMunicipio_Municipio!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMunicipioMultiple, varMunicipio_Municipio,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMunicipio"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ColoniaFilter, filters, new { @class = "form-control", @id = "ddlColoniaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceColonia, new { @class = "form-control", @type = "text", @id = "txtAdvanceColonia" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varColonia_Colonia!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceColoniaMultiple, varColonia_Colonia,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceColonia"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromCodigo_Postal, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromCodigo_Postal" })
+                    @Html.ValidationMessageFor(m => m.FromCodigo_Postal)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToCodigo_Postal, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToCodigo_Postal", @data_min = "txtAdvanceFromCodigo_Postal" })
+                    @Html.ValidationMessageFor(m => m.ToCodigo_Postal)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.CalleFilter, filters, new { @class = "form-control", @id = "ddlCalleFilter" })
+                    @Html.TextBoxFor(m => m.Calle, new { @class = "form-control", @type = "text", @id = "txtCalle" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_ExteriorFilter, filters, new { @class = "form-control", @id = "ddlNumero_ExteriorFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Exterior, new { @class = "form-control", @type = "text", @id = "txtNumero_Exterior" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_InteriorFilter, filters, new { @class = "form-control", @id = "ddlNumero_InteriorFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Interior, new { @class = "form-control", @type = "text", @id = "txtNumero_Interior" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Telefono</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.TelefonoFilter, filters, new { @class = "form-control", @id = "ddlTelefonoFilter" })
+                    @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control", @type = "text", @id = "txtTelefono" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Extencion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromExtencion, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromExtencion" })
+                    @Html.ValidationMessageFor(m => m.FromExtencion)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToExtencion, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToExtencion", @data_min = "txtAdvanceFromExtencion" })
+                    @Html.ValidationMessageFor(m => m.ToExtencion)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Celular</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.CelularFilter, filters, new { @class = "form-control", @id = "ddlCelularFilter" })
+                    @Html.TextBoxFor(m => m.Celular, new { @class = "form-control", @type = "text", @id = "txtCelular" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Correo_Electronico</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Correo_ElectronicoFilter, filters, new { @class = "form-control", @id = "ddlCorreo_ElectronicoFilter" })
+                    @Html.TextBoxFor(m => m.Correo_Electronico, new { @class = "form-control", @type = "text", @id = "txtCorreo_Electronico" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nombre_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlNombre_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.Nombre_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtNombre_del_Tutor" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Paterno_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_Paterno_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlApellido_Paterno_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Paterno_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtApellido_Paterno_del_Tutor" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Materno_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_Materno_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlApellido_Materno_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Materno_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtApellido_Materno_del_Tutor" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_Completo_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nombre_Completo_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlNombre_Completo_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.Nombre_Completo_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtNombre_Completo_del_Tutor" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_de_Nacimiento_del_Tutor</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Nacimiento_del_Tutor" name="FromFecha_de_Nacimiento_del_Tutor" type="text" value="@Model.FromFecha_de_Nacimiento_del_Tutor" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Nacimiento_del_Tutor" name="ToFecha_de_Nacimiento_del_Tutor" type="text" value="@Model.ToFecha_de_Nacimiento_del_Tutor" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Edad_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromEdad_del_Tutor, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromEdad_del_Tutor" })
+                    @Html.ValidationMessageFor(m => m.FromEdad_del_Tutor)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToEdad_del_Tutor, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToEdad_del_Tutor", @data_min = "txtAdvanceFromEdad_del_Tutor" })
+                    @Html.ValidationMessageFor(m => m.ToEdad_del_Tutor)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Sexo_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Sexo_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlSexo_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceSexo_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtAdvanceSexo_del_Tutor" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varGenero_Sexo_del_Tutor!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceSexo_del_TutorMultiple, varGenero_Sexo_del_Tutor,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceSexo_del_Tutor"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_Civil_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Estado_Civil_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlEstado_Civil_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEstado_Civil_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstado_Civil_del_Tutor" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstado_Civil_Estado_Civil_del_Tutor!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEstado_Civil_del_TutorMultiple, varEstado_Civil_Estado_Civil_del_Tutor,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEstado_Civil_del_Tutor"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Identificacion_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_Identificacion_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_Identificacion_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Identificacion_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Identificacion_del_Tutor" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Identificacion_Tipo_de_Identificacion_del_Tutor!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_Identificacion_del_TutorMultiple, varTipo_de_Identificacion_Tipo_de_Identificacion_del_Tutor,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Identificacion_del_Tutor"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_de_Identificacion_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_de_Identificacion_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlNumero_de_Identificacion_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.Numero_de_Identificacion_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtNumero_de_Identificacion_del_Tutor" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nacionalidad_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nacionalidad_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlNacionalidad_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceNacionalidad_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtAdvanceNacionalidad_del_Tutor" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varNacionalidad_Nacionalidad_del_Tutor!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceNacionalidad_del_TutorMultiple, varNacionalidad_Nacionalidad_del_Tutor,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceNacionalidad_del_Tutor"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Escolaridad_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Escolaridad_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlEscolaridad_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEscolaridad_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtAdvanceEscolaridad_del_Tutor" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEscolaridad_Escolaridad_del_Tutor!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEscolaridad_del_TutorMultiple, varEscolaridad_Escolaridad_del_Tutor,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEscolaridad_del_Tutor"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Ocupacion_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Ocupacion_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlOcupacion_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceOcupacion_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtAdvanceOcupacion_del_Tutor" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varOcupacion_Ocupacion_del_Tutor!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceOcupacion_del_TutorMultiple, varOcupacion_Ocupacion_del_Tutor,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceOcupacion_del_Tutor"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Pais_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlPais_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.AdvancePais_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtAdvancePais_del_Tutor" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varPais_Pais_del_Tutor!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvancePais_del_TutorMultiple, varPais_Pais_del_Tutor,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancePais_del_Tutor"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Estado_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlEstado_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEstado_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstado_del_Tutor" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstado_Estado_del_Tutor!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEstado_del_TutorMultiple, varEstado_Estado_del_Tutor,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEstado_del_Tutor"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Municipio_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlMunicipio_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMunicipio_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtAdvanceMunicipio_del_Tutor" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMunicipio_Municipio_del_Tutor!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMunicipio_del_TutorMultiple, varMunicipio_Municipio_del_Tutor,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMunicipio_del_Tutor"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Localidad_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Localidad_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlLocalidad_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceLocalidad_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtAdvanceLocalidad_del_Tutor" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varLocalidad_Localidad_del_Tutor!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceLocalidad_del_TutorMultiple, varLocalidad_Localidad_del_Tutor,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceLocalidad_del_Tutor"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Colonia_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlColonia_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceColonia_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtAdvanceColonia_del_Tutor" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varColonia_Colonia_del_Tutor!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceColonia_del_TutorMultiple, varColonia_Colonia_del_Tutor,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceColonia_del_Tutor"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromCodigo_Postal_del_Tutor, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromCodigo_Postal_del_Tutor" })
+                    @Html.ValidationMessageFor(m => m.FromCodigo_Postal_del_Tutor)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToCodigo_Postal_del_Tutor, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToCodigo_Postal_del_Tutor", @data_min = "txtAdvanceFromCodigo_Postal_del_Tutor" })
+                    @Html.ValidationMessageFor(m => m.ToCodigo_Postal_del_Tutor)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Calle_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlCalle_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.Calle_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtCalle_del_Tutor" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromNumero_Exterior_del_Tutor, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromNumero_Exterior_del_Tutor" })
+                    @Html.ValidationMessageFor(m => m.FromNumero_Exterior_del_Tutor)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToNumero_Exterior_del_Tutor, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToNumero_Exterior_del_Tutor", @data_min = "txtAdvanceFromNumero_Exterior_del_Tutor" })
+                    @Html.ValidationMessageFor(m => m.ToNumero_Exterior_del_Tutor)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_Interior_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlNumero_Interior_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Interior_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtNumero_Interior_del_Tutor" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Telefono_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Telefono_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlTelefono_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.Telefono_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtTelefono_del_Tutor" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Extencion_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromExtencion_del_Tutor, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromExtencion_del_Tutor" })
+                    @Html.ValidationMessageFor(m => m.FromExtencion_del_Tutor)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToExtencion_del_Tutor, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToExtencion_del_Tutor", @data_min = "txtAdvanceFromExtencion_del_Tutor" })
+                    @Html.ValidationMessageFor(m => m.ToExtencion_del_Tutor)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Celular_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Celular_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlCelular_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.Celular_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtCelular_del_Tutor" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Correo_Electronico_del_Tutor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Correo_Electronico_del_TutorFilter, filters, new { @class = "form-control", @id = "ddlCorreo_Electronico_del_TutorFilter" })
+                    @Html.TextBoxFor(m => m.Correo_Electronico_del_Tutor, new { @class = "form-control", @type = "text", @id = "txtCorreo_Electronico_del_Tutor" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Compareciente</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_ComparecienteFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_ComparecienteFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Compareciente, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Compareciente" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Compareciente_Tipo_de_Compareciente!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_ComparecienteMultiple, varTipo_de_Compareciente_Tipo_de_Compareciente,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Compareciente"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Narrativa_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Narrativa_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlNarrativa_de_los_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Narrativa_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtNarrativa_de_los_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Titulo_del_Hecho</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Titulo_del_HechoFilter, filters, new { @class = "form-control", @id = "ddlTitulo_del_HechoFilter" })
+                    @Html.TextBoxFor(m => m.Titulo_del_Hecho, new { @class = "form-control", @type = "text", @id = "txtTitulo_del_Hecho" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Prioridad_del_Hecho</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Prioridad_del_HechoFilter, filters, new { @class = "form-control", @id = "ddlPrioridad_del_HechoFilter" })
+                    @Html.TextBoxFor(m => m.AdvancePrioridad_del_Hecho, new { @class = "form-control", @type = "text", @id = "txtAdvancePrioridad_del_Hecho" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varPrioridad_del_Hecho_Prioridad_del_Hecho!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvancePrioridad_del_HechoMultiple, varPrioridad_del_Hecho_Prioridad_del_Hecho,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancePrioridad_del_Hecho"
+                        });
+                    }
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_del_Hecho</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_del_Hecho" name="FromFecha_del_Hecho" type="text" value="@Model.FromFecha_del_Hecho" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_del_Hecho" name="ToFecha_del_Hecho" type="text" value="@Model.ToFecha_del_Hecho" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Hora_Aproximada_del_Hecho</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_Aproximada_del_Hecho" name="FromHora_Aproximada_del_Hecho" type="text" value="@Model.FromHora_Aproximada_del_Hecho" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_Aproximada_del_Hecho" name="ToHora_Aproximada_del_Hecho" type="text" value="@Model.ToHora_Aproximada_del_Hecho" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Pais_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlPais_de_los_HechosFilter" })
+                    @Html.TextBoxFor(m => m.AdvancePais_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtAdvancePais_de_los_Hechos" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varPais_Pais_de_los_Hechos!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvancePais_de_los_HechosMultiple, varPais_Pais_de_los_Hechos,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancePais_de_los_Hechos"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Estado_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlEstado_de_los_HechosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEstado_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstado_de_los_Hechos" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstado_Estado_de_los_Hechos!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEstado_de_los_HechosMultiple, varEstado_Estado_de_los_Hechos,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEstado_de_los_Hechos"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Municipio_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlMunicipio_de_los_HechosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMunicipio_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtAdvanceMunicipio_de_los_Hechos" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMunicipio_Municipio_de_los_Hechos!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMunicipio_de_los_HechosMultiple, varMunicipio_Municipio_de_los_Hechos,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMunicipio_de_los_Hechos"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Colonia_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlColonia_de_los_HechosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceColonia_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtAdvanceColonia_de_los_Hechos" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varColonia_Colonia_de_los_Hechos!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceColonia_de_los_HechosMultiple, varColonia_Colonia_de_los_Hechos,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceColonia_de_los_Hechos"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromCodigo_Postal_de_los_Hechos, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromCodigo_Postal_de_los_Hechos" })
+                    @Html.ValidationMessageFor(m => m.FromCodigo_Postal_de_los_Hechos)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToCodigo_Postal_de_los_Hechos, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToCodigo_Postal_de_los_Hechos", @data_min = "txtAdvanceFromCodigo_Postal_de_los_Hechos" })
+                    @Html.ValidationMessageFor(m => m.ToCodigo_Postal_de_los_Hechos)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Calle_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlCalle_de_los_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Calle_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtCalle_de_los_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Entre_Calle_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Entre_Calle_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlEntre_Calle_de_los_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Entre_Calle_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtEntre_Calle_de_los_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Y_Calle_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Y_Calle_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlY_Calle_de_los_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Y_Calle_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtY_Calle_de_los_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_Exterior_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlNumero_Exterior_de_los_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Exterior_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtNumero_Exterior_de_los_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_Interior_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlNumero_Interior_de_los_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Interior_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtNumero_Interior_de_los_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Latitud_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Latitud_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlLatitud_de_los_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Latitud_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtLatitud_de_los_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Longitud_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Longitud_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlLongitud_de_los_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Longitud_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtLongitud_de_los_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Lugar_del_Hecho</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_Lugar_del_HechoFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_Lugar_del_HechoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Lugar_del_Hecho, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Lugar_del_Hecho" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varLugar_Tipo_Tipo_de_Lugar_del_Hecho!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_Lugar_del_HechoMultiple, varLugar_Tipo_Tipo_de_Lugar_del_Hecho,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Lugar_del_Hecho"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nombre_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlNombre_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.Nombre_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtNombre_de_Persona_Moral" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Paterno_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_Paterno_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlApellido_Paterno_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Paterno_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtApellido_Paterno_de_Persona_Moral" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Materno_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_Materno_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlApellido_Materno_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Materno_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtApellido_Materno_de_Persona_Moral" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_de_Nacimiento_de_Persona_Moral</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Nacimiento_de_Persona_Moral" name="FromFecha_de_Nacimiento_de_Persona_Moral" type="text" value="@Model.FromFecha_de_Nacimiento_de_Persona_Moral" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Nacimiento_de_Persona_Moral" name="ToFecha_de_Nacimiento_de_Persona_Moral" type="text" value="@Model.ToFecha_de_Nacimiento_de_Persona_Moral" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Edad_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromEdad_de_Persona_Moral, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromEdad_de_Persona_Moral" })
+                    @Html.ValidationMessageFor(m => m.FromEdad_de_Persona_Moral)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToEdad_de_Persona_Moral, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToEdad_de_Persona_Moral", @data_min = "txtAdvanceFromEdad_de_Persona_Moral" })
+                    @Html.ValidationMessageFor(m => m.ToEdad_de_Persona_Moral)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Sexo_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Sexo_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlSexo_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceSexo_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtAdvanceSexo_de_Persona_Moral" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varGenero_Sexo_de_Persona_Moral!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceSexo_de_Persona_MoralMultiple, varGenero_Sexo_de_Persona_Moral,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceSexo_de_Persona_Moral"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_Civil_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Estado_Civil_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlEstado_Civil_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEstado_Civil_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstado_Civil_de_Persona_Moral" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstado_Civil_Estado_Civil_de_Persona_Moral!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEstado_Civil_de_Persona_MoralMultiple, varEstado_Civil_Estado_Civil_de_Persona_Moral,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEstado_Civil_de_Persona_Moral"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Identificacion_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_Identificacion_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_Identificacion_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Identificacion_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Identificacion_de_Persona_Moral" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Identificacion_Tipo_de_Identificacion_de_Persona_Moral!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_Identificacion_de_Persona_MoralMultiple, varTipo_de_Identificacion_Tipo_de_Identificacion_de_Persona_Moral,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Identificacion_de_Persona_Moral"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_de_Identificacion_de_Persona_Mora</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_de_Identificacion_de_Persona_MoraFilter, filters, new { @class = "form-control", @id = "ddlNumero_de_Identificacion_de_Persona_MoraFilter" })
+                    @Html.TextBoxFor(m => m.Numero_de_Identificacion_de_Persona_Mora, new { @class = "form-control", @type = "text", @id = "txtNumero_de_Identificacion_de_Persona_Mora" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nacionalidad_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nacionalidad_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlNacionalidad_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceNacionalidad_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtAdvanceNacionalidad_de_Persona_Moral" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varNacionalidad_Nacionalidad_de_Persona_Moral!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceNacionalidad_de_Persona_MoralMultiple, varNacionalidad_Nacionalidad_de_Persona_Moral,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceNacionalidad_de_Persona_Moral"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Escolaridad_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Escolaridad_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlEscolaridad_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEscolaridad_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtAdvanceEscolaridad_de_Persona_Moral" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEscolaridad_Escolaridad_de_Persona_Moral!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEscolaridad_de_Persona_MoralMultiple, varEscolaridad_Escolaridad_de_Persona_Moral,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEscolaridad_de_Persona_Moral"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Ocupacion_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Ocupacion_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlOcupacion_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceOcupacion_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtAdvanceOcupacion_de_Persona_Moral" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varOcupacion_Ocupacion_de_Persona_Moral!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceOcupacion_de_Persona_MoralMultiple, varOcupacion_Ocupacion_de_Persona_Moral,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceOcupacion_de_Persona_Moral"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Pais_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlPais_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.AdvancePais_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtAdvancePais_de_Persona_Moral" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varPais_Pais_de_Persona_Moral!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvancePais_de_Persona_MoralMultiple, varPais_Pais_de_Persona_Moral,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancePais_de_Persona_Moral"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Estado_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlEstado_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEstado_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstado_de_Persona_Moral" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstado_Estado_de_Persona_Moral!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEstado_de_Persona_MoralMultiple, varEstado_Estado_de_Persona_Moral,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEstado_de_Persona_Moral"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Municipio_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlMunicipio_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMunicipio_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtAdvanceMunicipio_de_Persona_Moral" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMunicipio_Municipio_de_Persona_Moral!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMunicipio_de_Persona_MoralMultiple, varMunicipio_Municipio_de_Persona_Moral,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMunicipio_de_Persona_Moral"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Colonia_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlColonia_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceColonia_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtAdvanceColonia_de_Persona_Moral" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varColonia_Colonia_de_Persona_Moral!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceColonia_de_Persona_MoralMultiple, varColonia_Colonia_de_Persona_Moral,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceColonia_de_Persona_Moral"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromCodigo_Postal_de_Persona_Moral, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromCodigo_Postal_de_Persona_Moral" })
+                    @Html.ValidationMessageFor(m => m.FromCodigo_Postal_de_Persona_Moral)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToCodigo_Postal_de_Persona_Moral, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToCodigo_Postal_de_Persona_Moral", @data_min = "txtAdvanceFromCodigo_Postal_de_Persona_Moral" })
+                    @Html.ValidationMessageFor(m => m.ToCodigo_Postal_de_Persona_Moral)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Calle_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlCalle_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.Calle_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtCalle_de_Persona_Moral" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_Exterior_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlNumero_Exterior_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Exterior_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtNumero_Exterior_de_Persona_Moral" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_Interior_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlNumero_Interior_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Interior_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtNumero_Interior_de_Persona_Moral" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Entre_Calle_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Entre_Calle_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlEntre_Calle_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.Entre_Calle_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtEntre_Calle_de_Persona_Moral" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Y_Calle_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Y_Calle_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlY_Calle_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.Y_Calle_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtY_Calle_de_Persona_Moral" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Longitud_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Longitud_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlLongitud_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.Longitud_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtLongitud_de_Persona_Moral" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Latitud_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Latitud_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlLatitud_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.Latitud_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtLatitud_de_Persona_Moral" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Telefono_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Telefono_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlTelefono_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.Telefono_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtTelefono_de_Persona_Moral" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Extension_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Extension_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlExtension_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.Extension_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtExtension_de_Persona_Moral" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Celular_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Celular_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlCelular_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.Celular_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtCelular_de_Persona_Moral" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Correo_Electronico_de_Persona_Moral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Correo_Electronico_de_Persona_MoralFilter, filters, new { @class = "form-control", @id = "ddlCorreo_Electronico_de_Persona_MoralFilter" })
+                    @Html.TextBoxFor(m => m.Correo_Electronico_de_Persona_Moral, new { @class = "form-control", @type = "text", @id = "txtCorreo_Electronico_de_Persona_Moral" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIClaveTo = $("#txtAdvanceToClave").val();
+        }
+        if ($("#txtAdvanceNombre").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINombre = $("#txtAdvanceNombre").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINombreSearchType = $("#ddlAdvanceNombreFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Paterno").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIApellido_Paterno = $("#txtAdvanceApellido_Paterno").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIApellido_PaternoSearchType = $("#ddlAdvanceApellido_PaternoFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Materno").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIApellido_Materno = $("#txtAdvanceApellido_Materno").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIApellido_MaternoSearchType = $("#ddlAdvanceApellido_MaternoFilter").val();
+        }
+        if ($("#txtAdvanceNombre_Completo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINombre_Completo = $("#txtAdvanceNombre_Completo").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINombre_CompletoSearchType = $("#ddlAdvanceNombre_CompletoFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Nacimiento").val() != "" || $("#txtAdvanceToFecha_de_Nacimiento").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIFecha_de_NacimientoFrom = $("#txtAdvanceFromFecha_de_Nacimiento").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIFecha_de_NacimientoTo = $("#txtAdvanceToFecha_de_Nacimiento").val();
+        }
+        if ($("#txtAdvanceFromEdad").val() != "" || $("#txtAdvanceToEdad").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIEdadFrom = $("#txtAdvanceFromEdad").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIEdadTo = $("#txtAdvanceToEdad").val();
+        }
+        advanceSearch.SexoSearchType = 0;
+        if ($('#ddlAdvanceSexo').val().length > 0 || $("#txtAdvanceSexo").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.SexoName = $("#txtAdvanceSexo").val();
+                advanceSearch.SexoNameSearchType = $("#ddlAdvanceSexo").val();
+                advanceSearch.SexoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.SexoToSearch = $("#ddlAdvanceSexo").val();
+                advanceSearch.SexoSearchType = 2;
+            }
+        }
+        advanceSearch.Estado_CivilSearchType = 0;
+        if ($('#ddlAdvanceEstado_Civil').val().length > 0 || $("#txtAdvanceEstado_Civil").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Estado_CivilName = $("#txtAdvanceEstado_Civil").val();
+                advanceSearch.Estado_CivilNameSearchType = $("#ddlAdvanceEstado_Civil").val();
+                advanceSearch.Estado_CivilSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Estado_CivilToSearch = $("#ddlAdvanceEstado_Civil").val();
+                advanceSearch.Estado_CivilSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_de_IdentificacionSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Identificacion').val().length > 0 || $("#txtAdvanceTipo_de_Identificacion").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Tipo_de_IdentificacionName = $("#txtAdvanceTipo_de_Identificacion").val();
+                advanceSearch.Tipo_de_IdentificacionNameSearchType = $("#ddlAdvanceTipo_de_Identificacion").val();
+                advanceSearch.Tipo_de_IdentificacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_IdentificacionToSearch = $("#ddlAdvanceTipo_de_Identificacion").val();
+                advanceSearch.Tipo_de_IdentificacionSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNumero_de_Identificacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_de_Identificacion = $("#txtAdvanceNumero_de_Identificacion").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_de_IdentificacionSearchType = $("#ddlAdvanceNumero_de_IdentificacionFilter").val();
+        }
+        advanceSearch.NacionalidadSearchType = 0;
+        if ($('#ddlAdvanceNacionalidad').val().length > 0 || $("#txtAdvanceNacionalidad").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.NacionalidadName = $("#txtAdvanceNacionalidad").val();
+                advanceSearch.NacionalidadNameSearchType = $("#ddlAdvanceNacionalidad").val();
+                advanceSearch.NacionalidadSearchType = 1;
+            }
+            else {
+
+                advanceSearch.NacionalidadToSearch = $("#ddlAdvanceNacionalidad").val();
+                advanceSearch.NacionalidadSearchType = 2;
+            }
+        }
+        advanceSearch.EscolaridadSearchType = 0;
+        if ($('#ddlAdvanceEscolaridad').val().length > 0 || $("#txtAdvanceEscolaridad").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.EscolaridadName = $("#txtAdvanceEscolaridad").val();
+                advanceSearch.EscolaridadNameSearchType = $("#ddlAdvanceEscolaridad").val();
+                advanceSearch.EscolaridadSearchType = 1;
+            }
+            else {
+
+                advanceSearch.EscolaridadToSearch = $("#ddlAdvanceEscolaridad").val();
+                advanceSearch.EscolaridadSearchType = 2;
+            }
+        }
+        advanceSearch.OcupacionSearchType = 0;
+        if ($('#ddlAdvanceOcupacion').val().length > 0 || $("#txtAdvanceOcupacion").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.OcupacionName = $("#txtAdvanceOcupacion").val();
+                advanceSearch.OcupacionNameSearchType = $("#ddlAdvanceOcupacion").val();
+                advanceSearch.OcupacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.OcupacionToSearch = $("#ddlAdvanceOcupacion").val();
+                advanceSearch.OcupacionSearchType = 2;
+            }
+        }
+        advanceSearch.PaisSearchType = 0;
+        if ($('#ddlAdvancePais').val().length > 0 || $("#txtAdvancePais").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.PaisName = $("#txtAdvancePais").val();
+                advanceSearch.PaisNameSearchType = $("#ddlAdvancePais").val();
+                advanceSearch.PaisSearchType = 1;
+            }
+            else {
+
+                advanceSearch.PaisToSearch = $("#ddlAdvancePais").val();
+                advanceSearch.PaisSearchType = 2;
+            }
+        }
+        advanceSearch.EstadoSearchType = 0;
+        if ($('#ddlAdvanceEstado').val().length > 0 || $("#txtAdvanceEstado").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.EstadoName = $("#txtAdvanceEstado").val();
+                advanceSearch.EstadoNameSearchType = $("#ddlAdvanceEstado").val();
+                advanceSearch.EstadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.EstadoToSearch = $("#ddlAdvanceEstado").val();
+                advanceSearch.EstadoSearchType = 2;
+            }
+        }
+        advanceSearch.MunicipioSearchType = 0;
+        if ($('#ddlAdvanceMunicipio').val().length > 0 || $("#txtAdvanceMunicipio").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.MunicipioName = $("#txtAdvanceMunicipio").val();
+                advanceSearch.MunicipioNameSearchType = $("#ddlAdvanceMunicipio").val();
+                advanceSearch.MunicipioSearchType = 1;
+            }
+            else {
+
+                advanceSearch.MunicipioToSearch = $("#ddlAdvanceMunicipio").val();
+                advanceSearch.MunicipioSearchType = 2;
+            }
+        }
+        advanceSearch.ColoniaSearchType = 0;
+        if ($('#ddlAdvanceColonia').val().length > 0 || $("#txtAdvanceColonia").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.ColoniaName = $("#txtAdvanceColonia").val();
+                advanceSearch.ColoniaNameSearchType = $("#ddlAdvanceColonia").val();
+                advanceSearch.ColoniaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ColoniaToSearch = $("#ddlAdvanceColonia").val();
+                advanceSearch.ColoniaSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromCodigo_Postal").val() != "" || $("#txtAdvanceToCodigo_Postal").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICodigo_PostalFrom = $("#txtAdvanceFromCodigo_Postal").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICodigo_PostalTo = $("#txtAdvanceToCodigo_Postal").val();
+        }
+        if ($("#txtAdvanceCalle").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICalle = $("#txtAdvanceCalle").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICalleSearchType = $("#ddlAdvanceCalleFilter").val();
+        }
+        if ($("#txtAdvanceNumero_Exterior").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_Exterior = $("#txtAdvanceNumero_Exterior").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_ExteriorSearchType = $("#ddlAdvanceNumero_ExteriorFilter").val();
+        }
+        if ($("#txtAdvanceNumero_Interior").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_Interior = $("#txtAdvanceNumero_Interior").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_InteriorSearchType = $("#ddlAdvanceNumero_InteriorFilter").val();
+        }
+        if ($("#txtAdvanceTelefono").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPITelefono = $("#txtAdvanceTelefono").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPITelefonoSearchType = $("#ddlAdvanceTelefonoFilter").val();
+        }
+        if ($("#txtAdvanceFromExtencion").val() != "" || $("#txtAdvanceToExtencion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIExtencionFrom = $("#txtAdvanceFromExtencion").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIExtencionTo = $("#txtAdvanceToExtencion").val();
+        }
+        if ($("#txtAdvanceCelular").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICelular = $("#txtAdvanceCelular").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICelularSearchType = $("#ddlAdvanceCelularFilter").val();
+        }
+        if ($("#txtAdvanceCorreo_Electronico").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICorreo_Electronico = $("#txtAdvanceCorreo_Electronico").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICorreo_ElectronicoSearchType = $("#ddlAdvanceCorreo_ElectronicoFilter").val();
+        }
+        if ($("#ddlAdvanceIncapaz").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIIncapaz = $("#ddlAdvanceIncapaz").val();
+        }
+        if ($("#txtAdvanceNombre_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINombre_del_Tutor = $("#txtAdvanceNombre_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINombre_del_TutorSearchType = $("#ddlAdvanceNombre_del_TutorFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Paterno_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIApellido_Paterno_del_Tutor = $("#txtAdvanceApellido_Paterno_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIApellido_Paterno_del_TutorSearchType = $("#ddlAdvanceApellido_Paterno_del_TutorFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Materno_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIApellido_Materno_del_Tutor = $("#txtAdvanceApellido_Materno_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIApellido_Materno_del_TutorSearchType = $("#ddlAdvanceApellido_Materno_del_TutorFilter").val();
+        }
+        if ($("#txtAdvanceNombre_Completo_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINombre_Completo_del_Tutor = $("#txtAdvanceNombre_Completo_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINombre_Completo_del_TutorSearchType = $("#ddlAdvanceNombre_Completo_del_TutorFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Nacimiento_del_Tutor").val() != "" || $("#txtAdvanceToFecha_de_Nacimiento_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIFecha_de_Nacimiento_del_TutorFrom = $("#txtAdvanceFromFecha_de_Nacimiento_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIFecha_de_Nacimiento_del_TutorTo = $("#txtAdvanceToFecha_de_Nacimiento_del_Tutor").val();
+        }
+        if ($("#txtAdvanceFromEdad_del_Tutor").val() != "" || $("#txtAdvanceToEdad_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIEdad_del_TutorFrom = $("#txtAdvanceFromEdad_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIEdad_del_TutorTo = $("#txtAdvanceToEdad_del_Tutor").val();
+        }
+        advanceSearch.Sexo_del_TutorSearchType = 0;
+        if ($('#ddlAdvanceSexo_del_Tutor').val().length > 0 || $("#txtAdvanceSexo_del_Tutor").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Sexo_del_TutorName = $("#txtAdvanceSexo_del_Tutor").val();
+                advanceSearch.Sexo_del_TutorNameSearchType = $("#ddlAdvanceSexo_del_Tutor").val();
+                advanceSearch.Sexo_del_TutorSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Sexo_del_TutorToSearch = $("#ddlAdvanceSexo_del_Tutor").val();
+                advanceSearch.Sexo_del_TutorSearchType = 2;
+            }
+        }
+        advanceSearch.Estado_Civil_del_TutorSearchType = 0;
+        if ($('#ddlAdvanceEstado_Civil_del_Tutor').val().length > 0 || $("#txtAdvanceEstado_Civil_del_Tutor").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Estado_Civil_del_TutorName = $("#txtAdvanceEstado_Civil_del_Tutor").val();
+                advanceSearch.Estado_Civil_del_TutorNameSearchType = $("#ddlAdvanceEstado_Civil_del_Tutor").val();
+                advanceSearch.Estado_Civil_del_TutorSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Estado_Civil_del_TutorToSearch = $("#ddlAdvanceEstado_Civil_del_Tutor").val();
+                advanceSearch.Estado_Civil_del_TutorSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_de_Identificacion_del_TutorSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Identificacion_del_Tutor').val().length > 0 || $("#txtAdvanceTipo_de_Identificacion_del_Tutor").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Tipo_de_Identificacion_del_TutorName = $("#txtAdvanceTipo_de_Identificacion_del_Tutor").val();
+                advanceSearch.Tipo_de_Identificacion_del_TutorNameSearchType = $("#ddlAdvanceTipo_de_Identificacion_del_Tutor").val();
+                advanceSearch.Tipo_de_Identificacion_del_TutorSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_Identificacion_del_TutorToSearch = $("#ddlAdvanceTipo_de_Identificacion_del_Tutor").val();
+                advanceSearch.Tipo_de_Identificacion_del_TutorSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNumero_de_Identificacion_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_de_Identificacion_del_Tutor = $("#txtAdvanceNumero_de_Identificacion_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_de_Identificacion_del_TutorSearchType = $("#ddlAdvanceNumero_de_Identificacion_del_TutorFilter").val();
+        }
+        advanceSearch.Nacionalidad_del_TutorSearchType = 0;
+        if ($('#ddlAdvanceNacionalidad_del_Tutor').val().length > 0 || $("#txtAdvanceNacionalidad_del_Tutor").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Nacionalidad_del_TutorName = $("#txtAdvanceNacionalidad_del_Tutor").val();
+                advanceSearch.Nacionalidad_del_TutorNameSearchType = $("#ddlAdvanceNacionalidad_del_Tutor").val();
+                advanceSearch.Nacionalidad_del_TutorSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Nacionalidad_del_TutorToSearch = $("#ddlAdvanceNacionalidad_del_Tutor").val();
+                advanceSearch.Nacionalidad_del_TutorSearchType = 2;
+            }
+        }
+        advanceSearch.Escolaridad_del_TutorSearchType = 0;
+        if ($('#ddlAdvanceEscolaridad_del_Tutor').val().length > 0 || $("#txtAdvanceEscolaridad_del_Tutor").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Escolaridad_del_TutorName = $("#txtAdvanceEscolaridad_del_Tutor").val();
+                advanceSearch.Escolaridad_del_TutorNameSearchType = $("#ddlAdvanceEscolaridad_del_Tutor").val();
+                advanceSearch.Escolaridad_del_TutorSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Escolaridad_del_TutorToSearch = $("#ddlAdvanceEscolaridad_del_Tutor").val();
+                advanceSearch.Escolaridad_del_TutorSearchType = 2;
+            }
+        }
+        advanceSearch.Ocupacion_del_TutorSearchType = 0;
+        if ($('#ddlAdvanceOcupacion_del_Tutor').val().length > 0 || $("#txtAdvanceOcupacion_del_Tutor").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Ocupacion_del_TutorName = $("#txtAdvanceOcupacion_del_Tutor").val();
+                advanceSearch.Ocupacion_del_TutorNameSearchType = $("#ddlAdvanceOcupacion_del_Tutor").val();
+                advanceSearch.Ocupacion_del_TutorSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Ocupacion_del_TutorToSearch = $("#ddlAdvanceOcupacion_del_Tutor").val();
+                advanceSearch.Ocupacion_del_TutorSearchType = 2;
+            }
+        }
+        advanceSearch.Pais_del_TutorSearchType = 0;
+        if ($('#ddlAdvancePais_del_Tutor').val().length > 0 || $("#txtAdvancePais_del_Tutor").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Pais_del_TutorName = $("#txtAdvancePais_del_Tutor").val();
+                advanceSearch.Pais_del_TutorNameSearchType = $("#ddlAdvancePais_del_Tutor").val();
+                advanceSearch.Pais_del_TutorSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Pais_del_TutorToSearch = $("#ddlAdvancePais_del_Tutor").val();
+                advanceSearch.Pais_del_TutorSearchType = 2;
+            }
+        }
+        advanceSearch.Estado_del_TutorSearchType = 0;
+        if ($('#ddlAdvanceEstado_del_Tutor').val().length > 0 || $("#txtAdvanceEstado_del_Tutor").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Estado_del_TutorName = $("#txtAdvanceEstado_del_Tutor").val();
+                advanceSearch.Estado_del_TutorNameSearchType = $("#ddlAdvanceEstado_del_Tutor").val();
+                advanceSearch.Estado_del_TutorSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Estado_del_TutorToSearch = $("#ddlAdvanceEstado_del_Tutor").val();
+                advanceSearch.Estado_del_TutorSearchType = 2;
+            }
+        }
+        advanceSearch.Municipio_del_TutorSearchType = 0;
+        if ($('#ddlAdvanceMunicipio_del_Tutor').val().length > 0 || $("#txtAdvanceMunicipio_del_Tutor").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Municipio_del_TutorName = $("#txtAdvanceMunicipio_del_Tutor").val();
+                advanceSearch.Municipio_del_TutorNameSearchType = $("#ddlAdvanceMunicipio_del_Tutor").val();
+                advanceSearch.Municipio_del_TutorSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Municipio_del_TutorToSearch = $("#ddlAdvanceMunicipio_del_Tutor").val();
+                advanceSearch.Municipio_del_TutorSearchType = 2;
+            }
+        }
+        advanceSearch.Localidad_del_TutorSearchType = 0;
+        if ($('#ddlAdvanceLocalidad_del_Tutor').val().length > 0 || $("#txtAdvanceLocalidad_del_Tutor").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Localidad_del_TutorName = $("#txtAdvanceLocalidad_del_Tutor").val();
+                advanceSearch.Localidad_del_TutorNameSearchType = $("#ddlAdvanceLocalidad_del_Tutor").val();
+                advanceSearch.Localidad_del_TutorSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Localidad_del_TutorToSearch = $("#ddlAdvanceLocalidad_del_Tutor").val();
+                advanceSearch.Localidad_del_TutorSearchType = 2;
+            }
+        }
+        advanceSearch.Colonia_del_TutorSearchType = 0;
+        if ($('#ddlAdvanceColonia_del_Tutor').val().length > 0 || $("#txtAdvanceColonia_del_Tutor").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Colonia_del_TutorName = $("#txtAdvanceColonia_del_Tutor").val();
+                advanceSearch.Colonia_del_TutorNameSearchType = $("#ddlAdvanceColonia_del_Tutor").val();
+                advanceSearch.Colonia_del_TutorSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Colonia_del_TutorToSearch = $("#ddlAdvanceColonia_del_Tutor").val();
+                advanceSearch.Colonia_del_TutorSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromCodigo_Postal_del_Tutor").val() != "" || $("#txtAdvanceToCodigo_Postal_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICodigo_Postal_del_TutorFrom = $("#txtAdvanceFromCodigo_Postal_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICodigo_Postal_del_TutorTo = $("#txtAdvanceToCodigo_Postal_del_Tutor").val();
+        }
+        if ($("#txtAdvanceCalle_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICalle_del_Tutor = $("#txtAdvanceCalle_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICalle_del_TutorSearchType = $("#ddlAdvanceCalle_del_TutorFilter").val();
+        }
+        if ($("#txtAdvanceFromNumero_Exterior_del_Tutor").val() != "" || $("#txtAdvanceToNumero_Exterior_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_Exterior_del_TutorFrom = $("#txtAdvanceFromNumero_Exterior_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_Exterior_del_TutorTo = $("#txtAdvanceToNumero_Exterior_del_Tutor").val();
+        }
+        if ($("#txtAdvanceNumero_Interior_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_Interior_del_Tutor = $("#txtAdvanceNumero_Interior_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_Interior_del_TutorSearchType = $("#ddlAdvanceNumero_Interior_del_TutorFilter").val();
+        }
+        if ($("#txtAdvanceTelefono_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPITelefono_del_Tutor = $("#txtAdvanceTelefono_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPITelefono_del_TutorSearchType = $("#ddlAdvanceTelefono_del_TutorFilter").val();
+        }
+        if ($("#txtAdvanceFromExtencion_del_Tutor").val() != "" || $("#txtAdvanceToExtencion_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIExtencion_del_TutorFrom = $("#txtAdvanceFromExtencion_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIExtencion_del_TutorTo = $("#txtAdvanceToExtencion_del_Tutor").val();
+        }
+        if ($("#txtAdvanceCelular_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICelular_del_Tutor = $("#txtAdvanceCelular_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICelular_del_TutorSearchType = $("#ddlAdvanceCelular_del_TutorFilter").val();
+        }
+        if ($("#txtAdvanceCorreo_Electronico_del_Tutor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICorreo_Electronico_del_Tutor = $("#txtAdvanceCorreo_Electronico_del_Tutor").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICorreo_Electronico_del_TutorSearchType = $("#ddlAdvanceCorreo_Electronico_del_TutorFilter").val();
+        }
+        advanceSearch.Tipo_de_ComparecienteSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Compareciente').val().length > 0 || $("#txtAdvanceTipo_de_Compareciente").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Tipo_de_ComparecienteName = $("#txtAdvanceTipo_de_Compareciente").val();
+                advanceSearch.Tipo_de_ComparecienteNameSearchType = $("#ddlAdvanceTipo_de_Compareciente").val();
+                advanceSearch.Tipo_de_ComparecienteSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_ComparecienteToSearch = $("#ddlAdvanceTipo_de_Compareciente").val();
+                advanceSearch.Tipo_de_ComparecienteSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNarrativa_de_los_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINarrativa_de_los_Hechos = $("#txtAdvanceNarrativa_de_los_Hechos").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINarrativa_de_los_HechosSearchType = $("#ddlAdvanceNarrativa_de_los_HechosFilter").val();
+        }
+        if ($("#txtAdvanceTitulo_del_Hecho").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPITitulo_del_Hecho = $("#txtAdvanceTitulo_del_Hecho").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPITitulo_del_HechoSearchType = $("#ddlAdvanceTitulo_del_HechoFilter").val();
+        }
+        advanceSearch.Prioridad_del_HechoSearchType = 0;
+        if ($('#ddlAdvancePrioridad_del_Hecho').val().length > 0 || $("#txtAdvancePrioridad_del_Hecho").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Prioridad_del_HechoName = $("#txtAdvancePrioridad_del_Hecho").val();
+                advanceSearch.Prioridad_del_HechoNameSearchType = $("#ddlAdvancePrioridad_del_Hecho").val();
+                advanceSearch.Prioridad_del_HechoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Prioridad_del_HechoToSearch = $("#ddlAdvancePrioridad_del_Hecho").val();
+                advanceSearch.Prioridad_del_HechoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromFecha_del_Hecho").val() != "" || $("#txtAdvanceToFecha_del_Hecho").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIFecha_del_HechoFrom = $("#txtAdvanceFromFecha_del_Hecho").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIFecha_del_HechoTo = $("#txtAdvanceToFecha_del_Hecho").val();
+        }
+        if ($("#txtAdvanceHora_Aproximada_del_Hecho").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIHora_Aproximada_del_Hecho = $("#txtAdvanceHora_Aproximada_del_Hecho").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIHora_Aproximada_del_HechoSearchType = $("#ddlAdvanceHora_Aproximada_del_HechoFilter").val();
+        }
+        advanceSearch.Pais_de_los_HechosSearchType = 0;
+        if ($('#ddlAdvancePais_de_los_Hechos').val().length > 0 || $("#txtAdvancePais_de_los_Hechos").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Pais_de_los_HechosName = $("#txtAdvancePais_de_los_Hechos").val();
+                advanceSearch.Pais_de_los_HechosNameSearchType = $("#ddlAdvancePais_de_los_Hechos").val();
+                advanceSearch.Pais_de_los_HechosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Pais_de_los_HechosToSearch = $("#ddlAdvancePais_de_los_Hechos").val();
+                advanceSearch.Pais_de_los_HechosSearchType = 2;
+            }
+        }
+        advanceSearch.Estado_de_los_HechosSearchType = 0;
+        if ($('#ddlAdvanceEstado_de_los_Hechos').val().length > 0 || $("#txtAdvanceEstado_de_los_Hechos").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Estado_de_los_HechosName = $("#txtAdvanceEstado_de_los_Hechos").val();
+                advanceSearch.Estado_de_los_HechosNameSearchType = $("#ddlAdvanceEstado_de_los_Hechos").val();
+                advanceSearch.Estado_de_los_HechosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Estado_de_los_HechosToSearch = $("#ddlAdvanceEstado_de_los_Hechos").val();
+                advanceSearch.Estado_de_los_HechosSearchType = 2;
+            }
+        }
+        advanceSearch.Municipio_de_los_HechosSearchType = 0;
+        if ($('#ddlAdvanceMunicipio_de_los_Hechos').val().length > 0 || $("#txtAdvanceMunicipio_de_los_Hechos").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Municipio_de_los_HechosName = $("#txtAdvanceMunicipio_de_los_Hechos").val();
+                advanceSearch.Municipio_de_los_HechosNameSearchType = $("#ddlAdvanceMunicipio_de_los_Hechos").val();
+                advanceSearch.Municipio_de_los_HechosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Municipio_de_los_HechosToSearch = $("#ddlAdvanceMunicipio_de_los_Hechos").val();
+                advanceSearch.Municipio_de_los_HechosSearchType = 2;
+            }
+        }
+        advanceSearch.Colonia_de_los_HechosSearchType = 0;
+        if ($('#ddlAdvanceColonia_de_los_Hechos').val().length > 0 || $("#txtAdvanceColonia_de_los_Hechos").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Colonia_de_los_HechosName = $("#txtAdvanceColonia_de_los_Hechos").val();
+                advanceSearch.Colonia_de_los_HechosNameSearchType = $("#ddlAdvanceColonia_de_los_Hechos").val();
+                advanceSearch.Colonia_de_los_HechosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Colonia_de_los_HechosToSearch = $("#ddlAdvanceColonia_de_los_Hechos").val();
+                advanceSearch.Colonia_de_los_HechosSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromCodigo_Postal_de_los_Hechos").val() != "" || $("#txtAdvanceToCodigo_Postal_de_los_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICodigo_Postal_de_los_HechosFrom = $("#txtAdvanceFromCodigo_Postal_de_los_Hechos").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICodigo_Postal_de_los_HechosTo = $("#txtAdvanceToCodigo_Postal_de_los_Hechos").val();
+        }
+        if ($("#txtAdvanceCalle_de_los_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICalle_de_los_Hechos = $("#txtAdvanceCalle_de_los_Hechos").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICalle_de_los_HechosSearchType = $("#ddlAdvanceCalle_de_los_HechosFilter").val();
+        }
+        if ($("#txtAdvanceEntre_Calle_de_los_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIEntre_Calle_de_los_Hechos = $("#txtAdvanceEntre_Calle_de_los_Hechos").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIEntre_Calle_de_los_HechosSearchType = $("#ddlAdvanceEntre_Calle_de_los_HechosFilter").val();
+        }
+        if ($("#txtAdvanceY_Calle_de_los_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIY_Calle_de_los_Hechos = $("#txtAdvanceY_Calle_de_los_Hechos").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIY_Calle_de_los_HechosSearchType = $("#ddlAdvanceY_Calle_de_los_HechosFilter").val();
+        }
+        if ($("#txtAdvanceNumero_Exterior_de_los_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_Exterior_de_los_Hechos = $("#txtAdvanceNumero_Exterior_de_los_Hechos").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_Exterior_de_los_HechosSearchType = $("#ddlAdvanceNumero_Exterior_de_los_HechosFilter").val();
+        }
+        if ($("#txtAdvanceNumero_Interior_de_los_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_Interior_de_los_Hechos = $("#txtAdvanceNumero_Interior_de_los_Hechos").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_Interior_de_los_HechosSearchType = $("#ddlAdvanceNumero_Interior_de_los_HechosFilter").val();
+        }
+        if ($("#txtAdvanceLatitud_de_los_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPILatitud_de_los_Hechos = $("#txtAdvanceLatitud_de_los_Hechos").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPILatitud_de_los_HechosSearchType = $("#ddlAdvanceLatitud_de_los_HechosFilter").val();
+        }
+        if ($("#txtAdvanceLongitud_de_los_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPILongitud_de_los_Hechos = $("#txtAdvanceLongitud_de_los_Hechos").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPILongitud_de_los_HechosSearchType = $("#ddlAdvanceLongitud_de_los_HechosFilter").val();
+        }
+        advanceSearch.Tipo_de_Lugar_del_HechoSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Lugar_del_Hecho').val().length > 0 || $("#txtAdvanceTipo_de_Lugar_del_Hecho").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Tipo_de_Lugar_del_HechoName = $("#txtAdvanceTipo_de_Lugar_del_Hecho").val();
+                advanceSearch.Tipo_de_Lugar_del_HechoNameSearchType = $("#ddlAdvanceTipo_de_Lugar_del_Hecho").val();
+                advanceSearch.Tipo_de_Lugar_del_HechoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_Lugar_del_HechoToSearch = $("#ddlAdvanceTipo_de_Lugar_del_Hecho").val();
+                advanceSearch.Tipo_de_Lugar_del_HechoSearchType = 2;
+            }
+        }
+        if ($("#ddlAdvanceProteccion_de_Datos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIProteccion_de_Datos = $("#ddlAdvanceProteccion_de_Datos").val();
+        }
+        if ($("#txtAdvanceNombre_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINombre_de_Persona_Moral = $("#txtAdvanceNombre_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINombre_de_Persona_MoralSearchType = $("#ddlAdvanceNombre_de_Persona_MoralFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Paterno_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIApellido_Paterno_de_Persona_Moral = $("#txtAdvanceApellido_Paterno_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIApellido_Paterno_de_Persona_MoralSearchType = $("#ddlAdvanceApellido_Paterno_de_Persona_MoralFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Materno_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIApellido_Materno_de_Persona_Moral = $("#txtAdvanceApellido_Materno_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIApellido_Materno_de_Persona_MoralSearchType = $("#ddlAdvanceApellido_Materno_de_Persona_MoralFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Nacimiento_de_Persona_Moral").val() != "" || $("#txtAdvanceToFecha_de_Nacimiento_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIFecha_de_Nacimiento_de_Persona_MoralFrom = $("#txtAdvanceFromFecha_de_Nacimiento_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIFecha_de_Nacimiento_de_Persona_MoralTo = $("#txtAdvanceToFecha_de_Nacimiento_de_Persona_Moral").val();
+        }
+        if ($("#txtAdvanceFromEdad_de_Persona_Moral").val() != "" || $("#txtAdvanceToEdad_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIEdad_de_Persona_MoralFrom = $("#txtAdvanceFromEdad_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIEdad_de_Persona_MoralTo = $("#txtAdvanceToEdad_de_Persona_Moral").val();
+        }
+        advanceSearch.Sexo_de_Persona_MoralSearchType = 0;
+        if ($('#ddlAdvanceSexo_de_Persona_Moral').val().length > 0 || $("#txtAdvanceSexo_de_Persona_Moral").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Sexo_de_Persona_MoralName = $("#txtAdvanceSexo_de_Persona_Moral").val();
+                advanceSearch.Sexo_de_Persona_MoralNameSearchType = $("#ddlAdvanceSexo_de_Persona_Moral").val();
+                advanceSearch.Sexo_de_Persona_MoralSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Sexo_de_Persona_MoralToSearch = $("#ddlAdvanceSexo_de_Persona_Moral").val();
+                advanceSearch.Sexo_de_Persona_MoralSearchType = 2;
+            }
+        }
+        advanceSearch.Estado_Civil_de_Persona_MoralSearchType = 0;
+        if ($('#ddlAdvanceEstado_Civil_de_Persona_Moral').val().length > 0 || $("#txtAdvanceEstado_Civil_de_Persona_Moral").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Estado_Civil_de_Persona_MoralName = $("#txtAdvanceEstado_Civil_de_Persona_Moral").val();
+                advanceSearch.Estado_Civil_de_Persona_MoralNameSearchType = $("#ddlAdvanceEstado_Civil_de_Persona_Moral").val();
+                advanceSearch.Estado_Civil_de_Persona_MoralSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Estado_Civil_de_Persona_MoralToSearch = $("#ddlAdvanceEstado_Civil_de_Persona_Moral").val();
+                advanceSearch.Estado_Civil_de_Persona_MoralSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_de_Identificacion_de_Persona_MoralSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Identificacion_de_Persona_Moral').val().length > 0 || $("#txtAdvanceTipo_de_Identificacion_de_Persona_Moral").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Tipo_de_Identificacion_de_Persona_MoralName = $("#txtAdvanceTipo_de_Identificacion_de_Persona_Moral").val();
+                advanceSearch.Tipo_de_Identificacion_de_Persona_MoralNameSearchType = $("#ddlAdvanceTipo_de_Identificacion_de_Persona_Moral").val();
+                advanceSearch.Tipo_de_Identificacion_de_Persona_MoralSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_Identificacion_de_Persona_MoralToSearch = $("#ddlAdvanceTipo_de_Identificacion_de_Persona_Moral").val();
+                advanceSearch.Tipo_de_Identificacion_de_Persona_MoralSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNumero_de_Identificacion_de_Persona_Mora").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_de_Identificacion_de_Persona_Mora = $("#txtAdvanceNumero_de_Identificacion_de_Persona_Mora").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_de_Identificacion_de_Persona_MoraSearchType = $("#ddlAdvanceNumero_de_Identificacion_de_Persona_MoraFilter").val();
+        }
+        advanceSearch.Nacionalidad_de_Persona_MoralSearchType = 0;
+        if ($('#ddlAdvanceNacionalidad_de_Persona_Moral').val().length > 0 || $("#txtAdvanceNacionalidad_de_Persona_Moral").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Nacionalidad_de_Persona_MoralName = $("#txtAdvanceNacionalidad_de_Persona_Moral").val();
+                advanceSearch.Nacionalidad_de_Persona_MoralNameSearchType = $("#ddlAdvanceNacionalidad_de_Persona_Moral").val();
+                advanceSearch.Nacionalidad_de_Persona_MoralSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Nacionalidad_de_Persona_MoralToSearch = $("#ddlAdvanceNacionalidad_de_Persona_Moral").val();
+                advanceSearch.Nacionalidad_de_Persona_MoralSearchType = 2;
+            }
+        }
+        advanceSearch.Escolaridad_de_Persona_MoralSearchType = 0;
+        if ($('#ddlAdvanceEscolaridad_de_Persona_Moral').val().length > 0 || $("#txtAdvanceEscolaridad_de_Persona_Moral").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Escolaridad_de_Persona_MoralName = $("#txtAdvanceEscolaridad_de_Persona_Moral").val();
+                advanceSearch.Escolaridad_de_Persona_MoralNameSearchType = $("#ddlAdvanceEscolaridad_de_Persona_Moral").val();
+                advanceSearch.Escolaridad_de_Persona_MoralSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Escolaridad_de_Persona_MoralToSearch = $("#ddlAdvanceEscolaridad_de_Persona_Moral").val();
+                advanceSearch.Escolaridad_de_Persona_MoralSearchType = 2;
+            }
+        }
+        advanceSearch.Ocupacion_de_Persona_MoralSearchType = 0;
+        if ($('#ddlAdvanceOcupacion_de_Persona_Moral').val().length > 0 || $("#txtAdvanceOcupacion_de_Persona_Moral").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Ocupacion_de_Persona_MoralName = $("#txtAdvanceOcupacion_de_Persona_Moral").val();
+                advanceSearch.Ocupacion_de_Persona_MoralNameSearchType = $("#ddlAdvanceOcupacion_de_Persona_Moral").val();
+                advanceSearch.Ocupacion_de_Persona_MoralSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Ocupacion_de_Persona_MoralToSearch = $("#ddlAdvanceOcupacion_de_Persona_Moral").val();
+                advanceSearch.Ocupacion_de_Persona_MoralSearchType = 2;
+            }
+        }
+        advanceSearch.Pais_de_Persona_MoralSearchType = 0;
+        if ($('#ddlAdvancePais_de_Persona_Moral').val().length > 0 || $("#txtAdvancePais_de_Persona_Moral").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Pais_de_Persona_MoralName = $("#txtAdvancePais_de_Persona_Moral").val();
+                advanceSearch.Pais_de_Persona_MoralNameSearchType = $("#ddlAdvancePais_de_Persona_Moral").val();
+                advanceSearch.Pais_de_Persona_MoralSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Pais_de_Persona_MoralToSearch = $("#ddlAdvancePais_de_Persona_Moral").val();
+                advanceSearch.Pais_de_Persona_MoralSearchType = 2;
+            }
+        }
+        advanceSearch.Estado_de_Persona_MoralSearchType = 0;
+        if ($('#ddlAdvanceEstado_de_Persona_Moral').val().length > 0 || $("#txtAdvanceEstado_de_Persona_Moral").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Estado_de_Persona_MoralName = $("#txtAdvanceEstado_de_Persona_Moral").val();
+                advanceSearch.Estado_de_Persona_MoralNameSearchType = $("#ddlAdvanceEstado_de_Persona_Moral").val();
+                advanceSearch.Estado_de_Persona_MoralSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Estado_de_Persona_MoralToSearch = $("#ddlAdvanceEstado_de_Persona_Moral").val();
+                advanceSearch.Estado_de_Persona_MoralSearchType = 2;
+            }
+        }
+        advanceSearch.Municipio_de_Persona_MoralSearchType = 0;
+        if ($('#ddlAdvanceMunicipio_de_Persona_Moral').val().length > 0 || $("#txtAdvanceMunicipio_de_Persona_Moral").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Municipio_de_Persona_MoralName = $("#txtAdvanceMunicipio_de_Persona_Moral").val();
+                advanceSearch.Municipio_de_Persona_MoralNameSearchType = $("#ddlAdvanceMunicipio_de_Persona_Moral").val();
+                advanceSearch.Municipio_de_Persona_MoralSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Municipio_de_Persona_MoralToSearch = $("#ddlAdvanceMunicipio_de_Persona_Moral").val();
+                advanceSearch.Municipio_de_Persona_MoralSearchType = 2;
+            }
+        }
+        advanceSearch.Colonia_de_Persona_MoralSearchType = 0;
+        if ($('#ddlAdvanceColonia_de_Persona_Moral').val().length > 0 || $("#txtAdvanceColonia_de_Persona_Moral").val() == "") {
+
+
+            if (isDetalle_de_Datos_de_la_Victima_MPITextSearch) {
+                advanceSearch.Colonia_de_Persona_MoralName = $("#txtAdvanceColonia_de_Persona_Moral").val();
+                advanceSearch.Colonia_de_Persona_MoralNameSearchType = $("#ddlAdvanceColonia_de_Persona_Moral").val();
+                advanceSearch.Colonia_de_Persona_MoralSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Colonia_de_Persona_MoralToSearch = $("#ddlAdvanceColonia_de_Persona_Moral").val();
+                advanceSearch.Colonia_de_Persona_MoralSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromCodigo_Postal_de_Persona_Moral").val() != "" || $("#txtAdvanceToCodigo_Postal_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICodigo_Postal_de_Persona_MoralFrom = $("#txtAdvanceFromCodigo_Postal_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICodigo_Postal_de_Persona_MoralTo = $("#txtAdvanceToCodigo_Postal_de_Persona_Moral").val();
+        }
+        if ($("#txtAdvanceCalle_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICalle_de_Persona_Moral = $("#txtAdvanceCalle_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICalle_de_Persona_MoralSearchType = $("#ddlAdvanceCalle_de_Persona_MoralFilter").val();
+        }
+        if ($("#txtAdvanceNumero_Exterior_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_Exterior_de_Persona_Moral = $("#txtAdvanceNumero_Exterior_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_Exterior_de_Persona_MoralSearchType = $("#ddlAdvanceNumero_Exterior_de_Persona_MoralFilter").val();
+        }
+        if ($("#txtAdvanceNumero_Interior_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_Interior_de_Persona_Moral = $("#txtAdvanceNumero_Interior_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPINumero_Interior_de_Persona_MoralSearchType = $("#ddlAdvanceNumero_Interior_de_Persona_MoralFilter").val();
+        }
+        if ($("#txtAdvanceEntre_Calle_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIEntre_Calle_de_Persona_Moral = $("#txtAdvanceEntre_Calle_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIEntre_Calle_de_Persona_MoralSearchType = $("#ddlAdvanceEntre_Calle_de_Persona_MoralFilter").val();
+        }
+        if ($("#txtAdvanceY_Calle_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIY_Calle_de_Persona_Moral = $("#txtAdvanceY_Calle_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIY_Calle_de_Persona_MoralSearchType = $("#ddlAdvanceY_Calle_de_Persona_MoralFilter").val();
+        }
+        if ($("#txtAdvanceLongitud_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPILongitud_de_Persona_Moral = $("#txtAdvanceLongitud_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPILongitud_de_Persona_MoralSearchType = $("#ddlAdvanceLongitud_de_Persona_MoralFilter").val();
+        }
+        if ($("#txtAdvanceLatitud_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPILatitud_de_Persona_Moral = $("#txtAdvanceLatitud_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPILatitud_de_Persona_MoralSearchType = $("#ddlAdvanceLatitud_de_Persona_MoralFilter").val();
+        }
+        if ($("#txtAdvanceTelefono_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPITelefono_de_Persona_Moral = $("#txtAdvanceTelefono_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPITelefono_de_Persona_MoralSearchType = $("#ddlAdvanceTelefono_de_Persona_MoralFilter").val();
+        }
+        if ($("#txtAdvanceExtension_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIExtension_de_Persona_Moral = $("#txtAdvanceExtension_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIExtension_de_Persona_MoralSearchType = $("#ddlAdvanceExtension_de_Persona_MoralFilter").val();
+        }
+        if ($("#txtAdvanceCelular_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICelular_de_Persona_Moral = $("#txtAdvanceCelular_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICelular_de_Persona_MoralSearchType = $("#ddlAdvanceCelular_de_Persona_MoralFilter").val();
+        }
+        if ($("#txtAdvanceCorreo_Electronico_de_Persona_Moral").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICorreo_Electronico_de_Persona_Moral = $("#txtAdvanceCorreo_Electronico_de_Persona_Moral").val();
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPICorreo_Electronico_de_Persona_MoralSearchType = $("#ddlAdvanceCorreo_Electronico_de_Persona_MoralFilter").val();
+        }
+        if ($("#ddlAdvancePersona_Moral_Victima").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_de_la_Victima_MPIPersona_Moral_Victima = $("#ddlAdvancePersona_Moral_Victima").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblDetalle_de_Datos_de_la_Victima_MPI').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceSexo").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceSexo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceSexo").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceSexo").val('');
+        });
+        $("#txtAdvanceEstado_Civil").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceEstado_Civil").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstado_Civil").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceEstado_Civil").val('');
+        });
+        $("#txtAdvanceTipo_de_Identificacion").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceTipo_de_Identificacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Identificacion").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceTipo_de_Identificacion").val('');
+        });
+        $("#txtAdvanceNacionalidad").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceNacionalidad").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceNacionalidad").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceNacionalidad").val('');
+        });
+        $("#txtAdvanceEscolaridad").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceEscolaridad").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEscolaridad").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceEscolaridad").val('');
+        });
+        $("#txtAdvanceOcupacion").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceOcupacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceOcupacion").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceOcupacion").val('');
+        });
+        $("#txtAdvancePais").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvancePais").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePais").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvancePais").val('');
+        });
+        $("#txtAdvanceEstado").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceEstado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstado").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceEstado").val('');
+        });
+        $("#txtAdvanceMunicipio").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceMunicipio").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMunicipio").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceMunicipio").val('');
+        });
+        $("#txtAdvanceColonia").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceColonia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceColonia").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceColonia").val('');
+        });
+        $("#txtAdvanceSexo_del_Tutor").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceSexo_del_Tutor").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceSexo_del_Tutor").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceSexo_del_Tutor").val('');
+        });
+        $("#txtAdvanceEstado_Civil_del_Tutor").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceEstado_Civil_del_Tutor").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstado_Civil_del_Tutor").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceEstado_Civil_del_Tutor").val('');
+        });
+        $("#txtAdvanceTipo_de_Identificacion_del_Tutor").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceTipo_de_Identificacion_del_Tutor").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Identificacion_del_Tutor").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceTipo_de_Identificacion_del_Tutor").val('');
+        });
+        $("#txtAdvanceNacionalidad_del_Tutor").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceNacionalidad_del_Tutor").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceNacionalidad_del_Tutor").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceNacionalidad_del_Tutor").val('');
+        });
+        $("#txtAdvanceEscolaridad_del_Tutor").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceEscolaridad_del_Tutor").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEscolaridad_del_Tutor").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceEscolaridad_del_Tutor").val('');
+        });
+        $("#txtAdvanceOcupacion_del_Tutor").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceOcupacion_del_Tutor").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceOcupacion_del_Tutor").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceOcupacion_del_Tutor").val('');
+        });
+        $("#txtAdvancePais_del_Tutor").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvancePais_del_Tutor").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePais_del_Tutor").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvancePais_del_Tutor").val('');
+        });
+        $("#txtAdvanceEstado_del_Tutor").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceEstado_del_Tutor").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstado_del_Tutor").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceEstado_del_Tutor").val('');
+        });
+        $("#txtAdvanceMunicipio_del_Tutor").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceMunicipio_del_Tutor").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMunicipio_del_Tutor").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceMunicipio_del_Tutor").val('');
+        });
+        $("#txtAdvanceLocalidad_del_Tutor").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceLocalidad_del_Tutor").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceLocalidad_del_Tutor").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceLocalidad_del_Tutor").val('');
+        });
+        $("#txtAdvanceColonia_del_Tutor").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceColonia_del_Tutor").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceColonia_del_Tutor").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceColonia_del_Tutor").val('');
+        });
+        $("#txtAdvanceTipo_de_Compareciente").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceTipo_de_Compareciente").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Compareciente").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceTipo_de_Compareciente").val('');
+        });
+        $("#txtAdvancePrioridad_del_Hecho").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvancePrioridad_del_Hecho").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePrioridad_del_Hecho").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvancePrioridad_del_Hecho").val('');
+        });
+        $("#txtAdvancePais_de_los_Hechos").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvancePais_de_los_Hechos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePais_de_los_Hechos").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvancePais_de_los_Hechos").val('');
+        });
+        $("#txtAdvanceEstado_de_los_Hechos").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceEstado_de_los_Hechos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstado_de_los_Hechos").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceEstado_de_los_Hechos").val('');
+        });
+        $("#txtAdvanceMunicipio_de_los_Hechos").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceMunicipio_de_los_Hechos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMunicipio_de_los_Hechos").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceMunicipio_de_los_Hechos").val('');
+        });
+        $("#txtAdvanceColonia_de_los_Hechos").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceColonia_de_los_Hechos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceColonia_de_los_Hechos").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceColonia_de_los_Hechos").val('');
+        });
+        $("#txtAdvanceTipo_de_Lugar_del_Hecho").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceTipo_de_Lugar_del_Hecho").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Lugar_del_Hecho").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceTipo_de_Lugar_del_Hecho").val('');
+        });
+        $("#txtAdvanceSexo_de_Persona_Moral").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceSexo_de_Persona_Moral").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceSexo_de_Persona_Moral").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceSexo_de_Persona_Moral").val('');
+        });
+        $("#txtAdvanceEstado_Civil_de_Persona_Moral").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceEstado_Civil_de_Persona_Moral").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstado_Civil_de_Persona_Moral").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceEstado_Civil_de_Persona_Moral").val('');
+        });
+        $("#txtAdvanceTipo_de_Identificacion_de_Persona_Moral").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceTipo_de_Identificacion_de_Persona_Moral").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Identificacion_de_Persona_Moral").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceTipo_de_Identificacion_de_Persona_Moral").val('');
+        });
+        $("#txtAdvanceNacionalidad_de_Persona_Moral").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceNacionalidad_de_Persona_Moral").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceNacionalidad_de_Persona_Moral").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceNacionalidad_de_Persona_Moral").val('');
+        });
+        $("#txtAdvanceEscolaridad_de_Persona_Moral").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceEscolaridad_de_Persona_Moral").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEscolaridad_de_Persona_Moral").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceEscolaridad_de_Persona_Moral").val('');
+        });
+        $("#txtAdvanceOcupacion_de_Persona_Moral").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceOcupacion_de_Persona_Moral").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceOcupacion_de_Persona_Moral").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceOcupacion_de_Persona_Moral").val('');
+        });
+        $("#txtAdvancePais_de_Persona_Moral").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvancePais_de_Persona_Moral").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePais_de_Persona_Moral").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvancePais_de_Persona_Moral").val('');
+        });
+        $("#txtAdvanceEstado_de_Persona_Moral").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceEstado_de_Persona_Moral").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstado_de_Persona_Moral").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceEstado_de_Persona_Moral").val('');
+        });
+        $("#txtAdvanceMunicipio_de_Persona_Moral").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceMunicipio_de_Persona_Moral").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMunicipio_de_Persona_Moral").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceMunicipio_de_Persona_Moral").val('');
+        });
+        $("#txtAdvanceColonia_de_Persona_Moral").keypress(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = true;
+            $("#ddlAdvanceColonia_de_Persona_Moral").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceColonia_de_Persona_Moral").change(function () {
+            isDetalle_de_Datos_de_la_Victima_MPITextSearch = false;
+            $("#txtAdvanceColonia_de_Persona_Moral").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

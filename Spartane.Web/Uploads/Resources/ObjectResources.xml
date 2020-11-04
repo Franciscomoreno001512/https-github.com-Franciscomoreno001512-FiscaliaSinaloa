@@ -1,0 +1,1744 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Objects>
+  <Object Id="1" culture="en-us" value="Permissions" />
+  <Object Id="1" culture="es-es" value="Permisos" />
+  <Object Id="5" culture="en-us" value="Gestión de Expedientes MASC" />
+  <Object Id="5" culture="es-es" value="Gestión de Expedientes MASC" />
+  <Object Id="6" culture="en-us" value="Gestión de Expedientes AT" />
+  <Object Id="6" culture="es-es" value="Gestión de Expedientes AT" />
+  <Object Id="31754" culture="en-us" value="Formats List" />
+  <Object Id="31754" culture="es-es" value="Listado de Formatos" />
+  <Object Id="10" culture="en-us" value="Format Permissions" />
+  <Object Id="10" culture="es-es" value="Permisos de Formatos" />
+  <Object Id="11" culture="en-us" value="Report Permissions" />
+  <Object Id="11" culture="es-es" value="Permisos de Reportes" />
+  <Object Id="110" culture="en-us" value="Language Resources" />
+  <Object Id="110" culture="es-es" value="Recursos de Lenguaje" />
+  <Object Id="120" culture="en-us" value="Workflow List" />
+  <Object Id="120" culture="es-es" value="Listado de Flujos de Trabajo" />
+  <Object Id="31755" culture="en-us" value="Format Types" />
+  <Object Id="31755" culture="es-es" value="Tipos de Formatos" />
+  <Object Id="31756" culture="en-us" value="Spartan_Metadata" />
+  <Object Id="31756" culture="es-es" value="Spartan_Metadata" />
+  <Object Id="31870" culture="en-us" value="Format Configuration" />
+  <Object Id="31870" culture="es-es" value="Configuración de Formatos" />
+  <Object Id="31867" culture="en-us" value="Format Field" />
+  <Object Id="31867" culture="es-es" value="Campos de Formato" />
+  <Object Id="31869" culture="en-us" value="Format Permission Type" />
+  <Object Id="31869" culture="es-es" value="Tipos de Permisos de Formatos" />
+  <Object Id="31868" culture="en-us" value="Format Permissions" />
+  <Object Id="31868" culture="es-es" value="Permisos de Formatos" />
+  <Object Id="31953" culture="en-us" value="Report Configuration" />
+  <Object Id="31953" culture="es-es" value="Configuración de Reportes" />
+  <Object Id="32039" culture="en-us" value="Report Field Type" />
+  <Object Id="32039" culture="es-es" value="Tipos de Campo de Reporte" />
+  <Object Id="32035" culture="en-us" value="Report Fields Detail" />
+  <Object Id="32035" culture="es-es" value="Detalle de Campos de Reporte" />
+  <Object Id="32037" culture="en-us" value="Report Formats" />
+  <Object Id="32037" culture="es-es" value="Formatos de Reporte" />
+  <Object Id="32036" culture="en-us" value="Report Function" />
+  <Object Id="32036" culture="es-es" value="Funciones de Reportes" />
+  <Object Id="32038" culture="en-us" value="Report Order Type" />
+  <Object Id="32038" culture="es-es" value="Tipo de Orden de Reportes" />
+  <Object Id="31958" culture="en-us" value="Report Permission Type" />
+  <Object Id="31958" culture="es-es" value="Tipo de Permisos de Reporte" />
+  <Object Id="31957" culture="en-us" value="Report Permissions" />
+  <Object Id="31957" culture="es-es" value="Permisos de Reporte" />
+  <Object Id="31954" culture="en-us" value="Report Presentation Type" />
+  <Object Id="31954" culture="es-es" value="Tipo de Presentación de Reporte" />
+  <Object Id="31955" culture="en-us" value="Report Presentation View" />
+  <Object Id="31955" culture="es-es" value="Vista de Presentación de Reporte" />
+  <Object Id="31956" culture="en-us" value="Report Status" />
+  <Object Id="31956" culture="es-es" value="Estatus de Reporte" />
+  <Object Id="50000" culture="en-us" value="Attribute Control Type" />
+  <Object Id="50000" culture="es-es" value="Tipo de Conrol de Atributo" />
+  <Object Id="50001" culture="en-us" value="Attribute Type" />
+  <Object Id="50001" culture="es-es" value="Tipo de Atributo" />
+  <Object Id="50002" culture="en-us" value="Business Rule" />
+  <Object Id="50002" culture="es-es" value="Regla de Negocio" />
+  <Object Id="140" culture="en-us" value="Business Rule Action" />
+  <Object Id="140" culture="es-es" value="Acciones" />
+  <Object Id="152" culture="en-us" value="Business Rule Action Attribute Restrictions Detail" />
+  <Object Id="152" culture="es-es" value="Restricciones de Atributo" />
+  <Object Id="141" culture="en-us" value="Business Rule Action Classification" />
+  <Object Id="141" culture="es-es" value="Clasificación de Acciones" />
+  <Object Id="151" culture="en-us" value="Business Rule Action Configuration Detail" />
+  <Object Id="151" culture="es-es" value="Configuración de Acciones" />
+  <Object Id="153" culture="en-us" value="Business Rule Action Event Restrictions Detail" />
+  <Object Id="153" culture="es-es" value="Restricciones de Eventos" />
+  <Object Id="50008" culture="en-us" value="Business Rule Action False Detail" />
+  <Object Id="50008" culture="es-es" value="Acciones False" />
+  <Object Id="154" culture="en-us" value="Business Rule Action Operation Restrictions Detail" />
+  <Object Id="154" culture="es-es" value="Restricciones de Operaciones" />
+  <Object Id="142" culture="en-us" value="Business Rule Action Parameter Type" />
+  <Object Id="142" culture="es-es" value="Tipos de Parámetros" />
+  <Object Id="50011" culture="en-us" value="Business Rule Action Result" />
+  <Object Id="50011" culture="es-es" value="Resultado de Acción" />
+  <Object Id="50012" culture="en-us" value="Business Rule Actions True Detail" />
+  <Object Id="50012" culture="es-es" value="Business Rule Actions True Detail" />
+  <Object Id="143" culture="en-us" value="Business Rule Condition" />
+  <Object Id="143" culture="es-es" value="Business Rule Condition" />
+  <Object Id="144" culture="en-us" value="Business Rule Condition Operator" />
+  <Object Id="144" culture="es-es" value="Condición de Operador" />
+  <Object Id="50015" culture="en-us" value="Business Rule Conditions Detail" />
+  <Object Id="50015" culture="es-es" value="Detalle de Condiciones" />
+  <Object Id="145" culture="en-us" value="Business Rule Operation" />
+  <Object Id="145" culture="es-es" value="Operación" />
+  <Object Id="50017" culture="en-us" value="Business Rule Operation Detail" />
+  <Object Id="50017" culture="es-es" value="Detalle de Operaciones" />
+  <Object Id="146" culture="en-us" value="Business Rule Operator Type" />
+  <Object Id="146" culture="es-es" value="Tipos de Operadores" />
+  <Object Id="147" culture="en-us" value="Business Rule Presentation Control Type" />
+  <Object Id="147" culture="es-es" value="Presentación de Tipo de Control" />
+  <Object Id="148" culture="en-us" value="Business Rule Process Event" />
+  <Object Id="148" culture="es-es" value="Eventos de Proceso" />
+  <Object Id="50021" culture="en-us" value="Business Rule Process Event Detail" />
+  <Object Id="50021" culture="es-es" value="Detalle de Eventos de Proceso" />
+  <Object Id="149" culture="en-us" value="Business Rule Scope" />
+  <Object Id="149" culture="es-es" value="Ámbito" />
+  <Object Id="50023" culture="en-us" value="Business Rule Scope Detail" />
+  <Object Id="50023" culture="es-es" value="Detalle de Ámbitos" />
+  <Object Id="150" culture="en-us" value="Business Rule Status" />
+  <Object Id="150" culture="es-es" value="Estatus" />
+  <Object Id="50025" culture="en-us" value="Spartan BR Modifications Log" />
+  <Object Id="50025" culture="es-es" value="Spartan BR Modifications Log" />
+  <Object Id="100" culture="en-us" value="Users" />
+  <Object Id="100" culture="es-es" value="Usuarios" />
+  <Object Id="101" culture="en-us" value="User Roles" />
+  <Object Id="101" culture="es-es" value="Roles de Usuario" />
+  <Object Id="103" culture="en-us" value="User Role Status" />
+  <Object Id="103" culture="es-es" value="Estatus de Rol de Usuario" />
+  <Object Id="102" culture="en-us" value="User Status" />
+  <Object Id="102" culture="es-es" value="Estatus de Usuario" />
+  <Object Id="135" culture="en-us" value="Change Password Autorization" />
+  <Object Id="135" culture="es-es" value="Autorización de Cambio de Password" />
+  <Object Id="136" culture="en-us" value="Settings" />
+  <Object Id="136" culture="es-es" value="Configuraciones" />
+  <Object Id="137" culture="en-us" value="User Historical Password" />
+  <Object Id="137" culture="es-es" value="Histórico de Passwords" />
+  <Object Id="35351" culture="en-us" value="Business Rule Creation" />
+  <Object Id="35351" culture="es-es" value="Creación de Reglas de Negocio" />
+  <Object Id="35350" culture="en-us" value="Spartan BR Complexity" />
+  <Object Id="35350" culture="es-es" value="Complejidad" />
+  <Object Id="35347" culture="en-us" value="Spartan BR Peer Review" />
+  <Object Id="35347" culture="es-es" value="Revisión por Pares" />
+  <Object Id="35349" culture="en-us" value="Spartan BR Rejection Reason" />
+  <Object Id="35349" culture="es-es" value="Razones de Rechazo" />
+  <Object Id="35348" culture="en-us" value="Spartan BR Testing" />
+    <Object Id="34957" culture="es-es" value="Bitacora Sql" />
+  <Object Id="34957" culture="en-us" value="Log Sql" />
+  
+<Object Id="44948" culture="en-us" value="Dialecto" />
+<Object Id="44948" culture="es-es" value="Dialecto" />
+<Object Id="45067" culture="en-us" value="Barba" />
+<Object Id="45067" culture="es-es" value="Barba" />
+<Object Id="45073" culture="en-us" value="Boca" />
+<Object Id="45073" culture="es-es" value="Boca" />
+<Object Id="45330" culture="en-us" value="PasaTurnos" />
+<Object Id="45330" culture="es-es" value="PasaTurnos" />
+<Object Id="45017" culture="en-us" value="A Tiempo" />
+<Object Id="45017" culture="es-es" value="A Tiempo" />
+<Object Id="45151" culture="en-us" value="Abogado" />
+<Object Id="45151" culture="es-es" value="Abogado" />
+<Object Id="45206" culture="en-us" value="Acta de Lectura de Derechos" />
+<Object Id="45206" culture="es-es" value="Acta de Lectura de Derechos" />
+<Object Id="45277" culture="en-us" value="Adicciones" />
+<Object Id="45277" culture="es-es" value="Adicciones" />
+<Object Id="45312" culture="en-us" value="Adicciones de Involucrado" />
+<Object Id="45312" culture="es-es" value="Adicciones de Involucrado" />
+<Object Id="45313" culture="en-us" value="Adicciones Probable Responsable" />
+<Object Id="45313" culture="es-es" value="Adicciones Probable Responsable" />
+<Object Id="44992" culture="en-us" value="Agencia" />
+<Object Id="44992" culture="es-es" value="Agencia" />
+<Object Id="45086" culture="en-us" value="Agente del Ministerio Público Investigador" />
+<Object Id="45086" culture="es-es" value="Agente del Ministerio Público Investigador" />
+<Object Id="45293" culture="en-us" value="Agravantes" />
+<Object Id="45293" culture="es-es" value="Agravantes" />
+<Object Id="45301" culture="en-us" value="Agravantes del Delito" />
+<Object Id="45301" culture="es-es" value="Agravantes del Delito" />
+<Object Id="45260" culture="en-us" value="Anteojos" />
+<Object Id="45260" culture="es-es" value="Anteojos" />
+<Object Id="45045" culture="en-us" value="Articulo" />
+<Object Id="45045" culture="es-es" value="Articulo" />
+<Object Id="44972" culture="en-us" value="Aseguradora de Vehículo" />
+<Object Id="44972" culture="es-es" value="Aseguradora de Vehículo" />
+<Object Id="45297" culture="en-us" value="Registro de Turnos" />
+<Object Id="45297" culture="es-es" value="Registro de Turnos" />
+<Object Id="45210" culture="en-us" value="Audiencia de Control Fundamento" />
+<Object Id="45210" culture="es-es" value="Audiencia de Control Fundamento" />
+<Object Id="45211" culture="en-us" value="Audiencia de Control Hechos" />
+<Object Id="45211" culture="es-es" value="Audiencia de Control Hechos" />
+<Object Id="45212" culture="en-us" value="Audiencia de Control Procedimiento" />
+<Object Id="45212" culture="es-es" value="Audiencia de Control Procedimiento" />
+<Object Id="45213" culture="en-us" value="Audiencia de Control Reiteración" />
+<Object Id="45213" culture="es-es" value="Audiencia de Control Reiteración" />
+<Object Id="45209" culture="en-us" value="Audiencia de Control Solicitud" />
+<Object Id="45209" culture="es-es" value="Audiencia de Control Solicitud" />
+<Object Id="44989" culture="en-us" value="Autoridad" />
+<Object Id="44989" culture="es-es" value="Autoridad" />
+<Object Id="45010" culture="en-us" value="Mecanismos Alternos" />
+<Object Id="45010" culture="es-es" value="Mecanismos Alternos" />
+<Object Id="45071" culture="en-us" value="Bigote" />
+<Object Id="45071" culture="es-es" value="Bigote" />
+<Object Id="45266" culture="en-us" value="Binario" />
+<Object Id="45266" culture="es-es" value="Binario" />
+<Object Id="45234" culture="en-us" value="Bitácora de Sincronización" />
+<Object Id="45234" culture="es-es" value="Bitácora de Sincronización" />
+<Object Id="45216" culture="en-us" value="Bitácora de Usuarios" />
+<Object Id="45216" culture="es-es" value="Bitácora de Usuarios" />
+<Object Id="45133" culture="en-us" value="Cadena de Custodia" />
+<Object Id="45133" culture="es-es" value="Cadena de Custodia" />
+<Object Id="45132" culture="en-us" value="Calendario" />
+<Object Id="45132" culture="es-es" value="Calendario" />
+<Object Id="45081" culture="en-us" value="Calendario de Citas" />
+<Object Id="45081" culture="es-es" value="Calendario de Citas" />
+<Object Id="45272" culture="en-us" value="Calidad Migratoria" />
+<Object Id="45272" culture="es-es" value="Calidad Migratoria" />
+<Object Id="45060" culture="en-us" value="Calvicie" />
+<Object Id="45060" culture="es-es" value="Calvicie" />
+<Object Id="45053" culture="en-us" value="Cantidad de Cabello" />
+<Object Id="45053" culture="es-es" value="Cantidad de Cabello" />
+<Object Id="45204" culture="en-us" value="Carga de Documentos de Lectura de Derechos" />
+<Object Id="45204" culture="es-es" value="Carga de Documentos de Lectura de Derechos" />
+<Object Id="45205" culture="en-us" value="Carga de Documentos de Legislación" />
+<Object Id="45205" culture="es-es" value="Carga de Documentos de Legislación" />
+<Object Id="45233" culture="en-us" value="Catálogo de Estatus de Folio de Usuario" />
+<Object Id="45233" culture="es-es" value="Catálogo de Estatus de Folio de Usuario" />
+<Object Id="45231" culture="en-us" value="Catálogo de Estatus de Traslado" />
+<Object Id="45231" culture="es-es" value="Catálogo de Estatus de Traslado" />
+<Object Id="45225" culture="en-us" value="Catálogo de Inicio de Cadena de Custodia" />
+<Object Id="45225" culture="es-es" value="Catálogo de Inicio de Cadena de Custodia" />
+<Object Id="45227" culture="en-us" value="Catálogo de Móvil para traslado" />
+<Object Id="45227" culture="es-es" value="Catálogo de Móvil para traslado" />
+<Object Id="45226" culture="en-us" value="Catálogo de Recolección" />
+<Object Id="45226" culture="es-es" value="Catálogo de Recolección" />
+<Object Id="45170" culture="en-us" value="Catalogo Estatus CC" />
+<Object Id="45170" culture="es-es" value="Catalogo Estatus CC" />
+<Object Id="45236" culture="en-us" value="Catálogo Estatus de Replicación" />
+<Object Id="45236" culture="es-es" value="Catálogo Estatus de Replicación" />
+<Object Id="45131" culture="en-us" value="Catalogo Estatus Detenido MPI" />
+<Object Id="45131" culture="es-es" value="Catalogo Estatus Detenido MPI" />
+<Object Id="45142" culture="en-us" value="Catalogo Motivo de Intervencion CC" />
+<Object Id="45142" culture="es-es" value="Catalogo Motivo de Intervencion CC" />
+<Object Id="45112" culture="en-us" value="Catalogo Numero de Preguntas" />
+<Object Id="45112" culture="es-es" value="Catalogo Numero de Preguntas" />
+<Object Id="45111" culture="en-us" value="Catalogo Respuesta" />
+<Object Id="45111" culture="es-es" value="Catalogo Respuesta" />
+<Object Id="45134" culture="en-us" value="Catalogo Tipo de Cargo CC" />
+<Object Id="45134" culture="es-es" value="Catalogo Tipo de Cargo CC" />
+<Object Id="45146" culture="en-us" value="Catalogo Tipo de Embalaje CC" />
+<Object Id="45146" culture="es-es" value="Catalogo Tipo de Embalaje CC" />
+<Object Id="45144" culture="en-us" value="Catalogo Tipo de Fijacion CC" />
+<Object Id="45144" culture="es-es" value="Catalogo Tipo de Fijacion CC" />
+<Object Id="45145" culture="en-us" value="Catalogo Tipo de Indicio CC" />
+<Object Id="45145" culture="es-es" value="Catalogo Tipo de Indicio CC" />
+<Object Id="45143" culture="en-us" value="Catalogo Unidad Administrativa CC" />
+<Object Id="45143" culture="es-es" value="Catalogo Unidad Administrativa CC" />
+<Object Id="45135" culture="en-us" value="Catalogo Unidad Policial" />
+<Object Id="45135" culture="es-es" value="Catalogo Unidad Policial" />
+<Object Id="45193" culture="en-us" value="Causas de Interrupción" />
+<Object Id="45193" culture="es-es" value="Causas de Interrupción" />
+<Object Id="45052" culture="en-us" value="Cejas" />
+<Object Id="45052" culture="es-es" value="Cejas" />
+<Object Id="44958" culture="en-us" value="Certifica Defunción" />
+<Object Id="44958" culture="es-es" value="Certifica Defunción" />
+<Object Id="44959" culture="en-us" value="Circunstancia Defunción" />
+<Object Id="44959" culture="es-es" value="Circunstancia Defunción" />
+<Object Id="44996" culture="en-us" value="Circunstancia del Delito" />
+<Object Id="44996" culture="es-es" value="Circunstancia del Delito" />
+<Object Id="44962" culture="en-us" value="Circunstancia Vehículo" />
+<Object Id="44962" culture="es-es" value="Circunstancia Vehículo" />
+<Object Id="45294" culture="en-us" value="Circunstancias" />
+<Object Id="45294" culture="es-es" value="Circunstancias" />
+<Object Id="45302" culture="en-us" value="Circunstancias del Delito" />
+<Object Id="45302" culture="es-es" value="Circunstancias del Delito" />
+<Object Id="44963" culture="en-us" value="Clase Especifica Vehículo" />
+<Object Id="44963" culture="es-es" value="Clase Especifica Vehículo" />
+<Object Id="45320" culture="en-us" value="Clasificación en Orden de Resultado" />
+<Object Id="45320" culture="es-es" value="Clasificación en Orden de Resultado" />
+<Object Id="44957" culture="en-us" value="Código Postal" />
+<Object Id="44957" culture="es-es" value="Código Postal" />
+<Object Id="44956" culture="en-us" value="Colonia" />
+<Object Id="44956" culture="es-es" value="Colonia" />
+<Object Id="45059" culture="en-us" value="Color de Cabello" />
+<Object Id="45059" culture="es-es" value="Color de Cabello" />
+<Object Id="45061" culture="en-us" value="Color de Ojos" />
+<Object Id="45061" culture="es-es" value="Color de Ojos" />
+<Object Id="45056" culture="en-us" value="Color de Piel" />
+<Object Id="45056" culture="es-es" value="Color de Piel" />
+<Object Id="44964" culture="en-us" value="Color Vehículo" />
+<Object Id="44964" culture="es-es" value="Color Vehículo" />
+<Object Id="45125" culture="en-us" value="Compareciente" />
+<Object Id="45125" culture="es-es" value="Compareciente" />
+<Object Id="45055" culture="en-us" value="Complexión" />
+<Object Id="45055" culture="es-es" value="Complexión" />
+<Object Id="45276" culture="en-us" value="Concurso" />
+<Object Id="45276" culture="es-es" value="Concurso" />
+<Object Id="44960" culture="en-us" value="Consecuencia Defunción" />
+<Object Id="44960" culture="es-es" value="Consecuencia Defunción" />
+<Object Id="45094" culture="en-us" value="Contingencia" />
+<Object Id="45094" culture="es-es" value="Contingencia" />
+<Object Id="45127" culture="en-us" value="Control de Tiempos JA" />
+<Object Id="45127" culture="es-es" value="Control de Tiempos JA" />
+<Object Id="45128" culture="en-us" value="Control de Tiempos MPO" />
+<Object Id="45128" culture="es-es" value="Control de Tiempos MPO" />
+<Object Id="45014" culture="en-us" value="Convenio" />
+<Object Id="45014" culture="es-es" value="Convenio" />
+<Object Id="45288" culture="en-us" value="Corporación" />
+<Object Id="45288" culture="es-es" value="Corporación" />
+<Object Id="45105" culture="en-us" value="Corrección de Error en Estatus" />
+<Object Id="45105" culture="es-es" value="Corrección de Error en Estatus" />
+<Object Id="45095" culture="en-us" value="Cumplimiento" />
+<Object Id="45095" culture="es-es" value="Cumplimiento" />
+<Object Id="45310" culture="en-us" value="Datos Personales Adicionales Involucrado" />
+<Object Id="45310" culture="es-es" value="Datos Personales Adicionales Involucrado" />
+<Object Id="45305" culture="en-us" value="Datos Personales Adicionales Probable Responsable" />
+<Object Id="45305" culture="es-es" value="Datos Personales Adicionales Probable Responsable" />
+<Object Id="45016" culture="en-us" value="Delegación" />
+<Object Id="45016" culture="es-es" value="Delegación" />
+<Object Id="44991" culture="en-us" value="Delito" />
+<Object Id="44991" culture="es-es" value="Delito" />
+<Object Id="45178" culture="en-us" value="Delito Principal MPI" />
+<Object Id="45178" culture="es-es" value="Delito Principal MPI" />
+<Object Id="45285" culture="en-us" value="Delitos Violencia Genero" />
+<Object Id="45285" culture="es-es" value="Delitos Violencia Genero" />
+<Object Id="45113" culture="en-us" value="Descarga de Archivo" />
+<Object Id="45113" culture="es-es" value="Descarga de Archivo" />
+<Object Id="45177" culture="en-us" value="Detalle Bitacora de Canalizacion MPI" />
+<Object Id="45177" culture="es-es" value="Detalle Bitacora de Canalizacion MPI" />
+<Object Id="45118" culture="en-us" value="Detalle Datos de Delito MPI" />
+<Object Id="45118" culture="es-es" value="Detalle Datos de Delito MPI" />
+<Object Id="45152" culture="en-us" value="Detalle de Abogado" />
+<Object Id="45152" culture="es-es" value="Detalle de Abogado" />
+<Object Id="45155" culture="en-us" value="Detalle de Agente del Ministerio Público" />
+<Object Id="45155" culture="es-es" value="Detalle de Agente del Ministerio Público" />
+<Object Id="45084" culture="en-us" value="Detalle de Asignacion de Citas" />
+<Object Id="45084" culture="es-es" value="Detalle de Asignacion de Citas" />
+<Object Id="45020" culture="en-us" value="Detalle de Asignación de Especialista" />
+<Object Id="45020" culture="es-es" value="Detalle de Asignación de Especialista" />
+<Object Id="45046" culture="en-us" value="Bitácora de Cambios" />
+<Object Id="45046" culture="es-es" value="Bitácora de Cambios" />
+<Object Id="45104" culture="en-us" value="Historial de Canalizaciones" />
+<Object Id="45104" culture="es-es" value="Historial de Canalizaciones" />
+<Object Id="45168" culture="en-us" value="Detalle de Citatorio Audiencias" />
+<Object Id="45168" culture="es-es" value="Detalle de Citatorio Audiencias" />
+<Object Id="45076" culture="en-us" value="Detalle de Coincidencias" />
+<Object Id="45076" culture="es-es" value="Detalle de Coincidencias" />
+<Object Id="45117" culture="en-us" value="Detalle de coincidencias a" />
+<Object Id="45117" culture="es-es" value="Detalle de coincidencias a" />
+<Object Id="45169" culture="en-us" value="Detalle de Coincidencias MPI" />
+<Object Id="45169" culture="es-es" value="Detalle de Coincidencias MPI" />
+<Object Id="45120" culture="en-us" value="Detalle de Datos de la Victima MPI" />
+<Object Id="45120" culture="es-es" value="Detalle de Datos de la Victima MPI" />
+<Object Id="45107" culture="en-us" value="Detalle de Datos de Tutor" />
+<Object Id="45107" culture="es-es" value="Detalle de Datos de Tutor" />
+<Object Id="45123" culture="en-us" value="Detalle de Datos del Imputado" />
+<Object Id="45123" culture="es-es" value="Detalle de Datos del Imputado" />
+<Object Id="45222" culture="en-us" value="Detalle de Datos del Imputado CC" />
+<Object Id="45222" culture="es-es" value="Detalle de Datos del Imputado CC" />
+<Object Id="45224" culture="en-us" value="Detalle de Datos del Testigo CC" />
+<Object Id="45224" culture="es-es" value="Detalle de Datos del Testigo CC" />
+<Object Id="45130" culture="en-us" value="Detalle de Datos del Testigo MPI" />
+<Object Id="45130" culture="es-es" value="Detalle de Datos del Testigo MPI" />
+<Object Id="45106" culture="en-us" value="Involucrados AT" />
+<Object Id="45106" culture="es-es" value="Involucrados AT" />
+<Object Id="45078" culture="en-us" value="Delitos AT" />
+<Object Id="45078" culture="es-es" value="Delitos AT" />
+<Object Id="45093" culture="en-us" value="Delitos" />
+<Object Id="45093" culture="es-es" value="Delitos" />
+<Object Id="45114" culture="en-us" value="Detalle de Descarga de Archivo" />
+<Object Id="45114" culture="es-es" value="Detalle de Descarga de Archivo" />
+<Object Id="45140" culture="en-us" value="Detalle de Descripcion de Evidencia CC" />
+<Object Id="45140" culture="es-es" value="Detalle de Descripcion de Evidencia CC" />
+<Object Id="45192" culture="en-us" value="Desestimación" />
+<Object Id="45192" culture="es-es" value="Desestimación" />
+<Object Id="45187" culture="en-us" value="Detalle de Devolución de Indicios" />
+<Object Id="45187" culture="es-es" value="Detalle de Devolución de Indicios" />
+<Object Id="45316" culture="en-us" value="Detalle de Documento MPO" />
+<Object Id="45316" culture="es-es" value="Detalle de Documento MPO" />
+<Object Id="45018" culture="en-us" value="Documentos" />
+<Object Id="45018" culture="es-es" value="Documentos" />
+<Object Id="45214" culture="en-us" value="Detalle de Documentos de Legislación" />
+<Object Id="45214" culture="es-es" value="Detalle de Documentos de Legislación" />
+<Object Id="45124" culture="en-us" value="Documentos generados en MASC" />
+<Object Id="45124" culture="es-es" value="Documentos generados en MASC" />
+<Object Id="45163" culture="en-us" value="Detalle de Documentos MPI" />
+<Object Id="45163" culture="es-es" value="Detalle de Documentos MPI" />
+<Object Id="45109" culture="en-us" value="Documentos AT" />
+<Object Id="45109" culture="es-es" value="Documentos AT" />
+<Object Id="45232" culture="en-us" value="Detalle de Folio Asignado de Usuario" />
+<Object Id="45232" culture="es-es" value="Detalle de Folio Asignado de Usuario" />
+<Object Id="45183" culture="en-us" value="Detalle de Folio NUE CC" />
+<Object Id="45183" culture="es-es" value="Detalle de Folio NUE CC" />
+<Object Id="45137" culture="en-us" value="Detalle de Fotos CC" />
+<Object Id="45137" culture="es-es" value="Detalle de Fotos CC" />
+<Object Id="45220" culture="en-us" value="Detalle de Fotos de Emergencia CC" />
+<Object Id="45220" culture="es-es" value="Detalle de Fotos de Emergencia CC" />
+<Object Id="45223" culture="en-us" value="Detalle de Galeria de Detenidos" />
+<Object Id="45223" culture="es-es" value="Detalle de Galeria de Detenidos" />
+<Object Id="45217" culture="en-us" value="Detalle de Galería de Intervinientes" />
+<Object Id="45217" culture="es-es" value="Detalle de Galería de Intervinientes" />
+<Object Id="45228" culture="en-us" value="Detalle de Galeria de Testigos" />
+<Object Id="45228" culture="es-es" value="Detalle de Galeria de Testigos" />
+<Object Id="45196" culture="en-us" value="Detalle de Hechos Audiencia Inicial" />
+<Object Id="45196" culture="es-es" value="Detalle de Hechos Audiencia Inicial" />
+<Object Id="45221" culture="en-us" value="Detalle de Historial de Emergencia CC" />
+<Object Id="45221" culture="es-es" value="Detalle de Historial de Emergencia CC" />
+<Object Id="45037" culture="en-us" value="Probable Responsable" />
+<Object Id="45037" culture="es-es" value="Probable Responsable" />
+<Object Id="45172" culture="en-us" value="Detalle de Indicios" />
+<Object Id="45172" culture="es-es" value="Detalle de Indicios" />
+<Object Id="45162" culture="en-us" value="Detalle de IPH MPI" />
+<Object Id="45162" culture="es-es" value="Detalle de IPH MPI" />
+<Object Id="45229" culture="en-us" value="Detalle de Lista de Asignaciones de CC" />
+<Object Id="45229" culture="es-es" value="Detalle de Lista de Asignaciones de CC" />
+<Object Id="45141" culture="en-us" value="Detalle de Lista de Documentos CC" />
+<Object Id="45141" culture="es-es" value="Detalle de Lista de Documentos CC" />
+<Object Id="45238" culture="en-us" value="Detalle de Mensaje de Historial de Conversación" />
+<Object Id="45238" culture="es-es" value="Detalle de Mensaje de Historial de Conversación" />
+<Object Id="45160" culture="en-us" value="Detalle de Oficio de Servicio Pericial" />
+<Object Id="45160" culture="es-es" value="Detalle de Oficio de Servicio Pericial" />
+<Object Id="45108" culture="en-us" value="Persona Moral AT" />
+<Object Id="45108" culture="es-es" value="Persona Moral AT" />
+<Object Id="45208" culture="en-us" value="Persona Moral" />
+<Object Id="45208" culture="es-es" value="Persona Moral" />
+<Object Id="45121" culture="en-us" value="Detalle de Persona Moral MPI" />
+<Object Id="45121" culture="es-es" value="Detalle de Persona Moral MPI" />
+<Object Id="45219" culture="en-us" value="Detalle de Referencia" />
+<Object Id="45219" culture="es-es" value="Detalle de Referencia" />
+<Object Id="45139" culture="en-us" value="Detalle de Registro de Intervinientes CC" />
+<Object Id="45139" culture="es-es" value="Detalle de Registro de Intervinientes CC" />
+<Object Id="45315" culture="en-us" value="Relaciones" />
+<Object Id="45315" culture="es-es" value="Relaciones" />
+<Object Id="45167" culture="en-us" value="Detalle de Requerido en Audiencias MPI" />
+<Object Id="45167" culture="es-es" value="Detalle de Requerido en Audiencias MPI" />
+<Object Id="45100" culture="en-us" value="Detalle de Requerido en Comparecencia" />
+<Object Id="45100" culture="es-es" value="Detalle de Requerido en Comparecencia" />
+<Object Id="45097" culture="en-us" value="Detalle de Requerido en Examen de Controversia" />
+<Object Id="45097" culture="es-es" value="Detalle de Requerido en Examen de Controversia" />
+<Object Id="45098" culture="en-us" value="Detalle de Requerido en Invitaciones" />
+<Object Id="45098" culture="es-es" value="Detalle de Requerido en Invitaciones" />
+<Object Id="45102" culture="en-us" value="Detalle de Requerido en Reuniones" />
+<Object Id="45102" culture="es-es" value="Detalle de Requerido en Reuniones" />
+<Object Id="45201" culture="en-us" value="Detalle de Requeridos Faltantes" />
+<Object Id="45201" culture="es-es" value="Detalle de Requeridos Faltantes" />
+<Object Id="45218" culture="en-us" value="Detalle de Retroalimentación" />
+<Object Id="45218" culture="es-es" value="Detalle de Retroalimentación" />
+<Object Id="45074" culture="en-us" value="Reuniones" />
+<Object Id="45074" culture="es-es" value="Reuniones" />
+<Object Id="45031" culture="en-us" value="Detalle de Seguimiento" />
+<Object Id="45031" culture="es-es" value="Detalle de Seguimiento" />
+<Object Id="45180" culture="en-us" value="Detalle de Sentencias Imputado MPI" />
+<Object Id="45180" culture="es-es" value="Detalle de Sentencias Imputado MPI" />
+<Object Id="45039" culture="en-us" value="Servicios de Apoyo AT" />
+<Object Id="45039" culture="es-es" value="Servicios de Apoyo AT" />
+<Object Id="45122" culture="en-us" value="Detalle de Servicio de Apoyo MPI" />
+<Object Id="45122" culture="es-es" value="Detalle de Servicio de Apoyo MPI" />
+<Object Id="45157" culture="en-us" value="Detalle de Servicios Periciales" />
+<Object Id="45157" culture="es-es" value="Detalle de Servicios Periciales" />
+<Object Id="45194" culture="en-us" value="Detalle de Solicitante en Audiencias JA" />
+<Object Id="45194" culture="es-es" value="Detalle de Solicitante en Audiencias JA" />
+<Object Id="45166" culture="en-us" value="Detalle de Solicitante en Audiencias MPI" />
+<Object Id="45166" culture="es-es" value="Detalle de Solicitante en Audiencias MPI" />
+<Object Id="45101" culture="en-us" value="Detalle de Solicitante en Comparecencia" />
+<Object Id="45101" culture="es-es" value="Detalle de Solicitante en Comparecencia" />
+<Object Id="45096" culture="en-us" value="Detalle de Solicitante en Examen de Controversia" />
+<Object Id="45096" culture="es-es" value="Detalle de Solicitante en Examen de Controversia" />
+<Object Id="45099" culture="en-us" value="Detalle de Solicitante en Invitaciones" />
+<Object Id="45099" culture="es-es" value="Detalle de Solicitante en Invitaciones" />
+<Object Id="45103" culture="en-us" value="Detalle de Solicitante en Reuniones" />
+<Object Id="45103" culture="es-es" value="Detalle de Solicitante en Reuniones" />
+<Object Id="45195" culture="en-us" value="Detalle de Solicitante Fundamentos JA" />
+<Object Id="45195" culture="es-es" value="Detalle de Solicitante Fundamentos JA" />
+<Object Id="45197" culture="en-us" value="Detalle de Solicitante Procedimiento" />
+<Object Id="45197" culture="es-es" value="Detalle de Solicitante Procedimiento" />
+<Object Id="45198" culture="en-us" value="Detalle de Solicitante Reiteración Salud" />
+<Object Id="45198" culture="es-es" value="Detalle de Solicitante Reiteración Salud" />
+<Object Id="45126" culture="en-us" value="Detalle de Solicitud Bitácora de Coincidencias" />
+<Object Id="45126" culture="es-es" value="Detalle de Solicitud Bitácora de Coincidencias" />
+<Object Id="45044" culture="en-us" value="Solicitudes de Apoyo" />
+<Object Id="45044" culture="es-es" value="Solicitudes de Apoyo" />
+<Object Id="45186" culture="en-us" value="Detalle de Solicitud de Indicio" />
+<Object Id="45186" culture="es-es" value="Detalle de Solicitud de Indicio" />
+<Object Id="45092" culture="en-us" value="Representantes Legales" />
+<Object Id="45092" culture="es-es" value="Representantes Legales" />
+<Object Id="45043" culture="en-us" value="Requeridos" />
+<Object Id="45043" culture="es-es" value="Requeridos" />
+<Object Id="45088" culture="en-us" value="Seguimiento" />
+<Object Id="45088" culture="es-es" value="Seguimiento" />
+<Object Id="45090" culture="en-us" value="Solicitantes" />
+<Object Id="45090" culture="es-es" value="Solicitantes" />
+<Object Id="45035" culture="en-us" value="Detalle de Solicitudes de Comparecencia" />
+<Object Id="45035" culture="es-es" value="Detalle de Solicitudes de Comparecencia" />
+<Object Id="45033" culture="en-us" value="Invitaciones" />
+<Object Id="45033" culture="es-es" value="Invitaciones" />
+<Object Id="45230" culture="en-us" value="Detalle de Traslado de CC" />
+<Object Id="45230" culture="es-es" value="Detalle de Traslado de CC" />
+<Object Id="45091" culture="en-us" value="Detalle de Tutor" />
+<Object Id="45091" culture="es-es" value="Detalle de Tutor" />
+<Object Id="45138" culture="en-us" value="Detalle de Videos CC" />
+<Object Id="45138" culture="es-es" value="Detalle de Videos CC" />
+<Object Id="45150" culture="en-us" value="Detalle del Abogado Imputado MPI" />
+<Object Id="45150" culture="es-es" value="Detalle del Abogado Imputado MPI" />
+<Object Id="45153" culture="en-us" value="Detalle del Abogado Victima MPI" />
+<Object Id="45153" culture="es-es" value="Detalle del Abogado Victima MPI" />
+<Object Id="45136" culture="en-us" value="Detalle del Certificado CC" />
+<Object Id="45136" culture="es-es" value="Detalle del Certificado CC" />
+<Object Id="45185" culture="en-us" value="Detalle del Indicio" />
+<Object Id="45185" culture="es-es" value="Detalle del Indicio" />
+<Object Id="45190" culture="en-us" value="Detalle Historico JA" />
+<Object Id="45190" culture="es-es" value="Detalle Historico JA" />
+<Object Id="45191" culture="en-us" value="Detalle Historico MPO" />
+<Object Id="45191" culture="es-es" value="Detalle Historico MPO" />
+<Object Id="45250" culture="en-us" value="Dialecto" />
+<Object Id="45250" culture="es-es" value="Dialecto" />
+<Object Id="45176" culture="en-us" value="Diligencias" />
+<Object Id="45176" culture="es-es" value="Diligencias" />
+<Object Id="45009" culture="en-us" value="Director de Agencia" />
+<Object Id="45009" culture="es-es" value="Director de Agencia" />
+<Object Id="45281" culture="en-us" value="Discapacidades Fisicas" />
+<Object Id="45281" culture="es-es" value="Discapacidades Fisicas" />
+<Object Id="45280" culture="en-us" value="Discapacidades Mentales" />
+<Object Id="45280" culture="es-es" value="Discapacidades Mentales" />
+<Object Id="45283" culture="en-us" value="Discapacidades Psicosociales" />
+<Object Id="45283" culture="es-es" value="Discapacidades Psicosociales" />
+<Object Id="45282" culture="en-us" value="Discapacidades Sensoriales" />
+<Object Id="45282" culture="es-es" value="Discapacidades Sensoriales" />
+<Object Id="45188" culture="en-us" value="Distrito Judicial" />
+<Object Id="45188" culture="es-es" value="Distrito Judicial" />
+<Object Id="45110" culture="en-us" value="Editor de Encuesta" />
+<Object Id="45110" culture="es-es" value="Editor de Encuesta" />
+<Object Id="45295" culture="en-us" value="Elemento Robado" />
+<Object Id="45295" culture="es-es" value="Elemento Robado" />
+<Object Id="44981" culture="en-us" value="Elementos de Comisión del Delito" />
+<Object Id="44981" culture="es-es" value="Elementos de Comisión del Delito" />
+<Object Id="45129" culture="en-us" value="Encuesta" />
+<Object Id="45129" culture="es-es" value="Encuesta" />
+<Object Id="45235" culture="en-us" value="Error de Replicación" />
+<Object Id="45235" culture="es-es" value="Error de Replicación" />
+<Object Id="44973" culture="en-us" value="Escolaridad" />
+<Object Id="44973" culture="es-es" value="Escolaridad" />
+<Object Id="45270" culture="en-us" value="Especialidad " />
+<Object Id="45270" culture="es-es" value="Especialidad " />
+<Object Id="45179" culture="en-us" value="Especialidad MP" />
+<Object Id="45179" culture="es-es" value="Especialidad MP" />
+<Object Id="45008" culture="en-us" value="Especialista de Justicia Alternativa" />
+<Object Id="45008" culture="es-es" value="Especialista de Justicia Alternativa" />
+<Object Id="44954" culture="en-us" value="Estado" />
+<Object Id="44954" culture="es-es" value="Estado" />
+<Object Id="44953" culture="en-us" value="Estado Civil" />
+<Object Id="44953" culture="es-es" value="Estado Civil" />
+<Object Id="45287" culture="en-us" value="Estado de Involucrado" />
+<Object Id="45287" culture="es-es" value="Estado de Involucrado" />
+<Object Id="45021" culture="en-us" value="Estatus" />
+<Object Id="45021" culture="es-es" value="Estatus" />
+<Object Id="45203" culture="en-us" value="Estatus de Actualización de Documento" />
+<Object Id="45203" culture="es-es" value="Estatus de Actualización de Documento" />
+<Object Id="45024" culture="en-us" value="Estatus de Asignación" />
+<Object Id="45024" culture="es-es" value="Estatus de Asignación" />
+<Object Id="45034" culture="en-us" value="Estatus de Cita Invitaciones" />
+<Object Id="45034" culture="es-es" value="Estatus de Cita Invitaciones" />
+<Object Id="45215" culture="en-us" value="Estatus de Detalle de Documentos de Legislación" />
+<Object Id="45215" culture="es-es" value="Estatus de Detalle de Documentos de Legislación" />
+<Object Id="45202" culture="en-us" value="Estatus de Documento" />
+<Object Id="45202" culture="es-es" value="Estatus de Documento" />
+<Object Id="44983" culture="en-us" value="Estatus de Expediente" />
+<Object Id="44983" culture="es-es" value="Estatus de Expediente" />
+<Object Id="45175" culture="en-us" value="Estatus de Expediente Inicial" />
+<Object Id="45175" culture="es-es" value="Estatus de Expediente Inicial" />
+<Object Id="45012" culture="en-us" value="Estatus de Expedientes" />
+<Object Id="45012" culture="es-es" value="Estatus de Expedientes" />
+<Object Id="45174" culture="en-us" value="Estatus de Indicio" />
+<Object Id="45174" culture="es-es" value="Estatus de Indicio" />
+<Object Id="45028" culture="en-us" value="Estatus de Notificación" />
+<Object Id="45028" culture="es-es" value="Estatus de Notificación" />
+<Object Id="45259" culture="en-us" value="Estatus de Turno" />
+<Object Id="45259" culture="es-es" value="Estatus de Turno" />
+<Object Id="45159" culture="en-us" value="Estatus del Dictamen" />
+<Object Id="45159" culture="es-es" value="Estatus del Dictamen" />
+<Object Id="45182" culture="en-us" value="Estatus del Imputado" />
+<Object Id="45182" culture="es-es" value="Estatus del Imputado" />
+<Object Id="45022" culture="en-us" value="Estatus Orientador" />
+<Object Id="45022" culture="es-es" value="Estatus Orientador" />
+<Object Id="45023" culture="en-us" value="Estatus Solicitud" />
+<Object Id="45023" culture="es-es" value="Estatus Solicitud" />
+<Object Id="45271" culture="en-us" value="Estudios Superiores" />
+<Object Id="45271" culture="es-es" value="Estudios Superiores" />
+<Object Id="45268" culture="en-us" value="Etnia" />
+<Object Id="45268" culture="es-es" value="Etnia" />
+<Object Id="45119" culture="en-us" value="Expediente Inicial" />
+<Object Id="45119" culture="es-es" value="Expediente Inicial" />
+<Object Id="44984" culture="en-us" value="Forma Acción Delito" />
+<Object Id="44984" culture="es-es" value="Forma Acción Delito" />
+<Object Id="44985" culture="en-us" value="Forma Comisión Delito" />
+<Object Id="44985" culture="es-es" value="Forma Comisión Delito" />
+<Object Id="45050" culture="en-us" value="Forma de Cara" />
+<Object Id="45050" culture="es-es" value="Forma de Cara" />
+<Object Id="45262" culture="en-us" value="Forma de Menton" />
+<Object Id="45262" culture="es-es" value="Forma de Menton" />
+<Object Id="45263" culture="en-us" value="Forma de Nariz" />
+<Object Id="45263" culture="es-es" value="Forma de Nariz" />
+<Object Id="45063" culture="en-us" value="Forma de Ojos" />
+<Object Id="45063" culture="es-es" value="Forma de Ojos" />
+<Object Id="45068" culture="en-us" value="Forma de Orejas" />
+<Object Id="45068" culture="es-es" value="Forma de Orejas" />
+<Object Id="45058" culture="en-us" value="Forma del Cabello" />
+<Object Id="45058" culture="es-es" value="Forma del Cabello" />
+<Object Id="45083" culture="en-us" value="Formato de Control" />
+<Object Id="45083" culture="es-es" value="Formato de Control" />
+<Object Id="45085" culture="en-us" value="Formato de Seguimiento" />
+<Object Id="45085" culture="es-es" value="Formato de Seguimiento" />
+<Object Id="45057" culture="en-us" value="Frente" />
+<Object Id="45057" culture="es-es" value="Frente" />
+<Object Id="45264" culture="en-us" value="Grosor de Labios" />
+<Object Id="45264" culture="es-es" value="Grosor de Labios" />
+<Object Id="45267" culture="en-us" value="Grupo al que Pertenece" />
+<Object Id="45267" culture="es-es" value="Grupo al que Pertenece" />
+<Object Id="44988" culture="en-us" value="Grupo del Delito" />
+<Object Id="44988" culture="es-es" value="Grupo del Delito" />
+<Object Id="44974" culture="en-us" value="Grupo Vulnerable" />
+<Object Id="44974" culture="es-es" value="Grupo Vulnerable" />
+<Object Id="45237" culture="en-us" value="Historial de Conversación" />
+<Object Id="45237" culture="es-es" value="Historial de Conversación" />
+<Object Id="44975" culture="en-us" value="Identificación" />
+<Object Id="44975" culture="es-es" value="Identificación" />
+<Object Id="44999" culture="en-us" value="Idioma" />
+<Object Id="44999" culture="es-es" value="Idioma" />
+<Object Id="45054" culture="en-us" value="Implantación de Cabello" />
+<Object Id="45054" culture="es-es" value="Implantación de Cabello" />
+<Object Id="45171" culture="en-us" value="Indicios" />
+<Object Id="45171" culture="es-es" value="Indicios" />
+<Object Id="45184" culture="en-us" value="Indicios para MPI" />
+<Object Id="45184" culture="es-es" value="Indicios para MPI" />
+<Object Id="44976" culture="en-us" value="Indígena" />
+<Object Id="44976" culture="es-es" value="Indígena" />
+<Object Id="45087" culture="en-us" value="Juez de Control" />
+<Object Id="45087" culture="es-es" value="Juez de Control" />
+<Object Id="45065" culture="en-us" value="Labios" />
+<Object Id="45065" culture="es-es" value="Labios" />
+<Object Id="45317" culture="en-us" value="Largo de Cabello" />
+<Object Id="45317" culture="es-es" value="Largo de Cabello" />
+<Object Id="44995" culture="en-us" value="Localidad" />
+<Object Id="44995" culture="es-es" value="Localidad" />
+<Object Id="45303" culture="en-us" value="Lugar de Detención" />
+<Object Id="45303" culture="es-es" value="Lugar de Detención" />
+<Object Id="45292" culture="en-us" value="Lugar del Robo" />
+<Object Id="45292" culture="es-es" value="Lugar del Robo" />
+<Object Id="45006" culture="en-us" value="Lugar Tipo" />
+<Object Id="45006" culture="es-es" value="Lugar Tipo" />
+<Object Id="45278" culture="en-us" value="Lugares" />
+<Object Id="45278" culture="es-es" value="Lugares" />
+<Object Id="45311" culture="en-us" value="Lugares Frecuentes Involucrado" />
+<Object Id="45311" culture="es-es" value="Lugares Frecuentes Involucrado" />
+<Object Id="45304" culture="en-us" value="Lugares Frecuentes Probable Responsable" />
+<Object Id="45304" culture="es-es" value="Lugares Frecuentes Probable Responsable" />
+<Object Id="44969" culture="en-us" value="Marca del Vehículo" />
+<Object Id="44969" culture="es-es" value="Marca del Vehículo" />
+<Object Id="45154" culture="en-us" value="Medidas Cautelares" />
+<Object Id="45154" culture="es-es" value="Medidas Cautelares" />
+<Object Id="45002" culture="en-us" value="Medios Alternativos" />
+<Object Id="45002" culture="es-es" value="Medios Alternativos" />
+<Object Id="45066" culture="en-us" value="Mentón" />
+<Object Id="45066" culture="es-es" value="Mentón" />
+<Object Id="45049" culture="en-us" value="Meses" />
+<Object Id="45049" culture="es-es" value="Meses" />
+<Object Id="45189" culture="en-us" value="Ministerio Público en Turno" />
+<Object Id="45189" culture="es-es" value="Ministerio Público en Turno" />
+<Object Id="44965" culture="en-us" value="Modalidad de Robo de Vehículo" />
+<Object Id="44965" culture="es-es" value="Modalidad de Robo de Vehículo" />
+<Object Id="44982" culture="en-us" value="Modalidad Delito" />
+<Object Id="44982" culture="es-es" value="Modalidad Delito" />
+<Object Id="45296" culture="en-us" value="Módulo" />
+<Object Id="45296" culture="es-es" value="Módulo" />
+<Object Id="44997" culture="en-us" value="Módulo de Atención Inicial" />
+<Object Id="44997" culture="es-es" value="Módulo de Atención Inicial" />
+<Object Id="45048" culture="en-us" value="Motivo de no Acuerdo" />
+<Object Id="45048" culture="es-es" value="Motivo de no Acuerdo" />
+<Object Id="45199" culture="en-us" value="Motivo de No Canalización " />
+<Object Id="45199" culture="es-es" value="Motivo de No Canalización " />
+<Object Id="44966" culture="en-us" value="Motivo de Vehículo" />
+<Object Id="44966" culture="es-es" value="Motivo de Vehículo" />
+<Object Id="45284" culture="en-us" value="Motivo Finalización Turno" />
+<Object Id="45284" culture="es-es" value="Motivo Finalización Turno" />
+<Object Id="44955" culture="en-us" value="Municipio" />
+<Object Id="44955" culture="es-es" value="Municipio" />
+<Object Id="44949" culture="en-us" value="Nacionalidad" />
+<Object Id="44949" culture="es-es" value="Nacionalidad" />
+<Object Id="45064" culture="en-us" value="Nariz Base" />
+<Object Id="45064" culture="es-es" value="Nariz Base" />
+<Object Id="45036" culture="en-us" value="Nombre Comparecencia" />
+<Object Id="45036" culture="es-es" value="Nombre Comparecencia" />
+<Object Id="44951" culture="en-us" value="Ocupación " />
+<Object Id="44951" culture="es-es" value="Ocupación " />
+<Object Id="45062" culture="en-us" value="Ojos" />
+<Object Id="45062" culture="es-es" value="Ojos" />
+<Object Id="44998" culture="en-us" value="Orientador" />
+<Object Id="44998" culture="es-es" value="Orientador" />
+<Object Id="45309" culture="en-us" value="Otras Identificaciones Involucrado" />
+<Object Id="45309" culture="es-es" value="Otras Identificaciones Involucrado" />
+<Object Id="45306" culture="en-us" value="Otras Identificaciones Probable Responsable" />
+<Object Id="45306" culture="es-es" value="Otras Identificaciones Probable Responsable" />
+<Object Id="45299" culture="en-us" value="Otros Domicilios Involucrado" />
+<Object Id="45299" culture="es-es" value="Otros Domicilios Involucrado" />
+<Object Id="45300" culture="en-us" value="Otros Domicilios Probable Responsable" />
+<Object Id="45300" culture="es-es" value="Otros Domicilios Probable Responsable" />
+<Object Id="45314" culture="en-us" value="Otros Nombres" />
+<Object Id="45314" culture="es-es" value="Otros Nombres" />
+<Object Id="45041" culture="en-us" value="País" />
+<Object Id="45041" culture="es-es" value="País" />
+<Object Id="44977" culture="en-us" value="Parentesco" />
+<Object Id="44977" culture="es-es" value="Parentesco" />
+<Object Id="45013" culture="en-us" value="Periodicidad" />
+<Object Id="45013" culture="es-es" value="Periodicidad" />
+<Object Id="45005" culture="en-us" value="Prioridad del Hecho" />
+<Object Id="45005" culture="es-es" value="Prioridad del Hecho" />
+<Object Id="44967" culture="en-us" value="Procedencia del Vehículo" />
+<Object Id="44967" culture="es-es" value="Procedencia del Vehículo" />
+<Object Id="45032" culture="en-us" value="Razón de" />
+<Object Id="45032" culture="es-es" value="Razón de" />
+<Object Id="45089" culture="en-us" value="Razón de Incumplimiento" />
+<Object Id="45089" culture="es-es" value="Razón de Incumplimiento" />
+<Object Id="45286" culture="en-us" value="Recepcionistas" />
+<Object Id="45286" culture="es-es" value="Recepcionistas" />
+<Object Id="45279" culture="en-us" value="Redes Sociales" />
+<Object Id="45279" culture="es-es" value="Redes Sociales" />
+<Object Id="45077" culture="en-us" value="Región " />
+<Object Id="45077" culture="es-es" value="Región " />
+<Object Id="45004" culture="en-us" value="Atención Inicial" />
+<Object Id="45004" culture="es-es" value="Atención Inicial" />
+<Object Id="45075" culture="en-us" value="Registro de Coincidencias" />
+<Object Id="45075" culture="es-es" value="Registro de Coincidencias" />
+<Object Id="45040" culture="en-us" value="Registro de Usuario" />
+<Object Id="45040" culture="es-es" value="Registro de Usuario" />
+<Object Id="44978" culture="en-us" value="Religión" />
+<Object Id="44978" culture="es-es" value="Religión" />
+<Object Id="45079" culture="en-us" value="Reporte Principal" />
+<Object Id="45079" culture="es-es" value="Reporte Principal" />
+<Object Id="45116" culture="en-us" value="Requerido" />
+<Object Id="45116" culture="es-es" value="Requerido" />
+<Object Id="45165" culture="en-us" value="Requerido MPI" />
+<Object Id="45165" culture="es-es" value="Requerido MPI" />
+<Object Id="45200" culture="en-us" value="Requeridos que no Asisten" />
+<Object Id="45200" culture="es-es" value="Requeridos que no Asisten" />
+<Object Id="44961" culture="en-us" value="Respuesta" />
+<Object Id="44961" culture="es-es" value="Respuesta" />
+<Object Id="45173" culture="en-us" value="Rol de Diligencia" />
+<Object Id="45173" culture="es-es" value="Rol de Diligencia" />
+<Object Id="45181" culture="en-us" value="Sentencia" />
+<Object Id="45181" culture="es-es" value="Sentencia" />
+<Object Id="45265" culture="en-us" value="Señas Particulares" />
+<Object Id="45265" culture="es-es" value="Señas Particulares" />
+<Object Id="44968" culture="en-us" value="Servicio del Vehículo" />
+<Object Id="44968" culture="es-es" value="Servicio del Vehículo" />
+<Object Id="45269" culture="en-us" value="Servicio Médico" />
+<Object Id="45269" culture="es-es" value="Servicio Médico" />
+<Object Id="45001" culture="en-us" value="Servicios Alternativos" />
+<Object Id="45001" culture="es-es" value="Servicios Alternativos" />
+<Object Id="45019" culture="en-us" value="Servicios de Apoyo" />
+<Object Id="45019" culture="es-es" value="Servicios de Apoyo" />
+<Object Id="45158" culture="en-us" value="Servicios Periciales" />
+<Object Id="45158" culture="es-es" value="Servicios Periciales" />
+<Object Id="45331" culture="en-us" value="Agravantes del Delito MASC" />
+<Object Id="45331" culture="es-es" value="Agravantes del Delito MASC" />
+<Object Id="45332" culture="en-us" value="Circunstancias del Delito MASC" />
+<Object Id="45332" culture="es-es" value="Circunstancias del Delito MASC" />
+<Object Id="45334" culture="en-us" value="Datos Personales Adicionales Requerido MASC" />
+<Object Id="45334" culture="es-es" value="Datos Personales Adicionales Requerido MASC" />
+<Object Id="45339" culture="en-us" value="Datos Personales Adicionales Solicitante MASC" />
+<Object Id="45339" culture="es-es" value="Datos Personales Adicionales Solicitante MASC" />
+<Object Id="44950" culture="en-us" value="Sexo" />
+<Object Id="44950" culture="es-es" value="Sexo" />
+<Object Id="44952" culture="en-us" value="Tipo de Identificación " />
+<Object Id="44952" culture="es-es" value="Tipo de Identificación " />
+<Object Id="44993" culture="en-us" value="Turnos" />
+<Object Id="44993" culture="es-es" value="Turnos" />
+<Object Id="45072" culture="en-us" value="Situación Física" />
+<Object Id="45072" culture="es-es" value="Situación Física" />
+<Object Id="45115" culture="en-us" value="Solicitante" />
+<Object Id="45115" culture="es-es" value="Solicitante" />
+<Object Id="45164" culture="en-us" value="Solicitante MPI" />
+<Object Id="45164" culture="es-es" value="Solicitante MPI" />
+<Object Id="45042" culture="en-us" value="Solicitud de Servicios de Apoyo" />
+<Object Id="45042" culture="es-es" value="Solicitud de Servicios de Apoyo" />
+<Object Id="44970" culture="en-us" value="Sub Marca del Vehículo" />
+<Object Id="44970" culture="es-es" value="Sub Marca del Vehículo" />
+<Object Id="45261" culture="en-us" value="Tamaño de Cejas" />
+<Object Id="45261" culture="es-es" value="Tamaño de Cejas" />
+<Object Id="45318" culture="en-us" value="Tamaño de Nariz" />
+<Object Id="45318" culture="es-es" value="Tamaño de Nariz" />
+<Object Id="45069" culture="en-us" value="Tamaño de Orejas" />
+<Object Id="45069" culture="es-es" value="Tamaño de Orejas" />
+<Object Id="45070" culture="en-us" value="Tipo de  Lóbulo" />
+<Object Id="45070" culture="es-es" value="Tipo de  Lóbulo" />
+<Object Id="45030" culture="en-us" value="Tipo de Acuerdo" />
+<Object Id="45030" culture="es-es" value="Tipo de Acuerdo" />
+<Object Id="45257" culture="en-us" value="Tipo de Atención" />
+<Object Id="45257" culture="es-es" value="Tipo de Atención" />
+<Object Id="45051" culture="en-us" value="Tipo de Cara" />
+<Object Id="45051" culture="es-es" value="Tipo de Cara" />
+<Object Id="45290" culture="en-us" value="Tipo de Carretera" />
+<Object Id="45290" culture="es-es" value="Tipo de Carretera" />
+<Object Id="45026" culture="en-us" value="Tipo de Comparecencia" />
+<Object Id="45026" culture="es-es" value="Tipo de Comparecencia" />
+<Object Id="45000" culture="en-us" value="Tipo de Compareciente" />
+<Object Id="45000" culture="es-es" value="Tipo de Compareciente" />
+<Object Id="45273" culture="en-us" value="Tipo de Denuncia" />
+<Object Id="45273" culture="es-es" value="Tipo de Denuncia" />
+<Object Id="45345" culture="en-us" value="Tipo de Diligencia MASC" />
+<Object Id="45345" culture="es-es" value="Tipo de Diligencia MASC" />
+<Object Id="44987" culture="en-us" value="Tipo de Expediente" />
+<Object Id="44987" culture="es-es" value="Tipo de Expediente" />
+<Object Id="45025" culture="en-us" value="Tipo de Función" />
+<Object Id="45025" culture="es-es" value="Tipo de Función" />
+<Object Id="45207" culture="en-us" value="Tipo de Inimputabilidad" />
+<Object Id="45207" culture="es-es" value="Tipo de Inimputabilidad" />
+<Object Id="45003" culture="en-us" value="Tipo de Instancia" />
+<Object Id="45003" culture="es-es" value="Tipo de Instancia" />
+<Object Id="45011" culture="en-us" value="Tipo de Invitación" />
+<Object Id="45011" culture="es-es" value="Tipo de Invitación" />
+<Object Id="45289" culture="en-us" value="Tipo de Lugar del Robo" />
+<Object Id="45289" culture="es-es" value="Tipo de Lugar del Robo" />
+<Object Id="45348" culture="en-us" value="Tipo de Mecanismo Alterno" />
+<Object Id="45348" culture="es-es" value="Tipo de Mecanismo Alterno" />
+<Object Id="45027" culture="en-us" value="Tipo de Notificación" />
+<Object Id="45027" culture="es-es" value="Tipo de Notificación" />
+<Object Id="45156" culture="en-us" value="Tipo de Oficio" />
+<Object Id="45156" culture="es-es" value="Tipo de Oficio" />
+<Object Id="45161" culture="en-us" value="Tipo de Oficios" />
+<Object Id="45161" culture="es-es" value="Tipo de Oficios" />
+<Object Id="44979" culture="en-us" value="Tipo de Persona" />
+<Object Id="44979" culture="es-es" value="Tipo de Persona" />
+<Object Id="45291" culture="en-us" value="Tipo de Robo" />
+<Object Id="45291" culture="es-es" value="Tipo de Robo" />
+<Object Id="45015" culture="en-us" value="Tipo de Seguimiento" />
+<Object Id="45015" culture="es-es" value="Tipo de Seguimiento" />
+<Object Id="45038" culture="en-us" value="Tipo de Servicio de Apoyo" />
+<Object Id="45038" culture="es-es" value="Tipo de Servicio de Apoyo" />
+<Object Id="45029" culture="en-us" value="Tipo de Sesión" />
+<Object Id="45029" culture="es-es" value="Tipo de Sesión" />
+<Object Id="44990" culture="en-us" value="Tipo de Trámite" />
+<Object Id="44990" culture="es-es" value="Tipo de Trámite" />
+<Object Id="45258" culture="en-us" value="Tipo de Urgencia" />
+<Object Id="45258" culture="es-es" value="Tipo de Urgencia" />
+<Object Id="44971" culture="en-us" value="Tipo de Vehículo" />
+<Object Id="44971" culture="es-es" value="Tipo de Vehículo" />
+<Object Id="45007" culture="en-us" value="Tipo Delito" />
+<Object Id="45007" culture="es-es" value="Tipo Delito" />
+<Object Id="44986" culture="en-us" value="Título del Delito" />
+<Object Id="44986" culture="es-es" value="Título del Delito" />
+<Object Id="45080" culture="en-us" value="TTFolioConsecutivo" />
+<Object Id="45080" culture="es-es" value="TTFolioConsecutivo" />
+<Object Id="45256" culture="en-us" value="Unidad" />
+<Object Id="45256" culture="es-es" value="Unidad" />
+<Object Id="45319" culture="en-us" value="Vigencia" />
+<Object Id="45319" culture="es-es" value="Vigencia" />
+<Object Id="44980" culture="en-us" value="Violencia de Género" />
+<Object Id="44980" culture="es-es" value="Violencia de Género" />
+<Object Id="44994" culture="en-us" value="Zona" />
+<Object Id="44994" culture="es-es" value="Zona" />
+<Object Id="45352" culture="en-us" value="Control de Citas" />
+<Object Id="45352" culture="es-es" value="Control de Citas" />
+<Object Id="45353" culture="en-us" value="Control de Documentos" />
+<Object Id="45353" culture="es-es" value="Control de Documentos" />
+<Object Id="45354" culture="en-us" value="Detalle Historial Control de Documentos" />
+<Object Id="45354" culture="es-es" value="Detalle Historial Control de Documentos" />
+<Object Id="45349" culture="en-us" value="Origen de Invitación" />
+<Object Id="45349" culture="es-es" value="Origen de Invitación" />
+<Object Id="45357" culture="en-us" value="Documento Extraviado" />
+<Object Id="45357" culture="es-es" value="Documento Extraviado" />
+<Object Id="45359" culture="en-us" value="Spartan Object ByPass" />
+<Object Id="45359" culture="es-es" value="Spartan Object ByPass" />
+<Object Id="45360" culture="en-us" value="Spartan Attribute Bypass" />
+<Object Id="45360" culture="es-es" value="Spartan Attribute Bypass" />
+<Object Id="45361" culture="en-us" value="Editor de Gestión Detallada de Registros" />
+<Object Id="45361" culture="es-es" value="Editor de Gestión Detallada de Registros" />
+<Object Id="45362" culture="en-us" value="Spartan RDM Filters Detail" />
+<Object Id="45362" culture="es-es" value="Spartan RDM Filters Detail" />
+<Object Id="45363" culture="en-us" value="Spartan RDM Operations Detail" />
+<Object Id="45363" culture="es-es" value="Spartan RDM Operations Detail" />
+<Object Id="45341" culture="en-us" value="Adicciones de Solicitante MASC" />
+<Object Id="45341" culture="es-es" value="Adicciones de Solicitante MASC" />
+<Object Id="45342" culture="en-us" value="Adicciones Requerido MASC" />
+<Object Id="45342" culture="es-es" value="Adicciones Requerido MASC" />
+<Object Id="45358" culture="en-us" value="Detalle de Invitado de Notificación" />
+<Object Id="45358" culture="es-es" value="Detalle de Invitado de Notificación" />
+<Object Id="45347" culture="en-us" value="Dilgencia MASC" />
+<Object Id="45347" culture="es-es" value="Dilgencia MASC" />
+<Object Id="45344" culture="en-us" value="Diligencias" />
+<Object Id="45344" culture="es-es" value="Diligencias" />
+<Object Id="45346" culture="en-us" value="Incidente con Invitación" />
+<Object Id="45346" culture="es-es" value="Incidente con Invitación" />
+<Object Id="45333" culture="en-us" value="Lugares Frecuentes Requerido MASC" />
+<Object Id="45333" culture="es-es" value="Lugares Frecuentes Requerido MASC" />
+<Object Id="45340" culture="en-us" value="Lugares Frecuentes Solicitante MASC" />
+<Object Id="45340" culture="es-es" value="Lugares Frecuentes Solicitante MASC" />
+<Object Id="45335" culture="en-us" value="Otras Identificaciones Requerido MASC" />
+<Object Id="45335" culture="es-es" value="Otras Identificaciones Requerido MASC" />
+<Object Id="45338" culture="en-us" value="Otras Identificaciones Solicitante MASC" />
+<Object Id="45338" culture="es-es" value="Otras Identificaciones Solicitante MASC" />
+<Object Id="45337" culture="en-us" value="Otros Domicilios Requeridos MASC" />
+<Object Id="45337" culture="es-es" value="Otros Domicilios Requeridos MASC" />
+<Object Id="45336" culture="en-us" value="Otros Domicilios Solicitante MASC" />
+<Object Id="45336" culture="es-es" value="Otros Domicilios Solicitante MASC" />
+<Object Id="45343" culture="en-us" value="Otros Nombres Requerido MASC" />
+<Object Id="45343" culture="es-es" value="Otros Nombres Requerido MASC" />
+<Object Id="45355" culture="en-us" value="Recepción de Pago" />
+<Object Id="45355" culture="es-es" value="Recepción de Pago" />
+<Object Id="45364" culture="en-us" value="Resultado de Notificación" />
+<Object Id="45364" culture="es-es" value="Resultado de Notificación" />
+<Object Id="45356" culture="en-us" value="Solicitud de Notificación" />
+<Object Id="45356" culture="es-es" value="Solicitud de Notificación" />
+<Object Id="45375" culture="en-us" value="Relación Unidad - Usuario" />
+<Object Id="45375" culture="es-es" value="Relación Unidad - Usuario" />
+<Object Id="45377" culture="en-us" value="Resultado de Revisión" />
+<Object Id="45377" culture="es-es" value="Resultado de Revisión" />
+<Object Id="45378" culture="en-us" value="Acuerdos" />
+<Object Id="45378" culture="es-es" value="Acuerdos" />
+<Object Id="45379" culture="en-us" value="Detalle Requerido Acuerdo" />
+<Object Id="45379" culture="es-es" value="Detalle Requerido Acuerdo" />
+<Object Id="45380" culture="en-us" value="Detalle Solicitante Acuerdo" />
+<Object Id="45380" culture="es-es" value="Detalle Solicitante Acuerdo" />
+<Object Id="45381" culture="en-us" value="Tipo de Conclusión Anticipada" />
+<Object Id="45381" culture="es-es" value="Tipo de Conclusión Anticipada" />
+<Object Id="45382" culture="en-us" value="Detalle Documentos Solicitantes" />
+<Object Id="45382" culture="es-es" value="Detalle Documentos Solicitantes" />
+<Object Id="45383" culture="en-us" value="Detalle Documentos Requeridos" />
+<Object Id="45383" culture="es-es" value="Detalle Documentos Requeridos" />
+<Object Id="45385" culture="en-us" value="Formato de Denuncia" />
+<Object Id="45385" culture="es-es" value="Formato de Denuncia" />
+<Object Id="45384" culture="en-us" value="Unidad de Atención" />
+<Object Id="45384" culture="es-es" value="Unidad de Atención" />
+<Object Id="45386" culture="en-us" value="Tipo de Documento" />
+<Object Id="45386" culture="es-es" value="Tipo de Documento" />
+<Object Id="45387" culture="en-us" value="Documento" />
+<Object Id="45387" culture="es-es" value="Documento" />
+<Object Id="45388" culture="en-us" value="Detalle Involucrados en Documentos" />
+<Object Id="45388" culture="es-es" value="Detalle Involucrados en Documentos" />
+<Object Id="45389" culture="en-us" value="Detalle Probable Responsable de Documentos" />
+<Object Id="45389" culture="es-es" value="Detalle Probable Responsable de Documentos" />
+<Object Id="45390" culture="en-us" value="Detalle Delitos de Documentos" />
+<Object Id="45390" culture="es-es" value="Detalle Delitos de Documentos" />
+<!--@@INCLUDE@@-->
+</Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

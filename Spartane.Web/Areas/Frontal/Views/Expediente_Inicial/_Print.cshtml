@@ -1,0 +1,488 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Expediente_InicialGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Expediente_InicialResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Fecha_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Hora_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Usuario_que_Registra
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Detenido
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.NUC
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.NIC
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Hora_del_Detenido
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Hora_Puesto_a_Disposicion
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Solicitar_Servicos_de_Apoyo
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Narrativa_Breve_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Prioridad_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Turno
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Fecha_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Hora_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Pais_de_los_Hechos_MPI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Estado_de_los_Hechos_MPI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Municipio_de_los_Hechos_MPI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Colonia_de_los_Hechos_MPI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Codigo_Postal_de_los_Hechos_MPI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Calle_de_los_Hechos_MPI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Entre_Calle_MPI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Y_Calle_MPI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Numero_Exrterior_de_los_Hechos_MPI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Numero_Interior_de_los_Hechos_MPI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Latitud_MPI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Longitud_MPI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Tipo_de_Lugar_del_Hecho_MPI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Requiere_Diligencia
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Numero_de_Expediente_Victima
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Requiere_Traductor
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Lengua_Originaria
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Idioma
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Titulo_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Asignar_Agente_del_Ministerio_Publico
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Nombre_de_Agente_del_Ministerio_Publico
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Tipo_de_Oficio
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Delegacion
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Agencia
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Solicitar_Diligencias
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.NUC_Audiencias
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.NIC_Audiencias
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Fecha_de_Registro_Audiencias
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Hora_de_Registro_Audiencias
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Tipo_de_Oficio_Audiencias
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Delegacion_Audiencias
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Domicilio_Delegacion_A
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Numero_de_Expediente
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.NUAT
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Fecha_de_RegistroI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Hora_de_RegistroI
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Estatus
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Canalizar_a
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Delito_Principal
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Tipo_de_Acuerdo
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Fecha_de_Inicio_de_Acuerdo
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Fecha_de_Cumplimiento
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Hora_de_Cumplimiento
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Domicilio_para_el_Cumplimiento
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Monto_de_Reparacion_de_Danos
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Parcialidades
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Periodicidad
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Acepta_Acuerdo
+            </td>
+            <td class="column1">
+                @Resources.Expediente_InicialResources.Motivo_de_Rechazo_de_Acuerdo
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Fecha_de_Registro
+                    </td>
+                    <td>
+                        @item.Hora_de_Registro
+                    </td>
+                    <td>
+                        @item.Usuario_que_Registra
+                    </td>
+                    <td>
+                        @item.DetenidoDescripcion
+                    </td>
+                    <td>
+                        @item.NUC
+                    </td>
+                    <td>
+                        @item.NIC
+                    </td>
+                    <td>
+                        @item.Hora_del_Detenido
+                    </td>
+                    <td>
+                        @item.Hora_Puesto_a_Disposicion
+                    </td>
+                    <td>
+                        @item.Solicitar_Servicos_de_ApoyoFolio
+                    </td>
+                    <td>
+                        @item.Narrativa_Breve_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Prioridad_del_HechoDescripcion
+                    </td>
+                    <td>
+                        @item.Turno
+                    </td>
+                    <td>
+                        @item.Fecha_del_Hecho
+                    </td>
+                    <td>
+                        @item.Hora_del_Hecho
+                    </td>
+                    <td>
+                        @item.Pais_de_los_Hechos_MPI
+                    </td>
+                    <td>
+                        @item.Estado_de_los_Hechos_MPI
+                    </td>
+                    <td>
+                        @item.Municipio_de_los_Hechos_MPI
+                    </td>
+                    <td>
+                        @item.Colonia_de_los_Hechos_MPI
+                    </td>
+                    <td>
+                        @item.Codigo_Postal_de_los_Hechos_MPI
+                    </td>
+                    <td>
+                        @item.Calle_de_los_Hechos_MPI
+                    </td>
+                    <td>
+                        @item.Entre_Calle_MPI
+                    </td>
+                    <td>
+                        @item.Y_Calle_MPI
+                    </td>
+                    <td>
+                        @item.Numero_Exrterior_de_los_Hechos_MPI
+                    </td>
+                    <td>
+                        @item.Numero_Interior_de_los_Hechos_MPI
+                    </td>
+                    <td>
+                        @item.Latitud_MPI
+                    </td>
+                    <td>
+                        @item.Longitud_MPI
+                    </td>
+                    <td>
+                        @item.Tipo_de_Lugar_del_Hecho_MPIDescripcion
+                    </td>
+                    <td>
+                        @item.Persona_Moral
+                    </td>
+                    <td>
+                        @item.Requiere_Diligencia
+                    </td>
+                    <td>
+                        @item.Numero_de_Expediente_Victima
+                    </td>
+                    <td>
+                        @item.Requiere_Traductor
+                    </td>
+                    <td>
+                        @item.Lengua_OriginariaDescripcion
+                    </td>
+                    <td>
+                        @item.IdiomaDescripcion
+                    </td>
+                    <td>
+                        @item.Titulo_del_Hecho
+                    </td>
+                    <td>
+                        @item.Asignar_Agente_del_Ministerio_Publico
+                    </td>
+                    <td>
+                        @item.Nombre_de_Agente_del_Ministerio_Publico
+                    </td>
+                    <td>
+                        @item.Tipo_de_OficioDescripcion
+                    </td>
+                    <td>
+                        @item.DelegacionDescripcion
+                    </td>
+                    <td>
+                        @item.AgenciaDescripcion
+                    </td>
+                    <td>
+                        @item.Solicitar_Diligencias
+                    </td>
+                    <td>
+                        @item.NUC_Audiencias
+                    </td>
+                    <td>
+                        @item.NIC_Audiencias
+                    </td>
+                    <td>
+                        @item.Fecha_de_Registro_Audiencias
+                    </td>
+                    <td>
+                        @item.Hora_de_Registro_Audiencias
+                    </td>
+                    <td>
+                        @item.Tipo_de_Oficio_AudienciasDescripcion
+                    </td>
+                    <td>
+                        @item.Delegacion_AudienciasDescripcion
+                    </td>
+                    <td>
+                        @item.Domicilio_Delegacion_A
+                    </td>
+                    <td>
+                        @item.Numero_de_Expediente
+                    </td>
+                    <td>
+                        @item.NUAT
+                    </td>
+                    <td>
+                        @item.Fecha_de_RegistroI
+                    </td>
+                    <td>
+                        @item.Hora_de_RegistroI
+                    </td>
+                    <td>
+                        @item.EstatusDescripcion
+                    </td>
+                    <td>
+                        @item.Canalizar_aDescripcion
+                    </td>
+                    <td>
+                        @item.Delito_PrincipalDelito
+                    </td>
+                    <td>
+                        @item.Tipo_de_AcuerdoDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_de_Inicio_de_Acuerdo
+                    </td>
+                    <td>
+                        @item.Fecha_de_Cumplimiento
+                    </td>
+                    <td>
+                        @item.Hora_de_Cumplimiento
+                    </td>
+                    <td>
+                        @item.Domicilio_para_el_Cumplimiento
+                    </td>
+                    <td>
+                        @item.Monto_de_Reparacion_de_Danos
+                    </td>
+                    <td>
+                        @item.Parcialidades
+                    </td>
+                    <td>
+                        @item.PeriodicidadDescripcion
+                    </td>
+                    <td>
+                        @item.Acepta_Acuerdo
+                    </td>
+                    <td>
+                        @item.Motivo_de_Rechazo_de_Acuerdo
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

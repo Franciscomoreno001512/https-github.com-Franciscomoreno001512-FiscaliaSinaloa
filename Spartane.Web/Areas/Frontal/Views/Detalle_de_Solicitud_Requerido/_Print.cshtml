@@ -1,0 +1,782 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Detalle_de_Solicitud_RequeridoGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.idRegistroAT
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.idRegistroUI
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Solicitud
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.A_Quien_Sea_Responsable
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Nombre
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Apellido_Paterno
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Apellido_Materno
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Nombre_Completo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Alias
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Apodo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.CURP
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.RFC
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Fecha_de_Nacimiento
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Edad
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Sexo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Estado_Civil
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Tipo_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Numero_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Nacionalidad
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Escolaridad
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Ocupacion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Pais
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Estado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Codigo_Postal
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Poblacion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Colonia
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Calle
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Numero_Exterior
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Numero_Interior
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Entre_Calle
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Y_Calle
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Referencia_de_Domicilio_Requerido
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Latitud
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Longitud
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Telefono
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Extencion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Celular
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Correo_Electronico
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Pais_de_Origen
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Originario_de
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Estado_de_Nacimiento
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Municipio_de_Nacimiento
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Inimputable
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Tipo_de_Inimputabilidad
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Se_Presenta_con_Detenido
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Folio_Registro_Nacional_de_Detenciones
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Fecha_de_Detencion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Municipio_de_Detencion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Corporacion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Suspension_Condicional
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Fecha_de_Suspension_Condicional
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Lugar_donde_se_Encuentra_Detenido
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Etnia
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.No__de_Hijos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Religion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Servicio_Medico
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Especialidad
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Estudios_Superiores
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Idioma
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Calidad_Migratoria
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Dialecto
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Viene_en_Estado_de_Ebriedad
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Bajo_el_Efecto_de_una_Droga
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Nombre_de_Droga
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Discapacidad_Mental
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Discapacidad_Fisica
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Discapacidad_Sensorial
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Discapacidad_Psicosocial
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Nombre_de_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Apellido_Paterno_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Apellido_Materno_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Nombre_Completo_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Fecha_de_Nacimiento_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Edad_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Sexo_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Estado_Civil_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Tipo_de_Identificacion_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Numero_de_Identificacion_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Nacionalidad_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Escolaridad_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Ocupacion_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Pais_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Estado_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Municipio_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Poblacion_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Colonia_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Codigo_Postal_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Calle_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Numero_Exterior_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Numero_Interior_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Referencia
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Latitud_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Longitud_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Extension_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Celular_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Correo_Electronico_tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Pais_de_Origen_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Originario_de_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.CURP_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.RFC_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Padecimiento_de_Enfermedad
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Cejas
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Tamano_de_Cejas
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Anteojos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Forma_de_Nariz
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Nariz_base
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Grosor_de_Labios
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Forma_de_Menton
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Senas_Particulares
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Imagen_Tatuaje
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Otras_Senas_Particulares
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_RequeridoResources.Imputado_Recluido
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.idRegistroAT
+                    </td>
+                    <td>
+                        @item.idRegistroUI
+                    </td>
+                    <td>
+                        @item.SolicitudNumero_de_Folio
+                    </td>
+                    <td>
+                        @item.A_Quien_Sea_Responsable
+                    </td>
+                    <td>
+                        @item.Nombre
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno
+                    </td>
+                    <td>
+                        @item.Apellido_Materno
+                    </td>
+                    <td>
+                        @item.Nombre_Completo
+                    </td>
+                    <td>
+                        @item.Alias
+                    </td>
+                    <td>
+                        @item.Apodo
+                    </td>
+                    <td>
+                        @item.CURP
+                    </td>
+                    <td>
+                        @item.RFC
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento
+                    </td>
+                    <td>
+                        @item.Edad
+                    </td>
+                    <td>
+                        @item.SexoDescripcion
+                    </td>
+                    <td>
+                        @item.Estado_CivilDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_IdentificacionNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion
+                    </td>
+                    <td>
+                        @item.Nacionalidad
+                    </td>
+                    <td>
+                        @item.EscolaridadDescripcion
+                    </td>
+                    <td>
+                        @item.OcupacionDescripcion
+                    </td>
+                    <td>
+                        @item.Pais
+                    </td>
+                    <td>
+                        @item.Estado
+                    </td>
+                    <td>
+                        @item.Municipio
+                    </td>
+                    <td>
+                        @item.Codigo_Postal
+                    </td>
+                    <td>
+                        @item.Poblacion
+                    </td>
+                    <td>
+                        @item.Colonia
+                    </td>
+                    <td>
+                        @item.Calle
+                    </td>
+                    <td>
+                        @item.Numero_Exterior
+                    </td>
+                    <td>
+                        @item.Numero_Interior
+                    </td>
+                    <td>
+                        @item.Entre_Calle
+                    </td>
+                    <td>
+                        @item.Y_Calle
+                    </td>
+                    <td>
+                        @item.Referencia_de_Domicilio_Requerido
+                    </td>
+                    <td>
+                        @item.Latitud
+                    </td>
+                    <td>
+                        @item.Longitud
+                    </td>
+                    <td>
+                        @item.Telefono
+                    </td>
+                    <td>
+                        @item.Extencion
+                    </td>
+                    <td>
+                        @item.Celular
+                    </td>
+                    <td>
+                        @item.Correo_Electronico
+                    </td>
+                    <td>
+                        @item.Pais_de_Origen
+                    </td>
+                    <td>
+                        @item.Originario_de
+                    </td>
+                    <td>
+                        @item.Estado_de_Nacimiento
+                    </td>
+                    <td>
+                        @item.Municipio_de_Nacimiento
+                    </td>
+                    <td>
+                        @item.Inimputable
+                    </td>
+                    <td>
+                        @item.Tipo_de_InimputabilidadDescripcion
+                    </td>
+                    <td>
+                        @item.Se_Presenta_con_Detenido
+                    </td>
+                    <td>
+                        @item.Folio_Registro_Nacional_de_Detenciones
+                    </td>
+                    <td>
+                        @item.Fecha_de_Detencion
+                    </td>
+                    <td>
+                        @item.Municipio_de_Detencion
+                    </td>
+                    <td>
+                        @item.CorporacionDescripcion
+                    </td>
+                    <td>
+                        @item.Suspension_Condicional
+                    </td>
+                    <td>
+                        @item.Fecha_de_Suspension_Condicional
+                    </td>
+                    <td>
+                        @item.Lugar_donde_se_Encuentra_Detenido
+                    </td>
+                    <td>
+                        @item.EtniaDescripcion
+                    </td>
+                    <td>
+                        @item.No__de_Hijos
+                    </td>
+                    <td>
+                        @item.ReligionDescripcion
+                    </td>
+                    <td>
+                        @item.Servicio_MedicoDescripcion
+                    </td>
+                    <td>
+                        @item.EspecialidadDescripcion
+                    </td>
+                    <td>
+                        @item.Estudios_SuperioresDescripcion
+                    </td>
+                    <td>
+                        @item.IdiomaDescripcion
+                    </td>
+                    <td>
+                        @item.Calidad_MigratoriaDescripcion
+                    </td>
+                    <td>
+                        @item.DialectoDescripcion
+                    </td>
+                    <td>
+                        @item.Viene_en_Estado_de_Ebriedad
+                    </td>
+                    <td>
+                        @item.Bajo_el_Efecto_de_una_Droga
+                    </td>
+                    <td>
+                        @item.Nombre_de_Droga
+                    </td>
+                    <td>
+                        @item.Discapacidad_MentalDescripcion
+                    </td>
+                    <td>
+                        @item.Discapacidad_FisicaDescripcion
+                    </td>
+                    <td>
+                        @item.Discapacidad_SensorialDescripcion
+                    </td>
+                    <td>
+                        @item.Discapacidad_PsicosocialDescripcion
+                    </td>
+                    <td>
+                        @item.Nombre_de_Tutor
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno_Tutor
+                    </td>
+                    <td>
+                        @item.Apellido_Materno_Tutor
+                    </td>
+                    <td>
+                        @item.Nombre_Completo_Tutor
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento_tutor
+                    </td>
+                    <td>
+                        @item.Edad_tutor
+                    </td>
+                    <td>
+                        @item.Sexo_tutorDescripcion
+                    </td>
+                    <td>
+                        @item.Estado_Civil_tutorDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_Identificacion_tutorNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion_tutor
+                    </td>
+                    <td>
+                        @item.Nacionalidad_tutorNacionalidadC
+                    </td>
+                    <td>
+                        @item.Escolaridad_tutorDescripcion
+                    </td>
+                    <td>
+                        @item.Ocupacion_tutorDescripcion
+                    </td>
+                    <td>
+                        @item.Pais_tutor
+                    </td>
+                    <td>
+                        @item.Estado_tutor
+                    </td>
+                    <td>
+                        @item.Municipio_tutor
+                    </td>
+                    <td>
+                        @item.Poblacion_tutor
+                    </td>
+                    <td>
+                        @item.Colonia_tutor
+                    </td>
+                    <td>
+                        @item.Codigo_Postal_tutor
+                    </td>
+                    <td>
+                        @item.Calle_tutor
+                    </td>
+                    <td>
+                        @item.Numero_Exterior_tutor
+                    </td>
+                    <td>
+                        @item.Numero_Interior_tutor
+                    </td>
+                    <td>
+                        @item.Referencia
+                    </td>
+                    <td>
+                        @item.Latitud_tutor
+                    </td>
+                    <td>
+                        @item.Longitud_tutor
+                    </td>
+                    <td>
+                        @item.Extension_tutor
+                    </td>
+                    <td>
+                        @item.Celular_tutor
+                    </td>
+                    <td>
+                        @item.Correo_Electronico_tutor
+                    </td>
+                    <td>
+                        @item.Pais_de_Origen_Tutor
+                    </td>
+                    <td>
+                        @item.Originario_de_Tutor
+                    </td>
+                    <td>
+                        @item.CURP_Tutor
+                    </td>
+                    <td>
+                        @item.RFC_Tutor
+                    </td>
+                    <td>
+                        @item.Padecimiento_de_Enfermedad
+                    </td>
+                    <td>
+                        @item.CejasDescripcion
+                    </td>
+                    <td>
+                        @item.Tamano_de_CejasDescripcion
+                    </td>
+                    <td>
+                        @item.AnteojosDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_de_NarizDescripcion
+                    </td>
+                    <td>
+                        @item.Nariz_baseDescripcion
+                    </td>
+                    <td>
+                        @item.Grosor_de_LabiosDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_de_MentonDescripcion
+                    </td>
+                    <td>
+                        @item.Senas_ParticularesDescripcion
+                    </td>
+                    <td>
+                        @item.Imagen_Tatuaje
+                    </td>
+                    <td>
+                        @item.Otras_Senas_Particulares
+                    </td>
+                    <td>
+                        @item.Imputado_Recluido
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

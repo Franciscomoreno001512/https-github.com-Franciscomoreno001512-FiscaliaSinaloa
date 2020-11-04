@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Spartan_RDM_Filters_Detail" value="Spartan RDM Filters Detail"></resource>
+  <resource culture="en-US" name="Filters_Detail_Id" value="Filters Detail Id"></resource>
+  <resource culture="en-US" name="Field_Name" value="Field Name"></resource>
+  <resource culture="en-US" name="Field_Label" value="Etiqueta"></resource>
+  <resource culture="en-US" name="Order_Shown" value="Orden"></resource>
+  <resource culture="en-US" name="Field_Path" value="Ruta del Campo"></resource>
+  <resource culture="en-US" name="Physical_Field_Name" value="Nombre Físico"></resource>
+  <resource culture="en-US" name="Logical_Field_Name" value="Nombre Lógico"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

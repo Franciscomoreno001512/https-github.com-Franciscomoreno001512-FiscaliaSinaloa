@@ -1,0 +1,537 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Servicio_de_ApoyoModel
+@{
+
+
+    List<SelectListItem> varTipo_de_Servicio_de_Apoyo_Tipo_de_Servicio = null;
+    if (ViewBag.Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio != null)
+    { varTipo_de_Servicio_de_Apoyo_Tipo_de_Servicio = (List<SelectListItem>)ViewBag.Tipo_de_Servicio_de_Apoyos_Tipo_de_Servicio; }
+    List<SelectListItem> varCompareciente_Compareciente = null;
+    if (ViewBag.Comparecientes_Compareciente != null)
+    { varCompareciente_Compareciente = (List<SelectListItem>)ViewBag.Comparecientes_Compareciente; }
+    List<SelectListItem> varDialecto_Lengua_Originaria = null;
+    if (ViewBag.Dialectos_Lengua_Originaria != null)
+    { varDialecto_Lengua_Originaria = (List<SelectListItem>)ViewBag.Dialectos_Lengua_Originaria; }
+    List<SelectListItem> varIdioma_Idioma = null;
+    if (ViewBag.Idiomas_Idioma != null)
+    { varIdioma_Idioma = (List<SelectListItem>)ViewBag.Idiomas_Idioma; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Servicio de Apoyo
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_Servicio_de_ApoyoRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_Servicio_de_ApoyoPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Servicio de Apoyo
+								<button onclick="Detalle_de_Servicio_de_ApoyoGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Servicio_de_ApoyoBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_Servicio_de_ApoyoResources.Detalle_de_Servicio_de_Apoyo</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_Servicio_de_ApoyoDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_Servicio_de_ApoyoPropertyBusinessModal" id="Detalle_de_Servicio_de_ApoyoPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_Servicio_de_ApoyoBusinessRule-form" onclick="Detalle_de_Servicio_de_ApoyoGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Servicio_de_ApoyoPropertyModal" id="Detalle_de_Servicio_de_ApoyoPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Servicio_de_ApoyoBusinessRuleModal" id="Detalle_de_Servicio_de_ApoyoBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Servicio_de_ApoyoAddBusinessRuleModal" id="Detalle_de_Servicio_de_ApoyoAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Servicio_de_Apoyo", FormMethod.Post, new { id = "CreateDetalle_de_Servicio_de_Apoyo", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_Servicio_de_ApoyoCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Servicio_de_ApoyoResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="263247" data-field-name="@Resources.Detalle_de_Servicio_de_ApoyoResources.Clave">
+                                    <label class="form-control" for="Detalle_de_Servicio_de_ApoyoClave" id="Detalle_de_Servicio_de_ApoyoClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divTipo_de_Servicio">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Servicio_de_ApoyoResources.Tipo_de_Servicio</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Servicio" data-attribute="263249" data-field-name="@Resources.Detalle_de_Servicio_de_ApoyoResources.Tipo_de_Servicio">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Servicio must be a number." data-val-required="The Tipo de Servicio field is required." id="Detalle_de_Servicio_de_ApoyoTipo_de_Servicio" name="Detalle_de_Servicio_de_ApoyoTipo_de_Servicio">
+			<option value=""></option>
+			@if (varTipo_de_Servicio_de_Apoyo_Tipo_de_Servicio != null){ 
+				foreach (var itemTipo_de_Servicio in varTipo_de_Servicio_de_Apoyo_Tipo_de_Servicio)
+				{
+					if (itemTipo_de_Servicio.Value == Convert.ToString(Model.Tipo_de_Servicio))
+					{
+						<option value="@itemTipo_de_Servicio.Value" selected>@itemTipo_de_Servicio.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Servicio.Value">@itemTipo_de_Servicio.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divDictamen">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Servicio_de_ApoyoResources.Dictamen</label>
+                                <div class="col-sm-8" data-field-id="Dictamen" data-attribute="263250" data-field-name="@Resources.Detalle_de_Servicio_de_ApoyoResources.Dictamen">
+                                    <input class="form-control" id="Detalle_de_Servicio_de_ApoyoDictamen" name="Detalle_de_Servicio_de_ApoyoDictamen" type="text" value="@Model.Dictamen">
+                                </div>
+                            </div>
+<div class="form-group" id="divResponsable">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Servicio_de_ApoyoResources.Responsable</label>
+                                <div class="col-sm-8" data-field-id="Responsable" data-attribute="263251" data-field-name="@Resources.Detalle_de_Servicio_de_ApoyoResources.Responsable">
+                                    <input class="form-control" id="Detalle_de_Servicio_de_ApoyoResponsable" name="Detalle_de_Servicio_de_ApoyoResponsable" type="text" value="@Model.Responsable">
+                                </div>
+                            </div>
+<div class="form-group" id="divCompareciente">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Servicio_de_ApoyoResources.Compareciente</label>
+	<div class="col-sm-8" data-field-id="Compareciente" data-attribute="263252" data-field-name="@Resources.Detalle_de_Servicio_de_ApoyoResources.Compareciente">
+		<select class="form-control" data-val="true" data-val-number="The field Compareciente must be a number." data-val-required="The Compareciente field is required." id="Detalle_de_Servicio_de_ApoyoCompareciente" name="Detalle_de_Servicio_de_ApoyoCompareciente">
+			<option value=""></option>
+			@if (varCompareciente_Compareciente != null){ 
+				foreach (var itemCompareciente in varCompareciente_Compareciente)
+				{
+					if (itemCompareciente.Value == Convert.ToString(Model.Compareciente))
+					{
+						<option value="@itemCompareciente.Value" selected>@itemCompareciente.Text</option>
+					}
+					else
+					{
+						<option value="@itemCompareciente.Value">@itemCompareciente.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divRequiere_Traductor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Servicio_de_ApoyoResources.Requiere_Traductor</label>
+                                <div class="col-sm-8" data-field-id="Requiere_Traductor" data-attribute="263253" data-field-name="@Resources.Detalle_de_Servicio_de_ApoyoResources.Requiere_Traductor">
+                                    @Html.CheckBoxFor(m => m.Requiere_Traductor, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divLengua_Originaria">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Servicio_de_ApoyoResources.Lengua_Originaria</label>
+	<div class="col-sm-8" data-field-id="Lengua_Originaria" data-attribute="263254" data-field-name="@Resources.Detalle_de_Servicio_de_ApoyoResources.Lengua_Originaria">
+		<select class="form-control" data-val="true" data-val-number="The field Lengua Originaria must be a number." data-val-required="The Lengua Originaria field is required." id="Detalle_de_Servicio_de_ApoyoLengua_Originaria" name="Detalle_de_Servicio_de_ApoyoLengua_Originaria">
+			<option value=""></option>
+			@if (varDialecto_Lengua_Originaria != null){ 
+				foreach (var itemLengua_Originaria in varDialecto_Lengua_Originaria)
+				{
+					if (itemLengua_Originaria.Value == Convert.ToString(Model.Lengua_Originaria))
+					{
+						<option value="@itemLengua_Originaria.Value" selected>@itemLengua_Originaria.Text</option>
+					}
+					else
+					{
+						<option value="@itemLengua_Originaria.Value">@itemLengua_Originaria.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divIdioma">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Servicio_de_ApoyoResources.Idioma</label>
+	<div class="col-sm-8" data-field-id="Idioma" data-attribute="263255" data-field-name="@Resources.Detalle_de_Servicio_de_ApoyoResources.Idioma">
+		<select class="form-control" data-val="true" data-val-number="The field Idioma must be a number." data-val-required="The Idioma field is required." id="Detalle_de_Servicio_de_ApoyoIdioma" name="Detalle_de_Servicio_de_ApoyoIdioma">
+			<option value=""></option>
+			@if (varIdioma_Idioma != null){ 
+				foreach (var itemIdioma in varIdioma_Idioma)
+				{
+					if (itemIdioma.Value == Convert.ToString(Model.Idioma))
+					{
+						<option value="@itemIdioma.Value" selected>@itemIdioma.Text</option>
+					}
+					else
+					{
+						<option value="@itemIdioma.Value">@itemIdioma.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_Servicio_de_ApoyoConfigureSave" name="Detalle_de_Servicio_de_ApoyoConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_Servicio_de_ApoyoConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_Servicio_de_ApoyoBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_Servicio_de_ApoyoBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_Servicio_de_ApoyoBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_Servicio_de_ApoyoGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Servicio_de_ApoyoBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Servicio_de_Apoyo.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Servicio_de_ApoyoGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Servicio_de_ApoyoCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Modulo_Atencion_InicialCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_Servicio_de_ApoyoRowElement = "Detalle_de_Servicio_de_ApoyoPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_Servicio_de_ApoyoRowElement + "')){ Detalle_de_Servicio_de_ApoyoInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_de_Servicio_de_ApoyoData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Servicio_de_Apoyo").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Servicio_de_Apoyo")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_Servicio_de_ApoyoCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Servicio_de_Apoyo/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_Servicio_de_ApoyoPropertyBag", "Detalle_de_Servicio_de_Apoyo")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_Servicio_de_ApoyoGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleFieldName').val(), ObjectId: '45039', Attribute: $('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleAttribute').val(), Screen: 'Detalle_de_Servicio_de_Apoyo' }, function (data) {
+                $(".Detalle_de_Servicio_de_ApoyoBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_Servicio_de_ApoyoGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleFieldName').val(), ObjectId: '45039', Attribute: $('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleAttribute').val(), Screen: 'Detalle_de_Servicio_de_Apoyo' }, function (data) {
+                $(".Detalle_de_Servicio_de_ApoyoAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleFieldName').val(), ObjectId: '45039', Attribute: $('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleAttribute').val(), Screen: 'Detalle_de_Servicio_de_Apoyo' }, function (data) {
+				$(".Detalle_de_Servicio_de_ApoyoBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Servicio_de_Apoyo/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Servicio_de_Apoyo/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Servicio_de_Apoyo/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_Servicio_de_ApoyoConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_Servicio_de_ApoyoConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Servicio_de_Apoyo/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_Servicio_de_ApoyoConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Servicio_de_Apoyo/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Servicio_de_Apoyo' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Servicio_de_Apoyo' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_Servicio_de_ApoyoConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_Servicio_de_ApoyoConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Servicio_de_Apoyo').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_Servicio_de_ApoyoBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

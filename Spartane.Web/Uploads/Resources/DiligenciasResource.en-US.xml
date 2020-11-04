@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Diligencias" value="Diligencias"></resource>
+  <resource culture="en-US" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="en-US" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="en-US" name="Servicio" value="Servicio"></resource>
+  <resource culture="en-US" name="Especialista" value="Especialista"></resource>
+  <resource culture="en-US" name="Estatus_del_Dictamen" value="Estatus del Dictamen"></resource>
+  <resource culture="en-US" name="Fecha_del_Dictamen" value="Fecha del Dictamen"></resource>
+  <resource culture="en-US" name="Dictamen" value="Dictamen"></resource>
+  <resource culture="en-US" name="Rol_de_Donde_Proviene" value="Rol de Donde Proviene"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Clave_Diligencia" value="Clave Diligencia"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

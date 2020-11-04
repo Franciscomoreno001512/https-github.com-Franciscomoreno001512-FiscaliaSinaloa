@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Documento" value="Documento"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Descripcion" value="Descripción"></resource>
+  <resource culture="en-US" name="Origen" value="Origen"></resource>
+  <resource culture="en-US" name="Tipo_de_Documento" value="Tipo de Documento"></resource>
+  <resource culture="en-US" name="idFormato" value="idFormato"></resource>
+  <resource culture="en-US" name="Requerido" value="Solicitar Requerido/Probable Responsable"></resource>
+  <resource culture="en-US" name="Solicitante" value="Solicitar Solicitante/Involucrado"></resource>
+  <resource culture="en-US" name="Solicitar_Archivo_Adjunto" value="Solicitar Archivo Adjunto"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

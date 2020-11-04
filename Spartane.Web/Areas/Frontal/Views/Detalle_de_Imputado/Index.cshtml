@@ -1,0 +1,1909 @@
+﻿@using System.Collections.Generic
+@using System.Web.UI.WebControls
+@using Spartane.Core.Domain.Detalle_de_Imputado;
+@using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+@using Spartane.Core.Domain.Genero;
+@using Spartane.Core.Domain.Estado_Civil;
+@using Spartane.Core.Domain.Tipo_de_Identificacion;
+@using Spartane.Core.Domain.Nacionalidad;
+@using Spartane.Core.Domain.Escolaridad;
+@using Spartane.Core.Domain.Ocupacion;
+@using Spartane.Core.Domain.Pais;
+@using Spartane.Core.Domain.Pais;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.Etnia;
+@using Spartane.Core.Domain.Religion;
+@using Spartane.Core.Domain.Servicio_Medico;
+@using Spartane.Core.Domain.Escolaridad;
+@using Spartane.Core.Domain.Especialidad;
+@using Spartane.Core.Domain.Estudios_Superiores;
+@using Spartane.Core.Domain.Idioma;
+@using Spartane.Core.Domain.Calidad_Migratoria;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Dialecto;
+@using Spartane.Core.Domain.Tipo_de_Inimputabilidad;
+@using Spartane.Core.Domain.Discapacidades_Mentales;
+@using Spartane.Core.Domain.Discapacidades_Fisicas;
+@using Spartane.Core.Domain.Discapacidades_Sensoriales;
+@using Spartane.Core.Domain.Discapacidades_Psicosociales;
+@using Spartane.Core.Domain.Genero;
+@using Spartane.Core.Domain.Nacionalidad;
+@using Spartane.Core.Domain.Escolaridad;
+@using Spartane.Core.Domain.Forma_Cara;
+@using Spartane.Core.Domain.Cejas;
+@using Spartane.Core.Domain.Tamano_de_Cejas;
+@using Spartane.Core.Domain.Largo_de_Cabello;
+@using Spartane.Core.Domain.Cantidad_Cabello;
+@using Spartane.Core.Domain.Implantacion_Cabello;
+@using Spartane.Core.Domain.Complexion;
+@using Spartane.Core.Domain.Color_Piel;
+@using Spartane.Core.Domain.Frente;
+@using Spartane.Core.Domain.Forma_Cabello;
+@using Spartane.Core.Domain.Color_de_Cabello;
+@using Spartane.Core.Domain.Calvicie;
+@using Spartane.Core.Domain.Color_Ojos;
+@using Spartane.Core.Domain.Ojos;
+@using Spartane.Core.Domain.Froma_Ojos;
+@using Spartane.Core.Domain.Anteojos;
+@using Spartane.Core.Domain.Forma_de_Nariz;
+@using Spartane.Core.Domain.Nariz_Base;
+@using Spartane.Core.Domain.Labios;
+@using Spartane.Core.Domain.Boca;
+@using Spartane.Core.Domain.Grosor_de_Labios;
+@using Spartane.Core.Domain.Menton;
+@using Spartane.Core.Domain.Forma_de_Menton;
+@using Spartane.Core.Domain.Barba;
+@using Spartane.Core.Domain.Forma_Orejas;
+@using Spartane.Core.Domain.Tamano_Orejas;
+@using Spartane.Core.Domain.Tipo_Lobulo;
+@using Spartane.Core.Domain.Bigote;
+@using Spartane.Core.Domain.Senas_Particulares;
+@using Spartane.Core.Domain.Situacion_Fisica;
+@using Spartane.Core.Domain.Prioridad_del_Hecho;
+@using Spartane.Core.Domain.Pais;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.Lugar_Tipo;
+@using Spartane.Core.Domain.Genero;
+@using Spartane.Core.Domain.Estado_Civil;
+@using Spartane.Core.Domain.Tipo_de_Identificacion;
+@using Spartane.Core.Domain.Nacionalidad;
+@using Spartane.Core.Domain.Escolaridad;
+@using Spartane.Core.Domain.Ocupacion;
+@using Spartane.Core.Domain.Pais;
+@using Spartane.Core.Domain.Pais;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.Colonia;
+
+@using Spartane.Core.Domain.Permission
+@using Spartane.Web.Areas.WebApiConsumer
+@using Spartane.Web.Helpers
+@{
+    ViewBag.Title = Resources.Resources.Index;
+    Permission permission = ViewBag.Permission;
+    var advanceSearch = (bool)ViewBag.AdvanceSearch;
+
+
+}
+<style>
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+</style>
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>@Resources.Detalle_de_ImputadoResources.Detalle_de_Imputado</h2>
+        
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                
+            </li>
+            <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Detalle_de_ImputadoResources.Detalle_de_Imputado</strong>
+                }
+                
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+		@{
+            if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+            {
+                <h2>&nbsp;</h2>
+                <button onclick="Detalle_de_ImputadoGetBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton" data-toggle="modal" data-target="#Detalle_de_ImputadoBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+                <div aria-hidden="true" class="modal fade in Detalle_de_ImputadoPropertyBusinessModal" id="Detalle_de_ImputadoPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    Property & Business Rules
+                                    <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+                                    </div>
+                                    <div class="clearfix col-sm-12">&nbsp;</div>
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Detalle_de_ImputadoBusinessRule-form" onclick="Detalle_de_ImputadoGetBusinessRule()">Business Rule</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_ImputadoBusinessRuleModal" id="Detalle_de_ImputadoBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_ImputadoAddBusinessRuleModal" id="Detalle_de_ImputadoAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>
+            }
+		}
+    </div>
+</div>
+
+<input type="hidden" value="List" name="Operation" id="Operation" />
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
+
+<span id="popupNotification"></span>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+
+                    <div id="jsGrid">
+                    </div>
+
+                    @* Model Start Here *@
+
+                    @using (Ajax.BeginForm("", "", new AjaxOptions { OnSuccess="" }))
+                    {
+                        
+                    }
+                    
+                     @* Model Print Start*@
+                    <div id="exportModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="gridSystemModalLabel">@Resources.Resources.Export</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-3">@Resources.Resources.ExportOptions:</div>
+                                        <div class="col-md-8 col-md-offset-0">
+                                            <label class="">
+                                                <input type="radio" name="optradio" value="1" checked="true">@Resources.Resources.ExporOnlyCurrent
+                                            </label>
+                                            <label class="">
+                                                <input type="radio" name="optradio" value="0">@Resources.Resources.ExporAllRecords
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                            </div>
+                                        </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resources.Close</button>
+                                    <button type="button" id="btnPrint" class="btn btn-primary" onclick="return PrintDocument(3);">@Resources.Resources.Print</button>
+                                    <button type="button" id="btnPdf" class="btn btn-primary" onclick="return Export(1);">@Resources.Resources.Export</button>
+                                    <button type="button" id="btnExcel" class="btn btn-primary" onclick="return Export(2);">@Resources.Resources.Export</button>
+                                    <button type="button" id="btnCSV" class="btn btn-primary" onclick="return Export(4);">@Resources.Resources.Export</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+					@* Model Print Format Start*@
+                    <div id="printFormatModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="gridSystemModalLabel">@Resources.Resources.Print @Resources.Spartan_FormatResources.Format </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div id="spartan_formats" class="col-md-6 col-md-offset-0">
+                                                                                                                   
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resources.Close</button>
+                                        <button type="button" id="btnPrint" class="btn btn-primary" onclick="return ExportToPdfFormats();">@Resources.Resources.Print @Resources.Resources.PDF</button>         
+                                    </div>
+                                    <div class="row">
+                                    </div>
+                                </div>                              
+                            </div>
+                            <!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+                    <div id="botonera">
+						@if (permission.New)
+                        { 
+                            @Html.ActionLink(Resources.Resources.Create, "Create", "Detalle_de_Imputado", new { @class = "btn btn-primary" })
+                        }
+                        @Html.ActionLink(@Resources.Resources.AdvanceSearch, "ShowAdvanceFilter", "Detalle_de_Imputado", new { previousFilters = advanceSearch }, new { @class = ("btn btn-primary") })
+                        <button onclick="ClearFilter()" class=" btn btn-primary">@Resources.Resources.ClearFilter</button>
+                                </div>
+                    <div class="table-responsive">
+
+                        <table id="tblDetalle_de_Imputado" class="table table-striped table-bordered table-hover dataTables-example scroll_content" style="overflow-x:scroll;" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>@Resources.Resources.Actions</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Clave</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Persona_Moral</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Modulo_Atencion_Inicial</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Quien_Resulte_Responsable</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Se_Presenta_con_Detenido</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Folio_Registro_Nacional_de_Detenciones</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Nombre</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Apellido_Paterno</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Apellido_Materno</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Nombre_Completo_Detenido</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Alias</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Fecha_de_Nacimiento</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Edad</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Sexo</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Estado_Civil</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Tipo_de_Identificacion</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Numero_de_Identificacion</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.CURP</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.RFC</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Calidad_Juridica</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Razon_Social</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Nacionalidad</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Escolaridad</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Ocupacion</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Pais_de_Origen</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Originario_de</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Pais</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Estado</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Municipio</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Poblacion</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Colonia</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Codigo_Postal</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Calle_del_Imputado</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Numero_Exterior</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Numero_Interior</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Referencia_de_Domicilio</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Latitud</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Longitud</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Telefono</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Extension</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Celular</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Correo_Electronico</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Apodo</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Etnia</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.No_de_Hijos</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Religion</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Servicio_Medico</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Escolaridad_Detenido</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Especialidad</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Estudios_Superiores</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Incompleto</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Idioma</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Calidad_Migratoria</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Estado_de_Nacimiento</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Municipio_de_Nacimiento</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Dialecto</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Viene_en_Estado_de_Ebriedad</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Bajo_el_Efecto_de_una_Droga</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Nombre_de_Droga</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Inimputable</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Tipo_de_Inimputabilidad</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Especifique</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Discapacidad_Mental</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Discapacidad_Fisica</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Discapacidad_Sensorial</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Discapacidad_Psicosocial</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Nombres2</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Apellido_Paterno2</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Apellido_Materno2</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Nombre_Completo2</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Sexo2</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Nacionalidad2</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Escolaridad2</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.ID_Estado_Institucion</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Peso</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Estatura</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Padecimiento_de_Enfermedad</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Forma_Cara</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Cejas</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Tamano_de_Cejas</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Largo_de_Cabello</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Cantidad_Cabello</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Implantacion_Cabello</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Complexion</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Color_Piel</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Frente</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Forma_Cabello</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Color_Cabello</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Calvicie</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Color_Ojos</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Ojos</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Forma_Ojos</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Anteojos</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Forma_de_Nariz</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Nariz_Base</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Labios</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Boca</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Grosor_de_Labios</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Menton</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Forma_de_Menton</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Barba</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Forma_Orejas</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Tamano_Orejas</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Tipo_Lobulo</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Bigote</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Senas_Particulares</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Situacion_Fisica</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Otras_Senas_Particulares</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Imputado_Recluido</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Narrativa_Breve_de_los_Hechos</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Prioridad_del_Hecho</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Fecha_del_Hecho</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Hora_Aproximada_del_Hecho</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Pais_del_hecho</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Estado_del_Hecho</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Municipio_del_Hecho</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Poblacion_Hechos</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Colonia_del_hecho</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Codigo_Postal_del_hecho</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Calle_del_hecho</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Entre_Calle</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Y_Calle</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Numero_Exterior_de_los_Hechos</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Numero_interior_de_los_hecho</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Latitud_de_los_hechos</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Longitud_de_los_Hechos</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Tipo_del_lugar_del_he</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Nombre_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Apellido_Paterno_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Apellido_Materno_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Nombre_Completo_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Fecha_de_Nacimiento_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Edad_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Sexo_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Estado_Civil_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Tipo_de_Identificacion_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Numero_de_Identificacion_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.CURP_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.RFC_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Nacionalidad_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Escolaridad_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Ocupacion_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Pais_de_Origen_tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Originario_de_tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Pais_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Estado_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Municipio_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Poblacion_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Colonia_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Codigo_Postal_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Calle_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Numero_Exterior_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Numero_Interior_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Referencia</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Latitud_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Longitud_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Telefono_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Extension_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Celular_del_Tutor</th>
+                                    <th>@Resources.Detalle_de_ImputadoResources.Correo_Electronico_del_Tutor</th>
+
+                                </tr>
+                            </thead>
+                            <tfoot style="display:table-header-group;">
+                                <tr>
+                                    <td></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+@Styles.Render("~/plugins/dataPickerStyles")
+@Styles.Render("~/plugins/clockpickerStyles")
+@Styles.Render("~/plugins/awesomeCheckboxStyles")
+
+@Scripts.Render("~/plugins/dataTables")
+@Scripts.Render("~/plugins/dataPicker")
+@Scripts.Render("~/plugins/clockpicker")
+@*@Scripts.Render("~/plugins/slimScroll")*@
+
+<script type="text/javascript" src="~/Scripts/Custom/tablePlugin.js"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_ImputadoIndexRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    div.dataTables_info {
+        display: inline-block;
+        float: left;
+    }
+</style>
+
+<script type="text/javascript">
+	var MRWhere = '';
+    var MROrder = '';
+    var table;
+    var currentFilter;
+     var permission = {
+        Consult: '@permission.Consult.ToString()' == 'True',
+        New: '@permission.New.ToString()' == 'True',
+        Edit: '@permission.Edit.ToString()' == 'True',
+        Delete: '@permission.Delete.ToString()' == 'True',
+        Export: '@permission.Export.ToString()' == 'True',
+        Print: '@permission.Print.ToString()' == 'True',
+        Configure: '@permission.Configure.ToString()' == 'True',
+    };
+
+    $(document).ready(function () {	
+	$('.loading').show();
+        $("#frmAdvanceSearch").submit(function (e) {
+            e.preventDefault();
+            InitiateAdvanceSearch();
+        });
+        $('a').tooltip();
+    });
+
+    var advanceSearchQuery = "@(advanceSearch)", isDetalle_de_ImputadoTextSearch = true;
+
+    function ClearFilter() {
+
+        $('.filterData').each(function( index, element ){
+            if ($(this).attr('type') != 'checkbox') {
+                $(this).val('');
+            }
+            else {
+                $(this).attr('checked', false);
+            }
+        });
+        advanceSearchQuery = "False";
+        ClearFilterConfig();
+        table.search('').columns().search('').draw();
+    }
+
+    function ClearFilterConfig() {
+        $.ajax({
+            url: '@Url.Content("~/Frontal/Detalle_de_Imputado/ClearAdvanceFilter")',
+            type: 'POST',
+            dataType: "json",
+            success: function (result) {
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                return null;
+            }
+        });
+    }
+
+    //Used to initiate advance function
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblDetalle_de_Imputado').DataTable().draw();
+        return false;
+    }
+
+    function GetAdvanceSearchQuery() {
+        return advanceSearchQuery;
+    }
+
+    function VisibilityAdvanceSearch() {
+        $('#btnAdvanceSearch').click();
+        return false;
+    }
+
+    function Export(format) {
+	 var counter = 1;
+        currentFilter = table.page.info();
+		 var where= MRWhere;
+		var order = MROrder;
+
+        var queryString = GetQueryString();
+
+        var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Persona_Moral = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modulo_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Quien_Resulte_Responsable = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Se_Presenta_con_Detenido = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Folio_Registro_Nacional_de_Detenciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Completo_Detenido =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Alias =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Nacimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Edad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Sexo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_Civil =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var CURP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var RFC =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calidad_Juridica =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Razon_Social =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nacionalidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Escolaridad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Ocupacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_de_Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Originario_de =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle_del_Imputado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Referencia_de_Domicilio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Telefono =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Extension =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Celular =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Correo_Electronico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apodo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Etnia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var No_de_Hijos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Religion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Servicio_Medico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Escolaridad_Detenido =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Especialidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estudios_Superiores =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Incompleto = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Idioma =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calidad_Migratoria =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Dialecto =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Viene_en_Estado_de_Ebriedad = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Bajo_el_Efecto_de_una_Droga = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_de_Droga =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Inimputable = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Inimputabilidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Especifique =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Discapacidad_Mental =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Discapacidad_Fisica =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Discapacidad_Sensorial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Discapacidad_Psicosocial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombres2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Paterno2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Materno2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Completo2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Sexo2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nacionalidad2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Escolaridad2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ID_Estado_Institucion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Peso =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatura =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Padecimiento_de_Enfermedad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_Cara =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cejas =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tamano_de_Cejas =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Largo_de_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cantidad_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Implantacion_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Complexion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Color_Piel =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Frente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Color_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calvicie =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Color_Ojos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Ojos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_Ojos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Anteojos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_de_Nariz =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nariz_Base =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Labios =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Boca =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Grosor_de_Labios =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Menton =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_de_Menton =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Barba =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_Orejas =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tamano_Orejas =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_Lobulo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Bigote =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Senas_Particulares =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Situacion_Fisica =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Otras_Senas_Particulares =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Imputado_Recluido =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Narrativa_Breve_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Prioridad_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Aproximada_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_del_hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_del_hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal_del_hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle_del_hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entre_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_interior_de_los_hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud_de_los_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_del_lugar_del_he =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Paterno_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Materno_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Completo_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Nacimiento_del_Tutor = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Edad_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Sexo_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_Civil_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Identificacion_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Identificacion_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var CURP_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var RFC_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nacionalidad_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Escolaridad_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Ocupacion_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_de_Origen_tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Originario_de_tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Referencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Telefono_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Extension_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Celular_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Correo_Electronico_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+
+
+        var queryString = "&Clave=" + Clave 
+        + "&Persona_Moral=" + Persona_Moral
+        + "&Modulo_Atencion_Inicial=" + Modulo_Atencion_Inicial
+        + "&Quien_Resulte_Responsable=" + Quien_Resulte_Responsable
+        + "&Se_Presenta_con_Detenido=" + Se_Presenta_con_Detenido
+        + "&Folio_Registro_Nacional_de_Detenciones=" + Folio_Registro_Nacional_de_Detenciones
+        + "&Nombre=" + Nombre
+        + "&Apellido_Paterno=" + Apellido_Paterno
+        + "&Apellido_Materno=" + Apellido_Materno
+        + "&Nombre_Completo_Detenido=" + Nombre_Completo_Detenido
+        + "&Alias=" + Alias
+        + "&Fecha_de_Nacimiento=" + Fecha_de_Nacimiento
+        + "&Edad=" + Edad
+        + "&Sexo=" + Sexo
+        + "&Estado_Civil=" + Estado_Civil
+        + "&Tipo_de_Identificacion=" + Tipo_de_Identificacion
+        + "&Numero_de_Identificacion=" + Numero_de_Identificacion
+        + "&CURP=" + CURP
+        + "&RFC=" + RFC
+        + "&Calidad_Juridica=" + Calidad_Juridica
+        + "&Razon_Social=" + Razon_Social
+        + "&Nacionalidad=" + Nacionalidad
+        + "&Escolaridad=" + Escolaridad
+        + "&Ocupacion=" + Ocupacion
+        + "&Pais_de_Origen=" + Pais_de_Origen
+        + "&Originario_de=" + Originario_de
+        + "&Pais=" + Pais
+        + "&Estado=" + Estado
+        + "&Municipio=" + Municipio
+        + "&Poblacion=" + Poblacion
+        + "&Colonia=" + Colonia
+        + "&Codigo_Postal=" + Codigo_Postal
+        + "&Calle_del_Imputado=" + Calle_del_Imputado
+        + "&Numero_Exterior=" + Numero_Exterior
+        + "&Numero_Interior=" + Numero_Interior
+        + "&Referencia_de_Domicilio=" + Referencia_de_Domicilio
+        + "&Latitud=" + Latitud
+        + "&Longitud=" + Longitud
+        + "&Telefono=" + Telefono
+        + "&Extension=" + Extension
+        + "&Celular=" + Celular
+        + "&Correo_Electronico=" + Correo_Electronico
+        + "&Apodo=" + Apodo
+        + "&Etnia=" + Etnia
+        + "&No_de_Hijos=" + No_de_Hijos
+        + "&Religion=" + Religion
+        + "&Servicio_Medico=" + Servicio_Medico
+        + "&Escolaridad_Detenido=" + Escolaridad_Detenido
+        + "&Especialidad=" + Especialidad
+        + "&Estudios_Superiores=" + Estudios_Superiores
+        + "&Incompleto=" + Incompleto
+        + "&Idioma=" + Idioma
+        + "&Calidad_Migratoria=" + Calidad_Migratoria
+        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
+        + "&Municipio_de_Nacimiento=" + Municipio_de_Nacimiento
+        + "&Dialecto=" + Dialecto
+        + "&Viene_en_Estado_de_Ebriedad=" + Viene_en_Estado_de_Ebriedad
+        + "&Bajo_el_Efecto_de_una_Droga=" + Bajo_el_Efecto_de_una_Droga
+        + "&Nombre_de_Droga=" + Nombre_de_Droga
+        + "&Inimputable=" + Inimputable
+        + "&Tipo_de_Inimputabilidad=" + Tipo_de_Inimputabilidad
+        + "&Especifique=" + Especifique
+        + "&Discapacidad_Mental=" + Discapacidad_Mental
+        + "&Discapacidad_Fisica=" + Discapacidad_Fisica
+        + "&Discapacidad_Sensorial=" + Discapacidad_Sensorial
+        + "&Discapacidad_Psicosocial=" + Discapacidad_Psicosocial
+        + "&Nombres2=" + Nombres2
+        + "&Apellido_Paterno2=" + Apellido_Paterno2
+        + "&Apellido_Materno2=" + Apellido_Materno2
+        + "&Nombre_Completo2=" + Nombre_Completo2
+        + "&Sexo2=" + Sexo2
+        + "&Nacionalidad2=" + Nacionalidad2
+        + "&Escolaridad2=" + Escolaridad2
+        + "&ID_Estado_Institucion=" + ID_Estado_Institucion
+        + "&Peso=" + Peso
+        + "&Estatura=" + Estatura
+        + "&Padecimiento_de_Enfermedad=" + Padecimiento_de_Enfermedad
+        + "&Forma_Cara=" + Forma_Cara
+        + "&Cejas=" + Cejas
+        + "&Tamano_de_Cejas=" + Tamano_de_Cejas
+        + "&Largo_de_Cabello=" + Largo_de_Cabello
+        + "&Cantidad_Cabello=" + Cantidad_Cabello
+        + "&Implantacion_Cabello=" + Implantacion_Cabello
+        + "&Complexion=" + Complexion
+        + "&Color_Piel=" + Color_Piel
+        + "&Frente=" + Frente
+        + "&Forma_Cabello=" + Forma_Cabello
+        + "&Color_Cabello=" + Color_Cabello
+        + "&Calvicie=" + Calvicie
+        + "&Color_Ojos=" + Color_Ojos
+        + "&Ojos=" + Ojos
+        + "&Forma_Ojos=" + Forma_Ojos
+        + "&Anteojos=" + Anteojos
+        + "&Forma_de_Nariz=" + Forma_de_Nariz
+        + "&Nariz_Base=" + Nariz_Base
+        + "&Labios=" + Labios
+        + "&Boca=" + Boca
+        + "&Grosor_de_Labios=" + Grosor_de_Labios
+        + "&Menton=" + Menton
+        + "&Forma_de_Menton=" + Forma_de_Menton
+        + "&Barba=" + Barba
+        + "&Forma_Orejas=" + Forma_Orejas
+        + "&Tamano_Orejas=" + Tamano_Orejas
+        + "&Tipo_Lobulo=" + Tipo_Lobulo
+        + "&Bigote=" + Bigote
+        + "&Senas_Particulares=" + Senas_Particulares
+        + "&Situacion_Fisica=" + Situacion_Fisica
+        + "&Otras_Senas_Particulares=" + Otras_Senas_Particulares
+        + "&Imputado_Recluido=" + Imputado_Recluido
+        + "&Narrativa_Breve_de_los_Hechos=" + Narrativa_Breve_de_los_Hechos
+        + "&Prioridad_del_Hecho=" + Prioridad_del_Hecho
+        + "&Fecha_del_Hecho=" + Fecha_del_Hecho
+        + "&Hora_Aproximada_del_Hecho=" + Hora_Aproximada_del_Hecho
+        + "&Pais_del_hecho=" + Pais_del_hecho
+        + "&Estado_del_Hecho=" + Estado_del_Hecho
+        + "&Municipio_del_Hecho=" + Municipio_del_Hecho
+        + "&Poblacion_Hechos=" + Poblacion_Hechos
+        + "&Colonia_del_hecho=" + Colonia_del_hecho
+        + "&Codigo_Postal_del_hecho=" + Codigo_Postal_del_hecho
+        + "&Calle_del_hecho=" + Calle_del_hecho
+        + "&Entre_Calle=" + Entre_Calle
+        + "&Y_Calle=" + Y_Calle
+        + "&Numero_Exterior_de_los_Hechos=" + Numero_Exterior_de_los_Hechos
+        + "&Numero_interior_de_los_hecho=" + Numero_interior_de_los_hecho
+        + "&Latitud_de_los_hechos=" + Latitud_de_los_hechos
+        + "&Longitud_de_los_Hechos=" + Longitud_de_los_Hechos
+        + "&Tipo_del_lugar_del_he=" + Tipo_del_lugar_del_he
+        + "&Nombre_del_Tutor=" + Nombre_del_Tutor
+        + "&Apellido_Paterno_del_Tutor=" + Apellido_Paterno_del_Tutor
+        + "&Apellido_Materno_del_Tutor=" + Apellido_Materno_del_Tutor
+        + "&Nombre_Completo_del_Tutor=" + Nombre_Completo_del_Tutor
+        + "&Fecha_de_Nacimiento_del_Tutor=" + Fecha_de_Nacimiento_del_Tutor
+        + "&Edad_del_Tutor=" + Edad_del_Tutor
+        + "&Sexo_del_Tutor=" + Sexo_del_Tutor
+        + "&Estado_Civil_del_Tutor=" + Estado_Civil_del_Tutor
+        + "&Tipo_de_Identificacion_del_Tutor=" + Tipo_de_Identificacion_del_Tutor
+        + "&Numero_de_Identificacion_del_Tutor=" + Numero_de_Identificacion_del_Tutor
+        + "&CURP_Tutor=" + CURP_Tutor
+        + "&RFC_Tutor=" + RFC_Tutor
+        + "&Nacionalidad_del_Tutor=" + Nacionalidad_del_Tutor
+        + "&Escolaridad_del_Tutor=" + Escolaridad_del_Tutor
+        + "&Ocupacion_del_Tutor=" + Ocupacion_del_Tutor
+        + "&Pais_de_Origen_tutor=" + Pais_de_Origen_tutor
+        + "&Originario_de_tutor=" + Originario_de_tutor
+        + "&Pais_del_Tutor=" + Pais_del_Tutor
+        + "&Estado_del_Tutor=" + Estado_del_Tutor
+        + "&Municipio_del_Tutor=" + Municipio_del_Tutor
+        + "&Poblacion_Tutor=" + Poblacion_Tutor
+        + "&Colonia_del_Tutor=" + Colonia_del_Tutor
+        + "&Codigo_Postal_del_Tutor=" + Codigo_Postal_del_Tutor
+        + "&Calle_del_Tutor=" + Calle_del_Tutor
+        + "&Numero_Exterior_del_Tutor=" + Numero_Exterior_del_Tutor
+        + "&Numero_Interior_del_Tutor=" + Numero_Interior_del_Tutor
+        + "&Referencia=" + Referencia
+        + "&Latitud_Tutor=" + Latitud_Tutor
+        + "&Longitud_Tutor=" + Longitud_Tutor
+        + "&Telefono_del_Tutor=" + Telefono_del_Tutor
+        + "&Extension_del_Tutor=" + Extension_del_Tutor
+        + "&Celular_del_Tutor=" + Celular_del_Tutor
+        + "&Correo_Electronico_del_Tutor=" + Correo_Electronico_del_Tutor
+ + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
+
+        var url = "@Url.Content("~/Frontal/Detalle_de_Imputado/Export?format=")" + format
+            + "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
+            + "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
+		    + "&where=" + where + "&order=" + order + 
+			+ "&columnsVisible=" + table.columns().visible().join(",") + queryString;
+        window.open(url, '_blank');
+    };
+
+    function GetQueryString() {
+	
+	 var counter = 0;
+        var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Persona_Moral = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modulo_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Quien_Resulte_Responsable = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Se_Presenta_con_Detenido = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Folio_Registro_Nacional_de_Detenciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Completo_Detenido =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Alias =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Nacimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Edad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Sexo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_Civil =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var CURP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var RFC =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calidad_Juridica =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Razon_Social =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nacionalidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Escolaridad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Ocupacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_de_Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Originario_de =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle_del_Imputado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Referencia_de_Domicilio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Telefono =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Extension =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Celular =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Correo_Electronico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apodo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Etnia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var No_de_Hijos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Religion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Servicio_Medico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Escolaridad_Detenido =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Especialidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estudios_Superiores =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Incompleto = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Idioma =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calidad_Migratoria =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_de_Nacimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Dialecto =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Viene_en_Estado_de_Ebriedad = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Bajo_el_Efecto_de_una_Droga = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_de_Droga =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Inimputable = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Inimputabilidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Especifique =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Discapacidad_Mental =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Discapacidad_Fisica =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Discapacidad_Sensorial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Discapacidad_Psicosocial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombres2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Paterno2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Materno2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Completo2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Sexo2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nacionalidad2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Escolaridad2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ID_Estado_Institucion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Peso =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatura =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Padecimiento_de_Enfermedad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_Cara =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cejas =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tamano_de_Cejas =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Largo_de_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cantidad_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Implantacion_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Complexion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Color_Piel =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Frente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Color_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calvicie =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Color_Ojos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Ojos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_Ojos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Anteojos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_de_Nariz =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nariz_Base =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Labios =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Boca =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Grosor_de_Labios =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Menton =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_de_Menton =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Barba =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_Orejas =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tamano_Orejas =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_Lobulo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Bigote =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Senas_Particulares =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Situacion_Fisica =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Otras_Senas_Particulares =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Imputado_Recluido =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Narrativa_Breve_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Prioridad_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Aproximada_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_del_hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_del_hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal_del_hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle_del_hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entre_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_interior_de_los_hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud_de_los_hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_del_lugar_del_he =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Paterno_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Materno_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Completo_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Nacimiento_del_Tutor = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Edad_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Sexo_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_Civil_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Identificacion_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Identificacion_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var CURP_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var RFC_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nacionalidad_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Escolaridad_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Ocupacion_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_de_Origen_tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Originario_de_tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Referencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Telefono_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Extension_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Celular_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Correo_Electronico_del_Tutor =  $($('table td .filterData.form-control:input')[counter++]).val();
+
+
+        return "&Clave=" + Clave 
+        + "&Persona_Moral=" + Persona_Moral
+        + "&Modulo_Atencion_Inicial=" + Modulo_Atencion_Inicial
+        + "&Quien_Resulte_Responsable=" + Quien_Resulte_Responsable
+        + "&Se_Presenta_con_Detenido=" + Se_Presenta_con_Detenido
+        + "&Folio_Registro_Nacional_de_Detenciones=" + Folio_Registro_Nacional_de_Detenciones
+        + "&Nombre=" + Nombre
+        + "&Apellido_Paterno=" + Apellido_Paterno
+        + "&Apellido_Materno=" + Apellido_Materno
+        + "&Nombre_Completo_Detenido=" + Nombre_Completo_Detenido
+        + "&Alias=" + Alias
+        + "&Fecha_de_Nacimiento=" + Fecha_de_Nacimiento
+        + "&Edad=" + Edad
+        + "&Sexo=" + Sexo
+        + "&Estado_Civil=" + Estado_Civil
+        + "&Tipo_de_Identificacion=" + Tipo_de_Identificacion
+        + "&Numero_de_Identificacion=" + Numero_de_Identificacion
+        + "&CURP=" + CURP
+        + "&RFC=" + RFC
+        + "&Calidad_Juridica=" + Calidad_Juridica
+        + "&Razon_Social=" + Razon_Social
+        + "&Nacionalidad=" + Nacionalidad
+        + "&Escolaridad=" + Escolaridad
+        + "&Ocupacion=" + Ocupacion
+        + "&Pais_de_Origen=" + Pais_de_Origen
+        + "&Originario_de=" + Originario_de
+        + "&Pais=" + Pais
+        + "&Estado=" + Estado
+        + "&Municipio=" + Municipio
+        + "&Poblacion=" + Poblacion
+        + "&Colonia=" + Colonia
+        + "&Codigo_Postal=" + Codigo_Postal
+        + "&Calle_del_Imputado=" + Calle_del_Imputado
+        + "&Numero_Exterior=" + Numero_Exterior
+        + "&Numero_Interior=" + Numero_Interior
+        + "&Referencia_de_Domicilio=" + Referencia_de_Domicilio
+        + "&Latitud=" + Latitud
+        + "&Longitud=" + Longitud
+        + "&Telefono=" + Telefono
+        + "&Extension=" + Extension
+        + "&Celular=" + Celular
+        + "&Correo_Electronico=" + Correo_Electronico
+        + "&Apodo=" + Apodo
+        + "&Etnia=" + Etnia
+        + "&No_de_Hijos=" + No_de_Hijos
+        + "&Religion=" + Religion
+        + "&Servicio_Medico=" + Servicio_Medico
+        + "&Escolaridad_Detenido=" + Escolaridad_Detenido
+        + "&Especialidad=" + Especialidad
+        + "&Estudios_Superiores=" + Estudios_Superiores
+        + "&Incompleto=" + Incompleto
+        + "&Idioma=" + Idioma
+        + "&Calidad_Migratoria=" + Calidad_Migratoria
+        + "&Estado_de_Nacimiento=" + Estado_de_Nacimiento
+        + "&Municipio_de_Nacimiento=" + Municipio_de_Nacimiento
+        + "&Dialecto=" + Dialecto
+        + "&Viene_en_Estado_de_Ebriedad=" + Viene_en_Estado_de_Ebriedad
+        + "&Bajo_el_Efecto_de_una_Droga=" + Bajo_el_Efecto_de_una_Droga
+        + "&Nombre_de_Droga=" + Nombre_de_Droga
+        + "&Inimputable=" + Inimputable
+        + "&Tipo_de_Inimputabilidad=" + Tipo_de_Inimputabilidad
+        + "&Especifique=" + Especifique
+        + "&Discapacidad_Mental=" + Discapacidad_Mental
+        + "&Discapacidad_Fisica=" + Discapacidad_Fisica
+        + "&Discapacidad_Sensorial=" + Discapacidad_Sensorial
+        + "&Discapacidad_Psicosocial=" + Discapacidad_Psicosocial
+        + "&Nombres2=" + Nombres2
+        + "&Apellido_Paterno2=" + Apellido_Paterno2
+        + "&Apellido_Materno2=" + Apellido_Materno2
+        + "&Nombre_Completo2=" + Nombre_Completo2
+        + "&Sexo2=" + Sexo2
+        + "&Nacionalidad2=" + Nacionalidad2
+        + "&Escolaridad2=" + Escolaridad2
+        + "&ID_Estado_Institucion=" + ID_Estado_Institucion
+        + "&Peso=" + Peso
+        + "&Estatura=" + Estatura
+        + "&Padecimiento_de_Enfermedad=" + Padecimiento_de_Enfermedad
+        + "&Forma_Cara=" + Forma_Cara
+        + "&Cejas=" + Cejas
+        + "&Tamano_de_Cejas=" + Tamano_de_Cejas
+        + "&Largo_de_Cabello=" + Largo_de_Cabello
+        + "&Cantidad_Cabello=" + Cantidad_Cabello
+        + "&Implantacion_Cabello=" + Implantacion_Cabello
+        + "&Complexion=" + Complexion
+        + "&Color_Piel=" + Color_Piel
+        + "&Frente=" + Frente
+        + "&Forma_Cabello=" + Forma_Cabello
+        + "&Color_Cabello=" + Color_Cabello
+        + "&Calvicie=" + Calvicie
+        + "&Color_Ojos=" + Color_Ojos
+        + "&Ojos=" + Ojos
+        + "&Forma_Ojos=" + Forma_Ojos
+        + "&Anteojos=" + Anteojos
+        + "&Forma_de_Nariz=" + Forma_de_Nariz
+        + "&Nariz_Base=" + Nariz_Base
+        + "&Labios=" + Labios
+        + "&Boca=" + Boca
+        + "&Grosor_de_Labios=" + Grosor_de_Labios
+        + "&Menton=" + Menton
+        + "&Forma_de_Menton=" + Forma_de_Menton
+        + "&Barba=" + Barba
+        + "&Forma_Orejas=" + Forma_Orejas
+        + "&Tamano_Orejas=" + Tamano_Orejas
+        + "&Tipo_Lobulo=" + Tipo_Lobulo
+        + "&Bigote=" + Bigote
+        + "&Senas_Particulares=" + Senas_Particulares
+        + "&Situacion_Fisica=" + Situacion_Fisica
+        + "&Otras_Senas_Particulares=" + Otras_Senas_Particulares
+        + "&Imputado_Recluido=" + Imputado_Recluido
+        + "&Narrativa_Breve_de_los_Hechos=" + Narrativa_Breve_de_los_Hechos
+        + "&Prioridad_del_Hecho=" + Prioridad_del_Hecho
+        + "&Fecha_del_Hecho=" + Fecha_del_Hecho
+        + "&Hora_Aproximada_del_Hecho=" + Hora_Aproximada_del_Hecho
+        + "&Pais_del_hecho=" + Pais_del_hecho
+        + "&Estado_del_Hecho=" + Estado_del_Hecho
+        + "&Municipio_del_Hecho=" + Municipio_del_Hecho
+        + "&Poblacion_Hechos=" + Poblacion_Hechos
+        + "&Colonia_del_hecho=" + Colonia_del_hecho
+        + "&Codigo_Postal_del_hecho=" + Codigo_Postal_del_hecho
+        + "&Calle_del_hecho=" + Calle_del_hecho
+        + "&Entre_Calle=" + Entre_Calle
+        + "&Y_Calle=" + Y_Calle
+        + "&Numero_Exterior_de_los_Hechos=" + Numero_Exterior_de_los_Hechos
+        + "&Numero_interior_de_los_hecho=" + Numero_interior_de_los_hecho
+        + "&Latitud_de_los_hechos=" + Latitud_de_los_hechos
+        + "&Longitud_de_los_Hechos=" + Longitud_de_los_Hechos
+        + "&Tipo_del_lugar_del_he=" + Tipo_del_lugar_del_he
+        + "&Nombre_del_Tutor=" + Nombre_del_Tutor
+        + "&Apellido_Paterno_del_Tutor=" + Apellido_Paterno_del_Tutor
+        + "&Apellido_Materno_del_Tutor=" + Apellido_Materno_del_Tutor
+        + "&Nombre_Completo_del_Tutor=" + Nombre_Completo_del_Tutor
+        + "&Fecha_de_Nacimiento_del_Tutor=" + Fecha_de_Nacimiento_del_Tutor
+        + "&Edad_del_Tutor=" + Edad_del_Tutor
+        + "&Sexo_del_Tutor=" + Sexo_del_Tutor
+        + "&Estado_Civil_del_Tutor=" + Estado_Civil_del_Tutor
+        + "&Tipo_de_Identificacion_del_Tutor=" + Tipo_de_Identificacion_del_Tutor
+        + "&Numero_de_Identificacion_del_Tutor=" + Numero_de_Identificacion_del_Tutor
+        + "&CURP_Tutor=" + CURP_Tutor
+        + "&RFC_Tutor=" + RFC_Tutor
+        + "&Nacionalidad_del_Tutor=" + Nacionalidad_del_Tutor
+        + "&Escolaridad_del_Tutor=" + Escolaridad_del_Tutor
+        + "&Ocupacion_del_Tutor=" + Ocupacion_del_Tutor
+        + "&Pais_de_Origen_tutor=" + Pais_de_Origen_tutor
+        + "&Originario_de_tutor=" + Originario_de_tutor
+        + "&Pais_del_Tutor=" + Pais_del_Tutor
+        + "&Estado_del_Tutor=" + Estado_del_Tutor
+        + "&Municipio_del_Tutor=" + Municipio_del_Tutor
+        + "&Poblacion_Tutor=" + Poblacion_Tutor
+        + "&Colonia_del_Tutor=" + Colonia_del_Tutor
+        + "&Codigo_Postal_del_Tutor=" + Codigo_Postal_del_Tutor
+        + "&Calle_del_Tutor=" + Calle_del_Tutor
+        + "&Numero_Exterior_del_Tutor=" + Numero_Exterior_del_Tutor
+        + "&Numero_Interior_del_Tutor=" + Numero_Interior_del_Tutor
+        + "&Referencia=" + Referencia
+        + "&Latitud_Tutor=" + Latitud_Tutor
+        + "&Longitud_Tutor=" + Longitud_Tutor
+        + "&Telefono_del_Tutor=" + Telefono_del_Tutor
+        + "&Extension_del_Tutor=" + Extension_del_Tutor
+        + "&Celular_del_Tutor=" + Celular_del_Tutor
+        + "&Correo_Electronico_del_Tutor=" + Correo_Electronico_del_Tutor
+;
+
+    }
+	
+	
+	$(document).on("click", ".editor_print", function () {
+		var idRecord = $(this).data('idrecord');
+        GetFormats(idRecord);
+        $("#printFormatModal").data('idrecord', idRecord);
+    });
+	
+	function GetFormats(idRecord) {
+
+        $('#spartan_formats').empty();
+        $.ajax({
+            url: '@Url.Content("~/Frontal/Detalle_de_Imputado/GetFormats?RecordId=")' + idRecord,
+            type: 'Get',
+            async: true,
+            contentType: "multipart/form-data",
+            success: function (result) {
+                if (result < 0) {
+
+                } else {
+                    $.each(result, function (index, element) {
+                        var div = "<div id=''>" +
+                             "<label>" +
+                                "<input type='checkbox' name='optradioFormat' value='" + element.Value + "' />" + element.Text +
+                                    "</label>" +
+                                "</div>";
+
+                        $('#spartan_formats').append(div);
+                    });
+                    $("#printFormatModal").modal('show');
+                }
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    }
+	 function ExportToPdfFormats()
+    {
+        var RecordId = $("#printFormatModal").data('idrecord');
+        var FormatId = $("input:radio[name='optradioFormat']:checked").val();
+        var i = 1;
+        $("input:checkbox[name='optradioFormat']:checked").each(function (index, item) {
+            if ($(item).is(':checked')) {
+                debugger
+                var FormatId = $(item).val();
+                var url = "@Url.Content("~/Frontal/Detalle_de_Imputado/PrintFormats?idFormat=")" + FormatId + "&RecordId=" + RecordId;
+                var printWindow = window.open(url,'Imprimir Formato ' + i.toString() + '_blank');
+                i++;
+
+            }
+        });
+    }
+	
+    function PrintDocument(format) {
+
+        var counter = 1;
+        currentFilter = table.page.info();
+		
+		   var where = MRWhere;
+        var order = MROrder;
+
+		var queryString = GetQueryString();
+		
+		var url = "@Url.Content("~/Frontal/Detalle_de_Imputado/Print")?format=3"
+				+ "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
+				+ "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
+				+ "&where=" + where + "&order=" + order + queryString;
+
+        $.ajax({
+
+            url: url,
+            async:false,
+            success: function (data) {
+                var printWindow = window.open();
+                var title = '@Resources.Resources.PrintText';
+                printWindow.document.write('<title>' + title + '</title>');
+                printWindow.document.write(data);
+				printWindow.document.getElementById("columnsVisible").text = table.columns().visible().join(",");
+                printWindow.print();
+                //printWindow.close();
+
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
+
+    }
+
+    function SetTitle(printWindow) {
+        if (printWindow.document) {
+            printWindow.document.title = "Probable Responsable Print";
+        } else {
+            setTimeout(SetTitle, 10);
+        }
+    }
+
+    Serialize = function (obj) {
+        var str = [];
+        for (var p in obj)
+            if (obj.hasOwnProperty(p)) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            }
+        return str.join("&");
+    }
+    function GetContentType() {
+        switch ($('#myModal #sel1').val()) {
+            case "1":
+                return "application/pdf; charset=utf-8";
+            case "2":
+                return "application/vnd.ms-excel; charset=utf-8";
+        }
+        return null;
+    }
+
+    var isInitialized = false;
+    var filterState = JSON.parse(localStorage.getItem("GRID_STATE_MANAGEMENT"));
+
+    $(function () {
+        //Popup
+        $("#btnExportPopUpOpen").click(function () {
+            $('#myModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-pdf", function (e, data) {
+
+            $("#btnPrint").hide();
+            $("#btnExcel").hide();
+            $("#btnPdf").show();
+            $("#btnCSV").hide();
+            $('#exportModal').modal('show');
+
+        });
+
+        $(document).on("click", ".buttons-print", function (e, data) {
+
+            $("#btnPdf").hide();
+            $("#btnExcel").hide();
+            $("#btnPrint").show();
+            $("#btnCSV").hide();
+            $('#exportModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-excel", function (e, data) {
+
+            $("#btnPdf").hide();
+            $("#btnExcel").show();
+            $("#btnPrint").hide();
+            $("#btnCSV").hide();
+            $(this).bind();
+            $('#exportModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-csv", function (e, data) {
+
+
+            $("#btnPdf").hide();
+            $("#btnExcel").hide();
+            $("#btnPrint").hide();
+            $("#btnCSV").show();
+            $('#exportModal').modal('show');
+
+        });
+
+		setFilterNew('tblDetalle_de_Imputado');
+		
+		var oDatatableStateData;
+        // initialize datatable variable
+        table = $('#tblDetalle_de_Imputado').DataTable({
+            dom: '<"html5buttons"B>lTfgt<"bottom"ip>',
+            //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
+            buttons: [
+                { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                {
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+
+                        if (!permission.Print) {
+                            $(win.document.body).addClass('disabled');
+                            $(win.document.body).attr('disabled', 'true');
+                        }
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ],
+            "processing": true,
+            "serverSide": true,
+            "info": true,
+            "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "@Resources.Resources.All"]],            
+			 "ajax": function (data, callback, settings, aoData) {
+                $.ajax({
+                    url: "@Url.Content("~/Frontal/Detalle_de_Imputado/GetDetalle_de_ImputadoList")", 
+                    method: 'Post',
+                    data: { "sEcho": data.draw, "iDisplayStart": data.start, "iDisplayLength": data.length, "sortDirection": data.order[0].dir, "sortColumn": data.order[0].column, "columns": data.columns, "where": MRWhere, "order": MROrder, "filters": GetQueryString(), "AdvanceSearch": GetAdvanceSearchQuery() }
+                }).done(callback);
+            },
+            "fnServerParams": function ( aoData ) {
+                //aoData.push({ "name": "AdvanceSearch", "value": GetAdvanceSearchQuery() });
+            },
+            "bStateSave": true,
+            "fnStateSave": function (oSettings, oData) {
+                localStorage.setItem(JSON.stringify(oData), 'Detalle_de_ImputadoDatatable_');
+            },
+            "fnStateLoad": function (oSettings) {
+                var data = localStorage.getItem('Detalle_de_ImputadoDatatable_');
+                return JSON.parse(data);
+            },
+            "fnStateLoaded": function (oSettings, oData) {
+                oDatatableStateData = oData;              
+                setFilterState('tblDetalle_de_Imputado', oDatatableStateData); 
+            },
+            "aoColumns": [
+                {
+                    "data": null,
+                    "className": "center actionColumn text-nowrap",
+					"orderable": false, 					
+					"render": function (data, type, full, meta) {
+                        var edit = '<a title="@Resources.Resources.Edit" href="@Url.Action("Create", "Detalle_de_Imputado")?Id=' + data.Clave + '" class="editor_edit edit-MR"><i class="fa fa-edit"></i></a>';
+                        if (!permission.Edit)
+                            edit = '';
+                        var consult = '<a title="@Resources.Resources.Consult" href="@Url.Action("Create", "Detalle_de_Imputado")?Id=' + data.Clave + '&consult=1"  class="editor_remove"><i class="fa fa-male"></i></a>';
+                        if (!permission.Consult)
+                            consult = '';
+                        var print = '<a title="@Resources.Resources.Print" data-toggle="modal" data-target="#printFormatModal" data-idrecord="' + data.Clave + '"  class="editor_print print-MR"><i class="fa fa-print"></i></a>';
+                        if (!permission.Print)
+                            print = '';
+                        var del = '<a title="@Resources.Resources.Delete" onclick="DeleteDetalle_de_Imputado(\'' + data.Clave + '\')" class="editor_remove eliminar-MR"><i class="fa fa-times"></i></a>';
+                        if (!permission.Delete)
+                            del = '';
+                        return edit + del + consult + print;
+                    }
+                }, 
+                { "data": "Clave", "orderable": true, "name": "Clave" }
+                ,{ "data": "Persona_Moral", "orderable": true, "name": "Persona_Moral","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Modulo_Atencion_InicialNUAT", "orderable": true, "name": "Modulo_Atencion_InicialNUAT"}
+                ,{ "data": "Quien_Resulte_Responsable", "orderable": true, "name": "Quien_Resulte_Responsable","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Se_Presenta_con_Detenido", "orderable": true, "name": "Se_Presenta_con_Detenido","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Folio_Registro_Nacional_de_Detenciones", "orderable": true, "name": "Folio_Registro_Nacional_de_Detenciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Nombre", "orderable": true, "name": "Nombre", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Apellido_Paterno", "orderable": true, "name": "Apellido_Paterno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Apellido_Materno", "orderable": true, "name": "Apellido_Materno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Nombre_Completo_Detenido", "orderable": true, "name": "Nombre_Completo_Detenido", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Alias", "orderable": true, "name": "Alias", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_Nacimiento", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Nacimiento" }
+                ,{ "data": "Edad","className": "dt-right", "orderable": true, "name": "Edad" }
+                ,{ "data": "SexoDescripcion", "orderable": true, "name": "SexoDescripcion" }
+                ,{ "data": "Estado_CivilDescripcion", "orderable": true, "name": "Estado_CivilDescripcion" }
+                ,{ "data": "Tipo_de_IdentificacionNombre", "orderable": true, "name": "Tipo_de_IdentificacionNombre" }
+                ,{ "data": "Numero_de_Identificacion", "orderable": true, "name": "Numero_de_Identificacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "CURP", "orderable": true, "name": "CURP", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "RFC", "orderable": true, "name": "RFC", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Calidad_Juridica", "orderable": true, "name": "Calidad_Juridica", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Razon_Social", "orderable": true, "name": "Razon_Social", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "NacionalidadNacionalidadC", "orderable": true, "name": "NacionalidadNacionalidadC" }
+                ,{ "data": "EscolaridadDescripcion", "orderable": true, "name": "EscolaridadDescripcion" }
+                ,{ "data": "OcupacionDescripcion", "orderable": true, "name": "OcupacionDescripcion" }
+                ,{ "data": "Pais_de_OrigenNombre", "orderable": true, "name": "Pais_de_OrigenNombre"}
+                ,{ "data": "Originario_de", "orderable": true, "name": "Originario_de", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "PaisNombre", "orderable": true, "name": "PaisNombre"}
+                ,{ "data": "EstadoNombre", "orderable": true, "name": "EstadoNombre"}
+                ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}
+                ,{ "data": "PoblacionNombre", "orderable": true, "name": "PoblacionNombre"}
+                ,{ "data": "ColoniaNombre", "orderable": true, "name": "ColoniaNombre"}
+                ,{ "data": "Codigo_Postal","className": "dt-right", "orderable": true, "name": "Codigo_Postal" }
+                ,{ "data": "Calle_del_Imputado", "orderable": true, "name": "Calle_del_Imputado", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Exterior", "orderable": true, "name": "Numero_Exterior", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Interior", "orderable": true, "name": "Numero_Interior", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Referencia_de_Domicilio", "orderable": true, "name": "Referencia_de_Domicilio", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Latitud", "orderable": true, "name": "Latitud", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Longitud", "orderable": true, "name": "Longitud", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Telefono", "orderable": true, "name": "Telefono", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Extension","className": "dt-right", "orderable": true, "name": "Extension" }
+                ,{ "data": "Celular", "orderable": true, "name": "Celular", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Correo_Electronico", "orderable": true, "name": "Correo_Electronico", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Apodo", "orderable": true, "name": "Apodo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "EtniaDescripcion", "orderable": true, "name": "EtniaDescripcion" }
+                ,{ "data": "No_de_Hijos","className": "dt-right", "orderable": true, "name": "No_de_Hijos" }
+                ,{ "data": "ReligionDescripcion", "orderable": true, "name": "ReligionDescripcion" }
+                ,{ "data": "Servicio_MedicoDescripcion", "orderable": true, "name": "Servicio_MedicoDescripcion" }
+                ,{ "data": "Escolaridad_DetenidoDescripcion", "orderable": true, "name": "Escolaridad_DetenidoDescripcion" }
+                ,{ "data": "EspecialidadDescripcion", "orderable": true, "name": "EspecialidadDescripcion" }
+                ,{ "data": "Estudios_SuperioresDescripcion", "orderable": true, "name": "Estudios_SuperioresDescripcion" }
+                ,{ "data": "Incompleto", "orderable": true, "name": "Incompleto","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "IdiomaDescripcion", "orderable": true, "name": "IdiomaDescripcion" }
+                ,{ "data": "Calidad_MigratoriaDescripcion", "orderable": true, "name": "Calidad_MigratoriaDescripcion" }
+                ,{ "data": "Estado_de_NacimientoNombre", "orderable": true, "name": "Estado_de_NacimientoNombre"}
+                ,{ "data": "Municipio_de_NacimientoNombre", "orderable": true, "name": "Municipio_de_NacimientoNombre"}
+                ,{ "data": "DialectoDescripcion", "orderable": true, "name": "DialectoDescripcion" }
+                ,{ "data": "Viene_en_Estado_de_Ebriedad", "orderable": true, "name": "Viene_en_Estado_de_Ebriedad","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Bajo_el_Efecto_de_una_Droga", "orderable": true, "name": "Bajo_el_Efecto_de_una_Droga","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Nombre_de_Droga", "orderable": true, "name": "Nombre_de_Droga", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Inimputable", "orderable": true, "name": "Inimputable","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Tipo_de_InimputabilidadDescripcion", "orderable": true, "name": "Tipo_de_InimputabilidadDescripcion" }
+                ,{ "data": "Especifique", "orderable": true, "name": "Especifique", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Discapacidad_MentalDescripcion", "orderable": true, "name": "Discapacidad_MentalDescripcion" }
+                ,{ "data": "Discapacidad_FisicaDescripcion", "orderable": true, "name": "Discapacidad_FisicaDescripcion" }
+                ,{ "data": "Discapacidad_SensorialDescripcion", "orderable": true, "name": "Discapacidad_SensorialDescripcion" }
+                ,{ "data": "Discapacidad_PsicosocialDescripcion", "orderable": true, "name": "Discapacidad_PsicosocialDescripcion" }
+                ,{ "data": "Nombres2", "orderable": true, "name": "Nombres2", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Apellido_Paterno2", "orderable": true, "name": "Apellido_Paterno2", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Apellido_Materno2", "orderable": true, "name": "Apellido_Materno2", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Nombre_Completo2", "orderable": true, "name": "Nombre_Completo2", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Sexo2Descripcion", "orderable": true, "name": "Sexo2Descripcion" }
+                ,{ "data": "Nacionalidad2NacionalidadC", "orderable": true, "name": "Nacionalidad2NacionalidadC" }
+                ,{ "data": "Escolaridad2Descripcion", "orderable": true, "name": "Escolaridad2Descripcion" }
+                ,{ "data": "ID_Estado_Institucion", "orderable": true, "name": "ID_Estado_Institucion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Peso", "orderable": true, "name": "Peso", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Estatura", "orderable": true, "name": "Estatura", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Padecimiento_de_Enfermedad", "orderable": true, "name": "Padecimiento_de_Enfermedad", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Forma_CaraDescripcion", "orderable": true, "name": "Forma_CaraDescripcion" }
+                ,{ "data": "CejasDescripcion", "orderable": true, "name": "CejasDescripcion" }
+                ,{ "data": "Tamano_de_CejasDescripcion", "orderable": true, "name": "Tamano_de_CejasDescripcion" }
+                ,{ "data": "Largo_de_CabelloDescripcion", "orderable": true, "name": "Largo_de_CabelloDescripcion" }
+                ,{ "data": "Cantidad_CabelloDescripcion", "orderable": true, "name": "Cantidad_CabelloDescripcion" }
+                ,{ "data": "Implantacion_CabelloDescripcion", "orderable": true, "name": "Implantacion_CabelloDescripcion" }
+                ,{ "data": "ComplexionDescripcion", "orderable": true, "name": "ComplexionDescripcion" }
+                ,{ "data": "Color_PielDescrpicion", "orderable": true, "name": "Color_PielDescrpicion" }
+                ,{ "data": "FrenteDescripcion", "orderable": true, "name": "FrenteDescripcion" }
+                ,{ "data": "Forma_CabelloDescripcion", "orderable": true, "name": "Forma_CabelloDescripcion" }
+                ,{ "data": "Color_CabelloDescripcion", "orderable": true, "name": "Color_CabelloDescripcion" }
+                ,{ "data": "CalvicieDescripcion", "orderable": true, "name": "CalvicieDescripcion" }
+                ,{ "data": "Color_OjosDescripcion", "orderable": true, "name": "Color_OjosDescripcion" }
+                ,{ "data": "OjosDescripcion", "orderable": true, "name": "OjosDescripcion" }
+                ,{ "data": "Forma_OjosDescripcion", "orderable": true, "name": "Forma_OjosDescripcion" }
+                ,{ "data": "AnteojosDescripcion", "orderable": true, "name": "AnteojosDescripcion" }
+                ,{ "data": "Forma_de_NarizDescripcion", "orderable": true, "name": "Forma_de_NarizDescripcion" }
+                ,{ "data": "Nariz_BaseDescripcion", "orderable": true, "name": "Nariz_BaseDescripcion" }
+                ,{ "data": "LabiosDescripcion", "orderable": true, "name": "LabiosDescripcion" }
+                ,{ "data": "BocaDescripcion", "orderable": true, "name": "BocaDescripcion" }
+                ,{ "data": "Grosor_de_LabiosDescripcion", "orderable": true, "name": "Grosor_de_LabiosDescripcion" }
+                ,{ "data": "MentonDescripcion", "orderable": true, "name": "MentonDescripcion" }
+                ,{ "data": "Forma_de_MentonDescripcion", "orderable": true, "name": "Forma_de_MentonDescripcion" }
+                ,{ "data": "BarbaDescripcion", "orderable": true, "name": "BarbaDescripcion" }
+                ,{ "data": "Forma_OrejasDescripcion", "orderable": true, "name": "Forma_OrejasDescripcion" }
+                ,{ "data": "Tamano_OrejasDescripcion", "orderable": true, "name": "Tamano_OrejasDescripcion" }
+                ,{ "data": "Tipo_LobuloDescripcion", "orderable": true, "name": "Tipo_LobuloDescripcion" }
+                ,{ "data": "BigoteDescripcion", "orderable": true, "name": "BigoteDescripcion" }
+                ,{ "data": "Senas_ParticularesDescripcion", "orderable": true, "name": "Senas_ParticularesDescripcion" }
+                ,{ "data": "Situacion_FisicaDescripcion", "orderable": true, "name": "Situacion_FisicaDescripcion" }
+                ,{ "data": "Otras_Senas_Particulares", "orderable": true, "name": "Otras_Senas_Particulares", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Imputado_Recluido", "orderable": true, "name": "Imputado_Recluido", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Narrativa_Breve_de_los_Hechos", "orderable": true, "name": "Narrativa_Breve_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Prioridad_del_HechoDescripcion", "orderable": true, "name": "Prioridad_del_HechoDescripcion" }
+                ,{ "data": "Fecha_del_Hecho", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_del_Hecho" }
+                ,{ "data": "Hora_Aproximada_del_Hecho", "orderable": true, "name": "Hora_Aproximada_del_Hecho" }
+                ,{ "data": "Pais_del_hechoNombre", "orderable": true, "name": "Pais_del_hechoNombre"}
+                ,{ "data": "Estado_del_HechoNombre", "orderable": true, "name": "Estado_del_HechoNombre"}
+                ,{ "data": "Municipio_del_HechoNombre", "orderable": true, "name": "Municipio_del_HechoNombre"}
+                ,{ "data": "Poblacion_HechosNombre", "orderable": true, "name": "Poblacion_HechosNombre"}
+                ,{ "data": "Colonia_del_hechoNombre", "orderable": true, "name": "Colonia_del_hechoNombre"}
+                ,{ "data": "Codigo_Postal_del_hecho", "orderable": true, "name": "Codigo_Postal_del_hecho", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Calle_del_hecho", "orderable": true, "name": "Calle_del_hecho", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Entre_Calle", "orderable": true, "name": "Entre_Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Y_Calle", "orderable": true, "name": "Y_Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Exterior_de_los_Hechos", "orderable": true, "name": "Numero_Exterior_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_interior_de_los_hecho", "orderable": true, "name": "Numero_interior_de_los_hecho", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Latitud_de_los_hechos", "orderable": true, "name": "Latitud_de_los_hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Longitud_de_los_Hechos", "orderable": true, "name": "Longitud_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Tipo_del_lugar_del_heDescripcion", "orderable": true, "name": "Tipo_del_lugar_del_heDescripcion" }
+                ,{ "data": "Nombre_del_Tutor", "orderable": true, "name": "Nombre_del_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Apellido_Paterno_del_Tutor", "orderable": true, "name": "Apellido_Paterno_del_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Apellido_Materno_del_Tutor", "orderable": true, "name": "Apellido_Materno_del_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Nombre_Completo_del_Tutor", "orderable": true, "name": "Nombre_Completo_del_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_Nacimiento_del_Tutor", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Nacimiento_del_Tutor" }
+                ,{ "data": "Edad_del_Tutor","className": "dt-right", "orderable": true, "name": "Edad_del_Tutor" }
+                ,{ "data": "Sexo_del_TutorDescripcion", "orderable": true, "name": "Sexo_del_TutorDescripcion" }
+                ,{ "data": "Estado_Civil_del_TutorDescripcion", "orderable": true, "name": "Estado_Civil_del_TutorDescripcion" }
+                ,{ "data": "Tipo_de_Identificacion_del_TutorNombre", "orderable": true, "name": "Tipo_de_Identificacion_del_TutorNombre" }
+                ,{ "data": "Numero_de_Identificacion_del_Tutor", "orderable": true, "name": "Numero_de_Identificacion_del_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "CURP_Tutor", "orderable": true, "name": "CURP_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "RFC_Tutor", "orderable": true, "name": "RFC_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Nacionalidad_del_TutorNacionalidadC", "orderable": true, "name": "Nacionalidad_del_TutorNacionalidadC" }
+                ,{ "data": "Escolaridad_del_TutorDescripcion", "orderable": true, "name": "Escolaridad_del_TutorDescripcion" }
+                ,{ "data": "Ocupacion_del_TutorDescripcion", "orderable": true, "name": "Ocupacion_del_TutorDescripcion" }
+                ,{ "data": "Pais_de_Origen_tutorNombre", "orderable": true, "name": "Pais_de_Origen_tutorNombre"}
+                ,{ "data": "Originario_de_tutor", "orderable": true, "name": "Originario_de_tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Pais_del_TutorNombre", "orderable": true, "name": "Pais_del_TutorNombre"}
+                ,{ "data": "Estado_del_TutorNombre", "orderable": true, "name": "Estado_del_TutorNombre"}
+                ,{ "data": "Municipio_del_TutorNombre", "orderable": true, "name": "Municipio_del_TutorNombre"}
+                ,{ "data": "Poblacion_TutorNombre", "orderable": true, "name": "Poblacion_TutorNombre"}
+                ,{ "data": "Colonia_del_TutorNombre", "orderable": true, "name": "Colonia_del_TutorNombre"}
+                ,{ "data": "Codigo_Postal_del_Tutor","className": "dt-right", "orderable": true, "name": "Codigo_Postal_del_Tutor" }
+                ,{ "data": "Calle_del_Tutor", "orderable": true, "name": "Calle_del_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Exterior_del_Tutor", "orderable": true, "name": "Numero_Exterior_del_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Interior_del_Tutor", "orderable": true, "name": "Numero_Interior_del_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Referencia", "orderable": true, "name": "Referencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Latitud_Tutor", "orderable": true, "name": "Latitud_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Longitud_Tutor", "orderable": true, "name": "Longitud_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Telefono_del_Tutor", "orderable": true, "name": "Telefono_del_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Extension_del_Tutor","className": "dt-right", "orderable": true, "name": "Extension_del_Tutor" }
+                ,{ "data": "Celular_del_Tutor", "orderable": true, "name": "Celular_del_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Correo_Electronico_del_Tutor", "orderable": true, "name": "Correo_Electronico_del_Tutor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+
+            ],
+			"colReorder": true,
+            "order": [[1, "asc"]],
+			"scrollX": true,
+			"scrollY": '55vh',
+			"scrollCollapse": true,
+			"drawCallback": function( settings ) {
+			    $('.dataTables_scrollBody').animate({
+			        scrollTop: 0,
+			        scrollLeft: 0,
+			    }, '200');
+			},
+             "language": {
+                "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                "zeroRecords": " ",
+                "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                "infoEmpty": "@Resources.Resources.NoRecords",
+                "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                "paginate": {
+                    "previous": "@Resources.Resources.Previous",
+                    "next": "@Resources.Resources.Next"
+					},
+                    "buttons": {
+                        "copyTitle": "@Resources.Resources.CopyToClipboard",
+                        "copySuccess": {
+                            "_": "%d " + "@Resources.Resources.Copiedlines",
+                            "1": "1 " +  "@Resources.Resources.Copiedline"
+                        }
+                    }
+				}
+    }).on('init.dt', function (e, data) {
+        var classNamePDF = $(this).dataTableExt.buttons.pdfHtml5.className.split(" ");
+        var classNameExcel = $(this).dataTableExt.buttons.excelHtml5.className.split(" ");
+        var classNamePrint = $(this).dataTableExt.buttons.print.className.split(" ");
+        var classNameCSV = $(this).dataTableExt.buttons.csvHtml5.className.split(" ");
+        $('.' + classNamePDF[0]).unbind();
+        $('.' + classNameExcel[0]).unbind();
+        $('.' + classNamePrint[0]).unbind();
+        $('.' + classNameCSV[0]).unbind();
+        $('a').tooltip();
+        EjecutarValidacionesDespuesDeCrearLista();
+		
+		$('#tblDetalle_de_Imputado').show().css({
+            "width": "auto",
+            "min-width": "100%"
+        });
+
+        $('.loading').hide();
+	table.columns.adjust();
+    });
+
+		ApplySearch(table);
+		$('tfoot tr').insertAfter($('thead tr'));
+		
+
+        $('.clockpicker').clockpicker();
+
+        $('.datepicker').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            format: "dd-mm-yyyy"
+        });
+    });
+
+    function DeleteDetalle_de_Imputado(Clave) {
+       if (confirm(htmlDecode('@Resources.Resources.DeleteRecord'))) {
+            $.ajax({
+                url: '@Url.Content("~/Frontal/Detalle_de_Imputado/Delete?id=")' + Clave,
+                type: 'DELETE',
+                success: function (result) {
+                    if (result) {
+                        table.draw();
+                        showNotification('@Resources.Resources.DeleteSuccess', "success");
+                    } else {
+                        showNotification('@Resources.Resources.DeleteError', "error");
+                    }
+
+                }
+            });
+        }
+    }
+</script>
+
+<script type="text/javascript">
+	function OpenRules() {
+        $.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+            $(".Detalle_de_ImputadoBusinessRuleModal").html(data);
+            $(".Detalle_de_ImputadoBusinessRuleModal").modal('show');           
+        });
+    }
+    function Detalle_de_ImputadoGetBusinessRule() {
+        $('#FieldId').val();
+        $('#FieldName').val('');
+        $('#ObjectId').val('45037');
+        $('#Attribute').val('3');
+        $('#Screen').val('Detalle_de_Imputado');
+        OpenRules();
+    }
+
+    function GetPropertyBag() {
+        $.get('@Url.Action("Detalle_de_ImputadoPropertyBag", "Detalle_de_Imputado")', function (data) {
+            $(".PropertyModal").html(data);
+        });
+    }
+</script>
+<input type="hidden" id="FieldId" name="FieldId" value="" />
+<input type="hidden" id="FieldName" name="FieldName" value="" />
+<input type="hidden" id="ObjectId" name="ObjectId" value="" />
+<input type="hidden" id="Attribute" name="Attribute" value="" />
+<input type="hidden" id="Screen" name="Screen" value="" />
+@section Styles {
+    
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/dataPicker")
+}
+

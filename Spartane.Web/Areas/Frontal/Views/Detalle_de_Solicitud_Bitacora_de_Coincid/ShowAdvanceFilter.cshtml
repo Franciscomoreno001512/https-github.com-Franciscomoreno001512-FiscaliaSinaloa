@@ -1,0 +1,380 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Solicitud_Bitacora_de_CoincidAdvanceSearchModel
+@{
+    List<SelectListItem> varTipo_de_Acuerdo_Tipo_de_Acuerdo = null;
+    if (ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo != null)
+    { varTipo_de_Acuerdo_Tipo_de_Acuerdo = (List<SelectListItem>)ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo; }
+    List<SelectListItem> varRazon_de_Incumplimiento_Razon_de_Incumplimiento = null;
+    if (ViewBag.Razon_de_Incumplimientos_Razon_de_Incumplimiento != null)
+    { varRazon_de_Incumplimiento_Razon_de_Incumplimiento = (List<SelectListItem>)ViewBag.Razon_de_Incumplimientos_Razon_de_Incumplimiento; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Detalle_de_Solicitud_Bitacora_de_Coincid", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Nombre_Completo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nombre_CompletoFilter, filters, new { @class = "form-control", @id = "ddlNombre_CompletoFilter" })
+                    @Html.TextBoxFor(m => m.Nombre_Completo, new { @class = "form-control", @type = "text", @id = "txtNombre_Completo" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Alias</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AliasFilter, filters, new { @class = "form-control", @id = "ddlAliasFilter" })
+                    @Html.TextBoxFor(m => m.Alias, new { @class = "form-control", @type = "text", @id = "txtAlias" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Numero_de_Expediente</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_de_ExpedienteFilter, filters, new { @class = "form-control", @id = "ddlNumero_de_ExpedienteFilter" })
+                    @Html.TextBoxFor(m => m.Numero_de_Expediente, new { @class = "form-control", @type = "text", @id = "txtNumero_de_Expediente" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Fuente_de_Origen</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Fuente_de_OrigenFilter, filters, new { @class = "form-control", @id = "ddlFuente_de_OrigenFilter" })
+                    @Html.TextBoxFor(m => m.Fuente_de_Origen, new { @class = "form-control", @type = "text", @id = "txtFuente_de_Origen" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Tipo_de_Acuerdo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_AcuerdoFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_AcuerdoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Acuerdo, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Acuerdo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Acuerdo_Tipo_de_Acuerdo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_AcuerdoMultiple, varTipo_de_Acuerdo_Tipo_de_Acuerdo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Acuerdo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Razon_de_Incumplimiento</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Razon_de_IncumplimientoFilter, filters, new { @class = "form-control", @id = "ddlRazon_de_IncumplimientoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceRazon_de_Incumplimiento, new { @class = "form-control", @type = "text", @id = "txtAdvanceRazon_de_Incumplimiento" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varRazon_de_Incumplimiento_Razon_de_Incumplimiento!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceRazon_de_IncumplimientoMultiple, varRazon_de_Incumplimiento_Razon_de_Incumplimiento,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceRazon_de_Incumplimiento"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Observaciones</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_de_Solicitud_Bitacora_de_Coincid/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Solicitud_Bitacora_de_CoincidClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.Detalle_de_Solicitud_Bitacora_de_CoincidClaveTo = $("#txtAdvanceToClave").val();
+        }
+        if ($("#txtAdvanceNombre_Completo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Solicitud_Bitacora_de_CoincidNombre_Completo = $("#txtAdvanceNombre_Completo").val();
+            advanceSearch.Detalle_de_Solicitud_Bitacora_de_CoincidNombre_CompletoSearchType = $("#ddlAdvanceNombre_CompletoFilter").val();
+        }
+        if ($("#txtAdvanceAlias").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Solicitud_Bitacora_de_CoincidAlias = $("#txtAdvanceAlias").val();
+            advanceSearch.Detalle_de_Solicitud_Bitacora_de_CoincidAliasSearchType = $("#ddlAdvanceAliasFilter").val();
+        }
+        if ($("#txtAdvanceNumero_de_Expediente").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Solicitud_Bitacora_de_CoincidNumero_de_Expediente = $("#txtAdvanceNumero_de_Expediente").val();
+            advanceSearch.Detalle_de_Solicitud_Bitacora_de_CoincidNumero_de_ExpedienteSearchType = $("#ddlAdvanceNumero_de_ExpedienteFilter").val();
+        }
+        if ($("#txtAdvanceFuente_de_Origen").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Solicitud_Bitacora_de_CoincidFuente_de_Origen = $("#txtAdvanceFuente_de_Origen").val();
+            advanceSearch.Detalle_de_Solicitud_Bitacora_de_CoincidFuente_de_OrigenSearchType = $("#ddlAdvanceFuente_de_OrigenFilter").val();
+        }
+        advanceSearch.Tipo_de_AcuerdoSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Acuerdo').val().length > 0 || $("#txtAdvanceTipo_de_Acuerdo").val() == "") {
+
+
+            if (isDetalle_de_Solicitud_Bitacora_de_CoincidTextSearch) {
+                advanceSearch.Tipo_de_AcuerdoName = $("#txtAdvanceTipo_de_Acuerdo").val();
+                advanceSearch.Tipo_de_AcuerdoNameSearchType = $("#ddlAdvanceTipo_de_Acuerdo").val();
+                advanceSearch.Tipo_de_AcuerdoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_AcuerdoToSearch = $("#ddlAdvanceTipo_de_Acuerdo").val();
+                advanceSearch.Tipo_de_AcuerdoSearchType = 2;
+            }
+        }
+        if ($("#ddlAdvanceCumplido").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Solicitud_Bitacora_de_CoincidCumplido = $("#ddlAdvanceCumplido").val();
+        }
+        advanceSearch.Razon_de_IncumplimientoSearchType = 0;
+        if ($('#ddlAdvanceRazon_de_Incumplimiento').val().length > 0 || $("#txtAdvanceRazon_de_Incumplimiento").val() == "") {
+
+
+            if (isDetalle_de_Solicitud_Bitacora_de_CoincidTextSearch) {
+                advanceSearch.Razon_de_IncumplimientoName = $("#txtAdvanceRazon_de_Incumplimiento").val();
+                advanceSearch.Razon_de_IncumplimientoNameSearchType = $("#ddlAdvanceRazon_de_Incumplimiento").val();
+                advanceSearch.Razon_de_IncumplimientoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Razon_de_IncumplimientoToSearch = $("#ddlAdvanceRazon_de_Incumplimiento").val();
+                advanceSearch.Razon_de_IncumplimientoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceObservaciones").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Solicitud_Bitacora_de_CoincidObservaciones = $("#txtAdvanceObservaciones").val();
+            advanceSearch.Detalle_de_Solicitud_Bitacora_de_CoincidObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblDetalle_de_Solicitud_Bitacora_de_Coincid').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isDetalle_de_Solicitud_Bitacora_de_CoincidTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceTipo_de_Acuerdo").keypress(function () {
+            isDetalle_de_Solicitud_Bitacora_de_CoincidTextSearch = true;
+            $("#ddlAdvanceTipo_de_Acuerdo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Acuerdo").change(function () {
+            isDetalle_de_Solicitud_Bitacora_de_CoincidTextSearch = false;
+            $("#txtAdvanceTipo_de_Acuerdo").val('');
+        });
+        $("#txtAdvanceRazon_de_Incumplimiento").keypress(function () {
+            isDetalle_de_Solicitud_Bitacora_de_CoincidTextSearch = true;
+            $("#ddlAdvanceRazon_de_Incumplimiento").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceRazon_de_Incumplimiento").change(function () {
+            isDetalle_de_Solicitud_Bitacora_de_CoincidTextSearch = false;
+            $("#txtAdvanceRazon_de_Incumplimiento").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

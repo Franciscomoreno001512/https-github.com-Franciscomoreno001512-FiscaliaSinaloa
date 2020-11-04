@@ -1,0 +1,1316 @@
+﻿@using System.Collections.Generic
+@using System.Web.UI.WebControls
+@using Spartane.Core.Domain.Cadena_de_Custodia;
+@using Spartane.Core.Domain.Delito;
+@using Spartane.Core.Domain.Catalogo_Tipo_de_Cargo_CC;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Catalogo_Unidad_Policial;
+@using Spartane.Core.Domain.Catalogo_Unidad_Administrativa_CC;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Catalogo_Motivo_de_Intervencion_CC;
+@using Spartane.Core.Domain.Catalogo_Estatus_CC;
+@using Spartane.Core.Domain.Catalogo_de_Inicio_de_Cadena_de_Custodia;
+@using Spartane.Core.Domain.Tipo_de_Compareciente;
+@using Spartane.Core.Domain.Catalogo_de_Recoleccion;
+@using Spartane.Core.Domain.Catalogo_de_Movil_para_traslado;
+
+@using Spartane.Core.Domain.Permission
+@using Spartane.Web.Areas.WebApiConsumer
+@using Spartane.Web.Helpers
+@{
+    ViewBag.Title = Resources.Resources.Index;
+    Permission permission = ViewBag.Permission;
+    var advanceSearch = (bool)ViewBag.AdvanceSearch;
+
+
+}
+<style>
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+</style>
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>@Resources.Cadena_de_CustodiaResources.Cadena_de_Custodia</h2>
+        
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                
+            </li>
+            <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Cadena_de_CustodiaResources.Cadena_de_Custodia</strong>
+                }
+                
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+		@{
+            if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+            {
+                <h2>&nbsp;</h2>
+                <button onclick="Cadena_de_CustodiaGetBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton" data-toggle="modal" data-target="#Cadena_de_CustodiaBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+                <div aria-hidden="true" class="modal fade in Cadena_de_CustodiaPropertyBusinessModal" id="Cadena_de_CustodiaPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    Property & Business Rules
+                                    <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+                                    </div>
+                                    <div class="clearfix col-sm-12">&nbsp;</div>
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Cadena_de_CustodiaBusinessRule-form" onclick="Cadena_de_CustodiaGetBusinessRule()">Business Rule</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in Cadena_de_CustodiaBusinessRuleModal" id="Cadena_de_CustodiaBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in Cadena_de_CustodiaAddBusinessRuleModal" id="Cadena_de_CustodiaAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>
+            }
+		}
+    </div>
+</div>
+
+<input type="hidden" value="List" name="Operation" id="Operation" />
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
+
+<span id="popupNotification"></span>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+
+                    <div id="jsGrid">
+                    </div>
+
+                    @* Model Start Here *@
+
+                    @using (Ajax.BeginForm("", "", new AjaxOptions { OnSuccess="" }))
+                    {
+                        
+                    }
+                    
+                     @* Model Print Start*@
+                    <div id="exportModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="gridSystemModalLabel">@Resources.Resources.Export</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-3">@Resources.Resources.ExportOptions:</div>
+                                        <div class="col-md-8 col-md-offset-0">
+                                            <label class="">
+                                                <input type="radio" name="optradio" value="1" checked="true">@Resources.Resources.ExporOnlyCurrent
+                                            </label>
+                                            <label class="">
+                                                <input type="radio" name="optradio" value="0">@Resources.Resources.ExporAllRecords
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                            </div>
+                                        </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resources.Close</button>
+                                    <button type="button" id="btnPrint" class="btn btn-primary" onclick="return PrintDocument(3);">@Resources.Resources.Print</button>
+                                    <button type="button" id="btnPdf" class="btn btn-primary" onclick="return Export(1);">@Resources.Resources.Export</button>
+                                    <button type="button" id="btnExcel" class="btn btn-primary" onclick="return Export(2);">@Resources.Resources.Export</button>
+                                    <button type="button" id="btnCSV" class="btn btn-primary" onclick="return Export(4);">@Resources.Resources.Export</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+					@* Model Print Format Start*@
+                    <div id="printFormatModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="gridSystemModalLabel">@Resources.Resources.Print @Resources.Spartan_FormatResources.Format </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div id="spartan_formats" class="col-md-6 col-md-offset-0">
+                                                                                                                   
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resources.Close</button>
+                                        <button type="button" id="btnPrint" class="btn btn-primary" onclick="return ExportToPdfFormats();">@Resources.Resources.Print @Resources.Resources.PDF</button>         
+                                    </div>
+                                    <div class="row">
+                                    </div>
+                                </div>                              
+                            </div>
+                            <!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+                    <div id="botonera">
+						@if (permission.New)
+                        { 
+                            @Html.ActionLink(Resources.Resources.Create, "Create", "Cadena_de_Custodia", new { @class = "btn btn-primary" })
+                        }
+                        @Html.ActionLink(@Resources.Resources.AdvanceSearch, "ShowAdvanceFilter", "Cadena_de_Custodia", new { previousFilters = advanceSearch }, new { @class = ("btn btn-primary") })
+                        <button onclick="ClearFilter()" class=" btn btn-primary">@Resources.Resources.ClearFilter</button>
+                                </div>
+                    <div class="table-responsive">
+
+                        <table id="tblCadena_de_Custodia" class="table table-striped table-bordered table-hover dataTables-example scroll_content" style="overflow-x:scroll;" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>@Resources.Resources.Actions</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Clave</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.NUC</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.NIC</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Delito_Referencia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Fecha</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Hora</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Lugar_Exacto_del_Levantamiento</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Condicion_y_Ubicacion</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Levantada_por</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Cargo</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Asignar</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Folio_NUE</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Unidad_Policial</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Caracterististicas_del_indicio</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Condiciones_De_Manejo</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Numero_de_Parte</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.CUIP</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Observaciones</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Longitud</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Latitud</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Clima</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Grados</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Mensaje</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Unidad_Administrativa</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Entidad_Federativa</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Municipio</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Numero_de_Oficio</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Fecha_CC</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Hora_CC</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Motivo_de_Intervencion</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Otro</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Estatus</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Nombre_Completo</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Usuario_que_Registra</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.FAE</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Fecha_de_la_Emergencia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Hora_de_la_Emergencia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Fuente</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Telefono</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Celular</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Correo_Electronico</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Red_Social</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Medio_Masivo</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Cargo_de_la_Autoridad</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Tipo_de_Emergencia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Descripcion_de_la_Emergencia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Probables_Detenidos</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Fecha_de_la_Detencion</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Hora_de_la_Detencion</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Pais_Emergencia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Estado_Emergencia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Municipio_Emergencia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Colonia_Emergencia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Calle_Emergencia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Entre_Calle_Emergencia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Y_Calle_Emergencia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Latitud_Emergencia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Longitud_Emergencia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Nombre_de_la_Autoridad</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Especifique</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Tipo_de_Agente</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Area</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Unidad</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Zona</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Agente_Investigador</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Narrativa_de_los_Hechos</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Probable_Delito_Principal</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Fecha_de_Asignacion</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Hora_de_Asignacion</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Estatus_NUE</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Inicio_de_Cadena_de_Custodia</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Calidad_de_quien_aporta</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Fecha_del_arribo</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Hora_del_arribo</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Descripcion_de_recoleccion</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Movil_para_Traslado</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Servidor_Publico_que_Preserva</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Servidor_Publico_que_Busca</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Servidor_Publico_que_Localiza</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Servidor_Publico_que_Recolecta</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Servidor_Publico_que_Traslada</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Preservacion</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Busqueda</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Localizacion</th>
+                                    <th>@Resources.Cadena_de_CustodiaResources.Recoleccion</th>
+
+                                </tr>
+                            </thead>
+                            <tfoot style="display:table-header-group;">
+                                <tr>
+                                    <td></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+@Styles.Render("~/plugins/dataPickerStyles")
+@Styles.Render("~/plugins/clockpickerStyles")
+@Styles.Render("~/plugins/awesomeCheckboxStyles")
+
+@Scripts.Render("~/plugins/dataTables")
+@Scripts.Render("~/plugins/dataPicker")
+@Scripts.Render("~/plugins/clockpicker")
+@*@Scripts.Render("~/plugins/slimScroll")*@
+
+<script type="text/javascript" src="~/Scripts/Custom/tablePlugin.js"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Cadena_de_CustodiaIndexRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    div.dataTables_info {
+        display: inline-block;
+        float: left;
+    }
+</style>
+
+<script type="text/javascript">
+	var MRWhere = '';
+    var MROrder = '';
+    var table;
+    var currentFilter;
+     var permission = {
+        Consult: '@permission.Consult.ToString()' == 'True',
+        New: '@permission.New.ToString()' == 'True',
+        Edit: '@permission.Edit.ToString()' == 'True',
+        Delete: '@permission.Delete.ToString()' == 'True',
+        Export: '@permission.Export.ToString()' == 'True',
+        Print: '@permission.Print.ToString()' == 'True',
+        Configure: '@permission.Configure.ToString()' == 'True',
+    };
+
+    $(document).ready(function () {	
+	$('.loading').show();
+        $("#frmAdvanceSearch").submit(function (e) {
+            e.preventDefault();
+            InitiateAdvanceSearch();
+        });
+        $('a').tooltip();
+    });
+
+    var advanceSearchQuery = "@(advanceSearch)", isCadena_de_CustodiaTextSearch = true;
+
+    function ClearFilter() {
+
+        $('.filterData').each(function( index, element ){
+            if ($(this).attr('type') != 'checkbox') {
+                $(this).val('');
+            }
+            else {
+                $(this).attr('checked', false);
+            }
+        });
+        advanceSearchQuery = "False";
+        ClearFilterConfig();
+        table.search('').columns().search('').draw();
+    }
+
+    function ClearFilterConfig() {
+        $.ajax({
+            url: '@Url.Content("~/Frontal/Cadena_de_Custodia/ClearAdvanceFilter")',
+            type: 'POST',
+            dataType: "json",
+            success: function (result) {
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                return null;
+            }
+        });
+    }
+
+    //Used to initiate advance function
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblCadena_de_Custodia').DataTable().draw();
+        return false;
+    }
+
+    function GetAdvanceSearchQuery() {
+        return advanceSearchQuery;
+    }
+
+    function VisibilityAdvanceSearch() {
+        $('#btnAdvanceSearch').click();
+        return false;
+    }
+
+    function Export(format) {
+	 var counter = 1;
+        currentFilter = table.page.info();
+		 var where= MRWhere;
+		var order = MROrder;
+
+        var queryString = GetQueryString();
+
+        var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NUC =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NIC =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Delito_Referencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Lugar_Exacto_del_Levantamiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Condicion_y_Ubicacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Levantada_por =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cargo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Asignar =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Folio_NUE =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Unidad_Policial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Caracterististicas_del_indicio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Condiciones_De_Manejo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Parte =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var CUIP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Clima =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Grados =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Mensaje =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Unidad_Administrativa =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entidad_Federativa =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Oficio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_CC = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_CC = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_de_Intervencion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Otro =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Completo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var FAE =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_la_Emergencia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_la_Emergencia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fuente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Telefono =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Celular =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Correo_Electronico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Red_Social =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Medio_Masivo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cargo_de_la_Autoridad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Descripcion_de_la_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Probables_Detenidos = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_la_Detencion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_la_Detencion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entre_Calle_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Y_Calle_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_de_la_Autoridad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Especifique =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Agente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Area =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Unidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Zona =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Agente_Investigador =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Narrativa_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Probable_Delito_Principal =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus_NUE =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Inicio_de_Cadena_de_Custodia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calidad_de_quien_aporta =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_del_arribo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_del_arribo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Descripcion_de_recoleccion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Movil_para_Traslado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Servidor_Publico_que_Preserva =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Servidor_Publico_que_Busca =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Servidor_Publico_que_Localiza =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Servidor_Publico_que_Recolecta =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Servidor_Publico_que_Traslada =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Preservacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Busqueda =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Localizacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Recoleccion =  $($('table td .filterData.form-control:input')[counter++]).val();
+
+
+        var queryString = "&Clave=" + Clave 
+        + "&NUC=" + NUC
+        + "&NIC=" + NIC
+        + "&Delito_Referencia=" + Delito_Referencia
+        + "&Fecha=" + Fecha
+        + "&Hora=" + Hora
+        + "&Lugar_Exacto_del_Levantamiento=" + Lugar_Exacto_del_Levantamiento
+        + "&Condicion_y_Ubicacion=" + Condicion_y_Ubicacion
+        + "&Levantada_por=" + Levantada_por
+        + "&Cargo=" + Cargo
+        + "&Asignar=" + Asignar
+        + "&Folio_NUE=" + Folio_NUE
+        + "&Unidad_Policial=" + Unidad_Policial
+        + "&Caracterististicas_del_indicio=" + Caracterististicas_del_indicio
+        + "&Condiciones_De_Manejo=" + Condiciones_De_Manejo
+        + "&Numero_de_Parte=" + Numero_de_Parte
+        + "&CUIP=" + CUIP
+        + "&Observaciones=" + Observaciones
+        + "&Longitud=" + Longitud
+        + "&Latitud=" + Latitud
+        + "&Clima=" + Clima
+        + "&Grados=" + Grados
+        + "&Mensaje=" + Mensaje
+        + "&Unidad_Administrativa=" + Unidad_Administrativa
+        + "&Entidad_Federativa=" + Entidad_Federativa
+        + "&Municipio=" + Municipio
+        + "&Numero_de_Oficio=" + Numero_de_Oficio
+        + "&Fecha_CC=" + Fecha_CC
+        + "&Hora_CC=" + Hora_CC
+        + "&Motivo_de_Intervencion=" + Motivo_de_Intervencion
+        + "&Otro=" + Otro
+        + "&Estatus=" + Estatus
+        + "&Nombre_Completo=" + Nombre_Completo
+        + "&Usuario_que_Registra=" + Usuario_que_Registra
+        + "&FAE=" + FAE
+        + "&Fecha_de_la_Emergencia=" + Fecha_de_la_Emergencia
+        + "&Hora_de_la_Emergencia=" + Hora_de_la_Emergencia
+        + "&Fuente=" + Fuente
+        + "&Telefono=" + Telefono
+        + "&Celular=" + Celular
+        + "&Correo_Electronico=" + Correo_Electronico
+        + "&Red_Social=" + Red_Social
+        + "&Medio_Masivo=" + Medio_Masivo
+        + "&Cargo_de_la_Autoridad=" + Cargo_de_la_Autoridad
+        + "&Tipo_de_Emergencia=" + Tipo_de_Emergencia
+        + "&Descripcion_de_la_Emergencia=" + Descripcion_de_la_Emergencia
+        + "&Probables_Detenidos=" + Probables_Detenidos
+        + "&Fecha_de_la_Detencion=" + Fecha_de_la_Detencion
+        + "&Hora_de_la_Detencion=" + Hora_de_la_Detencion
+        + "&Pais_Emergencia=" + Pais_Emergencia
+        + "&Estado_Emergencia=" + Estado_Emergencia
+        + "&Municipio_Emergencia=" + Municipio_Emergencia
+        + "&Colonia_Emergencia=" + Colonia_Emergencia
+        + "&Calle_Emergencia=" + Calle_Emergencia
+        + "&Entre_Calle_Emergencia=" + Entre_Calle_Emergencia
+        + "&Y_Calle_Emergencia=" + Y_Calle_Emergencia
+        + "&Latitud_Emergencia=" + Latitud_Emergencia
+        + "&Longitud_Emergencia=" + Longitud_Emergencia
+        + "&Nombre_de_la_Autoridad=" + Nombre_de_la_Autoridad
+        + "&Especifique=" + Especifique
+        + "&Tipo_de_Agente=" + Tipo_de_Agente
+        + "&Area=" + Area
+        + "&Unidad=" + Unidad
+        + "&Zona=" + Zona
+        + "&Agente_Investigador=" + Agente_Investigador
+        + "&Narrativa_de_los_Hechos=" + Narrativa_de_los_Hechos
+        + "&Probable_Delito_Principal=" + Probable_Delito_Principal
+        + "&Fecha_de_Asignacion=" + Fecha_de_Asignacion
+        + "&Hora_de_Asignacion=" + Hora_de_Asignacion
+        + "&Estatus_NUE=" + Estatus_NUE
+        + "&Inicio_de_Cadena_de_Custodia=" + Inicio_de_Cadena_de_Custodia
+        + "&Calidad_de_quien_aporta=" + Calidad_de_quien_aporta
+        + "&Fecha_del_arribo=" + Fecha_del_arribo
+        + "&Hora_del_arribo=" + Hora_del_arribo
+        + "&Descripcion_de_recoleccion=" + Descripcion_de_recoleccion
+        + "&Movil_para_Traslado=" + Movil_para_Traslado
+        + "&Servidor_Publico_que_Preserva=" + Servidor_Publico_que_Preserva
+        + "&Servidor_Publico_que_Busca=" + Servidor_Publico_que_Busca
+        + "&Servidor_Publico_que_Localiza=" + Servidor_Publico_que_Localiza
+        + "&Servidor_Publico_que_Recolecta=" + Servidor_Publico_que_Recolecta
+        + "&Servidor_Publico_que_Traslada=" + Servidor_Publico_que_Traslada
+        + "&Preservacion=" + Preservacion
+        + "&Busqueda=" + Busqueda
+        + "&Localizacion=" + Localizacion
+        + "&Recoleccion=" + Recoleccion
+ + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
+
+        var url = "@Url.Content("~/Frontal/Cadena_de_Custodia/Export?format=")" + format
+            + "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
+            + "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
+		    + "&where=" + where + "&order=" + order + 
+			+ "&columnsVisible=" + table.columns().visible().join(",") + queryString;
+        window.open(url, '_blank');
+    };
+
+    function GetQueryString() {
+	
+	 var counter = 0;
+        var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NUC =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NIC =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Delito_Referencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Lugar_Exacto_del_Levantamiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Condicion_y_Ubicacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Levantada_por =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cargo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Asignar =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Folio_NUE =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Unidad_Policial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Caracterististicas_del_indicio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Condiciones_De_Manejo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Parte =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var CUIP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Clima =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Grados =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Mensaje =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Unidad_Administrativa =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entidad_Federativa =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Oficio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_CC = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_CC = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_de_Intervencion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Otro =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Completo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var FAE =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_la_Emergencia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_la_Emergencia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fuente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Telefono =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Celular =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Correo_Electronico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Red_Social =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Medio_Masivo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cargo_de_la_Autoridad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Descripcion_de_la_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Probables_Detenidos = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_la_Detencion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_la_Detencion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entre_Calle_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Y_Calle_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud_Emergencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_de_la_Autoridad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Especifique =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Agente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Area =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Unidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Zona =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Agente_Investigador =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Narrativa_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Probable_Delito_Principal =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus_NUE =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Inicio_de_Cadena_de_Custodia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calidad_de_quien_aporta =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_del_arribo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_del_arribo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Descripcion_de_recoleccion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Movil_para_Traslado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Servidor_Publico_que_Preserva =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Servidor_Publico_que_Busca =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Servidor_Publico_que_Localiza =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Servidor_Publico_que_Recolecta =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Servidor_Publico_que_Traslada =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Preservacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Busqueda =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Localizacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Recoleccion =  $($('table td .filterData.form-control:input')[counter++]).val();
+
+
+        return "&Clave=" + Clave 
+        + "&NUC=" + NUC
+        + "&NIC=" + NIC
+        + "&Delito_Referencia=" + Delito_Referencia
+        + "&Fecha=" + Fecha
+        + "&Hora=" + Hora
+        + "&Lugar_Exacto_del_Levantamiento=" + Lugar_Exacto_del_Levantamiento
+        + "&Condicion_y_Ubicacion=" + Condicion_y_Ubicacion
+        + "&Levantada_por=" + Levantada_por
+        + "&Cargo=" + Cargo
+        + "&Asignar=" + Asignar
+        + "&Folio_NUE=" + Folio_NUE
+        + "&Unidad_Policial=" + Unidad_Policial
+        + "&Caracterististicas_del_indicio=" + Caracterististicas_del_indicio
+        + "&Condiciones_De_Manejo=" + Condiciones_De_Manejo
+        + "&Numero_de_Parte=" + Numero_de_Parte
+        + "&CUIP=" + CUIP
+        + "&Observaciones=" + Observaciones
+        + "&Longitud=" + Longitud
+        + "&Latitud=" + Latitud
+        + "&Clima=" + Clima
+        + "&Grados=" + Grados
+        + "&Mensaje=" + Mensaje
+        + "&Unidad_Administrativa=" + Unidad_Administrativa
+        + "&Entidad_Federativa=" + Entidad_Federativa
+        + "&Municipio=" + Municipio
+        + "&Numero_de_Oficio=" + Numero_de_Oficio
+        + "&Fecha_CC=" + Fecha_CC
+        + "&Hora_CC=" + Hora_CC
+        + "&Motivo_de_Intervencion=" + Motivo_de_Intervencion
+        + "&Otro=" + Otro
+        + "&Estatus=" + Estatus
+        + "&Nombre_Completo=" + Nombre_Completo
+        + "&Usuario_que_Registra=" + Usuario_que_Registra
+        + "&FAE=" + FAE
+        + "&Fecha_de_la_Emergencia=" + Fecha_de_la_Emergencia
+        + "&Hora_de_la_Emergencia=" + Hora_de_la_Emergencia
+        + "&Fuente=" + Fuente
+        + "&Telefono=" + Telefono
+        + "&Celular=" + Celular
+        + "&Correo_Electronico=" + Correo_Electronico
+        + "&Red_Social=" + Red_Social
+        + "&Medio_Masivo=" + Medio_Masivo
+        + "&Cargo_de_la_Autoridad=" + Cargo_de_la_Autoridad
+        + "&Tipo_de_Emergencia=" + Tipo_de_Emergencia
+        + "&Descripcion_de_la_Emergencia=" + Descripcion_de_la_Emergencia
+        + "&Probables_Detenidos=" + Probables_Detenidos
+        + "&Fecha_de_la_Detencion=" + Fecha_de_la_Detencion
+        + "&Hora_de_la_Detencion=" + Hora_de_la_Detencion
+        + "&Pais_Emergencia=" + Pais_Emergencia
+        + "&Estado_Emergencia=" + Estado_Emergencia
+        + "&Municipio_Emergencia=" + Municipio_Emergencia
+        + "&Colonia_Emergencia=" + Colonia_Emergencia
+        + "&Calle_Emergencia=" + Calle_Emergencia
+        + "&Entre_Calle_Emergencia=" + Entre_Calle_Emergencia
+        + "&Y_Calle_Emergencia=" + Y_Calle_Emergencia
+        + "&Latitud_Emergencia=" + Latitud_Emergencia
+        + "&Longitud_Emergencia=" + Longitud_Emergencia
+        + "&Nombre_de_la_Autoridad=" + Nombre_de_la_Autoridad
+        + "&Especifique=" + Especifique
+        + "&Tipo_de_Agente=" + Tipo_de_Agente
+        + "&Area=" + Area
+        + "&Unidad=" + Unidad
+        + "&Zona=" + Zona
+        + "&Agente_Investigador=" + Agente_Investigador
+        + "&Narrativa_de_los_Hechos=" + Narrativa_de_los_Hechos
+        + "&Probable_Delito_Principal=" + Probable_Delito_Principal
+        + "&Fecha_de_Asignacion=" + Fecha_de_Asignacion
+        + "&Hora_de_Asignacion=" + Hora_de_Asignacion
+        + "&Estatus_NUE=" + Estatus_NUE
+        + "&Inicio_de_Cadena_de_Custodia=" + Inicio_de_Cadena_de_Custodia
+        + "&Calidad_de_quien_aporta=" + Calidad_de_quien_aporta
+        + "&Fecha_del_arribo=" + Fecha_del_arribo
+        + "&Hora_del_arribo=" + Hora_del_arribo
+        + "&Descripcion_de_recoleccion=" + Descripcion_de_recoleccion
+        + "&Movil_para_Traslado=" + Movil_para_Traslado
+        + "&Servidor_Publico_que_Preserva=" + Servidor_Publico_que_Preserva
+        + "&Servidor_Publico_que_Busca=" + Servidor_Publico_que_Busca
+        + "&Servidor_Publico_que_Localiza=" + Servidor_Publico_que_Localiza
+        + "&Servidor_Publico_que_Recolecta=" + Servidor_Publico_que_Recolecta
+        + "&Servidor_Publico_que_Traslada=" + Servidor_Publico_que_Traslada
+        + "&Preservacion=" + Preservacion
+        + "&Busqueda=" + Busqueda
+        + "&Localizacion=" + Localizacion
+        + "&Recoleccion=" + Recoleccion
+;
+
+    }
+	
+	
+	$(document).on("click", ".editor_print", function () {
+		var idRecord = $(this).data('idrecord');
+        GetFormats(idRecord);
+        $("#printFormatModal").data('idrecord', idRecord);
+    });
+	
+	function GetFormats(idRecord) {
+
+        $('#spartan_formats').empty();
+        $.ajax({
+            url: '@Url.Content("~/Frontal/Cadena_de_Custodia/GetFormats?RecordId=")' + idRecord,
+            type: 'Get',
+            async: true,
+            contentType: "multipart/form-data",
+            success: function (result) {
+                if (result < 0) {
+
+                } else {
+                    $.each(result, function (index, element) {
+                        var div = "<div id=''>" +
+                             "<label>" +
+                                "<input type='checkbox' name='optradioFormat' value='" + element.Value + "' />" + element.Text +
+                                    "</label>" +
+                                "</div>";
+
+                        $('#spartan_formats').append(div);
+                    });
+                    $("#printFormatModal").modal('show');
+                }
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    }
+	 function ExportToPdfFormats()
+    {
+        var RecordId = $("#printFormatModal").data('idrecord');
+        var FormatId = $("input:radio[name='optradioFormat']:checked").val();
+        var i = 1;
+        $("input:checkbox[name='optradioFormat']:checked").each(function (index, item) {
+            if ($(item).is(':checked')) {
+                debugger
+                var FormatId = $(item).val();
+                var url = "@Url.Content("~/Frontal/Cadena_de_Custodia/PrintFormats?idFormat=")" + FormatId + "&RecordId=" + RecordId;
+                var printWindow = window.open(url,'Imprimir Formato ' + i.toString() + '_blank');
+                i++;
+
+            }
+        });
+    }
+	
+    function PrintDocument(format) {
+
+        var counter = 1;
+        currentFilter = table.page.info();
+		
+		   var where = MRWhere;
+        var order = MROrder;
+
+		var queryString = GetQueryString();
+		
+		var url = "@Url.Content("~/Frontal/Cadena_de_Custodia/Print")?format=3"
+				+ "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
+				+ "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
+				+ "&where=" + where + "&order=" + order + queryString;
+
+        $.ajax({
+
+            url: url,
+            async:false,
+            success: function (data) {
+                var printWindow = window.open();
+                var title = '@Resources.Resources.PrintText';
+                printWindow.document.write('<title>' + title + '</title>');
+                printWindow.document.write(data);
+				printWindow.document.getElementById("columnsVisible").text = table.columns().visible().join(",");
+                printWindow.print();
+                //printWindow.close();
+
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
+
+    }
+
+    function SetTitle(printWindow) {
+        if (printWindow.document) {
+            printWindow.document.title = "Cadena de Custodia Print";
+        } else {
+            setTimeout(SetTitle, 10);
+        }
+    }
+
+    Serialize = function (obj) {
+        var str = [];
+        for (var p in obj)
+            if (obj.hasOwnProperty(p)) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            }
+        return str.join("&");
+    }
+    function GetContentType() {
+        switch ($('#myModal #sel1').val()) {
+            case "1":
+                return "application/pdf; charset=utf-8";
+            case "2":
+                return "application/vnd.ms-excel; charset=utf-8";
+        }
+        return null;
+    }
+
+    var isInitialized = false;
+    var filterState = JSON.parse(localStorage.getItem("GRID_STATE_MANAGEMENT"));
+
+    $(function () {
+        //Popup
+        $("#btnExportPopUpOpen").click(function () {
+            $('#myModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-pdf", function (e, data) {
+
+            $("#btnPrint").hide();
+            $("#btnExcel").hide();
+            $("#btnPdf").show();
+            $("#btnCSV").hide();
+            $('#exportModal').modal('show');
+
+        });
+
+        $(document).on("click", ".buttons-print", function (e, data) {
+
+            $("#btnPdf").hide();
+            $("#btnExcel").hide();
+            $("#btnPrint").show();
+            $("#btnCSV").hide();
+            $('#exportModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-excel", function (e, data) {
+
+            $("#btnPdf").hide();
+            $("#btnExcel").show();
+            $("#btnPrint").hide();
+            $("#btnCSV").hide();
+            $(this).bind();
+            $('#exportModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-csv", function (e, data) {
+
+
+            $("#btnPdf").hide();
+            $("#btnExcel").hide();
+            $("#btnPrint").hide();
+            $("#btnCSV").show();
+            $('#exportModal').modal('show');
+
+        });
+
+		setFilterNew('tblCadena_de_Custodia');
+		
+		var oDatatableStateData;
+        // initialize datatable variable
+        table = $('#tblCadena_de_Custodia').DataTable({
+            dom: '<"html5buttons"B>lTfgt<"bottom"ip>',
+            //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
+            buttons: [
+                { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                {
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+
+                        if (!permission.Print) {
+                            $(win.document.body).addClass('disabled');
+                            $(win.document.body).attr('disabled', 'true');
+                        }
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ],
+            "processing": true,
+            "serverSide": true,
+            "info": true,
+            "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "@Resources.Resources.All"]],            
+			 "ajax": function (data, callback, settings, aoData) {
+                $.ajax({
+                    url: "@Url.Content("~/Frontal/Cadena_de_Custodia/GetCadena_de_CustodiaList")", 
+                    method: 'Post',
+                    data: { "sEcho": data.draw, "iDisplayStart": data.start, "iDisplayLength": data.length, "sortDirection": data.order[0].dir, "sortColumn": data.order[0].column, "columns": data.columns, "where": MRWhere, "order": MROrder, "filters": GetQueryString(), "AdvanceSearch": GetAdvanceSearchQuery() }
+                }).done(callback);
+            },
+            "fnServerParams": function ( aoData ) {
+                //aoData.push({ "name": "AdvanceSearch", "value": GetAdvanceSearchQuery() });
+            },
+            "bStateSave": true,
+            "fnStateSave": function (oSettings, oData) {
+                localStorage.setItem(JSON.stringify(oData), 'Cadena_de_CustodiaDatatable_');
+            },
+            "fnStateLoad": function (oSettings) {
+                var data = localStorage.getItem('Cadena_de_CustodiaDatatable_');
+                return JSON.parse(data);
+            },
+            "fnStateLoaded": function (oSettings, oData) {
+                oDatatableStateData = oData;              
+                setFilterState('tblCadena_de_Custodia', oDatatableStateData); 
+            },
+            "aoColumns": [
+                {
+                    "data": null,
+                    "className": "center actionColumn text-nowrap",
+					"orderable": false, 					
+					"render": function (data, type, full, meta) {
+                        var edit = '<a title="@Resources.Resources.Edit" href="@Url.Action("Create", "Cadena_de_Custodia")?Id=' + data.Clave + '" class="editor_edit edit-MR"><i class="fa fa-edit"></i></a>';
+                        if (!permission.Edit)
+                            edit = '';
+                        var consult = '<a title="@Resources.Resources.Consult" href="@Url.Action("Create", "Cadena_de_Custodia")?Id=' + data.Clave + '&consult=1"  class="editor_remove"><i class="fa fa-male"></i></a>';
+                        if (!permission.Consult)
+                            consult = '';
+                        var print = '<a title="@Resources.Resources.Print" data-toggle="modal" data-target="#printFormatModal" data-idrecord="' + data.Clave + '"  class="editor_print print-MR"><i class="fa fa-print"></i></a>';
+                        if (!permission.Print)
+                            print = '';
+                        var del = '<a title="@Resources.Resources.Delete" onclick="DeleteCadena_de_Custodia(\'' + data.Clave + '\')" class="editor_remove eliminar-MR"><i class="fa fa-times"></i></a>';
+                        if (!permission.Delete)
+                            del = '';
+                        return edit + del + consult + print;
+                    }
+                }, 
+                { "data": "Clave", "orderable": true, "name": "Clave" }
+                ,{ "data": "NUC", "orderable": true, "name": "NUC", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "NIC", "orderable": true, "name": "NIC", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Delito_ReferenciaDescripcion", "orderable": true, "name": "Delito_ReferenciaDescripcion" }
+                ,{ "data": "Fecha", "orderable": true, "searchable": true, "type": "date", "name": "Fecha" }
+                ,{ "data": "Hora", "orderable": true, "name": "Hora" }
+                ,{ "data": "Lugar_Exacto_del_Levantamiento", "orderable": true, "name": "Lugar_Exacto_del_Levantamiento", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Condicion_y_Ubicacion", "orderable": true, "name": "Condicion_y_Ubicacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Levantada_por","className": "dt-right", "orderable": true, "name": "Levantada_por" }
+                ,{ "data": "CargoTipo_de_Cargo", "orderable": true, "name": "CargoTipo_de_Cargo" }
+                ,{ "data": "AsignarName", "orderable": true, "name": "AsignarName"}
+                ,{ "data": "Folio_NUE", "orderable": true, "name": "Folio_NUE", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Unidad_PolicialUnidad_Policial", "orderable": true, "name": "Unidad_PolicialUnidad_Policial" }
+                ,{ "data": "Caracterististicas_del_indicio", "orderable": true, "name": "Caracterististicas_del_indicio", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Condiciones_De_Manejo", "orderable": true, "name": "Condiciones_De_Manejo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_de_Parte", "orderable": true, "name": "Numero_de_Parte", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "CUIP", "orderable": true, "name": "CUIP", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Observaciones", "orderable": true, "name": "Observaciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Longitud", "orderable": true, "name": "Longitud", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Latitud", "orderable": true, "name": "Latitud", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Clima", "orderable": true, "name": "Clima", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Grados", "orderable": true, "name": "Grados", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Mensaje", "orderable": true, "name": "Mensaje", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Unidad_AdministrativaDescripcion", "orderable": true, "name": "Unidad_AdministrativaDescripcion" }
+                ,{ "data": "Entidad_FederativaNombre", "orderable": true, "name": "Entidad_FederativaNombre" }
+                ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre" }
+                ,{ "data": "Numero_de_Oficio", "orderable": true, "name": "Numero_de_Oficio", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_CC", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_CC" }
+                ,{ "data": "Hora_CC", "orderable": true, "name": "Hora_CC" }
+                ,{ "data": "Motivo_de_IntervencionDescripcion", "orderable": true, "name": "Motivo_de_IntervencionDescripcion" }
+                ,{ "data": "Otro", "orderable": true, "name": "Otro", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "EstatusEstatus", "orderable": true, "name": "EstatusEstatus" }
+                ,{ "data": "Nombre_Completo", "orderable": true, "name": "Nombre_Completo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Usuario_que_Registra","className": "dt-right", "orderable": true, "name": "Usuario_que_Registra" }
+                ,{ "data": "FAE", "orderable": true, "name": "FAE", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_la_Emergencia", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_la_Emergencia" }
+                ,{ "data": "Hora_de_la_Emergencia", "orderable": true, "name": "Hora_de_la_Emergencia" }
+                ,{ "data": "Fuente", "orderable": true, "name": "Fuente", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Telefono", "orderable": true, "name": "Telefono", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Celular", "orderable": true, "name": "Celular", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Correo_Electronico", "orderable": true, "name": "Correo_Electronico", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Red_Social", "orderable": true, "name": "Red_Social", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Medio_Masivo", "orderable": true, "name": "Medio_Masivo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Cargo_de_la_Autoridad", "orderable": true, "name": "Cargo_de_la_Autoridad", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Tipo_de_Emergencia", "orderable": true, "name": "Tipo_de_Emergencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Descripcion_de_la_Emergencia", "orderable": true, "name": "Descripcion_de_la_Emergencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Probables_Detenidos", "orderable": true, "name": "Probables_Detenidos","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Fecha_de_la_Detencion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_la_Detencion" }
+                ,{ "data": "Hora_de_la_Detencion", "orderable": true, "name": "Hora_de_la_Detencion" }
+                ,{ "data": "Pais_Emergencia", "orderable": true, "name": "Pais_Emergencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Estado_Emergencia", "orderable": true, "name": "Estado_Emergencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Municipio_Emergencia", "orderable": true, "name": "Municipio_Emergencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Colonia_Emergencia", "orderable": true, "name": "Colonia_Emergencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Calle_Emergencia", "orderable": true, "name": "Calle_Emergencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Entre_Calle_Emergencia", "orderable": true, "name": "Entre_Calle_Emergencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Y_Calle_Emergencia", "orderable": true, "name": "Y_Calle_Emergencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Latitud_Emergencia", "orderable": true, "name": "Latitud_Emergencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Longitud_Emergencia", "orderable": true, "name": "Longitud_Emergencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Nombre_de_la_Autoridad", "orderable": true, "name": "Nombre_de_la_Autoridad", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Especifique", "orderable": true, "name": "Especifique", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Tipo_de_Agente", "orderable": true, "name": "Tipo_de_Agente", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Area", "orderable": true, "name": "Area", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Unidad", "orderable": true, "name": "Unidad", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Zona", "orderable": true, "name": "Zona", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Agente_Investigador", "orderable": true, "name": "Agente_Investigador", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Narrativa_de_los_Hechos", "orderable": true, "name": "Narrativa_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Probable_Delito_Principal", "orderable": true, "name": "Probable_Delito_Principal", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_Asignacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Asignacion" }
+                ,{ "data": "Hora_de_Asignacion", "orderable": true, "name": "Hora_de_Asignacion" }
+                ,{ "data": "Estatus_NUE", "orderable": true, "name": "Estatus_NUE", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Inicio_de_Cadena_de_CustodiaDescripcion", "orderable": true, "name": "Inicio_de_Cadena_de_CustodiaDescripcion" }
+                ,{ "data": "Calidad_de_quien_aportaDescripcion", "orderable": true, "name": "Calidad_de_quien_aportaDescripcion" }
+                ,{ "data": "Fecha_del_arribo", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_del_arribo" }
+                ,{ "data": "Hora_del_arribo", "orderable": true, "name": "Hora_del_arribo" }
+                ,{ "data": "Descripcion_de_recoleccionDescripcion", "orderable": true, "name": "Descripcion_de_recoleccionDescripcion" }
+                ,{ "data": "Movil_para_TrasladoDescripcion", "orderable": true, "name": "Movil_para_TrasladoDescripcion" }
+                ,{ "data": "Servidor_Publico_que_Preserva", "orderable": true, "name": "Servidor_Publico_que_Preserva", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Servidor_Publico_que_Busca", "orderable": true, "name": "Servidor_Publico_que_Busca", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Servidor_Publico_que_Localiza", "orderable": true, "name": "Servidor_Publico_que_Localiza", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Servidor_Publico_que_Recolecta", "orderable": true, "name": "Servidor_Publico_que_Recolecta", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Servidor_Publico_que_Traslada", "orderable": true, "name": "Servidor_Publico_que_Traslada", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Preservacion", "orderable": true, "name": "Preservacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Busqueda", "orderable": true, "name": "Busqueda", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Localizacion", "orderable": true, "name": "Localizacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Recoleccion", "orderable": true, "name": "Recoleccion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+
+            ],
+			"colReorder": true,
+            "order": [[1, "asc"]],
+			"scrollX": true,
+			"scrollY": '55vh',
+			"scrollCollapse": true,
+			"drawCallback": function( settings ) {
+			    $('.dataTables_scrollBody').animate({
+			        scrollTop: 0,
+			        scrollLeft: 0,
+			    }, '200');
+			},
+             "language": {
+                "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                "zeroRecords": " ",
+                "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                "infoEmpty": "@Resources.Resources.NoRecords",
+                "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                "paginate": {
+                    "previous": "@Resources.Resources.Previous",
+                    "next": "@Resources.Resources.Next"
+					},
+                    "buttons": {
+                        "copyTitle": "@Resources.Resources.CopyToClipboard",
+                        "copySuccess": {
+                            "_": "%d " + "@Resources.Resources.Copiedlines",
+                            "1": "1 " +  "@Resources.Resources.Copiedline"
+                        }
+                    }
+				}
+    }).on('init.dt', function (e, data) {
+        var classNamePDF = $(this).dataTableExt.buttons.pdfHtml5.className.split(" ");
+        var classNameExcel = $(this).dataTableExt.buttons.excelHtml5.className.split(" ");
+        var classNamePrint = $(this).dataTableExt.buttons.print.className.split(" ");
+        var classNameCSV = $(this).dataTableExt.buttons.csvHtml5.className.split(" ");
+        $('.' + classNamePDF[0]).unbind();
+        $('.' + classNameExcel[0]).unbind();
+        $('.' + classNamePrint[0]).unbind();
+        $('.' + classNameCSV[0]).unbind();
+        $('a').tooltip();
+        EjecutarValidacionesDespuesDeCrearLista();
+		
+		$('#tblCadena_de_Custodia').show().css({
+            "width": "auto",
+            "min-width": "100%"
+        });
+
+        $('.loading').hide();
+	table.columns.adjust();
+    });
+
+		ApplySearch(table);
+		$('tfoot tr').insertAfter($('thead tr'));
+		
+
+        $('.clockpicker').clockpicker();
+
+        $('.datepicker').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            format: "dd-mm-yyyy"
+        });
+    });
+
+    function DeleteCadena_de_Custodia(Clave) {
+       if (confirm(htmlDecode('@Resources.Resources.DeleteRecord'))) {
+            $.ajax({
+                url: '@Url.Content("~/Frontal/Cadena_de_Custodia/Delete?id=")' + Clave,
+                type: 'DELETE',
+                success: function (result) {
+                    if (result) {
+                        table.draw();
+                        showNotification('@Resources.Resources.DeleteSuccess', "success");
+                    } else {
+                        showNotification('@Resources.Resources.DeleteError', "error");
+                    }
+
+                }
+            });
+        }
+    }
+</script>
+
+<script type="text/javascript">
+	function OpenRules() {
+        $.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+            $(".Cadena_de_CustodiaBusinessRuleModal").html(data);
+            $(".Cadena_de_CustodiaBusinessRuleModal").modal('show');           
+        });
+    }
+    function Cadena_de_CustodiaGetBusinessRule() {
+        $('#FieldId').val();
+        $('#FieldName').val('');
+        $('#ObjectId').val('45133');
+        $('#Attribute').val('3');
+        $('#Screen').val('Cadena_de_Custodia');
+        OpenRules();
+    }
+
+    function GetPropertyBag() {
+        $.get('@Url.Action("Cadena_de_CustodiaPropertyBag", "Cadena_de_Custodia")', function (data) {
+            $(".PropertyModal").html(data);
+        });
+    }
+</script>
+<input type="hidden" id="FieldId" name="FieldId" value="" />
+<input type="hidden" id="FieldName" name="FieldName" value="" />
+<input type="hidden" id="ObjectId" name="ObjectId" value="" />
+<input type="hidden" id="Attribute" name="Attribute" value="" />
+<input type="hidden" id="Screen" name="Screen" value="" />
+@section Styles {
+    
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/dataPicker")
+}
+

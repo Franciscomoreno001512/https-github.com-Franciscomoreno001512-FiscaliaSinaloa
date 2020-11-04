@@ -1,0 +1,2606 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Datos_de_la_Victima_MPIModel
+@{
+
+    string Fecha_de_Nacimiento = "";
+    if (Model.Fecha_de_Nacimiento == "")
+    { Model.Fecha_de_Nacimiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Nacimiento_del_Tutor = "";
+    if (Model.Fecha_de_Nacimiento_del_Tutor == "")
+    { Model.Fecha_de_Nacimiento_del_Tutor = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_del_Hecho = "";
+    if (Model.Fecha_del_Hecho == "")
+    { Model.Fecha_del_Hecho = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Nacimiento_de_Persona_Moral = "";
+    if (Model.Fecha_de_Nacimiento_de_Persona_Moral == "")
+    { Model.Fecha_de_Nacimiento_de_Persona_Moral = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+    List<SelectListItem> varGenero_Sexo = null;
+    if (ViewBag.Generos_Sexo != null)
+    { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
+    List<SelectListItem> varEstado_Civil_Estado_Civil = null;
+    if (ViewBag.Estado_Civils_Estado_Civil != null)
+    { varEstado_Civil_Estado_Civil = (List<SelectListItem>)ViewBag.Estado_Civils_Estado_Civil; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion; }
+    List<SelectListItem> varNacionalidad_Nacionalidad = null;
+    if (ViewBag.Nacionalidads_Nacionalidad != null)
+    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
+    List<SelectListItem> varEscolaridad_Escolaridad = null;
+    if (ViewBag.Escolaridads_Escolaridad != null)
+    { varEscolaridad_Escolaridad = (List<SelectListItem>)ViewBag.Escolaridads_Escolaridad; }
+    List<SelectListItem> varOcupacion_Ocupacion = null;
+    if (ViewBag.Ocupacions_Ocupacion != null)
+    { varOcupacion_Ocupacion = (List<SelectListItem>)ViewBag.Ocupacions_Ocupacion; }
+    List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+    List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+    List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+    List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+    List<SelectListItem> varGenero_Sexo_del_Tutor = null;
+    if (ViewBag.Generos_Sexo_del_Tutor != null)
+    { varGenero_Sexo_del_Tutor = (List<SelectListItem>)ViewBag.Generos_Sexo_del_Tutor; }
+    List<SelectListItem> varEstado_Civil_Estado_Civil_del_Tutor = null;
+    if (ViewBag.Estado_Civils_Estado_Civil_del_Tutor != null)
+    { varEstado_Civil_Estado_Civil_del_Tutor = (List<SelectListItem>)ViewBag.Estado_Civils_Estado_Civil_del_Tutor; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion_del_Tutor = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_del_Tutor != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion_del_Tutor = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_del_Tutor; }
+    List<SelectListItem> varNacionalidad_Nacionalidad_del_Tutor = null;
+    if (ViewBag.Nacionalidads_Nacionalidad_del_Tutor != null)
+    { varNacionalidad_Nacionalidad_del_Tutor = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad_del_Tutor; }
+    List<SelectListItem> varEscolaridad_Escolaridad_del_Tutor = null;
+    if (ViewBag.Escolaridads_Escolaridad_del_Tutor != null)
+    { varEscolaridad_Escolaridad_del_Tutor = (List<SelectListItem>)ViewBag.Escolaridads_Escolaridad_del_Tutor; }
+    List<SelectListItem> varOcupacion_Ocupacion_del_Tutor = null;
+    if (ViewBag.Ocupacions_Ocupacion_del_Tutor != null)
+    { varOcupacion_Ocupacion_del_Tutor = (List<SelectListItem>)ViewBag.Ocupacions_Ocupacion_del_Tutor; }
+    List<SelectListItem> varPais_Pais_del_Tutor = null;
+    if (ViewBag.Paiss_Pais_del_Tutor != null)
+    { varPais_Pais_del_Tutor = (List<SelectListItem>)ViewBag.Paiss_Pais_del_Tutor; }
+    List<SelectListItem> varEstado_Estado_del_Tutor = null;
+    if (ViewBag.Estados_Estado_del_Tutor != null)
+    { varEstado_Estado_del_Tutor = (List<SelectListItem>)ViewBag.Estados_Estado_del_Tutor; }
+    List<SelectListItem> varMunicipio_Municipio_del_Tutor = null;
+    if (ViewBag.Municipios_Municipio_del_Tutor != null)
+    { varMunicipio_Municipio_del_Tutor = (List<SelectListItem>)ViewBag.Municipios_Municipio_del_Tutor; }
+    List<SelectListItem> varLocalidad_Localidad_del_Tutor = null;
+    if (ViewBag.Localidads_Localidad_del_Tutor != null)
+    { varLocalidad_Localidad_del_Tutor = (List<SelectListItem>)ViewBag.Localidads_Localidad_del_Tutor; }
+    List<SelectListItem> varColonia_Colonia_del_Tutor = null;
+    if (ViewBag.Colonias_Colonia_del_Tutor != null)
+    { varColonia_Colonia_del_Tutor = (List<SelectListItem>)ViewBag.Colonias_Colonia_del_Tutor; }
+    List<SelectListItem> varTipo_de_Compareciente_Tipo_de_Compareciente = null;
+    if (ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente != null)
+    { varTipo_de_Compareciente_Tipo_de_Compareciente = (List<SelectListItem>)ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente; }
+    List<SelectListItem> varPrioridad_del_Hecho_Prioridad_del_Hecho = null;
+    if (ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho != null)
+    { varPrioridad_del_Hecho_Prioridad_del_Hecho = (List<SelectListItem>)ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho; }
+    List<SelectListItem> varPais_Pais_de_los_Hechos = null;
+    if (ViewBag.Paiss_Pais_de_los_Hechos != null)
+    { varPais_Pais_de_los_Hechos = (List<SelectListItem>)ViewBag.Paiss_Pais_de_los_Hechos; }
+    List<SelectListItem> varEstado_Estado_de_los_Hechos = null;
+    if (ViewBag.Estados_Estado_de_los_Hechos != null)
+    { varEstado_Estado_de_los_Hechos = (List<SelectListItem>)ViewBag.Estados_Estado_de_los_Hechos; }
+    List<SelectListItem> varMunicipio_Municipio_de_los_Hechos = null;
+    if (ViewBag.Municipios_Municipio_de_los_Hechos != null)
+    { varMunicipio_Municipio_de_los_Hechos = (List<SelectListItem>)ViewBag.Municipios_Municipio_de_los_Hechos; }
+    List<SelectListItem> varColonia_Colonia_de_los_Hechos = null;
+    if (ViewBag.Colonias_Colonia_de_los_Hechos != null)
+    { varColonia_Colonia_de_los_Hechos = (List<SelectListItem>)ViewBag.Colonias_Colonia_de_los_Hechos; }
+    List<SelectListItem> varLugar_Tipo_Tipo_de_Lugar_del_Hecho = null;
+    if (ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho != null)
+    { varLugar_Tipo_Tipo_de_Lugar_del_Hecho = (List<SelectListItem>)ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho; }
+    List<SelectListItem> varGenero_Sexo_de_Persona_Moral = null;
+    if (ViewBag.Generos_Sexo_de_Persona_Moral != null)
+    { varGenero_Sexo_de_Persona_Moral = (List<SelectListItem>)ViewBag.Generos_Sexo_de_Persona_Moral; }
+    List<SelectListItem> varEstado_Civil_Estado_Civil_de_Persona_Moral = null;
+    if (ViewBag.Estado_Civils_Estado_Civil_de_Persona_Moral != null)
+    { varEstado_Civil_Estado_Civil_de_Persona_Moral = (List<SelectListItem>)ViewBag.Estado_Civils_Estado_Civil_de_Persona_Moral; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion_de_Persona_Moral = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_de_Persona_Moral != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion_de_Persona_Moral = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_de_Persona_Moral; }
+    List<SelectListItem> varNacionalidad_Nacionalidad_de_Persona_Moral = null;
+    if (ViewBag.Nacionalidads_Nacionalidad_de_Persona_Moral != null)
+    { varNacionalidad_Nacionalidad_de_Persona_Moral = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad_de_Persona_Moral; }
+    List<SelectListItem> varEscolaridad_Escolaridad_de_Persona_Moral = null;
+    if (ViewBag.Escolaridads_Escolaridad_de_Persona_Moral != null)
+    { varEscolaridad_Escolaridad_de_Persona_Moral = (List<SelectListItem>)ViewBag.Escolaridads_Escolaridad_de_Persona_Moral; }
+    List<SelectListItem> varOcupacion_Ocupacion_de_Persona_Moral = null;
+    if (ViewBag.Ocupacions_Ocupacion_de_Persona_Moral != null)
+    { varOcupacion_Ocupacion_de_Persona_Moral = (List<SelectListItem>)ViewBag.Ocupacions_Ocupacion_de_Persona_Moral; }
+    List<SelectListItem> varPais_Pais_de_Persona_Moral = null;
+    if (ViewBag.Paiss_Pais_de_Persona_Moral != null)
+    { varPais_Pais_de_Persona_Moral = (List<SelectListItem>)ViewBag.Paiss_Pais_de_Persona_Moral; }
+    List<SelectListItem> varEstado_Estado_de_Persona_Moral = null;
+    if (ViewBag.Estados_Estado_de_Persona_Moral != null)
+    { varEstado_Estado_de_Persona_Moral = (List<SelectListItem>)ViewBag.Estados_Estado_de_Persona_Moral; }
+    List<SelectListItem> varMunicipio_Municipio_de_Persona_Moral = null;
+    if (ViewBag.Municipios_Municipio_de_Persona_Moral != null)
+    { varMunicipio_Municipio_de_Persona_Moral = (List<SelectListItem>)ViewBag.Municipios_Municipio_de_Persona_Moral; }
+    List<SelectListItem> varColonia_Colonia_de_Persona_Moral = null;
+    if (ViewBag.Colonias_Colonia_de_Persona_Moral != null)
+    { varColonia_Colonia_de_Persona_Moral = (List<SelectListItem>)ViewBag.Colonias_Colonia_de_Persona_Moral; }
+
+    Permission permissionDetalle_del_Abogado_Victima_MPI = ViewBag.PermissionDetalle_del_Abogado_Victima_MPI;
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Datos de la Victima MPI
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_Datos_de_la_Victima_MPIRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_Datos_de_la_Victima_MPIPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Datos de la Victima MPI
+								<button onclick="Detalle_de_Datos_de_la_Victima_MPIGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Detalle_de_Datos_de_la_Victima_MPI</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_Datos_de_la_Victima_MPIDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_Datos_de_la_Victima_MPIPropertyBusinessModal" id="Detalle_de_Datos_de_la_Victima_MPIPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" onclick="Detalle_de_Datos_de_la_Victima_MPIGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Datos_de_la_Victima_MPIPropertyModal" id="Detalle_de_Datos_de_la_Victima_MPIPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Datos_de_la_Victima_MPIBusinessRuleModal" id="Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Datos_de_la_Victima_MPIAddBusinessRuleModal" id="Detalle_de_Datos_de_la_Victima_MPIAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				                    <div aria-hidden="true" class="modal fade in AddDetalle_del_Abogado_Victima_MPIModal" id="AddDetalle_del_Abogado_Victima_MPI-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
+
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Datos_de_la_Victima_MPI", FormMethod.Post, new { id = "CreateDetalle_de_Datos_de_la_Victima_MPI", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_Datos_de_la_Victima_MPICreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="264095" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Clave">
+                                    <label class="form-control" for="Detalle_de_Datos_de_la_Victima_MPIClave" id="Detalle_de_Datos_de_la_Victima_MPIClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre</label>
+                                <div class="col-sm-8" data-field-id="Nombre" data-attribute="264096" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINombre" name="Detalle_de_Datos_de_la_Victima_MPINombre" type="text" value="@Model.Nombre">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Paterno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Paterno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Paterno" data-attribute="264097" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Paterno">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPIApellido_Paterno" name="Detalle_de_Datos_de_la_Victima_MPIApellido_Paterno" type="text" value="@Model.Apellido_Paterno">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Materno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Materno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Materno" data-attribute="264098" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Materno">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPIApellido_Materno" name="Detalle_de_Datos_de_la_Victima_MPIApellido_Materno" type="text" value="@Model.Apellido_Materno">
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre_Completo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_Completo</label>
+                                <div class="col-sm-8" data-field-id="Nombre_Completo" data-attribute="264099" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_Completo">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINombre_Completo" name="Detalle_de_Datos_de_la_Victima_MPINombre_Completo" type="text" value="@Model.Nombre_Completo">
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Nacimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_de_Nacimiento</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Nacimiento" data-attribute="264100" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_de_Nacimiento">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Datos_de_la_Victima_MPIFecha_de_Nacimiento" readonly="readonly" name="Detalle_de_Datos_de_la_Victima_MPIFecha_de_Nacimiento" type="text" value="@Model.Fecha_de_Nacimiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divEdad">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Edad</label>
+	<div class="col-sm-8" data-field-id="Edad" data-attribute="264101" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Edad">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_de_la_Victima_MPIEdad" name="Detalle_de_Datos_de_la_Victima_MPIEdad" type="text" value="@Model.Edad">
+	</div>
+</div>
+<div class="form-group" id="divSexo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Sexo</label>
+	<div class="col-sm-8" data-field-id="Sexo" data-attribute="264102" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Sexo">
+		<select class="form-control" data-val="true" data-val-number="The field Sexo must be a number." data-val-required="The Sexo field is required." id="Detalle_de_Datos_de_la_Victima_MPISexo" name="Detalle_de_Datos_de_la_Victima_MPISexo">
+			<option value=""></option>
+			@if (varGenero_Sexo != null){ 
+				foreach (var itemSexo in varGenero_Sexo)
+				{
+					if (itemSexo.Value == Convert.ToString(Model.Sexo))
+					{
+						<option value="@itemSexo.Value" selected>@itemSexo.Text</option>
+					}
+					else
+					{
+						<option value="@itemSexo.Value">@itemSexo.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado_Civil">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_Civil</label>
+	<div class="col-sm-8" data-field-id="Estado_Civil" data-attribute="264103" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_Civil">
+		<select class="form-control" data-val="true" data-val-number="The field Estado Civil must be a number." data-val-required="The Estado Civil field is required." id="Detalle_de_Datos_de_la_Victima_MPIEstado_Civil" name="Detalle_de_Datos_de_la_Victima_MPIEstado_Civil">
+			<option value=""></option>
+			@if (varEstado_Civil_Estado_Civil != null){ 
+				foreach (var itemEstado_Civil in varEstado_Civil_Estado_Civil)
+				{
+					if (itemEstado_Civil.Value == Convert.ToString(Model.Estado_Civil))
+					{
+						<option value="@itemEstado_Civil.Value" selected>@itemEstado_Civil.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_Civil.Value">@itemEstado_Civil.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divTipo_de_Identificacion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Identificacion</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Identificacion" data-attribute="264104" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Identificacion">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Identificación must be a number." data-val-required="The Tipo de Identificación field is required." id="Detalle_de_Datos_de_la_Victima_MPITipo_de_Identificacion" name="Detalle_de_Datos_de_la_Victima_MPITipo_de_Identificacion">
+			<option value=""></option>
+			@if (varTipo_de_Identificacion_Tipo_de_Identificacion != null){ 
+				foreach (var itemTipo_de_Identificacion in varTipo_de_Identificacion_Tipo_de_Identificacion)
+				{
+					if (itemTipo_de_Identificacion.Value == Convert.ToString(Model.Tipo_de_Identificacion))
+					{
+						<option value="@itemTipo_de_Identificacion.Value" selected>@itemTipo_de_Identificacion.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Identificacion.Value">@itemTipo_de_Identificacion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNumero_de_Identificacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_de_Identificacion</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Identificacion" data-attribute="264105" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_de_Identificacion">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINumero_de_Identificacion" name="Detalle_de_Datos_de_la_Victima_MPINumero_de_Identificacion" type="text" value="@Model.Numero_de_Identificacion">
+                                </div>
+                            </div>
+<div class="form-group" id="divNacionalidad">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nacionalidad</label>
+	<div class="col-sm-8" data-field-id="Nacionalidad" data-attribute="264106" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nacionalidad">
+		<select class="form-control" data-val="true" data-val-number="The field Nacionalidad must be a number." data-val-required="The Nacionalidad field is required." id="Detalle_de_Datos_de_la_Victima_MPINacionalidad" name="Detalle_de_Datos_de_la_Victima_MPINacionalidad">
+			<option value=""></option>
+			@if (varNacionalidad_Nacionalidad != null){ 
+				foreach (var itemNacionalidad in varNacionalidad_Nacionalidad)
+				{
+					if (itemNacionalidad.Value == Convert.ToString(Model.Nacionalidad))
+					{
+						<option value="@itemNacionalidad.Value" selected>@itemNacionalidad.Text</option>
+					}
+					else
+					{
+						<option value="@itemNacionalidad.Value">@itemNacionalidad.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEscolaridad">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Escolaridad</label>
+	<div class="col-sm-8" data-field-id="Escolaridad" data-attribute="264107" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Escolaridad">
+		<select class="form-control" data-val="true" data-val-number="The field Escolaridad must be a number." data-val-required="The Escolaridad field is required." id="Detalle_de_Datos_de_la_Victima_MPIEscolaridad" name="Detalle_de_Datos_de_la_Victima_MPIEscolaridad">
+			<option value=""></option>
+			@if (varEscolaridad_Escolaridad != null){ 
+				foreach (var itemEscolaridad in varEscolaridad_Escolaridad)
+				{
+					if (itemEscolaridad.Value == Convert.ToString(Model.Escolaridad))
+					{
+						<option value="@itemEscolaridad.Value" selected>@itemEscolaridad.Text</option>
+					}
+					else
+					{
+						<option value="@itemEscolaridad.Value">@itemEscolaridad.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divOcupacion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Ocupacion</label>
+	<div class="col-sm-8" data-field-id="Ocupacion" data-attribute="264108" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Ocupacion">
+		<select class="form-control" data-val="true" data-val-number="The field Ocupación must be a number." data-val-required="The Ocupación field is required." id="Detalle_de_Datos_de_la_Victima_MPIOcupacion" name="Detalle_de_Datos_de_la_Victima_MPIOcupacion">
+			<option value=""></option>
+			@if (varOcupacion_Ocupacion != null){ 
+				foreach (var itemOcupacion in varOcupacion_Ocupacion)
+				{
+					if (itemOcupacion.Value == Convert.ToString(Model.Ocupacion))
+					{
+						<option value="@itemOcupacion.Value" selected>@itemOcupacion.Text</option>
+					}
+					else
+					{
+						<option value="@itemOcupacion.Value">@itemOcupacion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divPais">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais</label>
+	<div class="col-sm-8" data-field-id="Pais" data-attribute="264109" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais">
+		<select class="form-control" data-val="true" data-val-number="The field País must be a number." data-val-required="The País field is required." id="Detalle_de_Datos_de_la_Victima_MPIPais" name="Detalle_de_Datos_de_la_Victima_MPIPais">
+			<option value=""></option>
+			@if (varPais_Pais != null){ 
+				foreach (var itemPais in varPais_Pais)
+				{
+					if (itemPais.Value == Convert.ToString(Model.Pais))
+					{
+						<option value="@itemPais.Value" selected>@itemPais.Text</option>
+					}
+					else
+					{
+						<option value="@itemPais.Value">@itemPais.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado</label>
+	<div class="col-sm-8" data-field-id="Estado" data-attribute="264110" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado">
+		<select class="form-control" data-val="true" data-val-number="The field Estado must be a number." data-val-required="The Estado field is required." id="Detalle_de_Datos_de_la_Victima_MPIEstado" name="Detalle_de_Datos_de_la_Victima_MPIEstado">
+			<option value=""></option>
+			@if (varEstado_Estado != null){ 
+				foreach (var itemEstado in varEstado_Estado)
+				{
+					if (itemEstado.Value == Convert.ToString(Model.Estado))
+					{
+						<option value="@itemEstado.Value" selected>@itemEstado.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado.Value">@itemEstado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMunicipio">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio</label>
+	<div class="col-sm-8" data-field-id="Municipio" data-attribute="264111" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio">
+		<select class="form-control" data-val="true" data-val-number="The field Municipio must be a number." data-val-required="The Municipio field is required." id="Detalle_de_Datos_de_la_Victima_MPIMunicipio" name="Detalle_de_Datos_de_la_Victima_MPIMunicipio">
+			<option value=""></option>
+			@if (varMunicipio_Municipio != null){ 
+				foreach (var itemMunicipio in varMunicipio_Municipio)
+				{
+					if (itemMunicipio.Value == Convert.ToString(Model.Municipio))
+					{
+						<option value="@itemMunicipio.Value" selected>@itemMunicipio.Text</option>
+					}
+					else
+					{
+						<option value="@itemMunicipio.Value">@itemMunicipio.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divColonia">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia</label>
+	<div class="col-sm-8" data-field-id="Colonia" data-attribute="264112" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia">
+		<select class="form-control" data-val="true" data-val-number="The field Colonia must be a number." data-val-required="The Colonia field is required." id="Detalle_de_Datos_de_la_Victima_MPIColonia" name="Detalle_de_Datos_de_la_Victima_MPIColonia">
+			<option value=""></option>
+			@if (varColonia_Colonia != null){ 
+				foreach (var itemColonia in varColonia_Colonia)
+				{
+					if (itemColonia.Value == Convert.ToString(Model.Colonia))
+					{
+						<option value="@itemColonia.Value" selected>@itemColonia.Text</option>
+					}
+					else
+					{
+						<option value="@itemColonia.Value">@itemColonia.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCodigo_Postal">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal</label>
+	<div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="264113" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_de_la_Victima_MPICodigo_Postal" name="Detalle_de_Datos_de_la_Victima_MPICodigo_Postal" type="text" value="@Model.Codigo_Postal">
+	</div>
+</div>
+<div class="form-group" id="divCalle">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle</label>
+                                <div class="col-sm-8" data-field-id="Calle" data-attribute="264114" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPICalle" name="Detalle_de_Datos_de_la_Victima_MPICalle" type="text" value="@Model.Calle">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Exterior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="264115" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINumero_Exterior" name="Detalle_de_Datos_de_la_Victima_MPINumero_Exterior" type="text" value="@Model.Numero_Exterior">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Interior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior" data-attribute="264116" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINumero_Interior" name="Detalle_de_Datos_de_la_Victima_MPINumero_Interior" type="text" value="@Model.Numero_Interior">
+                                </div>
+                            </div>
+<div class="form-group" id="divTelefono">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Telefono</label>
+                                <div class="col-sm-8" data-field-id="Telefono" data-attribute="264117" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Telefono">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPITelefono" name="Detalle_de_Datos_de_la_Victima_MPITelefono" type="text" value="@Model.Telefono">
+                                </div>
+                            </div>
+<div class="form-group" id="divExtencion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Extencion</label>
+	<div class="col-sm-8" data-field-id="Extencion" data-attribute="264118" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Extencion">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_de_la_Victima_MPIExtencion" name="Detalle_de_Datos_de_la_Victima_MPIExtencion" type="text" value="@Model.Extencion">
+	</div>
+</div>
+<div class="form-group" id="divCelular">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Celular</label>
+                                <div class="col-sm-8" data-field-id="Celular" data-attribute="264119" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Celular">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPICelular" name="Detalle_de_Datos_de_la_Victima_MPICelular" type="text" value="@Model.Celular">
+                                </div>
+                            </div>
+<div class="form-group" id="divCorreo_Electronico">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Correo_Electronico</label>
+                                <div class="col-sm-8" data-field-id="Correo_Electronico" data-attribute="264120" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Correo_Electronico">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPICorreo_Electronico" name="Detalle_de_Datos_de_la_Victima_MPICorreo_Electronico" type="text" value="@Model.Correo_Electronico">
+                                </div>
+                            </div>
+<div class="form-group" id="divIncapaz">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Incapaz</label>
+                                <div class="col-sm-8" data-field-id="Incapaz" data-attribute="264121" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Incapaz">
+                                    @Html.CheckBoxFor(m => m.Incapaz, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Nombre_del_Tutor" data-attribute="264122" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINombre_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPINombre_del_Tutor" type="text" value="@Model.Nombre_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Paterno_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Paterno_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Paterno_del_Tutor" data-attribute="264123" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Paterno_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPIApellido_Paterno_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPIApellido_Paterno_del_Tutor" type="text" value="@Model.Apellido_Paterno_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Materno_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Materno_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Materno_del_Tutor" data-attribute="264124" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Materno_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPIApellido_Materno_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPIApellido_Materno_del_Tutor" type="text" value="@Model.Apellido_Materno_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre_Completo_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_Completo_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Nombre_Completo_del_Tutor" data-attribute="264125" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_Completo_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINombre_Completo_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPINombre_Completo_del_Tutor" type="text" value="@Model.Nombre_Completo_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Nacimiento_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_de_Nacimiento_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Nacimiento_del_Tutor" data-attribute="264126" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_de_Nacimiento_del_Tutor">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Datos_de_la_Victima_MPIFecha_de_Nacimiento_del_Tutor" readonly="readonly" name="Detalle_de_Datos_de_la_Victima_MPIFecha_de_Nacimiento_del_Tutor" type="text" value="@Model.Fecha_de_Nacimiento_del_Tutor">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divEdad_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Edad_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Edad_del_Tutor" data-attribute="264127" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Edad_del_Tutor">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_de_la_Victima_MPIEdad_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPIEdad_del_Tutor" type="text" value="@Model.Edad_del_Tutor">
+	</div>
+</div>
+<div class="form-group" id="divSexo_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Sexo_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Sexo_del_Tutor" data-attribute="264128" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Sexo_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Sexo must be a number." data-val-required="The Sexo field is required." id="Detalle_de_Datos_de_la_Victima_MPISexo_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPISexo_del_Tutor">
+			<option value=""></option>
+			@if (varGenero_Sexo_del_Tutor != null){ 
+				foreach (var itemSexo_del_Tutor in varGenero_Sexo_del_Tutor)
+				{
+					if (itemSexo_del_Tutor.Value == Convert.ToString(Model.Sexo_del_Tutor))
+					{
+						<option value="@itemSexo_del_Tutor.Value" selected>@itemSexo_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemSexo_del_Tutor.Value">@itemSexo_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado_Civil_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_Civil_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Estado_Civil_del_Tutor" data-attribute="264129" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_Civil_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Estado Civil del Tutor must be a number." data-val-required="The Estado Civil del Tutor field is required." id="Detalle_de_Datos_de_la_Victima_MPIEstado_Civil_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPIEstado_Civil_del_Tutor">
+			<option value=""></option>
+			@if (varEstado_Civil_Estado_Civil_del_Tutor != null){ 
+				foreach (var itemEstado_Civil_del_Tutor in varEstado_Civil_Estado_Civil_del_Tutor)
+				{
+					if (itemEstado_Civil_del_Tutor.Value == Convert.ToString(Model.Estado_Civil_del_Tutor))
+					{
+						<option value="@itemEstado_Civil_del_Tutor.Value" selected>@itemEstado_Civil_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_Civil_del_Tutor.Value">@itemEstado_Civil_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divTipo_de_Identificacion_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Identificacion_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Identificacion_del_Tutor" data-attribute="264130" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Identificacion_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Identificación must be a number." data-val-required="The Tipo de Identificación field is required." id="Detalle_de_Datos_de_la_Victima_MPITipo_de_Identificacion_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPITipo_de_Identificacion_del_Tutor">
+			<option value=""></option>
+			@if (varTipo_de_Identificacion_Tipo_de_Identificacion_del_Tutor != null){ 
+				foreach (var itemTipo_de_Identificacion_del_Tutor in varTipo_de_Identificacion_Tipo_de_Identificacion_del_Tutor)
+				{
+					if (itemTipo_de_Identificacion_del_Tutor.Value == Convert.ToString(Model.Tipo_de_Identificacion_del_Tutor))
+					{
+						<option value="@itemTipo_de_Identificacion_del_Tutor.Value" selected>@itemTipo_de_Identificacion_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Identificacion_del_Tutor.Value">@itemTipo_de_Identificacion_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNumero_de_Identificacion_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_de_Identificacion_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Identificacion_del_Tutor" data-attribute="264131" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_de_Identificacion_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINumero_de_Identificacion_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPINumero_de_Identificacion_del_Tutor" type="text" value="@Model.Numero_de_Identificacion_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divNacionalidad_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nacionalidad_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Nacionalidad_del_Tutor" data-attribute="264132" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nacionalidad_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Nacionalidad must be a number." data-val-required="The Nacionalidad field is required." id="Detalle_de_Datos_de_la_Victima_MPINacionalidad_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPINacionalidad_del_Tutor">
+			<option value=""></option>
+			@if (varNacionalidad_Nacionalidad_del_Tutor != null){ 
+				foreach (var itemNacionalidad_del_Tutor in varNacionalidad_Nacionalidad_del_Tutor)
+				{
+					if (itemNacionalidad_del_Tutor.Value == Convert.ToString(Model.Nacionalidad_del_Tutor))
+					{
+						<option value="@itemNacionalidad_del_Tutor.Value" selected>@itemNacionalidad_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemNacionalidad_del_Tutor.Value">@itemNacionalidad_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEscolaridad_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Escolaridad_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Escolaridad_del_Tutor" data-attribute="264133" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Escolaridad_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Escolaridad must be a number." data-val-required="The Escolaridad field is required." id="Detalle_de_Datos_de_la_Victima_MPIEscolaridad_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPIEscolaridad_del_Tutor">
+			<option value=""></option>
+			@if (varEscolaridad_Escolaridad_del_Tutor != null){ 
+				foreach (var itemEscolaridad_del_Tutor in varEscolaridad_Escolaridad_del_Tutor)
+				{
+					if (itemEscolaridad_del_Tutor.Value == Convert.ToString(Model.Escolaridad_del_Tutor))
+					{
+						<option value="@itemEscolaridad_del_Tutor.Value" selected>@itemEscolaridad_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemEscolaridad_del_Tutor.Value">@itemEscolaridad_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divOcupacion_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Ocupacion_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Ocupacion_del_Tutor" data-attribute="264134" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Ocupacion_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Ocupación must be a number." data-val-required="The Ocupación field is required." id="Detalle_de_Datos_de_la_Victima_MPIOcupacion_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPIOcupacion_del_Tutor">
+			<option value=""></option>
+			@if (varOcupacion_Ocupacion_del_Tutor != null){ 
+				foreach (var itemOcupacion_del_Tutor in varOcupacion_Ocupacion_del_Tutor)
+				{
+					if (itemOcupacion_del_Tutor.Value == Convert.ToString(Model.Ocupacion_del_Tutor))
+					{
+						<option value="@itemOcupacion_del_Tutor.Value" selected>@itemOcupacion_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemOcupacion_del_Tutor.Value">@itemOcupacion_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divPais_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Pais_del_Tutor" data-attribute="264135" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field País must be a number." data-val-required="The País field is required." id="Detalle_de_Datos_de_la_Victima_MPIPais_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPIPais_del_Tutor">
+			<option value=""></option>
+			@if (varPais_Pais_del_Tutor != null){ 
+				foreach (var itemPais_del_Tutor in varPais_Pais_del_Tutor)
+				{
+					if (itemPais_del_Tutor.Value == Convert.ToString(Model.Pais_del_Tutor))
+					{
+						<option value="@itemPais_del_Tutor.Value" selected>@itemPais_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemPais_del_Tutor.Value">@itemPais_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Estado_del_Tutor" data-attribute="264136" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Estado must be a number." data-val-required="The Estado field is required." id="Detalle_de_Datos_de_la_Victima_MPIEstado_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPIEstado_del_Tutor">
+			<option value=""></option>
+			@if (varEstado_Estado_del_Tutor != null){ 
+				foreach (var itemEstado_del_Tutor in varEstado_Estado_del_Tutor)
+				{
+					if (itemEstado_del_Tutor.Value == Convert.ToString(Model.Estado_del_Tutor))
+					{
+						<option value="@itemEstado_del_Tutor.Value" selected>@itemEstado_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_del_Tutor.Value">@itemEstado_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMunicipio_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Municipio_del_Tutor" data-attribute="264137" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Municipio  must be a number." data-val-required="The Municipio  field is required." id="Detalle_de_Datos_de_la_Victima_MPIMunicipio_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPIMunicipio_del_Tutor">
+			<option value=""></option>
+			@if (varMunicipio_Municipio_del_Tutor != null){ 
+				foreach (var itemMunicipio_del_Tutor in varMunicipio_Municipio_del_Tutor)
+				{
+					if (itemMunicipio_del_Tutor.Value == Convert.ToString(Model.Municipio_del_Tutor))
+					{
+						<option value="@itemMunicipio_del_Tutor.Value" selected>@itemMunicipio_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemMunicipio_del_Tutor.Value">@itemMunicipio_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divLocalidad_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Localidad_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Localidad_del_Tutor" data-attribute="264138" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Localidad_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Localidad must be a number." data-val-required="The Localidad field is required." id="Detalle_de_Datos_de_la_Victima_MPILocalidad_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPILocalidad_del_Tutor">
+			<option value=""></option>
+			@if (varLocalidad_Localidad_del_Tutor != null){ 
+				foreach (var itemLocalidad_del_Tutor in varLocalidad_Localidad_del_Tutor)
+				{
+					if (itemLocalidad_del_Tutor.Value == Convert.ToString(Model.Localidad_del_Tutor))
+					{
+						<option value="@itemLocalidad_del_Tutor.Value" selected>@itemLocalidad_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemLocalidad_del_Tutor.Value">@itemLocalidad_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divColonia_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Colonia_del_Tutor" data-attribute="264139" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia_del_Tutor">
+		<select class="form-control" data-val="true" data-val-number="The field Colonia must be a number." data-val-required="The Colonia field is required." id="Detalle_de_Datos_de_la_Victima_MPIColonia_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPIColonia_del_Tutor">
+			<option value=""></option>
+			@if (varColonia_Colonia_del_Tutor != null){ 
+				foreach (var itemColonia_del_Tutor in varColonia_Colonia_del_Tutor)
+				{
+					if (itemColonia_del_Tutor.Value == Convert.ToString(Model.Colonia_del_Tutor))
+					{
+						<option value="@itemColonia_del_Tutor.Value" selected>@itemColonia_del_Tutor.Text</option>
+					}
+					else
+					{
+						<option value="@itemColonia_del_Tutor.Value">@itemColonia_del_Tutor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCodigo_Postal_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Codigo_Postal_del_Tutor" data-attribute="264140" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal_del_Tutor">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_de_la_Victima_MPICodigo_Postal_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPICodigo_Postal_del_Tutor" type="text" value="@Model.Codigo_Postal_del_Tutor">
+	</div>
+</div>
+<div class="form-group" id="divCalle_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Calle_del_Tutor" data-attribute="264141" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPICalle_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPICalle_del_Tutor" type="text" value="@Model.Calle_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Exterior_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Numero_Exterior_del_Tutor" data-attribute="264142" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior_del_Tutor">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_de_la_Victima_MPINumero_Exterior_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPINumero_Exterior_del_Tutor" type="text" value="@Model.Numero_Exterior_del_Tutor">
+	</div>
+</div>
+<div class="form-group" id="divNumero_Interior_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior_del_Tutor" data-attribute="264143" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINumero_Interior_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPINumero_Interior_del_Tutor" type="text" value="@Model.Numero_Interior_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divTelefono_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Telefono_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Telefono_del_Tutor" data-attribute="264144" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Telefono_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPITelefono_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPITelefono_del_Tutor" type="text" value="@Model.Telefono_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divExtencion_del_Tutor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Extencion_del_Tutor</label>
+	<div class="col-sm-8" data-field-id="Extencion_del_Tutor" data-attribute="264145" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Extencion_del_Tutor">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_de_la_Victima_MPIExtencion_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPIExtencion_del_Tutor" type="text" value="@Model.Extencion_del_Tutor">
+	</div>
+</div>
+<div class="form-group" id="divCelular_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Celular_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Celular_del_Tutor" data-attribute="264146" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Celular_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPICelular_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPICelular_del_Tutor" type="text" value="@Model.Celular_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divCorreo_Electronico_del_Tutor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Correo_Electronico_del_Tutor</label>
+                                <div class="col-sm-8" data-field-id="Correo_Electronico_del_Tutor" data-attribute="264147" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Correo_Electronico_del_Tutor">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPICorreo_Electronico_del_Tutor" name="Detalle_de_Datos_de_la_Victima_MPICorreo_Electronico_del_Tutor" type="text" value="@Model.Correo_Electronico_del_Tutor">
+                                </div>
+                            </div>
+<div class="form-group" id="divTipo_de_Compareciente">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Compareciente</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Compareciente" data-attribute="264148" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Compareciente">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Compareciente must be a number." data-val-required="The Tipo de Compareciente field is required." id="Detalle_de_Datos_de_la_Victima_MPITipo_de_Compareciente" name="Detalle_de_Datos_de_la_Victima_MPITipo_de_Compareciente">
+			<option value=""></option>
+			@if (varTipo_de_Compareciente_Tipo_de_Compareciente != null){ 
+				foreach (var itemTipo_de_Compareciente in varTipo_de_Compareciente_Tipo_de_Compareciente)
+				{
+					if (itemTipo_de_Compareciente.Value == Convert.ToString(Model.Tipo_de_Compareciente))
+					{
+						<option value="@itemTipo_de_Compareciente.Value" selected>@itemTipo_de_Compareciente.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Compareciente.Value">@itemTipo_de_Compareciente.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNarrativa_de_los_Hechos">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Narrativa_de_los_Hechos</label>
+                                <div class="col-sm-8" data-field-id="Narrativa_de_los_Hechos" data-attribute="264149" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Narrativa_de_los_Hechos">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINarrativa_de_los_Hechos" name="Detalle_de_Datos_de_la_Victima_MPINarrativa_de_los_Hechos" type="text" value="@Model.Narrativa_de_los_Hechos">
+                                </div>
+                            </div>
+<div id ="divDetalle_del_Abogado_Victima_MPI" >
+	<div class="ibox-title">
+		<h5>@Resources.Detalle_del_Abogado_Victima_MPIResources.Detalle_del_Abogado_Victima_MPI</h5>
+		<div class="ibox-tools">
+		</div>
+	</div>
+	<div class="ibox-content">
+		<div class="">
+			<a onclick="Detalle_del_Abogado_Victima_MPIfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="btn btn-primary @( !permissionDetalle_del_Abogado_Victima_MPI.New || ViewBag.Consult ? "disabled" : "")">
+			<i class="glyphicon glyphicon-plus"></i>
+			</a>
+			<button onclick="Detalle_de_Datos_de_la_Victima_MPIGetBusinessRule('', 'Al Agregar Row', '1')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form">
+				<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+					<i class="fa fa-cogs fa-spin"></i>
+				</a>
+			</button>
+			<a onclick="Detalle_del_Abogado_Victima_MPIfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_del_Abogado_Victima_MPI-form" data-backdrop="static" data-keyboard="false" class="btn btn-primary @( !permissionDetalle_del_Abogado_Victima_MPI.New || ViewBag.Consult ? "disabled" : "")">
+			<i class="glyphicon glyphicon-new-window"></i>
+			</a>
+		</div>
+
+		<br />
+
+		<div style='overflow-x: auto;'>
+			<table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_del_Abogado_Victima_MPIGrid">
+				<thead>
+					<tr>
+						<th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+	
+                                                <th class="Nombre_Completo_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264702" data-field-id="Detalle_del_Abogado_Victima_MPINombre_Completo_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Nombre_Completo_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Nombre_Completo_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Nombre_Completo_del_Abogado_Victima</span></th>
+                                                <th class="Nombre_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264703" data-field-id="Detalle_del_Abogado_Victima_MPINombre_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Nombre_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Nombre_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Nombre_del_Abogado_Victima</span></th>
+                                                <th class="Apellido_Paterno_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264704" data-field-id="Detalle_del_Abogado_Victima_MPIApellido_Paterno_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Apellido_Paterno_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Apellido_Paterno_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Apellido_Paterno_del_Abogado_Victima</span></th>
+                                                <th class="Apellido_Materno_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264705" data-field-id="Detalle_del_Abogado_Victima_MPIApellido_Materno_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Apellido_Materno_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Apellido_Materno_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Apellido_Materno_del_Abogado_Victima</span></th>
+                                                <th class="Fecha_de_Nacimiento_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264706" data-field-id="Detalle_del_Abogado_Victima_MPIFecha_de_Nacimiento_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Fecha_de_Nacimiento_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Fecha_de_Nacimiento_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Fecha_de_Nacimiento_del_Abogado_Victima</span></th>
+                                                <th class="Edad_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264707" data-field-id="Detalle_del_Abogado_Victima_MPIEdad_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Edad_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Edad_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>
+@Resources.Detalle_del_Abogado_Victima_MPIResources.Edad_del_Abogado_Victima</span></th>
+                                                <th class="Sexo_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264708" data-field-id="Detalle_del_Abogado_Victima_MPISexo_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Sexo_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Sexo_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Sexo_del_Abogado_Victima</span></th>
+                                                <th class="Estado_Civil_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264709" data-field-id="Detalle_del_Abogado_Victima_MPIEstado_Civil_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Estado_Civil_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Estado_Civil_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Estado_Civil_del_Abogado_Victima</span></th>
+                                                <th class="Tipo_de_Identificacion_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264710" data-field-id="Detalle_del_Abogado_Victima_MPITipo_de_Identificacion_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Tipo_de_Identificacion_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Tipo_de_Identificacion_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Tipo_de_Identificacion_Abogado_Victima</span></th>
+                                                <th class="Numero_de_Identificacion_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264711" data-field-id="Detalle_del_Abogado_Victima_MPINumero_de_Identificacion_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Numero_de_Identificacion_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Numero_de_Identificacion_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Numero_de_Identificacion_Abogado_Victima</span></th>
+                                                <th class="Nacionalidad_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264712" data-field-id="Detalle_del_Abogado_Victima_MPINacionalidad_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Nacionalidad_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Nacionalidad_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Nacionalidad_del_Abogado_Victima</span></th>
+                                                <th class="Cedula_Profesional_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264713" data-field-id="Detalle_del_Abogado_Victima_MPICedula_Profesional_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Cedula_Profesional_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Cedula_Profesional_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Cedula_Profesional_del_Abogado_Victima</span></th>
+                                                <th class="Pais_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264714" data-field-id="Detalle_del_Abogado_Victima_MPIPais_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Pais_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Pais_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Pais_del_Abogado_Victima</span></th>
+                                                <th class="Estado_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264715" data-field-id="Detalle_del_Abogado_Victima_MPIEstado_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Estado_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Estado_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Estado_del_Abogado_Victima</span></th>
+                                                <th class="Municipio_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264716" data-field-id="Detalle_del_Abogado_Victima_MPIMunicipio_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Municipio_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Municipio_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Municipio_del_Abogado_Victima</span></th>
+                                                <th class="Colonia_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264717" data-field-id="Detalle_del_Abogado_Victima_MPIColonia_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Colonia_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Colonia_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Colonia_del_Abogado_Victima</span></th>
+                                                <th class="Codigo_Postal_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264718" data-field-id="Detalle_del_Abogado_Victima_MPICodigo_Postal_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Codigo_Postal_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Codigo_Postal_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>
+@Resources.Detalle_del_Abogado_Victima_MPIResources.Codigo_Postal_del_Abogado_Victima</span></th>
+                                                <th class="Calle_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264719" data-field-id="Detalle_del_Abogado_Victima_MPICalle_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Calle_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Calle_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Calle_del_Abogado_Victima</span></th>
+                                                <th class="Numero_Exterior_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264720" data-field-id="Detalle_del_Abogado_Victima_MPINumero_Exterior_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Numero_Exterior_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Numero_Exterior_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Numero_Exterior_del_Abogado_Victima</span></th>
+                                                <th class="Numero_Interior_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264721" data-field-id="Detalle_del_Abogado_Victima_MPINumero_Interior_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Numero_Interior_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Numero_Interior_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Numero_Interior_del_Abogado_Victima</span></th>
+                                                <th class="Telefono_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264722" data-field-id="Detalle_del_Abogado_Victima_MPITelefono_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Telefono_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Telefono_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Telefono_del_Abogado_Victima</span></th>
+                                                <th class="Celular_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264723" data-field-id="Detalle_del_Abogado_Victima_MPICelular_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Celular_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Celular_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Celular_del_Abogado_Victima</span></th>
+                                                <th class="Correo_Electronico_del_Abogado_VictimaHeader"><span>
+<button type="button" data-attribute="264724" data-field-id="Detalle_del_Abogado_Victima_MPICorreo_Electronico_del_Abogado_Victima" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Correo_Electronico_del_Abogado_Victima" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Correo_Electronico_del_Abogado_Victima">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Correo_Electronico_del_Abogado_Victima</span></th>
+
+                                                <th class="Aceptar_NotificacionesHeader"><span>
+<button type="button" data-attribute="264726" data-field-id="Detalle_del_Abogado_Victima_MPIAceptar_Notificaciones" data-field-name="@Resources.Detalle_del_Abogado_Victima_MPIResources.Aceptar_Notificaciones" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_del_Abogado_Victima_MPIResources.Aceptar_Notificaciones">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_del_Abogado_Victima_MPIResources.Aceptar_Notificaciones</span></th>
+
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="form-group" id="divTitulo_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Titulo_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Titulo_del_Hecho" data-attribute="264151" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Titulo_del_Hecho">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPITitulo_del_Hecho" name="Detalle_de_Datos_de_la_Victima_MPITitulo_del_Hecho" type="text" value="@Model.Titulo_del_Hecho">
+                                </div>
+                            </div>
+<div class="form-group" id="divPrioridad_del_Hecho">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Prioridad_del_Hecho</label>
+	<div class="col-sm-8" data-field-id="Prioridad_del_Hecho" data-attribute="264152" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Prioridad_del_Hecho">
+		<select class="form-control" data-val="true" data-val-number="The field Prioridad del Hecho must be a number." data-val-required="The Prioridad del Hecho field is required." id="Detalle_de_Datos_de_la_Victima_MPIPrioridad_del_Hecho" name="Detalle_de_Datos_de_la_Victima_MPIPrioridad_del_Hecho">
+			<option value=""></option>
+			@if (varPrioridad_del_Hecho_Prioridad_del_Hecho != null){ 
+				foreach (var itemPrioridad_del_Hecho in varPrioridad_del_Hecho_Prioridad_del_Hecho)
+				{
+					if (itemPrioridad_del_Hecho.Value == Convert.ToString(Model.Prioridad_del_Hecho))
+					{
+						<option value="@itemPrioridad_del_Hecho.Value" selected>@itemPrioridad_del_Hecho.Text</option>
+					}
+					else
+					{
+						<option value="@itemPrioridad_del_Hecho.Value">@itemPrioridad_del_Hecho.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divFecha_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Fecha_del_Hecho" data-attribute="264153" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_del_Hecho">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Datos_de_la_Victima_MPIFecha_del_Hecho" readonly="readonly" name="Detalle_de_Datos_de_la_Victima_MPIFecha_del_Hecho" type="text" value="@Model.Fecha_del_Hecho">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divHora_Aproximada_del_Hecho">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Hora_Aproximada_del_Hecho</label>
+                                <div class="col-sm-8" data-field-id="Hora_Aproximada_del_Hecho" data-attribute="264154" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Hora_Aproximada_del_Hecho">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Datos_de_la_Victima_MPIHora_Aproximada_del_Hecho" readonly="readonly" name="Detalle_de_Datos_de_la_Victima_MPIHora_Aproximada_del_Hecho" type="text" data-autoclose="true" value="@Model.Hora_Aproximada_del_Hecho">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divPais_de_los_Hechos">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais_de_los_Hechos</label>
+	<div class="col-sm-8" data-field-id="Pais_de_los_Hechos" data-attribute="264155" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais_de_los_Hechos">
+		<select class="form-control" data-val="true" data-val-number="The field País must be a number." data-val-required="The País field is required." id="Detalle_de_Datos_de_la_Victima_MPIPais_de_los_Hechos" name="Detalle_de_Datos_de_la_Victima_MPIPais_de_los_Hechos">
+			<option value=""></option>
+			@if (varPais_Pais_de_los_Hechos != null){ 
+				foreach (var itemPais_de_los_Hechos in varPais_Pais_de_los_Hechos)
+				{
+					if (itemPais_de_los_Hechos.Value == Convert.ToString(Model.Pais_de_los_Hechos))
+					{
+						<option value="@itemPais_de_los_Hechos.Value" selected>@itemPais_de_los_Hechos.Text</option>
+					}
+					else
+					{
+						<option value="@itemPais_de_los_Hechos.Value">@itemPais_de_los_Hechos.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado_de_los_Hechos">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_de_los_Hechos</label>
+	<div class="col-sm-8" data-field-id="Estado_de_los_Hechos" data-attribute="264156" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_de_los_Hechos">
+		<select class="form-control" data-val="true" data-val-number="The field Estado must be a number." data-val-required="The Estado field is required." id="Detalle_de_Datos_de_la_Victima_MPIEstado_de_los_Hechos" name="Detalle_de_Datos_de_la_Victima_MPIEstado_de_los_Hechos">
+			<option value=""></option>
+			@if (varEstado_Estado_de_los_Hechos != null){ 
+				foreach (var itemEstado_de_los_Hechos in varEstado_Estado_de_los_Hechos)
+				{
+					if (itemEstado_de_los_Hechos.Value == Convert.ToString(Model.Estado_de_los_Hechos))
+					{
+						<option value="@itemEstado_de_los_Hechos.Value" selected>@itemEstado_de_los_Hechos.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_de_los_Hechos.Value">@itemEstado_de_los_Hechos.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMunicipio_de_los_Hechos">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio_de_los_Hechos</label>
+	<div class="col-sm-8" data-field-id="Municipio_de_los_Hechos" data-attribute="264157" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio_de_los_Hechos">
+		<select class="form-control" data-val="true" data-val-number="The field Municipio must be a number." data-val-required="The Municipio field is required." id="Detalle_de_Datos_de_la_Victima_MPIMunicipio_de_los_Hechos" name="Detalle_de_Datos_de_la_Victima_MPIMunicipio_de_los_Hechos">
+			<option value=""></option>
+			@if (varMunicipio_Municipio_de_los_Hechos != null){ 
+				foreach (var itemMunicipio_de_los_Hechos in varMunicipio_Municipio_de_los_Hechos)
+				{
+					if (itemMunicipio_de_los_Hechos.Value == Convert.ToString(Model.Municipio_de_los_Hechos))
+					{
+						<option value="@itemMunicipio_de_los_Hechos.Value" selected>@itemMunicipio_de_los_Hechos.Text</option>
+					}
+					else
+					{
+						<option value="@itemMunicipio_de_los_Hechos.Value">@itemMunicipio_de_los_Hechos.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divColonia_de_los_Hechos">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia_de_los_Hechos</label>
+	<div class="col-sm-8" data-field-id="Colonia_de_los_Hechos" data-attribute="264158" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia_de_los_Hechos">
+		<select class="form-control" data-val="true" data-val-number="The field Colonia must be a number." data-val-required="The Colonia field is required." id="Detalle_de_Datos_de_la_Victima_MPIColonia_de_los_Hechos" name="Detalle_de_Datos_de_la_Victima_MPIColonia_de_los_Hechos">
+			<option value=""></option>
+			@if (varColonia_Colonia_de_los_Hechos != null){ 
+				foreach (var itemColonia_de_los_Hechos in varColonia_Colonia_de_los_Hechos)
+				{
+					if (itemColonia_de_los_Hechos.Value == Convert.ToString(Model.Colonia_de_los_Hechos))
+					{
+						<option value="@itemColonia_de_los_Hechos.Value" selected>@itemColonia_de_los_Hechos.Text</option>
+					}
+					else
+					{
+						<option value="@itemColonia_de_los_Hechos.Value">@itemColonia_de_los_Hechos.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCodigo_Postal_de_los_Hechos">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal_de_los_Hechos</label>
+	<div class="col-sm-8" data-field-id="Codigo_Postal_de_los_Hechos" data-attribute="264159" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal_de_los_Hechos">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_de_la_Victima_MPICodigo_Postal_de_los_Hechos" name="Detalle_de_Datos_de_la_Victima_MPICodigo_Postal_de_los_Hechos" type="text" value="@Model.Codigo_Postal_de_los_Hechos">
+	</div>
+</div>
+<div class="form-group" id="divCalle_de_los_Hechos">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle_de_los_Hechos</label>
+                                <div class="col-sm-8" data-field-id="Calle_de_los_Hechos" data-attribute="264160" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle_de_los_Hechos">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPICalle_de_los_Hechos" name="Detalle_de_Datos_de_la_Victima_MPICalle_de_los_Hechos" type="text" value="@Model.Calle_de_los_Hechos">
+                                </div>
+                            </div>
+<div class="form-group" id="divEntre_Calle_de_los_Hechos">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Entre_Calle_de_los_Hechos</label>
+                                <div class="col-sm-8" data-field-id="Entre_Calle_de_los_Hechos" data-attribute="264161" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Entre_Calle_de_los_Hechos">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPIEntre_Calle_de_los_Hechos" name="Detalle_de_Datos_de_la_Victima_MPIEntre_Calle_de_los_Hechos" type="text" value="@Model.Entre_Calle_de_los_Hechos">
+                                </div>
+                            </div>
+<div class="form-group" id="divY_Calle_de_los_Hechos">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Y_Calle_de_los_Hechos</label>
+                                <div class="col-sm-8" data-field-id="Y_Calle_de_los_Hechos" data-attribute="264162" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Y_Calle_de_los_Hechos">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPIY_Calle_de_los_Hechos" name="Detalle_de_Datos_de_la_Victima_MPIY_Calle_de_los_Hechos" type="text" value="@Model.Y_Calle_de_los_Hechos">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Exterior_de_los_Hechos">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior_de_los_Hechos</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior_de_los_Hechos" data-attribute="264163" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior_de_los_Hechos">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINumero_Exterior_de_los_Hechos" name="Detalle_de_Datos_de_la_Victima_MPINumero_Exterior_de_los_Hechos" type="text" value="@Model.Numero_Exterior_de_los_Hechos">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Interior_de_los_Hechos">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior_de_los_Hechos</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior_de_los_Hechos" data-attribute="264164" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior_de_los_Hechos">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINumero_Interior_de_los_Hechos" name="Detalle_de_Datos_de_la_Victima_MPINumero_Interior_de_los_Hechos" type="text" value="@Model.Numero_Interior_de_los_Hechos">
+                                </div>
+                            </div>
+<div class="form-group" id="divLatitud_de_los_Hechos">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Latitud_de_los_Hechos</label>
+                                <div class="col-sm-8" data-field-id="Latitud_de_los_Hechos" data-attribute="264165" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Latitud_de_los_Hechos">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPILatitud_de_los_Hechos" name="Detalle_de_Datos_de_la_Victima_MPILatitud_de_los_Hechos" type="text" value="@Model.Latitud_de_los_Hechos">
+                                </div>
+                            </div>
+<div class="form-group" id="divLongitud_de_los_Hechos">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Longitud_de_los_Hechos</label>
+                                <div class="col-sm-8" data-field-id="Longitud_de_los_Hechos" data-attribute="264166" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Longitud_de_los_Hechos">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPILongitud_de_los_Hechos" name="Detalle_de_Datos_de_la_Victima_MPILongitud_de_los_Hechos" type="text" value="@Model.Longitud_de_los_Hechos">
+                                </div>
+                            </div>
+<div class="form-group" id="divTipo_de_Lugar_del_Hecho">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Lugar_del_Hecho</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Lugar_del_Hecho" data-attribute="264167" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Lugar_del_Hecho">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Lugar del Hecho must be a number." data-val-required="The Tipo de Lugar del Hecho field is required." id="Detalle_de_Datos_de_la_Victima_MPITipo_de_Lugar_del_Hecho" name="Detalle_de_Datos_de_la_Victima_MPITipo_de_Lugar_del_Hecho">
+			<option value=""></option>
+			@if (varLugar_Tipo_Tipo_de_Lugar_del_Hecho != null){ 
+				foreach (var itemTipo_de_Lugar_del_Hecho in varLugar_Tipo_Tipo_de_Lugar_del_Hecho)
+				{
+					if (itemTipo_de_Lugar_del_Hecho.Value == Convert.ToString(Model.Tipo_de_Lugar_del_Hecho))
+					{
+						<option value="@itemTipo_de_Lugar_del_Hecho.Value" selected>@itemTipo_de_Lugar_del_Hecho.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Lugar_del_Hecho.Value">@itemTipo_de_Lugar_del_Hecho.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divProteccion_de_Datos">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Proteccion_de_Datos</label>
+                                <div class="col-sm-8" data-field-id="Proteccion_de_Datos" data-attribute="264168" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Proteccion_de_Datos">
+                                    @Html.CheckBoxFor(m => m.Proteccion_de_Datos, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Nombre_de_Persona_Moral" data-attribute="264169" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nombre_de_Persona_Moral">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINombre_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPINombre_de_Persona_Moral" type="text" value="@Model.Nombre_de_Persona_Moral">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Paterno_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Paterno_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Paterno_de_Persona_Moral" data-attribute="264170" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Paterno_de_Persona_Moral">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPIApellido_Paterno_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPIApellido_Paterno_de_Persona_Moral" type="text" value="@Model.Apellido_Paterno_de_Persona_Moral">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Materno_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Materno_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Materno_de_Persona_Moral" data-attribute="264171" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Apellido_Materno_de_Persona_Moral">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPIApellido_Materno_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPIApellido_Materno_de_Persona_Moral" type="text" value="@Model.Apellido_Materno_de_Persona_Moral">
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Nacimiento_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_de_Nacimiento_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Nacimiento_de_Persona_Moral" data-attribute="264172" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Fecha_de_Nacimiento_de_Persona_Moral">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Datos_de_la_Victima_MPIFecha_de_Nacimiento_de_Persona_Moral" readonly="readonly" name="Detalle_de_Datos_de_la_Victima_MPIFecha_de_Nacimiento_de_Persona_Moral" type="text" value="@Model.Fecha_de_Nacimiento_de_Persona_Moral">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divEdad_de_Persona_Moral">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Edad_de_Persona_Moral</label>
+	<div class="col-sm-8" data-field-id="Edad_de_Persona_Moral" data-attribute="264173" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Edad_de_Persona_Moral">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_de_la_Victima_MPIEdad_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPIEdad_de_Persona_Moral" type="text" value="@Model.Edad_de_Persona_Moral">
+	</div>
+</div>
+<div class="form-group" id="divSexo_de_Persona_Moral">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Sexo_de_Persona_Moral</label>
+	<div class="col-sm-8" data-field-id="Sexo_de_Persona_Moral" data-attribute="264174" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Sexo_de_Persona_Moral">
+		<select class="form-control" data-val="true" data-val-number="The field Sexo must be a number." data-val-required="The Sexo field is required." id="Detalle_de_Datos_de_la_Victima_MPISexo_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPISexo_de_Persona_Moral">
+			<option value=""></option>
+			@if (varGenero_Sexo_de_Persona_Moral != null){ 
+				foreach (var itemSexo_de_Persona_Moral in varGenero_Sexo_de_Persona_Moral)
+				{
+					if (itemSexo_de_Persona_Moral.Value == Convert.ToString(Model.Sexo_de_Persona_Moral))
+					{
+						<option value="@itemSexo_de_Persona_Moral.Value" selected>@itemSexo_de_Persona_Moral.Text</option>
+					}
+					else
+					{
+						<option value="@itemSexo_de_Persona_Moral.Value">@itemSexo_de_Persona_Moral.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado_Civil_de_Persona_Moral">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_Civil_de_Persona_Moral</label>
+	<div class="col-sm-8" data-field-id="Estado_Civil_de_Persona_Moral" data-attribute="264175" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_Civil_de_Persona_Moral">
+		<select class="form-control" data-val="true" data-val-number="The field Estado Civil must be a number." data-val-required="The Estado Civil field is required." id="Detalle_de_Datos_de_la_Victima_MPIEstado_Civil_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPIEstado_Civil_de_Persona_Moral">
+			<option value=""></option>
+			@if (varEstado_Civil_Estado_Civil_de_Persona_Moral != null){ 
+				foreach (var itemEstado_Civil_de_Persona_Moral in varEstado_Civil_Estado_Civil_de_Persona_Moral)
+				{
+					if (itemEstado_Civil_de_Persona_Moral.Value == Convert.ToString(Model.Estado_Civil_de_Persona_Moral))
+					{
+						<option value="@itemEstado_Civil_de_Persona_Moral.Value" selected>@itemEstado_Civil_de_Persona_Moral.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_Civil_de_Persona_Moral.Value">@itemEstado_Civil_de_Persona_Moral.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divTipo_de_Identificacion_de_Persona_Moral">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Identificacion_de_Persona_Moral</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Identificacion_de_Persona_Moral" data-attribute="264176" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Tipo_de_Identificacion_de_Persona_Moral">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Identificación must be a number." data-val-required="The Tipo de Identificación field is required." id="Detalle_de_Datos_de_la_Victima_MPITipo_de_Identificacion_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPITipo_de_Identificacion_de_Persona_Moral">
+			<option value=""></option>
+			@if (varTipo_de_Identificacion_Tipo_de_Identificacion_de_Persona_Moral != null){ 
+				foreach (var itemTipo_de_Identificacion_de_Persona_Moral in varTipo_de_Identificacion_Tipo_de_Identificacion_de_Persona_Moral)
+				{
+					if (itemTipo_de_Identificacion_de_Persona_Moral.Value == Convert.ToString(Model.Tipo_de_Identificacion_de_Persona_Moral))
+					{
+						<option value="@itemTipo_de_Identificacion_de_Persona_Moral.Value" selected>@itemTipo_de_Identificacion_de_Persona_Moral.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Identificacion_de_Persona_Moral.Value">@itemTipo_de_Identificacion_de_Persona_Moral.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNumero_de_Identificacion_de_Persona_Mora">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_de_Identificacion_de_Persona_Mora</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Identificacion_de_Persona_Mora" data-attribute="264177" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_de_Identificacion_de_Persona_Mora">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINumero_de_Identificacion_de_Persona_Mora" name="Detalle_de_Datos_de_la_Victima_MPINumero_de_Identificacion_de_Persona_Mora" type="text" value="@Model.Numero_de_Identificacion_de_Persona_Mora">
+                                </div>
+                            </div>
+<div class="form-group" id="divNacionalidad_de_Persona_Moral">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nacionalidad_de_Persona_Moral</label>
+	<div class="col-sm-8" data-field-id="Nacionalidad_de_Persona_Moral" data-attribute="264178" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Nacionalidad_de_Persona_Moral">
+		<select class="form-control" data-val="true" data-val-number="The field Nacionalidad must be a number." data-val-required="The Nacionalidad field is required." id="Detalle_de_Datos_de_la_Victima_MPINacionalidad_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPINacionalidad_de_Persona_Moral">
+			<option value=""></option>
+			@if (varNacionalidad_Nacionalidad_de_Persona_Moral != null){ 
+				foreach (var itemNacionalidad_de_Persona_Moral in varNacionalidad_Nacionalidad_de_Persona_Moral)
+				{
+					if (itemNacionalidad_de_Persona_Moral.Value == Convert.ToString(Model.Nacionalidad_de_Persona_Moral))
+					{
+						<option value="@itemNacionalidad_de_Persona_Moral.Value" selected>@itemNacionalidad_de_Persona_Moral.Text</option>
+					}
+					else
+					{
+						<option value="@itemNacionalidad_de_Persona_Moral.Value">@itemNacionalidad_de_Persona_Moral.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEscolaridad_de_Persona_Moral">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Escolaridad_de_Persona_Moral</label>
+	<div class="col-sm-8" data-field-id="Escolaridad_de_Persona_Moral" data-attribute="264179" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Escolaridad_de_Persona_Moral">
+		<select class="form-control" data-val="true" data-val-number="The field Escolaridad must be a number." data-val-required="The Escolaridad field is required." id="Detalle_de_Datos_de_la_Victima_MPIEscolaridad_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPIEscolaridad_de_Persona_Moral">
+			<option value=""></option>
+			@if (varEscolaridad_Escolaridad_de_Persona_Moral != null){ 
+				foreach (var itemEscolaridad_de_Persona_Moral in varEscolaridad_Escolaridad_de_Persona_Moral)
+				{
+					if (itemEscolaridad_de_Persona_Moral.Value == Convert.ToString(Model.Escolaridad_de_Persona_Moral))
+					{
+						<option value="@itemEscolaridad_de_Persona_Moral.Value" selected>@itemEscolaridad_de_Persona_Moral.Text</option>
+					}
+					else
+					{
+						<option value="@itemEscolaridad_de_Persona_Moral.Value">@itemEscolaridad_de_Persona_Moral.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divOcupacion_de_Persona_Moral">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Ocupacion_de_Persona_Moral</label>
+	<div class="col-sm-8" data-field-id="Ocupacion_de_Persona_Moral" data-attribute="264180" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Ocupacion_de_Persona_Moral">
+		<select class="form-control" data-val="true" data-val-number="The field Ocupación must be a number." data-val-required="The Ocupación field is required." id="Detalle_de_Datos_de_la_Victima_MPIOcupacion_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPIOcupacion_de_Persona_Moral">
+			<option value=""></option>
+			@if (varOcupacion_Ocupacion_de_Persona_Moral != null){ 
+				foreach (var itemOcupacion_de_Persona_Moral in varOcupacion_Ocupacion_de_Persona_Moral)
+				{
+					if (itemOcupacion_de_Persona_Moral.Value == Convert.ToString(Model.Ocupacion_de_Persona_Moral))
+					{
+						<option value="@itemOcupacion_de_Persona_Moral.Value" selected>@itemOcupacion_de_Persona_Moral.Text</option>
+					}
+					else
+					{
+						<option value="@itemOcupacion_de_Persona_Moral.Value">@itemOcupacion_de_Persona_Moral.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divPais_de_Persona_Moral">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais_de_Persona_Moral</label>
+	<div class="col-sm-8" data-field-id="Pais_de_Persona_Moral" data-attribute="264181" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Pais_de_Persona_Moral">
+		<select class="form-control" data-val="true" data-val-number="The field País must be a number." data-val-required="The País field is required." id="Detalle_de_Datos_de_la_Victima_MPIPais_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPIPais_de_Persona_Moral">
+			<option value=""></option>
+			@if (varPais_Pais_de_Persona_Moral != null){ 
+				foreach (var itemPais_de_Persona_Moral in varPais_Pais_de_Persona_Moral)
+				{
+					if (itemPais_de_Persona_Moral.Value == Convert.ToString(Model.Pais_de_Persona_Moral))
+					{
+						<option value="@itemPais_de_Persona_Moral.Value" selected>@itemPais_de_Persona_Moral.Text</option>
+					}
+					else
+					{
+						<option value="@itemPais_de_Persona_Moral.Value">@itemPais_de_Persona_Moral.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado_de_Persona_Moral">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_de_Persona_Moral</label>
+	<div class="col-sm-8" data-field-id="Estado_de_Persona_Moral" data-attribute="264182" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Estado_de_Persona_Moral">
+		<select class="form-control" data-val="true" data-val-number="The field Estado must be a number." data-val-required="The Estado field is required." id="Detalle_de_Datos_de_la_Victima_MPIEstado_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPIEstado_de_Persona_Moral">
+			<option value=""></option>
+			@if (varEstado_Estado_de_Persona_Moral != null){ 
+				foreach (var itemEstado_de_Persona_Moral in varEstado_Estado_de_Persona_Moral)
+				{
+					if (itemEstado_de_Persona_Moral.Value == Convert.ToString(Model.Estado_de_Persona_Moral))
+					{
+						<option value="@itemEstado_de_Persona_Moral.Value" selected>@itemEstado_de_Persona_Moral.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_de_Persona_Moral.Value">@itemEstado_de_Persona_Moral.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMunicipio_de_Persona_Moral">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio_de_Persona_Moral</label>
+	<div class="col-sm-8" data-field-id="Municipio_de_Persona_Moral" data-attribute="264183" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Municipio_de_Persona_Moral">
+		<select class="form-control" data-val="true" data-val-number="The field Municipio must be a number." data-val-required="The Municipio field is required." id="Detalle_de_Datos_de_la_Victima_MPIMunicipio_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPIMunicipio_de_Persona_Moral">
+			<option value=""></option>
+			@if (varMunicipio_Municipio_de_Persona_Moral != null){ 
+				foreach (var itemMunicipio_de_Persona_Moral in varMunicipio_Municipio_de_Persona_Moral)
+				{
+					if (itemMunicipio_de_Persona_Moral.Value == Convert.ToString(Model.Municipio_de_Persona_Moral))
+					{
+						<option value="@itemMunicipio_de_Persona_Moral.Value" selected>@itemMunicipio_de_Persona_Moral.Text</option>
+					}
+					else
+					{
+						<option value="@itemMunicipio_de_Persona_Moral.Value">@itemMunicipio_de_Persona_Moral.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divColonia_de_Persona_Moral">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia_de_Persona_Moral</label>
+	<div class="col-sm-8" data-field-id="Colonia_de_Persona_Moral" data-attribute="264184" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Colonia_de_Persona_Moral">
+		<select class="form-control" data-val="true" data-val-number="The field Colonia must be a number." data-val-required="The Colonia field is required." id="Detalle_de_Datos_de_la_Victima_MPIColonia_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPIColonia_de_Persona_Moral">
+			<option value=""></option>
+			@if (varColonia_Colonia_de_Persona_Moral != null){ 
+				foreach (var itemColonia_de_Persona_Moral in varColonia_Colonia_de_Persona_Moral)
+				{
+					if (itemColonia_de_Persona_Moral.Value == Convert.ToString(Model.Colonia_de_Persona_Moral))
+					{
+						<option value="@itemColonia_de_Persona_Moral.Value" selected>@itemColonia_de_Persona_Moral.Text</option>
+					}
+					else
+					{
+						<option value="@itemColonia_de_Persona_Moral.Value">@itemColonia_de_Persona_Moral.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCodigo_Postal_de_Persona_Moral">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal_de_Persona_Moral</label>
+	<div class="col-sm-8" data-field-id="Codigo_Postal_de_Persona_Moral" data-attribute="264185" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Codigo_Postal_de_Persona_Moral">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_de_la_Victima_MPICodigo_Postal_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPICodigo_Postal_de_Persona_Moral" type="text" value="@Model.Codigo_Postal_de_Persona_Moral">
+	</div>
+</div>
+<div class="form-group" id="divCalle_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Calle_de_Persona_Moral" data-attribute="264186" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Calle_de_Persona_Moral">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPICalle_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPICalle_de_Persona_Moral" type="text" value="@Model.Calle_de_Persona_Moral">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Exterior_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior_de_Persona_Moral" data-attribute="264187" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Exterior_de_Persona_Moral">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINumero_Exterior_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPINumero_Exterior_de_Persona_Moral" type="text" value="@Model.Numero_Exterior_de_Persona_Moral">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Interior_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior_de_Persona_Moral" data-attribute="264188" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Numero_Interior_de_Persona_Moral">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPINumero_Interior_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPINumero_Interior_de_Persona_Moral" type="text" value="@Model.Numero_Interior_de_Persona_Moral">
+                                </div>
+                            </div>
+<div class="form-group" id="divEntre_Calle_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Entre_Calle_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Entre_Calle_de_Persona_Moral" data-attribute="264189" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Entre_Calle_de_Persona_Moral">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPIEntre_Calle_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPIEntre_Calle_de_Persona_Moral" type="text" value="@Model.Entre_Calle_de_Persona_Moral">
+                                </div>
+                            </div>
+<div class="form-group" id="divY_Calle_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Y_Calle_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Y_Calle_de_Persona_Moral" data-attribute="264190" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Y_Calle_de_Persona_Moral">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPIY_Calle_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPIY_Calle_de_Persona_Moral" type="text" value="@Model.Y_Calle_de_Persona_Moral">
+                                </div>
+                            </div>
+<div class="form-group" id="divLongitud_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Longitud_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Longitud_de_Persona_Moral" data-attribute="264191" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Longitud_de_Persona_Moral">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPILongitud_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPILongitud_de_Persona_Moral" type="text" value="@Model.Longitud_de_Persona_Moral">
+                                </div>
+                            </div>
+<div class="form-group" id="divLatitud_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Latitud_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Latitud_de_Persona_Moral" data-attribute="264192" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Latitud_de_Persona_Moral">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPILatitud_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPILatitud_de_Persona_Moral" type="text" value="@Model.Latitud_de_Persona_Moral">
+                                </div>
+                            </div>
+<div class="form-group" id="divTelefono_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Telefono_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Telefono_de_Persona_Moral" data-attribute="264193" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Telefono_de_Persona_Moral">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPITelefono_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPITelefono_de_Persona_Moral" type="text" value="@Model.Telefono_de_Persona_Moral">
+                                </div>
+                            </div>
+<div class="form-group" id="divExtension_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Extension_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Extension_de_Persona_Moral" data-attribute="264194" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Extension_de_Persona_Moral">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPIExtension_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPIExtension_de_Persona_Moral" type="text" value="@Model.Extension_de_Persona_Moral">
+                                </div>
+                            </div>
+<div class="form-group" id="divCelular_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Celular_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Celular_de_Persona_Moral" data-attribute="264195" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Celular_de_Persona_Moral">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPICelular_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPICelular_de_Persona_Moral" type="text" value="@Model.Celular_de_Persona_Moral">
+                                </div>
+                            </div>
+<div class="form-group" id="divCorreo_Electronico_de_Persona_Moral">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Correo_Electronico_de_Persona_Moral</label>
+                                <div class="col-sm-8" data-field-id="Correo_Electronico_de_Persona_Moral" data-attribute="264196" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Correo_Electronico_de_Persona_Moral">
+                                    <input class="form-control" id="Detalle_de_Datos_de_la_Victima_MPICorreo_Electronico_de_Persona_Moral" name="Detalle_de_Datos_de_la_Victima_MPICorreo_Electronico_de_Persona_Moral" type="text" value="@Model.Correo_Electronico_de_Persona_Moral">
+                                </div>
+                            </div>
+<div class="form-group" id="divPersona_Moral_Victima">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Persona_Moral_Victima</label>
+                                <div class="col-sm-8" data-field-id="Persona_Moral_Victima" data-attribute="264198" data-field-name="@Resources.Detalle_de_Datos_de_la_Victima_MPIResources.Persona_Moral_Victima">
+                                    @Html.CheckBoxFor(m => m.Persona_Moral_Victima, new { @class = "i-checks" })
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_Datos_de_la_Victima_MPIConfigureSave" name="Detalle_de_Datos_de_la_Victima_MPIConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_Datos_de_la_Victima_MPIConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_Datos_de_la_Victima_MPIGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Datos_de_la_Victima_MPIBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Datos_de_la_Victima_MPI.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Datos_de_la_Victima_MPIGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Datos_de_la_Victima_MPICreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Expediente_InicialCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_Datos_de_la_Victima_MPIRowElement = "Detalle_de_Datos_de_la_Victima_MPIPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_Datos_de_la_Victima_MPIRowElement + "')){ Detalle_de_Datos_de_la_Victima_MPIInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+            $('#Detalle_de_Datos_de_la_Victima_MPIFecha_de_Nacimiento').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Detalle_de_Datos_de_la_Victima_MPIFecha_de_Nacimiento_del_Tutor').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Detalle_de_Datos_de_la_Victima_MPIFecha_del_Hecho').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Detalle_de_Datos_de_la_Victima_MPIHora_Aproximada_del_Hecho').clockpicker();
+            $('#Detalle_de_Datos_de_la_Victima_MPIFecha_de_Nacimiento_de_Persona_Moral').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+
+
+            GetDetalle_del_Abogado_Victima_MPI_AbogadoItem();
+
+
+
+
+
+            GetDetalle_del_Abogado_Victima_MPI_GeneroItem();
+            GetDetalle_del_Abogado_Victima_MPI_Estado_CivilItem();
+            GetDetalle_del_Abogado_Victima_MPI_Tipo_de_IdentificacionItem();
+
+            GetDetalle_del_Abogado_Victima_MPI_NacionalidadItem();
+
+            GetDetalle_del_Abogado_Victima_MPI_PaisItem();
+            GetDetalle_del_Abogado_Victima_MPI_EstadoItem();
+            GetDetalle_del_Abogado_Victima_MPI_MunicipioItem();
+            GetDetalle_del_Abogado_Victima_MPI_ColoniaItem();
+
+
+
+
+
+
+
+
+
+            if(Detalle_del_Abogado_Victima_MPITable == null)
+            {
+                getDetalle_del_Abogado_Victima_MPIData();
+            }
+            else{
+                showDetalle_del_Abogado_Victima_MPIGrid(Detalle_del_Abogado_Victima_MPITable.fnGetData());
+            }
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+        var Detalle_del_Abogado_Victima_MPIinsertRowCurrentIndex = -1;
+        var Detalle_del_Abogado_Victima_MPIDataDataTable;
+        function getDetalle_del_Abogado_Victima_MPIData() {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/GetDetalle_del_Abogado_Victima_MPI")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    Detalle_del_Abogado_Victima_MPIDataDataTable = result.data;
+                    showDetalle_del_Abogado_Victima_MPIGrid(result.data);
+                    $('#Detalle_del_Abogado_Victima_MPIGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_del_Abogado_Victima_MPIGrid .gridDatePicker').attr("readonly", "");
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+        function Detalle_del_Abogado_Victima_MPIGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+            var columnData = [];
+            var counter = 0;
+            var inputData = "<input type='text' class='fullWidth form-control' />";
+
+           columnData[counter++] = $($(GetDetalle_del_Abogado_Victima_MPI_AbogadoDropDown()).val(data.Nombre_Completo_del_Abogado_Victima)).addClass('Nombre_Completo_del_Abogado_Victima inputNumber').attr('id', nameOfTable + 'Nombre_Completo_del_Abogado_Victima' + rowIndex).attr('data-field', 'Nombre_Completo_del_Abogado_Victima').after($.parseHTML(addNew('Detalle_del_Abogado_Victima_MPI', 'Abogado','Nombre_Completo_del_Abogado_Victima', 264702)));
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Nombre_del_Abogado_Victima)).addClass('Nombre_del_Abogado_Victima').attr('id', nameOfTable + 'Nombre_del_Abogado_Victima' + rowIndex).attr('data-field', 'Nombre_del_Abogado_Victima');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Apellido_Paterno_del_Abogado_Victima)).addClass('Apellido_Paterno_del_Abogado_Victima').attr('id', nameOfTable + 'Apellido_Paterno_del_Abogado_Victima' + rowIndex).attr('data-field', 'Apellido_Paterno_del_Abogado_Victima');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Apellido_Materno_del_Abogado_Victima)).addClass('Apellido_Materno_del_Abogado_Victima').attr('id', nameOfTable + 'Apellido_Materno_del_Abogado_Victima' + rowIndex).attr('data-field', 'Apellido_Materno_del_Abogado_Victima');
+            columnData[counter++] = $($($.parseHTML(GetGridDatePicker())).val(data.Fecha_de_Nacimiento_del_Abogado_Victima)).addClass('Fecha_de_Nacimiento_del_Abogado_Victima').attr('id', nameOfTable + 'Fecha_de_Nacimiento_del_Abogado_Victima' + rowIndex).attr('data-field', 'Fecha_de_Nacimiento_del_Abogado_Victima');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Edad_del_Abogado_Victima)).addClass('Edad_del_Abogado_Victima inputNumber').attr('id', nameOfTable + 'Edad_del_Abogado_Victima' + rowIndex).attr('data-field', 'Edad_del_Abogado_Victima');
+           columnData[counter++] = $($(GetDetalle_del_Abogado_Victima_MPI_GeneroDropDown()).val(data.Sexo_del_Abogado_Victima)).addClass('Sexo_del_Abogado_Victima inputNumber').attr('id', nameOfTable + 'Sexo_del_Abogado_Victima' + rowIndex).attr('data-field', 'Sexo_del_Abogado_Victima').after($.parseHTML(addNew('Detalle_del_Abogado_Victima_MPI', 'Genero','Sexo_del_Abogado_Victima', 264708)));
+           columnData[counter++] = $($(GetDetalle_del_Abogado_Victima_MPI_Estado_CivilDropDown()).val(data.Estado_Civil_del_Abogado_Victima)).addClass('Estado_Civil_del_Abogado_Victima inputNumber').attr('id', nameOfTable + 'Estado_Civil_del_Abogado_Victima' + rowIndex).attr('data-field', 'Estado_Civil_del_Abogado_Victima').after($.parseHTML(addNew('Detalle_del_Abogado_Victima_MPI', 'Estado_Civil','Estado_Civil_del_Abogado_Victima', 264709)));
+           columnData[counter++] = $($(GetDetalle_del_Abogado_Victima_MPI_Tipo_de_IdentificacionDropDown()).val(data.Tipo_de_Identificacion_Abogado_Victima)).addClass('Tipo_de_Identificacion_Abogado_Victima inputNumber').attr('id', nameOfTable + 'Tipo_de_Identificacion_Abogado_Victima' + rowIndex).attr('data-field', 'Tipo_de_Identificacion_Abogado_Victima').after($.parseHTML(addNew('Detalle_del_Abogado_Victima_MPI', 'Tipo_de_Identificacion','Tipo_de_Identificacion_Abogado_Victima', 264710)));
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Numero_de_Identificacion_Abogado_Victima)).addClass('Numero_de_Identificacion_Abogado_Victima').attr('id', nameOfTable + 'Numero_de_Identificacion_Abogado_Victima' + rowIndex).attr('data-field', 'Numero_de_Identificacion_Abogado_Victima');
+           columnData[counter++] = $($(GetDetalle_del_Abogado_Victima_MPI_NacionalidadDropDown()).val(data.Nacionalidad_del_Abogado_Victima)).addClass('Nacionalidad_del_Abogado_Victima inputNumber').attr('id', nameOfTable + 'Nacionalidad_del_Abogado_Victima' + rowIndex).attr('data-field', 'Nacionalidad_del_Abogado_Victima').after($.parseHTML(addNew('Detalle_del_Abogado_Victima_MPI', 'Nacionalidad','Nacionalidad_del_Abogado_Victima', 264712)));
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Cedula_Profesional_del_Abogado_Victima)).addClass('Cedula_Profesional_del_Abogado_Victima').attr('id', nameOfTable + 'Cedula_Profesional_del_Abogado_Victima' + rowIndex).attr('data-field', 'Cedula_Profesional_del_Abogado_Victima');
+           columnData[counter++] = $($(GetDetalle_del_Abogado_Victima_MPI_PaisDropDown()).val(data.Pais_del_Abogado_Victima)).addClass('Pais_del_Abogado_Victima inputNumber').attr('id', nameOfTable + 'Pais_del_Abogado_Victima' + rowIndex).attr('data-field', 'Pais_del_Abogado_Victima').after($.parseHTML(addNew('Detalle_del_Abogado_Victima_MPI', 'Pais','Pais_del_Abogado_Victima', 264714)));
+           columnData[counter++] = $($(GetDetalle_del_Abogado_Victima_MPI_EstadoDropDown()).val(data.Estado_del_Abogado_Victima)).addClass('Estado_del_Abogado_Victima inputNumber').attr('id', nameOfTable + 'Estado_del_Abogado_Victima' + rowIndex).attr('data-field', 'Estado_del_Abogado_Victima').after($.parseHTML(addNew('Detalle_del_Abogado_Victima_MPI', 'Estado','Estado_del_Abogado_Victima', 264715)));
+           columnData[counter++] = $($(GetDetalle_del_Abogado_Victima_MPI_MunicipioDropDown()).val(data.Municipio_del_Abogado_Victima)).addClass('Municipio_del_Abogado_Victima inputNumber').attr('id', nameOfTable + 'Municipio_del_Abogado_Victima' + rowIndex).attr('data-field', 'Municipio_del_Abogado_Victima').after($.parseHTML(addNew('Detalle_del_Abogado_Victima_MPI', 'Municipio','Municipio_del_Abogado_Victima', 264716)));
+           columnData[counter++] = $($(GetDetalle_del_Abogado_Victima_MPI_ColoniaDropDown()).val(data.Colonia_del_Abogado_Victima)).addClass('Colonia_del_Abogado_Victima inputNumber').attr('id', nameOfTable + 'Colonia_del_Abogado_Victima' + rowIndex).attr('data-field', 'Colonia_del_Abogado_Victima').after($.parseHTML(addNew('Detalle_del_Abogado_Victima_MPI', 'Colonia','Colonia_del_Abogado_Victima', 264717)));
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Codigo_Postal_del_Abogado_Victima)).addClass('Codigo_Postal_del_Abogado_Victima inputNumber').attr('id', nameOfTable + 'Codigo_Postal_del_Abogado_Victima' + rowIndex).attr('data-field', 'Codigo_Postal_del_Abogado_Victima');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Calle_del_Abogado_Victima)).addClass('Calle_del_Abogado_Victima').attr('id', nameOfTable + 'Calle_del_Abogado_Victima' + rowIndex).attr('data-field', 'Calle_del_Abogado_Victima');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Numero_Exterior_del_Abogado_Victima)).addClass('Numero_Exterior_del_Abogado_Victima').attr('id', nameOfTable + 'Numero_Exterior_del_Abogado_Victima' + rowIndex).attr('data-field', 'Numero_Exterior_del_Abogado_Victima');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Numero_Interior_del_Abogado_Victima)).addClass('Numero_Interior_del_Abogado_Victima').attr('id', nameOfTable + 'Numero_Interior_del_Abogado_Victima' + rowIndex).attr('data-field', 'Numero_Interior_del_Abogado_Victima');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Telefono_del_Abogado_Victima)).addClass('Telefono_del_Abogado_Victima').attr('id', nameOfTable + 'Telefono_del_Abogado_Victima' + rowIndex).attr('data-field', 'Telefono_del_Abogado_Victima');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Celular_del_Abogado_Victima)).addClass('Celular_del_Abogado_Victima').attr('id', nameOfTable + 'Celular_del_Abogado_Victima' + rowIndex).attr('data-field', 'Celular_del_Abogado_Victima');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Correo_Electronico_del_Abogado_Victima)).addClass('Correo_Electronico_del_Abogado_Victima').attr('id', nameOfTable + 'Correo_Electronico_del_Abogado_Victima' + rowIndex).attr('data-field', 'Correo_Electronico_del_Abogado_Victima');
+              columnData[counter++] = $($($.parseHTML(GetGridCheckBox())).prop('checked', (data.Aceptar_Notificaciones=="true" || data.Aceptar_Notificaciones==true)? 'checked': ''? 'checked': '')).addClass('Aceptar_Notificaciones').attr('id', nameOfTable + 'Aceptar_Notificaciones' + rowIndex).attr('data-field', 'Aceptar_Notificaciones');
+
+            return columnData;
+        }
+
+
+
+        function GetFileInfo(fileData, fileUploadData) {
+
+            var $div = $("<div>");
+            if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+                //<i class="fa fa-times-circle" id='removeFileAttachment'>
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+
+            } else if (fileUploadData != null) {
+                return $.parseHTML(GetFileUploader());
+            } else {
+                $div.append("<label>" + fileData.FileName + "</label>");
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+            }
+        }
+
+        var removedDetalle_del_Abogado_Victima_MPIData = [];
+        function Detalle_del_Abogado_Victima_MPIDeleteRow(rowIndex, row) {
+            var rowIndexTable = Detalle_del_Abogado_Victima_MPITable.fnGetPosition($(row).parent().parent()[0]);
+            var permission = {            
+                 Delete: '@permissionDetalle_del_Abogado_Victima_MPI.Delete' == 'True'
+            };
+            if (!permission.Delete || isConsultMode)
+                return;            
+            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+              if (EjecutarValidacionesAlEliminarMRDetalle_del_Abogado_Victima_MPI('Detalle_del_Abogado_Victima_MPI_', '_' + rowIndex)) {
+                var prevData = Detalle_del_Abogado_Victima_MPITable.fnGetData(rowIndexTable );
+                removedDetalle_del_Abogado_Victima_MPIData.push(prevData);
+                Detalle_del_Abogado_Victima_MPITable.fnDeleteRow(rowIndexTable );
+				showDetalle_del_Abogado_Victima_MPIGrid(Detalle_del_Abogado_Victima_MPITable.fnGetData());
+              }
+            }
+			initiateUIControls();
+        }
+
+        function Detalle_del_Abogado_Victima_MPIrowCreationGrid(row, data, index) {
+            var permission =  {            
+                 Edit: '@permissionDetalle_del_Abogado_Victima_MPI.Edit' == 'True',
+                 Delete: '@permissionDetalle_del_Abogado_Victima_MPI.Delete' == 'True'
+            };
+            setDetalle_del_Abogado_Victima_MPIValidation();
+            var Detalle_del_Abogado_Victima_MPIRowElement = "Detalle_del_Abogado_Victima_MPI_" + index.toString();
+            $(row).addClass(Detalle_del_Abogado_Victima_MPIRowElement);
+            var nameOfTable='Detalle_del_Abogado_Victima_MPI_';
+            var rowIndex = '_' + index;
+            Detalle_del_Abogado_Victima_MPIinsertRowCurrentIndex = index;
+
+            row.innerHTML = "";
+
+            if (data.IsInsertRow) {
+
+                if (row.childNodes.length != 0) {
+                    for (var i = 0; i < row.childNodes.length; i++) {
+                        row.childNodes[i].remove();
+                    }
+                }
+                var controls = GetInsertDetalle_del_Abogado_Victima_MPIRowControls(index);
+                var actionColInsert = $('<td>');
+
+                var abc = "if(dynamicFieldValidation('" + Detalle_del_Abogado_Victima_MPIRowElement + "')){ Detalle_del_Abogado_Victima_MPIInsertRow(" + index + "); }";
+                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
+                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_del_Abogado_Victima_MPICancelRow(" + index + ")'>").appendTo(actionColInsert));
+                actionColInsert.appendTo(row);
+
+                for (i = 0; i < controls.length; i++) {
+					var idHeader = $(controls[i]).data('field') + 'Header';
+					if($(controls[i]).length > 1){
+						idHeader = $($(controls[i])[1]).data('field') + 'Header';
+					}					
+
+					var classe = ($('#Detalle_del_Abogado_Victima_MPIGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_del_Abogado_Victima_MPIGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+				   
+					if ($(controls[i]).next().length > 0) {
+					    var div = $(controls[i]).next();
+					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+					}else
+					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+					
+                }
+                $('#Detalle_del_Abogado_Victima_MPIGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('#Detalle_del_Abogado_Victima_MPIGrid .gridDatePicker').attr("readonly", "");
+                return;
+            }
+
+            var actionCol = $('<td>');
+			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_del_Abogado_Victima_MPIEditRow(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                edit = "";
+            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_del_Abogado_Victima_MPI-form' onclick='Detalle_del_Abogado_Victima_MPIEditRowPopup(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                editPopUp = "";
+            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_del_Abogado_Victima_MPIDeleteRow(" + index + ", this)'>";
+            if (!permission.Delete || isConsultMode)
+                eliminar = "";
+            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+			if ($('.Action' + 'Header').css('display') != 'none')
+				actionCol.appendTo(row);
+
+            if ($('.Nombre_Completo_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Nombre_Completo_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_AbogadoName(data.Nombre_Completo_del_Abogado_Victima)).appendTo(row);
+	    else 
+		$('<td style="display:none;" id="'+nameOfTable+'Nombre_Completo_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_AbogadoName(data.Nombre_Completo_del_Abogado_Victima)).appendTo(row);
+            if ($('.Nombre_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Nombre_del_Abogado_Victima'+rowIndex+'">').text(data.Nombre_del_Abogado_Victima).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Nombre_del_Abogado_Victima'+rowIndex+'">').text(data.Nombre_del_Abogado_Victima).appendTo(row);
+            if ($('.Apellido_Paterno_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Apellido_Paterno_del_Abogado_Victima'+rowIndex+'">').text(data.Apellido_Paterno_del_Abogado_Victima).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Apellido_Paterno_del_Abogado_Victima'+rowIndex+'">').text(data.Apellido_Paterno_del_Abogado_Victima).appendTo(row);
+            if ($('.Apellido_Materno_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Apellido_Materno_del_Abogado_Victima'+rowIndex+'">').text(data.Apellido_Materno_del_Abogado_Victima).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Apellido_Materno_del_Abogado_Victima'+rowIndex+'">').text(data.Apellido_Materno_del_Abogado_Victima).appendTo(row);
+            if ($('.Fecha_de_Nacimiento_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Fecha_de_Nacimiento_del_Abogado_Victima'+rowIndex+'">').text(data.Fecha_de_Nacimiento_del_Abogado_Victima).appendTo(row);
+            else
+                $('<td style="display:none;" id="'+nameOfTable+'Fecha_de_Nacimiento_del_Abogado_Victima'+rowIndex+'">').text(data.Fecha_de_Nacimiento_del_Abogado_Victima).appendTo(row);
+            if ($('.Edad_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td class="dt-right"  id="'+nameOfTable+'Edad_del_Abogado_Victima'+rowIndex+'">').text(data.Edad_del_Abogado_Victima).appendTo(row);
+            else 
+                 $('<td class="dt-right" style="display:none;"  id="'+nameOfTable+'Edad_del_Abogado_Victima'+rowIndex+'">').text(data.Edad_del_Abogado_Victima).appendTo(row);
+            if ($('.Sexo_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Sexo_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_GeneroName(data.Sexo_del_Abogado_Victima)).appendTo(row);
+	    else 
+		$('<td style="display:none;" id="'+nameOfTable+'Sexo_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_GeneroName(data.Sexo_del_Abogado_Victima)).appendTo(row);
+            if ($('.Estado_Civil_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Estado_Civil_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_Estado_CivilName(data.Estado_Civil_del_Abogado_Victima)).appendTo(row);
+	    else 
+		$('<td style="display:none;" id="'+nameOfTable+'Estado_Civil_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_Estado_CivilName(data.Estado_Civil_del_Abogado_Victima)).appendTo(row);
+            if ($('.Tipo_de_Identificacion_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Tipo_de_Identificacion_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_Tipo_de_IdentificacionName(data.Tipo_de_Identificacion_Abogado_Victima)).appendTo(row);
+	    else 
+		$('<td style="display:none;" id="'+nameOfTable+'Tipo_de_Identificacion_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_Tipo_de_IdentificacionName(data.Tipo_de_Identificacion_Abogado_Victima)).appendTo(row);
+            if ($('.Numero_de_Identificacion_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Numero_de_Identificacion_Abogado_Victima'+rowIndex+'">').text(data.Numero_de_Identificacion_Abogado_Victima).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Numero_de_Identificacion_Abogado_Victima'+rowIndex+'">').text(data.Numero_de_Identificacion_Abogado_Victima).appendTo(row);
+            if ($('.Nacionalidad_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Nacionalidad_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_NacionalidadName(data.Nacionalidad_del_Abogado_Victima)).appendTo(row);
+	    else 
+		$('<td style="display:none;" id="'+nameOfTable+'Nacionalidad_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_NacionalidadName(data.Nacionalidad_del_Abogado_Victima)).appendTo(row);
+            if ($('.Cedula_Profesional_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Cedula_Profesional_del_Abogado_Victima'+rowIndex+'">').text(data.Cedula_Profesional_del_Abogado_Victima).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Cedula_Profesional_del_Abogado_Victima'+rowIndex+'">').text(data.Cedula_Profesional_del_Abogado_Victima).appendTo(row);
+            if ($('.Pais_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Pais_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_PaisName(data.Pais_del_Abogado_Victima)).appendTo(row);
+	    else 
+		$('<td style="display:none;" id="'+nameOfTable+'Pais_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_PaisName(data.Pais_del_Abogado_Victima)).appendTo(row);
+            if ($('.Estado_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Estado_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_EstadoName(data.Estado_del_Abogado_Victima)).appendTo(row);
+	    else 
+		$('<td style="display:none;" id="'+nameOfTable+'Estado_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_EstadoName(data.Estado_del_Abogado_Victima)).appendTo(row);
+            if ($('.Municipio_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Municipio_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_MunicipioName(data.Municipio_del_Abogado_Victima)).appendTo(row);
+	    else 
+		$('<td style="display:none;" id="'+nameOfTable+'Municipio_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_MunicipioName(data.Municipio_del_Abogado_Victima)).appendTo(row);
+            if ($('.Colonia_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Colonia_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_ColoniaName(data.Colonia_del_Abogado_Victima)).appendTo(row);
+	    else 
+		$('<td style="display:none;" id="'+nameOfTable+'Colonia_del_Abogado_Victima'+rowIndex+'">').text(GetDetalle_del_Abogado_Victima_MPI_ColoniaName(data.Colonia_del_Abogado_Victima)).appendTo(row);
+            if ($('.Codigo_Postal_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td class="dt-right"  id="'+nameOfTable+'Codigo_Postal_del_Abogado_Victima'+rowIndex+'">').text(data.Codigo_Postal_del_Abogado_Victima).appendTo(row);
+            else 
+                 $('<td class="dt-right" style="display:none;"  id="'+nameOfTable+'Codigo_Postal_del_Abogado_Victima'+rowIndex+'">').text(data.Codigo_Postal_del_Abogado_Victima).appendTo(row);
+            if ($('.Calle_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Calle_del_Abogado_Victima'+rowIndex+'">').text(data.Calle_del_Abogado_Victima).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Calle_del_Abogado_Victima'+rowIndex+'">').text(data.Calle_del_Abogado_Victima).appendTo(row);
+            if ($('.Numero_Exterior_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Numero_Exterior_del_Abogado_Victima'+rowIndex+'">').text(data.Numero_Exterior_del_Abogado_Victima).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Numero_Exterior_del_Abogado_Victima'+rowIndex+'">').text(data.Numero_Exterior_del_Abogado_Victima).appendTo(row);
+            if ($('.Numero_Interior_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Numero_Interior_del_Abogado_Victima'+rowIndex+'">').text(data.Numero_Interior_del_Abogado_Victima).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Numero_Interior_del_Abogado_Victima'+rowIndex+'">').text(data.Numero_Interior_del_Abogado_Victima).appendTo(row);
+            if ($('.Telefono_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Telefono_del_Abogado_Victima'+rowIndex+'">').text(data.Telefono_del_Abogado_Victima).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Telefono_del_Abogado_Victima'+rowIndex+'">').text(data.Telefono_del_Abogado_Victima).appendTo(row);
+            if ($('.Celular_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Celular_del_Abogado_Victima'+rowIndex+'">').text(data.Celular_del_Abogado_Victima).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Celular_del_Abogado_Victima'+rowIndex+'">').text(data.Celular_del_Abogado_Victima).appendTo(row);
+            if ($('.Correo_Electronico_del_Abogado_Victima' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Correo_Electronico_del_Abogado_Victima'+rowIndex+'">').text(data.Correo_Electronico_del_Abogado_Victima).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Correo_Electronico_del_Abogado_Victima'+rowIndex+'">').text(data.Correo_Electronico_del_Abogado_Victima).appendTo(row);
+            if ($('.Aceptar_Notificaciones' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Aceptar_Notificaciones'+rowIndex+'">').text(data.Aceptar_Notificaciones).appendTo(row);
+            else
+                $('<td style="display:none;" id="'+nameOfTable+'Aceptar_Notificaciones'+rowIndex+'">').text(data.Aceptar_Notificaciones).appendTo(row);
+
+        }
+
+        var Detalle_del_Abogado_Victima_MPITable;
+        function showDetalle_del_Abogado_Victima_MPIGrid(dataSet) {
+            //removedDetalle_del_Abogado_Victima_MPIData = [];
+            Detalle_del_Abogado_Victima_MPITable = $('#Detalle_del_Abogado_Victima_MPIGrid').dataTable({
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [
+                ],
+                "createdRow": Detalle_del_Abogado_Victima_MPIrowCreationGrid,
+                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+                data: dataSet,
+                "columns": [
+                    { "data": null, 'visible': true, "orderable": false },
+
+                    { "data": "Nombre_Completo_del_Abogado_Victima", "orderable": false },
+                    { "data": "Nombre_del_Abogado_Victima", "orderable": false },
+                    { "data": "Apellido_Paterno_del_Abogado_Victima", "orderable": false },
+                    { "data": "Apellido_Materno_del_Abogado_Victima", "orderable": false },
+                    { "data": "Fecha_de_Nacimiento_del_Abogado_Victima", "orderable": false },
+                    { "data": "Edad_del_Abogado_Victima", "className": "dt-right", "orderable": false },
+                    { "data": "Sexo_del_Abogado_Victima", "orderable": false },
+                    { "data": "Estado_Civil_del_Abogado_Victima", "orderable": false },
+                    { "data": "Tipo_de_Identificacion_Abogado_Victima", "orderable": false },
+                    { "data": "Numero_de_Identificacion_Abogado_Victima", "orderable": false },
+                    { "data": "Nacionalidad_del_Abogado_Victima", "orderable": false },
+                    { "data": "Cedula_Profesional_del_Abogado_Victima", "orderable": false },
+                    { "data": "Pais_del_Abogado_Victima", "orderable": false },
+                    { "data": "Estado_del_Abogado_Victima", "orderable": false },
+                    { "data": "Municipio_del_Abogado_Victima", "orderable": false },
+                    { "data": "Colonia_del_Abogado_Victima", "orderable": false },
+                    { "data": "Codigo_Postal_del_Abogado_Victima", "className": "dt-right", "orderable": false },
+                    { "data": "Calle_del_Abogado_Victima", "orderable": false },
+                    { "data": "Numero_Exterior_del_Abogado_Victima", "orderable": false },
+                    { "data": "Numero_Interior_del_Abogado_Victima", "orderable": false },
+                    { "data": "Telefono_del_Abogado_Victima", "orderable": false },
+                    { "data": "Celular_del_Abogado_Victima", "orderable": false },
+                    { "data": "Correo_Electronico_del_Abogado_Victima", "orderable": false },
+                    { "data": "Aceptar_Notificaciones", "orderable": false },
+
+                ],
+                "order": [[0, "asc"]],
+                "language": {
+                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                    "zeroRecords": "@Resources.Resources.NothingFound",
+                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                    "infoEmpty": "@Resources.Resources.NoRecords",
+                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                    "sSearch": "@Resources.Resources.Search",
+                    "paginate": {
+                        "previous": "@Resources.Resources.Previous",
+                        "next": "@Resources.Resources.Next"
+                    }
+                },
+				"bDestroy": true,
+                "fnDrawCallback": function (settings) {
+                    setDetalle_del_Abogado_Victima_MPIValidation();
+                }
+            }).on('init.dt', function (e, data) {
+                $('a').tooltip();
+            }).on('draw.dt', function () {
+                $('#Detalle_del_Abogado_Victima_MPIGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+            });
+        }
+
+
+    var Detalle_del_Abogado_Victima_MPI_AbogadoItems;
+        function GetDetalle_del_Abogado_Victima_MPI_AbogadoItem() {
+            Detalle_del_Abogado_Victima_MPI_AbogadoItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/GetDetalle_del_Abogado_Victima_MPI_AbogadoAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_del_Abogado_Victima_MPI_AbogadoItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+
+
+
+
+    var Detalle_del_Abogado_Victima_MPI_GeneroItems;
+        function GetDetalle_del_Abogado_Victima_MPI_GeneroItem() {
+            Detalle_del_Abogado_Victima_MPI_GeneroItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/GetDetalle_del_Abogado_Victima_MPI_GeneroAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_del_Abogado_Victima_MPI_GeneroItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+    var Detalle_del_Abogado_Victima_MPI_Estado_CivilItems;
+        function GetDetalle_del_Abogado_Victima_MPI_Estado_CivilItem() {
+            Detalle_del_Abogado_Victima_MPI_Estado_CivilItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/GetDetalle_del_Abogado_Victima_MPI_Estado_CivilAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_del_Abogado_Victima_MPI_Estado_CivilItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+    var Detalle_del_Abogado_Victima_MPI_Tipo_de_IdentificacionItems;
+        function GetDetalle_del_Abogado_Victima_MPI_Tipo_de_IdentificacionItem() {
+            Detalle_del_Abogado_Victima_MPI_Tipo_de_IdentificacionItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/GetDetalle_del_Abogado_Victima_MPI_Tipo_de_IdentificacionAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_del_Abogado_Victima_MPI_Tipo_de_IdentificacionItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+    var Detalle_del_Abogado_Victima_MPI_NacionalidadItems;
+        function GetDetalle_del_Abogado_Victima_MPI_NacionalidadItem() {
+            Detalle_del_Abogado_Victima_MPI_NacionalidadItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/GetDetalle_del_Abogado_Victima_MPI_NacionalidadAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_del_Abogado_Victima_MPI_NacionalidadItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+    var Detalle_del_Abogado_Victima_MPI_PaisItems;
+        function GetDetalle_del_Abogado_Victima_MPI_PaisItem() {
+            Detalle_del_Abogado_Victima_MPI_PaisItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/GetDetalle_del_Abogado_Victima_MPI_PaisAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_del_Abogado_Victima_MPI_PaisItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+    var Detalle_del_Abogado_Victima_MPI_EstadoItems;
+        function GetDetalle_del_Abogado_Victima_MPI_EstadoItem() {
+            Detalle_del_Abogado_Victima_MPI_EstadoItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/GetDetalle_del_Abogado_Victima_MPI_EstadoAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_del_Abogado_Victima_MPI_EstadoItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+    var Detalle_del_Abogado_Victima_MPI_MunicipioItems;
+        function GetDetalle_del_Abogado_Victima_MPI_MunicipioItem() {
+            Detalle_del_Abogado_Victima_MPI_MunicipioItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/GetDetalle_del_Abogado_Victima_MPI_MunicipioAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_del_Abogado_Victima_MPI_MunicipioItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+    var Detalle_del_Abogado_Victima_MPI_ColoniaItems;
+        function GetDetalle_del_Abogado_Victima_MPI_ColoniaItem() {
+            Detalle_del_Abogado_Victima_MPI_ColoniaItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/GetDetalle_del_Abogado_Victima_MPI_ColoniaAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_del_Abogado_Victima_MPI_ColoniaItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+
+
+
+
+
+
+
+
+        var Detalle_del_Abogado_Victima_MPIData = [];
+        var Detalle_del_Abogado_Victima_MPIdeletedItem = [];
+        var Detalle_del_Abogado_Victima_MPIDataMain = [];
+        var Detalle_del_Abogado_Victima_MPIDataMainPages = [];
+        var Detalle_del_Abogado_Victima_MPInewItemCount = 0;
+        var Detalle_del_Abogado_Victima_MPImaxItemIndex = 0;
+        var Detalle_del_Abogado_Victima_MPIDataMainInitialized = false;
+
+        function SendDetalle_del_Abogado_Victima_MPI(callBack, ClaveId) {
+            Detalle_del_Abogado_Victima_MPIData = GetDetalle_del_Abogado_Victima_MPIFromDataTable();
+
+            if (Detalle_del_Abogado_Victima_MPIData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
+                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
+                    ClaveId = $("#ReferenceClave").val();                
+                if ($("#ReferenceClave").val() == '')
+                    $("#ReferenceClave").val('0');
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/PostDetalle_del_Abogado_Victima_MPI?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
+                    type: 'POST',
+                    data: GetDetalle_del_Abogado_Victima_MPI(),
+                    async: true,
+                    success: function (result) {
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            } else {
+                //showNotification("@Resources.Resources.SaveSuccess", "success");
+                //callBack(ClaveId);
+            }
+            return true;
+        }
+
+        function GetAddDetalle_del_Abogado_Victima_MPIPopup(currentRowIndex, mode, id) {
+
+            $.ajax({
+                url: "@Url.Action("AddDetalle_del_Abogado_Victima_MPI", "Detalle_del_Abogado_Victima_MPI")",
+                type: "GET",
+                async: false,
+                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+                success: function (data) {
+                    $(".AddDetalle_del_Abogado_Victima_MPIModal").html(data);
+                },
+                error: function () {
+
+                }
+            });
+
+            @*$.get('@Url.Action("AddDetalle_del_Abogado_Victima_MPI", "Detalle_del_Abogado_Victima_MPI")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddDetalle_del_Abogado_Victima_MPIModal").html(data);
+            });*@
+        }
+
+        function ShowMessagePendingRowDetalle_del_Abogado_Victima_MPI()
+        {
+            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Abogados"))')
+	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Abogados"))', "warning");
+        }
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+		
+		function SendDetalle_de_Datos_de_la_Victima_MPIData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Datos_de_la_Victima_MPI").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Datos_de_la_Victima_MPI")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_Datos_de_la_Victima_MPICreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+                            SendDetalle_del_Abogado_Victima_MPI(callBack, result);
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_Datos_de_la_Victima_MPIPropertyBag", "Detalle_de_Datos_de_la_Victima_MPI")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_Datos_de_la_Victima_MPIGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleFieldName').val(), ObjectId: '45120', Attribute: $('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_de_Datos_de_la_Victima_MPI' }, function (data) {
+                $(".Detalle_de_Datos_de_la_Victima_MPIBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_Datos_de_la_Victima_MPIGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleFieldName').val(), ObjectId: '45120', Attribute: $('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_de_Datos_de_la_Victima_MPI' }, function (data) {
+                $(".Detalle_de_Datos_de_la_Victima_MPIAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleFieldName').val(), ObjectId: '45120', Attribute: $('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_de_Datos_de_la_Victima_MPI' }, function (data) {
+				$(".Detalle_de_Datos_de_la_Victima_MPIBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_Datos_de_la_Victima_MPIConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_Datos_de_la_Victima_MPIConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_Datos_de_la_Victima_MPIConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Datos_de_la_Victima_MPI/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Datos_de_la_Victima_MPI' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Datos_de_la_Victima_MPI' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_Datos_de_la_Victima_MPIConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_Datos_de_la_Victima_MPIConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Datos_de_la_Victima_MPI').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_Datos_de_la_Victima_MPIBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

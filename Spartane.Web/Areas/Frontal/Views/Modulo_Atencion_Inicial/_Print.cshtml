@@ -1,0 +1,632 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Modulo_Atencion_InicialGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Folio
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Fecha_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Hora_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Turno_Asignado
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Usuario_que_Registra
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Unidad
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Region
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Tipo_de_Denuncia
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.NUAT
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Expedientes_Relacionados
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Estatus
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Generar_Cita
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Nombres_del_Remitente
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Apellido_Paterno_del_Remitente
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Apellido_Materno_del_Remitente
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Fecha_en_que_llega_para_validacion
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Delegacion
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Agencia
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Ministerio_Publico_en_Turno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Nombres_turno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Apellido_Paterno_turno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Apellido_Materno_turno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Sexo_turno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Edad_turno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Tipo_de_Atencion_turno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Tipo_de_Identificacion_turno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Numero_de_Identificacion_turno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Urgencia_turno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Tipo_de_Urgencia_turno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Motivo_Finalizacion_Turno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Observaciones_turno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Requiere_Traductor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Lengua_Originaria
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Idioma
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Autoriza_Traductor
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Finalizar_Servicios_de_Apoyo
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Estatus2
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Enviar_a_MP
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Correccion_de_Estatus
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Requiere_Servicios_de_Apoyo
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Titulo_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Narrativa_Breve_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Prioridad_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Orientador
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Fecha_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Hora_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Pais_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Estado_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Municipio_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Poblacion
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Colonia_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Codigo_Postal_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Calle_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Entre_Calle
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Y_Calle
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Numero_Exrterior_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Numero_Interior_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Latitud
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Longitud
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Tipo_de_Lugar_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Zona_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Turno
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Tipo_de_Acuerdo
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Fecha_de_Inicio_de_Acuerdo
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Fecha_de_Cumplimiento_del_Acuerdo
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Hora_de_Cumplimiento_del_Acuerdo
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Domicilio_para_el_Cumplimiento
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Monto_de_Reparacion_de_Danos
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Parcialidades
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Periodicidad
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Se_Acepta_Acuerdo
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Motivo_de_Rechazo_de_Acuerdo
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Cerrar
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Fecha_de_Cierre
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Hora_de_Cierre
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.NUC
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Fecha_de_Vencimiento_1
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.EspecialistaJA
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Campo_Oculto1
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.JefeMPO
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Campo_Oculto2
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Campo_Oculto3
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.CoordinadorJA
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.EspJA
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Ano_Actual
+            </td>
+            <td class="column1">
+                @Resources.Modulo_Atencion_InicialResources.Secuencial
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Folio
+                    </td>
+                    <td>
+                        @item.Fecha_de_Registro
+                    </td>
+                    <td>
+                        @item.Hora_de_Registro
+                    </td>
+                    <td>
+                        @item.Turno_AsignadoNumero_de_Turno
+                    </td>
+                    <td>
+                        @item.Usuario_que_Registra
+                    </td>
+                    <td>
+                        @item.UnidadDescripcion
+                    </td>
+                    <td>
+                        @item.Municipio
+                    </td>
+                    <td>
+                        @item.RegionDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_DenunciaDescripcion
+                    </td>
+                    <td>
+                        @item.NUAT
+                    </td>
+                    <td>
+                        @item.Expedientes_Relacionados
+                    </td>
+                    <td>
+                        @item.EstatusDescripcion
+                    </td>
+                    <td>
+                        @item.Generar_Cita
+                    </td>
+                    <td>
+                        @item.Nombres_del_Remitente
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno_del_Remitente
+                    </td>
+                    <td>
+                        @item.Apellido_Materno_del_Remitente
+                    </td>
+                    <td>
+                        @item.Fecha_en_que_llega_para_validacion
+                    </td>
+                    <td>
+                        @item.DelegacionDescripcion
+                    </td>
+                    <td>
+                        @item.AgenciaDescripcion
+                    </td>
+                    <td>
+                        @item.Ministerio_Publico_en_TurnoMinisterio_Publico_en_Turno
+                    </td>
+                    <td>
+                        @item.Nombres_turno
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno_turno
+                    </td>
+                    <td>
+                        @item.Apellido_Materno_turno
+                    </td>
+                    <td>
+                        @item.Sexo_turnoDescripcion
+                    </td>
+                    <td>
+                        @item.Edad_turno
+                    </td>
+                    <td>
+                        @item.Tipo_de_Atencion_turnoDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_Identificacion_turnoNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion_turno
+                    </td>
+                    <td>
+                        @item.Urgencia_turno
+                    </td>
+                    <td>
+                        @item.Tipo_de_Urgencia_turnoDescripcion
+                    </td>
+                    <td>
+                        @item.Motivo_Finalizacion_TurnoDescripcion
+                    </td>
+                    <td>
+                        @item.Observaciones_turno
+                    </td>
+                    <td>
+                        @item.Requiere_Traductor
+                    </td>
+                    <td>
+                        @item.Lengua_OriginariaDescripcion
+                    </td>
+                    <td>
+                        @item.IdiomaDescripcion
+                    </td>
+                    <td>
+                        @item.Autoriza_Traductor
+                    </td>
+                    <td>
+                        @item.Finalizar_Servicios_de_Apoyo
+                    </td>
+                    <td>
+                        @item.Estatus2Descripcion
+                    </td>
+                    <td>
+                        @item.Enviar_a_MP
+                    </td>
+                    <td>
+                        @item.Correccion_de_Estatus
+                    </td>
+                    <td>
+                        @item.Requiere_Servicios_de_Apoyo
+                    </td>
+                    <td>
+                        @item.Persona_Moral
+                    </td>
+                    <td>
+                        @item.Titulo_del_Hecho
+                    </td>
+                    <td>
+                        @item.Narrativa_Breve_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Prioridad_del_HechoDescripcion
+                    </td>
+                    <td>
+                        @item.Orientador
+                    </td>
+                    <td>
+                        @item.Fecha_del_Hecho
+                    </td>
+                    <td>
+                        @item.Hora_del_Hecho
+                    </td>
+                    <td>
+                        @item.Pais_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Estado_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Municipio_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Poblacion
+                    </td>
+                    <td>
+                        @item.Colonia_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Codigo_Postal_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Calle_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Entre_Calle
+                    </td>
+                    <td>
+                        @item.Y_Calle
+                    </td>
+                    <td>
+                        @item.Numero_Exrterior_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Numero_Interior_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Latitud
+                    </td>
+                    <td>
+                        @item.Longitud
+                    </td>
+                    <td>
+                        @item.Tipo_de_Lugar_del_HechoDescripcion
+                    </td>
+                    <td>
+                        @item.Zona_de_los_HechosDescripcion
+                    </td>
+                    <td>
+                        @item.Turno
+                    </td>
+                    <td>
+                        @item.Tipo_de_AcuerdoDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_de_Inicio_de_Acuerdo
+                    </td>
+                    <td>
+                        @item.Fecha_de_Cumplimiento_del_Acuerdo
+                    </td>
+                    <td>
+                        @item.Hora_de_Cumplimiento_del_Acuerdo
+                    </td>
+                    <td>
+                        @item.Domicilio_para_el_Cumplimiento
+                    </td>
+                    <td>
+                        @item.Monto_de_Reparacion_de_Danos
+                    </td>
+                    <td>
+                        @item.Parcialidades
+                    </td>
+                    <td>
+                        @item.PeriodicidadDescripcion
+                    </td>
+                    <td>
+                        @item.Se_Acepta_Acuerdo
+                    </td>
+                    <td>
+                        @item.Motivo_de_Rechazo_de_Acuerdo
+                    </td>
+                    <td>
+                        @item.Cerrar
+                    </td>
+                    <td>
+                        @item.Fecha_de_Cierre
+                    </td>
+                    <td>
+                        @item.Hora_de_Cierre
+                    </td>
+                    <td>
+                        @item.NUC
+                    </td>
+                    <td>
+                        @item.Fecha_de_Vencimiento_1
+                    </td>
+                    <td>
+                        @item.EspecialistaJA
+                    </td>
+                    <td>
+                        @item.Campo_Oculto1
+                    </td>
+                    <td>
+                        @item.JefeMPOMinisterio_Publico_en_Turno
+                    </td>
+                    <td>
+                        @item.Campo_Oculto2
+                    </td>
+                    <td>
+                        @item.Campo_Oculto3
+                    </td>
+                    <td>
+                        @item.CoordinadorJA
+                    </td>
+                    <td>
+                        @item.EspJA
+                    </td>
+                    <td>
+                        @item.Ano_Actual
+                    </td>
+                    <td>
+                        @item.Secuencial
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Jefes_de_Usuarios_del_Sistema" value="Ministerio Público en Turno"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Region" value="Región"></resource>
+  <resource culture="en-US" name="Ministerio_Publico_en_Turno" value="Ministerio Público en Turno"></resource>
+  <resource culture="en-US" name="Unidad" value="Unidad"></resource>
+  <resource culture="en-US" name="Vigencia" value="Vigencia"></resource>
+  <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Solicitudes_de_Invitaciones" value="Invitaciones"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Solicitud" value="Número de Expediente"></resource>
+  <resource culture="en-US" name="Fecha_de_Invitacion" value="Fecha de Invitación"></resource>
+  <resource culture="en-US" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="en-US" name="Numero_de_Invitacion" value="Número de Invitación"></resource>
+  <resource culture="en-US" name="Numero_de_Oficio" value="Número de Oficio"></resource>
+  <resource culture="en-US" name="Formato_de_Invitacion" value="Forma de Invitación"></resource>
+  <resource culture="en-US" name="Tipo_de_Participacion" value="Tipo de Participación"></resource>
+  <resource culture="en-US" name="Fecha_de_la_cita" value="Fecha de la cita"></resource>
+  <resource culture="en-US" name="Hora_de_la_Cita" value="Hora de la Cita"></resource>
+  <resource culture="en-US" name="Domicilio" value="Domicilio donde se llevará a cabo la reunión"></resource>
+  <resource culture="en-US" name="nombre_del_interviniente_solicitante" value="Solicitante(s)"></resource>
+  <resource culture="en-US" name="nombre_del_interviniente_requerido" value="Requerido(s)"></resource>
+  <resource culture="en-US" name="Fecha_de_Recepcion" value="Fecha de Recepción"></resource>
+  <resource culture="en-US" name="Fecha_de_Aceptacion" value="Fecha de Aceptación"></resource>
+  <resource culture="en-US" name="Cumplimiento" value="Cumplimiento"></resource>
+  <resource culture="en-US" name="Incidente" value="Incidente"></resource>
+  <resource culture="en-US" name="A_Tiempo" value="A Tiempo"></resource>
+  <resource culture="en-US" name="Archivo" value="Documento"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

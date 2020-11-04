@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Expediente_Inicial" value="Expediente Inicial"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="es-es" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="es-es" name="Detenido" value="Detenido"></resource>
+  <resource culture="es-es" name="NUC" value="NUC"></resource>
+  <resource culture="es-es" name="NIC" value="NIC"></resource>
+  <resource culture="es-es" name="Hora_del_Detenido" value="Hora del Detenido"></resource>
+  <resource culture="es-es" name="Hora_Puesto_a_Disposicion" value="Hora de Puesto a Disposición"></resource>
+  <resource culture="es-es" name="Solicitar_Servicos_de_Apoyo" value="Solicitar Servicos de Apoyo"></resource>
+  <resource culture="es-es" name="Datos_de_la_Victima" value="Datos de la Víctima"></resource>
+  <resource culture="es-es" name="Datos_del_Imputado" value="Datos del Imputado"></resource>
+  <resource culture="es-es" name="Datos_del_Delito" value="Datos del Delito"></resource>
+  <resource culture="es-es" name="Narrativa_Breve_de_los_Hechos" value="Narrativa Breve de los Hechos"></resource>
+  <resource culture="es-es" name="Prioridad_del_Hecho" value="Prioridad del Hecho"></resource>
+  <resource culture="es-es" name="Turno" value="Turno"></resource>
+  <resource culture="es-es" name="Fecha_del_Hecho" value="Fecha del Hecho"></resource>
+  <resource culture="es-es" name="Hora_del_Hecho" value="Hora Aproximada del Hecho"></resource>
+  <resource culture="es-es" name="Pais_de_los_Hechos_MPI" value="País"></resource>
+  <resource culture="es-es" name="Estado_de_los_Hechos_MPI" value="Estado"></resource>
+  <resource culture="es-es" name="Municipio_de_los_Hechos_MPI" value="Municipio"></resource>
+  <resource culture="es-es" name="Colonia_de_los_Hechos_MPI" value="Colonia"></resource>
+  <resource culture="es-es" name="Codigo_Postal_de_los_Hechos_MPI" value="Código Postal"></resource>
+  <resource culture="es-es" name="Calle_de_los_Hechos_MPI" value="Calle"></resource>
+  <resource culture="es-es" name="Entre_Calle_MPI" value="Entre Calle"></resource>
+  <resource culture="es-es" name="Y_Calle_MPI" value="Y Calle"></resource>
+  <resource culture="es-es" name="Numero_Exrterior_de_los_Hechos_MPI" value="Número Exterior"></resource>
+  <resource culture="es-es" name="Numero_Interior_de_los_Hechos_MPI" value="Número Interior"></resource>
+  <resource culture="es-es" name="Latitud_MPI" value="Latitud"></resource>
+  <resource culture="es-es" name="Longitud_MPI" value="Longitud"></resource>
+  <resource culture="es-es" name="Tipo_de_Lugar_del_Hecho_MPI" value="Tipo de Lugar del Hecho"></resource>
+  <resource culture="es-es" name="Persona_Moral" value="Persona Moral"></resource>
+  <resource culture="es-es" name="Requiere_Diligencia" value="¿Requiere Servicios de Apoyo?"></resource>
+  <resource culture="es-es" name="Numero_de_Expediente_Victima" value="Número de Expediente"></resource>
+  <resource culture="es-es" name="Datos_de_la_Persona_Moral" value="Datos de la Persona Moral"></resource>
+  <resource culture="es-es" name="Requiere_Traductor" value="¿Requiere Traductor?"></resource>
+  <resource culture="es-es" name="Lengua_Originaria" value="Lengua Originaria"></resource>
+  <resource culture="es-es" name="Idioma" value="Idioma"></resource>
+  <resource culture="es-es" name="Servicios_de_Apoyo" value="Servicios de Apoyo"></resource>
+  <resource culture="es-es" name="Titulo_del_Hecho" value="Titulo del Hecho"></resource>
+  <resource culture="es-es" name="Datos_del_Testigo" value="Datos del Testigo"></resource>
+  <resource culture="es-es" name="Asignar_Agente_del_Ministerio_Publico" value="Asignar Agente del Ministerio Público Manual"></resource>
+  <resource culture="es-es" name="Nombre_de_Agente_del_Ministerio_Publico" value="Nombre de Agente del Ministerio Público"></resource>
+  <resource culture="es-es" name="Agentes_del_Ministerio_Publico" value="Agentes del Ministerio Público"></resource>
+  <resource culture="es-es" name="Tipo_de_Oficio" value="Tipo de Oficio"></resource>
+  <resource culture="es-es" name="Delegacion" value="Delegación"></resource>
+  <resource culture="es-es" name="Agencia" value="Agencia"></resource>
+  <resource culture="es-es" name="Solicitar_Diligencias" value="Solicitar Diligencias"></resource>
+  <resource culture="es-es" name="Servicios_Periciales" value="Servicios Periciales"></resource>
+  <resource culture="es-es" name="Oficios" value="Oficios"></resource>
+  <resource culture="es-es" name="IPH" value="IPH"></resource>
+  <resource culture="es-es" name="NUC_Audiencias" value="NUC"></resource>
+  <resource culture="es-es" name="NIC_Audiencias" value="NIC"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro_Audiencias" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Hora_de_Registro_Audiencias" value="Hora de Registro"></resource>
+  <resource culture="es-es" name="Tipo_de_Oficio_Audiencias" value="Tipo de Oficio"></resource>
+  <resource culture="es-es" name="Delegacion_Audiencias" value="Delegación"></resource>
+  <resource culture="es-es" name="Domicilio_Delegacion_A" value="Domicilio Delegación"></resource>
+  <resource culture="es-es" name="Solicitante_Audiencias" value="Víctima"></resource>
+  <resource culture="es-es" name="Requerido_Audiencias" value="Imputado"></resource>
+  <resource culture="es-es" name="Citatorio_Audiencias" value="Citatorio/Audiencias"></resource>
+  <resource culture="es-es" name="Documentos_MPI" value="Documentos"></resource>
+  <resource culture="es-es" name="Coincidencias" value="Coincidencias"></resource>
+  <resource culture="es-es" name="Numero_de_Expediente" value="Número de Expediente"></resource>
+  <resource culture="es-es" name="NUAT" value="NUAT"></resource>
+  <resource culture="es-es" name="Fecha_de_RegistroI" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Hora_de_RegistroI" value="Hora de Registro"></resource>
+  <resource culture="es-es" name="Indicio" value="Indicio"></resource>
+  <resource culture="es-es" name="Estatus" value="Estatus"></resource>
+  <resource culture="es-es" name="Canalizar_a" value="Canalizar a"></resource>
+  <resource culture="es-es" name="Bitacora_de_Canalizacion" value="Bitácora de Canalización"></resource>
+  <resource culture="es-es" name="Delito_Principal" value="Delito Principal"></resource>
+  <resource culture="es-es" name="Tipo_de_Acuerdo" value="Tipo de Acuerdo"></resource>
+  <resource culture="es-es" name="Fecha_de_Inicio_de_Acuerdo" value="Fecha de Inicio de Acuerdo"></resource>
+  <resource culture="es-es" name="Fecha_de_Cumplimiento" value="Fecha de Cumplimiento del Acuerdo"></resource>
+  <resource culture="es-es" name="Hora_de_Cumplimiento" value="Hora de Cumplimiento del Acuerdo"></resource>
+  <resource culture="es-es" name="Domicilio_para_el_Cumplimiento" value="Domicilio para el Cumplimiento del Acuerdo"></resource>
+  <resource culture="es-es" name="Monto_de_Reparacion_de_Danos" value="Monto de Reparación de Daños"></resource>
+  <resource culture="es-es" name="Parcialidades" value="Parcialidades"></resource>
+  <resource culture="es-es" name="Periodicidad" value="Periodicidad"></resource>
+  <resource culture="es-es" name="Acepta_Acuerdo" value="¿Se Acepta Acuerdo?"></resource>
+  <resource culture="es-es" name="Motivo_de_Rechazo_de_Acuerdo" value="Motivo de Rechazo de Acuerdo"></resource>
+
+<resource culture="es-es" name="TabDatos_del_Caso" value="Datos del Caso"></resource>
+<resource culture="es-es" name="TabDatos_de_la_Victima" value="Datos de la Víctima"></resource>
+<resource culture="es-es" name="TabDatos_del_Imputado" value="Datos del Imputado"></resource>
+<resource culture="es-es" name="TabDatos_del_Delito" value="Datos del Delito"></resource>
+<resource culture="es-es" name="TabDatos_de_los_Hechos" value="Datos de los Hechos"></resource>
+<resource culture="es-es" name="TabDatos_de_la_Persona_Moral" value="Datos de la Persona Moral"></resource>
+<resource culture="es-es" name="TabServicios_de_Apoyo" value="Servicios de Apoyo"></resource>
+<resource culture="es-es" name="TabDatos_del_Testigo" value="Datos del Testigo"></resource>
+<resource culture="es-es" name="TabAsignar_MP" value="Asignar MP"></resource>
+<resource culture="es-es" name="TabDiligencias" value="Diligencias"></resource>
+<resource culture="es-es" name="TabIPH" value="IPH"></resource>
+<resource culture="es-es" name="TabAgenda_de_Audiencias_y_Citatorios" value="Agenda de Audiencias y Citatorios"></resource>
+<resource culture="es-es" name="TabAudiencias_Citatorios" value="Audiencias/Citatorios"></resource>
+<resource culture="es-es" name="TabDocumentos" value="Documentos"></resource>
+<resource culture="es-es" name="TabBitacora_de_Coincidencias" value="Bitácora de Coincidencias"></resource>
+<resource culture="es-es" name="TabIndicios" value="Indicios"></resource>
+<resource culture="es-es" name="TabCanalizar" value="Canalizar"></resource>
+<resource culture="es-es" name="TabDatos_del_Acuerdo" value="Datos del Acuerdo"></resource>
+
+</resources>

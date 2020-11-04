@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Bitacora_de_Usuarios" value="Bitácora de Usuarios"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Numero_de_Empleado" value="Número de Empleado"></resource>
+  <resource culture="en-US" name="Usuario" value="Usuario"></resource>
+  <resource culture="en-US" name="ID_de_Huella" value="ID de Huella"></resource>
+  <resource culture="en-US" name="ID_de_Dispositivo" value="ID de Dispositivo"></resource>
+  <resource culture="en-US" name="Fecha" value="Fecha"></resource>
+  <resource culture="en-US" name="Hora" value="Hora"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

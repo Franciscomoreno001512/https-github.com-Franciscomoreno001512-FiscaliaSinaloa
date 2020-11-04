@@ -1,0 +1,529 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Solicitud_de_IndicioModel
+@{
+
+    string Fecha_de_Solicitud = "";
+    if (Model.Fecha_de_Solicitud == "")
+    { Model.Fecha_de_Solicitud = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+    List<SelectListItem> varIndicios_para_MPI_Numero_de_Indicio = null;
+    if (ViewBag.Indicios_para_MPIs_Numero_de_Indicio != null)
+    { varIndicios_para_MPI_Numero_de_Indicio = (List<SelectListItem>)ViewBag.Indicios_para_MPIs_Numero_de_Indicio; }
+    List<SelectListItem> varServicios_Periciales_Diligencia_que_Solicita = null;
+    if (ViewBag.Servicios_Pericialess_Diligencia_que_Solicita != null)
+    { varServicios_Periciales_Diligencia_que_Solicita = (List<SelectListItem>)ViewBag.Servicios_Pericialess_Diligencia_que_Solicita; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Solicitud de Indicio
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_Solicitud_de_IndicioRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_Solicitud_de_IndicioPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Solicitud de Indicio
+								<button onclick="Detalle_de_Solicitud_de_IndicioGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitud_de_IndicioBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_Solicitud_de_IndicioResources.Detalle_de_Solicitud_de_Indicio</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_Solicitud_de_IndicioDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_Solicitud_de_IndicioPropertyBusinessModal" id="Detalle_de_Solicitud_de_IndicioPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_Solicitud_de_IndicioBusinessRule-form" onclick="Detalle_de_Solicitud_de_IndicioGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitud_de_IndicioPropertyModal" id="Detalle_de_Solicitud_de_IndicioPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitud_de_IndicioBusinessRuleModal" id="Detalle_de_Solicitud_de_IndicioBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitud_de_IndicioAddBusinessRuleModal" id="Detalle_de_Solicitud_de_IndicioAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Solicitud_de_Indicio", FormMethod.Post, new { id = "CreateDetalle_de_Solicitud_de_Indicio", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_Solicitud_de_IndicioCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_de_IndicioResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="264874" data-field-name="@Resources.Detalle_de_Solicitud_de_IndicioResources.Clave">
+                                    <label class="form-control" for="Detalle_de_Solicitud_de_IndicioClave" id="Detalle_de_Solicitud_de_IndicioClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Solicitud">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_de_IndicioResources.Fecha_de_Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Solicitud" data-attribute="264875" data-field-name="@Resources.Detalle_de_Solicitud_de_IndicioResources.Fecha_de_Solicitud">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Solicitud_de_IndicioFecha_de_Solicitud" readonly="readonly" name="Detalle_de_Solicitud_de_IndicioFecha_de_Solicitud" type="text" value="@Model.Fecha_de_Solicitud">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divHora_de_Solicitud">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_de_IndicioResources.Hora_de_Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Solicitud" data-attribute="264876" data-field-name="@Resources.Detalle_de_Solicitud_de_IndicioResources.Hora_de_Solicitud">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Solicitud_de_IndicioHora_de_Solicitud" readonly="readonly" name="Detalle_de_Solicitud_de_IndicioHora_de_Solicitud" type="text" data-autoclose="true" value="@Model.Hora_de_Solicitud">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre_del_Solicitante">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_de_IndicioResources.Nombre_del_Solicitante</label>
+                                <div class="col-sm-8" data-field-id="Nombre_del_Solicitante" data-attribute="264877" data-field-name="@Resources.Detalle_de_Solicitud_de_IndicioResources.Nombre_del_Solicitante">
+                                    <input class="form-control" id="Detalle_de_Solicitud_de_IndicioNombre_del_Solicitante" name="Detalle_de_Solicitud_de_IndicioNombre_del_Solicitante" type="text" value="@Model.Nombre_del_Solicitante">
+                                </div>
+                            </div>
+<div class="form-group" id="divMotivo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_de_IndicioResources.Motivo</label>
+                                <div class="col-sm-8" data-field-id="Motivo" data-attribute="264878" data-field-name="@Resources.Detalle_de_Solicitud_de_IndicioResources.Motivo">
+                                    <input class="form-control" id="Detalle_de_Solicitud_de_IndicioMotivo" name="Detalle_de_Solicitud_de_IndicioMotivo" type="text" value="@Model.Motivo">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_de_Indicio">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_de_IndicioResources.Numero_de_Indicio</label>
+	<div class="col-sm-8" data-field-id="Numero_de_Indicio" data-attribute="264879" data-field-name="@Resources.Detalle_de_Solicitud_de_IndicioResources.Numero_de_Indicio">
+		<select class="form-control" data-val="true" data-val-number="The field Número de Indicio must be a number." data-val-required="The Número de Indicio field is required." id="Detalle_de_Solicitud_de_IndicioNumero_de_Indicio" name="Detalle_de_Solicitud_de_IndicioNumero_de_Indicio">
+			<option value=""></option>
+			@if (varIndicios_para_MPI_Numero_de_Indicio != null){ 
+				foreach (var itemNumero_de_Indicio in varIndicios_para_MPI_Numero_de_Indicio)
+				{
+					if (itemNumero_de_Indicio.Value == Convert.ToString(Model.Numero_de_Indicio))
+					{
+						<option value="@itemNumero_de_Indicio.Value" selected>@itemNumero_de_Indicio.Text</option>
+					}
+					else
+					{
+						<option value="@itemNumero_de_Indicio.Value">@itemNumero_de_Indicio.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNombre_de_Indicio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_de_IndicioResources.Nombre_de_Indicio</label>
+                                <div class="col-sm-8" data-field-id="Nombre_de_Indicio" data-attribute="264880" data-field-name="@Resources.Detalle_de_Solicitud_de_IndicioResources.Nombre_de_Indicio">
+                                    <input class="form-control" id="Detalle_de_Solicitud_de_IndicioNombre_de_Indicio" name="Detalle_de_Solicitud_de_IndicioNombre_de_Indicio" type="text" value="@Model.Nombre_de_Indicio">
+                                </div>
+                            </div>
+<div class="form-group" id="divDescripcion_de_Entrega_de_Indicio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_de_IndicioResources.Descripcion_de_Entrega_de_Indicio</label>
+                                <div class="col-sm-8" data-field-id="Descripcion_de_Entrega_de_Indicio" data-attribute="264881" data-field-name="@Resources.Detalle_de_Solicitud_de_IndicioResources.Descripcion_de_Entrega_de_Indicio">
+                                    <input class="form-control" id="Detalle_de_Solicitud_de_IndicioDescripcion_de_Entrega_de_Indicio" name="Detalle_de_Solicitud_de_IndicioDescripcion_de_Entrega_de_Indicio" type="text" value="@Model.Descripcion_de_Entrega_de_Indicio">
+                                </div>
+                            </div>
+<div class="form-group" id="divDiligencia_que_Solicita">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_de_IndicioResources.Diligencia_que_Solicita</label>
+	<div class="col-sm-8" data-field-id="Diligencia_que_Solicita" data-attribute="264882" data-field-name="@Resources.Detalle_de_Solicitud_de_IndicioResources.Diligencia_que_Solicita">
+		<select class="form-control" data-val="true" data-val-number="The field Diligencia que Solicita must be a number." data-val-required="The Diligencia que Solicita field is required." id="Detalle_de_Solicitud_de_IndicioDiligencia_que_Solicita" name="Detalle_de_Solicitud_de_IndicioDiligencia_que_Solicita">
+			<option value=""></option>
+			@if (varServicios_Periciales_Diligencia_que_Solicita != null){ 
+				foreach (var itemDiligencia_que_Solicita in varServicios_Periciales_Diligencia_que_Solicita)
+				{
+					if (itemDiligencia_que_Solicita.Value == Convert.ToString(Model.Diligencia_que_Solicita))
+					{
+						<option value="@itemDiligencia_que_Solicita.Value" selected>@itemDiligencia_que_Solicita.Text</option>
+					}
+					else
+					{
+						<option value="@itemDiligencia_que_Solicita.Value">@itemDiligencia_que_Solicita.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_Solicitud_de_IndicioConfigureSave" name="Detalle_de_Solicitud_de_IndicioConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_Solicitud_de_IndicioConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_Solicitud_de_IndicioBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_Solicitud_de_IndicioBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_Solicitud_de_IndicioBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_Solicitud_de_IndicioGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitud_de_IndicioBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Solicitud_de_Indicio.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Solicitud_de_IndicioGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Solicitud_de_IndicioCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/IndiciosCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_Solicitud_de_IndicioRowElement = "Detalle_de_Solicitud_de_IndicioPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_Solicitud_de_IndicioRowElement + "')){ Detalle_de_Solicitud_de_IndicioInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+            $('#Detalle_de_Solicitud_de_IndicioFecha_de_Solicitud').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Detalle_de_Solicitud_de_IndicioHora_de_Solicitud').clockpicker();
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_de_Solicitud_de_IndicioData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Solicitud_de_Indicio").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Solicitud_de_Indicio")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_Solicitud_de_IndicioCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Solicitud_de_Indicio/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_Solicitud_de_IndicioPropertyBag", "Detalle_de_Solicitud_de_Indicio")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_Solicitud_de_IndicioGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleFieldName').val(), ObjectId: '45186', Attribute: $('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleAttribute').val(), Screen: 'Detalle_de_Solicitud_de_Indicio' }, function (data) {
+                $(".Detalle_de_Solicitud_de_IndicioBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_Solicitud_de_IndicioGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleFieldName').val(), ObjectId: '45186', Attribute: $('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleAttribute').val(), Screen: 'Detalle_de_Solicitud_de_Indicio' }, function (data) {
+                $(".Detalle_de_Solicitud_de_IndicioAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleFieldName').val(), ObjectId: '45186', Attribute: $('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleAttribute').val(), Screen: 'Detalle_de_Solicitud_de_Indicio' }, function (data) {
+				$(".Detalle_de_Solicitud_de_IndicioBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Solicitud_de_Indicio/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_de_Indicio/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_de_Indicio/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_Solicitud_de_IndicioConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_Solicitud_de_IndicioConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_de_Indicio/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_Solicitud_de_IndicioConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_de_Indicio/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Solicitud_de_Indicio' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Solicitud_de_Indicio' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_Solicitud_de_IndicioConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_Solicitud_de_IndicioConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Solicitud_de_Indicio').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_Solicitud_de_IndicioBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

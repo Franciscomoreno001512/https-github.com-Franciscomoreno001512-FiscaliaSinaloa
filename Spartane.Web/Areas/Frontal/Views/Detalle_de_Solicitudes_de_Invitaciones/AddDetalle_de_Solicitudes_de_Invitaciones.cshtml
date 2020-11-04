@@ -1,0 +1,577 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Solicitudes_de_InvitacionesModel
+@{
+
+    string Fecha_de_la_cita = "";
+    if (Model.Fecha_de_la_cita == "")
+    { Model.Fecha_de_la_cita = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Recepcion = "";
+    if (Model.Fecha_de_Recepcion == "")
+    { Model.Fecha_de_Recepcion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Aceptacion = "";
+    if (Model.Fecha_de_Aceptacion == "")
+    { Model.Fecha_de_Aceptacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Invitacion = "";
+    if (Model.Fecha_de_Invitacion == "")
+    { Model.Fecha_de_Invitacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+    List<SelectListItem> varA_Tiempo_A_Tiempo = null;
+    if (ViewBag.A_Tiempos_A_Tiempo != null)
+    { varA_Tiempo_A_Tiempo = (List<SelectListItem>)ViewBag.A_Tiempos_A_Tiempo; }
+    List<SelectListItem> varCumplimiento_Cumplimiento = null;
+    if (ViewBag.Cumplimientos_Cumplimiento != null)
+    { varCumplimiento_Cumplimiento = (List<SelectListItem>)ViewBag.Cumplimientos_Cumplimiento; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Solicitudes de Invitaciones
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_Solicitudes_de_InvitacionesRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_Solicitudes_de_InvitacionesPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Solicitudes de Invitaciones
+								<button onclick="Detalle_de_Solicitudes_de_InvitacionesGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Detalle_de_Solicitudes_de_Invitaciones</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_Solicitudes_de_InvitacionesDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_Solicitudes_de_InvitacionesPropertyBusinessModal" id="Detalle_de_Solicitudes_de_InvitacionesPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form" onclick="Detalle_de_Solicitudes_de_InvitacionesGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitudes_de_InvitacionesPropertyModal" id="Detalle_de_Solicitudes_de_InvitacionesPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitudes_de_InvitacionesBusinessRuleModal" id="Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitudes_de_InvitacionesAddBusinessRuleModal" id="Detalle_de_Solicitudes_de_InvitacionesAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Solicitudes_de_Invitaciones", FormMethod.Post, new { id = "CreateDetalle_de_Solicitudes_de_Invitaciones", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_Solicitudes_de_InvitacionesCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="263116" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Clave">
+                                    <label class="form-control" for="Detalle_de_Solicitudes_de_InvitacionesClave" id="Detalle_de_Solicitudes_de_InvitacionesClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_la_cita">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_la_cita</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_la_cita" data-attribute="263117" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_la_cita">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Solicitudes_de_InvitacionesFecha_de_la_cita" readonly="readonly" name="Detalle_de_Solicitudes_de_InvitacionesFecha_de_la_cita" type="text" value="@Model.Fecha_de_la_cita">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divHora_de_la_Cita">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Hora_de_la_Cita</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_la_Cita" data-attribute="263118" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Hora_de_la_Cita">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Solicitudes_de_InvitacionesHora_de_la_Cita" readonly="readonly" name="Detalle_de_Solicitudes_de_InvitacionesHora_de_la_Cita" type="text" data-autoclose="true" value="@Model.Hora_de_la_Cita">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Recepcion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Recepcion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Recepcion" data-attribute="263119" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Recepcion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Solicitudes_de_InvitacionesFecha_de_Recepcion" readonly="readonly" name="Detalle_de_Solicitudes_de_InvitacionesFecha_de_Recepcion" type="text" value="@Model.Fecha_de_Recepcion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Aceptacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Aceptacion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Aceptacion" data-attribute="263120" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Aceptacion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Solicitudes_de_InvitacionesFecha_de_Aceptacion" readonly="readonly" name="Detalle_de_Solicitudes_de_InvitacionesFecha_de_Aceptacion" type="text" value="@Model.Fecha_de_Aceptacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divA_Tiempo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.A_Tiempo</label>
+	<div class="col-sm-8" data-field-id="A_Tiempo" data-attribute="263121" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.A_Tiempo">
+		<select class="form-control" data-val="true" data-val-number="The field A Tiempo must be a number." data-val-required="The A Tiempo field is required." id="Detalle_de_Solicitudes_de_InvitacionesA_Tiempo" name="Detalle_de_Solicitudes_de_InvitacionesA_Tiempo">
+			<option value=""></option>
+			@if (varA_Tiempo_A_Tiempo != null){ 
+				foreach (var itemA_Tiempo in varA_Tiempo_A_Tiempo)
+				{
+					if (itemA_Tiempo.Value == Convert.ToString(Model.A_Tiempo))
+					{
+						<option value="@itemA_Tiempo.Value" selected>@itemA_Tiempo.Text</option>
+					}
+					else
+					{
+						<option value="@itemA_Tiempo.Value">@itemA_Tiempo.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNumero_de_Invitacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Numero_de_Invitacion</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Invitacion" data-attribute="263123" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Numero_de_Invitacion">
+                                    <input class="form-control" id="Detalle_de_Solicitudes_de_InvitacionesNumero_de_Invitacion" name="Detalle_de_Solicitudes_de_InvitacionesNumero_de_Invitacion" type="text" value="@Model.Numero_de_Invitacion">
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Invitacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Invitacion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Invitacion" data-attribute="263124" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Invitacion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Solicitudes_de_InvitacionesFecha_de_Invitacion" readonly="readonly" name="Detalle_de_Solicitudes_de_InvitacionesFecha_de_Invitacion" type="text" value="@Model.Fecha_de_Invitacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divCumplimiento">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Cumplimiento</label>
+	<div class="col-sm-8" data-field-id="Cumplimiento" data-attribute="263125" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Cumplimiento">
+		<select class="form-control" data-val="true" data-val-number="The field Cumplimiento must be a number." data-val-required="The Cumplimiento field is required." id="Detalle_de_Solicitudes_de_InvitacionesCumplimiento" name="Detalle_de_Solicitudes_de_InvitacionesCumplimiento">
+			<option value=""></option>
+			@if (varCumplimiento_Cumplimiento != null){ 
+				foreach (var itemCumplimiento in varCumplimiento_Cumplimiento)
+				{
+					if (itemCumplimiento.Value == Convert.ToString(Model.Cumplimiento))
+					{
+						<option value="@itemCumplimiento.Value" selected>@itemCumplimiento.Text</option>
+					}
+					else
+					{
+						<option value="@itemCumplimiento.Value">@itemCumplimiento.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_Solicitudes_de_InvitacionesConfigureSave" name="Detalle_de_Solicitudes_de_InvitacionesConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_Solicitudes_de_InvitacionesConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_Solicitudes_de_InvitacionesGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Solicitudes_de_Invitaciones.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Solicitudes_de_InvitacionesGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Solicitudes_de_InvitacionesCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/SolicitudCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_Solicitudes_de_InvitacionesRowElement = "Detalle_de_Solicitudes_de_InvitacionesPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_Solicitudes_de_InvitacionesRowElement + "')){ Detalle_de_Solicitudes_de_InvitacionesInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+            $('#Detalle_de_Solicitudes_de_InvitacionesFecha_de_la_cita').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Detalle_de_Solicitudes_de_InvitacionesHora_de_la_Cita').clockpicker();
+            $('#Detalle_de_Solicitudes_de_InvitacionesFecha_de_Recepcion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Detalle_de_Solicitudes_de_InvitacionesFecha_de_Aceptacion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Detalle_de_Solicitudes_de_InvitacionesFecha_de_Invitacion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_de_Solicitudes_de_InvitacionesData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Solicitudes_de_Invitaciones").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Solicitudes_de_Invitaciones")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_Solicitudes_de_InvitacionesCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_Solicitudes_de_InvitacionesPropertyBag", "Detalle_de_Solicitudes_de_Invitaciones")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_Solicitudes_de_InvitacionesGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldName').val(), ObjectId: '45033', Attribute: $('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleAttribute').val(), Screen: 'Detalle_de_Solicitudes_de_Invitaciones' }, function (data) {
+                $(".Detalle_de_Solicitudes_de_InvitacionesBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_Solicitudes_de_InvitacionesGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldName').val(), ObjectId: '45033', Attribute: $('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleAttribute').val(), Screen: 'Detalle_de_Solicitudes_de_Invitaciones' }, function (data) {
+                $(".Detalle_de_Solicitudes_de_InvitacionesAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldName').val(), ObjectId: '45033', Attribute: $('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleAttribute').val(), Screen: 'Detalle_de_Solicitudes_de_Invitaciones' }, function (data) {
+				$(".Detalle_de_Solicitudes_de_InvitacionesBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_Solicitudes_de_InvitacionesConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_Solicitudes_de_InvitacionesConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_Solicitudes_de_InvitacionesConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Solicitudes_de_Invitaciones' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Solicitudes_de_Invitaciones' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_Solicitudes_de_InvitacionesConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_Solicitudes_de_InvitacionesConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Solicitudes_de_Invitaciones').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

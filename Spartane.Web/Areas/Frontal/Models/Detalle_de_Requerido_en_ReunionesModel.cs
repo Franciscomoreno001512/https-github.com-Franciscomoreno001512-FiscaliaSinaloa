@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+
+namespace Spartane.Web.Areas.Frontal.Models
+{
+    public class Detalle_de_Requerido_en_ReunionesModel
+    {
+        [Required]
+        public int Clave { get; set; }
+        public int? Nombre { get; set; }
+        public string NombreNombre_Completo { get; set; }
+        public bool Faltante { get; set; }
+
+    }
+	
+	public class Detalle_de_Requerido_en_Reuniones_Datos_GeneralesModel
+    {
+        [Required]
+        public int Clave { get; set; }
+        public int? Nombre { get; set; }
+        public string NombreNombre_Completo { get; set; }
+        public bool? Faltante { get; set; }
+
+    }
+
+
+}
+

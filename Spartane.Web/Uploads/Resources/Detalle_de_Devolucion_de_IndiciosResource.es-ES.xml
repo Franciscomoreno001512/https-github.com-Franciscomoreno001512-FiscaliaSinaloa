@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_de_Devolucion_de_Indicios" value="Detalle de Devolución de Indicios"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Fecha_de_Devolucion" value="Fecha de Devolución"></resource>
+  <resource culture="es-es" name="Hora_de_Devolucion" value="Hora de Devolución"></resource>
+  <resource culture="es-es" name="Nombre_de_Persona_que_Entrega" value="Nombre de Persona que Entrega"></resource>
+  <resource culture="es-es" name="Numero_de_Indicio" value="Número de Indicio"></resource>
+  <resource culture="es-es" name="Nombre_de_Indicio" value="Nombre de Indicio"></resource>
+  <resource culture="es-es" name="Descripcion_de_Devolucion_de_Indicio" value="Descripción de Devolución de Indicio"></resource>
+  <resource culture="es-es" name="Diligencia_que_Devuelve" value="Diligencia que Devuelve"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

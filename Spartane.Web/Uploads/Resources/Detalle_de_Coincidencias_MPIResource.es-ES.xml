@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_de_Coincidencias_MPI" value="Detalle de Coincidencias MPI"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Nombre_Completo" value="Nombre Completo"></resource>
+  <resource culture="es-es" name="Alias" value="Alias"></resource>
+  <resource culture="es-es" name="Numero_de_Expediente" value="Número de Expediente"></resource>
+  <resource culture="es-es" name="NUAT" value="NUAT"></resource>
+  <resource culture="es-es" name="NUC" value="NUC"></resource>
+  <resource culture="es-es" name="Rol" value="Rol"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

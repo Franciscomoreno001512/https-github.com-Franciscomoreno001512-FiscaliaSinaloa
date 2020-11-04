@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Solicitud_Bitacora_de_Coincid" value="Detalle de Solicitud Bitácora de Coincidencias"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Nombre_Completo" value="Nombre Completo"></resource>
+  <resource culture="en-US" name="Alias" value="Alias"></resource>
+  <resource culture="en-US" name="Numero_de_Expediente" value="Número de Expediente"></resource>
+  <resource culture="en-US" name="Fuente_de_Origen" value="Fuente de Origen"></resource>
+  <resource culture="en-US" name="Tipo_de_Acuerdo" value="Tipo de Acuerdo"></resource>
+  <resource culture="en-US" name="Cumplido" value="Cumplido"></resource>
+  <resource culture="en-US" name="Razon_de_Incumplimiento" value="Razón de Incumplimiento"></resource>
+  <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

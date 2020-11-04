@@ -1,0 +1,2037 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Documentos_MPOModel
+@{
+    Spartane_File attachedFileArchivo_Adjunto = (Spartane_File)ViewBag.Archivo_AdjuntoSpartane_File;
+
+/*
+    string Fecha = "";
+    if (Model.Fecha == "")
+    { Model.Fecha = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+*/
+ List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
+    if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
+    { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
+    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
+    List<SelectListItem> varTipo_de_Documento_Tipo_de_Documento = null;
+    if (ViewBag.Tipo_de_Documentos_Tipo_de_Documento != null)
+    { varTipo_de_Documento_Tipo_de_Documento = (List<SelectListItem>)ViewBag.Tipo_de_Documentos_Tipo_de_Documento; }
+    List<SelectListItem> varDocumento_Documento = null;
+    if (ViewBag.Documentos_Documento != null)
+    { varDocumento_Documento = (List<SelectListItem>)ViewBag.Documentos_Documento; }
+
+    Permission permissionDetalle_Involucrados_en_Documentos = ViewBag.PermissionDetalle_Involucrados_en_Documentos;
+    Permission permissionDetalle_Probable_Responsable_de_Documentos = ViewBag.PermissionDetalle_Probable_Responsable_de_Documentos;
+    Permission permissionDetalle_Delitos_de_Documentos = ViewBag.PermissionDetalle_Delitos_de_Documentos;
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.Detalle_de_Documentos_MPOResources.Detalle_de_Documentos_MPO
+                <button onclick="Detalle_de_Documentos_MPOGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Detalle_de_Documentos_MPOResources.Detalle_de_Documentos_MPO</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="Detalle_de_Documentos_MPODisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in Detalle_de_Documentos_MPOPropertyBusinessModal" id="Detalle_de_Documentos_MPOPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form" onclick="Detalle_de_Documentos_MPOGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Documentos_MPOBusinessRuleModal" id="Detalle_de_Documentos_MPOBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+                    <div aria-hidden="true" class="modal fade in AddDetalle_Involucrados_en_DocumentosModal" id="AddDetalle_Involucrados_en_Documentos-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
+                    <div aria-hidden="true" class="modal fade in AddDetalle_Probable_Responsable_de_DocumentosModal" id="AddDetalle_Probable_Responsable_de_Documentos-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
+                    <div aria-hidden="true" class="modal fade in AddDetalle_Delitos_de_DocumentosModal" id="AddDetalle_Delitos_de_Documentos-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Detalle_de_Documentos_MPO", FormMethod.Post, new { id = "CreateDetalle_de_Documentos_MPO", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Detalle_de_Documentos_MPOCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Detalle_de_Documentos_MPOResources.TabDatos_Generales</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="263918" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+				<div class="form-group" id="divModulo_Atencion_Inicial">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Modulo_Atencion_Inicial</label>
+                                <div class="col-sm-8" data-field-id="Modulo_Atencion_Inicial" data-attribute="266482" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Modulo_Atencion_Inicial">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Documentos_MPO_Modulo_Atencion_Inicial form-control select2-dropdown Datos_Generales' data-val="true" id="Modulo_Atencion_Inicial" name="Modulo_Atencion_Inicial">
+                                        <option value="@Model.Modulo_Atencion_Inicial">@(Model.Modulo_Atencion_InicialNUAT??Model.Modulo_Atencion_InicialNUAT)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266482).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Modulo_Atencion_Inicial', 'Modulo_Atencion_Inicial');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divFecha">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Fecha</label>
+                                <div class="col-sm-8" data-field-id="Fecha" data-attribute="266646" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Fecha">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha"  name="Fecha" type="text" value="@Model.Fecha">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Hora</label>
+                                <div class="col-sm-8" data-field-id="Hora" data-attribute="266647" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Hora">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Hora"  name="Hora" type="text" data-autoclose="true" value="@Model.Hora">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Registra">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Usuario_que_Registra</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Registra" data-attribute="266648" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Usuario_que_Registra">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Documentos_MPO_Usuario_que_Registra form-control select2-dropdown Datos_Generales' data-val="true" id="Usuario_que_Registra" name="Usuario_que_Registra">
+                                        <option value="@Model.Usuario_que_Registra">@(Model.Usuario_que_RegistraName??Model.Usuario_que_RegistraName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266648).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Registra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo_de_Documento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Tipo_de_Documento</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Documento" data-attribute="266649" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Tipo_de_Documento">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Documento must be a number." data-val-required="The Tipo de Documento field is required." id="Tipo_de_Documento" name="Tipo_de_Documento">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Documento_Tipo_de_Documento != null){ 
+                                            foreach (var itemTipo_de_Documento in varTipo_de_Documento_Tipo_de_Documento)
+                                            {
+                                                if (itemTipo_de_Documento.Value == Convert.ToString(Model.Tipo_de_Documento))
+                                                {
+                                                    <option value="@itemTipo_de_Documento.Value" selected>@itemTipo_de_Documento.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Documento.Value">@itemTipo_de_Documento.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Documento" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266649).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Documento', 'Tipo_de_Documento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divDocumento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Documento</label>
+                                <div class="col-sm-8" data-field-id="Documento" data-attribute="266650" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Documento">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Documento must be a number." data-val-required="The Documento field is required." id="Documento" name="Documento">
+                                        <option value=""></option>
+                                        @if (varDocumento_Documento != null){ 
+                                            foreach (var itemDocumento in varDocumento_Documento)
+                                            {
+                                                if (itemDocumento.Value == Convert.ToString(Model.Documento))
+                                                {
+                                                    <option value="@itemDocumento.Value" selected>@itemDocumento.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemDocumento.Value">@itemDocumento.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Documento" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266650).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Documento', 'Documento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div id="divInvolucrado">
+                            <div class="ibox-title">
+                                <h5>@Resources.Detalle_de_Documentos_MPOResources.Involucrado</h5>
+                                <div class="ibox-tools">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+									@if (permissionDetalle_Involucrados_en_Documentos.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Involucrados_en_DocumentosfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_Involucrados_en_DocumentosAddRow btn btn-primary">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </a>
+                                    }
+                                    <button onclick="Detalle_de_Documentos_MPOGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '266660')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>
+									@if (permissionDetalle_Involucrados_en_Documentos.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Involucrados_en_DocumentosfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_Involucrados_en_Documentos-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
+                                            <i class="glyphicon glyphicon-new-window"></i>
+                                        </a>
+                                    }  
+                                </div>
+
+                                <br />
+
+                                <div style='overflow-x: auto;'>
+                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_Involucrados_en_DocumentosGrid">
+                                        <thead>
+                                            <tr>
+                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+
+
+                                                <th class="InvolucradoHeader" style="width:250px"><span>
+<button type="button" data-attribute="266653" data-field-id="Detalle_Involucrados_en_DocumentosInvolucrado" data-field-name="@Resources.Detalle_Involucrados_en_DocumentosResources.Involucrado" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Involucrados_en_DocumentosResources.Involucrado">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Involucrados_en_DocumentosResources.Involucrado</span></th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                            <div id="divProbable_Responsable">
+                            <div class="ibox-title">
+                                <h5>@Resources.Detalle_de_Documentos_MPOResources.Probable_Responsable</h5>
+                                <div class="ibox-tools">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+									@if (permissionDetalle_Probable_Responsable_de_Documentos.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Probable_Responsable_de_DocumentosfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_Probable_Responsable_de_DocumentosAddRow btn btn-primary">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </a>
+                                    }
+                                    <button onclick="Detalle_de_Documentos_MPOGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '266661')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>
+									@if (permissionDetalle_Probable_Responsable_de_Documentos.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Probable_Responsable_de_DocumentosfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_Probable_Responsable_de_Documentos-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
+                                            <i class="glyphicon glyphicon-new-window"></i>
+                                        </a>
+                                    }  
+                                </div>
+
+                                <br />
+
+                                <div style='overflow-x: auto;'>
+                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_Probable_Responsable_de_DocumentosGrid">
+                                        <thead>
+                                            <tr>
+                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+
+
+                                                <th class="Probable_ResponsableHeader" style="width:250px"><span>
+<button type="button" data-attribute="266656" data-field-id="Detalle_Probable_Responsable_de_DocumentosProbable_Responsable" data-field-name="@Resources.Detalle_Probable_Responsable_de_DocumentosResources.Probable_Responsable" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Probable_Responsable_de_DocumentosResources.Probable_Responsable">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Probable_Responsable_de_DocumentosResources.Probable_Responsable</span></th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                            <div id="divDelito">
+                            <div class="ibox-title">
+                                <h5>@Resources.Detalle_de_Documentos_MPOResources.Delito</h5>
+                                <div class="ibox-tools">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+									@if (permissionDetalle_Delitos_de_Documentos.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Delitos_de_DocumentosfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_Delitos_de_DocumentosAddRow btn btn-primary">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </a>
+                                    }
+                                    <button onclick="Detalle_de_Documentos_MPOGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '266662')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>
+									@if (permissionDetalle_Delitos_de_Documentos.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Delitos_de_DocumentosfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_Delitos_de_Documentos-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
+                                            <i class="glyphicon glyphicon-new-window"></i>
+                                        </a>
+                                    }  
+                                </div>
+
+                                <br />
+
+                                <div style='overflow-x: auto;'>
+                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_Delitos_de_DocumentosGrid">
+                                        <thead>
+                                            <tr>
+                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+
+
+                                                <th class="DelitoHeader" style="width:250px"><span>
+<button type="button" data-attribute="266659" data-field-id="Detalle_Delitos_de_DocumentosDelito" data-field-name="@Resources.Detalle_Delitos_de_DocumentosResources.Delito" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Delitos_de_DocumentosResources.Delito">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Delitos_de_DocumentosResources.Delito</span></th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                            @if (attachedFileArchivo_Adjunto != null && attachedFileArchivo_Adjunto.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentArchivo_Adjunto">
+                                    <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
+                                    <div class="col-sm-8 Datos_Generales" data-field-id="Archivo_Adjunto" data-attribute="266663" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Archivo_Adjunto">
+                                        <a href="@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetFile")?id=@attachedFileArchivo_Adjunto.File_Id" target="_blank">@attachedFileArchivo_Adjunto.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainArchivo_Adjunto('@attachedFileArchivo_Adjunto.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemoveArchivo_Adjunto" name="RemoveArchivo_Adjunto" value="0" type="hidden" />
+                                    <input class="form-control col-md-12 Datos_Generales" id="hdnAttachedArchivo_Adjunto" type="hidden" name="Archivo_Adjunto" value="@Model.Archivo_Adjunto">
+                                </div>
+                            }
+                            <div class="form-group" id="divArchivo_Adjunto">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Archivo_Adjunto</label>
+                                <div class="col-sm-8" data-field-id="Archivo_Adjunto" data-attribute="266663" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Archivo_Adjunto">
+                                    <input type="file" name="Archivo_AdjuntoFile" id="Archivo_AdjuntoFile" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group" id="divObservaciones">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Observaciones</label>
+                                <div class="col-sm-8" data-field-id="Observaciones" data-attribute="266664" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Observaciones">
+                                    <textarea id="Observaciones" name="Observaciones" class="form-control Datos_Generales" rows="4" cols="50">@Model.Observaciones</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divArchivo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Archivo</label>
+                                <div class="col-sm-8" data-field-id="Archivo" data-attribute="266665" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Archivo">
+                                    <input class="form-control inputNumber Datos_Generales" id="Archivo" name="Archivo" type="text" value="@Model.Archivo">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Archivo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+                                <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Detalle_de_Documentos_MPOGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Detalle_de_Documentos_MPOCreateForm');"  />
+									<button onclick="Detalle_de_Documentos_MPOGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Detalle_de_Documentos_MPOGuardarYNuevo" onclick="return checkClientValidate('Detalle_de_Documentos_MPOCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Detalle_de_Documentos_MPOGuardarYCopia" onclick="return checkClientValidate('Detalle_de_Documentos_MPOCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnDetalle_de_Documentos_MPOBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnDetalle_de_Documentos_MPOBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnDetalle_de_Documentos_MPOBusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Detalle_de_Documentos_MPOCancelar" name="Detalle_de_Documentos_MPOCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                <button onclick="Detalle_de_Documentos_MPOGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Documentos_MPOBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Documentos_MPO.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Documentos_MPOGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Documentos_MPOCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+        function RemoveAttachmentMainArchivo_Adjunto () {
+            $("#hdnRemoveArchivo_Adjunto").val("1");
+            $("#divAttachmentArchivo_Adjunto").hide();
+        }
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_Generales = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45109');
+		                  
+
+           
+              showDetalle_Involucrados_en_DocumentosGrid(null);
+              
+
+           
+              showDetalle_Probable_Responsable_de_DocumentosGrid(null);
+              
+
+           
+              showDetalle_Delitos_de_DocumentosGrid(null);
+
+		   
+                        $('#Fecha').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora').clockpicker();
+
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#Detalle_de_Documentos_MPOGuardarYNuevo').hide();
+                $('#Detalle_de_Documentos_MPOGuardarYCopia').hide();
+                $('#Detalle_de_Documentos_MPOCancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#Detalle_de_Documentos_MPOGuardar').val('Actualizar Seccion ' + '@Resources.Detalle_de_Documentos_MPOResources.Detalle_de_Documentos_MPO' )
+            }
+
+			
+			       var AutoCompleteModulo_Atencion_InicialData =[];
+       $(".AutoCompleteDetalle_de_Documentos_MPO_Modulo_Atencion_Inicial").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetDetalle_de_Documentos_MPO_Modulo_Atencion_Inicial_Modulo_Atencion_Inicial")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Documentos_MPO_Modulo_Atencion_Inicial_Modulo_Atencion_InicialData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Documentos_MPO_Modulo_Atencion_Inicial");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteUsuario_que_RegistraData =[];
+       $(".AutoCompleteDetalle_de_Documentos_MPO_Usuario_que_Registra").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetDetalle_de_Documentos_MPO_Usuario_que_Registra_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Documentos_MPO_Usuario_que_Registra_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Documentos_MPO_Usuario_que_Registra");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
+        });
+
+        var Detalle_Involucrados_en_DocumentosinsertRowCurrentIndex = -1;
+        var Detalle_Involucrados_en_DocumentosDataDataTable;
+        function getDetalle_Involucrados_en_DocumentosData() {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetDetalle_Involucrados_en_Documentos")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    Detalle_Involucrados_en_DocumentosDataDataTable = result.data;
+                    showDetalle_Involucrados_en_DocumentosGrid(result.data);
+                    $('#Detalle_Involucrados_en_DocumentosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_Involucrados_en_DocumentosGrid .gridDatePicker').attr("readonly", "");
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+        function Detalle_Involucrados_en_DocumentosGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+            var columnData = [];
+            var counter = 0;
+            var inputData = "<input type='text' class='fullWidth form-control' />";
+
+            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.InvolucradoNombre_Completo_del_Tutor != undefined ? data.InvolucradoNombre_Completo_del_Tutor : null, 'AutoComplete' + nameOfTable + 'Involucrado', data.Involucrado)))).addClass('Involucrado').attr('id', nameOfTable + 'Involucrado' + rowIndex).attr('data-field', 'Involucrado').after($.parseHTML(addNew('Detalle_Involucrados_en_Documentos', 'Detalle_de_Datos_Generales','Involucrado', 266653)));
+
+            return columnData;
+        }
+
+
+
+        function GetFileInfo(fileData, fileUploadData) {
+
+            var $div = $("<div>");
+            if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+                //<i class="fa fa-times-circle" id='removeFileAttachment'>
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+
+            } else if (fileUploadData != null) {
+                return $.parseHTML(GetFileUploader());
+            } else {
+                $div.append("<label>" + fileData.FileName + "</label>");
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+            }
+        }
+
+        var removedDetalle_Involucrados_en_DocumentosData = [];
+        function Detalle_Involucrados_en_DocumentosDeleteRow(rowIndex, row) {
+            var rowIndexTable = Detalle_Involucrados_en_DocumentosTable.fnGetPosition($(row).parent().parent()[0]);
+            var permission = {            
+                 Delete: '@permissionDetalle_Involucrados_en_Documentos.Delete' == 'True'
+            };
+            if (!permission.Delete || isConsultMode)
+                return;            
+            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+              if (EjecutarValidacionesAlEliminarMRDetalle_Involucrados_en_Documentos('Detalle_Involucrados_en_Documentos_', '_' + rowIndex)) {
+                var prevData = Detalle_Involucrados_en_DocumentosTable.fnGetData(rowIndexTable );
+                removedDetalle_Involucrados_en_DocumentosData.push(prevData);
+                Detalle_Involucrados_en_DocumentosTable.fnDeleteRow(rowIndexTable );
+				showDetalle_Involucrados_en_DocumentosGrid(Detalle_Involucrados_en_DocumentosTable.fnGetData());
+              }
+            }
+			initiateUIControls();
+        }
+
+        function Detalle_Involucrados_en_DocumentosrowCreationGrid(row, data, index) {
+            var permission =  {            
+                 Edit: '@permissionDetalle_Involucrados_en_Documentos.Edit' == 'True',
+                 Delete: '@permissionDetalle_Involucrados_en_Documentos.Delete' == 'True'
+            };
+            setDetalle_Involucrados_en_DocumentosValidation();
+            var Detalle_Involucrados_en_DocumentosRowElement = "Detalle_Involucrados_en_Documentos_" + index.toString();
+            $(row).addClass(Detalle_Involucrados_en_DocumentosRowElement);
+            var nameOfTable='Detalle_Involucrados_en_Documentos_';
+            var rowIndex = '_' + index;
+            Detalle_Involucrados_en_DocumentosinsertRowCurrentIndex = index;
+
+            row.innerHTML = "";
+
+            if (data.IsInsertRow) {
+
+                if (row.childNodes.length != 0) {
+                    for (var i = 0; i < row.childNodes.length; i++) {
+                        row.childNodes[i].remove();
+                    }
+                }
+                var controls = GetInsertDetalle_Involucrados_en_DocumentosRowControls(index);
+                var actionColInsert = $('<td>');
+
+                var abc = "if(dynamicFieldValidation('" + Detalle_Involucrados_en_DocumentosRowElement + "')){ Detalle_Involucrados_en_DocumentosInsertRow(" + index + "); }";
+                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
+                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_Involucrados_en_DocumentosCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                actionColInsert.appendTo(row);
+
+                for (i = 0; i < controls.length; i++) {
+					var idHeader = $(controls[i]).data('field') + 'Header';
+					if($(controls[i]).length > 1){
+						idHeader = $($(controls[i])[1]).data('field') + 'Header';
+					}					
+
+					var classe = ($('#Detalle_Involucrados_en_DocumentosGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_Involucrados_en_DocumentosGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+				   
+					if ($(controls[i]).next().length > 0) {
+					    var div = $(controls[i]).next();
+					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+					}else
+					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+					
+                }
+                $('#Detalle_Involucrados_en_DocumentosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('#Detalle_Involucrados_en_DocumentosGrid .gridDatePicker').attr("readonly", "");
+                return;
+            }
+
+            var actionCol = $('<td>');
+			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_Involucrados_en_DocumentosEditRow(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                edit = "";
+            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_Involucrados_en_Documentos-form' onclick='Detalle_Involucrados_en_DocumentosEditRowPopup(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                editPopUp = "";
+            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_Involucrados_en_DocumentosDeleteRow(" + index + ", this)'>";
+            if (!permission.Delete || isConsultMode)
+                eliminar = "";
+            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+			if ($('.Action' + 'Header').css('display') != 'none')
+				actionCol.appendTo(row);
+
+            if ($('.Involucrado' + 'Header').css('display') != 'none'){
+                if (data.InvolucradoNombre_Completo_del_Tutor == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Involucrado'+rowIndex+'">').text(data.Involucrado).appendTo(row);}else{$('<td>').text(data.InvolucradoNombre_Completo_del_Tutor).appendTo(row);}
+}
+             else {
+                if (data.InvolucradoNombre_Completo_del_Tutor == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Involucrado'+rowIndex+'">').text(data.Involucrado).appendTo(row);}else{$('<td style:display:none;>').text(data.InvolucradoNombre_Completo_del_Tutor).appendTo(row);}
+}
+
+
+        }
+
+        var Detalle_Involucrados_en_DocumentosTable;
+        function showDetalle_Involucrados_en_DocumentosGrid(dataSet) {
+            //removedDetalle_Involucrados_en_DocumentosData = [];
+            Detalle_Involucrados_en_DocumentosTable = $('#Detalle_Involucrados_en_DocumentosGrid').dataTable({
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [
+                ],
+                "createdRow": Detalle_Involucrados_en_DocumentosrowCreationGrid,
+                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+                data: dataSet,
+                "columns": [
+                    { "data": null, 'visible': true, "orderable": false },
+
+                    { "data": "Involucrado", "orderable": false },
+
+                ],
+                "order": [[0, "asc"]],
+                "language": {
+                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                    "zeroRecords": "@Resources.Resources.NothingFound",
+                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                    "infoEmpty": "@Resources.Resources.NoRecords",
+                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                    "sSearch": "@Resources.Resources.Search",
+                    "paginate": {
+                        "previous": "@Resources.Resources.Previous",
+                        "next": "@Resources.Resources.Next"
+                    }
+                },
+				"bDestroy": true,
+                "fnDrawCallback": function (settings) {
+                    setDetalle_Involucrados_en_DocumentosValidation();
+                }
+            }).on('init.dt', function (e, data) {
+                $('a').tooltip();
+            }).on('draw.dt', function () {
+                $('#Detalle_Involucrados_en_DocumentosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+            });
+        }
+
+
+    var Detalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesItems;
+        function GetDetalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesItem() {
+            Detalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetDetalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+        var Detalle_Involucrados_en_DocumentosData = [];
+        var Detalle_Involucrados_en_DocumentosdeletedItem = [];
+        var Detalle_Involucrados_en_DocumentosDataMain = [];
+        var Detalle_Involucrados_en_DocumentosDataMainPages = [];
+        var Detalle_Involucrados_en_DocumentosnewItemCount = 0;
+        var Detalle_Involucrados_en_DocumentosmaxItemIndex = 0;
+        var Detalle_Involucrados_en_DocumentosDataMainInitialized = false;
+
+        function SendDetalle_Involucrados_en_Documentos(callBack, ClaveId) {
+            Detalle_Involucrados_en_DocumentosData = GetDetalle_Involucrados_en_DocumentosFromDataTable();
+
+            if (Detalle_Involucrados_en_DocumentosData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
+                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
+                    ClaveId = $("#ReferenceClave").val();                
+                if ($("#ReferenceClave").val() == '')
+                    $("#ReferenceClave").val('0');
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/PostDetalle_Involucrados_en_Documentos?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
+                    type: 'POST',
+                    data: GetDetalle_Involucrados_en_Documentos(),
+                    async: true,
+                    success: function (result) {
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            } else {
+                //showNotification("@Resources.Resources.SaveSuccess", "success");
+                //callBack(ClaveId);
+            }
+            return true;
+        }
+
+        function GetAddDetalle_Involucrados_en_DocumentosPopup(currentRowIndex, mode, id) {
+
+            $.ajax({
+                url: "@Url.Action("AddDetalle_Involucrados_en_Documentos", "Detalle_Involucrados_en_Documentos")",
+                type: "GET",
+                async: false,
+                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+                success: function (data) {
+                    $(".AddDetalle_Involucrados_en_DocumentosModal").html(data);
+                },
+                error: function () {
+
+                }
+            });
+
+            @*$.get('@Url.Action("AddDetalle_Involucrados_en_Documentos", "Detalle_Involucrados_en_Documentos")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddDetalle_Involucrados_en_DocumentosModal").html(data);
+            });*@
+        }
+
+        function ShowMessagePendingRowDetalle_Involucrados_en_Documentos()
+        {
+            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Involucrado"))')
+	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Involucrado"))', "warning");
+        }
+        var Detalle_Probable_Responsable_de_DocumentosinsertRowCurrentIndex = -1;
+        var Detalle_Probable_Responsable_de_DocumentosDataDataTable;
+        function getDetalle_Probable_Responsable_de_DocumentosData() {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetDetalle_Probable_Responsable_de_Documentos")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    Detalle_Probable_Responsable_de_DocumentosDataDataTable = result.data;
+                    showDetalle_Probable_Responsable_de_DocumentosGrid(result.data);
+                    $('#Detalle_Probable_Responsable_de_DocumentosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_Probable_Responsable_de_DocumentosGrid .gridDatePicker').attr("readonly", "");
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+        function Detalle_Probable_Responsable_de_DocumentosGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+            var columnData = [];
+            var counter = 0;
+            var inputData = "<input type='text' class='fullWidth form-control' />";
+
+            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.Probable_ResponsableNombre_Completo_del_Tutor != undefined ? data.Probable_ResponsableNombre_Completo_del_Tutor : null, 'AutoComplete' + nameOfTable + 'Probable_Responsable', data.Probable_Responsable)))).addClass('Probable_Responsable').attr('id', nameOfTable + 'Probable_Responsable' + rowIndex).attr('data-field', 'Probable_Responsable').after($.parseHTML(addNew('Detalle_Probable_Responsable_de_Documentos', 'Detalle_de_Imputado','Probable_Responsable', 266656)));
+
+            return columnData;
+        }
+
+
+
+        function GetFileInfo(fileData, fileUploadData) {
+
+            var $div = $("<div>");
+            if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+                //<i class="fa fa-times-circle" id='removeFileAttachment'>
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+
+            } else if (fileUploadData != null) {
+                return $.parseHTML(GetFileUploader());
+            } else {
+                $div.append("<label>" + fileData.FileName + "</label>");
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+            }
+        }
+
+        var removedDetalle_Probable_Responsable_de_DocumentosData = [];
+        function Detalle_Probable_Responsable_de_DocumentosDeleteRow(rowIndex, row) {
+            var rowIndexTable = Detalle_Probable_Responsable_de_DocumentosTable.fnGetPosition($(row).parent().parent()[0]);
+            var permission = {            
+                 Delete: '@permissionDetalle_Probable_Responsable_de_Documentos.Delete' == 'True'
+            };
+            if (!permission.Delete || isConsultMode)
+                return;            
+            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+              if (EjecutarValidacionesAlEliminarMRDetalle_Probable_Responsable_de_Documentos('Detalle_Probable_Responsable_de_Documentos_', '_' + rowIndex)) {
+                var prevData = Detalle_Probable_Responsable_de_DocumentosTable.fnGetData(rowIndexTable );
+                removedDetalle_Probable_Responsable_de_DocumentosData.push(prevData);
+                Detalle_Probable_Responsable_de_DocumentosTable.fnDeleteRow(rowIndexTable );
+				showDetalle_Probable_Responsable_de_DocumentosGrid(Detalle_Probable_Responsable_de_DocumentosTable.fnGetData());
+              }
+            }
+			initiateUIControls();
+        }
+
+        function Detalle_Probable_Responsable_de_DocumentosrowCreationGrid(row, data, index) {
+            var permission =  {            
+                 Edit: '@permissionDetalle_Probable_Responsable_de_Documentos.Edit' == 'True',
+                 Delete: '@permissionDetalle_Probable_Responsable_de_Documentos.Delete' == 'True'
+            };
+            setDetalle_Probable_Responsable_de_DocumentosValidation();
+            var Detalle_Probable_Responsable_de_DocumentosRowElement = "Detalle_Probable_Responsable_de_Documentos_" + index.toString();
+            $(row).addClass(Detalle_Probable_Responsable_de_DocumentosRowElement);
+            var nameOfTable='Detalle_Probable_Responsable_de_Documentos_';
+            var rowIndex = '_' + index;
+            Detalle_Probable_Responsable_de_DocumentosinsertRowCurrentIndex = index;
+
+            row.innerHTML = "";
+
+            if (data.IsInsertRow) {
+
+                if (row.childNodes.length != 0) {
+                    for (var i = 0; i < row.childNodes.length; i++) {
+                        row.childNodes[i].remove();
+                    }
+                }
+                var controls = GetInsertDetalle_Probable_Responsable_de_DocumentosRowControls(index);
+                var actionColInsert = $('<td>');
+
+                var abc = "if(dynamicFieldValidation('" + Detalle_Probable_Responsable_de_DocumentosRowElement + "')){ Detalle_Probable_Responsable_de_DocumentosInsertRow(" + index + "); }";
+                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
+                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_Probable_Responsable_de_DocumentosCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                actionColInsert.appendTo(row);
+
+                for (i = 0; i < controls.length; i++) {
+					var idHeader = $(controls[i]).data('field') + 'Header';
+					if($(controls[i]).length > 1){
+						idHeader = $($(controls[i])[1]).data('field') + 'Header';
+					}					
+
+					var classe = ($('#Detalle_Probable_Responsable_de_DocumentosGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_Probable_Responsable_de_DocumentosGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+				   
+					if ($(controls[i]).next().length > 0) {
+					    var div = $(controls[i]).next();
+					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+					}else
+					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+					
+                }
+                $('#Detalle_Probable_Responsable_de_DocumentosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('#Detalle_Probable_Responsable_de_DocumentosGrid .gridDatePicker').attr("readonly", "");
+                return;
+            }
+
+            var actionCol = $('<td>');
+			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_Probable_Responsable_de_DocumentosEditRow(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                edit = "";
+            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_Probable_Responsable_de_Documentos-form' onclick='Detalle_Probable_Responsable_de_DocumentosEditRowPopup(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                editPopUp = "";
+            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_Probable_Responsable_de_DocumentosDeleteRow(" + index + ", this)'>";
+            if (!permission.Delete || isConsultMode)
+                eliminar = "";
+            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+			if ($('.Action' + 'Header').css('display') != 'none')
+				actionCol.appendTo(row);
+
+            if ($('.Probable_Responsable' + 'Header').css('display') != 'none'){
+                if (data.Probable_ResponsableNombre_Completo_del_Tutor == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Probable_Responsable'+rowIndex+'">').text(data.Probable_Responsable).appendTo(row);}else{$('<td>').text(data.Probable_ResponsableNombre_Completo_del_Tutor).appendTo(row);}
+}
+             else {
+                if (data.Probable_ResponsableNombre_Completo_del_Tutor == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Probable_Responsable'+rowIndex+'">').text(data.Probable_Responsable).appendTo(row);}else{$('<td style:display:none;>').text(data.Probable_ResponsableNombre_Completo_del_Tutor).appendTo(row);}
+}
+
+
+        }
+
+        var Detalle_Probable_Responsable_de_DocumentosTable;
+        function showDetalle_Probable_Responsable_de_DocumentosGrid(dataSet) {
+            //removedDetalle_Probable_Responsable_de_DocumentosData = [];
+            Detalle_Probable_Responsable_de_DocumentosTable = $('#Detalle_Probable_Responsable_de_DocumentosGrid').dataTable({
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [
+                ],
+                "createdRow": Detalle_Probable_Responsable_de_DocumentosrowCreationGrid,
+                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+                data: dataSet,
+                "columns": [
+                    { "data": null, 'visible': true, "orderable": false },
+
+                    { "data": "Probable_Responsable", "orderable": false },
+
+                ],
+                "order": [[0, "asc"]],
+                "language": {
+                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                    "zeroRecords": "@Resources.Resources.NothingFound",
+                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                    "infoEmpty": "@Resources.Resources.NoRecords",
+                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                    "sSearch": "@Resources.Resources.Search",
+                    "paginate": {
+                        "previous": "@Resources.Resources.Previous",
+                        "next": "@Resources.Resources.Next"
+                    }
+                },
+				"bDestroy": true,
+                "fnDrawCallback": function (settings) {
+                    setDetalle_Probable_Responsable_de_DocumentosValidation();
+                }
+            }).on('init.dt', function (e, data) {
+                $('a').tooltip();
+            }).on('draw.dt', function () {
+                $('#Detalle_Probable_Responsable_de_DocumentosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+            });
+        }
+
+
+    var Detalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoItems;
+        function GetDetalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoItem() {
+            Detalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetDetalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+        var Detalle_Probable_Responsable_de_DocumentosData = [];
+        var Detalle_Probable_Responsable_de_DocumentosdeletedItem = [];
+        var Detalle_Probable_Responsable_de_DocumentosDataMain = [];
+        var Detalle_Probable_Responsable_de_DocumentosDataMainPages = [];
+        var Detalle_Probable_Responsable_de_DocumentosnewItemCount = 0;
+        var Detalle_Probable_Responsable_de_DocumentosmaxItemIndex = 0;
+        var Detalle_Probable_Responsable_de_DocumentosDataMainInitialized = false;
+
+        function SendDetalle_Probable_Responsable_de_Documentos(callBack, ClaveId) {
+            Detalle_Probable_Responsable_de_DocumentosData = GetDetalle_Probable_Responsable_de_DocumentosFromDataTable();
+
+            if (Detalle_Probable_Responsable_de_DocumentosData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
+                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
+                    ClaveId = $("#ReferenceClave").val();                
+                if ($("#ReferenceClave").val() == '')
+                    $("#ReferenceClave").val('0');
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/PostDetalle_Probable_Responsable_de_Documentos?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
+                    type: 'POST',
+                    data: GetDetalle_Probable_Responsable_de_Documentos(),
+                    async: true,
+                    success: function (result) {
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            } else {
+                //showNotification("@Resources.Resources.SaveSuccess", "success");
+                //callBack(ClaveId);
+            }
+            return true;
+        }
+
+        function GetAddDetalle_Probable_Responsable_de_DocumentosPopup(currentRowIndex, mode, id) {
+
+            $.ajax({
+                url: "@Url.Action("AddDetalle_Probable_Responsable_de_Documentos", "Detalle_Probable_Responsable_de_Documentos")",
+                type: "GET",
+                async: false,
+                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+                success: function (data) {
+                    $(".AddDetalle_Probable_Responsable_de_DocumentosModal").html(data);
+                },
+                error: function () {
+
+                }
+            });
+
+            @*$.get('@Url.Action("AddDetalle_Probable_Responsable_de_Documentos", "Detalle_Probable_Responsable_de_Documentos")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddDetalle_Probable_Responsable_de_DocumentosModal").html(data);
+            });*@
+        }
+
+        function ShowMessagePendingRowDetalle_Probable_Responsable_de_Documentos()
+        {
+            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Probable Responsable"))')
+	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Probable Responsable"))', "warning");
+        }
+        var Detalle_Delitos_de_DocumentosinsertRowCurrentIndex = -1;
+        var Detalle_Delitos_de_DocumentosDataDataTable;
+        function getDetalle_Delitos_de_DocumentosData() {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetDetalle_Delitos_de_Documentos")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    Detalle_Delitos_de_DocumentosDataDataTable = result.data;
+                    showDetalle_Delitos_de_DocumentosGrid(result.data);
+                    $('#Detalle_Delitos_de_DocumentosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_Delitos_de_DocumentosGrid .gridDatePicker').attr("readonly", "");
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+        function Detalle_Delitos_de_DocumentosGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+            var columnData = [];
+            var counter = 0;
+            var inputData = "<input type='text' class='fullWidth form-control' />";
+
+            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.DelitoDescripcion_corta != undefined ? data.DelitoDescripcion_corta : null, 'AutoComplete' + nameOfTable + 'Delito', data.Delito)))).addClass('Delito').attr('id', nameOfTable + 'Delito' + rowIndex).attr('data-field', 'Delito').after($.parseHTML(addNew('Detalle_Delitos_de_Documentos', 'Detalle_de_Delito','Delito', 266659)));
+
+            return columnData;
+        }
+
+
+
+        function GetFileInfo(fileData, fileUploadData) {
+
+            var $div = $("<div>");
+            if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+                //<i class="fa fa-times-circle" id='removeFileAttachment'>
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+
+            } else if (fileUploadData != null) {
+                return $.parseHTML(GetFileUploader());
+            } else {
+                $div.append("<label>" + fileData.FileName + "</label>");
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+            }
+        }
+
+        var removedDetalle_Delitos_de_DocumentosData = [];
+        function Detalle_Delitos_de_DocumentosDeleteRow(rowIndex, row) {
+            var rowIndexTable = Detalle_Delitos_de_DocumentosTable.fnGetPosition($(row).parent().parent()[0]);
+            var permission = {            
+                 Delete: '@permissionDetalle_Delitos_de_Documentos.Delete' == 'True'
+            };
+            if (!permission.Delete || isConsultMode)
+                return;            
+            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+              if (EjecutarValidacionesAlEliminarMRDetalle_Delitos_de_Documentos('Detalle_Delitos_de_Documentos_', '_' + rowIndex)) {
+                var prevData = Detalle_Delitos_de_DocumentosTable.fnGetData(rowIndexTable );
+                removedDetalle_Delitos_de_DocumentosData.push(prevData);
+                Detalle_Delitos_de_DocumentosTable.fnDeleteRow(rowIndexTable );
+				showDetalle_Delitos_de_DocumentosGrid(Detalle_Delitos_de_DocumentosTable.fnGetData());
+              }
+            }
+			initiateUIControls();
+        }
+
+        function Detalle_Delitos_de_DocumentosrowCreationGrid(row, data, index) {
+            var permission =  {            
+                 Edit: '@permissionDetalle_Delitos_de_Documentos.Edit' == 'True',
+                 Delete: '@permissionDetalle_Delitos_de_Documentos.Delete' == 'True'
+            };
+            setDetalle_Delitos_de_DocumentosValidation();
+            var Detalle_Delitos_de_DocumentosRowElement = "Detalle_Delitos_de_Documentos_" + index.toString();
+            $(row).addClass(Detalle_Delitos_de_DocumentosRowElement);
+            var nameOfTable='Detalle_Delitos_de_Documentos_';
+            var rowIndex = '_' + index;
+            Detalle_Delitos_de_DocumentosinsertRowCurrentIndex = index;
+
+            row.innerHTML = "";
+
+            if (data.IsInsertRow) {
+
+                if (row.childNodes.length != 0) {
+                    for (var i = 0; i < row.childNodes.length; i++) {
+                        row.childNodes[i].remove();
+                    }
+                }
+                var controls = GetInsertDetalle_Delitos_de_DocumentosRowControls(index);
+                var actionColInsert = $('<td>');
+
+                var abc = "if(dynamicFieldValidation('" + Detalle_Delitos_de_DocumentosRowElement + "')){ Detalle_Delitos_de_DocumentosInsertRow(" + index + "); }";
+                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
+                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_Delitos_de_DocumentosCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                actionColInsert.appendTo(row);
+
+                for (i = 0; i < controls.length; i++) {
+					var idHeader = $(controls[i]).data('field') + 'Header';
+					if($(controls[i]).length > 1){
+						idHeader = $($(controls[i])[1]).data('field') + 'Header';
+					}					
+
+					var classe = ($('#Detalle_Delitos_de_DocumentosGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_Delitos_de_DocumentosGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+				   
+					if ($(controls[i]).next().length > 0) {
+					    var div = $(controls[i]).next();
+					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+					}else
+					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+					
+                }
+                $('#Detalle_Delitos_de_DocumentosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('#Detalle_Delitos_de_DocumentosGrid .gridDatePicker').attr("readonly", "");
+                return;
+            }
+
+            var actionCol = $('<td>');
+			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_Delitos_de_DocumentosEditRow(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                edit = "";
+            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_Delitos_de_Documentos-form' onclick='Detalle_Delitos_de_DocumentosEditRowPopup(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                editPopUp = "";
+            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_Delitos_de_DocumentosDeleteRow(" + index + ", this)'>";
+            if (!permission.Delete || isConsultMode)
+                eliminar = "";
+            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+			if ($('.Action' + 'Header').css('display') != 'none')
+				actionCol.appendTo(row);
+
+            if ($('.Delito' + 'Header').css('display') != 'none'){
+                if (data.DelitoDescripcion_corta == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Delito'+rowIndex+'">').text(data.Delito).appendTo(row);}else{$('<td>').text(data.DelitoDescripcion_corta).appendTo(row);}
+}
+             else {
+                if (data.DelitoDescripcion_corta == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Delito'+rowIndex+'">').text(data.Delito).appendTo(row);}else{$('<td style:display:none;>').text(data.DelitoDescripcion_corta).appendTo(row);}
+}
+
+
+        }
+
+        var Detalle_Delitos_de_DocumentosTable;
+        function showDetalle_Delitos_de_DocumentosGrid(dataSet) {
+            //removedDetalle_Delitos_de_DocumentosData = [];
+            Detalle_Delitos_de_DocumentosTable = $('#Detalle_Delitos_de_DocumentosGrid').dataTable({
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [
+                ],
+                "createdRow": Detalle_Delitos_de_DocumentosrowCreationGrid,
+                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+                data: dataSet,
+                "columns": [
+                    { "data": null, 'visible': true, "orderable": false },
+
+                    { "data": "Delito", "orderable": false },
+
+                ],
+                "order": [[0, "asc"]],
+                "language": {
+                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                    "zeroRecords": "@Resources.Resources.NothingFound",
+                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                    "infoEmpty": "@Resources.Resources.NoRecords",
+                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                    "sSearch": "@Resources.Resources.Search",
+                    "paginate": {
+                        "previous": "@Resources.Resources.Previous",
+                        "next": "@Resources.Resources.Next"
+                    }
+                },
+				"bDestroy": true,
+                "fnDrawCallback": function (settings) {
+                    setDetalle_Delitos_de_DocumentosValidation();
+                }
+            }).on('init.dt', function (e, data) {
+                $('a').tooltip();
+            }).on('draw.dt', function () {
+                $('#Detalle_Delitos_de_DocumentosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+            });
+        }
+
+
+    var Detalle_Delitos_de_Documentos_Detalle_de_DelitoItems;
+        function GetDetalle_Delitos_de_Documentos_Detalle_de_DelitoItem() {
+            Detalle_Delitos_de_Documentos_Detalle_de_DelitoItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetDetalle_Delitos_de_Documentos_Detalle_de_DelitoAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_Delitos_de_Documentos_Detalle_de_DelitoItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+        var Detalle_Delitos_de_DocumentosData = [];
+        var Detalle_Delitos_de_DocumentosdeletedItem = [];
+        var Detalle_Delitos_de_DocumentosDataMain = [];
+        var Detalle_Delitos_de_DocumentosDataMainPages = [];
+        var Detalle_Delitos_de_DocumentosnewItemCount = 0;
+        var Detalle_Delitos_de_DocumentosmaxItemIndex = 0;
+        var Detalle_Delitos_de_DocumentosDataMainInitialized = false;
+
+        function SendDetalle_Delitos_de_Documentos(callBack, ClaveId) {
+            Detalle_Delitos_de_DocumentosData = GetDetalle_Delitos_de_DocumentosFromDataTable();
+
+            if (Detalle_Delitos_de_DocumentosData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
+                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
+                    ClaveId = $("#ReferenceClave").val();                
+                if ($("#ReferenceClave").val() == '')
+                    $("#ReferenceClave").val('0');
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/PostDetalle_Delitos_de_Documentos?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
+                    type: 'POST',
+                    data: GetDetalle_Delitos_de_Documentos(),
+                    async: true,
+                    success: function (result) {
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            } else {
+                //showNotification("@Resources.Resources.SaveSuccess", "success");
+                //callBack(ClaveId);
+            }
+            return true;
+        }
+
+        function GetAddDetalle_Delitos_de_DocumentosPopup(currentRowIndex, mode, id) {
+
+            $.ajax({
+                url: "@Url.Action("AddDetalle_Delitos_de_Documentos", "Detalle_Delitos_de_Documentos")",
+                type: "GET",
+                async: false,
+                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+                success: function (data) {
+                    $(".AddDetalle_Delitos_de_DocumentosModal").html(data);
+                },
+                error: function () {
+
+                }
+            });
+
+            @*$.get('@Url.Action("AddDetalle_Delitos_de_Documentos", "Detalle_Delitos_de_Documentos")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddDetalle_Delitos_de_DocumentosModal").html(data);
+            });*@
+        }
+
+        function ShowMessagePendingRowDetalle_Delitos_de_Documentos()
+        {
+            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Delito"))')
+	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Delito"))', "warning");
+        }
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+        $(".AutoCompleteDetalle_Involucrados_en_Documentos_Involucrado").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetDetalle_Involucrados_en_Documentos_Involucrado_Detalle_de_Datos_Generales")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Involucrados_en_Documentos_Involucrado_Detalle_de_Datos_GeneralesData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Involucrados_en_Documentos_Involucrado");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val(' ');
+            $('.select2-search__field').keyup();
+        });
+
+
+        $(".AutoCompleteDetalle_Probable_Responsable_de_Documentos_Probable_Responsable").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetDetalle_Probable_Responsable_de_Documentos_Probable_Responsable_Detalle_de_Imputado")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Probable_Responsable_de_Documentos_Probable_Responsable_Detalle_de_ImputadoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Probable_Responsable_de_Documentos_Probable_Responsable");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val(' ');
+            $('.select2-search__field').keyup();
+        });
+
+
+        $(".AutoCompleteDetalle_Delitos_de_Documentos_Delito").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetDetalle_Delitos_de_Documentos_Delito_Detalle_de_Delito")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Delitos_de_Documentos_Delito_Detalle_de_DelitoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Delitos_de_Documentos_Delito");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val(' ');
+            $('.select2-search__field').keyup();
+        });
+
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+
+        function SendDetalle_de_Documentos_MPOData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Documentos_MPO").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Documentos_MPO")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#ReferenceClave").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_Generales && !checkClientValidate('Detalle_de_Documentos_MPOCreateForm', 'Datos_Generales')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+            }
+			
+			
+			if (Tab_Datos_Generales)
+				Save_Datos_Generales(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".Detalle_de_Documentos_MPOBusinessRuleModal").html(data);
+			});
+		}
+                function Detalle_de_Documentos_MPOGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45109');
+			$('#Screen').val('Detalle_de_Documentos_MPO');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function Detalle_de_Documentos_MPOBackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Documentos_MPO').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        Detalle_de_Documentos_MPOGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_Generales()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/Get_Datos_Generales")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    var control = $('#Modulo_Atencion_Inicial');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Modulo_Atencion_Inicial).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Modulo_Atencion_Inicial).trigger('change');
+                    }, 3000);
+                    $('#Fecha').val(result.data.Fecha);
+                    $('#Hora').val(result.data.Hora);
+                    var control = $('#Usuario_que_Registra');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Registra).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Registra).trigger('change');
+                    }, 3000);
+                    $('#Tipo_de_Documento').val(result.data.Tipo_de_Documento);
+                    $('#Documento').val(result.data.Documento);
+                    Detalle_Involucrados_en_DocumentosDataDataTable = result.Involucrado;
+                    showDetalle_Involucrados_en_DocumentosGrid(result.Involucrado);
+                    $('#Detalle_Involucrados_en_DocumentosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_Involucrados_en_DocumentosGrid .gridDatePicker').attr("readonly", "");
+                    Detalle_Probable_Responsable_de_DocumentosDataDataTable = result.Probable_Responsable;
+                    showDetalle_Probable_Responsable_de_DocumentosGrid(result.Probable_Responsable);
+                    $('#Detalle_Probable_Responsable_de_DocumentosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_Probable_Responsable_de_DocumentosGrid .gridDatePicker').attr("readonly", "");
+                    Detalle_Delitos_de_DocumentosDataDataTable = result.Delito;
+                    showDetalle_Delitos_de_DocumentosGrid(result.Delito);
+                    $('#Detalle_Delitos_de_DocumentosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_Delitos_de_DocumentosGrid .gridDatePicker').attr("readonly", "");
+                    $('#Archivo_Adjunto').val(result.data.Archivo_Adjunto);
+                    $('#Observaciones').val(result.data.Observaciones);
+                    $('#Archivo').val(result.data.Archivo);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_Generales(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Modulo_Atencion_Inicial', $('#Modulo_Atencion_Inicial').val());
+                data.append('Fecha', $('#Fecha').val());
+                data.append('Hora', $('#Hora').val());
+                data.append('Usuario_que_Registra', $('#Usuario_que_Registra').val());
+                data.append('Tipo_de_Documento', $('#Tipo_de_Documento').val());
+                data.append('Documento', $('#Documento').val());
+                data.append('Archivo_Adjunto', $('#hdnAttachedArchivo_Adjunto').val());
+                data.append('Archivo_AdjuntoFile', $('#Archivo_AdjuntoFile')[0].files[0]);
+                data.append('Archivo_AdjuntoRemoveAttachment', $('#hdnRemoveArchivo_Adjunto').val());
+                data.append('Observaciones', $('#Observaciones').val());
+                data.append('Archivo', $('#Archivo').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Detalle_de_Documentos_MPO/Post_Datos_Generales")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
+					} else {
+						newId = result;
+                    					    SendDetalle_Involucrados_en_Documentos(null, newId);
+					    SendDetalle_Probable_Responsable_de_Documentos(null, newId);
+					    SendDetalle_Delitos_de_Documentos(null, newId);
+
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="Detalle_de_Documentos_MPO_cmbLabelSelect" name="Detalle_de_Documentos_MPO_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

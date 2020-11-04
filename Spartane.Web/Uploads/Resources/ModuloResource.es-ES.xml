@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Modulo" value="Módulo"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Numero_de_Modulo" value="Número de Módulo"></resource>
+  <resource culture="es-es" name="Descripcion" value="Descripción"></resource>
+  <resource culture="es-es" name="Unidad_de_Atencion" value="Unidad de Atención"></resource>
+  <resource culture="es-es" name="Orientador" value="Orientador"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

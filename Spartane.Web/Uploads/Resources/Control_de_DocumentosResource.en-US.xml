@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Control_de_Documentos" value="Control de Documentos"></resource>
+  <resource culture="en-US" name="Folio" value="Folio"></resource>
+  <resource culture="en-US" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="en-US" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="en-US" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="en-US" name="idFormato" value="idFormato"></resource>
+  <resource culture="en-US" name="LlaveRegistro" value="LlaveRegistro"></resource>
+  <resource culture="en-US" name="TablaPersona" value="TablaPersona"></resource>
+  <resource culture="en-US" name="LlaveRegistroPersona" value="LlaveRegistroPersona"></resource>
+  <resource culture="en-US" name="Proceso" value="Proceso"></resource>
+  <resource culture="en-US" name="Numero_de_Expediente" value="Número de Expediente"></resource>
+  <resource culture="en-US" name="Cuerpo_del_Documento" value="Cuerpo del Documento"></resource>
+  <resource culture="en-US" name="Archivo" value="Archivo"></resource>
+  <resource culture="en-US" name="Encabezado" value="Encabezado"></resource>
+  <resource culture="en-US" name="Pie_de_Pagina" value="Pie de Página"></resource>
+  <resource culture="en-US" name="Historial_de_Cambios" value="Historial de Cambios"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="en-US" name="TabDocumento" value="Documento"></resource>
+<resource culture="en-US" name="TabHistorial" value="Historial"></resource>
+
+</resources>

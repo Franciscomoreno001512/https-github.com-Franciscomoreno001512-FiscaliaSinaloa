@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_de_Asignacion_de_Citas" value="Detalle de Asignacion de Citas"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Numero_de_Empleado" value="Número de Empleado"></resource>
+  <resource culture="es-es" name="Nombre_de_Empleado" value="Nombre de Empleado"></resource>
+  <resource culture="es-es" name="Lunes" value="Lunes"></resource>
+  <resource culture="es-es" name="Martes" value="Martes"></resource>
+  <resource culture="es-es" name="Miercoles" value="Miércoles"></resource>
+  <resource culture="es-es" name="Jueves" value="Jueves"></resource>
+  <resource culture="es-es" name="Viernes" value="Viernes"></resource>
+  <resource culture="es-es" name="Sabado" value="Sábado"></resource>
+  <resource culture="es-es" name="Domingo" value="Domingo"></resource>
+  <resource culture="es-es" name="Hora_Inicio" value="Hora Inicio"></resource>
+  <resource culture="es-es" name="Hora_Fin" value="Hora Fin"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

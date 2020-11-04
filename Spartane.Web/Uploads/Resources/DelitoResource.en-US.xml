@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Delito" value="Delito"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Titulo_del_Delito" value="Título del Delito"></resource>
+  <resource culture="en-US" name="Grupo_del_Delito" value="Grupo del Delito"></resource>
+  <resource culture="en-US" name="Descripcion" value="Descripción"></resource>
+  <resource culture="en-US" name="Grave" value="Grave"></resource>
+  <resource culture="en-US" name="Alto_Impacto" value="Alto Impacto"></resource>
+  <resource culture="en-US" name="Alta_Incidencia" value="Alta Incidencia"></resource>
+  <resource culture="en-US" name="Tentativa" value="Tentativa"></resource>
+  <resource culture="en-US" name="Activo" value="Activo"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

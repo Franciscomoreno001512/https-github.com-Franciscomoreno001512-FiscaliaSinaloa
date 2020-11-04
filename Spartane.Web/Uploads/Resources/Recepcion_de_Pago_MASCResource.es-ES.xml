@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Recepcion_de_Pago_MASC" value="Recepción de Pago"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Fecha_de_Recepcion" value="Fecha de Recepción"></resource>
+  <resource culture="es-es" name="Hora_de_Recepcion" value="Hora de Recepción"></resource>
+  <resource culture="es-es" name="Usuario_que_Recibe" value="Usuario que Recibe"></resource>
+  <resource culture="es-es" name="Numero_de_Expediente" value="Número de Expediente"></resource>
+  <resource culture="es-es" name="Requerido" value="Requerido"></resource>
+  <resource culture="es-es" name="Nombre_de_la_Persona_que_entrega" value="Nombre de la Persona que entrega"></resource>
+  <resource culture="es-es" name="Numero_de_Pago" value="Número de Pago"></resource>
+  <resource culture="es-es" name="Monto_del_Pago" value="Monto del Pago"></resource>
+  <resource culture="es-es" name="Pago_Completo" value="Pago Completo"></resource>
+  <resource culture="es-es" name="Motivo_para_no_entregar_pago_completo" value="Motivo para no entregar pago completo"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

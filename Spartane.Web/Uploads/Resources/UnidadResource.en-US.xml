@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Unidad" value="Unidad"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Clave_Unica_Municipio" value="Clave Unica Municipio"></resource>
+  <resource culture="en-US" name="Clave_de_Municipio" value="Clave de Municipio"></resource>
+  <resource culture="en-US" name="Clave_de_Region" value="Clave de Región"></resource>
+  <resource culture="en-US" name="Abreviacion" value="Abreviación"></resource>
+  <resource culture="en-US" name="Descripcion" value="Descripción"></resource>
+  <resource culture="en-US" name="Descripcion_Corta" value="Descripción Corta"></resource>
+  <resource culture="en-US" name="Vigencia" value="Vigencia"></resource>
+  <resource culture="en-US" name="Direccion" value="Dirección"></resource>
+  <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="en-US" name="Supervisor" value="Supervisor"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

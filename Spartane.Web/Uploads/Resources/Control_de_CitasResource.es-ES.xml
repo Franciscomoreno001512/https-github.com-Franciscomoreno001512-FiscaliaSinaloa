@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Control_de_Citas" value="Control de Citas"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="es-es" name="Usuario_que_Atiende" value="Usuario que Atiende"></resource>
+  <resource culture="es-es" name="Fecha_de_la_Cita" value="Fecha de la Cita"></resource>
+  <resource culture="es-es" name="Hora_de_la_Cita" value="Hora de la Cita"></resource>
+  <resource culture="es-es" name="Proceso" value="Proceso"></resource>
+  <resource culture="es-es" name="Numero_de_Expediente" value="Número de Expediente"></resource>
+  <resource culture="es-es" name="Tipo_de_Cita" value="Tipo de Cita"></resource>
+  <resource culture="es-es" name="Cita" value="Cita"></resource>
+  <resource culture="es-es" name="Cumplida" value="Cumplida"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

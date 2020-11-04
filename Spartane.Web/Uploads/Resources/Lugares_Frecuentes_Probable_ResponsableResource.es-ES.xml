@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Lugares_Frecuentes_Probable_Responsable" value="Lugares Frecuentes Probable Responsable"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Tipo_de_Lugar" value="Tipo de Lugar"></resource>
+  <resource culture="es-es" name="Descripcion" value="Descripción"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

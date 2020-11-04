@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Correccion_de_Error_en_Estatus" value="Corrección de Error en Estatus"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="NUAT" value="NUAT"></resource>
+  <resource culture="en-US" name="Estatus_Actual" value="Estatus Actual"></resource>
+  <resource culture="en-US" name="Estatus_a_Cambiar" value="Estatus a Cambiar"></resource>
+  <resource culture="en-US" name="Motivo" value="Motivo"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Fotos_de_Emergencia_CC" value="Detalle de Fotos de Emergencia CC"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Fecha" value="Fecha"></resource>
+  <resource culture="en-US" name="Hora" value="Hora"></resource>
+  <resource culture="en-US" name="Latitud" value="Latitud"></resource>
+  <resource culture="en-US" name="Longitud" value="Longitud"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

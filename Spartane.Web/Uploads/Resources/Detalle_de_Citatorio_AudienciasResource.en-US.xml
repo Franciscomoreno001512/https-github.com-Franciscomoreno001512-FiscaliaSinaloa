@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Citatorio_Audiencias" value="Detalle de Citatorio Audiencias"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Numero_de_audiencia_citatorio" value="Número de Audiencia/Citatorio"></resource>
+  <resource culture="en-US" name="Fecha" value="Fecha"></resource>
+  <resource culture="en-US" name="Hora" value="Hora"></resource>
+  <resource culture="en-US" name="Fecha_de_Aceptacion" value="Fecha de Recepción"></resource>
+  <resource culture="en-US" name="Hora_de_Aceptacion" value="Hora de Recepción"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

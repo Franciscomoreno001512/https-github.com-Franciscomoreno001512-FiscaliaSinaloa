@@ -1,0 +1,1048 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Solicitud_SeguimientoModel
+@{
+    Spartane_File attachedFileArchivo = (Spartane_File)ViewBag.ArchivoSpartane_File;
+
+/*
+    string Fecha_de_Registro = "";
+    if (Model.Fecha_de_Registro == "")
+    { Model.Fecha_de_Registro = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_Requerida = "";
+    if (Model.Fecha_Requerida == "")
+    { Model.Fecha_Requerida = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Cumplimiento = "";
+    if (Model.Fecha_de_Cumplimiento == "")
+    { Model.Fecha_de_Cumplimiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+*/
+ List<SelectListItem> varSolicitud_Solicitud = null;
+    if (ViewBag.Solicituds_Solicitud != null)
+    { varSolicitud_Solicitud = (List<SelectListItem>)ViewBag.Solicituds_Solicitud; }
+ List<SelectListItem> varDetalle_de_Solicitud_Requerido_Requerido = null;
+    if (ViewBag.Detalle_de_Solicitud_Requeridos_Requerido != null)
+    { varDetalle_de_Solicitud_Requerido_Requerido = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Requeridos_Requerido; }
+ List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
+    if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
+    { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
+    List<SelectListItem> varCumplimiento_Cumplimiento = null;
+    if (ViewBag.Cumplimientos_Cumplimiento != null)
+    { varCumplimiento_Cumplimiento = (List<SelectListItem>)ViewBag.Cumplimientos_Cumplimiento; }
+ List<SelectListItem> varSpartan_User_Especialista = null;
+    if (ViewBag.Spartan_Users_Especialista != null)
+    { varSpartan_User_Especialista = (List<SelectListItem>)ViewBag.Spartan_Users_Especialista; }
+
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.Detalle_de_Solicitud_SeguimientoResources.Detalle_de_Solicitud_Seguimiento
+                <button onclick="Detalle_de_Solicitud_SeguimientoGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitud_SeguimientoBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Detalle_de_Solicitud_SeguimientoResources.Detalle_de_Solicitud_Seguimiento</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="Detalle_de_Solicitud_SeguimientoDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in Detalle_de_Solicitud_SeguimientoPropertyBusinessModal" id="Detalle_de_Solicitud_SeguimientoPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Detalle_de_Solicitud_SeguimientoBusinessRule-form" onclick="Detalle_de_Solicitud_SeguimientoGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitud_SeguimientoBusinessRuleModal" id="Detalle_de_Solicitud_SeguimientoBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Detalle_de_Solicitud_Seguimiento", FormMethod.Post, new { id = "CreateDetalle_de_Solicitud_Seguimiento", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Detalle_de_Solicitud_SeguimientoCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Detalle_de_Solicitud_SeguimientoResources.TabDatos_Generales</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="263540" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+				<div class="form-group" id="divSolicitud">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Solicitud" data-attribute="263546" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Solicitud">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitud_Seguimiento_Solicitud form-control select2-dropdown Datos_Generales' data-val="true" id="Solicitud" name="Solicitud">
+                                        <option value="@Model.Solicitud">@(Model.SolicitudNumero_de_Folio??Model.SolicitudNumero_de_Folio)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263546).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud', 'Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divFecha_de_Registro">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Registro</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Registro" data-attribute="266484" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Registro">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Registro"  name="Fecha_de_Registro" type="text" value="@Model.Fecha_de_Registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Registro">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Hora_de_Registro</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Registro" data-attribute="266485" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Hora_de_Registro">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Hora_de_Registro"  name="Hora_de_Registro" type="text" data-autoclose="true" value="@Model.Hora_de_Registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divRequerido">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Requerido</label>
+                                <div class="col-sm-8" data-field-id="Requerido" data-attribute="263549" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Requerido">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitud_Seguimiento_Requerido form-control select2-dropdown Datos_Generales' data-val="true" id="Requerido" name="Requerido">
+                                        <option value="@Model.Requerido">@(Model.RequeridoNombre??Model.RequeridoNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263549).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Solicitud_Requerido', 'Requerido');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divSolicitante">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Solicitante</label>
+                                <div class="col-sm-8" data-field-id="Solicitante" data-attribute="263548" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Solicitante">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitud_Seguimiento_Solicitante form-control select2-dropdown Datos_Generales' data-val="true" id="Solicitante" name="Solicitante">
+                                        <option value="@Model.Solicitante">@(Model.SolicitanteNombre??Model.SolicitanteNombre)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263548).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Solicitud_Solicitante', 'Solicitante');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divFecha_Requerida">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_Requerida</label>
+                                <div class="col-sm-8" data-field-id="Fecha_Requerida" data-attribute="263541" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_Requerida">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_Requerida"  name="Fecha_Requerida" type="text" value="@Model.Fecha_Requerida">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFecha_de_Cumplimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Cumplimiento</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Cumplimiento" data-attribute="263542" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Cumplimiento">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Cumplimiento"  name="Fecha_de_Cumplimiento" type="text" value="@Model.Fecha_de_Cumplimiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCumplimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Cumplimiento</label>
+                                <div class="col-sm-8" data-field-id="Cumplimiento" data-attribute="263544" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Cumplimiento">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Cumplimiento must be a number." data-val-required="The Cumplimiento field is required." id="Cumplimiento" name="Cumplimiento">
+                                        <option value=""></option>
+                                        @if (varCumplimiento_Cumplimiento != null){ 
+                                            foreach (var itemCumplimiento in varCumplimiento_Cumplimiento)
+                                            {
+                                                if (itemCumplimiento.Value == Convert.ToString(Model.Cumplimiento))
+                                                {
+                                                    <option value="@itemCumplimiento.Value" selected>@itemCumplimiento.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemCumplimiento.Value">@itemCumplimiento.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Cumplimiento" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263544).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Cumplimiento', 'Cumplimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                              <div class="form-group" id="divCantidad_del_Monto">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Cantidad_del_Monto</label>
+								<div class="col-sm-8">
+									<div class="input-group m-b" data-field-id="Cantidad_del_Monto" data-attribute="263550" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Cantidad_del_Monto">
+										<span class="input-group-addon">$</span>
+										@if(Model.Cantidad_del_Monto.HasValue)
+						{
+						<input class="form-control col-md-12 inputNumber inputMoney Datos_Generales" id="Cantidad_del_Monto" name="Cantidad_del_Monto" type="text" min="0.00" max="999999.99" value="@Model.Cantidad_del_Monto.Value.ToString("N", CultureInfo.InvariantCulture)">
+						}
+						else
+						{
+						<input class="form-control col-md-12 inputNumber inputMoney Datos_Generales" id="Cantidad_del_Monto" name="Cantidad_del_Monto" type="text" min="0.00" max="999999.99" value="">
+						}  
+									</div>
+								</div>
+                            </div>
+				<div class="form-group" id="divEspecialista">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Especialista</label>
+                                <div class="col-sm-8" data-field-id="Especialista" data-attribute="263547" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Especialista">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitud_Seguimiento_Especialista form-control select2-dropdown Datos_Generales' data-val="true" id="Especialista" name="Especialista">
+                                        <option value="@Model.Especialista">@(Model.EspecialistaName??Model.EspecialistaName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263547).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Especialista');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divComentarios">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Comentarios</label>
+                                <div class="col-sm-8" data-field-id="Comentarios" data-attribute="263545" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Comentarios">
+                                    <textarea id="Comentarios" name="Comentarios" class="form-control Datos_Generales" rows="4" cols="50">@Model.Comentarios</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Comentarios" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            @if (attachedFileArchivo != null && attachedFileArchivo.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentArchivo">
+                                    <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
+                                    <div class="col-sm-8 Datos_Generales" data-field-id="Archivo" data-attribute="263543" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Archivo">
+                                        <a href="@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/GetFile")?id=@attachedFileArchivo.File_Id" target="_blank">@attachedFileArchivo.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainArchivo('@attachedFileArchivo.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemoveArchivo" name="RemoveArchivo" value="0" type="hidden" />
+                                    <input class="form-control col-md-12 Datos_Generales" id="hdnAttachedArchivo" type="hidden" name="Archivo" value="@Model.Archivo">
+                                </div>
+                            }
+                            <div class="form-group" id="divArchivo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Archivo</label>
+                                <div class="col-sm-8" data-field-id="Archivo" data-attribute="263543" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Archivo">
+                                    <input type="file" name="ArchivoFile" id="ArchivoFile" class="form-control" />
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+                                <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Detalle_de_Solicitud_SeguimientoGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Detalle_de_Solicitud_SeguimientoCreateForm');"  />
+									<button onclick="Detalle_de_Solicitud_SeguimientoGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitud_SeguimientoBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Detalle_de_Solicitud_SeguimientoGuardarYNuevo" onclick="return checkClientValidate('Detalle_de_Solicitud_SeguimientoCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Detalle_de_Solicitud_SeguimientoGuardarYCopia" onclick="return checkClientValidate('Detalle_de_Solicitud_SeguimientoCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnDetalle_de_Solicitud_SeguimientoBusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Detalle_de_Solicitud_SeguimientoCancelar" name="Detalle_de_Solicitud_SeguimientoCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                <button onclick="Detalle_de_Solicitud_SeguimientoGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitud_SeguimientoBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Solicitud_Seguimiento.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Solicitud_SeguimientoGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Solicitud_SeguimientoCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+        function RemoveAttachmentMainArchivo () {
+            $("#hdnRemoveArchivo").val("1");
+            $("#divAttachmentArchivo").hide();
+        }
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_Generales = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45088');
+		    
+		   
+                        $('#Fecha_de_Registro').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_de_Registro').clockpicker();
+            $('#Fecha_Requerida').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Fecha_de_Cumplimiento').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#Detalle_de_Solicitud_SeguimientoGuardarYNuevo').hide();
+                $('#Detalle_de_Solicitud_SeguimientoGuardarYCopia').hide();
+                $('#Detalle_de_Solicitud_SeguimientoCancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#Detalle_de_Solicitud_SeguimientoGuardar').val('Actualizar Seccion ' + '@Resources.Detalle_de_Solicitud_SeguimientoResources.Detalle_de_Solicitud_Seguimiento' )
+            }
+
+			
+			       var AutoCompleteSolicitudData =[];
+       $(".AutoCompleteDetalle_de_Solicitud_Seguimiento_Solicitud").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/GetDetalle_de_Solicitud_Seguimiento_Solicitud_Solicitud")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Solicitud_Seguimiento_Solicitud_SolicitudData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitud_Seguimiento_Solicitud");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteRequeridoData =[];
+       $(".AutoCompleteDetalle_de_Solicitud_Seguimiento_Requerido").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/GetDetalle_de_Solicitud_Seguimiento_Requerido_Detalle_de_Solicitud_Requerido")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Solicitud_Seguimiento_Requerido_Detalle_de_Solicitud_RequeridoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitud_Seguimiento_Requerido");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteSolicitanteData =[];
+       $(".AutoCompleteDetalle_de_Solicitud_Seguimiento_Solicitante").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/GetDetalle_de_Solicitud_Seguimiento_Solicitante_Detalle_de_Solicitud_Solicitante")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Solicitud_Seguimiento_Solicitante_Detalle_de_Solicitud_SolicitanteData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitud_Seguimiento_Solicitante");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteEspecialistaData =[];
+       $(".AutoCompleteDetalle_de_Solicitud_Seguimiento_Especialista").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/GetDetalle_de_Solicitud_Seguimiento_Especialista_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Solicitud_Seguimiento_Especialista_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitud_Seguimiento_Especialista");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
+        });
+
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+
+        function SendDetalle_de_Solicitud_SeguimientoData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Solicitud_Seguimiento").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Solicitud_Seguimiento")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#ReferenceClave").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_Generales && !checkClientValidate('Detalle_de_Solicitud_SeguimientoCreateForm', 'Datos_Generales')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+            }
+			
+			
+			if (Tab_Datos_Generales)
+				Save_Datos_Generales(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".Detalle_de_Solicitud_SeguimientoBusinessRuleModal").html(data);
+			});
+		}
+                function Detalle_de_Solicitud_SeguimientoGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45088');
+			$('#Screen').val('Detalle_de_Solicitud_Seguimiento');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function Detalle_de_Solicitud_SeguimientoBackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Solicitud_Seguimiento').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        Detalle_de_Solicitud_SeguimientoGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_Generales()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/Get_Datos_Generales")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    var control = $('#Solicitud');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Solicitud).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Solicitud).trigger('change');
+                    }, 3000);
+                    $('#Fecha_de_Registro').val(result.data.Fecha_de_Registro);
+                    $('#Hora_de_Registro').val(result.data.Hora_de_Registro);
+                    var control = $('#Requerido');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Requerido).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Requerido).trigger('change');
+                    }, 3000);
+                    var control = $('#Solicitante');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Solicitante).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Solicitante).trigger('change');
+                    }, 3000);
+                    $('#Fecha_Requerida').val(result.data.Fecha_Requerida);
+                    $('#Fecha_de_Cumplimiento').val(result.data.Fecha_de_Cumplimiento);
+                    $('#Cumplimiento').val(result.data.Cumplimiento);
+                    $('#Cantidad_del_Monto').val(result.data.Cantidad_del_Monto);
+                    var control = $('#Especialista');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Especialista).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Especialista).trigger('change');
+                    }, 3000);
+                    $('#Comentarios').val(result.data.Comentarios);
+                    $('#Archivo').val(result.data.Archivo);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_Generales(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Solicitud', $('#Solicitud').val());
+                data.append('Fecha_de_Registro', $('#Fecha_de_Registro').val());
+                data.append('Hora_de_Registro', $('#Hora_de_Registro').val());
+                data.append('Requerido', $('#Requerido').val());
+                data.append('Solicitante', $('#Solicitante').val());
+                data.append('Fecha_Requerida', $('#Fecha_Requerida').val());
+                data.append('Fecha_de_Cumplimiento', $('#Fecha_de_Cumplimiento').val());
+                data.append('Cumplimiento', $('#Cumplimiento').val());
+ 
+               data.append('Cantidad_del_Monto', Number($('#Cantidad_del_Monto').val().replace(/[^0-9.-]+/g, "")));
+                data.append('Especialista', $('#Especialista').val());
+                data.append('Comentarios', $('#Comentarios').val());
+                data.append('Archivo', $('#hdnAttachedArchivo').val());
+                data.append('ArchivoFile', $('#ArchivoFile')[0].files[0]);
+                data.append('ArchivoRemoveAttachment', $('#hdnRemoveArchivo').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/Post_Datos_Generales")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="Detalle_de_Solicitud_Seguimiento_cmbLabelSelect" name="Detalle_de_Solicitud_Seguimiento_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

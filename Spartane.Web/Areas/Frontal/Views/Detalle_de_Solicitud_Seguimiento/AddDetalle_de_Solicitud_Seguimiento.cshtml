@@ -1,0 +1,563 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Solicitud_SeguimientoModel
+@{
+
+    string Fecha_de_Inicio = "";
+    if (Model.Fecha_de_Inicio == "")
+    { Model.Fecha_de_Inicio = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Cumplimiento = "";
+    if (Model.Fecha_de_Cumplimiento == "")
+    { Model.Fecha_de_Cumplimiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+    List<SelectListItem> varCumplimiento_Cumplimiento = null;
+    if (ViewBag.Cumplimientos_Cumplimiento != null)
+    { varCumplimiento_Cumplimiento = (List<SelectListItem>)ViewBag.Cumplimientos_Cumplimiento; }
+    List<SelectListItem> varSolicitante_Solicitante = null;
+    if (ViewBag.Solicitantes_Solicitante != null)
+    { varSolicitante_Solicitante = (List<SelectListItem>)ViewBag.Solicitantes_Solicitante; }
+    List<SelectListItem> varRequerido_Requerido = null;
+    if (ViewBag.Requeridos_Requerido != null)
+    { varRequerido_Requerido = (List<SelectListItem>)ViewBag.Requeridos_Requerido; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Solicitud Seguimiento
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_Solicitud_SeguimientoRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_Solicitud_SeguimientoPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Solicitud Seguimiento
+								<button onclick="Detalle_de_Solicitud_SeguimientoGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitud_SeguimientoBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_Solicitud_SeguimientoResources.Detalle_de_Solicitud_Seguimiento</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_Solicitud_SeguimientoDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_Solicitud_SeguimientoPropertyBusinessModal" id="Detalle_de_Solicitud_SeguimientoPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_Solicitud_SeguimientoBusinessRule-form" onclick="Detalle_de_Solicitud_SeguimientoGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitud_SeguimientoPropertyModal" id="Detalle_de_Solicitud_SeguimientoPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitud_SeguimientoBusinessRuleModal" id="Detalle_de_Solicitud_SeguimientoBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitud_SeguimientoAddBusinessRuleModal" id="Detalle_de_Solicitud_SeguimientoAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Solicitud_Seguimiento", FormMethod.Post, new { id = "CreateDetalle_de_Solicitud_Seguimiento", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_Solicitud_SeguimientoCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="263540" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Clave">
+                                    <label class="form-control" for="Detalle_de_Solicitud_SeguimientoClave" id="Detalle_de_Solicitud_SeguimientoClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Inicio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Inicio</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Inicio" data-attribute="263541" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Inicio">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Solicitud_SeguimientoFecha_de_Inicio" readonly="readonly" name="Detalle_de_Solicitud_SeguimientoFecha_de_Inicio" type="text" value="@Model.Fecha_de_Inicio">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Cumplimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Cumplimiento</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Cumplimiento" data-attribute="263542" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Cumplimiento">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Solicitud_SeguimientoFecha_de_Cumplimiento" readonly="readonly" name="Detalle_de_Solicitud_SeguimientoFecha_de_Cumplimiento" type="text" value="@Model.Fecha_de_Cumplimiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divArchivo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Archivo</label>
+	<div class="col-sm-8" data-field-id="Archivo" data-attribute="263543" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Archivo">
+		<input class="form-control inputNumber" id="Detalle_de_Solicitud_SeguimientoArchivo" name="Detalle_de_Solicitud_SeguimientoArchivo" type="text" value="@Model.Archivo">
+	</div>
+</div>
+<div class="form-group" id="divCumplimiento">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Cumplimiento</label>
+	<div class="col-sm-8" data-field-id="Cumplimiento" data-attribute="263544" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Cumplimiento">
+		<select class="form-control" data-val="true" data-val-number="The field Cumplimiento must be a number." data-val-required="The Cumplimiento field is required." id="Detalle_de_Solicitud_SeguimientoCumplimiento" name="Detalle_de_Solicitud_SeguimientoCumplimiento">
+			<option value=""></option>
+			@if (varCumplimiento_Cumplimiento != null){ 
+				foreach (var itemCumplimiento in varCumplimiento_Cumplimiento)
+				{
+					if (itemCumplimiento.Value == Convert.ToString(Model.Cumplimiento))
+					{
+						<option value="@itemCumplimiento.Value" selected>@itemCumplimiento.Text</option>
+					}
+					else
+					{
+						<option value="@itemCumplimiento.Value">@itemCumplimiento.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divComentarios">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Comentarios</label>
+                                <div class="col-sm-8" data-field-id="Comentarios" data-attribute="263545" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Comentarios">
+                                    <input class="form-control" id="Detalle_de_Solicitud_SeguimientoComentarios" name="Detalle_de_Solicitud_SeguimientoComentarios" type="text" value="@Model.Comentarios">
+                                </div>
+                            </div>
+<div class="form-group" id="divEspecialista">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Especialista</label>
+                                <div class="col-sm-8" data-field-id="Especialista" data-attribute="263547" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Especialista">
+                                    <input class="form-control" id="Detalle_de_Solicitud_SeguimientoEspecialista" name="Detalle_de_Solicitud_SeguimientoEspecialista" type="text" value="@Model.Especialista">
+                                </div>
+                            </div>
+<div class="form-group" id="divSolicitante">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Solicitante</label>
+	<div class="col-sm-8" data-field-id="Solicitante" data-attribute="263548" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Solicitante">
+		<select class="form-control" data-val="true" data-val-number="The field Solicitante must be a number." data-val-required="The Solicitante field is required." id="Detalle_de_Solicitud_SeguimientoSolicitante" name="Detalle_de_Solicitud_SeguimientoSolicitante">
+			<option value=""></option>
+			@if (varSolicitante_Solicitante != null){ 
+				foreach (var itemSolicitante in varSolicitante_Solicitante)
+				{
+					if (itemSolicitante.Value == Convert.ToString(Model.Solicitante))
+					{
+						<option value="@itemSolicitante.Value" selected>@itemSolicitante.Text</option>
+					}
+					else
+					{
+						<option value="@itemSolicitante.Value">@itemSolicitante.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divRequerido">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Requerido</label>
+	<div class="col-sm-8" data-field-id="Requerido" data-attribute="263549" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Requerido">
+		<select class="form-control" data-val="true" data-val-number="The field Requerido must be a number." data-val-required="The Requerido field is required." id="Detalle_de_Solicitud_SeguimientoRequerido" name="Detalle_de_Solicitud_SeguimientoRequerido">
+			<option value=""></option>
+			@if (varRequerido_Requerido != null){ 
+				foreach (var itemRequerido in varRequerido_Requerido)
+				{
+					if (itemRequerido.Value == Convert.ToString(Model.Requerido))
+					{
+						<option value="@itemRequerido.Value" selected>@itemRequerido.Text</option>
+					}
+					else
+					{
+						<option value="@itemRequerido.Value">@itemRequerido.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCantidad_del_Monto">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_SeguimientoResources.Cantidad_del_Monto</label>
+                                <div class="col-sm-8" data-field-id="Cantidad_del_Monto" data-attribute="263550" data-field-name="@Resources.Detalle_de_Solicitud_SeguimientoResources.Cantidad_del_Monto">
+                                    <input class="form-control col-md-12 inputNumber" id="Detalle_de_Solicitud_SeguimientoCantidad_del_Monto" name="Detalle_de_Solicitud_SeguimientoCantidad_del_Monto" type="text" min="0.00" max="999999.99" value="@Model.Cantidad_del_Monto.ToString()">
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_Solicitud_SeguimientoConfigureSave" name="Detalle_de_Solicitud_SeguimientoConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_Solicitud_SeguimientoConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_Solicitud_SeguimientoBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_Solicitud_SeguimientoGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitud_SeguimientoBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Solicitud_Seguimiento.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Solicitud_SeguimientoGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Solicitud_SeguimientoCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/SolicitudCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_Solicitud_SeguimientoRowElement = "Detalle_de_Solicitud_SeguimientoPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_Solicitud_SeguimientoRowElement + "')){ Detalle_de_Solicitud_SeguimientoInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+            $('#Detalle_de_Solicitud_SeguimientoFecha_de_Inicio').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Detalle_de_Solicitud_SeguimientoFecha_de_Cumplimiento').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_de_Solicitud_SeguimientoData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Solicitud_Seguimiento").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Solicitud_Seguimiento")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_Solicitud_SeguimientoCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_Solicitud_SeguimientoPropertyBag", "Detalle_de_Solicitud_Seguimiento")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_Solicitud_SeguimientoGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldName').val(), ObjectId: '45088', Attribute: $('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleAttribute').val(), Screen: 'Detalle_de_Solicitud_Seguimiento' }, function (data) {
+                $(".Detalle_de_Solicitud_SeguimientoBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_Solicitud_SeguimientoGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldName').val(), ObjectId: '45088', Attribute: $('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleAttribute').val(), Screen: 'Detalle_de_Solicitud_Seguimiento' }, function (data) {
+                $(".Detalle_de_Solicitud_SeguimientoAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldName').val(), ObjectId: '45088', Attribute: $('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleAttribute').val(), Screen: 'Detalle_de_Solicitud_Seguimiento' }, function (data) {
+				$(".Detalle_de_Solicitud_SeguimientoBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_Solicitud_SeguimientoConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_Solicitud_SeguimientoConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_Solicitud_SeguimientoConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Seguimiento/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Solicitud_Seguimiento' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Solicitud_Seguimiento' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_Solicitud_SeguimientoConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_Solicitud_SeguimientoConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Solicitud_Seguimiento').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_Solicitud_SeguimientoBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

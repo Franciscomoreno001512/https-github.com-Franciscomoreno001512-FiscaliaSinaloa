@@ -1,0 +1,850 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_del_Abogado_Imputado_MPIAdvanceSearchModel
+@{
+    List<SelectListItem> varAbogado_Nombre_Completo_del_Abogado = null;
+    if (ViewBag.Abogados_Nombre_Completo_del_Abogado != null)
+    { varAbogado_Nombre_Completo_del_Abogado = (List<SelectListItem>)ViewBag.Abogados_Nombre_Completo_del_Abogado; }
+    List<SelectListItem> varGenero_Sexo_del_Abogado = null;
+    if (ViewBag.Generos_Sexo_del_Abogado != null)
+    { varGenero_Sexo_del_Abogado = (List<SelectListItem>)ViewBag.Generos_Sexo_del_Abogado; }
+    List<SelectListItem> varEstado_Civil_Estado_Civil_del_Abogado = null;
+    if (ViewBag.Estado_Civils_Estado_Civil_del_Abogado != null)
+    { varEstado_Civil_Estado_Civil_del_Abogado = (List<SelectListItem>)ViewBag.Estado_Civils_Estado_Civil_del_Abogado; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion_del_Abogado = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_del_Abogado != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion_del_Abogado = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_del_Abogado; }
+    List<SelectListItem> varNacionalidad_Nacionalidad_del_Abogado = null;
+    if (ViewBag.Nacionalidads_Nacionalidad_del_Abogado != null)
+    { varNacionalidad_Nacionalidad_del_Abogado = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad_del_Abogado; }
+    List<SelectListItem> varPais_Pais_del_Abogado = null;
+    if (ViewBag.Paiss_Pais_del_Abogado != null)
+    { varPais_Pais_del_Abogado = (List<SelectListItem>)ViewBag.Paiss_Pais_del_Abogado; }
+    List<SelectListItem> varEstado_Estado_del_Abogado = null;
+    if (ViewBag.Estados_Estado_del_Abogado != null)
+    { varEstado_Estado_del_Abogado = (List<SelectListItem>)ViewBag.Estados_Estado_del_Abogado; }
+    List<SelectListItem> varMunicipio_Municipio_del_Abogado = null;
+    if (ViewBag.Municipios_Municipio_del_Abogado != null)
+    { varMunicipio_Municipio_del_Abogado = (List<SelectListItem>)ViewBag.Municipios_Municipio_del_Abogado; }
+    List<SelectListItem> varColonia_Colonia_del_Abogado = null;
+    if (ViewBag.Colonias_Colonia_del_Abogado != null)
+    { varColonia_Colonia_del_Abogado = (List<SelectListItem>)ViewBag.Colonias_Colonia_del_Abogado; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Detalle_del_Abogado_Imputado_MPI", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Consecutivo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromConsecutivo, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromConsecutivo" })
+                    @Html.ValidationMessageFor(m => m.FromConsecutivo)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToConsecutivo, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToConsecutivo", @data_min = "txtAdvanceFromConsecutivo" })
+                    @Html.ValidationMessageFor(m => m.ToConsecutivo)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Nombre_Completo_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nombre_Completo_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlNombre_Completo_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceNombre_Completo_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtAdvanceNombre_Completo_del_Abogado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varAbogado_Nombre_Completo_del_Abogado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceNombre_Completo_del_AbogadoMultiple, varAbogado_Nombre_Completo_del_Abogado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceNombre_Completo_del_Abogado"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Nombre_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nombre_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlNombre_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.Nombre_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtNombre_del_Abogado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Apellido_Paterno_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_Paterno_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlApellido_Paterno_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Paterno_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtApellido_Paterno_del_Abogado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Apellido_Materno_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Apellido_Materno_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlApellido_Materno_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.Apellido_Materno_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtApellido_Materno_del_Abogado" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Fecha_de_Nacimiento_del_Abogado</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Nacimiento_del_Abogado" name="FromFecha_de_Nacimiento_del_Abogado" type="text" value="@Model.FromFecha_de_Nacimiento_del_Abogado" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Nacimiento_del_Abogado" name="ToFecha_de_Nacimiento_del_Abogado" type="text" value="@Model.ToFecha_de_Nacimiento_del_Abogado" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Edad_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromEdad_del_Abogado, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromEdad_del_Abogado" })
+                    @Html.ValidationMessageFor(m => m.FromEdad_del_Abogado)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToEdad_del_Abogado, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToEdad_del_Abogado", @data_min = "txtAdvanceFromEdad_del_Abogado" })
+                    @Html.ValidationMessageFor(m => m.ToEdad_del_Abogado)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Sexo_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Sexo_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlSexo_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceSexo_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtAdvanceSexo_del_Abogado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varGenero_Sexo_del_Abogado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceSexo_del_AbogadoMultiple, varGenero_Sexo_del_Abogado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceSexo_del_Abogado"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Estado_Civil_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Estado_Civil_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlEstado_Civil_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEstado_Civil_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstado_Civil_del_Abogado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstado_Civil_Estado_Civil_del_Abogado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEstado_Civil_del_AbogadoMultiple, varEstado_Civil_Estado_Civil_del_Abogado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEstado_Civil_del_Abogado"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Tipo_de_Identificacion_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_Identificacion_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_Identificacion_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Identificacion_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Identificacion_del_Abogado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Identificacion_Tipo_de_Identificacion_del_Abogado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_Identificacion_del_AbogadoMultiple, varTipo_de_Identificacion_Tipo_de_Identificacion_del_Abogado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Identificacion_del_Abogado"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Numero_de_Identificacion_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_de_Identificacion_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlNumero_de_Identificacion_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.Numero_de_Identificacion_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtNumero_de_Identificacion_del_Abogado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Nacionalidad_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nacionalidad_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlNacionalidad_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceNacionalidad_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtAdvanceNacionalidad_del_Abogado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varNacionalidad_Nacionalidad_del_Abogado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceNacionalidad_del_AbogadoMultiple, varNacionalidad_Nacionalidad_del_Abogado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceNacionalidad_del_Abogado"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Cedula_Profesional_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Cedula_Profesional_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlCedula_Profesional_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.Cedula_Profesional_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtCedula_Profesional_del_Abogado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Pais_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Pais_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlPais_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvancePais_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtAdvancePais_del_Abogado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varPais_Pais_del_Abogado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvancePais_del_AbogadoMultiple, varPais_Pais_del_Abogado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancePais_del_Abogado"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Estado_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Estado_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlEstado_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEstado_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstado_del_Abogado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstado_Estado_del_Abogado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEstado_del_AbogadoMultiple, varEstado_Estado_del_Abogado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEstado_del_Abogado"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Municipio_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Municipio_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlMunicipio_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMunicipio_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtAdvanceMunicipio_del_Abogado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMunicipio_Municipio_del_Abogado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMunicipio_del_AbogadoMultiple, varMunicipio_Municipio_del_Abogado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMunicipio_del_Abogado"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Colonia_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Colonia_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlColonia_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceColonia_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtAdvanceColonia_del_Abogado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varColonia_Colonia_del_Abogado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceColonia_del_AbogadoMultiple, varColonia_Colonia_del_Abogado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceColonia_del_Abogado"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Codigo_Postal_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromCodigo_Postal_del_Abogado, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromCodigo_Postal_del_Abogado" })
+                    @Html.ValidationMessageFor(m => m.FromCodigo_Postal_del_Abogado)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToCodigo_Postal_del_Abogado, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToCodigo_Postal_del_Abogado", @data_min = "txtAdvanceFromCodigo_Postal_del_Abogado" })
+                    @Html.ValidationMessageFor(m => m.ToCodigo_Postal_del_Abogado)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Calle_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Calle_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlCalle_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.Calle_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtCalle_del_Abogado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Numero_Exterior_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_Exterior_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlNumero_Exterior_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Exterior_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtNumero_Exterior_del_Abogado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Numero_Interior_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_Interior_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlNumero_Interior_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Interior_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtNumero_Interior_del_Abogado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Telefono_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Telefono_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlTelefono_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.Telefono_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtTelefono_del_Abogado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Celular_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Celular_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlCelular_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.Celular_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtCelular_del_Abogado" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Correo_Electronico_del_Abogado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Correo_Electronico_del_AbogadoFilter, filters, new { @class = "form-control", @id = "ddlCorreo_Electronico_del_AbogadoFilter" })
+                    @Html.TextBoxFor(m => m.Correo_Electronico_del_Abogado, new { @class = "form-control", @type = "text", @id = "txtCorreo_Electronico_del_Abogado" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_del_Abogado_Imputado_MPI/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromConsecutivo").val() != "" || $("#txtAdvanceToConsecutivo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPIConsecutivoFrom = $("#txtAdvanceFromConsecutivo").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPIConsecutivoTo = $("#txtAdvanceToConsecutivo").val();
+        }
+        advanceSearch.Nombre_Completo_del_AbogadoSearchType = 0;
+        if ($('#ddlAdvanceNombre_Completo_del_Abogado').val().length > 0 || $("#txtAdvanceNombre_Completo_del_Abogado").val() == "") {
+
+
+            if (isDetalle_del_Abogado_Imputado_MPITextSearch) {
+                advanceSearch.Nombre_Completo_del_AbogadoName = $("#txtAdvanceNombre_Completo_del_Abogado").val();
+                advanceSearch.Nombre_Completo_del_AbogadoNameSearchType = $("#ddlAdvanceNombre_Completo_del_Abogado").val();
+                advanceSearch.Nombre_Completo_del_AbogadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Nombre_Completo_del_AbogadoToSearch = $("#ddlAdvanceNombre_Completo_del_Abogado").val();
+                advanceSearch.Nombre_Completo_del_AbogadoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNombre_del_Abogado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPINombre_del_Abogado = $("#txtAdvanceNombre_del_Abogado").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPINombre_del_AbogadoSearchType = $("#ddlAdvanceNombre_del_AbogadoFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Paterno_del_Abogado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPIApellido_Paterno_del_Abogado = $("#txtAdvanceApellido_Paterno_del_Abogado").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPIApellido_Paterno_del_AbogadoSearchType = $("#ddlAdvanceApellido_Paterno_del_AbogadoFilter").val();
+        }
+        if ($("#txtAdvanceApellido_Materno_del_Abogado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPIApellido_Materno_del_Abogado = $("#txtAdvanceApellido_Materno_del_Abogado").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPIApellido_Materno_del_AbogadoSearchType = $("#ddlAdvanceApellido_Materno_del_AbogadoFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Nacimiento_del_Abogado").val() != "" || $("#txtAdvanceToFecha_de_Nacimiento_del_Abogado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPIFecha_de_Nacimiento_del_AbogadoFrom = $("#txtAdvanceFromFecha_de_Nacimiento_del_Abogado").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPIFecha_de_Nacimiento_del_AbogadoTo = $("#txtAdvanceToFecha_de_Nacimiento_del_Abogado").val();
+        }
+        if ($("#txtAdvanceFromEdad_del_Abogado").val() != "" || $("#txtAdvanceToEdad_del_Abogado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPIEdad_del_AbogadoFrom = $("#txtAdvanceFromEdad_del_Abogado").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPIEdad_del_AbogadoTo = $("#txtAdvanceToEdad_del_Abogado").val();
+        }
+        advanceSearch.Sexo_del_AbogadoSearchType = 0;
+        if ($('#ddlAdvanceSexo_del_Abogado').val().length > 0 || $("#txtAdvanceSexo_del_Abogado").val() == "") {
+
+
+            if (isDetalle_del_Abogado_Imputado_MPITextSearch) {
+                advanceSearch.Sexo_del_AbogadoName = $("#txtAdvanceSexo_del_Abogado").val();
+                advanceSearch.Sexo_del_AbogadoNameSearchType = $("#ddlAdvanceSexo_del_Abogado").val();
+                advanceSearch.Sexo_del_AbogadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Sexo_del_AbogadoToSearch = $("#ddlAdvanceSexo_del_Abogado").val();
+                advanceSearch.Sexo_del_AbogadoSearchType = 2;
+            }
+        }
+        advanceSearch.Estado_Civil_del_AbogadoSearchType = 0;
+        if ($('#ddlAdvanceEstado_Civil_del_Abogado').val().length > 0 || $("#txtAdvanceEstado_Civil_del_Abogado").val() == "") {
+
+
+            if (isDetalle_del_Abogado_Imputado_MPITextSearch) {
+                advanceSearch.Estado_Civil_del_AbogadoName = $("#txtAdvanceEstado_Civil_del_Abogado").val();
+                advanceSearch.Estado_Civil_del_AbogadoNameSearchType = $("#ddlAdvanceEstado_Civil_del_Abogado").val();
+                advanceSearch.Estado_Civil_del_AbogadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Estado_Civil_del_AbogadoToSearch = $("#ddlAdvanceEstado_Civil_del_Abogado").val();
+                advanceSearch.Estado_Civil_del_AbogadoSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_de_Identificacion_del_AbogadoSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Identificacion_del_Abogado').val().length > 0 || $("#txtAdvanceTipo_de_Identificacion_del_Abogado").val() == "") {
+
+
+            if (isDetalle_del_Abogado_Imputado_MPITextSearch) {
+                advanceSearch.Tipo_de_Identificacion_del_AbogadoName = $("#txtAdvanceTipo_de_Identificacion_del_Abogado").val();
+                advanceSearch.Tipo_de_Identificacion_del_AbogadoNameSearchType = $("#ddlAdvanceTipo_de_Identificacion_del_Abogado").val();
+                advanceSearch.Tipo_de_Identificacion_del_AbogadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_Identificacion_del_AbogadoToSearch = $("#ddlAdvanceTipo_de_Identificacion_del_Abogado").val();
+                advanceSearch.Tipo_de_Identificacion_del_AbogadoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNumero_de_Identificacion_del_Abogado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPINumero_de_Identificacion_del_Abogado = $("#txtAdvanceNumero_de_Identificacion_del_Abogado").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPINumero_de_Identificacion_del_AbogadoSearchType = $("#ddlAdvanceNumero_de_Identificacion_del_AbogadoFilter").val();
+        }
+        advanceSearch.Nacionalidad_del_AbogadoSearchType = 0;
+        if ($('#ddlAdvanceNacionalidad_del_Abogado').val().length > 0 || $("#txtAdvanceNacionalidad_del_Abogado").val() == "") {
+
+
+            if (isDetalle_del_Abogado_Imputado_MPITextSearch) {
+                advanceSearch.Nacionalidad_del_AbogadoName = $("#txtAdvanceNacionalidad_del_Abogado").val();
+                advanceSearch.Nacionalidad_del_AbogadoNameSearchType = $("#ddlAdvanceNacionalidad_del_Abogado").val();
+                advanceSearch.Nacionalidad_del_AbogadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Nacionalidad_del_AbogadoToSearch = $("#ddlAdvanceNacionalidad_del_Abogado").val();
+                advanceSearch.Nacionalidad_del_AbogadoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceCedula_Profesional_del_Abogado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPICedula_Profesional_del_Abogado = $("#txtAdvanceCedula_Profesional_del_Abogado").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPICedula_Profesional_del_AbogadoSearchType = $("#ddlAdvanceCedula_Profesional_del_AbogadoFilter").val();
+        }
+        advanceSearch.Pais_del_AbogadoSearchType = 0;
+        if ($('#ddlAdvancePais_del_Abogado').val().length > 0 || $("#txtAdvancePais_del_Abogado").val() == "") {
+
+
+            if (isDetalle_del_Abogado_Imputado_MPITextSearch) {
+                advanceSearch.Pais_del_AbogadoName = $("#txtAdvancePais_del_Abogado").val();
+                advanceSearch.Pais_del_AbogadoNameSearchType = $("#ddlAdvancePais_del_Abogado").val();
+                advanceSearch.Pais_del_AbogadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Pais_del_AbogadoToSearch = $("#ddlAdvancePais_del_Abogado").val();
+                advanceSearch.Pais_del_AbogadoSearchType = 2;
+            }
+        }
+        advanceSearch.Estado_del_AbogadoSearchType = 0;
+        if ($('#ddlAdvanceEstado_del_Abogado').val().length > 0 || $("#txtAdvanceEstado_del_Abogado").val() == "") {
+
+
+            if (isDetalle_del_Abogado_Imputado_MPITextSearch) {
+                advanceSearch.Estado_del_AbogadoName = $("#txtAdvanceEstado_del_Abogado").val();
+                advanceSearch.Estado_del_AbogadoNameSearchType = $("#ddlAdvanceEstado_del_Abogado").val();
+                advanceSearch.Estado_del_AbogadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Estado_del_AbogadoToSearch = $("#ddlAdvanceEstado_del_Abogado").val();
+                advanceSearch.Estado_del_AbogadoSearchType = 2;
+            }
+        }
+        advanceSearch.Municipio_del_AbogadoSearchType = 0;
+        if ($('#ddlAdvanceMunicipio_del_Abogado').val().length > 0 || $("#txtAdvanceMunicipio_del_Abogado").val() == "") {
+
+
+            if (isDetalle_del_Abogado_Imputado_MPITextSearch) {
+                advanceSearch.Municipio_del_AbogadoName = $("#txtAdvanceMunicipio_del_Abogado").val();
+                advanceSearch.Municipio_del_AbogadoNameSearchType = $("#ddlAdvanceMunicipio_del_Abogado").val();
+                advanceSearch.Municipio_del_AbogadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Municipio_del_AbogadoToSearch = $("#ddlAdvanceMunicipio_del_Abogado").val();
+                advanceSearch.Municipio_del_AbogadoSearchType = 2;
+            }
+        }
+        advanceSearch.Colonia_del_AbogadoSearchType = 0;
+        if ($('#ddlAdvanceColonia_del_Abogado').val().length > 0 || $("#txtAdvanceColonia_del_Abogado").val() == "") {
+
+
+            if (isDetalle_del_Abogado_Imputado_MPITextSearch) {
+                advanceSearch.Colonia_del_AbogadoName = $("#txtAdvanceColonia_del_Abogado").val();
+                advanceSearch.Colonia_del_AbogadoNameSearchType = $("#ddlAdvanceColonia_del_Abogado").val();
+                advanceSearch.Colonia_del_AbogadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Colonia_del_AbogadoToSearch = $("#ddlAdvanceColonia_del_Abogado").val();
+                advanceSearch.Colonia_del_AbogadoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromCodigo_Postal_del_Abogado").val() != "" || $("#txtAdvanceToCodigo_Postal_del_Abogado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPICodigo_Postal_del_AbogadoFrom = $("#txtAdvanceFromCodigo_Postal_del_Abogado").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPICodigo_Postal_del_AbogadoTo = $("#txtAdvanceToCodigo_Postal_del_Abogado").val();
+        }
+        if ($("#txtAdvanceCalle_del_Abogado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPICalle_del_Abogado = $("#txtAdvanceCalle_del_Abogado").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPICalle_del_AbogadoSearchType = $("#ddlAdvanceCalle_del_AbogadoFilter").val();
+        }
+        if ($("#txtAdvanceNumero_Exterior_del_Abogado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPINumero_Exterior_del_Abogado = $("#txtAdvanceNumero_Exterior_del_Abogado").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPINumero_Exterior_del_AbogadoSearchType = $("#ddlAdvanceNumero_Exterior_del_AbogadoFilter").val();
+        }
+        if ($("#txtAdvanceNumero_Interior_del_Abogado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPINumero_Interior_del_Abogado = $("#txtAdvanceNumero_Interior_del_Abogado").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPINumero_Interior_del_AbogadoSearchType = $("#ddlAdvanceNumero_Interior_del_AbogadoFilter").val();
+        }
+        if ($("#txtAdvanceTelefono_del_Abogado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPITelefono_del_Abogado = $("#txtAdvanceTelefono_del_Abogado").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPITelefono_del_AbogadoSearchType = $("#ddlAdvanceTelefono_del_AbogadoFilter").val();
+        }
+        if ($("#txtAdvanceCelular_del_Abogado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPICelular_del_Abogado = $("#txtAdvanceCelular_del_Abogado").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPICelular_del_AbogadoSearchType = $("#ddlAdvanceCelular_del_AbogadoFilter").val();
+        }
+        if ($("#txtAdvanceCorreo_Electronico_del_Abogado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPICorreo_Electronico_del_Abogado = $("#txtAdvanceCorreo_Electronico_del_Abogado").val();
+            advanceSearch.Detalle_del_Abogado_Imputado_MPICorreo_Electronico_del_AbogadoSearchType = $("#ddlAdvanceCorreo_Electronico_del_AbogadoFilter").val();
+        }
+        if ($("#ddlAdvanceAceptar_Notificaciones").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_del_Abogado_Imputado_MPIAceptar_Notificaciones = $("#ddlAdvanceAceptar_Notificaciones").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblDetalle_del_Abogado_Imputado_MPI').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isDetalle_del_Abogado_Imputado_MPITextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceNombre_Completo_del_Abogado").keypress(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = true;
+            $("#ddlAdvanceNombre_Completo_del_Abogado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceNombre_Completo_del_Abogado").change(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = false;
+            $("#txtAdvanceNombre_Completo_del_Abogado").val('');
+        });
+        $("#txtAdvanceSexo_del_Abogado").keypress(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = true;
+            $("#ddlAdvanceSexo_del_Abogado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceSexo_del_Abogado").change(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = false;
+            $("#txtAdvanceSexo_del_Abogado").val('');
+        });
+        $("#txtAdvanceEstado_Civil_del_Abogado").keypress(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = true;
+            $("#ddlAdvanceEstado_Civil_del_Abogado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstado_Civil_del_Abogado").change(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = false;
+            $("#txtAdvanceEstado_Civil_del_Abogado").val('');
+        });
+        $("#txtAdvanceTipo_de_Identificacion_del_Abogado").keypress(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = true;
+            $("#ddlAdvanceTipo_de_Identificacion_del_Abogado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Identificacion_del_Abogado").change(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = false;
+            $("#txtAdvanceTipo_de_Identificacion_del_Abogado").val('');
+        });
+        $("#txtAdvanceNacionalidad_del_Abogado").keypress(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = true;
+            $("#ddlAdvanceNacionalidad_del_Abogado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceNacionalidad_del_Abogado").change(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = false;
+            $("#txtAdvanceNacionalidad_del_Abogado").val('');
+        });
+        $("#txtAdvancePais_del_Abogado").keypress(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = true;
+            $("#ddlAdvancePais_del_Abogado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePais_del_Abogado").change(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = false;
+            $("#txtAdvancePais_del_Abogado").val('');
+        });
+        $("#txtAdvanceEstado_del_Abogado").keypress(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = true;
+            $("#ddlAdvanceEstado_del_Abogado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstado_del_Abogado").change(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = false;
+            $("#txtAdvanceEstado_del_Abogado").val('');
+        });
+        $("#txtAdvanceMunicipio_del_Abogado").keypress(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = true;
+            $("#ddlAdvanceMunicipio_del_Abogado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMunicipio_del_Abogado").change(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = false;
+            $("#txtAdvanceMunicipio_del_Abogado").val('');
+        });
+        $("#txtAdvanceColonia_del_Abogado").keypress(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = true;
+            $("#ddlAdvanceColonia_del_Abogado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceColonia_del_Abogado").change(function () {
+            isDetalle_del_Abogado_Imputado_MPITextSearch = false;
+            $("#txtAdvanceColonia_del_Abogado").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

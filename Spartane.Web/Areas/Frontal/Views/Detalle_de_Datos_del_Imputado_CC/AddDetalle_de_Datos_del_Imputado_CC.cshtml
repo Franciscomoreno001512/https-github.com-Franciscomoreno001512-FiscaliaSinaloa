@@ -1,0 +1,1192 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Datos_del_Imputado_CCModel
+@{
+
+    string Fecha_de_Nacimiento = "";
+    if (Model.Fecha_de_Nacimiento == "")
+    { Model.Fecha_de_Nacimiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+    List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+    List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+    List<SelectListItem> varEstado_Civil_Estado_Civil = null;
+    if (ViewBag.Estado_Civils_Estado_Civil != null)
+    { varEstado_Civil_Estado_Civil = (List<SelectListItem>)ViewBag.Estado_Civils_Estado_Civil; }
+    List<SelectListItem> varTipo_de_Inimputabilidad_Tipo_de_Inimputabilidad = null;
+    if (ViewBag.Tipo_de_Inimputabilidads_Tipo_de_Inimputabilidad != null)
+    { varTipo_de_Inimputabilidad_Tipo_de_Inimputabilidad = (List<SelectListItem>)ViewBag.Tipo_de_Inimputabilidads_Tipo_de_Inimputabilidad; }
+    List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+    List<SelectListItem> varNacionalidad_Nacionalidad = null;
+    if (ViewBag.Nacionalidads_Nacionalidad != null)
+    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
+    List<SelectListItem> varOcupacion_Ocupacion = null;
+    if (ViewBag.Ocupacions_Ocupacion != null)
+    { varOcupacion_Ocupacion = (List<SelectListItem>)ViewBag.Ocupacions_Ocupacion; }
+    List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+    List<SelectListItem> varPais_Pais_de_Origen = null;
+    if (ViewBag.Paiss_Pais_de_Origen != null)
+    { varPais_Pais_de_Origen = (List<SelectListItem>)ViewBag.Paiss_Pais_de_Origen; }
+    List<SelectListItem> varGenero_Genero = null;
+    if (ViewBag.Generos_Genero != null)
+    { varGenero_Genero = (List<SelectListItem>)ViewBag.Generos_Genero; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion; }
+
+    Permission permissionDetalle_de_Galeria_de_Detenidos = ViewBag.PermissionDetalle_de_Galeria_de_Detenidos;
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Datos del Imputado CC
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_Datos_del_Imputado_CCRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_Datos_del_Imputado_CCPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Datos del Imputado CC
+								<button onclick="Detalle_de_Datos_del_Imputado_CCGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Datos_del_Imputado_CCBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_Datos_del_Imputado_CCResources.Detalle_de_Datos_del_Imputado_CC</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_Datos_del_Imputado_CCDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_Datos_del_Imputado_CCPropertyBusinessModal" id="Detalle_de_Datos_del_Imputado_CCPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_Datos_del_Imputado_CCBusinessRule-form" onclick="Detalle_de_Datos_del_Imputado_CCGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Datos_del_Imputado_CCPropertyModal" id="Detalle_de_Datos_del_Imputado_CCPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Datos_del_Imputado_CCBusinessRuleModal" id="Detalle_de_Datos_del_Imputado_CCBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Datos_del_Imputado_CCAddBusinessRuleModal" id="Detalle_de_Datos_del_Imputado_CCAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				                    <div aria-hidden="true" class="modal fade in AddDetalle_de_Galeria_de_DetenidosModal" id="AddDetalle_de_Galeria_de_Detenidos-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
+
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Datos_del_Imputado_CC", FormMethod.Post, new { id = "CreateDetalle_de_Datos_del_Imputado_CC", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_Datos_del_Imputado_CCCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="265060" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Clave">
+                                    <label class="form-control" for="Detalle_de_Datos_del_Imputado_CCClave" id="Detalle_de_Datos_del_Imputado_CCClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divA_Quien_Resulte_Responsable">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.A_Quien_Resulte_Responsable</label>
+                                <div class="col-sm-8" data-field-id="A_Quien_Resulte_Responsable" data-attribute="265062" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.A_Quien_Resulte_Responsable">
+                                    @Html.CheckBoxFor(m => m.A_Quien_Resulte_Responsable, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divAlias">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Alias</label>
+                                <div class="col-sm-8" data-field-id="Alias" data-attribute="265063" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Alias">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCAlias" name="Detalle_de_Datos_del_Imputado_CCAlias" type="text" value="@Model.Alias">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Materno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Apellido_Materno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Materno" data-attribute="265064" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Apellido_Materno">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCApellido_Materno" name="Detalle_de_Datos_del_Imputado_CCApellido_Materno" type="text" value="@Model.Apellido_Materno">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Paterno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Apellido_Paterno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Paterno" data-attribute="265065" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Apellido_Paterno">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCApellido_Paterno" name="Detalle_de_Datos_del_Imputado_CCApellido_Paterno" type="text" value="@Model.Apellido_Paterno">
+                                </div>
+                            </div>
+<div class="form-group" id="divCalle">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Calle</label>
+                                <div class="col-sm-8" data-field-id="Calle" data-attribute="265066" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Calle">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCCalle" name="Detalle_de_Datos_del_Imputado_CCCalle" type="text" value="@Model.Calle">
+                                </div>
+                            </div>
+<div class="form-group" id="divCelular">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Celular</label>
+                                <div class="col-sm-8" data-field-id="Celular" data-attribute="265067" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Celular">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCCelular" name="Detalle_de_Datos_del_Imputado_CCCelular" type="text" value="@Model.Celular">
+                                </div>
+                            </div>
+<div class="form-group" id="divCodigo_Postal">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Codigo_Postal</label>
+	<div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="265068" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Codigo_Postal">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_del_Imputado_CCCodigo_Postal" name="Detalle_de_Datos_del_Imputado_CCCodigo_Postal" type="text" value="@Model.Codigo_Postal">
+	</div>
+</div>
+<div class="form-group" id="divColonia">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Colonia</label>
+	<div class="col-sm-8" data-field-id="Colonia" data-attribute="265069" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Colonia">
+		<select class="form-control" data-val="true" data-val-number="The field Colonia must be a number." data-val-required="The Colonia field is required." id="Detalle_de_Datos_del_Imputado_CCColonia" name="Detalle_de_Datos_del_Imputado_CCColonia">
+			<option value=""></option>
+			@if (varColonia_Colonia != null){ 
+				foreach (var itemColonia in varColonia_Colonia)
+				{
+					if (itemColonia.Value == Convert.ToString(Model.Colonia))
+					{
+						<option value="@itemColonia.Value" selected>@itemColonia.Text</option>
+					}
+					else
+					{
+						<option value="@itemColonia.Value">@itemColonia.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCorreo_Electronico">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Correo_Electronico</label>
+                                <div class="col-sm-8" data-field-id="Correo_Electronico" data-attribute="265070" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Correo_Electronico">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCCorreo_Electronico" name="Detalle_de_Datos_del_Imputado_CCCorreo_Electronico" type="text" value="@Model.Correo_Electronico">
+                                </div>
+                            </div>
+<div class="form-group" id="divEdad">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Edad</label>
+	<div class="col-sm-8" data-field-id="Edad" data-attribute="265071" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Edad">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_del_Imputado_CCEdad" name="Detalle_de_Datos_del_Imputado_CCEdad" type="text" value="@Model.Edad">
+	</div>
+</div>
+<div class="form-group" id="divEntre_calle">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Entre_calle</label>
+                                <div class="col-sm-8" data-field-id="Entre_calle" data-attribute="265072" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Entre_calle">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCEntre_calle" name="Detalle_de_Datos_del_Imputado_CCEntre_calle" type="text" value="@Model.Entre_calle">
+                                </div>
+                            </div>
+<div class="form-group" id="divEscolaridad">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Escolaridad</label>
+	<div class="col-sm-8" data-field-id="Escolaridad" data-attribute="265073" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Escolaridad">
+		<input class="form-control inputNumber" id="Detalle_de_Datos_del_Imputado_CCEscolaridad" name="Detalle_de_Datos_del_Imputado_CCEscolaridad" type="text" value="@Model.Escolaridad">
+	</div>
+</div>
+<div class="form-group" id="divEstado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Estado</label>
+	<div class="col-sm-8" data-field-id="Estado" data-attribute="265074" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Estado">
+		<select class="form-control" data-val="true" data-val-number="The field Estado must be a number." data-val-required="The Estado field is required." id="Detalle_de_Datos_del_Imputado_CCEstado" name="Detalle_de_Datos_del_Imputado_CCEstado">
+			<option value=""></option>
+			@if (varEstado_Estado != null){ 
+				foreach (var itemEstado in varEstado_Estado)
+				{
+					if (itemEstado.Value == Convert.ToString(Model.Estado))
+					{
+						<option value="@itemEstado.Value" selected>@itemEstado.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado.Value">@itemEstado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado_Civil">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Estado_Civil</label>
+	<div class="col-sm-8" data-field-id="Estado_Civil" data-attribute="265075" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Estado_Civil">
+		<select class="form-control" data-val="true" data-val-number="The field Estado Civil must be a number." data-val-required="The Estado Civil field is required." id="Detalle_de_Datos_del_Imputado_CCEstado_Civil" name="Detalle_de_Datos_del_Imputado_CCEstado_Civil">
+			<option value=""></option>
+			@if (varEstado_Civil_Estado_Civil != null){ 
+				foreach (var itemEstado_Civil in varEstado_Civil_Estado_Civil)
+				{
+					if (itemEstado_Civil.Value == Convert.ToString(Model.Estado_Civil))
+					{
+						<option value="@itemEstado_Civil.Value" selected>@itemEstado_Civil.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_Civil.Value">@itemEstado_Civil.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstension">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Estension</label>
+                                <div class="col-sm-8" data-field-id="Estension" data-attribute="265076" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Estension">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCEstension" name="Detalle_de_Datos_del_Imputado_CCEstension" type="text" value="@Model.Estension">
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Nacimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Fecha_de_Nacimiento</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Nacimiento" data-attribute="265077" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Fecha_de_Nacimiento">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Datos_del_Imputado_CCFecha_de_Nacimiento" readonly="readonly" name="Detalle_de_Datos_del_Imputado_CCFecha_de_Nacimiento" type="text" value="@Model.Fecha_de_Nacimiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div id ="divDetalle_de_Galeria_de_Detenidos" >
+	<div class="ibox-title">
+		<h5>@Resources.Detalle_de_Galeria_de_DetenidosResources.Detalle_de_Galeria_de_Detenidos</h5>
+		<div class="ibox-tools">
+		</div>
+	</div>
+	<div class="ibox-content">
+		<div class="">
+			<a onclick="Detalle_de_Galeria_de_DetenidosfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="btn btn-primary @( !permissionDetalle_de_Galeria_de_Detenidos.New || ViewBag.Consult ? "disabled" : "")">
+			<i class="glyphicon glyphicon-plus"></i>
+			</a>
+			<button onclick="Detalle_de_Datos_del_Imputado_CCGetBusinessRule('', 'Al Agregar Row', '1')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Datos_del_Imputado_CCBusinessRule-form">
+				<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+					<i class="fa fa-cogs fa-spin"></i>
+				</a>
+			</button>
+			<a onclick="Detalle_de_Galeria_de_DetenidosfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_de_Galeria_de_Detenidos-form" data-backdrop="static" data-keyboard="false" class="btn btn-primary @( !permissionDetalle_de_Galeria_de_Detenidos.New || ViewBag.Consult ? "disabled" : "")">
+			<i class="glyphicon glyphicon-new-window"></i>
+			</a>
+		</div>
+
+		<br />
+
+		<div style='overflow-x: auto;'>
+			<table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_de_Galeria_de_DetenidosGrid">
+				<thead>
+					<tr>
+						<th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+	
+
+                                                <th class="NombreHeader"><span>
+<button type="button" data-attribute="265101" data-field-id="Detalle_de_Galeria_de_DetenidosNombre" data-field-name="@Resources.Detalle_de_Galeria_de_DetenidosResources.Nombre" data-toggle="modal" data-target="#Detalle_de_Datos_del_Imputado_CCBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Galeria_de_DetenidosResources.Nombre">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Galeria_de_DetenidosResources.Nombre</span></th>
+                                                <th class="ArchivoHeader"><span>
+<button type="button" data-attribute="265102" data-field-id="Detalle_de_Galeria_de_DetenidosArchivo" data-field-name="@Resources.Detalle_de_Galeria_de_DetenidosResources.Archivo" data-toggle="modal" data-target="#Detalle_de_Datos_del_Imputado_CCBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Galeria_de_DetenidosResources.Archivo">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>
+@Resources.Detalle_de_Galeria_de_DetenidosResources.Archivo</span></th>
+
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="form-group" id="divInimputable">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Inimputable</label>
+                                <div class="col-sm-8" data-field-id="Inimputable" data-attribute="265079" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Inimputable">
+                                    @Html.CheckBoxFor(m => m.Inimputable, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divTipo_de_Inimputabilidad">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Tipo_de_Inimputabilidad</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Inimputabilidad" data-attribute="265080" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Tipo_de_Inimputabilidad">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Inimputabilidad must be a number." data-val-required="The Tipo de Inimputabilidad field is required." id="Detalle_de_Datos_del_Imputado_CCTipo_de_Inimputabilidad" name="Detalle_de_Datos_del_Imputado_CCTipo_de_Inimputabilidad">
+			<option value=""></option>
+			@if (varTipo_de_Inimputabilidad_Tipo_de_Inimputabilidad != null){ 
+				foreach (var itemTipo_de_Inimputabilidad in varTipo_de_Inimputabilidad_Tipo_de_Inimputabilidad)
+				{
+					if (itemTipo_de_Inimputabilidad.Value == Convert.ToString(Model.Tipo_de_Inimputabilidad))
+					{
+						<option value="@itemTipo_de_Inimputabilidad.Value" selected>@itemTipo_de_Inimputabilidad.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Inimputabilidad.Value">@itemTipo_de_Inimputabilidad.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEspecifique">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Especifique</label>
+                                <div class="col-sm-8" data-field-id="Especifique" data-attribute="265081" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Especifique">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCEspecifique" name="Detalle_de_Datos_del_Imputado_CCEspecifique" type="text" value="@Model.Especifique">
+                                </div>
+                            </div>
+<div class="form-group" id="divMunicipio">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Municipio</label>
+	<div class="col-sm-8" data-field-id="Municipio" data-attribute="265082" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Municipio">
+		<select class="form-control" data-val="true" data-val-number="The field Municipio must be a number." data-val-required="The Municipio field is required." id="Detalle_de_Datos_del_Imputado_CCMunicipio" name="Detalle_de_Datos_del_Imputado_CCMunicipio">
+			<option value=""></option>
+			@if (varMunicipio_Municipio != null){ 
+				foreach (var itemMunicipio in varMunicipio_Municipio)
+				{
+					if (itemMunicipio.Value == Convert.ToString(Model.Municipio))
+					{
+						<option value="@itemMunicipio.Value" selected>@itemMunicipio.Text</option>
+					}
+					else
+					{
+						<option value="@itemMunicipio.Value">@itemMunicipio.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNacionalidad">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Nacionalidad</label>
+	<div class="col-sm-8" data-field-id="Nacionalidad" data-attribute="265083" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Nacionalidad">
+		<select class="form-control" data-val="true" data-val-number="The field Nacionalidad must be a number." data-val-required="The Nacionalidad field is required." id="Detalle_de_Datos_del_Imputado_CCNacionalidad" name="Detalle_de_Datos_del_Imputado_CCNacionalidad">
+			<option value=""></option>
+			@if (varNacionalidad_Nacionalidad != null){ 
+				foreach (var itemNacionalidad in varNacionalidad_Nacionalidad)
+				{
+					if (itemNacionalidad.Value == Convert.ToString(Model.Nacionalidad))
+					{
+						<option value="@itemNacionalidad.Value" selected>@itemNacionalidad.Text</option>
+					}
+					else
+					{
+						<option value="@itemNacionalidad.Value">@itemNacionalidad.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNombre">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Nombre</label>
+                                <div class="col-sm-8" data-field-id="Nombre" data-attribute="265084" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Nombre">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCNombre" name="Detalle_de_Datos_del_Imputado_CCNombre" type="text" value="@Model.Nombre">
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre_Completo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Nombre_Completo</label>
+                                <div class="col-sm-8" data-field-id="Nombre_Completo" data-attribute="265085" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Nombre_Completo">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCNombre_Completo" name="Detalle_de_Datos_del_Imputado_CCNombre_Completo" type="text" value="@Model.Nombre_Completo">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_de_Identificacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Numero_de_Identificacion</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Identificacion" data-attribute="265086" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Numero_de_Identificacion">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCNumero_de_Identificacion" name="Detalle_de_Datos_del_Imputado_CCNumero_de_Identificacion" type="text" value="@Model.Numero_de_Identificacion">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Exterior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Numero_Exterior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="265087" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Numero_Exterior">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCNumero_Exterior" name="Detalle_de_Datos_del_Imputado_CCNumero_Exterior" type="text" value="@Model.Numero_Exterior">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Interior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Numero_Interior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior" data-attribute="265088" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Numero_Interior">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCNumero_Interior" name="Detalle_de_Datos_del_Imputado_CCNumero_Interior" type="text" value="@Model.Numero_Interior">
+                                </div>
+                            </div>
+<div class="form-group" id="divOcupacion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Ocupacion</label>
+	<div class="col-sm-8" data-field-id="Ocupacion" data-attribute="265089" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Ocupacion">
+		<select class="form-control" data-val="true" data-val-number="The field Ocupación must be a number." data-val-required="The Ocupación field is required." id="Detalle_de_Datos_del_Imputado_CCOcupacion" name="Detalle_de_Datos_del_Imputado_CCOcupacion">
+			<option value=""></option>
+			@if (varOcupacion_Ocupacion != null){ 
+				foreach (var itemOcupacion in varOcupacion_Ocupacion)
+				{
+					if (itemOcupacion.Value == Convert.ToString(Model.Ocupacion))
+					{
+						<option value="@itemOcupacion.Value" selected>@itemOcupacion.Text</option>
+					}
+					else
+					{
+						<option value="@itemOcupacion.Value">@itemOcupacion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divOriginario_de">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Originario_de</label>
+                                <div class="col-sm-8" data-field-id="Originario_de" data-attribute="265090" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Originario_de">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCOriginario_de" name="Detalle_de_Datos_del_Imputado_CCOriginario_de" type="text" value="@Model.Originario_de">
+                                </div>
+                            </div>
+<div class="form-group" id="divPais">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Pais</label>
+	<div class="col-sm-8" data-field-id="Pais" data-attribute="265091" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Pais">
+		<select class="form-control" data-val="true" data-val-number="The field País must be a number." data-val-required="The País field is required." id="Detalle_de_Datos_del_Imputado_CCPais" name="Detalle_de_Datos_del_Imputado_CCPais">
+			<option value=""></option>
+			@if (varPais_Pais != null){ 
+				foreach (var itemPais in varPais_Pais)
+				{
+					if (itemPais.Value == Convert.ToString(Model.Pais))
+					{
+						<option value="@itemPais.Value" selected>@itemPais.Text</option>
+					}
+					else
+					{
+						<option value="@itemPais.Value">@itemPais.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divPais_de_Origen">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Pais_de_Origen</label>
+	<div class="col-sm-8" data-field-id="Pais_de_Origen" data-attribute="265092" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Pais_de_Origen">
+		<select class="form-control" data-val="true" data-val-number="The field País de Origen must be a number." data-val-required="The País de Origen field is required." id="Detalle_de_Datos_del_Imputado_CCPais_de_Origen" name="Detalle_de_Datos_del_Imputado_CCPais_de_Origen">
+			<option value=""></option>
+			@if (varPais_Pais_de_Origen != null){ 
+				foreach (var itemPais_de_Origen in varPais_Pais_de_Origen)
+				{
+					if (itemPais_de_Origen.Value == Convert.ToString(Model.Pais_de_Origen))
+					{
+						<option value="@itemPais_de_Origen.Value" selected>@itemPais_de_Origen.Text</option>
+					}
+					else
+					{
+						<option value="@itemPais_de_Origen.Value">@itemPais_de_Origen.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divProteccion_de_datos">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Proteccion_de_datos</label>
+                                <div class="col-sm-8" data-field-id="Proteccion_de_datos" data-attribute="265093" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Proteccion_de_datos">
+                                    @Html.CheckBoxFor(m => m.Proteccion_de_datos, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divReferencia_de_domicilio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Referencia_de_domicilio</label>
+                                <div class="col-sm-8" data-field-id="Referencia_de_domicilio" data-attribute="265094" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Referencia_de_domicilio">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCReferencia_de_domicilio" name="Detalle_de_Datos_del_Imputado_CCReferencia_de_domicilio" type="text" value="@Model.Referencia_de_domicilio">
+                                </div>
+                            </div>
+<div class="form-group" id="divGenero">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Genero</label>
+	<div class="col-sm-8" data-field-id="Genero" data-attribute="265095" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Genero">
+		<select class="form-control" data-val="true" data-val-number="The field Género must be a number." data-val-required="The Género field is required." id="Detalle_de_Datos_del_Imputado_CCGenero" name="Detalle_de_Datos_del_Imputado_CCGenero">
+			<option value=""></option>
+			@if (varGenero_Genero != null){ 
+				foreach (var itemGenero in varGenero_Genero)
+				{
+					if (itemGenero.Value == Convert.ToString(Model.Genero))
+					{
+						<option value="@itemGenero.Value" selected>@itemGenero.Text</option>
+					}
+					else
+					{
+						<option value="@itemGenero.Value">@itemGenero.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divTelefono">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Telefono</label>
+                                <div class="col-sm-8" data-field-id="Telefono" data-attribute="265096" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Telefono">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCTelefono" name="Detalle_de_Datos_del_Imputado_CCTelefono" type="text" value="@Model.Telefono">
+                                </div>
+                            </div>
+<div class="form-group" id="divTipo_de_Identificacion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Tipo_de_Identificacion</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Identificacion" data-attribute="265097" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Tipo_de_Identificacion">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Identificación must be a number." data-val-required="The Tipo de Identificación field is required." id="Detalle_de_Datos_del_Imputado_CCTipo_de_Identificacion" name="Detalle_de_Datos_del_Imputado_CCTipo_de_Identificacion">
+			<option value=""></option>
+			@if (varTipo_de_Identificacion_Tipo_de_Identificacion != null){ 
+				foreach (var itemTipo_de_Identificacion in varTipo_de_Identificacion_Tipo_de_Identificacion)
+				{
+					if (itemTipo_de_Identificacion.Value == Convert.ToString(Model.Tipo_de_Identificacion))
+					{
+						<option value="@itemTipo_de_Identificacion.Value" selected>@itemTipo_de_Identificacion.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Identificacion.Value">@itemTipo_de_Identificacion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divY_calle">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_del_Imputado_CCResources.Y_calle</label>
+                                <div class="col-sm-8" data-field-id="Y_calle" data-attribute="265098" data-field-name="@Resources.Detalle_de_Datos_del_Imputado_CCResources.Y_calle">
+                                    <input class="form-control" id="Detalle_de_Datos_del_Imputado_CCY_calle" name="Detalle_de_Datos_del_Imputado_CCY_calle" type="text" value="@Model.Y_calle">
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_Datos_del_Imputado_CCConfigureSave" name="Detalle_de_Datos_del_Imputado_CCConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_Datos_del_Imputado_CCConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_Datos_del_Imputado_CCGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Datos_del_Imputado_CCBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Datos_del_Imputado_CC.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Datos_del_Imputado_CCGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Datos_del_Imputado_CCCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Cadena_de_CustodiaCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_Datos_del_Imputado_CCRowElement = "Detalle_de_Datos_del_Imputado_CCPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_Datos_del_Imputado_CCRowElement + "')){ Detalle_de_Datos_del_Imputado_CCInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+            $('#Detalle_de_Datos_del_Imputado_CCFecha_de_Nacimiento').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+
+
+
+
+
+            if(Detalle_de_Galeria_de_DetenidosTable == null)
+            {
+                getDetalle_de_Galeria_de_DetenidosData();
+            }
+            else{
+                showDetalle_de_Galeria_de_DetenidosGrid(Detalle_de_Galeria_de_DetenidosTable.fnGetData());
+            }
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+        var Detalle_de_Galeria_de_DetenidosinsertRowCurrentIndex = -1;
+        var Detalle_de_Galeria_de_DetenidosDataDataTable;
+        function getDetalle_de_Galeria_de_DetenidosData() {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Datos_del_Imputado_CC/GetDetalle_de_Galeria_de_Detenidos")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    Detalle_de_Galeria_de_DetenidosDataDataTable = result.data;
+                    showDetalle_de_Galeria_de_DetenidosGrid(result.data);
+                    $('#Detalle_de_Galeria_de_DetenidosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_de_Galeria_de_DetenidosGrid .gridDatePicker').attr("readonly", "");
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+        function Detalle_de_Galeria_de_DetenidosGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+            var columnData = [];
+            var counter = 0;
+            var inputData = "<input type='text' class='fullWidth form-control' />";
+
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Nombre)).addClass('Nombre').attr('id', nameOfTable + 'Nombre' + rowIndex).attr('data-field', 'Nombre');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Archivo)).addClass('Archivo inputNumber').attr('id', nameOfTable + 'Archivo' + rowIndex).attr('data-field', 'Archivo');
+
+            return columnData;
+        }
+
+
+
+        function GetFileInfo(fileData, fileUploadData) {
+
+            var $div = $("<div>");
+            if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+                //<i class="fa fa-times-circle" id='removeFileAttachment'>
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+
+            } else if (fileUploadData != null) {
+                return $.parseHTML(GetFileUploader());
+            } else {
+                $div.append("<label>" + fileData.FileName + "</label>");
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+            }
+        }
+
+        var removedDetalle_de_Galeria_de_DetenidosData = [];
+        function Detalle_de_Galeria_de_DetenidosDeleteRow(rowIndex, row) {
+            var rowIndexTable = Detalle_de_Galeria_de_DetenidosTable.fnGetPosition($(row).parent().parent()[0]);
+            var permission = {            
+                 Delete: '@permissionDetalle_de_Galeria_de_Detenidos.Delete' == 'True'
+            };
+            if (!permission.Delete || isConsultMode)
+                return;            
+            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+              if (EjecutarValidacionesAlEliminarMRDetalle_de_Galeria_de_Detenidos('Detalle_de_Galeria_de_Detenidos_', '_' + rowIndex)) {
+                var prevData = Detalle_de_Galeria_de_DetenidosTable.fnGetData(rowIndexTable );
+                removedDetalle_de_Galeria_de_DetenidosData.push(prevData);
+                Detalle_de_Galeria_de_DetenidosTable.fnDeleteRow(rowIndexTable );
+				showDetalle_de_Galeria_de_DetenidosGrid(Detalle_de_Galeria_de_DetenidosTable.fnGetData());
+              }
+            }
+			initiateUIControls();
+        }
+
+        function Detalle_de_Galeria_de_DetenidosrowCreationGrid(row, data, index) {
+            var permission =  {            
+                 Edit: '@permissionDetalle_de_Galeria_de_Detenidos.Edit' == 'True',
+                 Delete: '@permissionDetalle_de_Galeria_de_Detenidos.Delete' == 'True'
+            };
+            setDetalle_de_Galeria_de_DetenidosValidation();
+            var Detalle_de_Galeria_de_DetenidosRowElement = "Detalle_de_Galeria_de_Detenidos_" + index.toString();
+            $(row).addClass(Detalle_de_Galeria_de_DetenidosRowElement);
+            var nameOfTable='Detalle_de_Galeria_de_Detenidos_';
+            var rowIndex = '_' + index;
+            Detalle_de_Galeria_de_DetenidosinsertRowCurrentIndex = index;
+
+            row.innerHTML = "";
+
+            if (data.IsInsertRow) {
+
+                if (row.childNodes.length != 0) {
+                    for (var i = 0; i < row.childNodes.length; i++) {
+                        row.childNodes[i].remove();
+                    }
+                }
+                var controls = GetInsertDetalle_de_Galeria_de_DetenidosRowControls(index);
+                var actionColInsert = $('<td>');
+
+                var abc = "if(dynamicFieldValidation('" + Detalle_de_Galeria_de_DetenidosRowElement + "')){ Detalle_de_Galeria_de_DetenidosInsertRow(" + index + "); }";
+                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
+                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_de_Galeria_de_DetenidosCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                actionColInsert.appendTo(row);
+
+                for (i = 0; i < controls.length; i++) {
+					var idHeader = $(controls[i]).data('field') + 'Header';
+					if($(controls[i]).length > 1){
+						idHeader = $($(controls[i])[1]).data('field') + 'Header';
+					}					
+
+					var classe = ($('#Detalle_de_Galeria_de_DetenidosGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_de_Galeria_de_DetenidosGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+				   
+					if ($(controls[i]).next().length > 0) {
+					    var div = $(controls[i]).next();
+					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+					}else
+					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+					
+                }
+                $('#Detalle_de_Galeria_de_DetenidosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('#Detalle_de_Galeria_de_DetenidosGrid .gridDatePicker').attr("readonly", "");
+                return;
+            }
+
+            var actionCol = $('<td>');
+			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_de_Galeria_de_DetenidosEditRow(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                edit = "";
+            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_de_Galeria_de_Detenidos-form' onclick='Detalle_de_Galeria_de_DetenidosEditRowPopup(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                editPopUp = "";
+            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_de_Galeria_de_DetenidosDeleteRow(" + index + ", this)'>";
+            if (!permission.Delete || isConsultMode)
+                eliminar = "";
+            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+			if ($('.Action' + 'Header').css('display') != 'none')
+				actionCol.appendTo(row);
+
+            if ($('.Nombre' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Nombre'+rowIndex+'">').text(data.Nombre).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Nombre'+rowIndex+'">').text(data.Nombre).appendTo(row);
+            if ($('.Archivo' + 'Header').css('display') != 'none')
+                $('<td class="dt-right"  id="'+nameOfTable+'Archivo'+rowIndex+'">').text(data.Archivo).appendTo(row);
+            else 
+                 $('<td class="dt-right" style="display:none;"  id="'+nameOfTable+'Archivo'+rowIndex+'">').text(data.Archivo).appendTo(row);
+
+        }
+
+        var Detalle_de_Galeria_de_DetenidosTable;
+        function showDetalle_de_Galeria_de_DetenidosGrid(dataSet) {
+            //removedDetalle_de_Galeria_de_DetenidosData = [];
+            Detalle_de_Galeria_de_DetenidosTable = $('#Detalle_de_Galeria_de_DetenidosGrid').dataTable({
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [
+                ],
+                "createdRow": Detalle_de_Galeria_de_DetenidosrowCreationGrid,
+                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+                data: dataSet,
+                "columns": [
+                    { "data": null, 'visible': true, "orderable": false },
+
+                    { "data": "Nombre", "orderable": false },
+                    { "data": "Archivo", "className": "dt-right", "orderable": false },
+
+                ],
+                "order": [[0, "asc"]],
+                "language": {
+                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                    "zeroRecords": "@Resources.Resources.NothingFound",
+                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                    "infoEmpty": "@Resources.Resources.NoRecords",
+                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                    "sSearch": "@Resources.Resources.Search",
+                    "paginate": {
+                        "previous": "@Resources.Resources.Previous",
+                        "next": "@Resources.Resources.Next"
+                    }
+                },
+				"bDestroy": true,
+                "fnDrawCallback": function (settings) {
+                    setDetalle_de_Galeria_de_DetenidosValidation();
+                }
+            }).on('init.dt', function (e, data) {
+                $('a').tooltip();
+            }).on('draw.dt', function () {
+                $('#Detalle_de_Galeria_de_DetenidosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+            });
+        }
+
+
+
+
+
+        var Detalle_de_Galeria_de_DetenidosData = [];
+        var Detalle_de_Galeria_de_DetenidosdeletedItem = [];
+        var Detalle_de_Galeria_de_DetenidosDataMain = [];
+        var Detalle_de_Galeria_de_DetenidosDataMainPages = [];
+        var Detalle_de_Galeria_de_DetenidosnewItemCount = 0;
+        var Detalle_de_Galeria_de_DetenidosmaxItemIndex = 0;
+        var Detalle_de_Galeria_de_DetenidosDataMainInitialized = false;
+
+        function SendDetalle_de_Galeria_de_Detenidos(callBack, ClaveId) {
+            Detalle_de_Galeria_de_DetenidosData = GetDetalle_de_Galeria_de_DetenidosFromDataTable();
+
+            if (Detalle_de_Galeria_de_DetenidosData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
+                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
+                    ClaveId = $("#ReferenceClave").val();                
+                if ($("#ReferenceClave").val() == '')
+                    $("#ReferenceClave").val('0');
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Datos_del_Imputado_CC/PostDetalle_de_Galeria_de_Detenidos?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
+                    type: 'POST',
+                    data: GetDetalle_de_Galeria_de_Detenidos(),
+                    async: true,
+                    success: function (result) {
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            } else {
+                //showNotification("@Resources.Resources.SaveSuccess", "success");
+                //callBack(ClaveId);
+            }
+            return true;
+        }
+
+        function GetAddDetalle_de_Galeria_de_DetenidosPopup(currentRowIndex, mode, id) {
+
+            $.ajax({
+                url: "@Url.Action("AddDetalle_de_Galeria_de_Detenidos", "Detalle_de_Galeria_de_Detenidos")",
+                type: "GET",
+                async: false,
+                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+                success: function (data) {
+                    $(".AddDetalle_de_Galeria_de_DetenidosModal").html(data);
+                },
+                error: function () {
+
+                }
+            });
+
+            @*$.get('@Url.Action("AddDetalle_de_Galeria_de_Detenidos", "Detalle_de_Galeria_de_Detenidos")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddDetalle_de_Galeria_de_DetenidosModal").html(data);
+            });*@
+        }
+
+        function ShowMessagePendingRowDetalle_de_Galeria_de_Detenidos()
+        {
+            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Galeria"))')
+	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Galeria"))', "warning");
+        }
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+
+
+
+
+        }
+		
+		function SendDetalle_de_Datos_del_Imputado_CCData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Datos_del_Imputado_CC").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Datos_del_Imputado_CC")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_Datos_del_Imputado_CCCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Datos_del_Imputado_CC/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+                            SendDetalle_de_Galeria_de_Detenidos(callBack, result);
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_Datos_del_Imputado_CCPropertyBag", "Detalle_de_Datos_del_Imputado_CC")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_Datos_del_Imputado_CCGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleFieldName').val(), ObjectId: '45222', Attribute: $('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleAttribute').val(), Screen: 'Detalle_de_Datos_del_Imputado_CC' }, function (data) {
+                $(".Detalle_de_Datos_del_Imputado_CCBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_Datos_del_Imputado_CCGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleFieldName').val(), ObjectId: '45222', Attribute: $('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleAttribute').val(), Screen: 'Detalle_de_Datos_del_Imputado_CC' }, function (data) {
+                $(".Detalle_de_Datos_del_Imputado_CCAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleFieldName').val(), ObjectId: '45222', Attribute: $('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleAttribute').val(), Screen: 'Detalle_de_Datos_del_Imputado_CC' }, function (data) {
+				$(".Detalle_de_Datos_del_Imputado_CCBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Datos_del_Imputado_CC/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Datos_del_Imputado_CC/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Datos_del_Imputado_CC/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_Datos_del_Imputado_CCConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_Datos_del_Imputado_CCConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Datos_del_Imputado_CC/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_Datos_del_Imputado_CCConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Datos_del_Imputado_CC/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Datos_del_Imputado_CC' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Datos_del_Imputado_CC' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_Datos_del_Imputado_CCConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_Datos_del_Imputado_CCConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Datos_del_Imputado_CC').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_Datos_del_Imputado_CCBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

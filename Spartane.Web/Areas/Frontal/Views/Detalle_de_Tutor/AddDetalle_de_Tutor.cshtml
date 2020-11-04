@@ -1,0 +1,891 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_TutorModel
+@{
+
+    string Fecha_de_Nacimiento = "";
+    if (Model.Fecha_de_Nacimiento == "")
+    { Model.Fecha_de_Nacimiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+    List<SelectListItem> varGenero_Sexo = null;
+    if (ViewBag.Generos_Sexo != null)
+    { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
+    List<SelectListItem> varEstado_Civil_Estado_Civil = null;
+    if (ViewBag.Estado_Civils_Estado_Civil != null)
+    { varEstado_Civil_Estado_Civil = (List<SelectListItem>)ViewBag.Estado_Civils_Estado_Civil; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion; }
+    List<SelectListItem> varNacionalidad_Nacionalidad = null;
+    if (ViewBag.Nacionalidads_Nacionalidad != null)
+    { varNacionalidad_Nacionalidad = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad; }
+    List<SelectListItem> varEscolaridad_Escolaridad = null;
+    if (ViewBag.Escolaridads_Escolaridad != null)
+    { varEscolaridad_Escolaridad = (List<SelectListItem>)ViewBag.Escolaridads_Escolaridad; }
+    List<SelectListItem> varOcupacion_Ocupacion = null;
+    if (ViewBag.Ocupacions_Ocupacion != null)
+    { varOcupacion_Ocupacion = (List<SelectListItem>)ViewBag.Ocupacions_Ocupacion; }
+ List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+ List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+ List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+    List<SelectListItem> varZona_Zona = null;
+    if (ViewBag.Zonas_Zona != null)
+    { varZona_Zona = (List<SelectListItem>)ViewBag.Zonas_Zona; }
+ List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Tutor
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_TutorRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_TutorPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Tutor
+								<button onclick="Detalle_de_TutorGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_TutorBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_TutorResources.Detalle_de_Tutor</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_TutorDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_TutorPropertyBusinessModal" id="Detalle_de_TutorPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_TutorBusinessRule-form" onclick="Detalle_de_TutorGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_TutorPropertyModal" id="Detalle_de_TutorPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_TutorBusinessRuleModal" id="Detalle_de_TutorBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_TutorAddBusinessRuleModal" id="Detalle_de_TutorAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Tutor", FormMethod.Post, new { id = "CreateDetalle_de_Tutor", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_TutorCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="263637" data-field-name="@Resources.Detalle_de_TutorResources.Clave">
+                                    <label class="form-control" for="Detalle_de_TutorClave" id="Detalle_de_TutorClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Nombre</label>
+                                <div class="col-sm-8" data-field-id="Nombre" data-attribute="263638" data-field-name="@Resources.Detalle_de_TutorResources.Nombre">
+                                    <input class="form-control" id="Detalle_de_TutorNombre" name="Detalle_de_TutorNombre" type="text" value="@Model.Nombre">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Paterno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Apellido_Paterno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Paterno" data-attribute="263639" data-field-name="@Resources.Detalle_de_TutorResources.Apellido_Paterno">
+                                    <input class="form-control" id="Detalle_de_TutorApellido_Paterno" name="Detalle_de_TutorApellido_Paterno" type="text" value="@Model.Apellido_Paterno">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Materno">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Apellido_Materno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Materno" data-attribute="263640" data-field-name="@Resources.Detalle_de_TutorResources.Apellido_Materno">
+                                    <input class="form-control" id="Detalle_de_TutorApellido_Materno" name="Detalle_de_TutorApellido_Materno" type="text" value="@Model.Apellido_Materno">
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Nacimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Fecha_de_Nacimiento</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Nacimiento" data-attribute="263641" data-field-name="@Resources.Detalle_de_TutorResources.Fecha_de_Nacimiento">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_TutorFecha_de_Nacimiento" readonly="readonly" name="Detalle_de_TutorFecha_de_Nacimiento" type="text" value="@Model.Fecha_de_Nacimiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divEdad">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Edad</label>
+                                <div class="col-sm-8" data-field-id="Edad" data-attribute="263642" data-field-name="@Resources.Detalle_de_TutorResources.Edad">
+                                    <input class="form-control" id="Detalle_de_TutorEdad" name="Detalle_de_TutorEdad" type="text" value="@Model.Edad">
+                                </div>
+                            </div>
+<div class="form-group" id="divSexo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Sexo</label>
+	<div class="col-sm-8" data-field-id="Sexo" data-attribute="263643" data-field-name="@Resources.Detalle_de_TutorResources.Sexo">
+		<select class="form-control" data-val="true" data-val-number="The field Sexo must be a number." data-val-required="The Sexo field is required." id="Detalle_de_TutorSexo" name="Detalle_de_TutorSexo">
+			<option value=""></option>
+			@if (varGenero_Sexo != null){ 
+				foreach (var itemSexo in varGenero_Sexo)
+				{
+					if (itemSexo.Value == Convert.ToString(Model.Sexo))
+					{
+						<option value="@itemSexo.Value" selected>@itemSexo.Text</option>
+					}
+					else
+					{
+						<option value="@itemSexo.Value">@itemSexo.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado_Civil">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Estado_Civil</label>
+	<div class="col-sm-8" data-field-id="Estado_Civil" data-attribute="263644" data-field-name="@Resources.Detalle_de_TutorResources.Estado_Civil">
+		<select class="form-control" data-val="true" data-val-number="The field Estado Civil must be a number." data-val-required="The Estado Civil field is required." id="Detalle_de_TutorEstado_Civil" name="Detalle_de_TutorEstado_Civil">
+			<option value=""></option>
+			@if (varEstado_Civil_Estado_Civil != null){ 
+				foreach (var itemEstado_Civil in varEstado_Civil_Estado_Civil)
+				{
+					if (itemEstado_Civil.Value == Convert.ToString(Model.Estado_Civil))
+					{
+						<option value="@itemEstado_Civil.Value" selected>@itemEstado_Civil.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_Civil.Value">@itemEstado_Civil.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divTipo_de_Identificacion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Tipo_de_Identificacion</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Identificacion" data-attribute="263645" data-field-name="@Resources.Detalle_de_TutorResources.Tipo_de_Identificacion">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Identificación must be a number." data-val-required="The Tipo de Identificación field is required." id="Detalle_de_TutorTipo_de_Identificacion" name="Detalle_de_TutorTipo_de_Identificacion">
+			<option value=""></option>
+			@if (varTipo_de_Identificacion_Tipo_de_Identificacion != null){ 
+				foreach (var itemTipo_de_Identificacion in varTipo_de_Identificacion_Tipo_de_Identificacion)
+				{
+					if (itemTipo_de_Identificacion.Value == Convert.ToString(Model.Tipo_de_Identificacion))
+					{
+						<option value="@itemTipo_de_Identificacion.Value" selected>@itemTipo_de_Identificacion.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Identificacion.Value">@itemTipo_de_Identificacion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNumero_de_Identificacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Numero_de_Identificacion</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Identificacion" data-attribute="263646" data-field-name="@Resources.Detalle_de_TutorResources.Numero_de_Identificacion">
+                                    <input class="form-control" id="Detalle_de_TutorNumero_de_Identificacion" name="Detalle_de_TutorNumero_de_Identificacion" type="text" value="@Model.Numero_de_Identificacion">
+                                </div>
+                            </div>
+<div class="form-group" id="divNacionalidad">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Nacionalidad</label>
+	<div class="col-sm-8" data-field-id="Nacionalidad" data-attribute="263647" data-field-name="@Resources.Detalle_de_TutorResources.Nacionalidad">
+		<select class="form-control" data-val="true" data-val-number="The field Nacionalidad must be a number." data-val-required="The Nacionalidad field is required." id="Detalle_de_TutorNacionalidad" name="Detalle_de_TutorNacionalidad">
+			<option value=""></option>
+			@if (varNacionalidad_Nacionalidad != null){ 
+				foreach (var itemNacionalidad in varNacionalidad_Nacionalidad)
+				{
+					if (itemNacionalidad.Value == Convert.ToString(Model.Nacionalidad))
+					{
+						<option value="@itemNacionalidad.Value" selected>@itemNacionalidad.Text</option>
+					}
+					else
+					{
+						<option value="@itemNacionalidad.Value">@itemNacionalidad.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEscolaridad">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Escolaridad</label>
+	<div class="col-sm-8" data-field-id="Escolaridad" data-attribute="263648" data-field-name="@Resources.Detalle_de_TutorResources.Escolaridad">
+		<select class="form-control" data-val="true" data-val-number="The field Escolaridad must be a number." data-val-required="The Escolaridad field is required." id="Detalle_de_TutorEscolaridad" name="Detalle_de_TutorEscolaridad">
+			<option value=""></option>
+			@if (varEscolaridad_Escolaridad != null){ 
+				foreach (var itemEscolaridad in varEscolaridad_Escolaridad)
+				{
+					if (itemEscolaridad.Value == Convert.ToString(Model.Escolaridad))
+					{
+						<option value="@itemEscolaridad.Value" selected>@itemEscolaridad.Text</option>
+					}
+					else
+					{
+						<option value="@itemEscolaridad.Value">@itemEscolaridad.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divOcupacion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Ocupacion</label>
+	<div class="col-sm-8" data-field-id="Ocupacion" data-attribute="263649" data-field-name="@Resources.Detalle_de_TutorResources.Ocupacion">
+		<select class="form-control" data-val="true" data-val-number="The field Ocupación must be a number." data-val-required="The Ocupación field is required." id="Detalle_de_TutorOcupacion" name="Detalle_de_TutorOcupacion">
+			<option value=""></option>
+			@if (varOcupacion_Ocupacion != null){ 
+				foreach (var itemOcupacion in varOcupacion_Ocupacion)
+				{
+					if (itemOcupacion.Value == Convert.ToString(Model.Ocupacion))
+					{
+						<option value="@itemOcupacion.Value" selected>@itemOcupacion.Text</option>
+					}
+					else
+					{
+						<option value="@itemOcupacion.Value">@itemOcupacion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divPais">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Pais</label>
+                                <div class="col-sm-8" data-field-id="Pais" data-attribute="263650" data-field-name="@Resources.Detalle_de_TutorResources.Pais">
+                                    <select class='fullWidth AutoCompletePais form-control select2-dropdown' data-val="true" id="Detalle_de_TutorPais" name="Detalle_de_TutorPais">
+                                        <option value="@Model.Pais">@(Model.PaisNombre??Model.PaisNombre)</option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="form-group" id="divEstado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Estado</label>
+                                <div class="col-sm-8" data-field-id="Estado" data-attribute="263651" data-field-name="@Resources.Detalle_de_TutorResources.Estado">
+                                    <select class='fullWidth AutoCompleteEstado form-control select2-dropdown' data-val="true" id="Detalle_de_TutorEstado" name="Detalle_de_TutorEstado">
+                                        <option value="@Model.Estado">@(Model.EstadoNombre??Model.EstadoNombre)</option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="form-group" id="divMunicipio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Municipio</label>
+                                <div class="col-sm-8" data-field-id="Municipio" data-attribute="263652" data-field-name="@Resources.Detalle_de_TutorResources.Municipio">
+                                    <select class='fullWidth AutoCompleteMunicipio form-control select2-dropdown' data-val="true" id="Detalle_de_TutorMunicipio" name="Detalle_de_TutorMunicipio">
+                                        <option value="@Model.Municipio">@(Model.MunicipioNombre??Model.MunicipioNombre)</option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="form-group" id="divZona">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Zona</label>
+	<div class="col-sm-8" data-field-id="Zona" data-attribute="263653" data-field-name="@Resources.Detalle_de_TutorResources.Zona">
+		<select class="form-control" data-val="true" data-val-number="The field Zona must be a number." data-val-required="The Zona field is required." id="Detalle_de_TutorZona" name="Detalle_de_TutorZona">
+			<option value=""></option>
+			@if (varZona_Zona != null){ 
+				foreach (var itemZona in varZona_Zona)
+				{
+					if (itemZona.Value == Convert.ToString(Model.Zona))
+					{
+						<option value="@itemZona.Value" selected>@itemZona.Text</option>
+					}
+					else
+					{
+						<option value="@itemZona.Value">@itemZona.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divColonia">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Colonia</label>
+                                <div class="col-sm-8" data-field-id="Colonia" data-attribute="263654" data-field-name="@Resources.Detalle_de_TutorResources.Colonia">
+                                    <select class='fullWidth AutoCompleteColonia form-control select2-dropdown' data-val="true" id="Detalle_de_TutorColonia" name="Detalle_de_TutorColonia">
+                                        <option value="@Model.Colonia">@(Model.ColoniaNombre??Model.ColoniaNombre)</option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="form-group" id="divCodigo_Postal">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Codigo_Postal</label>
+	<div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="263655" data-field-name="@Resources.Detalle_de_TutorResources.Codigo_Postal">
+		<input class="form-control inputNumber" id="Detalle_de_TutorCodigo_Postal" name="Detalle_de_TutorCodigo_Postal" type="text" value="@Model.Codigo_Postal">
+	</div>
+</div>
+<div class="form-group" id="divCalle">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Calle</label>
+                                <div class="col-sm-8" data-field-id="Calle" data-attribute="263656" data-field-name="@Resources.Detalle_de_TutorResources.Calle">
+                                    <input class="form-control" id="Detalle_de_TutorCalle" name="Detalle_de_TutorCalle" type="text" value="@Model.Calle">
+                                </div>
+                            </div>
+<div class="form-group" id="divEntre_Calle">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Entre_Calle</label>
+                                <div class="col-sm-8" data-field-id="Entre_Calle" data-attribute="263657" data-field-name="@Resources.Detalle_de_TutorResources.Entre_Calle">
+                                    <input class="form-control" id="Detalle_de_TutorEntre_Calle" name="Detalle_de_TutorEntre_Calle" type="text" value="@Model.Entre_Calle">
+                                </div>
+                            </div>
+<div class="form-group" id="divY_Calle">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Y_Calle</label>
+                                <div class="col-sm-8" data-field-id="Y_Calle" data-attribute="263658" data-field-name="@Resources.Detalle_de_TutorResources.Y_Calle">
+                                    <input class="form-control" id="Detalle_de_TutorY_Calle" name="Detalle_de_TutorY_Calle" type="text" value="@Model.Y_Calle">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Exterior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Numero_Exterior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="263659" data-field-name="@Resources.Detalle_de_TutorResources.Numero_Exterior">
+                                    <input class="form-control" id="Detalle_de_TutorNumero_Exterior" name="Detalle_de_TutorNumero_Exterior" type="text" value="@Model.Numero_Exterior">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Interior">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Numero_Interior</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior" data-attribute="263660" data-field-name="@Resources.Detalle_de_TutorResources.Numero_Interior">
+                                    <input class="form-control" id="Detalle_de_TutorNumero_Interior" name="Detalle_de_TutorNumero_Interior" type="text" value="@Model.Numero_Interior">
+                                </div>
+                            </div>
+<div class="form-group" id="divLongitud">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Longitud</label>
+                                <div class="col-sm-8" data-field-id="Longitud" data-attribute="263661" data-field-name="@Resources.Detalle_de_TutorResources.Longitud">
+                                    <input class="form-control" id="Detalle_de_TutorLongitud" name="Detalle_de_TutorLongitud" type="text" value="@Model.Longitud">
+                                </div>
+                            </div>
+<div class="form-group" id="divLatitud">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Latitud</label>
+                                <div class="col-sm-8" data-field-id="Latitud" data-attribute="263662" data-field-name="@Resources.Detalle_de_TutorResources.Latitud">
+                                    <input class="form-control" id="Detalle_de_TutorLatitud" name="Detalle_de_TutorLatitud" type="text" value="@Model.Latitud">
+                                </div>
+                            </div>
+<div class="form-group" id="divTelefono">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Telefono</label>
+                                <div class="col-sm-8" data-field-id="Telefono" data-attribute="263663" data-field-name="@Resources.Detalle_de_TutorResources.Telefono">
+                                    <input class="form-control" id="Detalle_de_TutorTelefono" name="Detalle_de_TutorTelefono" type="text" value="@Model.Telefono">
+                                </div>
+                            </div>
+<div class="form-group" id="divExtension">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Extension</label>
+	<div class="col-sm-8" data-field-id="Extension" data-attribute="263664" data-field-name="@Resources.Detalle_de_TutorResources.Extension">
+		<input class="form-control inputNumber" id="Detalle_de_TutorExtension" name="Detalle_de_TutorExtension" type="text" value="@Model.Extension">
+	</div>
+</div>
+<div class="form-group" id="divCelular">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Celular</label>
+                                <div class="col-sm-8" data-field-id="Celular" data-attribute="263665" data-field-name="@Resources.Detalle_de_TutorResources.Celular">
+                                    <input class="form-control" id="Detalle_de_TutorCelular" name="Detalle_de_TutorCelular" type="text" value="@Model.Celular">
+                                </div>
+                            </div>
+<div class="form-group" id="divCorreo_Electronico">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_TutorResources.Correo_Electronico</label>
+                                <div class="col-sm-8" data-field-id="Correo_Electronico" data-attribute="263666" data-field-name="@Resources.Detalle_de_TutorResources.Correo_Electronico">
+                                    <input class="form-control" id="Detalle_de_TutorCorreo_Electronico" name="Detalle_de_TutorCorreo_Electronico" type="text" value="@Model.Correo_Electronico">
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_TutorConfigureSave" name="Detalle_de_TutorConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_TutorConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_TutorBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_TutorBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_TutorBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_TutorGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_TutorBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Tutor.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_TutorGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_TutorCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/SolicitudCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_TutorRowElement = "Detalle_de_TutorPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_TutorRowElement + "')){ Detalle_de_TutorInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+            $('#Detalle_de_TutorFecha_de_Nacimiento').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+       var AutoCompletePaisData =[];
+       $(".AutoCompleteDetalle_de_Tutor_Pais").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Tutor/GetDetalle_de_Tutor_Pais_Pais")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Tutor_Pais_PaisData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Tutor_Pais");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteEstadoData =[];
+       $(".AutoCompleteDetalle_de_Tutor_Estado").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Tutor/GetDetalle_de_Tutor_Estado_Estado")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Tutor_Estado_EstadoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Tutor_Estado");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteMunicipioData =[];
+       $(".AutoCompleteDetalle_de_Tutor_Municipio").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Tutor/GetDetalle_de_Tutor_Municipio_Municipio")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Tutor_Municipio_MunicipioData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Tutor_Municipio");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteColoniaData =[];
+       $(".AutoCompleteDetalle_de_Tutor_Colonia").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Tutor/GetDetalle_de_Tutor_Colonia_Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Tutor_Colonia_ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Tutor_Colonia");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_de_TutorData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Tutor").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Tutor")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_TutorCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Tutor/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_TutorPropertyBag", "Detalle_de_Tutor")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_TutorGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_TutorBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_TutorBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_TutorBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_TutorBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_TutorBusinessRuleFieldName').val(), ObjectId: '45091', Attribute: $('#hdnDetalle_de_TutorBusinessRuleAttribute').val(), Screen: 'Detalle_de_Tutor' }, function (data) {
+                $(".Detalle_de_TutorBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_TutorGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_TutorBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_TutorBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_TutorBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_TutorBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_TutorBusinessRuleFieldName').val(), ObjectId: '45091', Attribute: $('#hdnDetalle_de_TutorBusinessRuleAttribute').val(), Screen: 'Detalle_de_Tutor' }, function (data) {
+                $(".Detalle_de_TutorAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_TutorBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_TutorBusinessRuleFieldName').val(), ObjectId: '45091', Attribute: $('#hdnDetalle_de_TutorBusinessRuleAttribute').val(), Screen: 'Detalle_de_Tutor' }, function (data) {
+				$(".Detalle_de_TutorBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Tutor/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Tutor/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Tutor/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_TutorConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_TutorConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Tutor/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_TutorConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Tutor/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Tutor' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Tutor' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_TutorConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_TutorConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Tutor').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_TutorBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_TutorBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_TutorBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

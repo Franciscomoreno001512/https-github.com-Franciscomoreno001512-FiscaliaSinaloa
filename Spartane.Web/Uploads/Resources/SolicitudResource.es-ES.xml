@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Solicitud" value="Mecanismos Alternos"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="es-es" name="Numero_de_Folio" value="Número de Solicitud"></resource>
+  <resource culture="es-es" name="Unidad_MASC" value="Unidad MASC"></resource>
+  <resource culture="es-es" name="Remitente" value="Remitente"></resource>
+  <resource culture="es-es" name="NUAT" value="NUAT"></resource>
+  <resource culture="es-es" name="Unidad" value="Unidad"></resource>
+  <resource culture="es-es" name="Municipio" value="Municipio"></resource>
+  <resource culture="es-es" name="Region" value="Región"></resource>
+  <resource culture="es-es" name="NUC" value="NUC"></resource>
+  <resource culture="es-es" name="CDI" value="CDI"></resource>
+  <resource culture="es-es" name="Numero_de_Expediente" value="Número de Procedimiento"></resource>
+  <resource culture="es-es" name="Estatus" value="Estatus"></resource>
+  <resource culture="es-es" name="Fecha_en_que_llega_a_Coordinador" value="Fecha en que llega a Receptor"></resource>
+  <resource culture="es-es" name="Fecha_en_que_llega_a_Especialista" value="Fecha en que llega a Facilitador"></resource>
+  <resource culture="es-es" name="Agente_del_Ministerio_Publico_Orientador" value="Agente del Ministerio Público Orientador"></resource>
+  <resource culture="es-es" name="Agente_del_Ministerio_Publico_Invest" value="Agente del Ministerio Público Investigador"></resource>
+  <resource culture="es-es" name="Juez_de_Control" value="Juez de Control"></resource>
+  <resource culture="es-es" name="Titulo_del_Hecho" value="Titulo del Hecho"></resource>
+  <resource culture="es-es" name="Fecha_del_Hecho" value="Fecha del Hecho"></resource>
+  <resource culture="es-es" name="Narrativa_Breve_de_los_Hechos" value="Narrativa Breve de los Hechos"></resource>
+  <resource culture="es-es" name="Hora_Aproximada_del_Hecho" value="Hora Aproximada del Hecho"></resource>
+  <resource culture="es-es" name="Tipo_de_Lugar_del_Hecho" value="Lugar de los Hechos"></resource>
+  <resource culture="es-es" name="PaisH" value="País"></resource>
+  <resource culture="es-es" name="EstadoH" value="Estado"></resource>
+  <resource culture="es-es" name="MunicipioH" value="Municipio"></resource>
+  <resource culture="es-es" name="Poblacion" value="Población"></resource>
+  <resource culture="es-es" name="ColoniaH" value="Colonia"></resource>
+  <resource culture="es-es" name="CalleH" value="Calle"></resource>
+  <resource culture="es-es" name="Numero_ExteriorH" value="Número Exterior"></resource>
+  <resource culture="es-es" name="Numero_InteriorH" value="Número Interior"></resource>
+  <resource culture="es-es" name="Codigo_PostalH" value="Código Postal"></resource>
+  <resource culture="es-es" name="Entre_Calle" value="Entre Calle"></resource>
+  <resource culture="es-es" name="y_Calle" value="y Calle"></resource>
+  <resource culture="es-es" name="LongitudH" value="Longitud"></resource>
+  <resource culture="es-es" name="LatitudH" value="Latitud"></resource>
+  <resource culture="es-es" name="Especialista_AsignadoA" value="Facilitador Asignado"></resource>
+  <resource culture="es-es" name="Asignar_Especialista_Automatico" value="Asignar Facilitador Manualmente"></resource>
+  <resource culture="es-es" name="Razone" value="Razón de Asignación Manual"></resource>
+  <resource culture="es-es" name="Tipo_de_Mecanismo" value="Tipo de Mecanismo"></resource>
+  <resource culture="es-es" name="Fecha_de_AsignacionA" value="Fecha de Asignación"></resource>
+  <resource culture="es-es" name="Hora_de_AsignacionA" value="Hora de Asignación"></resource>
+  <resource culture="es-es" name="Fecha_de_Atencion_del_Especialista" value="Fecha de Atención del Facilitador"></resource>
+  <resource culture="es-es" name="Hora_de_Atencion_del_Especialista" value="Hora de Atención del Facilitador"></resource>
+  <resource culture="es-es" name="Coincidencias" value="Coincidencias"></resource>
+  <resource culture="es-es" name="Rechazar" value="Rechazar"></resource>
+  <resource culture="es-es" name="Acuerdo_Cumplido" value="Acuerdo Cumplido"></resource>
+  <resource culture="es-es" name="Razon_de_Incumplimiento" value="Razón de Incumplimiento"></resource>
+  <resource culture="es-es" name="Tipo_de_Conclusion_Anticipada" value="Tipo de Conclusión Anticipada"></resource>
+  <resource culture="es-es" name="Fecha_de_Cierre" value="Fecha de Cierre"></resource>
+  <resource culture="es-es" name="Hora_de_Cierre" value="Hora de Cierre"></resource>
+  <resource culture="es-es" name="Historial" value="Historial"></resource>
+
+<resource culture="es-es" name="TabSolicitud" value="Solicitud"></resource>
+<resource culture="es-es" name="TabControl" value="Control"></resource>
+<resource culture="es-es" name="TabHechos" value="Hechos"></resource>
+<resource culture="es-es" name="TabAsignacion" value="Asignación"></resource>
+<resource culture="es-es" name="TabBitacora_de_Coincidencias" value="Bitácora de Coincidencias"></resource>
+<resource culture="es-es" name="TabCierre" value="Cierre"></resource>
+<resource culture="es-es" name="TabHistorial_de_Movimientos" value="Historial de Movimientos"></resource>
+
+</resources>

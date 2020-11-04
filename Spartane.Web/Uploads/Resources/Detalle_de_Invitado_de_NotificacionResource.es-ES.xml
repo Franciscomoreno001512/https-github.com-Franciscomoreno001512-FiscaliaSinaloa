@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_de_Invitado_de_Notificacion" value="Detalle de Invitado de Notificación"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Nombre_Completo" value="Nombre Completo"></resource>
+  <resource culture="es-es" name="Telefono" value="Teléfono"></resource>
+  <resource culture="es-es" name="Correo_Electronico" value="Correo Electrónico"></resource>
+  <resource culture="es-es" name="Estado" value="Estado"></resource>
+  <resource culture="es-es" name="Municipio" value="Municipio"></resource>
+  <resource culture="es-es" name="Poblacion" value="Población"></resource>
+  <resource culture="es-es" name="Colonia" value="Colonia"></resource>
+  <resource culture="es-es" name="Codigo_Postal" value="Código Postal"></resource>
+  <resource culture="es-es" name="Calle" value="Calle"></resource>
+  <resource culture="es-es" name="Numero_Exterior" value="Número Exterior"></resource>
+  <resource culture="es-es" name="Numero_Interior" value="Número Interior"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

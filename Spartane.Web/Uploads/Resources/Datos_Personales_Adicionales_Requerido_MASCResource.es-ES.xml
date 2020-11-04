@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Datos_Personales_Adicionales_Requerido_MASC" value="Datos Personales Adicionales Requerido MASC"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Correo_Electronico" value="Correo Electrónico"></resource>
+  <resource culture="es-es" name="Numero_Telefonico" value="Número Telefónico"></resource>
+  <resource culture="es-es" name="Redes_Sociales" value="Redes Sociales"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -1,0 +1,584 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Detalle_de_Delito_de_JusticiaGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.idRegistroAT
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.idRegistroUI
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Solicitud
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Tipo_de_Denuncia
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Fecha_de_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Violencia_de_Genero
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Delito_Violencia_Genero
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Hora_de_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Tipo_de_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Grupo_de_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Delito_Principal
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Forma_de_Comision_de_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Forma_de_Accion_de_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Modalidad_de_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Elementos_de_Comision_de_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Clasificacion_con_Orden_de_Resultado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Concurso
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Monto_de_Reparacion_de_Danos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Estado_del_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Municipio_del_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Colonia_del_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Codigo_Postal
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Calle_del_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Entre_Calle_del_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Y_Calle_del_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Numero_Exterior_del_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Numero_Interior_del_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Referencia
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Latitud
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Longitud
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Robo_de_Vehiculo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Fecha_del_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Hora_del_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Robo_de
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Registro_Federal_Vehicular
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Numero_de_Registro_Publico_Vehicular
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Circunstancia_de_Robo_de_Vehiculo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Marca
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Sub_Marca
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Tipo_de_vehiculo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Modelo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Color
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Placas
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Estado_de_Origen_de_las_Placas
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Motor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Serie
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Estado_De_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Municipio_de_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Colonia_de_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Codigo_Postal_de_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Calle_de_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Entre_Calle_de_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Y_Calle_de_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Numero_Exterior_de_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Numero_Interior_de_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Referencia_de_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Latitud_de_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Longitud_de_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Lugar_de_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.El_vehiculo_esta_asegurado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Nombre_de_la_Aseguradora
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Ruta_del_Servicio_Publico
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.El_Vehiculo_Transportaba_Mercancia
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Descripcion_de_lo_que_Transportaba
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Monto_de_carga
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Senas_particulares
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Cuenta_con_GPS
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Tipo_de_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Tipo_de_Lugar_del_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Tipo_de_Carretera
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Tipo_de_Servicio
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Numero_de_Serie
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Numero_de_Motor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Nombre_Completo_Persona_Moral
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Persona_Fisica
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Nombre_Completo_Persona_Fisica
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Denunciante
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Delito_de_JusticiaResources.Nombre_Completo_Denunciante
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.idRegistroAT
+                    </td>
+                    <td>
+                        @item.idRegistroUI
+                    </td>
+                    <td>
+                        @item.Solicitud
+                    </td>
+                    <td>
+                        @item.Tipo_de_DenunciaDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_de_Delito
+                    </td>
+                    <td>
+                        @item.Violencia_de_Genero
+                    </td>
+                    <td>
+                        @item.Delito_Violencia_Genero
+                    </td>
+                    <td>
+                        @item.Hora_de_Delito
+                    </td>
+                    <td>
+                        @item.Tipo_de_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Grupo_de_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Delito_Principal
+                    </td>
+                    <td>
+                        @item.Forma_de_Comision_de_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_de_Accion_de_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Modalidad_de_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Elementos_de_Comision_de_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Clasificacion_con_Orden_de_ResultadoDescripcion
+                    </td>
+                    <td>
+                        @item.ConcursoDescripcion
+                    </td>
+                    <td>
+                        @item.Monto_de_Reparacion_de_Danos
+                    </td>
+                    <td>
+                        @item.Estado_del_Delito
+                    </td>
+                    <td>
+                        @item.Municipio_del_Delito
+                    </td>
+                    <td>
+                        @item.Colonia_del_Delito
+                    </td>
+                    <td>
+                        @item.Codigo_Postal
+                    </td>
+                    <td>
+                        @item.Calle_del_Delito
+                    </td>
+                    <td>
+                        @item.Entre_Calle_del_Delito
+                    </td>
+                    <td>
+                        @item.Y_Calle_del_Delito
+                    </td>
+                    <td>
+                        @item.Numero_Exterior_del_Delito
+                    </td>
+                    <td>
+                        @item.Numero_Interior_del_Delito
+                    </td>
+                    <td>
+                        @item.Referencia
+                    </td>
+                    <td>
+                        @item.Latitud
+                    </td>
+                    <td>
+                        @item.Longitud
+                    </td>
+                    <td>
+                        @item.Robo_de_Vehiculo
+                    </td>
+                    <td>
+                        @item.Fecha_del_Robo
+                    </td>
+                    <td>
+                        @item.Hora_del_Robo
+                    </td>
+                    <td>
+                        @item.Robo_deDescripcion
+                    </td>
+                    <td>
+                        @item.Registro_Federal_Vehicular
+                    </td>
+                    <td>
+                        @item.Numero_de_Registro_Publico_Vehicular
+                    </td>
+                    <td>
+                        @item.Circunstancia_de_Robo_de_VehiculoDescripcion
+                    </td>
+                    <td>
+                        @item.Marca
+                    </td>
+                    <td>
+                        @item.Sub_Marca
+                    </td>
+                    <td>
+                        @item.Tipo_de_vehiculoDescripcion
+                    </td>
+                    <td>
+                        @item.Modelo
+                    </td>
+                    <td>
+                        @item.ColorDescripcion
+                    </td>
+                    <td>
+                        @item.Placas
+                    </td>
+                    <td>
+                        @item.Estado_de_Origen_de_las_Placas
+                    </td>
+                    <td>
+                        @item.Motor
+                    </td>
+                    <td>
+                        @item.Serie
+                    </td>
+                    <td>
+                        @item.Estado_De_Robo
+                    </td>
+                    <td>
+                        @item.Municipio_de_Robo
+                    </td>
+                    <td>
+                        @item.Colonia_de_Robo
+                    </td>
+                    <td>
+                        @item.Codigo_Postal_de_Robo
+                    </td>
+                    <td>
+                        @item.Calle_de_Robo
+                    </td>
+                    <td>
+                        @item.Entre_Calle_de_Robo
+                    </td>
+                    <td>
+                        @item.Y_Calle_de_Robo
+                    </td>
+                    <td>
+                        @item.Numero_Exterior_de_Robo
+                    </td>
+                    <td>
+                        @item.Numero_Interior_de_Robo
+                    </td>
+                    <td>
+                        @item.Referencia_de_Robo
+                    </td>
+                    <td>
+                        @item.Latitud_de_Robo
+                    </td>
+                    <td>
+                        @item.Longitud_de_Robo
+                    </td>
+                    <td>
+                        @item.Lugar_de_RoboDescripcion
+                    </td>
+                    <td>
+                        @item.El_vehiculo_esta_asegurado
+                    </td>
+                    <td>
+                        @item.Nombre_de_la_Aseguradora
+                    </td>
+                    <td>
+                        @item.Ruta_del_Servicio_Publico
+                    </td>
+                    <td>
+                        @item.El_Vehiculo_Transportaba_Mercancia
+                    </td>
+                    <td>
+                        @item.Descripcion_de_lo_que_Transportaba
+                    </td>
+                    <td>
+                        @item.Monto_de_carga
+                    </td>
+                    <td>
+                        @item.Senas_particulares
+                    </td>
+                    <td>
+                        @item.Cuenta_con_GPSDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_RoboDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_Lugar_del_RoboDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_CarreteraDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_ServicioDescripcion
+                    </td>
+                    <td>
+                        @item.Numero_de_Serie
+                    </td>
+                    <td>
+                        @item.Numero_de_Motor
+                    </td>
+                    <td>
+                        @item.Persona_Moral
+                    </td>
+                    <td>
+                        @item.Nombre_Completo_Persona_MoralNombre
+                    </td>
+                    <td>
+                        @item.Persona_Fisica
+                    </td>
+                    <td>
+                        @item.Nombre_Completo_Persona_Fisica
+                    </td>
+                    <td>
+                        @item.Denunciante
+                    </td>
+                    <td>
+                        @item.Nombre_Completo_DenuncianteNombre
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

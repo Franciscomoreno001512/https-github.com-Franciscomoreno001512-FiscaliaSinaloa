@@ -1,0 +1,565 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Reuniones_de_MediacionModel
+@{
+
+    string Fecha = "";
+    if (Model.Fecha == "")
+    { Model.Fecha = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+    List<SelectListItem> varSolicitante_Solicitante = null;
+    if (ViewBag.Solicitantes_Solicitante != null)
+    { varSolicitante_Solicitante = (List<SelectListItem>)ViewBag.Solicitantes_Solicitante; }
+    List<SelectListItem> varRequerido_Requerido = null;
+    if (ViewBag.Requeridos_Requerido != null)
+    { varRequerido_Requerido = (List<SelectListItem>)ViewBag.Requeridos_Requerido; }
+    List<SelectListItem> varTipo_de_Sesion_Tipo_de_Sesion = null;
+    if (ViewBag.Tipo_de_Sesions_Tipo_de_Sesion != null)
+    { varTipo_de_Sesion_Tipo_de_Sesion = (List<SelectListItem>)ViewBag.Tipo_de_Sesions_Tipo_de_Sesion; }
+    List<SelectListItem> varCumplimiento_Cumplimiento = null;
+    if (ViewBag.Cumplimientos_Cumplimiento != null)
+    { varCumplimiento_Cumplimiento = (List<SelectListItem>)ViewBag.Cumplimientos_Cumplimiento; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Reuniones de Mediacion
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_Reuniones_de_MediacionRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_Reuniones_de_MediacionPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Reuniones de Mediacion
+								<button onclick="Detalle_de_Reuniones_de_MediacionGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Reuniones_de_MediacionBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_Reuniones_de_MediacionResources.Detalle_de_Reuniones_de_Mediacion</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_Reuniones_de_MediacionDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_Reuniones_de_MediacionPropertyBusinessModal" id="Detalle_de_Reuniones_de_MediacionPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_Reuniones_de_MediacionBusinessRule-form" onclick="Detalle_de_Reuniones_de_MediacionGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Reuniones_de_MediacionPropertyModal" id="Detalle_de_Reuniones_de_MediacionPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Reuniones_de_MediacionBusinessRuleModal" id="Detalle_de_Reuniones_de_MediacionBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Reuniones_de_MediacionAddBusinessRuleModal" id="Detalle_de_Reuniones_de_MediacionAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Reuniones_de_Mediacion", FormMethod.Post, new { id = "CreateDetalle_de_Reuniones_de_Mediacion", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_Reuniones_de_MediacionCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="263425" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Clave">
+                                    <label class="form-control" for="Detalle_de_Reuniones_de_MediacionClave" id="Detalle_de_Reuniones_de_MediacionClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divSolicitante">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Solicitante</label>
+	<div class="col-sm-8" data-field-id="Solicitante" data-attribute="263426" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Solicitante">
+		<select class="form-control" data-val="true" data-val-number="The field Solicitante must be a number." data-val-required="The Solicitante field is required." id="Detalle_de_Reuniones_de_MediacionSolicitante" name="Detalle_de_Reuniones_de_MediacionSolicitante">
+			<option value=""></option>
+			@if (varSolicitante_Solicitante != null){ 
+				foreach (var itemSolicitante in varSolicitante_Solicitante)
+				{
+					if (itemSolicitante.Value == Convert.ToString(Model.Solicitante))
+					{
+						<option value="@itemSolicitante.Value" selected>@itemSolicitante.Text</option>
+					}
+					else
+					{
+						<option value="@itemSolicitante.Value">@itemSolicitante.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divRequerido">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Requerido</label>
+	<div class="col-sm-8" data-field-id="Requerido" data-attribute="263427" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Requerido">
+		<select class="form-control" data-val="true" data-val-number="The field Requerido must be a number." data-val-required="The Requerido field is required." id="Detalle_de_Reuniones_de_MediacionRequerido" name="Detalle_de_Reuniones_de_MediacionRequerido">
+			<option value=""></option>
+			@if (varRequerido_Requerido != null){ 
+				foreach (var itemRequerido in varRequerido_Requerido)
+				{
+					if (itemRequerido.Value == Convert.ToString(Model.Requerido))
+					{
+						<option value="@itemRequerido.Value" selected>@itemRequerido.Text</option>
+					}
+					else
+					{
+						<option value="@itemRequerido.Value">@itemRequerido.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divLugar">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Lugar</label>
+                                <div class="col-sm-8" data-field-id="Lugar" data-attribute="263428" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Lugar">
+                                    <input class="form-control" id="Detalle_de_Reuniones_de_MediacionLugar" name="Detalle_de_Reuniones_de_MediacionLugar" type="text" value="@Model.Lugar">
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Fecha</label>
+                                <div class="col-sm-8" data-field-id="Fecha" data-attribute="263429" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Fecha">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Reuniones_de_MediacionFecha" readonly="readonly" name="Detalle_de_Reuniones_de_MediacionFecha" type="text" value="@Model.Fecha">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divHora">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Hora</label>
+                                <div class="col-sm-8" data-field-id="Hora" data-attribute="263430" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Hora">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Reuniones_de_MediacionHora" readonly="readonly" name="Detalle_de_Reuniones_de_MediacionHora" type="text" data-autoclose="true" value="@Model.Hora">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divEspecialista">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Especialista</label>
+	<div class="col-sm-8" data-field-id="Especialista" data-attribute="263431" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Especialista">
+		<input class="form-control inputNumber" id="Detalle_de_Reuniones_de_MediacionEspecialista" name="Detalle_de_Reuniones_de_MediacionEspecialista" type="text" value="@Model.Especialista">
+	</div>
+</div>
+<div class="form-group" id="divTipo_de_Sesion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Tipo_de_Sesion</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Sesion" data-attribute="263432" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Tipo_de_Sesion">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Sesión must be a number." data-val-required="The Tipo de Sesión field is required." id="Detalle_de_Reuniones_de_MediacionTipo_de_Sesion" name="Detalle_de_Reuniones_de_MediacionTipo_de_Sesion">
+			<option value=""></option>
+			@if (varTipo_de_Sesion_Tipo_de_Sesion != null){ 
+				foreach (var itemTipo_de_Sesion in varTipo_de_Sesion_Tipo_de_Sesion)
+				{
+					if (itemTipo_de_Sesion.Value == Convert.ToString(Model.Tipo_de_Sesion))
+					{
+						<option value="@itemTipo_de_Sesion.Value" selected>@itemTipo_de_Sesion.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Sesion.Value">@itemTipo_de_Sesion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCumplimiento">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Cumplimiento</label>
+	<div class="col-sm-8" data-field-id="Cumplimiento" data-attribute="263433" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Cumplimiento">
+		<select class="form-control" data-val="true" data-val-number="The field Cumplimiento must be a number." data-val-required="The Cumplimiento field is required." id="Detalle_de_Reuniones_de_MediacionCumplimiento" name="Detalle_de_Reuniones_de_MediacionCumplimiento">
+			<option value=""></option>
+			@if (varCumplimiento_Cumplimiento != null){ 
+				foreach (var itemCumplimiento in varCumplimiento_Cumplimiento)
+				{
+					if (itemCumplimiento.Value == Convert.ToString(Model.Cumplimiento))
+					{
+						<option value="@itemCumplimiento.Value" selected>@itemCumplimiento.Text</option>
+					}
+					else
+					{
+						<option value="@itemCumplimiento.Value">@itemCumplimiento.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_Reuniones_de_MediacionConfigureSave" name="Detalle_de_Reuniones_de_MediacionConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_Reuniones_de_MediacionConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_Reuniones_de_MediacionBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_Reuniones_de_MediacionBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_Reuniones_de_MediacionBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_Reuniones_de_MediacionGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Reuniones_de_MediacionBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Reuniones_de_Mediacion.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Reuniones_de_MediacionGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Reuniones_de_MediacionCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/SolicitudCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_Reuniones_de_MediacionRowElement = "Detalle_de_Reuniones_de_MediacionPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_Reuniones_de_MediacionRowElement + "')){ Detalle_de_Reuniones_de_MediacionInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+            $('#Detalle_de_Reuniones_de_MediacionFecha').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Detalle_de_Reuniones_de_MediacionHora').clockpicker();
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_de_Reuniones_de_MediacionData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Reuniones_de_Mediacion").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Reuniones_de_Mediacion")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_Reuniones_de_MediacionCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Reuniones_de_Mediacion/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_Reuniones_de_MediacionPropertyBag", "Detalle_de_Reuniones_de_Mediacion")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_Reuniones_de_MediacionGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleFieldName').val(), ObjectId: '45074', Attribute: $('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleAttribute').val(), Screen: 'Detalle_de_Reuniones_de_Mediacion' }, function (data) {
+                $(".Detalle_de_Reuniones_de_MediacionBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_Reuniones_de_MediacionGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleFieldName').val(), ObjectId: '45074', Attribute: $('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleAttribute').val(), Screen: 'Detalle_de_Reuniones_de_Mediacion' }, function (data) {
+                $(".Detalle_de_Reuniones_de_MediacionAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleFieldName').val(), ObjectId: '45074', Attribute: $('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleAttribute').val(), Screen: 'Detalle_de_Reuniones_de_Mediacion' }, function (data) {
+				$(".Detalle_de_Reuniones_de_MediacionBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Reuniones_de_Mediacion/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Reuniones_de_Mediacion/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Reuniones_de_Mediacion/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_Reuniones_de_MediacionConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_Reuniones_de_MediacionConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Reuniones_de_Mediacion/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_Reuniones_de_MediacionConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Reuniones_de_Mediacion/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Reuniones_de_Mediacion' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Reuniones_de_Mediacion' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_Reuniones_de_MediacionConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_Reuniones_de_MediacionConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Reuniones_de_Mediacion').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_Reuniones_de_MediacionBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

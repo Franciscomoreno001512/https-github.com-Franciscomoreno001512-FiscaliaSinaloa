@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Roles>
+  <Role culture="en-us" Id="1" value="Administrator"></Role>
+  <Role culture="es-es" Id="1" value="Administrador"></Role>
+  <Role culture="en-us" Id="2" value="Coordinador de MASC"></Role>
+  <Role culture="es-es" Id="2" value="Coordinador de MASC"></Role>
+  <Role culture="en-us" Id="3" value="Facilitador MASC"></Role>
+  <Role culture="es-es" Id="3" value="Facilitador MASC"></Role>
+  <Role culture="en-us" Id="4" value="Orientador"></Role>
+  <Role culture="es-es" Id="4" value="Orientador"></Role>
+  <Role culture="en-us" Id="5" value="Recepción"></Role>
+  <Role culture="es-es" Id="5" value="Recepción"></Role>
+  <Role culture="en-us" Id="6" value="Coordinador de MPO"></Role>
+  <Role culture="es-es" Id="6" value="Coordinador de MPO"></Role>
+  <Role culture="en-us" Id="7" value="Coordinador de Servicios de Apoyo"></Role>
+  <Role culture="es-es" Id="7" value="Coordinador de Servicios de Apoyo"></Role>
+  <Role culture="en-us" Id="8" value="Agente del Ministerio Público Orientador"></Role>
+  <Role culture="es-es" Id="8" value="Agente del Ministerio Público Orientador"></Role>
+  <Role culture="en-us" Id="9" value="Agente del Ministerio Público Investigador"></Role>
+  <Role culture="es-es" Id="9" value="Agente del Ministerio Público Investigador"></Role>
+  <Role culture="en-us" Id="10" value="Diseñador"></Role>
+  <Role culture="es-es" Id="10" value="Diseñador"></Role>
+  <Role culture="en-us" Id="11" value="Juez de Control"></Role>
+  <Role culture="es-es" Id="11" value="Juez de Control"></Role>
+  <Role culture="en-us" Id="12" value="Subdirección "></Role>
+  <Role culture="es-es" Id="12" value="Subdirección "></Role>
+  <Role culture="en-us" Id="13" value="Ministerio Público Investigador"></Role>
+  <Role culture="es-es" Id="13" value="Ministerio Público Investigador"></Role>
+  <Role culture="en-us" Id="14" value="Unidad Pegaso"></Role>
+  <Role culture="es-es" Id="14" value="Unidad Pegaso"></Role>
+  <Role culture="en-us" Id="15" value="Policía Ministerial"></Role>
+  <Role culture="es-es" Id="15" value="Policía Ministerial"></Role>
+  <Role culture="en-us" Id="16" value="Policía Ministerial de Seguimiento"></Role>
+  <Role culture="es-es" Id="16" value="Policía Ministerial de Seguimiento"></Role>
+  <Role culture="en-us" Id="17" value="Coordinador del Ministerio Público Investigador"></Role>
+  <Role culture="es-es" Id="17" value="Coordinador del Ministerio Público Investigador"></Role>
+  <Role culture="en-us" Id="18" value="Almacen"></Role>
+  <Role culture="es-es" Id="18" value="Almacen"></Role>
+  <Role culture="en-us" Id="19" value="Coordinador de Servicios Periciales"></Role>
+  <Role culture="es-es" Id="19" value="Coordinador de Servicios Periciales"></Role>
+  <Role culture="en-us" Id="20" value="Especialista de Diligencias"></Role>
+  <Role culture="es-es" Id="20" value="Especialista de Diligencias"></Role>
+  <Role culture="en-us" Id="21" value="Ministerio Público de Litigación"></Role>
+  <Role culture="es-es" Id="21" value="Ministerio Público de Litigación"></Role>
+  <Role culture="en-us" Id="101" value="Receptor Administrativo MASC"></Role>
+  <Role culture="es-es" Id="101" value="Receptor Administrativo MASC"></Role>
+  <Role culture="en-us" Id="102" value="Seguimiento"></Role>
+  <Role culture="es-es" Id="102" value="Seguimiento"></Role>
+  <Role culture="en-us" Id="0" value="Facilitador MASC"></Role>
+  <Role culture="es-es" Id="0" value="Facilitador MASC"></Role>
+  <Role culture="en-us" Id="103" value="Seguimiento MASC"></Role>
+  <Role culture="es-es" Id="103" value="Seguimiento MASC"></Role>
+  <Role culture="en-us" Id="104" value="Notificador"></Role>
+  <Role culture="es-es" Id="104" value="Notificador"></Role>
+</Roles>

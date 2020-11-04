@@ -1,0 +1,525 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Servicios_AlternativosModel
+@{
+
+
+    List<SelectListItem> varMedios_Alternativos_Medios_Alternativos = null;
+    if (ViewBag.Medios_Alternativoss_Medios_Alternativos != null)
+    { varMedios_Alternativos_Medios_Alternativos = (List<SelectListItem>)ViewBag.Medios_Alternativoss_Medios_Alternativos; }
+    List<SelectListItem> varTipo_de_Instancia_Se_Canaliza = null;
+    if (ViewBag.Tipo_de_Instancias_Se_Canaliza != null)
+    { varTipo_de_Instancia_Se_Canaliza = (List<SelectListItem>)ViewBag.Tipo_de_Instancias_Se_Canaliza; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Servicios Alternativos
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Servicios_AlternativosRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Servicios_AlternativosPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Servicios Alternativos
+								<button onclick="Servicios_AlternativosGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Servicios_AlternativosBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Servicios_AlternativosResources.Servicios_Alternativos</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Servicios_AlternativosDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Servicios_AlternativosPropertyBusinessModal" id="Servicios_AlternativosPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Servicios_AlternativosBusinessRule-form" onclick="Servicios_AlternativosGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Servicios_AlternativosPropertyModal" id="Servicios_AlternativosPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Servicios_AlternativosBusinessRuleModal" id="Servicios_AlternativosBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Servicios_AlternativosAddBusinessRuleModal" id="Servicios_AlternativosAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Servicios_Alternativos", FormMethod.Post, new { id = "CreateServicios_Alternativos", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Servicios_AlternativosCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Servicios_AlternativosResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="262774" data-field-name="@Resources.Servicios_AlternativosResources.Clave">
+                                    <label class="form-control" for="Servicios_AlternativosClave" id="Servicios_AlternativosClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divCJusticia_Alternativa">
+                                <label class="col-sm-2 control-label">@Resources.Servicios_AlternativosResources.CJusticia_Alternativa</label>
+                                <div class="col-sm-8" data-field-id="CJusticia_Alternativa" data-attribute="262776" data-field-name="@Resources.Servicios_AlternativosResources.CJusticia_Alternativa">
+                                    @Html.CheckBoxFor(m => m.CJusticia_Alternativa, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divMedios_Alternativos">
+	<label class="col-sm-2 control-label">@Resources.Servicios_AlternativosResources.Medios_Alternativos</label>
+	<div class="col-sm-8" data-field-id="Medios_Alternativos" data-attribute="262777" data-field-name="@Resources.Servicios_AlternativosResources.Medios_Alternativos">
+		<select class="form-control" data-val="true" data-val-number="The field Canalizarse a Medios Alternativos must be a number." data-val-required="The Canalizarse a Medios Alternativos field is required." id="Servicios_AlternativosMedios_Alternativos" name="Servicios_AlternativosMedios_Alternativos">
+			<option value=""></option>
+			@if (varMedios_Alternativos_Medios_Alternativos != null){ 
+				foreach (var itemMedios_Alternativos in varMedios_Alternativos_Medios_Alternativos)
+				{
+					if (itemMedios_Alternativos.Value == Convert.ToString(Model.Medios_Alternativos))
+					{
+						<option value="@itemMedios_Alternativos.Value" selected>@itemMedios_Alternativos.Text</option>
+					}
+					else
+					{
+						<option value="@itemMedios_Alternativos.Value">@itemMedios_Alternativos.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMotivo">
+                                <label class="col-sm-2 control-label">@Resources.Servicios_AlternativosResources.Motivo</label>
+                                <div class="col-sm-8" data-field-id="Motivo" data-attribute="262778" data-field-name="@Resources.Servicios_AlternativosResources.Motivo">
+                                    <input class="form-control" id="Servicios_AlternativosMotivo" name="Servicios_AlternativosMotivo" type="text" value="@Model.Motivo">
+                                </div>
+                            </div>
+<div class="form-group" id="divDerechos">
+                                <label class="col-sm-2 control-label">@Resources.Servicios_AlternativosResources.Derechos</label>
+                                <div class="col-sm-8" data-field-id="Derechos" data-attribute="262779" data-field-name="@Resources.Servicios_AlternativosResources.Derechos">
+                                    @Html.CheckBoxFor(m => m.Derechos, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divProcedimiento">
+                                <label class="col-sm-2 control-label">@Resources.Servicios_AlternativosResources.Procedimiento</label>
+                                <div class="col-sm-8" data-field-id="Procedimiento" data-attribute="262780" data-field-name="@Resources.Servicios_AlternativosResources.Procedimiento">
+                                    @Html.CheckBoxFor(m => m.Procedimiento, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divSolicita_Medios_Alternativos">
+                                <label class="col-sm-2 control-label">@Resources.Servicios_AlternativosResources.Solicita_Medios_Alternativos</label>
+                                <div class="col-sm-8" data-field-id="Solicita_Medios_Alternativos" data-attribute="262781" data-field-name="@Resources.Servicios_AlternativosResources.Solicita_Medios_Alternativos">
+                                    @Html.CheckBoxFor(m => m.Solicita_Medios_Alternativos, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divSe_Canaliza">
+	<label class="col-sm-2 control-label">@Resources.Servicios_AlternativosResources.Se_Canaliza</label>
+	<div class="col-sm-8" data-field-id="Se_Canaliza" data-attribute="262782" data-field-name="@Resources.Servicios_AlternativosResources.Se_Canaliza">
+		<select class="form-control" data-val="true" data-val-number="The field Se le Canaliza a must be a number." data-val-required="The Se le Canaliza a field is required." id="Servicios_AlternativosSe_Canaliza" name="Servicios_AlternativosSe_Canaliza">
+			<option value=""></option>
+			@if (varTipo_de_Instancia_Se_Canaliza != null){ 
+				foreach (var itemSe_Canaliza in varTipo_de_Instancia_Se_Canaliza)
+				{
+					if (itemSe_Canaliza.Value == Convert.ToString(Model.Se_Canaliza))
+					{
+						<option value="@itemSe_Canaliza.Value" selected>@itemSe_Canaliza.Text</option>
+					}
+					else
+					{
+						<option value="@itemSe_Canaliza.Value">@itemSe_Canaliza.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divInvestigacion_con_Detenido">
+                                <label class="col-sm-2 control-label">@Resources.Servicios_AlternativosResources.Investigacion_con_Detenido</label>
+                                <div class="col-sm-8" data-field-id="Investigacion_con_Detenido" data-attribute="262783" data-field-name="@Resources.Servicios_AlternativosResources.Investigacion_con_Detenido">
+                                    @Html.CheckBoxFor(m => m.Investigacion_con_Detenido, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divInvestigacion_sin_Detenido">
+                                <label class="col-sm-2 control-label">@Resources.Servicios_AlternativosResources.Investigacion_sin_Detenido</label>
+                                <div class="col-sm-8" data-field-id="Investigacion_sin_Detenido" data-attribute="262784" data-field-name="@Resources.Servicios_AlternativosResources.Investigacion_sin_Detenido">
+                                    @Html.CheckBoxFor(m => m.Investigacion_sin_Detenido, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divTurnar_a_Justicia_Alternativa">
+                                <label class="col-sm-2 control-label">@Resources.Servicios_AlternativosResources.Turnar_a_Justicia_Alternativa</label>
+                                <div class="col-sm-8" data-field-id="Turnar_a_Justicia_Alternativa" data-attribute="262785" data-field-name="@Resources.Servicios_AlternativosResources.Turnar_a_Justicia_Alternativa">
+                                    @Html.CheckBoxFor(m => m.Turnar_a_Justicia_Alternativa, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divInstancia_Externa">
+                                <label class="col-sm-2 control-label">@Resources.Servicios_AlternativosResources.Instancia_Externa</label>
+                                <div class="col-sm-8" data-field-id="Instancia_Externa" data-attribute="262786" data-field-name="@Resources.Servicios_AlternativosResources.Instancia_Externa">
+                                    @Html.CheckBoxFor(m => m.Instancia_Externa, new { @class = "i-checks" })
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Servicios_AlternativosConfigureSave" name="Servicios_AlternativosConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnServicios_AlternativosConfigureType" />
+												<input type="hidden" id="hdnServicios_AlternativosBusinessRuleFieldId" />
+												<input type="hidden" id="hdnServicios_AlternativosBusinessRuleFieldName" />
+												<input type="hidden" id="hdnServicios_AlternativosBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Servicios_AlternativosGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Servicios_AlternativosBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Servicios_Alternativos.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Servicios_AlternativosGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Servicios_AlternativosCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Modulo_Atencion_InicialCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Servicios_AlternativosRowElement = "Servicios_AlternativosPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Servicios_AlternativosRowElement + "')){ Servicios_AlternativosInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendServicios_AlternativosData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateServicios_Alternativos").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateServicios_Alternativos")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Servicios_AlternativosCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Servicios_Alternativos/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Servicios_AlternativosPropertyBag", "Servicios_Alternativos")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Servicios_AlternativosGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnServicios_AlternativosBusinessRuleFieldId').val(FieldId);
+				$('#hdnServicios_AlternativosBusinessRuleFieldName').val(FieldName);
+				$('#hdnServicios_AlternativosBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnServicios_AlternativosBusinessRuleFieldId').val(), FieldName: $('#hdnServicios_AlternativosBusinessRuleFieldName').val(), ObjectId: '45001', Attribute: $('#hdnServicios_AlternativosBusinessRuleAttribute').val(), Screen: 'Servicios_Alternativos' }, function (data) {
+                $(".Servicios_AlternativosBusinessRuleModal").html(data);
+            });
+        }
+        function Servicios_AlternativosGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnServicios_AlternativosBusinessRuleFieldId').val(FieldId);
+				$('#hdnServicios_AlternativosBusinessRuleFieldName').val(FieldName);
+				$('#hdnServicios_AlternativosBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnServicios_AlternativosBusinessRuleFieldId').val(), FieldName: $('#hdnServicios_AlternativosBusinessRuleFieldName').val(), ObjectId: '45001', Attribute: $('#hdnServicios_AlternativosBusinessRuleAttribute').val(), Screen: 'Servicios_Alternativos' }, function (data) {
+                $(".Servicios_AlternativosAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnServicios_AlternativosBusinessRuleFieldId').val(), FieldName: $('#hdnServicios_AlternativosBusinessRuleFieldName').val(), ObjectId: '45001', Attribute: $('#hdnServicios_AlternativosBusinessRuleAttribute').val(), Screen: 'Servicios_Alternativos' }, function (data) {
+				$(".Servicios_AlternativosBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Servicios_Alternativos/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Servicios_Alternativos/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Servicios_Alternativos/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnServicios_AlternativosConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnServicios_AlternativosConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Servicios_Alternativos/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnServicios_AlternativosConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Servicios_Alternativos/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Servicios_Alternativos' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Servicios_Alternativos' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Servicios_AlternativosConfigureSave').text('Save Settings');
+                    $('#hdnServicios_AlternativosConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateServicios_Alternativos').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnServicios_AlternativosBusinessRuleFieldId').val(fieldId);
+			$('#hdnServicios_AlternativosBusinessRuleFieldName').val(fieldName);
+			$('#hdnServicios_AlternativosBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

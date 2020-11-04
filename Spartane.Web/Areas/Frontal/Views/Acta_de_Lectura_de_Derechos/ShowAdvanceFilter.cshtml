@@ -1,0 +1,380 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Acta_de_Lectura_de_DerechosAdvanceSearchModel
+@{
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Acta_de_Lectura_de_Derechos", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Acta_de_Lectura_de_DerechosResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acta_de_Lectura_de_DerechosResources.NUC</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.NUCFilter, filters, new { @class = "form-control", @id = "ddlNUCFilter" })
+                    @Html.TextBoxFor(m => m.NUC, new { @class = "form-control", @type = "text", @id = "txtNUC" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acta_de_Lectura_de_DerechosResources.NIC</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.NICFilter, filters, new { @class = "form-control", @id = "ddlNICFilter" })
+                    @Html.TextBoxFor(m => m.NIC, new { @class = "form-control", @type = "text", @id = "txtNIC" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acta_de_Lectura_de_DerechosResources.Folio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.FolioFilter, filters, new { @class = "form-control", @id = "ddlFolioFilter" })
+                    @Html.TextBoxFor(m => m.Folio, new { @class = "form-control", @type = "text", @id = "txtFolio" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acta_de_Lectura_de_DerechosResources.Ubicacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.UbicacionFilter, filters, new { @class = "form-control", @id = "ddlUbicacionFilter" })
+                    @Html.TextBoxFor(m => m.Ubicacion, new { @class = "form-control", @type = "text", @id = "txtUbicacion" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Acta_de_Lectura_de_DerechosResources.Fecha</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha" name="FromFecha" type="text" value="@Model.FromFecha" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha" name="ToFecha" type="text" value="@Model.ToFecha" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Acta_de_Lectura_de_DerechosResources.Hora</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora" name="FromHora" type="text" value="@Model.FromHora" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora" name="ToHora" type="text" value="@Model.ToHora" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acta_de_Lectura_de_DerechosResources.Agente_de_la_PM</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Agente_de_la_PMFilter, filters, new { @class = "form-control", @id = "ddlAgente_de_la_PMFilter" })
+                    @Html.TextBoxFor(m => m.Agente_de_la_PM, new { @class = "form-control", @type = "text", @id = "txtAgente_de_la_PM" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acta_de_Lectura_de_DerechosResources.Plaza_de_Adscripcion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Plaza_de_AdscripcionFilter, filters, new { @class = "form-control", @id = "ddlPlaza_de_AdscripcionFilter" })
+                    @Html.TextBoxFor(m => m.Plaza_de_Adscripcion, new { @class = "form-control", @type = "text", @id = "txtPlaza_de_Adscripcion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acta_de_Lectura_de_DerechosResources.Domicilio_de_la_Comandancia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Domicilio_de_la_ComandanciaFilter, filters, new { @class = "form-control", @id = "ddlDomicilio_de_la_ComandanciaFilter" })
+                    @Html.TextBoxFor(m => m.Domicilio_de_la_Comandancia, new { @class = "form-control", @type = "text", @id = "txtDomicilio_de_la_Comandancia" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acta_de_Lectura_de_DerechosResources.Municipio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.MunicipioFilter, filters, new { @class = "form-control", @id = "ddlMunicipioFilter" })
+                    @Html.TextBoxFor(m => m.Municipio, new { @class = "form-control", @type = "text", @id = "txtMunicipio" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acta_de_Lectura_de_DerechosResources.Estado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.EstadoFilter, filters, new { @class = "form-control", @id = "ddlEstadoFilter" })
+                    @Html.TextBoxFor(m => m.Estado, new { @class = "form-control", @type = "text", @id = "txtEstado" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Acta_de_Lectura_de_Derechos/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acta_de_Lectura_de_DerechosClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.Acta_de_Lectura_de_DerechosClaveTo = $("#txtAdvanceToClave").val();
+        }
+        if ($("#txtAdvanceNUC").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acta_de_Lectura_de_DerechosNUC = $("#txtAdvanceNUC").val();
+            advanceSearch.Acta_de_Lectura_de_DerechosNUCSearchType = $("#ddlAdvanceNUCFilter").val();
+        }
+        if ($("#txtAdvanceNIC").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acta_de_Lectura_de_DerechosNIC = $("#txtAdvanceNIC").val();
+            advanceSearch.Acta_de_Lectura_de_DerechosNICSearchType = $("#ddlAdvanceNICFilter").val();
+        }
+        if ($("#txtAdvanceFolio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acta_de_Lectura_de_DerechosFolio = $("#txtAdvanceFolio").val();
+            advanceSearch.Acta_de_Lectura_de_DerechosFolioSearchType = $("#ddlAdvanceFolioFilter").val();
+        }
+        if ($("#txtAdvanceUbicacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acta_de_Lectura_de_DerechosUbicacion = $("#txtAdvanceUbicacion").val();
+            advanceSearch.Acta_de_Lectura_de_DerechosUbicacionSearchType = $("#ddlAdvanceUbicacionFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha").val() != "" || $("#txtAdvanceToFecha").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acta_de_Lectura_de_DerechosFechaFrom = $("#txtAdvanceFromFecha").val();
+            advanceSearch.Acta_de_Lectura_de_DerechosFechaTo = $("#txtAdvanceToFecha").val();
+        }
+        if ($("#txtAdvanceHora").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acta_de_Lectura_de_DerechosHora = $("#txtAdvanceHora").val();
+            advanceSearch.Acta_de_Lectura_de_DerechosHoraSearchType = $("#ddlAdvanceHoraFilter").val();
+        }
+        if ($("#txtAdvanceAgente_de_la_PM").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acta_de_Lectura_de_DerechosAgente_de_la_PM = $("#txtAdvanceAgente_de_la_PM").val();
+            advanceSearch.Acta_de_Lectura_de_DerechosAgente_de_la_PMSearchType = $("#ddlAdvanceAgente_de_la_PMFilter").val();
+        }
+        if ($("#txtAdvancePlaza_de_Adscripcion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acta_de_Lectura_de_DerechosPlaza_de_Adscripcion = $("#txtAdvancePlaza_de_Adscripcion").val();
+            advanceSearch.Acta_de_Lectura_de_DerechosPlaza_de_AdscripcionSearchType = $("#ddlAdvancePlaza_de_AdscripcionFilter").val();
+        }
+        if ($("#txtAdvanceDomicilio_de_la_Comandancia").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acta_de_Lectura_de_DerechosDomicilio_de_la_Comandancia = $("#txtAdvanceDomicilio_de_la_Comandancia").val();
+            advanceSearch.Acta_de_Lectura_de_DerechosDomicilio_de_la_ComandanciaSearchType = $("#ddlAdvanceDomicilio_de_la_ComandanciaFilter").val();
+        }
+        if ($("#txtAdvanceMunicipio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acta_de_Lectura_de_DerechosMunicipio = $("#txtAdvanceMunicipio").val();
+            advanceSearch.Acta_de_Lectura_de_DerechosMunicipioSearchType = $("#ddlAdvanceMunicipioFilter").val();
+        }
+        if ($("#txtAdvanceEstado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Acta_de_Lectura_de_DerechosEstado = $("#txtAdvanceEstado").val();
+            advanceSearch.Acta_de_Lectura_de_DerechosEstadoSearchType = $("#ddlAdvanceEstadoFilter").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblActa_de_Lectura_de_Derechos').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isActa_de_Lectura_de_DerechosTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

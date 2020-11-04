@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Persona_Moral_JA" value="Persona Moral"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="idRegistroAT" value="idRegistroAT"></resource>
+  <resource culture="en-US" name="idRegistroUI" value="idRegistroUI"></resource>
+  <resource culture="en-US" name="Solicitud" value="Número de Expediente"></resource>
+  <resource culture="en-US" name="Nombre" value="Nombre(s)"></resource>
+  <resource culture="en-US" name="Apellido_Paterno" value="Apellido Paterno"></resource>
+  <resource culture="en-US" name="Apellido_Materno" value="Apellido Materno"></resource>
+  <resource culture="en-US" name="Calidad_Juridica" value="Calidad Jurídica"></resource>
+  <resource culture="en-US" name="Razon_Social" value="Razón Social"></resource>
+  <resource culture="en-US" name="CURP" value="CURP"></resource>
+  <resource culture="en-US" name="RFC" value="RFC"></resource>
+  <resource culture="en-US" name="Pais" value="País"></resource>
+  <resource culture="en-US" name="Estado" value="Estado"></resource>
+  <resource culture="en-US" name="Municipio" value="Municipio"></resource>
+  <resource culture="en-US" name="Poblacion" value="Poblacion"></resource>
+  <resource culture="en-US" name="Colonia" value="Colonia"></resource>
+  <resource culture="en-US" name="Codigo_Postal" value="Código Postal"></resource>
+  <resource culture="en-US" name="Calle" value="Calle"></resource>
+  <resource culture="en-US" name="Numero_Exterior" value="Número Exterior"></resource>
+  <resource culture="en-US" name="Numero_Interior" value="Número Interior"></resource>
+  <resource culture="en-US" name="Referencia" value="Referencia"></resource>
+  <resource culture="en-US" name="Latitud" value="Latitud"></resource>
+  <resource culture="en-US" name="Longitud" value="Longitud"></resource>
+  <resource culture="en-US" name="Telefono" value="Télefono"></resource>
+  <resource culture="en-US" name="Extension" value="Extensión"></resource>
+  <resource culture="en-US" name="Celular" value="Celular"></resource>
+  <resource culture="en-US" name="Correo_Electronico" value="Correo Electrónico"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

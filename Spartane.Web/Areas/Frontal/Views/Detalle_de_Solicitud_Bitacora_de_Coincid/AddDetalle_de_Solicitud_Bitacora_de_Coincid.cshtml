@@ -1,0 +1,507 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Solicitud_Bitacora_de_CoincidModel
+@{
+
+
+    List<SelectListItem> varTipo_de_Acuerdo_Tipo_de_Acuerdo = null;
+    if (ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo != null)
+    { varTipo_de_Acuerdo_Tipo_de_Acuerdo = (List<SelectListItem>)ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo; }
+    List<SelectListItem> varRazon_de_Incumplimiento_Razon_de_Incumplimiento = null;
+    if (ViewBag.Razon_de_Incumplimientos_Razon_de_Incumplimiento != null)
+    { varRazon_de_Incumplimiento_Razon_de_Incumplimiento = (List<SelectListItem>)ViewBag.Razon_de_Incumplimientos_Razon_de_Incumplimiento; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Solicitud Bitácora de Coincidencias
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_Solicitud_Bitacora_de_CoincidRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_Solicitud_Bitacora_de_CoincidPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Solicitud Bitácora de Coincidencias
+								<button onclick="Detalle_de_Solicitud_Bitacora_de_CoincidGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitud_Bitacora_de_CoincidBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Detalle_de_Solicitud_Bitacora_de_Coincid</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_Solicitud_Bitacora_de_CoincidDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_Solicitud_Bitacora_de_CoincidPropertyBusinessModal" id="Detalle_de_Solicitud_Bitacora_de_CoincidPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_Solicitud_Bitacora_de_CoincidBusinessRule-form" onclick="Detalle_de_Solicitud_Bitacora_de_CoincidGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitud_Bitacora_de_CoincidPropertyModal" id="Detalle_de_Solicitud_Bitacora_de_CoincidPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleModal" id="Detalle_de_Solicitud_Bitacora_de_CoincidBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitud_Bitacora_de_CoincidAddBusinessRuleModal" id="Detalle_de_Solicitud_Bitacora_de_CoincidAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Solicitud_Bitacora_de_Coincid", FormMethod.Post, new { id = "CreateDetalle_de_Solicitud_Bitacora_de_Coincid", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_Solicitud_Bitacora_de_CoincidCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="264344" data-field-name="@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Clave">
+                                    <label class="form-control" for="Detalle_de_Solicitud_Bitacora_de_CoincidClave" id="Detalle_de_Solicitud_Bitacora_de_CoincidClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre_Completo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Nombre_Completo</label>
+                                <div class="col-sm-8" data-field-id="Nombre_Completo" data-attribute="264345" data-field-name="@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Nombre_Completo">
+                                    <input class="form-control" id="Detalle_de_Solicitud_Bitacora_de_CoincidNombre_Completo" name="Detalle_de_Solicitud_Bitacora_de_CoincidNombre_Completo" type="text" value="@Model.Nombre_Completo">
+                                </div>
+                            </div>
+<div class="form-group" id="divAlias">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Alias</label>
+                                <div class="col-sm-8" data-field-id="Alias" data-attribute="264346" data-field-name="@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Alias">
+                                    <input class="form-control" id="Detalle_de_Solicitud_Bitacora_de_CoincidAlias" name="Detalle_de_Solicitud_Bitacora_de_CoincidAlias" type="text" value="@Model.Alias">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_de_Expediente">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Numero_de_Expediente</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Expediente" data-attribute="264347" data-field-name="@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Numero_de_Expediente">
+                                    <input class="form-control" id="Detalle_de_Solicitud_Bitacora_de_CoincidNumero_de_Expediente" name="Detalle_de_Solicitud_Bitacora_de_CoincidNumero_de_Expediente" type="text" value="@Model.Numero_de_Expediente">
+                                </div>
+                            </div>
+<div class="form-group" id="divFuente_de_Origen">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Fuente_de_Origen</label>
+                                <div class="col-sm-8" data-field-id="Fuente_de_Origen" data-attribute="264348" data-field-name="@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Fuente_de_Origen">
+                                    <input class="form-control" id="Detalle_de_Solicitud_Bitacora_de_CoincidFuente_de_Origen" name="Detalle_de_Solicitud_Bitacora_de_CoincidFuente_de_Origen" type="text" value="@Model.Fuente_de_Origen">
+                                </div>
+                            </div>
+<div class="form-group" id="divTipo_de_Acuerdo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Tipo_de_Acuerdo</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Acuerdo" data-attribute="266134" data-field-name="@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Tipo_de_Acuerdo">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Acuerdo must be a number." data-val-required="The Tipo de Acuerdo field is required." id="Detalle_de_Solicitud_Bitacora_de_CoincidTipo_de_Acuerdo" name="Detalle_de_Solicitud_Bitacora_de_CoincidTipo_de_Acuerdo">
+			<option value=""></option>
+			@if (varTipo_de_Acuerdo_Tipo_de_Acuerdo != null){ 
+				foreach (var itemTipo_de_Acuerdo in varTipo_de_Acuerdo_Tipo_de_Acuerdo)
+				{
+					if (itemTipo_de_Acuerdo.Value == Convert.ToString(Model.Tipo_de_Acuerdo))
+					{
+						<option value="@itemTipo_de_Acuerdo.Value" selected>@itemTipo_de_Acuerdo.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Acuerdo.Value">@itemTipo_de_Acuerdo.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCumplido">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Cumplido</label>
+                                <div class="col-sm-8" data-field-id="Cumplido" data-attribute="266135" data-field-name="@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Cumplido">
+                                    @Html.CheckBoxFor(m => m.Cumplido, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divRazon_de_Incumplimiento">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Razon_de_Incumplimiento</label>
+	<div class="col-sm-8" data-field-id="Razon_de_Incumplimiento" data-attribute="266136" data-field-name="@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Razon_de_Incumplimiento">
+		<select class="form-control" data-val="true" data-val-number="The field Razón de Incumplimiento must be a number." data-val-required="The Razón de Incumplimiento field is required." id="Detalle_de_Solicitud_Bitacora_de_CoincidRazon_de_Incumplimiento" name="Detalle_de_Solicitud_Bitacora_de_CoincidRazon_de_Incumplimiento">
+			<option value=""></option>
+			@if (varRazon_de_Incumplimiento_Razon_de_Incumplimiento != null){ 
+				foreach (var itemRazon_de_Incumplimiento in varRazon_de_Incumplimiento_Razon_de_Incumplimiento)
+				{
+					if (itemRazon_de_Incumplimiento.Value == Convert.ToString(Model.Razon_de_Incumplimiento))
+					{
+						<option value="@itemRazon_de_Incumplimiento.Value" selected>@itemRazon_de_Incumplimiento.Text</option>
+					}
+					else
+					{
+						<option value="@itemRazon_de_Incumplimiento.Value">@itemRazon_de_Incumplimiento.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divObservaciones">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Observaciones</label>
+                                <div class="col-sm-8" data-field-id="Observaciones" data-attribute="266137" data-field-name="@Resources.Detalle_de_Solicitud_Bitacora_de_CoincidResources.Observaciones">
+                                    <input class="form-control" id="Detalle_de_Solicitud_Bitacora_de_CoincidObservaciones" name="Detalle_de_Solicitud_Bitacora_de_CoincidObservaciones" type="text" value="@Model.Observaciones">
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_Solicitud_Bitacora_de_CoincidConfigureSave" name="Detalle_de_Solicitud_Bitacora_de_CoincidConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_Solicitud_Bitacora_de_CoincidConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_Solicitud_Bitacora_de_CoincidGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitud_Bitacora_de_CoincidBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Solicitud_Bitacora_de_Coincid.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Solicitud_Bitacora_de_CoincidGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Solicitud_Bitacora_de_CoincidCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/SolicitudCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_Solicitud_Bitacora_de_CoincidRowElement = "Detalle_de_Solicitud_Bitacora_de_CoincidPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_Solicitud_Bitacora_de_CoincidRowElement + "')){ Detalle_de_Solicitud_Bitacora_de_CoincidInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_de_Solicitud_Bitacora_de_CoincidData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Solicitud_Bitacora_de_Coincid").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Solicitud_Bitacora_de_Coincid")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_Solicitud_Bitacora_de_CoincidCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Solicitud_Bitacora_de_Coincid/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_Solicitud_Bitacora_de_CoincidPropertyBag", "Detalle_de_Solicitud_Bitacora_de_Coincid")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_Solicitud_Bitacora_de_CoincidGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleFieldName').val(), ObjectId: '45126', Attribute: $('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleAttribute').val(), Screen: 'Detalle_de_Solicitud_Bitacora_de_Coincid' }, function (data) {
+                $(".Detalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_Solicitud_Bitacora_de_CoincidGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleFieldName').val(), ObjectId: '45126', Attribute: $('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleAttribute').val(), Screen: 'Detalle_de_Solicitud_Bitacora_de_Coincid' }, function (data) {
+                $(".Detalle_de_Solicitud_Bitacora_de_CoincidAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleFieldName').val(), ObjectId: '45126', Attribute: $('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleAttribute').val(), Screen: 'Detalle_de_Solicitud_Bitacora_de_Coincid' }, function (data) {
+				$(".Detalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Solicitud_Bitacora_de_Coincid/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Bitacora_de_Coincid/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Bitacora_de_Coincid/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Bitacora_de_Coincid/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Solicitud_Bitacora_de_Coincid/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Solicitud_Bitacora_de_Coincid' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Solicitud_Bitacora_de_Coincid' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_Solicitud_Bitacora_de_CoincidConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Solicitud_Bitacora_de_Coincid').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_Solicitud_Bitacora_de_CoincidBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

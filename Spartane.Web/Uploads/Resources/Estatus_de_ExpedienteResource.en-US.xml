@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Estatus_de_Expediente" value="Estatus de Expediente"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Estatus_General" value="Estatus General"></resource>
+  <resource culture="en-US" name="Estatus_Especifico" value="Estatus Específico"></resource>
+  <resource culture="en-US" name="Estatus_Tipo_Caso" value="Estatus Tipo Caso"></resource>
+  <resource culture="en-US" name="Estatus_Descripcion_General" value="Estatus Descripción General"></resource>
+  <resource culture="en-US" name="Estatus_Descripcion_Especifico" value="Estatus Descripción Específico"></resource>
+  <resource culture="en-US" name="Estatus_Completo" value="Estatus Completo"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -1,0 +1,404 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.SolicitudGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.SolicitudResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.SolicitudResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Fecha_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Usuario_que_Registra
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Numero_de_Folio
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Unidad_MASC
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Remitente
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.NUAT
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Unidad
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Region
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.NUC
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.CDI
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Numero_de_Expediente
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Estatus
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Fecha_en_que_llega_a_Coordinador
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Fecha_en_que_llega_a_Especialista
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Agente_del_Ministerio_Publico_Orientador
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Agente_del_Ministerio_Publico_Invest
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Juez_de_Control
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Titulo_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Fecha_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Narrativa_Breve_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Hora_Aproximada_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Tipo_de_Lugar_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.PaisH
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.EstadoH
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.MunicipioH
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Poblacion
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.ColoniaH
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.CalleH
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Numero_ExteriorH
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Numero_InteriorH
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Codigo_PostalH
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Entre_Calle
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.y_Calle
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.LongitudH
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.LatitudH
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Especialista_AsignadoA
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Asignar_Especialista_Automatico
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Razone
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Tipo_de_Mecanismo
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Fecha_de_AsignacionA
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Hora_de_AsignacionA
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Fecha_de_Atencion_del_Especialista
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Hora_de_Atencion_del_Especialista
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Rechazar
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Acuerdo_Cumplido
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Razon_de_Incumplimiento
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Tipo_de_Conclusion_Anticipada
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Fecha_de_Cierre
+            </td>
+            <td class="column1">
+                @Resources.SolicitudResources.Hora_de_Cierre
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Fecha_de_Registro
+                    </td>
+                    <td>
+                        @item.Usuario_que_Registra
+                    </td>
+                    <td>
+                        @item.Numero_de_Folio
+                    </td>
+                    <td>
+                        @item.Unidad_MASCDescripcion
+                    </td>
+                    <td>
+                        @item.Remitente
+                    </td>
+                    <td>
+                        @item.NUAT
+                    </td>
+                    <td>
+                        @item.UnidadDescripcion
+                    </td>
+                    <td>
+                        @item.Municipio
+                    </td>
+                    <td>
+                        @item.RegionDescripcion
+                    </td>
+                    <td>
+                        @item.NUC
+                    </td>
+                    <td>
+                        @item.CDI
+                    </td>
+                    <td>
+                        @item.Numero_de_Expediente
+                    </td>
+                    <td>
+                        @item.EstatusDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_en_que_llega_a_Coordinador
+                    </td>
+                    <td>
+                        @item.Fecha_en_que_llega_a_Especialista
+                    </td>
+                    <td>
+                        @item.Agente_del_Ministerio_Publico_Orientador
+                    </td>
+                    <td>
+                        @item.Agente_del_Ministerio_Publico_Invest
+                    </td>
+                    <td>
+                        @item.Juez_de_Control
+                    </td>
+                    <td>
+                        @item.Titulo_del_Hecho
+                    </td>
+                    <td>
+                        @item.Fecha_del_Hecho
+                    </td>
+                    <td>
+                        @item.Narrativa_Breve_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Hora_Aproximada_del_Hecho
+                    </td>
+                    <td>
+                        @item.Tipo_de_Lugar_del_HechoDescripcion
+                    </td>
+                    <td>
+                        @item.PaisH
+                    </td>
+                    <td>
+                        @item.EstadoH
+                    </td>
+                    <td>
+                        @item.MunicipioH
+                    </td>
+                    <td>
+                        @item.Poblacion
+                    </td>
+                    <td>
+                        @item.ColoniaH
+                    </td>
+                    <td>
+                        @item.CalleH
+                    </td>
+                    <td>
+                        @item.Numero_ExteriorH
+                    </td>
+                    <td>
+                        @item.Numero_InteriorH
+                    </td>
+                    <td>
+                        @item.Codigo_PostalH
+                    </td>
+                    <td>
+                        @item.Entre_Calle
+                    </td>
+                    <td>
+                        @item.y_Calle
+                    </td>
+                    <td>
+                        @item.LongitudH
+                    </td>
+                    <td>
+                        @item.LatitudH
+                    </td>
+                    <td>
+                        @item.Especialista_AsignadoA
+                    </td>
+                    <td>
+                        @item.Asignar_Especialista_Automatico
+                    </td>
+                    <td>
+                        @item.Razone
+                    </td>
+                    <td>
+                        @item.Tipo_de_MecanismoDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_de_AsignacionA
+                    </td>
+                    <td>
+                        @item.Hora_de_AsignacionA
+                    </td>
+                    <td>
+                        @item.Fecha_de_Atencion_del_Especialista
+                    </td>
+                    <td>
+                        @item.Hora_de_Atencion_del_Especialista
+                    </td>
+                    <td>
+                        @item.Rechazar
+                    </td>
+                    <td>
+                        @item.Acuerdo_CumplidoDescripcion
+                    </td>
+                    <td>
+                        @item.Razon_de_IncumplimientoDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_Conclusion_AnticipadaDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_de_Cierre
+                    </td>
+                    <td>
+                        @item.Hora_de_Cierre
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

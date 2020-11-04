@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="PasaTurnos" value="PasaTurnos"></resource>
+  <resource culture="en-US" name="Folio" value="Folio"></resource>
+  <resource culture="en-US" name="Turno" value="Turno"></resource>
+  <resource culture="en-US" name="Modulo" value="Modulo"></resource>
+  <resource culture="en-US" name="Unidad" value="Unidad"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

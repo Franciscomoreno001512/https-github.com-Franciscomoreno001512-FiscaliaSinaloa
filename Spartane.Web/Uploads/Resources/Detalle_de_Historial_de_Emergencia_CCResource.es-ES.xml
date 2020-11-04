@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_de_Historial_de_Emergencia_CC" value="Detalle de Historial de Emergencia CC"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Fecha" value="Fecha"></resource>
+  <resource culture="es-es" name="Hora" value="Hora"></resource>
+  <resource culture="es-es" name="Latitud" value="Latitud"></resource>
+  <resource culture="es-es" name="Longitud" value="Longitud"></resource>
+  <resource culture="es-es" name="Estatus" value="Estatus"></resource>
+  <resource culture="es-es" name="Comentarios" value="Comentarios"></resource>
+  <resource culture="es-es" name="Usuario_que_registra" value="Usuario que registra"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

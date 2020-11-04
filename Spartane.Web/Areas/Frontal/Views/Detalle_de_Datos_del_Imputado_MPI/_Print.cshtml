@@ -1,0 +1,746 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Detalle_de_Datos_del_Imputado_MPIGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Nombre
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Apellido_Paterno
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Apellido_Materno
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Fecha_de_Nacimiento
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Edad
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Sexo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Estado_Civil
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Tipo_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Numero_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Nacionalidad
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Escolaridad
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Ocupacion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Estado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Codigo_Postal
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Localidad
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Colonia
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Calle_del_Imputado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Numero_Exterior
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Numero_Interior
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Telefono
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Extencion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Celular
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Correo_Electronico
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Pais
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Forma_Cara
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Cejas
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Cantidad_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Implantacion_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Complexion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Color_Piel
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Frente
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Forma_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Calvicie
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Color_Ojos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Ojos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Forma_Ojos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Nariz_Base
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Labios
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Boca
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Menton
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Barba
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Forma_Orejas
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Tamano_Orejas
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Tipo_Lobulo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Bigote
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Situacion_Fisica
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Alias_media_diliacion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Fecha_de_Detencion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Hora_de_Detencion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Fecha_de_Puesto_a_Disposicion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Hora_de_Puesto_a_Disposicion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Con_Detenido
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.A_Quien_Resulte_Responsable
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Tiempo_Restante_para_Vinculacion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Vincular
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Medidas_Cautelares
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Solicitar_Prorroga
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Nuevo_Plazo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Orden_de_Aprehension
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Medidas_Cautelares_en_Imputado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Titulo_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Narrativa_Breve_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Prioridad_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Fecha_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Hora_Aproximada_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Pais_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Estado_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Municipio_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Colonia_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Codigo_Postal_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Calle_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Entre_Calle_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Y_Calle_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Numero_Exterior_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Numero_Interior_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Latitud_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Longitud_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Tipo_de_Lugar_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Incapaz
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Nombre_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Apellido_Paterno_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Apellido_Materno_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Fecha_de_Nacimiento_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Edad_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Sexo_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Estado_Civil_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Tipo_de_Identificacion_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Numero_de_Identificacion_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Nacionalidad_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Escolaridad_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Ocupacion_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Pais_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Estado_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Municipio_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Colonia_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Codigo_Postal_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Calle_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Numero_Exterior_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Numero_Interior_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Telefono_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Extension_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Celular_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Correo_Electronico_del_Tutor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Proteccion_de_Datos
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Estatus
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Datos_del_Imputado_MPIResources.Judicializar
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Nombre
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno
+                    </td>
+                    <td>
+                        @item.Apellido_Materno
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento
+                    </td>
+                    <td>
+                        @item.Edad
+                    </td>
+                    <td>
+                        @item.SexoDescripcion
+                    </td>
+                    <td>
+                        @item.Estado_CivilDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_IdentificacionNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion
+                    </td>
+                    <td>
+                        @item.NacionalidadNacionalidadC
+                    </td>
+                    <td>
+                        @item.EscolaridadDescripcion
+                    </td>
+                    <td>
+                        @item.OcupacionDescripcion
+                    </td>
+                    <td>
+                        @item.EstadoNombre
+                    </td>
+                    <td>
+                        @item.MunicipioNombre
+                    </td>
+                    <td>
+                        @item.Codigo_Postal
+                    </td>
+                    <td>
+                        @item.LocalidadDescripcion
+                    </td>
+                    <td>
+                        @item.ColoniaNombre
+                    </td>
+                    <td>
+                        @item.Calle_del_Imputado
+                    </td>
+                    <td>
+                        @item.Numero_Exterior
+                    </td>
+                    <td>
+                        @item.Numero_Interior
+                    </td>
+                    <td>
+                        @item.Telefono
+                    </td>
+                    <td>
+                        @item.Extencion
+                    </td>
+                    <td>
+                        @item.Celular
+                    </td>
+                    <td>
+                        @item.Correo_Electronico
+                    </td>
+                    <td>
+                        @item.PaisNombre
+                    </td>
+                    <td>
+                        @item.Forma_CaraDescripcion
+                    </td>
+                    <td>
+                        @item.CejasDescripcion
+                    </td>
+                    <td>
+                        @item.Cantidad_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.Implantacion_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.ComplexionDescripcion
+                    </td>
+                    <td>
+                        @item.Color_PielDescrpicion
+                    </td>
+                    <td>
+                        @item.FrenteDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.CalvicieDescripcion
+                    </td>
+                    <td>
+                        @item.Color_OjosDescripcion
+                    </td>
+                    <td>
+                        @item.OjosDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_OjosDescripcion
+                    </td>
+                    <td>
+                        @item.Nariz_BaseDescripcion
+                    </td>
+                    <td>
+                        @item.LabiosDescripcion
+                    </td>
+                    <td>
+                        @item.BocaDescripcion
+                    </td>
+                    <td>
+                        @item.MentonDescripcion
+                    </td>
+                    <td>
+                        @item.BarbaDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_OrejasDescripcion
+                    </td>
+                    <td>
+                        @item.Tamano_OrejasDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_LobuloDescripcion
+                    </td>
+                    <td>
+                        @item.BigoteDescripcion
+                    </td>
+                    <td>
+                        @item.Situacion_FisicaDescripcion
+                    </td>
+                    <td>
+                        @item.Alias_media_diliacion
+                    </td>
+                    <td>
+                        @item.Fecha_de_Detencion
+                    </td>
+                    <td>
+                        @item.Hora_de_Detencion
+                    </td>
+                    <td>
+                        @item.Fecha_de_Puesto_a_Disposicion
+                    </td>
+                    <td>
+                        @item.Hora_de_Puesto_a_Disposicion
+                    </td>
+                    <td>
+                        @item.Con_DetenidoDescripcion
+                    </td>
+                    <td>
+                        @item.A_Quien_Resulte_Responsable
+                    </td>
+                    <td>
+                        @item.Tiempo_Restante_para_Vinculacion
+                    </td>
+                    <td>
+                        @item.Vincular
+                    </td>
+                    <td>
+                        @item.Medidas_CautelaresDescripcion
+                    </td>
+                    <td>
+                        @item.Solicitar_Prorroga
+                    </td>
+                    <td>
+                        @item.Nuevo_Plazo
+                    </td>
+                    <td>
+                        @item.Orden_de_Aprehension
+                    </td>
+                    <td>
+                        @item.Medidas_Cautelares_en_ImputadoDescripcion
+                    </td>
+                    <td>
+                        @item.Titulo_del_Hecho
+                    </td>
+                    <td>
+                        @item.Narrativa_Breve_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Prioridad_del_HechoDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_del_Hecho
+                    </td>
+                    <td>
+                        @item.Hora_Aproximada_del_Hecho
+                    </td>
+                    <td>
+                        @item.Pais_del_HechoNombre
+                    </td>
+                    <td>
+                        @item.Estado_del_HechoNombre
+                    </td>
+                    <td>
+                        @item.Municipio_del_HechoNombre
+                    </td>
+                    <td>
+                        @item.Colonia_del_HechoNombre
+                    </td>
+                    <td>
+                        @item.Codigo_Postal_del_Hecho
+                    </td>
+                    <td>
+                        @item.Calle_del_Hecho
+                    </td>
+                    <td>
+                        @item.Entre_Calle_del_Hecho
+                    </td>
+                    <td>
+                        @item.Y_Calle_del_Hecho
+                    </td>
+                    <td>
+                        @item.Numero_Exterior_del_Hecho
+                    </td>
+                    <td>
+                        @item.Numero_Interior_del_Hecho
+                    </td>
+                    <td>
+                        @item.Latitud_del_Hecho
+                    </td>
+                    <td>
+                        @item.Longitud_del_Hecho
+                    </td>
+                    <td>
+                        @item.Tipo_de_Lugar_del_HechoDescripcion
+                    </td>
+                    <td>
+                        @item.Incapaz
+                    </td>
+                    <td>
+                        @item.Nombre_del_Tutor
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno_del_Tutor
+                    </td>
+                    <td>
+                        @item.Apellido_Materno_del_Tutor
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento_del_Tutor
+                    </td>
+                    <td>
+                        @item.Edad_del_Tutor
+                    </td>
+                    <td>
+                        @item.Sexo_del_TutorDescripcion
+                    </td>
+                    <td>
+                        @item.Estado_Civil_del_TutorDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_Identificacion_del_TutorNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion_del_Tutor
+                    </td>
+                    <td>
+                        @item.Nacionalidad_del_TutorNacionalidadC
+                    </td>
+                    <td>
+                        @item.Escolaridad_del_TutorDescripcion
+                    </td>
+                    <td>
+                        @item.Ocupacion_del_TutorDescripcion
+                    </td>
+                    <td>
+                        @item.Pais_del_TutorNombre
+                    </td>
+                    <td>
+                        @item.Estado_del_TutorNombre
+                    </td>
+                    <td>
+                        @item.Municipio_del_TutorNombre
+                    </td>
+                    <td>
+                        @item.Colonia_del_TutorNombre
+                    </td>
+                    <td>
+                        @item.Codigo_Postal_del_Tutor
+                    </td>
+                    <td>
+                        @item.Calle_del_Tutor
+                    </td>
+                    <td>
+                        @item.Numero_Exterior_del_Tutor
+                    </td>
+                    <td>
+                        @item.Numero_Interior_del_Tutor
+                    </td>
+                    <td>
+                        @item.Telefono_del_Tutor
+                    </td>
+                    <td>
+                        @item.Extension_del_Tutor
+                    </td>
+                    <td>
+                        @item.Celular_del_Tutor
+                    </td>
+                    <td>
+                        @item.Correo_Electronico_del_Tutor
+                    </td>
+                    <td>
+                        @item.Proteccion_de_Datos
+                    </td>
+                    <td>
+                        @item.EstatusDescripcion
+                    </td>
+                    <td>
+                        @item.Judicializar
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

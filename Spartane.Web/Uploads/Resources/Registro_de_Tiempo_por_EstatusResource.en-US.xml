@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Registro_de_Tiempo_por_Estatus" value="Control de Tiempos MPO"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Fecha" value="Fecha"></resource>
+  <resource culture="en-US" name="Hora" value="Hora"></resource>
+  <resource culture="en-US" name="NUAT" value="NUAT"></resource>
+  <resource culture="en-US" name="Estatus_Interno" value="Estatus Interno"></resource>
+  <resource culture="en-US" name="Estatus" value="Estatus Origen"></resource>
+  <resource culture="en-US" name="Estatus_Destino" value="Estatus Destino"></resource>
+  <resource culture="en-US" name="Tiempo_Transcurrido" value="Tiempo Transcurrido"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

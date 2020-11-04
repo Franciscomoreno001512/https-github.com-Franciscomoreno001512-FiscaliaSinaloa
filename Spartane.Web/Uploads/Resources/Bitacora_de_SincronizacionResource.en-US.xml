@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Bitacora_de_Sincronizacion" value="Bitácora de Sincronización"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="ID_Dispositivo" value="ID Dispositivo"></resource>
+  <resource culture="en-US" name="Usuario" value="Usuario"></resource>
+  <resource culture="en-US" name="Nombre_de_la_Tabla" value="Nombre de la Tabla"></resource>
+  <resource culture="en-US" name="Estatus_de_Replicacion" value="Estatus de Replicación"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

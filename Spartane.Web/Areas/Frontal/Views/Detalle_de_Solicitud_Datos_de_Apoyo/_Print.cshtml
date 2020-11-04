@@ -1,0 +1,164 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Detalle_de_Solicitud_Datos_de_ApoyoGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_Datos_de_ApoyoResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Detalle_de_Solicitud_Datos_de_ApoyoResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_Datos_de_ApoyoResources.Solicitud
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_Datos_de_ApoyoResources.Fecha_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_Datos_de_ApoyoResources.Hora_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_Datos_de_ApoyoResources.Usuario_que_registra
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_Datos_de_ApoyoResources.Tipo_de_Servicio
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_Datos_de_ApoyoResources.Dictamen
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_Datos_de_ApoyoResources.Solicitante
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_Datos_de_ApoyoResources.Responsable
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_Datos_de_ApoyoResources.Idioma
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Solicitud_Datos_de_ApoyoResources.Lengua_Originaria
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Solicitud
+                    </td>
+                    <td>
+                        @item.Fecha_de_Registro
+                    </td>
+                    <td>
+                        @item.Hora_de_Registro
+                    </td>
+                    <td>
+                        @item.Usuario_que_registra
+                    </td>
+                    <td>
+                        @item.Tipo_de_ServicioServicio
+                    </td>
+                    <td>
+                        @item.Dictamen
+                    </td>
+                    <td>
+                        @item.Solicitante
+                    </td>
+                    <td>
+                        @item.Responsable
+                    </td>
+                    <td>
+                        @item.IdiomaDescripcion
+                    </td>
+                    <td>
+                        @item.Lengua_OriginariaDescripcion
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Spartan_Object_ByPass" value="Spartan Object ByPass"></resource>
+  <resource culture="en-US" name="ObjectId" value="ObjectId"></resource>
+  <resource culture="en-US" name="Description" value="Description"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

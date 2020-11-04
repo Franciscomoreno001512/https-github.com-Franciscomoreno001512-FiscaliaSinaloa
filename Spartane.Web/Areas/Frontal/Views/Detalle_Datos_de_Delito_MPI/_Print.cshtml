@@ -1,0 +1,428 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Detalle_Datos_de_Delito_MPIGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Tipo_de_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Grupo_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Circunstancia_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Delito_Principal
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Forma_Comision_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Forma_Accion_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Modalidad_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Elementos_Comision_Delito
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Monto
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Violencia_de_Genero
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Robo_de_Vehiculo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Levantamiento_de_Cadaver
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Circunstancia_de_Vehiculo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Clase
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Vehiculo_Robado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Marca
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Sub_Marca
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Tipo_de_Vehiculo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Modelo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Color
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Placas
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Estado_de_Origen_de_las_Placas
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Motor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Serie
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.El_Vehiculo_esta_Asegurado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Nombre_de_la_Aseguradora
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Tipo_de_Servicio
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Ruta_del_Servicio_Publico
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Procedencia
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Mercancia
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Descripcion_de_lo_que_Transportaba
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Monto_de_la_Carga
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Senas_Particulares
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Modalidad_del_Robo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Causa_de_Muerte
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Circunstancia_Defuncion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Consecuencia_Defuncion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Fecha_Levantamiento
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Hora_Levantamiento
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Tipo_de_Lugar_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Pais
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Estado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Zona
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Colonia
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Colonia_no_Catalogada
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Numero_Exterior
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Numero_Interior
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Necropsia
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Cronotanatodiagnostico
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Ruta
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Estado_del_Conductor
+            </td>
+            <td class="column1">
+                @Resources.Detalle_Datos_de_Delito_MPIResources.Codigo_Postal
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Tipo_de_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Grupo_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Circunstancia_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Delito_Principal
+                    </td>
+                    <td>
+                        @item.Forma_Comision_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_Accion_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Modalidad_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Elementos_Comision_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Monto
+                    </td>
+                    <td>
+                        @item.Violencia_de_Genero
+                    </td>
+                    <td>
+                        @item.Robo_de_Vehiculo
+                    </td>
+                    <td>
+                        @item.Levantamiento_de_Cadaver
+                    </td>
+                    <td>
+                        @item.Circunstancia_de_VehiculoDescripcion
+                    </td>
+                    <td>
+                        @item.ClaseDescripcion
+                    </td>
+                    <td>
+                        @item.Vehiculo_Robado
+                    </td>
+                    <td>
+                        @item.MarcaDescripcion
+                    </td>
+                    <td>
+                        @item.Sub_MarcaDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_VehiculoDescripcion
+                    </td>
+                    <td>
+                        @item.Modelo
+                    </td>
+                    <td>
+                        @item.ColorDescripcion
+                    </td>
+                    <td>
+                        @item.Placas
+                    </td>
+                    <td>
+                        @item.Estado_de_Origen_de_las_PlacasNombre
+                    </td>
+                    <td>
+                        @item.Motor
+                    </td>
+                    <td>
+                        @item.Serie
+                    </td>
+                    <td>
+                        @item.El_Vehiculo_esta_Asegurado
+                    </td>
+                    <td>
+                        @item.Nombre_de_la_AseguradoraDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_ServicioDescripcion
+                    </td>
+                    <td>
+                        @item.Ruta_del_Servicio_Publico
+                    </td>
+                    <td>
+                        @item.ProcedenciaDescripcion
+                    </td>
+                    <td>
+                        @item.Mercancia
+                    </td>
+                    <td>
+                        @item.Descripcion_de_lo_que_Transportaba
+                    </td>
+                    <td>
+                        @item.Monto_de_la_Carga
+                    </td>
+                    <td>
+                        @item.Senas_Particulares
+                    </td>
+                    <td>
+                        @item.Modalidad_del_RoboDescripcion
+                    </td>
+                    <td>
+                        @item.Causa_de_Muerte
+                    </td>
+                    <td>
+                        @item.Circunstancia_DefuncionDescripcion
+                    </td>
+                    <td>
+                        @item.Consecuencia_DefuncionDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_Levantamiento
+                    </td>
+                    <td>
+                        @item.Hora_Levantamiento
+                    </td>
+                    <td>
+                        @item.Tipo_de_Lugar_del_HechoDescripcion
+                    </td>
+                    <td>
+                        @item.PaisNombre
+                    </td>
+                    <td>
+                        @item.EstadoNombre
+                    </td>
+                    <td>
+                        @item.MunicipioNombre
+                    </td>
+                    <td>
+                        @item.ZonaDescripcion
+                    </td>
+                    <td>
+                        @item.ColoniaNombre
+                    </td>
+                    <td>
+                        @item.Colonia_no_Catalogada
+                    </td>
+                    <td>
+                        @item.Numero_Exterior
+                    </td>
+                    <td>
+                        @item.Numero_Interior
+                    </td>
+                    <td>
+                        @item.Necropsia
+                    </td>
+                    <td>
+                        @item.Cronotanatodiagnostico
+                    </td>
+                    <td>
+                        @item.Ruta
+                    </td>
+                    <td>
+                        @item.Estado_del_Conductor
+                    </td>
+                    <td>
+                        @item.Codigo_Postal
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

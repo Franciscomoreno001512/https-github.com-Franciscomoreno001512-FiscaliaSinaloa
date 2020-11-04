@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Desestimacion" value="Desestimación"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Modulo_Atencion_Inicial" value="Módulo Atención Inicial"></resource>
+  <resource culture="en-US" name="Nombre_Completo" value="Nombre Completo"></resource>
+  <resource culture="en-US" name="Causal_de_Interrupcion" value="Existe una Causal de Interrupción"></resource>
+  <resource culture="en-US" name="Causa_de_Interrupcion" value="Causa de Interrupción"></resource>
+  <resource culture="en-US" name="Datos_Insuficientes" value="Datos Insuficientes para Establecer Líneas de Investigación"></resource>
+  <resource culture="en-US" name="Actualizacion_de_Sobreseimiento" value="No ejercicio; se actualiza alguna de las causales de sobreseimiento"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

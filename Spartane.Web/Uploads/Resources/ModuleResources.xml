@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Modules>
+  <Module culture="en-us" Id="1" value="Objects"></Module>
+  <Module culture="es-es" Id="1" value="Objetos"></Module>
+  <Module culture="en-us" Id="23" value="Security"></Module>
+  <Module culture="es-es" Id="23" value="Seguridad"></Module>
+  <Module culture="en-us" Id="34" value="Formats"></Module>
+  <Module culture="es-es" Id="34" value="Formatos"></Module>
+  <Module culture="en-us" Id="38" value="Reports"></Module>
+  <Module culture="es-es" Id="38" value="Reportes"></Module>
+  <Module culture="en-us" Id="39" value="Workflows"></Module>
+  <Module culture="es-es" Id="39" value="Flujos de Trabajo"></Module>
+  <Module culture="en-us" Id="45" value="Languages"></Module>
+  <Module culture="es-es" Id="45" value="Lenguajes"></Module>
+  <Module culture="en-us" Id="46" value="Workflows"></Module>
+  <Module culture="es-es" Id="46" value="Flujos de Trabajo"></Module>
+  <Module culture="en-us" Id="51" value="Business Rules"></Module>
+  <Module culture="es-es" Id="51" value="Reglas de Negocio"></Module>
+  <Module culture="es-es" Id="78" value="Mecanismos Alternos"></Module>
+  <Module culture="en-us" Id="78" value="Mecanismos Alternos"></Module>
+  <Module culture="es-es" Id="79" value="Atención Temprana"></Module>
+  <Module culture="en-us" Id="79" value="Atención Temprana"></Module>
+  <Module culture="es-es" Id="80" value="Utilerías"></Module>
+  <Module culture="en-us" Id="80" value="Utilerías"></Module>
+  <Module culture="es-es" Id="81" value="Calidad de Atención"></Module>
+  <Module culture="en-us" Id="81" value="Calidad de Atención"></Module>
+  <Module culture="es-es" Id="82" value="Servicios de Apoyo"></Module>
+  <Module culture="en-us" Id="82" value="Servicios de Apoyo"></Module>
+  <Module culture="es-es" Id="83" value="Calendario"></Module>
+  <Module culture="en-us" Id="83" value="Calendario"></Module>
+  <Module culture="es-es" Id="84" value="Unidad de Investigación"></Module>
+  <Module culture="en-us" Id="84" value="Unidad de Investigación"></Module>
+  <Module culture="es-es" Id="85" value="Cadena de Custodia"></Module>
+  <Module culture="en-us" Id="85" value="Cadena de Custodia"></Module>
+  <Module culture="es-es" Id="86" value="Control de Indicios"></Module>
+  <Module culture="en-us" Id="86" value="Control de Indicios"></Module>
+  <Module culture="es-es" Id="87" value="Diligencias"></Module>
+  <Module culture="en-us" Id="87" value="Diligencias"></Module>
+  <Module culture="en-us" Id="88" value="ejemplo"></Module>
+  <Module culture="es-es" Id="88" value="ejemplo"></Module>
+  <Module culture="en-us" Id="89" value="Turnos"></Module>
+  <Module culture="es-es" Id="89" value="Turnos"></Module>
+  <Module culture="en-us" Id="90" value="Notificadores"></Module>
+  <Module culture="es-es" Id="90" value="Notificadores"></Module>
+</Modules>

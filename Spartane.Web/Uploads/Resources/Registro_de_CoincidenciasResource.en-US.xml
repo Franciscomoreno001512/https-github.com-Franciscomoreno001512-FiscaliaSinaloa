@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Registro_de_Coincidencias" value="Registro de Coincidencias"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="NUAT" value="NUAT"></resource>
+  <resource culture="en-US" name="Numero_de_Coincidencias" value="Numero de Coincidencias"></resource>
+  <resource culture="en-US" name="Coincidencias" value="Coincidencias"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

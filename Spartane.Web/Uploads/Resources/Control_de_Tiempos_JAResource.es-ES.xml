@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Control_de_Tiempos_JA" value="Control de Tiempos JA"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Fecha" value="Fecha"></resource>
+  <resource culture="es-es" name="Hora" value="Hora"></resource>
+  <resource culture="es-es" name="Numero_de_Expediente" value="Numero de Expediente"></resource>
+  <resource culture="es-es" name="Estatus" value="Estatus Origen"></resource>
+  <resource culture="es-es" name="Estatus_Destino" value="Estatus Destino"></resource>
+  <resource culture="es-es" name="Tiempo_Transcurrido" value="Tiempo Transcurrido"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

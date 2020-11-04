@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Delito_de_Justicia" value="Delitos"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="idRegistroAT" value="idRegistroAT"></resource>
+  <resource culture="en-US" name="idRegistroUI" value="idRegistroUI"></resource>
+  <resource culture="en-US" name="Solicitud" value="Número de Expediente"></resource>
+  <resource culture="en-US" name="Tipo_de_Denuncia" value="Tipo de Denuncia"></resource>
+  <resource culture="en-US" name="Fecha_de_Delito" value="Fecha de Delito"></resource>
+  <resource culture="en-US" name="Violencia_de_Genero" value="¿Hubo Violencia de Género?"></resource>
+  <resource culture="en-US" name="Delito_Violencia_Genero" value="Delito Violencia Género"></resource>
+  <resource culture="en-US" name="Hora_de_Delito" value="Hora de Delito"></resource>
+  <resource culture="en-US" name="Tipo_de_Delito" value="Tipo de Delito"></resource>
+  <resource culture="en-US" name="Grupo_de_Delito" value="Grupo de Delito"></resource>
+  <resource culture="en-US" name="Delito" value="Delito"></resource>
+  <resource culture="en-US" name="Agravantes_y_o_Calificativas" value="Agravantes y/o Calificativas"></resource>
+  <resource culture="en-US" name="Circunstancias_Delito" value="Circunstancias Delito"></resource>
+  <resource culture="en-US" name="Delito_Principal" value="Delito Principal"></resource>
+  <resource culture="en-US" name="Forma_de_Comision_de_Delito" value="Forma de Comisión de Delito"></resource>
+  <resource culture="en-US" name="Forma_de_Accion_de_Delito" value="Forma de Acción de Delito"></resource>
+  <resource culture="en-US" name="Modalidad_de_Delito" value="Modalidad de Delito"></resource>
+  <resource culture="en-US" name="Elementos_de_Comision_de_Delito" value="Elementos de Comisión de Delito"></resource>
+  <resource culture="en-US" name="Clasificacion_con_Orden_de_Resultado" value="Clasificación con Orden de Resultado"></resource>
+  <resource culture="en-US" name="Concurso" value="Concurso"></resource>
+  <resource culture="en-US" name="Monto_de_Reparacion_de_Danos" value="Monto de Reparación de Daños"></resource>
+  <resource culture="en-US" name="Estado_del_Delito" value="Estado del Delito"></resource>
+  <resource culture="en-US" name="Municipio_del_Delito" value="Municipio del Delito"></resource>
+  <resource culture="en-US" name="Colonia_del_Delito" value="Colonia del Delito"></resource>
+  <resource culture="en-US" name="Codigo_Postal" value="Código Postal"></resource>
+  <resource culture="en-US" name="Calle_del_Delito" value="Calle"></resource>
+  <resource culture="en-US" name="Entre_Calle_del_Delito" value="Entre Calle"></resource>
+  <resource culture="en-US" name="Y_Calle_del_Delito" value="Y Calle"></resource>
+  <resource culture="en-US" name="Numero_Exterior_del_Delito" value="Número Exterior del Delito"></resource>
+  <resource culture="en-US" name="Numero_Interior_del_Delito" value="Número Interior del Delito"></resource>
+  <resource culture="en-US" name="Referencia" value="Referencia"></resource>
+  <resource culture="en-US" name="Latitud" value="Latitud"></resource>
+  <resource culture="en-US" name="Longitud" value="Longitud"></resource>
+  <resource culture="en-US" name="Robo_de_Vehiculo" value="Robo de Vehículo"></resource>
+  <resource culture="en-US" name="Fecha_del_Robo" value="Fecha del Robo"></resource>
+  <resource culture="en-US" name="Hora_del_Robo" value="Hora del Robo"></resource>
+  <resource culture="en-US" name="Robo_de" value="Robo de"></resource>
+  <resource culture="en-US" name="Registro_Federal_Vehicular" value="Registro Federal Vehicular"></resource>
+  <resource culture="en-US" name="Numero_de_Registro_Publico_Vehicular" value="Número de Registro Público Vehicular"></resource>
+  <resource culture="en-US" name="Circunstancia_de_Robo_de_Vehiculo" value="Circunstancia de Robo de Vehículo"></resource>
+  <resource culture="en-US" name="Marca" value="Marca"></resource>
+  <resource culture="en-US" name="Sub_Marca" value="Sub-Marca"></resource>
+  <resource culture="en-US" name="Tipo_de_vehiculo" value="Tipo de vehículo"></resource>
+  <resource culture="en-US" name="Modelo" value="Modelo"></resource>
+  <resource culture="en-US" name="Color" value="Color"></resource>
+  <resource culture="en-US" name="Placas" value="Placas"></resource>
+  <resource culture="en-US" name="Estado_de_Origen_de_las_Placas" value="Estado de Origen de las Placas"></resource>
+  <resource culture="en-US" name="Motor" value="Motor"></resource>
+  <resource culture="en-US" name="Serie" value="Serie"></resource>
+  <resource culture="en-US" name="Estado_De_Robo" value="Estado De Robo"></resource>
+  <resource culture="en-US" name="Municipio_de_Robo" value="Municipio de Robo"></resource>
+  <resource culture="en-US" name="Colonia_de_Robo" value="Colonia de Robo"></resource>
+  <resource culture="en-US" name="Codigo_Postal_de_Robo" value="Código Postal"></resource>
+  <resource culture="en-US" name="Calle_de_Robo" value="Calle"></resource>
+  <resource culture="en-US" name="Entre_Calle_de_Robo" value="Entre Calle"></resource>
+  <resource culture="en-US" name="Y_Calle_de_Robo" value="Y Calle"></resource>
+  <resource culture="en-US" name="Numero_Exterior_de_Robo" value="Número Exterior"></resource>
+  <resource culture="en-US" name="Numero_Interior_de_Robo" value="Número Interior"></resource>
+  <resource culture="en-US" name="Referencia_de_Robo" value="Referencia"></resource>
+  <resource culture="en-US" name="Latitud_de_Robo" value="Latitud"></resource>
+  <resource culture="en-US" name="Longitud_de_Robo" value="Longitud"></resource>
+  <resource culture="en-US" name="Lugar_de_Robo" value="Lugar de Robo"></resource>
+  <resource culture="en-US" name="El_vehiculo_esta_asegurado" value="¿El vehículo está asegurado?"></resource>
+  <resource culture="en-US" name="Nombre_de_la_Aseguradora" value="Nombre de la Aseguradora"></resource>
+  <resource culture="en-US" name="Ruta_del_Servicio_Publico" value="¿Ruta del Servicio Público?"></resource>
+  <resource culture="en-US" name="El_Vehiculo_Transportaba_Mercancia" value="¿El Vehículo Transportaba Mercancía?"></resource>
+  <resource culture="en-US" name="Descripcion_de_lo_que_Transportaba" value="Descripción de lo que Transportaba"></resource>
+  <resource culture="en-US" name="Monto_de_carga" value="Monto de carga"></resource>
+  <resource culture="en-US" name="Senas_particulares" value="Señas particulares"></resource>
+  <resource culture="en-US" name="Cuenta_con_GPS" value="¿Cuenta con GPS?"></resource>
+  <resource culture="en-US" name="Tipo_de_Robo" value="Tipo de Robo"></resource>
+  <resource culture="en-US" name="Tipo_de_Lugar_del_Robo" value="Tipo de Lugar del Robo"></resource>
+  <resource culture="en-US" name="Tipo_de_Carretera" value="Tipo de Carretera"></resource>
+  <resource culture="en-US" name="Tipo_de_Servicio" value="Tipo de Servicio"></resource>
+  <resource culture="en-US" name="Numero_de_Serie" value="Número de Serie"></resource>
+  <resource culture="en-US" name="Numero_de_Motor" value="Número de Motor"></resource>
+  <resource culture="en-US" name="Persona_Moral" value="Persona Moral"></resource>
+  <resource culture="en-US" name="Nombre_Completo_Persona_Moral" value="Nombre Completo"></resource>
+  <resource culture="en-US" name="Persona_Fisica" value="Persona Fisica"></resource>
+  <resource culture="en-US" name="Nombre_Completo_Persona_Fisica" value="Nombre Completo"></resource>
+  <resource culture="en-US" name="Denunciante" value="Denunciante"></resource>
+  <resource culture="en-US" name="Nombre_Completo_Denunciante" value="Nombre Completo"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="en-US" name="TabDatos_de_Robo_de_Vehiculo" value="Datos de Robo de Vehículo"></resource>
+<resource culture="en-US" name="TabAsignar_Dueno" value="Asignar Dueño"></resource>
+
+</resources>

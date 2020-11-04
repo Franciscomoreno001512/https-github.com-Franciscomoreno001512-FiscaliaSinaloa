@@ -1,0 +1,1185 @@
+﻿@using System.Collections.Generic
+@using System.Web.UI.WebControls
+@using Spartane.Core.Domain.Expediente_Inicial;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Catalogo_Estatus_Detenido_MPI;
+@using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+@using Spartane.Core.Domain.Prioridad_del_Hecho;
+@using Spartane.Core.Domain.Pais;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.Lugar_Tipo;
+@using Spartane.Core.Domain.Dialecto;
+@using Spartane.Core.Domain.Idioma;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Tipo_de_Oficio;
+@using Spartane.Core.Domain.Delegacion;
+@using Spartane.Core.Domain.Agencia;
+@using Spartane.Core.Domain.Tipo_de_Oficio;
+@using Spartane.Core.Domain.Delegacion;
+@using Spartane.Core.Domain.Estatus_de_Expediente_Inicial;
+@using Spartane.Core.Domain.Estatus_Orientador;
+@using Spartane.Core.Domain.Delito_Principal_MPI;
+@using Spartane.Core.Domain.Tipo_de_Acuerdo;
+@using Spartane.Core.Domain.Periodicidad;
+
+@using Spartane.Core.Domain.Permission
+@using Spartane.Web.Areas.WebApiConsumer
+@using Spartane.Web.Helpers
+@{
+    ViewBag.Title = Resources.Resources.Index;
+    Permission permission = ViewBag.Permission;
+    var advanceSearch = (bool)ViewBag.AdvanceSearch;
+
+
+}
+<style>
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+</style>
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>@Resources.Expediente_InicialResources.Expediente_Inicial</h2>
+        
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                
+            </li>
+            <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Expediente_InicialResources.Expediente_Inicial</strong>
+                }
+                
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+		@{
+            if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+            {
+                <h2>&nbsp;</h2>
+                <button onclick="Expediente_InicialGetBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton" data-toggle="modal" data-target="#Expediente_InicialBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+                <div aria-hidden="true" class="modal fade in Expediente_InicialPropertyBusinessModal" id="Expediente_InicialPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    Property & Business Rules
+                                    <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+                                    </div>
+                                    <div class="clearfix col-sm-12">&nbsp;</div>
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Expediente_InicialBusinessRule-form" onclick="Expediente_InicialGetBusinessRule()">Business Rule</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in Expediente_InicialBusinessRuleModal" id="Expediente_InicialBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in Expediente_InicialAddBusinessRuleModal" id="Expediente_InicialAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>
+            }
+		}
+    </div>
+</div>
+
+<input type="hidden" value="List" name="Operation" id="Operation" />
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
+
+<span id="popupNotification"></span>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+
+                    <div id="jsGrid">
+                    </div>
+
+                    @* Model Start Here *@
+
+                    @using (Ajax.BeginForm("", "", new AjaxOptions { OnSuccess="" }))
+                    {
+                        
+                    }
+                    
+                     @* Model Print Start*@
+                    <div id="exportModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="gridSystemModalLabel">@Resources.Resources.Export</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-3">@Resources.Resources.ExportOptions:</div>
+                                        <div class="col-md-8 col-md-offset-0">
+                                            <label class="">
+                                                <input type="radio" name="optradio" value="1" checked="true">@Resources.Resources.ExporOnlyCurrent
+                                            </label>
+                                            <label class="">
+                                                <input type="radio" name="optradio" value="0">@Resources.Resources.ExporAllRecords
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                            </div>
+                                        </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resources.Close</button>
+                                    <button type="button" id="btnPrint" class="btn btn-primary" onclick="return PrintDocument(3);">@Resources.Resources.Print</button>
+                                    <button type="button" id="btnPdf" class="btn btn-primary" onclick="return Export(1);">@Resources.Resources.Export</button>
+                                    <button type="button" id="btnExcel" class="btn btn-primary" onclick="return Export(2);">@Resources.Resources.Export</button>
+                                    <button type="button" id="btnCSV" class="btn btn-primary" onclick="return Export(4);">@Resources.Resources.Export</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+					@* Model Print Format Start*@
+                    <div id="printFormatModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="gridSystemModalLabel">@Resources.Resources.Print @Resources.Spartan_FormatResources.Format </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div id="spartan_formats" class="col-md-6 col-md-offset-0">
+                                                                                                                   
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resources.Close</button>
+                                        <button type="button" id="btnPrint" class="btn btn-primary" onclick="return ExportToPdfFormats();">@Resources.Resources.Print @Resources.Resources.PDF</button>         
+                                    </div>
+                                    <div class="row">
+                                    </div>
+                                </div>                              
+                            </div>
+                            <!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+                    <div id="botonera">
+						@if (permission.New)
+                        { 
+                            @Html.ActionLink(Resources.Resources.Create, "Create", "Expediente_Inicial", new { @class = "btn btn-primary" })
+                        }
+                        @Html.ActionLink(@Resources.Resources.AdvanceSearch, "ShowAdvanceFilter", "Expediente_Inicial", new { previousFilters = advanceSearch }, new { @class = ("btn btn-primary") })
+                        <button onclick="ClearFilter()" class=" btn btn-primary">@Resources.Resources.ClearFilter</button>
+                                </div>
+                    <div class="table-responsive">
+
+                        <table id="tblExpediente_Inicial" class="table table-striped table-bordered table-hover dataTables-example scroll_content" style="overflow-x:scroll;" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>@Resources.Resources.Actions</th>
+                                    <th>@Resources.Expediente_InicialResources.Clave</th>
+                                    <th>@Resources.Expediente_InicialResources.Fecha_de_Registro</th>
+                                    <th>@Resources.Expediente_InicialResources.Hora_de_Registro</th>
+                                    <th>@Resources.Expediente_InicialResources.Usuario_que_Registra</th>
+                                    <th>@Resources.Expediente_InicialResources.Detenido</th>
+                                    <th>@Resources.Expediente_InicialResources.NUC</th>
+                                    <th>@Resources.Expediente_InicialResources.NIC</th>
+                                    <th>@Resources.Expediente_InicialResources.Hora_del_Detenido</th>
+                                    <th>@Resources.Expediente_InicialResources.Hora_Puesto_a_Disposicion</th>
+                                    <th>@Resources.Expediente_InicialResources.Solicitar_Servicos_de_Apoyo</th>
+                                    <th>@Resources.Expediente_InicialResources.Narrativa_Breve_de_los_Hechos</th>
+                                    <th>@Resources.Expediente_InicialResources.Prioridad_del_Hecho</th>
+                                    <th>@Resources.Expediente_InicialResources.Turno</th>
+                                    <th>@Resources.Expediente_InicialResources.Fecha_del_Hecho</th>
+                                    <th>@Resources.Expediente_InicialResources.Hora_del_Hecho</th>
+                                    <th>@Resources.Expediente_InicialResources.Pais_de_los_Hechos_MPI</th>
+                                    <th>@Resources.Expediente_InicialResources.Estado_de_los_Hechos_MPI</th>
+                                    <th>@Resources.Expediente_InicialResources.Municipio_de_los_Hechos_MPI</th>
+                                    <th>@Resources.Expediente_InicialResources.Colonia_de_los_Hechos_MPI</th>
+                                    <th>@Resources.Expediente_InicialResources.Codigo_Postal_de_los_Hechos_MPI</th>
+                                    <th>@Resources.Expediente_InicialResources.Calle_de_los_Hechos_MPI</th>
+                                    <th>@Resources.Expediente_InicialResources.Entre_Calle_MPI</th>
+                                    <th>@Resources.Expediente_InicialResources.Y_Calle_MPI</th>
+                                    <th>@Resources.Expediente_InicialResources.Numero_Exrterior_de_los_Hechos_MPI</th>
+                                    <th>@Resources.Expediente_InicialResources.Numero_Interior_de_los_Hechos_MPI</th>
+                                    <th>@Resources.Expediente_InicialResources.Latitud_MPI</th>
+                                    <th>@Resources.Expediente_InicialResources.Longitud_MPI</th>
+                                    <th>@Resources.Expediente_InicialResources.Tipo_de_Lugar_del_Hecho_MPI</th>
+                                    <th>@Resources.Expediente_InicialResources.Persona_Moral</th>
+                                    <th>@Resources.Expediente_InicialResources.Requiere_Diligencia</th>
+                                    <th>@Resources.Expediente_InicialResources.Numero_de_Expediente_Victima</th>
+                                    <th>@Resources.Expediente_InicialResources.Requiere_Traductor</th>
+                                    <th>@Resources.Expediente_InicialResources.Lengua_Originaria</th>
+                                    <th>@Resources.Expediente_InicialResources.Idioma</th>
+                                    <th>@Resources.Expediente_InicialResources.Titulo_del_Hecho</th>
+                                    <th>@Resources.Expediente_InicialResources.Asignar_Agente_del_Ministerio_Publico</th>
+                                    <th>@Resources.Expediente_InicialResources.Nombre_de_Agente_del_Ministerio_Publico</th>
+                                    <th>@Resources.Expediente_InicialResources.Tipo_de_Oficio</th>
+                                    <th>@Resources.Expediente_InicialResources.Delegacion</th>
+                                    <th>@Resources.Expediente_InicialResources.Agencia</th>
+                                    <th>@Resources.Expediente_InicialResources.Solicitar_Diligencias</th>
+                                    <th>@Resources.Expediente_InicialResources.NUC_Audiencias</th>
+                                    <th>@Resources.Expediente_InicialResources.NIC_Audiencias</th>
+                                    <th>@Resources.Expediente_InicialResources.Fecha_de_Registro_Audiencias</th>
+                                    <th>@Resources.Expediente_InicialResources.Hora_de_Registro_Audiencias</th>
+                                    <th>@Resources.Expediente_InicialResources.Tipo_de_Oficio_Audiencias</th>
+                                    <th>@Resources.Expediente_InicialResources.Delegacion_Audiencias</th>
+                                    <th>@Resources.Expediente_InicialResources.Domicilio_Delegacion_A</th>
+                                    <th>@Resources.Expediente_InicialResources.Numero_de_Expediente</th>
+                                    <th>@Resources.Expediente_InicialResources.NUAT</th>
+                                    <th>@Resources.Expediente_InicialResources.Fecha_de_RegistroI</th>
+                                    <th>@Resources.Expediente_InicialResources.Hora_de_RegistroI</th>
+                                    <th>@Resources.Expediente_InicialResources.Estatus</th>
+                                    <th>@Resources.Expediente_InicialResources.Canalizar_a</th>
+                                    <th>@Resources.Expediente_InicialResources.Delito_Principal</th>
+                                    <th>@Resources.Expediente_InicialResources.Tipo_de_Acuerdo</th>
+                                    <th>@Resources.Expediente_InicialResources.Fecha_de_Inicio_de_Acuerdo</th>
+                                    <th>@Resources.Expediente_InicialResources.Fecha_de_Cumplimiento</th>
+                                    <th>@Resources.Expediente_InicialResources.Hora_de_Cumplimiento</th>
+                                    <th>@Resources.Expediente_InicialResources.Domicilio_para_el_Cumplimiento</th>
+                                    <th>@Resources.Expediente_InicialResources.Monto_de_Reparacion_de_Danos</th>
+                                    <th>@Resources.Expediente_InicialResources.Parcialidades</th>
+                                    <th>@Resources.Expediente_InicialResources.Periodicidad</th>
+                                    <th>@Resources.Expediente_InicialResources.Acepta_Acuerdo</th>
+                                    <th>@Resources.Expediente_InicialResources.Motivo_de_Rechazo_de_Acuerdo</th>
+
+                                </tr>
+                            </thead>
+                            <tfoot style="display:table-header-group;">
+                                <tr>
+                                    <td></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+@Styles.Render("~/plugins/dataPickerStyles")
+@Styles.Render("~/plugins/clockpickerStyles")
+@Styles.Render("~/plugins/awesomeCheckboxStyles")
+
+@Scripts.Render("~/plugins/dataTables")
+@Scripts.Render("~/plugins/dataPicker")
+@Scripts.Render("~/plugins/clockpicker")
+@*@Scripts.Render("~/plugins/slimScroll")*@
+
+<script type="text/javascript" src="~/Scripts/Custom/tablePlugin.js"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Expediente_InicialIndexRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    div.dataTables_info {
+        display: inline-block;
+        float: left;
+    }
+</style>
+
+<script type="text/javascript">
+	var MRWhere = '';
+    var MROrder = '';
+    var table;
+    var currentFilter;
+     var permission = {
+        Consult: '@permission.Consult.ToString()' == 'True',
+        New: '@permission.New.ToString()' == 'True',
+        Edit: '@permission.Edit.ToString()' == 'True',
+        Delete: '@permission.Delete.ToString()' == 'True',
+        Export: '@permission.Export.ToString()' == 'True',
+        Print: '@permission.Print.ToString()' == 'True',
+        Configure: '@permission.Configure.ToString()' == 'True',
+    };
+
+    $(document).ready(function () {	
+	$('.loading').show();
+        $("#frmAdvanceSearch").submit(function (e) {
+            e.preventDefault();
+            InitiateAdvanceSearch();
+        });
+        $('a').tooltip();
+    });
+
+    var advanceSearchQuery = "@(advanceSearch)", isExpediente_InicialTextSearch = true;
+
+    function ClearFilter() {
+
+        $('.filterData').each(function( index, element ){
+            if ($(this).attr('type') != 'checkbox') {
+                $(this).val('');
+            }
+            else {
+                $(this).attr('checked', false);
+            }
+        });
+        advanceSearchQuery = "False";
+        ClearFilterConfig();
+        table.search('').columns().search('').draw();
+    }
+
+    function ClearFilterConfig() {
+        $.ajax({
+            url: '@Url.Content("~/Frontal/Expediente_Inicial/ClearAdvanceFilter")',
+            type: 'POST',
+            dataType: "json",
+            success: function (result) {
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                return null;
+            }
+        });
+    }
+
+    //Used to initiate advance function
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblExpediente_Inicial').DataTable().draw();
+        return false;
+    }
+
+    function GetAdvanceSearchQuery() {
+        return advanceSearchQuery;
+    }
+
+    function VisibilityAdvanceSearch() {
+        $('#btnAdvanceSearch').click();
+        return false;
+    }
+
+    function Export(format) {
+	 var counter = 1;
+        currentFilter = table.page.info();
+		 var where= MRWhere;
+		var order = MROrder;
+
+        var queryString = GetQueryString();
+
+        var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Detenido =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NUC =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NIC =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_del_Detenido = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Puesto_a_Disposicion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitar_Servicos_de_Apoyo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Narrativa_Breve_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Prioridad_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entre_Calle_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Y_Calle_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exrterior_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Lugar_del_Hecho_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Persona_Moral = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Requiere_Diligencia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Expediente_Victima =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Requiere_Traductor = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Lengua_Originaria =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Idioma =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Asignar_Agente_del_Ministerio_Publico = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_de_Agente_del_Ministerio_Publico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Oficio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Delegacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Agencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitar_Diligencias = $($('table td .filterData.form-control:input')[counter++]).val();
+        var NUC_Audiencias =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NIC_Audiencias =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Registro_Audiencias = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Registro_Audiencias = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Oficio_Audiencias =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Delegacion_Audiencias =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Domicilio_Delegacion_A =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Expediente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_RegistroI = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_RegistroI = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Canalizar_a =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Delito_Principal =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Inicio_de_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Cumplimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Cumplimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Domicilio_para_el_Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Monto_de_Reparacion_de_Danos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Parcialidades =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Periodicidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Acepta_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_de_Rechazo_de_Acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
+
+
+        var queryString = "&Clave=" + Clave 
+        + "&Fecha_de_Registro=" + Fecha_de_Registro
+        + "&Hora_de_Registro=" + Hora_de_Registro
+        + "&Usuario_que_Registra=" + Usuario_que_Registra
+        + "&Detenido=" + Detenido
+        + "&NUC=" + NUC
+        + "&NIC=" + NIC
+        + "&Hora_del_Detenido=" + Hora_del_Detenido
+        + "&Hora_Puesto_a_Disposicion=" + Hora_Puesto_a_Disposicion
+        + "&Solicitar_Servicos_de_Apoyo=" + Solicitar_Servicos_de_Apoyo
+        + "&Narrativa_Breve_de_los_Hechos=" + Narrativa_Breve_de_los_Hechos
+        + "&Prioridad_del_Hecho=" + Prioridad_del_Hecho
+        + "&Turno=" + Turno
+        + "&Fecha_del_Hecho=" + Fecha_del_Hecho
+        + "&Hora_del_Hecho=" + Hora_del_Hecho
+        + "&Pais_de_los_Hechos_MPI=" + Pais_de_los_Hechos_MPI
+        + "&Estado_de_los_Hechos_MPI=" + Estado_de_los_Hechos_MPI
+        + "&Municipio_de_los_Hechos_MPI=" + Municipio_de_los_Hechos_MPI
+        + "&Colonia_de_los_Hechos_MPI=" + Colonia_de_los_Hechos_MPI
+        + "&Codigo_Postal_de_los_Hechos_MPI=" + Codigo_Postal_de_los_Hechos_MPI
+        + "&Calle_de_los_Hechos_MPI=" + Calle_de_los_Hechos_MPI
+        + "&Entre_Calle_MPI=" + Entre_Calle_MPI
+        + "&Y_Calle_MPI=" + Y_Calle_MPI
+        + "&Numero_Exrterior_de_los_Hechos_MPI=" + Numero_Exrterior_de_los_Hechos_MPI
+        + "&Numero_Interior_de_los_Hechos_MPI=" + Numero_Interior_de_los_Hechos_MPI
+        + "&Latitud_MPI=" + Latitud_MPI
+        + "&Longitud_MPI=" + Longitud_MPI
+        + "&Tipo_de_Lugar_del_Hecho_MPI=" + Tipo_de_Lugar_del_Hecho_MPI
+        + "&Persona_Moral=" + Persona_Moral
+        + "&Requiere_Diligencia=" + Requiere_Diligencia
+        + "&Numero_de_Expediente_Victima=" + Numero_de_Expediente_Victima
+        + "&Requiere_Traductor=" + Requiere_Traductor
+        + "&Lengua_Originaria=" + Lengua_Originaria
+        + "&Idioma=" + Idioma
+        + "&Titulo_del_Hecho=" + Titulo_del_Hecho
+        + "&Asignar_Agente_del_Ministerio_Publico=" + Asignar_Agente_del_Ministerio_Publico
+        + "&Nombre_de_Agente_del_Ministerio_Publico=" + Nombre_de_Agente_del_Ministerio_Publico
+        + "&Tipo_de_Oficio=" + Tipo_de_Oficio
+        + "&Delegacion=" + Delegacion
+        + "&Agencia=" + Agencia
+        + "&Solicitar_Diligencias=" + Solicitar_Diligencias
+        + "&NUC_Audiencias=" + NUC_Audiencias
+        + "&NIC_Audiencias=" + NIC_Audiencias
+        + "&Fecha_de_Registro_Audiencias=" + Fecha_de_Registro_Audiencias
+        + "&Hora_de_Registro_Audiencias=" + Hora_de_Registro_Audiencias
+        + "&Tipo_de_Oficio_Audiencias=" + Tipo_de_Oficio_Audiencias
+        + "&Delegacion_Audiencias=" + Delegacion_Audiencias
+        + "&Domicilio_Delegacion_A=" + Domicilio_Delegacion_A
+        + "&Numero_de_Expediente=" + Numero_de_Expediente
+        + "&NUAT=" + NUAT
+        + "&Fecha_de_RegistroI=" + Fecha_de_RegistroI
+        + "&Hora_de_RegistroI=" + Hora_de_RegistroI
+        + "&Estatus=" + Estatus
+        + "&Canalizar_a=" + Canalizar_a
+        + "&Delito_Principal=" + Delito_Principal
+        + "&Tipo_de_Acuerdo=" + Tipo_de_Acuerdo
+        + "&Fecha_de_Inicio_de_Acuerdo=" + Fecha_de_Inicio_de_Acuerdo
+        + "&Fecha_de_Cumplimiento=" + Fecha_de_Cumplimiento
+        + "&Hora_de_Cumplimiento=" + Hora_de_Cumplimiento
+        + "&Domicilio_para_el_Cumplimiento=" + Domicilio_para_el_Cumplimiento
+        + "&Monto_de_Reparacion_de_Danos=" + Monto_de_Reparacion_de_Danos
+        + "&Parcialidades=" + Parcialidades
+        + "&Periodicidad=" + Periodicidad
+        + "&Acepta_Acuerdo=" + Acepta_Acuerdo
+        + "&Motivo_de_Rechazo_de_Acuerdo=" + Motivo_de_Rechazo_de_Acuerdo
+ + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
+
+        var url = "@Url.Content("~/Frontal/Expediente_Inicial/Export?format=")" + format
+            + "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
+            + "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
+		    + "&where=" + where + "&order=" + order + 
+			+ "&columnsVisible=" + table.columns().visible().join(",") + queryString;
+        window.open(url, '_blank');
+    };
+
+    function GetQueryString() {
+	
+	 var counter = 0;
+        var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Detenido =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NUC =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NIC =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_del_Detenido = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Puesto_a_Disposicion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitar_Servicos_de_Apoyo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Narrativa_Breve_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Prioridad_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entre_Calle_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Y_Calle_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exrterior_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior_de_los_Hechos_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Lugar_del_Hecho_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Persona_Moral = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Requiere_Diligencia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Expediente_Victima =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Requiere_Traductor = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Lengua_Originaria =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Idioma =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Asignar_Agente_del_Ministerio_Publico = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_de_Agente_del_Ministerio_Publico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Oficio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Delegacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Agencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitar_Diligencias = $($('table td .filterData.form-control:input')[counter++]).val();
+        var NUC_Audiencias =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NIC_Audiencias =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Registro_Audiencias = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Registro_Audiencias = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Oficio_Audiencias =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Delegacion_Audiencias =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Domicilio_Delegacion_A =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Expediente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_RegistroI = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_RegistroI = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Canalizar_a =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Delito_Principal =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Inicio_de_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Cumplimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Cumplimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Domicilio_para_el_Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Monto_de_Reparacion_de_Danos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Parcialidades =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Periodicidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Acepta_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_de_Rechazo_de_Acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
+
+
+        return "&Clave=" + Clave 
+        + "&Fecha_de_Registro=" + Fecha_de_Registro
+        + "&Hora_de_Registro=" + Hora_de_Registro
+        + "&Usuario_que_Registra=" + Usuario_que_Registra
+        + "&Detenido=" + Detenido
+        + "&NUC=" + NUC
+        + "&NIC=" + NIC
+        + "&Hora_del_Detenido=" + Hora_del_Detenido
+        + "&Hora_Puesto_a_Disposicion=" + Hora_Puesto_a_Disposicion
+        + "&Solicitar_Servicos_de_Apoyo=" + Solicitar_Servicos_de_Apoyo
+        + "&Narrativa_Breve_de_los_Hechos=" + Narrativa_Breve_de_los_Hechos
+        + "&Prioridad_del_Hecho=" + Prioridad_del_Hecho
+        + "&Turno=" + Turno
+        + "&Fecha_del_Hecho=" + Fecha_del_Hecho
+        + "&Hora_del_Hecho=" + Hora_del_Hecho
+        + "&Pais_de_los_Hechos_MPI=" + Pais_de_los_Hechos_MPI
+        + "&Estado_de_los_Hechos_MPI=" + Estado_de_los_Hechos_MPI
+        + "&Municipio_de_los_Hechos_MPI=" + Municipio_de_los_Hechos_MPI
+        + "&Colonia_de_los_Hechos_MPI=" + Colonia_de_los_Hechos_MPI
+        + "&Codigo_Postal_de_los_Hechos_MPI=" + Codigo_Postal_de_los_Hechos_MPI
+        + "&Calle_de_los_Hechos_MPI=" + Calle_de_los_Hechos_MPI
+        + "&Entre_Calle_MPI=" + Entre_Calle_MPI
+        + "&Y_Calle_MPI=" + Y_Calle_MPI
+        + "&Numero_Exrterior_de_los_Hechos_MPI=" + Numero_Exrterior_de_los_Hechos_MPI
+        + "&Numero_Interior_de_los_Hechos_MPI=" + Numero_Interior_de_los_Hechos_MPI
+        + "&Latitud_MPI=" + Latitud_MPI
+        + "&Longitud_MPI=" + Longitud_MPI
+        + "&Tipo_de_Lugar_del_Hecho_MPI=" + Tipo_de_Lugar_del_Hecho_MPI
+        + "&Persona_Moral=" + Persona_Moral
+        + "&Requiere_Diligencia=" + Requiere_Diligencia
+        + "&Numero_de_Expediente_Victima=" + Numero_de_Expediente_Victima
+        + "&Requiere_Traductor=" + Requiere_Traductor
+        + "&Lengua_Originaria=" + Lengua_Originaria
+        + "&Idioma=" + Idioma
+        + "&Titulo_del_Hecho=" + Titulo_del_Hecho
+        + "&Asignar_Agente_del_Ministerio_Publico=" + Asignar_Agente_del_Ministerio_Publico
+        + "&Nombre_de_Agente_del_Ministerio_Publico=" + Nombre_de_Agente_del_Ministerio_Publico
+        + "&Tipo_de_Oficio=" + Tipo_de_Oficio
+        + "&Delegacion=" + Delegacion
+        + "&Agencia=" + Agencia
+        + "&Solicitar_Diligencias=" + Solicitar_Diligencias
+        + "&NUC_Audiencias=" + NUC_Audiencias
+        + "&NIC_Audiencias=" + NIC_Audiencias
+        + "&Fecha_de_Registro_Audiencias=" + Fecha_de_Registro_Audiencias
+        + "&Hora_de_Registro_Audiencias=" + Hora_de_Registro_Audiencias
+        + "&Tipo_de_Oficio_Audiencias=" + Tipo_de_Oficio_Audiencias
+        + "&Delegacion_Audiencias=" + Delegacion_Audiencias
+        + "&Domicilio_Delegacion_A=" + Domicilio_Delegacion_A
+        + "&Numero_de_Expediente=" + Numero_de_Expediente
+        + "&NUAT=" + NUAT
+        + "&Fecha_de_RegistroI=" + Fecha_de_RegistroI
+        + "&Hora_de_RegistroI=" + Hora_de_RegistroI
+        + "&Estatus=" + Estatus
+        + "&Canalizar_a=" + Canalizar_a
+        + "&Delito_Principal=" + Delito_Principal
+        + "&Tipo_de_Acuerdo=" + Tipo_de_Acuerdo
+        + "&Fecha_de_Inicio_de_Acuerdo=" + Fecha_de_Inicio_de_Acuerdo
+        + "&Fecha_de_Cumplimiento=" + Fecha_de_Cumplimiento
+        + "&Hora_de_Cumplimiento=" + Hora_de_Cumplimiento
+        + "&Domicilio_para_el_Cumplimiento=" + Domicilio_para_el_Cumplimiento
+        + "&Monto_de_Reparacion_de_Danos=" + Monto_de_Reparacion_de_Danos
+        + "&Parcialidades=" + Parcialidades
+        + "&Periodicidad=" + Periodicidad
+        + "&Acepta_Acuerdo=" + Acepta_Acuerdo
+        + "&Motivo_de_Rechazo_de_Acuerdo=" + Motivo_de_Rechazo_de_Acuerdo
+;
+
+    }
+	
+	
+	$(document).on("click", ".editor_print", function () {
+		var idRecord = $(this).data('idrecord');
+        GetFormats(idRecord);
+        $("#printFormatModal").data('idrecord', idRecord);
+    });
+	
+	function GetFormats(idRecord) {
+
+        $('#spartan_formats').empty();
+        $.ajax({
+            url: '@Url.Content("~/Frontal/Expediente_Inicial/GetFormats?RecordId=")' + idRecord,
+            type: 'Get',
+            async: true,
+            contentType: "multipart/form-data",
+            success: function (result) {
+                if (result < 0) {
+
+                } else {
+                    $.each(result, function (index, element) {
+                        var div = "<div id=''>" +
+                             "<label>" +
+                                "<input type='checkbox' name='optradioFormat' value='" + element.Value + "' />" + element.Text +
+                                    "</label>" +
+                                "</div>";
+
+                        $('#spartan_formats').append(div);
+                    });
+                    $("#printFormatModal").modal('show');
+                }
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    }
+	 function ExportToPdfFormats()
+    {
+        var RecordId = $("#printFormatModal").data('idrecord');
+        var FormatId = $("input:radio[name='optradioFormat']:checked").val();
+        var i = 1;
+        $("input:checkbox[name='optradioFormat']:checked").each(function (index, item) {
+            if ($(item).is(':checked')) {
+                debugger
+                var FormatId = $(item).val();
+                var url = "@Url.Content("~/Frontal/Expediente_Inicial/PrintFormats?idFormat=")" + FormatId + "&RecordId=" + RecordId;
+                var printWindow = window.open(url,'Imprimir Formato ' + i.toString() + '_blank');
+                i++;
+
+            }
+        });
+    }
+	
+    function PrintDocument(format) {
+
+        var counter = 1;
+        currentFilter = table.page.info();
+		
+		   var where = MRWhere;
+        var order = MROrder;
+
+		var queryString = GetQueryString();
+		
+		var url = "@Url.Content("~/Frontal/Expediente_Inicial/Print")?format=3"
+				+ "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
+				+ "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
+				+ "&where=" + where + "&order=" + order + queryString;
+
+        $.ajax({
+
+            url: url,
+            async:false,
+            success: function (data) {
+                var printWindow = window.open();
+                var title = '@Resources.Resources.PrintText';
+                printWindow.document.write('<title>' + title + '</title>');
+                printWindow.document.write(data);
+				printWindow.document.getElementById("columnsVisible").text = table.columns().visible().join(",");
+                printWindow.print();
+                //printWindow.close();
+
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
+
+    }
+
+    function SetTitle(printWindow) {
+        if (printWindow.document) {
+            printWindow.document.title = "Expediente Inicial Print";
+        } else {
+            setTimeout(SetTitle, 10);
+        }
+    }
+
+    Serialize = function (obj) {
+        var str = [];
+        for (var p in obj)
+            if (obj.hasOwnProperty(p)) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            }
+        return str.join("&");
+    }
+    function GetContentType() {
+        switch ($('#myModal #sel1').val()) {
+            case "1":
+                return "application/pdf; charset=utf-8";
+            case "2":
+                return "application/vnd.ms-excel; charset=utf-8";
+        }
+        return null;
+    }
+
+    var isInitialized = false;
+    var filterState = JSON.parse(localStorage.getItem("GRID_STATE_MANAGEMENT"));
+
+    $(function () {
+        //Popup
+        $("#btnExportPopUpOpen").click(function () {
+            $('#myModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-pdf", function (e, data) {
+
+            $("#btnPrint").hide();
+            $("#btnExcel").hide();
+            $("#btnPdf").show();
+            $("#btnCSV").hide();
+            $('#exportModal').modal('show');
+
+        });
+
+        $(document).on("click", ".buttons-print", function (e, data) {
+
+            $("#btnPdf").hide();
+            $("#btnExcel").hide();
+            $("#btnPrint").show();
+            $("#btnCSV").hide();
+            $('#exportModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-excel", function (e, data) {
+
+            $("#btnPdf").hide();
+            $("#btnExcel").show();
+            $("#btnPrint").hide();
+            $("#btnCSV").hide();
+            $(this).bind();
+            $('#exportModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-csv", function (e, data) {
+
+
+            $("#btnPdf").hide();
+            $("#btnExcel").hide();
+            $("#btnPrint").hide();
+            $("#btnCSV").show();
+            $('#exportModal').modal('show');
+
+        });
+
+		setFilterNew('tblExpediente_Inicial');
+		
+		var oDatatableStateData;
+        // initialize datatable variable
+        table = $('#tblExpediente_Inicial').DataTable({
+            dom: '<"html5buttons"B>lTfgt<"bottom"ip>',
+            //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
+            buttons: [
+                { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                {
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+
+                        if (!permission.Print) {
+                            $(win.document.body).addClass('disabled');
+                            $(win.document.body).attr('disabled', 'true');
+                        }
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ],
+            "processing": true,
+            "serverSide": true,
+            "info": true,
+            "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "@Resources.Resources.All"]],            
+			 "ajax": function (data, callback, settings, aoData) {
+                $.ajax({
+                    url: "@Url.Content("~/Frontal/Expediente_Inicial/GetExpediente_InicialList")", 
+                    method: 'Post',
+                    data: { "sEcho": data.draw, "iDisplayStart": data.start, "iDisplayLength": data.length, "sortDirection": data.order[0].dir, "sortColumn": data.order[0].column, "columns": data.columns, "where": MRWhere, "order": MROrder, "filters": GetQueryString(), "AdvanceSearch": GetAdvanceSearchQuery() }
+                }).done(callback);
+            },
+            "fnServerParams": function ( aoData ) {
+                //aoData.push({ "name": "AdvanceSearch", "value": GetAdvanceSearchQuery() });
+            },
+            "bStateSave": true,
+            "fnStateSave": function (oSettings, oData) {
+                localStorage.setItem(JSON.stringify(oData), 'Expediente_InicialDatatable_');
+            },
+            "fnStateLoad": function (oSettings) {
+                var data = localStorage.getItem('Expediente_InicialDatatable_');
+                return JSON.parse(data);
+            },
+            "fnStateLoaded": function (oSettings, oData) {
+                oDatatableStateData = oData;              
+                setFilterState('tblExpediente_Inicial', oDatatableStateData); 
+            },
+            "aoColumns": [
+                {
+                    "data": null,
+                    "className": "center actionColumn text-nowrap",
+					"orderable": false, 					
+					"render": function (data, type, full, meta) {
+                        var edit = '<a title="@Resources.Resources.Edit" href="@Url.Action("Create", "Expediente_Inicial")?Id=' + data.Clave + '" class="editor_edit edit-MR"><i class="fa fa-edit"></i></a>';
+                        if (!permission.Edit)
+                            edit = '';
+                        var consult = '<a title="@Resources.Resources.Consult" href="@Url.Action("Create", "Expediente_Inicial")?Id=' + data.Clave + '&consult=1"  class="editor_remove"><i class="fa fa-male"></i></a>';
+                        if (!permission.Consult)
+                            consult = '';
+                        var print = '<a title="@Resources.Resources.Print" data-toggle="modal" data-target="#printFormatModal" data-idrecord="' + data.Clave + '"  class="editor_print print-MR"><i class="fa fa-print"></i></a>';
+                        if (!permission.Print)
+                            print = '';
+                        var del = '<a title="@Resources.Resources.Delete" onclick="DeleteExpediente_Inicial(\'' + data.Clave + '\')" class="editor_remove eliminar-MR"><i class="fa fa-times"></i></a>';
+                        if (!permission.Delete)
+                            del = '';
+                        return edit + del + consult + print;
+                    }
+                }, 
+                { "data": "Clave", "orderable": true, "name": "Clave" }
+                ,{ "data": "Fecha_de_Registro", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Registro" }
+                ,{ "data": "Hora_de_Registro", "orderable": true, "name": "Hora_de_Registro" }
+                ,{ "data": "Usuario_que_RegistraName", "orderable": true, "name": "Usuario_que_RegistraName"}
+                ,{ "data": "DetenidoDescripcion", "orderable": true, "name": "DetenidoDescripcion" }
+                ,{ "data": "NUC", "orderable": true, "name": "NUC", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "NIC", "orderable": true, "name": "NIC", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Hora_del_Detenido", "orderable": true, "name": "Hora_del_Detenido" }
+                ,{ "data": "Hora_Puesto_a_Disposicion", "orderable": true, "name": "Hora_Puesto_a_Disposicion" }
+                ,{ "data": "Solicitar_Servicos_de_ApoyoFolio", "orderable": true, "name": "Solicitar_Servicos_de_ApoyoFolio" }
+                ,{ "data": "Narrativa_Breve_de_los_Hechos", "orderable": true, "name": "Narrativa_Breve_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Prioridad_del_HechoDescripcion", "orderable": true, "name": "Prioridad_del_HechoDescripcion" }
+                ,{ "data": "Turno", "orderable": true, "name": "Turno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_del_Hecho", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_del_Hecho" }
+                ,{ "data": "Hora_del_Hecho", "orderable": true, "name": "Hora_del_Hecho" }
+                ,{ "data": "Pais_de_los_Hechos_MPINombre", "orderable": true, "name": "Pais_de_los_Hechos_MPINombre"}
+                ,{ "data": "Estado_de_los_Hechos_MPINombre", "orderable": true, "name": "Estado_de_los_Hechos_MPINombre"}
+                ,{ "data": "Municipio_de_los_Hechos_MPINombre", "orderable": true, "name": "Municipio_de_los_Hechos_MPINombre"}
+                ,{ "data": "Colonia_de_los_Hechos_MPINombre", "orderable": true, "name": "Colonia_de_los_Hechos_MPINombre"}
+                ,{ "data": "Codigo_Postal_de_los_Hechos_MPI","className": "dt-right", "orderable": true, "name": "Codigo_Postal_de_los_Hechos_MPI" }
+                ,{ "data": "Calle_de_los_Hechos_MPI", "orderable": true, "name": "Calle_de_los_Hechos_MPI", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Entre_Calle_MPI", "orderable": true, "name": "Entre_Calle_MPI", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Y_Calle_MPI", "orderable": true, "name": "Y_Calle_MPI", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Exrterior_de_los_Hechos_MPI", "orderable": true, "name": "Numero_Exrterior_de_los_Hechos_MPI", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Interior_de_los_Hechos_MPI", "orderable": true, "name": "Numero_Interior_de_los_Hechos_MPI", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Latitud_MPI", "orderable": true, "name": "Latitud_MPI", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Longitud_MPI", "orderable": true, "name": "Longitud_MPI", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Tipo_de_Lugar_del_Hecho_MPIDescripcion", "orderable": true, "name": "Tipo_de_Lugar_del_Hecho_MPIDescripcion" }
+                ,{ "data": "Persona_Moral", "orderable": true, "name": "Persona_Moral","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Requiere_Diligencia", "orderable": true, "name": "Requiere_Diligencia","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Numero_de_Expediente_Victima", "orderable": true, "name": "Numero_de_Expediente_Victima", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Requiere_Traductor", "orderable": true, "name": "Requiere_Traductor","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Lengua_OriginariaDescripcion", "orderable": true, "name": "Lengua_OriginariaDescripcion" }
+                ,{ "data": "IdiomaDescripcion", "orderable": true, "name": "IdiomaDescripcion" }
+                ,{ "data": "Titulo_del_Hecho", "orderable": true, "name": "Titulo_del_Hecho", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Asignar_Agente_del_Ministerio_Publico", "orderable": true, "name": "Asignar_Agente_del_Ministerio_Publico","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Nombre_de_Agente_del_Ministerio_PublicoName", "orderable": true, "name": "Nombre_de_Agente_del_Ministerio_PublicoName"}
+                ,{ "data": "Tipo_de_OficioDescripcion", "orderable": true, "name": "Tipo_de_OficioDescripcion" }
+                ,{ "data": "DelegacionDescripcion", "orderable": true, "name": "DelegacionDescripcion" }
+                ,{ "data": "AgenciaDescripcion", "orderable": true, "name": "AgenciaDescripcion" }
+                ,{ "data": "Solicitar_Diligencias", "orderable": true, "name": "Solicitar_Diligencias","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "NUC_Audiencias", "orderable": true, "name": "NUC_Audiencias", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "NIC_Audiencias", "orderable": true, "name": "NIC_Audiencias", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_Registro_Audiencias", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Registro_Audiencias" }
+                ,{ "data": "Hora_de_Registro_Audiencias", "orderable": true, "name": "Hora_de_Registro_Audiencias" }
+                ,{ "data": "Tipo_de_Oficio_AudienciasDescripcion", "orderable": true, "name": "Tipo_de_Oficio_AudienciasDescripcion" }
+                ,{ "data": "Delegacion_AudienciasDescripcion", "orderable": true, "name": "Delegacion_AudienciasDescripcion" }
+                ,{ "data": "Domicilio_Delegacion_A", "orderable": true, "name": "Domicilio_Delegacion_A", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_de_Expediente", "orderable": true, "name": "Numero_de_Expediente", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "NUAT", "orderable": true, "name": "NUAT", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_RegistroI", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_RegistroI" }
+                ,{ "data": "Hora_de_RegistroI", "orderable": true, "name": "Hora_de_RegistroI" }
+                ,{ "data": "EstatusDescripcion", "orderable": true, "name": "EstatusDescripcion" }
+                ,{ "data": "Canalizar_aDescripcion", "orderable": true, "name": "Canalizar_aDescripcion" }
+                ,{ "data": "Delito_PrincipalDelito", "orderable": true, "name": "Delito_PrincipalDelito" }
+                ,{ "data": "Tipo_de_AcuerdoDescripcion", "orderable": true, "name": "Tipo_de_AcuerdoDescripcion" }
+                ,{ "data": "Fecha_de_Inicio_de_Acuerdo", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Inicio_de_Acuerdo" }
+                ,{ "data": "Fecha_de_Cumplimiento", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Cumplimiento" }
+                ,{ "data": "Hora_de_Cumplimiento", "orderable": true, "name": "Hora_de_Cumplimiento" }
+                ,{ "data": "Domicilio_para_el_Cumplimiento", "orderable": true, "name": "Domicilio_para_el_Cumplimiento", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Monto_de_Reparacion_de_Danos", "orderable": true, "name": "Monto_de_Reparacion_de_Danos", "className": "dt-right", render: $.fn.dataTable.render.number(',', '.', 2, '$') }
+                ,{ "data": "Parcialidades", "orderable": true, "name": "Parcialidades", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "PeriodicidadDescripcion", "orderable": true, "name": "PeriodicidadDescripcion" }
+                ,{ "data": "Acepta_Acuerdo", "orderable": true, "name": "Acepta_Acuerdo","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Motivo_de_Rechazo_de_Acuerdo", "orderable": true, "name": "Motivo_de_Rechazo_de_Acuerdo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+
+            ],
+			"colReorder": true,
+            "order": [[1, "asc"]],
+			"scrollX": true,
+			"scrollY": '55vh',
+			"scrollCollapse": true,
+			"drawCallback": function( settings ) {
+			    $('.dataTables_scrollBody').animate({
+			        scrollTop: 0,
+			        scrollLeft: 0,
+			    }, '200');
+			},
+             "language": {
+                "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                "zeroRecords": " ",
+                "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                "infoEmpty": "@Resources.Resources.NoRecords",
+                "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                "paginate": {
+                    "previous": "@Resources.Resources.Previous",
+                    "next": "@Resources.Resources.Next"
+					},
+                    "buttons": {
+                        "copyTitle": "@Resources.Resources.CopyToClipboard",
+                        "copySuccess": {
+                            "_": "%d " + "@Resources.Resources.Copiedlines",
+                            "1": "1 " +  "@Resources.Resources.Copiedline"
+                        }
+                    }
+				}
+    }).on('init.dt', function (e, data) {
+        var classNamePDF = $(this).dataTableExt.buttons.pdfHtml5.className.split(" ");
+        var classNameExcel = $(this).dataTableExt.buttons.excelHtml5.className.split(" ");
+        var classNamePrint = $(this).dataTableExt.buttons.print.className.split(" ");
+        var classNameCSV = $(this).dataTableExt.buttons.csvHtml5.className.split(" ");
+        $('.' + classNamePDF[0]).unbind();
+        $('.' + classNameExcel[0]).unbind();
+        $('.' + classNamePrint[0]).unbind();
+        $('.' + classNameCSV[0]).unbind();
+        $('a').tooltip();
+        EjecutarValidacionesDespuesDeCrearLista();
+		
+		$('#tblExpediente_Inicial').show().css({
+            "width": "auto",
+            "min-width": "100%"
+        });
+
+        $('.loading').hide();
+	table.columns.adjust();
+    });
+
+		ApplySearch(table);
+		$('tfoot tr').insertAfter($('thead tr'));
+		
+
+        $('.clockpicker').clockpicker();
+
+        $('.datepicker').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            format: "dd-mm-yyyy"
+        });
+    });
+
+    function DeleteExpediente_Inicial(Clave) {
+       if (confirm(htmlDecode('@Resources.Resources.DeleteRecord'))) {
+            $.ajax({
+                url: '@Url.Content("~/Frontal/Expediente_Inicial/Delete?id=")' + Clave,
+                type: 'DELETE',
+                success: function (result) {
+                    if (result) {
+                        table.draw();
+                        showNotification('@Resources.Resources.DeleteSuccess', "success");
+                    } else {
+                        showNotification('@Resources.Resources.DeleteError', "error");
+                    }
+
+                }
+            });
+        }
+    }
+</script>
+
+<script type="text/javascript">
+	function OpenRules() {
+        $.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+            $(".Expediente_InicialBusinessRuleModal").html(data);
+            $(".Expediente_InicialBusinessRuleModal").modal('show');           
+        });
+    }
+    function Expediente_InicialGetBusinessRule() {
+        $('#FieldId').val();
+        $('#FieldName').val('');
+        $('#ObjectId').val('45119');
+        $('#Attribute').val('3');
+        $('#Screen').val('Expediente_Inicial');
+        OpenRules();
+    }
+
+    function GetPropertyBag() {
+        $.get('@Url.Action("Expediente_InicialPropertyBag", "Expediente_Inicial")', function (data) {
+            $(".PropertyModal").html(data);
+        });
+    }
+</script>
+<input type="hidden" id="FieldId" name="FieldId" value="" />
+<input type="hidden" id="FieldName" name="FieldName" value="" />
+<input type="hidden" id="ObjectId" name="ObjectId" value="" />
+<input type="hidden" id="Attribute" name="Attribute" value="" />
+<input type="hidden" id="Screen" name="Screen" value="" />
+@section Styles {
+    
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/dataPicker")
+}
+

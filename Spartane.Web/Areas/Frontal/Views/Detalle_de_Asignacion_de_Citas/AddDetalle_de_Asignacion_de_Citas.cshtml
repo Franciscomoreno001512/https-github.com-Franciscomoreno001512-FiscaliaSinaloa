@@ -1,0 +1,519 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Asignacion_de_CitasModel
+@{
+
+
+    List<SelectListItem> varUsuario_Numero_de_Empleado = null;
+    if (ViewBag.Usuarios_Numero_de_Empleado != null)
+    { varUsuario_Numero_de_Empleado = (List<SelectListItem>)ViewBag.Usuarios_Numero_de_Empleado; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Asignacion de Citas
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_de_Asignacion_de_CitasRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_de_Asignacion_de_CitasPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Asignacion de Citas
+								<button onclick="Detalle_de_Asignacion_de_CitasGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Asignacion_de_CitasBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_de_Asignacion_de_CitasResources.Detalle_de_Asignacion_de_Citas</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_de_Asignacion_de_CitasDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_de_Asignacion_de_CitasPropertyBusinessModal" id="Detalle_de_Asignacion_de_CitasPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_de_Asignacion_de_CitasBusinessRule-form" onclick="Detalle_de_Asignacion_de_CitasGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Asignacion_de_CitasPropertyModal" id="Detalle_de_Asignacion_de_CitasPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Asignacion_de_CitasBusinessRuleModal" id="Detalle_de_Asignacion_de_CitasBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Asignacion_de_CitasAddBusinessRuleModal" id="Detalle_de_Asignacion_de_CitasAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_de_Asignacion_de_Citas", FormMethod.Post, new { id = "CreateDetalle_de_Asignacion_de_Citas", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_de_Asignacion_de_CitasCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Asignacion_de_CitasResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="263521" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Clave">
+                                    <label class="form-control" for="Detalle_de_Asignacion_de_CitasClave" id="Detalle_de_Asignacion_de_CitasClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_de_Empleado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Asignacion_de_CitasResources.Numero_de_Empleado</label>
+	<div class="col-sm-8" data-field-id="Numero_de_Empleado" data-attribute="263523" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Numero_de_Empleado">
+		<select class="form-control" data-val="true" data-val-number="The field Número de Empleado must be a number." data-val-required="The Número de Empleado field is required." id="Detalle_de_Asignacion_de_CitasNumero_de_Empleado" name="Detalle_de_Asignacion_de_CitasNumero_de_Empleado">
+			<option value=""></option>
+			@if (varUsuario_Numero_de_Empleado != null){ 
+				foreach (var itemNumero_de_Empleado in varUsuario_Numero_de_Empleado)
+				{
+					if (itemNumero_de_Empleado.Value == Convert.ToString(Model.Numero_de_Empleado))
+					{
+						<option value="@itemNumero_de_Empleado.Value" selected>@itemNumero_de_Empleado.Text</option>
+					}
+					else
+					{
+						<option value="@itemNumero_de_Empleado.Value">@itemNumero_de_Empleado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNombre_de_Empleado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_de_Asignacion_de_CitasResources.Nombre_de_Empleado</label>
+	<div class="col-sm-8" data-field-id="Nombre_de_Empleado" data-attribute="263524" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Nombre_de_Empleado">
+		<input class="form-control inputNumber" id="Detalle_de_Asignacion_de_CitasNombre_de_Empleado" name="Detalle_de_Asignacion_de_CitasNombre_de_Empleado" type="text" value="@Model.Nombre_de_Empleado">
+	</div>
+</div>
+<div class="form-group" id="divLunes">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Asignacion_de_CitasResources.Lunes</label>
+                                <div class="col-sm-8" data-field-id="Lunes" data-attribute="263525" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Lunes">
+                                    @Html.CheckBoxFor(m => m.Lunes, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divMartes">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Asignacion_de_CitasResources.Martes</label>
+                                <div class="col-sm-8" data-field-id="Martes" data-attribute="263526" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Martes">
+                                    @Html.CheckBoxFor(m => m.Martes, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divMiercoles">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Asignacion_de_CitasResources.Miercoles</label>
+                                <div class="col-sm-8" data-field-id="Miercoles" data-attribute="263527" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Miercoles">
+                                    @Html.CheckBoxFor(m => m.Miercoles, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divJueves">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Asignacion_de_CitasResources.Jueves</label>
+                                <div class="col-sm-8" data-field-id="Jueves" data-attribute="263528" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Jueves">
+                                    @Html.CheckBoxFor(m => m.Jueves, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divViernes">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Asignacion_de_CitasResources.Viernes</label>
+                                <div class="col-sm-8" data-field-id="Viernes" data-attribute="263529" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Viernes">
+                                    @Html.CheckBoxFor(m => m.Viernes, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divSabado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Asignacion_de_CitasResources.Sabado</label>
+                                <div class="col-sm-8" data-field-id="Sabado" data-attribute="263530" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Sabado">
+                                    @Html.CheckBoxFor(m => m.Sabado, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divDomingo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Asignacion_de_CitasResources.Domingo</label>
+                                <div class="col-sm-8" data-field-id="Domingo" data-attribute="263531" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Domingo">
+                                    @Html.CheckBoxFor(m => m.Domingo, new { @class = "i-checks" })
+                                </div>
+                            </div>
+<div class="form-group" id="divHora_Inicio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Asignacion_de_CitasResources.Hora_Inicio</label>
+                                <div class="col-sm-8" data-field-id="Hora_Inicio" data-attribute="263532" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Hora_Inicio">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Asignacion_de_CitasHora_Inicio" readonly="readonly" name="Detalle_de_Asignacion_de_CitasHora_Inicio" type="text" data-autoclose="true" value="@Model.Hora_Inicio">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divHora_Fin">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Asignacion_de_CitasResources.Hora_Fin</label>
+                                <div class="col-sm-8" data-field-id="Hora_Fin" data-attribute="263533" data-field-name="@Resources.Detalle_de_Asignacion_de_CitasResources.Hora_Fin">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="Detalle_de_Asignacion_de_CitasHora_Fin" readonly="readonly" name="Detalle_de_Asignacion_de_CitasHora_Fin" type="text" data-autoclose="true" value="@Model.Hora_Fin">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_de_Asignacion_de_CitasConfigureSave" name="Detalle_de_Asignacion_de_CitasConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_de_Asignacion_de_CitasConfigureType" />
+												<input type="hidden" id="hdnDetalle_de_Asignacion_de_CitasBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_de_Asignacion_de_CitasBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_de_Asignacion_de_CitasBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_de_Asignacion_de_CitasGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Asignacion_de_CitasBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Asignacion_de_Citas.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Asignacion_de_CitasGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Asignacion_de_CitasCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Calendario_de_CitasCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_de_Asignacion_de_CitasRowElement = "Detalle_de_Asignacion_de_CitasPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_de_Asignacion_de_CitasRowElement + "')){ Detalle_de_Asignacion_de_CitasInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+            $('#Detalle_de_Asignacion_de_CitasHora_Inicio').clockpicker();
+            $('#Detalle_de_Asignacion_de_CitasHora_Fin').clockpicker();
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_de_Asignacion_de_CitasData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Asignacion_de_Citas").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Asignacion_de_Citas")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_de_Asignacion_de_CitasCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Asignacion_de_Citas/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_de_Asignacion_de_CitasPropertyBag", "Detalle_de_Asignacion_de_Citas")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_de_Asignacion_de_CitasGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleFieldName').val(), ObjectId: '45084', Attribute: $('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleAttribute').val(), Screen: 'Detalle_de_Asignacion_de_Citas' }, function (data) {
+                $(".Detalle_de_Asignacion_de_CitasBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_de_Asignacion_de_CitasGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleFieldName').val(), ObjectId: '45084', Attribute: $('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleAttribute').val(), Screen: 'Detalle_de_Asignacion_de_Citas' }, function (data) {
+                $(".Detalle_de_Asignacion_de_CitasAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleFieldName').val(), ObjectId: '45084', Attribute: $('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleAttribute').val(), Screen: 'Detalle_de_Asignacion_de_Citas' }, function (data) {
+				$(".Detalle_de_Asignacion_de_CitasBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_de_Asignacion_de_Citas/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Asignacion_de_Citas/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Asignacion_de_Citas/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_de_Asignacion_de_CitasConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_de_Asignacion_de_CitasConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Asignacion_de_Citas/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_de_Asignacion_de_CitasConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Asignacion_de_Citas/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_de_Asignacion_de_Citas' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_de_Asignacion_de_Citas' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_de_Asignacion_de_CitasConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_de_Asignacion_de_CitasConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Asignacion_de_Citas').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_de_Asignacion_de_CitasBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

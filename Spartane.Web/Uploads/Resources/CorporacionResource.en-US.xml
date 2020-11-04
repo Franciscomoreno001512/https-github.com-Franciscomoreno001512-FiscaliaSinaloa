@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Corporacion" value="Corporación"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Clave_Municipio" value="Clave Municipio"></resource>
+  <resource culture="en-US" name="Clave_Policia" value="Clave Policía"></resource>
+  <resource culture="en-US" name="Descripcion" value="Descripción "></resource>
+  <resource culture="en-US" name="Vigencia" value="Vigencia"></resource>
+  <resource culture="en-US" name="Uso_Vehiculo" value="Uso Vehículo"></resource>
+  <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

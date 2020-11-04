@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Imputado" value="Probable Responsable"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Persona_Moral" value="Persona Moral"></resource>
+  <resource culture="en-US" name="Modulo_Atencion_Inicial" value="Módulo Atención Inicial"></resource>
+  <resource culture="en-US" name="Quien_Resulte_Responsable" value="Quien Resulte Responsable"></resource>
+  <resource culture="en-US" name="Se_Presenta_con_Detenido" value="Se Presenta con Detenido"></resource>
+  <resource culture="en-US" name="Folio_Registro_Nacional_de_Detenciones" value="Folio Registro Nacional de Detenciones"></resource>
+  <resource culture="en-US" name="Lugar_de_Detencion" value="Lugar de Detención"></resource>
+  <resource culture="en-US" name="Nombre" value="Nombre"></resource>
+  <resource culture="en-US" name="Apellido_Paterno" value="Apellido Paterno"></resource>
+  <resource culture="en-US" name="Apellido_Materno" value="Apellido Materno"></resource>
+  <resource culture="en-US" name="Nombre_Completo_Detenido" value="Nombre Completo"></resource>
+  <resource culture="en-US" name="Alias" value="Alias"></resource>
+  <resource culture="en-US" name="Fecha_de_Nacimiento" value="Fecha de Nacimiento"></resource>
+  <resource culture="en-US" name="Edad" value="Edad"></resource>
+  <resource culture="en-US" name="Sexo" value="Sexo"></resource>
+  <resource culture="en-US" name="Estado_Civil" value="Estado Civil"></resource>
+  <resource culture="en-US" name="Tipo_de_Identificacion" value="Tipo de Identificación"></resource>
+  <resource culture="en-US" name="Numero_de_Identificacion" value="Número de Identificación"></resource>
+  <resource culture="en-US" name="CURP" value="CURP"></resource>
+  <resource culture="en-US" name="RFC" value="RFC"></resource>
+  <resource culture="en-US" name="Calidad_Juridica" value="Calidad Jurídica"></resource>
+  <resource culture="en-US" name="Razon_Social" value="Razón Social"></resource>
+  <resource culture="en-US" name="Nacionalidad" value="Nacionalidad"></resource>
+  <resource culture="en-US" name="Escolaridad" value="Escolaridad"></resource>
+  <resource culture="en-US" name="Ocupacion" value="Ocupación"></resource>
+  <resource culture="en-US" name="Pais_de_Origen" value="País de Origen"></resource>
+  <resource culture="en-US" name="Originario_de" value="Originario de"></resource>
+  <resource culture="en-US" name="Pais" value="País"></resource>
+  <resource culture="en-US" name="Estado" value="Estado"></resource>
+  <resource culture="en-US" name="Municipio" value="Municipio"></resource>
+  <resource culture="en-US" name="Poblacion" value="Población"></resource>
+  <resource culture="en-US" name="Colonia" value="Colonia"></resource>
+  <resource culture="en-US" name="Codigo_Postal" value="Código Postal"></resource>
+  <resource culture="en-US" name="Calle_del_Imputado" value="Calle"></resource>
+  <resource culture="en-US" name="Numero_Exterior" value="Número Exterior"></resource>
+  <resource culture="en-US" name="Numero_Interior" value="Número Interior"></resource>
+  <resource culture="en-US" name="Referencia_de_Domicilio" value="Referencia de Domicilio"></resource>
+  <resource culture="en-US" name="Latitud" value="Latitud"></resource>
+  <resource culture="en-US" name="Longitud" value="Longitud"></resource>
+  <resource culture="en-US" name="Telefono" value="Teléfono"></resource>
+  <resource culture="en-US" name="Extension" value="Extensión"></resource>
+  <resource culture="en-US" name="Celular" value="Celular"></resource>
+  <resource culture="en-US" name="Correo_Electronico" value="Correo Electrónico"></resource>
+  <resource culture="en-US" name="Apodo" value="Apodo"></resource>
+  <resource culture="en-US" name="Etnia" value="Etnia"></resource>
+  <resource culture="en-US" name="No_de_Hijos" value="No. de Hijos"></resource>
+  <resource culture="en-US" name="Religion" value="Religión"></resource>
+  <resource culture="en-US" name="Servicio_Medico" value="Servicio Médico"></resource>
+  <resource culture="en-US" name="Escolaridad_Detenido" value="Escolaridad"></resource>
+  <resource culture="en-US" name="Especialidad" value="Especialidad"></resource>
+  <resource culture="en-US" name="Estudios_Superiores" value="Estudios Superiores"></resource>
+  <resource culture="en-US" name="Incompleto" value="Incompleto"></resource>
+  <resource culture="en-US" name="Idioma" value="Idioma"></resource>
+  <resource culture="en-US" name="Calidad_Migratoria" value="Calidad Migratoria"></resource>
+  <resource culture="en-US" name="Estado_de_Nacimiento" value="Estado de Nacimiento"></resource>
+  <resource culture="en-US" name="Municipio_de_Nacimiento" value="Municipio de Nacimiento"></resource>
+  <resource culture="en-US" name="Dialecto" value="Dialecto"></resource>
+  <resource culture="en-US" name="Viene_en_Estado_de_Ebriedad" value="Viene en Estado de Ebriedad"></resource>
+  <resource culture="en-US" name="Bajo_el_Efecto_de_una_Droga" value="Bajo el Efecto de una Droga"></resource>
+  <resource culture="en-US" name="Nombre_de_Droga" value="Nombre de Droga"></resource>
+  <resource culture="en-US" name="Inimputable" value="Inimputable"></resource>
+  <resource culture="en-US" name="Tipo_de_Inimputabilidad" value="Tipo de Inimputabilidad"></resource>
+  <resource culture="en-US" name="Especifique" value="Especifique"></resource>
+  <resource culture="en-US" name="Adicciones_Probable_Responsable" value="Adicciones Probable Responsable"></resource>
+  <resource culture="en-US" name="Lugares_que_Frecuenta" value="Lugares que Frecuenta"></resource>
+  <resource culture="en-US" name="Datos_Personales_Adicionales" value="Datos Personales Adicionales"></resource>
+  <resource culture="en-US" name="Otras_Identificaciones" value="Otras Identificaciones"></resource>
+  <resource culture="en-US" name="Discapacidad_Mental" value="Discapacidad Mental"></resource>
+  <resource culture="en-US" name="Discapacidad_Fisica" value="Discapacidad Fisica"></resource>
+  <resource culture="en-US" name="Discapacidad_Sensorial" value="Discapacidad Sensorial"></resource>
+  <resource culture="en-US" name="Discapacidad_Psicosocial" value="Discapacidad Psicosocial"></resource>
+  <resource culture="en-US" name="Otros_Domicilios" value="Otros Domicilios"></resource>
+  <resource culture="en-US" name="Otros_Nombres" value="Otros Nombres"></resource>
+  <resource culture="en-US" name="Nombres2" value="Nombre(s)"></resource>
+  <resource culture="en-US" name="Apellido_Paterno2" value="Apellido Paterno"></resource>
+  <resource culture="en-US" name="Apellido_Materno2" value="Apellido Materno"></resource>
+  <resource culture="en-US" name="Nombre_Completo2" value="Nombre Completo"></resource>
+  <resource culture="en-US" name="Sexo2" value="Sexo"></resource>
+  <resource culture="en-US" name="Nacionalidad2" value="Nacionalidad"></resource>
+  <resource culture="en-US" name="Escolaridad2" value="Escolaridad"></resource>
+  <resource culture="en-US" name="ID_Estado_Institucion" value="ID Estado Institución"></resource>
+  <resource culture="en-US" name="Peso" value="Peso"></resource>
+  <resource culture="en-US" name="Estatura" value="Estatura"></resource>
+  <resource culture="en-US" name="Padecimiento_de_Enfermedad" value="Padecimiento de Enfermedad"></resource>
+  <resource culture="en-US" name="Forma_Cara" value="Forma Cara"></resource>
+  <resource culture="en-US" name="Cejas" value="Tipo de Cejas"></resource>
+  <resource culture="en-US" name="Tamano_de_Cejas" value="Tamaño de Cejas"></resource>
+  <resource culture="en-US" name="Largo_de_Cabello" value="Forma de Cabello"></resource>
+  <resource culture="en-US" name="Cantidad_Cabello" value="Cantidad Cabello"></resource>
+  <resource culture="en-US" name="Implantacion_Cabello" value="Implantación Cabello"></resource>
+  <resource culture="en-US" name="Complexion" value="Complexión"></resource>
+  <resource culture="en-US" name="Color_Piel" value="Color Piel"></resource>
+  <resource culture="en-US" name="Frente" value="Frente"></resource>
+  <resource culture="en-US" name="Forma_Cabello" value="Forma Cabello"></resource>
+  <resource culture="en-US" name="Color_Cabello" value="Color Cabello"></resource>
+  <resource culture="en-US" name="Calvicie" value="Calvicie"></resource>
+  <resource culture="en-US" name="Color_Ojos" value="Color Ojos"></resource>
+  <resource culture="en-US" name="Ojos" value="Tamaño de Ojos"></resource>
+  <resource culture="en-US" name="Forma_Ojos" value="Forma Ojos"></resource>
+  <resource culture="en-US" name="Anteojos" value="Anteojos"></resource>
+  <resource culture="en-US" name="Forma_de_Nariz" value="Forma de Nariz"></resource>
+  <resource culture="en-US" name="Nariz_Base" value="Tamaño Nariz"></resource>
+  <resource culture="en-US" name="Labios" value="Labios"></resource>
+  <resource culture="en-US" name="Boca" value="Boca"></resource>
+  <resource culture="en-US" name="Grosor_de_Labios" value="Grosor de Labios"></resource>
+  <resource culture="en-US" name="Menton" value="Mentón"></resource>
+  <resource culture="en-US" name="Forma_de_Menton" value="Forma de Mentón"></resource>
+  <resource culture="en-US" name="Barba" value="Barba"></resource>
+  <resource culture="en-US" name="Forma_Orejas" value="Forma Orejas"></resource>
+  <resource culture="en-US" name="Tamano_Orejas" value="Tamaño Orejas"></resource>
+  <resource culture="en-US" name="Tipo_Lobulo" value="Tipo Lóbulo"></resource>
+  <resource culture="en-US" name="Bigote" value="Bigote"></resource>
+  <resource culture="en-US" name="Senas_Particulares" value="Señas Particulares"></resource>
+  <resource culture="en-US" name="Imagen_Tatuaje" value="Imagen Tatuaje"></resource>
+  <resource culture="en-US" name="Situacion_Fisica" value="Situación Física"></resource>
+  <resource culture="en-US" name="Otras_Senas_Particulares" value="Otras Señas Particulares"></resource>
+  <resource culture="en-US" name="Imputado_Recluido" value="Imputado Recluido"></resource>
+  <resource culture="en-US" name="Narrativa_Breve_de_los_Hechos" value="Narrativa Breve de los Hechos"></resource>
+  <resource culture="en-US" name="Prioridad_del_Hecho" value="Prioridad del Hecho"></resource>
+  <resource culture="en-US" name="Fecha_del_Hecho" value="Fecha del Hecho"></resource>
+  <resource culture="en-US" name="Hora_Aproximada_del_Hecho" value="Hora Aproximada del Hecho"></resource>
+  <resource culture="en-US" name="Pais_del_hecho" value="País"></resource>
+  <resource culture="en-US" name="Estado_del_Hecho" value="Estado "></resource>
+  <resource culture="en-US" name="Municipio_del_Hecho" value="Municipio"></resource>
+  <resource culture="en-US" name="Poblacion_Hechos" value="Población"></resource>
+  <resource culture="en-US" name="Colonia_del_hecho" value="Colonia"></resource>
+  <resource culture="en-US" name="Codigo_Postal_del_hecho" value="Código Postal"></resource>
+  <resource culture="en-US" name="Calle_del_hecho" value="Calle"></resource>
+  <resource culture="en-US" name="Entre_Calle" value="Entre Calle"></resource>
+  <resource culture="en-US" name="Y_Calle" value="Y Calle"></resource>
+  <resource culture="en-US" name="Numero_Exterior_de_los_Hechos" value="Número Exterior"></resource>
+  <resource culture="en-US" name="Numero_interior_de_los_hecho" value="Número Interior "></resource>
+  <resource culture="en-US" name="Latitud_de_los_hechos" value="Latitud"></resource>
+  <resource culture="en-US" name="Longitud_de_los_Hechos" value="Longitud "></resource>
+  <resource culture="en-US" name="Tipo_del_lugar_del_he" value="Tipo del Lugar del Hecho"></resource>
+  <resource culture="en-US" name="Nombre_del_Tutor" value="Nombre(s)"></resource>
+  <resource culture="en-US" name="Apellido_Paterno_del_Tutor" value="Apellido Paterno"></resource>
+  <resource culture="en-US" name="Apellido_Materno_del_Tutor" value="Apellido Materno"></resource>
+  <resource culture="en-US" name="Nombre_Completo_del_Tutor" value="Nombre Completo"></resource>
+  <resource culture="en-US" name="Fecha_de_Nacimiento_del_Tutor" value="Fecha de Nacimiento"></resource>
+  <resource culture="en-US" name="Edad_del_Tutor" value="Edad"></resource>
+  <resource culture="en-US" name="Sexo_del_Tutor" value="Sexo"></resource>
+  <resource culture="en-US" name="Estado_Civil_del_Tutor" value="Estado Civil"></resource>
+  <resource culture="en-US" name="Tipo_de_Identificacion_del_Tutor" value="Tipo de Identificación"></resource>
+  <resource culture="en-US" name="Numero_de_Identificacion_del_Tutor" value="Número de Identificación"></resource>
+  <resource culture="en-US" name="CURP_Tutor" value="CURP Tutor"></resource>
+  <resource culture="en-US" name="RFC_Tutor" value="RFC "></resource>
+  <resource culture="en-US" name="Nacionalidad_del_Tutor" value="Nacionalidad"></resource>
+  <resource culture="en-US" name="Escolaridad_del_Tutor" value="Escolaridad"></resource>
+  <resource culture="en-US" name="Ocupacion_del_Tutor" value="Ocupación"></resource>
+  <resource culture="en-US" name="Pais_de_Origen_tutor" value="País de Origen"></resource>
+  <resource culture="en-US" name="Originario_de_tutor" value="Originario de"></resource>
+  <resource culture="en-US" name="Pais_del_Tutor" value="País"></resource>
+  <resource culture="en-US" name="Estado_del_Tutor" value="Estado"></resource>
+  <resource culture="en-US" name="Municipio_del_Tutor" value="Municipio"></resource>
+  <resource culture="en-US" name="Poblacion_Tutor" value="Población"></resource>
+  <resource culture="en-US" name="Colonia_del_Tutor" value="Colonia"></resource>
+  <resource culture="en-US" name="Codigo_Postal_del_Tutor" value="Código Postal"></resource>
+  <resource culture="en-US" name="Calle_del_Tutor" value="Calle"></resource>
+  <resource culture="en-US" name="Numero_Exterior_del_Tutor" value="Número Exterior"></resource>
+  <resource culture="en-US" name="Numero_Interior_del_Tutor" value="Número Interior"></resource>
+  <resource culture="en-US" name="Referencia" value="Referencia"></resource>
+  <resource culture="en-US" name="Latitud_Tutor" value="Latitud"></resource>
+  <resource culture="en-US" name="Longitud_Tutor" value="Longitud"></resource>
+  <resource culture="en-US" name="Telefono_del_Tutor" value="Teléfono"></resource>
+  <resource culture="en-US" name="Extension_del_Tutor" value="Extensión"></resource>
+  <resource culture="en-US" name="Celular_del_Tutor" value="Celular"></resource>
+  <resource culture="en-US" name="Correo_Electronico_del_Tutor" value="Correo Electrónico"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="en-US" name="TabRepresentante_Legal" value="Representante Legal"></resource>
+<resource culture="en-US" name="TabDatos_de_Media_Filiacion" value="Datos de Media Filiación"></resource>
+<resource culture="en-US" name="TabDatos_de_los_Hechos" value="Datos de los Hechos"></resource>
+<resource culture="en-US" name="TabDatos_del_Tutor" value="Datos del Tutor"></resource>
+
+</resources>

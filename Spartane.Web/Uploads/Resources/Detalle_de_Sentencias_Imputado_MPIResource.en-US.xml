@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Sentencias_Imputado_MPI" value="Detalle de Sentencias Imputado MPI"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Delito" value="Delito"></resource>
+  <resource culture="en-US" name="Sentencia" value="Sentencia"></resource>
+  <resource culture="en-US" name="Fecha_de_Devolucion" value="Fecha de Sentencia"></resource>
+  <resource culture="en-US" name="Hora_de_Devolucion" value="Hora de Sentencia"></resource>
+  <resource culture="en-US" name="Repacion_del_Dano" value="Repación del Daño"></resource>
+  <resource culture="en-US" name="Resolucion" value="Resolución"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Usuario" value="Registro de Usuario"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Nombre" value="Nombre"></resource>
+  <resource culture="es-es" name="Clave_de_Acceso" value="Clave de Acceso"></resource>
+  <resource culture="es-es" name="Grupo_de_Usuario" value="Grupo de Usuario"></resource>
+  <resource culture="es-es" name="Numero_de_Empleado" value="Número de Empleado"></resource>
+  <resource culture="es-es" name="Correo_Institucional" value="Correo Institucional"></resource>
+  <resource culture="es-es" name="CUIP" value="CUIP"></resource>
+  <resource culture="es-es" name="Delegacion" value="Delegación"></resource>
+  <resource culture="es-es" name="Carga_de_Trabajo" value="Carga de Trabajo"></resource>
+  <resource culture="es-es" name="Nombre_Remitente" value="Nombres(s)"></resource>
+  <resource culture="es-es" name="Apellido_Paterno" value="Apellido Paterno"></resource>
+  <resource culture="es-es" name="Apellido_Materno" value="Apellido Materno"></resource>
+  <resource culture="es-es" name="Agencia" value="Agencia"></resource>
+  <resource culture="es-es" name="Especialidad" value="Especialidad"></resource>
+  <resource culture="es-es" name="ID_de_Dispositivo" value="ID de Dispositivo"></resource>
+  <resource culture="es-es" name="ID_de_Huella" value="ID de Huella"></resource>
+  <resource culture="es-es" name="Fotografia" value="Fotografía"></resource>
+  <resource culture="es-es" name="Folios_Asignados" value="Folio Asignado"></resource>
+  <resource culture="es-es" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="es-es" name="Estatus_de_Registro" value="Estatus de Registro"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

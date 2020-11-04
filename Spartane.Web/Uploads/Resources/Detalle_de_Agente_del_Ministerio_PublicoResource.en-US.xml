@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Agente_del_Ministerio_Publico" value="Detalle de Agente del Ministerio Público"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Agente_del_Ministerio_Publico" value="Agente del Ministerio Público"></resource>
+  <resource culture="en-US" name="Carga_de_Trabajo" value="Carga de Trabajo"></resource>
+  <resource culture="en-US" name="Especialidad" value="Especialidad"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

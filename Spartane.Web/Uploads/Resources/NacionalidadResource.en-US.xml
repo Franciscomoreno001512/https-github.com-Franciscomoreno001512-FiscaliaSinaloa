@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Nacionalidad" value="Nacionalidad"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="NacionalidadC" value="NacionalidadC"></resource>
+  <resource culture="en-US" name="Descripcion_Estadistica" value="Descripción Estadística"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

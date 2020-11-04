@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Encuesta1" value="Encuesta"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Numero_de_Preguntas" value="Número de Preguntas"></resource>
+  <resource culture="es-es" name="NUAT" value="NUAT"></resource>
+  <resource culture="es-es" name="Pregunta1" value="Pregunta #1"></resource>
+  <resource culture="es-es" name="Pregunta2" value="Pregunta #2"></resource>
+  <resource culture="es-es" name="Pregunta3" value="Pregunta #3"></resource>
+  <resource culture="es-es" name="Pregunta4" value="Pregunta #4"></resource>
+  <resource culture="es-es" name="Pregunta5" value="Pregunta #5"></resource>
+  <resource culture="es-es" name="Pregunta6" value="Pregunta #6"></resource>
+  <resource culture="es-es" name="Pregunta7" value="Pregunta #7"></resource>
+  <resource culture="es-es" name="Pregunta8" value="Pregunta #8"></resource>
+  <resource culture="es-es" name="Pregunta9" value="Pregunta #9"></resource>
+  <resource culture="es-es" name="Pregunta10" value="Pregunta #10"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

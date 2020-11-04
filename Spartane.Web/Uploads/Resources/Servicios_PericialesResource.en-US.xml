@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Servicios_Periciales" value="Servicios Periciales"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Servicio" value="Servicio"></resource>
+  <resource culture="en-US" name="Rol_de_Donde_Proviene" value="Rol de Dónde Proviene"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

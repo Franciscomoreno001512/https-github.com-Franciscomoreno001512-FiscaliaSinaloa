@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Calendario_de_Citas" value="Calendario de Citas"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Calendario_de_CitasC" value="Calendario de CitasC"></resource>
+  <resource culture="en-US" name="Pertenece_a" value="Pertenece a"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

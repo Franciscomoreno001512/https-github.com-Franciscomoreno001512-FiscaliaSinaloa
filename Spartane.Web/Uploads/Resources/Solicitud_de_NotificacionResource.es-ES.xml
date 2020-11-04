@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Solicitud_de_Notificacion" value="Solicitud de Notificación"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Fecha_de_Solicitud" value="Fecha de Solicitud"></resource>
+  <resource culture="es-es" name="Hora_de_Solicitud" value="Hora de Solicitud"></resource>
+  <resource culture="es-es" name="Usuario_que_Solicita" value="Usuario que Solicita"></resource>
+  <resource culture="es-es" name="Origen" value="Origen"></resource>
+  <resource culture="es-es" name="Expediente_Atencion_Temprana" value="Expediente Atención Temprana"></resource>
+  <resource culture="es-es" name="Expediente_Mecanismos_Alternos" value="Expediente Mecanismos Alternos"></resource>
+  <resource culture="es-es" name="Carpeta_de_Investigacion" value="Carpeta de Investigación"></resource>
+  <resource culture="es-es" name="Forma_de_Invitacion" value="Forma de Invitación"></resource>
+  <resource culture="es-es" name="Numero_de_Invitacion" value="Número de Invitación"></resource>
+  <resource culture="es-es" name="Fecha_de_la_cita" value="Fecha de la cita"></resource>
+  <resource culture="es-es" name="Hora_de_la_Cita" value="Hora de la Cita"></resource>
+  <resource culture="es-es" name="Lugar_de_la_Cita" value="Lugar de la Cita"></resource>
+  <resource culture="es-es" name="Archivo" value="Archivo"></resource>
+  <resource culture="es-es" name="Invitados" value="Invitado(s)"></resource>
+  <resource culture="es-es" name="Estatus" value="Estatus"></resource>
+  <resource culture="es-es" name="Fecha_de_Notificacion" value="Fecha de Notificación"></resource>
+  <resource culture="es-es" name="Hora_de_Notificacion" value="Hora de Notificación"></resource>
+  <resource culture="es-es" name="Notificador" value="Notificador"></resource>
+  <resource culture="es-es" name="Resultado" value="Resultado"></resource>
+  <resource culture="es-es" name="Incidente_en_la_Recepcion" value="Incidente en la Recepcion"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="es-es" name="TabResultado_de_Notificacion" value="Resultado de Notificación"></resource>
+
+</resources>

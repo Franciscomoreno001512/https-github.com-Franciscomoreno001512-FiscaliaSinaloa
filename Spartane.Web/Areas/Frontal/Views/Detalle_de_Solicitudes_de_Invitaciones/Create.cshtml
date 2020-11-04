@@ -1,0 +1,1839 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_de_Solicitudes_de_InvitacionesModel
+@{
+    Spartane_File attachedFileArchivo = (Spartane_File)ViewBag.ArchivoSpartane_File;
+
+/*
+    string Fecha_de_Invitacion = "";
+    if (Model.Fecha_de_Invitacion == "")
+    { Model.Fecha_de_Invitacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_la_cita = "";
+    if (Model.Fecha_de_la_cita == "")
+    { Model.Fecha_de_la_cita = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Recepcion = "";
+    if (Model.Fecha_de_Recepcion == "")
+    { Model.Fecha_de_Recepcion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Aceptacion = "";
+    if (Model.Fecha_de_Aceptacion == "")
+    { Model.Fecha_de_Aceptacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+*/
+ List<SelectListItem> varSolicitud_Solicitud = null;
+    if (ViewBag.Solicituds_Solicitud != null)
+    { varSolicitud_Solicitud = (List<SelectListItem>)ViewBag.Solicituds_Solicitud; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
+    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
+    List<SelectListItem> varTipo_de_Invitacion_Formato_de_Invitacion = null;
+    if (ViewBag.Tipo_de_Invitacions_Formato_de_Invitacion != null)
+    { varTipo_de_Invitacion_Formato_de_Invitacion = (List<SelectListItem>)ViewBag.Tipo_de_Invitacions_Formato_de_Invitacion; }
+    List<SelectListItem> varTipo_de_Funcion_Tipo_de_Participacion = null;
+    if (ViewBag.Tipo_de_Funcions_Tipo_de_Participacion != null)
+    { varTipo_de_Funcion_Tipo_de_Participacion = (List<SelectListItem>)ViewBag.Tipo_de_Funcions_Tipo_de_Participacion; }
+    List<SelectListItem> varCumplimiento_Cumplimiento = null;
+    if (ViewBag.Cumplimientos_Cumplimiento != null)
+    { varCumplimiento_Cumplimiento = (List<SelectListItem>)ViewBag.Cumplimientos_Cumplimiento; }
+    List<SelectListItem> varIncidente_con_Invitacion_Incidente = null;
+    if (ViewBag.Incidente_con_Invitacions_Incidente != null)
+    { varIncidente_con_Invitacion_Incidente = (List<SelectListItem>)ViewBag.Incidente_con_Invitacions_Incidente; }
+    List<SelectListItem> varA_Tiempo_A_Tiempo = null;
+    if (ViewBag.A_Tiempos_A_Tiempo != null)
+    { varA_Tiempo_A_Tiempo = (List<SelectListItem>)ViewBag.A_Tiempos_A_Tiempo; }
+
+    Permission permissionDetalle_de_Solicitante_en_Invitaciones = ViewBag.PermissionDetalle_de_Solicitante_en_Invitaciones;
+    Permission permissionDetalle_de_Requerido_en_Invitaciones = ViewBag.PermissionDetalle_de_Requerido_en_Invitaciones;
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Detalle_de_Solicitudes_de_Invitaciones
+                <button onclick="Detalle_de_Solicitudes_de_InvitacionesGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Detalle_de_Solicitudes_de_Invitaciones</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="Detalle_de_Solicitudes_de_InvitacionesDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in Detalle_de_Solicitudes_de_InvitacionesPropertyBusinessModal" id="Detalle_de_Solicitudes_de_InvitacionesPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form" onclick="Detalle_de_Solicitudes_de_InvitacionesGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_Solicitudes_de_InvitacionesBusinessRuleModal" id="Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+                    <div aria-hidden="true" class="modal fade in AddDetalle_de_Solicitante_en_InvitacionesModal" id="AddDetalle_de_Solicitante_en_Invitaciones-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
+                    <div aria-hidden="true" class="modal fade in AddDetalle_de_Requerido_en_InvitacionesModal" id="AddDetalle_de_Requerido_en_Invitaciones-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Detalle_de_Solicitudes_de_Invitaciones", FormMethod.Post, new { id = "CreateDetalle_de_Solicitudes_de_Invitaciones", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Detalle_de_Solicitudes_de_InvitacionesCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Detalle_de_Solicitudes_de_InvitacionesResources.TabDatos_Generales</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="263116" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+				<div class="form-group" id="divSolicitud">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Solicitud" data-attribute="263122" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Solicitud">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitudes_de_Invitaciones_Solicitud form-control select2-dropdown Datos_Generales' data-val="true" id="Solicitud" name="Solicitud">
+                                        <option value="@Model.Solicitud">@(Model.SolicitudNumero_de_Folio??Model.SolicitudNumero_de_Folio)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263122).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud', 'Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divFecha_de_Invitacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Invitacion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Invitacion" data-attribute="263124" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Invitacion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Invitacion"  name="Fecha_de_Invitacion" type="text" value="@Model.Fecha_de_Invitacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Registra">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Usuario_que_Registra</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Registra" data-attribute="266473" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Usuario_que_Registra">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Solicitudes_de_Invitaciones_Usuario_que_Registra form-control select2-dropdown Datos_Generales' data-val="true" id="Usuario_que_Registra" name="Usuario_que_Registra">
+                                        <option value="@Model.Usuario_que_Registra">@(Model.Usuario_que_RegistraName??Model.Usuario_que_RegistraName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266473).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Registra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divNumero_de_Invitacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Numero_de_Invitacion</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Invitacion" data-attribute="263123" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Numero_de_Invitacion">
+                                    <input class="form-control Datos_Generales" id="Numero_de_Invitacion" name="Numero_de_Invitacion" type="text" value="@Model.Numero_de_Invitacion">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_de_Invitacion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNumero_de_Oficio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Numero_de_Oficio</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Oficio" data-attribute="266614" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Numero_de_Oficio">
+                                    <input class="form-control Datos_Generales" id="Numero_de_Oficio" name="Numero_de_Oficio" type="text" value="@Model.Numero_de_Oficio">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_de_Oficio" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFormato_de_Invitacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Formato_de_Invitacion</label>
+                                <div class="col-sm-8" data-field-id="Formato_de_Invitacion" data-attribute="266001" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Formato_de_Invitacion">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Forma de Invitación must be a number." data-val-required="The Forma de Invitación field is required." id="Formato_de_Invitacion" name="Formato_de_Invitacion">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Invitacion_Formato_de_Invitacion != null){ 
+                                            foreach (var itemFormato_de_Invitacion in varTipo_de_Invitacion_Formato_de_Invitacion)
+                                            {
+                                                if (itemFormato_de_Invitacion.Value == Convert.ToString(Model.Formato_de_Invitacion))
+                                                {
+                                                    <option value="@itemFormato_de_Invitacion.Value" selected>@itemFormato_de_Invitacion.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemFormato_de_Invitacion.Value">@itemFormato_de_Invitacion.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Formato_de_Invitacion" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266001).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Invitacion', 'Formato_de_Invitacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo_de_Participacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Tipo_de_Participacion</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Participacion" data-attribute="266002" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Tipo_de_Participacion">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Participación must be a number." data-val-required="The Tipo de Participación field is required." id="Tipo_de_Participacion" name="Tipo_de_Participacion">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Funcion_Tipo_de_Participacion != null){ 
+                                            foreach (var itemTipo_de_Participacion in varTipo_de_Funcion_Tipo_de_Participacion)
+                                            {
+                                                if (itemTipo_de_Participacion.Value == Convert.ToString(Model.Tipo_de_Participacion))
+                                                {
+                                                    <option value="@itemTipo_de_Participacion.Value" selected>@itemTipo_de_Participacion.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Participacion.Value">@itemTipo_de_Participacion.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Participacion" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266002).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Funcion', 'Tipo_de_Participacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divFecha_de_la_cita">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_la_cita</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_la_cita" data-attribute="263117" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_la_cita">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_la_cita"  name="Fecha_de_la_cita" type="text" value="@Model.Fecha_de_la_cita">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_la_Cita">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Hora_de_la_Cita</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_la_Cita" data-attribute="263118" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Hora_de_la_Cita">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Hora_de_la_Cita"  name="Hora_de_la_Cita" type="text" data-autoclose="true" value="@Model.Hora_de_la_Cita">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divDomicilio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Domicilio</label>
+                                <div class="col-sm-8" data-field-id="Domicilio" data-attribute="266003" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Domicilio">
+                                    <textarea id="Domicilio" name="Domicilio" class="form-control Datos_Generales" rows="4" cols="50">@Model.Domicilio</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Domicilio" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div id="divnombre_del_interviniente_solicitante">
+                            <div class="ibox-title">
+                                <h5>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.nombre_del_interviniente_solicitante</h5>
+                                <div class="ibox-tools">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+									@if (permissionDetalle_de_Solicitante_en_Invitaciones.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_de_Solicitante_en_InvitacionesfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_de_Solicitante_en_InvitacionesAddRow btn btn-primary">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </a>
+                                    }
+                                    <button onclick="Detalle_de_Solicitudes_de_InvitacionesGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '266004')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>
+									@if (permissionDetalle_de_Solicitante_en_Invitaciones.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_de_Solicitante_en_InvitacionesfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_de_Solicitante_en_Invitaciones-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
+                                            <i class="glyphicon glyphicon-new-window"></i>
+                                        </a>
+                                    }  
+                                </div>
+
+                                <br />
+
+                                <div style='overflow-x: auto;'>
+                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_de_Solicitante_en_InvitacionesGrid">
+                                        <thead>
+                                            <tr>
+                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+
+
+                                                <th class="NombreHeader" style="width:250px"><span>
+<button type="button" data-attribute="263751" data-field-id="Detalle_de_Solicitante_en_InvitacionesNombre" data-field-name="@Resources.Detalle_de_Solicitante_en_InvitacionesResources.Nombre" data-toggle="modal" data-target="#Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Solicitante_en_InvitacionesResources.Nombre">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Solicitante_en_InvitacionesResources.Nombre</span></th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                            <div id="divnombre_del_interviniente_requerido">
+                            <div class="ibox-title">
+                                <h5>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.nombre_del_interviniente_requerido</h5>
+                                <div class="ibox-tools">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+									@if (permissionDetalle_de_Requerido_en_Invitaciones.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_de_Requerido_en_InvitacionesfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_de_Requerido_en_InvitacionesAddRow btn btn-primary">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </a>
+                                    }
+                                    <button onclick="Detalle_de_Solicitudes_de_InvitacionesGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '266005')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>
+									@if (permissionDetalle_de_Requerido_en_Invitaciones.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_de_Requerido_en_InvitacionesfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_de_Requerido_en_Invitaciones-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
+                                            <i class="glyphicon glyphicon-new-window"></i>
+                                        </a>
+                                    }  
+                                </div>
+
+                                <br />
+
+                                <div style='overflow-x: auto;'>
+                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_de_Requerido_en_InvitacionesGrid">
+                                        <thead>
+                                            <tr>
+                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+
+
+                                                <th class="NombreHeader" style="width:250px"><span>
+<button type="button" data-attribute="263747" data-field-id="Detalle_de_Requerido_en_InvitacionesNombre" data-field-name="@Resources.Detalle_de_Requerido_en_InvitacionesResources.Nombre" data-toggle="modal" data-target="#Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_de_Requerido_en_InvitacionesResources.Nombre">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_de_Requerido_en_InvitacionesResources.Nombre</span></th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="form-group" id="divFecha_de_Recepcion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Recepcion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Recepcion" data-attribute="263119" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Recepcion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Recepcion"  name="Fecha_de_Recepcion" type="text" value="@Model.Fecha_de_Recepcion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFecha_de_Aceptacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Aceptacion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Aceptacion" data-attribute="263120" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Aceptacion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Aceptacion"  name="Fecha_de_Aceptacion" type="text" value="@Model.Fecha_de_Aceptacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCumplimiento">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Cumplimiento</label>
+                                <div class="col-sm-8" data-field-id="Cumplimiento" data-attribute="263125" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Cumplimiento">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Cumplimiento must be a number." data-val-required="The Cumplimiento field is required." id="Cumplimiento" name="Cumplimiento">
+                                        <option value=""></option>
+                                        @if (varCumplimiento_Cumplimiento != null){ 
+                                            foreach (var itemCumplimiento in varCumplimiento_Cumplimiento)
+                                            {
+                                                if (itemCumplimiento.Value == Convert.ToString(Model.Cumplimiento))
+                                                {
+                                                    <option value="@itemCumplimiento.Value" selected>@itemCumplimiento.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemCumplimiento.Value">@itemCumplimiento.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Cumplimiento" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263125).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Cumplimiento', 'Cumplimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divIncidente">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Incidente</label>
+                                <div class="col-sm-8" data-field-id="Incidente" data-attribute="266006" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Incidente">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Incidente must be a number." data-val-required="The Incidente field is required." id="Incidente" name="Incidente">
+                                        <option value=""></option>
+                                        @if (varIncidente_con_Invitacion_Incidente != null){ 
+                                            foreach (var itemIncidente in varIncidente_con_Invitacion_Incidente)
+                                            {
+                                                if (itemIncidente.Value == Convert.ToString(Model.Incidente))
+                                                {
+                                                    <option value="@itemIncidente.Value" selected>@itemIncidente.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemIncidente.Value">@itemIncidente.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Incidente" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266006).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Incidente_con_Invitacion', 'Incidente');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divA_Tiempo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.A_Tiempo</label>
+                                <div class="col-sm-8" data-field-id="A_Tiempo" data-attribute="263121" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.A_Tiempo">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field A Tiempo must be a number." data-val-required="The A Tiempo field is required." id="A_Tiempo" name="A_Tiempo">
+                                        <option value=""></option>
+                                        @if (varA_Tiempo_A_Tiempo != null){ 
+                                            foreach (var itemA_Tiempo in varA_Tiempo_A_Tiempo)
+                                            {
+                                                if (itemA_Tiempo.Value == Convert.ToString(Model.A_Tiempo))
+                                                {
+                                                    <option value="@itemA_Tiempo.Value" selected>@itemA_Tiempo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemA_Tiempo.Value">@itemA_Tiempo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="A_Tiempo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263121).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('A_Tiempo', 'A_Tiempo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            @if (attachedFileArchivo != null && attachedFileArchivo.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentArchivo">
+                                    <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
+                                    <div class="col-sm-8 Datos_Generales" data-field-id="Archivo" data-attribute="266469" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Archivo">
+                                        <a href="@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/GetFile")?id=@attachedFileArchivo.File_Id" target="_blank">@attachedFileArchivo.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainArchivo('@attachedFileArchivo.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemoveArchivo" name="RemoveArchivo" value="0" type="hidden" />
+                                    <input class="form-control col-md-12 Datos_Generales" id="hdnAttachedArchivo" type="hidden" name="Archivo" value="@Model.Archivo">
+                                </div>
+                            }
+                            <div class="form-group" id="divArchivo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Archivo</label>
+                                <div class="col-sm-8" data-field-id="Archivo" data-attribute="266469" data-field-name="@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Archivo">
+                                    <input type="file" name="ArchivoFile" id="ArchivoFile" class="form-control" />
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+                                <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Detalle_de_Solicitudes_de_InvitacionesGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Detalle_de_Solicitudes_de_InvitacionesCreateForm');"  />
+									<button onclick="Detalle_de_Solicitudes_de_InvitacionesGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Detalle_de_Solicitudes_de_InvitacionesGuardarYNuevo" onclick="return checkClientValidate('Detalle_de_Solicitudes_de_InvitacionesCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Detalle_de_Solicitudes_de_InvitacionesGuardarYCopia" onclick="return checkClientValidate('Detalle_de_Solicitudes_de_InvitacionesCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnDetalle_de_Solicitudes_de_InvitacionesBusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Detalle_de_Solicitudes_de_InvitacionesCancelar" name="Detalle_de_Solicitudes_de_InvitacionesCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                <button onclick="Detalle_de_Solicitudes_de_InvitacionesGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_de_Solicitudes_de_InvitacionesBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_de_Solicitudes_de_Invitaciones.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_de_Solicitudes_de_InvitacionesGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Solicitudes_de_InvitacionesCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+        function RemoveAttachmentMainArchivo () {
+            $("#hdnRemoveArchivo").val("1");
+            $("#divAttachmentArchivo").hide();
+        }
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_Generales = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45033');
+		                  
+
+           
+              showDetalle_de_Solicitante_en_InvitacionesGrid(null);
+              
+
+           
+              showDetalle_de_Requerido_en_InvitacionesGrid(null);
+
+		   
+                        $('#Fecha_de_Invitacion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Fecha_de_la_cita').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_de_la_Cita').clockpicker();
+            $('#Fecha_de_Recepcion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Fecha_de_Aceptacion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#Detalle_de_Solicitudes_de_InvitacionesGuardarYNuevo').hide();
+                $('#Detalle_de_Solicitudes_de_InvitacionesGuardarYCopia').hide();
+                $('#Detalle_de_Solicitudes_de_InvitacionesCancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#Detalle_de_Solicitudes_de_InvitacionesGuardar').val('Actualizar Seccion ' + '@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Detalle_de_Solicitudes_de_Invitaciones' )
+            }
+
+			
+			       var AutoCompleteSolicitudData =[];
+       $(".AutoCompleteDetalle_de_Solicitudes_de_Invitaciones_Solicitud").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/GetDetalle_de_Solicitudes_de_Invitaciones_Solicitud_Solicitud")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Solicitudes_de_Invitaciones_Solicitud_SolicitudData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitudes_de_Invitaciones_Solicitud");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteUsuario_que_RegistraData =[];
+       $(".AutoCompleteDetalle_de_Solicitudes_de_Invitaciones_Usuario_que_Registra").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/GetDetalle_de_Solicitudes_de_Invitaciones_Usuario_que_Registra_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Solicitudes_de_Invitaciones_Usuario_que_Registra_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitudes_de_Invitaciones_Usuario_que_Registra");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
+        });
+
+        var Detalle_de_Solicitante_en_InvitacionesinsertRowCurrentIndex = -1;
+        var Detalle_de_Solicitante_en_InvitacionesDataDataTable;
+        function getDetalle_de_Solicitante_en_InvitacionesData() {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/GetDetalle_de_Solicitante_en_Invitaciones")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    Detalle_de_Solicitante_en_InvitacionesDataDataTable = result.data;
+                    showDetalle_de_Solicitante_en_InvitacionesGrid(result.data);
+                    $('#Detalle_de_Solicitante_en_InvitacionesGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_de_Solicitante_en_InvitacionesGrid .gridDatePicker').attr("readonly", "");
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+        function Detalle_de_Solicitante_en_InvitacionesGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+            var columnData = [];
+            var counter = 0;
+            var inputData = "<input type='text' class='fullWidth form-control' />";
+
+            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.NombreNombre_Completo != undefined ? data.NombreNombre_Completo : null, 'AutoComplete' + nameOfTable + 'Nombre', data.Nombre)))).addClass('Nombre').attr('id', nameOfTable + 'Nombre' + rowIndex).attr('data-field', 'Nombre').after($.parseHTML(addNew('Detalle_de_Solicitante_en_Invitaciones', 'Detalle_de_Solicitud_Solicitante','Nombre', 263751)));
+
+            return columnData;
+        }
+
+
+
+        function GetFileInfo(fileData, fileUploadData) {
+
+            var $div = $("<div>");
+            if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+                //<i class="fa fa-times-circle" id='removeFileAttachment'>
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+
+            } else if (fileUploadData != null) {
+                return $.parseHTML(GetFileUploader());
+            } else {
+                $div.append("<label>" + fileData.FileName + "</label>");
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+            }
+        }
+
+        var removedDetalle_de_Solicitante_en_InvitacionesData = [];
+        function Detalle_de_Solicitante_en_InvitacionesDeleteRow(rowIndex, row) {
+            var rowIndexTable = Detalle_de_Solicitante_en_InvitacionesTable.fnGetPosition($(row).parent().parent()[0]);
+            var permission = {            
+                 Delete: '@permissionDetalle_de_Solicitante_en_Invitaciones.Delete' == 'True'
+            };
+            if (!permission.Delete || isConsultMode)
+                return;            
+            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+              if (EjecutarValidacionesAlEliminarMRDetalle_de_Solicitante_en_Invitaciones('Detalle_de_Solicitante_en_Invitaciones_', '_' + rowIndex)) {
+                var prevData = Detalle_de_Solicitante_en_InvitacionesTable.fnGetData(rowIndexTable );
+                removedDetalle_de_Solicitante_en_InvitacionesData.push(prevData);
+                Detalle_de_Solicitante_en_InvitacionesTable.fnDeleteRow(rowIndexTable );
+				showDetalle_de_Solicitante_en_InvitacionesGrid(Detalle_de_Solicitante_en_InvitacionesTable.fnGetData());
+              }
+            }
+			initiateUIControls();
+        }
+
+        function Detalle_de_Solicitante_en_InvitacionesrowCreationGrid(row, data, index) {
+            var permission =  {            
+                 Edit: '@permissionDetalle_de_Solicitante_en_Invitaciones.Edit' == 'True',
+                 Delete: '@permissionDetalle_de_Solicitante_en_Invitaciones.Delete' == 'True'
+            };
+            setDetalle_de_Solicitante_en_InvitacionesValidation();
+            var Detalle_de_Solicitante_en_InvitacionesRowElement = "Detalle_de_Solicitante_en_Invitaciones_" + index.toString();
+            $(row).addClass(Detalle_de_Solicitante_en_InvitacionesRowElement);
+            var nameOfTable='Detalle_de_Solicitante_en_Invitaciones_';
+            var rowIndex = '_' + index;
+            Detalle_de_Solicitante_en_InvitacionesinsertRowCurrentIndex = index;
+
+            row.innerHTML = "";
+
+            if (data.IsInsertRow) {
+
+                if (row.childNodes.length != 0) {
+                    for (var i = 0; i < row.childNodes.length; i++) {
+                        row.childNodes[i].remove();
+                    }
+                }
+                var controls = GetInsertDetalle_de_Solicitante_en_InvitacionesRowControls(index);
+                var actionColInsert = $('<td>');
+
+                var abc = "if(dynamicFieldValidation('" + Detalle_de_Solicitante_en_InvitacionesRowElement + "')){ Detalle_de_Solicitante_en_InvitacionesInsertRow(" + index + "); }";
+                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
+                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_de_Solicitante_en_InvitacionesCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                actionColInsert.appendTo(row);
+
+                for (i = 0; i < controls.length; i++) {
+					var idHeader = $(controls[i]).data('field') + 'Header';
+					if($(controls[i]).length > 1){
+						idHeader = $($(controls[i])[1]).data('field') + 'Header';
+					}					
+
+					var classe = ($('#Detalle_de_Solicitante_en_InvitacionesGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_de_Solicitante_en_InvitacionesGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+				   
+					if ($(controls[i]).next().length > 0) {
+					    var div = $(controls[i]).next();
+					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+					}else
+					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+					
+                }
+                $('#Detalle_de_Solicitante_en_InvitacionesGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('#Detalle_de_Solicitante_en_InvitacionesGrid .gridDatePicker').attr("readonly", "");
+                return;
+            }
+
+            var actionCol = $('<td>');
+			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_de_Solicitante_en_InvitacionesEditRow(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                edit = "";
+            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_de_Solicitante_en_Invitaciones-form' onclick='Detalle_de_Solicitante_en_InvitacionesEditRowPopup(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                editPopUp = "";
+            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_de_Solicitante_en_InvitacionesDeleteRow(" + index + ", this)'>";
+            if (!permission.Delete || isConsultMode)
+                eliminar = "";
+            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+			if ($('.Action' + 'Header').css('display') != 'none')
+				actionCol.appendTo(row);
+
+            if ($('.Nombre' + 'Header').css('display') != 'none'){
+                if (data.NombreNombre_Completo == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Nombre'+rowIndex+'">').text(data.Nombre).appendTo(row);}else{$('<td>').text(data.NombreNombre_Completo).appendTo(row);}
+}
+             else {
+                if (data.NombreNombre_Completo == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Nombre'+rowIndex+'">').text(data.Nombre).appendTo(row);}else{$('<td style:display:none;>').text(data.NombreNombre_Completo).appendTo(row);}
+}
+
+
+        }
+
+        var Detalle_de_Solicitante_en_InvitacionesTable;
+        function showDetalle_de_Solicitante_en_InvitacionesGrid(dataSet) {
+            //removedDetalle_de_Solicitante_en_InvitacionesData = [];
+            Detalle_de_Solicitante_en_InvitacionesTable = $('#Detalle_de_Solicitante_en_InvitacionesGrid').dataTable({
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [
+                ],
+                "createdRow": Detalle_de_Solicitante_en_InvitacionesrowCreationGrid,
+                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+                data: dataSet,
+                "columns": [
+                    { "data": null, 'visible': true, "orderable": false },
+
+                    { "data": "Nombre", "orderable": false },
+
+                ],
+                "order": [[0, "asc"]],
+                "language": {
+                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                    "zeroRecords": "@Resources.Resources.NothingFound",
+                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                    "infoEmpty": "@Resources.Resources.NoRecords",
+                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                    "sSearch": "@Resources.Resources.Search",
+                    "paginate": {
+                        "previous": "@Resources.Resources.Previous",
+                        "next": "@Resources.Resources.Next"
+                    }
+                },
+				"bDestroy": true,
+                "fnDrawCallback": function (settings) {
+                    setDetalle_de_Solicitante_en_InvitacionesValidation();
+                }
+            }).on('init.dt', function (e, data) {
+                $('a').tooltip();
+            }).on('draw.dt', function () {
+                $('#Detalle_de_Solicitante_en_InvitacionesGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+            });
+        }
+
+
+    var Detalle_de_Solicitante_en_Invitaciones_Detalle_de_Solicitud_SolicitanteItems;
+        function GetDetalle_de_Solicitante_en_Invitaciones_Detalle_de_Solicitud_SolicitanteItem() {
+            Detalle_de_Solicitante_en_Invitaciones_Detalle_de_Solicitud_SolicitanteItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/GetDetalle_de_Solicitante_en_Invitaciones_Detalle_de_Solicitud_SolicitanteAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_de_Solicitante_en_Invitaciones_Detalle_de_Solicitud_SolicitanteItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+        var Detalle_de_Solicitante_en_InvitacionesData = [];
+        var Detalle_de_Solicitante_en_InvitacionesdeletedItem = [];
+        var Detalle_de_Solicitante_en_InvitacionesDataMain = [];
+        var Detalle_de_Solicitante_en_InvitacionesDataMainPages = [];
+        var Detalle_de_Solicitante_en_InvitacionesnewItemCount = 0;
+        var Detalle_de_Solicitante_en_InvitacionesmaxItemIndex = 0;
+        var Detalle_de_Solicitante_en_InvitacionesDataMainInitialized = false;
+
+        function SendDetalle_de_Solicitante_en_Invitaciones(callBack, ClaveId) {
+            Detalle_de_Solicitante_en_InvitacionesData = GetDetalle_de_Solicitante_en_InvitacionesFromDataTable();
+
+            if (Detalle_de_Solicitante_en_InvitacionesData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
+                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
+                    ClaveId = $("#ReferenceClave").val();                
+                if ($("#ReferenceClave").val() == '')
+                    $("#ReferenceClave").val('0');
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/PostDetalle_de_Solicitante_en_Invitaciones?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
+                    type: 'POST',
+                    data: GetDetalle_de_Solicitante_en_Invitaciones(),
+                    async: true,
+                    success: function (result) {
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            } else {
+                //showNotification("@Resources.Resources.SaveSuccess", "success");
+                //callBack(ClaveId);
+            }
+            return true;
+        }
+
+        function GetAddDetalle_de_Solicitante_en_InvitacionesPopup(currentRowIndex, mode, id) {
+
+            $.ajax({
+                url: "@Url.Action("AddDetalle_de_Solicitante_en_Invitaciones", "Detalle_de_Solicitante_en_Invitaciones")",
+                type: "GET",
+                async: false,
+                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+                success: function (data) {
+                    $(".AddDetalle_de_Solicitante_en_InvitacionesModal").html(data);
+                },
+                error: function () {
+
+                }
+            });
+
+            @*$.get('@Url.Action("AddDetalle_de_Solicitante_en_Invitaciones", "Detalle_de_Solicitante_en_Invitaciones")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddDetalle_de_Solicitante_en_InvitacionesModal").html(data);
+            });*@
+        }
+
+        function ShowMessagePendingRowDetalle_de_Solicitante_en_Invitaciones()
+        {
+            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Solicitante(s)"))')
+	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Solicitante(s)"))', "warning");
+        }
+        var Detalle_de_Requerido_en_InvitacionesinsertRowCurrentIndex = -1;
+        var Detalle_de_Requerido_en_InvitacionesDataDataTable;
+        function getDetalle_de_Requerido_en_InvitacionesData() {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/GetDetalle_de_Requerido_en_Invitaciones")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    Detalle_de_Requerido_en_InvitacionesDataDataTable = result.data;
+                    showDetalle_de_Requerido_en_InvitacionesGrid(result.data);
+                    $('#Detalle_de_Requerido_en_InvitacionesGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_de_Requerido_en_InvitacionesGrid .gridDatePicker').attr("readonly", "");
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+        function Detalle_de_Requerido_en_InvitacionesGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+            var columnData = [];
+            var counter = 0;
+            var inputData = "<input type='text' class='fullWidth form-control' />";
+
+            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.NombreNombre_Completo != undefined ? data.NombreNombre_Completo : null, 'AutoComplete' + nameOfTable + 'Nombre', data.Nombre)))).addClass('Nombre').attr('id', nameOfTable + 'Nombre' + rowIndex).attr('data-field', 'Nombre').after($.parseHTML(addNew('Detalle_de_Requerido_en_Invitaciones', 'Detalle_de_Solicitud_Requerido','Nombre', 263747)));
+
+            return columnData;
+        }
+
+
+
+        function GetFileInfo(fileData, fileUploadData) {
+
+            var $div = $("<div>");
+            if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+                //<i class="fa fa-times-circle" id='removeFileAttachment'>
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+
+            } else if (fileUploadData != null) {
+                return $.parseHTML(GetFileUploader());
+            } else {
+                $div.append("<label>" + fileData.FileName + "</label>");
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+            }
+        }
+
+        var removedDetalle_de_Requerido_en_InvitacionesData = [];
+        function Detalle_de_Requerido_en_InvitacionesDeleteRow(rowIndex, row) {
+            var rowIndexTable = Detalle_de_Requerido_en_InvitacionesTable.fnGetPosition($(row).parent().parent()[0]);
+            var permission = {            
+                 Delete: '@permissionDetalle_de_Requerido_en_Invitaciones.Delete' == 'True'
+            };
+            if (!permission.Delete || isConsultMode)
+                return;            
+            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+              if (EjecutarValidacionesAlEliminarMRDetalle_de_Requerido_en_Invitaciones('Detalle_de_Requerido_en_Invitaciones_', '_' + rowIndex)) {
+                var prevData = Detalle_de_Requerido_en_InvitacionesTable.fnGetData(rowIndexTable );
+                removedDetalle_de_Requerido_en_InvitacionesData.push(prevData);
+                Detalle_de_Requerido_en_InvitacionesTable.fnDeleteRow(rowIndexTable );
+				showDetalle_de_Requerido_en_InvitacionesGrid(Detalle_de_Requerido_en_InvitacionesTable.fnGetData());
+              }
+            }
+			initiateUIControls();
+        }
+
+        function Detalle_de_Requerido_en_InvitacionesrowCreationGrid(row, data, index) {
+            var permission =  {            
+                 Edit: '@permissionDetalle_de_Requerido_en_Invitaciones.Edit' == 'True',
+                 Delete: '@permissionDetalle_de_Requerido_en_Invitaciones.Delete' == 'True'
+            };
+            setDetalle_de_Requerido_en_InvitacionesValidation();
+            var Detalle_de_Requerido_en_InvitacionesRowElement = "Detalle_de_Requerido_en_Invitaciones_" + index.toString();
+            $(row).addClass(Detalle_de_Requerido_en_InvitacionesRowElement);
+            var nameOfTable='Detalle_de_Requerido_en_Invitaciones_';
+            var rowIndex = '_' + index;
+            Detalle_de_Requerido_en_InvitacionesinsertRowCurrentIndex = index;
+
+            row.innerHTML = "";
+
+            if (data.IsInsertRow) {
+
+                if (row.childNodes.length != 0) {
+                    for (var i = 0; i < row.childNodes.length; i++) {
+                        row.childNodes[i].remove();
+                    }
+                }
+                var controls = GetInsertDetalle_de_Requerido_en_InvitacionesRowControls(index);
+                var actionColInsert = $('<td>');
+
+                var abc = "if(dynamicFieldValidation('" + Detalle_de_Requerido_en_InvitacionesRowElement + "')){ Detalle_de_Requerido_en_InvitacionesInsertRow(" + index + "); }";
+                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
+                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_de_Requerido_en_InvitacionesCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                actionColInsert.appendTo(row);
+
+                for (i = 0; i < controls.length; i++) {
+					var idHeader = $(controls[i]).data('field') + 'Header';
+					if($(controls[i]).length > 1){
+						idHeader = $($(controls[i])[1]).data('field') + 'Header';
+					}					
+
+					var classe = ($('#Detalle_de_Requerido_en_InvitacionesGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_de_Requerido_en_InvitacionesGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+				   
+					if ($(controls[i]).next().length > 0) {
+					    var div = $(controls[i]).next();
+					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+					}else
+					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+					
+                }
+                $('#Detalle_de_Requerido_en_InvitacionesGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('#Detalle_de_Requerido_en_InvitacionesGrid .gridDatePicker').attr("readonly", "");
+                return;
+            }
+
+            var actionCol = $('<td>');
+			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_de_Requerido_en_InvitacionesEditRow(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                edit = "";
+            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_de_Requerido_en_Invitaciones-form' onclick='Detalle_de_Requerido_en_InvitacionesEditRowPopup(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                editPopUp = "";
+            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_de_Requerido_en_InvitacionesDeleteRow(" + index + ", this)'>";
+            if (!permission.Delete || isConsultMode)
+                eliminar = "";
+            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+			if ($('.Action' + 'Header').css('display') != 'none')
+				actionCol.appendTo(row);
+
+            if ($('.Nombre' + 'Header').css('display') != 'none'){
+                if (data.NombreNombre_Completo == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Nombre'+rowIndex+'">').text(data.Nombre).appendTo(row);}else{$('<td>').text(data.NombreNombre_Completo).appendTo(row);}
+}
+             else {
+                if (data.NombreNombre_Completo == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Nombre'+rowIndex+'">').text(data.Nombre).appendTo(row);}else{$('<td style:display:none;>').text(data.NombreNombre_Completo).appendTo(row);}
+}
+
+
+        }
+
+        var Detalle_de_Requerido_en_InvitacionesTable;
+        function showDetalle_de_Requerido_en_InvitacionesGrid(dataSet) {
+            //removedDetalle_de_Requerido_en_InvitacionesData = [];
+            Detalle_de_Requerido_en_InvitacionesTable = $('#Detalle_de_Requerido_en_InvitacionesGrid').dataTable({
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [
+                ],
+                "createdRow": Detalle_de_Requerido_en_InvitacionesrowCreationGrid,
+                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+                data: dataSet,
+                "columns": [
+                    { "data": null, 'visible': true, "orderable": false },
+
+                    { "data": "Nombre", "orderable": false },
+
+                ],
+                "order": [[0, "asc"]],
+                "language": {
+                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                    "zeroRecords": "@Resources.Resources.NothingFound",
+                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                    "infoEmpty": "@Resources.Resources.NoRecords",
+                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                    "sSearch": "@Resources.Resources.Search",
+                    "paginate": {
+                        "previous": "@Resources.Resources.Previous",
+                        "next": "@Resources.Resources.Next"
+                    }
+                },
+				"bDestroy": true,
+                "fnDrawCallback": function (settings) {
+                    setDetalle_de_Requerido_en_InvitacionesValidation();
+                }
+            }).on('init.dt', function (e, data) {
+                $('a').tooltip();
+            }).on('draw.dt', function () {
+                $('#Detalle_de_Requerido_en_InvitacionesGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+            });
+        }
+
+
+    var Detalle_de_Requerido_en_Invitaciones_Detalle_de_Solicitud_RequeridoItems;
+        function GetDetalle_de_Requerido_en_Invitaciones_Detalle_de_Solicitud_RequeridoItem() {
+            Detalle_de_Requerido_en_Invitaciones_Detalle_de_Solicitud_RequeridoItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/GetDetalle_de_Requerido_en_Invitaciones_Detalle_de_Solicitud_RequeridoAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_de_Requerido_en_Invitaciones_Detalle_de_Solicitud_RequeridoItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+        var Detalle_de_Requerido_en_InvitacionesData = [];
+        var Detalle_de_Requerido_en_InvitacionesdeletedItem = [];
+        var Detalle_de_Requerido_en_InvitacionesDataMain = [];
+        var Detalle_de_Requerido_en_InvitacionesDataMainPages = [];
+        var Detalle_de_Requerido_en_InvitacionesnewItemCount = 0;
+        var Detalle_de_Requerido_en_InvitacionesmaxItemIndex = 0;
+        var Detalle_de_Requerido_en_InvitacionesDataMainInitialized = false;
+
+        function SendDetalle_de_Requerido_en_Invitaciones(callBack, ClaveId) {
+            Detalle_de_Requerido_en_InvitacionesData = GetDetalle_de_Requerido_en_InvitacionesFromDataTable();
+
+            if (Detalle_de_Requerido_en_InvitacionesData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
+                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
+                    ClaveId = $("#ReferenceClave").val();                
+                if ($("#ReferenceClave").val() == '')
+                    $("#ReferenceClave").val('0');
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/PostDetalle_de_Requerido_en_Invitaciones?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
+                    type: 'POST',
+                    data: GetDetalle_de_Requerido_en_Invitaciones(),
+                    async: true,
+                    success: function (result) {
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            } else {
+                //showNotification("@Resources.Resources.SaveSuccess", "success");
+                //callBack(ClaveId);
+            }
+            return true;
+        }
+
+        function GetAddDetalle_de_Requerido_en_InvitacionesPopup(currentRowIndex, mode, id) {
+
+            $.ajax({
+                url: "@Url.Action("AddDetalle_de_Requerido_en_Invitaciones", "Detalle_de_Requerido_en_Invitaciones")",
+                type: "GET",
+                async: false,
+                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+                success: function (data) {
+                    $(".AddDetalle_de_Requerido_en_InvitacionesModal").html(data);
+                },
+                error: function () {
+
+                }
+            });
+
+            @*$.get('@Url.Action("AddDetalle_de_Requerido_en_Invitaciones", "Detalle_de_Requerido_en_Invitaciones")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddDetalle_de_Requerido_en_InvitacionesModal").html(data);
+            });*@
+        }
+
+        function ShowMessagePendingRowDetalle_de_Requerido_en_Invitaciones()
+        {
+            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Requerido(s)"))')
+	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Requerido(s)"))', "warning");
+        }
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+        $(".AutoCompleteDetalle_de_Solicitante_en_Invitaciones_Nombre").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/GetDetalle_de_Solicitante_en_Invitaciones_Nombre_Detalle_de_Solicitud_Solicitante")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Solicitante_en_Invitaciones_Nombre_Detalle_de_Solicitud_SolicitanteData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Solicitante_en_Invitaciones_Nombre");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val(' ');
+            $('.select2-search__field').keyup();
+        });
+
+
+        $(".AutoCompleteDetalle_de_Requerido_en_Invitaciones_Nombre").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/GetDetalle_de_Requerido_en_Invitaciones_Nombre_Detalle_de_Solicitud_Requerido")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Requerido_en_Invitaciones_Nombre_Detalle_de_Solicitud_RequeridoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Requerido_en_Invitaciones_Nombre");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val(' ');
+            $('.select2-search__field').keyup();
+        });
+
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+
+        function SendDetalle_de_Solicitudes_de_InvitacionesData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_de_Solicitudes_de_Invitaciones").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_de_Solicitudes_de_Invitaciones")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#ReferenceClave").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_Generales && !checkClientValidate('Detalle_de_Solicitudes_de_InvitacionesCreateForm', 'Datos_Generales')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+            }
+			
+			
+			if (Tab_Datos_Generales)
+				Save_Datos_Generales(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".Detalle_de_Solicitudes_de_InvitacionesBusinessRuleModal").html(data);
+			});
+		}
+                function Detalle_de_Solicitudes_de_InvitacionesGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45033');
+			$('#Screen').val('Detalle_de_Solicitudes_de_Invitaciones');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function Detalle_de_Solicitudes_de_InvitacionesBackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_de_Solicitudes_de_Invitaciones').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        Detalle_de_Solicitudes_de_InvitacionesGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_Generales()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/Get_Datos_Generales")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    var control = $('#Solicitud');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Solicitud).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Solicitud).trigger('change');
+                    }, 3000);
+                    $('#Fecha_de_Invitacion').val(result.data.Fecha_de_Invitacion);
+                    var control = $('#Usuario_que_Registra');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Registra).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Registra).trigger('change');
+                    }, 3000);
+                    $('#Numero_de_Invitacion').val(result.data.Numero_de_Invitacion);
+                    $('#Numero_de_Oficio').val(result.data.Numero_de_Oficio);
+                    $('#Formato_de_Invitacion').val(result.data.Formato_de_Invitacion);
+                    $('#Tipo_de_Participacion').val(result.data.Tipo_de_Participacion);
+                    $('#Fecha_de_la_cita').val(result.data.Fecha_de_la_cita);
+                    $('#Hora_de_la_Cita').val(result.data.Hora_de_la_Cita);
+                    $('#Domicilio').val(result.data.Domicilio);
+                    Detalle_de_Solicitante_en_InvitacionesDataDataTable = result.nombre_del_interviniente_solicitante;
+                    showDetalle_de_Solicitante_en_InvitacionesGrid(result.nombre_del_interviniente_solicitante);
+                    $('#Detalle_de_Solicitante_en_InvitacionesGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_de_Solicitante_en_InvitacionesGrid .gridDatePicker').attr("readonly", "");
+                    Detalle_de_Requerido_en_InvitacionesDataDataTable = result.nombre_del_interviniente_requerido;
+                    showDetalle_de_Requerido_en_InvitacionesGrid(result.nombre_del_interviniente_requerido);
+                    $('#Detalle_de_Requerido_en_InvitacionesGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_de_Requerido_en_InvitacionesGrid .gridDatePicker').attr("readonly", "");
+                    $('#Fecha_de_Recepcion').val(result.data.Fecha_de_Recepcion);
+                    $('#Fecha_de_Aceptacion').val(result.data.Fecha_de_Aceptacion);
+                    $('#Cumplimiento').val(result.data.Cumplimiento);
+                    $('#Incidente').val(result.data.Incidente);
+                    $('#A_Tiempo').val(result.data.A_Tiempo);
+                    $('#Archivo').val(result.data.Archivo);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_Generales(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Solicitud', $('#Solicitud').val());
+                data.append('Fecha_de_Invitacion', $('#Fecha_de_Invitacion').val());
+                data.append('Usuario_que_Registra', $('#Usuario_que_Registra').val());
+                data.append('Numero_de_Invitacion', $('#Numero_de_Invitacion').val());
+                data.append('Numero_de_Oficio', $('#Numero_de_Oficio').val());
+                data.append('Formato_de_Invitacion', $('#Formato_de_Invitacion').val());
+                data.append('Tipo_de_Participacion', $('#Tipo_de_Participacion').val());
+                data.append('Fecha_de_la_cita', $('#Fecha_de_la_cita').val());
+                data.append('Hora_de_la_Cita', $('#Hora_de_la_Cita').val());
+                data.append('Domicilio', $('#Domicilio').val());
+                data.append('Fecha_de_Recepcion', $('#Fecha_de_Recepcion').val());
+                data.append('Fecha_de_Aceptacion', $('#Fecha_de_Aceptacion').val());
+                data.append('Cumplimiento', $('#Cumplimiento').val());
+                data.append('Incidente', $('#Incidente').val());
+                data.append('A_Tiempo', $('#A_Tiempo').val());
+                data.append('Archivo', $('#hdnAttachedArchivo').val());
+                data.append('ArchivoFile', $('#ArchivoFile')[0].files[0]);
+                data.append('ArchivoRemoveAttachment', $('#hdnRemoveArchivo').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/Post_Datos_Generales")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
+					} else {
+						newId = result;
+                    					    SendDetalle_de_Solicitante_en_Invitaciones(null, newId);
+					    SendDetalle_de_Requerido_en_Invitaciones(null, newId);
+
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="Detalle_de_Solicitudes_de_Invitaciones_cmbLabelSelect" name="Detalle_de_Solicitudes_de_Invitaciones_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

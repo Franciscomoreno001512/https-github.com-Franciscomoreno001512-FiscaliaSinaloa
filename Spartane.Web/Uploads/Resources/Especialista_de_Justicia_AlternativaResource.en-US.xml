@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Especialista_de_Justicia_Alternativa" value="Especialista de Justicia Alternativa"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Numero_de_Empleado" value="Número de Empleado"></resource>
+  <resource culture="en-US" name="Nombre_de_Especialista" value="Nombre de Especialista"></resource>
+  <resource culture="en-US" name="Carga_de_Trabajo" value="Carga de Trabajo"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

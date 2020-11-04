@@ -1,0 +1,248 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Detalle_del_Abogado_Imputado_MPIGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Consecutivo
+            </td>
+                        <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Consecutivo
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Nombre_Completo_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Nombre_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Apellido_Paterno_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Apellido_Materno_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Fecha_de_Nacimiento_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Edad_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Sexo_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Estado_Civil_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Tipo_de_Identificacion_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Numero_de_Identificacion_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Nacionalidad_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Cedula_Profesional_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Pais_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Estado_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Municipio_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Colonia_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Codigo_Postal_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Calle_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Numero_Exterior_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Numero_Interior_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Telefono_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Celular_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Correo_Electronico_del_Abogado
+            </td>
+            <td class="column1">
+                @Resources.Detalle_del_Abogado_Imputado_MPIResources.Aceptar_Notificaciones
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Consecutivo
+                    </td>
+					                    <td>
+                        @item.Consecutivo
+                    </td>
+                    <td>
+                        @item.Nombre_Completo_del_AbogadoNombre_Completo
+                    </td>
+                    <td>
+                        @item.Nombre_del_Abogado
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno_del_Abogado
+                    </td>
+                    <td>
+                        @item.Apellido_Materno_del_Abogado
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento_del_Abogado
+                    </td>
+                    <td>
+                        @item.Edad_del_Abogado
+                    </td>
+                    <td>
+                        @item.Sexo_del_AbogadoDescripcion
+                    </td>
+                    <td>
+                        @item.Estado_Civil_del_AbogadoDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_Identificacion_del_AbogadoNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion_del_Abogado
+                    </td>
+                    <td>
+                        @item.Nacionalidad_del_AbogadoNacionalidadC
+                    </td>
+                    <td>
+                        @item.Cedula_Profesional_del_Abogado
+                    </td>
+                    <td>
+                        @item.Pais_del_AbogadoNombre
+                    </td>
+                    <td>
+                        @item.Estado_del_AbogadoNombre
+                    </td>
+                    <td>
+                        @item.Municipio_del_AbogadoNombre
+                    </td>
+                    <td>
+                        @item.Colonia_del_AbogadoNombre
+                    </td>
+                    <td>
+                        @item.Codigo_Postal_del_Abogado
+                    </td>
+                    <td>
+                        @item.Calle_del_Abogado
+                    </td>
+                    <td>
+                        @item.Numero_Exterior_del_Abogado
+                    </td>
+                    <td>
+                        @item.Numero_Interior_del_Abogado
+                    </td>
+                    <td>
+                        @item.Telefono_del_Abogado
+                    </td>
+                    <td>
+                        @item.Celular_del_Abogado
+                    </td>
+                    <td>
+                        @item.Correo_Electronico_del_Abogado
+                    </td>
+                    <td>
+                        @item.Aceptar_Notificaciones
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

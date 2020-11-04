@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Errores_de_Replicacion" value="Error de Replicación"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="ID_del_Dispositivo" value="ID del Dispositivo"></resource>
+  <resource culture="en-US" name="Usuario" value="Usuario"></resource>
+  <resource culture="en-US" name="Fecha_del_Error" value="Fecha del Error"></resource>
+  <resource culture="en-US" name="Hora_del_Error" value="Hora del Error"></resource>
+  <resource culture="en-US" name="Campo_con_Error" value="Campo con Error"></resource>
+  <resource culture="en-US" name="Valor_del_Campo_en_Dispositivo" value="Valor del Campo en Dispositivo"></resource>
+  <resource culture="en-US" name="Valor_del_Campo_en_Web" value="Valor del Campo en Web"></resource>
+  <resource culture="en-US" name="Folio" value="Folio"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -1,0 +1,824 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.OrientadorGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.OrientadorResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.OrientadorResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Fecha_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Hora_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Usuario_que_Registra
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Atencion_Medica
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Atencion_Psicologica
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Traductor
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Narrativa_DM
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Narrativa_DP
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Idioma
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Nombre
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Apellido_Paterno
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Apellido_Materno
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Fecha_de_Nacimiento
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Edad
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Sexo
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Estado_Civil
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Tipo_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Numero_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Nacionalidad
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Escolaridad
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Ocupacion
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Calle
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Numero_Exterior
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Numero_Interior
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Colonia
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Codigo_Postal
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Localidad
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Estado
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Telefono
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Celular
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Correo_Electronico
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Fecha_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Hora_Aproximada_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Tipo_de_Lugar_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Calle2
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Numero_Exterior2
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Numero_Interior2
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Colonia2
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Codigo_Postal2
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Zona
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Municipio2
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Estado2
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Grupo_Delito
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Delito
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Circunstancia
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Tipo_Delito
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Forma_Comision_Delito
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Forma_Accion_Delito
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Modalidad_Delito
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Elementos_Comision_Delito
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Monto
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.HViolencia_de_Genero
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Calificacion_del_Delito
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.CircunstanciaV
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Clase_Especifica
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Marca
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Sub_Marca
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Tipo_de_Vehiculo
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Modelo
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Color
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Placas
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Estado_Placas
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Vehiculo_Robado
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Seguro
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Aseguradora
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Tipo_de_Servicio
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Ruta_del_Servicio_Publico
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Mercancia
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Descripcion
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Monto_de_la_Carga
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Senas_Particulares
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Modalidad_del_Robo
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Circunstancia_Defuncion
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Consecuencia_Defuncion
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Fecha_Levantamiento
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Hora_Levantamiento
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Domicilio
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Numero_Interior3
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Numero_Exterior3
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Colonia3
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Colonia_no_Catalogada
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Zona2
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Municipio3
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Estado3
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Necropsia
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Cronotanatodiagnostico
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Ruta
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Estado_Operador
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Delito_Principal_o_Secundario
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Concurso
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Compareciente
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.NombreC
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Apellido_PaternoC
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Apellido_MaternoC
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.NombreT
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Apellido_PaternoT
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Apellido_MaternoT
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.CalleC
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Numero_ExteriorC
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Numero_InteriorC
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.ColoniaC
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Codigo_PostalC
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.ZonaC
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.MunicipioC
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.EstadoC
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.NarrativaC
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Conocido
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Desconocido
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Numero_de_Imputados
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Procedencia
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Motor
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Serie
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Causa_de_Muerte
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Entre_Calle
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Entre_Calle2
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Autoriza
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Autoriza2
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Autoriza3
+            </td>
+            <td class="column1">
+                @Resources.OrientadorResources.Menor_de_Edad
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Fecha_de_Registro
+                    </td>
+                    <td>
+                        @item.Hora_de_Registro
+                    </td>
+                    <td>
+                        @item.Usuario_que_Registra
+                    </td>
+                    <td>
+                        @item.Atencion_Medica
+                    </td>
+                    <td>
+                        @item.Atencion_Psicologica
+                    </td>
+                    <td>
+                        @item.Traductor
+                    </td>
+                    <td>
+                        @item.Narrativa_DM
+                    </td>
+                    <td>
+                        @item.Narrativa_DP
+                    </td>
+                    <td>
+                        @item.IdiomaDescripcion
+                    </td>
+                    <td>
+                        @item.Nombre
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno
+                    </td>
+                    <td>
+                        @item.Apellido_Materno
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento
+                    </td>
+                    <td>
+                        @item.Edad
+                    </td>
+                    <td>
+                        @item.SexoDescripcion
+                    </td>
+                    <td>
+                        @item.Estado_CivilDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_IdentificacionNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion
+                    </td>
+                    <td>
+                        @item.NacionalidadNacionalidadC
+                    </td>
+                    <td>
+                        @item.EscolaridadDescripcion
+                    </td>
+                    <td>
+                        @item.OcupacionDescripcion
+                    </td>
+                    <td>
+                        @item.Calle
+                    </td>
+                    <td>
+                        @item.Numero_Exterior
+                    </td>
+                    <td>
+                        @item.Numero_Interior
+                    </td>
+                    <td>
+                        @item.Colonia
+                    </td>
+                    <td>
+                        @item.Codigo_Postal
+                    </td>
+                    <td>
+                        @item.LocalidadDescripcion
+                    </td>
+                    <td>
+                        @item.Municipio
+                    </td>
+                    <td>
+                        @item.Estado
+                    </td>
+                    <td>
+                        @item.Telefono
+                    </td>
+                    <td>
+                        @item.Celular
+                    </td>
+                    <td>
+                        @item.Correo_Electronico
+                    </td>
+                    <td>
+                        @item.Fecha_del_Hecho
+                    </td>
+                    <td>
+                        @item.Hora_Aproximada_del_Hecho
+                    </td>
+                    <td>
+                        @item.Tipo_de_Lugar_del_HechoDescripcion
+                    </td>
+                    <td>
+                        @item.Calle2
+                    </td>
+                    <td>
+                        @item.Numero_Exterior2
+                    </td>
+                    <td>
+                        @item.Numero_Interior2
+                    </td>
+                    <td>
+                        @item.Colonia2
+                    </td>
+                    <td>
+                        @item.Codigo_Postal2
+                    </td>
+                    <td>
+                        @item.ZonaDescripcion
+                    </td>
+                    <td>
+                        @item.Municipio2
+                    </td>
+                    <td>
+                        @item.Estado2
+                    </td>
+                    <td>
+                        @item.Grupo_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.CircunstanciaDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_Comision_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_Accion_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Modalidad_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Elementos_Comision_DelitoDescripcion
+                    </td>
+                    <td>
+                        @item.Monto
+                    </td>
+                    <td>
+                        @item.HViolencia_de_Genero
+                    </td>
+                    <td>
+                        @item.Calificacion_del_Delito
+                    </td>
+                    <td>
+                        @item.CircunstanciaVDescripcion
+                    </td>
+                    <td>
+                        @item.Clase_EspecificaDescripcion
+                    </td>
+                    <td>
+                        @item.MarcaDescripcion
+                    </td>
+                    <td>
+                        @item.Sub_MarcaDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_VehiculoDescripcion
+                    </td>
+                    <td>
+                        @item.Modelo
+                    </td>
+                    <td>
+                        @item.ColorDescripcion
+                    </td>
+                    <td>
+                        @item.Placas
+                    </td>
+                    <td>
+                        @item.Estado_Placas
+                    </td>
+                    <td>
+                        @item.Vehiculo_Robado
+                    </td>
+                    <td>
+                        @item.Seguro
+                    </td>
+                    <td>
+                        @item.AseguradoraDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_ServicioDescripcion
+                    </td>
+                    <td>
+                        @item.Ruta_del_Servicio_Publico
+                    </td>
+                    <td>
+                        @item.Mercancia
+                    </td>
+                    <td>
+                        @item.Descripcion
+                    </td>
+                    <td>
+                        @item.Monto_de_la_Carga
+                    </td>
+                    <td>
+                        @item.Senas_Particulares
+                    </td>
+                    <td>
+                        @item.Modalidad_del_RoboDescripcion
+                    </td>
+                    <td>
+                        @item.Circunstancia_DefuncionDescripcion
+                    </td>
+                    <td>
+                        @item.Consecuencia_DefuncionDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_Levantamiento
+                    </td>
+                    <td>
+                        @item.Hora_Levantamiento
+                    </td>
+                    <td>
+                        @item.Domicilio
+                    </td>
+                    <td>
+                        @item.Numero_Interior3
+                    </td>
+                    <td>
+                        @item.Numero_Exterior3
+                    </td>
+                    <td>
+                        @item.Colonia3
+                    </td>
+                    <td>
+                        @item.Colonia_no_Catalogada
+                    </td>
+                    <td>
+                        @item.Zona2Descripcion
+                    </td>
+                    <td>
+                        @item.Municipio3
+                    </td>
+                    <td>
+                        @item.Estado3
+                    </td>
+                    <td>
+                        @item.Necropsia
+                    </td>
+                    <td>
+                        @item.Cronotanatodiagnostico
+                    </td>
+                    <td>
+                        @item.Ruta
+                    </td>
+                    <td>
+                        @item.Estado_Operador
+                    </td>
+                    <td>
+                        @item.Delito_Principal_o_Secundario
+                    </td>
+                    <td>
+                        @item.Concurso
+                    </td>
+                    <td>
+                        @item.ComparecienteDescripcion
+                    </td>
+                    <td>
+                        @item.NombreC
+                    </td>
+                    <td>
+                        @item.Apellido_PaternoC
+                    </td>
+                    <td>
+                        @item.Apellido_MaternoC
+                    </td>
+                    <td>
+                        @item.NombreT
+                    </td>
+                    <td>
+                        @item.Apellido_PaternoT
+                    </td>
+                    <td>
+                        @item.Apellido_MaternoT
+                    </td>
+                    <td>
+                        @item.CalleC
+                    </td>
+                    <td>
+                        @item.Numero_ExteriorC
+                    </td>
+                    <td>
+                        @item.Numero_InteriorC
+                    </td>
+                    <td>
+                        @item.ColoniaC
+                    </td>
+                    <td>
+                        @item.Codigo_PostalC
+                    </td>
+                    <td>
+                        @item.ZonaCDescripcion
+                    </td>
+                    <td>
+                        @item.MunicipioC
+                    </td>
+                    <td>
+                        @item.EstadoC
+                    </td>
+                    <td>
+                        @item.NarrativaC
+                    </td>
+                    <td>
+                        @item.Conocido
+                    </td>
+                    <td>
+                        @item.Desconocido
+                    </td>
+                    <td>
+                        @item.Numero_de_Imputados
+                    </td>
+                    <td>
+                        @item.ProcedenciaDescripcion
+                    </td>
+                    <td>
+                        @item.Motor
+                    </td>
+                    <td>
+                        @item.Serie
+                    </td>
+                    <td>
+                        @item.Causa_de_Muerte
+                    </td>
+                    <td>
+                        @item.Entre_Calle
+                    </td>
+                    <td>
+                        @item.Entre_Calle2
+                    </td>
+                    <td>
+                        @item.Autoriza
+                    </td>
+                    <td>
+                        @item.Autoriza2
+                    </td>
+                    <td>
+                        @item.Autoriza3
+                    </td>
+                    <td>
+                        @item.Menor_de_Edad
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

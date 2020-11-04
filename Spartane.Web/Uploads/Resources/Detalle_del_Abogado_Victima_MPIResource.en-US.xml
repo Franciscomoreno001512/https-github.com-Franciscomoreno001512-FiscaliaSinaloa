@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_del_Abogado_Victima_MPI" value="Detalle del Abogado Victima MPI"></resource>
+  <resource culture="en-US" name="Consecutivo_Victima" value="Consecutivo Victima"></resource>
+  <resource culture="en-US" name="Nombre_Completo_del_Abogado_Victima" value="Nombre Completo del Abogado"></resource>
+  <resource culture="en-US" name="Nombre_del_Abogado_Victima" value="Nombre"></resource>
+  <resource culture="en-US" name="Apellido_Paterno_del_Abogado_Victima" value="Apellido Paterno"></resource>
+  <resource culture="en-US" name="Apellido_Materno_del_Abogado_Victima" value="Apellido Materno"></resource>
+  <resource culture="en-US" name="Fecha_de_Nacimiento_del_Abogado_Victima" value="Fecha de Nacimiento"></resource>
+  <resource culture="en-US" name="Edad_del_Abogado_Victima" value="Edad"></resource>
+  <resource culture="en-US" name="Sexo_del_Abogado_Victima" value="Sexo"></resource>
+  <resource culture="en-US" name="Estado_Civil_del_Abogado_Victima" value="Estado Civil"></resource>
+  <resource culture="en-US" name="Tipo_de_Identificacion_Abogado_Victima" value="Tipo de Identificación"></resource>
+  <resource culture="en-US" name="Numero_de_Identificacion_Abogado_Victima" value="Número de Identificación"></resource>
+  <resource culture="en-US" name="Nacionalidad_del_Abogado_Victima" value="Nacionalidad"></resource>
+  <resource culture="en-US" name="Cedula_Profesional_del_Abogado_Victima" value="Cédula Profesional"></resource>
+  <resource culture="en-US" name="Pais_del_Abogado_Victima" value="País"></resource>
+  <resource culture="en-US" name="Estado_del_Abogado_Victima" value="Estado"></resource>
+  <resource culture="en-US" name="Municipio_del_Abogado_Victima" value="Municipio"></resource>
+  <resource culture="en-US" name="Colonia_del_Abogado_Victima" value="Colonia"></resource>
+  <resource culture="en-US" name="Codigo_Postal_del_Abogado_Victima" value="Código Postal"></resource>
+  <resource culture="en-US" name="Calle_del_Abogado_Victima" value="Calle"></resource>
+  <resource culture="en-US" name="Numero_Exterior_del_Abogado_Victima" value="Número Exterior"></resource>
+  <resource culture="en-US" name="Numero_Interior_del_Abogado_Victima" value="Número Interior"></resource>
+  <resource culture="en-US" name="Telefono_del_Abogado_Victima" value="Teléfono"></resource>
+  <resource culture="en-US" name="Celular_del_Abogado_Victima" value="Celular"></resource>
+  <resource culture="en-US" name="Correo_Electronico_del_Abogado_Victima" value="Correo Electrónico"></resource>
+  <resource culture="en-US" name="Aceptar_Notificaciones" value="Aceptar Notificaciones"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -1,0 +1,1511 @@
+﻿@using System.Collections.Generic
+@using System.Web.UI.WebControls
+@using Spartane.Core.Domain.Detalle_de_Delito;
+@using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+@using Spartane.Core.Domain.Formato_de_Denuncia;
+@using Spartane.Core.Domain.Delitos_Violencia_Genero;
+@using Spartane.Core.Domain.Titulo_del_Delito;
+@using Spartane.Core.Domain.Grupo_del_Delito;
+@using Spartane.Core.Domain.Delito;
+@using Spartane.Core.Domain.Circunstancia_del_Delito;
+@using Spartane.Core.Domain.Forma_Comision_Delito;
+@using Spartane.Core.Domain.Forma_Accion_Delito;
+@using Spartane.Core.Domain.Modalidad_Delito;
+@using Spartane.Core.Domain.Elementos_Comision_Delito;
+@using Spartane.Core.Domain.Clasificacion_en_Orden_de_Resultado;
+@using Spartane.Core.Domain.Concurso;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.A_Tiempo;
+@using Spartane.Core.Domain.Motivo_de_No_Canalizacion;
+@using Spartane.Core.Domain.Elemento_Robado;
+@using Spartane.Core.Domain.Circunstancia_Vehiculo;
+@using Spartane.Core.Domain.Especifica_Vehiculo;
+@using Spartane.Core.Domain.Marca_del_Vehiculo;
+@using Spartane.Core.Domain.Sub_Marca_del_Vehiculo;
+@using Spartane.Core.Domain.Tipo_de_Vehiculo;
+@using Spartane.Core.Domain.Color_Vehiculo;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.Tipo_de_Lugar_del_Robo;
+@using Spartane.Core.Domain.Aseguradora_de_Vehiculo;
+@using Spartane.Core.Domain.Servicio_del_Vehiculo;
+@using Spartane.Core.Domain.Procedencia_del_Vehiculo;
+@using Spartane.Core.Domain.Tipo_de_Robo;
+@using Spartane.Core.Domain.Tipo_de_Lugar_del_Robo;
+@using Spartane.Core.Domain.Tipo_de_Carretera;
+@using Spartane.Core.Domain.Modalidad_de_Robo_de_Vehiculo;
+@using Spartane.Core.Domain.Circunstancia_Defuncion;
+@using Spartane.Core.Domain.Consecuencia_Defuncion;
+@using Spartane.Core.Domain.Lugar_Tipo;
+@using Spartane.Core.Domain.Pais;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.Detalle_de_Persona_Moral;
+@using Spartane.Core.Domain.Detalle_de_Datos_Generales;
+@using Spartane.Core.Domain.Detalle_de_Datos_Generales;
+
+@using Spartane.Core.Domain.Permission
+@using Spartane.Web.Areas.WebApiConsumer
+@using Spartane.Web.Helpers
+@{
+    ViewBag.Title = Resources.Resources.Index;
+    Permission permission = ViewBag.Permission;
+    var advanceSearch = (bool)ViewBag.AdvanceSearch;
+
+
+}
+<style>
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+</style>
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>@Resources.Detalle_de_DelitoResources.Detalle_de_Delito</h2>
+        
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                
+            </li>
+            <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Detalle_de_DelitoResources.Detalle_de_Delito</strong>
+                }
+                
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+		@{
+            if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+            {
+                <h2>&nbsp;</h2>
+                <button onclick="Detalle_de_DelitoGetBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton" data-toggle="modal" data-target="#Detalle_de_DelitoBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+                <div aria-hidden="true" class="modal fade in Detalle_de_DelitoPropertyBusinessModal" id="Detalle_de_DelitoPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    Property & Business Rules
+                                    <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+                                    </div>
+                                    <div class="clearfix col-sm-12">&nbsp;</div>
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Detalle_de_DelitoBusinessRule-form" onclick="Detalle_de_DelitoGetBusinessRule()">Business Rule</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_DelitoBusinessRuleModal" id="Detalle_de_DelitoBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_de_DelitoAddBusinessRuleModal" id="Detalle_de_DelitoAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>
+            }
+		}
+    </div>
+</div>
+
+<input type="hidden" value="List" name="Operation" id="Operation" />
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
+
+<span id="popupNotification"></span>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+
+                    <div id="jsGrid">
+                    </div>
+
+                    @* Model Start Here *@
+
+                    @using (Ajax.BeginForm("", "", new AjaxOptions { OnSuccess="" }))
+                    {
+                        
+                    }
+                    
+                     @* Model Print Start*@
+                    <div id="exportModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="gridSystemModalLabel">@Resources.Resources.Export</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-3">@Resources.Resources.ExportOptions:</div>
+                                        <div class="col-md-8 col-md-offset-0">
+                                            <label class="">
+                                                <input type="radio" name="optradio" value="1" checked="true">@Resources.Resources.ExporOnlyCurrent
+                                            </label>
+                                            <label class="">
+                                                <input type="radio" name="optradio" value="0">@Resources.Resources.ExporAllRecords
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                            </div>
+                                        </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resources.Close</button>
+                                    <button type="button" id="btnPrint" class="btn btn-primary" onclick="return PrintDocument(3);">@Resources.Resources.Print</button>
+                                    <button type="button" id="btnPdf" class="btn btn-primary" onclick="return Export(1);">@Resources.Resources.Export</button>
+                                    <button type="button" id="btnExcel" class="btn btn-primary" onclick="return Export(2);">@Resources.Resources.Export</button>
+                                    <button type="button" id="btnCSV" class="btn btn-primary" onclick="return Export(4);">@Resources.Resources.Export</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+					@* Model Print Format Start*@
+                    <div id="printFormatModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="gridSystemModalLabel">@Resources.Resources.Print @Resources.Spartan_FormatResources.Format </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div id="spartan_formats" class="col-md-6 col-md-offset-0">
+                                                                                                                   
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resources.Close</button>
+                                        <button type="button" id="btnPrint" class="btn btn-primary" onclick="return ExportToPdfFormats();">@Resources.Resources.Print @Resources.Resources.PDF</button>         
+                                    </div>
+                                    <div class="row">
+                                    </div>
+                                </div>                              
+                            </div>
+                            <!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+                    <div id="botonera">
+						@if (permission.New)
+                        { 
+                            @Html.ActionLink(Resources.Resources.Create, "Create", "Detalle_de_Delito", new { @class = "btn btn-primary" })
+                        }
+                        @Html.ActionLink(@Resources.Resources.AdvanceSearch, "ShowAdvanceFilter", "Detalle_de_Delito", new { previousFilters = advanceSearch }, new { @class = ("btn btn-primary") })
+                        <button onclick="ClearFilter()" class=" btn btn-primary">@Resources.Resources.ClearFilter</button>
+                                </div>
+                    <div class="table-responsive">
+
+                        <table id="tblDetalle_de_Delito" class="table table-striped table-bordered table-hover dataTables-example scroll_content" style="overflow-x:scroll;" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>@Resources.Resources.Actions</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Clave</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Descripcion_corta</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Robo_de_Vehiculo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Expediente_Inicial</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Tipo_de_Denuncia</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Fecha_del_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Hora_del_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Violencia_de_Genero</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Delito_Violencia_Genero</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Tipo_de_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Grupo_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Circunstancia_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Articulado_de_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Delito_Principal</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Forma_Comision_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Forma_Accion_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Modalidad_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Elementos_Comision_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Clasificacion_con_Orden_de_Resultado</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Concurso</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Monto</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Estado_del_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Municipio_del_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Colonia_del_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Codigo_Postal</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Calle</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Entre_Calle</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.y_Calle</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Numero_Exterior_del_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Numero_Interior_del_Delito</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Referencia</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Latitud</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Longitud</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Puede_Ser_Canalizado_a_JA</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Motivo_de_no_canalizacion</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Se_Informaron_sus_Derechos</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Se_Informo_el_Procedimiento</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Levantamiento_de_Cadaver</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Fecha_del_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Hora_del_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Robo_de</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Registro_Federal_Vehicular</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Numero_de_Registro_Publico_Vehicular</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Circunstancia_de_Vehiculo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Clase</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Vehiculo_Robado</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Marca</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Sub_Marca</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Tipo_de_Vehiculo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Modelo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Color</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Placas</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Estado_de_Origen_de_las_Placas</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Numero_de_Motor</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Numero_de_Serie</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Estado_del_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Municipio_del_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Colonia_del_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Codigo_Postal_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Calle_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Entre_Calle_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.y_Calle_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Numero_Exterior_del_Delito_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Numero_Interior_del_Delito_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Referencia_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Latitud_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Longitud_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Lugar_del_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.El_Vehiculo_esta_Asegurado</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Nombre_de_la_Aseguradora</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Motor</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Serie</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Tipo_de_Servicio</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Ruta_del_Servicio_Publico</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Procedencia</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Mercancia</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Descripcion_de_lo_que_Transportaba</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Monto_de_la_Carga</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Senas_Particulares</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Cuenta_con_GPS</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Tipo_de_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Tipo_de_Lugar_del_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Tipo_de_Carretera</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Modalidad_del_Robo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Causa_de_Muerte</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Circunstancia_Defuncion</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Consecuencia_Defuncion</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Fecha_Levantamiento</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Hora_Levantamiento</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Tipo_de_Lugar_del_Hecho</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Pais</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Estado</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Municipio</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Colonia</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Colonia_no_Catalogada</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Numero_Exterior</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Numero_Interior</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Necropsia</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Cronotanatodiagnostico</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Ruta</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Estado_del_Conductor</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Persona_Moral_Dueno</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Nombre_Completo</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Persona_Fisica_Dueno</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Nombre_Completo_Involucrado</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Denunciante_dueno</th>
+                                    <th>@Resources.Detalle_de_DelitoResources.Nombre_Completo_Dueno</th>
+
+                                </tr>
+                            </thead>
+                            <tfoot style="display:table-header-group;">
+                                <tr>
+                                    <td></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+@Styles.Render("~/plugins/dataPickerStyles")
+@Styles.Render("~/plugins/clockpickerStyles")
+@Styles.Render("~/plugins/awesomeCheckboxStyles")
+
+@Scripts.Render("~/plugins/dataTables")
+@Scripts.Render("~/plugins/dataPicker")
+@Scripts.Render("~/plugins/clockpicker")
+@*@Scripts.Render("~/plugins/slimScroll")*@
+
+<script type="text/javascript" src="~/Scripts/Custom/tablePlugin.js"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_DelitoIndexRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    div.dataTables_info {
+        display: inline-block;
+        float: left;
+    }
+</style>
+
+<script type="text/javascript">
+	var MRWhere = '';
+    var MROrder = '';
+    var table;
+    var currentFilter;
+     var permission = {
+        Consult: '@permission.Consult.ToString()' == 'True',
+        New: '@permission.New.ToString()' == 'True',
+        Edit: '@permission.Edit.ToString()' == 'True',
+        Delete: '@permission.Delete.ToString()' == 'True',
+        Export: '@permission.Export.ToString()' == 'True',
+        Print: '@permission.Print.ToString()' == 'True',
+        Configure: '@permission.Configure.ToString()' == 'True',
+    };
+
+    $(document).ready(function () {	
+	$('.loading').show();
+        $("#frmAdvanceSearch").submit(function (e) {
+            e.preventDefault();
+            InitiateAdvanceSearch();
+        });
+        $('a').tooltip();
+    });
+
+    var advanceSearchQuery = "@(advanceSearch)", isDetalle_de_DelitoTextSearch = true;
+
+    function ClearFilter() {
+
+        $('.filterData').each(function( index, element ){
+            if ($(this).attr('type') != 'checkbox') {
+                $(this).val('');
+            }
+            else {
+                $(this).attr('checked', false);
+            }
+        });
+        advanceSearchQuery = "False";
+        ClearFilterConfig();
+        table.search('').columns().search('').draw();
+    }
+
+    function ClearFilterConfig() {
+        $.ajax({
+            url: '@Url.Content("~/Frontal/Detalle_de_Delito/ClearAdvanceFilter")',
+            type: 'POST',
+            dataType: "json",
+            success: function (result) {
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                return null;
+            }
+        });
+    }
+
+    //Used to initiate advance function
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblDetalle_de_Delito').DataTable().draw();
+        return false;
+    }
+
+    function GetAdvanceSearchQuery() {
+        return advanceSearchQuery;
+    }
+
+    function VisibilityAdvanceSearch() {
+        $('#btnAdvanceSearch').click();
+        return false;
+    }
+
+    function Export(format) {
+	 var counter = 1;
+        currentFilter = table.page.info();
+		 var where= MRWhere;
+		var order = MROrder;
+
+        var queryString = GetQueryString();
+
+        var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Descripcion_corta =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Robo_de_Vehiculo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_del_Delito = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_del_Delito = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Violencia_de_Genero = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Delito_Violencia_Genero =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Grupo_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Circunstancia_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Articulado_de_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Delito_Principal = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_Comision_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_Accion_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modalidad_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Elementos_Comision_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Clasificacion_con_Orden_de_Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Concurso =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Monto =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_del_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_del_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_del_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entre_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior_del_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior_del_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Referencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Puede_Ser_Canalizado_a_JA =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_de_no_canalizacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Se_Informaron_sus_Derechos = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Se_Informo_el_Procedimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Levantamiento_de_Cadaver = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_del_Robo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_del_Robo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Robo_de =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Registro_Federal_Vehicular =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Registro_Publico_Vehicular =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Circunstancia_de_Vehiculo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Clase =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Vehiculo_Robado = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Marca =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Sub_Marca =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Vehiculo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modelo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Color =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Placas =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_de_Origen_de_las_Placas =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Motor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Serie =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_del_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_del_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_del_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entre_Calle_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var y_Calle_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior_del_Delito_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior_del_Delito_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Referencia_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Lugar_del_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var El_Vehiculo_esta_Asegurado = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_de_la_Aseguradora =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Serie =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Servicio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Ruta_del_Servicio_Publico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Procedencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Mercancia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Descripcion_de_lo_que_Transportaba =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Monto_de_la_Carga =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Senas_Particulares =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cuenta_con_GPS = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Lugar_del_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Carretera =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modalidad_del_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Causa_de_Muerte =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Circunstancia_Defuncion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Consecuencia_Defuncion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_Levantamiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Levantamiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Lugar_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_no_Catalogada =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Necropsia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cronotanatodiagnostico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Ruta =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_del_Conductor = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Persona_Moral_Dueno = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Completo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Persona_Fisica_Dueno = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Completo_Involucrado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Denunciante_dueno = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Completo_Dueno =  $($('table td .filterData.form-control:input')[counter++]).val();
+
+
+        var queryString = "&Clave=" + Clave 
+        + "&Descripcion_corta=" + Descripcion_corta
+        + "&Robo_de_Vehiculo=" + Robo_de_Vehiculo
+        + "&Expediente_Inicial=" + Expediente_Inicial
+        + "&Tipo_de_Denuncia=" + Tipo_de_Denuncia
+        + "&Fecha_del_Delito=" + Fecha_del_Delito
+        + "&Hora_del_Delito=" + Hora_del_Delito
+        + "&Violencia_de_Genero=" + Violencia_de_Genero
+        + "&Delito_Violencia_Genero=" + Delito_Violencia_Genero
+        + "&Tipo_de_Delito=" + Tipo_de_Delito
+        + "&Grupo_Delito=" + Grupo_Delito
+        + "&Delito=" + Delito
+        + "&Circunstancia_Delito=" + Circunstancia_Delito
+        + "&Articulado_de_Delito=" + Articulado_de_Delito
+        + "&Delito_Principal=" + Delito_Principal
+        + "&Forma_Comision_Delito=" + Forma_Comision_Delito
+        + "&Forma_Accion_Delito=" + Forma_Accion_Delito
+        + "&Modalidad_Delito=" + Modalidad_Delito
+        + "&Elementos_Comision_Delito=" + Elementos_Comision_Delito
+        + "&Clasificacion_con_Orden_de_Resultado=" + Clasificacion_con_Orden_de_Resultado
+        + "&Concurso=" + Concurso
+        + "&Monto=" + Monto
+        + "&Estado_del_Delito=" + Estado_del_Delito
+        + "&Municipio_del_Delito=" + Municipio_del_Delito
+        + "&Colonia_del_Delito=" + Colonia_del_Delito
+        + "&Codigo_Postal=" + Codigo_Postal
+        + "&Calle=" + Calle
+        + "&Entre_Calle=" + Entre_Calle
+        + "&y_Calle=" + y_Calle
+        + "&Numero_Exterior_del_Delito=" + Numero_Exterior_del_Delito
+        + "&Numero_Interior_del_Delito=" + Numero_Interior_del_Delito
+        + "&Referencia=" + Referencia
+        + "&Latitud=" + Latitud
+        + "&Longitud=" + Longitud
+        + "&Puede_Ser_Canalizado_a_JA=" + Puede_Ser_Canalizado_a_JA
+        + "&Motivo_de_no_canalizacion=" + Motivo_de_no_canalizacion
+        + "&Se_Informaron_sus_Derechos=" + Se_Informaron_sus_Derechos
+        + "&Se_Informo_el_Procedimiento=" + Se_Informo_el_Procedimiento
+        + "&Levantamiento_de_Cadaver=" + Levantamiento_de_Cadaver
+        + "&Fecha_del_Robo=" + Fecha_del_Robo
+        + "&Hora_del_Robo=" + Hora_del_Robo
+        + "&Robo_de=" + Robo_de
+        + "&Registro_Federal_Vehicular=" + Registro_Federal_Vehicular
+        + "&Numero_de_Registro_Publico_Vehicular=" + Numero_de_Registro_Publico_Vehicular
+        + "&Circunstancia_de_Vehiculo=" + Circunstancia_de_Vehiculo
+        + "&Clase=" + Clase
+        + "&Vehiculo_Robado=" + Vehiculo_Robado
+        + "&Marca=" + Marca
+        + "&Sub_Marca=" + Sub_Marca
+        + "&Tipo_de_Vehiculo=" + Tipo_de_Vehiculo
+        + "&Modelo=" + Modelo
+        + "&Color=" + Color
+        + "&Placas=" + Placas
+        + "&Estado_de_Origen_de_las_Placas=" + Estado_de_Origen_de_las_Placas
+        + "&Numero_de_Motor=" + Numero_de_Motor
+        + "&Numero_de_Serie=" + Numero_de_Serie
+        + "&Estado_del_Robo=" + Estado_del_Robo
+        + "&Municipio_del_Robo=" + Municipio_del_Robo
+        + "&Colonia_del_Robo=" + Colonia_del_Robo
+        + "&Codigo_Postal_Robo=" + Codigo_Postal_Robo
+        + "&Calle_Robo=" + Calle_Robo
+        + "&Entre_Calle_Robo=" + Entre_Calle_Robo
+        + "&y_Calle_Robo=" + y_Calle_Robo
+        + "&Numero_Exterior_del_Delito_Robo=" + Numero_Exterior_del_Delito_Robo
+        + "&Numero_Interior_del_Delito_Robo=" + Numero_Interior_del_Delito_Robo
+        + "&Referencia_Robo=" + Referencia_Robo
+        + "&Latitud_Robo=" + Latitud_Robo
+        + "&Longitud_Robo=" + Longitud_Robo
+        + "&Lugar_del_Robo=" + Lugar_del_Robo
+        + "&El_Vehiculo_esta_Asegurado=" + El_Vehiculo_esta_Asegurado
+        + "&Nombre_de_la_Aseguradora=" + Nombre_de_la_Aseguradora
+        + "&Motor=" + Motor
+        + "&Serie=" + Serie
+        + "&Tipo_de_Servicio=" + Tipo_de_Servicio
+        + "&Ruta_del_Servicio_Publico=" + Ruta_del_Servicio_Publico
+        + "&Procedencia=" + Procedencia
+        + "&Mercancia=" + Mercancia
+        + "&Descripcion_de_lo_que_Transportaba=" + Descripcion_de_lo_que_Transportaba
+        + "&Monto_de_la_Carga=" + Monto_de_la_Carga
+        + "&Senas_Particulares=" + Senas_Particulares
+        + "&Cuenta_con_GPS=" + Cuenta_con_GPS
+        + "&Tipo_de_Robo=" + Tipo_de_Robo
+        + "&Tipo_de_Lugar_del_Robo=" + Tipo_de_Lugar_del_Robo
+        + "&Tipo_de_Carretera=" + Tipo_de_Carretera
+        + "&Modalidad_del_Robo=" + Modalidad_del_Robo
+        + "&Causa_de_Muerte=" + Causa_de_Muerte
+        + "&Circunstancia_Defuncion=" + Circunstancia_Defuncion
+        + "&Consecuencia_Defuncion=" + Consecuencia_Defuncion
+        + "&Fecha_Levantamiento=" + Fecha_Levantamiento
+        + "&Hora_Levantamiento=" + Hora_Levantamiento
+        + "&Tipo_de_Lugar_del_Hecho=" + Tipo_de_Lugar_del_Hecho
+        + "&Pais=" + Pais
+        + "&Estado=" + Estado
+        + "&Municipio=" + Municipio
+        + "&Colonia=" + Colonia
+        + "&Colonia_no_Catalogada=" + Colonia_no_Catalogada
+        + "&Numero_Exterior=" + Numero_Exterior
+        + "&Numero_Interior=" + Numero_Interior
+        + "&Necropsia=" + Necropsia
+        + "&Cronotanatodiagnostico=" + Cronotanatodiagnostico
+        + "&Ruta=" + Ruta
+        + "&Estado_del_Conductor=" + Estado_del_Conductor
+        + "&Persona_Moral_Dueno=" + Persona_Moral_Dueno
+        + "&Nombre_Completo=" + Nombre_Completo
+        + "&Persona_Fisica_Dueno=" + Persona_Fisica_Dueno
+        + "&Nombre_Completo_Involucrado=" + Nombre_Completo_Involucrado
+        + "&Denunciante_dueno=" + Denunciante_dueno
+        + "&Nombre_Completo_Dueno=" + Nombre_Completo_Dueno
+ + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
+
+        var url = "@Url.Content("~/Frontal/Detalle_de_Delito/Export?format=")" + format
+            + "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
+            + "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
+		    + "&where=" + where + "&order=" + order + 
+			+ "&columnsVisible=" + table.columns().visible().join(",") + queryString;
+        window.open(url, '_blank');
+    };
+
+    function GetQueryString() {
+	
+	 var counter = 0;
+        var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Descripcion_corta =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Robo_de_Vehiculo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_del_Delito = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_del_Delito = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Violencia_de_Genero = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Delito_Violencia_Genero =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Grupo_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Circunstancia_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Articulado_de_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Delito_Principal = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_Comision_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_Accion_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modalidad_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Elementos_Comision_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Clasificacion_con_Orden_de_Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Concurso =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Monto =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_del_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_del_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_del_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entre_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior_del_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior_del_Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Referencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Puede_Ser_Canalizado_a_JA =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_de_no_canalizacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Se_Informaron_sus_Derechos = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Se_Informo_el_Procedimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Levantamiento_de_Cadaver = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_del_Robo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_del_Robo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Robo_de =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Registro_Federal_Vehicular =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Registro_Publico_Vehicular =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Circunstancia_de_Vehiculo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Clase =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Vehiculo_Robado = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Marca =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Sub_Marca =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Vehiculo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modelo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Color =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Placas =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_de_Origen_de_las_Placas =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Motor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Serie =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_del_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_del_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_del_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_Postal_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Calle_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entre_Calle_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var y_Calle_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior_del_Delito_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior_del_Delito_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Referencia_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Latitud_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Longitud_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Lugar_del_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var El_Vehiculo_esta_Asegurado = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_de_la_Aseguradora =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Serie =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Servicio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Ruta_del_Servicio_Publico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Procedencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Mercancia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Descripcion_de_lo_que_Transportaba =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Monto_de_la_Carga =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Senas_Particulares =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cuenta_con_GPS = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Lugar_del_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Carretera =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modalidad_del_Robo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Causa_de_Muerte =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Circunstancia_Defuncion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Consecuencia_Defuncion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_Levantamiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Levantamiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Lugar_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Pais =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Colonia_no_Catalogada =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Exterior =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_Interior =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Necropsia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Cronotanatodiagnostico =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Ruta =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado_del_Conductor = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Persona_Moral_Dueno = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Completo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Persona_Fisica_Dueno = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Completo_Involucrado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Denunciante_dueno = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombre_Completo_Dueno =  $($('table td .filterData.form-control:input')[counter++]).val();
+
+
+        return "&Clave=" + Clave 
+        + "&Descripcion_corta=" + Descripcion_corta
+        + "&Robo_de_Vehiculo=" + Robo_de_Vehiculo
+        + "&Expediente_Inicial=" + Expediente_Inicial
+        + "&Tipo_de_Denuncia=" + Tipo_de_Denuncia
+        + "&Fecha_del_Delito=" + Fecha_del_Delito
+        + "&Hora_del_Delito=" + Hora_del_Delito
+        + "&Violencia_de_Genero=" + Violencia_de_Genero
+        + "&Delito_Violencia_Genero=" + Delito_Violencia_Genero
+        + "&Tipo_de_Delito=" + Tipo_de_Delito
+        + "&Grupo_Delito=" + Grupo_Delito
+        + "&Delito=" + Delito
+        + "&Circunstancia_Delito=" + Circunstancia_Delito
+        + "&Articulado_de_Delito=" + Articulado_de_Delito
+        + "&Delito_Principal=" + Delito_Principal
+        + "&Forma_Comision_Delito=" + Forma_Comision_Delito
+        + "&Forma_Accion_Delito=" + Forma_Accion_Delito
+        + "&Modalidad_Delito=" + Modalidad_Delito
+        + "&Elementos_Comision_Delito=" + Elementos_Comision_Delito
+        + "&Clasificacion_con_Orden_de_Resultado=" + Clasificacion_con_Orden_de_Resultado
+        + "&Concurso=" + Concurso
+        + "&Monto=" + Monto
+        + "&Estado_del_Delito=" + Estado_del_Delito
+        + "&Municipio_del_Delito=" + Municipio_del_Delito
+        + "&Colonia_del_Delito=" + Colonia_del_Delito
+        + "&Codigo_Postal=" + Codigo_Postal
+        + "&Calle=" + Calle
+        + "&Entre_Calle=" + Entre_Calle
+        + "&y_Calle=" + y_Calle
+        + "&Numero_Exterior_del_Delito=" + Numero_Exterior_del_Delito
+        + "&Numero_Interior_del_Delito=" + Numero_Interior_del_Delito
+        + "&Referencia=" + Referencia
+        + "&Latitud=" + Latitud
+        + "&Longitud=" + Longitud
+        + "&Puede_Ser_Canalizado_a_JA=" + Puede_Ser_Canalizado_a_JA
+        + "&Motivo_de_no_canalizacion=" + Motivo_de_no_canalizacion
+        + "&Se_Informaron_sus_Derechos=" + Se_Informaron_sus_Derechos
+        + "&Se_Informo_el_Procedimiento=" + Se_Informo_el_Procedimiento
+        + "&Levantamiento_de_Cadaver=" + Levantamiento_de_Cadaver
+        + "&Fecha_del_Robo=" + Fecha_del_Robo
+        + "&Hora_del_Robo=" + Hora_del_Robo
+        + "&Robo_de=" + Robo_de
+        + "&Registro_Federal_Vehicular=" + Registro_Federal_Vehicular
+        + "&Numero_de_Registro_Publico_Vehicular=" + Numero_de_Registro_Publico_Vehicular
+        + "&Circunstancia_de_Vehiculo=" + Circunstancia_de_Vehiculo
+        + "&Clase=" + Clase
+        + "&Vehiculo_Robado=" + Vehiculo_Robado
+        + "&Marca=" + Marca
+        + "&Sub_Marca=" + Sub_Marca
+        + "&Tipo_de_Vehiculo=" + Tipo_de_Vehiculo
+        + "&Modelo=" + Modelo
+        + "&Color=" + Color
+        + "&Placas=" + Placas
+        + "&Estado_de_Origen_de_las_Placas=" + Estado_de_Origen_de_las_Placas
+        + "&Numero_de_Motor=" + Numero_de_Motor
+        + "&Numero_de_Serie=" + Numero_de_Serie
+        + "&Estado_del_Robo=" + Estado_del_Robo
+        + "&Municipio_del_Robo=" + Municipio_del_Robo
+        + "&Colonia_del_Robo=" + Colonia_del_Robo
+        + "&Codigo_Postal_Robo=" + Codigo_Postal_Robo
+        + "&Calle_Robo=" + Calle_Robo
+        + "&Entre_Calle_Robo=" + Entre_Calle_Robo
+        + "&y_Calle_Robo=" + y_Calle_Robo
+        + "&Numero_Exterior_del_Delito_Robo=" + Numero_Exterior_del_Delito_Robo
+        + "&Numero_Interior_del_Delito_Robo=" + Numero_Interior_del_Delito_Robo
+        + "&Referencia_Robo=" + Referencia_Robo
+        + "&Latitud_Robo=" + Latitud_Robo
+        + "&Longitud_Robo=" + Longitud_Robo
+        + "&Lugar_del_Robo=" + Lugar_del_Robo
+        + "&El_Vehiculo_esta_Asegurado=" + El_Vehiculo_esta_Asegurado
+        + "&Nombre_de_la_Aseguradora=" + Nombre_de_la_Aseguradora
+        + "&Motor=" + Motor
+        + "&Serie=" + Serie
+        + "&Tipo_de_Servicio=" + Tipo_de_Servicio
+        + "&Ruta_del_Servicio_Publico=" + Ruta_del_Servicio_Publico
+        + "&Procedencia=" + Procedencia
+        + "&Mercancia=" + Mercancia
+        + "&Descripcion_de_lo_que_Transportaba=" + Descripcion_de_lo_que_Transportaba
+        + "&Monto_de_la_Carga=" + Monto_de_la_Carga
+        + "&Senas_Particulares=" + Senas_Particulares
+        + "&Cuenta_con_GPS=" + Cuenta_con_GPS
+        + "&Tipo_de_Robo=" + Tipo_de_Robo
+        + "&Tipo_de_Lugar_del_Robo=" + Tipo_de_Lugar_del_Robo
+        + "&Tipo_de_Carretera=" + Tipo_de_Carretera
+        + "&Modalidad_del_Robo=" + Modalidad_del_Robo
+        + "&Causa_de_Muerte=" + Causa_de_Muerte
+        + "&Circunstancia_Defuncion=" + Circunstancia_Defuncion
+        + "&Consecuencia_Defuncion=" + Consecuencia_Defuncion
+        + "&Fecha_Levantamiento=" + Fecha_Levantamiento
+        + "&Hora_Levantamiento=" + Hora_Levantamiento
+        + "&Tipo_de_Lugar_del_Hecho=" + Tipo_de_Lugar_del_Hecho
+        + "&Pais=" + Pais
+        + "&Estado=" + Estado
+        + "&Municipio=" + Municipio
+        + "&Colonia=" + Colonia
+        + "&Colonia_no_Catalogada=" + Colonia_no_Catalogada
+        + "&Numero_Exterior=" + Numero_Exterior
+        + "&Numero_Interior=" + Numero_Interior
+        + "&Necropsia=" + Necropsia
+        + "&Cronotanatodiagnostico=" + Cronotanatodiagnostico
+        + "&Ruta=" + Ruta
+        + "&Estado_del_Conductor=" + Estado_del_Conductor
+        + "&Persona_Moral_Dueno=" + Persona_Moral_Dueno
+        + "&Nombre_Completo=" + Nombre_Completo
+        + "&Persona_Fisica_Dueno=" + Persona_Fisica_Dueno
+        + "&Nombre_Completo_Involucrado=" + Nombre_Completo_Involucrado
+        + "&Denunciante_dueno=" + Denunciante_dueno
+        + "&Nombre_Completo_Dueno=" + Nombre_Completo_Dueno
+;
+
+    }
+	
+	
+	$(document).on("click", ".editor_print", function () {
+		var idRecord = $(this).data('idrecord');
+        GetFormats(idRecord);
+        $("#printFormatModal").data('idrecord', idRecord);
+    });
+	
+	function GetFormats(idRecord) {
+
+        $('#spartan_formats').empty();
+        $.ajax({
+            url: '@Url.Content("~/Frontal/Detalle_de_Delito/GetFormats?RecordId=")' + idRecord,
+            type: 'Get',
+            async: true,
+            contentType: "multipart/form-data",
+            success: function (result) {
+                if (result < 0) {
+
+                } else {
+                    $.each(result, function (index, element) {
+                        var div = "<div id=''>" +
+                             "<label>" +
+                                "<input type='checkbox' name='optradioFormat' value='" + element.Value + "' />" + element.Text +
+                                    "</label>" +
+                                "</div>";
+
+                        $('#spartan_formats').append(div);
+                    });
+                    $("#printFormatModal").modal('show');
+                }
+            },
+            error: function (result) {
+                showNotification("@Resources.Resources.ErrorContactingServer", "error");
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    }
+	 function ExportToPdfFormats()
+    {
+        var RecordId = $("#printFormatModal").data('idrecord');
+        var FormatId = $("input:radio[name='optradioFormat']:checked").val();
+        var i = 1;
+        $("input:checkbox[name='optradioFormat']:checked").each(function (index, item) {
+            if ($(item).is(':checked')) {
+                debugger
+                var FormatId = $(item).val();
+                var url = "@Url.Content("~/Frontal/Detalle_de_Delito/PrintFormats?idFormat=")" + FormatId + "&RecordId=" + RecordId;
+                var printWindow = window.open(url,'Imprimir Formato ' + i.toString() + '_blank');
+                i++;
+
+            }
+        });
+    }
+	
+    function PrintDocument(format) {
+
+        var counter = 1;
+        currentFilter = table.page.info();
+		
+		   var where = MRWhere;
+        var order = MROrder;
+
+		var queryString = GetQueryString();
+		
+		var url = "@Url.Content("~/Frontal/Detalle_de_Delito/Print")?format=3"
+				+ "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
+				+ "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
+				+ "&where=" + where + "&order=" + order + queryString;
+
+        $.ajax({
+
+            url: url,
+            async:false,
+            success: function (data) {
+                var printWindow = window.open();
+                var title = '@Resources.Resources.PrintText';
+                printWindow.document.write('<title>' + title + '</title>');
+                printWindow.document.write(data);
+				printWindow.document.getElementById("columnsVisible").text = table.columns().visible().join(",");
+                printWindow.print();
+                //printWindow.close();
+
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
+
+    }
+
+    function SetTitle(printWindow) {
+        if (printWindow.document) {
+            printWindow.document.title = "Delitos AT Print";
+        } else {
+            setTimeout(SetTitle, 10);
+        }
+    }
+
+    Serialize = function (obj) {
+        var str = [];
+        for (var p in obj)
+            if (obj.hasOwnProperty(p)) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            }
+        return str.join("&");
+    }
+    function GetContentType() {
+        switch ($('#myModal #sel1').val()) {
+            case "1":
+                return "application/pdf; charset=utf-8";
+            case "2":
+                return "application/vnd.ms-excel; charset=utf-8";
+        }
+        return null;
+    }
+
+    var isInitialized = false;
+    var filterState = JSON.parse(localStorage.getItem("GRID_STATE_MANAGEMENT"));
+
+    $(function () {
+        //Popup
+        $("#btnExportPopUpOpen").click(function () {
+            $('#myModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-pdf", function (e, data) {
+
+            $("#btnPrint").hide();
+            $("#btnExcel").hide();
+            $("#btnPdf").show();
+            $("#btnCSV").hide();
+            $('#exportModal').modal('show');
+
+        });
+
+        $(document).on("click", ".buttons-print", function (e, data) {
+
+            $("#btnPdf").hide();
+            $("#btnExcel").hide();
+            $("#btnPrint").show();
+            $("#btnCSV").hide();
+            $('#exportModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-excel", function (e, data) {
+
+            $("#btnPdf").hide();
+            $("#btnExcel").show();
+            $("#btnPrint").hide();
+            $("#btnCSV").hide();
+            $(this).bind();
+            $('#exportModal').modal('show');
+        });
+
+        $(document).on("click", ".buttons-csv", function (e, data) {
+
+
+            $("#btnPdf").hide();
+            $("#btnExcel").hide();
+            $("#btnPrint").hide();
+            $("#btnCSV").show();
+            $('#exportModal').modal('show');
+
+        });
+
+		setFilterNew('tblDetalle_de_Delito');
+		
+		var oDatatableStateData;
+        // initialize datatable variable
+        table = $('#tblDetalle_de_Delito').DataTable({
+            dom: '<"html5buttons"B>lTfgt<"bottom"ip>',
+            //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
+            buttons: [
+                { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                {
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+
+                        if (!permission.Print) {
+                            $(win.document.body).addClass('disabled');
+                            $(win.document.body).attr('disabled', 'true');
+                        }
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ],
+            "processing": true,
+            "serverSide": true,
+            "info": true,
+            "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "@Resources.Resources.All"]],            
+			 "ajax": function (data, callback, settings, aoData) {
+                $.ajax({
+                    url: "@Url.Content("~/Frontal/Detalle_de_Delito/GetDetalle_de_DelitoList")", 
+                    method: 'Post',
+                    data: { "sEcho": data.draw, "iDisplayStart": data.start, "iDisplayLength": data.length, "sortDirection": data.order[0].dir, "sortColumn": data.order[0].column, "columns": data.columns, "where": MRWhere, "order": MROrder, "filters": GetQueryString(), "AdvanceSearch": GetAdvanceSearchQuery() }
+                }).done(callback);
+            },
+            "fnServerParams": function ( aoData ) {
+                //aoData.push({ "name": "AdvanceSearch", "value": GetAdvanceSearchQuery() });
+            },
+            "bStateSave": true,
+            "fnStateSave": function (oSettings, oData) {
+                localStorage.setItem(JSON.stringify(oData), 'Detalle_de_DelitoDatatable_');
+            },
+            "fnStateLoad": function (oSettings) {
+                var data = localStorage.getItem('Detalle_de_DelitoDatatable_');
+                return JSON.parse(data);
+            },
+            "fnStateLoaded": function (oSettings, oData) {
+                oDatatableStateData = oData;              
+                setFilterState('tblDetalle_de_Delito', oDatatableStateData); 
+            },
+            "aoColumns": [
+                {
+                    "data": null,
+                    "className": "center actionColumn text-nowrap",
+					"orderable": false, 					
+					"render": function (data, type, full, meta) {
+                        var edit = '<a title="@Resources.Resources.Edit" href="@Url.Action("Create", "Detalle_de_Delito")?Id=' + data.Clave + '" class="editor_edit edit-MR"><i class="fa fa-edit"></i></a>';
+                        if (!permission.Edit)
+                            edit = '';
+                        var consult = '<a title="@Resources.Resources.Consult" href="@Url.Action("Create", "Detalle_de_Delito")?Id=' + data.Clave + '&consult=1"  class="editor_remove"><i class="fa fa-male"></i></a>';
+                        if (!permission.Consult)
+                            consult = '';
+                        var print = '<a title="@Resources.Resources.Print" data-toggle="modal" data-target="#printFormatModal" data-idrecord="' + data.Clave + '"  class="editor_print print-MR"><i class="fa fa-print"></i></a>';
+                        if (!permission.Print)
+                            print = '';
+                        var del = '<a title="@Resources.Resources.Delete" onclick="DeleteDetalle_de_Delito(\'' + data.Clave + '\')" class="editor_remove eliminar-MR"><i class="fa fa-times"></i></a>';
+                        if (!permission.Delete)
+                            del = '';
+                        return edit + del + consult + print;
+                    }
+                }, 
+                { "data": "Clave", "orderable": true, "name": "Clave" }
+                ,{ "data": "Descripcion_corta", "orderable": true, "name": "Descripcion_corta", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Robo_de_Vehiculo", "orderable": true, "name": "Robo_de_Vehiculo","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Expediente_InicialNUAT", "orderable": true, "name": "Expediente_InicialNUAT"}
+                ,{ "data": "Tipo_de_DenunciaDescripcion", "orderable": true, "name": "Tipo_de_DenunciaDescripcion" }
+                ,{ "data": "Fecha_del_Delito", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_del_Delito" }
+                ,{ "data": "Hora_del_Delito", "orderable": true, "name": "Hora_del_Delito" }
+                ,{ "data": "Violencia_de_Genero", "orderable": true, "name": "Violencia_de_Genero","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Delito_Violencia_GeneroDescripcion", "orderable": true, "name": "Delito_Violencia_GeneroDescripcion" }
+                ,{ "data": "Tipo_de_DelitoDescripcion", "orderable": true, "name": "Tipo_de_DelitoDescripcion" }
+                ,{ "data": "Grupo_DelitoDescripcion", "orderable": true, "name": "Grupo_DelitoDescripcion" }
+                ,{ "data": "DelitoDescripcion", "orderable": true, "name": "DelitoDescripcion" }
+                ,{ "data": "Circunstancia_DelitoDescripcion", "orderable": true, "name": "Circunstancia_DelitoDescripcion" }
+                ,{ "data": "Articulado_de_Delito", "orderable": true, "name": "Articulado_de_Delito", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Delito_Principal", "orderable": true, "name": "Delito_Principal","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Forma_Comision_DelitoDescripcion", "orderable": true, "name": "Forma_Comision_DelitoDescripcion" }
+                ,{ "data": "Forma_Accion_DelitoDescripcion", "orderable": true, "name": "Forma_Accion_DelitoDescripcion" }
+                ,{ "data": "Modalidad_DelitoDescripcion", "orderable": true, "name": "Modalidad_DelitoDescripcion" }
+                ,{ "data": "Elementos_Comision_DelitoDescripcion", "orderable": true, "name": "Elementos_Comision_DelitoDescripcion" }
+                ,{ "data": "Clasificacion_con_Orden_de_ResultadoDescripcion", "orderable": true, "name": "Clasificacion_con_Orden_de_ResultadoDescripcion" }
+                ,{ "data": "ConcursoDescripcion", "orderable": true, "name": "ConcursoDescripcion" }
+                ,{ "data": "Monto", "orderable": true, "name": "Monto", "className": "dt-right", render: $.fn.dataTable.render.number(',', '.', 2, '$') }
+                ,{ "data": "Estado_del_DelitoNombre", "orderable": true, "name": "Estado_del_DelitoNombre"}
+                ,{ "data": "Municipio_del_DelitoNombre", "orderable": true, "name": "Municipio_del_DelitoNombre"}
+                ,{ "data": "Colonia_del_DelitoNombre", "orderable": true, "name": "Colonia_del_DelitoNombre"}
+                ,{ "data": "Codigo_Postal","className": "dt-right", "orderable": true, "name": "Codigo_Postal" }
+                ,{ "data": "Calle", "orderable": true, "name": "Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Entre_Calle", "orderable": true, "name": "Entre_Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "y_Calle", "orderable": true, "name": "y_Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Exterior_del_Delito", "orderable": true, "name": "Numero_Exterior_del_Delito", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Interior_del_Delito", "orderable": true, "name": "Numero_Interior_del_Delito", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Referencia", "orderable": true, "name": "Referencia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Latitud", "orderable": true, "name": "Latitud", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Longitud", "orderable": true, "name": "Longitud", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Puede_Ser_Canalizado_a_JADescripcion", "orderable": true, "name": "Puede_Ser_Canalizado_a_JADescripcion" }
+                ,{ "data": "Motivo_de_no_canalizacionDescripcion", "orderable": true, "name": "Motivo_de_no_canalizacionDescripcion" }
+                ,{ "data": "Se_Informaron_sus_Derechos", "orderable": true, "name": "Se_Informaron_sus_Derechos","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Se_Informo_el_Procedimiento", "orderable": true, "name": "Se_Informo_el_Procedimiento","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Levantamiento_de_Cadaver", "orderable": true, "name": "Levantamiento_de_Cadaver","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Fecha_del_Robo", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_del_Robo" }
+                ,{ "data": "Hora_del_Robo", "orderable": true, "name": "Hora_del_Robo" }
+                ,{ "data": "Robo_deDescripcion", "orderable": true, "name": "Robo_deDescripcion" }
+                ,{ "data": "Registro_Federal_Vehicular", "orderable": true, "name": "Registro_Federal_Vehicular", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_de_Registro_Publico_Vehicular", "orderable": true, "name": "Numero_de_Registro_Publico_Vehicular", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Circunstancia_de_VehiculoDescripcion", "orderable": true, "name": "Circunstancia_de_VehiculoDescripcion" }
+                ,{ "data": "ClaseDescripcion", "orderable": true, "name": "ClaseDescripcion" }
+                ,{ "data": "Vehiculo_Robado", "orderable": true, "name": "Vehiculo_Robado","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "MarcaDescripcion", "orderable": true, "name": "MarcaDescripcion" }
+                ,{ "data": "Sub_MarcaDescripcion", "orderable": true, "name": "Sub_MarcaDescripcion" }
+                ,{ "data": "Tipo_de_VehiculoDescripcion", "orderable": true, "name": "Tipo_de_VehiculoDescripcion" }
+                ,{ "data": "Modelo","className": "dt-right", "orderable": true, "name": "Modelo" }
+                ,{ "data": "ColorDescripcion", "orderable": true, "name": "ColorDescripcion" }
+                ,{ "data": "Placas", "orderable": true, "name": "Placas", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Estado_de_Origen_de_las_PlacasNombre", "orderable": true, "name": "Estado_de_Origen_de_las_PlacasNombre"}
+                ,{ "data": "Numero_de_Motor", "orderable": true, "name": "Numero_de_Motor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_de_Serie", "orderable": true, "name": "Numero_de_Serie", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Estado_del_RoboNombre", "orderable": true, "name": "Estado_del_RoboNombre"}
+                ,{ "data": "Municipio_del_RoboNombre", "orderable": true, "name": "Municipio_del_RoboNombre"}
+                ,{ "data": "Colonia_del_RoboNombre", "orderable": true, "name": "Colonia_del_RoboNombre"}
+                ,{ "data": "Codigo_Postal_Robo","className": "dt-right", "orderable": true, "name": "Codigo_Postal_Robo" }
+                ,{ "data": "Calle_Robo", "orderable": true, "name": "Calle_Robo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Entre_Calle_Robo", "orderable": true, "name": "Entre_Calle_Robo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "y_Calle_Robo", "orderable": true, "name": "y_Calle_Robo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Exterior_del_Delito_Robo", "orderable": true, "name": "Numero_Exterior_del_Delito_Robo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Interior_del_Delito_Robo", "orderable": true, "name": "Numero_Interior_del_Delito_Robo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Referencia_Robo", "orderable": true, "name": "Referencia_Robo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Latitud_Robo", "orderable": true, "name": "Latitud_Robo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Longitud_Robo", "orderable": true, "name": "Longitud_Robo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Lugar_del_RoboDescripcion", "orderable": true, "name": "Lugar_del_RoboDescripcion" }
+                ,{ "data": "El_Vehiculo_esta_Asegurado", "orderable": true, "name": "El_Vehiculo_esta_Asegurado","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Nombre_de_la_AseguradoraDescripcion", "orderable": true, "name": "Nombre_de_la_AseguradoraDescripcion" }
+                ,{ "data": "Motor", "orderable": true, "name": "Motor", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Serie", "orderable": true, "name": "Serie", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Tipo_de_ServicioDescripcion", "orderable": true, "name": "Tipo_de_ServicioDescripcion" }
+                ,{ "data": "Ruta_del_Servicio_Publico", "orderable": true, "name": "Ruta_del_Servicio_Publico", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "ProcedenciaDescripcion", "orderable": true, "name": "ProcedenciaDescripcion" }
+                ,{ "data": "Mercancia", "orderable": true, "name": "Mercancia","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Descripcion_de_lo_que_Transportaba", "orderable": true, "name": "Descripcion_de_lo_que_Transportaba", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Monto_de_la_Carga", "orderable": true, "name": "Monto_de_la_Carga", "className": "dt-right", render: $.fn.dataTable.render.number(',', '.', 2, '$') }
+                ,{ "data": "Senas_Particulares", "orderable": true, "name": "Senas_Particulares", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Cuenta_con_GPS", "orderable": true, "name": "Cuenta_con_GPS","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Tipo_de_RoboDescripcion", "orderable": true, "name": "Tipo_de_RoboDescripcion" }
+                ,{ "data": "Tipo_de_Lugar_del_RoboDescripcion", "orderable": true, "name": "Tipo_de_Lugar_del_RoboDescripcion" }
+                ,{ "data": "Tipo_de_CarreteraDescripcion", "orderable": true, "name": "Tipo_de_CarreteraDescripcion" }
+                ,{ "data": "Modalidad_del_RoboDescripcion", "orderable": true, "name": "Modalidad_del_RoboDescripcion" }
+                ,{ "data": "Causa_de_Muerte", "orderable": true, "name": "Causa_de_Muerte", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Circunstancia_DefuncionDescripcion", "orderable": true, "name": "Circunstancia_DefuncionDescripcion" }
+                ,{ "data": "Consecuencia_DefuncionDescripcion", "orderable": true, "name": "Consecuencia_DefuncionDescripcion" }
+                ,{ "data": "Fecha_Levantamiento", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_Levantamiento" }
+                ,{ "data": "Hora_Levantamiento", "orderable": true, "name": "Hora_Levantamiento" }
+                ,{ "data": "Tipo_de_Lugar_del_HechoDescripcion", "orderable": true, "name": "Tipo_de_Lugar_del_HechoDescripcion" }
+                ,{ "data": "PaisNombre", "orderable": true, "name": "PaisNombre"}
+                ,{ "data": "EstadoNombre", "orderable": true, "name": "EstadoNombre"}
+                ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}
+                ,{ "data": "ColoniaNombre", "orderable": true, "name": "ColoniaNombre"}
+                ,{ "data": "Colonia_no_Catalogada", "orderable": true, "name": "Colonia_no_Catalogada", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_Exterior","className": "dt-right", "orderable": true, "name": "Numero_Exterior" }
+                ,{ "data": "Numero_Interior", "orderable": true, "name": "Numero_Interior", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Necropsia", "orderable": true, "name": "Necropsia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Cronotanatodiagnostico", "orderable": true, "name": "Cronotanatodiagnostico", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Ruta", "orderable": true, "name": "Ruta", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Estado_del_Conductor", "orderable": true, "name": "Estado_del_Conductor","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Persona_Moral_Dueno", "orderable": true, "name": "Persona_Moral_Dueno","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Nombre_CompletoNombre", "orderable": true, "name": "Nombre_CompletoNombre" }
+                ,{ "data": "Persona_Fisica_Dueno", "orderable": true, "name": "Persona_Fisica_Dueno","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Nombre_Completo_InvolucradoNombre_del_Tutor", "orderable": true, "name": "Nombre_Completo_InvolucradoNombre_del_Tutor" }
+                ,{ "data": "Denunciante_dueno", "orderable": true, "name": "Denunciante_dueno","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Nombre_Completo_DuenoNombre_del_Tutor", "orderable": true, "name": "Nombre_Completo_DuenoNombre_del_Tutor" }
+
+            ],
+			"colReorder": true,
+            "order": [[1, "asc"]],
+			"scrollX": true,
+			"scrollY": '55vh',
+			"scrollCollapse": true,
+			"drawCallback": function( settings ) {
+			    $('.dataTables_scrollBody').animate({
+			        scrollTop: 0,
+			        scrollLeft: 0,
+			    }, '200');
+			},
+             "language": {
+                "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                "zeroRecords": " ",
+                "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                "infoEmpty": "@Resources.Resources.NoRecords",
+                "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                "paginate": {
+                    "previous": "@Resources.Resources.Previous",
+                    "next": "@Resources.Resources.Next"
+					},
+                    "buttons": {
+                        "copyTitle": "@Resources.Resources.CopyToClipboard",
+                        "copySuccess": {
+                            "_": "%d " + "@Resources.Resources.Copiedlines",
+                            "1": "1 " +  "@Resources.Resources.Copiedline"
+                        }
+                    }
+				}
+    }).on('init.dt', function (e, data) {
+        var classNamePDF = $(this).dataTableExt.buttons.pdfHtml5.className.split(" ");
+        var classNameExcel = $(this).dataTableExt.buttons.excelHtml5.className.split(" ");
+        var classNamePrint = $(this).dataTableExt.buttons.print.className.split(" ");
+        var classNameCSV = $(this).dataTableExt.buttons.csvHtml5.className.split(" ");
+        $('.' + classNamePDF[0]).unbind();
+        $('.' + classNameExcel[0]).unbind();
+        $('.' + classNamePrint[0]).unbind();
+        $('.' + classNameCSV[0]).unbind();
+        $('a').tooltip();
+        EjecutarValidacionesDespuesDeCrearLista();
+		
+		$('#tblDetalle_de_Delito').show().css({
+            "width": "auto",
+            "min-width": "100%"
+        });
+
+        $('.loading').hide();
+	table.columns.adjust();
+    });
+
+		ApplySearch(table);
+		$('tfoot tr').insertAfter($('thead tr'));
+		
+
+        $('.clockpicker').clockpicker();
+
+        $('.datepicker').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            format: "dd-mm-yyyy"
+        });
+    });
+
+    function DeleteDetalle_de_Delito(Clave) {
+       if (confirm(htmlDecode('@Resources.Resources.DeleteRecord'))) {
+            $.ajax({
+                url: '@Url.Content("~/Frontal/Detalle_de_Delito/Delete?id=")' + Clave,
+                type: 'DELETE',
+                success: function (result) {
+                    if (result) {
+                        table.draw();
+                        showNotification('@Resources.Resources.DeleteSuccess', "success");
+                    } else {
+                        showNotification('@Resources.Resources.DeleteError', "error");
+                    }
+
+                }
+            });
+        }
+    }
+</script>
+
+<script type="text/javascript">
+	function OpenRules() {
+        $.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+            $(".Detalle_de_DelitoBusinessRuleModal").html(data);
+            $(".Detalle_de_DelitoBusinessRuleModal").modal('show');           
+        });
+    }
+    function Detalle_de_DelitoGetBusinessRule() {
+        $('#FieldId').val();
+        $('#FieldName').val('');
+        $('#ObjectId').val('45078');
+        $('#Attribute').val('3');
+        $('#Screen').val('Detalle_de_Delito');
+        OpenRules();
+    }
+
+    function GetPropertyBag() {
+        $.get('@Url.Action("Detalle_de_DelitoPropertyBag", "Detalle_de_Delito")', function (data) {
+            $(".PropertyModal").html(data);
+        });
+    }
+</script>
+<input type="hidden" id="FieldId" name="FieldId" value="" />
+<input type="hidden" id="FieldName" name="FieldName" value="" />
+<input type="hidden" id="ObjectId" name="ObjectId" value="" />
+<input type="hidden" id="Attribute" name="Attribute" value="" />
+<input type="hidden" id="Screen" name="Screen" value="" />
+@section Styles {
+    
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/dataPicker")
+}
+

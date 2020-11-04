@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Registro_de_Intervinientes_CC" value="Detalle de Registro de Intervinientes CC"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Nombres" value="Nombres"></resource>
+  <resource culture="en-US" name="Apellido_Paterno" value="Apellido Paterno"></resource>
+  <resource culture="en-US" name="Apellido_Materno" value="Apellido Materno"></resource>
+  <resource culture="en-US" name="Alias" value="Alias"></resource>
+  <resource culture="en-US" name="Anonimo" value="Anónimo"></resource>
+  <resource culture="en-US" name="Fecha_de_Nacimiento" value="Fecha de Nacimiento"></resource>
+  <resource culture="en-US" name="Edad" value="Edad"></resource>
+  <resource culture="en-US" name="Sexo" value="Género"></resource>
+  <resource culture="en-US" name="Estado_Civil" value="Estado Civil"></resource>
+  <resource culture="en-US" name="Tipo_de_Identificacion" value="Tipo de Identificación"></resource>
+  <resource culture="en-US" name="Numero_de_Identificacion" value="Numero de Identificación"></resource>
+  <resource culture="en-US" name="Escolaridad" value="Escolaridad"></resource>
+  <resource culture="en-US" name="Ocupacion" value="Ocupación"></resource>
+  <resource culture="en-US" name="Nacionalidad" value="Nacionalidad"></resource>
+  <resource culture="en-US" name="Estado" value="Estado"></resource>
+  <resource culture="en-US" name="Municipio" value="Municipio"></resource>
+  <resource culture="en-US" name="Colonia" value="Colonia"></resource>
+  <resource culture="en-US" name="Codigo_Postal" value="Código Postal"></resource>
+  <resource culture="en-US" name="Calle" value="Calle"></resource>
+  <resource culture="en-US" name="Numero_Exterior" value="Número Exterior"></resource>
+  <resource culture="en-US" name="Numero_Interior" value="Número Interior"></resource>
+  <resource culture="en-US" name="Telefono" value="Teléfono"></resource>
+  <resource culture="en-US" name="Celular" value="Celular"></resource>
+  <resource culture="en-US" name="Correo_Electronico" value="Correo Electrónico"></resource>
+  <resource culture="en-US" name="Pais" value="País"></resource>
+  <resource culture="en-US" name="Galeria" value="Galería"></resource>
+  <resource culture="en-US" name="Entre_calle" value="Entre calle"></resource>
+  <resource culture="en-US" name="Especifique" value="Especifique"></resource>
+  <resource culture="en-US" name="Extension" value="Extensión"></resource>
+  <resource culture="en-US" name="Inimputable" value="Inimputable"></resource>
+  <resource culture="en-US" name="Nombre_Completo" value="Nombre Completo"></resource>
+  <resource culture="en-US" name="Originario_de" value="Originario de"></resource>
+  <resource culture="en-US" name="Pais_de_Origen" value="País de Origen"></resource>
+  <resource culture="en-US" name="Proteccion_de_Datos" value="Protección de Datos"></resource>
+  <resource culture="en-US" name="Referencia_de_Domicilio" value="Referencia de Domicilio"></resource>
+  <resource culture="en-US" name="Y_calle" value="Y calle"></resource>
+  <resource culture="en-US" name="Tipo_de_Compareciente" value="Tipo de Compareciente"></resource>
+  <resource culture="en-US" name="Tipo_de_inimputabilidad" value="Tipo de inimputabilidad"></resource>
+  <resource culture="en-US" name="Nombre" value="Nombre"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="en-US" name="TabGaleria" value="Galería"></resource>
+
+</resources>

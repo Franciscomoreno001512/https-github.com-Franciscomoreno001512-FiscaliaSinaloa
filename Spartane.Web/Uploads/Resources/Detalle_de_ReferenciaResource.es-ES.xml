@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_de_Referencia" value="Detalle de Referencia"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Punto_de_Referencia" value="Punto de Referencia"></resource>   <resource culture="es-es" name="Descripcion" value="Descripción"></resource>   <resource culture="es-es" name="Distancia" value="Distancia"></resource> 
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

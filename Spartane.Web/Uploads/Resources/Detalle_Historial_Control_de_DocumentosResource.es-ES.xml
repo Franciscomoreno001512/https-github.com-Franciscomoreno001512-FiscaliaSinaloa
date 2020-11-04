@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_Historial_Control_de_Documentos" value="Detalle Historial Control de Documentos"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Fecha" value="Fecha"></resource>
+  <resource culture="es-es" name="Hora" value="Hora"></resource>
+  <resource culture="es-es" name="Usuario" value="Usuario"></resource>
+  <resource culture="es-es" name="Modificaciones_Realizadas" value="Modificaciones Realizadas"></resource>
+  <resource culture="es-es" name="Cuerpo_del_Documento" value="Cuerpo del Documento"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

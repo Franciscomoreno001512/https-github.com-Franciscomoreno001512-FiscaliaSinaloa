@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Requeridos_que_no_Asisten" value="Requeridos que no Asisten"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Requeridos" value="Requeridos"></resource>
+  <resource culture="en-US" name="Solicitud" value="Solicitud"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

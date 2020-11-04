@@ -1,0 +1,745 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_del_Abogado_Imputado_MPIModel
+@{
+
+    string Fecha_de_Nacimiento_del_Abogado = "";
+    if (Model.Fecha_de_Nacimiento_del_Abogado == "")
+    { Model.Fecha_de_Nacimiento_del_Abogado = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+    List<SelectListItem> varAbogado_Nombre_Completo_del_Abogado = null;
+    if (ViewBag.Abogados_Nombre_Completo_del_Abogado != null)
+    { varAbogado_Nombre_Completo_del_Abogado = (List<SelectListItem>)ViewBag.Abogados_Nombre_Completo_del_Abogado; }
+    List<SelectListItem> varGenero_Sexo_del_Abogado = null;
+    if (ViewBag.Generos_Sexo_del_Abogado != null)
+    { varGenero_Sexo_del_Abogado = (List<SelectListItem>)ViewBag.Generos_Sexo_del_Abogado; }
+    List<SelectListItem> varEstado_Civil_Estado_Civil_del_Abogado = null;
+    if (ViewBag.Estado_Civils_Estado_Civil_del_Abogado != null)
+    { varEstado_Civil_Estado_Civil_del_Abogado = (List<SelectListItem>)ViewBag.Estado_Civils_Estado_Civil_del_Abogado; }
+    List<SelectListItem> varTipo_de_Identificacion_Tipo_de_Identificacion_del_Abogado = null;
+    if (ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_del_Abogado != null)
+    { varTipo_de_Identificacion_Tipo_de_Identificacion_del_Abogado = (List<SelectListItem>)ViewBag.Tipo_de_Identificacions_Tipo_de_Identificacion_del_Abogado; }
+    List<SelectListItem> varNacionalidad_Nacionalidad_del_Abogado = null;
+    if (ViewBag.Nacionalidads_Nacionalidad_del_Abogado != null)
+    { varNacionalidad_Nacionalidad_del_Abogado = (List<SelectListItem>)ViewBag.Nacionalidads_Nacionalidad_del_Abogado; }
+    List<SelectListItem> varPais_Pais_del_Abogado = null;
+    if (ViewBag.Paiss_Pais_del_Abogado != null)
+    { varPais_Pais_del_Abogado = (List<SelectListItem>)ViewBag.Paiss_Pais_del_Abogado; }
+    List<SelectListItem> varEstado_Estado_del_Abogado = null;
+    if (ViewBag.Estados_Estado_del_Abogado != null)
+    { varEstado_Estado_del_Abogado = (List<SelectListItem>)ViewBag.Estados_Estado_del_Abogado; }
+    List<SelectListItem> varMunicipio_Municipio_del_Abogado = null;
+    if (ViewBag.Municipios_Municipio_del_Abogado != null)
+    { varMunicipio_Municipio_del_Abogado = (List<SelectListItem>)ViewBag.Municipios_Municipio_del_Abogado; }
+    List<SelectListItem> varColonia_Colonia_del_Abogado = null;
+    if (ViewBag.Colonias_Colonia_del_Abogado != null)
+    { varColonia_Colonia_del_Abogado = (List<SelectListItem>)ViewBag.Colonias_Colonia_del_Abogado; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle del Abogado Imputado MPI
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_del_Abogado_Imputado_MPIRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_del_Abogado_Imputado_MPIPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle del Abogado Imputado MPI
+								<button onclick="Detalle_del_Abogado_Imputado_MPIGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_del_Abogado_Imputado_MPIBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_del_Abogado_Imputado_MPIResources.Detalle_del_Abogado_Imputado_MPI</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_del_Abogado_Imputado_MPIDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_del_Abogado_Imputado_MPIPropertyBusinessModal" id="Detalle_del_Abogado_Imputado_MPIPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_del_Abogado_Imputado_MPIBusinessRule-form" onclick="Detalle_del_Abogado_Imputado_MPIGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_del_Abogado_Imputado_MPIPropertyModal" id="Detalle_del_Abogado_Imputado_MPIPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_del_Abogado_Imputado_MPIBusinessRuleModal" id="Detalle_del_Abogado_Imputado_MPIBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_del_Abogado_Imputado_MPIAddBusinessRuleModal" id="Detalle_del_Abogado_Imputado_MPIAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_del_Abogado_Imputado_MPI", FormMethod.Post, new { id = "CreateDetalle_del_Abogado_Imputado_MPI", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_del_Abogado_Imputado_MPICreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divConsecutivo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Consecutivo</label>
+                                <div class="col-sm-8" data-field-id="Consecutivo" data-attribute="264646" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Consecutivo">
+                                    <label class="form-control" for="Detalle_del_Abogado_Imputado_MPIConsecutivo" id="Detalle_del_Abogado_Imputado_MPIConsecutivo">@Model.Consecutivo</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divNombre_Completo_del_Abogado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Nombre_Completo_del_Abogado</label>
+	<div class="col-sm-8" data-field-id="Nombre_Completo_del_Abogado" data-attribute="264647" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Nombre_Completo_del_Abogado">
+		<select class="form-control" data-val="true" data-val-number="The field Nombre Completo must be a number." data-val-required="The Nombre Completo field is required." id="Detalle_del_Abogado_Imputado_MPINombre_Completo_del_Abogado" name="Detalle_del_Abogado_Imputado_MPINombre_Completo_del_Abogado">
+			<option value=""></option>
+			@if (varAbogado_Nombre_Completo_del_Abogado != null){ 
+				foreach (var itemNombre_Completo_del_Abogado in varAbogado_Nombre_Completo_del_Abogado)
+				{
+					if (itemNombre_Completo_del_Abogado.Value == Convert.ToString(Model.Nombre_Completo_del_Abogado))
+					{
+						<option value="@itemNombre_Completo_del_Abogado.Value" selected>@itemNombre_Completo_del_Abogado.Text</option>
+					}
+					else
+					{
+						<option value="@itemNombre_Completo_del_Abogado.Value">@itemNombre_Completo_del_Abogado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNombre_del_Abogado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Nombre_del_Abogado</label>
+                                <div class="col-sm-8" data-field-id="Nombre_del_Abogado" data-attribute="264648" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Nombre_del_Abogado">
+                                    <input class="form-control" id="Detalle_del_Abogado_Imputado_MPINombre_del_Abogado" name="Detalle_del_Abogado_Imputado_MPINombre_del_Abogado" type="text" value="@Model.Nombre_del_Abogado">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Paterno_del_Abogado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Apellido_Paterno_del_Abogado</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Paterno_del_Abogado" data-attribute="264649" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Apellido_Paterno_del_Abogado">
+                                    <input class="form-control" id="Detalle_del_Abogado_Imputado_MPIApellido_Paterno_del_Abogado" name="Detalle_del_Abogado_Imputado_MPIApellido_Paterno_del_Abogado" type="text" value="@Model.Apellido_Paterno_del_Abogado">
+                                </div>
+                            </div>
+<div class="form-group" id="divApellido_Materno_del_Abogado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Apellido_Materno_del_Abogado</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Materno_del_Abogado" data-attribute="264650" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Apellido_Materno_del_Abogado">
+                                    <input class="form-control" id="Detalle_del_Abogado_Imputado_MPIApellido_Materno_del_Abogado" name="Detalle_del_Abogado_Imputado_MPIApellido_Materno_del_Abogado" type="text" value="@Model.Apellido_Materno_del_Abogado">
+                                </div>
+                            </div>
+<div class="form-group" id="divFecha_de_Nacimiento_del_Abogado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Fecha_de_Nacimiento_del_Abogado</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Nacimiento_del_Abogado" data-attribute="264651" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Fecha_de_Nacimiento_del_Abogado">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="Detalle_del_Abogado_Imputado_MPIFecha_de_Nacimiento_del_Abogado" readonly="readonly" name="Detalle_del_Abogado_Imputado_MPIFecha_de_Nacimiento_del_Abogado" type="text" value="@Model.Fecha_de_Nacimiento_del_Abogado">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divEdad_del_Abogado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Edad_del_Abogado</label>
+	<div class="col-sm-8" data-field-id="Edad_del_Abogado" data-attribute="264652" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Edad_del_Abogado">
+		<input class="form-control inputNumber" id="Detalle_del_Abogado_Imputado_MPIEdad_del_Abogado" name="Detalle_del_Abogado_Imputado_MPIEdad_del_Abogado" type="text" value="@Model.Edad_del_Abogado">
+	</div>
+</div>
+<div class="form-group" id="divSexo_del_Abogado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Sexo_del_Abogado</label>
+	<div class="col-sm-8" data-field-id="Sexo_del_Abogado" data-attribute="264653" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Sexo_del_Abogado">
+		<select class="form-control" data-val="true" data-val-number="The field Sexo must be a number." data-val-required="The Sexo field is required." id="Detalle_del_Abogado_Imputado_MPISexo_del_Abogado" name="Detalle_del_Abogado_Imputado_MPISexo_del_Abogado">
+			<option value=""></option>
+			@if (varGenero_Sexo_del_Abogado != null){ 
+				foreach (var itemSexo_del_Abogado in varGenero_Sexo_del_Abogado)
+				{
+					if (itemSexo_del_Abogado.Value == Convert.ToString(Model.Sexo_del_Abogado))
+					{
+						<option value="@itemSexo_del_Abogado.Value" selected>@itemSexo_del_Abogado.Text</option>
+					}
+					else
+					{
+						<option value="@itemSexo_del_Abogado.Value">@itemSexo_del_Abogado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado_Civil_del_Abogado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Estado_Civil_del_Abogado</label>
+	<div class="col-sm-8" data-field-id="Estado_Civil_del_Abogado" data-attribute="264654" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Estado_Civil_del_Abogado">
+		<select class="form-control" data-val="true" data-val-number="The field Estado Civil must be a number." data-val-required="The Estado Civil field is required." id="Detalle_del_Abogado_Imputado_MPIEstado_Civil_del_Abogado" name="Detalle_del_Abogado_Imputado_MPIEstado_Civil_del_Abogado">
+			<option value=""></option>
+			@if (varEstado_Civil_Estado_Civil_del_Abogado != null){ 
+				foreach (var itemEstado_Civil_del_Abogado in varEstado_Civil_Estado_Civil_del_Abogado)
+				{
+					if (itemEstado_Civil_del_Abogado.Value == Convert.ToString(Model.Estado_Civil_del_Abogado))
+					{
+						<option value="@itemEstado_Civil_del_Abogado.Value" selected>@itemEstado_Civil_del_Abogado.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_Civil_del_Abogado.Value">@itemEstado_Civil_del_Abogado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divTipo_de_Identificacion_del_Abogado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Tipo_de_Identificacion_del_Abogado</label>
+	<div class="col-sm-8" data-field-id="Tipo_de_Identificacion_del_Abogado" data-attribute="264655" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Tipo_de_Identificacion_del_Abogado">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo de Identificación must be a number." data-val-required="The Tipo de Identificación field is required." id="Detalle_del_Abogado_Imputado_MPITipo_de_Identificacion_del_Abogado" name="Detalle_del_Abogado_Imputado_MPITipo_de_Identificacion_del_Abogado">
+			<option value=""></option>
+			@if (varTipo_de_Identificacion_Tipo_de_Identificacion_del_Abogado != null){ 
+				foreach (var itemTipo_de_Identificacion_del_Abogado in varTipo_de_Identificacion_Tipo_de_Identificacion_del_Abogado)
+				{
+					if (itemTipo_de_Identificacion_del_Abogado.Value == Convert.ToString(Model.Tipo_de_Identificacion_del_Abogado))
+					{
+						<option value="@itemTipo_de_Identificacion_del_Abogado.Value" selected>@itemTipo_de_Identificacion_del_Abogado.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo_de_Identificacion_del_Abogado.Value">@itemTipo_de_Identificacion_del_Abogado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNumero_de_Identificacion_del_Abogado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Numero_de_Identificacion_del_Abogado</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Identificacion_del_Abogado" data-attribute="264656" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Numero_de_Identificacion_del_Abogado">
+                                    <input class="form-control" id="Detalle_del_Abogado_Imputado_MPINumero_de_Identificacion_del_Abogado" name="Detalle_del_Abogado_Imputado_MPINumero_de_Identificacion_del_Abogado" type="text" value="@Model.Numero_de_Identificacion_del_Abogado">
+                                </div>
+                            </div>
+<div class="form-group" id="divNacionalidad_del_Abogado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Nacionalidad_del_Abogado</label>
+	<div class="col-sm-8" data-field-id="Nacionalidad_del_Abogado" data-attribute="264657" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Nacionalidad_del_Abogado">
+		<select class="form-control" data-val="true" data-val-number="The field Nacionalidad must be a number." data-val-required="The Nacionalidad field is required." id="Detalle_del_Abogado_Imputado_MPINacionalidad_del_Abogado" name="Detalle_del_Abogado_Imputado_MPINacionalidad_del_Abogado">
+			<option value=""></option>
+			@if (varNacionalidad_Nacionalidad_del_Abogado != null){ 
+				foreach (var itemNacionalidad_del_Abogado in varNacionalidad_Nacionalidad_del_Abogado)
+				{
+					if (itemNacionalidad_del_Abogado.Value == Convert.ToString(Model.Nacionalidad_del_Abogado))
+					{
+						<option value="@itemNacionalidad_del_Abogado.Value" selected>@itemNacionalidad_del_Abogado.Text</option>
+					}
+					else
+					{
+						<option value="@itemNacionalidad_del_Abogado.Value">@itemNacionalidad_del_Abogado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCedula_Profesional_del_Abogado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Cedula_Profesional_del_Abogado</label>
+                                <div class="col-sm-8" data-field-id="Cedula_Profesional_del_Abogado" data-attribute="264658" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Cedula_Profesional_del_Abogado">
+                                    <input class="form-control" id="Detalle_del_Abogado_Imputado_MPICedula_Profesional_del_Abogado" name="Detalle_del_Abogado_Imputado_MPICedula_Profesional_del_Abogado" type="text" value="@Model.Cedula_Profesional_del_Abogado">
+                                </div>
+                            </div>
+<div class="form-group" id="divPais_del_Abogado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Pais_del_Abogado</label>
+	<div class="col-sm-8" data-field-id="Pais_del_Abogado" data-attribute="264659" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Pais_del_Abogado">
+		<select class="form-control" data-val="true" data-val-number="The field País must be a number." data-val-required="The País field is required." id="Detalle_del_Abogado_Imputado_MPIPais_del_Abogado" name="Detalle_del_Abogado_Imputado_MPIPais_del_Abogado">
+			<option value=""></option>
+			@if (varPais_Pais_del_Abogado != null){ 
+				foreach (var itemPais_del_Abogado in varPais_Pais_del_Abogado)
+				{
+					if (itemPais_del_Abogado.Value == Convert.ToString(Model.Pais_del_Abogado))
+					{
+						<option value="@itemPais_del_Abogado.Value" selected>@itemPais_del_Abogado.Text</option>
+					}
+					else
+					{
+						<option value="@itemPais_del_Abogado.Value">@itemPais_del_Abogado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEstado_del_Abogado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Estado_del_Abogado</label>
+	<div class="col-sm-8" data-field-id="Estado_del_Abogado" data-attribute="264660" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Estado_del_Abogado">
+		<select class="form-control" data-val="true" data-val-number="The field Estado must be a number." data-val-required="The Estado field is required." id="Detalle_del_Abogado_Imputado_MPIEstado_del_Abogado" name="Detalle_del_Abogado_Imputado_MPIEstado_del_Abogado">
+			<option value=""></option>
+			@if (varEstado_Estado_del_Abogado != null){ 
+				foreach (var itemEstado_del_Abogado in varEstado_Estado_del_Abogado)
+				{
+					if (itemEstado_del_Abogado.Value == Convert.ToString(Model.Estado_del_Abogado))
+					{
+						<option value="@itemEstado_del_Abogado.Value" selected>@itemEstado_del_Abogado.Text</option>
+					}
+					else
+					{
+						<option value="@itemEstado_del_Abogado.Value">@itemEstado_del_Abogado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMunicipio_del_Abogado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Municipio_del_Abogado</label>
+	<div class="col-sm-8" data-field-id="Municipio_del_Abogado" data-attribute="264661" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Municipio_del_Abogado">
+		<select class="form-control" data-val="true" data-val-number="The field Municipio must be a number." data-val-required="The Municipio field is required." id="Detalle_del_Abogado_Imputado_MPIMunicipio_del_Abogado" name="Detalle_del_Abogado_Imputado_MPIMunicipio_del_Abogado">
+			<option value=""></option>
+			@if (varMunicipio_Municipio_del_Abogado != null){ 
+				foreach (var itemMunicipio_del_Abogado in varMunicipio_Municipio_del_Abogado)
+				{
+					if (itemMunicipio_del_Abogado.Value == Convert.ToString(Model.Municipio_del_Abogado))
+					{
+						<option value="@itemMunicipio_del_Abogado.Value" selected>@itemMunicipio_del_Abogado.Text</option>
+					}
+					else
+					{
+						<option value="@itemMunicipio_del_Abogado.Value">@itemMunicipio_del_Abogado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divColonia_del_Abogado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Colonia_del_Abogado</label>
+	<div class="col-sm-8" data-field-id="Colonia_del_Abogado" data-attribute="264662" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Colonia_del_Abogado">
+		<select class="form-control" data-val="true" data-val-number="The field Colonia must be a number." data-val-required="The Colonia field is required." id="Detalle_del_Abogado_Imputado_MPIColonia_del_Abogado" name="Detalle_del_Abogado_Imputado_MPIColonia_del_Abogado">
+			<option value=""></option>
+			@if (varColonia_Colonia_del_Abogado != null){ 
+				foreach (var itemColonia_del_Abogado in varColonia_Colonia_del_Abogado)
+				{
+					if (itemColonia_del_Abogado.Value == Convert.ToString(Model.Colonia_del_Abogado))
+					{
+						<option value="@itemColonia_del_Abogado.Value" selected>@itemColonia_del_Abogado.Text</option>
+					}
+					else
+					{
+						<option value="@itemColonia_del_Abogado.Value">@itemColonia_del_Abogado.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCodigo_Postal_del_Abogado">
+	<label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Codigo_Postal_del_Abogado</label>
+	<div class="col-sm-8" data-field-id="Codigo_Postal_del_Abogado" data-attribute="264663" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Codigo_Postal_del_Abogado">
+		<input class="form-control inputNumber" id="Detalle_del_Abogado_Imputado_MPICodigo_Postal_del_Abogado" name="Detalle_del_Abogado_Imputado_MPICodigo_Postal_del_Abogado" type="text" value="@Model.Codigo_Postal_del_Abogado">
+	</div>
+</div>
+<div class="form-group" id="divCalle_del_Abogado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Calle_del_Abogado</label>
+                                <div class="col-sm-8" data-field-id="Calle_del_Abogado" data-attribute="264664" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Calle_del_Abogado">
+                                    <input class="form-control" id="Detalle_del_Abogado_Imputado_MPICalle_del_Abogado" name="Detalle_del_Abogado_Imputado_MPICalle_del_Abogado" type="text" value="@Model.Calle_del_Abogado">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Exterior_del_Abogado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Numero_Exterior_del_Abogado</label>
+                                <div class="col-sm-8" data-field-id="Numero_Exterior_del_Abogado" data-attribute="264665" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Numero_Exterior_del_Abogado">
+                                    <input class="form-control" id="Detalle_del_Abogado_Imputado_MPINumero_Exterior_del_Abogado" name="Detalle_del_Abogado_Imputado_MPINumero_Exterior_del_Abogado" type="text" value="@Model.Numero_Exterior_del_Abogado">
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero_Interior_del_Abogado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Numero_Interior_del_Abogado</label>
+                                <div class="col-sm-8" data-field-id="Numero_Interior_del_Abogado" data-attribute="264666" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Numero_Interior_del_Abogado">
+                                    <input class="form-control" id="Detalle_del_Abogado_Imputado_MPINumero_Interior_del_Abogado" name="Detalle_del_Abogado_Imputado_MPINumero_Interior_del_Abogado" type="text" value="@Model.Numero_Interior_del_Abogado">
+                                </div>
+                            </div>
+<div class="form-group" id="divTelefono_del_Abogado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Telefono_del_Abogado</label>
+                                <div class="col-sm-8" data-field-id="Telefono_del_Abogado" data-attribute="264667" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Telefono_del_Abogado">
+                                    <input class="form-control" id="Detalle_del_Abogado_Imputado_MPITelefono_del_Abogado" name="Detalle_del_Abogado_Imputado_MPITelefono_del_Abogado" type="text" value="@Model.Telefono_del_Abogado">
+                                </div>
+                            </div>
+<div class="form-group" id="divCelular_del_Abogado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Celular_del_Abogado</label>
+                                <div class="col-sm-8" data-field-id="Celular_del_Abogado" data-attribute="264668" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Celular_del_Abogado">
+                                    <input class="form-control" id="Detalle_del_Abogado_Imputado_MPICelular_del_Abogado" name="Detalle_del_Abogado_Imputado_MPICelular_del_Abogado" type="text" value="@Model.Celular_del_Abogado">
+                                </div>
+                            </div>
+<div class="form-group" id="divCorreo_Electronico_del_Abogado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Correo_Electronico_del_Abogado</label>
+                                <div class="col-sm-8" data-field-id="Correo_Electronico_del_Abogado" data-attribute="264669" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Correo_Electronico_del_Abogado">
+                                    <input class="form-control" id="Detalle_del_Abogado_Imputado_MPICorreo_Electronico_del_Abogado" name="Detalle_del_Abogado_Imputado_MPICorreo_Electronico_del_Abogado" type="text" value="@Model.Correo_Electronico_del_Abogado">
+                                </div>
+                            </div>
+<div class="form-group" id="divAceptar_Notificaciones">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_del_Abogado_Imputado_MPIResources.Aceptar_Notificaciones</label>
+                                <div class="col-sm-8" data-field-id="Aceptar_Notificaciones" data-attribute="264671" data-field-name="@Resources.Detalle_del_Abogado_Imputado_MPIResources.Aceptar_Notificaciones">
+                                    @Html.CheckBoxFor(m => m.Aceptar_Notificaciones, new { @class = "i-checks" })
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Consecutivo" id="ReferenceConsecutivo" />
+												<input type="hidden" value="@Model.Consecutivo" name="Consecutivo" id="ConsecutivoId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_del_Abogado_Imputado_MPIConfigureSave" name="Detalle_del_Abogado_Imputado_MPIConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_del_Abogado_Imputado_MPIConfigureType" />
+												<input type="hidden" id="hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_del_Abogado_Imputado_MPIGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_del_Abogado_Imputado_MPIBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_del_Abogado_Imputado_MPI.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_del_Abogado_Imputado_MPIGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_del_Abogado_Imputado_MPICreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_de_Datos_del_Imputado_MPICreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_del_Abogado_Imputado_MPIRowElement = "Detalle_del_Abogado_Imputado_MPIPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_del_Abogado_Imputado_MPIRowElement + "')){ Detalle_del_Abogado_Imputado_MPIInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+            $('#Detalle_del_Abogado_Imputado_MPIFecha_de_Nacimiento_del_Abogado').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_del_Abogado_Imputado_MPIData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_del_Abogado_Imputado_MPI").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_del_Abogado_Imputado_MPI")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_del_Abogado_Imputado_MPICreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_del_Abogado_Imputado_MPI/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_del_Abogado_Imputado_MPIPropertyBag", "Detalle_del_Abogado_Imputado_MPI")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_del_Abogado_Imputado_MPIGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleFieldName').val(), ObjectId: '45150', Attribute: $('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_del_Abogado_Imputado_MPI' }, function (data) {
+                $(".Detalle_del_Abogado_Imputado_MPIBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_del_Abogado_Imputado_MPIGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleFieldName').val(), ObjectId: '45150', Attribute: $('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_del_Abogado_Imputado_MPI' }, function (data) {
+                $(".Detalle_del_Abogado_Imputado_MPIAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleFieldName').val(), ObjectId: '45150', Attribute: $('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleAttribute').val(), Screen: 'Detalle_del_Abogado_Imputado_MPI' }, function (data) {
+				$(".Detalle_del_Abogado_Imputado_MPIBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_del_Abogado_Imputado_MPI/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_del_Abogado_Imputado_MPI/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_del_Abogado_Imputado_MPI/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_del_Abogado_Imputado_MPIConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_del_Abogado_Imputado_MPIConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_del_Abogado_Imputado_MPI/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_del_Abogado_Imputado_MPIConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_del_Abogado_Imputado_MPI/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_del_Abogado_Imputado_MPI' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_del_Abogado_Imputado_MPI' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_del_Abogado_Imputado_MPIConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_del_Abogado_Imputado_MPIConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_del_Abogado_Imputado_MPI').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_del_Abogado_Imputado_MPIBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

@@ -1,0 +1,463 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Control_de_CitasAdvanceSearchModel
+@{
+    List<SelectListItem> varSpartan_User_Usuario_que_Atiende = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Atiende != null)
+    { varSpartan_User_Usuario_que_Atiende = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Atiende; }
+    List<SelectListItem> varOrigen_de_Invitacion_Proceso = null;
+    if (ViewBag.Origen_de_Invitacions_Proceso != null)
+    { varOrigen_de_Invitacion_Proceso = (List<SelectListItem>)ViewBag.Origen_de_Invitacions_Proceso; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Control_de_Citas", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Control_de_CitasResources.Folio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromFolio, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromFolio" })
+                    @Html.ValidationMessageFor(m => m.FromFolio)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToFolio, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToFolio", @data_min = "txtAdvanceFromFolio" })
+                    @Html.ValidationMessageFor(m => m.ToFolio)
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Control_de_CitasResources.Fecha_de_Registro</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Registro" name="FromFecha_de_Registro" type="text" value="@Model.FromFecha_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Registro" name="ToFecha_de_Registro" type="text" value="@Model.ToFecha_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Control_de_CitasResources.Hora_de_Registro</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_Registro" name="FromHora_de_Registro" type="text" value="@Model.FromHora_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_Registro" name="ToHora_de_Registro" type="text" value="@Model.ToHora_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Control_de_CitasResources.Usuario_que_Atiende</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Usuario_que_AtiendeFilter, filters, new { @class = "form-control", @id = "ddlUsuario_que_AtiendeFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceUsuario_que_Atiende, new { @class = "form-control", @type = "text", @id = "txtAdvanceUsuario_que_Atiende" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varSpartan_User_Usuario_que_Atiende!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceUsuario_que_AtiendeMultiple, varSpartan_User_Usuario_que_Atiende,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceUsuario_que_Atiende"
+                        });
+                    }
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Control_de_CitasResources.Fecha_de_la_Cita</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_la_Cita" name="FromFecha_de_la_Cita" type="text" value="@Model.FromFecha_de_la_Cita" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_la_Cita" name="ToFecha_de_la_Cita" type="text" value="@Model.ToFecha_de_la_Cita" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Control_de_CitasResources.Hora_de_la_Cita</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_la_Cita" name="FromHora_de_la_Cita" type="text" value="@Model.FromHora_de_la_Cita" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_la_Cita" name="ToHora_de_la_Cita" type="text" value="@Model.ToHora_de_la_Cita" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Control_de_CitasResources.Proceso</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ProcesoFilter, filters, new { @class = "form-control", @id = "ddlProcesoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceProceso, new { @class = "form-control", @type = "text", @id = "txtAdvanceProceso" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varOrigen_de_Invitacion_Proceso!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceProcesoMultiple, varOrigen_de_Invitacion_Proceso,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceProceso"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Control_de_CitasResources.Numero_de_Expediente</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_de_ExpedienteFilter, filters, new { @class = "form-control", @id = "ddlNumero_de_ExpedienteFilter" })
+                    @Html.TextBoxFor(m => m.Numero_de_Expediente, new { @class = "form-control", @type = "text", @id = "txtNumero_de_Expediente" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Control_de_CitasResources.Tipo_de_Cita</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_CitaFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_CitaFilter" })
+                    @Html.TextBoxFor(m => m.Tipo_de_Cita, new { @class = "form-control", @type = "text", @id = "txtTipo_de_Cita" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Control_de_CitasResources.Cita</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.CitaFilter, filters, new { @class = "form-control", @id = "ddlCitaFilter" })
+                    @Html.TextBoxFor(m => m.Cita, new { @class = "form-control", @type = "text", @id = "txtCita" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Control_de_CitasResources.Observaciones</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Control_de_Citas/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromFolio").val() != "" || $("#txtAdvanceToFolio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Control_de_CitasFolioFrom = $("#txtAdvanceFromFolio").val();
+            advanceSearch.Control_de_CitasFolioTo = $("#txtAdvanceToFolio").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Registro").val() != "" || $("#txtAdvanceToFecha_de_Registro").val() != "") {
+            hasParameter = true;
+            advanceSearch.Control_de_CitasFecha_de_RegistroFrom = $("#txtAdvanceFromFecha_de_Registro").val();
+            advanceSearch.Control_de_CitasFecha_de_RegistroTo = $("#txtAdvanceToFecha_de_Registro").val();
+        }
+        if ($("#txtAdvanceHora_de_Registro").val() != "") {
+            hasParameter = true;
+            advanceSearch.Control_de_CitasHora_de_Registro = $("#txtAdvanceHora_de_Registro").val();
+            advanceSearch.Control_de_CitasHora_de_RegistroSearchType = $("#ddlAdvanceHora_de_RegistroFilter").val();
+        }
+        advanceSearch.Usuario_que_AtiendeSearchType = 0;
+        if ($('#ddlAdvanceUsuario_que_Atiende').val().length > 0 || $("#txtAdvanceUsuario_que_Atiende").val() == "") {
+
+
+            if (isControl_de_CitasTextSearch) {
+                advanceSearch.Usuario_que_AtiendeName = $("#txtAdvanceUsuario_que_Atiende").val();
+                advanceSearch.Usuario_que_AtiendeNameSearchType = $("#ddlAdvanceUsuario_que_Atiende").val();
+                advanceSearch.Usuario_que_AtiendeSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Usuario_que_AtiendeToSearch = $("#ddlAdvanceUsuario_que_Atiende").val();
+                advanceSearch.Usuario_que_AtiendeSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromFecha_de_la_Cita").val() != "" || $("#txtAdvanceToFecha_de_la_Cita").val() != "") {
+            hasParameter = true;
+            advanceSearch.Control_de_CitasFecha_de_la_CitaFrom = $("#txtAdvanceFromFecha_de_la_Cita").val();
+            advanceSearch.Control_de_CitasFecha_de_la_CitaTo = $("#txtAdvanceToFecha_de_la_Cita").val();
+        }
+        if ($("#txtAdvanceHora_de_la_Cita").val() != "") {
+            hasParameter = true;
+            advanceSearch.Control_de_CitasHora_de_la_Cita = $("#txtAdvanceHora_de_la_Cita").val();
+            advanceSearch.Control_de_CitasHora_de_la_CitaSearchType = $("#ddlAdvanceHora_de_la_CitaFilter").val();
+        }
+        advanceSearch.ProcesoSearchType = 0;
+        if ($('#ddlAdvanceProceso').val().length > 0 || $("#txtAdvanceProceso").val() == "") {
+
+
+            if (isControl_de_CitasTextSearch) {
+                advanceSearch.ProcesoName = $("#txtAdvanceProceso").val();
+                advanceSearch.ProcesoNameSearchType = $("#ddlAdvanceProceso").val();
+                advanceSearch.ProcesoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ProcesoToSearch = $("#ddlAdvanceProceso").val();
+                advanceSearch.ProcesoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNumero_de_Expediente").val() != "") {
+            hasParameter = true;
+            advanceSearch.Control_de_CitasNumero_de_Expediente = $("#txtAdvanceNumero_de_Expediente").val();
+            advanceSearch.Control_de_CitasNumero_de_ExpedienteSearchType = $("#ddlAdvanceNumero_de_ExpedienteFilter").val();
+        }
+        if ($("#txtAdvanceTipo_de_Cita").val() != "") {
+            hasParameter = true;
+            advanceSearch.Control_de_CitasTipo_de_Cita = $("#txtAdvanceTipo_de_Cita").val();
+            advanceSearch.Control_de_CitasTipo_de_CitaSearchType = $("#ddlAdvanceTipo_de_CitaFilter").val();
+        }
+        if ($("#txtAdvanceCita").val() != "") {
+            hasParameter = true;
+            advanceSearch.Control_de_CitasCita = $("#txtAdvanceCita").val();
+            advanceSearch.Control_de_CitasCitaSearchType = $("#ddlAdvanceCitaFilter").val();
+        }
+        if ($("#ddlAdvanceCumplida").val() != "") {
+            hasParameter = true;
+            advanceSearch.Control_de_CitasCumplida = $("#ddlAdvanceCumplida").val();
+        }
+        if ($("#txtAdvanceObservaciones").val() != "") {
+            hasParameter = true;
+            advanceSearch.Control_de_CitasObservaciones = $("#txtAdvanceObservaciones").val();
+            advanceSearch.Control_de_CitasObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblControl_de_Citas').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isControl_de_CitasTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceUsuario_que_Atiende").keypress(function () {
+            isControl_de_CitasTextSearch = true;
+            $("#ddlAdvanceUsuario_que_Atiende").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceUsuario_que_Atiende").change(function () {
+            isControl_de_CitasTextSearch = false;
+            $("#txtAdvanceUsuario_que_Atiende").val('');
+        });
+        $("#txtAdvanceProceso").keypress(function () {
+            isControl_de_CitasTextSearch = true;
+            $("#ddlAdvanceProceso").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceProceso").change(function () {
+            isControl_de_CitasTextSearch = false;
+            $("#txtAdvanceProceso").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

@@ -1,0 +1,176 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Encuesta1GridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Encuesta1Resources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Encuesta1Resources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Encuesta1Resources.Numero_de_Preguntas
+            </td>
+            <td class="column1">
+                @Resources.Encuesta1Resources.NUAT
+            </td>
+            <td class="column1">
+                @Resources.Encuesta1Resources.Pregunta1
+            </td>
+            <td class="column1">
+                @Resources.Encuesta1Resources.Pregunta2
+            </td>
+            <td class="column1">
+                @Resources.Encuesta1Resources.Pregunta3
+            </td>
+            <td class="column1">
+                @Resources.Encuesta1Resources.Pregunta4
+            </td>
+            <td class="column1">
+                @Resources.Encuesta1Resources.Pregunta5
+            </td>
+            <td class="column1">
+                @Resources.Encuesta1Resources.Pregunta6
+            </td>
+            <td class="column1">
+                @Resources.Encuesta1Resources.Pregunta7
+            </td>
+            <td class="column1">
+                @Resources.Encuesta1Resources.Pregunta8
+            </td>
+            <td class="column1">
+                @Resources.Encuesta1Resources.Pregunta9
+            </td>
+            <td class="column1">
+                @Resources.Encuesta1Resources.Pregunta10
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Numero_de_PreguntasDescripcion
+                    </td>
+                    <td>
+                        @item.NUAT
+                    </td>
+                    <td>
+                        @item.Pregunta1Descripcion
+                    </td>
+                    <td>
+                        @item.Pregunta2Descripcion
+                    </td>
+                    <td>
+                        @item.Pregunta3Descripcion
+                    </td>
+                    <td>
+                        @item.Pregunta4Descripcion
+                    </td>
+                    <td>
+                        @item.Pregunta5Descripcion
+                    </td>
+                    <td>
+                        @item.Pregunta6Descripcion
+                    </td>
+                    <td>
+                        @item.Pregunta7Descripcion
+                    </td>
+                    <td>
+                        @item.Pregunta8Descripcion
+                    </td>
+                    <td>
+                        @item.Pregunta9Descripcion
+                    </td>
+                    <td>
+                        @item.Pregunta10Descripcion
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

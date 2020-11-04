@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Abogado" value="Detalle de Abogado"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="NUC" value="NUC"></resource>
+  <resource culture="en-US" name="Nombre_del_Representado" value="Nombre del Representado"></resource>
+  <resource culture="en-US" name="Tipo_de_Representante" value="Tipo de Representante"></resource>
+  <resource culture="en-US" name="Comentarios" value="Comentarios"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

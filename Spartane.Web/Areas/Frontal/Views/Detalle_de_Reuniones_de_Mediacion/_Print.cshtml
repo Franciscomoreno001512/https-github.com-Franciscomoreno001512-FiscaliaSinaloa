@@ -1,0 +1,176 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Detalle_de_Reuniones_de_MediacionGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Detalle_de_Reuniones_de_MediacionResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Detalle_de_Reuniones_de_MediacionResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Reuniones_de_MediacionResources.Numero_de_Expediente
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Reuniones_de_MediacionResources.Lugar
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Reuniones_de_MediacionResources.Fecha
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Reuniones_de_MediacionResources.Hora
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Reuniones_de_MediacionResources.Especialista
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Reuniones_de_MediacionResources.Mecanismo_Alterno
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Reuniones_de_MediacionResources.Tipo_de_Sesion
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Reuniones_de_MediacionResources.Cumplimiento
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Reuniones_de_MediacionResources.Fecha_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Reuniones_de_MediacionResources.Archivo_adjunto
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Reuniones_de_MediacionResources.Hora_de_Registro
+            </td>
+            <td class="column1">
+                @Resources.Detalle_de_Reuniones_de_MediacionResources.Usuario_que_Registra
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Numero_de_Expediente
+                    </td>
+                    <td>
+                        @item.Lugar
+                    </td>
+                    <td>
+                        @item.Fecha
+                    </td>
+                    <td>
+                        @item.Hora
+                    </td>
+                    <td>
+                        @item.Especialista
+                    </td>
+                    <td>
+                        @item.Mecanismo_Alterno
+                    </td>
+                    <td>
+                        @item.Tipo_de_SesionDescripcion
+                    </td>
+                    <td>
+                        @item.CumplimientoDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_de_Registro
+                    </td>
+                    <td>
+                        @item.Archivo_adjunto
+                    </td>
+                    <td>
+                        @item.Hora_de_Registro
+                    </td>
+                    <td>
+                        @item.Usuario_que_Registra
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

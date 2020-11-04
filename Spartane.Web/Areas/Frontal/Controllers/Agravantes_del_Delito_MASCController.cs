@@ -1,0 +1,593 @@
+﻿using System.Text.RegularExpressions;
+using System.Web;
+using System.Web.Script.Serialization;
+using Spartane.Core.Domain.Agravantes_del_Delito_MASC;
+using Spartane.Core.Domain.Agravantes;
+
+using Spartane.Core.Enums;
+using Spartane.Core.Domain.Spartane_File;
+using Spartane.Core.Exceptions.Service;
+using Spartane.Services.Agravantes_del_Delito_MASC;
+using Spartane.Web.Areas.Frontal.Models;
+using Spartane.Web.Areas.WebApiConsumer;
+using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
+using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
+using Spartane.Web.Areas.WebApiConsumer.Agravantes_del_Delito_MASC;
+using Spartane.Web.Areas.WebApiConsumer.Agravantes;
+
+using Spartane.Web.AuthFilters;
+using Spartane.Web.Helpers;
+using Spartane.Web.Models;
+using Spartane.Web.SqlModelMapper;
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Globalization;
+using System.Linq;
+using System.Web.Mvc;
+using System.IO;
+using Newtonsoft.Json;
+using Spartane.Core.Domain.Spartan_Business_Rule;
+using Spartane.Web.Areas.WebApiConsumer.Spartan_Business_Rule;
+using Spartane.Web.Areas.WebApiConsumer.Spartan_BR_Process_Event_Detail;
+
+namespace Spartane.Web.Areas.Frontal.Controllers
+{
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+    public class Agravantes_del_Delito_MASCController : Controller
+    {
+        #region "variable declaration"
+
+        private IAgravantes_del_Delito_MASCService service = null;
+        private IAgravantes_del_Delito_MASCApiConsumer _IAgravantes_del_Delito_MASCApiConsumer;
+        private IAgravantesApiConsumer _IAgravantesApiConsumer;
+
+        private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
+        private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
+        private ISpartane_FileApiConsumer _ISpartane_FileApiConsumer;
+        private IAuthenticationApiConsumer _IAuthenticationApiConsumer = null;
+        private Spartane_Credential _userCredential = null;
+        private ITokenManager _tokenManager = null;
+
+        #endregion "variable declaration"
+
+        #region "Constructor Declaration"
+
+        
+        public Agravantes_del_Delito_MASCController(IAgravantes_del_Delito_MASCService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IAgravantes_del_Delito_MASCApiConsumer Agravantes_del_Delito_MASCApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IAgravantesApiConsumer AgravantesApiConsumer )
+        {
+            this.service = service;
+            this._IAuthenticationApiConsumer = authenticationApiConsumer;
+            this._IAgravantes_del_Delito_MASCApiConsumer = Agravantes_del_Delito_MASCApiConsumer;
+            this._userCredential = SessionHelper.UserCredential;
+            this._tokenManager = tokenManager;
+            this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
+            this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
+            this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
+            this._IAgravantesApiConsumer = AgravantesApiConsumer;
+
+        }
+
+        #endregion "Constructor Declaration"
+
+        #region "Controller Methods"
+
+        // GET: Frontal/Agravantes_del_Delito_MASC
+        [ObjectAuth(ObjectId = (ModuleObjectId)45331, PermissionType = PermissionTypes.Consult)]
+        public ActionResult Index()
+        {
+            var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45331);
+            ViewBag.Permission = permission;
+            ViewBag.AdvanceSearch = Session["AdvanceSearch"] != null;
+            return View();
+        }
+
+        // GET: Frontal/Agravantes_del_Delito_MASC/Create
+        [ObjectAuth(ObjectId = (ModuleObjectId)45331, PermissionType = PermissionTypes.New,
+            OptionalParameter = "Id", OptionalPermissionType = PermissionTypes.Edit)]
+        public ActionResult Create(int Id = 0,  int consult = 0)
+        {
+			int ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
+            var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45331);
+            ViewBag.Permission = permission;
+            var varAgravantes_del_Delito_MASC = new Agravantes_del_Delito_MASCModel();
+			
+            ViewBag.ObjectId = "45331";
+			ViewBag.Operation = "New";
+			
+			ViewBag.IsNew = true;
+
+
+
+            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short))&& Id.ToString() != "0"))
+            {
+				ViewBag.IsNew = false;
+				ViewBag.Operation = "Update";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IAgravantes_del_Delito_MASCApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var Agravantes_del_Delito_MASCData = _IAgravantes_del_Delito_MASCApiConsumer.GetByKeyComplete(Id).Resource.Agravantes_del_Delito_MASCs[0];
+                if (Agravantes_del_Delito_MASCData == null)
+                    return HttpNotFound();
+
+                varAgravantes_del_Delito_MASC = new Agravantes_del_Delito_MASCModel
+                {
+                    Clave = (int)Agravantes_del_Delito_MASCData.Clave
+                    ,Agravante = Agravantes_del_Delito_MASCData.Agravante
+                    ,AgravanteDescripcion = CultureHelper.GetTraduction(Convert.ToString(Agravantes_del_Delito_MASCData.Agravante), "Agravantes") ??  (string)Agravantes_del_Delito_MASCData.Agravante_Agravantes.Descripcion
+
+                };
+
+            }
+            if (!_tokenManager.GenerateToken())
+                return Json(null, JsonRequestBehavior.AllowGet);
+
+            _IAgravantesApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Agravantess_Agravante = _IAgravantesApiConsumer.SelAll(true);
+            if (Agravantess_Agravante != null && Agravantess_Agravante.Resource != null)
+                ViewBag.Agravantess_Agravante = Agravantess_Agravante.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Agravantes", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+
+
+            ViewBag.Consult = consult == 1;
+			if (consult == 1)
+                ViewBag.Operation = "Consult";
+            return View(varAgravantes_del_Delito_MASC);
+        }
+		
+	[HttpGet]
+        public ActionResult AddAgravantes_del_Delito_MASC(int rowIndex = 0, int functionMode = 0, int id = 0)
+        {
+            int ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
+            ViewBag.currentRowIndex = rowIndex;
+            ViewBag.functionMode = functionMode;
+            ViewBag.Consult = false;
+            var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45331);
+            ViewBag.Permission = permission;
+			if (!_tokenManager.GenerateToken())
+                return null;
+           _IAgravantes_del_Delito_MASCApiConsumer.SetAuthHeader(_tokenManager.Token);
+			Agravantes_del_Delito_MASCModel varAgravantes_del_Delito_MASC= new Agravantes_del_Delito_MASCModel();
+
+
+            if (id.ToString() != "0")
+            {
+                var Agravantes_del_Delito_MASCsData = _IAgravantes_del_Delito_MASCApiConsumer.ListaSelAll(0, 1000, "Agravantes_del_Delito_MASC.Clave=" + id, "").Resource.Agravantes_del_Delito_MASCs;
+				
+				if (Agravantes_del_Delito_MASCsData != null && Agravantes_del_Delito_MASCsData.Count > 0)
+                {
+					var Agravantes_del_Delito_MASCData = Agravantes_del_Delito_MASCsData.First();
+					varAgravantes_del_Delito_MASC= new Agravantes_del_Delito_MASCModel
+					{
+						Clave  = Agravantes_del_Delito_MASCData.Clave 
+	                    ,Agravante = Agravantes_del_Delito_MASCData.Agravante
+                    ,AgravanteDescripcion = CultureHelper.GetTraduction(Convert.ToString(Agravantes_del_Delito_MASCData.Agravante), "Agravantes") ??  (string)Agravantes_del_Delito_MASCData.Agravante_Agravantes.Descripcion
+
+					};
+				}
+
+            }
+            if (!_tokenManager.GenerateToken())
+                return Json(null, JsonRequestBehavior.AllowGet);
+
+            _IAgravantesApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Agravantess_Agravante = _IAgravantesApiConsumer.SelAll(true);
+            if (Agravantess_Agravante != null && Agravantess_Agravante.Resource != null)
+                ViewBag.Agravantess_Agravante = Agravantess_Agravante.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Agravantes", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+
+
+            return PartialView("AddAgravantes_del_Delito_MASC", varAgravantes_del_Delito_MASC);
+        }
+
+
+        [HttpGet]
+        public FileResult GetFile(int id)
+        {
+
+            if (!_tokenManager.GenerateToken())
+                return null;
+            _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+            var fileInfo = _ISpartane_FileApiConsumer.GetByKey(id).Resource;
+            if (fileInfo == null)
+                return null;
+            return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
+        }
+
+        [HttpGet]
+        public ActionResult GetAgravantesAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IAgravantesApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IAgravantesApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Agravantes", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+        public ActionResult Get()
+        {
+            NameValueCollection filter = Request.QueryString;
+            var configuration = new GridConfiguration() { OrderByClause = "", WhereClause = "" };
+            if (filter != null)
+                configuration = GridQueryHelper.GetConfiguration(filter, new Agravantes_del_Delito_MASCPropertyMapper());
+
+            var pageSize = Convert.ToInt32(filter["pageSize"]);
+            var pageIndex = Convert.ToInt32(filter["pageIndex"]);
+            var result = _IAgravantes_del_Delito_MASCApiConsumer.ListaSelAll((pageIndex * pageSize) - pageSize + 1, pageSize, configuration.WhereClause, configuration.OrderByClause ?? "").Resource;
+            if (result.Agravantes_del_Delito_MASCs == null)
+                result.Agravantes_del_Delito_MASCs = new List<Agravantes_del_Delito_MASC>();
+
+            return Json(new
+            {
+                data = result.Agravantes_del_Delito_MASCs.Select(m => new Agravantes_del_Delito_MASCGridModel
+                    {
+                    Clave = m.Clave
+                        ,AgravanteDescripcion = CultureHelper.GetTraduction(m.Agravante_Agravantes.Clave.ToString(), "Descripcion") ?? (string)m.Agravante_Agravantes.Descripcion
+
+                    }).ToList(),
+                itemsCount = result.RowCount
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
+
+
+       
+
+        [NonAction]
+        public Grid_File ConvertSpartane_FileToGridFile(Spartane.Core.Domain.Spartane_File.Spartane_File file)
+        {
+            return file == null ? new Grid_File { FileId = 0, FileSize = 0, FileName = "" } : new Grid_File { FileId = file.File_Id, FileName = file.Description, FileSize = file.File_Size ?? 0, };
+        }
+
+
+
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IAgravantes_del_Delito_MASCApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+                Agravantes_del_Delito_MASC varAgravantes_del_Delito_MASC = null;
+                if (id.ToString() != "0")
+                {
+                        string where = "";
+
+                }
+                var result = _IAgravantes_del_Delito_MASCApiConsumer.Delete(id, null, null).Resource;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Post(bool IsNew, Agravantes_del_Delito_MASCModel varAgravantes_del_Delito_MASC)
+        {
+            try
+            {
+				if (ModelState.IsValid)
+				{
+                    if (!_tokenManager.GenerateToken())
+                        return Json(null, JsonRequestBehavior.AllowGet);
+                    _IAgravantes_del_Delito_MASCApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+
+
+                    
+                    var result = "";
+                    var Agravantes_del_Delito_MASCInfo = new Agravantes_del_Delito_MASC
+                    {
+                        Clave = varAgravantes_del_Delito_MASC.Clave
+                        ,Agravante = varAgravantes_del_Delito_MASC.Agravante
+
+                    };
+
+                    result = !IsNew ?
+                        _IAgravantes_del_Delito_MASCApiConsumer.Update(Agravantes_del_Delito_MASCInfo, null, null).Resource.ToString() :
+                         _IAgravantes_del_Delito_MASCApiConsumer.Insert(Agravantes_del_Delito_MASCInfo, null, null).Resource.ToString();
+
+                    return Json(result, JsonRequestBehavior.AllowGet);
+				}
+				return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+        /// <summary>
+        /// Write Element Array of Agravantes_del_Delito_MASC script
+        /// </summary>
+        /// <param name="oAgravantes_del_Delito_MASCElements"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult WriteScriptSettings(CustomElements Agravantes_del_Delito_MASCModuleAttributeList)
+        {
+            for (int i = 0; i < Agravantes_del_Delito_MASCModuleAttributeList.CustomModuleAttributeList.Count - 1; i++)
+            {
+                if (string.IsNullOrEmpty(Agravantes_del_Delito_MASCModuleAttributeList.CustomModuleAttributeList[i].DefaultValue))
+                {
+                    Agravantes_del_Delito_MASCModuleAttributeList.CustomModuleAttributeList[i].DefaultValue = string.Empty;
+                }
+                if (string.IsNullOrEmpty(Agravantes_del_Delito_MASCModuleAttributeList.CustomModuleAttributeList[i].HelpText))
+                {
+                    Agravantes_del_Delito_MASCModuleAttributeList.CustomModuleAttributeList[i].HelpText = string.Empty;
+                }
+            }
+			if (Agravantes_del_Delito_MASCModuleAttributeList.ChildModuleAttributeList != null)
+            {
+				for (int i = 0; i < Agravantes_del_Delito_MASCModuleAttributeList.ChildModuleAttributeList.Count - 1; i++)
+				{
+					if (string.IsNullOrEmpty(Agravantes_del_Delito_MASCModuleAttributeList.ChildModuleAttributeList[i].DefaultValue))
+					{
+						Agravantes_del_Delito_MASCModuleAttributeList.ChildModuleAttributeList[i].DefaultValue = string.Empty;
+					}
+					if (string.IsNullOrEmpty(Agravantes_del_Delito_MASCModuleAttributeList.ChildModuleAttributeList[i].HelpText))
+					{
+						Agravantes_del_Delito_MASCModuleAttributeList.ChildModuleAttributeList[i].HelpText = string.Empty;
+					}
+				}
+			}
+            string strAgravantes_del_Delito_MASCScript = string.Empty;
+            using (StreamReader r = new StreamReader(Server.MapPath("~/Uploads/Scripts/Agravantes_del_Delito_MASC.js")))
+            {
+                strAgravantes_del_Delito_MASCScript = r.ReadToEnd();
+            }
+
+            JavaScriptSerializer jsSerialize = new JavaScriptSerializer();
+
+            // get json string of change Agravantes_del_Delito_MASC element attributes
+            string userChangeJson = jsSerialize.Serialize(Agravantes_del_Delito_MASCModuleAttributeList.CustomModuleAttributeList);
+
+            int indexOfArray = strAgravantes_del_Delito_MASCScript.IndexOf("inpuElementArray");
+            string splittedString = strAgravantes_del_Delito_MASCScript.Substring(indexOfArray, strAgravantes_del_Delito_MASCScript.Length - indexOfArray);
+            int indexOfMainElement = splittedString.IndexOf('[');
+            int endIndexOfMainElement = splittedString.IndexOf(']') + 1;
+
+            // get json string of change job history element attributes
+            string childUserChangeJson = jsSerialize.Serialize(Agravantes_del_Delito_MASCModuleAttributeList.ChildModuleAttributeList);
+			int indexOfArrayHistory = 0;
+            string splittedStringHistory = "";
+            int indexOfMainElementHistory = 0;
+            int endIndexOfMainElementHistory = 0;
+			if (Agravantes_del_Delito_MASCModuleAttributeList.ChildModuleAttributeList != null)
+            {
+				indexOfArrayHistory = strAgravantes_del_Delito_MASCScript.IndexOf("inpuElementChildArray");
+				splittedStringHistory = strAgravantes_del_Delito_MASCScript.Substring(indexOfArrayHistory, strAgravantes_del_Delito_MASCScript.Length - indexOfArrayHistory);
+				indexOfMainElementHistory = splittedStringHistory.IndexOf('[');
+				endIndexOfMainElementHistory = splittedStringHistory.IndexOf(']') + 1;
+			}
+			string finalResponse = strAgravantes_del_Delito_MASCScript.Substring(0, indexOfArray + indexOfMainElement) + userChangeJson + strAgravantes_del_Delito_MASCScript.Substring(endIndexOfMainElement + indexOfArray, strAgravantes_del_Delito_MASCScript.Length - (endIndexOfMainElement + indexOfArray));
+            if (Agravantes_del_Delito_MASCModuleAttributeList.ChildModuleAttributeList != null)
+            {
+				finalResponse = strAgravantes_del_Delito_MASCScript.Substring(0, indexOfArray + indexOfMainElement) + userChangeJson
+                + strAgravantes_del_Delito_MASCScript.Substring(endIndexOfMainElement + indexOfArray, (indexOfMainElementHistory + indexOfArrayHistory) - (endIndexOfMainElement + indexOfArray)) + childUserChangeJson
+                + strAgravantes_del_Delito_MASCScript.Substring(endIndexOfMainElementHistory + indexOfArrayHistory, strAgravantes_del_Delito_MASCScript.Length - (endIndexOfMainElementHistory + indexOfArrayHistory));
+			}
+            
+            
+
+            using (StreamWriter w = new StreamWriter(Server.MapPath("~/Uploads/Scripts/Agravantes_del_Delito_MASC.js")))
+            {
+                w.WriteLine(finalResponse);
+            }
+            
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        
+
+        [HttpPost]
+        public JsonResult ReadScriptSettings()
+        {
+            string strCustomScript = string.Empty;
+            
+            CustomElementAttribute oCustomElementAttribute = new CustomElementAttribute();
+
+            if (System.IO.File.Exists(Server.MapPath("~/Uploads/Scripts/Agravantes_del_Delito_MASC.js")))
+            {
+                using (StreamReader r = new StreamReader(Server.MapPath("~/Uploads/Scripts/Agravantes_del_Delito_MASC.js")))
+                {
+                    strCustomScript = r.ReadToEnd();
+                
+                }
+
+                int indexOfArray = strCustomScript.IndexOf("inpuElementArray");
+                string splittedString = strCustomScript.Substring(indexOfArray, strCustomScript.Length - indexOfArray);                
+                int indexOfMainElement = splittedString.IndexOf('[');                
+                int endIndexOfMainElement = splittedString.IndexOf(']') + 1;                
+                string mainJsonArray = splittedString.Substring(indexOfMainElement, endIndexOfMainElement - indexOfMainElement);
+
+                int indexOfChildArray = strCustomScript.IndexOf("inpuElementChildArray");
+				string childJsonArray = "";
+                if (indexOfChildArray != -1)
+                {
+					string splittedChildString = strCustomScript.Substring(indexOfChildArray, strCustomScript.Length - indexOfChildArray);
+					int indexOfChildElement = splittedChildString.IndexOf('[');
+					int endIndexOfChildElement = splittedChildString.IndexOf(']') + 1;
+					childJsonArray = splittedChildString.Substring(indexOfChildElement, endIndexOfChildElement - indexOfChildElement);
+				}
+                var MainElementList = JsonConvert.DeserializeObject(mainJsonArray);
+                var ChildElementList = JsonConvert.DeserializeObject(childJsonArray);
+
+                oCustomElementAttribute.MainElement = MainElementList.ToString();
+				if (indexOfChildArray != -1)
+                {
+					oCustomElementAttribute.ChildElement = ChildElementList.ToString();
+				}
+            }
+            else
+            {
+                oCustomElementAttribute.MainElement = string.Empty;
+                oCustomElementAttribute.ChildElement = string.Empty;
+            }        
+            return Json(oCustomElementAttribute, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult Agravantes_del_Delito_MASCPropertyBag()
+        {
+            return PartialView("Agravantes_del_Delito_MASCPropertyBag", "Agravantes_del_Delito_MASC");
+        }
+		
+		public List<Spartan_Business_Rule> GetBusinessRules(int ObjectId, int Attribute)
+        {
+            if (!_tokenManager.GenerateToken())
+                return null;
+            List<Spartan_Business_Rule> result = new List<Spartan_Business_Rule>();
+            _ISpartan_Business_RuleApiConsumer.SetAuthHeader(_tokenManager.Token);
+            if (Attribute != 0)
+            {
+                result = _ISpartan_Business_RuleApiConsumer.ListaSelAll(0, 1000, "Object = " + ObjectId + " AND Attribute = " + Attribute, "").Resource.Spartan_Business_Rules;
+            }
+            else
+            {
+                List<Spartan_Business_Rule> partialResult = _ISpartan_Business_RuleApiConsumer.ListaSelAll(0, 1000, "Object = " + ObjectId, "").Resource.Spartan_Business_Rules;
+                foreach (var item in partialResult)
+                {
+                    if (item.Attribute == Attribute)
+                    {
+                        result.Add(item);
+                    }
+                    else//Busco las reglas con el event process en cuestion
+                    {
+                        _ISpartan_BR_Process_Event_DetailApiConsumer.SetAuthHeader(_tokenManager.Token);
+                        var eventProcess = _ISpartan_BR_Process_Event_DetailApiConsumer.ListaSelAll(0, 1000, "Business_Rule = " + item.BusinessRuleId, "").Resource;
+                        if (Attribute == 0 && eventProcess.Spartan_BR_Process_Event_Details.Where(x => x.Process_Event == 1).Count() > 0)
+                        {
+                            result.Add(item);
+                        }
+                        if ((Attribute == 2) && eventProcess.Spartan_BR_Process_Event_Details.Where(x => x.Process_Event == 2 || x.Process_Event == 3).Count() > 0)
+                        {
+                            result.Add(item);
+                        }
+                        if ((Attribute == 3) && eventProcess.Spartan_BR_Process_Event_Details.Where(x => x.Process_Event == 4 || x.Process_Event == 5).Count() > 0)
+                        {
+                            result.Add(item);
+                        }
+                        //TODO Faltan en la base de datos cuando creas una row de grilla
+                    }
+                }
+            }
+            return result;
+        }
+
+
+
+        #endregion "Controller Methods"
+
+        #region "Custom methods"
+
+        [HttpGet]
+        public void Export(string format, int pageIndex, int pageSize)
+        {
+            var exportFormatType = (ExportFormatType)Enum.Parse(
+                                          typeof(ExportFormatType), format, true);
+
+            if (!_tokenManager.GenerateToken())
+                return;
+
+            _IAgravantes_del_Delito_MASCApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+            NameValueCollection filter = Request.QueryString;
+
+            var configuration = new GridConfiguration() { OrderByClause = "", WhereClause = "" };
+            if (filter != null)
+                configuration = GridQueryHelper.GetConfiguration(filter, new Agravantes_del_Delito_MASCPropertyMapper());
+
+            pageSize = pageSize == 0 ? int.MaxValue : pageSize;
+
+            var result = _IAgravantes_del_Delito_MASCApiConsumer.ListaSelAll((pageIndex * pageSize) - pageSize + 1, pageSize, configuration.WhereClause, configuration.OrderByClause ?? "").Resource;
+            if (result.Agravantes_del_Delito_MASCs == null)
+                result.Agravantes_del_Delito_MASCs = new List<Agravantes_del_Delito_MASC>();
+
+            var data = result.Agravantes_del_Delito_MASCs.Select(m => new Agravantes_del_Delito_MASCGridModel
+            {
+                Clave = m.Clave
+                ,AgravanteDescripcion = (string)m.Agravante_Agravantes.Descripcion
+
+            }).ToList();
+
+            switch (exportFormatType)
+            {
+                case ExportFormatType.PDF:
+                    PdfConverter.ExportToPdf(data.ToDataTable(), "Agravantes_del_Delito_MASCList_" + DateTime.Now.ToString());
+                    break;
+
+                case ExportFormatType.EXCEL:
+                    ExcelConverter.ExportToExcel(data.ToDataTable(), "Agravantes_del_Delito_MASCList_" + DateTime.Now.ToString());
+                    break;
+
+                case ExportFormatType.CSV:
+                    CsvConverter.ExportToCSV(data.ToDataTable(), "EmployeeList_" + DateTime.Now.ToString());
+                    break;
+            }
+        }
+
+        [HttpGet]
+        //[ObjectAuth(ObjectId = ModuleObjectId.EMPLEADOS_OBJECT, PermissionType = PermissionTypes.Export)]
+        public ActionResult Print(string format, int pageIndex, int pageSize)
+        {
+            var exportFormatType = (ExportFormatType)Enum.Parse(
+                                          typeof(ExportFormatType), format, true);
+
+            if (!_tokenManager.GenerateToken())
+                return null;
+
+            _IAgravantes_del_Delito_MASCApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+            NameValueCollection filter = Request.QueryString;
+
+            var configuration = new GridConfiguration() { OrderByClause = "", WhereClause = "" };
+            if (filter != null)
+                configuration = GridQueryHelper.GetConfiguration(filter, new Agravantes_del_Delito_MASCPropertyMapper());
+
+            pageSize = pageSize == 0 ? int.MaxValue : pageSize;
+
+            var result = _IAgravantes_del_Delito_MASCApiConsumer.ListaSelAll((pageIndex * pageSize) - pageSize + 1, pageSize, configuration.WhereClause, configuration.OrderByClause ?? "").Resource;
+            if (result.Agravantes_del_Delito_MASCs == null)
+                result.Agravantes_del_Delito_MASCs = new List<Agravantes_del_Delito_MASC>();
+
+            var data = result.Agravantes_del_Delito_MASCs.Select(m => new Agravantes_del_Delito_MASCGridModel
+            {
+                Clave = m.Clave
+                ,AgravanteDescripcion = (string)m.Agravante_Agravantes.Descripcion
+
+            }).ToList();
+
+            return PartialView("_Print", data);
+        }
+
+        #endregion "Custom methods"
+    }
+}

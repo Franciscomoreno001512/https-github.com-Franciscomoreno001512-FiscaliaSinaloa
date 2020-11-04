@@ -1,0 +1,1284 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Acuerdos_MASCModel
+@{
+    Spartane_File attachedFileAcuerdo = (Spartane_File)ViewBag.AcuerdoSpartane_File;
+
+/*
+    string Fecha_de_Registro = "";
+    if (Model.Fecha_de_Registro == "")
+    { Model.Fecha_de_Registro = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Inicio_de_Acuerdo = "";
+    if (Model.Fecha_de_Inicio_de_Acuerdo == "")
+    { Model.Fecha_de_Inicio_de_Acuerdo = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Cumplimiento_de_Acuerdo = "";
+    if (Model.Fecha_de_Cumplimiento_de_Acuerdo == "")
+    { Model.Fecha_de_Cumplimiento_de_Acuerdo = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Revision = "";
+    if (Model.Fecha_de_Revision == "")
+    { Model.Fecha_de_Revision = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+*/
+ List<SelectListItem> varSolicitud_Numero_de_Expediente = null;
+    if (ViewBag.Solicituds_Numero_de_Expediente != null)
+    { varSolicitud_Numero_de_Expediente = (List<SelectListItem>)ViewBag.Solicituds_Numero_de_Expediente; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
+    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
+    List<SelectListItem> varTipo_de_Acuerdo_Tipo_de_Acuerdo = null;
+    if (ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo != null)
+    { varTipo_de_Acuerdo_Tipo_de_Acuerdo = (List<SelectListItem>)ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo; }
+    List<SelectListItem> varPeriodicidad_Periodicidad = null;
+    if (ViewBag.Periodicidads_Periodicidad != null)
+    { varPeriodicidad_Periodicidad = (List<SelectListItem>)ViewBag.Periodicidads_Periodicidad; }
+ List<SelectListItem> varSpartan_User_Personal_de_Seguimiento_Asignado = null;
+    if (ViewBag.Spartan_Users_Personal_de_Seguimiento_Asignado != null)
+    { varSpartan_User_Personal_de_Seguimiento_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_Personal_de_Seguimiento_Asignado; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Revisa = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Revisa != null)
+    { varSpartan_User_Usuario_que_Revisa = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Revisa; }
+    List<SelectListItem> varResultado_de_Revision_Resultado = null;
+    if (ViewBag.Resultado_de_Revisions_Resultado != null)
+    { varResultado_de_Revision_Resultado = (List<SelectListItem>)ViewBag.Resultado_de_Revisions_Resultado; }
+
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.Acuerdos_MASCResources.Acuerdos_MASC
+                <button onclick="Acuerdos_MASCGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Acuerdos_MASCBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Acuerdos_MASCResources.Acuerdos_MASC</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="Acuerdos_MASCDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in Acuerdos_MASCPropertyBusinessModal" id="Acuerdos_MASCPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Acuerdos_MASCBusinessRule-form" onclick="Acuerdos_MASCGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Acuerdos_MASCBusinessRuleModal" id="Acuerdos_MASCBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Acuerdos_MASC", FormMethod.Post, new { id = "CreateAcuerdos_MASC", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Acuerdos_MASCCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Acuerdos_MASCResources.TabDatos_Generales</a></li>
+<li class=""><a data-toggle="tab" href="#tabAutorizacion"> @Resources.Acuerdos_MASCResources.TabAutorizacion</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="266500" data-field-name="@Resources.Acuerdos_MASCResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+				<div class="form-group" id="divNumero_de_Expediente">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Numero_de_Expediente</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Expediente" data-attribute="266501" data-field-name="@Resources.Acuerdos_MASCResources.Numero_de_Expediente">
+                                    <select class='fullWidth AutoComplete AutoCompleteAcuerdos_MASC_Numero_de_Expediente form-control select2-dropdown Datos_Generales' data-val="true" id="Numero_de_Expediente" name="Numero_de_Expediente">
+                                        <option value="@Model.Numero_de_Expediente">@(Model.Numero_de_ExpedienteNumero_de_Folio??Model.Numero_de_ExpedienteNumero_de_Folio)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266501).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud', 'Numero_de_Expediente');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divFecha_de_Registro">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Fecha_de_Registro</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Registro" data-attribute="266502" data-field-name="@Resources.Acuerdos_MASCResources.Fecha_de_Registro">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Registro"  name="Fecha_de_Registro" type="text" value="@Model.Fecha_de_Registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Registro">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Hora_de_Registro</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Registro" data-attribute="266503" data-field-name="@Resources.Acuerdos_MASCResources.Hora_de_Registro">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Hora_de_Registro"  name="Hora_de_Registro" type="text" data-autoclose="true" value="@Model.Hora_de_Registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Registra">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Usuario_que_Registra</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Registra" data-attribute="266504" data-field-name="@Resources.Acuerdos_MASCResources.Usuario_que_Registra">
+                                    <select class='fullWidth AutoComplete AutoCompleteAcuerdos_MASC_Usuario_que_Registra form-control select2-dropdown Datos_Generales' data-val="true" id="Usuario_que_Registra" name="Usuario_que_Registra">
+                                        <option value="@Model.Usuario_que_Registra">@(Model.Usuario_que_RegistraName??Model.Usuario_que_RegistraName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266504).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Registra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo_de_Acuerdo">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Tipo_de_Acuerdo</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Acuerdo" data-attribute="266505" data-field-name="@Resources.Acuerdos_MASCResources.Tipo_de_Acuerdo">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Acuerdo must be a number." data-val-required="The Tipo de Acuerdo field is required." id="Tipo_de_Acuerdo" name="Tipo_de_Acuerdo">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Acuerdo_Tipo_de_Acuerdo != null){ 
+                                            foreach (var itemTipo_de_Acuerdo in varTipo_de_Acuerdo_Tipo_de_Acuerdo)
+                                            {
+                                                if (itemTipo_de_Acuerdo.Value == Convert.ToString(Model.Tipo_de_Acuerdo))
+                                                {
+                                                    <option value="@itemTipo_de_Acuerdo.Value" selected>@itemTipo_de_Acuerdo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Acuerdo.Value">@itemTipo_de_Acuerdo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Acuerdo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266505).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Acuerdo', 'Tipo_de_Acuerdo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divLugar_Acordado">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Lugar_Acordado</label>
+                                <div class="col-sm-8" data-field-id="Lugar_Acordado" data-attribute="266506" data-field-name="@Resources.Acuerdos_MASCResources.Lugar_Acordado">
+                                    <textarea id="Lugar_Acordado" name="Lugar_Acordado" class="form-control Datos_Generales" rows="4" cols="50">@Model.Lugar_Acordado</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Lugar_Acordado" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divDomicilio_Acordado">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Domicilio_Acordado</label>
+                                <div class="col-sm-8" data-field-id="Domicilio_Acordado" data-attribute="266507" data-field-name="@Resources.Acuerdos_MASCResources.Domicilio_Acordado">
+                                    <textarea id="Domicilio_Acordado" name="Domicilio_Acordado" class="form-control Datos_Generales" rows="4" cols="50">@Model.Domicilio_Acordado</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Domicilio_Acordado" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Acuerdo">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Hora_de_Acuerdo</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Acuerdo" data-attribute="266508" data-field-name="@Resources.Acuerdos_MASCResources.Hora_de_Acuerdo">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Hora_de_Acuerdo"  name="Hora_de_Acuerdo" type="text" data-autoclose="true" value="@Model.Hora_de_Acuerdo">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFecha_de_Inicio_de_Acuerdo">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Fecha_de_Inicio_de_Acuerdo</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Inicio_de_Acuerdo" data-attribute="266509" data-field-name="@Resources.Acuerdos_MASCResources.Fecha_de_Inicio_de_Acuerdo">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Inicio_de_Acuerdo"  name="Fecha_de_Inicio_de_Acuerdo" type="text" value="@Model.Fecha_de_Inicio_de_Acuerdo">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="form-group" id="divMonto_Total">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Monto_Total</label>
+								<div class="col-sm-8">
+									<div class="input-group m-b" data-field-id="Monto_Total" data-attribute="266510" data-field-name="@Resources.Acuerdos_MASCResources.Monto_Total">
+										<span class="input-group-addon">$</span>
+										@if(Model.Monto_Total.HasValue)
+						{
+						<input class="form-control col-md-12 inputNumber inputMoney Datos_Generales" id="Monto_Total" name="Monto_Total" type="text" min="0.00" max="999999.99" value="@Model.Monto_Total.Value.ToString("N", CultureInfo.InvariantCulture)">
+						}
+						else
+						{
+						<input class="form-control col-md-12 inputNumber inputMoney Datos_Generales" id="Monto_Total" name="Monto_Total" type="text" min="0.00" max="999999.99" value="">
+						}  
+									</div>
+								</div>
+                            </div>
+                            <div class="form-group" id="divParcialidades">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Parcialidades</label>
+                                <div class="col-sm-8" data-field-id="Parcialidades" data-attribute="266511" data-field-name="@Resources.Acuerdos_MASCResources.Parcialidades">
+                                    <input class="form-control inputNumber Datos_Generales" id="Parcialidades" name="Parcialidades" type="text" value="@Model.Parcialidades">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Parcialidades" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divPeriodicidad">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Periodicidad</label>
+                                <div class="col-sm-8" data-field-id="Periodicidad" data-attribute="266512" data-field-name="@Resources.Acuerdos_MASCResources.Periodicidad">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Periodicidad must be a number." data-val-required="The Periodicidad field is required." id="Periodicidad" name="Periodicidad">
+                                        <option value=""></option>
+                                        @if (varPeriodicidad_Periodicidad != null){ 
+                                            foreach (var itemPeriodicidad in varPeriodicidad_Periodicidad)
+                                            {
+                                                if (itemPeriodicidad.Value == Convert.ToString(Model.Periodicidad))
+                                                {
+                                                    <option value="@itemPeriodicidad.Value" selected>@itemPeriodicidad.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemPeriodicidad.Value">@itemPeriodicidad.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Periodicidad" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266512).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Periodicidad', 'Periodicidad');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                              <div class="form-group" id="divMonto_de_la_Parcialidad">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Monto_de_la_Parcialidad</label>
+								<div class="col-sm-8">
+									<div class="input-group m-b" data-field-id="Monto_de_la_Parcialidad" data-attribute="266628" data-field-name="@Resources.Acuerdos_MASCResources.Monto_de_la_Parcialidad">
+										<span class="input-group-addon">$</span>
+										@if(Model.Monto_de_la_Parcialidad.HasValue)
+						{
+						<input class="form-control col-md-12 inputNumber inputMoney Datos_Generales" id="Monto_de_la_Parcialidad" name="Monto_de_la_Parcialidad" type="text" min="0.00" max="999999.99" value="@Model.Monto_de_la_Parcialidad.Value.ToString("N", CultureInfo.InvariantCulture)">
+						}
+						else
+						{
+						<input class="form-control col-md-12 inputNumber inputMoney Datos_Generales" id="Monto_de_la_Parcialidad" name="Monto_de_la_Parcialidad" type="text" min="0.00" max="999999.99" value="">
+						}  
+									</div>
+								</div>
+                            </div>
+				<div class="form-group" id="divPersonal_de_Seguimiento_Asignado">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Personal_de_Seguimiento_Asignado</label>
+                                <div class="col-sm-8" data-field-id="Personal_de_Seguimiento_Asignado" data-attribute="266513" data-field-name="@Resources.Acuerdos_MASCResources.Personal_de_Seguimiento_Asignado">
+                                    <select class='fullWidth AutoComplete AutoCompleteAcuerdos_MASC_Personal_de_Seguimiento_Asignado form-control select2-dropdown Datos_Generales' data-val="true" id="Personal_de_Seguimiento_Asignado" name="Personal_de_Seguimiento_Asignado">
+                                        <option value="@Model.Personal_de_Seguimiento_Asignado">@(Model.Personal_de_Seguimiento_AsignadoName??Model.Personal_de_Seguimiento_AsignadoName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266513).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Personal_de_Seguimiento_Asignado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            @if (attachedFileAcuerdo != null && attachedFileAcuerdo.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentAcuerdo">
+                                    <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
+                                    <div class="col-sm-8 Datos_Generales" data-field-id="Acuerdo" data-attribute="266514" data-field-name="@Resources.Acuerdos_MASCResources.Acuerdo">
+                                        <a href="@Url.Content("~/Frontal/Acuerdos_MASC/GetFile")?id=@attachedFileAcuerdo.File_Id" target="_blank">@attachedFileAcuerdo.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainAcuerdo('@attachedFileAcuerdo.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemoveAcuerdo" name="RemoveAcuerdo" value="0" type="hidden" />
+                                    <input class="form-control col-md-12 Datos_Generales" id="hdnAttachedAcuerdo" type="hidden" name="Acuerdo" value="@Model.Acuerdo">
+                                </div>
+                            }
+                            <div class="form-group" id="divAcuerdo">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Acuerdo</label>
+                                <div class="col-sm-8" data-field-id="Acuerdo" data-attribute="266514" data-field-name="@Resources.Acuerdos_MASCResources.Acuerdo">
+                                    <input type="file" name="AcuerdoFile" id="AcuerdoFile" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group" id="divComentarios">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Comentarios</label>
+                                <div class="col-sm-8" data-field-id="Comentarios" data-attribute="266515" data-field-name="@Resources.Acuerdos_MASCResources.Comentarios">
+                                    <textarea id="Comentarios" name="Comentarios" class="form-control Datos_Generales" rows="4" cols="50">@Model.Comentarios</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Comentarios" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFecha_de_Cumplimiento_de_Acuerdo">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Fecha_de_Cumplimiento_de_Acuerdo</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Cumplimiento_de_Acuerdo" data-attribute="266516" data-field-name="@Resources.Acuerdos_MASCResources.Fecha_de_Cumplimiento_de_Acuerdo">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Cumplimiento_de_Acuerdo"  name="Fecha_de_Cumplimiento_de_Acuerdo" type="text" value="@Model.Fecha_de_Cumplimiento_de_Acuerdo">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabAutorizacion" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divFecha_de_Revision">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Fecha_de_Revision</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Revision" data-attribute="266518" data-field-name="@Resources.Acuerdos_MASCResources.Fecha_de_Revision">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Autorizacion" id="Fecha_de_Revision"  name="Fecha_de_Revision" type="text" value="@Model.Fecha_de_Revision">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Revision">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Hora_de_Revision</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Revision" data-attribute="266519" data-field-name="@Resources.Acuerdos_MASCResources.Hora_de_Revision">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Autorizacion" id="Hora_de_Revision"  name="Hora_de_Revision" type="text" data-autoclose="true" value="@Model.Hora_de_Revision">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Revisa">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Usuario_que_Revisa</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Revisa" data-attribute="266520" data-field-name="@Resources.Acuerdos_MASCResources.Usuario_que_Revisa">
+                                    <select class='fullWidth AutoComplete AutoCompleteAcuerdos_MASC_Usuario_que_Revisa form-control select2-dropdown Autorizacion' data-val="true" id="Usuario_que_Revisa" name="Usuario_que_Revisa">
+                                        <option value="@Model.Usuario_que_Revisa">@(Model.Usuario_que_RevisaName??Model.Usuario_que_RevisaName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266520).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Revisa');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divResultado">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Resultado</label>
+                                <div class="col-sm-8" data-field-id="Resultado" data-attribute="266521" data-field-name="@Resources.Acuerdos_MASCResources.Resultado">
+                                    <select class="form-control Autorizacion" data-val="true" data-val-number="The field Resultado must be a number." data-val-required="The Resultado field is required." id="Resultado" name="Resultado">
+                                        <option value=""></option>
+                                        @if (varResultado_de_Revision_Resultado != null){ 
+                                            foreach (var itemResultado in varResultado_de_Revision_Resultado)
+                                            {
+                                                if (itemResultado.Value == Convert.ToString(Model.Resultado))
+                                                {
+                                                    <option value="@itemResultado.Value" selected>@itemResultado.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemResultado.Value">@itemResultado.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Resultado" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266521).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Resultado_de_Revision', 'Resultado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divMotivo_de_Rechazo_de_Acuerdo">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Motivo_de_Rechazo_de_Acuerdo</label>
+                                <div class="col-sm-8" data-field-id="Motivo_de_Rechazo_de_Acuerdo" data-attribute="266522" data-field-name="@Resources.Acuerdos_MASCResources.Motivo_de_Rechazo_de_Acuerdo">
+                                    <textarea id="Motivo_de_Rechazo_de_Acuerdo" name="Motivo_de_Rechazo_de_Acuerdo" class="form-control Autorizacion" rows="4" cols="50">@Model.Motivo_de_Rechazo_de_Acuerdo</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Motivo_de_Rechazo_de_Acuerdo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+                                <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Acuerdos_MASCGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Acuerdos_MASCCreateForm');"  />
+									<button onclick="Acuerdos_MASCGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Acuerdos_MASCBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Acuerdos_MASCGuardarYNuevo" onclick="return checkClientValidate('Acuerdos_MASCCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Acuerdos_MASCGuardarYCopia" onclick="return checkClientValidate('Acuerdos_MASCCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnAcuerdos_MASCBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnAcuerdos_MASCBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnAcuerdos_MASCBusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Acuerdos_MASCCancelar" name="Acuerdos_MASCCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                <button onclick="Acuerdos_MASCGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Acuerdos_MASCBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Acuerdos_MASC.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Acuerdos_MASCGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Acuerdos_MASCCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+        function RemoveAttachmentMainAcuerdo () {
+            $("#hdnRemoveAcuerdo").val("1");
+            $("#divAttachmentAcuerdo").hide();
+        }
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_Generales = true;
+
+		var Tab_Autorizacion = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45378');
+		    
+		   
+                        $('#Fecha_de_Registro').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_de_Registro').clockpicker();
+            $('#Hora_de_Acuerdo').clockpicker();
+            $('#Fecha_de_Inicio_de_Acuerdo').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Fecha_de_Cumplimiento_de_Acuerdo').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Fecha_de_Revision').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_de_Revision').clockpicker();
+
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#Acuerdos_MASCGuardarYNuevo').hide();
+                $('#Acuerdos_MASCGuardarYCopia').hide();
+                $('#Acuerdos_MASCCancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#Acuerdos_MASCGuardar').val('Actualizar Seccion ' + '@Resources.Acuerdos_MASCResources.Acuerdos_MASC' )
+            }
+
+			
+			       var AutoCompleteNumero_de_ExpedienteData =[];
+       $(".AutoCompleteAcuerdos_MASC_Numero_de_Expediente").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Acuerdos_MASC/GetAcuerdos_MASC_Numero_de_Expediente_Solicitud")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteAcuerdos_MASC_Numero_de_Expediente_SolicitudData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteAcuerdos_MASC_Numero_de_Expediente");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteUsuario_que_RegistraData =[];
+       $(".AutoCompleteAcuerdos_MASC_Usuario_que_Registra").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Acuerdos_MASC/GetAcuerdos_MASC_Usuario_que_Registra_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteAcuerdos_MASC_Usuario_que_Registra_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteAcuerdos_MASC_Usuario_que_Registra");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompletePersonal_de_Seguimiento_AsignadoData =[];
+       $(".AutoCompleteAcuerdos_MASC_Personal_de_Seguimiento_Asignado").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Acuerdos_MASC/GetAcuerdos_MASC_Personal_de_Seguimiento_Asignado_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteAcuerdos_MASC_Personal_de_Seguimiento_Asignado_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteAcuerdos_MASC_Personal_de_Seguimiento_Asignado");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteUsuario_que_RevisaData =[];
+       $(".AutoCompleteAcuerdos_MASC_Usuario_que_Revisa").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Acuerdos_MASC/GetAcuerdos_MASC_Usuario_que_Revisa_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteAcuerdos_MASC_Usuario_que_Revisa_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteAcuerdos_MASC_Usuario_que_Revisa");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+				if (Tab_Autorizacion)
+					Fill_Autorizacion();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
+        });
+
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/Acuerdos_MASC/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+
+        function SendAcuerdos_MASCData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateAcuerdos_MASC").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateAcuerdos_MASC")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#ReferenceClave").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_Generales && !checkClientValidate('Acuerdos_MASCCreateForm', 'Datos_Generales')) {
+				return false;
+			}						
+
+			if (Tab_Autorizacion && !checkClientValidate('Acuerdos_MASCCreateForm', 'Autorizacion')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+            }
+			
+			
+			if (Tab_Datos_Generales)
+				Save_Datos_Generales(id);
+
+			if (Tab_Autorizacion)
+				Save_Autorizacion(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Acuerdos_MASC/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".Acuerdos_MASCBusinessRuleModal").html(data);
+			});
+		}
+                function Acuerdos_MASCGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45378');
+			$('#Screen').val('Acuerdos_MASC');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function Acuerdos_MASCBackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/Acuerdos_MASC/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Acuerdos_MASC/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Acuerdos_MASC/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Acuerdos_MASC/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Acuerdos_MASC/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateAcuerdos_MASC').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        Acuerdos_MASCGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_Generales()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Acuerdos_MASC/Get_Datos_Generales")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    var control = $('#Numero_de_Expediente');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Numero_de_Expediente).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Numero_de_Expediente).trigger('change');
+                    }, 3000);
+                    $('#Fecha_de_Registro').val(result.data.Fecha_de_Registro);
+                    $('#Hora_de_Registro').val(result.data.Hora_de_Registro);
+                    var control = $('#Usuario_que_Registra');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Registra).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Registra).trigger('change');
+                    }, 3000);
+                    $('#Tipo_de_Acuerdo').val(result.data.Tipo_de_Acuerdo);
+                    $('#Lugar_Acordado').val(result.data.Lugar_Acordado);
+                    $('#Domicilio_Acordado').val(result.data.Domicilio_Acordado);
+                    $('#Hora_de_Acuerdo').val(result.data.Hora_de_Acuerdo);
+                    $('#Fecha_de_Inicio_de_Acuerdo').val(result.data.Fecha_de_Inicio_de_Acuerdo);
+                    $('#Monto_Total').val(result.data.Monto_Total);
+                    $('#Parcialidades').val(result.data.Parcialidades);
+                    $('#Periodicidad').val(result.data.Periodicidad);
+                    $('#Monto_de_la_Parcialidad').val(result.data.Monto_de_la_Parcialidad);
+                    var control = $('#Personal_de_Seguimiento_Asignado');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Personal_de_Seguimiento_Asignado).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Personal_de_Seguimiento_Asignado).trigger('change');
+                    }, 3000);
+                    $('#Acuerdo').val(result.data.Acuerdo);
+                    $('#Comentarios').val(result.data.Comentarios);
+                    $('#Fecha_de_Cumplimiento_de_Acuerdo').val(result.data.Fecha_de_Cumplimiento_de_Acuerdo);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_Generales(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Numero_de_Expediente', $('#Numero_de_Expediente').val());
+                data.append('Fecha_de_Registro', $('#Fecha_de_Registro').val());
+                data.append('Hora_de_Registro', $('#Hora_de_Registro').val());
+                data.append('Usuario_que_Registra', $('#Usuario_que_Registra').val());
+                data.append('Tipo_de_Acuerdo', $('#Tipo_de_Acuerdo').val());
+                data.append('Lugar_Acordado', $('#Lugar_Acordado').val());
+                data.append('Domicilio_Acordado', $('#Domicilio_Acordado').val());
+                data.append('Hora_de_Acuerdo', $('#Hora_de_Acuerdo').val());
+                data.append('Fecha_de_Inicio_de_Acuerdo', $('#Fecha_de_Inicio_de_Acuerdo').val());
+ 
+               data.append('Monto_Total', Number($('#Monto_Total').val().replace(/[^0-9.-]+/g, "")));
+                data.append('Parcialidades', $('#Parcialidades').val());
+                data.append('Periodicidad', $('#Periodicidad').val());
+ 
+               data.append('Monto_de_la_Parcialidad', Number($('#Monto_de_la_Parcialidad').val().replace(/[^0-9.-]+/g, "")));
+                data.append('Personal_de_Seguimiento_Asignado', $('#Personal_de_Seguimiento_Asignado').val());
+                data.append('Acuerdo', $('#hdnAttachedAcuerdo').val());
+                data.append('AcuerdoFile', $('#AcuerdoFile')[0].files[0]);
+                data.append('AcuerdoRemoveAttachment', $('#hdnRemoveAcuerdo').val());
+                data.append('Comentarios', $('#Comentarios').val());
+                data.append('Fecha_de_Cumplimiento_de_Acuerdo', $('#Fecha_de_Cumplimiento_de_Acuerdo').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Acuerdos_MASC/Post_Datos_Generales")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Autorizacion()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Acuerdos_MASC/Get_Autorizacion")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Fecha_de_Revision').val(result.data.Fecha_de_Revision);
+                    $('#Hora_de_Revision').val(result.data.Hora_de_Revision);
+                    var control = $('#Usuario_que_Revisa');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Revisa).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Revisa).trigger('change');
+                    }, 3000);
+                    $('#Resultado').val(result.data.Resultado);
+                    $('#Motivo_de_Rechazo_de_Acuerdo').val(result.data.Motivo_de_Rechazo_de_Acuerdo);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Autorizacion(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Fecha_de_Revision', $('#Fecha_de_Revision').val());
+                data.append('Hora_de_Revision', $('#Hora_de_Revision').val());
+                data.append('Usuario_que_Revisa', $('#Usuario_que_Revisa').val());
+                data.append('Resultado', $('#Resultado').val());
+                data.append('Motivo_de_Rechazo_de_Acuerdo', $('#Motivo_de_Rechazo_de_Acuerdo').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Acuerdos_MASC/Post_Autorizacion")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Autorizacion");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Autorizacion");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="Acuerdos_MASC_cmbLabelSelect" name="Acuerdos_MASC_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

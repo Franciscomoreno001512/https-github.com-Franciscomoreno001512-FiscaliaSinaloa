@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Lugar_de_Detencion" value="Lugar de Detención"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Fecha_de_Detencion" value="Fecha de Detención"></resource>
+  <resource culture="es-es" name="Municipio_de_Detencion" value="Municipio de Detención"></resource>
+  <resource culture="es-es" name="Corporacion" value="Corporación"></resource>
+  <resource culture="es-es" name="Suspension_Condicional" value="Suspensión Condicional"></resource>
+  <resource culture="es-es" name="Fecha_de_Suspension_Condicional" value="Fecha de Suspensión Condicional"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>
