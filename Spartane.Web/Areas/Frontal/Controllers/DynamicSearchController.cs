@@ -63,7 +63,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 //Obtener Nombre de la fase del workflow
                 filtro = _ISpartaneQueryApiConsumer.ExecuteQuery("exec uspGetNombreFaseWF " + wf.ToString() + "," + p.ToString()).Resource;
                 ViewBag.WorkFlow = filtro.ToString();
-               
+
                 GetResultSearchTable(null);
             }
             ViewBag.idTablero = id;

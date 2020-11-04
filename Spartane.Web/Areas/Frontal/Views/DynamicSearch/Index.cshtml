@@ -292,7 +292,7 @@
         });
 
         $('#TbodySearchResult').on('click', 'tr', function () {
-            debugger;
+
             $('#TbodySearchResult tr').css('background-color', 'transparent');
 			$('#TbodySearchResult tr').css('font-weight', 'normal');
             $(this).css('background-color', '#ddd');
@@ -300,8 +300,6 @@
             $('#TbodyDetails').empty();
             $('#new').css('display', 'none');
             GetDataToShow($($(this).find('td')[0]).html(), @ViewBag.idTablero);
-			DisabledAE($($(this).find('td')[2]).html());
-
         });
         $('#TabsBadget').on('click', 'button', function () {
             $('#TabsBadget button').css('background-color', 'transparent');
@@ -542,9 +540,41 @@
                     });
                     $('#TrColumnsDetail').html(htmlColumns);
                     $.each(result[0].Details.ValuesColumns, function (i, v) {
+
+
+
+
                         htmlValues += '<tr>';
-                        htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print"></i></a></td>';
-                        //htmlValues += '<td class="text-center"><button type="button" data-id="" class="btn btn-primary btn-sm editDetails"><i class="fa fa-edit"></i></button></td>';
+
+
+                        @if(ViewBag.idTablero == 1)
+                        {
+                              <text>
+
+                        if (ObjectSelected == "45018") { // 45018 representa el tab de documentos, solo se muestra cuando el tab es documentos
+                            htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i><i class="fa fa-pencil claseeditardocumento" title="Editar Documento"></i><i class="fa fa-search claseverdocumento" title="Ver Documento"></i></a></td>';
+
+                        }
+                        else {
+                            htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a></td>';
+
+                        }
+
+
+                                </text>
+                        }
+                        else
+                        {
+                            <text>
+                        htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a></td>';
+
+                                </text>
+                        }
+
+
+
+
+
                         $.each(v.Values, function (i, v2) {
                             if(i == 0) {
                                 htmlValues += '<td class="text-center text-muted" style="display:none;">' + v2 + '</td>';
@@ -617,31 +647,6 @@
                 showNotification("Error buscando variable", "error");
             }
         });
-    }
-	
-	function DisabledAE(value) {
-        var replaced = value.toString().split(' ').join('');
-        //debugger;
-        console.log(replaced);
-        if (replaced == 'AtenciónaExtravío') {
-            console.log("True");
-            $("button[data-name='Servicios de Apoyo']").prop("disabled", true);
-            $("button[data-name='Probable Responsable']").prop("disabled", true);
-            $("button[data-name='Delitos']").prop("disabled", true);
-            $("button[data-name='Relaciones']").prop("disabled", true);
-            $("button[data-name='Documentos']").prop("disabled", true);
-            $("button[data-name='Desestimación']").prop("disabled", true);
-        }
-        else {
-            console.log("False");
-            $("button[data-name='Servicios de Apoyo']").prop("disabled", false);
-            $("button[data-name='Probable Responsable']").prop("disabled", false);
-            $("button[data-name='Delitos']").prop("disabled", false);
-            $("button[data-name='Relaciones']").prop("disabled", false);
-            $("button[data-name='Documentos']").prop("disabled", false);
-            $("button[data-name='Desestimación']").prop("disabled", false);
-            $("button[data-name='Involucrados']").prop("disabled", false);
-        }
     }
 
     function GetResultSearchTable() {
@@ -835,5 +840,43 @@
                 }
             });
         }
+    }
+
+    $("body").on("click", ".claseeditardocumento", function (e) {
+        debugger;
+        var documento =  jQuery(this).closest('tr').find('td:eq(7)').text();
+        var formatoid = GetIdFormatoFromDocumento(documento);
+
+
+        var FolioCcontrolDoc = jQuery(this).closest('tr').find('td:eq(12)').text(); // obtenemos el valor de la comluma clave oculta en la tabla perteneciente al td que se le dio click
+        var objectdID = "45018"
+        OpenPrintFormats(FolioCcontrolDoc, @Spartane.Web.SessionHelper.Role, "", true, objectdID,formatoid);
+    });
+
+     $("body").on("click", ".claseverdocumento", function (e) {
+        debugger;
+        var folioControlDoc = jQuery(this).closest('tr').find('td:eq(12)').text();
+
+        var id = EvaluaQuery("select isnull(archivo,'') as Archivo from control_de_documentos where folio = " + folioControlDoc, "", "");// document.getElementById("Archivo").innerHTML;
+            $.ajax({
+                async: false,
+                url: '@Url.Content("~/Frontal/Detalle_de_documentos/GetArchivoFisico")',
+                data: { "Archivo": id },
+                type: 'POST',
+                success: function (result) {
+
+                    BaseUrl = result;
+
+                    window.open(BaseUrl);
+                }
+        });
+
+
+    });
+
+    function GetIdFormatoFromDocumento(doc) {
+      
+        var formatoID = EvaluaQuery(" usp_getIdFormatoFromDocumento  " + doc + "");
+        return formatoID;
     }
 </script>
