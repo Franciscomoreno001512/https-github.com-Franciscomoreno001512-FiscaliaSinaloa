@@ -229,6 +229,7 @@
                                 <tr>
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Clave</th>
+                                    <th>@Resources.Modulo_Atencion_InicialResources.NUAT</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Folio</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Fecha_de_Registro</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Hora_de_Registro</th>
@@ -238,7 +239,7 @@
                                     <th>@Resources.Modulo_Atencion_InicialResources.Municipio</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Region</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Tipo_de_Denuncia</th>
-                                    <th>@Resources.Modulo_Atencion_InicialResources.NUAT</th>
+                                    
                                     <th>@Resources.Modulo_Atencion_InicialResources.Expedientes_Relacionados</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Estatus</th>
                                     <th>@Resources.Modulo_Atencion_InicialResources.Generar_Cita</th>
@@ -325,6 +326,7 @@
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -334,7 +336,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
+                                    
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -528,6 +530,7 @@
         var queryString = GetQueryString();
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -537,7 +540,7 @@
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
+        
         var Expedientes_Relacionados =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Generar_Cita = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -619,6 +622,7 @@
 
 
         var queryString = "&Clave=" + Clave 
+        + "&NUAT=" + NUAT
         + "&Folio=" + Folio
         + "&Fecha_de_Registro=" + Fecha_de_Registro
         + "&Hora_de_Registro=" + Hora_de_Registro
@@ -628,7 +632,7 @@
         + "&Municipio=" + Municipio
         + "&Region=" + Region
         + "&Tipo_de_Denuncia=" + Tipo_de_Denuncia
-        + "&NUAT=" + NUAT
+        
         + "&Expedientes_Relacionados=" + Expedientes_Relacionados
         + "&Estatus=" + Estatus
         + "&Generar_Cita=" + Generar_Cita
@@ -721,6 +725,7 @@
 	
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -730,7 +735,7 @@
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
+        
         var Expedientes_Relacionados =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Generar_Cita = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -812,6 +817,7 @@
 
 
         return "&Clave=" + Clave 
+        + "&NUAT=" + NUAT
         + "&Folio=" + Folio
         + "&Fecha_de_Registro=" + Fecha_de_Registro
         + "&Hora_de_Registro=" + Hora_de_Registro
@@ -821,7 +827,7 @@
         + "&Municipio=" + Municipio
         + "&Region=" + Region
         + "&Tipo_de_Denuncia=" + Tipo_de_Denuncia
-        + "&NUAT=" + NUAT
+        
         + "&Expedientes_Relacionados=" + Expedientes_Relacionados
         + "&Estatus=" + Estatus
         + "&Generar_Cita=" + Generar_Cita
@@ -1148,6 +1154,7 @@
                     }
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
+                ,{ "data": "NUAT", "orderable": true, "name": "NUAT", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Folio", "orderable": true, "name": "Folio", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Fecha_de_Registro", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Registro" }
                 ,{ "data": "Hora_de_Registro", "orderable": true, "name": "Hora_de_Registro" }
@@ -1157,7 +1164,7 @@
                 ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}
                 ,{ "data": "RegionDescripcion", "orderable": true, "name": "RegionDescripcion" }
                 ,{ "data": "Tipo_de_DenunciaDescripcion", "orderable": true, "name": "Tipo_de_DenunciaDescripcion" }
-                ,{ "data": "NUAT", "orderable": true, "name": "NUAT", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                
                 ,{ "data": "Expedientes_Relacionados", "orderable": true, "name": "Expedientes_Relacionados", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "EstatusDescripcion", "orderable": true, "name": "EstatusDescripcion" }
                 ,{ "data": "Generar_Cita", "orderable": true, "searchable": true, "type": "date", "name": "Generar_Cita" }
