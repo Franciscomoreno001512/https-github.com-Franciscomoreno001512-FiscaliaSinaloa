@@ -146,7 +146,7 @@ function showMessageRequired(item) {
 
 
 function checkClientValidate(formSelector) {
-    debugger;
+   
     $('#textRequired').empty();
     var elementValid = true;
     $('.' + formSelector + ' .inputClientRequired').each(function () {
@@ -1282,7 +1282,7 @@ var RolUsuarioTemp;
 var DocumentoIdTemp;
 var iseditTemp;
 var ObjectIdFilterTemp;
-function OpenPrintFormats(ObjectId, RolUsuario, query, isedit, ObjectIdFilter) {
+function OpenPrintFormats(ObjectId, RolUsuario, query, isedit, ObjectIdFilter, formatoID) {
     debugger;
     ResetSessionValue("");
     var DocumentoId = EvaluaQuery(query);
@@ -1291,9 +1291,7 @@ function OpenPrintFormats(ObjectId, RolUsuario, query, isedit, ObjectIdFilter) {
     DocumentoIdTemp = DocumentoId;
     RolUsuarioTemp = RolUsuario;
     ObjectIdFilterTemp = ObjectIdFilter;
-    $('#cmbFormato').empty();
-    $('#cmbTipoFormato').empty();
-    addModalx();
+
     if (isedit) {
         var url = url_content + "Frontal/Control_de_Documentos/Create?id=" + ObjectId + "&Module_Id=1&isPartial=true&nameAttribute=AttributoNombre"; // "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
         var params = [
@@ -1301,122 +1299,19 @@ function OpenPrintFormats(ObjectId, RolUsuario, query, isedit, ObjectIdFilter) {
             'width=' + screen.width,
             'fullscreen=yes' // only works in IE, but here for completeness
         ].join(',');
-
         timerInterval1 = setInterval('ReadSesionVar()', 1000);
-
         window.open(url, '_blank', params);
-      
+
     }
     else {
-        $("#myModaltest").modal("show");
+        var guid = GetHtmlAsString(formatoID, ObjectIdTemp);
+        GetCatalogPopupTest(guid, iseditTemp, ObjectIdTemp);
     }
+
 
 }
 
-function addModalx() {
-    $("body").append(
-        ' <div class= "modal fade" id = "myModaltest" role = "dialog">                                           ' +
-        ' <div class="modal-dialog" style="width:1252px!important;">                                                                           ' +
-        '                                                                                                      ' +
-        '     <!-- Modal content-->                                                                            ' +
-        '   <div class="modal-content">                                                                        ' +
-        '         <div class="modal-header">                                                                   ' +
-        '             <button type="button" class="close" data-dismiss="modal">&times;</button>                ' +
-        '             <h4 class="modal-title">Seleccione el formato</h4>                                                ' +
-        '         </div>                                                                                       ' +
-        '         <div class="modal-body">                                                                     ' +
-        '            <div class="row">                                                          ' +
-        '            <div class="col-md-3">                                                          ' +
-        '<label>Tipo de formato</label>' +
 
-        '</div>' +
-        '            <div class="col-md-9">                                                          ' +
-        '<select id= "cmbTipoFormato"></select>' +
-
-        '</div>' +
-        '</div>' +
-
-
-        '            <div class="row">                                                          ' +
-        '            <div class="col-md-3">                                                          ' +
-        '<label>Formato</label>' +
-
-        '</div>' +
-        '            <div class="col-md-9">                                                          ' +
-        '<select id= "cmbFormato"></select>' +
-
-        '</div>' +
-        '</div>' +
-
-
-
-        '         </div>                                                                                       ' +
-        '         <div class="modal-footer">                                                                   ' +
-        //  '             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>        '+
-        '             <button type="button" class="btn btn-primary" id="btnGenerarDoc" >Editar Documento</button>        ' +
-        '         </div>                                                                                       ' +
-        '     </div>                                                                                           ' +
-        ' </div>                                                                                               ' +
-        ' </div > '
-    );
-}
-
-$("body").on("shown.bs.modal", "#myModaltest", function () {
-   
-    var tiposDeFormato = EvaluaQueryDictionary("exec usp_GetSpartan_Format_Type " + ObjectIdFilterTemp); //El objectid que le vas a mandar a la función que hiciste es el 45018 
-
-    var option1 = $('<option />');
-    option1.attr('value', "0").text("--Seleccione--");
-
-    $('#cmbTipoFormato').append(option1);
-
-    $.each(tiposDeFormato, function (i, v) {
-        var option2 = $('<option />');
-        option2.attr('value', i).text(v);
-
-        $('#cmbTipoFormato').append(option2);
-    });
-    var option3 = $('<option />');
-    option3.attr('value', "0").text("--Seleccione--");
-
-    $('#cmbFormato').append(option3);
-});
-
-$("body").on("change", "#cmbTipoFormato", function () {
-
-    $('#cmbFormato').empty();
-    var valor = $(this).val();
-
-
-
-    var formatos = EvaluaQueryDictionary("exec usp_GetSpartan_Format_By_FormatTypeId " + valor);
-
-    var option1 = $('<option />');
-    option1.attr('value', "0").text("--Seleccione--");
-
-    $('#cmbFormato').append(option1);
-
-    $.each(formatos, function (i, v) {
-        var option2 = $('<option />');
-        option2.attr('value', i).text(v);
-
-        $('#cmbFormato').append(option2);
-    });
-});
-
-
-$("body").on("click", "#btnGenerarDoc", function () {
-
-    var formato = $('#cmbFormato').val();
-
-    if (formato == "0") {
-        alert("Debe seleccionar un formato");
-        return;
-    }
-    $("#myModaltest").modal("hide");
-    var guid = GetHtmlAsString(formato, ObjectIdTemp);
-    GetCatalogPopupTest(guid, iseditTemp, ObjectIdTemp);
-});
 
 var timerInterval1;
 function GetCatalogPopupTest(guid, isedit, ObjectIdTemp) {
@@ -1489,7 +1384,7 @@ function ShowMessageRequired(field) {
 }
 
 function GeneratePDFFromControlDocumentos(FolioControlDocumentos) {
-    debugger;
+   
     var res;
     $.ajax({
         url: url_content + "Frontal/Spartan_Format/GeneratePDFFromControlDocumentos?FolioControlDocumentos=" + FolioControlDocumentos,
@@ -1498,7 +1393,7 @@ function GeneratePDFFromControlDocumentos(FolioControlDocumentos) {
         dataType: "json",
         async: false,
         success: function (result) {
-            debugger;
+          
             res = result;
             var spartanfileId = "";
             var FolioControlDocumentos = "";
@@ -1510,8 +1405,7 @@ function GeneratePDFFromControlDocumentos(FolioControlDocumentos) {
                     //spartanfileId = dileid[0];
                     FolioControlDocumentos = dileid[1];
                     $("#Archivo").val(FolioControlDocumentos);
-                    $("#hdnFolioControlDocumentos").val(FolioControlDocumentos);
-                    $("#Archivo_VerDocto").show();
+                    $("#Archivo_VerDocto").removeClass("hidden");
                 }
 
 

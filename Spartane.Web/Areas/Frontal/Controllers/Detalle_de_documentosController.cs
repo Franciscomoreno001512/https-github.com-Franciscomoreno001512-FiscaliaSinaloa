@@ -49,7 +49,7 @@ using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_Format_Related;
 using Spartane.Core.Domain.Spartan_Format;
 using iTextSharp.text.pdf;
-
+using Spartane.Web.Areas.WebApiConsumer.SpartaneQuery;
 
 namespace Spartane.Web.Areas.Frontal.Controllers
 {
@@ -66,6 +66,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDocumentoApiConsumer _IDocumentoApiConsumer;
         private IDetalle_de_Solicitud_SolicitanteApiConsumer _IDetalle_de_Solicitud_SolicitanteApiConsumer;
         private IDetalle_de_Solicitud_RequeridoApiConsumer _IDetalle_de_Solicitud_RequeridoApiConsumer;
+        private ISpartaneQueryApiConsumer _ISpartaneQueryApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -76,14 +77,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IGeneratePDFApiConsumer _IGeneratePDFApiConsumer;
         private ISpartan_FormatApiConsumer _ISpartan_FormatApiConsumer;
         private ISpartan_Format_PermissionsApiConsumer _ISpartan_Format_PermissionsApiConsumer;
-		private ISpartan_Format_RelatedApiConsumer _ISpartan_FormatRelatedApiConsumer;
+        private ISpartan_Format_RelatedApiConsumer _ISpartan_FormatRelatedApiConsumer;
 
         #endregion "variable declaration"
 
         #region "Constructor Declaration"
 
-        
-        public Detalle_de_documentosController(IDetalle_de_documentosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_documentosApiConsumer Detalle_de_documentosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_DocumentoApiConsumer Tipo_de_DocumentoApiConsumer , IDocumentoApiConsumer DocumentoApiConsumer , IDetalle_de_Solicitud_SolicitanteApiConsumer Detalle_de_Solicitud_SolicitanteApiConsumer , IDetalle_de_Solicitud_RequeridoApiConsumer Detalle_de_Solicitud_RequeridoApiConsumer )
+
+        public Detalle_de_documentosController(IDetalle_de_documentosService service, ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_documentosApiConsumer Detalle_de_documentosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer, ISolicitudApiConsumer SolicitudApiConsumer, ISpartan_UserApiConsumer Spartan_UserApiConsumer, ITipo_de_DocumentoApiConsumer Tipo_de_DocumentoApiConsumer, IDocumentoApiConsumer DocumentoApiConsumer, IDetalle_de_Solicitud_SolicitanteApiConsumer Detalle_de_Solicitud_SolicitanteApiConsumer, IDetalle_de_Solicitud_RequeridoApiConsumer Detalle_de_Solicitud_RequeridoApiConsumer, ISpartaneQueryApiConsumer SpartaneQueryApiConsumer)
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -96,13 +97,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_FormatApiConsumer = Spartan_FormatApiConsumer;
             this._ISpartan_Format_PermissionsApiConsumer = Spartan_Format_PermissionsApiConsumer;
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
-			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
+            this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._ISolicitudApiConsumer = SolicitudApiConsumer;
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._ITipo_de_DocumentoApiConsumer = Tipo_de_DocumentoApiConsumer;
             this._IDocumentoApiConsumer = DocumentoApiConsumer;
             this._IDetalle_de_Solicitud_SolicitanteApiConsumer = Detalle_de_Solicitud_SolicitanteApiConsumer;
             this._IDetalle_de_Solicitud_RequeridoApiConsumer = Detalle_de_Solicitud_RequeridoApiConsumer;
+            this._ISpartaneQueryApiConsumer = SpartaneQueryApiConsumer;
 
         }
 
@@ -112,14 +114,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         // GET: Frontal/Detalle_de_documentos
         [ObjectAuth(ObjectId = (ModuleObjectId)45018, PermissionType = PermissionTypes.Consult)]
-        public ActionResult Index(int ModuleId=0)
+        public ActionResult Index(int ModuleId = 0)
         {
-			if (Session["AdvanceReportFilter"] != null)
+            if (Session["AdvanceReportFilter"] != null)
             {
                 Session["AdvanceReportFilter"] = null;
                 Session["AdvanceSearch"] = null;
             }
-			if (ModuleId == 0)
+            if (ModuleId == 0)
             {
                 ModuleId = Convert.ToInt32(Session["CurrentModuleId"]);
                 if (ModuleId == 0)
@@ -131,78 +133,95 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45018, ModuleId);
             ViewBag.Permission = permission;
             ViewBag.AdvanceSearch = Session["AdvanceSearch"] != null;
-			          
+
             return View();
         }
 
         // GET: Frontal/Detalle_de_documentos/Create
-          [ObjectAuth(ObjectId = (ModuleObjectId)45018, PermissionType = PermissionTypes.New,
-            OptionalParameter = "Id", OptionalPermissionType = PermissionTypes.Edit, OptionalPermissionTypeConsult = PermissionTypes.Consult)]
-        public ActionResult Create(int Id = 0,  int consult = 0, int ModuleId=0)
+        [ObjectAuth(ObjectId = (ModuleObjectId)45018, PermissionType = PermissionTypes.New,
+          OptionalParameter = "Id", OptionalPermissionType = PermissionTypes.Edit, OptionalPermissionTypeConsult = PermissionTypes.Consult)]
+        public ActionResult Create(int Id = 0, int consult = 0, int ModuleId = 0)
         {
-                       if(ModuleId == 0)
-                       {
-			    ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
-                       }
-                       else
-                            Session["CurrentModuleId"] = ModuleId;
+            if (ModuleId == 0)
+            {
+                ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
+            }
+            else
+                Session["CurrentModuleId"] = ModuleId;
             var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45018, ModuleId);
-           if ((!permission.New && Id.ToString() == "0") || (!permission.Edit && Id.ToString() != "0" && (!permission.Consult && consult == 1)))
+            if ((!permission.New && Id.ToString() == "0") || (!permission.Edit && Id.ToString() != "0" && (!permission.Consult && consult == 1)))
             {
                 Response.Redirect("~/");
             }
             ViewBag.Permission = permission;
             var varDetalle_de_documentos = new Detalle_de_documentosModel();
-			varDetalle_de_documentos.Clave = Id;
-			
+            varDetalle_de_documentos.Clave = Id;
+
             ViewBag.ObjectId = "45018";
-			ViewBag.Operation = "New";
-			
-			ViewBag.IsNew = true;
+            ViewBag.Operation = "New";
+
+            ViewBag.IsNew = true;
 
 
 
-            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short))&& Id.ToString() != "0"))
+            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
             {
-				ViewBag.IsNew = false;
-				ViewBag.Operation = "Update";
-				
-				_tokenManager.GenerateToken();
-				_ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                ViewBag.IsNew = false;
+                ViewBag.Operation = "Update";
+
+                _tokenManager.GenerateToken();
+                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
                 _IDetalle_de_documentosApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var Detalle_de_documentossData = _IDetalle_de_documentosApiConsumer.ListaSelAll(0, 1000, "Detalle_de_documentos.Clave=" + Id, "").Resource.Detalle_de_documentoss;
-				
-				if (Detalle_de_documentossData != null && Detalle_de_documentossData.Count > 0)
-                {
-					var Detalle_de_documentosData = Detalle_de_documentossData.First();
-					varDetalle_de_documentos= new Detalle_de_documentosModel
-					{
-						Clave  = Detalle_de_documentosData.Clave 
-	                    ,Solicitud = Detalle_de_documentosData.Solicitud
-                    ,SolicitudNumero_de_Folio = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Solicitud), "Solicitud") ??  (string)Detalle_de_documentosData.Solicitud_Solicitud.Numero_de_Folio
-                    ,Fecha = (Detalle_de_documentosData.Fecha == null ? string.Empty : Convert.ToDateTime(Detalle_de_documentosData.Fecha).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_de_Registro = Detalle_de_documentosData.Hora_de_Registro
-                    ,Usuario_que_Registra = Detalle_de_documentosData.Usuario_que_Registra
-                    ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Usuario_que_Registra), "Spartan_User") ??  (string)Detalle_de_documentosData.Usuario_que_Registra_Spartan_User.Name
-                    ,Tipo_de_Documento = Detalle_de_documentosData.Tipo_de_Documento
-                    ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Tipo_de_Documento), "Tipo_de_Documento") ??  (string)Detalle_de_documentosData.Tipo_de_Documento_Tipo_de_Documento.Descripcion
-                    ,Documento = Detalle_de_documentosData.Documento
-                    ,DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Documento), "Documento") ??  (string)Detalle_de_documentosData.Documento_Documento.Descripcion
-                    ,Solicitante = Detalle_de_documentosData.Solicitante
-                    ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Solicitante), "Detalle_de_Solicitud_Solicitante") ??  (string)Detalle_de_documentosData.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
-                    ,Requerido = Detalle_de_documentosData.Requerido
-                    ,RequeridoNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Requerido), "Detalle_de_Solicitud_Requerido") ??  (string)Detalle_de_documentosData.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
-                    ,Archivo_Adjunto = Detalle_de_documentosData.Archivo_Adjunto
-                    ,Observaciones = Detalle_de_documentosData.Observaciones
-                    ,Archivo = Detalle_de_documentosData.Archivo
 
-					};
-				}
-				
-				                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                if (Detalle_de_documentossData != null && Detalle_de_documentossData.Count > 0)
+                {
+                    var Detalle_de_documentosData = Detalle_de_documentossData.First();
+                    varDetalle_de_documentos = new Detalle_de_documentosModel
+                    {
+                        Clave = Detalle_de_documentosData.Clave
+                        ,
+                        Solicitud = Detalle_de_documentosData.Solicitud
+                    ,
+                        SolicitudNumero_de_Folio = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Solicitud), "Solicitud") ?? (string)Detalle_de_documentosData.Solicitud_Solicitud.Numero_de_Folio
+                    ,
+                        Fecha = (Detalle_de_documentosData.Fecha == null ? string.Empty : Convert.ToDateTime(Detalle_de_documentosData.Fecha).ToString(ConfigurationProperty.DateFormat))
+                    ,
+                        Hora_de_Registro = Detalle_de_documentosData.Hora_de_Registro
+                    ,
+                        Usuario_que_Registra = Detalle_de_documentosData.Usuario_que_Registra
+                    ,
+                        Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Usuario_que_Registra), "Spartan_User") ?? (string)Detalle_de_documentosData.Usuario_que_Registra_Spartan_User.Name
+                    ,
+                        Tipo_de_Documento = Detalle_de_documentosData.Tipo_de_Documento
+                    ,
+                        Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Tipo_de_Documento), "Tipo_de_Documento") ?? (string)Detalle_de_documentosData.Tipo_de_Documento_Tipo_de_Documento.Descripcion
+                    ,
+                        Documento = Detalle_de_documentosData.Documento
+                    ,
+                        DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Documento), "Documento") ?? (string)Detalle_de_documentosData.Documento_Documento.Descripcion
+                    ,
+                        Solicitante = Detalle_de_documentosData.Solicitante
+                    ,
+                        SolicitanteNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Solicitante), "Detalle_de_Solicitud_Solicitante") ?? (string)Detalle_de_documentosData.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
+                    ,
+                        Requerido = Detalle_de_documentosData.Requerido
+                    ,
+                        RequeridoNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Requerido), "Detalle_de_Solicitud_Requerido") ?? (string)Detalle_de_documentosData.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
+                    ,
+                        Archivo_Adjunto = Detalle_de_documentosData.Archivo_Adjunto
+                    ,
+                        Observaciones = Detalle_de_documentosData.Observaciones
+                    ,
+                        Archivo = Detalle_de_documentosData.Archivo
+
+                    };
+                }
+
+                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
                 ViewBag.Archivo_AdjuntoSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varDetalle_de_documentos.Archivo_Adjunto).Resource;
 
-				
+
             }
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
@@ -212,21 +231,22 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (Tipo_de_Documentos_Tipo_de_Documento != null && Tipo_de_Documentos_Tipo_de_Documento.Resource != null)
                 ViewBag.Tipo_de_Documentos_Tipo_de_Documento = Tipo_de_Documentos_Tipo_de_Documento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
             ViewBag.Consult = consult == 1;
-			if (consult == 1)
+            if (consult == 1)
                 ViewBag.Operation = "Consult";
-				
-			var viewInEframe = false;
-			var isPartial = false;
+
+            var viewInEframe = false;
+            var isPartial = false;
             var isMR = false;
             var nameMR = string.Empty;
             var nameAttribute = string.Empty;
 
-	        if (Request.QueryString["isPartial"]!= null)
+            if (Request.QueryString["isPartial"] != null)
                 isPartial = Convert.ToBoolean(Request.QueryString["isPartial"]);
 
             if (Request.QueryString["isMR"] != null)
@@ -237,65 +257,82 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             if (Request.QueryString["nameAttribute"] != null)
                 nameAttribute = Request.QueryString["nameAttribute"].ToString();
-				
-			if (Request.QueryString["viewInEframe"] != null)
-                viewInEframe = Convert.ToBoolean(Request.QueryString["viewInEframe"]);	
-				
-			ViewBag.isPartial=isPartial;
-			ViewBag.isMR=isMR;
-			ViewBag.nameMR=nameMR;
-			ViewBag.nameAttribute=nameAttribute;
-			ViewBag.viewInEframe = viewInEframe;
 
-				
+            if (Request.QueryString["viewInEframe"] != null)
+                viewInEframe = Convert.ToBoolean(Request.QueryString["viewInEframe"]);
+
+            ViewBag.isPartial = isPartial;
+            ViewBag.isMR = isMR;
+            ViewBag.nameMR = nameMR;
+            ViewBag.nameAttribute = nameAttribute;
+            ViewBag.viewInEframe = viewInEframe;
+
+
             return View(varDetalle_de_documentos);
         }
-		
-	[HttpGet]
+
+        [HttpGet]
         public ActionResult AddDetalle_de_documentos(int rowIndex = 0, int functionMode = 0, string id = "0")
         {
-			int ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
+            int ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
             ViewBag.currentRowIndex = rowIndex;
             ViewBag.functionMode = functionMode;
             ViewBag.Consult = false;
             var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45018);
             ViewBag.Permission = permission;
-			if (!_tokenManager.GenerateToken())
+            if (!_tokenManager.GenerateToken())
                 return null;
-           _IDetalle_de_documentosApiConsumer.SetAuthHeader(_tokenManager.Token);
-			Detalle_de_documentosModel varDetalle_de_documentos= new Detalle_de_documentosModel();
+            _IDetalle_de_documentosApiConsumer.SetAuthHeader(_tokenManager.Token);
+            Detalle_de_documentosModel varDetalle_de_documentos = new Detalle_de_documentosModel();
 
 
             if (id.ToString() != "0")
             {
                 var Detalle_de_documentossData = _IDetalle_de_documentosApiConsumer.ListaSelAll(0, 1000, "Detalle_de_documentos.Clave=" + id, "").Resource.Detalle_de_documentoss;
-				
-				if (Detalle_de_documentossData != null && Detalle_de_documentossData.Count > 0)
-                {
-					var Detalle_de_documentosData = Detalle_de_documentossData.First();
-					varDetalle_de_documentos= new Detalle_de_documentosModel
-					{
-						Clave  = Detalle_de_documentosData.Clave 
-	                    ,Solicitud = Detalle_de_documentosData.Solicitud
-                    ,SolicitudNumero_de_Folio = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Solicitud), "Solicitud") ??  (string)Detalle_de_documentosData.Solicitud_Solicitud.Numero_de_Folio
-                    ,Fecha = (Detalle_de_documentosData.Fecha == null ? string.Empty : Convert.ToDateTime(Detalle_de_documentosData.Fecha).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_de_Registro = Detalle_de_documentosData.Hora_de_Registro
-                    ,Usuario_que_Registra = Detalle_de_documentosData.Usuario_que_Registra
-                    ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Usuario_que_Registra), "Spartan_User") ??  (string)Detalle_de_documentosData.Usuario_que_Registra_Spartan_User.Name
-                    ,Tipo_de_Documento = Detalle_de_documentosData.Tipo_de_Documento
-                    ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Tipo_de_Documento), "Tipo_de_Documento") ??  (string)Detalle_de_documentosData.Tipo_de_Documento_Tipo_de_Documento.Descripcion
-                    ,Documento = Detalle_de_documentosData.Documento
-                    ,DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Documento), "Documento") ??  (string)Detalle_de_documentosData.Documento_Documento.Descripcion
-                    ,Solicitante = Detalle_de_documentosData.Solicitante
-                    ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Solicitante), "Detalle_de_Solicitud_Solicitante") ??  (string)Detalle_de_documentosData.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
-                    ,Requerido = Detalle_de_documentosData.Requerido
-                    ,RequeridoNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Requerido), "Detalle_de_Solicitud_Requerido") ??  (string)Detalle_de_documentosData.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
-                    ,Archivo_Adjunto = Detalle_de_documentosData.Archivo_Adjunto
-                    ,Observaciones = Detalle_de_documentosData.Observaciones
-                    ,Archivo = Detalle_de_documentosData.Archivo
 
-					};
-				}
+                if (Detalle_de_documentossData != null && Detalle_de_documentossData.Count > 0)
+                {
+                    var Detalle_de_documentosData = Detalle_de_documentossData.First();
+                    varDetalle_de_documentos = new Detalle_de_documentosModel
+                    {
+                        Clave = Detalle_de_documentosData.Clave
+                        ,
+                        Solicitud = Detalle_de_documentosData.Solicitud
+                    ,
+                        SolicitudNumero_de_Folio = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Solicitud), "Solicitud") ?? (string)Detalle_de_documentosData.Solicitud_Solicitud.Numero_de_Folio
+                    ,
+                        Fecha = (Detalle_de_documentosData.Fecha == null ? string.Empty : Convert.ToDateTime(Detalle_de_documentosData.Fecha).ToString(ConfigurationProperty.DateFormat))
+                    ,
+                        Hora_de_Registro = Detalle_de_documentosData.Hora_de_Registro
+                    ,
+                        Usuario_que_Registra = Detalle_de_documentosData.Usuario_que_Registra
+                    ,
+                        Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Usuario_que_Registra), "Spartan_User") ?? (string)Detalle_de_documentosData.Usuario_que_Registra_Spartan_User.Name
+                    ,
+                        Tipo_de_Documento = Detalle_de_documentosData.Tipo_de_Documento
+                    ,
+                        Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Tipo_de_Documento), "Tipo_de_Documento") ?? (string)Detalle_de_documentosData.Tipo_de_Documento_Tipo_de_Documento.Descripcion
+                    ,
+                        Documento = Detalle_de_documentosData.Documento
+                    ,
+                        DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Documento), "Documento") ?? (string)Detalle_de_documentosData.Documento_Documento.Descripcion
+                    ,
+                        Solicitante = Detalle_de_documentosData.Solicitante
+                    ,
+                        SolicitanteNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Solicitante), "Detalle_de_Solicitud_Solicitante") ?? (string)Detalle_de_documentosData.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
+                    ,
+                        Requerido = Detalle_de_documentosData.Requerido
+                    ,
+                        RequeridoNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_documentosData.Requerido), "Detalle_de_Solicitud_Requerido") ?? (string)Detalle_de_documentosData.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
+                    ,
+                        Archivo_Adjunto = Detalle_de_documentosData.Archivo_Adjunto
+                    ,
+                        Observaciones = Detalle_de_documentosData.Observaciones
+                    ,
+                        Archivo = Detalle_de_documentosData.Archivo
+
+                    };
+                }
                 _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
                 ViewBag.Archivo_AdjuntoSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varDetalle_de_documentos.Archivo_Adjunto).Resource;
 
@@ -308,7 +345,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (Tipo_de_Documentos_Tipo_de_Documento != null && Tipo_de_Documentos_Tipo_de_Documento.Resource != null)
                 ViewBag.Tipo_de_Documentos_Tipo_de_Documento = Tipo_de_Documentos_Tipo_de_Documento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -330,7 +368,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
-		[HttpGet]
+        [HttpGet]
         public ActionResult GetSolicitudAll()
         {
             try
@@ -339,10 +377,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ISolicitudApiConsumer.SelAll(false).Resource;
-				
+
                 return Json(result.OrderBy(m => m.Numero_de_Folio).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud", "Numero_de_Folio")?? m.Numero_de_Folio,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud", "Numero_de_Folio") ?? m.Numero_de_Folio,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -351,7 +389,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-		[HttpGet]
+        [HttpGet]
         public ActionResult GetSpartan_UserAll()
         {
             try
@@ -360,10 +398,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ISpartan_UserApiConsumer.SelAll(false).Resource;
-				
+
                 return Json(result.OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name")?? m.Name,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name,
                     Value = Convert.ToString(m.Id_User)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -381,10 +419,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ITipo_de_DocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ITipo_de_DocumentoApiConsumer.SelAll(false).Resource;
-                
+
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion")?? m.Descripcion,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -393,7 +431,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-		[HttpGet]
+        [HttpGet]
         public ActionResult GetDocumentoAll()
         {
             try
@@ -402,10 +440,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IDocumentoApiConsumer.SelAll(false).Resource;
-				
+
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Documento", "Descripcion")?? m.Descripcion,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Documento", "Descripcion") ?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -414,7 +452,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-		[HttpGet]
+        [HttpGet]
         public ActionResult GetDetalle_de_Solicitud_SolicitanteAll()
         {
             try
@@ -423,10 +461,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_Solicitud_SolicitanteApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IDetalle_de_Solicitud_SolicitanteApiConsumer.SelAll(false).Resource;
-				
+
                 return Json(result.OrderBy(m => m.Nombre_Completo).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Solicitud_Solicitante", "Nombre_Completo")?? m.Nombre_Completo,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Solicitud_Solicitante", "Nombre_Completo") ?? m.Nombre_Completo,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -435,7 +473,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-		[HttpGet]
+        [HttpGet]
         public ActionResult GetDetalle_de_Solicitud_RequeridoAll()
         {
             try
@@ -444,10 +482,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_Solicitud_RequeridoApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IDetalle_de_Solicitud_RequeridoApiConsumer.SelAll(false).Resource;
-				
+
                 return Json(result.OrderBy(m => m.Nombre_Completo).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Solicitud_Requerido", "Nombre_Completo")?? m.Nombre_Completo,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Solicitud_Requerido", "Nombre_Completo") ?? m.Nombre_Completo,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -472,7 +510,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (ModelState.IsValid)
             {
                 Session["AdvanceSearch"] = model;
-				if (idFilter != -1)
+                if (idFilter != -1)
                 {
                     Session["AdvanceReportFilter"] = GetAdvanceFilter(model);
                     return RedirectToAction("Index", "Report", new { id = idFilter });
@@ -494,11 +532,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (Tipo_de_Documentos_Tipo_de_Documento != null && Tipo_de_Documentos_Tipo_de_Documento.Resource != null)
                 ViewBag.Tipo_de_Documentos_Tipo_de_Documento = Tipo_de_Documentos_Tipo_de_Documento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
-            return View(model);  
+            return View(model);
         }
 
         [HttpGet]
@@ -512,7 +551,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (Tipo_de_Documentos_Tipo_de_Documento != null && Tipo_de_Documentos_Tipo_de_Documento.Resource != null)
                 ViewBag.Tipo_de_Documentos_Tipo_de_Documento = Tipo_de_Documentos_Tipo_de_Documento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(),
+                    Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -550,25 +590,36 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return Json(new
             {
                 data = result.Detalle_de_documentoss.Select(m => new Detalle_de_documentosGridModel
-                    {
+                {
                     Clave = m.Clave
-                        ,SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
-                        ,Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Registro = m.Hora_de_Registro
-                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
-                        ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
-                        ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Documento") ?? (string)m.Documento_Documento.Descripcion
-                        ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
-                        ,RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
-			,Archivo_Adjunto = m.Archivo_Adjunto
-			,Observaciones = m.Observaciones
-			,Archivo = m.Archivo
+                        ,
+                    SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
+                        ,
+                    Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
+            ,
+                    Hora_de_Registro = m.Hora_de_Registro
+                        ,
+                    Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
+                        ,
+                    Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
+                        ,
+                    DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Documento") ?? (string)m.Documento_Documento.Descripcion
+                        ,
+                    SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
+                        ,
+                    RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
+            ,
+                    Archivo_Adjunto = m.Archivo_Adjunto
+            ,
+                    Observaciones = m.Observaciones
+            ,
+                    Archivo = m.Archivo
 
-                    }).ToList(),
+                }).ToList(),
                 itemsCount = result.RowCount
             }, JsonRequestBehavior.AllowGet);
         }
-		/*
+        /*
 		 [HttpGet]
         public ActionResult GetDetalle_de_documentosAll()
         {
@@ -600,7 +651,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         /// <returns>Return List of Detalle_de_documentos Entity</returns>
         public ActionResult GetDetalle_de_documentosList(UrlParametersModel param)
         {
-			 int sEcho = param.sEcho;
+            int sEcho = param.sEcho;
             int iDisplayStart = param.iDisplayStart;
             int iDisplayLength = param.iDisplayLength;
             string where = param.where;
@@ -629,40 +680,40 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return null;
             _IDetalle_de_documentosApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-          
+
             NameValueCollection filter = HttpUtility.ParseQueryString(param.filters);
 
             var configuration = new GridConfiguration() { OrderByClause = "", WhereClause = "" };
             if (filter != null)
                 configuration = GridQueryHelper.GetDataTableConfigurationNew(param, new Detalle_de_documentosPropertyMapper());
-				
-			if (!String.IsNullOrEmpty(where))
+
+            if (!String.IsNullOrEmpty(where))
             {
-                 configuration.WhereClause = configuration.WhereClause == "" ? where : "(" + configuration.WhereClause + " AND " + where + ")";
+                configuration.WhereClause = configuration.WhereClause == "" ? where : "(" + configuration.WhereClause + " AND " + where + ")";
             }
             if (!String.IsNullOrEmpty(order))
             {
                 configuration.OrderByClause = order;
             }
             //Adding Advance Search
-            if (param.AdvanceSearch != null && param.AdvanceSearch == true && Session["AdvanceSearch"] != null)            
+            if (param.AdvanceSearch != null && param.AdvanceSearch == true && Session["AdvanceSearch"] != null)
             {
-				if (Session["AdvanceSearch"].GetType() == typeof(Detalle_de_documentosAdvanceSearchModel))
+                if (Session["AdvanceSearch"].GetType() == typeof(Detalle_de_documentosAdvanceSearchModel))
                 {
-					var advanceFilter =
+                    var advanceFilter =
                     (Detalle_de_documentosAdvanceSearchModel)Session["AdvanceSearch"];
-					configuration.WhereClause = configuration.WhereClause == "" ? GetAdvanceFilter(advanceFilter) : configuration.WhereClause + " AND " + GetAdvanceFilter(advanceFilter);
-				}
-				else
-                {    
-					Session.Remove("AdvanceSearch");
+                    configuration.WhereClause = configuration.WhereClause == "" ? GetAdvanceFilter(advanceFilter) : configuration.WhereClause + " AND " + GetAdvanceFilter(advanceFilter);
+                }
+                else
+                {
+                    Session.Remove("AdvanceSearch");
                 }
             }
 
             Detalle_de_documentosPropertyMapper oDetalle_de_documentosPropertyMapper = new Detalle_de_documentosPropertyMapper();
-			if (String.IsNullOrEmpty(order))
+            if (String.IsNullOrEmpty(order))
             {
-                 if (sortColumn != -1)
+                if (sortColumn != -1)
                     configuration.OrderByClause = oDetalle_de_documentosPropertyMapper.GetPropertyName(param.columns[sortColumn].name) + " " + sortDirection;
             }
 
@@ -675,19 +726,30 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return Json(new
             {
                 aaData = result.Detalle_de_documentoss.Select(m => new Detalle_de_documentosGridModel
-            {
+                {
                     Clave = m.Clave
-                        ,SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
-                        ,Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Registro = m.Hora_de_Registro
-                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
-                        ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
-                        ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Documento") ?? (string)m.Documento_Documento.Descripcion
-                        ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
-                        ,RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
-			,Archivo_Adjunto = m.Archivo_Adjunto
-			,Observaciones = m.Observaciones
-			,Archivo = m.Archivo
+                        ,
+                    SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
+                        ,
+                    Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
+            ,
+                    Hora_de_Registro = m.Hora_de_Registro
+                        ,
+                    Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
+                        ,
+                    Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
+                        ,
+                    DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Documento") ?? (string)m.Documento_Documento.Descripcion
+                        ,
+                    SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
+                        ,
+                    RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
+            ,
+                    Archivo_Adjunto = m.Archivo_Adjunto
+            ,
+                    Observaciones = m.Observaciones
+            ,
+                    Archivo = m.Archivo
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -708,14 +770,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Solicitud.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Solicitud.Numero_de_Folio as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _ISolicitudApiConsumer.ListaSelAll(1, 20,elWhere , " Solicitud.Numero_de_Folio ASC ").Resource;
-               
+                var elWhere = " (cast(Solicitud.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Solicitud.Numero_de_Folio as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+                elWhere = HttpUtility.UrlEncode(elWhere);
+                var result = _ISolicitudApiConsumer.ListaSelAll(1, 20, elWhere, " Solicitud.Numero_de_Folio ASC ").Resource;
+
                 foreach (var item in result.Solicituds)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Solicitud", "Numero_de_Folio");
-                    item.Numero_de_Folio =trans ??item.Numero_de_Folio;
+                    var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Solicitud", "Numero_de_Folio");
+                    item.Numero_de_Folio = trans ?? item.Numero_de_Folio;
                 }
                 return Json(result.Solicituds.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -735,14 +797,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
-               
+                var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+                elWhere = HttpUtility.UrlEncode(elWhere);
+                var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20, elWhere, " Spartan_User.Name ASC ").Resource;
+
                 foreach (var item in result.Spartan_Users)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
-                    item.Name =trans ??item.Name;
+                    var trans = CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name = trans ?? item.Name;
                 }
                 return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -762,14 +824,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Documento.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Documento.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IDocumentoApiConsumer.ListaSelAll(1, 20,elWhere , " Documento.Descripcion ASC ").Resource;
-               
+                var elWhere = " (cast(Documento.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Documento.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+                elWhere = HttpUtility.UrlEncode(elWhere);
+                var result = _IDocumentoApiConsumer.ListaSelAll(1, 20, elWhere, " Documento.Descripcion ASC ").Resource;
+
                 foreach (var item in result.Documentos)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Documento", "Descripcion");
-                    item.Descripcion =trans ??item.Descripcion;
+                    var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Documento", "Descripcion");
+                    item.Descripcion = trans ?? item.Descripcion;
                 }
                 return Json(result.Documentos.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -789,14 +851,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_Solicitud_SolicitanteApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Detalle_de_Solicitud_Solicitante.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Solicitud_Solicitante.Nombre_Completo as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IDetalle_de_Solicitud_SolicitanteApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Solicitud_Solicitante.Nombre_Completo ASC ").Resource;
-               
+                var elWhere = " (cast(Detalle_de_Solicitud_Solicitante.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Solicitud_Solicitante.Nombre_Completo as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+                elWhere = HttpUtility.UrlEncode(elWhere);
+                var result = _IDetalle_de_Solicitud_SolicitanteApiConsumer.ListaSelAll(1, 20, elWhere, " Detalle_de_Solicitud_Solicitante.Nombre_Completo ASC ").Resource;
+
                 foreach (var item in result.Detalle_de_Solicitud_Solicitantes)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Solicitud_Solicitante", "Nombre_Completo");
-                    item.Nombre_Completo =trans ??item.Nombre_Completo;
+                    var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Solicitud_Solicitante", "Nombre_Completo");
+                    item.Nombre_Completo = trans ?? item.Nombre_Completo;
                 }
                 return Json(result.Detalle_de_Solicitud_Solicitantes.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -816,14 +878,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_Solicitud_RequeridoApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Detalle_de_Solicitud_Requerido.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Solicitud_Requerido.Nombre_Completo as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IDetalle_de_Solicitud_RequeridoApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Solicitud_Requerido.Nombre_Completo ASC ").Resource;
-               
+                var elWhere = " (cast(Detalle_de_Solicitud_Requerido.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Solicitud_Requerido.Nombre_Completo as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+                elWhere = HttpUtility.UrlEncode(elWhere);
+                var result = _IDetalle_de_Solicitud_RequeridoApiConsumer.ListaSelAll(1, 20, elWhere, " Detalle_de_Solicitud_Requerido.Nombre_Completo ASC ").Resource;
+
                 foreach (var item in result.Detalle_de_Solicitud_Requeridos)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Solicitud_Requerido", "Nombre_Completo");
-                    item.Nombre_Completo =trans ??item.Nombre_Completo;
+                    var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Solicitud_Requerido", "Nombre_Completo");
+                    item.Nombre_Completo = trans ?? item.Nombre_Completo;
                 }
                 return Json(result.Detalle_de_Solicitud_Requeridos.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -1096,7 +1158,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Detalle_de_documentos varDetalle_de_documentos = null;
                 if (id.ToString() != "0")
                 {
-                        string where = "";
+                    string where = "";
 
                 }
                 var result = _IDetalle_de_documentosApiConsumer.Delete(id, null, null).Resource;
@@ -1113,57 +1175,68 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         {
             try
             {
-				//if (ModelState.IsValid)
-				//{
-                    if (!_tokenManager.GenerateToken())
-                        return Json(null, JsonRequestBehavior.AllowGet);
-                    _IDetalle_de_documentosApiConsumer.SetAuthHeader(_tokenManager.Token);
+                //if (ModelState.IsValid)
+                //{
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_documentosApiConsumer.SetAuthHeader(_tokenManager.Token);
 
 
-                    if (varDetalle_de_documentos.Archivo_AdjuntoRemoveAttachment != 0 && varDetalle_de_documentos.Archivo_AdjuntoFile == null)
+                if (varDetalle_de_documentos.Archivo_AdjuntoRemoveAttachment != 0 && varDetalle_de_documentos.Archivo_AdjuntoFile == null)
+                {
+                    varDetalle_de_documentos.Archivo_Adjunto = 0;
+                }
+
+                if (varDetalle_de_documentos.Archivo_AdjuntoFile != null)
+                {
+                    var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varDetalle_de_documentos.Archivo_AdjuntoFile);
+                    _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                    varDetalle_de_documentos.Archivo_Adjunto = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
                     {
-                        varDetalle_de_documentos.Archivo_Adjunto = 0;
-                    }
+                        File = fileAsBytes,
+                        Description = varDetalle_de_documentos.Archivo_AdjuntoFile.FileName,
+                        File_Size = fileAsBytes.Length
+                    }).Resource;
+                }
 
-                    if (varDetalle_de_documentos.Archivo_AdjuntoFile != null)
-                    {
-                        var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varDetalle_de_documentos.Archivo_AdjuntoFile);
-                        _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                        varDetalle_de_documentos.Archivo_Adjunto = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
-                        {
-                            File = fileAsBytes,
-                            Description = varDetalle_de_documentos.Archivo_AdjuntoFile.FileName,
-                            File_Size = fileAsBytes.Length
-                        }).Resource;
-                    }
 
-                    
-                    var result = "";
-                    var Detalle_de_documentosInfo = new Detalle_de_documentos
-                    {
-                        Clave = varDetalle_de_documentos.Clave
-                        ,Solicitud = varDetalle_de_documentos.Solicitud
-                        ,Fecha = (!String.IsNullOrEmpty(varDetalle_de_documentos.Fecha)) ? DateTime.ParseExact(varDetalle_de_documentos.Fecha, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_de_Registro = varDetalle_de_documentos.Hora_de_Registro
-                        ,Usuario_que_Registra = varDetalle_de_documentos.Usuario_que_Registra
-                        ,Tipo_de_Documento = varDetalle_de_documentos.Tipo_de_Documento
-                        ,Documento = varDetalle_de_documentos.Documento
-                        ,Solicitante = varDetalle_de_documentos.Solicitante
-                        ,Requerido = varDetalle_de_documentos.Requerido
-                        ,Archivo_Adjunto = (varDetalle_de_documentos.Archivo_Adjunto.HasValue && varDetalle_de_documentos.Archivo_Adjunto != 0) ? ((int?)Convert.ToInt32(varDetalle_de_documentos.Archivo_Adjunto.Value)) : null
+                var result = "";
+                var Detalle_de_documentosInfo = new Detalle_de_documentos
+                {
+                    Clave = varDetalle_de_documentos.Clave
+                    ,
+                    Solicitud = varDetalle_de_documentos.Solicitud
+                    ,
+                    Fecha = (!String.IsNullOrEmpty(varDetalle_de_documentos.Fecha)) ? DateTime.ParseExact(varDetalle_de_documentos.Fecha, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                    ,
+                    Hora_de_Registro = varDetalle_de_documentos.Hora_de_Registro
+                    ,
+                    Usuario_que_Registra = varDetalle_de_documentos.Usuario_que_Registra
+                    ,
+                    Tipo_de_Documento = varDetalle_de_documentos.Tipo_de_Documento
+                    ,
+                    Documento = varDetalle_de_documentos.Documento
+                    ,
+                    Solicitante = varDetalle_de_documentos.Solicitante
+                    ,
+                    Requerido = varDetalle_de_documentos.Requerido
+                    ,
+                    Archivo_Adjunto = (varDetalle_de_documentos.Archivo_Adjunto.HasValue && varDetalle_de_documentos.Archivo_Adjunto != 0) ? ((int?)Convert.ToInt32(varDetalle_de_documentos.Archivo_Adjunto.Value)) : null
 
-                        ,Observaciones = varDetalle_de_documentos.Observaciones
-                        ,Archivo = varDetalle_de_documentos.Archivo
+                    ,
+                    Observaciones = varDetalle_de_documentos.Observaciones
+                    ,
+                    Archivo = varDetalle_de_documentos.Archivo
 
-                    };
+                };
 
-                    result = !IsNew ?
-                        _IDetalle_de_documentosApiConsumer.Update(Detalle_de_documentosInfo, null, null).Resource.ToString() :
-                         _IDetalle_de_documentosApiConsumer.Insert(Detalle_de_documentosInfo, null, null).Resource.ToString();
-					Session["KeyValueInserted"] = result;
-                    return Json(result, JsonRequestBehavior.AllowGet);
-				//}
-				//return Json(false, JsonRequestBehavior.AllowGet);
+                result = !IsNew ?
+                    _IDetalle_de_documentosApiConsumer.Update(Detalle_de_documentosInfo, null, null).Resource.ToString() :
+                     _IDetalle_de_documentosApiConsumer.Insert(Detalle_de_documentosInfo, null, null).Resource.ToString();
+                Session["KeyValueInserted"] = result;
+                return Json(result, JsonRequestBehavior.AllowGet);
+                //}
+                //return Json(false, JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -1192,23 +1265,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Detalle_de_documentosModuleAttributeList.CustomModuleAttributeList[i].HelpText = string.Empty;
                 }
             }
-			if (Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList != null)
+            if (Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList != null)
             {
-				for (int i = 0; i < Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList.Count - 1; i++)
-				{
-					for (int j = 0; j < Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList[i].elements.Count; j++)
-					{
-						if (string.IsNullOrEmpty(Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList[i].elements[j].DefaultValue))
-						{
-							Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList[i].elements[j].DefaultValue = string.Empty;
-						}
-						if (string.IsNullOrEmpty(Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList[i].elements[j].HelpText))
-						{
-							Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList[i].elements[j].HelpText = string.Empty;
-						}
-					}
-				}
-			}
+                for (int i = 0; i < Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList.Count - 1; i++)
+                {
+                    for (int j = 0; j < Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList[i].elements.Count; j++)
+                    {
+                        if (string.IsNullOrEmpty(Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList[i].elements[j].DefaultValue))
+                        {
+                            Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList[i].elements[j].DefaultValue = string.Empty;
+                        }
+                        if (string.IsNullOrEmpty(Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList[i].elements[j].HelpText))
+                        {
+                            Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList[i].elements[j].HelpText = string.Empty;
+                        }
+                    }
+                }
+            }
             string strDetalle_de_documentosScript = string.Empty;
             using (StreamReader r = new StreamReader(Server.MapPath("~/Uploads/Scripts/Detalle_de_documentos.js")))
             {
@@ -1227,53 +1300,53 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             // get json string of change job history element attributes
             string childUserChangeJson = jsSerialize.Serialize(Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList);
-			int indexOfArrayHistory = 0;
+            int indexOfArrayHistory = 0;
             string splittedStringHistory = "";
             int indexOfMainElementHistory = 0;
             int endIndexOfMainElementHistory = 0;
-			if (Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList != null)
+            if (Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList != null)
             {
-				indexOfArrayHistory = strDetalle_de_documentosScript.IndexOf("});");
-				if(indexOfArrayHistory != -1)
-				{
-					splittedStringHistory = strDetalle_de_documentosScript.Substring(indexOfArrayHistory, strDetalle_de_documentosScript.Length - indexOfArrayHistory);
-					indexOfMainElementHistory = splittedStringHistory.IndexOf('[');
-					endIndexOfMainElementHistory = splittedStringHistory.IndexOf(']') + 1;
-				}
-			}
-			string finalResponse = strDetalle_de_documentosScript.Substring(0, indexOfArray + indexOfMainElement) + userChangeJson + strDetalle_de_documentosScript.Substring(endIndexOfMainElement + indexOfArray, strDetalle_de_documentosScript.Length - (endIndexOfMainElement + indexOfArray));
-           
-		   var ResponseChild = string.Empty;
+                indexOfArrayHistory = strDetalle_de_documentosScript.IndexOf("});");
+                if (indexOfArrayHistory != -1)
+                {
+                    splittedStringHistory = strDetalle_de_documentosScript.Substring(indexOfArrayHistory, strDetalle_de_documentosScript.Length - indexOfArrayHistory);
+                    indexOfMainElementHistory = splittedStringHistory.IndexOf('[');
+                    endIndexOfMainElementHistory = splittedStringHistory.IndexOf(']') + 1;
+                }
+            }
+            string finalResponse = strDetalle_de_documentosScript.Substring(0, indexOfArray + indexOfMainElement) + userChangeJson + strDetalle_de_documentosScript.Substring(endIndexOfMainElement + indexOfArray, strDetalle_de_documentosScript.Length - (endIndexOfMainElement + indexOfArray));
+
+            var ResponseChild = string.Empty;
             if (Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList != null && indexOfArrayHistory != -1)
             {
                 foreach (var item in Detalle_de_documentosModuleAttributeList.ChildModuleAttributeList)
                 {
-				if (item!= null && item.elements != null  && item.elements.Count>0)
-                    ResponseChild += "\r\n  \n\r function set" + item.table + "Validation() { " +
-                                    " \r\n var inpuElementChildArray =" + jsSerialize.Serialize(item.elements) + ";" +
-                                    "  \r\n setInputEntityAttributes(inpuElementChildArray, \".\", 0);" +
-                                    "  \r\n setDynamicRenderElement(); \n\r } ";
+                    if (item != null && item.elements != null && item.elements.Count > 0)
+                        ResponseChild += "\r\n  \n\r function set" + item.table + "Validation() { " +
+                                        " \r\n var inpuElementChildArray =" + jsSerialize.Serialize(item.elements) + ";" +
+                                        "  \r\n setInputEntityAttributes(inpuElementChildArray, \".\", 0);" +
+                                        "  \r\n setDynamicRenderElement(); \n\r } ";
 
                 }
             }
-            finalResponse = finalResponse.Substring(0, finalResponse.IndexOf("});") + 4) +  "\n\r";
+            finalResponse = finalResponse.Substring(0, finalResponse.IndexOf("});") + 4) + "\n\r";
             finalResponse += ResponseChild;
-          
+
 
             using (StreamWriter w = new StreamWriter(Server.MapPath("~/Uploads/Scripts/Detalle_de_documentos.js")))
             {
                 w.WriteLine(finalResponse);
             }
-            
+
             return Json(true, JsonRequestBehavior.AllowGet);
         }
-        
+
 
         [HttpPost]
         public JsonResult ReadScriptSettings()
         {
             string strCustomScript = string.Empty;
-            
+
             CustomElementAttribute oCustomElementAttribute = new CustomElementAttribute();
 
             if (System.IO.File.Exists(Server.MapPath("~/Uploads/Scripts/Detalle_de_documentos.js")))
@@ -1281,13 +1354,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 using (StreamReader r = new StreamReader(Server.MapPath("~/Uploads/Scripts/Detalle_de_documentos.js")))
                 {
                     strCustomScript = r.ReadToEnd();
-                
+
                 }
 
                 int indexOfArray = strCustomScript.IndexOf("inpuElementArray");
-                string splittedString = strCustomScript.Substring(indexOfArray, strCustomScript.Length - indexOfArray);                
-                int indexOfMainElement = splittedString.IndexOf('[');                
-                int endIndexOfMainElement = splittedString.IndexOf(']') + 1;                
+                string splittedString = strCustomScript.Substring(indexOfArray, strCustomScript.Length - indexOfArray);
+                int indexOfMainElement = splittedString.IndexOf('[');
+                int endIndexOfMainElement = splittedString.IndexOf(']') + 1;
                 string mainJsonArray = splittedString.Substring(indexOfMainElement, endIndexOfMainElement - indexOfMainElement);
 
                 int indexOfChildArray = strCustomScript.IndexOf("function set");
@@ -1323,7 +1396,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 oCustomElementAttribute.MainElement = string.Empty;
                 oCustomElementAttribute.ChildElement = string.Empty;
-            }        
+            }
             return Json(oCustomElementAttribute, JsonRequestBehavior.AllowGet);
         }
 
@@ -1332,8 +1405,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         {
             return PartialView("Detalle_de_documentosPropertyBag", "Detalle_de_documentos");
         }
-		
-		public List<Spartan_Business_Rule> GetBusinessRules(int ObjectId, int Attribute)
+
+        public List<Spartan_Business_Rule> GetBusinessRules(int ObjectId, int Attribute)
         {
             if (!_tokenManager.GenerateToken())
                 return null;
@@ -1380,8 +1453,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #endregion "Controller Methods"
 
         #region "Custom methods"
-		
-		[HttpGet]
+
+        [HttpGet]
         public FileStreamResult PrintFormats(int idFormat, string RecordId)
         {
             if (!_tokenManager.GenerateToken())
@@ -1391,7 +1464,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             _ISpartan_FormatRelatedApiConsumer.SetAuthHeader(_tokenManager.Token);
 
             MemoryStream ms = new MemoryStream();
-           
+
             //Buscar los Formatos Relacionados
             var relacionados = _ISpartan_FormatRelatedApiConsumer.ListaSelAll(0, 5000, "Spartan_Format_Related.FormatId = " + idFormat, "").Resource.Spartan_Format_Relateds.OrderBy(r => r.Order).ToList();
             if (relacionados.Count > 0)
@@ -1415,11 +1488,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var allPagesContent = ms.GetBuffer();
                 ms.Flush();
             }
-            else {
+            else
+            {
                 var bytePdf = _IGeneratePDFApiConsumer.GeneratePDF(idFormat, RecordId);
-                ms.Write(bytePdf.Resource, 0, bytePdf.Resource.Length);           
+                ms.Write(bytePdf.Resource, 0, bytePdf.Resource.Length);
             }
-                
+
             Response.ContentType = "application/pdf";
             Response.AddHeader("content-disposition", "attachment;filename=Formatos.pdf");
             Response.Buffer = true;
@@ -1430,10 +1504,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             return new FileStreamResult(Response.OutputStream, "application/pdf");
         }
-		
-		
-		
-		[HttpGet]
+
+
+
+        [HttpGet]
         public ActionResult GetFormats(string RecordId)
         {
             if (!_tokenManager.GenerateToken())
@@ -1444,7 +1518,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
             _ISpartan_Format_PermissionsApiConsumer.SetAuthHeader(_tokenManager.Token);
-           _ISpartan_FormatApiConsumer.SetAuthHeader(_tokenManager.Token);
+            _ISpartan_FormatApiConsumer.SetAuthHeader(_tokenManager.Token);
 
             var whereClause = " Spartan_Format_Permissions.Spartan_User_Role = " + SessionHelper.Role + " AND Spartan_Format_Permissions.Permission_Type = 1 AND Apply=1 ";
             var formatsPermisions = _ISpartan_Format_PermissionsApiConsumer.ListaSelAll(0, 500, whereClause, string.Empty).Resource;
@@ -1469,7 +1543,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                             {
                                 formatList.Add(new SelectListItem
                                 {
-                                    Text =  CultureHelper.GetTraductionAdd(format.FormatId.ToString(), "Format", format.Format_Name),
+                                    Text = CultureHelper.GetTraductionAdd(format.FormatId.ToString(), "Format", format.Format_Name),
                                     Value = Convert.ToString(format.FormatId)
                                 });
                             }
@@ -1478,7 +1552,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             formatList.Add(new SelectListItem
                             {
-                                Text =  CultureHelper.GetTraductionAdd(format.FormatId.ToString(), "Format", format.Format_Name),
+                                Text = CultureHelper.GetTraductionAdd(format.FormatId.ToString(), "Format", format.Format_Name),
                                 Value = Convert.ToString(format.FormatId)
                             });
                         }
@@ -1495,10 +1569,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         {
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
-										  
-			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
 
-			 where = HttpUtility.UrlEncode(where);
+            string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
+
+            where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
                 return;
 
@@ -1508,8 +1582,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var configuration = new GridConfiguration() { OrderByClause = "", WhereClause = "" };
             if (filter != null)
                 configuration = GridQueryHelper.GetDataTableConfiguration(filter, new Detalle_de_documentosPropertyMapper());
-			
-			 if (!String.IsNullOrEmpty(where))
+
+            if (!String.IsNullOrEmpty(where))
             {
                 configuration.WhereClause = configuration.WhereClause == "" ? where : "(" + configuration.WhereClause + " AND " + where + ")";
             }
@@ -1524,14 +1598,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     (Detalle_de_documentosAdvanceSearchModel)Session["AdvanceSearch"];
                 configuration.WhereClause = configuration.WhereClause == "" ? GetAdvanceFilter(advanceFilter) : configuration.WhereClause + " AND " + GetAdvanceFilter(advanceFilter);
             }
-			string sortDirection = "asc";
+            string sortDirection = "asc";
 
             Detalle_de_documentosPropertyMapper oDetalle_de_documentosPropertyMapper = new Detalle_de_documentosPropertyMapper();
             if (Request.QueryString["sSortDir"] != null)
             {
                 sortDirection = Request.QueryString["sSortDir"];
             }
-            configuration.OrderByClause =  oDetalle_de_documentosPropertyMapper.GetPropertyName(iSortCol)  + " " + sortDirection;
+            configuration.OrderByClause = oDetalle_de_documentosPropertyMapper.GetPropertyName(iSortCol) + " " + sortDirection;
             pageSize = pageSize == 0 ? int.MaxValue : pageSize;
 
             var result = _IDetalle_de_documentosApiConsumer.ListaSelAll((pageIndex * pageSize) - pageSize + 1, pageSize + ((pageIndex * pageSize) - pageSize), configuration.WhereClause, configuration.OrderByClause ?? "").Resource;
@@ -1541,17 +1615,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_de_documentoss.Select(m => new Detalle_de_documentosGridModel
             {
                 Clave = m.Clave
-                        ,SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
-                        ,Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Registro = m.Hora_de_Registro
-                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
-                        ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
-                        ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Documento") ?? (string)m.Documento_Documento.Descripcion
-                        ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
-                        ,RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
-			,Archivo_Adjunto = m.Archivo_Adjunto
-			,Observaciones = m.Observaciones
-			,Archivo = m.Archivo
+                        ,
+                SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
+                        ,
+                Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
+            ,
+                Hora_de_Registro = m.Hora_de_Registro
+                        ,
+                Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
+                        ,
+                Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
+                        ,
+                DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Documento") ?? (string)m.Documento_Documento.Descripcion
+                        ,
+                SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
+                        ,
+                RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
+            ,
+                Archivo_Adjunto = m.Archivo_Adjunto
+            ,
+                Observaciones = m.Observaciones
+            ,
+                Archivo = m.Archivo
 
             }).ToList();
 
@@ -1573,13 +1658,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         [HttpGet]
         //[ObjectAuth(ObjectId = ModuleObjectId.EMPLEADOS_OBJECT, PermissionType = PermissionTypes.Export)]
-        public ActionResult Print(string format, int pageIndex, int pageSize, string iSortCol, string sSortDir,string where, string order)
+        public ActionResult Print(string format, int pageIndex, int pageSize, string iSortCol, string sSortDir, string where, string order)
         {
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 
-			where = HttpUtility.UrlEncode(where);
-										   
+            where = HttpUtility.UrlEncode(where);
+
             if (!_tokenManager.GenerateToken())
                 return null;
 
@@ -1590,13 +1675,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var configuration = new GridConfiguration() { OrderByClause = "", WhereClause = "" };
             if (filter != null)
                 configuration = GridQueryHelper.GetDataTableConfiguration(filter, new Detalle_de_documentosPropertyMapper());
-				
-				
+
+
             if (!String.IsNullOrEmpty(where))
             {
                 configuration.WhereClause = configuration.WhereClause == "" ? where : "(" + configuration.WhereClause + " AND " + where + ")";
             }
-			if (Session["AdvanceSearch"] != null && pageSize != 0)
+            if (Session["AdvanceSearch"] != null && pageSize != 0)
             {
                 var advanceFilter =
                     (Detalle_de_documentosAdvanceSearchModel)Session["AdvanceSearch"];
@@ -1610,9 +1695,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 sortDirection = Request.QueryString["sSortDir"];
             }
-            configuration.OrderByClause =  oDetalle_de_documentosPropertyMapper.GetPropertyName(iSortCol)  + " " + sortDirection;
-			
-			if (!String.IsNullOrEmpty(order))
+            configuration.OrderByClause = oDetalle_de_documentosPropertyMapper.GetPropertyName(iSortCol) + " " + sortDirection;
+
+            if (!String.IsNullOrEmpty(order))
             {
                 configuration.OrderByClause = order;
             }
@@ -1625,17 +1710,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_de_documentoss.Select(m => new Detalle_de_documentosGridModel
             {
                 Clave = m.Clave
-                        ,SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
-                        ,Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Registro = m.Hora_de_Registro
-                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
-                        ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
-                        ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Documento") ?? (string)m.Documento_Documento.Descripcion
-                        ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
-                        ,RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
-			,Archivo_Adjunto = m.Archivo_Adjunto
-			,Observaciones = m.Observaciones
-			,Archivo = m.Archivo
+                        ,
+                SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
+                        ,
+                Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
+            ,
+                Hora_de_Registro = m.Hora_de_Registro
+                        ,
+                Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
+                        ,
+                Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
+                        ,
+                DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Documento") ?? (string)m.Documento_Documento.Descripcion
+                        ,
+                SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
+                        ,
+                RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
+            ,
+                Archivo_Adjunto = m.Archivo_Adjunto
+            ,
+                Observaciones = m.Observaciones
+            ,
+                Archivo = m.Archivo
 
             }).ToList();
 
@@ -1643,8 +1739,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
         #endregion "Custom methods"
-		
-		[HttpGet]
+
+        [HttpGet]
         public JsonResult CreateID()
         {
             try
@@ -1661,8 +1757,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-		
-		[HttpPost]
+
+        [HttpPost]
         public ActionResult Post_Datos_Generales(Detalle_de_documentos_Datos_GeneralesModel varDetalle_de_documentos)
         {
             try
@@ -1670,40 +1766,51 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_documentosApiConsumer.SetAuthHeader(_tokenManager.Token);
-				                    if (varDetalle_de_documentos.Archivo_AdjuntoRemoveAttachment != 0 && varDetalle_de_documentos.Archivo_AdjuntoFile == null)
-                    {
-                        varDetalle_de_documentos.Archivo_Adjunto = 0;
-                    }
+                if (varDetalle_de_documentos.Archivo_AdjuntoRemoveAttachment != 0 && varDetalle_de_documentos.Archivo_AdjuntoFile == null)
+                {
+                    varDetalle_de_documentos.Archivo_Adjunto = 0;
+                }
 
-                    if (varDetalle_de_documentos.Archivo_AdjuntoFile != null)
+                if (varDetalle_de_documentos.Archivo_AdjuntoFile != null)
+                {
+                    var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varDetalle_de_documentos.Archivo_AdjuntoFile);
+                    _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                    varDetalle_de_documentos.Archivo_Adjunto = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
                     {
-                        var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varDetalle_de_documentos.Archivo_AdjuntoFile);
-                        _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                        varDetalle_de_documentos.Archivo_Adjunto = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
-                        {
-                            File = fileAsBytes,
-                            Description = varDetalle_de_documentos.Archivo_AdjuntoFile.FileName,
-                            File_Size = fileAsBytes.Length
-                        }).Resource;
-                    }
+                        File = fileAsBytes,
+                        Description = varDetalle_de_documentos.Archivo_AdjuntoFile.FileName,
+                        File_Size = fileAsBytes.Length
+                    }).Resource;
+                }
 
                 var result = "";
                 var Detalle_de_documentos_Datos_GeneralesInfo = new Detalle_de_documentos_Datos_Generales
                 {
                     Clave = varDetalle_de_documentos.Clave
-                                            ,Solicitud = varDetalle_de_documentos.Solicitud
-                        ,Fecha = (!String.IsNullOrEmpty(varDetalle_de_documentos.Fecha)) ? DateTime.ParseExact(varDetalle_de_documentos.Fecha, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_de_Registro = varDetalle_de_documentos.Hora_de_Registro
-                        ,Usuario_que_Registra = varDetalle_de_documentos.Usuario_que_Registra
-                        ,Tipo_de_Documento = varDetalle_de_documentos.Tipo_de_Documento
-                        ,Documento = varDetalle_de_documentos.Documento
-                        ,Solicitante = varDetalle_de_documentos.Solicitante
-                        ,Requerido = varDetalle_de_documentos.Requerido
-                        ,Archivo_Adjunto = (varDetalle_de_documentos.Archivo_Adjunto.HasValue && varDetalle_de_documentos.Archivo_Adjunto != 0) ? ((int?)Convert.ToInt32(varDetalle_de_documentos.Archivo_Adjunto.Value)) : null
+                                            ,
+                    Solicitud = varDetalle_de_documentos.Solicitud
+                        ,
+                    Fecha = (!String.IsNullOrEmpty(varDetalle_de_documentos.Fecha)) ? DateTime.ParseExact(varDetalle_de_documentos.Fecha, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,
+                    Hora_de_Registro = varDetalle_de_documentos.Hora_de_Registro
+                        ,
+                    Usuario_que_Registra = varDetalle_de_documentos.Usuario_que_Registra
+                        ,
+                    Tipo_de_Documento = varDetalle_de_documentos.Tipo_de_Documento
+                        ,
+                    Documento = varDetalle_de_documentos.Documento
+                        ,
+                    Solicitante = varDetalle_de_documentos.Solicitante
+                        ,
+                    Requerido = varDetalle_de_documentos.Requerido
+                        ,
+                    Archivo_Adjunto = (varDetalle_de_documentos.Archivo_Adjunto.HasValue && varDetalle_de_documentos.Archivo_Adjunto != 0) ? ((int?)Convert.ToInt32(varDetalle_de_documentos.Archivo_Adjunto.Value)) : null
 
-                        ,Observaciones = varDetalle_de_documentos.Observaciones
-                        ,Archivo = varDetalle_de_documentos.Archivo
-                    
+                        ,
+                    Observaciones = varDetalle_de_documentos.Observaciones
+                        ,
+                    Archivo = varDetalle_de_documentos.Archivo
+
                 };
 
                 result = _IDetalle_de_documentosApiConsumer.Update_Datos_Generales(Detalle_de_documentos_Datos_GeneralesInfo).Resource.ToString();
@@ -1715,53 +1822,97 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-		
-		[HttpGet]
+
+        [HttpGet]
         public JsonResult Get_Datos_Generales(string Id)
-        {     
+        {
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
-            {                
+            {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_documentosApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var m = _IDetalle_de_documentosApiConsumer.Get_Datos_Generales(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				
+
                 var result = new Detalle_de_documentos_Datos_GeneralesModel
                 {
                     Clave = m.Clave
-                        ,Solicitud = m.Solicitud
-                        ,SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
-                        ,Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Registro = m.Hora_de_Registro
-                        ,Usuario_que_Registra = m.Usuario_que_Registra
-                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
-                        ,Tipo_de_Documento = m.Tipo_de_Documento
-                        ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
-                        ,Documento = m.Documento
-                        ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Documento") ?? (string)m.Documento_Documento.Descripcion
-                        ,Solicitante = m.Solicitante
-                        ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
-                        ,Requerido = m.Requerido
-                        ,RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
-			,Archivo_Adjunto = m.Archivo_Adjunto
-			,Observaciones = m.Observaciones
-			,Archivo = m.Archivo
+                        ,
+                    Solicitud = m.Solicitud
+                        ,
+                    SolicitudNumero_de_Folio = CultureHelper.GetTraduction(m.Solicitud_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Solicitud_Solicitud.Numero_de_Folio
+                        ,
+                    Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
+            ,
+                    Hora_de_Registro = m.Hora_de_Registro
+                        ,
+                    Usuario_que_Registra = m.Usuario_que_Registra
+                        ,
+                    Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
+                        ,
+                    Tipo_de_Documento = m.Tipo_de_Documento
+                        ,
+                    Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
+                        ,
+                    Documento = m.Documento
+                        ,
+                    DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Documento") ?? (string)m.Documento_Documento.Descripcion
+                        ,
+                    Solicitante = m.Solicitante
+                        ,
+                    SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
+                        ,
+                    Requerido = m.Requerido
+                        ,
+                    RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
+            ,
+                    Archivo_Adjunto = m.Archivo_Adjunto
+            ,
+                    Observaciones = m.Observaciones
+            ,
+                    Archivo = m.Archivo
 
-                    
+
                 };
-				var resultData = new
+                var resultData = new
                 {
                     data = result
 
                 };
                 return Json(resultData, JsonRequestBehavior.AllowGet);
             }
-            return Json(null, JsonRequestBehavior.AllowGet);            
+            return Json(null, JsonRequestBehavior.AllowGet);
+        }
+        public object GetArchivoFisico(string Archivo)
+        {
+
+            try
+            {
+
+                if (Archivo.Length == 0)
+                    Archivo = "0";
+
+                var Base = System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
+
+                if (!_tokenManager.GenerateToken())
+                {
+                    throw new Exception("");
+                }
+
+                _ISpartaneQueryApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var Query = "EXEC dbo.uspGetArchivoFisico @Folio = " + Archivo;
+
+                var result = _ISpartaneQueryApiConsumer.ExecuteQuery(Query);
+                return Base + result.Resource.ToString();
+            }
+            catch (Exception)
+            {
+                return DBNull.Value;
+
+            }
         }
 
 
     }
 }
-
