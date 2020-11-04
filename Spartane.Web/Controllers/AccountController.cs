@@ -57,9 +57,9 @@ namespace Spartane.Web.Controllers
         #region "Constructor"
 
         public AccountController(IAuthenticationService authenticationService,
-            IUserService userService, ISpartane_FileApiConsumer Spartane_FileApiConsumer, 
-            IPermissionService permissionService, ITokenManager tokenManager, 
-            IAuthenticationApiConsumer authenticationApiConsumer, ILanguageApiConsumer languageoApiConsumer, 
+            IUserService userService, ISpartane_FileApiConsumer Spartane_FileApiConsumer,
+            IPermissionService permissionService, ITokenManager tokenManager,
+            IAuthenticationApiConsumer authenticationApiConsumer, ILanguageApiConsumer languageoApiConsumer,
             ISpartan_UserApiConsumer UseroApiConsumer, ISpartanSessionApiConsumer oSpartanSessionAPIConsumer,
             ISpartanSecurityApiConsumer oSpartanSecurityAPIConsumer, ISpartan_SettingsApiConsumer Spartan_SettingsApiConsumer,
             ISpartaneQueryApiConsumer SpartaneQueryApiConsumer)
@@ -115,7 +115,7 @@ namespace Spartane.Web.Controllers
             oLoginViewModel.LanguageList = GetLanguage();
             oLoginViewModel.FailedAttempts = 1;
 
-            
+
 
             ViewBag.ReturnUrl = returnUrl;
             if (ConfigurationManager.AppSettings["ActivateValidation"] != null && Convert.ToBoolean(ConfigurationManager.AppSettings["ActivateValidation"]))
@@ -131,9 +131,9 @@ namespace Spartane.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Login(LoginViewModel model, string returnUrl= "")
+        public ActionResult Login(LoginViewModel model, string returnUrl = "")
         {
-            
+
             Session["BlockUser"] = null;
             if (ModelState.ContainsKey("LanguageList"))
             { ModelState["LanguageList"].Errors.Clear(); }
@@ -144,7 +144,7 @@ namespace Spartane.Web.Controllers
                 if (!_tokenManager.GenerateToken(model.UserName, passwordEncripted))
                 {
                     ModelState.AddModelError("", Resources.LoginResources.InvalidUserPassword);
-                    if (SessionHelper.Relogin) 
+                    if (SessionHelper.Relogin)
                         return Json(Resources.LoginResources.InvalidUserPassword);
                 }
 
@@ -238,6 +238,7 @@ namespace Spartane.Web.Controllers
                         Session.Timeout = Convert.ToInt32(ConfigurationManager.AppSettings["SessionTimeOut"]);
                         Session["LANGUAGEID"] = (model.SelectedLanguage.HasValue) ? model.SelectedLanguage.Value : 1;
                         SessionHelper.Relogin = false;
+                        MenuHelper.GetLatestMenu(model.UserName, passwordEncripted);
                         return RedirectToLocal("~/Frontal/Home/Index");
                     }
                     else
@@ -246,7 +247,7 @@ namespace Spartane.Web.Controllers
                         _ISpartanSecurityApiConsumer.Insert(oSecurityLog);
 
                         ModelState.AddModelError("", Resources.LoginResources.DeactivateAccount);
-                        if (SessionHelper.Relogin) 
+                        if (SessionHelper.Relogin)
                             return Json(Resources.LoginResources.DeactivateAccount);
                     }
                 }
@@ -254,26 +255,26 @@ namespace Spartane.Web.Controllers
                 {
                     SetSecurityLogging(ref oSecurityLog, (short)Event_Type.Login, null, null, (short)Result_Type.Denied);
                     _ISpartanSecurityApiConsumer.Insert(oSecurityLog);
-                   
+
                     if (model.FailedAttempts < model.MaxFailedAttempts)
                     {
-						ModelState.AddModelError("", Resources.LoginResources.InvalidUserPassword);
+                        ModelState.AddModelError("", Resources.LoginResources.InvalidUserPassword);
                         model.FailedAttempts = model.FailedAttempts + 1;
                     }
                     else
                     {
-                        
+
                         if (UsersByName.RowCount == 1)
                         {
                             var UserByName = UsersByName.Spartan_Users.First();
                             UserByName.Status = 2;
                             int status = _IUseroApiConsumer.Update(UserByName, null, null).Resource;
                             model.FailedAttempts = 1;
-							ModelState.AddModelError("", Resources.LoginResources.DeactivateAccount);
+                            ModelState.AddModelError("", Resources.LoginResources.DeactivateAccount);
                         }
                         Session["BlockUser"] = true;
                     }
-                    if (SessionHelper.Relogin) 
+                    if (SessionHelper.Relogin)
                         return Json(Resources.LoginResources.InvalidUserPassword);
                 }
             }
@@ -286,94 +287,94 @@ namespace Spartane.Web.Controllers
         [AllowAnonymous]
         public ActionResult ReLogin(LoginViewModel model, string returnUrl)
         {
-           
-                if (ModelState.ContainsKey("LanguageList"))
-                { ModelState["LanguageList"].Errors.Clear(); }
+
+            if (ModelState.ContainsKey("LanguageList"))
+            { ModelState["LanguageList"].Errors.Clear(); }
 
 
-                SessionHelper.Relogin = true;
+            SessionHelper.Relogin = true;
 
-                if (Session.Count <= 1)
+            if (Session.Count <= 1)
+            {
+                LoginViewModel oLoginViewModel = new LoginViewModel();
+                oLoginViewModel.LanguageList = GetLanguage();
+                oLoginViewModel.UserName = model.UserName;
+                oLoginViewModel.Password = model.Password;
+                return Login(oLoginViewModel);
+            }
+
+
+
+            if (ModelState.IsValid)
+            {
+                if (!_tokenManager.GenerateToken(model.UserName, EncryptHelper.CalculateMD5Hash(model.Password)))
                 {
-                    LoginViewModel oLoginViewModel = new LoginViewModel();
-                    oLoginViewModel.LanguageList = GetLanguage();
-                    oLoginViewModel.UserName = model.UserName;
-                    oLoginViewModel.Password = model.Password;
-                    return Login(oLoginViewModel);
+                    ModelState.AddModelError("", Resources.LoginResources.InvalidUserPassword);
+                    return Json(Resources.LoginResources.InvalidUserPassword);
                 }
 
-          
+                _IUseroApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-                if (ModelState.IsValid)
+                // Call Validate User API for user Exists in application
+                Spartan_User_Core UserDetails = _IUseroApiConsumer.ValidateUser(1, 10, "Username = '" + model.UserName + "'  COLLATE SQL_Latin1_General_CP1_CS_AS And Password = '" + EncryptHelper.CalculateMD5Hash(model.Password) + "'  COLLATE SQL_Latin1_General_CP1_CS_AS").Resource;
+                if (UserDetails.Spartan_Users != null && UserDetails.Spartan_Users.Count() > 0)
                 {
-                    if (!_tokenManager.GenerateToken(model.UserName, EncryptHelper.CalculateMD5Hash(model.Password)))
+                    //return Json(string.Empty);
+                    if (UserDetails.Spartan_Users[0].Status == 1)
                     {
-                        ModelState.AddModelError("", Resources.LoginResources.InvalidUserPassword);
-                        return Json(Resources.LoginResources.InvalidUserPassword);
-                    }
-
-                    _IUseroApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-                    // Call Validate User API for user Exists in application
-                    Spartan_User_Core UserDetails = _IUseroApiConsumer.ValidateUser(1, 10, "Username = '" + model.UserName + "'  COLLATE SQL_Latin1_General_CP1_CS_AS And Password = '" + EncryptHelper.CalculateMD5Hash(model.Password) + "'  COLLATE SQL_Latin1_General_CP1_CS_AS").Resource;
-                    if (UserDetails.Spartan_Users != null && UserDetails.Spartan_Users.Count() > 0)
-                    {
-                        //return Json(string.Empty);
-                        if (UserDetails.Spartan_Users[0].Status == 1)
+                        TTUsuario user = new TTUsuario
                         {
-                            TTUsuario user = new TTUsuario
-                            {
-                                IdUsuario = Convert.ToInt16(UserDetails.Spartan_Users[0].Id_User),
-                                Nombre = Convert.ToString(UserDetails.Spartan_Users[0].Name),
-                                Clave_de_Acceso = UserDetails.Spartan_Users[0].Username,
-                                //Activo = UserDetails.Spartan_Users[0].Status
-                            };
+                            IdUsuario = Convert.ToInt16(UserDetails.Spartan_Users[0].Id_User),
+                            Nombre = Convert.ToString(UserDetails.Spartan_Users[0].Name),
+                            Clave_de_Acceso = UserDetails.Spartan_Users[0].Username,
+                            //Activo = UserDetails.Spartan_Users[0].Status
+                        };
 
 
-                            SetAuthentication(UserDetails);
-                            //_authenticationService.SignIn(user, model.RememberMe);
+                        SetAuthentication(UserDetails);
+                        //_authenticationService.SignIn(user, model.RememberMe);
 
 
-                            //Saving Credentials
-                            SessionHelper.UserCredential = new Spartane_Credential
-                            {
-                                Password = EncryptHelper.CalculateMD5Hash(model.Password),
-                                UserName = model.UserName,
-                            };
-                            // save role id in session
-                            SessionHelper.Role = UserDetails.Spartan_Users[0].Role;
-                            // save role object in session
-                            SessionHelper.Sprtan_Role = new RoleSpartanUserRole
-                            {
-                                Id = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Id,
-                                Description = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Description,
-                                Status = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Status,
-                                Status_Spartan_User_Role_Status = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Status_Spartan_User_Role_Status,
-                                User_Role_Id = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.User_Role_Id,
-                            };
-                            Session["USERID"] = user.IdUsuario;
-                            Session["USERROLEID"] = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.User_Role_Id;
-                            Session.Timeout = Convert.ToInt32(ConfigurationManager.AppSettings["SessionTimeOut"]);
-
-                            SessionHelper.Relogin = false;
-                            return Json(string.Empty);
-
-                        }
-                        else
+                        //Saving Credentials
+                        SessionHelper.UserCredential = new Spartane_Credential
                         {
-                            ModelState.AddModelError("", Resources.LoginResources.DeactivateAccount);
-                            return Json(Resources.LoginResources.DeactivateAccount);
-                        }
+                            Password = EncryptHelper.CalculateMD5Hash(model.Password),
+                            UserName = model.UserName,
+                        };
+                        // save role id in session
+                        SessionHelper.Role = UserDetails.Spartan_Users[0].Role;
+                        // save role object in session
+                        SessionHelper.Sprtan_Role = new RoleSpartanUserRole
+                        {
+                            Id = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Id,
+                            Description = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Description,
+                            Status = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Status,
+                            Status_Spartan_User_Role_Status = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.Status_Spartan_User_Role_Status,
+                            User_Role_Id = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.User_Role_Id,
+                        };
+                        Session["USERID"] = user.IdUsuario;
+                        Session["USERROLEID"] = UserDetails.Spartan_Users[0].Role_Spartan_User_Role.User_Role_Id;
+                        Session.Timeout = Convert.ToInt32(ConfigurationManager.AppSettings["SessionTimeOut"]);
+
+                        SessionHelper.Relogin = false;
+                        return Json(string.Empty);
 
                     }
                     else
                     {
-                        ModelState.AddModelError("", Resources.LoginResources.InvalidPassword);
-                        return Json(Resources.LoginResources.InvalidPassword);
+                        ModelState.AddModelError("", Resources.LoginResources.DeactivateAccount);
+                        return Json(Resources.LoginResources.DeactivateAccount);
                     }
 
                 }
-               
+                else
+                {
+                    ModelState.AddModelError("", Resources.LoginResources.InvalidPassword);
+                    return Json(Resources.LoginResources.InvalidPassword);
+                }
+
+            }
+
             return Json("SessionExpired");
         }
 
@@ -435,7 +436,7 @@ namespace Spartane.Web.Controllers
                             strBodyTemplate = strBodyTemplate.Replace("*|text3|*", Resources.LoginResources.UserName.ToString());
                             strBodyTemplate = strBodyTemplate.Replace("*|text4|*", Resources.LoginResources.Email.ToString());
                             strBodyTemplate = strBodyTemplate.Replace("*|text5|*", Resources.LoginResources.Password);
-                            strBodyTemplate = strBodyTemplate.Replace("*|text6|*", Resources.LoginResources.textTemplateEmail2.ToString()); 
+                            strBodyTemplate = strBodyTemplate.Replace("*|text6|*", Resources.LoginResources.textTemplateEmail2.ToString());
 
 
                             if (!_tokenManager.GenerateToken("admin", "admin"))
@@ -502,7 +503,7 @@ namespace Spartane.Web.Controllers
         [AllowAnonymous]
         public ActionResult ChangeLanguage(string culture)
         {
-            
+
             // To Do : currently we are not getting culture from language api once we got language culture than comment below line
             culture = (culture == "1" ? "en-US" : "es-ES");
             //culture = "es-ES";
@@ -625,7 +626,7 @@ namespace Spartane.Web.Controllers
                 if (action == "cancel")
                 {
                     //cancel
-                    return Json(new { valor = 0, href = Url.Action("Login", "Account")});
+                    return Json(new { valor = 0, href = Url.Action("Login", "Account") });
                 }
                 else
                 {
@@ -842,7 +843,7 @@ namespace Spartane.Web.Controllers
                 return null;
             }
         }
-		
-		
+
+
     }
 }

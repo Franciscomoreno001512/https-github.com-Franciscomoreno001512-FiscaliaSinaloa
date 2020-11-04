@@ -23,7 +23,8 @@ using Spartane.Web.Areas.WebApiConsumer.SpartanModule;
 using Spartane.Web.Areas.WebApiConsumer.SpartanUserRoleModule;
 using System.Web;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User_Role;
-
+using Spartane.Web.Areas.WebApiConsumer.SpartaneQuery;
+using Newtonsoft.Json;
 namespace Spartane.Web.Helpers
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Spartane.Web.Helpers
         private static readonly ISpartaneUserRoleModuleObjectApiConsumer _spartaneUserRoleModuleObjectApiConsumer;
         private static readonly ISpartaneObjectApiConsumer _spartaneObjectApiConsumer;
         private static readonly ISpartaneFileApiConsumer _ISpartane_FileApiConsumer;
-
+        private static readonly ISpartaneQueryApiConsumer _ISpartaneQueryApiConsumer = null;
 
         private static List<SpartaneUserRoleModule> lstUserRoleModules;
         private static List<SpartanUserRoleModuleObject> _SpartaneUserRoleModuleObject;
@@ -55,6 +56,7 @@ namespace Spartane.Web.Helpers
             _spartaneUserRoleModuleObjectApiConsumer = DependencyResolver.Current.GetService<ISpartaneUserRoleModuleObjectApiConsumer>();
             _spartaneObjectApiConsumer = DependencyResolver.Current.GetService<ISpartaneObjectApiConsumer>();
             _ISpartane_FileApiConsumer = DependencyResolver.Current.GetService<ISpartaneFileApiConsumer>();
+            _ISpartaneQueryApiConsumer = DependencyResolver.Current.GetService<ISpartaneQueryApiConsumer>();
         }
 
         /// <summary>
@@ -64,7 +66,7 @@ namespace Spartane.Web.Helpers
         public static List<RecursiveObject> GetCurrentRoleMenus()
         {
             var roleId = SessionHelper.Role;
-            if (MenuOrder == null) 
+            if (MenuOrder == null)
             {
                 MenuHelper.GetLatestMenu();
             }
@@ -74,7 +76,7 @@ namespace Spartane.Web.Helpers
         /// <summary>
         /// Used to get the latest version of the menu
         /// </summary>
-        public static void GetLatestMenu()
+        public static void GetLatestMenu(string username = "admin", string pass = "df1a0ed84eb0107d5fa88806585cd940")
         {
             //new Thread(() =>
             //{
@@ -91,8 +93,29 @@ namespace Spartane.Web.Helpers
 
             var userRoles = _userRoleApiConsumer.SelAll(true).Resource;
 
+            List<ModelRole> listaRoles = null;
+
+            if (!string.IsNullOrEmpty("admin"))
+            {
+                var result = _ISpartaneQueryApiConsumer.ExecuteRawQuery(string.Format("select su.role, sur.description from spartan_user su inner join  spartan_user_role sur on sur.user_role_id = su.role where username='{0}'", username));
+
+
+                listaRoles = JsonConvert.DeserializeObject<List<ModelRole>>(result.Resource);
+
+            }
+
+
+
             if (!userRoles.Any())
                 return;
+
+
+            if (listaRoles != null && listaRoles.Any())
+            {
+                userRoles = userRoles.Where(s => s.User_Role_Id == listaRoles.FirstOrDefault().Role).ToList();
+            }
+
+
 
             //Getting all as the _spartanUserRoleModuleApiConsumer GETByKey method not working
             var userRoleModuleAll = _spartanUserRoleModuleApiConsumer.SelAll(true).Resource;
@@ -113,7 +136,7 @@ namespace Spartane.Web.Helpers
             foreach (var userRole in userRoles)
             {
                 var UserAdditionalMenu = _spartaneUserRoleModuleObjectApiConsumer.GetAdditionalMenu(userRole.User_Role_Id, languageId).Resource.ToList();
-                lstUserRoleModules = userRoleModuleAll.Where(m => m.Spartan_User_Role == userRole.User_Role_Id).OrderBy(m=> m.Order_Shown).ToList();
+                lstUserRoleModules = userRoleModuleAll.Where(m => m.Spartan_User_Role == userRole.User_Role_Id).OrderBy(m => m.Order_Shown).ToList();
                 if (!lstUserRoleModules.Any())
                     continue;
                 var modules = new List<SpartanModule>();
@@ -430,4 +453,10 @@ namespace Spartane.Web.Helpers
         }
 
     }
+    public class ModelRole
+    {
+        public int Role { get; set; }
+        public string description { get; set; }
+    }
 }
+
