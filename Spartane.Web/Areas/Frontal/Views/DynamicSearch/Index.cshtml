@@ -300,6 +300,8 @@
             $('#TbodyDetails').empty();
             $('#new').css('display', 'none');
             GetDataToShow($($(this).find('td')[0]).html(), @ViewBag.idTablero);
+            DisabledAE($($(this).find('td')[3]).html());
+
         });
         $('#TabsBadget').on('click', 'button', function () {
             $('#TabsBadget button').css('background-color', 'transparent');
@@ -648,6 +650,31 @@
             }
         });
     }
+
+    function DisabledAE(value) {
+        var replaced = value.toString().split(' ').join('');
+        //debugger;
+        console.log(replaced);
+        if (replaced == 'AtenciónaExtravío') {
+            console.log("True");
+            $("button[data-name='Servicios de Apoyo']").prop("disabled", true);
+            $("button[data-name='Probable Responsable']").prop("disabled", true);
+            $("button[data-name='Delitos']").prop("disabled", true);
+            $("button[data-name='Relaciones']").prop("disabled", true);
+            $("button[data-name='Desestimación']").prop("disabled", true);
+        }
+        else {
+            console.log("False");
+            $("button[data-name='Servicios de Apoyo']").prop("disabled", false);
+            $("button[data-name='Probable Responsable']").prop("disabled", false);
+            $("button[data-name='Delitos']").prop("disabled", false);
+            $("button[data-name='Relaciones']").prop("disabled", false);
+            $("button[data-name='Documentos']").prop("disabled", false);
+            $("button[data-name='Desestimación']").prop("disabled", false);
+            $("button[data-name='Involucrados']").prop("disabled", false);
+        }
+    }
+
 
     function GetResultSearchTable() {
 
