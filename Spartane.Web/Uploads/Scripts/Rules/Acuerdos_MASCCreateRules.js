@@ -68,29 +68,11 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2014, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2015, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( $('#' + nameOfTable + 'Resultado' + rowIndex).val()!=TryParseInt('null', 'null') ) { $("a[href='#tabAutorizacion']").css('display', 'block');} else { $("a[href='#tabAutorizacion']").css('display', 'none');}
 
 
-}
-//BusinessRuleId:2015, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:2015, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( $('#' + nameOfTable + 'Resultado' + rowIndex).val()!=TryParseInt('null', 'null') ) { $("a[href='#tabAutorizacion']").css('display', 'block');} else { $("a[href='#tabAutorizacion']").css('display', 'none');}
 
 
-}
-//BusinessRuleId:2015, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2015, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
-if( $('#' + nameOfTable + 'Resultado' + rowIndex).val()!=TryParseInt('null', 'null') ) { $("a[href='#tabAutorizacion']").css('display', 'block');} else { $("a[href='#tabAutorizacion']").css('display', 'none');}
-
-
-}
-//BusinessRuleId:2015, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:1973, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
@@ -121,6 +103,20 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:2055, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2074, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Resultado' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('', '') ) { $("a[href='#tabAutorizacion']").css('display', 'block');} else { $("a[href='#tabAutorizacion']").css('display', 'none');}
+
+}
+//BusinessRuleId:2074, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2074, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( GetValueByControlType($('#' + nameOfTable + 'Resultado' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('', '') ) { $("a[href='#tabAutorizacion']").css('display', 'block');} else { $("a[href='#tabAutorizacion']").css('display', 'none');}
+
+}
+//BusinessRuleId:2074, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

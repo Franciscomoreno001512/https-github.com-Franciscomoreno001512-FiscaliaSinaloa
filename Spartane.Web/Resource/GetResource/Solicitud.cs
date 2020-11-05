@@ -496,6 +496,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Motivo_de_Rechazo</summary>
+        public static string Motivo_de_Rechazo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Motivo_de_Rechazo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Acuerdo_Cumplido</summary>
         public static string Acuerdo_Cumplido
         {

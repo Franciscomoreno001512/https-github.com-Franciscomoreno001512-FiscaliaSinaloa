@@ -40,6 +40,33 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:2023, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+
+
+
+
+//BusinessRuleId:2065, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex));
+
+}
+//BusinessRuleId:2065, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2065, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex));
+
+}
+//BusinessRuleId:2065, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2065, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex));
+
+}
+//BusinessRuleId:2065, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

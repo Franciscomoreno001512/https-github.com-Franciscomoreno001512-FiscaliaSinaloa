@@ -240,6 +240,8 @@ function EjecutarValidacionesDespuesDeGuardar(){
 
 
 
+
+
 //BusinessRuleId:1616, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
  EvaluaQuery(" update Detalle_de_documentos set Solicitud = GLOBAL[SpartanOperationId] where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);

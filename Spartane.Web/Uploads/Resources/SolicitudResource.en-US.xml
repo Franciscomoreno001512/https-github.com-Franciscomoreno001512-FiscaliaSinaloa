@@ -48,6 +48,7 @@
   <resource culture="en-US" name="Hora_de_Atencion_del_Especialista" value="Hora de Atención del Facilitador"></resource>
   <resource culture="en-US" name="Coincidencias" value="Coincidencias"></resource>
   <resource culture="en-US" name="Rechazar" value="Rechazar"></resource>
+  <resource culture="en-US" name="Motivo_de_Rechazo" value="Motivo de Rechazo"></resource>
   <resource culture="en-US" name="Acuerdo_Cumplido" value="Acuerdo Cumplido"></resource>
   <resource culture="en-US" name="Razon_de_Incumplimiento" value="Razón de Incumplimiento"></resource>
   <resource culture="en-US" name="Tipo_de_Conclusion_Anticipada" value="Tipo de Conclusión Anticipada"></resource>

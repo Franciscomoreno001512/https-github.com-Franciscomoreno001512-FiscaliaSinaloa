@@ -579,6 +579,14 @@
             </div>
         </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.SolicitudResources.Motivo_de_Rechazo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Motivo_de_RechazoFilter, filters, new { @class = "form-control", @id = "ddlMotivo_de_RechazoFilter" })
+                    @Html.TextBoxFor(m => m.Motivo_de_Rechazo, new { @class = "form-control", @type = "text", @id = "txtMotivo_de_Rechazo" })
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.SolicitudResources.Acuerdo_Cumplido</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -1098,6 +1106,11 @@
         if ($("#ddlAdvanceRechazar").val() != "") {
             hasParameter = true;
             advanceSearch.SolicitudRechazar = $("#ddlAdvanceRechazar").val();
+        }
+        if ($("#txtAdvanceMotivo_de_Rechazo").val() != "") {
+            hasParameter = true;
+            advanceSearch.SolicitudMotivo_de_Rechazo = $("#txtAdvanceMotivo_de_Rechazo").val();
+            advanceSearch.SolicitudMotivo_de_RechazoSearchType = $("#ddlAdvanceMotivo_de_RechazoFilter").val();
         }
         advanceSearch.Acuerdo_CumplidoSearchType = 0;
         if ($('#ddlAdvanceAcuerdo_Cumplido').val().length > 0 || $("#txtAdvanceAcuerdo_Cumplido").val() == "") {

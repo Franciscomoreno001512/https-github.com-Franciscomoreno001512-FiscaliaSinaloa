@@ -263,6 +263,7 @@
                                     <th>@Resources.SolicitudResources.Fecha_de_Atencion_del_Especialista</th>
                                     <th>@Resources.SolicitudResources.Hora_de_Atencion_del_Especialista</th>
                                     <th>@Resources.SolicitudResources.Rechazar</th>
+                                    <th>@Resources.SolicitudResources.Motivo_de_Rechazo</th>
                                     <th>@Resources.SolicitudResources.Acuerdo_Cumplido</th>
                                     <th>@Resources.SolicitudResources.Razon_de_Incumplimiento</th>
                                     <th>@Resources.SolicitudResources.Tipo_de_Conclusion_Anticipada</th>
@@ -320,6 +321,7 @@
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -486,6 +488,7 @@
         var Fecha_de_Atencion_del_Especialista = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Atencion_del_Especialista = $($('table td .filterData.form-control:input')[counter++]).val();
         var Rechazar = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_de_Rechazo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Acuerdo_Cumplido =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Razon_de_Incumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Conclusion_Anticipada =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -539,6 +542,7 @@
         + "&Fecha_de_Atencion_del_Especialista=" + Fecha_de_Atencion_del_Especialista
         + "&Hora_de_Atencion_del_Especialista=" + Hora_de_Atencion_del_Especialista
         + "&Rechazar=" + Rechazar
+        + "&Motivo_de_Rechazo=" + Motivo_de_Rechazo
         + "&Acuerdo_Cumplido=" + Acuerdo_Cumplido
         + "&Razon_de_Incumplimiento=" + Razon_de_Incumplimiento
         + "&Tipo_de_Conclusion_Anticipada=" + Tipo_de_Conclusion_Anticipada
@@ -603,6 +607,7 @@
         var Fecha_de_Atencion_del_Especialista = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Atencion_del_Especialista = $($('table td .filterData.form-control:input')[counter++]).val();
         var Rechazar = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_de_Rechazo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Acuerdo_Cumplido =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Razon_de_Incumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Conclusion_Anticipada =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -656,6 +661,7 @@
         + "&Fecha_de_Atencion_del_Especialista=" + Fecha_de_Atencion_del_Especialista
         + "&Hora_de_Atencion_del_Especialista=" + Hora_de_Atencion_del_Especialista
         + "&Rechazar=" + Rechazar
+        + "&Motivo_de_Rechazo=" + Motivo_de_Rechazo
         + "&Acuerdo_Cumplido=" + Acuerdo_Cumplido
         + "&Razon_de_Incumplimiento=" + Razon_de_Incumplimiento
         + "&Tipo_de_Conclusion_Anticipada=" + Tipo_de_Conclusion_Anticipada
@@ -841,11 +847,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -954,6 +960,7 @@
                 ,{ "data": "Fecha_de_Atencion_del_Especialista", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Atencion_del_Especialista" }
                 ,{ "data": "Hora_de_Atencion_del_Especialista", "orderable": true, "name": "Hora_de_Atencion_del_Especialista" }
                 ,{ "data": "Rechazar", "orderable": true, "name": "Rechazar","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Motivo_de_Rechazo", "orderable": true, "name": "Motivo_de_Rechazo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Acuerdo_CumplidoDescripcion", "orderable": true, "name": "Acuerdo_CumplidoDescripcion" }
                 ,{ "data": "Razon_de_IncumplimientoDescripcion", "orderable": true, "name": "Razon_de_IncumplimientoDescripcion" }
                 ,{ "data": "Tipo_de_Conclusion_AnticipadaDescripcion", "orderable": true, "name": "Tipo_de_Conclusion_AnticipadaDescripcion" }

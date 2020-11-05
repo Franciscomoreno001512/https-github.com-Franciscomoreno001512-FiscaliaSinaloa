@@ -350,6 +350,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Fecha_de_Atencion_del_Especialista = (SolicitudData.Fecha_de_Atencion_del_Especialista == null ? string.Empty : Convert.ToDateTime(SolicitudData.Fecha_de_Atencion_del_Especialista).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_de_Atencion_del_Especialista = SolicitudData.Hora_de_Atencion_del_Especialista
                     ,Rechazar = SolicitudData.Rechazar.GetValueOrDefault()
+                    ,Motivo_de_Rechazo = SolicitudData.Motivo_de_Rechazo
                     ,Acuerdo_Cumplido = SolicitudData.Acuerdo_Cumplido
                     ,Acuerdo_CumplidoDescripcion = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Acuerdo_Cumplido), "A_Tiempo") ??  (string)SolicitudData.Acuerdo_Cumplido_A_Tiempo.Descripcion
                     ,Razon_de_Incumplimiento = SolicitudData.Razon_de_Incumplimiento
@@ -560,6 +561,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Fecha_de_Atencion_del_Especialista = (SolicitudData.Fecha_de_Atencion_del_Especialista == null ? string.Empty : Convert.ToDateTime(SolicitudData.Fecha_de_Atencion_del_Especialista).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_de_Atencion_del_Especialista = SolicitudData.Hora_de_Atencion_del_Especialista
                     ,Rechazar = SolicitudData.Rechazar.GetValueOrDefault()
+                    ,Motivo_de_Rechazo = SolicitudData.Motivo_de_Rechazo
                     ,Acuerdo_Cumplido = SolicitudData.Acuerdo_Cumplido
                     ,Acuerdo_CumplidoDescripcion = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Acuerdo_Cumplido), "A_Tiempo") ??  (string)SolicitudData.Acuerdo_Cumplido_A_Tiempo.Descripcion
                     ,Razon_de_Incumplimiento = SolicitudData.Razon_de_Incumplimiento
@@ -1206,6 +1208,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Atencion_del_Especialista = (m.Fecha_de_Atencion_del_Especialista == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Atencion_del_Especialista).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Atencion_del_Especialista = m.Hora_de_Atencion_del_Especialista
 			,Rechazar = m.Rechazar
+			,Motivo_de_Rechazo = m.Motivo_de_Rechazo
                         ,Acuerdo_CumplidoDescripcion = CultureHelper.GetTraduction(m.Acuerdo_Cumplido_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Acuerdo_Cumplido_A_Tiempo.Descripcion
                         ,Razon_de_IncumplimientoDescripcion = CultureHelper.GetTraduction(m.Razon_de_Incumplimiento_Razon_de_Incumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Razon_de_Incumplimiento_Razon_de_Incumplimiento.Descripcion
                         ,Tipo_de_Conclusion_AnticipadaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Descripcion
@@ -1370,6 +1373,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Atencion_del_Especialista = (m.Fecha_de_Atencion_del_Especialista == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Atencion_del_Especialista).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Atencion_del_Especialista = m.Hora_de_Atencion_del_Especialista
 			,Rechazar = m.Rechazar
+			,Motivo_de_Rechazo = m.Motivo_de_Rechazo
                         ,Acuerdo_CumplidoDescripcion = CultureHelper.GetTraduction(m.Acuerdo_Cumplido_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Acuerdo_Cumplido_A_Tiempo.Descripcion
                         ,Razon_de_IncumplimientoDescripcion = CultureHelper.GetTraduction(m.Razon_de_Incumplimiento_Razon_de_Incumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Razon_de_Incumplimiento_Razon_de_Incumplimiento.Descripcion
                         ,Tipo_de_Conclusion_AnticipadaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Descripcion
@@ -2706,6 +2710,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (filter.Rechazar != RadioOptions.NoApply)
                 where += " AND Solicitud.Rechazar = " + Convert.ToInt32(filter.Rechazar);
 
+            if (!string.IsNullOrEmpty(filter.Motivo_de_Rechazo))
+            {
+                switch (filter.Motivo_de_RechazoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud.Motivo_de_Rechazo LIKE '" + filter.Motivo_de_Rechazo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud.Motivo_de_Rechazo LIKE '%" + filter.Motivo_de_Rechazo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud.Motivo_de_Rechazo = '" + filter.Motivo_de_Rechazo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud.Motivo_de_Rechazo LIKE '%" + filter.Motivo_de_Rechazo + "%'";
+                        break;
+                }
+            }
+
             if (!string.IsNullOrEmpty(filter.AdvanceAcuerdo_Cumplido))
             {
                 switch (filter.Acuerdo_CumplidoFilter)
@@ -3123,6 +3149,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Atencion_del_Especialista = (!String.IsNullOrEmpty(varSolicitud.Fecha_de_Atencion_del_Especialista)) ? DateTime.ParseExact(varSolicitud.Fecha_de_Atencion_del_Especialista, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_Atencion_del_Especialista = varSolicitud.Hora_de_Atencion_del_Especialista
                         ,Rechazar = varSolicitud.Rechazar
+                        ,Motivo_de_Rechazo = varSolicitud.Motivo_de_Rechazo
                         ,Acuerdo_Cumplido = varSolicitud.Acuerdo_Cumplido
                         ,Razon_de_Incumplimiento = varSolicitud.Razon_de_Incumplimiento
                         ,Tipo_de_Conclusion_Anticipada = varSolicitud.Tipo_de_Conclusion_Anticipada
@@ -3887,6 +3914,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Atencion_del_Especialista = (m.Fecha_de_Atencion_del_Especialista == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Atencion_del_Especialista).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Atencion_del_Especialista = m.Hora_de_Atencion_del_Especialista
 			,Rechazar = m.Rechazar
+			,Motivo_de_Rechazo = m.Motivo_de_Rechazo
                         ,Acuerdo_CumplidoDescripcion = CultureHelper.GetTraduction(m.Acuerdo_Cumplido_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Acuerdo_Cumplido_A_Tiempo.Descripcion
                         ,Razon_de_IncumplimientoDescripcion = CultureHelper.GetTraduction(m.Razon_de_Incumplimiento_Razon_de_Incumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Razon_de_Incumplimiento_Razon_de_Incumplimiento.Descripcion
                         ,Tipo_de_Conclusion_AnticipadaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Descripcion
@@ -4010,6 +4038,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Atencion_del_Especialista = (m.Fecha_de_Atencion_del_Especialista == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Atencion_del_Especialista).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Atencion_del_Especialista = m.Hora_de_Atencion_del_Especialista
 			,Rechazar = m.Rechazar
+			,Motivo_de_Rechazo = m.Motivo_de_Rechazo
                         ,Acuerdo_CumplidoDescripcion = CultureHelper.GetTraduction(m.Acuerdo_Cumplido_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Acuerdo_Cumplido_A_Tiempo.Descripcion
                         ,Razon_de_IncumplimientoDescripcion = CultureHelper.GetTraduction(m.Razon_de_Incumplimiento_Razon_de_Incumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Razon_de_Incumplimiento_Razon_de_Incumplimiento.Descripcion
                         ,Tipo_de_Conclusion_AnticipadaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Descripcion
@@ -4461,6 +4490,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varSolicitud.Clave
                                             ,Rechazar = varSolicitud.Rechazar
+                        ,Motivo_de_Rechazo = varSolicitud.Motivo_de_Rechazo
                         ,Acuerdo_Cumplido = varSolicitud.Acuerdo_Cumplido
                         ,Razon_de_Incumplimiento = varSolicitud.Razon_de_Incumplimiento
                         ,Tipo_de_Conclusion_Anticipada = varSolicitud.Tipo_de_Conclusion_Anticipada
@@ -4499,6 +4529,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 			,Rechazar = m.Rechazar
+			,Motivo_de_Rechazo = m.Motivo_de_Rechazo
                         ,Acuerdo_Cumplido = m.Acuerdo_Cumplido
                         ,Acuerdo_CumplidoDescripcion = CultureHelper.GetTraduction(m.Acuerdo_Cumplido_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Acuerdo_Cumplido_A_Tiempo.Descripcion
                         ,Razon_de_Incumplimiento = m.Razon_de_Incumplimiento

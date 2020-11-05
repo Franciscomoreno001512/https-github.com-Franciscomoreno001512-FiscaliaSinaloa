@@ -193,6 +193,9 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public RadioOptions Rechazar { set; get; }
 
+        public Filters Motivo_de_RechazoFilter { set; get; }
+        public string Motivo_de_Rechazo { set; get; }
+
         public Filters Acuerdo_CumplidoFilter { set; get; }
         public string AdvanceAcuerdo_Cumplido { set; get; }
         public int[] AdvanceAcuerdo_CumplidoMultiple { set; get; }

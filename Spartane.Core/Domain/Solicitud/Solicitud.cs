@@ -82,6 +82,7 @@ namespace Spartane.Core.Domain.Solicitud
         public DateTime? Fecha_de_Atencion_del_Especialista { get; set; }
         public string Hora_de_Atencion_del_Especialista { get; set; }
         public bool? Rechazar { get; set; }
+        public string Motivo_de_Rechazo { get; set; }
         public short? Acuerdo_Cumplido { get; set; }
         public int? Razon_de_Incumplimiento { get; set; }
         public int? Tipo_de_Conclusion_Anticipada { get; set; }
@@ -252,6 +253,7 @@ namespace Spartane.Core.Domain.Solicitud
     {
                 public int Clave { get; set; }
         public bool? Rechazar { get; set; }
+        public string Motivo_de_Rechazo { get; set; }
         public short? Acuerdo_Cumplido { get; set; }
         public int? Razon_de_Incumplimiento { get; set; }
         public int? Tipo_de_Conclusion_Anticipada { get; set; }

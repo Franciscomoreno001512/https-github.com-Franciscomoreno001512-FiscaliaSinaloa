@@ -933,6 +933,13 @@
                                     @Html.CheckBoxFor(m => m.Rechazar, new { @class = "i-checks Cierre" })
                                 </div>
                             </div>
+                            <div class="form-group" id="divMotivo_de_Rechazo">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Motivo_de_Rechazo</label>
+                                <div class="col-sm-8" data-field-id="Motivo_de_Rechazo" data-attribute="266685" data-field-name="@Resources.SolicitudResources.Motivo_de_Rechazo">
+                                    <textarea id="Motivo_de_Rechazo" name="Motivo_de_Rechazo" class="form-control Cierre" rows="4" cols="50">@Model.Motivo_de_Rechazo</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Motivo_de_Rechazo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             <div class="form-group" id="divAcuerdo_Cumplido">
                                 <label class="col-sm-2 control-label">@Resources.SolicitudResources.Acuerdo_Cumplido</label>
                                 <div class="col-sm-8" data-field-id="Acuerdo_Cumplido" data-attribute="262992" data-field-name="@Resources.SolicitudResources.Acuerdo_Cumplido">
@@ -3195,6 +3202,7 @@
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Rechazar').prop('checked', result.data.Rechazar);
+                    $('#Motivo_de_Rechazo').val(result.data.Motivo_de_Rechazo);
                     $('#Acuerdo_Cumplido').val(result.data.Acuerdo_Cumplido);
                     $('#Razon_de_Incumplimiento').val(result.data.Razon_de_Incumplimiento);
                     $('#Tipo_de_Conclusion_Anticipada').val(result.data.Tipo_de_Conclusion_Anticipada);
@@ -3212,6 +3220,7 @@
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Rechazar', $('#Rechazar').prop('checked'));
+                data.append('Motivo_de_Rechazo', $('#Motivo_de_Rechazo').val());
                 data.append('Acuerdo_Cumplido', $('#Acuerdo_Cumplido').val());
                 data.append('Razon_de_Incumplimiento', $('#Razon_de_Incumplimiento').val());
                 data.append('Tipo_de_Conclusion_Anticipada', $('#Tipo_de_Conclusion_Anticipada').val());
