@@ -23,7 +23,7 @@ function GetAutoCompleteRecepcion_de_Pago_MASC_Numero_de_Expediente_SolicitudDat
     for (var i = 0; i < data.length; i++) {
         AutoCompleteNumero_de_ExpedienteData.push({
             id: data[i].Clave,
-            text: data[i].Numero_de_Folio
+            text: data[i].Numero_de_Expediente
         });
     }
     return AutoCompleteNumero_de_ExpedienteData;

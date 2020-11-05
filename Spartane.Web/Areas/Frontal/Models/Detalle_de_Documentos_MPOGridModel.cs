@@ -19,6 +19,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Tipo_de_DocumentoDescripcion { get; set; }
         public int? Documento { get; set; }
         public string DocumentoDescripcion { get; set; }
+        public int? Involucrado { get; set; }
+        public string InvolucradoNombre_Completo_del_Tutor { get; set; }
+        public int? Probable_Responsable { get; set; }
+        public string Probable_ResponsableNombre_Completo_del_Tutor { get; set; }
         public int? Archivo_Adjunto { get; set; }
         public Grid_File Archivo_AdjuntoFileInfo { set; get; }
         public string Observaciones { get; set; }

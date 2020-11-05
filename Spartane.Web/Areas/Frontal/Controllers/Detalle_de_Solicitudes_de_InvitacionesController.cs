@@ -14,9 +14,9 @@ using Spartane.Core.Domain.Detalle_de_Requerido_en_Invitaciones;
 
 using Spartane.Core.Domain.Detalle_de_Solicitud_Requerido;
 
-using Spartane.Core.Domain.Cumplimiento;
+using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Resultado_de_Notificacion;
 using Spartane.Core.Domain.Incidente_con_Invitacion;
-using Spartane.Core.Domain.A_Tiempo;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -39,9 +39,9 @@ using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Requerido_en_Invitaciones;
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Solicitud_Requerido;
 
-using Spartane.Web.Areas.WebApiConsumer.Cumplimiento;
+using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
+using Spartane.Web.Areas.WebApiConsumer.Resultado_de_Notificacion;
 using Spartane.Web.Areas.WebApiConsumer.Incidente_con_Invitacion;
-using Spartane.Web.Areas.WebApiConsumer.A_Tiempo;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -90,9 +90,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_de_Solicitud_RequeridoApiConsumer _IDetalle_de_Solicitud_RequeridoApiConsumer;
 
-        private ICumplimientoApiConsumer _ICumplimientoApiConsumer;
+        private IResultado_de_NotificacionApiConsumer _IResultado_de_NotificacionApiConsumer;
         private IIncidente_con_InvitacionApiConsumer _IIncidente_con_InvitacionApiConsumer;
-        private IA_TiempoApiConsumer _IA_TiempoApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -110,7 +109,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_Solicitudes_de_InvitacionesController(IDetalle_de_Solicitudes_de_InvitacionesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Solicitudes_de_InvitacionesApiConsumer Detalle_de_Solicitudes_de_InvitacionesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_InvitacionApiConsumer Tipo_de_InvitacionApiConsumer , ITipo_de_FuncionApiConsumer Tipo_de_FuncionApiConsumer , IDetalle_de_Solicitante_en_InvitacionesApiConsumer Detalle_de_Solicitante_en_InvitacionesApiConsumer , IDetalle_de_Solicitud_SolicitanteApiConsumer Detalle_de_Solicitud_SolicitanteApiConsumer  , IDetalle_de_Requerido_en_InvitacionesApiConsumer Detalle_de_Requerido_en_InvitacionesApiConsumer , IDetalle_de_Solicitud_RequeridoApiConsumer Detalle_de_Solicitud_RequeridoApiConsumer  , ICumplimientoApiConsumer CumplimientoApiConsumer , IIncidente_con_InvitacionApiConsumer Incidente_con_InvitacionApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer )
+        public Detalle_de_Solicitudes_de_InvitacionesController(IDetalle_de_Solicitudes_de_InvitacionesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Solicitudes_de_InvitacionesApiConsumer Detalle_de_Solicitudes_de_InvitacionesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_InvitacionApiConsumer Tipo_de_InvitacionApiConsumer , ITipo_de_FuncionApiConsumer Tipo_de_FuncionApiConsumer , IDetalle_de_Solicitante_en_InvitacionesApiConsumer Detalle_de_Solicitante_en_InvitacionesApiConsumer , IDetalle_de_Solicitud_SolicitanteApiConsumer Detalle_de_Solicitud_SolicitanteApiConsumer  , IDetalle_de_Requerido_en_InvitacionesApiConsumer Detalle_de_Requerido_en_InvitacionesApiConsumer , IDetalle_de_Solicitud_RequeridoApiConsumer Detalle_de_Solicitud_RequeridoApiConsumer  , IResultado_de_NotificacionApiConsumer Resultado_de_NotificacionApiConsumer , IIncidente_con_InvitacionApiConsumer Incidente_con_InvitacionApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -136,9 +135,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             this._IDetalle_de_Solicitud_RequeridoApiConsumer = Detalle_de_Solicitud_RequeridoApiConsumer;
 
-            this._ICumplimientoApiConsumer = CumplimientoApiConsumer;
+            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
+            this._IResultado_de_NotificacionApiConsumer = Resultado_de_NotificacionApiConsumer;
             this._IIncidente_con_InvitacionApiConsumer = Incidente_con_InvitacionApiConsumer;
-            this._IA_TiempoApiConsumer = A_TiempoApiConsumer;
 
         }
 
@@ -232,22 +231,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Fecha_de_la_cita = (Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_la_cita == null ? string.Empty : Convert.ToDateTime(Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_la_cita).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_de_la_Cita = Detalle_de_Solicitudes_de_InvitacionesData.Hora_de_la_Cita
                     ,Domicilio = Detalle_de_Solicitudes_de_InvitacionesData.Domicilio
-                    ,Fecha_de_Recepcion = (Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_Recepcion == null ? string.Empty : Convert.ToDateTime(Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_Recepcion).ToString(ConfigurationProperty.DateFormat))
-                    ,Fecha_de_Aceptacion = (Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_Aceptacion == null ? string.Empty : Convert.ToDateTime(Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_Aceptacion).ToString(ConfigurationProperty.DateFormat))
-                    ,Cumplimiento = Detalle_de_Solicitudes_de_InvitacionesData.Cumplimiento
-                    ,CumplimientoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.Cumplimiento), "Cumplimiento") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.Cumplimiento_Cumplimiento.Descripcion
-                    ,Incidente = Detalle_de_Solicitudes_de_InvitacionesData.Incidente
-                    ,IncidenteDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.Incidente), "Incidente_con_Invitacion") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.Incidente_Incidente_con_Invitacion.Descripcion
-                    ,A_Tiempo = Detalle_de_Solicitudes_de_InvitacionesData.A_Tiempo
-                    ,A_TiempoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.A_Tiempo), "A_Tiempo") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.A_Tiempo_A_Tiempo.Descripcion
-                    ,Archivo = Detalle_de_Solicitudes_de_InvitacionesData.Archivo
+                    ,Fecha_de_Notificacion = (Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_Notificacion == null ? string.Empty : Convert.ToDateTime(Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_Notificacion).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_Notificacion = Detalle_de_Solicitudes_de_InvitacionesData.Hora_de_Notificacion
+                    ,Notificador = Detalle_de_Solicitudes_de_InvitacionesData.Notificador
+                    ,NotificadorName = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.Notificador), "Spartan_User") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.Notificador_Spartan_User.Name
+                    ,Resultado = Detalle_de_Solicitudes_de_InvitacionesData.Resultado
+                    ,ResultadoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.Resultado), "Resultado_de_Notificacion") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.Resultado_Resultado_de_Notificacion.Descripcion
+                    ,Incidente_en_la_Recepcion = Detalle_de_Solicitudes_de_InvitacionesData.Incidente_en_la_Recepcion
+                    ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.Incidente_en_la_Recepcion), "Incidente_con_Invitacion") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
 
 					};
 				}
 				
-				                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                ViewBag.ArchivoSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varDetalle_de_Solicitudes_de_Invitaciones.Archivo).Resource;
-
+				
 				
             }
             if (!_tokenManager.GenerateToken())
@@ -267,26 +263,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Funcion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ICumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Cumplimientos_Cumplimiento = _ICumplimientoApiConsumer.SelAll(true);
-            if (Cumplimientos_Cumplimiento != null && Cumplimientos_Cumplimiento.Resource != null)
-                ViewBag.Cumplimientos_Cumplimiento = Cumplimientos_Cumplimiento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Spartan_Users_Notificador = _ISpartan_UserApiConsumer.SelAll(true);
+            if (Spartan_Users_Notificador != null && Spartan_Users_Notificador.Resource != null)
+                ViewBag.Spartan_Users_Notificador = Spartan_Users_Notificador.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Cumplimiento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
+                }).ToList();
+            _IResultado_de_NotificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resultado_de_Notificacions_Resultado = _IResultado_de_NotificacionApiConsumer.SelAll(true);
+            if (Resultado_de_Notificacions_Resultado != null && Resultado_de_Notificacions_Resultado.Resource != null)
+                ViewBag.Resultado_de_Notificacions_Resultado = Resultado_de_Notificacions_Resultado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Notificacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IIncidente_con_InvitacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Incidente_con_Invitacions_Incidente = _IIncidente_con_InvitacionApiConsumer.SelAll(true);
-            if (Incidente_con_Invitacions_Incidente != null && Incidente_con_Invitacions_Incidente.Resource != null)
-                ViewBag.Incidente_con_Invitacions_Incidente = Incidente_con_Invitacions_Incidente.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Incidente_con_Invitacions_Incidente_en_la_Recepcion = _IIncidente_con_InvitacionApiConsumer.SelAll(true);
+            if (Incidente_con_Invitacions_Incidente_en_la_Recepcion != null && Incidente_con_Invitacions_Incidente_en_la_Recepcion.Resource != null)
+                ViewBag.Incidente_con_Invitacions_Incidente_en_la_Recepcion = Incidente_con_Invitacions_Incidente_en_la_Recepcion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Incidente_con_Invitacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var A_Tiempos_A_Tiempo = _IA_TiempoApiConsumer.SelAll(true);
-            if (A_Tiempos_A_Tiempo != null && A_Tiempos_A_Tiempo.Resource != null)
-                ViewBag.A_Tiempos_A_Tiempo = A_Tiempos_A_Tiempo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -368,20 +364,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Fecha_de_la_cita = (Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_la_cita == null ? string.Empty : Convert.ToDateTime(Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_la_cita).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_de_la_Cita = Detalle_de_Solicitudes_de_InvitacionesData.Hora_de_la_Cita
                     ,Domicilio = Detalle_de_Solicitudes_de_InvitacionesData.Domicilio
-                    ,Fecha_de_Recepcion = (Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_Recepcion == null ? string.Empty : Convert.ToDateTime(Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_Recepcion).ToString(ConfigurationProperty.DateFormat))
-                    ,Fecha_de_Aceptacion = (Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_Aceptacion == null ? string.Empty : Convert.ToDateTime(Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_Aceptacion).ToString(ConfigurationProperty.DateFormat))
-                    ,Cumplimiento = Detalle_de_Solicitudes_de_InvitacionesData.Cumplimiento
-                    ,CumplimientoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.Cumplimiento), "Cumplimiento") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.Cumplimiento_Cumplimiento.Descripcion
-                    ,Incidente = Detalle_de_Solicitudes_de_InvitacionesData.Incidente
-                    ,IncidenteDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.Incidente), "Incidente_con_Invitacion") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.Incidente_Incidente_con_Invitacion.Descripcion
-                    ,A_Tiempo = Detalle_de_Solicitudes_de_InvitacionesData.A_Tiempo
-                    ,A_TiempoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.A_Tiempo), "A_Tiempo") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.A_Tiempo_A_Tiempo.Descripcion
-                    ,Archivo = Detalle_de_Solicitudes_de_InvitacionesData.Archivo
+                    ,Fecha_de_Notificacion = (Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_Notificacion == null ? string.Empty : Convert.ToDateTime(Detalle_de_Solicitudes_de_InvitacionesData.Fecha_de_Notificacion).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_Notificacion = Detalle_de_Solicitudes_de_InvitacionesData.Hora_de_Notificacion
+                    ,Notificador = Detalle_de_Solicitudes_de_InvitacionesData.Notificador
+                    ,NotificadorName = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.Notificador), "Spartan_User") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.Notificador_Spartan_User.Name
+                    ,Resultado = Detalle_de_Solicitudes_de_InvitacionesData.Resultado
+                    ,ResultadoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.Resultado), "Resultado_de_Notificacion") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.Resultado_Resultado_de_Notificacion.Descripcion
+                    ,Incidente_en_la_Recepcion = Detalle_de_Solicitudes_de_InvitacionesData.Incidente_en_la_Recepcion
+                    ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitudes_de_InvitacionesData.Incidente_en_la_Recepcion), "Incidente_con_Invitacion") ??  (string)Detalle_de_Solicitudes_de_InvitacionesData.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
 
 					};
 				}
-                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                ViewBag.ArchivoSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varDetalle_de_Solicitudes_de_Invitaciones.Archivo).Resource;
 
             }
             if (!_tokenManager.GenerateToken())
@@ -401,26 +394,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Funcion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ICumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Cumplimientos_Cumplimiento = _ICumplimientoApiConsumer.SelAll(true);
-            if (Cumplimientos_Cumplimiento != null && Cumplimientos_Cumplimiento.Resource != null)
-                ViewBag.Cumplimientos_Cumplimiento = Cumplimientos_Cumplimiento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Spartan_Users_Notificador = _ISpartan_UserApiConsumer.SelAll(true);
+            if (Spartan_Users_Notificador != null && Spartan_Users_Notificador.Resource != null)
+                ViewBag.Spartan_Users_Notificador = Spartan_Users_Notificador.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Cumplimiento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
+                }).ToList();
+            _IResultado_de_NotificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resultado_de_Notificacions_Resultado = _IResultado_de_NotificacionApiConsumer.SelAll(true);
+            if (Resultado_de_Notificacions_Resultado != null && Resultado_de_Notificacions_Resultado.Resource != null)
+                ViewBag.Resultado_de_Notificacions_Resultado = Resultado_de_Notificacions_Resultado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Notificacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IIncidente_con_InvitacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Incidente_con_Invitacions_Incidente = _IIncidente_con_InvitacionApiConsumer.SelAll(true);
-            if (Incidente_con_Invitacions_Incidente != null && Incidente_con_Invitacions_Incidente.Resource != null)
-                ViewBag.Incidente_con_Invitacions_Incidente = Incidente_con_Invitacions_Incidente.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Incidente_con_Invitacions_Incidente_en_la_Recepcion = _IIncidente_con_InvitacionApiConsumer.SelAll(true);
+            if (Incidente_con_Invitacions_Incidente_en_la_Recepcion != null && Incidente_con_Invitacions_Incidente_en_la_Recepcion.Resource != null)
+                ViewBag.Incidente_con_Invitacions_Incidente_en_la_Recepcion = Incidente_con_Invitacions_Incidente_en_la_Recepcion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Incidente_con_Invitacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var A_Tiempos_A_Tiempo = _IA_TiempoApiConsumer.SelAll(true);
-            if (A_Tiempos_A_Tiempo != null && A_Tiempos_A_Tiempo.Resource != null)
-                ViewBag.A_Tiempos_A_Tiempo = A_Tiempos_A_Tiempo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -526,19 +519,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+        
         [HttpGet]
-        public ActionResult GetCumplimientoAll()
+        public ActionResult GetResultado_de_NotificacionAll()
         {
             try
             {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _ICumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ICumplimientoApiConsumer.SelAll(false).Resource;
+                _IResultado_de_NotificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IResultado_de_NotificacionApiConsumer.SelAll(false).Resource;
                 
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Cumplimiento", "Descripcion")?? m.Descripcion,
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Notificacion", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -560,27 +554,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Incidente_con_Invitacion", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public ActionResult GetA_TiempoAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IA_TiempoApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -636,26 +609,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Funcion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ICumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Cumplimientos_Cumplimiento = _ICumplimientoApiConsumer.SelAll(true);
-            if (Cumplimientos_Cumplimiento != null && Cumplimientos_Cumplimiento.Resource != null)
-                ViewBag.Cumplimientos_Cumplimiento = Cumplimientos_Cumplimiento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Spartan_Users_Notificador = _ISpartan_UserApiConsumer.SelAll(true);
+            if (Spartan_Users_Notificador != null && Spartan_Users_Notificador.Resource != null)
+                ViewBag.Spartan_Users_Notificador = Spartan_Users_Notificador.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Cumplimiento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
+                }).ToList();
+            _IResultado_de_NotificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resultado_de_Notificacions_Resultado = _IResultado_de_NotificacionApiConsumer.SelAll(true);
+            if (Resultado_de_Notificacions_Resultado != null && Resultado_de_Notificacions_Resultado.Resource != null)
+                ViewBag.Resultado_de_Notificacions_Resultado = Resultado_de_Notificacions_Resultado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Notificacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IIncidente_con_InvitacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Incidente_con_Invitacions_Incidente = _IIncidente_con_InvitacionApiConsumer.SelAll(true);
-            if (Incidente_con_Invitacions_Incidente != null && Incidente_con_Invitacions_Incidente.Resource != null)
-                ViewBag.Incidente_con_Invitacions_Incidente = Incidente_con_Invitacions_Incidente.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Incidente_con_Invitacions_Incidente_en_la_Recepcion = _IIncidente_con_InvitacionApiConsumer.SelAll(true);
+            if (Incidente_con_Invitacions_Incidente_en_la_Recepcion != null && Incidente_con_Invitacions_Incidente_en_la_Recepcion.Resource != null)
+                ViewBag.Incidente_con_Invitacions_Incidente_en_la_Recepcion = Incidente_con_Invitacions_Incidente_en_la_Recepcion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Incidente_con_Invitacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var A_Tiempos_A_Tiempo = _IA_TiempoApiConsumer.SelAll(true);
-            if (A_Tiempos_A_Tiempo != null && A_Tiempos_A_Tiempo.Resource != null)
-                ViewBag.A_Tiempos_A_Tiempo = A_Tiempos_A_Tiempo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -682,26 +655,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Funcion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ICumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Cumplimientos_Cumplimiento = _ICumplimientoApiConsumer.SelAll(true);
-            if (Cumplimientos_Cumplimiento != null && Cumplimientos_Cumplimiento.Resource != null)
-                ViewBag.Cumplimientos_Cumplimiento = Cumplimientos_Cumplimiento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Spartan_Users_Notificador = _ISpartan_UserApiConsumer.SelAll(true);
+            if (Spartan_Users_Notificador != null && Spartan_Users_Notificador.Resource != null)
+                ViewBag.Spartan_Users_Notificador = Spartan_Users_Notificador.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Cumplimiento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
+                }).ToList();
+            _IResultado_de_NotificacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resultado_de_Notificacions_Resultado = _IResultado_de_NotificacionApiConsumer.SelAll(true);
+            if (Resultado_de_Notificacions_Resultado != null && Resultado_de_Notificacions_Resultado.Resource != null)
+                ViewBag.Resultado_de_Notificacions_Resultado = Resultado_de_Notificacions_Resultado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Notificacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IIncidente_con_InvitacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Incidente_con_Invitacions_Incidente = _IIncidente_con_InvitacionApiConsumer.SelAll(true);
-            if (Incidente_con_Invitacions_Incidente != null && Incidente_con_Invitacions_Incidente.Resource != null)
-                ViewBag.Incidente_con_Invitacions_Incidente = Incidente_con_Invitacions_Incidente.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Incidente_con_Invitacions_Incidente_en_la_Recepcion = _IIncidente_con_InvitacionApiConsumer.SelAll(true);
+            if (Incidente_con_Invitacions_Incidente_en_la_Recepcion != null && Incidente_con_Invitacions_Incidente_en_la_Recepcion.Resource != null)
+                ViewBag.Incidente_con_Invitacions_Incidente_en_la_Recepcion = Incidente_con_Invitacions_Incidente_en_la_Recepcion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Incidente_con_Invitacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var A_Tiempos_A_Tiempo = _IA_TiempoApiConsumer.SelAll(true);
-            if (A_Tiempos_A_Tiempo != null && A_Tiempos_A_Tiempo.Resource != null)
-                ViewBag.A_Tiempos_A_Tiempo = A_Tiempos_A_Tiempo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -751,12 +724,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_la_cita = (m.Fecha_de_la_cita == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_la_cita).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_la_Cita = m.Hora_de_la_Cita
 			,Domicilio = m.Domicilio
-                        ,Fecha_de_Recepcion = (m.Fecha_de_Recepcion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Recepcion).ToString(ConfigurationProperty.DateFormat))
-                        ,Fecha_de_Aceptacion = (m.Fecha_de_Aceptacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Aceptacion).ToString(ConfigurationProperty.DateFormat))
-                        ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
-                        ,IncidenteDescripcion = CultureHelper.GetTraduction(m.Incidente_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_Incidente_con_Invitacion.Descripcion
-                        ,A_TiempoDescripcion = CultureHelper.GetTraduction(m.A_Tiempo_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.A_Tiempo_A_Tiempo.Descripcion
-			,Archivo = m.Archivo
+                        ,Fecha_de_Notificacion = (m.Fecha_de_Notificacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Notificacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Notificacion = m.Hora_de_Notificacion
+                        ,NotificadorName = CultureHelper.GetTraduction(m.Notificador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Notificador_Spartan_User.Name
+                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
+                        ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -881,12 +853,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_la_cita = (m.Fecha_de_la_cita == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_la_cita).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_la_Cita = m.Hora_de_la_Cita
 			,Domicilio = m.Domicilio
-                        ,Fecha_de_Recepcion = (m.Fecha_de_Recepcion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Recepcion).ToString(ConfigurationProperty.DateFormat))
-                        ,Fecha_de_Aceptacion = (m.Fecha_de_Aceptacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Aceptacion).ToString(ConfigurationProperty.DateFormat))
-                        ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
-                        ,IncidenteDescripcion = CultureHelper.GetTraduction(m.Incidente_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_Incidente_con_Invitacion.Descripcion
-                        ,A_TiempoDescripcion = CultureHelper.GetTraduction(m.A_Tiempo_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.A_Tiempo_A_Tiempo.Descripcion
-			,Archivo = m.Archivo
+                        ,Fecha_de_Notificacion = (m.Fecha_de_Notificacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Notificacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Notificacion = m.Hora_de_Notificacion
+                        ,NotificadorName = CultureHelper.GetTraduction(m.Notificador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Notificador_Spartan_User.Name
+                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
+                        ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -1237,118 +1208,110 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
-            if (!string.IsNullOrEmpty(filter.FromFecha_de_Recepcion) || !string.IsNullOrEmpty(filter.ToFecha_de_Recepcion))
+            if (!string.IsNullOrEmpty(filter.FromFecha_de_Notificacion) || !string.IsNullOrEmpty(filter.ToFecha_de_Notificacion))
             {
-                var Fecha_de_RecepcionFrom = DateTime.ParseExact(filter.FromFecha_de_Recepcion, ConfigurationProperty.DateFormat,
+                var Fecha_de_NotificacionFrom = DateTime.ParseExact(filter.FromFecha_de_Notificacion, ConfigurationProperty.DateFormat,
                     CultureInfo.InvariantCulture as IFormatProvider);
-                var Fecha_de_RecepcionTo = DateTime.ParseExact(filter.ToFecha_de_Recepcion, ConfigurationProperty.DateFormat,
+                var Fecha_de_NotificacionTo = DateTime.ParseExact(filter.ToFecha_de_Notificacion, ConfigurationProperty.DateFormat,
                   CultureInfo.InvariantCulture as IFormatProvider);
 
-                if (!string.IsNullOrEmpty(filter.FromFecha_de_Recepcion))
-                    where += " AND Detalle_de_Solicitudes_de_Invitaciones.Fecha_de_Recepcion >= '" + Fecha_de_RecepcionFrom.ToString("MM-dd-yyyy") + "'";
-                if (!string.IsNullOrEmpty(filter.ToFecha_de_Recepcion))
-                    where += " AND Detalle_de_Solicitudes_de_Invitaciones.Fecha_de_Recepcion <= '" + Fecha_de_RecepcionTo.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.FromFecha_de_Notificacion))
+                    where += " AND Detalle_de_Solicitudes_de_Invitaciones.Fecha_de_Notificacion >= '" + Fecha_de_NotificacionFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFecha_de_Notificacion))
+                    where += " AND Detalle_de_Solicitudes_de_Invitaciones.Fecha_de_Notificacion <= '" + Fecha_de_NotificacionTo.ToString("MM-dd-yyyy") + "'";
             }
 
-            if (!string.IsNullOrEmpty(filter.FromFecha_de_Aceptacion) || !string.IsNullOrEmpty(filter.ToFecha_de_Aceptacion))
+            if (!string.IsNullOrEmpty(filter.FromHora_de_Notificacion) || !string.IsNullOrEmpty(filter.ToHora_de_Notificacion))
             {
-                var Fecha_de_AceptacionFrom = DateTime.ParseExact(filter.FromFecha_de_Aceptacion, ConfigurationProperty.DateFormat,
-                    CultureInfo.InvariantCulture as IFormatProvider);
-                var Fecha_de_AceptacionTo = DateTime.ParseExact(filter.ToFecha_de_Aceptacion, ConfigurationProperty.DateFormat,
-                  CultureInfo.InvariantCulture as IFormatProvider);
-
-                if (!string.IsNullOrEmpty(filter.FromFecha_de_Aceptacion))
-                    where += " AND Detalle_de_Solicitudes_de_Invitaciones.Fecha_de_Aceptacion >= '" + Fecha_de_AceptacionFrom.ToString("MM-dd-yyyy") + "'";
-                if (!string.IsNullOrEmpty(filter.ToFecha_de_Aceptacion))
-                    where += " AND Detalle_de_Solicitudes_de_Invitaciones.Fecha_de_Aceptacion <= '" + Fecha_de_AceptacionTo.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.FromHora_de_Notificacion))
+                    where += " AND Convert(TIME,Detalle_de_Solicitudes_de_Invitaciones.Hora_de_Notificacion) >='" + filter.FromHora_de_Notificacion + "'";
+                if (!string.IsNullOrEmpty(filter.ToHora_de_Notificacion))
+                    where += " AND Convert(TIME,Detalle_de_Solicitudes_de_Invitaciones.Hora_de_Notificacion) <='" + filter.ToHora_de_Notificacion + "'";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvanceCumplimiento))
+            if (!string.IsNullOrEmpty(filter.AdvanceNotificador))
             {
-                switch (filter.CumplimientoFilter)
+                switch (filter.NotificadorFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Cumplimiento.Descripcion LIKE '" + filter.AdvanceCumplimiento + "%'";
+                        where += " AND Spartan_User.Name LIKE '" + filter.AdvanceNotificador + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Cumplimiento.Descripcion LIKE '%" + filter.AdvanceCumplimiento + "'";
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceNotificador + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Cumplimiento.Descripcion = '" + filter.AdvanceCumplimiento + "'";
+                        where += " AND Spartan_User.Name = '" + filter.AdvanceNotificador + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Cumplimiento.Descripcion LIKE '%" + filter.AdvanceCumplimiento + "%'";
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceNotificador + "%'";
                         break;
                 }
             }
-            else if (filter.AdvanceCumplimientoMultiple != null && filter.AdvanceCumplimientoMultiple.Count() > 0)
+            else if (filter.AdvanceNotificadorMultiple != null && filter.AdvanceNotificadorMultiple.Count() > 0)
             {
-                var CumplimientoIds = string.Join(",", filter.AdvanceCumplimientoMultiple);
+                var NotificadorIds = string.Join(",", filter.AdvanceNotificadorMultiple);
 
-                where += " AND Detalle_de_Solicitudes_de_Invitaciones.Cumplimiento In (" + CumplimientoIds + ")";
+                where += " AND Detalle_de_Solicitudes_de_Invitaciones.Notificador In (" + NotificadorIds + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvanceIncidente))
+            if (!string.IsNullOrEmpty(filter.AdvanceResultado))
             {
-                switch (filter.IncidenteFilter)
+                switch (filter.ResultadoFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Incidente_con_Invitacion.Descripcion LIKE '" + filter.AdvanceIncidente + "%'";
+                        where += " AND Resultado_de_Notificacion.Descripcion LIKE '" + filter.AdvanceResultado + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Incidente_con_Invitacion.Descripcion LIKE '%" + filter.AdvanceIncidente + "'";
+                        where += " AND Resultado_de_Notificacion.Descripcion LIKE '%" + filter.AdvanceResultado + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Incidente_con_Invitacion.Descripcion = '" + filter.AdvanceIncidente + "'";
+                        where += " AND Resultado_de_Notificacion.Descripcion = '" + filter.AdvanceResultado + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Incidente_con_Invitacion.Descripcion LIKE '%" + filter.AdvanceIncidente + "%'";
+                        where += " AND Resultado_de_Notificacion.Descripcion LIKE '%" + filter.AdvanceResultado + "%'";
                         break;
                 }
             }
-            else if (filter.AdvanceIncidenteMultiple != null && filter.AdvanceIncidenteMultiple.Count() > 0)
+            else if (filter.AdvanceResultadoMultiple != null && filter.AdvanceResultadoMultiple.Count() > 0)
             {
-                var IncidenteIds = string.Join(",", filter.AdvanceIncidenteMultiple);
+                var ResultadoIds = string.Join(",", filter.AdvanceResultadoMultiple);
 
-                where += " AND Detalle_de_Solicitudes_de_Invitaciones.Incidente In (" + IncidenteIds + ")";
+                where += " AND Detalle_de_Solicitudes_de_Invitaciones.Resultado In (" + ResultadoIds + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvanceA_Tiempo))
+            if (!string.IsNullOrEmpty(filter.AdvanceIncidente_en_la_Recepcion))
             {
-                switch (filter.A_TiempoFilter)
+                switch (filter.Incidente_en_la_RecepcionFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND A_Tiempo.Descripcion LIKE '" + filter.AdvanceA_Tiempo + "%'";
+                        where += " AND Incidente_con_Invitacion.Descripcion LIKE '" + filter.AdvanceIncidente_en_la_Recepcion + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND A_Tiempo.Descripcion LIKE '%" + filter.AdvanceA_Tiempo + "'";
+                        where += " AND Incidente_con_Invitacion.Descripcion LIKE '%" + filter.AdvanceIncidente_en_la_Recepcion + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND A_Tiempo.Descripcion = '" + filter.AdvanceA_Tiempo + "'";
+                        where += " AND Incidente_con_Invitacion.Descripcion = '" + filter.AdvanceIncidente_en_la_Recepcion + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND A_Tiempo.Descripcion LIKE '%" + filter.AdvanceA_Tiempo + "%'";
+                        where += " AND Incidente_con_Invitacion.Descripcion LIKE '%" + filter.AdvanceIncidente_en_la_Recepcion + "%'";
                         break;
                 }
             }
-            else if (filter.AdvanceA_TiempoMultiple != null && filter.AdvanceA_TiempoMultiple.Count() > 0)
+            else if (filter.AdvanceIncidente_en_la_RecepcionMultiple != null && filter.AdvanceIncidente_en_la_RecepcionMultiple.Count() > 0)
             {
-                var A_TiempoIds = string.Join(",", filter.AdvanceA_TiempoMultiple);
+                var Incidente_en_la_RecepcionIds = string.Join(",", filter.AdvanceIncidente_en_la_RecepcionMultiple);
 
-                where += " AND Detalle_de_Solicitudes_de_Invitaciones.A_Tiempo In (" + A_TiempoIds + ")";
+                where += " AND Detalle_de_Solicitudes_de_Invitaciones.Incidente_en_la_Recepcion In (" + Incidente_en_la_RecepcionIds + ")";
             }
-
-            if (filter.Archivo != RadioOptions.NoApply)
-                where += " AND Detalle_de_Solicitudes_de_Invitaciones.Archivo " + (filter.Archivo == RadioOptions.Yes ? ">" : "==") + " 0";
 
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
@@ -1589,22 +1552,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     _IDetalle_de_Solicitudes_de_InvitacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
 
 
-                    if (varDetalle_de_Solicitudes_de_Invitaciones.ArchivoRemoveAttachment != 0 && varDetalle_de_Solicitudes_de_Invitaciones.ArchivoFile == null)
-                    {
-                        varDetalle_de_Solicitudes_de_Invitaciones.Archivo = 0;
-                    }
-
-                    if (varDetalle_de_Solicitudes_de_Invitaciones.ArchivoFile != null)
-                    {
-                        var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varDetalle_de_Solicitudes_de_Invitaciones.ArchivoFile);
-                        _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                        varDetalle_de_Solicitudes_de_Invitaciones.Archivo = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
-                        {
-                            File = fileAsBytes,
-                            Description = varDetalle_de_Solicitudes_de_Invitaciones.ArchivoFile.FileName,
-                            File_Size = fileAsBytes.Length
-                        }).Resource;
-                    }
 
                     
                     var result = "";
@@ -1621,13 +1568,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_la_cita = (!String.IsNullOrEmpty(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_la_cita)) ? DateTime.ParseExact(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_la_cita, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_la_Cita = varDetalle_de_Solicitudes_de_Invitaciones.Hora_de_la_Cita
                         ,Domicilio = varDetalle_de_Solicitudes_de_Invitaciones.Domicilio
-                        ,Fecha_de_Recepcion = (!String.IsNullOrEmpty(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_Recepcion)) ? DateTime.ParseExact(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_Recepcion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Fecha_de_Aceptacion = (!String.IsNullOrEmpty(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_Aceptacion)) ? DateTime.ParseExact(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_Aceptacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Cumplimiento = varDetalle_de_Solicitudes_de_Invitaciones.Cumplimiento
-                        ,Incidente = varDetalle_de_Solicitudes_de_Invitaciones.Incidente
-                        ,A_Tiempo = varDetalle_de_Solicitudes_de_Invitaciones.A_Tiempo
-                        ,Archivo = (varDetalle_de_Solicitudes_de_Invitaciones.Archivo.HasValue && varDetalle_de_Solicitudes_de_Invitaciones.Archivo != 0) ? ((int?)Convert.ToInt32(varDetalle_de_Solicitudes_de_Invitaciones.Archivo.Value)) : null
-
+                        ,Fecha_de_Notificacion = (!String.IsNullOrEmpty(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_Notificacion)) ? DateTime.ParseExact(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_Notificacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_Notificacion = varDetalle_de_Solicitudes_de_Invitaciones.Hora_de_Notificacion
+                        ,Notificador = varDetalle_de_Solicitudes_de_Invitaciones.Notificador
+                        ,Resultado = varDetalle_de_Solicitudes_de_Invitaciones.Resultado
+                        ,Incidente_en_la_Recepcion = varDetalle_de_Solicitudes_de_Invitaciones.Incidente_en_la_Recepcion
 
                     };
 
@@ -2301,12 +2246,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_la_cita = (m.Fecha_de_la_cita == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_la_cita).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_la_Cita = m.Hora_de_la_Cita
 			,Domicilio = m.Domicilio
-                        ,Fecha_de_Recepcion = (m.Fecha_de_Recepcion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Recepcion).ToString(ConfigurationProperty.DateFormat))
-                        ,Fecha_de_Aceptacion = (m.Fecha_de_Aceptacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Aceptacion).ToString(ConfigurationProperty.DateFormat))
-                        ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
-                        ,IncidenteDescripcion = CultureHelper.GetTraduction(m.Incidente_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_Incidente_con_Invitacion.Descripcion
-                        ,A_TiempoDescripcion = CultureHelper.GetTraduction(m.A_Tiempo_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.A_Tiempo_A_Tiempo.Descripcion
-			,Archivo = m.Archivo
+                        ,Fecha_de_Notificacion = (m.Fecha_de_Notificacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Notificacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Notificacion = m.Hora_de_Notificacion
+                        ,NotificadorName = CultureHelper.GetTraduction(m.Notificador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Notificador_Spartan_User.Name
+                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
+                        ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
 
             }).ToList();
 
@@ -2390,12 +2334,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_la_cita = (m.Fecha_de_la_cita == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_la_cita).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_la_Cita = m.Hora_de_la_Cita
 			,Domicilio = m.Domicilio
-                        ,Fecha_de_Recepcion = (m.Fecha_de_Recepcion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Recepcion).ToString(ConfigurationProperty.DateFormat))
-                        ,Fecha_de_Aceptacion = (m.Fecha_de_Aceptacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Aceptacion).ToString(ConfigurationProperty.DateFormat))
-                        ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
-                        ,IncidenteDescripcion = CultureHelper.GetTraduction(m.Incidente_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_Incidente_con_Invitacion.Descripcion
-                        ,A_TiempoDescripcion = CultureHelper.GetTraduction(m.A_Tiempo_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.A_Tiempo_A_Tiempo.Descripcion
-			,Archivo = m.Archivo
+                        ,Fecha_de_Notificacion = (m.Fecha_de_Notificacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Notificacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Notificacion = m.Hora_de_Notificacion
+                        ,NotificadorName = CultureHelper.GetTraduction(m.Notificador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Notificador_Spartan_User.Name
+                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
+                        ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
 
             }).ToList();
 
@@ -2430,23 +2373,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_Solicitudes_de_InvitacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
-				                    if (varDetalle_de_Solicitudes_de_Invitaciones.ArchivoRemoveAttachment != 0 && varDetalle_de_Solicitudes_de_Invitaciones.ArchivoFile == null)
-                    {
-                        varDetalle_de_Solicitudes_de_Invitaciones.Archivo = 0;
-                    }
-
-                    if (varDetalle_de_Solicitudes_de_Invitaciones.ArchivoFile != null)
-                    {
-                        var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varDetalle_de_Solicitudes_de_Invitaciones.ArchivoFile);
-                        _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                        varDetalle_de_Solicitudes_de_Invitaciones.Archivo = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
-                        {
-                            File = fileAsBytes,
-                            Description = varDetalle_de_Solicitudes_de_Invitaciones.ArchivoFile.FileName,
-                            File_Size = fileAsBytes.Length
-                        }).Resource;
-                    }
-
+				
                 var result = "";
                 var Detalle_de_Solicitudes_de_Invitaciones_Datos_GeneralesInfo = new Detalle_de_Solicitudes_de_Invitaciones_Datos_Generales
                 {
@@ -2461,13 +2388,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_la_cita = (!String.IsNullOrEmpty(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_la_cita)) ? DateTime.ParseExact(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_la_cita, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_la_Cita = varDetalle_de_Solicitudes_de_Invitaciones.Hora_de_la_Cita
                         ,Domicilio = varDetalle_de_Solicitudes_de_Invitaciones.Domicilio
-                        ,Fecha_de_Recepcion = (!String.IsNullOrEmpty(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_Recepcion)) ? DateTime.ParseExact(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_Recepcion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Fecha_de_Aceptacion = (!String.IsNullOrEmpty(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_Aceptacion)) ? DateTime.ParseExact(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_Aceptacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Cumplimiento = varDetalle_de_Solicitudes_de_Invitaciones.Cumplimiento
-                        ,Incidente = varDetalle_de_Solicitudes_de_Invitaciones.Incidente
-                        ,A_Tiempo = varDetalle_de_Solicitudes_de_Invitaciones.A_Tiempo
-                        ,Archivo = (varDetalle_de_Solicitudes_de_Invitaciones.Archivo.HasValue && varDetalle_de_Solicitudes_de_Invitaciones.Archivo != 0) ? ((int?)Convert.ToInt32(varDetalle_de_Solicitudes_de_Invitaciones.Archivo.Value)) : null
-
                     
                 };
 
@@ -2514,15 +2434,79 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_la_cita = (m.Fecha_de_la_cita == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_la_cita).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_la_Cita = m.Hora_de_la_Cita
 			,Domicilio = m.Domicilio
-                        ,Fecha_de_Recepcion = (m.Fecha_de_Recepcion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Recepcion).ToString(ConfigurationProperty.DateFormat))
-                        ,Fecha_de_Aceptacion = (m.Fecha_de_Aceptacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Aceptacion).ToString(ConfigurationProperty.DateFormat))
-                        ,Cumplimiento = m.Cumplimiento
-                        ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
-                        ,Incidente = m.Incidente
-                        ,IncidenteDescripcion = CultureHelper.GetTraduction(m.Incidente_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_Incidente_con_Invitacion.Descripcion
-                        ,A_Tiempo = m.A_Tiempo
-                        ,A_TiempoDescripcion = CultureHelper.GetTraduction(m.A_Tiempo_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.A_Tiempo_A_Tiempo.Descripcion
-			,Archivo = m.Archivo
+
+                    
+                };
+				var resultData = new
+                {
+                    data = result
+                    ,nombre_del_interviniente_solicitante = Detalle_de_Solicitante_en_InvitacionesData
+                    ,nombre_del_interviniente_requerido = Detalle_de_Requerido_en_InvitacionesData
+
+                };
+                return Json(resultData, JsonRequestBehavior.AllowGet);
+            }
+            return Json(null, JsonRequestBehavior.AllowGet);            
+        }
+
+		[HttpPost]
+        public ActionResult Post_Resultado_de_Notificacion(Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_NotificacionModel varDetalle_de_Solicitudes_de_Invitaciones)
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_Solicitudes_de_InvitacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
+				
+                var result = "";
+                var Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_NotificacionInfo = new Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_Notificacion
+                {
+                    Clave = varDetalle_de_Solicitudes_de_Invitaciones.Clave
+                                            ,Fecha_de_Notificacion = (!String.IsNullOrEmpty(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_Notificacion)) ? DateTime.ParseExact(varDetalle_de_Solicitudes_de_Invitaciones.Fecha_de_Notificacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_Notificacion = varDetalle_de_Solicitudes_de_Invitaciones.Hora_de_Notificacion
+                        ,Notificador = varDetalle_de_Solicitudes_de_Invitaciones.Notificador
+                        ,Resultado = varDetalle_de_Solicitudes_de_Invitaciones.Resultado
+                        ,Incidente_en_la_Recepcion = varDetalle_de_Solicitudes_de_Invitaciones.Incidente_en_la_Recepcion
+                    
+                };
+
+                result = _IDetalle_de_Solicitudes_de_InvitacionesApiConsumer.Update_Resultado_de_Notificacion(Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_NotificacionInfo).Resource.ToString();
+                Session["KeyValueInserted"] = result;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+		
+		[HttpGet]
+        public JsonResult Get_Resultado_de_Notificacion(string Id)
+        {     
+            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
+            {                
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_Solicitudes_de_InvitacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var m = _IDetalle_de_Solicitudes_de_InvitacionesApiConsumer.Get_Resultado_de_Notificacion(Id).Resource;
+                if (m == null)
+                    return Json(null, JsonRequestBehavior.AllowGet);
+				                int RowCount_Detalle_de_Solicitante_en_Invitaciones;
+                var Detalle_de_Solicitante_en_InvitacionesData = GetDetalle_de_Solicitante_en_InvitacionesData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_de_Solicitante_en_Invitaciones);
+                int RowCount_Detalle_de_Requerido_en_Invitaciones;
+                var Detalle_de_Requerido_en_InvitacionesData = GetDetalle_de_Requerido_en_InvitacionesData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_de_Requerido_en_Invitaciones);
+
+                var result = new Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_NotificacionModel
+                {
+                    Clave = m.Clave
+                        ,Fecha_de_Notificacion = (m.Fecha_de_Notificacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Notificacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Notificacion = m.Hora_de_Notificacion
+                        ,Notificador = m.Notificador
+                        ,NotificadorName = CultureHelper.GetTraduction(m.Notificador_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Notificador_Spartan_User.Name
+                        ,Resultado = m.Resultado
+                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
+                        ,Incidente_en_la_Recepcion = m.Incidente_en_la_Recepcion
+                        ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
 
                     
                 };

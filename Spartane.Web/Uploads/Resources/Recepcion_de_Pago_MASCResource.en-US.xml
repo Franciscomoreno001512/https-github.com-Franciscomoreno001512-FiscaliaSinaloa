@@ -5,7 +5,7 @@
   <resource culture="en-US" name="Fecha_de_Recepcion" value="Fecha de Recepción"></resource>
   <resource culture="en-US" name="Hora_de_Recepcion" value="Hora de Recepción"></resource>
   <resource culture="en-US" name="Usuario_que_Recibe" value="Usuario que Recibe"></resource>
-  <resource culture="en-US" name="Numero_de_Expediente" value="Número de Expediente"></resource>
+  <resource culture="en-US" name="Numero_de_Expediente" value="Número de Procedimiento"></resource>
   <resource culture="en-US" name="Requerido" value="Requerido"></resource>
   <resource culture="en-US" name="Nombre_de_la_Persona_que_entrega" value="Nombre de la Persona que entrega"></resource>
   <resource culture="en-US" name="Numero_de_Pago" value="Número de Pago"></resource>

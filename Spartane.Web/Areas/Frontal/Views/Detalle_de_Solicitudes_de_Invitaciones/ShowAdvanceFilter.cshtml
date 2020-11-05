@@ -15,15 +15,15 @@
     List<SelectListItem> varTipo_de_Funcion_Tipo_de_Participacion = null;
     if (ViewBag.Tipo_de_Funcions_Tipo_de_Participacion != null)
     { varTipo_de_Funcion_Tipo_de_Participacion = (List<SelectListItem>)ViewBag.Tipo_de_Funcions_Tipo_de_Participacion; }
-    List<SelectListItem> varCumplimiento_Cumplimiento = null;
-    if (ViewBag.Cumplimientos_Cumplimiento != null)
-    { varCumplimiento_Cumplimiento = (List<SelectListItem>)ViewBag.Cumplimientos_Cumplimiento; }
-    List<SelectListItem> varIncidente_con_Invitacion_Incidente = null;
-    if (ViewBag.Incidente_con_Invitacions_Incidente != null)
-    { varIncidente_con_Invitacion_Incidente = (List<SelectListItem>)ViewBag.Incidente_con_Invitacions_Incidente; }
-    List<SelectListItem> varA_Tiempo_A_Tiempo = null;
-    if (ViewBag.A_Tiempos_A_Tiempo != null)
-    { varA_Tiempo_A_Tiempo = (List<SelectListItem>)ViewBag.A_Tiempos_A_Tiempo; }
+    List<SelectListItem> varSpartan_User_Notificador = null;
+    if (ViewBag.Spartan_Users_Notificador != null)
+    { varSpartan_User_Notificador = (List<SelectListItem>)ViewBag.Spartan_Users_Notificador; }
+    List<SelectListItem> varResultado_de_Notificacion_Resultado = null;
+    if (ViewBag.Resultado_de_Notificacions_Resultado != null)
+    { varResultado_de_Notificacion_Resultado = (List<SelectListItem>)ViewBag.Resultado_de_Notificacions_Resultado; }
+    List<SelectListItem> varIncidente_con_Invitacion_Incidente_en_la_Recepcion = null;
+    if (ViewBag.Incidente_con_Invitacions_Incidente_en_la_Recepcion != null)
+    { varIncidente_con_Invitacion_Incidente_en_la_Recepcion = (List<SelectListItem>)ViewBag.Incidente_con_Invitacions_Incidente_en_la_Recepcion; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -202,103 +202,103 @@
                     @Html.TextBoxFor(m => m.Domicilio, new { @class = "form-control", @type = "text", @id = "txtDomicilio" })
                 </div>
         <div class="MarginBottom ">
-            <h3>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Recepcion</h3>
+            <h3>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Notificacion</h3>
         </div>
         <div class="MarginBottom form-inline">
             <label class="">@Resources.Resources.From:</label>
             <div class="input-group date">
-                <input class="form-control" id="txtAdvanceFromFecha_de_Recepcion" name="FromFecha_de_Recepcion" type="text" value="@Model.FromFecha_de_Recepcion" />
+                <input class="form-control" id="txtAdvanceFromFecha_de_Notificacion" name="FromFecha_de_Notificacion" type="text" value="@Model.FromFecha_de_Notificacion" />
                 <span class="form-inline input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
             <label class="">@Resources.Resources.To: </label>
             <div class="input-group date">
-                <input class="form-control" id="txtAdvanceToFecha_de_Recepcion" name="ToFecha_de_Recepcion" type="text" value="@Model.ToFecha_de_Recepcion" />
+                <input class="form-control" id="txtAdvanceToFecha_de_Notificacion" name="ToFecha_de_Notificacion" type="text" value="@Model.ToFecha_de_Notificacion" />
                 <span class="form-inline input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
         <div class="MarginBottom ">
-            <h3>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Aceptacion</h3>
+            <h3>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Hora_de_Notificacion</h3>
         </div>
         <div class="MarginBottom form-inline">
             <label class="">@Resources.Resources.From:</label>
-            <div class="input-group date">
-                <input class="form-control" id="txtAdvanceFromFecha_de_Aceptacion" name="FromFecha_de_Aceptacion" type="text" value="@Model.FromFecha_de_Aceptacion" />
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_Notificacion" name="FromHora_de_Notificacion" type="text" value="@Model.FromHora_de_Notificacion" />
                 <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
+                    <span class="glyphicon glyphicon-time"></span>
                 </span>
             </div>
             <label class="">@Resources.Resources.To: </label>
-            <div class="input-group date">
-                <input class="form-control" id="txtAdvanceToFecha_de_Aceptacion" name="ToFecha_de_Aceptacion" type="text" value="@Model.ToFecha_de_Aceptacion" />
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_Notificacion" name="ToHora_de_Notificacion" type="text" value="@Model.ToHora_de_Notificacion" />
                 <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
+                    <span class="glyphicon glyphicon-time"></span>
                 </span>
             </div>
         </div>
                 <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Cumplimiento</h3>
+                    <h3>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Notificador</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.CumplimientoFilter, filters, new { @class = "form-control", @id = "ddlCumplimientoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceCumplimiento, new { @class = "form-control", @type = "text", @id = "txtAdvanceCumplimiento" })
+                    @Html.DropDownListFor(m => m.NotificadorFilter, filters, new { @class = "form-control", @id = "ddlNotificadorFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceNotificador, new { @class = "form-control", @type = "text", @id = "txtAdvanceNotificador" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varCumplimiento_Cumplimiento!=null)
+                    @if (varSpartan_User_Notificador!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvanceCumplimientoMultiple, varCumplimiento_Cumplimiento,
+                        @Html.ListBoxFor(m => m.AdvanceNotificadorMultiple, varSpartan_User_Notificador,
                         new
                         {
                             @class = "form-control chosen-select",
                             @multiple = "multiple",
                             @data_placeholder = "",
                             @style = "width: 350px;",
-                            @id = "ddlAdvanceCumplimiento"
+                            @id = "ddlAdvanceNotificador"
                         });
                     }
                 </div>
                 <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Incidente</h3>
+                    <h3>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Resultado</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.IncidenteFilter, filters, new { @class = "form-control", @id = "ddlIncidenteFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceIncidente, new { @class = "form-control", @type = "text", @id = "txtAdvanceIncidente" })
+                    @Html.DropDownListFor(m => m.ResultadoFilter, filters, new { @class = "form-control", @id = "ddlResultadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceResultado, new { @class = "form-control", @type = "text", @id = "txtAdvanceResultado" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varIncidente_con_Invitacion_Incidente!=null)
+                    @if (varResultado_de_Notificacion_Resultado!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvanceIncidenteMultiple, varIncidente_con_Invitacion_Incidente,
+                        @Html.ListBoxFor(m => m.AdvanceResultadoMultiple, varResultado_de_Notificacion_Resultado,
                         new
                         {
                             @class = "form-control chosen-select",
                             @multiple = "multiple",
                             @data_placeholder = "",
                             @style = "width: 350px;",
-                            @id = "ddlAdvanceIncidente"
+                            @id = "ddlAdvanceResultado"
                         });
                     }
                 </div>
                 <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.A_Tiempo</h3>
+                    <h3>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Incidente_en_la_Recepcion</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.A_TiempoFilter, filters, new { @class = "form-control", @id = "ddlA_TiempoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceA_Tiempo, new { @class = "form-control", @type = "text", @id = "txtAdvanceA_Tiempo" })
+                    @Html.DropDownListFor(m => m.Incidente_en_la_RecepcionFilter, filters, new { @class = "form-control", @id = "ddlIncidente_en_la_RecepcionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceIncidente_en_la_Recepcion, new { @class = "form-control", @type = "text", @id = "txtAdvanceIncidente_en_la_Recepcion" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varA_Tiempo_A_Tiempo!=null)
+                    @if (varIncidente_con_Invitacion_Incidente_en_la_Recepcion!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvanceA_TiempoMultiple, varA_Tiempo_A_Tiempo,
+                        @Html.ListBoxFor(m => m.AdvanceIncidente_en_la_RecepcionMultiple, varIncidente_con_Invitacion_Incidente_en_la_Recepcion,
                         new
                         {
                             @class = "form-control chosen-select",
                             @multiple = "multiple",
                             @data_placeholder = "",
                             @style = "width: 350px;",
-                            @id = "ddlAdvanceA_Tiempo"
+                            @id = "ddlAdvanceIncidente_en_la_Recepcion"
                         });
                     }
                 </div>
@@ -409,74 +409,59 @@
             advanceSearch.Detalle_de_Solicitudes_de_InvitacionesDomicilio = $("#txtAdvanceDomicilio").val();
             advanceSearch.Detalle_de_Solicitudes_de_InvitacionesDomicilioSearchType = $("#ddlAdvanceDomicilioFilter").val();
         }
-        if ($("#txtAdvanceFromFecha_de_Recepcion").val() != "" || $("#txtAdvanceToFecha_de_Recepcion").val() != "") {
+        if ($("#txtAdvanceFromFecha_de_Notificacion").val() != "" || $("#txtAdvanceToFecha_de_Notificacion").val() != "") {
             hasParameter = true;
-            advanceSearch.Detalle_de_Solicitudes_de_InvitacionesFecha_de_RecepcionFrom = $("#txtAdvanceFromFecha_de_Recepcion").val();
-            advanceSearch.Detalle_de_Solicitudes_de_InvitacionesFecha_de_RecepcionTo = $("#txtAdvanceToFecha_de_Recepcion").val();
+            advanceSearch.Detalle_de_Solicitudes_de_InvitacionesFecha_de_NotificacionFrom = $("#txtAdvanceFromFecha_de_Notificacion").val();
+            advanceSearch.Detalle_de_Solicitudes_de_InvitacionesFecha_de_NotificacionTo = $("#txtAdvanceToFecha_de_Notificacion").val();
         }
-        if ($("#txtAdvanceFromFecha_de_Aceptacion").val() != "" || $("#txtAdvanceToFecha_de_Aceptacion").val() != "") {
+        if ($("#txtAdvanceHora_de_Notificacion").val() != "") {
             hasParameter = true;
-            advanceSearch.Detalle_de_Solicitudes_de_InvitacionesFecha_de_AceptacionFrom = $("#txtAdvanceFromFecha_de_Aceptacion").val();
-            advanceSearch.Detalle_de_Solicitudes_de_InvitacionesFecha_de_AceptacionTo = $("#txtAdvanceToFecha_de_Aceptacion").val();
+            advanceSearch.Detalle_de_Solicitudes_de_InvitacionesHora_de_Notificacion = $("#txtAdvanceHora_de_Notificacion").val();
+            advanceSearch.Detalle_de_Solicitudes_de_InvitacionesHora_de_NotificacionSearchType = $("#ddlAdvanceHora_de_NotificacionFilter").val();
         }
-        advanceSearch.CumplimientoSearchType = 0;
-        if ($('#ddlAdvanceCumplimiento').val().length > 0 || $("#txtAdvanceCumplimiento").val() == "") {
+        advanceSearch.NotificadorSearchType = 0;
+        if ($('#ddlAdvanceNotificador').val().length > 0 || $("#txtAdvanceNotificador").val() == "") {
 
 
             if (isDetalle_de_Solicitudes_de_InvitacionesTextSearch) {
-                advanceSearch.CumplimientoName = $("#txtAdvanceCumplimiento").val();
-                advanceSearch.CumplimientoNameSearchType = $("#ddlAdvanceCumplimiento").val();
-                advanceSearch.CumplimientoSearchType = 1;
+                advanceSearch.NotificadorName = $("#txtAdvanceNotificador").val();
+                advanceSearch.NotificadorNameSearchType = $("#ddlAdvanceNotificador").val();
+                advanceSearch.NotificadorSearchType = 1;
             }
             else {
 
-                advanceSearch.CumplimientoToSearch = $("#ddlAdvanceCumplimiento").val();
-                advanceSearch.CumplimientoSearchType = 2;
+                advanceSearch.NotificadorToSearch = $("#ddlAdvanceNotificador").val();
+                advanceSearch.NotificadorSearchType = 2;
             }
         }
-        advanceSearch.IncidenteSearchType = 0;
-        if ($('#ddlAdvanceIncidente').val().length > 0 || $("#txtAdvanceIncidente").val() == "") {
+        advanceSearch.ResultadoSearchType = 0;
+        if ($('#ddlAdvanceResultado').val().length > 0 || $("#txtAdvanceResultado").val() == "") {
 
 
             if (isDetalle_de_Solicitudes_de_InvitacionesTextSearch) {
-                advanceSearch.IncidenteName = $("#txtAdvanceIncidente").val();
-                advanceSearch.IncidenteNameSearchType = $("#ddlAdvanceIncidente").val();
-                advanceSearch.IncidenteSearchType = 1;
+                advanceSearch.ResultadoName = $("#txtAdvanceResultado").val();
+                advanceSearch.ResultadoNameSearchType = $("#ddlAdvanceResultado").val();
+                advanceSearch.ResultadoSearchType = 1;
             }
             else {
 
-                advanceSearch.IncidenteToSearch = $("#ddlAdvanceIncidente").val();
-                advanceSearch.IncidenteSearchType = 2;
+                advanceSearch.ResultadoToSearch = $("#ddlAdvanceResultado").val();
+                advanceSearch.ResultadoSearchType = 2;
             }
         }
-        advanceSearch.A_TiempoSearchType = 0;
-        if ($('#ddlAdvanceA_Tiempo').val().length > 0 || $("#txtAdvanceA_Tiempo").val() == "") {
+        advanceSearch.Incidente_en_la_RecepcionSearchType = 0;
+        if ($('#ddlAdvanceIncidente_en_la_Recepcion').val().length > 0 || $("#txtAdvanceIncidente_en_la_Recepcion").val() == "") {
 
 
             if (isDetalle_de_Solicitudes_de_InvitacionesTextSearch) {
-                advanceSearch.A_TiempoName = $("#txtAdvanceA_Tiempo").val();
-                advanceSearch.A_TiempoNameSearchType = $("#ddlAdvanceA_Tiempo").val();
-                advanceSearch.A_TiempoSearchType = 1;
+                advanceSearch.Incidente_en_la_RecepcionName = $("#txtAdvanceIncidente_en_la_Recepcion").val();
+                advanceSearch.Incidente_en_la_RecepcionNameSearchType = $("#ddlAdvanceIncidente_en_la_Recepcion").val();
+                advanceSearch.Incidente_en_la_RecepcionSearchType = 1;
             }
             else {
 
-                advanceSearch.A_TiempoToSearch = $("#ddlAdvanceA_Tiempo").val();
-                advanceSearch.A_TiempoSearchType = 2;
-            }
-        }
-        advanceSearch.ArchivoSearchType = 0;
-        if ($('#ddlAdvanceArchivo').val().length > 0 || $("#txtAdvanceArchivo").val() == "") {
-
-
-            if (isDetalle_de_Solicitudes_de_InvitacionesTextSearch) {
-                advanceSearch.ArchivoName = $("#txtAdvanceArchivo").val();
-                advanceSearch.ArchivoNameSearchType = $("#ddlAdvanceArchivo").val();
-                advanceSearch.ArchivoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.ArchivoToSearch = $("#ddlAdvanceArchivo").val();
-                advanceSearch.ArchivoSearchType = 2;
+                advanceSearch.Incidente_en_la_RecepcionToSearch = $("#ddlAdvanceIncidente_en_la_Recepcion").val();
+                advanceSearch.Incidente_en_la_RecepcionSearchType = 2;
             }
         }
 
@@ -533,32 +518,32 @@
             isDetalle_de_Solicitudes_de_InvitacionesTextSearch = false;
             $("#txtAdvanceTipo_de_Participacion").val('');
         });
-        $("#txtAdvanceCumplimiento").keypress(function () {
+        $("#txtAdvanceNotificador").keypress(function () {
             isDetalle_de_Solicitudes_de_InvitacionesTextSearch = true;
-            $("#ddlAdvanceCumplimiento").val('').trigger("chosen:updated");
+            $("#ddlAdvanceNotificador").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvanceCumplimiento").change(function () {
+        $("#ddlAdvanceNotificador").change(function () {
             isDetalle_de_Solicitudes_de_InvitacionesTextSearch = false;
-            $("#txtAdvanceCumplimiento").val('');
+            $("#txtAdvanceNotificador").val('');
         });
-        $("#txtAdvanceIncidente").keypress(function () {
+        $("#txtAdvanceResultado").keypress(function () {
             isDetalle_de_Solicitudes_de_InvitacionesTextSearch = true;
-            $("#ddlAdvanceIncidente").val('').trigger("chosen:updated");
+            $("#ddlAdvanceResultado").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvanceIncidente").change(function () {
+        $("#ddlAdvanceResultado").change(function () {
             isDetalle_de_Solicitudes_de_InvitacionesTextSearch = false;
-            $("#txtAdvanceIncidente").val('');
+            $("#txtAdvanceResultado").val('');
         });
-        $("#txtAdvanceA_Tiempo").keypress(function () {
+        $("#txtAdvanceIncidente_en_la_Recepcion").keypress(function () {
             isDetalle_de_Solicitudes_de_InvitacionesTextSearch = true;
-            $("#ddlAdvanceA_Tiempo").val('').trigger("chosen:updated");
+            $("#ddlAdvanceIncidente_en_la_Recepcion").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvanceA_Tiempo").change(function () {
+        $("#ddlAdvanceIncidente_en_la_Recepcion").change(function () {
             isDetalle_de_Solicitudes_de_InvitacionesTextSearch = false;
-            $("#txtAdvanceA_Tiempo").val('');
+            $("#txtAdvanceIncidente_en_la_Recepcion").val('');
         });
 
     });

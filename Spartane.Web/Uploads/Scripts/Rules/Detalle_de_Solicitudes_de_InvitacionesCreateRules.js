@@ -256,6 +256,8 @@ if( $('#' + nameOfTable + 'Formato_de_Invitacion' + rowIndex).val()==TryParseInt
 }
 //BusinessRuleId:2011, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

@@ -7006,6 +7006,30 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return Json(null, JsonRequestBehavior.AllowGet);            
         }
 
+	    [HttpPost]
+        public ActionResult Post_Estatus_de_Turno(Modulo_Atencion_Inicial_Datos_del_Caso varModulo_Atencion_Inicial)
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IModulo_Atencion_InicialApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+                var result = "";
+                var Modulo_Atencion_Inicial = new Modulo_Atencion_Inicial_Datos_del_Caso
+                {
+                    Folio = varModulo_Atencion_Inicial.Folio
+                };
+
+                result = _IModulo_Atencion_InicialApiConsumer.Update_Estatus_de_Turno(Modulo_Atencion_Inicial).Resource.ToString();
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
 
     }
 }

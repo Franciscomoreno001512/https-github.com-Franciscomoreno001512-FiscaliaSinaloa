@@ -171,7 +171,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Usuario_que_Recibe = Recepcion_de_Pago_MASCData.Usuario_que_Recibe
                     ,Usuario_que_RecibeName = CultureHelper.GetTraduction(Convert.ToString(Recepcion_de_Pago_MASCData.Usuario_que_Recibe), "Spartan_User") ??  (string)Recepcion_de_Pago_MASCData.Usuario_que_Recibe_Spartan_User.Name
                     ,Numero_de_Expediente = Recepcion_de_Pago_MASCData.Numero_de_Expediente
-                    ,Numero_de_ExpedienteNumero_de_Folio = CultureHelper.GetTraduction(Convert.ToString(Recepcion_de_Pago_MASCData.Numero_de_Expediente), "Solicitud") ??  (string)Recepcion_de_Pago_MASCData.Numero_de_Expediente_Solicitud.Numero_de_Folio
+                    ,Numero_de_ExpedienteNumero_de_Expediente = CultureHelper.GetTraduction(Convert.ToString(Recepcion_de_Pago_MASCData.Numero_de_Expediente), "Solicitud") ??  (string)Recepcion_de_Pago_MASCData.Numero_de_Expediente_Solicitud.Numero_de_Expediente
                     ,Requerido = Recepcion_de_Pago_MASCData.Requerido
                     ,RequeridoNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Recepcion_de_Pago_MASCData.Requerido), "Detalle_de_Solicitud_Requerido") ??  (string)Recepcion_de_Pago_MASCData.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
                     ,Nombre_de_la_Persona_que_entrega = Recepcion_de_Pago_MASCData.Nombre_de_la_Persona_que_entrega
@@ -256,7 +256,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Usuario_que_Recibe = Recepcion_de_Pago_MASCData.Usuario_que_Recibe
                     ,Usuario_que_RecibeName = CultureHelper.GetTraduction(Convert.ToString(Recepcion_de_Pago_MASCData.Usuario_que_Recibe), "Spartan_User") ??  (string)Recepcion_de_Pago_MASCData.Usuario_que_Recibe_Spartan_User.Name
                     ,Numero_de_Expediente = Recepcion_de_Pago_MASCData.Numero_de_Expediente
-                    ,Numero_de_ExpedienteNumero_de_Folio = CultureHelper.GetTraduction(Convert.ToString(Recepcion_de_Pago_MASCData.Numero_de_Expediente), "Solicitud") ??  (string)Recepcion_de_Pago_MASCData.Numero_de_Expediente_Solicitud.Numero_de_Folio
+                    ,Numero_de_ExpedienteNumero_de_Expediente = CultureHelper.GetTraduction(Convert.ToString(Recepcion_de_Pago_MASCData.Numero_de_Expediente), "Solicitud") ??  (string)Recepcion_de_Pago_MASCData.Numero_de_Expediente_Solicitud.Numero_de_Expediente
                     ,Requerido = Recepcion_de_Pago_MASCData.Requerido
                     ,RequeridoNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Recepcion_de_Pago_MASCData.Requerido), "Detalle_de_Solicitud_Requerido") ??  (string)Recepcion_de_Pago_MASCData.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
                     ,Nombre_de_la_Persona_que_entrega = Recepcion_de_Pago_MASCData.Nombre_de_la_Persona_que_entrega
@@ -323,9 +323,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ISolicitudApiConsumer.SelAll(false).Resource;
 				
-                return Json(result.OrderBy(m => m.Numero_de_Folio).Select(m => new SelectListItem
+                return Json(result.OrderBy(m => m.Numero_de_Expediente).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud", "Numero_de_Folio")?? m.Numero_de_Folio,
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Solicitud", "Numero_de_Expediente")?? m.Numero_de_Expediente,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -440,7 +440,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Recepcion = (m.Fecha_de_Recepcion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Recepcion).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Recepcion = m.Hora_de_Recepcion
                         ,Usuario_que_RecibeName = CultureHelper.GetTraduction(m.Usuario_que_Recibe_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Recibe_Spartan_User.Name
-                        ,Numero_de_ExpedienteNumero_de_Folio = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Folio
+                        ,Numero_de_ExpedienteNumero_de_Expediente = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Expediente
                         ,RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
 			,Nombre_de_la_Persona_que_entrega = m.Nombre_de_la_Persona_que_entrega
 			,Numero_de_Pago = m.Numero_de_Pago
@@ -564,7 +564,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Recepcion = (m.Fecha_de_Recepcion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Recepcion).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Recepcion = m.Hora_de_Recepcion
                         ,Usuario_que_RecibeName = CultureHelper.GetTraduction(m.Usuario_que_Recibe_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Recibe_Spartan_User.Name
-                        ,Numero_de_ExpedienteNumero_de_Folio = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Folio
+                        ,Numero_de_ExpedienteNumero_de_Expediente = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Expediente
                         ,RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
 			,Nombre_de_la_Persona_que_entrega = m.Nombre_de_la_Persona_que_entrega
 			,Numero_de_Pago = m.Numero_de_Pago
@@ -618,14 +618,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Solicitud.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Solicitud.Numero_de_Folio as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Solicitud.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Solicitud.Numero_de_Expediente as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _ISolicitudApiConsumer.ListaSelAll(1, 20,elWhere , " Solicitud.Numero_de_Folio ASC ").Resource;
+				var result = _ISolicitudApiConsumer.ListaSelAll(1, 20,elWhere , " Solicitud.Numero_de_Expediente ASC ").Resource;
                
                 foreach (var item in result.Solicituds)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Solicitud", "Numero_de_Folio");
-                    item.Numero_de_Folio =trans ??item.Numero_de_Folio;
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Solicitud", "Numero_de_Expediente");
+                    item.Numero_de_Expediente =trans ??item.Numero_de_Expediente;
                 }
                 return Json(result.Solicituds.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -732,19 +732,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 switch (filter.Numero_de_ExpedienteFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Solicitud.Numero_de_Folio LIKE '" + filter.AdvanceNumero_de_Expediente + "%'";
+                        where += " AND Solicitud.Numero_de_Expediente LIKE '" + filter.AdvanceNumero_de_Expediente + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Solicitud.Numero_de_Folio LIKE '%" + filter.AdvanceNumero_de_Expediente + "'";
+                        where += " AND Solicitud.Numero_de_Expediente LIKE '%" + filter.AdvanceNumero_de_Expediente + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Solicitud.Numero_de_Folio = '" + filter.AdvanceNumero_de_Expediente + "'";
+                        where += " AND Solicitud.Numero_de_Expediente = '" + filter.AdvanceNumero_de_Expediente + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Solicitud.Numero_de_Folio LIKE '%" + filter.AdvanceNumero_de_Expediente + "%'";
+                        where += " AND Solicitud.Numero_de_Expediente LIKE '%" + filter.AdvanceNumero_de_Expediente + "%'";
                         break;
                 }
             }
@@ -1301,7 +1301,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Recepcion = (m.Fecha_de_Recepcion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Recepcion).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Recepcion = m.Hora_de_Recepcion
                         ,Usuario_que_RecibeName = CultureHelper.GetTraduction(m.Usuario_que_Recibe_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Recibe_Spartan_User.Name
-                        ,Numero_de_ExpedienteNumero_de_Folio = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Folio
+                        ,Numero_de_ExpedienteNumero_de_Expediente = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Expediente
                         ,RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
 			,Nombre_de_la_Persona_que_entrega = m.Nombre_de_la_Persona_que_entrega
 			,Numero_de_Pago = m.Numero_de_Pago
@@ -1384,7 +1384,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Recepcion = (m.Fecha_de_Recepcion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Recepcion).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Recepcion = m.Hora_de_Recepcion
                         ,Usuario_que_RecibeName = CultureHelper.GetTraduction(m.Usuario_que_Recibe_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Recibe_Spartan_User.Name
-                        ,Numero_de_ExpedienteNumero_de_Folio = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Folio
+                        ,Numero_de_ExpedienteNumero_de_Expediente = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Expediente
                         ,RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
 			,Nombre_de_la_Persona_que_entrega = m.Nombre_de_la_Persona_que_entrega
 			,Numero_de_Pago = m.Numero_de_Pago
@@ -1473,7 +1473,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_Recibe = m.Usuario_que_Recibe
                         ,Usuario_que_RecibeName = CultureHelper.GetTraduction(m.Usuario_que_Recibe_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Recibe_Spartan_User.Name
                         ,Numero_de_Expediente = m.Numero_de_Expediente
-                        ,Numero_de_ExpedienteNumero_de_Folio = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Folio
+                        ,Numero_de_ExpedienteNumero_de_Expediente = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Expediente
                         ,Requerido = m.Requerido
                         ,RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
 			,Nombre_de_la_Persona_que_entrega = m.Nombre_de_la_Persona_que_entrega

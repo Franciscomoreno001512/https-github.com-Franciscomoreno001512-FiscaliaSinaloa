@@ -156,68 +156,59 @@ namespace Resources
             }
         }
 
-        /// <summary>Fecha_de_Recepcion</summary>
-        public static string Fecha_de_Recepcion
+        /// <summary>Fecha_de_Notificacion</summary>
+        public static string Fecha_de_Notificacion
         {
             get
             {
                 SetPath();
-                return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("Fecha_de_Recepcion", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("Fecha_de_Notificacion", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Fecha_de_Aceptacion</summary>
-        public static string Fecha_de_Aceptacion
+        /// <summary>Hora_de_Notificacion</summary>
+        public static string Hora_de_Notificacion
         {
             get
             {
                 SetPath();
-                return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("Fecha_de_Aceptacion", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("Hora_de_Notificacion", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Cumplimiento</summary>
-        public static string Cumplimiento
+        /// <summary>Notificador</summary>
+        public static string Notificador
         {
             get
             {
                 SetPath();
-                return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("Cumplimiento", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("Notificador", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Incidente</summary>
-        public static string Incidente
+        /// <summary>Resultado</summary>
+        public static string Resultado
         {
             get
             {
                 SetPath();
-                return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("Incidente", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("Resultado", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>A_Tiempo</summary>
-        public static string A_Tiempo
+        /// <summary>Incidente_en_la_Recepcion</summary>
+        public static string Incidente_en_la_Recepcion
         {
             get
             {
                 SetPath();
-                return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("A_Tiempo", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Archivo</summary>
-        public static string Archivo
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("Archivo", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("Incidente_en_la_Recepcion", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Resultado de Notificación</summary>	public static string TabResultado_de_Notificacion 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Solicitudes_de_Invitaciones.GetResource("TabResultado_de_Notificacion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 
     }
 }

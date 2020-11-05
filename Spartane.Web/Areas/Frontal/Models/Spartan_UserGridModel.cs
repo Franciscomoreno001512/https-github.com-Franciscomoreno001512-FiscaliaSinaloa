@@ -18,7 +18,13 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string StatusDescription { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        
+
+
+        //fjmore
+        public string Cargo { get; set; }
+        public int? Unidad { get; set; }
+        public string UnidadDescription { get; set; }
+
     }
 }
 

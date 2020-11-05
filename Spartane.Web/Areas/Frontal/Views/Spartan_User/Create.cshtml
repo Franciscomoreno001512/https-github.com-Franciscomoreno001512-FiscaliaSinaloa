@@ -11,10 +11,15 @@
 
     List<SelectListItem> varSpartan_User_Role = null;
     if (ViewBag.Spartan_User_Roles != null)
-    { varSpartan_User_Role = (List<SelectListItem>)ViewBag.Spartan_User_Roles; }    
+    { varSpartan_User_Role = (List<SelectListItem>)ViewBag.Spartan_User_Roles; }
     List<SelectListItem> varSpartan_User_Status = null;
     if (ViewBag.Spartan_User_Statuss != null)
-    { varSpartan_User_Status = (List<SelectListItem>)ViewBag.Spartan_User_Statuss; }    
+    { varSpartan_User_Status = (List<SelectListItem>)ViewBag.Spartan_User_Statuss; }
+
+    //List<SelectListItem> varSpartan_User_Unidad = null;
+    //if (ViewBag.Spartan_User_Unidad != null)
+    //{ varSpartan_User_Unidad = (List<SelectListItem>)ViewBag.Spartan_User_Unidad; }
+
 
 
     Permission permission = ViewBag.Permission;
@@ -100,12 +105,12 @@
                         </div>
                     </div>
 
-                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-					</div>
-					<div aria-hidden="true" data-backdrop="static" class="modal fade in Spartan_UserBusinessRuleModal" id="Spartan_UserBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-					</div>
-					<div aria-hidden="true" data-backdrop="static" class="modal fade in Spartan_UserAddBusinessRuleModal" id="Spartan_UserAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-					</div>
+                    <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Spartan_UserBusinessRuleModal" id="Spartan_UserBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Spartan_UserAddBusinessRuleModal" id="Spartan_UserAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
 
 
                 }
@@ -113,144 +118,187 @@
         </div>
     </div>
 
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="ibox float-e-margins">
-        <div class="ibox-content">
-            @using (Html.BeginForm("Post", "Spartan_User", FormMethod.Post, new { id = "CreateSpartan_User", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
-            {
-                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
-                <span id="popupNotification"></span>
-                <div class="container-fluid Spartan_UserCreateForm" id="viewmodeledit">
-			<div class="tabs-container">
-                        	<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> Datos Generales</a></li>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                @using (Html.BeginForm("Post", "Spartan_User", FormMethod.Post, new { id = "CreateSpartan_User", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+                {
+                    <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                    <span id="popupNotification"></span>
+                    <div class="container-fluid Spartan_UserCreateForm" id="viewmodeledit">
+                        <div class="tabs-container">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> Datos Generales</a></li>
 
-                        	</ul>
-	                	<div class="tab-content">
-                            <div id="tabDatos_Generales" class="tab-pane active">
-                                <div class="panel-body">
-                            <div class="form-group" id="divId_User">
-                                <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Id_User</label>
-                                <div class="col-sm-8" data-field-id="Id_User" data-attribute="163422" data-field-name="@Resources.Spartan_UserResources.Id_User">
-                                    <label class="form-control" for="Id_User" id="lblId_User">@Model.Id_User</label>
-                                </div>
-                            </div>
-                            <div class="form-group" id="divName">
-                                <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Name</label>
-                                <div class="col-sm-8" data-field-id="Name" data-attribute="163424" data-field-name="@Resources.Spartan_UserResources.Name">
-                                    <input class="form-control" id="Name" name="Name" type="text" value="@Model.Name">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divRole">
-                                <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Role</label>
-                                <div class="col-sm-8" data-field-id="Role" data-attribute="163425" data-field-name="@Resources.Spartan_UserResources.Role">
-                                    <select class="form-control" data-val="true" data-val-number="The field Role must be a number." data-val-required="The Role field is required." id="Role" name="Role">
-                                        <option value=""></option>
-                                        @if (varSpartan_User_Role != null){ 
-                                            foreach (var itemRole in varSpartan_User_Role)
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tabDatos_Generales" class="tab-pane active">
+                                    <div class="panel-body">
+                                        <div class="form-group" id="divId_User">
+                                            <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Id_User</label>
+                                            <div class="col-sm-8" data-field-id="Id_User" data-attribute="163422" data-field-name="@Resources.Spartan_UserResources.Id_User">
+                                                <label class="form-control" for="Id_User" id="lblId_User">@Model.Id_User</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divName">
+                                            <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Name</label>
+                                            <div class="col-sm-8" data-field-id="Name" data-attribute="163424" data-field-name="@Resources.Spartan_UserResources.Name">
+                                                <input class="form-control" id="Name" name="Name" type="text" value="@Model.Name">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divRole">
+                                            <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Role</label>
+                                            <div class="col-sm-8" data-field-id="Role" data-attribute="163425" data-field-name="@Resources.Spartan_UserResources.Role">
+                                                <select class="form-control" data-val="true" data-val-number="The field Role must be a number." data-val-required="The Role field is required." id="Role" name="Role">
+                                                    <option value=""></option>
+                                                    @if (varSpartan_User_Role != null)
+                                                    {
+                                                        foreach (var itemRole in varSpartan_User_Role)
+                                                        {
+                                                            if (itemRole.Value == Convert.ToString(Model.Role))
+                                                            {
+                                                                <option value="@itemRole.Value" selected>@itemRole.Text</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@itemRole.Value">@itemRole.Text</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                                @*<span class="field-validation-valid" data-valmsg-for="Role" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+
+                                        @*fjmore ini*@
+                                        <div class="form-group" id="divCargo">
+                                            <label class="col-sm-2 control-label">Cargo</label>
+                                            <div class="col-sm-8" data-field-name="Cargo">
+                                                <input class="form-control" id="Cargo" name="Cargo" type="text" value="">
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="form-group" id="divUnidad">
+                                            <label class="col-sm-2 control-label">Unidad</label>
+                                            <div class="col-sm-8" data-field-id="Unidad" data-field-name="Unidad">
+                                                <select class="form-control" data-val="true" data-val-number="The field Unidad must be a number." data-val-required="The Role field is required." id="Unidad" name="Unidad">
+
+                                                    @*@if (varSpartan_User_Unidad != null)
+                                                        {
+                                                            foreach (var itemUnidad in varSpartan_User_Unidad)
+                                                            {
+                                                                if (itemUnidad.Value == Convert.ToString(Model.Unidad))
+                                                                {
+                                                                    <option value="@itemUnidad.Value" selected>@itemUnidad.Text</option>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <option value="@itemUnidad.Value">@itemUnidad.Text</option>
+                                                                }
+                                                            }
+                                                        }*@
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        @*fjmore Fin*@
+
+
+
+                                        @if (attachedFileImage != null && attachedFileImage.File_Id > 0)
+                                        {
+                                            <div class="form-group" id="divAttachmentImage">
+                                                <label class="col-sm-2 control-label">Previously Attached File</label>
+                                                <div class="col-sm-8" data-field-id="Image" data-attribute="163427" data-field-name="@Resources.Spartan_UserResources.Image">
+                                                    <a href="@Url.Content("~/Frontal/Spartan_User/GetFile")?id=@attachedFileImage.File_Id" target="_blank">@attachedFileImage.Description</a>
+                                                    <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainImage('@attachedFileImage.File_Id')" />
+                                                </div>
+                                                <input id="hdnRemoveImage" name="RemoveImage" value="0" type="hidden" />
+                                                <input class="form-control col-md-12" id="hdnAttachedImage" type="hidden" name="Image" value="@Model.Image">
+                                            </div>
+                                        }
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Image</label>
+                                            <div class="col-sm-8" data-field-id="Image" data-attribute="163427" data-field-name="@Resources.Spartan_UserResources.Image">
+                                                <input type="file" name="ImageFile" id="ImageFile" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divEmail">
+                                            <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Email</label>
+                                            <div class="col-sm-8" data-field-id="Email" data-attribute="163428" data-field-name="@Resources.Spartan_UserResources.Email">
+                                                <input class="form-control" id="Email" name="Email" type="text" value="@Model.Email">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divStatus">
+                                            <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Status</label>
+                                            <div class="col-sm-8" data-field-id="Status" data-attribute="163429" data-field-name="@Resources.Spartan_UserResources.Status">
+                                                <select class="form-control" data-val="true" data-val-number="The field Status must be a number." data-val-required="The Status field is required." id="Status" name="Status">
+                                                    <option value=""></option>
+                                                    @if (varSpartan_User_Status != null)
+                                                    {
+                                                        foreach (var itemStatus in varSpartan_User_Status)
+                                                        {
+                                                            if (itemStatus.Value == Convert.ToString(Model.Status))
+                                                            {
+                                                                <option value="@itemStatus.Value" selected>@itemStatus.Text</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@itemStatus.Value">@itemStatus.Text</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                                @*<span class="field-validation-valid" data-valmsg-for="Status" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divUsername">
+                                            <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Username</label>
+                                            <div class="col-sm-8" data-field-id="Username" data-attribute="163430" data-field-name="@Resources.Spartan_UserResources.Username">
+                                                <input class="form-control" id="Username" name="Username" type="text" value="@Model.Username">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Username" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        @{
+                                            string width = "";
+                                            string disabled = "";
+                                            if (Model.Id_User != 0)
                                             {
-                                                if (itemRole.Value == Convert.ToString(Model.Role))
-                                                {
-                                                    <option value="@itemRole.Value" selected>@itemRole.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemRole.Value">@itemRole.Text</option>
-                                                }
+                                                width = "width: 50%;";
+                                                disabled = "disabled=\"disabled\"";
                                             }
                                         }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Role" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            @if (attachedFileImage != null && attachedFileImage.File_Id > 0)
-                            {
-                                <div class="form-group" id="divAttachmentImage">
-                                    <label class="col-sm-2 control-label">Previously Attached File</label>
-                                    <div class="col-sm-8" data-field-id="Image" data-attribute="163427" data-field-name="@Resources.Spartan_UserResources.Image">
-                                        <a href="@Url.Content("~/Frontal/Spartan_User/GetFile")?id=@attachedFileImage.File_Id" target="_blank">@attachedFileImage.Description</a>
-                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainImage('@attachedFileImage.File_Id')" />
+                                        <div class="form-group" id="divPassword">
+                                            <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Password</label>
+                                            <div class="col-sm-8" data-field-id="Password" data-attribute="163431" data-field-name="@Resources.Spartan_UserResources.Password" style="@width">
+                                                <input class="form-control" @disabled id="Password" name="Password" type="text" value="@Model.Password">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                            @if (Model.Id_User != 0)
+                                            {
+                                                <a id="changePassword">Change Password</a>
+                                            }
+                                        </div>
                                     </div>
-                                    <input id="hdnRemoveImage" name="RemoveImage" value="0" type="hidden" />
-                                    <input class="form-control col-md-12" id="hdnAttachedImage" type="hidden" name="Image" value="@Model.Image">
-                                </div>
-                            }
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Image</label>
-                                <div class="col-sm-8" data-field-id="Image" data-attribute="163427" data-field-name="@Resources.Spartan_UserResources.Image">
-                                    <input type="file" name="ImageFile" id="ImageFile" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group" id="divEmail">
-                                <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Email</label>
-                                <div class="col-sm-8" data-field-id="Email" data-attribute="163428" data-field-name="@Resources.Spartan_UserResources.Email">
-                                    <input class="form-control" id="Email" name="Email" type="text" value="@Model.Email">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divStatus">
-                                <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Status</label>
-                                <div class="col-sm-8" data-field-id="Status" data-attribute="163429" data-field-name="@Resources.Spartan_UserResources.Status">
-                                    <select class="form-control" data-val="true" data-val-number="The field Status must be a number." data-val-required="The Status field is required." id="Status" name="Status">
-                                        <option value=""></option>
-                                        @if (varSpartan_User_Status != null){ 
-                                            foreach (var itemStatus in varSpartan_User_Status)
-                                            {
-                                                if (itemStatus.Value == Convert.ToString(Model.Status))
-                                                {
-                                                    <option value="@itemStatus.Value" selected>@itemStatus.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemStatus.Value">@itemStatus.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Status" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divUsername">
-                                <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Username</label>
-                                <div class="col-sm-8" data-field-id="Username" data-attribute="163430" data-field-name="@Resources.Spartan_UserResources.Username">
-                                    <input class="form-control" id="Username" name="Username" type="text" value="@Model.Username">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Username" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                                    @{
-                string width = "";
-                string disabled = "";
-                                        if (Model.Id_User != 0)
-                                    {
-                                        width = "width: 50%;";
-                                        disabled = "disabled=\"disabled\"";
-                                    }
-                                    }
-                            <div class="form-group" id="divPassword">
-                                <label class="col-sm-2 control-label">@Resources.Spartan_UserResources.Password</label>
-                                <div class="col-sm-8" data-field-id="Password" data-attribute="163431" data-field-name="@Resources.Spartan_UserResources.Password" style="@width">
-                                    <input class="form-control" @disabled id="Password" name="Password" type="text" value="@Model.Password">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>*@
-                                </div>
-                                @if(Model.Id_User != 0)
-                                {
-                                    <a id="changePassword">Change Password</a>
-                                }
-                            </div>
-                            </div>
                                 </div>
 
-				</div>	
-                    <br />
+                            </div>
+                            <br />
                             <div class="form-actions fluid">
                                 <input type="hidden" value="@Model.Id_User" id="ReferenceId_User" />
                                 <input type="hidden" value="@Model.Id_User" name="Id_User" id="Id_UserId" />
                                 <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
                                 @if (!ViewBag.Consult)
                                 {
-                                    <input type="button" value="@Resources.Resources.Guardar" id="Spartan_UserGuardar" class="btn btn-w-m btn-primary" onclick="return checkClientValidate('Spartan_UserCreateForm');"  />
-									<button onclick="Spartan_UserGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Spartan_UserBusinessRule-form">
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Spartan_UserGuardar" class="btn btn-w-m btn-primary" onclick="return checkClientValidate('Spartan_UserCreateForm');" />
+                                    <button onclick="Spartan_UserGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Spartan_UserBusinessRule-form">
                                         <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
                                             <i class="fa fa-cogs fa-spin"></i>
                                         </a>
@@ -259,8 +307,8 @@
                                         <i class="fa fa-cogs fa-spin"></i>
                                     </button>
 
-                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Spartan_UserGuardarYNuevo" onclick="return checkClientValidate('Spartan_UserCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success"  />
-                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Spartan_UserGuardarYCopia" onclick="return checkClientValidate('Spartan_UserCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success"  />
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Spartan_UserGuardarYNuevo" onclick="return checkClientValidate('Spartan_UserCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success" />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Spartan_UserGuardarYCopia" onclick="return checkClientValidate('Spartan_UserCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success" />
                                     if (permission.Configure)
                                     {
                                         <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
@@ -272,7 +320,7 @@
                                 }
 
                                 <input type="hidden" id="hdnConfigureType" />
-								<input type="hidden" id="hdnSpartan_UserBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnSpartan_UserBusinessRuleFieldId" />
                                 <input type="hidden" id="hdnSpartan_UserBusinessRuleFieldName" />
                                 <input type="hidden" id="hdnSpartan_UserBusinessRuleAttribute" />
 
@@ -284,56 +332,63 @@
                                     </a>
                                 </button>
                             </div>
-						</div>
-					</div>
+                        </div>
+                    </div>
                 }
+            </div>
         </div>
     </div>
-</div>
-<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+    <input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
 
-@section Styles {
-<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
-    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
-    @Styles.Render("~/plugins/dateRangeStyles")
-    @Styles.Render("~/plugins/dataPickerStyles")
-    @Styles.Render("~/plugins/clockpickerStyles")
-    @Styles.Render("~/plugins/awesomeCheckboxStyles")
-    @Styles.Render("~/plugins/select2Styles")
-<style>
-    .dataTables_filter {
-        display: none;
+    @section Styles {
+        <link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+        @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+        @Styles.Render("~/plugins/dateRangeStyles")
+        @Styles.Render("~/plugins/dataPickerStyles")
+        @Styles.Render("~/plugins/clockpickerStyles")
+        @Styles.Render("~/plugins/awesomeCheckboxStyles")
+        @Styles.Render("~/plugins/select2Styles")
+        <style>
+            .dataTables_filter {
+                display: none;
+            }
+
+            .select2-results {
+                background-color: #fff;
+            }
+
+            .select2-container .select2-dropdown {
+                height: auto !important;
+            }
+
+            div.dataTables_info {
+                display: inline-block;
+                float: right;
+            }
+
+            i {
+                font-size: 25px !important;
+                display: block;
+                color: #676a6c;
+                margin-left: 6px;
+                margin-right: 6px;
+            }
+
+            .fullWidth {
+                width: 100%;
+            }
+        </style>
     }
-    .select2-results{background-color:#fff;}
-    .select2-container .select2-dropdown{height:auto !important;}
 
-    div.dataTables_info {
-        display: inline-block;
-        float: right;
-    }
-        i {
-        font-size: 25px !important;
-        display: block;
-        color: #676a6c;
-        margin-left: 6px;
-        margin-right: 6px;
-    }
+    <script type="text/javascript" src="~/Uploads/Scripts/Spartan_User.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/Spartan_UserGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+    <script type="text/javascript" src="~/Uploads/Scripts/Rules/Spartan_UserCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
 
-    .fullWidth {
-        width: 100%;
-    }
-</style>
-}
-
-<script type="text/javascript" src="~/Uploads/Scripts/Spartan_User.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-<script type="text/javascript" src="~/Scripts/Custom/Spartan_UserGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-<script type="text/javascript" src="~/Uploads/Scripts/Rules/Spartan_UserCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-
-@section Scripts {
+    @section Scripts {
 
 
-    <script type="text/javascript">
-        
+        <script type="text/javascript">
+
         function RemoveAttachmentMainImage () {
             $("#hdnRemoveImage").val("1");
             $("#divAttachmentImage").hide();
@@ -346,11 +401,20 @@
                 $('#Password').removeAttr('disabled');
                 $('#Password').val('');
             });
-
+            OperacionesSpartanUser_CargoUnidad(1);
             initiateUIControls();
 			$('a').tooltip();
 			EjecutarValidacionesAlComienzo();
-			EjecutarValidacionesAlComienzo();
+            EjecutarValidacionesAlComienzo();
+            debugger;
+            var isNew = $('#hdnIsNew').val();
+            if (isNew == "True") {
+               
+            }
+            else {
+                var lblId_User = $("#lblId_User").text().trim();
+                var data = OperacionesSpartanUser_CargoUnidad(4, lblId_User);
+            }
 
         });
 
@@ -370,28 +434,28 @@
 
         }
 
-    </script>
+        </script>
 
-<script type="text/javascript">
+        <script type="text/javascript">
 
         function SendSpartan_UserData(callBack) {
-				
-		 var arr = []; 
-		 $("form#CreateSpartan_User").find(':input').each(function( index ) {		 
+
+		 var arr = [];
+		 $("form#CreateSpartan_User").find(':input').each(function( index ) {
 			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
-			{		
-				arr.push($(this).attr('id')); 
-				$(this).prop('disabled', false);  	
+			{
+				arr.push($(this).attr('id'));
+				$(this).prop('disabled', false);
 			}
 	    });
-		
+
              var formData = new FormData($("form#CreateSpartan_User")[0]);
 			$.each( arr, function( key, value ) {
 			  $('#' +value).prop('disabled', true);
 			});
-		
-		
-            
+
+
+
             var isNew = $('#hdnIsNew').val();
             //var formData = new FormData($("form#CreateSpartan_User")[0]);
             if (checkClientValidate('Spartan_UserCreateForm')) {
@@ -404,7 +468,14 @@
                         if (result < 0) {
                             showNotification("@Resources.Resources.ErrorSave", "error");
                         } else {
-
+                            debugger;
+                            if (isNew == "True") {
+                                OperacionesSpartanUser_CargoUnidad(3, result)
+                            }
+                            else {
+                                var lblId_Userx = $("#lblId_User").text().trim();
+                                OperacionesSpartanUser_CargoUnidad(3, lblId_Userx)
+                            }
                             showNotification("@Resources.Resources.SaveSuccess", "success");
                             callBack(result);
                         }
@@ -462,7 +533,7 @@
         Configure: '@permission.Configure' == 'True',
     };
 
-    
+
     //MR-var statusItems;
     //MR-var stateItems;
     //MR-var cityItems = [];
@@ -480,7 +551,7 @@
     function Spartan_UserBackToGrid() {
         location.href = "@Url.Content("~/Frontal/Spartan_User/")";
     }
-	
+
 	function ReadScriptSettings(callback)
     {
         $.post("@Url.Content("~/Frontal/Spartan_User/ReadScriptSettings")", function (data) {
@@ -497,7 +568,7 @@
             //$('#hdnConfigureType').val("0");
         }, "json");
     }
-	
+
         function SaveElementAttributes() {
             if ($('#hdnConfigureType').val() == "1") {
                 $.post("@Url.Content("~/Frontal/Spartan_User/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
@@ -542,7 +613,65 @@
 			$('#hdnSpartan_UserBusinessRuleAttribute').val(attribute);
 		});
 		//Initialize HTML Editors
-		
-    </script>
-}
+
+
+
+
+            function OperacionesSpartanUser_CargoUnidad(tipoOperacion, idUser) {
+                debugger;
+                if (tipoOperacion === 1) {
+
+                    fillCom(1, idUser);
+                }
+
+                if (tipoOperacion === 2) {
+
+                }
+
+                if (tipoOperacion === 3) {
+                    saveUnidadCargo(3, idUser);
+                }
+                if (tipoOperacion === 4) {
+                  var datos=  GetUnidadCargo(4, idUser);
+                    var U_nidad = Object.keys(datos)[0];
+                    var Cargo = datos[U_nidad];
+                    $("#Unidad").val(U_nidad);
+                    $("#Cargo").val(Cargo);
+                }
+
+            }
+
+            function fillCom(ope) {
+
+                var datos = EvaluaQueryDictionary("exec usp_operacionesSpartanUser_CargoUnidad " + ope);
+                var option1 = $('<option />');
+                option1.attr('value', "0").text("--Seleccione--");
+
+                $('#Unidad').append(option1);
+
+                $.each(datos, function (i, v) {
+                    var option2 = $('<option />');
+                    option2.attr('value', i).text(v);
+
+                    $('#Unidad').append(option2);
+                });
+            }
+
+            function saveUnidadCargo(ope,idUser) {
+                var claveUnidad = $('#Unidad').val();
+                var cargo = $('#Cargo').val();
+                var datos = EvaluaQuery("exec usp_operacionesSpartanUser_CargoUnidad " + ope + "," + "null,'" + claveUnidad + "', '" + cargo + "'," + idUser);
+
+
+            }
+
+            function GetUnidadCargo(ope, idUser) {
+                debugger;
+                var datos = EvaluaQueryDictionary("exec usp_operacionesSpartanUser_CargoUnidad " + ope + ',' + 'null,' + 'null' + ',' + 'null' + ',' + idUser);
+                return datos;
+
+            }
+
+        </script>
+    }
 

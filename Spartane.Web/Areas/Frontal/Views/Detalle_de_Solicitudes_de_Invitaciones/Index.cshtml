@@ -5,9 +5,9 @@
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Tipo_de_Invitacion;
 @using Spartane.Core.Domain.Tipo_de_Funcion;
-@using Spartane.Core.Domain.Cumplimiento;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Resultado_de_Notificacion;
 @using Spartane.Core.Domain.Incidente_con_Invitacion;
-@using Spartane.Core.Domain.A_Tiempo;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -214,11 +214,11 @@
                                     <th>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_la_cita</th>
                                     <th>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Hora_de_la_Cita</th>
                                     <th>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Domicilio</th>
-                                    <th>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Recepcion</th>
-                                    <th>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Aceptacion</th>
-                                    <th>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Cumplimiento</th>
-                                    <th>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Incidente</th>
-                                    <th>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.A_Tiempo</th>
+                                    <th>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Fecha_de_Notificacion</th>
+                                    <th>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Hora_de_Notificacion</th>
+                                    <th>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Notificador</th>
+                                    <th>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Resultado</th>
+                                    <th>@Resources.Detalle_de_Solicitudes_de_InvitacionesResources.Incidente_en_la_Recepcion</th>
 
                                 </tr>
                             </thead>
@@ -237,7 +237,7 @@
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -367,11 +367,11 @@
         var Fecha_de_la_cita = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_la_Cita = $($('table td .filterData.form-control:input')[counter++]).val();
         var Domicilio =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Recepcion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Aceptacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Incidente =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var A_Tiempo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Notificacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Notificacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Notificador =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Incidente_en_la_Recepcion =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -385,11 +385,11 @@
         + "&Fecha_de_la_cita=" + Fecha_de_la_cita
         + "&Hora_de_la_Cita=" + Hora_de_la_Cita
         + "&Domicilio=" + Domicilio
-        + "&Fecha_de_Recepcion=" + Fecha_de_Recepcion
-        + "&Fecha_de_Aceptacion=" + Fecha_de_Aceptacion
-        + "&Cumplimiento=" + Cumplimiento
-        + "&Incidente=" + Incidente
-        + "&A_Tiempo=" + A_Tiempo
+        + "&Fecha_de_Notificacion=" + Fecha_de_Notificacion
+        + "&Hora_de_Notificacion=" + Hora_de_Notificacion
+        + "&Notificador=" + Notificador
+        + "&Resultado=" + Resultado
+        + "&Incidente_en_la_Recepcion=" + Incidente_en_la_Recepcion
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Detalle_de_Solicitudes_de_Invitaciones/Export?format=")" + format
@@ -414,11 +414,11 @@
         var Fecha_de_la_cita = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_la_Cita = $($('table td .filterData.form-control:input')[counter++]).val();
         var Domicilio =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Recepcion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Aceptacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Incidente =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var A_Tiempo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Notificacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Notificacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Notificador =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Incidente_en_la_Recepcion =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -432,11 +432,11 @@
         + "&Fecha_de_la_cita=" + Fecha_de_la_cita
         + "&Hora_de_la_Cita=" + Hora_de_la_Cita
         + "&Domicilio=" + Domicilio
-        + "&Fecha_de_Recepcion=" + Fecha_de_Recepcion
-        + "&Fecha_de_Aceptacion=" + Fecha_de_Aceptacion
-        + "&Cumplimiento=" + Cumplimiento
-        + "&Incidente=" + Incidente
-        + "&A_Tiempo=" + A_Tiempo
+        + "&Fecha_de_Notificacion=" + Fecha_de_Notificacion
+        + "&Hora_de_Notificacion=" + Hora_de_Notificacion
+        + "&Notificador=" + Notificador
+        + "&Resultado=" + Resultado
+        + "&Incidente_en_la_Recepcion=" + Incidente_en_la_Recepcion
 ;
 
     }
@@ -695,11 +695,11 @@
                 ,{ "data": "Fecha_de_la_cita", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_la_cita" }
                 ,{ "data": "Hora_de_la_Cita", "orderable": true, "name": "Hora_de_la_Cita" }
                 ,{ "data": "Domicilio", "orderable": true, "name": "Domicilio", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Fecha_de_Recepcion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Recepcion" }
-                ,{ "data": "Fecha_de_Aceptacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Aceptacion" }
-                ,{ "data": "CumplimientoDescripcion", "orderable": true, "name": "CumplimientoDescripcion" }
-                ,{ "data": "IncidenteDescripcion", "orderable": true, "name": "IncidenteDescripcion" }
-                ,{ "data": "A_TiempoDescripcion", "orderable": true, "name": "A_TiempoDescripcion" }
+                ,{ "data": "Fecha_de_Notificacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Notificacion" }
+                ,{ "data": "Hora_de_Notificacion", "orderable": true, "name": "Hora_de_Notificacion" }
+                ,{ "data": "NotificadorName", "orderable": true, "name": "NotificadorName" }
+                ,{ "data": "ResultadoDescripcion", "orderable": true, "name": "ResultadoDescripcion" }
+                ,{ "data": "Incidente_en_la_RecepcionDescripcion", "orderable": true, "name": "Incidente_en_la_RecepcionDescripcion" }
 
             ],
 			"colReorder": true,

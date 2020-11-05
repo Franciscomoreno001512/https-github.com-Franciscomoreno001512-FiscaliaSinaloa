@@ -38,6 +38,8 @@ using Spartane.Web.Areas.WebApiConsumer.Spartan_Format_Permissions;
 using Spartane.Web.Areas.WebApiConsumer.GeneratePDF;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User_Historical_Password;
 
+using Spartane.Web.Areas.WebApiConsumer.Unidad;
+
 namespace Spartane.Web.Areas.Frontal.Controllers
 {
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
@@ -60,12 +62,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ISpartan_FormatApiConsumer _ISpartan_FormatApiConsumer;
         private ISpartan_Format_PermissionsApiConsumer _ISpartan_Format_PermissionsApiConsumer;
 
+        private IUnidadApiConsumer _IUnidadApiConsumer;
+
         #endregion "variable declaration"
 
         #region "Constructor Declaration"
 
-        
-        public Spartan_UserController(ISpartan_UserService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, ISpartan_UserApiConsumer Spartan_UserApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer , ISpartan_User_RoleApiConsumer Spartan_User_RoleApiConsumer , ISpartan_User_StatusApiConsumer Spartan_User_StatusApiConsumer )
+
+        public Spartan_UserController(ISpartan_UserService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, ISpartan_UserApiConsumer Spartan_UserApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer , ISpartan_User_RoleApiConsumer Spartan_User_RoleApiConsumer , ISpartan_User_StatusApiConsumer Spartan_User_StatusApiConsumer , IUnidadApiConsumer UnidadApiConsumer)
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -80,6 +84,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
             this._ISpartan_User_RoleApiConsumer = Spartan_User_RoleApiConsumer;
             this._ISpartan_User_StatusApiConsumer = Spartan_User_StatusApiConsumer;
+            this._IUnidadApiConsumer = UnidadApiConsumer;
 
         }
 
@@ -476,6 +481,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (result.Spartan_Users == null)
                 result.Spartan_Users = new List<Spartane.Core.Domain.Spartan_User.Spartan_User>();
 
+
+            var catalogUnidad = GetUnidadCatalog();
+
             return Json(new
             {
                 aaData = result.Spartan_Users.Select(m => new Spartan_UserGridModel
@@ -488,6 +496,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,StatusDescription = (string)m.Status_Spartan_User_Status.Description
 			,Username = m.Username
 			,Password = m.Password
+            //fjmore
+            , Cargo = m.Cargo,
+                     UnidadDescription= GetDescriptionFromCatalogUnidad(catalogUnidad,m.Unidad) // catalogUnidad.Where(x=> x.Clave == m.Unidad).FirstOrDefault().Descripcion
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -496,9 +507,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        public  IList<Core.Domain.Unidad.Unidad>  GetUnidadCatalog()
+        {
+               
+            _IUnidadApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var data = this._IUnidadApiConsumer.SelAll(false).Resource;
+            return data;
+        }
 
+        public string GetDescriptionFromCatalogUnidad(IList<Core.Domain.Unidad.Unidad> catalogUnidad, int? unidadFromDataGet)
+        {
 
-
+            if (unidadFromDataGet == null)
+            {
+                return "";
+            }
+            else
+            {
+                return catalogUnidad.Where(x => x.Clave == unidadFromDataGet).FirstOrDefault().Descripcion;
+            }
+        }
 
 
 
@@ -1020,7 +1048,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (result.Spartan_Users == null)
                 result.Spartan_Users = new List<Spartane.Core.Domain.Spartan_User.Spartan_User>();
 
-            var data = result.Spartan_Users.Select(m => new Spartan_UserGridModel
+
+            var catalogUnidad = GetUnidadCatalog();
+
+         
+
+                var data = result.Spartan_Users.Select(m => new Spartan_UserGridModel
             {
                 Id_User = m.Id_User
 			,Name = m.Name
@@ -1029,9 +1062,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Email = m.Email
                         ,StatusDescription = (string)m.Status_Spartan_User_Status.Description
 			,Username = m.Username
-			,Password = m.Password
+			,Password = m.Password,
+                 Cargo = m.Cargo,
+                    UnidadDescription = GetDescriptionFromCatalogUnidad(catalogUnidad, m.Unidad) // catalogUnidad.Where(x=> x.Clave == m.Unidad).FirstOrDefault().Descripcion
 
-            }).ToList();
+                }).ToList();
 
             switch (exportFormatType)
             {
@@ -1073,6 +1108,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (result.Spartan_Users == null)
                 result.Spartan_Users = new List<Spartane.Core.Domain.Spartan_User.Spartan_User>();
 
+            var catalogUnidad = GetUnidadCatalog();
             var data = result.Spartan_Users.Select(m => new Spartan_UserGridModel
             {
                 Id_User = m.Id_User
@@ -1083,6 +1119,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,StatusDescription = (string)m.Status_Spartan_User_Status.Description
 			,Username = m.Username
 			,Password = m.Password
+               ,Cargo = m.Cargo,
+                UnidadDescription = GetDescriptionFromCatalogUnidad(catalogUnidad, m.Unidad) // catalogUnidad.Where(x=> x.Clave == m.Unidad).FirstOrDefault().Descripcion
 
             }).ToList();
 
@@ -1090,5 +1128,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
         #endregion "Custom methods"
+    }
+
+    public class ModelUnidad
+    {
+        public int Clave { get; set; }
+        public string Abreviacion { get; set; }
+        public string Descripcion { get; set; }
+        public string Descripcion_Corta { get; set; }
     }
 }

@@ -27,8 +27,16 @@ namespace Spartane.Core.Domain.Spartan_User
         public string Username { get; set; }
         public string Password { get; set; }
 
+        public string Cargo { get; set; }
+        public int? Unidad { get; set; }
+
+
         [ForeignKey("Role")]
         public virtual Spartane.Core.Domain.Spartan_User_Role.Spartan_User_Role Role_Spartan_User_Role { get; set; }
+
+      
+
+
         [ForeignKey("Image")]
         public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Image_Spartane_File { get; set; }
         [ForeignKey("Status")]

@@ -2,6 +2,8 @@ var operation = $('#Operation').val();
 var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
+$('#Control_de_DocumentosGuardarYCopia').hide();
+$('#Control_de_DocumentosGuardarYNuevo').hide();
 $(document).ready(function () {
 //NEWBUSINESSRULE_NONE//
 });
@@ -77,7 +79,7 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2032, Attribute:0, Operation:Object, Event:SCREENOPENING
 // Regla manual para hacer que aparezca activa la pestaña de Documentos
-if(operation == 'New'){
+if(operation == 'New' || operation == 'Update'){
  $("#viewmodeledit .tabs-container ul li:nth-child(2)").addClass("active");
  $("#viewmodeledit .tabs-container .tab-content .tab-pane").removeClass("active");
  $("#viewmodeledit .tabs-container .tab-content #tabDocumento").addClass("active");
@@ -97,6 +99,62 @@ function EjecutarValidacionesAntesDeGuardar(){
     return result;
 }
 function EjecutarValidacionesDespuesDeGuardar(){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//BusinessRuleId:2041, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+ EvaluaQuery("EXEC usp_InsertHistorialControlDeDocumentos FLDD[lblFolio], GLOBAL[USERID]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2041, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:2046, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery(" EXEC usp_InsertHistorialControlDeDocumentos GLOBAL[KeyValueInserted], GLOBAL[USERID]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2046, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

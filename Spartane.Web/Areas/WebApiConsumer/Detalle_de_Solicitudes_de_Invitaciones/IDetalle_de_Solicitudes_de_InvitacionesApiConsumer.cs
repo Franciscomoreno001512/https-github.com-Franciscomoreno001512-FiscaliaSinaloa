@@ -29,6 +29,9 @@ namespace Spartane.Web.Areas.WebApiConsumer.Detalle_de_Solicitudes_de_Invitacion
 		ApiResponse<int> Update_Datos_Generales(Spartane.Core.Domain.Detalle_de_Solicitudes_de_Invitaciones.Detalle_de_Solicitudes_de_Invitaciones_Datos_Generales entity);
 		ApiResponse<Spartane.Core.Domain.Detalle_de_Solicitudes_de_Invitaciones.Detalle_de_Solicitudes_de_Invitaciones_Datos_Generales> Get_Datos_Generales(string Key);
 
+		ApiResponse<int> Update_Resultado_de_Notificacion(Spartane.Core.Domain.Detalle_de_Solicitudes_de_Invitaciones.Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_Notificacion entity);
+		ApiResponse<Spartane.Core.Domain.Detalle_de_Solicitudes_de_Invitaciones.Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_Notificacion> Get_Resultado_de_Notificacion(string Key);
+
 
     }
 }

@@ -520,6 +520,21 @@ public ApiResponse<int> Update_Campos_Ocultos(Modulo_Atencion_Inicial_Campos_Ocu
                 return new ApiResponse<Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Campos_Ocultos>(false, null);
             }
         }
+		
+		        public ApiResponse<int> Update_Estatus_de_Turno(Modulo_Atencion_Inicial_Datos_del_Caso entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Estatus_de_Turno",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1);
+            }
+        }
 
 
     }

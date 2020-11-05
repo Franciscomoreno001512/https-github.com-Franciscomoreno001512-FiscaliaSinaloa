@@ -45,6 +45,14 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceDocumento { set; get; }
         public int[] AdvanceDocumentoMultiple { set; get; }
 
+        public Filters InvolucradoFilter { set; get; }
+        public string AdvanceInvolucrado { set; get; }
+        public int[] AdvanceInvolucradoMultiple { set; get; }
+
+        public Filters Probable_ResponsableFilter { set; get; }
+        public string AdvanceProbable_Responsable { set; get; }
+        public int[] AdvanceProbable_ResponsableMultiple { set; get; }
+
         public RadioOptions Archivo_Adjunto { set; get; }
 
         public Filters ObservacionesFilter { set; get; }

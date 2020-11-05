@@ -11,7 +11,6 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public Detalle_de_Solicitudes_de_InvitacionesAdvanceSearchModel()
         {
-            Archivo = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -61,30 +60,25 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Domicilio { set; get; }
 
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        public string FromFecha_de_Recepcion { set; get; }
+        public string FromFecha_de_Notificacion { set; get; }
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        [IsDateAfter("FromFecha_de_Recepcion", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToFecha_de_Recepcion { set; get; }
+        [IsDateAfter("FromFecha_de_Notificacion", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_de_Notificacion { set; get; }
 
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        public string FromFecha_de_Aceptacion { set; get; }
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        [IsDateAfter("FromFecha_de_Aceptacion", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToFecha_de_Aceptacion { set; get; }
+        public string ToHora_de_Notificacion { set; get; }
+        public string FromHora_de_Notificacion { set; get; }
 
-        public Filters CumplimientoFilter { set; get; }
-        public string AdvanceCumplimiento { set; get; }
-        public int[] AdvanceCumplimientoMultiple { set; get; }
+        public Filters NotificadorFilter { set; get; }
+        public string AdvanceNotificador { set; get; }
+        public int[] AdvanceNotificadorMultiple { set; get; }
 
-        public Filters IncidenteFilter { set; get; }
-        public string AdvanceIncidente { set; get; }
-        public int[] AdvanceIncidenteMultiple { set; get; }
+        public Filters ResultadoFilter { set; get; }
+        public string AdvanceResultado { set; get; }
+        public int[] AdvanceResultadoMultiple { set; get; }
 
-        public Filters A_TiempoFilter { set; get; }
-        public string AdvanceA_Tiempo { set; get; }
-        public int[] AdvanceA_TiempoMultiple { set; get; }
-
-        public RadioOptions Archivo { set; get; }
+        public Filters Incidente_en_la_RecepcionFilter { set; get; }
+        public string AdvanceIncidente_en_la_Recepcion { set; get; }
+        public int[] AdvanceIncidente_en_la_RecepcionMultiple { set; get; }
 
 
     }

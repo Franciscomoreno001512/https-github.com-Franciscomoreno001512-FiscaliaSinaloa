@@ -23,16 +23,14 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Fecha_de_la_cita { get; set; }
         public string Hora_de_la_Cita { get; set; }
         public string Domicilio { get; set; }
-        public string Fecha_de_Recepcion { get; set; }
-        public string Fecha_de_Aceptacion { get; set; }
-        public int? Cumplimiento { get; set; }
-        public string CumplimientoDescripcion { get; set; }
-        public int? Incidente { get; set; }
-        public string IncidenteDescripcion { get; set; }
-        public short? A_Tiempo { get; set; }
-        public string A_TiempoDescripcion { get; set; }
-        public int? Archivo { get; set; }
-        public Grid_File ArchivoFileInfo { set; get; }
+        public string Fecha_de_Notificacion { get; set; }
+        public string Hora_de_Notificacion { get; set; }
+        public int? Notificador { get; set; }
+        public string NotificadorName { get; set; }
+        public int? Resultado { get; set; }
+        public string ResultadoDescripcion { get; set; }
+        public int? Incidente_en_la_Recepcion { get; set; }
+        public string Incidente_en_la_RecepcionDescripcion { get; set; }
         
     }
 }

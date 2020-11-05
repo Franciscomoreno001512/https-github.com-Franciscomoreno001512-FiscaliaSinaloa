@@ -15,6 +15,12 @@
     List<SelectListItem> varDocumento_Documento = null;
     if (ViewBag.Documentos_Documento != null)
     { varDocumento_Documento = (List<SelectListItem>)ViewBag.Documentos_Documento; }
+ List<SelectListItem> varDetalle_de_Datos_Generales_Involucrado = null;
+    if (ViewBag.Detalle_de_Datos_Generaless_Involucrado != null)
+    { varDetalle_de_Datos_Generales_Involucrado = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Involucrado; }
+ List<SelectListItem> varDetalle_de_Imputado_Probable_Responsable = null;
+    if (ViewBag.Detalle_de_Imputados_Probable_Responsable != null)
+    { varDetalle_de_Imputado_Probable_Responsable = (List<SelectListItem>)ViewBag.Detalle_de_Imputados_Probable_Responsable; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -149,6 +155,12 @@
                         });
                     }
                 </div>
+ List<SelectListItem> varDetalle_de_Datos_Generales_Involucrado = null;
+    if (ViewBag.Detalle_de_Datos_Generaless_Involucrado != null)
+    { varDetalle_de_Datos_Generales_Involucrado = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Involucrado; }
+ List<SelectListItem> varDetalle_de_Imputado_Probable_Responsable = null;
+    if (ViewBag.Detalle_de_Imputados_Probable_Responsable != null)
+    { varDetalle_de_Imputado_Probable_Responsable = (List<SelectListItem>)ViewBag.Detalle_de_Imputados_Probable_Responsable; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_Documentos_MPOResources.Observaciones</h3>
                 </div>
@@ -255,6 +267,36 @@
                 advanceSearch.DocumentoSearchType = 2;
             }
         }
+        advanceSearch.InvolucradoSearchType = 0;
+        if ($('#ddlAdvanceInvolucrado').val().length > 0 || $("#txtAdvanceInvolucrado").val() == "") {
+
+
+            if (isDetalle_de_Documentos_MPOTextSearch) {
+                advanceSearch.InvolucradoName = $("#txtAdvanceInvolucrado").val();
+                advanceSearch.InvolucradoNameSearchType = $("#ddlAdvanceInvolucrado").val();
+                advanceSearch.InvolucradoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.InvolucradoToSearch = $("#ddlAdvanceInvolucrado").val();
+                advanceSearch.InvolucradoSearchType = 2;
+            }
+        }
+        advanceSearch.Probable_ResponsableSearchType = 0;
+        if ($('#ddlAdvanceProbable_Responsable').val().length > 0 || $("#txtAdvanceProbable_Responsable").val() == "") {
+
+
+            if (isDetalle_de_Documentos_MPOTextSearch) {
+                advanceSearch.Probable_ResponsableName = $("#txtAdvanceProbable_Responsable").val();
+                advanceSearch.Probable_ResponsableNameSearchType = $("#ddlAdvanceProbable_Responsable").val();
+                advanceSearch.Probable_ResponsableSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Probable_ResponsableToSearch = $("#ddlAdvanceProbable_Responsable").val();
+                advanceSearch.Probable_ResponsableSearchType = 2;
+            }
+        }
         advanceSearch.Archivo_AdjuntoSearchType = 0;
         if ($('#ddlAdvanceArchivo_Adjunto').val().length > 0 || $("#txtAdvanceArchivo_Adjunto").val() == "") {
 
@@ -333,6 +375,24 @@
         $("#ddlAdvanceDocumento").change(function () {
             isDetalle_de_Documentos_MPOTextSearch = false;
             $("#txtAdvanceDocumento").val('');
+        });
+        $("#txtAdvanceInvolucrado").keypress(function () {
+            isDetalle_de_Documentos_MPOTextSearch = true;
+            $("#ddlAdvanceInvolucrado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceInvolucrado").change(function () {
+            isDetalle_de_Documentos_MPOTextSearch = false;
+            $("#txtAdvanceInvolucrado").val('');
+        });
+        $("#txtAdvanceProbable_Responsable").keypress(function () {
+            isDetalle_de_Documentos_MPOTextSearch = true;
+            $("#ddlAdvanceProbable_Responsable").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceProbable_Responsable").change(function () {
+            isDetalle_de_Documentos_MPOTextSearch = false;
+            $("#txtAdvanceProbable_Responsable").val('');
         });
 
     });

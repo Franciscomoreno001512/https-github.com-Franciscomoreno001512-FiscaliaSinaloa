@@ -40,19 +40,19 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_de_Solicitudes_de_Invitaciones.Hora_de_la_Cita";
                 case "Domicilio":
                     return "Detalle_de_Solicitudes_de_Invitaciones.Domicilio";
-                case "Fecha_de_Recepcion":
-                    return "Detalle_de_Solicitudes_de_Invitaciones.Fecha_de_Recepcion";
-                case "Fecha_de_Aceptacion":
-                    return "Detalle_de_Solicitudes_de_Invitaciones.Fecha_de_Aceptacion";
-                case "Cumplimiento[Descripcion]":
-                case "CumplimientoDescripcion":
-                    return "Cumplimiento.Descripcion";
-                case "Incidente[Descripcion]":
-                case "IncidenteDescripcion":
+                case "Fecha_de_Notificacion":
+                    return "Detalle_de_Solicitudes_de_Invitaciones.Fecha_de_Notificacion";
+                case "Hora_de_Notificacion":
+                    return "Detalle_de_Solicitudes_de_Invitaciones.Hora_de_Notificacion";
+                case "Notificador[Name]":
+                case "NotificadorName":
+                    return "Spartan_User.Name";
+                case "Resultado[Descripcion]":
+                case "ResultadoDescripcion":
+                    return "Resultado_de_Notificacion.Descripcion";
+                case "Incidente_en_la_Recepcion[Descripcion]":
+                case "Incidente_en_la_RecepcionDescripcion":
                     return "Incidente_con_Invitacion.Descripcion";
-                case "A_Tiempo[Descripcion]":
-                case "A_TiempoDescripcion":
-                    return "A_Tiempo.Descripcion";
 
                 default:
                     return propertyName;
@@ -92,18 +92,7 @@ namespace Spartane.Web.SqlModelMapper
 
                 }
             }
-            if (columnName == "Fecha_de_Recepcion")
-            {
-                try
-                {
-                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
-                }
-                catch (Exception ex)
-                {
-
-                }
-            }
-            if (columnName == "Fecha_de_Aceptacion")
+            if (columnName == "Fecha_de_Notificacion")
             {
                 try
                 {

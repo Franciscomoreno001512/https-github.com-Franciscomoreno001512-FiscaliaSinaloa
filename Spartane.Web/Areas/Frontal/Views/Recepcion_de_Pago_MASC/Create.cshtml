@@ -207,7 +207,7 @@
                                 <label class="col-sm-2 control-label">@Resources.Recepcion_de_Pago_MASCResources.Numero_de_Expediente</label>
                                 <div class="col-sm-8" data-field-id="Numero_de_Expediente" data-attribute="266181" data-field-name="@Resources.Recepcion_de_Pago_MASCResources.Numero_de_Expediente">
                                     <select class='fullWidth AutoComplete AutoCompleteRecepcion_de_Pago_MASC_Numero_de_Expediente form-control select2-dropdown Datos_Generales' data-val="true" id="Numero_de_Expediente" name="Numero_de_Expediente">
-                                        <option value="@Model.Numero_de_Expediente">@(Model.Numero_de_ExpedienteNumero_de_Folio??Model.Numero_de_ExpedienteNumero_de_Folio)</option>
+                                        <option value="@Model.Numero_de_Expediente">@(Model.Numero_de_ExpedienteNumero_de_Expediente??Model.Numero_de_ExpedienteNumero_de_Expediente)</option>
                                     </select>
                                 </div>
 				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266181).New)

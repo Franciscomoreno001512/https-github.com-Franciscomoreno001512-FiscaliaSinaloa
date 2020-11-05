@@ -1,8 +1,4 @@
-﻿        function RemoveAttachmentMainArchivo () {
-            $("#hdnRemoveArchivo").val("1");
-            $("#divAttachmentArchivo").hide();
-        }
-
+﻿
 
 //Begin Declarations for Foreigns fields for Detalle_de_Solicitante_en_Invitaciones MultiRow
 var Detalle_de_Solicitante_en_InvitacionescountRowsChecked = 0;

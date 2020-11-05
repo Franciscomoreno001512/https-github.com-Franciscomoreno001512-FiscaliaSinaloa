@@ -4,484 +4,6 @@
         }
 
 
-//Begin Declarations for Foreigns fields for Detalle_Involucrados_en_Documentos MultiRow
-var Detalle_Involucrados_en_DocumentoscountRowsChecked = 0;
-
-function GetDetalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesName(Id) {
-    for (var i = 0; i < Detalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesItems.length; i++) {
-        if (Detalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesItems[i].Clave == Id) {
-            return Detalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesItems[i].Nombre_Completo_del_Tutor;
-        }
-    }
-    return "";
-}
-
-function GetDetalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesDropDown() {
-    var Detalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Involucrados_en_Documentos_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesDropdown);
-
-    for (var i = 0; i < Detalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesItems.length; i++) {
-        $('<option />', { value: Detalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesItems[i].Clave, text: Detalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesItems[i].Nombre_Completo_del_Tutor }).appendTo(Detalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesDropdown);
-    }
-    return Detalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesDropdown;
-}
-
-
-function GetInsertDetalle_Involucrados_en_DocumentosRowControls(index) {
-    var columnData = [];
-    var inputData = "<input type='text' class='fullWidth form-control'/>";
-
-    columnData[0] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Involucrados_en_Documentos_Involucrado'))).addClass('Detalle_Involucrados_en_Documentos_Involucrado Involucrado').attr('id', 'Detalle_Involucrados_en_Documentos_Involucrado_' + index).attr('data-field', 'Involucrado').after($.parseHTML(addNew('Detalle_Involucrados_en_Documentos', 'Detalle_de_Datos_Generales', 'Involucrado', 266653)));
-
-
-    initiateUIControls();
-    return columnData;
-}
-
-function Detalle_Involucrados_en_DocumentosInsertRow(rowIndex) {
-if (EjecutarValidacionesAntesDeGuardarMRDetalle_Involucrados_en_Documentos("Detalle_Involucrados_en_Documentos_", "_" + rowIndex)) {
-    var iPage = Detalle_Involucrados_en_DocumentosTable.fnPagingInfo().iPage;
-    var nameOfGrid = 'Detalle_Involucrados_en_Documentos';
-    var prevData = Detalle_Involucrados_en_DocumentosTable.fnGetData(rowIndex);
-    var data = Detalle_Involucrados_en_DocumentosTable.fnGetNodes(rowIndex);
-    var counter = 1;
-    var newData = {
-        Clave: prevData.Clave,
-        IsInsertRow: false
-
-        , InvolucradoNombre_Completo_del_Tutor:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
-        , Involucrado:  data.childNodes[counter++].childNodes[0].value 	
-
-    }
-    Detalle_Involucrados_en_DocumentosTable.fnUpdate(newData, rowIndex, null, true);
-    Detalle_Involucrados_en_DocumentosrowCreationGrid(data, newData, rowIndex);
-    Detalle_Involucrados_en_DocumentosTable.fnPageChange(iPage);
-    Detalle_Involucrados_en_DocumentoscountRowsChecked--;	
-    EjecutarValidacionesDespuesDeGuardarMRDetalle_Involucrados_en_Documentos("Detalle_Involucrados_en_Documentos_", "_" + rowIndex);
-  }
-}
-
-function Detalle_Involucrados_en_DocumentosCancelRow(rowIndex) {
-    var prevData = Detalle_Involucrados_en_DocumentosTable.fnGetData(rowIndex);
-    var data = Detalle_Involucrados_en_DocumentosTable.fnGetNodes(rowIndex);
-
-    if (prevData.IsInsertRow) {
-        Detalle_Involucrados_en_DocumentosTable.fnDeleteRow(rowIndex, function (dtSettings, row) {
-            console.log('Row deleted');
-        }, true);
-    } else {
-        Detalle_Involucrados_en_DocumentosrowCreationGrid(data, prevData, rowIndex);
-    }
-	showDetalle_Involucrados_en_DocumentosGrid(Detalle_Involucrados_en_DocumentosTable.fnGetData());
-    Detalle_Involucrados_en_DocumentoscountRowsChecked--;
-	initiateUIControls();
-}
-
-function GetDetalle_Involucrados_en_DocumentosFromDataTable() {
-    var Detalle_Involucrados_en_DocumentosData = [];
-    var gridData = Detalle_Involucrados_en_DocumentosTable.fnGetData();
-    //debugger;
-    for (var i = 0; i < gridData.length; i++) {
-        if (gridData[i].IsInsertRow == null || !gridData[i].IsInsertRow)
-            Detalle_Involucrados_en_DocumentosData.push({
-                Clave: gridData[i].Clave
-
-                ,Involucrado: gridData[i].Involucrado
-
-                ,Removed: false
-            });
-    }
-
-    for (i = 0; i < removedDetalle_Involucrados_en_DocumentosData.length; i++) {
-        if (removedDetalle_Involucrados_en_DocumentosData[i] != null && removedDetalle_Involucrados_en_DocumentosData[i].Clave > 0)
-            Detalle_Involucrados_en_DocumentosData.push({
-                Clave: removedDetalle_Involucrados_en_DocumentosData[i].Clave
-
-                ,Involucrado: removedDetalle_Involucrados_en_DocumentosData[i].Involucrado
-
-                , Removed: true
-            });
-    }	
-
-    return Detalle_Involucrados_en_DocumentosData;
-}
-
-function Detalle_Involucrados_en_DocumentosEditRow(rowIndex, currentRow, executeRules) {
-    var rowIndexTable = (currentRow) ? Detalle_Involucrados_en_DocumentosTable.fnGetPosition($(currentRow).parent().parent()[0]) : rowIndex;
-    Detalle_Involucrados_en_DocumentoscountRowsChecked++;
-    var Detalle_Involucrados_en_DocumentosRowElement = "Detalle_Involucrados_en_Documentos_" + rowIndex.toString();
-    var prevData = Detalle_Involucrados_en_DocumentosTable.fnGetData(rowIndexTable );
-    var row = Detalle_Involucrados_en_DocumentosTable.fnGetNodes(rowIndexTable);
-    row.innerHTML = "";
-    var nameOfTable = "Detalle_Involucrados_en_Documentos_";
-    var rowIndexFormed = "_" + rowIndex;
-    var controls = Detalle_Involucrados_en_DocumentosGetUpdateRowControls(prevData, "Detalle_Involucrados_en_Documentos_", "_" + rowIndex);
-
-    var abc = "if(dynamicFieldValidation('" + Detalle_Involucrados_en_DocumentosRowElement + "')){ Detalle_Involucrados_en_DocumentosInsertRow(" + rowIndex + "); }";
-    var updateRowClick = '<a  onclick="' + abc + '">';
-
-    var actionColInsert = $('<td>');
-    $('<i class="fa fa-check">').appendTo($(updateRowClick).appendTo(actionColInsert));
-    $('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_Involucrados_en_DocumentosCancelRow(" + rowIndex + ")'>").appendTo(actionColInsert));
-    actionColInsert.appendTo(row);
-
-    for (i = 0; i < controls.length; i++) {
-        var idHeader = $(controls[i]).data('field') + 'Header';
-        if ($(controls[i]).length > 1) {
-            idHeader = $($(controls[i])[1]).data('field') + 'Header';
-        }
-		var classe = ($('#Detalle_Involucrados_en_DocumentosGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + ($('#Detalle_Involucrados_en_DocumentosGrid .' + idHeader).css('display') == 'none' ? ' hide' : '' );
-		  if ($(controls[i]).next().length > 0) {
-		        var div = $(controls[i]).next();
-		        $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
-		    }
-		    else
-                $(controls[i]).appendTo($('<td class="' + classe +  '" id="td'+nameOfTable+idHeader.replace('Header', '')+rowIndexFormed+'">').appendTo(row));                   
-    }
-    
-    setDetalle_Involucrados_en_DocumentosValidation();
-    initiateUIControls();
-    $('.Detalle_Involucrados_en_Documentos' + rowIndexFormed + ' .inputMoney').inputmask("currency", { prefix: "", rightAlign: false });
-    $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
-    if(executeRules == null || (executeRules != null && executeRules == true))
-    {
-         EjecutarValidacionesEditRowMRDetalle_Involucrados_en_Documentos(nameOfTable, rowIndexFormed);
-    }
-}
-
-function Detalle_Involucrados_en_DocumentosfnOpenAddRowPopUp() {
-    var currentRowIndex = Detalle_Involucrados_en_DocumentosTable.fnGetData().length;
-    Detalle_Involucrados_en_DocumentosfnClickAddRow();
-    GetAddDetalle_Involucrados_en_DocumentosPopup(currentRowIndex, 0);
-}
-
-function Detalle_Involucrados_en_DocumentosEditRowPopup(rowIndex, currentRow) {
-    var rowIndexTable = Detalle_Involucrados_en_DocumentosTable.fnGetPosition($(currentRow).parent().parent()[0]);
-    var Detalle_Involucrados_en_DocumentosRowElement = "Detalle_Involucrados_en_Documentos_" + rowIndex.toString();
-    var prevData = Detalle_Involucrados_en_DocumentosTable.fnGetData(rowIndexTable);
-    GetAddDetalle_Involucrados_en_DocumentosPopup(rowIndex, 1, prevData.Clave);
-
-    $('#dvDetalle_Involucrados_en_DocumentosInvolucrado').html($($.parseHTML(GetGridAutoComplete(prevData.Involucrado.label,'AutoCompleteInvolucrado'))).addClass('Detalle_Involucrados_en_Documentos_Involucrado'));
-
-    initiateUIControls();
-
-
-
-}
-
-function Detalle_Involucrados_en_DocumentosAddInsertRow() {
-    if (Detalle_Involucrados_en_DocumentosinsertRowCurrentIndex < 1)
-    {
-        Detalle_Involucrados_en_DocumentosinsertRowCurrentIndex = 1;
-    }
-    return {
-        Clave: null,
-        IsInsertRow: true
-
-        ,Involucrado: ""
-
-    }
-}
-
-function Detalle_Involucrados_en_DocumentosfnClickAddRow() {
-    Detalle_Involucrados_en_DocumentoscountRowsChecked++;
-    Detalle_Involucrados_en_DocumentosTable.fnAddData(Detalle_Involucrados_en_DocumentosAddInsertRow(), true);
-    Detalle_Involucrados_en_DocumentosTable.fnPageChange('last');
-    initiateUIControls();
-	 //var tag = $('#Detalle_Involucrados_en_DocumentosGrid tbody tr td .form-control').first().get(0).tagName.toLowerCase();
-    //$('#Detalle_Involucrados_en_DocumentosGrid tbody tr:nth-of-type(' + (Detalle_Involucrados_en_DocumentosinsertRowCurrentIndex + 1) + ') ' + tag ).focus();
-    EjecutarValidacionesNewRowMRDetalle_Involucrados_en_Documentos("Detalle_Involucrados_en_Documentos_", "_" + Detalle_Involucrados_en_DocumentosinsertRowCurrentIndex);
-}
-
-function Detalle_Involucrados_en_DocumentosClearGridData() {
-    Detalle_Involucrados_en_DocumentosData = [];
-    Detalle_Involucrados_en_DocumentosdeletedItem = [];
-    Detalle_Involucrados_en_DocumentosDataMain = [];
-    Detalle_Involucrados_en_DocumentosDataMainPages = [];
-    Detalle_Involucrados_en_DocumentosnewItemCount = 0;
-    Detalle_Involucrados_en_DocumentosmaxItemIndex = 0;
-    $("#Detalle_Involucrados_en_DocumentosGrid").DataTable().clear();
-    $("#Detalle_Involucrados_en_DocumentosGrid").DataTable().destroy();
-}
-
-//Used to Get Documentos AT Information
-function GetDetalle_Involucrados_en_Documentos() {
-    var form_data = new FormData();
-    for (var i = 0; i < Detalle_Involucrados_en_DocumentosData.length; i++) {
-        form_data.append('[' + i + '].Clave', Detalle_Involucrados_en_DocumentosData[i].Clave);
-
-        form_data.append('[' + i + '].Involucrado', Detalle_Involucrados_en_DocumentosData[i].Involucrado);
-
-        form_data.append('[' + i + '].Removed', Detalle_Involucrados_en_DocumentosData[i].Removed);
-    }
-    return form_data;
-}
-function Detalle_Involucrados_en_DocumentosInsertRowFromPopup(rowIndex) {
-    //if (EjecutarValidacionesAntesDeGuardarMRDetalle_Involucrados_en_Documentos("Detalle_Involucrados_en_DocumentosTable", rowIndex)) {
-    var prevData = Detalle_Involucrados_en_DocumentosTable.fnGetData(rowIndex);
-    var data = Detalle_Involucrados_en_DocumentosTable.fnGetNodes(rowIndex);
-    var newData = {
-        Clave: prevData.Clave,
-        IsInsertRow: false
-
-        ,Involucrado: $('#Detalle_Involucrados_en_DocumentosInvolucrado').val()
-
-    }
-
-    Detalle_Involucrados_en_DocumentosTable.fnUpdate(newData, rowIndex, null, true);
-    Detalle_Involucrados_en_DocumentosrowCreationGrid(data, newData, rowIndex);
-    $('#AddDetalle_Involucrados_en_Documentos-form').modal({ show: false });
-    $('#AddDetalle_Involucrados_en_Documentos-form').modal('hide');
-    Detalle_Involucrados_en_DocumentosEditRow(rowIndex);
-    Detalle_Involucrados_en_DocumentosInsertRow(rowIndex);
-    //}
-}
-function Detalle_Involucrados_en_DocumentosRemoveAddRow(rowIndex) {
-    Detalle_Involucrados_en_DocumentosTable.fnDeleteRow(rowIndex, function (dtSettings, row) {
-    }, true);
-}
-
-//End Declarations for Foreigns fields for Detalle_Involucrados_en_Documentos MultiRow
-//Begin Declarations for Foreigns fields for Detalle_Probable_Responsable_de_Documentos MultiRow
-var Detalle_Probable_Responsable_de_DocumentoscountRowsChecked = 0;
-
-function GetDetalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoName(Id) {
-    for (var i = 0; i < Detalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoItems.length; i++) {
-        if (Detalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoItems[i].Clave == Id) {
-            return Detalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoItems[i].Nombre_Completo_del_Tutor;
-        }
-    }
-    return "";
-}
-
-function GetDetalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoDropDown() {
-    var Detalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Probable_Responsable_de_Documentos_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoDropdown);
-
-    for (var i = 0; i < Detalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoItems.length; i++) {
-        $('<option />', { value: Detalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoItems[i].Clave, text: Detalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoItems[i].Nombre_Completo_del_Tutor }).appendTo(Detalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoDropdown);
-    }
-    return Detalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoDropdown;
-}
-
-
-function GetInsertDetalle_Probable_Responsable_de_DocumentosRowControls(index) {
-    var columnData = [];
-    var inputData = "<input type='text' class='fullWidth form-control'/>";
-
-    columnData[0] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Probable_Responsable_de_Documentos_Probable_Responsable'))).addClass('Detalle_Probable_Responsable_de_Documentos_Probable_Responsable Probable_Responsable').attr('id', 'Detalle_Probable_Responsable_de_Documentos_Probable_Responsable_' + index).attr('data-field', 'Probable_Responsable').after($.parseHTML(addNew('Detalle_Probable_Responsable_de_Documentos', 'Detalle_de_Imputado', 'Probable_Responsable', 266656)));
-
-
-    initiateUIControls();
-    return columnData;
-}
-
-function Detalle_Probable_Responsable_de_DocumentosInsertRow(rowIndex) {
-if (EjecutarValidacionesAntesDeGuardarMRDetalle_Probable_Responsable_de_Documentos("Detalle_Probable_Responsable_de_Documentos_", "_" + rowIndex)) {
-    var iPage = Detalle_Probable_Responsable_de_DocumentosTable.fnPagingInfo().iPage;
-    var nameOfGrid = 'Detalle_Probable_Responsable_de_Documentos';
-    var prevData = Detalle_Probable_Responsable_de_DocumentosTable.fnGetData(rowIndex);
-    var data = Detalle_Probable_Responsable_de_DocumentosTable.fnGetNodes(rowIndex);
-    var counter = 1;
-    var newData = {
-        Clave: prevData.Clave,
-        IsInsertRow: false
-
-        , Probable_ResponsableNombre_Completo_del_Tutor:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
-        , Probable_Responsable:  data.childNodes[counter++].childNodes[0].value 	
-
-    }
-    Detalle_Probable_Responsable_de_DocumentosTable.fnUpdate(newData, rowIndex, null, true);
-    Detalle_Probable_Responsable_de_DocumentosrowCreationGrid(data, newData, rowIndex);
-    Detalle_Probable_Responsable_de_DocumentosTable.fnPageChange(iPage);
-    Detalle_Probable_Responsable_de_DocumentoscountRowsChecked--;	
-    EjecutarValidacionesDespuesDeGuardarMRDetalle_Probable_Responsable_de_Documentos("Detalle_Probable_Responsable_de_Documentos_", "_" + rowIndex);
-  }
-}
-
-function Detalle_Probable_Responsable_de_DocumentosCancelRow(rowIndex) {
-    var prevData = Detalle_Probable_Responsable_de_DocumentosTable.fnGetData(rowIndex);
-    var data = Detalle_Probable_Responsable_de_DocumentosTable.fnGetNodes(rowIndex);
-
-    if (prevData.IsInsertRow) {
-        Detalle_Probable_Responsable_de_DocumentosTable.fnDeleteRow(rowIndex, function (dtSettings, row) {
-            console.log('Row deleted');
-        }, true);
-    } else {
-        Detalle_Probable_Responsable_de_DocumentosrowCreationGrid(data, prevData, rowIndex);
-    }
-	showDetalle_Probable_Responsable_de_DocumentosGrid(Detalle_Probable_Responsable_de_DocumentosTable.fnGetData());
-    Detalle_Probable_Responsable_de_DocumentoscountRowsChecked--;
-	initiateUIControls();
-}
-
-function GetDetalle_Probable_Responsable_de_DocumentosFromDataTable() {
-    var Detalle_Probable_Responsable_de_DocumentosData = [];
-    var gridData = Detalle_Probable_Responsable_de_DocumentosTable.fnGetData();
-    //debugger;
-    for (var i = 0; i < gridData.length; i++) {
-        if (gridData[i].IsInsertRow == null || !gridData[i].IsInsertRow)
-            Detalle_Probable_Responsable_de_DocumentosData.push({
-                Clave: gridData[i].Clave
-
-                ,Probable_Responsable: gridData[i].Probable_Responsable
-
-                ,Removed: false
-            });
-    }
-
-    for (i = 0; i < removedDetalle_Probable_Responsable_de_DocumentosData.length; i++) {
-        if (removedDetalle_Probable_Responsable_de_DocumentosData[i] != null && removedDetalle_Probable_Responsable_de_DocumentosData[i].Clave > 0)
-            Detalle_Probable_Responsable_de_DocumentosData.push({
-                Clave: removedDetalle_Probable_Responsable_de_DocumentosData[i].Clave
-
-                ,Probable_Responsable: removedDetalle_Probable_Responsable_de_DocumentosData[i].Probable_Responsable
-
-                , Removed: true
-            });
-    }	
-
-    return Detalle_Probable_Responsable_de_DocumentosData;
-}
-
-function Detalle_Probable_Responsable_de_DocumentosEditRow(rowIndex, currentRow, executeRules) {
-    var rowIndexTable = (currentRow) ? Detalle_Probable_Responsable_de_DocumentosTable.fnGetPosition($(currentRow).parent().parent()[0]) : rowIndex;
-    Detalle_Probable_Responsable_de_DocumentoscountRowsChecked++;
-    var Detalle_Probable_Responsable_de_DocumentosRowElement = "Detalle_Probable_Responsable_de_Documentos_" + rowIndex.toString();
-    var prevData = Detalle_Probable_Responsable_de_DocumentosTable.fnGetData(rowIndexTable );
-    var row = Detalle_Probable_Responsable_de_DocumentosTable.fnGetNodes(rowIndexTable);
-    row.innerHTML = "";
-    var nameOfTable = "Detalle_Probable_Responsable_de_Documentos_";
-    var rowIndexFormed = "_" + rowIndex;
-    var controls = Detalle_Probable_Responsable_de_DocumentosGetUpdateRowControls(prevData, "Detalle_Probable_Responsable_de_Documentos_", "_" + rowIndex);
-
-    var abc = "if(dynamicFieldValidation('" + Detalle_Probable_Responsable_de_DocumentosRowElement + "')){ Detalle_Probable_Responsable_de_DocumentosInsertRow(" + rowIndex + "); }";
-    var updateRowClick = '<a  onclick="' + abc + '">';
-
-    var actionColInsert = $('<td>');
-    $('<i class="fa fa-check">').appendTo($(updateRowClick).appendTo(actionColInsert));
-    $('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_Probable_Responsable_de_DocumentosCancelRow(" + rowIndex + ")'>").appendTo(actionColInsert));
-    actionColInsert.appendTo(row);
-
-    for (i = 0; i < controls.length; i++) {
-        var idHeader = $(controls[i]).data('field') + 'Header';
-        if ($(controls[i]).length > 1) {
-            idHeader = $($(controls[i])[1]).data('field') + 'Header';
-        }
-		var classe = ($('#Detalle_Probable_Responsable_de_DocumentosGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + ($('#Detalle_Probable_Responsable_de_DocumentosGrid .' + idHeader).css('display') == 'none' ? ' hide' : '' );
-		  if ($(controls[i]).next().length > 0) {
-		        var div = $(controls[i]).next();
-		        $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
-		    }
-		    else
-                $(controls[i]).appendTo($('<td class="' + classe +  '" id="td'+nameOfTable+idHeader.replace('Header', '')+rowIndexFormed+'">').appendTo(row));                   
-    }
-    
-    setDetalle_Probable_Responsable_de_DocumentosValidation();
-    initiateUIControls();
-    $('.Detalle_Probable_Responsable_de_Documentos' + rowIndexFormed + ' .inputMoney').inputmask("currency", { prefix: "", rightAlign: false });
-    $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
-    if(executeRules == null || (executeRules != null && executeRules == true))
-    {
-         EjecutarValidacionesEditRowMRDetalle_Probable_Responsable_de_Documentos(nameOfTable, rowIndexFormed);
-    }
-}
-
-function Detalle_Probable_Responsable_de_DocumentosfnOpenAddRowPopUp() {
-    var currentRowIndex = Detalle_Probable_Responsable_de_DocumentosTable.fnGetData().length;
-    Detalle_Probable_Responsable_de_DocumentosfnClickAddRow();
-    GetAddDetalle_Probable_Responsable_de_DocumentosPopup(currentRowIndex, 0);
-}
-
-function Detalle_Probable_Responsable_de_DocumentosEditRowPopup(rowIndex, currentRow) {
-    var rowIndexTable = Detalle_Probable_Responsable_de_DocumentosTable.fnGetPosition($(currentRow).parent().parent()[0]);
-    var Detalle_Probable_Responsable_de_DocumentosRowElement = "Detalle_Probable_Responsable_de_Documentos_" + rowIndex.toString();
-    var prevData = Detalle_Probable_Responsable_de_DocumentosTable.fnGetData(rowIndexTable);
-    GetAddDetalle_Probable_Responsable_de_DocumentosPopup(rowIndex, 1, prevData.Clave);
-
-    $('#dvDetalle_Probable_Responsable_de_DocumentosProbable_Responsable').html($($.parseHTML(GetGridAutoComplete(prevData.Probable_Responsable.label,'AutoCompleteProbable_Responsable'))).addClass('Detalle_Probable_Responsable_de_Documentos_Probable_Responsable'));
-
-    initiateUIControls();
-
-
-
-}
-
-function Detalle_Probable_Responsable_de_DocumentosAddInsertRow() {
-    if (Detalle_Probable_Responsable_de_DocumentosinsertRowCurrentIndex < 1)
-    {
-        Detalle_Probable_Responsable_de_DocumentosinsertRowCurrentIndex = 1;
-    }
-    return {
-        Clave: null,
-        IsInsertRow: true
-
-        ,Probable_Responsable: ""
-
-    }
-}
-
-function Detalle_Probable_Responsable_de_DocumentosfnClickAddRow() {
-    Detalle_Probable_Responsable_de_DocumentoscountRowsChecked++;
-    Detalle_Probable_Responsable_de_DocumentosTable.fnAddData(Detalle_Probable_Responsable_de_DocumentosAddInsertRow(), true);
-    Detalle_Probable_Responsable_de_DocumentosTable.fnPageChange('last');
-    initiateUIControls();
-	 //var tag = $('#Detalle_Probable_Responsable_de_DocumentosGrid tbody tr td .form-control').first().get(0).tagName.toLowerCase();
-    //$('#Detalle_Probable_Responsable_de_DocumentosGrid tbody tr:nth-of-type(' + (Detalle_Probable_Responsable_de_DocumentosinsertRowCurrentIndex + 1) + ') ' + tag ).focus();
-    EjecutarValidacionesNewRowMRDetalle_Probable_Responsable_de_Documentos("Detalle_Probable_Responsable_de_Documentos_", "_" + Detalle_Probable_Responsable_de_DocumentosinsertRowCurrentIndex);
-}
-
-function Detalle_Probable_Responsable_de_DocumentosClearGridData() {
-    Detalle_Probable_Responsable_de_DocumentosData = [];
-    Detalle_Probable_Responsable_de_DocumentosdeletedItem = [];
-    Detalle_Probable_Responsable_de_DocumentosDataMain = [];
-    Detalle_Probable_Responsable_de_DocumentosDataMainPages = [];
-    Detalle_Probable_Responsable_de_DocumentosnewItemCount = 0;
-    Detalle_Probable_Responsable_de_DocumentosmaxItemIndex = 0;
-    $("#Detalle_Probable_Responsable_de_DocumentosGrid").DataTable().clear();
-    $("#Detalle_Probable_Responsable_de_DocumentosGrid").DataTable().destroy();
-}
-
-//Used to Get Documentos AT Information
-function GetDetalle_Probable_Responsable_de_Documentos() {
-    var form_data = new FormData();
-    for (var i = 0; i < Detalle_Probable_Responsable_de_DocumentosData.length; i++) {
-        form_data.append('[' + i + '].Clave', Detalle_Probable_Responsable_de_DocumentosData[i].Clave);
-
-        form_data.append('[' + i + '].Probable_Responsable', Detalle_Probable_Responsable_de_DocumentosData[i].Probable_Responsable);
-
-        form_data.append('[' + i + '].Removed', Detalle_Probable_Responsable_de_DocumentosData[i].Removed);
-    }
-    return form_data;
-}
-function Detalle_Probable_Responsable_de_DocumentosInsertRowFromPopup(rowIndex) {
-    //if (EjecutarValidacionesAntesDeGuardarMRDetalle_Probable_Responsable_de_Documentos("Detalle_Probable_Responsable_de_DocumentosTable", rowIndex)) {
-    var prevData = Detalle_Probable_Responsable_de_DocumentosTable.fnGetData(rowIndex);
-    var data = Detalle_Probable_Responsable_de_DocumentosTable.fnGetNodes(rowIndex);
-    var newData = {
-        Clave: prevData.Clave,
-        IsInsertRow: false
-
-        ,Probable_Responsable: $('#Detalle_Probable_Responsable_de_DocumentosProbable_Responsable').val()
-
-    }
-
-    Detalle_Probable_Responsable_de_DocumentosTable.fnUpdate(newData, rowIndex, null, true);
-    Detalle_Probable_Responsable_de_DocumentosrowCreationGrid(data, newData, rowIndex);
-    $('#AddDetalle_Probable_Responsable_de_Documentos-form').modal({ show: false });
-    $('#AddDetalle_Probable_Responsable_de_Documentos-form').modal('hide');
-    Detalle_Probable_Responsable_de_DocumentosEditRow(rowIndex);
-    Detalle_Probable_Responsable_de_DocumentosInsertRow(rowIndex);
-    //}
-}
-function Detalle_Probable_Responsable_de_DocumentosRemoveAddRow(rowIndex) {
-    Detalle_Probable_Responsable_de_DocumentosTable.fnDeleteRow(rowIndex, function (dtSettings, row) {
-    }, true);
-}
-
-//End Declarations for Foreigns fields for Detalle_Probable_Responsable_de_Documentos MultiRow
 //Begin Declarations for Foreigns fields for Detalle_Delitos_de_Documentos MultiRow
 var Detalle_Delitos_de_DocumentoscountRowsChecked = 0;
 
@@ -724,90 +246,6 @@ function Detalle_Delitos_de_DocumentosRemoveAddRow(rowIndex) {
 
 
 $(function () {
-    function Detalle_Involucrados_en_DocumentosinitializeMainArray(totalCount) {
-        if (Detalle_Involucrados_en_DocumentosDataMain.length != totalCount && !Detalle_Involucrados_en_DocumentosDataMainInitialized) {
-            Detalle_Involucrados_en_DocumentosDataMainInitialized = true;
-            for (var i = 0; i < totalCount; i++) {
-                Detalle_Involucrados_en_DocumentosDataMain[i] = null;
-            }
-        }
-    }
-    function Detalle_Involucrados_en_DocumentosremoveFromMainArray() {
-        for (var j = 0; j < Detalle_Involucrados_en_DocumentosdeletedItem.length; j++) {
-            for (var i = 0; i < Detalle_Involucrados_en_DocumentosDataMain.length; i++) {
-                if (Detalle_Involucrados_en_DocumentosDataMain[i] != null && Detalle_Involucrados_en_DocumentosDataMain[i].Id == Detalle_Involucrados_en_DocumentosdeletedItem[j]) {
-                    hDetalle_Involucrados_en_DocumentosDataMain.splice(i, 1);
-                    break;
-                }
-            }
-        }
-    }
-    function Detalle_Involucrados_en_DocumentoscopyMainHistoryArray() {
-        var data = [];
-        for (var i = 0; i < Detalle_Involucrados_en_DocumentosDataMain.length; i++) {
-            data[i] = Detalle_Involucrados_en_DocumentosDataMain[i];
-
-        }
-        return data;
-    }
-    function Detalle_Involucrados_en_DocumentosgetNewResult() {
-        var newData = copyMainDetalle_Involucrados_en_DocumentosArray();
-
-        for (var i = 0; i < Detalle_Involucrados_en_DocumentosData.length; i++) {
-            if (Detalle_Involucrados_en_DocumentosData[i].Removed == null || Detalle_Involucrados_en_DocumentosData[i].Removed == false) {
-                newData.splice(0, 0, Detalle_Involucrados_en_DocumentosData[i]);
-            }
-        }
-        return newData;
-    }
-    function Detalle_Involucrados_en_DocumentospushToMainArray(data, pageIndex, pageSize) {
-        for (var i = 0; i < data.length; i++) {
-            if (Detalle_Involucrados_en_DocumentosDataMain[(pageIndex * pageSize) - pageSize + i] == null)
-                Detalle_Involucrados_en_DocumentosDataMain[(pageIndex * pageSize) - pageSize + i] = data[i];
-        }
-    }
-    function Detalle_Probable_Responsable_de_DocumentosinitializeMainArray(totalCount) {
-        if (Detalle_Probable_Responsable_de_DocumentosDataMain.length != totalCount && !Detalle_Probable_Responsable_de_DocumentosDataMainInitialized) {
-            Detalle_Probable_Responsable_de_DocumentosDataMainInitialized = true;
-            for (var i = 0; i < totalCount; i++) {
-                Detalle_Probable_Responsable_de_DocumentosDataMain[i] = null;
-            }
-        }
-    }
-    function Detalle_Probable_Responsable_de_DocumentosremoveFromMainArray() {
-        for (var j = 0; j < Detalle_Probable_Responsable_de_DocumentosdeletedItem.length; j++) {
-            for (var i = 0; i < Detalle_Probable_Responsable_de_DocumentosDataMain.length; i++) {
-                if (Detalle_Probable_Responsable_de_DocumentosDataMain[i] != null && Detalle_Probable_Responsable_de_DocumentosDataMain[i].Id == Detalle_Probable_Responsable_de_DocumentosdeletedItem[j]) {
-                    hDetalle_Probable_Responsable_de_DocumentosDataMain.splice(i, 1);
-                    break;
-                }
-            }
-        }
-    }
-    function Detalle_Probable_Responsable_de_DocumentoscopyMainHistoryArray() {
-        var data = [];
-        for (var i = 0; i < Detalle_Probable_Responsable_de_DocumentosDataMain.length; i++) {
-            data[i] = Detalle_Probable_Responsable_de_DocumentosDataMain[i];
-
-        }
-        return data;
-    }
-    function Detalle_Probable_Responsable_de_DocumentosgetNewResult() {
-        var newData = copyMainDetalle_Probable_Responsable_de_DocumentosArray();
-
-        for (var i = 0; i < Detalle_Probable_Responsable_de_DocumentosData.length; i++) {
-            if (Detalle_Probable_Responsable_de_DocumentosData[i].Removed == null || Detalle_Probable_Responsable_de_DocumentosData[i].Removed == false) {
-                newData.splice(0, 0, Detalle_Probable_Responsable_de_DocumentosData[i]);
-            }
-        }
-        return newData;
-    }
-    function Detalle_Probable_Responsable_de_DocumentospushToMainArray(data, pageIndex, pageSize) {
-        for (var i = 0; i < data.length; i++) {
-            if (Detalle_Probable_Responsable_de_DocumentosDataMain[(pageIndex * pageSize) - pageSize + i] == null)
-                Detalle_Probable_Responsable_de_DocumentosDataMain[(pageIndex * pageSize) - pageSize + i] = data[i];
-        }
-    }
     function Detalle_Delitos_de_DocumentosinitializeMainArray(totalCount) {
         if (Detalle_Delitos_de_DocumentosDataMain.length != totalCount && !Detalle_Delitos_de_DocumentosDataMainInitialized) {
             Detalle_Delitos_de_DocumentosDataMainInitialized = true;
@@ -875,9 +313,8 @@ function GetAutoCompleteDetalle_de_Documentos_MPO_Usuario_que_Registra_Spartan_U
     }
     return AutoCompleteUsuario_que_RegistraData;
 }
-//Grid GetAutocomplete
 var AutoCompleteInvolucradoData = [];
-function GetAutoCompleteDetalle_Involucrados_en_Documentos_Involucrado_Detalle_de_Datos_GeneralesData(data) {
+function GetAutoCompleteDetalle_de_Documentos_MPO_Involucrado_Detalle_de_Datos_GeneralesData(data) {
 	AutoCompleteInvolucradoData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompleteInvolucradoData.push({
@@ -887,10 +324,8 @@ function GetAutoCompleteDetalle_Involucrados_en_Documentos_Involucrado_Detalle_d
     }
     return AutoCompleteInvolucradoData;
 }
-
-//Grid GetAutocomplete
 var AutoCompleteProbable_ResponsableData = [];
-function GetAutoCompleteDetalle_Probable_Responsable_de_Documentos_Probable_Responsable_Detalle_de_ImputadoData(data) {
+function GetAutoCompleteDetalle_de_Documentos_MPO_Probable_Responsable_Detalle_de_ImputadoData(data) {
 	AutoCompleteProbable_ResponsableData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompleteProbable_ResponsableData.push({
@@ -900,7 +335,6 @@ function GetAutoCompleteDetalle_Probable_Responsable_de_Documentos_Probable_Resp
     }
     return AutoCompleteProbable_ResponsableData;
 }
-
 //Grid GetAutocomplete
 var AutoCompleteDelitoData = [];
 function GetAutoCompleteDetalle_Delitos_de_Documentos_Delito_Detalle_de_DelitoData(data) {
@@ -957,8 +391,12 @@ function ClearControls() {
     $('#Usuario_que_Registra').empty();
     $("#Usuario_que_Registra").append('<option value=""></option>');
     $('#Usuario_que_Registra').val('0').trigger('change');
-                Detalle_Involucrados_en_DocumentosClearGridData();
-                Detalle_Probable_Responsable_de_DocumentosClearGridData();
+    $('#Involucrado').empty();
+    $("#Involucrado").append('<option value=""></option>');
+    $('#Involucrado').val('0').trigger('change');
+    $('#Probable_Responsable').empty();
+    $("#Probable_Responsable").append('<option value=""></option>');
+    $('#Probable_Responsable').val('0').trigger('change');
                 Detalle_Delitos_de_DocumentosClearGridData();
 
 }
@@ -994,16 +432,6 @@ function CheckValidation() {
     var $myForm = $('#CreateDetalle_de_Documentos_MPO');
     if (!$myForm[0].checkValidity()) {
         $myForm.submit();
-        return false;
-    }
-    if (Detalle_Involucrados_en_DocumentoscountRowsChecked > 0)
-    {
-        ShowMessagePendingRowDetalle_Involucrados_en_Documentos();
-        return false;
-    }
-    if (Detalle_Probable_Responsable_de_DocumentoscountRowsChecked > 0)
-    {
-        ShowMessagePendingRowDetalle_Probable_Responsable_de_Documentos();
         return false;
     }
     if (Detalle_Delitos_de_DocumentoscountRowsChecked > 0)
@@ -1081,9 +509,7 @@ $(document).ready(function () {
 					ClearControls();
 					ClearAttachmentsDiv();
 					ResetClaveLabel();
-	                getDetalle_Involucrados_en_DocumentosData();
-                getDetalle_Probable_Responsable_de_DocumentosData();
-                getDetalle_Delitos_de_DocumentosData();
+	                getDetalle_Delitos_de_DocumentosData();
 
 					if (isPartial)
 					{
@@ -1113,15 +539,17 @@ $(document).ready(function () {
     $('#Usuario_que_Registra').empty();
     $("#Usuario_que_Registra").append('<option value=""></option>');
     $('#Usuario_que_Registra').val('0').trigger('change');
-                Detalle_Involucrados_en_DocumentosClearGridData();
-                Detalle_Probable_Responsable_de_DocumentosClearGridData();
+    $('#Involucrado').empty();
+    $("#Involucrado").append('<option value=""></option>');
+    $('#Involucrado').val('0').trigger('change');
+    $('#Probable_Responsable').empty();
+    $("#Probable_Responsable").append('<option value=""></option>');
+    $('#Probable_Responsable').val('0').trigger('change');
                 Detalle_Delitos_de_DocumentosClearGridData();
 
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);
-	                getDetalle_Involucrados_en_DocumentosData();
-                getDetalle_Probable_Responsable_de_DocumentosData();
-                getDetalle_Delitos_de_DocumentosData();
+	                getDetalle_Delitos_de_DocumentosData();
 
 					EjecutarValidacionesDespuesDeGuardar();		
 					if (isPartial)

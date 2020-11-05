@@ -38,29 +38,11 @@ if( $('#' + nameOfTable + 'Monto_Total' + rowIndex).val()!=TryParseInt('0', '0')
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
-//BusinessRuleId:1973, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- $('#divNumero_de_Expediente').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Expediente' + rowIndex));
 
 
-}
-//BusinessRuleId:1973, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:1973, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
- $('#divNumero_de_Expediente').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Expediente' + rowIndex));
 
 
-}
-//BusinessRuleId:1973, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:1973, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
- $('#divNumero_de_Expediente').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Expediente' + rowIndex));
-
-
-}
-//BusinessRuleId:1973, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2013, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
@@ -110,6 +92,36 @@ if( $('#' + nameOfTable + 'Resultado' + rowIndex).val()!=TryParseInt('null', 'nu
 }
 //BusinessRuleId:2015, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:1973, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divNumero_de_Expediente').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Expediente' + rowIndex));$('#divAcuerdo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Acuerdo' + rowIndex));
+
+}
+//BusinessRuleId:1973, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:1973, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divNumero_de_Expediente').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Expediente' + rowIndex));$('#divAcuerdo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Acuerdo' + rowIndex));
+
+}
+//BusinessRuleId:1973, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:1973, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $('#divNumero_de_Expediente').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Expediente' + rowIndex));$('#divAcuerdo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Acuerdo' + rowIndex));
+
+}
+//BusinessRuleId:1973, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+//BusinessRuleId:2055, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divPersonal_de_Seguimiento_Asignado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Personal_de_Seguimiento_Asignado' + rowIndex));$('#divFecha_de_Cumplimiento_de_Acuerdo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Cumplimiento_de_Acuerdo' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Hora_de_Acuerdo' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 108)", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:2055, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -128,11 +140,14 @@ function EjecutarValidacionesDespuesDeGuardar(){
 
 
 
+
+
+
 //BusinessRuleId:2018, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
  EvaluaQuery(" update Acuerdos_MASC "
 +" set Numero_de_Expediente = GLOBAL[SpartanOperationId] "
-+" where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable); EvaluaQuery(" exec uspEnviaAcuerdoMAC_a_AT GLOBAL[keyvalueinserted]", rowIndex, nameOfTable); SendEmailQuery('SAPROJ - Nuevo Acuerdo por Autorizar', exec uspGetCorreoOrientadorAT GLOBAL[SpartanOperationId], "Por este medio se le notifica que el area de Mecanismos Alternos ha generado un nuevo Acuerdo, el cual requiere su autorización."
++" where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable); EvaluaQuery(" exec uspEnviaAcuerdoMAC_a_AT GLOBAL[keyvalueinserted]", rowIndex, nameOfTable); SendEmailQuery('SAPROJ - Nuevo Acuerdo por Autorizar', EvaluaQuery("exec uspGetCorreoOrigen GLOBAL[SpartanOperationId]"), "Por este medio se le notifica que la unidad de Mecanismos Alternos ha generado un nuevo Acuerdo, el cual requiere su autorización."
 +" <br><br>"
 +" <b>Acuerdo:</b> FLDD[Tipo_de_Acuerdo]"
 +" <br><b>Domicilio Acordado:</b> FLD[Domicilio_Acordado]"

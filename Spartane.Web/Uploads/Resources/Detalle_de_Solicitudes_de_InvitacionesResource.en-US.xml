@@ -14,13 +14,13 @@
   <resource culture="en-US" name="Domicilio" value="Domicilio donde se llevará a cabo la reunión"></resource>
   <resource culture="en-US" name="nombre_del_interviniente_solicitante" value="Solicitante(s)"></resource>
   <resource culture="en-US" name="nombre_del_interviniente_requerido" value="Requerido(s)"></resource>
-  <resource culture="en-US" name="Fecha_de_Recepcion" value="Fecha de Recepción"></resource>
-  <resource culture="en-US" name="Fecha_de_Aceptacion" value="Fecha de Aceptación"></resource>
-  <resource culture="en-US" name="Cumplimiento" value="Cumplimiento"></resource>
-  <resource culture="en-US" name="Incidente" value="Incidente"></resource>
-  <resource culture="en-US" name="A_Tiempo" value="A Tiempo"></resource>
-  <resource culture="en-US" name="Archivo" value="Documento"></resource>
+  <resource culture="en-US" name="Fecha_de_Notificacion" value="Fecha de Notificación"></resource>
+  <resource culture="en-US" name="Hora_de_Notificacion" value="Hora de Notificación"></resource>
+  <resource culture="en-US" name="Notificador" value="Notificador"></resource>
+  <resource culture="en-US" name="Resultado" value="Resultado"></resource>
+  <resource culture="en-US" name="Incidente_en_la_Recepcion" value="Incidente en la Recepción"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="en-US" name="TabResultado_de_Notificacion" value="Resultado de Notificación"></resource>
 
 </resources>

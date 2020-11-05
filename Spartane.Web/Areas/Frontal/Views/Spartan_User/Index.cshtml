@@ -208,6 +208,10 @@
                                     <th>@Resources.Spartan_UserResources.Username</th>
                                     <th>@Resources.Spartan_UserResources.Password</th>
 
+
+                                    <th>Cargo</th>
+                                    <th>Unidad</th>
+
                                 </tr>
                             </thead>
                             <tfoot style="display:table-header-group;">
@@ -218,6 +222,9 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
@@ -331,6 +338,9 @@
         var Username = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
         var Password = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
 
+        var Cargo = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
+        var Unidad = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
+
 
         var queryString = "&Id_User=" + Id_User 
         + "&Name=" + Name
@@ -338,7 +348,9 @@
         + "&Email=" + Email
         + "&Status=" + Status
         + "&Username=" + Username
-        + "&Password=" + Password
+            + "&Password=" + Password
+            + "&Cargo=" + Cargo
+            + "&Unidad=" + Unidad
 ;
 
         var url = "@Url.Content("~/Frontal/Spartan_User/Export?format=")" + format
@@ -356,6 +368,9 @@
         var Username = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
         var Password = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
 
+        var Cargo = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
+        var Unidad = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
+
 
         return "&Id_User=" + Id_User 
         + "&Name=" + Name
@@ -363,7 +378,9 @@
         + "&Email=" + Email
         + "&Status=" + Status
         + "&Username=" + Username
-        + "&Password=" + Password
+            + "&Password=" + Password
+            + "&Cargo=" + Cargo
+            + "&Unidad=" + Unidad
 ;
 
     }
@@ -414,6 +431,7 @@
                 + "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length),
             async:false,
             success: function (data) {
+                debugger;
                 var printWindow = window.open();
                 var title = '@Resources.Resources.PrintText';
                 printWindow.document.write('<title>' + title + '</title>');
@@ -422,7 +440,8 @@
                 printWindow.close();
 
             },
-            error: function () {
+            error: function (resop) {
+                debugger;
                 showNotification('Error', "error");
             }
         });
@@ -573,7 +592,10 @@
                 ,{ "data": "Email", "orderable": true }
                 ,{ "data": "StatusDescription", "orderable": true }
                 ,{ "data": "Username", "orderable": true }
-                ,{ "data": "Password", "orderable": true }
+                , { "data": "Password", "orderable": true }
+
+                , { "data": "Cargo", "orderable": true }
+                , { "data": "UnidadDescription", "orderable": true }
 
             ],
             "order": [[1, "asc"]],

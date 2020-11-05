@@ -7,6 +7,8 @@ using Spartane.Core.Domain.Modulo_Atencion_Inicial;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Documento;
 using Spartane.Core.Domain.Documento;
+using Spartane.Core.Domain.Detalle_de_Datos_Generales;
+using Spartane.Core.Domain.Detalle_de_Imputado;
 using Spartane.Core.Domain.Spartane_File;
 
 using System.ComponentModel.DataAnnotations;
@@ -27,6 +29,8 @@ namespace Spartane.Core.Domain.Detalle_de_Documentos_MPO
         public int? Usuario_que_Registra { get; set; }
         public int? Tipo_de_Documento { get; set; }
         public int? Documento { get; set; }
+        public int? Involucrado { get; set; }
+        public int? Probable_Responsable { get; set; }
         public int? Archivo_Adjunto { get; set; }
         public string Archivo_Adjunto_URL { get; set; }
         public string Observaciones { get; set; }
@@ -40,6 +44,10 @@ namespace Spartane.Core.Domain.Detalle_de_Documentos_MPO
         public virtual Spartane.Core.Domain.Tipo_de_Documento.Tipo_de_Documento Tipo_de_Documento_Tipo_de_Documento { get; set; }
         [ForeignKey("Documento")]
         public virtual Spartane.Core.Domain.Documento.Documento Documento_Documento { get; set; }
+        [ForeignKey("Involucrado")]
+        public virtual Spartane.Core.Domain.Detalle_de_Datos_Generales.Detalle_de_Datos_Generales Involucrado_Detalle_de_Datos_Generales { get; set; }
+        [ForeignKey("Probable_Responsable")]
+        public virtual Spartane.Core.Domain.Detalle_de_Imputado.Detalle_de_Imputado Probable_Responsable_Detalle_de_Imputado { get; set; }
         [ForeignKey("Archivo_Adjunto")]
         public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Archivo_Adjunto_Spartane_File { get; set; }
 
@@ -54,6 +62,8 @@ namespace Spartane.Core.Domain.Detalle_de_Documentos_MPO
         public int? Usuario_que_Registra { get; set; }
         public int? Tipo_de_Documento { get; set; }
         public int? Documento { get; set; }
+        public int? Involucrado { get; set; }
+        public int? Probable_Responsable { get; set; }
         public int? Archivo_Adjunto { get; set; }
         public string Archivo_Adjunto_URL { get; set; }
         public string Observaciones { get; set; }
@@ -67,6 +77,10 @@ namespace Spartane.Core.Domain.Detalle_de_Documentos_MPO
         public virtual Spartane.Core.Domain.Tipo_de_Documento.Tipo_de_Documento Tipo_de_Documento_Tipo_de_Documento { get; set; }
         [ForeignKey("Documento")]
         public virtual Spartane.Core.Domain.Documento.Documento Documento_Documento { get; set; }
+        [ForeignKey("Involucrado")]
+        public virtual Spartane.Core.Domain.Detalle_de_Datos_Generales.Detalle_de_Datos_Generales Involucrado_Detalle_de_Datos_Generales { get; set; }
+        [ForeignKey("Probable_Responsable")]
+        public virtual Spartane.Core.Domain.Detalle_de_Imputado.Detalle_de_Imputado Probable_Responsable_Detalle_de_Imputado { get; set; }
         [ForeignKey("Archivo_Adjunto")]
         public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Archivo_Adjunto_Spartane_File { get; set; }
 

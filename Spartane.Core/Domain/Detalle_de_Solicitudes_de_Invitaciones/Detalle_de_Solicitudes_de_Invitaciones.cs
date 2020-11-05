@@ -7,10 +7,9 @@ using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Invitacion;
 using Spartane.Core.Domain.Tipo_de_Funcion;
-using Spartane.Core.Domain.Cumplimiento;
+using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Resultado_de_Notificacion;
 using Spartane.Core.Domain.Incidente_con_Invitacion;
-using Spartane.Core.Domain.A_Tiempo;
-using Spartane.Core.Domain.Spartane_File;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -34,13 +33,11 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitudes_de_Invitaciones
         public DateTime? Fecha_de_la_cita { get; set; }
         public string Hora_de_la_Cita { get; set; }
         public string Domicilio { get; set; }
-        public DateTime? Fecha_de_Recepcion { get; set; }
-        public DateTime? Fecha_de_Aceptacion { get; set; }
-        public int? Cumplimiento { get; set; }
-        public int? Incidente { get; set; }
-        public short? A_Tiempo { get; set; }
-        public int? Archivo { get; set; }
-        public string Archivo_URL { get; set; }
+        public DateTime? Fecha_de_Notificacion { get; set; }
+        public string Hora_de_Notificacion { get; set; }
+        public int? Notificador { get; set; }
+        public int? Resultado { get; set; }
+        public int? Incidente_en_la_Recepcion { get; set; }
 
         [ForeignKey("Solicitud")]
         public virtual Spartane.Core.Domain.Solicitud.Solicitud Solicitud_Solicitud { get; set; }
@@ -50,14 +47,12 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitudes_de_Invitaciones
         public virtual Spartane.Core.Domain.Tipo_de_Invitacion.Tipo_de_Invitacion Formato_de_Invitacion_Tipo_de_Invitacion { get; set; }
         [ForeignKey("Tipo_de_Participacion")]
         public virtual Spartane.Core.Domain.Tipo_de_Funcion.Tipo_de_Funcion Tipo_de_Participacion_Tipo_de_Funcion { get; set; }
-        [ForeignKey("Cumplimiento")]
-        public virtual Spartane.Core.Domain.Cumplimiento.Cumplimiento Cumplimiento_Cumplimiento { get; set; }
-        [ForeignKey("Incidente")]
-        public virtual Spartane.Core.Domain.Incidente_con_Invitacion.Incidente_con_Invitacion Incidente_Incidente_con_Invitacion { get; set; }
-        [ForeignKey("A_Tiempo")]
-        public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo A_Tiempo_A_Tiempo { get; set; }
-        [ForeignKey("Archivo")]
-        public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Archivo_Spartane_File { get; set; }
+        [ForeignKey("Notificador")]
+        public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Notificador_Spartan_User { get; set; }
+        [ForeignKey("Resultado")]
+        public virtual Spartane.Core.Domain.Resultado_de_Notificacion.Resultado_de_Notificacion Resultado_Resultado_de_Notificacion { get; set; }
+        [ForeignKey("Incidente_en_la_Recepcion")]
+        public virtual Spartane.Core.Domain.Incidente_con_Invitacion.Incidente_con_Invitacion Incidente_en_la_Recepcion_Incidente_con_Invitacion { get; set; }
 
     }
 	
@@ -74,13 +69,6 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitudes_de_Invitaciones
         public DateTime? Fecha_de_la_cita { get; set; }
         public string Hora_de_la_Cita { get; set; }
         public string Domicilio { get; set; }
-        public DateTime? Fecha_de_Recepcion { get; set; }
-        public DateTime? Fecha_de_Aceptacion { get; set; }
-        public int? Cumplimiento { get; set; }
-        public int? Incidente { get; set; }
-        public short? A_Tiempo { get; set; }
-        public int? Archivo { get; set; }
-        public string Archivo_URL { get; set; }
 
 		        [ForeignKey("Solicitud")]
         public virtual Spartane.Core.Domain.Solicitud.Solicitud Solicitud_Solicitud { get; set; }
@@ -90,14 +78,24 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitudes_de_Invitaciones
         public virtual Spartane.Core.Domain.Tipo_de_Invitacion.Tipo_de_Invitacion Formato_de_Invitacion_Tipo_de_Invitacion { get; set; }
         [ForeignKey("Tipo_de_Participacion")]
         public virtual Spartane.Core.Domain.Tipo_de_Funcion.Tipo_de_Funcion Tipo_de_Participacion_Tipo_de_Funcion { get; set; }
-        [ForeignKey("Cumplimiento")]
-        public virtual Spartane.Core.Domain.Cumplimiento.Cumplimiento Cumplimiento_Cumplimiento { get; set; }
-        [ForeignKey("Incidente")]
-        public virtual Spartane.Core.Domain.Incidente_con_Invitacion.Incidente_con_Invitacion Incidente_Incidente_con_Invitacion { get; set; }
-        [ForeignKey("A_Tiempo")]
-        public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo A_Tiempo_A_Tiempo { get; set; }
-        [ForeignKey("Archivo")]
-        public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Archivo_Spartane_File { get; set; }
+
+    }
+
+	public class Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_Notificacion
+    {
+                public int Clave { get; set; }
+        public DateTime? Fecha_de_Notificacion { get; set; }
+        public string Hora_de_Notificacion { get; set; }
+        public int? Notificador { get; set; }
+        public int? Resultado { get; set; }
+        public int? Incidente_en_la_Recepcion { get; set; }
+
+		        [ForeignKey("Notificador")]
+        public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Notificador_Spartan_User { get; set; }
+        [ForeignKey("Resultado")]
+        public virtual Spartane.Core.Domain.Resultado_de_Notificacion.Resultado_de_Notificacion Resultado_Resultado_de_Notificacion { get; set; }
+        [ForeignKey("Incidente_en_la_Recepcion")]
+        public virtual Spartane.Core.Domain.Incidente_con_Invitacion.Incidente_con_Invitacion Incidente_en_la_Recepcion_Incidente_con_Invitacion { get; set; }
 
     }
 

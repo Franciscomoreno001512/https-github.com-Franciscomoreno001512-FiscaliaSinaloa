@@ -5,6 +5,8 @@
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Tipo_de_Documento;
 @using Spartane.Core.Domain.Documento;
+@using Spartane.Core.Domain.Detalle_de_Datos_Generales;
+@using Spartane.Core.Domain.Detalle_de_Imputado;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -207,6 +209,8 @@
                                     <th>@Resources.Detalle_de_Documentos_MPOResources.Usuario_que_Registra</th>
                                     <th>@Resources.Detalle_de_Documentos_MPOResources.Tipo_de_Documento</th>
                                     <th>@Resources.Detalle_de_Documentos_MPOResources.Documento</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Involucrado</th>
+                                    <th>@Resources.Detalle_de_Documentos_MPOResources.Probable_Responsable</th>
                                     <th>@Resources.Detalle_de_Documentos_MPOResources.Observaciones</th>
                                     <th>@Resources.Detalle_de_Documentos_MPOResources.Archivo</th>
 
@@ -219,6 +223,8 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -346,6 +352,8 @@
         var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Documento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Documento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Involucrado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Probable_Responsable =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
 
@@ -357,6 +365,8 @@
         + "&Usuario_que_Registra=" + Usuario_que_Registra
         + "&Tipo_de_Documento=" + Tipo_de_Documento
         + "&Documento=" + Documento
+        + "&Involucrado=" + Involucrado
+        + "&Probable_Responsable=" + Probable_Responsable
         + "&Observaciones=" + Observaciones
         + "&Archivo=" + Archivo
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
@@ -379,6 +389,8 @@
         var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Documento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Documento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Involucrado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Probable_Responsable =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
 
@@ -390,6 +402,8 @@
         + "&Usuario_que_Registra=" + Usuario_que_Registra
         + "&Tipo_de_Documento=" + Tipo_de_Documento
         + "&Documento=" + Documento
+        + "&Involucrado=" + Involucrado
+        + "&Probable_Responsable=" + Probable_Responsable
         + "&Observaciones=" + Observaciones
         + "&Archivo=" + Archivo
 ;
@@ -572,11 +586,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -646,6 +660,8 @@
                 ,{ "data": "Usuario_que_RegistraName", "orderable": true, "name": "Usuario_que_RegistraName"}
                 ,{ "data": "Tipo_de_DocumentoDescripcion", "orderable": true, "name": "Tipo_de_DocumentoDescripcion" }
                 ,{ "data": "DocumentoDescripcion", "orderable": true, "name": "DocumentoDescripcion" }
+                ,{ "data": "InvolucradoNombre_Completo_del_Tutor", "orderable": true, "name": "InvolucradoNombre_Completo_del_Tutor"}
+                ,{ "data": "Probable_ResponsableNombre_Completo_del_Tutor", "orderable": true, "name": "Probable_ResponsableNombre_Completo_del_Tutor"}
                 ,{ "data": "Observaciones", "orderable": true, "name": "Observaciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Archivo","className": "dt-right", "orderable": true, "name": "Archivo" }
 

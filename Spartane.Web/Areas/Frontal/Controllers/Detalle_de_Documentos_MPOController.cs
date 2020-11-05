@@ -6,14 +6,8 @@ using Spartane.Core.Domain.Modulo_Atencion_Inicial;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Documento;
 using Spartane.Core.Domain.Documento;
-using Spartane.Core.Domain.Detalle_Involucrados_en_Documentos;
-
 using Spartane.Core.Domain.Detalle_de_Datos_Generales;
-
-using Spartane.Core.Domain.Detalle_Probable_Responsable_de_Documentos;
-
 using Spartane.Core.Domain.Detalle_de_Imputado;
-
 using Spartane.Core.Domain.Detalle_Delitos_de_Documentos;
 
 using Spartane.Core.Domain.Detalle_de_Delito;
@@ -32,14 +26,8 @@ using Spartane.Web.Areas.WebApiConsumer.Modulo_Atencion_Inicial;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Documento;
 using Spartane.Web.Areas.WebApiConsumer.Documento;
-using Spartane.Web.Areas.WebApiConsumer.Detalle_Involucrados_en_Documentos;
-
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Datos_Generales;
-
-using Spartane.Web.Areas.WebApiConsumer.Detalle_Probable_Responsable_de_Documentos;
-
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Imputado;
-
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Delitos_de_Documentos;
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Delito;
@@ -84,14 +72,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ISpartan_UserApiConsumer _ISpartan_UserApiConsumer;
         private ITipo_de_DocumentoApiConsumer _ITipo_de_DocumentoApiConsumer;
         private IDocumentoApiConsumer _IDocumentoApiConsumer;
-        private IDetalle_Involucrados_en_DocumentosApiConsumer _IDetalle_Involucrados_en_DocumentosApiConsumer;
-
         private IDetalle_de_Datos_GeneralesApiConsumer _IDetalle_de_Datos_GeneralesApiConsumer;
-
-        private IDetalle_Probable_Responsable_de_DocumentosApiConsumer _IDetalle_Probable_Responsable_de_DocumentosApiConsumer;
-
         private IDetalle_de_ImputadoApiConsumer _IDetalle_de_ImputadoApiConsumer;
-
         private IDetalle_Delitos_de_DocumentosApiConsumer _IDetalle_Delitos_de_DocumentosApiConsumer;
 
         private IDetalle_de_DelitoApiConsumer _IDetalle_de_DelitoApiConsumer;
@@ -113,7 +95,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_Documentos_MPOController(IDetalle_de_Documentos_MPOService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Documentos_MPOApiConsumer Detalle_de_Documentos_MPOApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_DocumentoApiConsumer Tipo_de_DocumentoApiConsumer , IDocumentoApiConsumer DocumentoApiConsumer , IDetalle_Involucrados_en_DocumentosApiConsumer Detalle_Involucrados_en_DocumentosApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer  , IDetalle_Probable_Responsable_de_DocumentosApiConsumer Detalle_Probable_Responsable_de_DocumentosApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer  , IDetalle_Delitos_de_DocumentosApiConsumer Detalle_Delitos_de_DocumentosApiConsumer , IDetalle_de_DelitoApiConsumer Detalle_de_DelitoApiConsumer  )
+        public Detalle_de_Documentos_MPOController(IDetalle_de_Documentos_MPOService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Documentos_MPOApiConsumer Detalle_de_Documentos_MPOApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_DocumentoApiConsumer Tipo_de_DocumentoApiConsumer , IDocumentoApiConsumer DocumentoApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer , IDetalle_Delitos_de_DocumentosApiConsumer Detalle_Delitos_de_DocumentosApiConsumer , IDetalle_de_DelitoApiConsumer Detalle_de_DelitoApiConsumer  )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -131,14 +113,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._ITipo_de_DocumentoApiConsumer = Tipo_de_DocumentoApiConsumer;
             this._IDocumentoApiConsumer = DocumentoApiConsumer;
-            this._IDetalle_Involucrados_en_DocumentosApiConsumer = Detalle_Involucrados_en_DocumentosApiConsumer;
-
             this._IDetalle_de_Datos_GeneralesApiConsumer = Detalle_de_Datos_GeneralesApiConsumer;
-
-            this._IDetalle_Probable_Responsable_de_DocumentosApiConsumer = Detalle_Probable_Responsable_de_DocumentosApiConsumer;
-
             this._IDetalle_de_ImputadoApiConsumer = Detalle_de_ImputadoApiConsumer;
-
             this._IDetalle_Delitos_de_DocumentosApiConsumer = Detalle_Delitos_de_DocumentosApiConsumer;
 
             this._IDetalle_de_DelitoApiConsumer = Detalle_de_DelitoApiConsumer;
@@ -200,10 +176,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			
 			ViewBag.IsNew = true;
 
-            var permissionDetalle_Involucrados_en_Documentos = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45388, ModuleId);
-            ViewBag.PermissionDetalle_Involucrados_en_Documentos = permissionDetalle_Involucrados_en_Documentos;
-            var permissionDetalle_Probable_Responsable_de_Documentos = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45389, ModuleId);
-            ViewBag.PermissionDetalle_Probable_Responsable_de_Documentos = permissionDetalle_Probable_Responsable_de_Documentos;
             var permissionDetalle_Delitos_de_Documentos = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45390, ModuleId);
             ViewBag.PermissionDetalle_Delitos_de_Documentos = permissionDetalle_Delitos_de_Documentos;
 
@@ -234,6 +206,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Tipo_de_Documento), "Tipo_de_Documento") ??  (string)Detalle_de_Documentos_MPOData.Tipo_de_Documento_Tipo_de_Documento.Descripcion
                     ,Documento = Detalle_de_Documentos_MPOData.Documento
                     ,DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Documento), "Documento") ??  (string)Detalle_de_Documentos_MPOData.Documento_Documento.Descripcion
+                    ,Involucrado = Detalle_de_Documentos_MPOData.Involucrado
+                    ,InvolucradoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Involucrado), "Detalle_de_Datos_Generales") ??  (string)Detalle_de_Documentos_MPOData.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo_del_Tutor
+                    ,Probable_Responsable = Detalle_de_Documentos_MPOData.Probable_Responsable
+                    ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Probable_Responsable), "Detalle_de_Imputado") ??  (string)Detalle_de_Documentos_MPOData.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                     ,Archivo_Adjunto = Detalle_de_Documentos_MPOData.Archivo_Adjunto
                     ,Observaciones = Detalle_de_Documentos_MPOData.Observaciones
                     ,Archivo = Detalle_de_Documentos_MPOData.Archivo
@@ -313,10 +289,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return null;
            _IDetalle_de_Documentos_MPOApiConsumer.SetAuthHeader(_tokenManager.Token);
 			Detalle_de_Documentos_MPOModel varDetalle_de_Documentos_MPO= new Detalle_de_Documentos_MPOModel();
-            var permissionDetalle_Involucrados_en_Documentos = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45388, ModuleId);
-            ViewBag.PermissionDetalle_Involucrados_en_Documentos = permissionDetalle_Involucrados_en_Documentos;
-            var permissionDetalle_Probable_Responsable_de_Documentos = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45389, ModuleId);
-            ViewBag.PermissionDetalle_Probable_Responsable_de_Documentos = permissionDetalle_Probable_Responsable_de_Documentos;
             var permissionDetalle_Delitos_de_Documentos = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45390, ModuleId);
             ViewBag.PermissionDetalle_Delitos_de_Documentos = permissionDetalle_Delitos_de_Documentos;
 
@@ -341,6 +313,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Tipo_de_Documento), "Tipo_de_Documento") ??  (string)Detalle_de_Documentos_MPOData.Tipo_de_Documento_Tipo_de_Documento.Descripcion
                     ,Documento = Detalle_de_Documentos_MPOData.Documento
                     ,DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Documento), "Documento") ??  (string)Detalle_de_Documentos_MPOData.Documento_Documento.Descripcion
+                    ,Involucrado = Detalle_de_Documentos_MPOData.Involucrado
+                    ,InvolucradoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Involucrado), "Detalle_de_Datos_Generales") ??  (string)Detalle_de_Documentos_MPOData.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo_del_Tutor
+                    ,Probable_Responsable = Detalle_de_Documentos_MPOData.Probable_Responsable
+                    ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Documentos_MPOData.Probable_Responsable), "Detalle_de_Imputado") ??  (string)Detalle_de_Documentos_MPOData.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                     ,Archivo_Adjunto = Detalle_de_Documentos_MPOData.Archivo_Adjunto
                     ,Observaciones = Detalle_de_Documentos_MPOData.Observaciones
                     ,Archivo = Detalle_de_Documentos_MPOData.Archivo
@@ -472,6 +448,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+		[HttpGet]
+        public ActionResult GetDetalle_de_Datos_GeneralesAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Nombre_Completo_del_Tutor).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo_del_Tutor")?? m.Nombre_Completo_del_Tutor,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
+        public ActionResult GetDetalle_de_ImputadoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_ImputadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IDetalle_de_ImputadoApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Nombre_Completo_del_Tutor).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Imputado", "Nombre_Completo_del_Tutor")?? m.Nombre_Completo_del_Tutor,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -588,6 +606,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
                         ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
+                        ,InvolucradoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo_del_Tutor
+                        ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
 			,Archivo_Adjunto = m.Archivo_Adjunto
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
@@ -711,6 +731,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
                         ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
+                        ,InvolucradoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo_del_Tutor
+                        ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
 			,Archivo_Adjunto = m.Archivo_Adjunto
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
@@ -777,9 +799,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-//Grid GetAutoComplete
         [HttpGet]
-        public JsonResult GetDetalle_Involucrados_en_Documentos_Involucrado_Detalle_de_Datos_Generales(string query, string where)
+        public JsonResult GetDetalle_de_Documentos_MPO_Involucrado_Detalle_de_Datos_Generales(string query, string where)
         {
             try
             {
@@ -805,10 +826,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-
-//Grid GetAutoComplete
         [HttpGet]
-        public JsonResult GetDetalle_Probable_Responsable_de_Documentos_Probable_Responsable_Detalle_de_Imputado(string query, string where)
+        public JsonResult GetDetalle_de_Documentos_MPO_Probable_Responsable_Detalle_de_Imputado(string query, string where)
         {
             try
             {
@@ -834,7 +853,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-
 //Grid GetAutoComplete
         [HttpGet]
         public JsonResult GetDetalle_Delitos_de_Documentos_Delito_Detalle_de_Delito(string query, string where)
@@ -1014,6 +1032,62 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Detalle_de_Documentos_MPO.Documento In (" + DocumentoIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvanceInvolucrado))
+            {
+                switch (filter.InvolucradoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Datos_Generales.Nombre_Completo_del_Tutor LIKE '" + filter.AdvanceInvolucrado + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Datos_Generales.Nombre_Completo_del_Tutor LIKE '%" + filter.AdvanceInvolucrado + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Datos_Generales.Nombre_Completo_del_Tutor = '" + filter.AdvanceInvolucrado + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Datos_Generales.Nombre_Completo_del_Tutor LIKE '%" + filter.AdvanceInvolucrado + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceInvolucradoMultiple != null && filter.AdvanceInvolucradoMultiple.Count() > 0)
+            {
+                var InvolucradoIds = string.Join(",", filter.AdvanceInvolucradoMultiple);
+
+                where += " AND Detalle_de_Documentos_MPO.Involucrado In (" + InvolucradoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceProbable_Responsable))
+            {
+                switch (filter.Probable_ResponsableFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_de_Imputado.Nombre_Completo_del_Tutor LIKE '" + filter.AdvanceProbable_Responsable + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_de_Imputado.Nombre_Completo_del_Tutor LIKE '%" + filter.AdvanceProbable_Responsable + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_de_Imputado.Nombre_Completo_del_Tutor = '" + filter.AdvanceProbable_Responsable + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_de_Imputado.Nombre_Completo_del_Tutor LIKE '%" + filter.AdvanceProbable_Responsable + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceProbable_ResponsableMultiple != null && filter.AdvanceProbable_ResponsableMultiple.Count() > 0)
+            {
+                var Probable_ResponsableIds = string.Join(",", filter.AdvanceProbable_ResponsableMultiple);
+
+                where += " AND Detalle_de_Documentos_MPO.Probable_Responsable In (" + Probable_ResponsableIds + ")";
+            }
+
             if (filter.Archivo_Adjunto != RadioOptions.NoApply)
                 where += " AND Detalle_de_Documentos_MPO.Archivo_Adjunto " + (filter.Archivo_Adjunto == RadioOptions.Yes ? ">" : "==") + " 0";
 
@@ -1058,156 +1132,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return file == null ? new Grid_File { FileId = 0, FileSize = 0, FileName = "" } : new Grid_File { FileId = file.File_Id, FileName = file.Description, FileSize = file.File_Size ?? 0, };
         }
 
-        public ActionResult GetDetalle_Involucrados_en_Documentos(int draw, int start, int length, string RelationId = "0")
-        {
-            if (RelationId == "0")
-            {
-                return Json(new { recordsTotal = 0, recordsFiltered = 0, data = new List<Detalle_Involucrados_en_DocumentosGridModel>() }, JsonRequestBehavior.AllowGet);
-            }
-
-            if (!_tokenManager.GenerateToken())
-                return null;
-            _IDetalle_Involucrados_en_DocumentosApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-            NameValueCollection filter = Request.QueryString;
-
-            var pageSize = length;
-            var pageIndex = start + 1;
-            string where = "Detalle_Involucrados_en_Documentos.IdDocumentos=" + RelationId;
-            if("int" == "string")
-            {
-	           where = "Detalle_Involucrados_en_Documentos.IdDocumentos='" + RelationId + "'";
-            }
-            var result = _IDetalle_Involucrados_en_DocumentosApiConsumer.ListaSelAll(start, pageSize, where,"").Resource;
-            if (result.Detalle_Involucrados_en_Documentoss == null)
-                result.Detalle_Involucrados_en_Documentoss = new List<Detalle_Involucrados_en_Documentos>();
-
-            _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-            var jsonResult = Json(new
-            {
-                data = result.Detalle_Involucrados_en_Documentoss.Select(m => new Detalle_Involucrados_en_DocumentosGridModel
-                {
-                    Clave = m.Clave
-
-                        ,Involucrado = m.Involucrado
-                        ,InvolucradoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_Completo_del_Tutor") ??(string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo_del_Tutor
-
-                }).ToList(),
-                recordsTotal = result.RowCount,
-                recordsFiltered = result.RowCount,
-            }, JsonRequestBehavior.AllowGet);
-
-            jsonResult.MaxJsonLength = int.MaxValue;
-
-            return jsonResult;
-        }
-        public List<Detalle_Involucrados_en_DocumentosGridModel> GetDetalle_Involucrados_en_DocumentosData(string Id, int start, int length, out int RowCount)
-        {
-            RowCount = 0;
-            var pageSize = length;
-            var pageIndex = start + 1;
-            List<Detalle_Involucrados_en_DocumentosGridModel> resultData = new List<Detalle_Involucrados_en_DocumentosGridModel>();
-            string where = "Detalle_Involucrados_en_Documentos.IdDocumentos=" + Id;
-            if("int" == "string")
-            {
-                where = "Detalle_Involucrados_en_Documentos.IdDocumentos='" + Id + "'";
-            }
-            if (!_tokenManager.GenerateToken())
-                return null;
-            _IDetalle_Involucrados_en_DocumentosApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var result = _IDetalle_Involucrados_en_DocumentosApiConsumer.ListaSelAll(start, pageSize, where, "").Resource;
-            _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-            if (result.Detalle_Involucrados_en_Documentoss != null)
-            {
-                resultData = result.Detalle_Involucrados_en_Documentoss.Select(m => new Detalle_Involucrados_en_DocumentosGridModel
-                    {
-                        Clave = m.Clave
-
-                        ,Involucrado = m.Involucrado
-                        ,InvolucradoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_Completo_del_Tutor") ??(string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo_del_Tutor
-
-
-                    }).ToList();
-                RowCount = result.RowCount;
-            }
-            return resultData;
-        }
-        public ActionResult GetDetalle_Probable_Responsable_de_Documentos(int draw, int start, int length, string RelationId = "0")
-        {
-            if (RelationId == "0")
-            {
-                return Json(new { recordsTotal = 0, recordsFiltered = 0, data = new List<Detalle_Probable_Responsable_de_DocumentosGridModel>() }, JsonRequestBehavior.AllowGet);
-            }
-
-            if (!_tokenManager.GenerateToken())
-                return null;
-            _IDetalle_Probable_Responsable_de_DocumentosApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-            NameValueCollection filter = Request.QueryString;
-
-            var pageSize = length;
-            var pageIndex = start + 1;
-            string where = "Detalle_Probable_Responsable_de_Documentos.IdDocumentos=" + RelationId;
-            if("int" == "string")
-            {
-	           where = "Detalle_Probable_Responsable_de_Documentos.IdDocumentos='" + RelationId + "'";
-            }
-            var result = _IDetalle_Probable_Responsable_de_DocumentosApiConsumer.ListaSelAll(start, pageSize, where,"").Resource;
-            if (result.Detalle_Probable_Responsable_de_Documentoss == null)
-                result.Detalle_Probable_Responsable_de_Documentoss = new List<Detalle_Probable_Responsable_de_Documentos>();
-
-            _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-            var jsonResult = Json(new
-            {
-                data = result.Detalle_Probable_Responsable_de_Documentoss.Select(m => new Detalle_Probable_Responsable_de_DocumentosGridModel
-                {
-                    Clave = m.Clave
-
-                        ,Probable_Responsable = m.Probable_Responsable
-                        ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Nombre_Completo_del_Tutor") ??(string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
-
-                }).ToList(),
-                recordsTotal = result.RowCount,
-                recordsFiltered = result.RowCount,
-            }, JsonRequestBehavior.AllowGet);
-
-            jsonResult.MaxJsonLength = int.MaxValue;
-
-            return jsonResult;
-        }
-        public List<Detalle_Probable_Responsable_de_DocumentosGridModel> GetDetalle_Probable_Responsable_de_DocumentosData(string Id, int start, int length, out int RowCount)
-        {
-            RowCount = 0;
-            var pageSize = length;
-            var pageIndex = start + 1;
-            List<Detalle_Probable_Responsable_de_DocumentosGridModel> resultData = new List<Detalle_Probable_Responsable_de_DocumentosGridModel>();
-            string where = "Detalle_Probable_Responsable_de_Documentos.IdDocumentos=" + Id;
-            if("int" == "string")
-            {
-                where = "Detalle_Probable_Responsable_de_Documentos.IdDocumentos='" + Id + "'";
-            }
-            if (!_tokenManager.GenerateToken())
-                return null;
-            _IDetalle_Probable_Responsable_de_DocumentosApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var result = _IDetalle_Probable_Responsable_de_DocumentosApiConsumer.ListaSelAll(start, pageSize, where, "").Resource;
-            _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-            if (result.Detalle_Probable_Responsable_de_Documentoss != null)
-            {
-                resultData = result.Detalle_Probable_Responsable_de_Documentoss.Select(m => new Detalle_Probable_Responsable_de_DocumentosGridModel
-                    {
-                        Clave = m.Clave
-
-                        ,Probable_Responsable = m.Probable_Responsable
-                        ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Nombre_Completo_del_Tutor") ??(string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
-
-
-                    }).ToList();
-                RowCount = result.RowCount;
-            }
-            return resultData;
-        }
         public ActionResult GetDetalle_Delitos_de_Documentos(int draw, int start, int length, string RelationId = "0")
         {
             if (RelationId == "0")
@@ -1298,46 +1222,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (id.ToString() != "0")
                 {
                         string where = "";
-                    _IDetalle_Involucrados_en_DocumentosApiConsumer.SetAuthHeader(_tokenManager.Token);
-                    where = "Detalle_Involucrados_en_Documentos.IdDocumentos=" + id;
-                    if("int" == "string")
-                    {
-	                where = "Detalle_Involucrados_en_Documentos.IdDocumentos='" + id + "'";
-                    }
-                    var Detalle_Involucrados_en_DocumentosInfo =
-                        _IDetalle_Involucrados_en_DocumentosApiConsumer.ListaSelAll(1, int.MaxValue, where,"").Resource;
-
-                    if (Detalle_Involucrados_en_DocumentosInfo.Detalle_Involucrados_en_Documentoss.Count > 0)
-                    {
-                        var resultDetalle_Involucrados_en_Documentos = true;
-                        //Removing associated job history with attachment
-                        foreach (var Detalle_Involucrados_en_DocumentosItem in Detalle_Involucrados_en_DocumentosInfo.Detalle_Involucrados_en_Documentoss)
-                            resultDetalle_Involucrados_en_Documentos = resultDetalle_Involucrados_en_Documentos
-                                              && _IDetalle_Involucrados_en_DocumentosApiConsumer.Delete(Detalle_Involucrados_en_DocumentosItem.Clave, null,null).Resource;
-
-                        if (!resultDetalle_Involucrados_en_Documentos)
-                            return Json(false, JsonRequestBehavior.AllowGet);
-                    }
-                    _IDetalle_Probable_Responsable_de_DocumentosApiConsumer.SetAuthHeader(_tokenManager.Token);
-                    where = "Detalle_Probable_Responsable_de_Documentos.IdDocumentos=" + id;
-                    if("int" == "string")
-                    {
-	                where = "Detalle_Probable_Responsable_de_Documentos.IdDocumentos='" + id + "'";
-                    }
-                    var Detalle_Probable_Responsable_de_DocumentosInfo =
-                        _IDetalle_Probable_Responsable_de_DocumentosApiConsumer.ListaSelAll(1, int.MaxValue, where,"").Resource;
-
-                    if (Detalle_Probable_Responsable_de_DocumentosInfo.Detalle_Probable_Responsable_de_Documentoss.Count > 0)
-                    {
-                        var resultDetalle_Probable_Responsable_de_Documentos = true;
-                        //Removing associated job history with attachment
-                        foreach (var Detalle_Probable_Responsable_de_DocumentosItem in Detalle_Probable_Responsable_de_DocumentosInfo.Detalle_Probable_Responsable_de_Documentoss)
-                            resultDetalle_Probable_Responsable_de_Documentos = resultDetalle_Probable_Responsable_de_Documentos
-                                              && _IDetalle_Probable_Responsable_de_DocumentosApiConsumer.Delete(Detalle_Probable_Responsable_de_DocumentosItem.Clave, null,null).Resource;
-
-                        if (!resultDetalle_Probable_Responsable_de_Documentos)
-                            return Json(false, JsonRequestBehavior.AllowGet);
-                    }
                     _IDetalle_Delitos_de_DocumentosApiConsumer.SetAuthHeader(_tokenManager.Token);
                     where = "Detalle_Delitos_de_Documentos.IdDocumentos=" + id;
                     if("int" == "string")
@@ -1409,6 +1293,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_Registra = varDetalle_de_Documentos_MPO.Usuario_que_Registra
                         ,Tipo_de_Documento = varDetalle_de_Documentos_MPO.Tipo_de_Documento
                         ,Documento = varDetalle_de_Documentos_MPO.Documento
+                        ,Involucrado = varDetalle_de_Documentos_MPO.Involucrado
+                        ,Probable_Responsable = varDetalle_de_Documentos_MPO.Probable_Responsable
                         ,Archivo_Adjunto = (varDetalle_de_Documentos_MPO.Archivo_Adjunto.HasValue && varDetalle_de_Documentos_MPO.Archivo_Adjunto != 0) ? ((int?)Convert.ToInt32(varDetalle_de_Documentos_MPO.Archivo_Adjunto.Value)) : null
 
                         ,Observaciones = varDetalle_de_Documentos_MPO.Observaciones
@@ -1427,266 +1313,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             catch (ServiceException ex)
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        [NonAction]
-        public bool CopyDetalle_Involucrados_en_Documentos(int MasterId, int referenceId, List<Detalle_Involucrados_en_DocumentosGridModelPost> Detalle_Involucrados_en_DocumentosItems)
-        {
-            try
-            {
-                if (referenceId <= 0)
-                    return true;
-
-                if (!_tokenManager.GenerateToken())
-                    return false;
-
-                _IDetalle_Involucrados_en_DocumentosApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-                var Detalle_Involucrados_en_DocumentosData = _IDetalle_Involucrados_en_DocumentosApiConsumer.ListaSelAll(1, int.MaxValue, "Detalle_Involucrados_en_Documentos.IdDocumentos=" + referenceId,"").Resource;
-                if (Detalle_Involucrados_en_DocumentosData == null || Detalle_Involucrados_en_DocumentosData.Detalle_Involucrados_en_Documentoss.Count == 0)
-                    return true;
-
-                var result = true;
-
-                Detalle_Involucrados_en_DocumentosGridModelPost modelDataToChange = null;
-                //var insertId = 0;
-                foreach (var varDetalle_Involucrados_en_Documentos in Detalle_Involucrados_en_DocumentosData.Detalle_Involucrados_en_Documentoss)
-                {
-                    if (!result)
-                        return result;
-
-                    //Initialization
-                    //insertId = 0;
-                    modelDataToChange = null;
-                    Detalle_Involucrados_en_Documentos Detalle_Involucrados_en_Documentos1 = varDetalle_Involucrados_en_Documentos;
-
-                    if (Detalle_Involucrados_en_DocumentosItems != null && Detalle_Involucrados_en_DocumentosItems.Any(m => m.Clave == Detalle_Involucrados_en_Documentos1.Clave))
-                    {
-                        modelDataToChange = Detalle_Involucrados_en_DocumentosItems.FirstOrDefault(m => m.Clave == Detalle_Involucrados_en_Documentos1.Clave);
-                    }
-                    //Chaning Id Value
-                    varDetalle_Involucrados_en_Documentos.IdDocumentos = MasterId;
-                    var insertId = _IDetalle_Involucrados_en_DocumentosApiConsumer.Insert(varDetalle_Involucrados_en_Documentos,null,null).Resource;
-                    if (insertId > 0 && modelDataToChange != null)
-                        modelDataToChange.Clave = insertId;
-
-                    result = insertId > 0;
-                }
-                return result;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        [HttpPost]
-        public ActionResult PostDetalle_Involucrados_en_Documentos(List<Detalle_Involucrados_en_DocumentosGridModelPost> Detalle_Involucrados_en_DocumentosItems, int MasterId, string referenceId)
-        {
-            try
-            {
-                bool result = true;
-
-                //if (referenceId > 0 && MasterId != referenceId)
-                //    if (!CopyDetalle_Involucrados_en_Documentos(MasterId, referenceId, Detalle_Involucrados_en_DocumentosItems))
-                //        return Json(false, JsonRequestBehavior.AllowGet);
-
-                if (Detalle_Involucrados_en_DocumentosItems != null && Detalle_Involucrados_en_DocumentosItems.Count > 0)
-                {
-                    //Generating token
-                    if (!_tokenManager.GenerateToken())
-                        return Json(null, JsonRequestBehavior.AllowGet);
-
-                    _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                    _IDetalle_Involucrados_en_DocumentosApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-                    foreach (var Detalle_Involucrados_en_DocumentosItem in Detalle_Involucrados_en_DocumentosItems)
-                    {
-
-
-
-                        //Removal Request
-                        if (Detalle_Involucrados_en_DocumentosItem.Removed)
-                        {
-                            result = result && _IDetalle_Involucrados_en_DocumentosApiConsumer.Delete(Detalle_Involucrados_en_DocumentosItem.Clave, null,null).Resource;
-                            continue;
-                        }
-						if (referenceId.ToString() != MasterId.ToString())
-							Detalle_Involucrados_en_DocumentosItem.Clave = 0;
-
-                        var Detalle_Involucrados_en_DocumentosData = new Detalle_Involucrados_en_Documentos
-                        {
-                            IdDocumentos = MasterId
-                            ,Clave = Detalle_Involucrados_en_DocumentosItem.Clave
-                            ,Involucrado = (Convert.ToInt32(Detalle_Involucrados_en_DocumentosItem.Involucrado) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Involucrados_en_DocumentosItem.Involucrado))
-
-                        };
-
-                        var resultId = Detalle_Involucrados_en_DocumentosItem.Clave > 0
-                           ? _IDetalle_Involucrados_en_DocumentosApiConsumer.Update(Detalle_Involucrados_en_DocumentosData,null,null).Resource
-                           : _IDetalle_Involucrados_en_DocumentosApiConsumer.Insert(Detalle_Involucrados_en_DocumentosData,null,null).Resource;
-
-                        result = result && resultId != -1;
-                    }
-                }
-                return Json(result, JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-
-        [HttpGet]
-        public ActionResult GetDetalle_Involucrados_en_Documentos_Detalle_de_Datos_GeneralesAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(false).Resource;
-                foreach (var item in result)
-                {
-                    item.Nombre_Completo_del_Tutor= CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo_del_Tutor");
-                }
-                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        [NonAction]
-        public bool CopyDetalle_Probable_Responsable_de_Documentos(int MasterId, int referenceId, List<Detalle_Probable_Responsable_de_DocumentosGridModelPost> Detalle_Probable_Responsable_de_DocumentosItems)
-        {
-            try
-            {
-                if (referenceId <= 0)
-                    return true;
-
-                if (!_tokenManager.GenerateToken())
-                    return false;
-
-                _IDetalle_Probable_Responsable_de_DocumentosApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-                var Detalle_Probable_Responsable_de_DocumentosData = _IDetalle_Probable_Responsable_de_DocumentosApiConsumer.ListaSelAll(1, int.MaxValue, "Detalle_Probable_Responsable_de_Documentos.IdDocumentos=" + referenceId,"").Resource;
-                if (Detalle_Probable_Responsable_de_DocumentosData == null || Detalle_Probable_Responsable_de_DocumentosData.Detalle_Probable_Responsable_de_Documentoss.Count == 0)
-                    return true;
-
-                var result = true;
-
-                Detalle_Probable_Responsable_de_DocumentosGridModelPost modelDataToChange = null;
-                //var insertId = 0;
-                foreach (var varDetalle_Probable_Responsable_de_Documentos in Detalle_Probable_Responsable_de_DocumentosData.Detalle_Probable_Responsable_de_Documentoss)
-                {
-                    if (!result)
-                        return result;
-
-                    //Initialization
-                    //insertId = 0;
-                    modelDataToChange = null;
-                    Detalle_Probable_Responsable_de_Documentos Detalle_Probable_Responsable_de_Documentos1 = varDetalle_Probable_Responsable_de_Documentos;
-
-                    if (Detalle_Probable_Responsable_de_DocumentosItems != null && Detalle_Probable_Responsable_de_DocumentosItems.Any(m => m.Clave == Detalle_Probable_Responsable_de_Documentos1.Clave))
-                    {
-                        modelDataToChange = Detalle_Probable_Responsable_de_DocumentosItems.FirstOrDefault(m => m.Clave == Detalle_Probable_Responsable_de_Documentos1.Clave);
-                    }
-                    //Chaning Id Value
-                    varDetalle_Probable_Responsable_de_Documentos.IdDocumentos = MasterId;
-                    var insertId = _IDetalle_Probable_Responsable_de_DocumentosApiConsumer.Insert(varDetalle_Probable_Responsable_de_Documentos,null,null).Resource;
-                    if (insertId > 0 && modelDataToChange != null)
-                        modelDataToChange.Clave = insertId;
-
-                    result = insertId > 0;
-                }
-                return result;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        [HttpPost]
-        public ActionResult PostDetalle_Probable_Responsable_de_Documentos(List<Detalle_Probable_Responsable_de_DocumentosGridModelPost> Detalle_Probable_Responsable_de_DocumentosItems, int MasterId, string referenceId)
-        {
-            try
-            {
-                bool result = true;
-
-                //if (referenceId > 0 && MasterId != referenceId)
-                //    if (!CopyDetalle_Probable_Responsable_de_Documentos(MasterId, referenceId, Detalle_Probable_Responsable_de_DocumentosItems))
-                //        return Json(false, JsonRequestBehavior.AllowGet);
-
-                if (Detalle_Probable_Responsable_de_DocumentosItems != null && Detalle_Probable_Responsable_de_DocumentosItems.Count > 0)
-                {
-                    //Generating token
-                    if (!_tokenManager.GenerateToken())
-                        return Json(null, JsonRequestBehavior.AllowGet);
-
-                    _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                    _IDetalle_Probable_Responsable_de_DocumentosApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-                    foreach (var Detalle_Probable_Responsable_de_DocumentosItem in Detalle_Probable_Responsable_de_DocumentosItems)
-                    {
-
-
-
-                        //Removal Request
-                        if (Detalle_Probable_Responsable_de_DocumentosItem.Removed)
-                        {
-                            result = result && _IDetalle_Probable_Responsable_de_DocumentosApiConsumer.Delete(Detalle_Probable_Responsable_de_DocumentosItem.Clave, null,null).Resource;
-                            continue;
-                        }
-						if (referenceId.ToString() != MasterId.ToString())
-							Detalle_Probable_Responsable_de_DocumentosItem.Clave = 0;
-
-                        var Detalle_Probable_Responsable_de_DocumentosData = new Detalle_Probable_Responsable_de_Documentos
-                        {
-                            IdDocumentos = MasterId
-                            ,Clave = Detalle_Probable_Responsable_de_DocumentosItem.Clave
-                            ,Probable_Responsable = (Convert.ToInt32(Detalle_Probable_Responsable_de_DocumentosItem.Probable_Responsable) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Probable_Responsable_de_DocumentosItem.Probable_Responsable))
-
-                        };
-
-                        var resultId = Detalle_Probable_Responsable_de_DocumentosItem.Clave > 0
-                           ? _IDetalle_Probable_Responsable_de_DocumentosApiConsumer.Update(Detalle_Probable_Responsable_de_DocumentosData,null,null).Resource
-                           : _IDetalle_Probable_Responsable_de_DocumentosApiConsumer.Insert(Detalle_Probable_Responsable_de_DocumentosData,null,null).Resource;
-
-                        result = result && resultId != -1;
-                    }
-                }
-                return Json(result, JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-
-        [HttpGet]
-        public ActionResult GetDetalle_Probable_Responsable_de_Documentos_Detalle_de_ImputadoAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IDetalle_de_ImputadoApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IDetalle_de_ImputadoApiConsumer.SelAll(false).Resource;
-                foreach (var item in result)
-                {
-                    item.Nombre_Completo_del_Tutor= CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Imputado", "Nombre_Completo_del_Tutor");
-                }
-                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -2025,22 +1651,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddDetalle_Involucrados_en_Documentos(int rowIndex = 0, int functionMode = 0)
-        {
-            ViewBag.currentRowIndex = rowIndex;
-            ViewBag.functionMode = functionMode;
-            return PartialView("../Detalle_Involucrados_en_Documentos/AddDetalle_Involucrados_en_Documentos");
-        }
-
-        [HttpGet]
-        public ActionResult AddDetalle_Probable_Responsable_de_Documentos(int rowIndex = 0, int functionMode = 0)
-        {
-            ViewBag.currentRowIndex = rowIndex;
-            ViewBag.functionMode = functionMode;
-            return PartialView("../Detalle_Probable_Responsable_de_Documentos/AddDetalle_Probable_Responsable_de_Documentos");
-        }
-
-        [HttpGet]
         public ActionResult AddDetalle_Delitos_de_Documentos(int rowIndex = 0, int functionMode = 0)
         {
             ViewBag.currentRowIndex = rowIndex;
@@ -2220,6 +1830,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
                         ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
+                        ,InvolucradoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo_del_Tutor
+                        ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
 			,Archivo_Adjunto = m.Archivo_Adjunto
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
@@ -2302,6 +1914,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
                         ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
+                        ,InvolucradoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo_del_Tutor
+                        ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
 			,Archivo_Adjunto = m.Archivo_Adjunto
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
@@ -2366,6 +1980,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_Registra = varDetalle_de_Documentos_MPO.Usuario_que_Registra
                         ,Tipo_de_Documento = varDetalle_de_Documentos_MPO.Tipo_de_Documento
                         ,Documento = varDetalle_de_Documentos_MPO.Documento
+                        ,Involucrado = varDetalle_de_Documentos_MPO.Involucrado
+                        ,Probable_Responsable = varDetalle_de_Documentos_MPO.Probable_Responsable
                         ,Archivo_Adjunto = (varDetalle_de_Documentos_MPO.Archivo_Adjunto.HasValue && varDetalle_de_Documentos_MPO.Archivo_Adjunto != 0) ? ((int?)Convert.ToInt32(varDetalle_de_Documentos_MPO.Archivo_Adjunto.Value)) : null
 
                         ,Observaciones = varDetalle_de_Documentos_MPO.Observaciones
@@ -2394,11 +2010,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var m = _IDetalle_de_Documentos_MPOApiConsumer.Get_Datos_Generales(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_Involucrados_en_Documentos;
-                var Detalle_Involucrados_en_DocumentosData = GetDetalle_Involucrados_en_DocumentosData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Involucrados_en_Documentos);
-                int RowCount_Detalle_Probable_Responsable_de_Documentos;
-                var Detalle_Probable_Responsable_de_DocumentosData = GetDetalle_Probable_Responsable_de_DocumentosData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Probable_Responsable_de_Documentos);
-                int RowCount_Detalle_Delitos_de_Documentos;
+				                int RowCount_Detalle_Delitos_de_Documentos;
                 var Detalle_Delitos_de_DocumentosData = GetDetalle_Delitos_de_DocumentosData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Delitos_de_Documentos);
 
                 var result = new Detalle_de_Documentos_MPO_Datos_GeneralesModel
@@ -2414,6 +2026,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_DocumentoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Tipo_de_Documento.Descripcion
                         ,Documento = m.Documento
                         ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
+                        ,Involucrado = m.Involucrado
+                        ,InvolucradoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo_del_Tutor
+                        ,Probable_Responsable = m.Probable_Responsable
+                        ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
 			,Archivo_Adjunto = m.Archivo_Adjunto
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
@@ -2423,8 +2039,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 				var resultData = new
                 {
                     data = result
-                    ,Involucrado = Detalle_Involucrados_en_DocumentosData
-                    ,Probable_Responsable = Detalle_Probable_Responsable_de_DocumentosData
                     ,Delito = Detalle_Delitos_de_DocumentosData
 
                 };

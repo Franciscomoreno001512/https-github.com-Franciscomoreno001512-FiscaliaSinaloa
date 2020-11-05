@@ -221,6 +221,36 @@ public ApiResponse<int> Update_Datos_Generales(Detalle_de_Solicitudes_de_Invitac
             }
         }
 
+public ApiResponse<int> Update_Resultado_de_Notificacion(Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_Notificacion entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Resultado_de_Notificacion",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_Notificacion> Get_Resultado_de_Notificacion(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Detalle_de_Solicitudes_de_Invitaciones.Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_Notificacion>(baseApi, ApiControllerUrl + "/Get_Resultado_de_Notificacion?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.Detalle_de_Solicitudes_de_Invitaciones.Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_Notificacion>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.Detalle_de_Solicitudes_de_Invitaciones.Detalle_de_Solicitudes_de_Invitaciones_Resultado_de_Notificacion>(false, null);
+            }
+        }
+
 
     }
 }

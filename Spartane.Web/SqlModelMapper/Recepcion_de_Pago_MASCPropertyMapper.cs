@@ -23,9 +23,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Usuario_que_Recibe[Name]":
                 case "Usuario_que_RecibeName":
                     return "Spartan_User.Name";
-                case "Numero_de_Expediente[Numero_de_Folio]":
-                case "Numero_de_ExpedienteNumero_de_Folio":
-                    return "Solicitud.Numero_de_Folio";
+                case "Numero_de_Expediente[Numero_de_Expediente]":
+                case "Numero_de_ExpedienteNumero_de_Expediente":
+                    return "Solicitud.Numero_de_Expediente";
                 case "Requerido[Nombre_Completo]":
                 case "RequeridoNombre_Completo":
                     return "Detalle_de_Solicitud_Requerido.Nombre_Completo";
