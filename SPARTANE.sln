@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spartane.Web", "Spartane.Web\Spartane.Web.csproj", "{C181E28A-1011-4D9C-8EF3-6F2E6331678E}"
 EndProject
@@ -47,26 +47,7 @@ Global
 		{63F55CC4-7B31-4195-91EE-3A5C31B9C0FC} = {8B63884A-25F6-45DC-8D29-03F8922D90BA}
 		{7E1DD863-3658-407F-A096-DB0276B52201} = {8B63884A-25F6-45DC-8D29-03F8922D90BA}
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://totaltech.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Spartane.Core\\Spartane.Core.csproj
-		SccProjectTopLevelParentUniqueName1 = SPARTANE.sln
-		SccProjectName1 = Spartane.Core
-		SccLocalPath1 = Spartane.Core
-		SccProjectUniqueName2 = Spartane.Data\\Spartane.Data.csproj
-		SccProjectTopLevelParentUniqueName2 = SPARTANE.sln
-		SccProjectName2 = Spartane.Data
-		SccLocalPath2 = Spartane.Data
-		SccProjectUniqueName3 = Spartane.Services\\Spartane.Services.csproj
-		SccProjectTopLevelParentUniqueName3 = SPARTANE.sln
-		SccProjectName3 = Spartane.Services
-		SccLocalPath3 = Spartane.Services
-		SccProjectUniqueName4 = Spartane.Web\\Spartane.Web.csproj
-		SccProjectTopLevelParentUniqueName4 = SPARTANE.sln
-		SccProjectName4 = Spartane.Web
-		SccLocalPath4 = Spartane.Web
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB873239-E3FE-4D6D-BAA1-6FF35C323466}
 	EndGlobalSection
 EndGlobal

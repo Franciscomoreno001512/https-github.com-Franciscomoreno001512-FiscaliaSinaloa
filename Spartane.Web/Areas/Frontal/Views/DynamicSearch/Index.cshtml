@@ -173,6 +173,9 @@
                                                     </div>
 
                                                 </div>
+
+
+
                                                 <p style="font-weight:bold;position: relative;top: -10px;    width: 85px;">RESULTADOS</p>
 
                                                 <div class="scroll-area-sm" style="top: -15px;position: relative;">
@@ -208,7 +211,7 @@
                                 </div>
 
                             </div>
-							<div id="actionEdit" class="text-right" style="width:100%;">
+                            <div id="actionEdit" class="text-right" style="width:100%;">
                                 <button class="btn-wide btn btn-success" onclick="EditRow()" id='btnEditarRegistro' style="float: left; display:none; margin-top: 1em;">Editar Registro</button>
                             </div>
                             <div class="card-body" style="height: 40%;overflow: auto;" id="paneldatos">
@@ -299,7 +302,7 @@
             $('#TbodyDetails').empty();
             $('#new').css('display', 'none');
             GetDataToShow($($(this).find('td')[0]).html(), @ViewBag.idTablero);
-			DisabledAE($($(this).find('td')[3]).html());
+            DisabledAE($($(this).find('td')[3]).html());
 
         });
         $('#TabsBadget').on('click', 'button', function () {
@@ -649,8 +652,8 @@
             }
         });
     }
-	
-	    function DisabledAE(value) {
+
+    function DisabledAE(value) {
         var replaced = value.toString().split(' ').join('');
         //debugger;
         console.log(replaced);
@@ -673,6 +676,7 @@
             $("button[data-name='Involucrados']").prop("disabled", false);
         }
     }
+
 
     function GetResultSearchTable() {
 
