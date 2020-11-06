@@ -11835,6 +11835,14 @@
 <Content Include="Uploads\Scripts\Detalle_Delitos_de_Documentos.js" />
 <Content Include="Uploads\Scripts\Rules\Detalle_Delitos_de_DocumentosIndexRules.js" />
 <Content Include="Uploads\Scripts\Rules\Detalle_Delitos_de_DocumentosCreateRules.js" />
+<Content Include="Areas\Frontal\Views\Detalle_Involucrados_en_Documentos\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Involucrados_en_Documentos\Create.cshtml" />
+<Compile Include="Areas\Frontal\Models\Detalle_Involucrados_en_DocumentosAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Involucrados_en_DocumentosBusinessRuleModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Probable_Responsable_de_Documentos\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Probable_Responsable_de_Documentos\Create.cshtml" />
+<Compile Include="Areas\Frontal\Models\Detalle_Probable_Responsable_de_DocumentosAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Probable_Responsable_de_DocumentosBusinessRuleModel.cs" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -12834,6 +12842,14 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
 
 
 

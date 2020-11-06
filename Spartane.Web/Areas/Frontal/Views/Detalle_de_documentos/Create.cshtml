@@ -491,6 +491,7 @@
 
 
         $(document).ready(function () {
+
             $('#ObjectId').val('45018');
 		    
 		   
@@ -765,7 +766,7 @@
 				},
 				error: function (result)
 				{
-					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+					//showNotification("@Resources.Resources.ErrorContactingServer", "error");
 				}
 			});
 		
@@ -773,8 +774,8 @@
 
 
         function SendDetalle_de_documentosData(callBack) {
-			
-					
+
+            debugger;
 		 var arr = []; 
 		 $("form#CreateDetalle_de_documentos").find(':input').each(function( index ) {		 
 			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
@@ -1126,13 +1127,15 @@
                 debugger
                 if (!SendDetalle_de_documentosData(function (idvalor) {
                  debugger
-                    
+                    EjecutarValidacionesDespuesDeGuardar();
                     $('.loading').css('display', 'none');
                     $('#hdnIsNew').val("False");
-                    
+                    //aqui
+                    $("#ReferenceClave").text(idvalor);
                     $("#ReferenceClave").val(idvalor);
+                        
 
-                    OpenPrintFormats("", @Spartane.Web.SessionHelper.Role, "", false, "45018", formaid);
+                    OpenPrintFormats(idvalor, @Spartane.Web.SessionHelper.Role, "", false, "45018", formaid);
 
 
 
@@ -1157,4 +1160,3 @@
     <input type="hidden" id="Attribute" name="Attribute" value="" />
     <input type="hidden" id="Screen" name="Screen" value="" />
      <input type="hidden" id="Detalle_de_documentos_cmbLabelSelect" name="Detalle_de_documentos_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
-

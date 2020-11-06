@@ -118,6 +118,34 @@ if( GetValueByControlType($('#' + nameOfTable + 'Resultado' + rowIndex),nameOfTa
 }
 //BusinessRuleId:2074, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2091, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Resultado' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divPersonal_de_Seguimiento_Asignado').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Personal_de_Seguimiento_Asignado' + rowIndex));} else { $('#divPersonal_de_Seguimiento_Asignado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Personal_de_Seguimiento_Asignado' + rowIndex));}
+
+}
+//BusinessRuleId:2091, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2015, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( $('#' + nameOfTable + 'Resultado' + rowIndex).val()!=TryParseInt('null', 'null') ) { $("a[href='#tabAutorizacion']").css('display', 'block');} else { $("a[href='#tabAutorizacion']").css('display', 'none');}
+
+}
+//BusinessRuleId:2015, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2015, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( $('#' + nameOfTable + 'Resultado' + rowIndex).val()!=TryParseInt('null', 'null') ) { $("a[href='#tabAutorizacion']").css('display', 'block');} else { $("a[href='#tabAutorizacion']").css('display', 'none');}
+
+}
+//BusinessRuleId:2015, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2015, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( $('#' + nameOfTable + 'Resultado' + rowIndex).val()!=TryParseInt('null', 'null') ) { $("a[href='#tabAutorizacion']").css('display', 'block');} else { $("a[href='#tabAutorizacion']").css('display', 'none');}
+
+}
+//BusinessRuleId:2015, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -155,6 +183,15 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:2018, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+
+
+//BusinessRuleId:2097, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Personal_de_Seguimiento_Asignado' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') && EvaluaQuery("select estatus from solicitud with(nolock) where clave=FLD[Numero_de_Expediente]",rowIndex, nameOfTable)==TryParseInt('97', '97') && GetValueByControlType($('#' + nameOfTable + 'Resultado' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { EvaluaQuery(" exec uspGeneraParcialidadesMASC FLDD[lblClave]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:2097, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

@@ -29,6 +29,12 @@ namespace Spartane.Web.SqlModelMapper
                 case "Tipo_de_Acuerdo[Descripcion]":
                 case "Tipo_de_AcuerdoDescripcion":
                     return "Tipo_de_Acuerdo.Descripcion";
+                case "Solicitante[Nombre_Completo]":
+                case "SolicitanteNombre_Completo":
+                    return "Detalle_de_Solicitud_Solicitante.Nombre_Completo";
+                case "Requerido[Nombre_Completo]":
+                case "RequeridoNombre_Completo":
+                    return "Detalle_de_Solicitud_Requerido.Nombre_Completo";
                 case "Lugar_Acordado":
                     return "Acuerdos_MASC.Lugar_Acordado";
                 case "Domicilio_Acordado":
@@ -51,8 +57,14 @@ namespace Spartane.Web.SqlModelMapper
                     return "Spartan_User.Name";
                 case "Comentarios":
                     return "Acuerdos_MASC.Comentarios";
+                case "Acuerdo_Cumplido[Descripcion]":
+                case "Acuerdo_CumplidoDescripcion":
+                    return "A_Tiempo.Descripcion";
                 case "Fecha_de_Cumplimiento_de_Acuerdo":
                     return "Acuerdos_MASC.Fecha_de_Cumplimiento_de_Acuerdo";
+                case "Razon_de_Incumplimiento[Descripcion]":
+                case "Razon_de_IncumplimientoDescripcion":
+                    return "Razon_de_Incumplimiento.Descripcion";
                 case "Fecha_de_Revision":
                     return "Acuerdos_MASC.Fecha_de_Revision";
                 case "Hora_de_Revision":

@@ -14,14 +14,13 @@
   <resource culture="en-US" name="Fecha_de_la_cita" value="Fecha de la cita"></resource>
   <resource culture="en-US" name="Hora_de_la_Cita" value="Hora de la Cita"></resource>
   <resource culture="en-US" name="Lugar_de_la_Cita" value="Lugar de la Cita"></resource>
-  <resource culture="en-US" name="Archivo" value="Archivo"></resource>
   <resource culture="en-US" name="Invitados" value="Invitado(s)"></resource>
   <resource culture="en-US" name="Estatus" value="Estatus"></resource>
   <resource culture="en-US" name="Fecha_de_Notificacion" value="Fecha de Notificación"></resource>
   <resource culture="en-US" name="Hora_de_Notificacion" value="Hora de Notificación"></resource>
   <resource culture="en-US" name="Notificador" value="Notificador"></resource>
   <resource culture="en-US" name="Resultado" value="Resultado"></resource>
-  <resource culture="en-US" name="Incidente_en_la_Recepcion" value="Incidente en la Recepcion"></resource>
+  <resource culture="en-US" name="Incidente_en_la_Recepcion" value="Incidente en la Recepción"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 <resource culture="en-US" name="TabResultado_de_Notificacion" value="Resultado de Notificación"></resource>

@@ -99,6 +99,13 @@ function EjecutarValidacionesAntesDeGuardar(){
     return result;
 }
 function EjecutarValidacionesDespuesDeGuardar(){
+//BusinessRuleId:2096, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery("update Detalle_de_Solicitud_Representante_Legal set Numero_de_Expediente= GLOBAL[SpartanOperationId] where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2096, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

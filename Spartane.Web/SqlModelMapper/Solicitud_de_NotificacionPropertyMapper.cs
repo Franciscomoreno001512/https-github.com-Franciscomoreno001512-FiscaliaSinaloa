@@ -46,8 +46,6 @@ namespace Spartane.Web.SqlModelMapper
                     return "Solicitud_de_Notificacion.Hora_de_la_Cita";
                 case "Lugar_de_la_Cita":
                     return "Solicitud_de_Notificacion.Lugar_de_la_Cita";
-                case "Archivo":
-                    return "Solicitud_de_Notificacion.Archivo";
                 case "Estatus[Descripcion]":
                 case "EstatusDescripcion":
                     return "Estatus_de_Notificacion.Descripcion";

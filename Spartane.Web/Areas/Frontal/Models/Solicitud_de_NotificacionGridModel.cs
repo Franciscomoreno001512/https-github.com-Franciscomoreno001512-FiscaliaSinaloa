@@ -27,7 +27,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Fecha_de_la_cita { get; set; }
         public string Hora_de_la_Cita { get; set; }
         public string Lugar_de_la_Cita { get; set; }
-        public int? Archivo { get; set; }
         public int? Estatus { get; set; }
         public string EstatusDescripcion { get; set; }
         public string Fecha_de_Notificacion { get; set; }

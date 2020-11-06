@@ -1,16 +1,7 @@
 ﻿@using System.Collections.Generic
 @using System.Web.UI.WebControls
-@using Spartane.Core.Domain.Solicitud_de_Notificacion;
-@using Spartane.Core.Domain.Spartan_User;
-@using Spartane.Core.Domain.Origen_de_Invitacion;
-@using Spartane.Core.Domain.Modulo_Atencion_Inicial;
-@using Spartane.Core.Domain.Solicitud;
-@using Spartane.Core.Domain.Expediente_Inicial;
-@using Spartane.Core.Domain.Tipo_de_Invitacion;
-@using Spartane.Core.Domain.Estatus_de_Notificacion;
-@using Spartane.Core.Domain.Spartan_User;
-@using Spartane.Core.Domain.Resultado_de_Notificacion;
-@using Spartane.Core.Domain.Incidente_con_Invitacion;
+@using Spartane.Core.Domain.Detalle_Involucrados_en_Documentos;
+@using Spartane.Core.Domain.Detalle_de_Datos_Generales;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -46,7 +37,7 @@
 <div class="loading style-2"><div class="loading-wheel"></div></div>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>@Resources.Solicitud_de_NotificacionResources.Solicitud_de_Notificacion</h2>
+        <h2>@Resources.Detalle_Involucrados_en_DocumentosResources.Detalle_Involucrados_en_Documentos</h2>
         
         <ol class="breadcrumb">
             <li>
@@ -60,7 +51,7 @@
                 }
                 else
                 {
-                    <strong>@Resources.Solicitud_de_NotificacionResources.Solicitud_de_Notificacion</strong>
+                    <strong>@Resources.Detalle_Involucrados_en_DocumentosResources.Detalle_Involucrados_en_Documentos</strong>
                 }
                 
             </li>
@@ -71,12 +62,12 @@
             if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
             {
                 <h2>&nbsp;</h2>
-                <button onclick="Solicitud_de_NotificacionGetBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton" data-toggle="modal" data-target="#Solicitud_de_NotificacionBusinessRule-form">
+                <button onclick="Detalle_Involucrados_en_DocumentosGetBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton" data-toggle="modal" data-target="#Detalle_Involucrados_en_DocumentosBusinessRule-form">
                     <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
                         <i class="fa fa-cogs fa-spin"></i>
                     </a>
                 </button>
-                <div aria-hidden="true" class="modal fade in Solicitud_de_NotificacionPropertyBusinessModal" id="Solicitud_de_NotificacionPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                <div aria-hidden="true" class="modal fade in Detalle_Involucrados_en_DocumentosPropertyBusinessModal" id="Detalle_Involucrados_en_DocumentosPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -92,7 +83,7 @@
                                     </div>
                                     <div class="clearfix col-sm-12">&nbsp;</div>
                                     <div class="col-sm-12">
-                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Solicitud_de_NotificacionBusinessRule-form" onclick="Solicitud_de_NotificacionGetBusinessRule()">Business Rule</a>
+                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Detalle_Involucrados_en_DocumentosBusinessRule-form" onclick="Detalle_Involucrados_en_DocumentosGetBusinessRule()">Business Rule</a>
                                     </div>
                                 </div>
                             </div>
@@ -102,9 +93,9 @@
 
                 <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
                 </div>
-                <div aria-hidden="true" data-backdrop="static" class="modal fade in Solicitud_de_NotificacionBusinessRuleModal" id="Solicitud_de_NotificacionBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Involucrados_en_DocumentosBusinessRuleModal" id="Detalle_Involucrados_en_DocumentosBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
                 </div>
-                <div aria-hidden="true" data-backdrop="static" class="modal fade in Solicitud_de_NotificacionAddBusinessRuleModal" id="Solicitud_de_NotificacionAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Involucrados_en_DocumentosAddBusinessRuleModal" id="Detalle_Involucrados_en_DocumentosAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
                 </div>
             }
 		}
@@ -195,36 +186,20 @@
                     <div id="botonera">
 						@if (permission.New)
                         { 
-                            @Html.ActionLink(Resources.Resources.Create, "Create", "Solicitud_de_Notificacion", new { @class = "btn btn-primary" })
+                            @Html.ActionLink(Resources.Resources.Create, "Create", "Detalle_Involucrados_en_Documentos", new { @class = "btn btn-primary" })
                         }
-                        @Html.ActionLink(@Resources.Resources.AdvanceSearch, "ShowAdvanceFilter", "Solicitud_de_Notificacion", new { previousFilters = advanceSearch }, new { @class = ("btn btn-primary") })
+                        @Html.ActionLink(@Resources.Resources.AdvanceSearch, "ShowAdvanceFilter", "Detalle_Involucrados_en_Documentos", new { previousFilters = advanceSearch }, new { @class = ("btn btn-primary") })
                         <button onclick="ClearFilter()" class=" btn btn-primary">@Resources.Resources.ClearFilter</button>
                                 </div>
                     <div class="table-responsive">
 
-                        <table id="tblSolicitud_de_Notificacion" class="table table-striped table-bordered table-hover dataTables-example scroll_content" style="overflow-x:scroll;" cellspacing="0">
+                        <table id="tblDetalle_Involucrados_en_Documentos" class="table table-striped table-bordered table-hover dataTables-example scroll_content" style="overflow-x:scroll;" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>@Resources.Resources.Actions</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Folio</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Fecha_de_Solicitud</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Hora_de_Solicitud</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Usuario_que_Solicita</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Origen</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Expediente_Atencion_Temprana</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Expediente_Mecanismos_Alternos</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Carpeta_de_Investigacion</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Forma_de_Invitacion</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Numero_de_Invitacion</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Fecha_de_la_cita</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Hora_de_la_Cita</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Lugar_de_la_Cita</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Estatus</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Fecha_de_Notificacion</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Hora_de_Notificacion</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Notificador</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Resultado</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Incidente_en_la_Recepcion</th>
+                                    <th>@Resources.Detalle_Involucrados_en_DocumentosResources.Clave</th>
+                                    <th>@Resources.Detalle_Involucrados_en_DocumentosResources.IdDocumentos</th>
+                                    <th>@Resources.Detalle_Involucrados_en_DocumentosResources.Involucrado</th>
 
                                 </tr>
                             </thead>
@@ -232,22 +207,6 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="time"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="time"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="time"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
@@ -272,7 +231,7 @@
 @*@Scripts.Render("~/plugins/slimScroll")*@
 
 <script type="text/javascript" src="~/Scripts/Custom/tablePlugin.js"></script>
-<script type="text/javascript" src="~/Uploads/Scripts/Rules/Solicitud_de_NotificacionIndexRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_Involucrados_en_DocumentosIndexRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
 <style>
     .dataTables_filter {
         display: none;
@@ -308,7 +267,7 @@
         $('a').tooltip();
     });
 
-    var advanceSearchQuery = "@(advanceSearch)", isSolicitud_de_NotificacionTextSearch = true;
+    var advanceSearchQuery = "@(advanceSearch)", isDetalle_Involucrados_en_DocumentosTextSearch = true;
 
     function ClearFilter() {
 
@@ -327,7 +286,7 @@
 
     function ClearFilterConfig() {
         $.ajax({
-            url: '@Url.Content("~/Frontal/Solicitud_de_Notificacion/ClearAdvanceFilter")',
+            url: '@Url.Content("~/Frontal/Detalle_Involucrados_en_Documentos/ClearAdvanceFilter")',
             type: 'POST',
             dataType: "json",
             success: function (result) {
@@ -344,7 +303,7 @@
         var advanceSearch = {}, hasParameter = false;
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
-        $('#tblSolicitud_de_Notificacion').DataTable().draw();
+        $('#tblDetalle_Involucrados_en_Documentos').DataTable().draw();
         return false;
     }
 
@@ -365,49 +324,17 @@
 
         var queryString = GetQueryString();
 
-        var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Solicitud = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Solicitud = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Usuario_que_Solicita =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Expediente_Atencion_Temprana =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Expediente_Mecanismos_Alternos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Carpeta_de_Investigacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Forma_de_Invitacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_de_Invitacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_la_cita = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_la_Cita = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Lugar_de_la_Cita =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Notificacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Notificacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Notificador =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Incidente_en_la_Recepcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var IdDocumentos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Involucrado =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
-        var queryString = "&Folio=" + Folio 
-        + "&Fecha_de_Solicitud=" + Fecha_de_Solicitud
-        + "&Hora_de_Solicitud=" + Hora_de_Solicitud
-        + "&Usuario_que_Solicita=" + Usuario_que_Solicita
-        + "&Origen=" + Origen
-        + "&Expediente_Atencion_Temprana=" + Expediente_Atencion_Temprana
-        + "&Expediente_Mecanismos_Alternos=" + Expediente_Mecanismos_Alternos
-        + "&Carpeta_de_Investigacion=" + Carpeta_de_Investigacion
-        + "&Forma_de_Invitacion=" + Forma_de_Invitacion
-        + "&Numero_de_Invitacion=" + Numero_de_Invitacion
-        + "&Fecha_de_la_cita=" + Fecha_de_la_cita
-        + "&Hora_de_la_Cita=" + Hora_de_la_Cita
-        + "&Lugar_de_la_Cita=" + Lugar_de_la_Cita
-        + "&Estatus=" + Estatus
-        + "&Fecha_de_Notificacion=" + Fecha_de_Notificacion
-        + "&Hora_de_Notificacion=" + Hora_de_Notificacion
-        + "&Notificador=" + Notificador
-        + "&Resultado=" + Resultado
-        + "&Incidente_en_la_Recepcion=" + Incidente_en_la_Recepcion
+        var queryString = "&Clave=" + Clave 
+        + "&IdDocumentos=" + IdDocumentos
+        + "&Involucrado=" + Involucrado
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
-        var url = "@Url.Content("~/Frontal/Solicitud_de_Notificacion/Export?format=")" + format
+        var url = "@Url.Content("~/Frontal/Detalle_Involucrados_en_Documentos/Export?format=")" + format
             + "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
             + "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
 		    + "&where=" + where + "&order=" + order + 
@@ -418,46 +345,14 @@
     function GetQueryString() {
 	
 	 var counter = 0;
-        var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Solicitud = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Solicitud = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Usuario_que_Solicita =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Origen =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Expediente_Atencion_Temprana =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Expediente_Mecanismos_Alternos =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Carpeta_de_Investigacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Forma_de_Invitacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_de_Invitacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_la_cita = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_la_Cita = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Lugar_de_la_Cita =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Notificacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Notificacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Notificador =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Incidente_en_la_Recepcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var IdDocumentos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Involucrado =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
-        return "&Folio=" + Folio 
-        + "&Fecha_de_Solicitud=" + Fecha_de_Solicitud
-        + "&Hora_de_Solicitud=" + Hora_de_Solicitud
-        + "&Usuario_que_Solicita=" + Usuario_que_Solicita
-        + "&Origen=" + Origen
-        + "&Expediente_Atencion_Temprana=" + Expediente_Atencion_Temprana
-        + "&Expediente_Mecanismos_Alternos=" + Expediente_Mecanismos_Alternos
-        + "&Carpeta_de_Investigacion=" + Carpeta_de_Investigacion
-        + "&Forma_de_Invitacion=" + Forma_de_Invitacion
-        + "&Numero_de_Invitacion=" + Numero_de_Invitacion
-        + "&Fecha_de_la_cita=" + Fecha_de_la_cita
-        + "&Hora_de_la_Cita=" + Hora_de_la_Cita
-        + "&Lugar_de_la_Cita=" + Lugar_de_la_Cita
-        + "&Estatus=" + Estatus
-        + "&Fecha_de_Notificacion=" + Fecha_de_Notificacion
-        + "&Hora_de_Notificacion=" + Hora_de_Notificacion
-        + "&Notificador=" + Notificador
-        + "&Resultado=" + Resultado
-        + "&Incidente_en_la_Recepcion=" + Incidente_en_la_Recepcion
+        return "&Clave=" + Clave 
+        + "&IdDocumentos=" + IdDocumentos
+        + "&Involucrado=" + Involucrado
 ;
 
     }
@@ -473,7 +368,7 @@
 
         $('#spartan_formats').empty();
         $.ajax({
-            url: '@Url.Content("~/Frontal/Solicitud_de_Notificacion/GetFormats?RecordId=")' + idRecord,
+            url: '@Url.Content("~/Frontal/Detalle_Involucrados_en_Documentos/GetFormats?RecordId=")' + idRecord,
             type: 'Get',
             async: true,
             contentType: "multipart/form-data",
@@ -510,7 +405,7 @@
             if ($(item).is(':checked')) {
                 debugger
                 var FormatId = $(item).val();
-                var url = "@Url.Content("~/Frontal/Solicitud_de_Notificacion/PrintFormats?idFormat=")" + FormatId + "&RecordId=" + RecordId;
+                var url = "@Url.Content("~/Frontal/Detalle_Involucrados_en_Documentos/PrintFormats?idFormat=")" + FormatId + "&RecordId=" + RecordId;
                 var printWindow = window.open(url,'Imprimir Formato ' + i.toString() + '_blank');
                 i++;
 
@@ -528,7 +423,7 @@
 
 		var queryString = GetQueryString();
 		
-		var url = "@Url.Content("~/Frontal/Solicitud_de_Notificacion/Print")?format=3"
+		var url = "@Url.Content("~/Frontal/Detalle_Involucrados_en_Documentos/Print")?format=3"
 				+ "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
 				+ "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
 				+ "&where=" + where + "&order=" + order + queryString;
@@ -556,7 +451,7 @@
 
     function SetTitle(printWindow) {
         if (printWindow.document) {
-            printWindow.document.title = "Solicitud de Notificación Print";
+            printWindow.document.title = "Detalle Involucrados en Documentos Print";
         } else {
             setTimeout(SetTitle, 10);
         }
@@ -629,20 +524,20 @@
 
         });
 
-		setFilterNew('tblSolicitud_de_Notificacion');
+		setFilterNew('tblDetalle_Involucrados_en_Documentos');
 		
 		var oDatatableStateData;
         // initialize datatable variable
-        table = $('#tblSolicitud_de_Notificacion').DataTable({
+        table = $('#tblDetalle_Involucrados_en_Documentos').DataTable({
             dom: '<"html5buttons"B>lTfgt<"bottom"ip>',
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -664,7 +559,7 @@
             "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "@Resources.Resources.All"]],            
 			 "ajax": function (data, callback, settings, aoData) {
                 $.ajax({
-                    url: "@Url.Content("~/Frontal/Solicitud_de_Notificacion/GetSolicitud_de_NotificacionList")", 
+                    url: "@Url.Content("~/Frontal/Detalle_Involucrados_en_Documentos/GetDetalle_Involucrados_en_DocumentosList")", 
                     method: 'Post',
                     data: { "sEcho": data.draw, "iDisplayStart": data.start, "iDisplayLength": data.length, "sortDirection": data.order[0].dir, "sortColumn": data.order[0].column, "columns": data.columns, "where": MRWhere, "order": MROrder, "filters": GetQueryString(), "AdvanceSearch": GetAdvanceSearchQuery() }
                 }).done(callback);
@@ -674,15 +569,15 @@
             },
             "bStateSave": true,
             "fnStateSave": function (oSettings, oData) {
-                localStorage.setItem(JSON.stringify(oData), 'Solicitud_de_NotificacionDatatable_');
+                localStorage.setItem(JSON.stringify(oData), 'Detalle_Involucrados_en_DocumentosDatatable_');
             },
             "fnStateLoad": function (oSettings) {
-                var data = localStorage.getItem('Solicitud_de_NotificacionDatatable_');
+                var data = localStorage.getItem('Detalle_Involucrados_en_DocumentosDatatable_');
                 return JSON.parse(data);
             },
             "fnStateLoaded": function (oSettings, oData) {
                 oDatatableStateData = oData;              
-                setFilterState('tblSolicitud_de_Notificacion', oDatatableStateData); 
+                setFilterState('tblDetalle_Involucrados_en_Documentos', oDatatableStateData); 
             },
             "aoColumns": [
                 {
@@ -690,40 +585,24 @@
                     "className": "center actionColumn text-nowrap",
 					"orderable": false, 					
 					"render": function (data, type, full, meta) {
-                        var edit = '<a title="@Resources.Resources.Edit" href="@Url.Action("Create", "Solicitud_de_Notificacion")?Id=' + data.Folio + '" class="editor_edit edit-MR"><i class="fa fa-edit"></i></a>';
+                        var edit = '<a title="@Resources.Resources.Edit" href="@Url.Action("Create", "Detalle_Involucrados_en_Documentos")?Id=' + data.Clave + '" class="editor_edit edit-MR"><i class="fa fa-edit"></i></a>';
                         if (!permission.Edit)
                             edit = '';
-                        var consult = '<a title="@Resources.Resources.Consult" href="@Url.Action("Create", "Solicitud_de_Notificacion")?Id=' + data.Folio + '&consult=1"  class="editor_remove"><i class="fa fa-male"></i></a>';
+                        var consult = '<a title="@Resources.Resources.Consult" href="@Url.Action("Create", "Detalle_Involucrados_en_Documentos")?Id=' + data.Clave + '&consult=1"  class="editor_remove"><i class="fa fa-male"></i></a>';
                         if (!permission.Consult)
                             consult = '';
-                        var print = '<a title="@Resources.Resources.Print" data-toggle="modal" data-target="#printFormatModal" data-idrecord="' + data.Folio + '"  class="editor_print print-MR"><i class="fa fa-print"></i></a>';
+                        var print = '<a title="@Resources.Resources.Print" data-toggle="modal" data-target="#printFormatModal" data-idrecord="' + data.Clave + '"  class="editor_print print-MR"><i class="fa fa-print"></i></a>';
                         if (!permission.Print)
                             print = '';
-                        var del = '<a title="@Resources.Resources.Delete" onclick="DeleteSolicitud_de_Notificacion(\'' + data.Folio + '\')" class="editor_remove eliminar-MR"><i class="fa fa-times"></i></a>';
+                        var del = '<a title="@Resources.Resources.Delete" onclick="DeleteDetalle_Involucrados_en_Documentos(\'' + data.Clave + '\')" class="editor_remove eliminar-MR"><i class="fa fa-times"></i></a>';
                         if (!permission.Delete)
                             del = '';
                         return edit + del + consult + print;
                     }
                 }, 
-                { "data": "Folio", "orderable": true, "name": "Folio" }
-                ,{ "data": "Fecha_de_Solicitud", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Solicitud" }
-                ,{ "data": "Hora_de_Solicitud", "orderable": true, "name": "Hora_de_Solicitud" }
-                ,{ "data": "Usuario_que_SolicitaName", "orderable": true, "name": "Usuario_que_SolicitaName"}
-                ,{ "data": "OrigenDescripcion", "orderable": true, "name": "OrigenDescripcion" }
-                ,{ "data": "Expediente_Atencion_TempranaFolio", "orderable": true, "name": "Expediente_Atencion_TempranaFolio"}
-                ,{ "data": "Expediente_Mecanismos_AlternosNumero_de_Folio", "orderable": true, "name": "Expediente_Mecanismos_AlternosNumero_de_Folio"}
-                ,{ "data": "Carpeta_de_InvestigacionNIC", "orderable": true, "name": "Carpeta_de_InvestigacionNIC"}
-                ,{ "data": "Forma_de_InvitacionDescripcion", "orderable": true, "name": "Forma_de_InvitacionDescripcion" }
-                ,{ "data": "Numero_de_Invitacion", "orderable": true, "name": "Numero_de_Invitacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Fecha_de_la_cita", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_la_cita" }
-                ,{ "data": "Hora_de_la_Cita", "orderable": true, "name": "Hora_de_la_Cita" }
-                ,{ "data": "Lugar_de_la_Cita", "orderable": true, "name": "Lugar_de_la_Cita", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "EstatusDescripcion", "orderable": true, "name": "EstatusDescripcion" }
-                ,{ "data": "Fecha_de_Notificacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Notificacion" }
-                ,{ "data": "Hora_de_Notificacion", "orderable": true, "name": "Hora_de_Notificacion" }
-                ,{ "data": "NotificadorName", "orderable": true, "name": "NotificadorName"}
-                ,{ "data": "ResultadoDescripcion", "orderable": true, "name": "ResultadoDescripcion" }
-                ,{ "data": "Incidente_en_la_RecepcionDescripcion", "orderable": true, "name": "Incidente_en_la_RecepcionDescripcion" }
+                { "data": "Clave", "orderable": true, "name": "Clave" }
+                ,{ "data": "IdDocumentos", "orderable": true, "name": "IdDocumentos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "InvolucradoNombre_Completo_del_Tutor", "orderable": true, "name": "InvolucradoNombre_Completo_del_Tutor"}
 
             ],
 			"colReorder": true,
@@ -767,7 +646,7 @@
         $('a').tooltip();
         EjecutarValidacionesDespuesDeCrearLista();
 		
-		$('#tblSolicitud_de_Notificacion').show().css({
+		$('#tblDetalle_Involucrados_en_Documentos').show().css({
             "width": "auto",
             "min-width": "100%"
         });
@@ -792,10 +671,10 @@
         });
     });
 
-    function DeleteSolicitud_de_Notificacion(Folio) {
+    function DeleteDetalle_Involucrados_en_Documentos(Clave) {
        if (confirm(htmlDecode('@Resources.Resources.DeleteRecord'))) {
             $.ajax({
-                url: '@Url.Content("~/Frontal/Solicitud_de_Notificacion/Delete?id=")' + Folio,
+                url: '@Url.Content("~/Frontal/Detalle_Involucrados_en_Documentos/Delete?id=")' + Clave,
                 type: 'DELETE',
                 success: function (result) {
                     if (result) {
@@ -814,21 +693,21 @@
 <script type="text/javascript">
 	function OpenRules() {
         $.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
-            $(".Solicitud_de_NotificacionBusinessRuleModal").html(data);
-            $(".Solicitud_de_NotificacionBusinessRuleModal").modal('show');           
+            $(".Detalle_Involucrados_en_DocumentosBusinessRuleModal").html(data);
+            $(".Detalle_Involucrados_en_DocumentosBusinessRuleModal").modal('show');           
         });
     }
-    function Solicitud_de_NotificacionGetBusinessRule() {
+    function Detalle_Involucrados_en_DocumentosGetBusinessRule() {
         $('#FieldId').val();
         $('#FieldName').val('');
-        $('#ObjectId').val('45356');
+        $('#ObjectId').val('45388');
         $('#Attribute').val('3');
-        $('#Screen').val('Solicitud_de_Notificacion');
+        $('#Screen').val('Detalle_Involucrados_en_Documentos');
         OpenRules();
     }
 
     function GetPropertyBag() {
-        $.get('@Url.Action("Solicitud_de_NotificacionPropertyBag", "Solicitud_de_Notificacion")', function (data) {
+        $.get('@Url.Action("Detalle_Involucrados_en_DocumentosPropertyBag", "Detalle_Involucrados_en_Documentos")', function (data) {
             $(".PropertyModal").html(data);
         });
     }

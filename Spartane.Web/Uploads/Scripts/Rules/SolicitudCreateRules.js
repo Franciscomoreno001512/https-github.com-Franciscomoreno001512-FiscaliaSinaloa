@@ -2,6 +2,8 @@ var operation = $('#Operation').val();
 var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
+$('#SolicitudGuardarYNuevo').hide();
+$('#SolicitudGuardarYCopia').hide();
 $(document).ready(function () {
 
 
@@ -103,6 +105,15 @@ if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Conclusion_Anticipada' 
 });
 
 //BusinessRuleId:2054, Attribute:266590, Operation:Field, Event:None
+
+//BusinessRuleId:2092, Attribute:263018, Operation:Field, Event:None
+$("form#CreateSolicitud").on('change', '#Rechazar', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Rechazar' + rowIndex),nameOfTable,rowIndex)==TryParseInt('false', 'false') ) { $('#divMotivo_de_Rechazo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo' + rowIndex));} else { SetRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo' + rowIndex)); $('#divMotivo_de_Rechazo').css('display', 'block');}
+});
+
+//BusinessRuleId:2092, Attribute:263018, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -473,6 +484,15 @@ if(operation == 'Update'){
 }
 //BusinessRuleId:2012, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+//BusinessRuleId:2086, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Rechazar' + rowIndex),nameOfTable,rowIndex)==TryParseInt('false', 'false') ) { $('#divMotivo_de_Rechazo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo' + rowIndex));} else { $('#divMotivo_de_Rechazo').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo' + rowIndex));}
+
+}
+//BusinessRuleId:2086, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -503,6 +523,24 @@ if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt(
 
 }
 //BusinessRuleId:2022, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+
+
+
+
+//BusinessRuleId:2093, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Rechazar' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { SendEmailQuery('SAPROJ - Unidad de MASC - Solicitud RECHAZADA', EvaluaQuery("exec uspGetCorreoOrigen FLDD[lblClave]"), "Por este medio se le informa que su solicitud para iniciar el proceso de Mecanismos Alternos para su expediente No. FLDD[NUAT] ha sido <b>Rechazada</b> por el siguiente motivo: <b>FLD[Motivo_de_Rechazo]</b>",rowIndex,nameOfTable);} else {}
+
+}
+//BusinessRuleId:2093, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:2094, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Acuerdo_Cumplido' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { SendEmailQuery('SAPROJ - Unidad de MASC - Acuerdos Cumplidos', EvaluaQuery("exec uspGetCorreoOrigen FLDD[lblClave]"), "Por este medio se le informa que su solicitud de Mecanismos Alternos para su expediente No. FLDD[NUAT] ha sido <b>concluida</b> y <b>los acuerdos han sido cumplidos</b>.",rowIndex,nameOfTable);} else {}
+
+}
+//BusinessRuleId:2094, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

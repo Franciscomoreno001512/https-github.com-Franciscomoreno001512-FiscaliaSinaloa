@@ -16,6 +16,8 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Detalle_Probable_Responsable_de_Documentos.Clave";
+                case "IdDocumentos":
+                    return "Detalle_Probable_Responsable_de_Documentos.IdDocumentos";
                 case "Probable_Responsable[Nombre_Completo_del_Tutor]":
                 case "Probable_ResponsableNombre_Completo_del_Tutor":
                     return "Detalle_de_Imputado.Nombre_Completo_del_Tutor";

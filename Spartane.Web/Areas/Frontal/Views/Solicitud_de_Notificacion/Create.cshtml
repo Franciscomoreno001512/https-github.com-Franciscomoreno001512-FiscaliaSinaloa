@@ -369,13 +369,6 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Lugar_de_la_Cita" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
-                            <div class="form-group" id="divArchivo">
-                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_NotificacionResources.Archivo</label>
-                                <div class="col-sm-8" data-field-id="Archivo" data-attribute="266627" data-field-name="@Resources.Solicitud_de_NotificacionResources.Archivo">
-                                    <input class="form-control inputNumber Datos_Generales" id="Archivo" name="Archivo" type="text" value="@Model.Archivo">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Archivo" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
                             <div id="divInvitados">
                             <div class="ibox-title">
                                 <h5>@Resources.Solicitud_de_NotificacionResources.Invitados</h5>
@@ -587,7 +580,7 @@
                             <div class="form-group" id="divIncidente_en_la_Recepcion">
                                 <label class="col-sm-2 control-label">@Resources.Solicitud_de_NotificacionResources.Incidente_en_la_Recepcion</label>
                                 <div class="col-sm-8" data-field-id="Incidente_en_la_Recepcion" data-attribute="266222" data-field-name="@Resources.Solicitud_de_NotificacionResources.Incidente_en_la_Recepcion">
-                                    <select class="form-control Resultado_de_Notificacion" data-val="true" data-val-number="The field Incidente en la Recepcion must be a number." data-val-required="The Incidente en la Recepcion field is required." id="Incidente_en_la_Recepcion" name="Incidente_en_la_Recepcion">
+                                    <select class="form-control Resultado_de_Notificacion" data-val="true" data-val-number="The field Incidente en la Recepción must be a number." data-val-required="The Incidente en la Recepción field is required." id="Incidente_en_la_Recepcion" name="Incidente_en_la_Recepcion">
                                         <option value=""></option>
                                         @if (varIncidente_con_Invitacion_Incidente_en_la_Recepcion != null){ 
                                             foreach (var itemIncidente_en_la_Recepcion in varIncidente_con_Invitacion_Incidente_en_la_Recepcion)
@@ -1855,7 +1848,6 @@
                     $('#Fecha_de_la_cita').val(result.data.Fecha_de_la_cita);
                     $('#Hora_de_la_Cita').val(result.data.Hora_de_la_Cita);
                     $('#Lugar_de_la_Cita').val(result.data.Lugar_de_la_Cita);
-                    $('#Archivo').val(result.data.Archivo);
                     Detalle_de_Invitado_de_NotificacionDataDataTable = result.Invitados;
                     showDetalle_de_Invitado_de_NotificacionGrid(result.Invitados);
                     $('#Detalle_de_Invitado_de_NotificacionGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
@@ -1884,7 +1876,6 @@
                 data.append('Fecha_de_la_cita', $('#Fecha_de_la_cita').val());
                 data.append('Hora_de_la_Cita', $('#Hora_de_la_Cita').val());
                 data.append('Lugar_de_la_Cita', $('#Lugar_de_la_Cita').val());
-                data.append('Archivo', $('#Archivo').val());
                 data.append('Estatus', $('#Estatus').val());
 
 			$.ajax({

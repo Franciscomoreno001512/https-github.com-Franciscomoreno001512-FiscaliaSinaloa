@@ -36,6 +36,16 @@ namespace Resources
             }
         }
 
+        /// <summary>IdDocumentos</summary>
+        public static string IdDocumentos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Probable_Responsable_de_Documentos.GetResource("IdDocumentos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Probable_Responsable</summary>
         public static string Probable_Responsable
         {

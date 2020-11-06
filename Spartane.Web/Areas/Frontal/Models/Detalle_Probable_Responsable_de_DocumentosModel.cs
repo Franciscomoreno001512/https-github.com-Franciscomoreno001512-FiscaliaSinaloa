@@ -12,6 +12,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public string IdDocumentos { get; set; }
         public int? Probable_Responsable { get; set; }
         public string Probable_ResponsableNombre_Completo_del_Tutor { get; set; }
 
@@ -21,6 +22,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public string IdDocumentos { get; set; }
         public int? Probable_Responsable { get; set; }
         public string Probable_ResponsableNombre_Completo_del_Tutor { get; set; }
 

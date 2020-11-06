@@ -36,6 +36,16 @@ namespace Resources
             }
         }
 
+        /// <summary>IdDocumentos</summary>
+        public static string IdDocumentos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Involucrados_en_Documentos.GetResource("IdDocumentos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Involucrado</summary>
         public static string Involucrado
         {

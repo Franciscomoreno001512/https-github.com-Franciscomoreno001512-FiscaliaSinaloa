@@ -54,6 +54,14 @@
                     @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Involucrados_en_DocumentosResources.IdDocumentos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.IdDocumentosFilter, filters, new { @class = "form-control", @id = "ddlIdDocumentosFilter" })
+                    @Html.TextBoxFor(m => m.IdDocumentos, new { @class = "form-control", @type = "text", @id = "txtIdDocumentos" })
+                </div>
  List<SelectListItem> varDetalle_de_Datos_Generales_Involucrado = null;
     if (ViewBag.Detalle_de_Datos_Generaless_Involucrado != null)
     { varDetalle_de_Datos_Generales_Involucrado = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Involucrado; }
@@ -73,6 +81,11 @@
             hasParameter = true;
             advanceSearch.Detalle_Involucrados_en_DocumentosClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Detalle_Involucrados_en_DocumentosClaveTo = $("#txtAdvanceToClave").val();
+        }
+        if ($("#txtAdvanceIdDocumentos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Involucrados_en_DocumentosIdDocumentos = $("#txtAdvanceIdDocumentos").val();
+            advanceSearch.Detalle_Involucrados_en_DocumentosIdDocumentosSearchType = $("#ddlAdvanceIdDocumentosFilter").val();
         }
         advanceSearch.InvolucradoSearchType = 0;
         if ($('#ddlAdvanceInvolucrado').val().length > 0 || $("#txtAdvanceInvolucrado").val() == "") {

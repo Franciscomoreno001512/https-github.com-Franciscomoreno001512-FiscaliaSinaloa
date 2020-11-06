@@ -54,6 +54,14 @@
                     @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Probable_Responsable_de_DocumentosResources.IdDocumentos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.IdDocumentosFilter, filters, new { @class = "form-control", @id = "ddlIdDocumentosFilter" })
+                    @Html.TextBoxFor(m => m.IdDocumentos, new { @class = "form-control", @type = "text", @id = "txtIdDocumentos" })
+                </div>
  List<SelectListItem> varDetalle_de_Imputado_Probable_Responsable = null;
     if (ViewBag.Detalle_de_Imputados_Probable_Responsable != null)
     { varDetalle_de_Imputado_Probable_Responsable = (List<SelectListItem>)ViewBag.Detalle_de_Imputados_Probable_Responsable; }
@@ -73,6 +81,11 @@
             hasParameter = true;
             advanceSearch.Detalle_Probable_Responsable_de_DocumentosClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Detalle_Probable_Responsable_de_DocumentosClaveTo = $("#txtAdvanceToClave").val();
+        }
+        if ($("#txtAdvanceIdDocumentos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Probable_Responsable_de_DocumentosIdDocumentos = $("#txtAdvanceIdDocumentos").val();
+            advanceSearch.Detalle_Probable_Responsable_de_DocumentosIdDocumentosSearchType = $("#ddlAdvanceIdDocumentosFilter").val();
         }
         advanceSearch.Probable_ResponsableSearchType = 0;
         if ($('#ddlAdvanceProbable_Responsable').val().length > 0 || $("#txtAdvanceProbable_Responsable").val() == "") {

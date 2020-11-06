@@ -6674,3 +6674,11 @@ builder.RegisterType<Detalle_Delitos_de_DocumentosApiConsumer>().As<IDetalle_Del
 
 
 
+
+
+
+
+
+
+
+

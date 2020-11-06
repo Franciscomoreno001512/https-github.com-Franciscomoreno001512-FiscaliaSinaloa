@@ -2,6 +2,7 @@
 <resources>
   <resource culture="en-us" name="Detalle_Involucrados_en_Documentos" value="Detalle Involucrados en Documentos"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="IdDocumentos" value="IdDocumentos"></resource>
   <resource culture="en-US" name="Involucrado" value="Involucrado"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>

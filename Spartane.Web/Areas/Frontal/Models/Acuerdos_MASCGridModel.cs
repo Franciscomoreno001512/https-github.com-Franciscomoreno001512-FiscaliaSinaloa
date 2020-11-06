@@ -17,6 +17,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Usuario_que_RegistraName { get; set; }
         public int? Tipo_de_Acuerdo { get; set; }
         public string Tipo_de_AcuerdoDescripcion { get; set; }
+        public int? Solicitante { get; set; }
+        public string SolicitanteNombre_Completo { get; set; }
+        public int? Requerido { get; set; }
+        public string RequeridoNombre_Completo { get; set; }
         public string Lugar_Acordado { get; set; }
         public string Domicilio_Acordado { get; set; }
         public string Hora_de_Acuerdo { get; set; }
@@ -31,7 +35,11 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Acuerdo { get; set; }
         public Grid_File AcuerdoFileInfo { set; get; }
         public string Comentarios { get; set; }
+        public short? Acuerdo_Cumplido { get; set; }
+        public string Acuerdo_CumplidoDescripcion { get; set; }
         public string Fecha_de_Cumplimiento_de_Acuerdo { get; set; }
+        public int? Razon_de_Incumplimiento { get; set; }
+        public string Razon_de_IncumplimientoDescripcion { get; set; }
         public string Fecha_de_Revision { get; set; }
         public string Hora_de_Revision { get; set; }
         public int? Usuario_que_Revisa { get; set; }

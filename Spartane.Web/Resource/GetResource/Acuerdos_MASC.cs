@@ -86,6 +86,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Solicitante</summary>
+        public static string Solicitante
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderAcuerdos_MASC.GetResource("Solicitante", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Requerido</summary>
+        public static string Requerido
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderAcuerdos_MASC.GetResource("Requerido", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Lugar_Acordado</summary>
         public static string Lugar_Acordado
         {
@@ -196,6 +216,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Acuerdo_Cumplido</summary>
+        public static string Acuerdo_Cumplido
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderAcuerdos_MASC.GetResource("Acuerdo_Cumplido", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Fecha_de_Cumplimiento_de_Acuerdo</summary>
         public static string Fecha_de_Cumplimiento_de_Acuerdo
         {
@@ -203,6 +233,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderAcuerdos_MASC.GetResource("Fecha_de_Cumplimiento_de_Acuerdo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Razon_de_Incumplimiento</summary>
+        public static string Razon_de_Incumplimiento
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderAcuerdos_MASC.GetResource("Razon_de_Incumplimiento", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

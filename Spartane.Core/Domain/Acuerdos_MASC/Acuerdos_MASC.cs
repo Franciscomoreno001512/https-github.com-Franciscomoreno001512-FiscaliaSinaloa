@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Acuerdo;
+using Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante;
+using Spartane.Core.Domain.Detalle_de_Solicitud_Requerido;
 using Spartane.Core.Domain.Periodicidad;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Spartane_File;
+using Spartane.Core.Domain.A_Tiempo;
+using Spartane.Core.Domain.Razon_de_Incumplimiento;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Resultado_de_Revision;
 
@@ -29,6 +33,8 @@ namespace Spartane.Core.Domain.Acuerdos_MASC
         public string Hora_de_Registro { get; set; }
         public int? Usuario_que_Registra { get; set; }
         public int? Tipo_de_Acuerdo { get; set; }
+        public int? Solicitante { get; set; }
+        public int? Requerido { get; set; }
         public string Lugar_Acordado { get; set; }
         public string Domicilio_Acordado { get; set; }
         public string Hora_de_Acuerdo { get; set; }
@@ -41,7 +47,9 @@ namespace Spartane.Core.Domain.Acuerdos_MASC
         public int? Acuerdo { get; set; }
         public string Acuerdo_URL { get; set; }
         public string Comentarios { get; set; }
+        public short? Acuerdo_Cumplido { get; set; }
         public DateTime? Fecha_de_Cumplimiento_de_Acuerdo { get; set; }
+        public int? Razon_de_Incumplimiento { get; set; }
         public DateTime? Fecha_de_Revision { get; set; }
         public string Hora_de_Revision { get; set; }
         public int? Usuario_que_Revisa { get; set; }
@@ -54,12 +62,20 @@ namespace Spartane.Core.Domain.Acuerdos_MASC
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Registra_Spartan_User { get; set; }
         [ForeignKey("Tipo_de_Acuerdo")]
         public virtual Spartane.Core.Domain.Tipo_de_Acuerdo.Tipo_de_Acuerdo Tipo_de_Acuerdo_Tipo_de_Acuerdo { get; set; }
+        [ForeignKey("Solicitante")]
+        public virtual Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante.Detalle_de_Solicitud_Solicitante Solicitante_Detalle_de_Solicitud_Solicitante { get; set; }
+        [ForeignKey("Requerido")]
+        public virtual Spartane.Core.Domain.Detalle_de_Solicitud_Requerido.Detalle_de_Solicitud_Requerido Requerido_Detalle_de_Solicitud_Requerido { get; set; }
         [ForeignKey("Periodicidad")]
         public virtual Spartane.Core.Domain.Periodicidad.Periodicidad Periodicidad_Periodicidad { get; set; }
         [ForeignKey("Personal_de_Seguimiento_Asignado")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Personal_de_Seguimiento_Asignado_Spartan_User { get; set; }
         [ForeignKey("Acuerdo")]
         public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Acuerdo_Spartane_File { get; set; }
+        [ForeignKey("Acuerdo_Cumplido")]
+        public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Acuerdo_Cumplido_A_Tiempo { get; set; }
+        [ForeignKey("Razon_de_Incumplimiento")]
+        public virtual Spartane.Core.Domain.Razon_de_Incumplimiento.Razon_de_Incumplimiento Razon_de_Incumplimiento_Razon_de_Incumplimiento { get; set; }
         [ForeignKey("Usuario_que_Revisa")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Revisa_Spartan_User { get; set; }
         [ForeignKey("Resultado")]
@@ -75,6 +91,8 @@ namespace Spartane.Core.Domain.Acuerdos_MASC
         public string Hora_de_Registro { get; set; }
         public int? Usuario_que_Registra { get; set; }
         public int? Tipo_de_Acuerdo { get; set; }
+        public int? Solicitante { get; set; }
+        public int? Requerido { get; set; }
         public string Lugar_Acordado { get; set; }
         public string Domicilio_Acordado { get; set; }
         public string Hora_de_Acuerdo { get; set; }
@@ -87,7 +105,9 @@ namespace Spartane.Core.Domain.Acuerdos_MASC
         public int? Acuerdo { get; set; }
         public string Acuerdo_URL { get; set; }
         public string Comentarios { get; set; }
+        public short? Acuerdo_Cumplido { get; set; }
         public DateTime? Fecha_de_Cumplimiento_de_Acuerdo { get; set; }
+        public int? Razon_de_Incumplimiento { get; set; }
 
 		        [ForeignKey("Numero_de_Expediente")]
         public virtual Spartane.Core.Domain.Solicitud.Solicitud Numero_de_Expediente_Solicitud { get; set; }
@@ -95,12 +115,20 @@ namespace Spartane.Core.Domain.Acuerdos_MASC
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Registra_Spartan_User { get; set; }
         [ForeignKey("Tipo_de_Acuerdo")]
         public virtual Spartane.Core.Domain.Tipo_de_Acuerdo.Tipo_de_Acuerdo Tipo_de_Acuerdo_Tipo_de_Acuerdo { get; set; }
+        [ForeignKey("Solicitante")]
+        public virtual Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante.Detalle_de_Solicitud_Solicitante Solicitante_Detalle_de_Solicitud_Solicitante { get; set; }
+        [ForeignKey("Requerido")]
+        public virtual Spartane.Core.Domain.Detalle_de_Solicitud_Requerido.Detalle_de_Solicitud_Requerido Requerido_Detalle_de_Solicitud_Requerido { get; set; }
         [ForeignKey("Periodicidad")]
         public virtual Spartane.Core.Domain.Periodicidad.Periodicidad Periodicidad_Periodicidad { get; set; }
         [ForeignKey("Personal_de_Seguimiento_Asignado")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Personal_de_Seguimiento_Asignado_Spartan_User { get; set; }
         [ForeignKey("Acuerdo")]
         public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Acuerdo_Spartane_File { get; set; }
+        [ForeignKey("Acuerdo_Cumplido")]
+        public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Acuerdo_Cumplido_A_Tiempo { get; set; }
+        [ForeignKey("Razon_de_Incumplimiento")]
+        public virtual Spartane.Core.Domain.Razon_de_Incumplimiento.Razon_de_Incumplimiento Razon_de_Incumplimiento_Razon_de_Incumplimiento { get; set; }
 
     }
 

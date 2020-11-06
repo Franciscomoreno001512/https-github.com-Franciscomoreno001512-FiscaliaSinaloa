@@ -67,12 +67,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Lugar_de_la_CitaFilter { set; get; }
         public string Lugar_de_la_Cita { set; get; }
 
-        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
-        public string FromArchivo { set; get; }
-        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
-        [IsNumberAfterAttribute("FromArchivo", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToArchivo { set; get; }
-
         public Filters EstatusFilter { set; get; }
         public string AdvanceEstatus { set; get; }
         public int[] AdvanceEstatusMultiple { set; get; }

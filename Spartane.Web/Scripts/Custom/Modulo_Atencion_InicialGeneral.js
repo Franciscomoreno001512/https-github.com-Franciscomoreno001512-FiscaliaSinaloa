@@ -1479,9 +1479,7 @@ function ResetClaveLabel() {
     $("#lblClave").text("0");
 }
 $(document).ready(function () {
-    $("form#
-	
-	").submit(function (e) {
+    $("form#CreateModulo_Atencion_Inicial").submit(function (e) {
         e.preventDefault();
         return false;
     });

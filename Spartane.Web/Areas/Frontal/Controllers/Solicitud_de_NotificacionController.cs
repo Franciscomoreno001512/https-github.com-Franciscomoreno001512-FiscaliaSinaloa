@@ -247,7 +247,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Fecha_de_la_cita = (Solicitud_de_NotificacionData.Fecha_de_la_cita == null ? string.Empty : Convert.ToDateTime(Solicitud_de_NotificacionData.Fecha_de_la_cita).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_de_la_Cita = Solicitud_de_NotificacionData.Hora_de_la_Cita
                     ,Lugar_de_la_Cita = Solicitud_de_NotificacionData.Lugar_de_la_Cita
-                    ,Archivo = Solicitud_de_NotificacionData.Archivo
                     ,Estatus = Solicitud_de_NotificacionData.Estatus
                     ,EstatusDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_NotificacionData.Estatus), "Estatus_de_Notificacion") ??  (string)Solicitud_de_NotificacionData.Estatus_Estatus_de_Notificacion.Descripcion
                     ,Fecha_de_Notificacion = (Solicitud_de_NotificacionData.Fecha_de_Notificacion == null ? string.Empty : Convert.ToDateTime(Solicitud_de_NotificacionData.Fecha_de_Notificacion).ToString(ConfigurationProperty.DateFormat))
@@ -385,7 +384,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Fecha_de_la_cita = (Solicitud_de_NotificacionData.Fecha_de_la_cita == null ? string.Empty : Convert.ToDateTime(Solicitud_de_NotificacionData.Fecha_de_la_cita).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_de_la_Cita = Solicitud_de_NotificacionData.Hora_de_la_Cita
                     ,Lugar_de_la_Cita = Solicitud_de_NotificacionData.Lugar_de_la_Cita
-                    ,Archivo = Solicitud_de_NotificacionData.Archivo
                     ,Estatus = Solicitud_de_NotificacionData.Estatus
                     ,EstatusDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_NotificacionData.Estatus), "Estatus_de_Notificacion") ??  (string)Solicitud_de_NotificacionData.Estatus_Estatus_de_Notificacion.Descripcion
                     ,Fecha_de_Notificacion = (Solicitud_de_NotificacionData.Fecha_de_Notificacion == null ? string.Empty : Convert.ToDateTime(Solicitud_de_NotificacionData.Fecha_de_Notificacion).ToString(ConfigurationProperty.DateFormat))
@@ -812,7 +810,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_la_cita = (m.Fecha_de_la_cita == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_la_cita).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_la_Cita = m.Hora_de_la_Cita
 			,Lugar_de_la_Cita = m.Lugar_de_la_Cita
-			,Archivo = m.Archivo
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_de_Notificacion.Descripcion
                         ,Fecha_de_Notificacion = (m.Fecha_de_Notificacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Notificacion).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Notificacion = m.Hora_de_Notificacion
@@ -945,7 +942,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_la_cita = (m.Fecha_de_la_cita == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_la_cita).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_la_Cita = m.Hora_de_la_Cita
 			,Lugar_de_la_Cita = m.Lugar_de_la_Cita
-			,Archivo = m.Archivo
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_de_Notificacion.Descripcion
                         ,Fecha_de_Notificacion = (m.Fecha_de_Notificacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Notificacion).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Notificacion = m.Hora_de_Notificacion
@@ -1477,14 +1473,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
-            if (!string.IsNullOrEmpty(filter.FromArchivo) || !string.IsNullOrEmpty(filter.ToArchivo))
-            {
-                if (!string.IsNullOrEmpty(filter.FromArchivo))
-                    where += " AND Solicitud_de_Notificacion.Archivo >= " + filter.FromArchivo;
-                if (!string.IsNullOrEmpty(filter.ToArchivo))
-                    where += " AND Solicitud_de_Notificacion.Archivo <= " + filter.ToArchivo;
-            }
-
             if (!string.IsNullOrEmpty(filter.AdvanceEstatus))
             {
                 switch (filter.EstatusFilter)
@@ -1806,7 +1794,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_la_cita = (!String.IsNullOrEmpty(varSolicitud_de_Notificacion.Fecha_de_la_cita)) ? DateTime.ParseExact(varSolicitud_de_Notificacion.Fecha_de_la_cita, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_la_Cita = varSolicitud_de_Notificacion.Hora_de_la_Cita
                         ,Lugar_de_la_Cita = varSolicitud_de_Notificacion.Lugar_de_la_Cita
-                        ,Archivo = varSolicitud_de_Notificacion.Archivo
                         ,Estatus = varSolicitud_de_Notificacion.Estatus
                         ,Fecha_de_Notificacion = (!String.IsNullOrEmpty(varSolicitud_de_Notificacion.Fecha_de_Notificacion)) ? DateTime.ParseExact(varSolicitud_de_Notificacion.Fecha_de_Notificacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_Notificacion = varSolicitud_de_Notificacion.Hora_de_Notificacion
@@ -2417,7 +2404,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_la_cita = (m.Fecha_de_la_cita == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_la_cita).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_la_Cita = m.Hora_de_la_Cita
 			,Lugar_de_la_Cita = m.Lugar_de_la_Cita
-			,Archivo = m.Archivo
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_de_Notificacion.Descripcion
                         ,Fecha_de_Notificacion = (m.Fecha_de_Notificacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Notificacion).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Notificacion = m.Hora_de_Notificacion
@@ -2509,7 +2495,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_la_cita = (m.Fecha_de_la_cita == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_la_cita).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_la_Cita = m.Hora_de_la_Cita
 			,Lugar_de_la_Cita = m.Lugar_de_la_Cita
-			,Archivo = m.Archivo
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_de_Notificacion.Descripcion
                         ,Fecha_de_Notificacion = (m.Fecha_de_Notificacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Notificacion).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Notificacion = m.Hora_de_Notificacion
@@ -2567,7 +2552,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_la_cita = (!String.IsNullOrEmpty(varSolicitud_de_Notificacion.Fecha_de_la_cita)) ? DateTime.ParseExact(varSolicitud_de_Notificacion.Fecha_de_la_cita, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_la_Cita = varSolicitud_de_Notificacion.Hora_de_la_Cita
                         ,Lugar_de_la_Cita = varSolicitud_de_Notificacion.Lugar_de_la_Cita
-                        ,Archivo = varSolicitud_de_Notificacion.Archivo
                         ,Estatus = varSolicitud_de_Notificacion.Estatus
                     
                 };
@@ -2617,7 +2601,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_la_cita = (m.Fecha_de_la_cita == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_la_cita).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_la_Cita = m.Hora_de_la_Cita
 			,Lugar_de_la_Cita = m.Lugar_de_la_Cita
-			,Archivo = m.Archivo
                         ,Estatus = m.Estatus
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_de_Notificacion.Descripcion
 

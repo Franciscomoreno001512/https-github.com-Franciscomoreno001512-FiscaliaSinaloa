@@ -12,12 +12,24 @@
     List<SelectListItem> varTipo_de_Acuerdo_Tipo_de_Acuerdo = null;
     if (ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo != null)
     { varTipo_de_Acuerdo_Tipo_de_Acuerdo = (List<SelectListItem>)ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo; }
+ List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
+    if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
+    { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
+ List<SelectListItem> varDetalle_de_Solicitud_Requerido_Requerido = null;
+    if (ViewBag.Detalle_de_Solicitud_Requeridos_Requerido != null)
+    { varDetalle_de_Solicitud_Requerido_Requerido = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Requeridos_Requerido; }
     List<SelectListItem> varPeriodicidad_Periodicidad = null;
     if (ViewBag.Periodicidads_Periodicidad != null)
     { varPeriodicidad_Periodicidad = (List<SelectListItem>)ViewBag.Periodicidads_Periodicidad; }
  List<SelectListItem> varSpartan_User_Personal_de_Seguimiento_Asignado = null;
     if (ViewBag.Spartan_Users_Personal_de_Seguimiento_Asignado != null)
     { varSpartan_User_Personal_de_Seguimiento_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_Personal_de_Seguimiento_Asignado; }
+    List<SelectListItem> varA_Tiempo_Acuerdo_Cumplido = null;
+    if (ViewBag.A_Tiempos_Acuerdo_Cumplido != null)
+    { varA_Tiempo_Acuerdo_Cumplido = (List<SelectListItem>)ViewBag.A_Tiempos_Acuerdo_Cumplido; }
+    List<SelectListItem> varRazon_de_Incumplimiento_Razon_de_Incumplimiento = null;
+    if (ViewBag.Razon_de_Incumplimientos_Razon_de_Incumplimiento != null)
+    { varRazon_de_Incumplimiento_Razon_de_Incumplimiento = (List<SelectListItem>)ViewBag.Razon_de_Incumplimientos_Razon_de_Incumplimiento; }
  List<SelectListItem> varSpartan_User_Usuario_que_Revisa = null;
     if (ViewBag.Spartan_Users_Usuario_que_Revisa != null)
     { varSpartan_User_Usuario_que_Revisa = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Revisa; }
@@ -137,6 +149,12 @@
                         });
                     }
                 </div>
+ List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
+    if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
+    { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
+ List<SelectListItem> varDetalle_de_Solicitud_Requerido_Requerido = null;
+    if (ViewBag.Detalle_de_Solicitud_Requeridos_Requerido != null)
+    { varDetalle_de_Solicitud_Requerido_Requerido = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Requeridos_Requerido; }
                 <div class="MarginBottom">
                     <h3>@Resources.Acuerdos_MASCResources.Lugar_Acordado</h3>
                 </div>
@@ -234,6 +252,27 @@
                     @Html.DropDownListFor(m => m.ComentariosFilter, filters, new { @class = "form-control", @id = "ddlComentariosFilter" })
                     @Html.TextBoxFor(m => m.Comentarios, new { @class = "form-control", @type = "text", @id = "txtComentarios" })
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acuerdos_MASCResources.Acuerdo_Cumplido</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Acuerdo_CumplidoFilter, filters, new { @class = "form-control", @id = "ddlAcuerdo_CumplidoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceAcuerdo_Cumplido, new { @class = "form-control", @type = "text", @id = "txtAdvanceAcuerdo_Cumplido" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varA_Tiempo_Acuerdo_Cumplido!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceAcuerdo_CumplidoMultiple, varA_Tiempo_Acuerdo_Cumplido,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceAcuerdo_Cumplido"
+                        });
+                    }
+                </div>
         <div class="MarginBottom ">
             <h3>@Resources.Acuerdos_MASCResources.Fecha_de_Cumplimiento_de_Acuerdo</h3>
         </div>
@@ -253,6 +292,27 @@
                 </span>
             </div>
         </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Acuerdos_MASCResources.Razon_de_Incumplimiento</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Razon_de_IncumplimientoFilter, filters, new { @class = "form-control", @id = "ddlRazon_de_IncumplimientoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceRazon_de_Incumplimiento, new { @class = "form-control", @type = "text", @id = "txtAdvanceRazon_de_Incumplimiento" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varRazon_de_Incumplimiento_Razon_de_Incumplimiento!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceRazon_de_IncumplimientoMultiple, varRazon_de_Incumplimiento_Razon_de_Incumplimiento,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceRazon_de_Incumplimiento"
+                        });
+                    }
+                </div>
         <div class="MarginBottom ">
             <h3>@Resources.Acuerdos_MASCResources.Fecha_de_Revision</h3>
         </div>
@@ -395,6 +455,36 @@
                 advanceSearch.Tipo_de_AcuerdoSearchType = 2;
             }
         }
+        advanceSearch.SolicitanteSearchType = 0;
+        if ($('#ddlAdvanceSolicitante').val().length > 0 || $("#txtAdvanceSolicitante").val() == "") {
+
+
+            if (isAcuerdos_MASCTextSearch) {
+                advanceSearch.SolicitanteName = $("#txtAdvanceSolicitante").val();
+                advanceSearch.SolicitanteNameSearchType = $("#ddlAdvanceSolicitante").val();
+                advanceSearch.SolicitanteSearchType = 1;
+            }
+            else {
+
+                advanceSearch.SolicitanteToSearch = $("#ddlAdvanceSolicitante").val();
+                advanceSearch.SolicitanteSearchType = 2;
+            }
+        }
+        advanceSearch.RequeridoSearchType = 0;
+        if ($('#ddlAdvanceRequerido').val().length > 0 || $("#txtAdvanceRequerido").val() == "") {
+
+
+            if (isAcuerdos_MASCTextSearch) {
+                advanceSearch.RequeridoName = $("#txtAdvanceRequerido").val();
+                advanceSearch.RequeridoNameSearchType = $("#ddlAdvanceRequerido").val();
+                advanceSearch.RequeridoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.RequeridoToSearch = $("#ddlAdvanceRequerido").val();
+                advanceSearch.RequeridoSearchType = 2;
+            }
+        }
         if ($("#txtAdvanceLugar_Acordado").val() != "") {
             hasParameter = true;
             advanceSearch.Acuerdos_MASCLugar_Acordado = $("#txtAdvanceLugar_Acordado").val();
@@ -480,10 +570,40 @@
             advanceSearch.Acuerdos_MASCComentarios = $("#txtAdvanceComentarios").val();
             advanceSearch.Acuerdos_MASCComentariosSearchType = $("#ddlAdvanceComentariosFilter").val();
         }
+        advanceSearch.Acuerdo_CumplidoSearchType = 0;
+        if ($('#ddlAdvanceAcuerdo_Cumplido').val().length > 0 || $("#txtAdvanceAcuerdo_Cumplido").val() == "") {
+
+
+            if (isAcuerdos_MASCTextSearch) {
+                advanceSearch.Acuerdo_CumplidoName = $("#txtAdvanceAcuerdo_Cumplido").val();
+                advanceSearch.Acuerdo_CumplidoNameSearchType = $("#ddlAdvanceAcuerdo_Cumplido").val();
+                advanceSearch.Acuerdo_CumplidoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Acuerdo_CumplidoToSearch = $("#ddlAdvanceAcuerdo_Cumplido").val();
+                advanceSearch.Acuerdo_CumplidoSearchType = 2;
+            }
+        }
         if ($("#txtAdvanceFromFecha_de_Cumplimiento_de_Acuerdo").val() != "" || $("#txtAdvanceToFecha_de_Cumplimiento_de_Acuerdo").val() != "") {
             hasParameter = true;
             advanceSearch.Acuerdos_MASCFecha_de_Cumplimiento_de_AcuerdoFrom = $("#txtAdvanceFromFecha_de_Cumplimiento_de_Acuerdo").val();
             advanceSearch.Acuerdos_MASCFecha_de_Cumplimiento_de_AcuerdoTo = $("#txtAdvanceToFecha_de_Cumplimiento_de_Acuerdo").val();
+        }
+        advanceSearch.Razon_de_IncumplimientoSearchType = 0;
+        if ($('#ddlAdvanceRazon_de_Incumplimiento').val().length > 0 || $("#txtAdvanceRazon_de_Incumplimiento").val() == "") {
+
+
+            if (isAcuerdos_MASCTextSearch) {
+                advanceSearch.Razon_de_IncumplimientoName = $("#txtAdvanceRazon_de_Incumplimiento").val();
+                advanceSearch.Razon_de_IncumplimientoNameSearchType = $("#ddlAdvanceRazon_de_Incumplimiento").val();
+                advanceSearch.Razon_de_IncumplimientoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Razon_de_IncumplimientoToSearch = $("#ddlAdvanceRazon_de_Incumplimiento").val();
+                advanceSearch.Razon_de_IncumplimientoSearchType = 2;
+            }
         }
         if ($("#txtAdvanceFromFecha_de_Revision").val() != "" || $("#txtAdvanceToFecha_de_Revision").val() != "") {
             hasParameter = true;
@@ -575,6 +695,24 @@
             isAcuerdos_MASCTextSearch = false;
             $("#txtAdvanceTipo_de_Acuerdo").val('');
         });
+        $("#txtAdvanceSolicitante").keypress(function () {
+            isAcuerdos_MASCTextSearch = true;
+            $("#ddlAdvanceSolicitante").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceSolicitante").change(function () {
+            isAcuerdos_MASCTextSearch = false;
+            $("#txtAdvanceSolicitante").val('');
+        });
+        $("#txtAdvanceRequerido").keypress(function () {
+            isAcuerdos_MASCTextSearch = true;
+            $("#ddlAdvanceRequerido").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceRequerido").change(function () {
+            isAcuerdos_MASCTextSearch = false;
+            $("#txtAdvanceRequerido").val('');
+        });
         $("#txtAdvancePeriodicidad").keypress(function () {
             isAcuerdos_MASCTextSearch = true;
             $("#ddlAdvancePeriodicidad").val('').trigger("chosen:updated");
@@ -592,6 +730,24 @@
         $("#ddlAdvancePersonal_de_Seguimiento_Asignado").change(function () {
             isAcuerdos_MASCTextSearch = false;
             $("#txtAdvancePersonal_de_Seguimiento_Asignado").val('');
+        });
+        $("#txtAdvanceAcuerdo_Cumplido").keypress(function () {
+            isAcuerdos_MASCTextSearch = true;
+            $("#ddlAdvanceAcuerdo_Cumplido").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceAcuerdo_Cumplido").change(function () {
+            isAcuerdos_MASCTextSearch = false;
+            $("#txtAdvanceAcuerdo_Cumplido").val('');
+        });
+        $("#txtAdvanceRazon_de_Incumplimiento").keypress(function () {
+            isAcuerdos_MASCTextSearch = true;
+            $("#ddlAdvanceRazon_de_Incumplimiento").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceRazon_de_Incumplimiento").change(function () {
+            isAcuerdos_MASCTextSearch = false;
+            $("#txtAdvanceRazon_de_Incumplimiento").val('');
         });
         $("#txtAdvanceUsuario_que_Revisa").keypress(function () {
             isAcuerdos_MASCTextSearch = true;

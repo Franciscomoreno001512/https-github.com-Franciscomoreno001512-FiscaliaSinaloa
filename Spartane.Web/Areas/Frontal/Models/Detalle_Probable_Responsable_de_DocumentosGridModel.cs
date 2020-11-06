@@ -9,6 +9,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Probable_Responsable_de_DocumentosGridModel
     {
         public int Clave { get; set; }
+        public string IdDocumentos { get; set; }
         public int? Probable_Responsable { get; set; }
         public string Probable_ResponsableNombre_Completo_del_Tutor { get; set; }
         

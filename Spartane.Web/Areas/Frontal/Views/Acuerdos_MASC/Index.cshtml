@@ -4,8 +4,12 @@
 @using Spartane.Core.Domain.Solicitud;
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Tipo_de_Acuerdo;
+@using Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante;
+@using Spartane.Core.Domain.Detalle_de_Solicitud_Requerido;
 @using Spartane.Core.Domain.Periodicidad;
 @using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.A_Tiempo;
+@using Spartane.Core.Domain.Razon_de_Incumplimiento;
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Resultado_de_Revision;
 
@@ -209,6 +213,8 @@
                                     <th>@Resources.Acuerdos_MASCResources.Hora_de_Registro</th>
                                     <th>@Resources.Acuerdos_MASCResources.Usuario_que_Registra</th>
                                     <th>@Resources.Acuerdos_MASCResources.Tipo_de_Acuerdo</th>
+                                    <th>@Resources.Acuerdos_MASCResources.Solicitante</th>
+                                    <th>@Resources.Acuerdos_MASCResources.Requerido</th>
                                     <th>@Resources.Acuerdos_MASCResources.Lugar_Acordado</th>
                                     <th>@Resources.Acuerdos_MASCResources.Domicilio_Acordado</th>
                                     <th>@Resources.Acuerdos_MASCResources.Hora_de_Acuerdo</th>
@@ -219,7 +225,9 @@
                                     <th>@Resources.Acuerdos_MASCResources.Monto_de_la_Parcialidad</th>
                                     <th>@Resources.Acuerdos_MASCResources.Personal_de_Seguimiento_Asignado</th>
                                     <th>@Resources.Acuerdos_MASCResources.Comentarios</th>
+                                    <th>@Resources.Acuerdos_MASCResources.Acuerdo_Cumplido</th>
                                     <th>@Resources.Acuerdos_MASCResources.Fecha_de_Cumplimiento_de_Acuerdo</th>
+                                    <th>@Resources.Acuerdos_MASCResources.Razon_de_Incumplimiento</th>
                                     <th>@Resources.Acuerdos_MASCResources.Fecha_de_Revision</th>
                                     <th>@Resources.Acuerdos_MASCResources.Hora_de_Revision</th>
                                     <th>@Resources.Acuerdos_MASCResources.Usuario_que_Revisa</th>
@@ -239,6 +247,8 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
@@ -247,7 +257,9 @@
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -374,6 +386,8 @@
         var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
         var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitante =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Requerido =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Lugar_Acordado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Domicilio_Acordado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -384,7 +398,9 @@
         var Monto_de_la_Parcialidad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Personal_de_Seguimiento_Asignado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Comentarios =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Acuerdo_Cumplido =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Cumplimiento_de_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Razon_de_Incumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Revision = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Revision = $($('table td .filterData.form-control:input')[counter++]).val();
         var Usuario_que_Revisa =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -398,6 +414,8 @@
         + "&Hora_de_Registro=" + Hora_de_Registro
         + "&Usuario_que_Registra=" + Usuario_que_Registra
         + "&Tipo_de_Acuerdo=" + Tipo_de_Acuerdo
+        + "&Solicitante=" + Solicitante
+        + "&Requerido=" + Requerido
         + "&Lugar_Acordado=" + Lugar_Acordado
         + "&Domicilio_Acordado=" + Domicilio_Acordado
         + "&Hora_de_Acuerdo=" + Hora_de_Acuerdo
@@ -408,7 +426,9 @@
         + "&Monto_de_la_Parcialidad=" + Monto_de_la_Parcialidad
         + "&Personal_de_Seguimiento_Asignado=" + Personal_de_Seguimiento_Asignado
         + "&Comentarios=" + Comentarios
+        + "&Acuerdo_Cumplido=" + Acuerdo_Cumplido
         + "&Fecha_de_Cumplimiento_de_Acuerdo=" + Fecha_de_Cumplimiento_de_Acuerdo
+        + "&Razon_de_Incumplimiento=" + Razon_de_Incumplimiento
         + "&Fecha_de_Revision=" + Fecha_de_Revision
         + "&Hora_de_Revision=" + Hora_de_Revision
         + "&Usuario_que_Revisa=" + Usuario_que_Revisa
@@ -433,6 +453,8 @@
         var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
         var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitante =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Requerido =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Lugar_Acordado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Domicilio_Acordado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -443,7 +465,9 @@
         var Monto_de_la_Parcialidad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Personal_de_Seguimiento_Asignado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Comentarios =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Acuerdo_Cumplido =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Cumplimiento_de_Acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Razon_de_Incumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Revision = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Revision = $($('table td .filterData.form-control:input')[counter++]).val();
         var Usuario_que_Revisa =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -457,6 +481,8 @@
         + "&Hora_de_Registro=" + Hora_de_Registro
         + "&Usuario_que_Registra=" + Usuario_que_Registra
         + "&Tipo_de_Acuerdo=" + Tipo_de_Acuerdo
+        + "&Solicitante=" + Solicitante
+        + "&Requerido=" + Requerido
         + "&Lugar_Acordado=" + Lugar_Acordado
         + "&Domicilio_Acordado=" + Domicilio_Acordado
         + "&Hora_de_Acuerdo=" + Hora_de_Acuerdo
@@ -467,7 +493,9 @@
         + "&Monto_de_la_Parcialidad=" + Monto_de_la_Parcialidad
         + "&Personal_de_Seguimiento_Asignado=" + Personal_de_Seguimiento_Asignado
         + "&Comentarios=" + Comentarios
+        + "&Acuerdo_Cumplido=" + Acuerdo_Cumplido
         + "&Fecha_de_Cumplimiento_de_Acuerdo=" + Fecha_de_Cumplimiento_de_Acuerdo
+        + "&Razon_de_Incumplimiento=" + Razon_de_Incumplimiento
         + "&Fecha_de_Revision=" + Fecha_de_Revision
         + "&Hora_de_Revision=" + Hora_de_Revision
         + "&Usuario_que_Revisa=" + Usuario_que_Revisa
@@ -653,11 +681,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -726,6 +754,8 @@
                 ,{ "data": "Hora_de_Registro", "orderable": true, "name": "Hora_de_Registro" }
                 ,{ "data": "Usuario_que_RegistraName", "orderable": true, "name": "Usuario_que_RegistraName"}
                 ,{ "data": "Tipo_de_AcuerdoDescripcion", "orderable": true, "name": "Tipo_de_AcuerdoDescripcion" }
+                ,{ "data": "SolicitanteNombre_Completo", "orderable": true, "name": "SolicitanteNombre_Completo"}
+                ,{ "data": "RequeridoNombre_Completo", "orderable": true, "name": "RequeridoNombre_Completo"}
                 ,{ "data": "Lugar_Acordado", "orderable": true, "name": "Lugar_Acordado", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Domicilio_Acordado", "orderable": true, "name": "Domicilio_Acordado", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Hora_de_Acuerdo", "orderable": true, "name": "Hora_de_Acuerdo" }
@@ -736,7 +766,9 @@
                 ,{ "data": "Monto_de_la_Parcialidad", "orderable": true, "name": "Monto_de_la_Parcialidad", "className": "dt-right", render: $.fn.dataTable.render.number(',', '.', 2, '$') }
                 ,{ "data": "Personal_de_Seguimiento_AsignadoName", "orderable": true, "name": "Personal_de_Seguimiento_AsignadoName"}
                 ,{ "data": "Comentarios", "orderable": true, "name": "Comentarios", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Acuerdo_CumplidoDescripcion", "orderable": true, "name": "Acuerdo_CumplidoDescripcion" }
                 ,{ "data": "Fecha_de_Cumplimiento_de_Acuerdo", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Cumplimiento_de_Acuerdo" }
+                ,{ "data": "Razon_de_IncumplimientoDescripcion", "orderable": true, "name": "Razon_de_IncumplimientoDescripcion" }
                 ,{ "data": "Fecha_de_Revision", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Revision" }
                 ,{ "data": "Hora_de_Revision", "orderable": true, "name": "Hora_de_Revision" }
                 ,{ "data": "Usuario_que_RevisaName", "orderable": true, "name": "Usuario_que_RevisaName"}

@@ -41,6 +41,14 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceTipo_de_Acuerdo { set; get; }
         public int[] AdvanceTipo_de_AcuerdoMultiple { set; get; }
 
+        public Filters SolicitanteFilter { set; get; }
+        public string AdvanceSolicitante { set; get; }
+        public int[] AdvanceSolicitanteMultiple { set; get; }
+
+        public Filters RequeridoFilter { set; get; }
+        public string AdvanceRequerido { set; get; }
+        public int[] AdvanceRequeridoMultiple { set; get; }
+
         public Filters Lugar_AcordadoFilter { set; get; }
         public string Lugar_Acordado { set; get; }
 
@@ -87,11 +95,19 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters ComentariosFilter { set; get; }
         public string Comentarios { set; get; }
 
+        public Filters Acuerdo_CumplidoFilter { set; get; }
+        public string AdvanceAcuerdo_Cumplido { set; get; }
+        public int[] AdvanceAcuerdo_CumplidoMultiple { set; get; }
+
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
         public string FromFecha_de_Cumplimiento_de_Acuerdo { set; get; }
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
         [IsDateAfter("FromFecha_de_Cumplimiento_de_Acuerdo", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string ToFecha_de_Cumplimiento_de_Acuerdo { set; get; }
+
+        public Filters Razon_de_IncumplimientoFilter { set; get; }
+        public string AdvanceRazon_de_Incumplimiento { set; get; }
+        public int[] AdvanceRazon_de_IncumplimientoMultiple { set; get; }
 
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
         public string FromFecha_de_Revision { set; get; }

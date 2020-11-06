@@ -161,14 +161,14 @@
                                             <div class="tab-pane show active" id="tabs-eg-77">
                                                 <div style="overflow-y: auto;" class="panelbusqueda">
 
-                                                    <div class="col-lg-11">
+                                                    <div class="col-lg-10">
                                                         <table class="mb-0 table table-borderless">
                                                             <thead>
                                                             </thead>
                                                             <tbody id="BodyFieldSearch"></tbody>
                                                         </table>
                                                     </div>
-                                                    <div class="col-lg-1">
+                                                    <div class="col-lg-2">
                                                         <button class="btn-wide btn btn-success" id="btnSearch" style="float: left;">Buscar</button>
                                                     </div>
 
@@ -206,11 +206,10 @@
                                     <i class="header-icon lnr-apartment icon-gradient bg-love-kiss"> </i>
                                     <span id="labelResult"></span>
                                 </div>
-                                <div id="actionEdit" class="text-right" style="width:100%;">
-                                    <button class="btn-wide btn btn-success" onclick="EditRow()" id='btnEditarRegistro' style="float: right; display:none">Editar Registro</button>
-                                </div>
 
-
+                            </div>
+							<div id="actionEdit" class="text-right" style="width:100%;">
+                                <button class="btn-wide btn btn-success" onclick="EditRow()" id='btnEditarRegistro' style="float: left; display:none; margin-top: 1em;">Editar Registro</button>
                             </div>
                             <div class="card-body" style="height: 40%;overflow: auto;" id="paneldatos">
                                 <div class="tab-content" style="height: 100%;">
@@ -300,6 +299,8 @@
             $('#TbodyDetails').empty();
             $('#new').css('display', 'none');
             GetDataToShow($($(this).find('td')[0]).html(), @ViewBag.idTablero);
+			DisabledAE($($(this).find('td')[3]).html());
+
         });
         $('#TabsBadget').on('click', 'button', function () {
             $('#TabsBadget button').css('background-color', 'transparent');
@@ -647,6 +648,30 @@
                 showNotification("Error buscando variable", "error");
             }
         });
+    }
+	
+	    function DisabledAE(value) {
+        var replaced = value.toString().split(' ').join('');
+        //debugger;
+        console.log(replaced);
+        if (replaced == 'AtenciónaExtravío') {
+            console.log("True");
+            $("button[data-name='Servicios de Apoyo']").prop("disabled", true);
+            $("button[data-name='Probable Responsable']").prop("disabled", true);
+            $("button[data-name='Delitos']").prop("disabled", true);
+            $("button[data-name='Relaciones']").prop("disabled", true);
+            $("button[data-name='Desestimación']").prop("disabled", true);
+        }
+        else {
+            console.log("False");
+            $("button[data-name='Servicios de Apoyo']").prop("disabled", false);
+            $("button[data-name='Probable Responsable']").prop("disabled", false);
+            $("button[data-name='Delitos']").prop("disabled", false);
+            $("button[data-name='Relaciones']").prop("disabled", false);
+            $("button[data-name='Documentos']").prop("disabled", false);
+            $("button[data-name='Desestimación']").prop("disabled", false);
+            $("button[data-name='Involucrados']").prop("disabled", false);
+        }
     }
 
     function GetResultSearchTable() {

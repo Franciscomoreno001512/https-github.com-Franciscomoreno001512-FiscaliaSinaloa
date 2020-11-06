@@ -32,12 +32,24 @@
     List<SelectListItem> varTipo_de_Acuerdo_Tipo_de_Acuerdo = null;
     if (ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo != null)
     { varTipo_de_Acuerdo_Tipo_de_Acuerdo = (List<SelectListItem>)ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo; }
+ List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
+    if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
+    { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
+ List<SelectListItem> varDetalle_de_Solicitud_Requerido_Requerido = null;
+    if (ViewBag.Detalle_de_Solicitud_Requeridos_Requerido != null)
+    { varDetalle_de_Solicitud_Requerido_Requerido = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Requeridos_Requerido; }
     List<SelectListItem> varPeriodicidad_Periodicidad = null;
     if (ViewBag.Periodicidads_Periodicidad != null)
     { varPeriodicidad_Periodicidad = (List<SelectListItem>)ViewBag.Periodicidads_Periodicidad; }
  List<SelectListItem> varSpartan_User_Personal_de_Seguimiento_Asignado = null;
     if (ViewBag.Spartan_Users_Personal_de_Seguimiento_Asignado != null)
     { varSpartan_User_Personal_de_Seguimiento_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_Personal_de_Seguimiento_Asignado; }
+    List<SelectListItem> varA_Tiempo_Acuerdo_Cumplido = null;
+    if (ViewBag.A_Tiempos_Acuerdo_Cumplido != null)
+    { varA_Tiempo_Acuerdo_Cumplido = (List<SelectListItem>)ViewBag.A_Tiempos_Acuerdo_Cumplido; }
+    List<SelectListItem> varRazon_de_Incumplimiento_Razon_de_Incumplimiento = null;
+    if (ViewBag.Razon_de_Incumplimientos_Razon_de_Incumplimiento != null)
+    { varRazon_de_Incumplimiento_Razon_de_Incumplimiento = (List<SelectListItem>)ViewBag.Razon_de_Incumplimientos_Razon_de_Incumplimiento; }
  List<SelectListItem> varSpartan_User_Usuario_que_Revisa = null;
     if (ViewBag.Spartan_Users_Usuario_que_Revisa != null)
     { varSpartan_User_Usuario_que_Revisa = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Revisa; }
@@ -268,6 +280,34 @@
                                 </div>
                                 }
                             </div>
+				<div class="form-group" id="divSolicitante">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Solicitante</label>
+                                <div class="col-sm-8" data-field-id="Solicitante" data-attribute="266686" data-field-name="@Resources.Acuerdos_MASCResources.Solicitante">
+                                    <select class='fullWidth AutoComplete AutoCompleteAcuerdos_MASC_Solicitante form-control select2-dropdown Datos_Generales' data-val="true" id="Solicitante" name="Solicitante">
+                                        <option value="@Model.Solicitante">@(Model.SolicitanteNombre_Completo??Model.SolicitanteNombre_Completo)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266686).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Solicitud_Solicitante', 'Solicitante');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divRequerido">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Requerido</label>
+                                <div class="col-sm-8" data-field-id="Requerido" data-attribute="266687" data-field-name="@Resources.Acuerdos_MASCResources.Requerido">
+                                    <select class='fullWidth AutoComplete AutoCompleteAcuerdos_MASC_Requerido form-control select2-dropdown Datos_Generales' data-val="true" id="Requerido" name="Requerido">
+                                        <option value="@Model.Requerido">@(Model.RequeridoNombre_Completo??Model.RequeridoNombre_Completo)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266687).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Solicitud_Requerido', 'Requerido');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
                             <div class="form-group" id="divLugar_Acordado">
                                 <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Lugar_Acordado</label>
                                 <div class="col-sm-8" data-field-id="Lugar_Acordado" data-attribute="266506" data-field-name="@Resources.Acuerdos_MASCResources.Lugar_Acordado">
@@ -410,6 +450,34 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Comentarios" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divAcuerdo_Cumplido">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Acuerdo_Cumplido</label>
+                                <div class="col-sm-8" data-field-id="Acuerdo_Cumplido" data-attribute="266688" data-field-name="@Resources.Acuerdos_MASCResources.Acuerdo_Cumplido">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field ¿Acuerdo Cumplido? must be a number." data-val-required="The ¿Acuerdo Cumplido? field is required." id="Acuerdo_Cumplido" name="Acuerdo_Cumplido">
+                                        <option value=""></option>
+                                        @if (varA_Tiempo_Acuerdo_Cumplido != null){ 
+                                            foreach (var itemAcuerdo_Cumplido in varA_Tiempo_Acuerdo_Cumplido)
+                                            {
+                                                if (itemAcuerdo_Cumplido.Value == Convert.ToString(Model.Acuerdo_Cumplido))
+                                                {
+                                                    <option value="@itemAcuerdo_Cumplido.Value" selected>@itemAcuerdo_Cumplido.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemAcuerdo_Cumplido.Value">@itemAcuerdo_Cumplido.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Acuerdo_Cumplido" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266688).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('A_Tiempo', 'Acuerdo_Cumplido');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
                             <div class="form-group" id="divFecha_de_Cumplimiento_de_Acuerdo">
                                 <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Fecha_de_Cumplimiento_de_Acuerdo</label>
                                 <div class="col-sm-8" data-field-id="Fecha_de_Cumplimiento_de_Acuerdo" data-attribute="266516" data-field-name="@Resources.Acuerdos_MASCResources.Fecha_de_Cumplimiento_de_Acuerdo">
@@ -420,6 +488,34 @@
                                         </span>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="form-group" id="divRazon_de_Incumplimiento">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Razon_de_Incumplimiento</label>
+                                <div class="col-sm-8" data-field-id="Razon_de_Incumplimiento" data-attribute="266689" data-field-name="@Resources.Acuerdos_MASCResources.Razon_de_Incumplimiento">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Razón de Incumplimiento must be a number." data-val-required="The Razón de Incumplimiento field is required." id="Razon_de_Incumplimiento" name="Razon_de_Incumplimiento">
+                                        <option value=""></option>
+                                        @if (varRazon_de_Incumplimiento_Razon_de_Incumplimiento != null){ 
+                                            foreach (var itemRazon_de_Incumplimiento in varRazon_de_Incumplimiento_Razon_de_Incumplimiento)
+                                            {
+                                                if (itemRazon_de_Incumplimiento.Value == Convert.ToString(Model.Razon_de_Incumplimiento))
+                                                {
+                                                    <option value="@itemRazon_de_Incumplimiento.Value" selected>@itemRazon_de_Incumplimiento.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemRazon_de_Incumplimiento.Value">@itemRazon_de_Incumplimiento.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Razon_de_Incumplimiento" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266689).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Razon_de_Incumplimiento', 'Razon_de_Incumplimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
                             </div>
                             </div>
                                 </div>
@@ -752,6 +848,72 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteAcuerdos_MASC_Usuario_que_Registra");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteSolicitanteData =[];
+       $(".AutoCompleteAcuerdos_MASC_Solicitante").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Acuerdos_MASC/GetAcuerdos_MASC_Solicitante_Detalle_de_Solicitud_Solicitante")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteAcuerdos_MASC_Solicitante_Detalle_de_Solicitud_SolicitanteData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteAcuerdos_MASC_Solicitante");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteRequeridoData =[];
+       $(".AutoCompleteAcuerdos_MASC_Requerido").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Acuerdos_MASC/GetAcuerdos_MASC_Requerido_Detalle_de_Solicitud_Requerido")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteAcuerdos_MASC_Requerido_Detalle_de_Solicitud_RequeridoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteAcuerdos_MASC_Requerido");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -1134,6 +1296,24 @@
 	                    control.val(result.data.Usuario_que_Registra).trigger('change');
                     }, 3000);
                     $('#Tipo_de_Acuerdo').val(result.data.Tipo_de_Acuerdo);
+                    var control = $('#Solicitante');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Solicitante).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Solicitante).trigger('change');
+                    }, 3000);
+                    var control = $('#Requerido');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Requerido).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Requerido).trigger('change');
+                    }, 3000);
                     $('#Lugar_Acordado').val(result.data.Lugar_Acordado);
                     $('#Domicilio_Acordado').val(result.data.Domicilio_Acordado);
                     $('#Hora_de_Acuerdo').val(result.data.Hora_de_Acuerdo);
@@ -1153,7 +1333,9 @@
                     }, 3000);
                     $('#Acuerdo').val(result.data.Acuerdo);
                     $('#Comentarios').val(result.data.Comentarios);
+                    $('#Acuerdo_Cumplido').val(result.data.Acuerdo_Cumplido);
                     $('#Fecha_de_Cumplimiento_de_Acuerdo').val(result.data.Fecha_de_Cumplimiento_de_Acuerdo);
+                    $('#Razon_de_Incumplimiento').val(result.data.Razon_de_Incumplimiento);
 
                 },
                 error: function (result) {
@@ -1170,6 +1352,8 @@
                 data.append('Hora_de_Registro', $('#Hora_de_Registro').val());
                 data.append('Usuario_que_Registra', $('#Usuario_que_Registra').val());
                 data.append('Tipo_de_Acuerdo', $('#Tipo_de_Acuerdo').val());
+                data.append('Solicitante', $('#Solicitante').val());
+                data.append('Requerido', $('#Requerido').val());
                 data.append('Lugar_Acordado', $('#Lugar_Acordado').val());
                 data.append('Domicilio_Acordado', $('#Domicilio_Acordado').val());
                 data.append('Hora_de_Acuerdo', $('#Hora_de_Acuerdo').val());
@@ -1185,7 +1369,9 @@
                 data.append('AcuerdoFile', $('#AcuerdoFile')[0].files[0]);
                 data.append('AcuerdoRemoveAttachment', $('#hdnRemoveAcuerdo').val());
                 data.append('Comentarios', $('#Comentarios').val());
+                data.append('Acuerdo_Cumplido', $('#Acuerdo_Cumplido').val());
                 data.append('Fecha_de_Cumplimiento_de_Acuerdo', $('#Fecha_de_Cumplimiento_de_Acuerdo').val());
+                data.append('Razon_de_Incumplimiento', $('#Razon_de_Incumplimiento').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Acuerdos_MASC/Post_Datos_Generales")',

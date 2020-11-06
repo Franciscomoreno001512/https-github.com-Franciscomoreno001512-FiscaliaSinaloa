@@ -219,7 +219,8 @@ $("form#CreateModulo_Atencion_Inicial").on('change', '#Turno_Asignado', function
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'Turno_Asignado' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') ) { AsignarValor($('#' + nameOfTable + 'Nombres_turno' + rowIndex),EvaluaQuery(" SELECT NOMBRES FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Apellido_Paterno_turno' + rowIndex),EvaluaQuery(" SELECT Apellido_Paterno FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Apellido_Materno_turno' + rowIndex),EvaluaQuery(" SELECT Apellido_Materno FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Sexo_turno' + rowIndex),EvaluaQuery(" SELECT Sexo FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Edad_turno' + rowIndex),EvaluaQuery(" SELECT Edad FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Tipo_de_Atencion_turno' + rowIndex),EvaluaQuery(" SELECT Tipo_de_Atencion FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Tipo_de_Identificacion_turno' + rowIndex),EvaluaQuery(" SELECT Tipo_de_Identificacion FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Numero_de_Identificacion_turno' + rowIndex),EvaluaQuery(" SELECT Numero_de_Identificacion FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex),EvaluaQuery(" SELECT Tipo_de_Urgencia FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Motivo_Finalizacion_Turno' + rowIndex),EvaluaQuery(" SELECT Motivo_Finalizacion_Turno FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Observaciones_turno' + rowIndex),EvaluaQuery(" SELECT Observaciones FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Urgencia_turno' + rowIndex),EvaluaQuery(" SELECT Urgencia FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]", rowIndex, nameOfTable));} else { AsignarValor($('#' + nameOfTable + 'Nombres_turno' + rowIndex),EvaluaQuery("SELECT ISNULL('', '')", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Apellido_Paterno_turno' + rowIndex),EvaluaQuery("SELECT ISNULL('', '')", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Apellido_Materno_turno' + rowIndex),EvaluaQuery("SELECT ISNULL('', '')", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Sexo_turno' + rowIndex),EvaluaQuery("SELECT ISNULL('', '')", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Edad_turno' + rowIndex),EvaluaQuery("SELECT ISNULL('', '')", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Tipo_de_Atencion_turno' + rowIndex),EvaluaQuery("SELECT ISNULL('', '')", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Tipo_de_Identificacion_turno' + rowIndex),EvaluaQuery("SELECT ISNULL('', '')", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Numero_de_Identificacion_turno' + rowIndex),EvaluaQuery("SELECT ISNULL('', '')", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Urgencia_turno' + rowIndex),EvaluaQuery("SELECT ISNULL('', '')", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex),EvaluaQuery("SELECT ISNULL('', '')", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Motivo_Finalizacion_Turno' + rowIndex),EvaluaQuery("SELECT ISNULL('', '')", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Observaciones_turno' + rowIndex),EvaluaQuery("SELECT ISNULL('', '')", rowIndex, nameOfTable));}
 });
-
+
+
 //BusinessRuleId:2038, Attribute:265574, Operation:Field, Event:None
 
 //BusinessRuleId:2039, Attribute:265574, Operation:Field, Event:None
@@ -228,7 +229,8 @@ $("form#CreateModulo_Atencion_Inicial").on('change', '#Turno_Asignado', function
 	rowIndex='';
 if( EvaluaQuery("SELECT Urgencia FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divTipo_de_Urgencia_turno').css('display', 'block');} else { $('#divTipo_de_Urgencia_turno').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex));}
 });
-
+
+
 //BusinessRuleId:2039, Attribute:265574, Operation:Field, Event:None
 
 //BusinessRuleId:210, Attribute:262832, Operation:Field, Event:None
@@ -237,7 +239,8 @@ $("form#CreateModulo_Atencion_Inicial").on('change', '#Se_Acepta_Acuerdo', funct
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'Se_Acepta_Acuerdo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divMotivo_de_Rechazo_de_Acuerdo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo_de_Acuerdo' + rowIndex));} else { $('#divMotivo_de_Rechazo_de_Acuerdo').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo_de_Acuerdo' + rowIndex));}
 });
-
+
+
 //BusinessRuleId:210, Attribute:262832, Operation:Field, Event:None
 
 
@@ -248,7 +251,8 @@ $("form#CreateModulo_Atencion_Inicial").on('change', '#Cerrar', function () {
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'Cerrar' + rowIndex),nameOfTable,rowIndex)==TryParseInt('false', 'false') ) { SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Cierre' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Cierre' + rowIndex));} else { SetRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Cierre' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_de_Cierre' + rowIndex));}
 });
-
+
+
 //BusinessRuleId:2071, Attribute:262851, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
@@ -1541,21 +1545,9 @@ if(operation == 'New'){
 }
 //BusinessRuleId:1894, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:1891, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { $('#divFolio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));$('#divFecha_de_Registro').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Registro' + rowIndex));$('#divHora_de_Registro').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Registro' + rowIndex));$('#divNUAT').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Registro' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Registro' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex)); var valor = $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).val();   $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Turno_Asignado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT Folio, NUMERO_DE_TURNO FROM Asignacion_de_Turnos WHERE Estatus_de_Turno = 1 AND ORIENTADOR = GLOBAL[USERID]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT Folio, NUMERO_DE_TURNO FROM Asignacion_de_Turnos WHERE Estatus_de_Turno = 1 AND ORIENTADOR = GLOBAL[USERID]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).val(valor).trigger('change'); SetNotRequiredToControl( $('#' + nameOfTable + 'Ministerio_Publico_en_Turno' + rowIndex));} else {}
 
 
-}
-//BusinessRuleId:1891, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:1891, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { $('#divFolio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));$('#divFecha_de_Registro').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Registro' + rowIndex));$('#divHora_de_Registro').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Registro' + rowIndex));$('#divNUAT').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Registro' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Registro' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex)); var valor = $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).val();   $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Turno_Asignado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT Folio, NUMERO_DE_TURNO FROM Asignacion_de_Turnos WHERE Estatus_de_Turno = 1 AND ORIENTADOR = GLOBAL[USERID]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT Folio, NUMERO_DE_TURNO FROM Asignacion_de_Turnos WHERE Estatus_de_Turno = 1 AND ORIENTADOR = GLOBAL[USERID]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).val(valor).trigger('change'); SetNotRequiredToControl( $('#' + nameOfTable + 'Ministerio_Publico_en_Turno' + rowIndex));} else {}
-
-
-}
-//BusinessRuleId:1891, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 
 //BusinessRuleId:1913, Attribute:0, Operation:Object, Event:SCREENOPENING
@@ -1639,44 +1631,128 @@ if(operation == 'Update'){
 //BusinessRuleId:2037, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Nombres_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Paterno_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Materno_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Sexo_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Edad_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Atencion_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Identificacion_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Identificacion_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Urgencia_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_Finalizacion_Turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_turno' + rowIndex)); DisabledControl($("#" + nameOfTable + "Nombres_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Nombres_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Apellido_Paterno_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Paterno_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Apellido_Materno_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Materno_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Sexo_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Sexo_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Edad_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Edad_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Tipo_de_Atencion_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Atencion_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Tipo_de_Identificacion_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Identificacion_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_de_Identificacion_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Identificacion_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Urgencia_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Urgencia_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Tipo_de_Urgencia_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Motivo_Finalizacion_Turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_Finalizacion_Turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Observaciones_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_turno' + rowIndex));} DisabledControl($("#" + nameOfTable + "Motivo_Finalizacion_Turno" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_Finalizacion_Turno' + rowIndex));}
-
+
+
 }
 //BusinessRuleId:2037, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2037, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Nombres_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Paterno_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Materno_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Sexo_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Edad_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Atencion_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Identificacion_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Identificacion_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Urgencia_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_Finalizacion_Turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_turno' + rowIndex)); DisabledControl($("#" + nameOfTable + "Nombres_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Nombres_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Apellido_Paterno_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Paterno_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Apellido_Materno_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Materno_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Sexo_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Sexo_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Edad_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Edad_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Tipo_de_Atencion_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Atencion_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Tipo_de_Identificacion_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Identificacion_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_de_Identificacion_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Identificacion_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Urgencia_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Urgencia_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Tipo_de_Urgencia_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Motivo_Finalizacion_Turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_Finalizacion_Turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Observaciones_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_turno' + rowIndex));} DisabledControl($("#" + nameOfTable + "Motivo_Finalizacion_Turno" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_Finalizacion_Turno' + rowIndex));}
-
+
+
 }
 //BusinessRuleId:2037, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2037, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Nombres_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Paterno_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Materno_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Sexo_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Edad_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Atencion_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Identificacion_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Identificacion_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Urgencia_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_Finalizacion_Turno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_turno' + rowIndex)); DisabledControl($("#" + nameOfTable + "Nombres_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Nombres_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Apellido_Paterno_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Paterno_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Apellido_Materno_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Materno_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Sexo_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Sexo_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Edad_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Edad_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Tipo_de_Atencion_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Atencion_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Tipo_de_Identificacion_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Identificacion_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Numero_de_Identificacion_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Identificacion_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Urgencia_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Urgencia_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Tipo_de_Urgencia_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Motivo_Finalizacion_Turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_Finalizacion_Turno' + rowIndex));}DisabledControl($("#" + nameOfTable + "Observaciones_turno" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_turno' + rowIndex));} DisabledControl($("#" + nameOfTable + "Motivo_Finalizacion_Turno" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_Finalizacion_Turno' + rowIndex));}
-
+
+
 }
 //BusinessRuleId:2037, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2068, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
  DisabledControl($("#" + nameOfTable + "Tipo_de_Acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_de_Inicio_de_Acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Inicio_de_Acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_de_Cumplimiento_del_Acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Cumplimiento_del_Acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_de_Cumplimiento_del_Acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Cumplimiento_del_Acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "Domicilio_para_el_Cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Domicilio_para_el_Cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "Monto_de_Reparacion_de_Danos" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_Reparacion_de_Danos' + rowIndex));}DisabledControl($("#" + nameOfTable + "Parcialidades" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Parcialidades' + rowIndex));}DisabledControl($("#" + nameOfTable + "Periodicidad" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Periodicidad' + rowIndex));}
-
+
+
 }
 //BusinessRuleId:2068, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2069, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
 if( GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)==TryParseInt('6', '6') ) { SetRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo_de_Acuerdo' + rowIndex));} else {}
-
+
+
 }
 //BusinessRuleId:2069, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2070, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
 if( GetValueByControlType($('#' + nameOfTable + 'Cerrar' + rowIndex),nameOfTable,rowIndex)==TryParseInt('false', 'false') ) { SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Cierre' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Cierre' + rowIndex));} else { SetRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Cierre' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_de_Cierre' + rowIndex));}
-
+
+
 }
 //BusinessRuleId:2070, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2084, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { 
+    $("a[href='#tabCanalizar']").css('display', 'none'); $("a[href='#tabDatos_de_los_Hechos_en_MPO']").css('display', 'none'); 
+    $("a[href='#tabBitacora_de_Coincidencias']").css('display', 'none'); 
+    $("a[href='#tabCierre']").css('display', 'none'); 
+    $('#divApellido_Paterno_del_Remitente').css('display', 'none'); 
+    SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Paterno_del_Remitente' + rowIndex));
+    $('#divApellido_Materno_del_Remitente').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Materno_del_Remitente' + rowIndex));$('#divFecha_en_que_llega_para_validacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_en_que_llega_para_validacion' + rowIndex));} else {}
+
+
+}
+//BusinessRuleId:2084, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//OCULTAR BOTÓN FINALIZAR AL CONSULTAR Y CONSULTAR
+if(operation == 'Update'){
+    $("#Modulo_Atencion_InicialFinalizar").css('display', 'none');
+    
+    }
+    if(operation == 'Consult'){
+        $("#Modulo_Atencion_InicialFinalizar").css('display', 'none');
+        
+        }
+//OCULTAR BOTÓN FINALIZAR AL CONSULTAR Y CONSULTAR
+
+
+//BusinessRuleId:2085, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("SELECT Urgencia FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]	",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divTipo_de_Urgencia_turno').css('display', 'block');} else { $('#divTipo_de_Urgencia_turno').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex));}
+
+
+}
+//BusinessRuleId:2085, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2085, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("SELECT Urgencia FROM Asignacion_de_Turnos WHERE Folio = FLD[Turno_Asignado]	",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divTipo_de_Urgencia_turno').css('display', 'block');} else { $('#divTipo_de_Urgencia_turno').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia_turno' + rowIndex));}
+
+
+}
+//BusinessRuleId:2085, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+//BusinessRuleId:2087, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { var valor = $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).val();   $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Turno_Asignado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT Folio, NUMERO_DE_TURNO FROM Asignacion_de_Turnos WHERE Estatus_de_Turno = 1 AND ORIENTADOR = GLOBAL[USERID]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT Folio, NUMERO_DE_TURNO FROM Asignacion_de_Turnos WHERE Estatus_de_Turno = 1 AND ORIENTADOR = GLOBAL[USERID]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).val(valor).trigger('change');} else {}
+
+
+}
+//BusinessRuleId:2087, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:1891, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { $('#divFolio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));$('#divFecha_de_Registro').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Registro' + rowIndex));$('#divHora_de_Registro').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Registro' + rowIndex));$('#divNUAT').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Registro' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Registro' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Ministerio_Publico_en_Turno' + rowIndex));} else {}
+
+
+}
+//BusinessRuleId:1891, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:1891, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { $('#divFolio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));$('#divFecha_de_Registro').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Registro' + rowIndex));$('#divHora_de_Registro').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Registro' + rowIndex));$('#divNUAT').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Folio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Registro' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Registro' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'NUAT' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Ministerio_Publico_en_Turno' + rowIndex));} else {}
+
+
+}
+//BusinessRuleId:1891, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2088, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { DisabledControl($("#" + nameOfTable + "Turno_Asignado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Turno_Asignado' + rowIndex));} $("a[href='#tabInformacion_de_Turno']").css('display', 'none'); $("a[href='#tabDatos_de_los_Hechos_en_MPO']").css('display', 'none');} else {}
+
+
+}
+//BusinessRuleId:2088, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }
@@ -2294,14 +2370,16 @@ if( $('#' + nameOfTable + 'Estatus' + rowIndex).val()==TryParseInt('2', '2') && 
 //BusinessRuleId:2057, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'Update'){
 if( GetValueByControlType($('#' + nameOfTable + 'Estatus2' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') && GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('8', '8') && GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('6', '6') ) { EvaluaQuery(" exec uspGeneraSolicitudMASC_desde_AT FLDD[lblClave]", rowIndex, nameOfTable);} else {}
-
+
+
 }
 //BusinessRuleId:2057, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //BusinessRuleId:2064, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'Update'){
 if( GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)==TryParseInt('6', '6') ) { EvaluaQuery("exec uspAprobacionAcuerdoMASC GLOBAL[USERID],FLDD[lblClave],null", rowIndex, nameOfTable);} else {}
-
+
+
 }
 //BusinessRuleId:2064, Attribute:2, Operation:Object, Event:AFTERSAVING
 
