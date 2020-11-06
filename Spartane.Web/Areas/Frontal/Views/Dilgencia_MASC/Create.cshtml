@@ -161,7 +161,7 @@
                             <div class="form-group" id="divDescripcion">
                                 <label class="col-sm-2 control-label">@Resources.Dilgencia_MASCResources.Descripcion</label>
                                 <div class="col-sm-8" data-field-id="Descripcion" data-attribute="265993" data-field-name="@Resources.Dilgencia_MASCResources.Descripcion">
-                                    <input class="form-control Datos_Generales" id="Descripcion" name="Descripcion" type="text" value="@Model.Descripcion">
+                                    <textarea id="Descripcion" name="Descripcion" class="form-control Datos_Generales" rows="4" cols="50">@Model.Descripcion</textarea>
                                     @*<span class="field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
@@ -327,24 +327,9 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('45347');
+		    
 		   
-		   
-			
-             @if(ViewBag.IsNew)
-            { 
-                <text>$('input:checkbox').prop('checked', false);</text>
-            }
-			else
-            {
-                <text>
-				if (Tab_Datos_Generales)
-					Fill_Datos_Generales();
-
-
-                </text>
-             }
-             EjecutarValidacionesAlComienzo();
-             
+            
 
             initiateUIControls();
 			$('a').tooltip();
@@ -361,6 +346,21 @@
 			
 			
 
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
         });
 
 

@@ -395,16 +395,28 @@ if(operation == 'Consult'){
 }
 function EjecutarValidacionesAntesDeGuardar(){
 	var result = true;
+
+
+
+
+
+
+
+
+
+
+
+
 //BusinessRuleId:1998, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'Nombre_Completo2' + rowIndex),EvaluaQuery("SELECT 'FLD[Nombres2]' + ' ' + 'FLD[Apellido_Paterno2]' + ' ' + 'FLD[Apellido_Materno2]'", rowIndex, nameOfTable));
+ AsignarValor($('#' + nameOfTable + 'Nombre_Completo2' + rowIndex),EvaluaQuery("SELECT 'FLD[Nombres2]' + ' ' + 'FLD[Apellido_Paterno2]' + ' ' + 'FLD[Apellido_Materno2]'", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Nombre_Completo_Detenido' + rowIndex),EvaluaQuery(" SELECT 'FLD[Nombre]' + ' ' + 'FLD[Apellido_Paterno]' + ' ' + 'FLD[Apellido_Materno]'", rowIndex, nameOfTable));
 
 }
 //BusinessRuleId:1998, Attribute:2, Operation:Object, Event:BEFORESAVING
 
 //BusinessRuleId:1998, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'Update'){
- AsignarValor($('#' + nameOfTable + 'Nombre_Completo2' + rowIndex),EvaluaQuery("SELECT 'FLD[Nombres2]' + ' ' + 'FLD[Apellido_Paterno2]' + ' ' + 'FLD[Apellido_Materno2]'", rowIndex, nameOfTable));
+ AsignarValor($('#' + nameOfTable + 'Nombre_Completo2' + rowIndex),EvaluaQuery("SELECT 'FLD[Nombres2]' + ' ' + 'FLD[Apellido_Paterno2]' + ' ' + 'FLD[Apellido_Materno2]'", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Nombre_Completo_Detenido' + rowIndex),EvaluaQuery(" SELECT 'FLD[Nombre]' + ' ' + 'FLD[Apellido_Paterno]' + ' ' + 'FLD[Apellido_Materno]'", rowIndex, nameOfTable));
 
 }
 //BusinessRuleId:1998, Attribute:2, Operation:Object, Event:BEFORESAVING

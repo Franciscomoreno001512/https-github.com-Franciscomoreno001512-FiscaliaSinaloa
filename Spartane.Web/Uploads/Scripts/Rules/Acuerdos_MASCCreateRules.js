@@ -35,6 +35,17 @@ if( $('#' + nameOfTable + 'Monto_Total' + rowIndex).val()!=TryParseInt('0', '0')
 
 //BusinessRuleId:2017, Attribute:266511, Operation:Field, Event:None
 
+
+
+//BusinessRuleId:2101, Attribute:266688, Operation:Field, Event:None
+$("form#CreateAcuerdos_MASC").on('change', '#Acuerdo_Cumplido', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Acuerdo_Cumplido' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divRazon_de_Incumplimiento').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Razon_de_Incumplimiento' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Fecha_de_Cumplimiento_de_Acuerdo' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 105)", rowIndex, nameOfTable));} else { $('#divRazon_de_Incumplimiento').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Razon_de_Incumplimiento' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Fecha_de_Cumplimiento_de_Acuerdo' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 105)", rowIndex, nameOfTable));}
+});
+
+//BusinessRuleId:2101, Attribute:266688, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
@@ -97,12 +108,7 @@ if(operation == 'Consult'){
 
 
 
-//BusinessRuleId:2055, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- $('#divPersonal_de_Seguimiento_Asignado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Personal_de_Seguimiento_Asignado' + rowIndex));$('#divFecha_de_Cumplimiento_de_Acuerdo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Cumplimiento_de_Acuerdo' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Hora_de_Acuerdo' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 108)", rowIndex, nameOfTable));
-
-}
-//BusinessRuleId:2055, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 
 //BusinessRuleId:2074, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
@@ -146,6 +152,40 @@ if( $('#' + nameOfTable + 'Resultado' + rowIndex).val()!=TryParseInt('null', 'nu
 }
 //BusinessRuleId:2015, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+
+
+//BusinessRuleId:2055, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divPersonal_de_Seguimiento_Asignado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Personal_de_Seguimiento_Asignado' + rowIndex));$('#divFecha_de_Cumplimiento_de_Acuerdo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Cumplimiento_de_Acuerdo' + rowIndex));$('#divAcuerdo_Cumplido').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Acuerdo_Cumplido' + rowIndex));$('#divRazon_de_Incumplimiento').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Razon_de_Incumplimiento' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Hora_de_Acuerdo' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 108)", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:2055, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2099, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ var valor = $('#' + nameOfTable + 'Solicitante' + rowIndex).val();   $('#' + nameOfTable + 'Solicitante' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Solicitante' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Solicitante' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("exec uspGetSolicitantesExpedienteMASC GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Solicitante' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("exec uspGetSolicitantesExpedienteMASC GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Solicitante' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Solicitante' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Requerido' + rowIndex).val();   $('#' + nameOfTable + 'Requerido' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Requerido' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Requerido' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("exec uspGetRequeridosExpedienteMASC GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Requerido' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("exec uspGetRequeridosExpedienteMASC GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Requerido' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Requerido' + rowIndex).val(valor).trigger('change'); SetNotRequiredToControl( $('#' + nameOfTable + 'Acuerdo_Cumplido' + rowIndex));
+
+}
+//BusinessRuleId:2099, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2099, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ var valor = $('#' + nameOfTable + 'Solicitante' + rowIndex).val();   $('#' + nameOfTable + 'Solicitante' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Solicitante' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Solicitante' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("exec uspGetSolicitantesExpedienteMASC GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Solicitante' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("exec uspGetSolicitantesExpedienteMASC GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Solicitante' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Solicitante' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Requerido' + rowIndex).val();   $('#' + nameOfTable + 'Requerido' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Requerido' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Requerido' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("exec uspGetRequeridosExpedienteMASC GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Requerido' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("exec uspGetRequeridosExpedienteMASC GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Requerido' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Requerido' + rowIndex).val(valor).trigger('change'); SetNotRequiredToControl( $('#' + nameOfTable + 'Acuerdo_Cumplido' + rowIndex));
+
+}
+//BusinessRuleId:2099, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+//BusinessRuleId:2100, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Acuerdo_Cumplido' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divRazon_de_Incumplimiento').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Razon_de_Incumplimiento' + rowIndex));} else { $('#divRazon_de_Incumplimiento').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Razon_de_Incumplimiento' + rowIndex));}
+
+}
+//BusinessRuleId:2100, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -167,22 +207,7 @@ function EjecutarValidacionesDespuesDeGuardar(){
 
 
 
-//BusinessRuleId:2018, Attribute:2, Operation:Object, Event:AFTERSAVING
-if(operation == 'New'){
- EvaluaQuery(" update Acuerdos_MASC "
-+" set Numero_de_Expediente = GLOBAL[SpartanOperationId] "
-+" where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable); EvaluaQuery(" exec uspEnviaAcuerdoMAC_a_AT GLOBAL[keyvalueinserted]", rowIndex, nameOfTable); SendEmailQuery('SAPROJ - Nuevo Acuerdo por Autorizar', EvaluaQuery("exec uspGetCorreoOrigen GLOBAL[SpartanOperationId]"), "Por este medio se le notifica que la unidad de Mecanismos Alternos ha generado un nuevo Acuerdo, el cual requiere su autorización."
-+" <br><br>"
-+" <b>Acuerdo:</b> FLDD[Tipo_de_Acuerdo]"
-+" <br><b>Domicilio Acordado:</b> FLD[Domicilio_Acordado]"
-+" <br><b>Monto Total:</b> FLD[Monto_Total]"
-+" <br><b>Parcialidades:</b>FLD[Parcialidades]"
-+" <br><b>Periodicidad:</b> FLDD[Periodicidad]"
-+" <br><br>"
-+" Favor de ingresar a SAPROJ para realizar la revisión correspondiente.",rowIndex,nameOfTable);
-
-}
-//BusinessRuleId:2018, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 
 
 
@@ -192,6 +217,23 @@ if( GetValueByControlType($('#' + nameOfTable + 'Personal_de_Seguimiento_Asignad
 
 }
 //BusinessRuleId:2097, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+
+
+//BusinessRuleId:2147, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+	debugger;
+ EvaluaQuery(" exec uspGeneraCierreAcuerdo FLDD[lblClave]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2147, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:2018, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery(" update Acuerdos_MASC set Numero_de_Expediente = GLOBAL[SpartanOperationId] where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable); 
+ EvaluaQuery(" exec uspEnviaAcuerdoMAC_a_AT GLOBAL[keyvalueinserted]", rowIndex, nameOfTable); 
+}
+//BusinessRuleId:2018, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

@@ -214,6 +214,13 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:1961, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2124, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ var valor = $('#' + nameOfTable + 'Formato_de_Invitacion' + rowIndex).val();   $('#' + nameOfTable + 'Formato_de_Invitacion' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Formato_de_Invitacion' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Formato_de_Invitacion' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select * from Tipo_de_Invitacion where Descripcion NOT IN ('ENTREGADA POR POLICIAL', 'ENTREGADA POR POLICIA MINISTERIAL', 'ENTREGADA POR NOTIFICADOR')", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Formato_de_Invitacion' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select * from Tipo_de_Invitacion where Descripcion NOT IN ('ENTREGADA POR POLICIAL', 'ENTREGADA POR POLICIA MINISTERIAL', 'ENTREGADA POR NOTIFICADOR')", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Formato_de_Invitacion' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Formato_de_Invitacion' + rowIndex).val(valor).trigger('change');
+
+}
+//BusinessRuleId:2124, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
