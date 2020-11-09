@@ -11,6 +11,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public Detalle_de_Solicitud_Datos_de_ApoyoAdvanceSearchModel()
         {
+            Archivo_Adjunto = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -57,6 +58,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Lengua_OriginariaFilter { set; get; }
         public string AdvanceLengua_Originaria { set; get; }
         public int[] AdvanceLengua_OriginariaMultiple { set; get; }
+
+        public Filters Diligencia_a_EnviarFilter { set; get; }
+        public string AdvanceDiligencia_a_Enviar { set; get; }
+        public int[] AdvanceDiligencia_a_EnviarMultiple { set; get; }
+
+        public RadioOptions Archivo_Adjunto { set; get; }
 
 
     }

@@ -25,6 +25,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string IdiomaDescripcion { get; set; }
         public int? Lengua_Originaria { get; set; }
         public string Lengua_OriginariaDescripcion { get; set; }
+        public int? Diligencia_a_Enviar { get; set; }
+        public string Diligencia_a_EnviarDescripcion { get; set; }
+        public int? Archivo_Adjunto { get; set; }
+        public Grid_File Archivo_AdjuntoFileInfo { set; get; }
         
     }
 }

@@ -19,12 +19,12 @@ namespace Spartane.Web.SqlModelMapper
                 case "Modulo_Atencion_Inicial[NUAT]":
                 case "Modulo_Atencion_InicialNUAT":
                     return "Modulo_Atencion_Inicial.NUAT";
-                case "Involucrado[Nombre_del_Tutor]":
-                case "InvolucradoNombre_del_Tutor":
-                    return "Detalle_de_Datos_Generales.Nombre_del_Tutor";
-                case "Probable_Responsable[Nombre_del_Tutor]":
-                case "Probable_ResponsableNombre_del_Tutor":
-                    return "Detalle_de_Datos_Generales.Nombre_del_Tutor";
+                case "Involucrado[Nombre_Completo]":
+                case "InvolucradoNombre_Completo":
+                    return "Detalle_de_Datos_Generales.Nombre_Completo";
+                case "Probable_Responsable[Nombre_Completo_del_Tutor]":
+                case "Probable_ResponsableNombre_Completo_del_Tutor":
+                    return "Detalle_de_Imputado.Nombre_Completo_del_Tutor";
                 case "Delito[Descripcion]":
                 case "DelitoDescripcion":
                     return "Delito.Descripcion";

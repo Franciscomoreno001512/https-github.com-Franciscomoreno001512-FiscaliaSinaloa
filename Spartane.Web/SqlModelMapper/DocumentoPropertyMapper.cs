@@ -18,6 +18,9 @@ namespace Spartane.Web.SqlModelMapper
                     return "Documento.Clave";
                 case "Descripcion":
                     return "Documento.Descripcion";
+                case "Diligencia[Descripcion]":
+                case "DiligenciaDescripcion":
+                    return "Dilgencia_MASC.Descripcion";
                 case "Origen[Descripcion]":
                 case "OrigenDescripcion":
                     return "Origen_de_Invitacion.Descripcion";

@@ -305,7 +305,7 @@
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Documentos_MPOResources.Probable_Responsable</label>
                                 <div class="col-sm-8" data-field-id="Probable_Responsable" data-attribute="266661" data-field-name="@Resources.Detalle_de_Documentos_MPOResources.Probable_Responsable">
                                     <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Documentos_MPO_Probable_Responsable form-control select2-dropdown Datos_Generales' data-val="true" id="Probable_Responsable" name="Probable_Responsable">
-                                        <option value="@Model.Probable_Responsable">@(Model.Probable_ResponsableNombre_Completo_del_Tutor??Model.Probable_ResponsableNombre_Completo_del_Tutor)</option>
+                                        <option value="@Model.Probable_Responsable">@(Model.Probable_ResponsableNombre_Completo_Detenido??Model.Probable_ResponsableNombre_Completo_Detenido)</option>
                                     </select>
                                 </div>
 				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266661).New)

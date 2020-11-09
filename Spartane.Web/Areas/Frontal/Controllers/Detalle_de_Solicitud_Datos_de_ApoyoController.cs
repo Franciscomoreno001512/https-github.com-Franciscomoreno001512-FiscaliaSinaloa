@@ -8,6 +8,7 @@ using Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo;
 using Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante;
 using Spartane.Core.Domain.Idioma;
 using Spartane.Core.Domain.Dialecto;
+using Spartane.Core.Domain.Dilgencia_MASC;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -24,6 +25,7 @@ using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Servicio_de_Apoyo;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Solicitud_Solicitante;
 using Spartane.Web.Areas.WebApiConsumer.Idioma;
 using Spartane.Web.Areas.WebApiConsumer.Dialecto;
+using Spartane.Web.Areas.WebApiConsumer.Dilgencia_MASC;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -66,6 +68,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_de_Solicitud_SolicitanteApiConsumer _IDetalle_de_Solicitud_SolicitanteApiConsumer;
         private IIdiomaApiConsumer _IIdiomaApiConsumer;
         private IDialectoApiConsumer _IDialectoApiConsumer;
+        private IDilgencia_MASCApiConsumer _IDilgencia_MASCApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -83,7 +86,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_Solicitud_Datos_de_ApoyoController(IDetalle_de_Solicitud_Datos_de_ApoyoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Solicitud_Datos_de_ApoyoApiConsumer Detalle_de_Solicitud_Datos_de_ApoyoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_Servicio_de_ApoyoApiConsumer Tipo_de_Servicio_de_ApoyoApiConsumer , IDetalle_de_Solicitud_SolicitanteApiConsumer Detalle_de_Solicitud_SolicitanteApiConsumer , IIdiomaApiConsumer IdiomaApiConsumer , IDialectoApiConsumer DialectoApiConsumer )
+        public Detalle_de_Solicitud_Datos_de_ApoyoController(IDetalle_de_Solicitud_Datos_de_ApoyoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Solicitud_Datos_de_ApoyoApiConsumer Detalle_de_Solicitud_Datos_de_ApoyoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_Servicio_de_ApoyoApiConsumer Tipo_de_Servicio_de_ApoyoApiConsumer , IDetalle_de_Solicitud_SolicitanteApiConsumer Detalle_de_Solicitud_SolicitanteApiConsumer , IIdiomaApiConsumer IdiomaApiConsumer , IDialectoApiConsumer DialectoApiConsumer , IDilgencia_MASCApiConsumer Dilgencia_MASCApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -103,6 +106,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IDetalle_de_Solicitud_SolicitanteApiConsumer = Detalle_de_Solicitud_SolicitanteApiConsumer;
             this._IIdiomaApiConsumer = IdiomaApiConsumer;
             this._IDialectoApiConsumer = DialectoApiConsumer;
+            this._IDilgencia_MASCApiConsumer = Dilgencia_MASCApiConsumer;
 
         }
 
@@ -194,11 +198,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,IdiomaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_Datos_de_ApoyoData.Idioma), "Idioma") ??  (string)Detalle_de_Solicitud_Datos_de_ApoyoData.Idioma_Idioma.Descripcion
                     ,Lengua_Originaria = Detalle_de_Solicitud_Datos_de_ApoyoData.Lengua_Originaria
                     ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_Datos_de_ApoyoData.Lengua_Originaria), "Dialecto") ??  (string)Detalle_de_Solicitud_Datos_de_ApoyoData.Lengua_Originaria_Dialecto.Descripcion
+                    ,Diligencia_a_Enviar = Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar
+                    ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar), "Dilgencia_MASC") ??  (string)Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar_Dilgencia_MASC.Descripcion
+                    ,Archivo_Adjunto = Detalle_de_Solicitud_Datos_de_ApoyoData.Archivo_Adjunto
 
 					};
 				}
 				
-				
+				                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                ViewBag.Archivo_AdjuntoSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_Adjunto).Resource;
+
 				
             }
             if (!_tokenManager.GenerateToken())
@@ -303,9 +312,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,IdiomaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_Datos_de_ApoyoData.Idioma), "Idioma") ??  (string)Detalle_de_Solicitud_Datos_de_ApoyoData.Idioma_Idioma.Descripcion
                     ,Lengua_Originaria = Detalle_de_Solicitud_Datos_de_ApoyoData.Lengua_Originaria
                     ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_Datos_de_ApoyoData.Lengua_Originaria), "Dialecto") ??  (string)Detalle_de_Solicitud_Datos_de_ApoyoData.Lengua_Originaria_Dialecto.Descripcion
+                    ,Diligencia_a_Enviar = Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar
+                    ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar), "Dilgencia_MASC") ??  (string)Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar_Dilgencia_MASC.Descripcion
+                    ,Archivo_Adjunto = Detalle_de_Solicitud_Datos_de_ApoyoData.Archivo_Adjunto
 
 					};
 				}
+                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                ViewBag.Archivo_AdjuntoSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_Adjunto).Resource;
 
             }
             if (!_tokenManager.GenerateToken())
@@ -478,6 +492,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+		[HttpGet]
+        public ActionResult GetDilgencia_MASCAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDilgencia_MASCApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IDilgencia_MASCApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Dilgencia_MASC", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -612,6 +647,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Responsable = m.Responsable
                         ,IdiomaDescripcion = CultureHelper.GetTraduction(m.Idioma_Idioma.Clave.ToString(), "Descripcion") ?? (string)m.Idioma_Idioma.Descripcion
                         ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(m.Lengua_Originaria_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Lengua_Originaria_Dialecto.Descripcion
+                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Dilgencia_MASC.Clave.ToString(), "Dilgencia_MASC") ?? (string)m.Diligencia_a_Enviar_Dilgencia_MASC.Descripcion
+			,Archivo_Adjunto = m.Archivo_Adjunto
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -736,6 +773,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Responsable = m.Responsable
                         ,IdiomaDescripcion = CultureHelper.GetTraduction(m.Idioma_Idioma.Clave.ToString(), "Descripcion") ?? (string)m.Idioma_Idioma.Descripcion
                         ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(m.Lengua_Originaria_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Lengua_Originaria_Dialecto.Descripcion
+                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Dilgencia_MASC.Clave.ToString(), "Dilgencia_MASC") ?? (string)m.Diligencia_a_Enviar_Dilgencia_MASC.Descripcion
+			,Archivo_Adjunto = m.Archivo_Adjunto
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -820,6 +859,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.Nombre_Completo =trans ??item.Nombre_Completo;
                 }
                 return Json(result.Detalle_de_Solicitud_Solicitantes.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Solicitud_Datos_de_Apoyo_Diligencia_a_Enviar_Dilgencia_MASC(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDilgencia_MASCApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Dilgencia_MASC.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Dilgencia_MASC.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IDilgencia_MASCApiConsumer.ListaSelAll(1, 20,elWhere , " Dilgencia_MASC.Descripcion ASC ").Resource;
+               
+                foreach (var item in result.Dilgencia_MASCs)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Dilgencia_MASC", "Descripcion");
+                    item.Descripcion =trans ??item.Descripcion;
+                }
+                return Json(result.Dilgencia_MASCs.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -1076,6 +1142,37 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Detalle_de_Solicitud_Datos_de_Apoyo.Lengua_Originaria In (" + Lengua_OriginariaIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvanceDiligencia_a_Enviar))
+            {
+                switch (filter.Diligencia_a_EnviarFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Dilgencia_MASC.Descripcion LIKE '" + filter.AdvanceDiligencia_a_Enviar + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Dilgencia_MASC.Descripcion LIKE '%" + filter.AdvanceDiligencia_a_Enviar + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Dilgencia_MASC.Descripcion = '" + filter.AdvanceDiligencia_a_Enviar + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Dilgencia_MASC.Descripcion LIKE '%" + filter.AdvanceDiligencia_a_Enviar + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceDiligencia_a_EnviarMultiple != null && filter.AdvanceDiligencia_a_EnviarMultiple.Count() > 0)
+            {
+                var Diligencia_a_EnviarIds = string.Join(",", filter.AdvanceDiligencia_a_EnviarMultiple);
+
+                where += " AND Detalle_de_Solicitud_Datos_de_Apoyo.Diligencia_a_Enviar In (" + Diligencia_a_EnviarIds + ")";
+            }
+
+            if (filter.Archivo_Adjunto != RadioOptions.NoApply)
+                where += " AND Detalle_de_Solicitud_Datos_de_Apoyo.Archivo_Adjunto " + (filter.Archivo_Adjunto == RadioOptions.Yes ? ">" : "==") + " 0";
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -1125,6 +1222,22 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     _IDetalle_de_Solicitud_Datos_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
 
 
+                    if (varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_AdjuntoRemoveAttachment != 0 && varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_AdjuntoFile == null)
+                    {
+                        varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_Adjunto = 0;
+                    }
+
+                    if (varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_AdjuntoFile != null)
+                    {
+                        var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_AdjuntoFile);
+                        _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                        varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_Adjunto = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
+                        {
+                            File = fileAsBytes,
+                            Description = varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_AdjuntoFile.FileName,
+                            File_Size = fileAsBytes.Length
+                        }).Resource;
+                    }
 
                     
                     var result = "";
@@ -1141,6 +1254,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Responsable = varDetalle_de_Solicitud_Datos_de_Apoyo.Responsable
                         ,Idioma = varDetalle_de_Solicitud_Datos_de_Apoyo.Idioma
                         ,Lengua_Originaria = varDetalle_de_Solicitud_Datos_de_Apoyo.Lengua_Originaria
+                        ,Diligencia_a_Enviar = varDetalle_de_Solicitud_Datos_de_Apoyo.Diligencia_a_Enviar
+                        ,Archivo_Adjunto = (varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_Adjunto.HasValue && varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_Adjunto != 0) ? ((int?)Convert.ToInt32(varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_Adjunto.Value)) : null
+
 
                     };
 
@@ -1538,6 +1654,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Responsable = m.Responsable
                         ,IdiomaDescripcion = CultureHelper.GetTraduction(m.Idioma_Idioma.Clave.ToString(), "Descripcion") ?? (string)m.Idioma_Idioma.Descripcion
                         ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(m.Lengua_Originaria_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Lengua_Originaria_Dialecto.Descripcion
+                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Dilgencia_MASC.Clave.ToString(), "Dilgencia_MASC") ?? (string)m.Diligencia_a_Enviar_Dilgencia_MASC.Descripcion
+			,Archivo_Adjunto = m.Archivo_Adjunto
 
             }).ToList();
 
@@ -1621,6 +1739,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Responsable = m.Responsable
                         ,IdiomaDescripcion = CultureHelper.GetTraduction(m.Idioma_Idioma.Clave.ToString(), "Descripcion") ?? (string)m.Idioma_Idioma.Descripcion
                         ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(m.Lengua_Originaria_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Lengua_Originaria_Dialecto.Descripcion
+                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Dilgencia_MASC.Clave.ToString(), "Dilgencia_MASC") ?? (string)m.Diligencia_a_Enviar_Dilgencia_MASC.Descripcion
+			,Archivo_Adjunto = m.Archivo_Adjunto
 
             }).ToList();
 
@@ -1655,7 +1775,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_Solicitud_Datos_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
-				
+				                    if (varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_AdjuntoRemoveAttachment != 0 && varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_AdjuntoFile == null)
+                    {
+                        varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_Adjunto = 0;
+                    }
+
+                    if (varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_AdjuntoFile != null)
+                    {
+                        var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_AdjuntoFile);
+                        _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                        varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_Adjunto = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
+                        {
+                            File = fileAsBytes,
+                            Description = varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_AdjuntoFile.FileName,
+                            File_Size = fileAsBytes.Length
+                        }).Resource;
+                    }
+
                 var result = "";
                 var Detalle_de_Solicitud_Datos_de_Apoyo_Datos_GeneralesInfo = new Detalle_de_Solicitud_Datos_de_Apoyo_Datos_Generales
                 {
@@ -1670,6 +1806,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Responsable = varDetalle_de_Solicitud_Datos_de_Apoyo.Responsable
                         ,Idioma = varDetalle_de_Solicitud_Datos_de_Apoyo.Idioma
                         ,Lengua_Originaria = varDetalle_de_Solicitud_Datos_de_Apoyo.Lengua_Originaria
+                        ,Diligencia_a_Enviar = varDetalle_de_Solicitud_Datos_de_Apoyo.Diligencia_a_Enviar
+                        ,Archivo_Adjunto = (varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_Adjunto.HasValue && varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_Adjunto != 0) ? ((int?)Convert.ToInt32(varDetalle_de_Solicitud_Datos_de_Apoyo.Archivo_Adjunto.Value)) : null
+
                     
                 };
 
@@ -1714,6 +1853,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,IdiomaDescripcion = CultureHelper.GetTraduction(m.Idioma_Idioma.Clave.ToString(), "Descripcion") ?? (string)m.Idioma_Idioma.Descripcion
                         ,Lengua_Originaria = m.Lengua_Originaria
                         ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(m.Lengua_Originaria_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Lengua_Originaria_Dialecto.Descripcion
+                        ,Diligencia_a_Enviar = m.Diligencia_a_Enviar
+                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Dilgencia_MASC.Clave.ToString(), "Dilgencia_MASC") ?? (string)m.Diligencia_a_Enviar_Dilgencia_MASC.Descripcion
+			,Archivo_Adjunto = m.Archivo_Adjunto
 
                     
                 };

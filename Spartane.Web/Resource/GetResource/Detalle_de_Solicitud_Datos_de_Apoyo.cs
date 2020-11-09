@@ -136,6 +136,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Diligencia_a_Enviar</summary>
+        public static string Diligencia_a_Enviar
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Solicitud_Datos_de_Apoyo.GetResource("Diligencia_a_Enviar", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Archivo_Adjunto</summary>
+        public static string Archivo_Adjunto
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Solicitud_Datos_de_Apoyo.GetResource("Archivo_Adjunto", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Solicitud_Datos_de_Apoyo.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

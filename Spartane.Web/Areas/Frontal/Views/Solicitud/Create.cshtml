@@ -85,6 +85,9 @@
     List<SelectListItem> varTipo_de_Mecanismo_Alterno_Tipo_de_Mecanismo = null;
     if (ViewBag.Tipo_de_Mecanismo_Alternos_Tipo_de_Mecanismo != null)
     { varTipo_de_Mecanismo_Alterno_Tipo_de_Mecanismo = (List<SelectListItem>)ViewBag.Tipo_de_Mecanismo_Alternos_Tipo_de_Mecanismo; }
+    List<SelectListItem> varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo = null;
+    if (ViewBag.Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo != null)
+    { varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo = (List<SelectListItem>)ViewBag.Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo; }
     List<SelectListItem> varA_Tiempo_Acuerdo_Cumplido = null;
     if (ViewBag.A_Tiempos_Acuerdo_Cumplido != null)
     { varA_Tiempo_Acuerdo_Cumplido = (List<SelectListItem>)ViewBag.A_Tiempos_Acuerdo_Cumplido; }
@@ -936,9 +939,30 @@
                             <div class="form-group" id="divMotivo_de_Rechazo">
                                 <label class="col-sm-2 control-label">@Resources.SolicitudResources.Motivo_de_Rechazo</label>
                                 <div class="col-sm-8" data-field-id="Motivo_de_Rechazo" data-attribute="266685" data-field-name="@Resources.SolicitudResources.Motivo_de_Rechazo">
-                                    <textarea id="Motivo_de_Rechazo" name="Motivo_de_Rechazo" class="form-control Cierre" rows="4" cols="50">@Model.Motivo_de_Rechazo</textarea>
+                                    <select class="form-control Cierre" data-val="true" data-val-number="The field Motivo de Rechazo must be a number." data-val-required="The Motivo de Rechazo field is required." id="Motivo_de_Rechazo" name="Motivo_de_Rechazo">
+                                        <option value=""></option>
+                                        @if (varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo != null){ 
+                                            foreach (var itemMotivo_de_Rechazo in varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo)
+                                            {
+                                                if (itemMotivo_de_Rechazo.Value == Convert.ToString(Model.Motivo_de_Rechazo))
+                                                {
+                                                    <option value="@itemMotivo_de_Rechazo.Value" selected>@itemMotivo_de_Rechazo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemMotivo_de_Rechazo.Value">@itemMotivo_de_Rechazo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
                                     @*<span class="field-validation-valid" data-valmsg-for="Motivo_de_Rechazo" data-valmsg-replace="true"></span>*@
                                 </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266685).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Motivo_de_Rechazo_de_Solicitud', 'Motivo_de_Rechazo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
                             </div>
                             <div class="form-group" id="divAcuerdo_Cumplido">
                                 <label class="col-sm-2 control-label">@Resources.SolicitudResources.Acuerdo_Cumplido</label>

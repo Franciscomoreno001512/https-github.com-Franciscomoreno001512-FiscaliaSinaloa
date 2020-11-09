@@ -46,6 +46,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Diligencia</summary>
+        public static string Diligencia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDocumento.GetResource("Diligencia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Origen</summary>
         public static string Origen
         {

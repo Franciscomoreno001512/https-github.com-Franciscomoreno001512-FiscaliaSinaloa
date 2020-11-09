@@ -9,6 +9,8 @@ using Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo;
 using Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante;
 using Spartane.Core.Domain.Idioma;
 using Spartane.Core.Domain.Dialecto;
+using Spartane.Core.Domain.Dilgencia_MASC;
+using Spartane.Core.Domain.Spartane_File;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -32,6 +34,9 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitud_Datos_de_Apoyo
         public string Responsable { get; set; }
         public int? Idioma { get; set; }
         public int? Lengua_Originaria { get; set; }
+        public int? Diligencia_a_Enviar { get; set; }
+        public int? Archivo_Adjunto { get; set; }
+        public string Archivo_Adjunto_URL { get; set; }
 
         [ForeignKey("Solicitud")]
         public virtual Spartane.Core.Domain.Solicitud.Solicitud Solicitud_Solicitud { get; set; }
@@ -45,6 +50,10 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitud_Datos_de_Apoyo
         public virtual Spartane.Core.Domain.Idioma.Idioma Idioma_Idioma { get; set; }
         [ForeignKey("Lengua_Originaria")]
         public virtual Spartane.Core.Domain.Dialecto.Dialecto Lengua_Originaria_Dialecto { get; set; }
+        [ForeignKey("Diligencia_a_Enviar")]
+        public virtual Spartane.Core.Domain.Dilgencia_MASC.Dilgencia_MASC Diligencia_a_Enviar_Dilgencia_MASC { get; set; }
+        [ForeignKey("Archivo_Adjunto")]
+        public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Archivo_Adjunto_Spartane_File { get; set; }
 
     }
 	
@@ -61,6 +70,9 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitud_Datos_de_Apoyo
         public string Responsable { get; set; }
         public int? Idioma { get; set; }
         public int? Lengua_Originaria { get; set; }
+        public int? Diligencia_a_Enviar { get; set; }
+        public int? Archivo_Adjunto { get; set; }
+        public string Archivo_Adjunto_URL { get; set; }
 
 		        [ForeignKey("Solicitud")]
         public virtual Spartane.Core.Domain.Solicitud.Solicitud Solicitud_Solicitud { get; set; }
@@ -74,6 +86,10 @@ namespace Spartane.Core.Domain.Detalle_de_Solicitud_Datos_de_Apoyo
         public virtual Spartane.Core.Domain.Idioma.Idioma Idioma_Idioma { get; set; }
         [ForeignKey("Lengua_Originaria")]
         public virtual Spartane.Core.Domain.Dialecto.Dialecto Lengua_Originaria_Dialecto { get; set; }
+        [ForeignKey("Diligencia_a_Enviar")]
+        public virtual Spartane.Core.Domain.Dilgencia_MASC.Dilgencia_MASC Diligencia_a_Enviar_Dilgencia_MASC { get; set; }
+        [ForeignKey("Archivo_Adjunto")]
+        public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Archivo_Adjunto_Spartane_File { get; set; }
 
     }
 

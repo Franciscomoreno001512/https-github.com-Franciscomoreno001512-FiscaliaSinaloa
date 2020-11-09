@@ -17,6 +17,28 @@ function GetAutoCompleteDetalle_de_Relaciones_Modulo_Atencion_Inicial_Modulo_Ate
     }
     return AutoCompleteModulo_Atencion_InicialData;
 }
+var AutoCompleteInvolucradoData = [];
+function GetAutoCompleteDetalle_de_Relaciones_Involucrado_Detalle_de_Datos_GeneralesData(data) {
+	AutoCompleteInvolucradoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteInvolucradoData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre_Completo
+        });
+    }
+    return AutoCompleteInvolucradoData;
+}
+var AutoCompleteProbable_ResponsableData = [];
+function GetAutoCompleteDetalle_de_Relaciones_Probable_Responsable_Detalle_de_ImputadoData(data) {
+	AutoCompleteProbable_ResponsableData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteProbable_ResponsableData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre_Completo_del_Tutor
+        });
+    }
+    return AutoCompleteProbable_ResponsableData;
+}
 
 
 function getDropdown(elementKey) {
@@ -57,6 +79,12 @@ function ClearControls() {
     $('#Modulo_Atencion_Inicial').empty();
     $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
     $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+    $('#Involucrado').empty();
+    $("#Involucrado").append('<option value=""></option>');
+    $('#Involucrado').val('0').trigger('change');
+    $('#Probable_Responsable').empty();
+    $("#Probable_Responsable").append('<option value=""></option>');
+    $('#Probable_Responsable').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -189,6 +217,12 @@ $(document).ready(function () {
 	    $('#Modulo_Atencion_Inicial').empty();
     $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
     $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+    $('#Involucrado').empty();
+    $("#Involucrado").append('<option value=""></option>');
+    $('#Involucrado').val('0').trigger('change');
+    $('#Probable_Responsable').empty();
+    $("#Probable_Responsable").append('<option value=""></option>');
+    $('#Probable_Responsable').val('0').trigger('change');
 
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);

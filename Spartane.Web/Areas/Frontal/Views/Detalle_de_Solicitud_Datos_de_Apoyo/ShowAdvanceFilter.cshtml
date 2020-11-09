@@ -21,6 +21,9 @@
     List<SelectListItem> varDialecto_Lengua_Originaria = null;
     if (ViewBag.Dialectos_Lengua_Originaria != null)
     { varDialecto_Lengua_Originaria = (List<SelectListItem>)ViewBag.Dialectos_Lengua_Originaria; }
+ List<SelectListItem> varDilgencia_MASC_Diligencia_a_Enviar = null;
+    if (ViewBag.Dilgencia_MASCs_Diligencia_a_Enviar != null)
+    { varDilgencia_MASC_Diligencia_a_Enviar = (List<SelectListItem>)ViewBag.Dilgencia_MASCs_Diligencia_a_Enviar; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -195,6 +198,9 @@
                         });
                     }
                 </div>
+ List<SelectListItem> varDilgencia_MASC_Diligencia_a_Enviar = null;
+    if (ViewBag.Dilgencia_MASCs_Diligencia_a_Enviar != null)
+    { varDilgencia_MASC_Diligencia_a_Enviar = (List<SelectListItem>)ViewBag.Dilgencia_MASCs_Diligencia_a_Enviar; }
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_de_Solicitud_Datos_de_Apoyo/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -322,6 +328,36 @@
                 advanceSearch.Lengua_OriginariaSearchType = 2;
             }
         }
+        advanceSearch.Diligencia_a_EnviarSearchType = 0;
+        if ($('#ddlAdvanceDiligencia_a_Enviar').val().length > 0 || $("#txtAdvanceDiligencia_a_Enviar").val() == "") {
+
+
+            if (isDetalle_de_Solicitud_Datos_de_ApoyoTextSearch) {
+                advanceSearch.Diligencia_a_EnviarName = $("#txtAdvanceDiligencia_a_Enviar").val();
+                advanceSearch.Diligencia_a_EnviarNameSearchType = $("#ddlAdvanceDiligencia_a_Enviar").val();
+                advanceSearch.Diligencia_a_EnviarSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Diligencia_a_EnviarToSearch = $("#ddlAdvanceDiligencia_a_Enviar").val();
+                advanceSearch.Diligencia_a_EnviarSearchType = 2;
+            }
+        }
+        advanceSearch.Archivo_AdjuntoSearchType = 0;
+        if ($('#ddlAdvanceArchivo_Adjunto').val().length > 0 || $("#txtAdvanceArchivo_Adjunto").val() == "") {
+
+
+            if (isDetalle_de_Solicitud_Datos_de_ApoyoTextSearch) {
+                advanceSearch.Archivo_AdjuntoName = $("#txtAdvanceArchivo_Adjunto").val();
+                advanceSearch.Archivo_AdjuntoNameSearchType = $("#ddlAdvanceArchivo_Adjunto").val();
+                advanceSearch.Archivo_AdjuntoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Archivo_AdjuntoToSearch = $("#ddlAdvanceArchivo_Adjunto").val();
+                advanceSearch.Archivo_AdjuntoSearchType = 2;
+            }
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblDetalle_de_Solicitud_Datos_de_Apoyo').DataTable().draw();
@@ -393,6 +429,15 @@
         $("#ddlAdvanceLengua_Originaria").change(function () {
             isDetalle_de_Solicitud_Datos_de_ApoyoTextSearch = false;
             $("#txtAdvanceLengua_Originaria").val('');
+        });
+        $("#txtAdvanceDiligencia_a_Enviar").keypress(function () {
+            isDetalle_de_Solicitud_Datos_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceDiligencia_a_Enviar").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDiligencia_a_Enviar").change(function () {
+            isDetalle_de_Solicitud_Datos_de_ApoyoTextSearch = false;
+            $("#txtAdvanceDiligencia_a_Enviar").val('');
         });
 
     });

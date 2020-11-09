@@ -21,6 +21,7 @@ using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Mecanismo_Alterno;
+using Spartane.Core.Domain.Motivo_de_Rechazo_de_Solicitud;
 using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.Razon_de_Incumplimiento;
 using Spartane.Core.Domain.Tipo_de_Conclusion_Anticipada;
@@ -82,7 +83,7 @@ namespace Spartane.Core.Domain.Solicitud
         public DateTime? Fecha_de_Atencion_del_Especialista { get; set; }
         public string Hora_de_Atencion_del_Especialista { get; set; }
         public bool? Rechazar { get; set; }
-        public string Motivo_de_Rechazo { get; set; }
+        public int? Motivo_de_Rechazo { get; set; }
         public short? Acuerdo_Cumplido { get; set; }
         public int? Razon_de_Incumplimiento { get; set; }
         public int? Tipo_de_Conclusion_Anticipada { get; set; }
@@ -125,6 +126,8 @@ namespace Spartane.Core.Domain.Solicitud
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Especialista_AsignadoA_Spartan_User { get; set; }
         [ForeignKey("Tipo_de_Mecanismo")]
         public virtual Spartane.Core.Domain.Tipo_de_Mecanismo_Alterno.Tipo_de_Mecanismo_Alterno Tipo_de_Mecanismo_Tipo_de_Mecanismo_Alterno { get; set; }
+        [ForeignKey("Motivo_de_Rechazo")]
+        public virtual Spartane.Core.Domain.Motivo_de_Rechazo_de_Solicitud.Motivo_de_Rechazo_de_Solicitud Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud { get; set; }
         [ForeignKey("Acuerdo_Cumplido")]
         public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Acuerdo_Cumplido_A_Tiempo { get; set; }
         [ForeignKey("Razon_de_Incumplimiento")]
@@ -253,14 +256,16 @@ namespace Spartane.Core.Domain.Solicitud
     {
                 public int Clave { get; set; }
         public bool? Rechazar { get; set; }
-        public string Motivo_de_Rechazo { get; set; }
+        public int? Motivo_de_Rechazo { get; set; }
         public short? Acuerdo_Cumplido { get; set; }
         public int? Razon_de_Incumplimiento { get; set; }
         public int? Tipo_de_Conclusion_Anticipada { get; set; }
         public DateTime? Fecha_de_Cierre { get; set; }
         public string Hora_de_Cierre { get; set; }
 
-		        [ForeignKey("Acuerdo_Cumplido")]
+		        [ForeignKey("Motivo_de_Rechazo")]
+        public virtual Spartane.Core.Domain.Motivo_de_Rechazo_de_Solicitud.Motivo_de_Rechazo_de_Solicitud Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud { get; set; }
+        [ForeignKey("Acuerdo_Cumplido")]
         public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Acuerdo_Cumplido_A_Tiempo { get; set; }
         [ForeignKey("Razon_de_Incumplimiento")]
         public virtual Spartane.Core.Domain.Razon_de_Incumplimiento.Razon_de_Incumplimiento Razon_de_Incumplimiento_Razon_de_Incumplimiento { get; set; }

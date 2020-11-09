@@ -12,6 +12,8 @@
   <resource culture="es-es" name="Responsable" value="Responsable"></resource>
   <resource culture="es-es" name="Idioma" value="Idioma"></resource>
   <resource culture="es-es" name="Lengua_Originaria" value="Lengua Originaria"></resource>
+  <resource culture="es-es" name="Diligencia_a_Enviar" value="Diligencia a Enviar"></resource>
+  <resource culture="es-es" name="Archivo_Adjunto" value="Archivo Adjunto"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

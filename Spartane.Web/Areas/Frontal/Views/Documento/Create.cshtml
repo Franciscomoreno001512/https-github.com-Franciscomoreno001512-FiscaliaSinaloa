@@ -10,6 +10,9 @@
 /*
 
 */
+    List<SelectListItem> varDilgencia_MASC_Diligencia = null;
+    if (ViewBag.Dilgencia_MASCs_Diligencia != null)
+    { varDilgencia_MASC_Diligencia = (List<SelectListItem>)ViewBag.Dilgencia_MASCs_Diligencia; }
     List<SelectListItem> varOrigen_de_Invitacion_Origen = null;
     if (ViewBag.Origen_de_Invitacions_Origen != null)
     { varOrigen_de_Invitacion_Origen = (List<SelectListItem>)ViewBag.Origen_de_Invitacions_Origen; }
@@ -167,6 +170,34 @@
                                     <input class="form-control Datos_Generales" id="Descripcion" name="Descripcion" type="text" value="@Model.Descripcion">
                                     @*<span class="field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>*@
                                 </div>
+                            </div>
+                            <div class="form-group" id="divDiligencia">
+                                <label class="col-sm-2 control-label">@Resources.DocumentoResources.Diligencia</label>
+                                <div class="col-sm-8" data-field-id="Diligencia" data-attribute="266694" data-field-name="@Resources.DocumentoResources.Diligencia">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Diligencia must be a number." data-val-required="The Diligencia field is required." id="Diligencia" name="Diligencia">
+                                        <option value=""></option>
+                                        @if (varDilgencia_MASC_Diligencia != null){ 
+                                            foreach (var itemDiligencia in varDilgencia_MASC_Diligencia)
+                                            {
+                                                if (itemDiligencia.Value == Convert.ToString(Model.Diligencia))
+                                                {
+                                                    <option value="@itemDiligencia.Value" selected>@itemDiligencia.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemDiligencia.Value">@itemDiligencia.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Diligencia" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266694).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Dilgencia_MASC', 'Diligencia');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
                             </div>
                             <div class="form-group" id="divOrigen">
                                 <label class="col-sm-2 control-label">@Resources.DocumentoResources.Origen</label>
@@ -682,6 +713,7 @@
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Descripcion').val(result.data.Descripcion);
+                    $('#Diligencia').val(result.data.Diligencia);
                     $('#Origen').val(result.data.Origen);
                     $('#Tipo_de_Documento').val(result.data.Tipo_de_Documento);
                     $('#idFormato').val(result.data.idFormato);
@@ -700,6 +732,7 @@
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Descripcion', $('#Descripcion').val());
+                data.append('Diligencia', $('#Diligencia').val());
                 data.append('Origen', $('#Origen').val());
                 data.append('Tipo_de_Documento', $('#Tipo_de_Documento').val());
                 data.append('idFormato', $('#idFormato').val());

@@ -918,8 +918,26 @@
 <Object Id="45389" culture="es-es" value="Detalle Probable Responsable de Documentos" />
 <Object Id="45390" culture="en-us" value="Detalle Delitos de Documentos" />
 <Object Id="45390" culture="es-es" value="Detalle Delitos de Documentos" />
+<Object Id="45391" culture="en-us" value="Motivo de Rechazo de Solicitud" />
+<Object Id="45391" culture="es-es" value="Motivo de Rechazo de Solicitud" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

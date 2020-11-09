@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
 using Spartane.Core.Domain.Detalle_de_Datos_Generales;
-using Spartane.Core.Domain.Detalle_de_Datos_Generales;
+using Spartane.Core.Domain.Detalle_de_Imputado;
 using Spartane.Core.Domain.Delito;
 using Spartane.Core.Domain.Binario;
 using Spartane.Core.Domain.Parentesco;
@@ -34,7 +34,7 @@ namespace Spartane.Core.Domain.Detalle_de_Relaciones
         [ForeignKey("Involucrado")]
         public virtual Spartane.Core.Domain.Detalle_de_Datos_Generales.Detalle_de_Datos_Generales Involucrado_Detalle_de_Datos_Generales { get; set; }
         [ForeignKey("Probable_Responsable")]
-        public virtual Spartane.Core.Domain.Detalle_de_Datos_Generales.Detalle_de_Datos_Generales Probable_Responsable_Detalle_de_Datos_Generales { get; set; }
+        public virtual Spartane.Core.Domain.Detalle_de_Imputado.Detalle_de_Imputado Probable_Responsable_Detalle_de_Imputado { get; set; }
         [ForeignKey("Delito")]
         public virtual Spartane.Core.Domain.Delito.Delito Delito_Delito { get; set; }
         [ForeignKey("Es_Familiar")]
@@ -59,7 +59,7 @@ namespace Spartane.Core.Domain.Detalle_de_Relaciones
         [ForeignKey("Involucrado")]
         public virtual Spartane.Core.Domain.Detalle_de_Datos_Generales.Detalle_de_Datos_Generales Involucrado_Detalle_de_Datos_Generales { get; set; }
         [ForeignKey("Probable_Responsable")]
-        public virtual Spartane.Core.Domain.Detalle_de_Datos_Generales.Detalle_de_Datos_Generales Probable_Responsable_Detalle_de_Datos_Generales { get; set; }
+        public virtual Spartane.Core.Domain.Detalle_de_Imputado.Detalle_de_Imputado Probable_Responsable_Detalle_de_Imputado { get; set; }
         [ForeignKey("Delito")]
         public virtual Spartane.Core.Domain.Delito.Delito Delito_Delito { get; set; }
         [ForeignKey("Es_Familiar")]

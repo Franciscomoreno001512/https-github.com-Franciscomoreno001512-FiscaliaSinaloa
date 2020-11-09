@@ -76,7 +76,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Fecha_de_Atencion_del_Especialista { get; set; }
         public string Hora_de_Atencion_del_Especialista { get; set; }
         public bool Rechazar { get; set; }
-        public string Motivo_de_Rechazo { get; set; }
+        public int? Motivo_de_Rechazo { get; set; }
+        public string Motivo_de_RechazoDescripcion { get; set; }
         public short? Acuerdo_Cumplido { get; set; }
         public string Acuerdo_CumplidoDescripcion { get; set; }
         public int? Razon_de_Incumplimiento { get; set; }
@@ -191,7 +192,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         [Required]
         public int Clave { get; set; }
         public bool? Rechazar { get; set; }
-        public string Motivo_de_Rechazo { get; set; }
+        public int? Motivo_de_Rechazo { get; set; }
+        public string Motivo_de_RechazoDescripcion { get; set; }
         public short? Acuerdo_Cumplido { get; set; }
         public string Acuerdo_CumplidoDescripcion { get; set; }
         public int? Razon_de_Incumplimiento { get; set; }

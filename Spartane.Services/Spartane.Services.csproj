@@ -1103,6 +1103,8 @@
 <Compile Include="Detalle_Probable_Responsable_de_Documentos\Detalle_Probable_Responsable_de_DocumentosService.cs" />
 <Compile Include="Detalle_Delitos_de_Documentos\IDetalle_Delitos_de_DocumentosService.cs" />
 <Compile Include="Detalle_Delitos_de_Documentos\Detalle_Delitos_de_DocumentosService.cs" />
+<Compile Include="Motivo_de_Rechazo_de_Solicitud\IMotivo_de_Rechazo_de_SolicitudService.cs" />
+<Compile Include="Motivo_de_Rechazo_de_Solicitud\Motivo_de_Rechazo_de_SolicitudService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1202,6 +1204,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Spartane.Core.Domain.Dilgencia_MASC;
 using Spartane.Core.Domain.Origen_de_Invitacion;
 using Spartane.Core.Domain.Tipo_de_Documento;
 
@@ -19,6 +20,7 @@ namespace Spartane.Core.Domain.Documento
     {
         public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public int? Diligencia { get; set; }
         public int? Origen { get; set; }
         public int? Tipo_de_Documento { get; set; }
         public int? idFormato { get; set; }
@@ -26,6 +28,8 @@ namespace Spartane.Core.Domain.Documento
         public bool? Solicitante { get; set; }
         public bool? Solicitar_Archivo_Adjunto { get; set; }
 
+        [ForeignKey("Diligencia")]
+        public virtual Spartane.Core.Domain.Dilgencia_MASC.Dilgencia_MASC Diligencia_Dilgencia_MASC { get; set; }
         [ForeignKey("Origen")]
         public virtual Spartane.Core.Domain.Origen_de_Invitacion.Origen_de_Invitacion Origen_Origen_de_Invitacion { get; set; }
         [ForeignKey("Tipo_de_Documento")]
@@ -37,6 +41,7 @@ namespace Spartane.Core.Domain.Documento
     {
                 public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public int? Diligencia { get; set; }
         public int? Origen { get; set; }
         public int? Tipo_de_Documento { get; set; }
         public int? idFormato { get; set; }
@@ -44,7 +49,9 @@ namespace Spartane.Core.Domain.Documento
         public bool? Solicitante { get; set; }
         public bool? Solicitar_Archivo_Adjunto { get; set; }
 
-		        [ForeignKey("Origen")]
+		        [ForeignKey("Diligencia")]
+        public virtual Spartane.Core.Domain.Dilgencia_MASC.Dilgencia_MASC Diligencia_Dilgencia_MASC { get; set; }
+        [ForeignKey("Origen")]
         public virtual Spartane.Core.Domain.Origen_de_Invitacion.Origen_de_Invitacion Origen_Origen_de_Invitacion { get; set; }
         [ForeignKey("Tipo_de_Documento")]
         public virtual Spartane.Core.Domain.Tipo_de_Documento.Tipo_de_Documento Tipo_de_Documento_Tipo_de_Documento { get; set; }

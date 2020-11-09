@@ -3,6 +3,9 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.DocumentoAdvanceSearchModel
 @{
+    List<SelectListItem> varDilgencia_MASC_Diligencia = null;
+    if (ViewBag.Dilgencia_MASCs_Diligencia != null)
+    { varDilgencia_MASC_Diligencia = (List<SelectListItem>)ViewBag.Dilgencia_MASCs_Diligencia; }
     List<SelectListItem> varOrigen_de_Invitacion_Origen = null;
     if (ViewBag.Origen_de_Invitacions_Origen != null)
     { varOrigen_de_Invitacion_Origen = (List<SelectListItem>)ViewBag.Origen_de_Invitacions_Origen; }
@@ -64,6 +67,27 @@
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
                     @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.DocumentoResources.Diligencia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DiligenciaFilter, filters, new { @class = "form-control", @id = "ddlDiligenciaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceDiligencia, new { @class = "form-control", @type = "text", @id = "txtAdvanceDiligencia" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varDilgencia_MASC_Diligencia!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceDiligenciaMultiple, varDilgencia_MASC_Diligencia,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceDiligencia"
+                        });
+                    }
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.DocumentoResources.Origen</h3>
@@ -140,6 +164,21 @@
             advanceSearch.DocumentoDescripcion = $("#txtAdvanceDescripcion").val();
             advanceSearch.DocumentoDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
         }
+        advanceSearch.DiligenciaSearchType = 0;
+        if ($('#ddlAdvanceDiligencia').val().length > 0 || $("#txtAdvanceDiligencia").val() == "") {
+
+
+            if (isDocumentoTextSearch) {
+                advanceSearch.DiligenciaName = $("#txtAdvanceDiligencia").val();
+                advanceSearch.DiligenciaNameSearchType = $("#ddlAdvanceDiligencia").val();
+                advanceSearch.DiligenciaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.DiligenciaToSearch = $("#ddlAdvanceDiligencia").val();
+                advanceSearch.DiligenciaSearchType = 2;
+            }
+        }
         advanceSearch.OrigenSearchType = 0;
         if ($('#ddlAdvanceOrigen').val().length > 0 || $("#txtAdvanceOrigen").val() == "") {
 
@@ -205,6 +244,15 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceDiligencia").keypress(function () {
+            isDocumentoTextSearch = true;
+            $("#ddlAdvanceDiligencia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDiligencia").change(function () {
+            isDocumentoTextSearch = false;
+            $("#txtAdvanceDiligencia").val('');
+        });
         $("#txtAdvanceOrigen").keypress(function () {
             isDocumentoTextSearch = true;
             $("#ddlAdvanceOrigen").val('').trigger("chosen:updated");

@@ -19,6 +19,7 @@
 @using Spartane.Core.Domain.Colonia;
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Tipo_de_Mecanismo_Alterno;
+@using Spartane.Core.Domain.Motivo_de_Rechazo_de_Solicitud;
 @using Spartane.Core.Domain.A_Tiempo;
 @using Spartane.Core.Domain.Razon_de_Incumplimiento;
 @using Spartane.Core.Domain.Tipo_de_Conclusion_Anticipada;
@@ -960,7 +961,7 @@
                 ,{ "data": "Fecha_de_Atencion_del_Especialista", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Atencion_del_Especialista" }
                 ,{ "data": "Hora_de_Atencion_del_Especialista", "orderable": true, "name": "Hora_de_Atencion_del_Especialista" }
                 ,{ "data": "Rechazar", "orderable": true, "name": "Rechazar","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
-                ,{ "data": "Motivo_de_Rechazo", "orderable": true, "name": "Motivo_de_Rechazo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Motivo_de_RechazoDescripcion", "orderable": true, "name": "Motivo_de_RechazoDescripcion" }
                 ,{ "data": "Acuerdo_CumplidoDescripcion", "orderable": true, "name": "Acuerdo_CumplidoDescripcion" }
                 ,{ "data": "Razon_de_IncumplimientoDescripcion", "orderable": true, "name": "Razon_de_IncumplimientoDescripcion" }
                 ,{ "data": "Tipo_de_Conclusion_AnticipadaDescripcion", "orderable": true, "name": "Tipo_de_Conclusion_AnticipadaDescripcion" }

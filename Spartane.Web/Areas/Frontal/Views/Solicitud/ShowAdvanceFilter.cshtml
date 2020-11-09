@@ -57,6 +57,9 @@
     List<SelectListItem> varTipo_de_Mecanismo_Alterno_Tipo_de_Mecanismo = null;
     if (ViewBag.Tipo_de_Mecanismo_Alternos_Tipo_de_Mecanismo != null)
     { varTipo_de_Mecanismo_Alterno_Tipo_de_Mecanismo = (List<SelectListItem>)ViewBag.Tipo_de_Mecanismo_Alternos_Tipo_de_Mecanismo; }
+    List<SelectListItem> varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo = null;
+    if (ViewBag.Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo != null)
+    { varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo = (List<SelectListItem>)ViewBag.Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo; }
     List<SelectListItem> varA_Tiempo_Acuerdo_Cumplido = null;
     if (ViewBag.A_Tiempos_Acuerdo_Cumplido != null)
     { varA_Tiempo_Acuerdo_Cumplido = (List<SelectListItem>)ViewBag.A_Tiempos_Acuerdo_Cumplido; }
@@ -584,7 +587,20 @@
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.Motivo_de_RechazoFilter, filters, new { @class = "form-control", @id = "ddlMotivo_de_RechazoFilter" })
-                    @Html.TextBoxFor(m => m.Motivo_de_Rechazo, new { @class = "form-control", @type = "text", @id = "txtMotivo_de_Rechazo" })
+                    @Html.TextBoxFor(m => m.AdvanceMotivo_de_Rechazo, new { @class = "form-control", @type = "text", @id = "txtAdvanceMotivo_de_Rechazo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMotivo_de_RechazoMultiple, varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMotivo_de_Rechazo"
+                        });
+                    }
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.SolicitudResources.Acuerdo_Cumplido</h3>
@@ -1107,10 +1123,20 @@
             hasParameter = true;
             advanceSearch.SolicitudRechazar = $("#ddlAdvanceRechazar").val();
         }
-        if ($("#txtAdvanceMotivo_de_Rechazo").val() != "") {
-            hasParameter = true;
-            advanceSearch.SolicitudMotivo_de_Rechazo = $("#txtAdvanceMotivo_de_Rechazo").val();
-            advanceSearch.SolicitudMotivo_de_RechazoSearchType = $("#ddlAdvanceMotivo_de_RechazoFilter").val();
+        advanceSearch.Motivo_de_RechazoSearchType = 0;
+        if ($('#ddlAdvanceMotivo_de_Rechazo').val().length > 0 || $("#txtAdvanceMotivo_de_Rechazo").val() == "") {
+
+
+            if (isSolicitudTextSearch) {
+                advanceSearch.Motivo_de_RechazoName = $("#txtAdvanceMotivo_de_Rechazo").val();
+                advanceSearch.Motivo_de_RechazoNameSearchType = $("#ddlAdvanceMotivo_de_Rechazo").val();
+                advanceSearch.Motivo_de_RechazoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Motivo_de_RechazoToSearch = $("#ddlAdvanceMotivo_de_Rechazo").val();
+                advanceSearch.Motivo_de_RechazoSearchType = 2;
+            }
         }
         advanceSearch.Acuerdo_CumplidoSearchType = 0;
         if ($('#ddlAdvanceAcuerdo_Cumplido').val().length > 0 || $("#txtAdvanceAcuerdo_Cumplido").val() == "") {
@@ -1346,6 +1372,15 @@
         $("#ddlAdvanceTipo_de_Mecanismo").change(function () {
             isSolicitudTextSearch = false;
             $("#txtAdvanceTipo_de_Mecanismo").val('');
+        });
+        $("#txtAdvanceMotivo_de_Rechazo").keypress(function () {
+            isSolicitudTextSearch = true;
+            $("#ddlAdvanceMotivo_de_Rechazo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMotivo_de_Rechazo").change(function () {
+            isSolicitudTextSearch = false;
+            $("#txtAdvanceMotivo_de_Rechazo").val('');
         });
         $("#txtAdvanceAcuerdo_Cumplido").keypress(function () {
             isSolicitudTextSearch = true;

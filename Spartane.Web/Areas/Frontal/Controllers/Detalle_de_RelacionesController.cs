@@ -4,7 +4,7 @@ using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_de_Relaciones;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
 using Spartane.Core.Domain.Detalle_de_Datos_Generales;
-using Spartane.Core.Domain.Detalle_de_Datos_Generales;
+using Spartane.Core.Domain.Detalle_de_Imputado;
 using Spartane.Core.Domain.Delito;
 using Spartane.Core.Domain.Binario;
 using Spartane.Core.Domain.Parentesco;
@@ -20,7 +20,7 @@ using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Relaciones;
 using Spartane.Web.Areas.WebApiConsumer.Modulo_Atencion_Inicial;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Datos_Generales;
-using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Datos_Generales;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Imputado;
 using Spartane.Web.Areas.WebApiConsumer.Delito;
 using Spartane.Web.Areas.WebApiConsumer.Binario;
 using Spartane.Web.Areas.WebApiConsumer.Parentesco;
@@ -62,6 +62,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_de_RelacionesApiConsumer _IDetalle_de_RelacionesApiConsumer;
         private IModulo_Atencion_InicialApiConsumer _IModulo_Atencion_InicialApiConsumer;
         private IDetalle_de_Datos_GeneralesApiConsumer _IDetalle_de_Datos_GeneralesApiConsumer;
+        private IDetalle_de_ImputadoApiConsumer _IDetalle_de_ImputadoApiConsumer;
         private IDelitoApiConsumer _IDelitoApiConsumer;
         private IBinarioApiConsumer _IBinarioApiConsumer;
         private IParentescoApiConsumer _IParentescoApiConsumer;
@@ -82,7 +83,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_RelacionesController(IDetalle_de_RelacionesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_RelacionesApiConsumer Detalle_de_RelacionesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer , IDelitoApiConsumer DelitoApiConsumer , IBinarioApiConsumer BinarioApiConsumer , IParentescoApiConsumer ParentescoApiConsumer )
+        public Detalle_de_RelacionesController(IDetalle_de_RelacionesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_RelacionesApiConsumer Detalle_de_RelacionesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer , IDelitoApiConsumer DelitoApiConsumer , IBinarioApiConsumer BinarioApiConsumer , IParentescoApiConsumer ParentescoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -98,7 +99,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._IModulo_Atencion_InicialApiConsumer = Modulo_Atencion_InicialApiConsumer;
             this._IDetalle_de_Datos_GeneralesApiConsumer = Detalle_de_Datos_GeneralesApiConsumer;
-            this._IDetalle_de_Datos_GeneralesApiConsumer = Detalle_de_Datos_GeneralesApiConsumer;
+            this._IDetalle_de_ImputadoApiConsumer = Detalle_de_ImputadoApiConsumer;
             this._IDelitoApiConsumer = DelitoApiConsumer;
             this._IBinarioApiConsumer = BinarioApiConsumer;
             this._IParentescoApiConsumer = ParentescoApiConsumer;
@@ -180,9 +181,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 	                    ,Modulo_Atencion_Inicial = Detalle_de_RelacionesData.Modulo_Atencion_Inicial
                     ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Modulo_Atencion_Inicial), "Modulo_Atencion_Inicial") ??  (string)Detalle_de_RelacionesData.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                     ,Involucrado = Detalle_de_RelacionesData.Involucrado
-                    ,InvolucradoNombre_del_Tutor = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Involucrado), "Detalle_de_Datos_Generales") ??  (string)Detalle_de_RelacionesData.Involucrado_Detalle_de_Datos_Generales.Nombre_del_Tutor
+                    ,InvolucradoNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Involucrado), "Detalle_de_Datos_Generales") ??  (string)Detalle_de_RelacionesData.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo
                     ,Probable_Responsable = Detalle_de_RelacionesData.Probable_Responsable
-                    ,Probable_ResponsableNombre_del_Tutor = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Probable_Responsable), "Detalle_de_Datos_Generales") ??  (string)Detalle_de_RelacionesData.Probable_Responsable_Detalle_de_Datos_Generales.Nombre_del_Tutor
+                    ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Probable_Responsable), "Detalle_de_Imputado") ??  (string)Detalle_de_RelacionesData.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                     ,Delito = Detalle_de_RelacionesData.Delito
                     ,DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Delito), "Delito") ??  (string)Detalle_de_RelacionesData.Delito_Delito.Descripcion
                     ,Es_Familiar = Detalle_de_RelacionesData.Es_Familiar
@@ -199,20 +200,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Detalle_de_Datos_Generaless_Involucrado = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(true);
-            if (Detalle_de_Datos_Generaless_Involucrado != null && Detalle_de_Datos_Generaless_Involucrado.Resource != null)
-                ViewBag.Detalle_de_Datos_Generaless_Involucrado = Detalle_de_Datos_Generaless_Involucrado.Resource.Where(m => m.Nombre_del_Tutor != null).OrderBy(m => m.Nombre_del_Tutor).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_del_Tutor") ?? m.Nombre_del_Tutor.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Detalle_de_Datos_Generaless_Probable_Responsable = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(true);
-            if (Detalle_de_Datos_Generaless_Probable_Responsable != null && Detalle_de_Datos_Generaless_Probable_Responsable.Resource != null)
-                ViewBag.Detalle_de_Datos_Generaless_Probable_Responsable = Detalle_de_Datos_Generaless_Probable_Responsable.Resource.Where(m => m.Nombre_del_Tutor != null).OrderBy(m => m.Nombre_del_Tutor).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_del_Tutor") ?? m.Nombre_del_Tutor.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IDelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Delitos_Delito = _IDelitoApiConsumer.SelAll(true);
             if (Delitos_Delito != null && Delitos_Delito.Resource != null)
@@ -299,9 +286,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 	                    ,Modulo_Atencion_Inicial = Detalle_de_RelacionesData.Modulo_Atencion_Inicial
                     ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Modulo_Atencion_Inicial), "Modulo_Atencion_Inicial") ??  (string)Detalle_de_RelacionesData.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                     ,Involucrado = Detalle_de_RelacionesData.Involucrado
-                    ,InvolucradoNombre_del_Tutor = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Involucrado), "Detalle_de_Datos_Generales") ??  (string)Detalle_de_RelacionesData.Involucrado_Detalle_de_Datos_Generales.Nombre_del_Tutor
+                    ,InvolucradoNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Involucrado), "Detalle_de_Datos_Generales") ??  (string)Detalle_de_RelacionesData.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo
                     ,Probable_Responsable = Detalle_de_RelacionesData.Probable_Responsable
-                    ,Probable_ResponsableNombre_del_Tutor = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Probable_Responsable), "Detalle_de_Datos_Generales") ??  (string)Detalle_de_RelacionesData.Probable_Responsable_Detalle_de_Datos_Generales.Nombre_del_Tutor
+                    ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Probable_Responsable), "Detalle_de_Imputado") ??  (string)Detalle_de_RelacionesData.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                     ,Delito = Detalle_de_RelacionesData.Delito
                     ,DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Delito), "Delito") ??  (string)Detalle_de_RelacionesData.Delito_Delito.Descripcion
                     ,Es_Familiar = Detalle_de_RelacionesData.Es_Familiar
@@ -316,20 +303,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Detalle_de_Datos_Generaless_Involucrado = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(true);
-            if (Detalle_de_Datos_Generaless_Involucrado != null && Detalle_de_Datos_Generaless_Involucrado.Resource != null)
-                ViewBag.Detalle_de_Datos_Generaless_Involucrado = Detalle_de_Datos_Generaless_Involucrado.Resource.Where(m => m.Nombre_del_Tutor != null).OrderBy(m => m.Nombre_del_Tutor).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_del_Tutor") ?? m.Nombre_del_Tutor.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Detalle_de_Datos_Generaless_Probable_Responsable = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(true);
-            if (Detalle_de_Datos_Generaless_Probable_Responsable != null && Detalle_de_Datos_Generaless_Probable_Responsable.Resource != null)
-                ViewBag.Detalle_de_Datos_Generaless_Probable_Responsable = Detalle_de_Datos_Generaless_Probable_Responsable.Resource.Where(m => m.Nombre_del_Tutor != null).OrderBy(m => m.Nombre_del_Tutor).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_del_Tutor") ?? m.Nombre_del_Tutor.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IDelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Delitos_Delito = _IDelitoApiConsumer.SelAll(true);
             if (Delitos_Delito != null && Delitos_Delito.Resource != null)
@@ -392,7 +365,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        [HttpGet]
+		[HttpGet]
         public ActionResult GetDetalle_de_Datos_GeneralesAll()
         {
             try
@@ -401,10 +374,31 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Nombre_del_Tutor).Select(m => new SelectListItem
+				
+                return Json(result.OrderBy(m => m.Nombre_Completo).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_del_Tutor")?? m.Nombre_del_Tutor,
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo")?? m.Nombre_Completo,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
+        public ActionResult GetDetalle_de_ImputadoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_ImputadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IDetalle_de_ImputadoApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Nombre_Completo_del_Tutor).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Imputado", "Nombre_Completo_del_Tutor")?? m.Nombre_Completo_del_Tutor,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -509,20 +503,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Detalle_de_Datos_Generaless_Involucrado = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(true);
-            if (Detalle_de_Datos_Generaless_Involucrado != null && Detalle_de_Datos_Generaless_Involucrado.Resource != null)
-                ViewBag.Detalle_de_Datos_Generaless_Involucrado = Detalle_de_Datos_Generaless_Involucrado.Resource.Where(m => m.Nombre_del_Tutor != null).OrderBy(m => m.Nombre_del_Tutor).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_del_Tutor") ?? m.Nombre_del_Tutor.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Detalle_de_Datos_Generaless_Probable_Responsable = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(true);
-            if (Detalle_de_Datos_Generaless_Probable_Responsable != null && Detalle_de_Datos_Generaless_Probable_Responsable.Resource != null)
-                ViewBag.Detalle_de_Datos_Generaless_Probable_Responsable = Detalle_de_Datos_Generaless_Probable_Responsable.Resource.Where(m => m.Nombre_del_Tutor != null).OrderBy(m => m.Nombre_del_Tutor).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_del_Tutor") ?? m.Nombre_del_Tutor.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IDelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Delitos_Delito = _IDelitoApiConsumer.SelAll(true);
             if (Delitos_Delito != null && Delitos_Delito.Resource != null)
@@ -555,20 +535,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Detalle_de_Datos_Generaless_Involucrado = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(true);
-            if (Detalle_de_Datos_Generaless_Involucrado != null && Detalle_de_Datos_Generaless_Involucrado.Resource != null)
-                ViewBag.Detalle_de_Datos_Generaless_Involucrado = Detalle_de_Datos_Generaless_Involucrado.Resource.Where(m => m.Nombre_del_Tutor != null).OrderBy(m => m.Nombre_del_Tutor).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_del_Tutor") ?? m.Nombre_del_Tutor.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Detalle_de_Datos_Generaless_Probable_Responsable = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(true);
-            if (Detalle_de_Datos_Generaless_Probable_Responsable != null && Detalle_de_Datos_Generaless_Probable_Responsable.Resource != null)
-                ViewBag.Detalle_de_Datos_Generaless_Probable_Responsable = Detalle_de_Datos_Generaless_Probable_Responsable.Resource.Where(m => m.Nombre_del_Tutor != null).OrderBy(m => m.Nombre_del_Tutor).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_del_Tutor") ?? m.Nombre_del_Tutor.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IDelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Delitos_Delito = _IDelitoApiConsumer.SelAll(true);
             if (Delitos_Delito != null && Delitos_Delito.Resource != null)
@@ -629,8 +595,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-                        ,InvolucradoNombre_del_Tutor = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_del_Tutor") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_del_Tutor
-                        ,Probable_ResponsableNombre_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_del_Tutor") ?? (string)m.Probable_Responsable_Detalle_de_Datos_Generales.Nombre_del_Tutor
+                        ,InvolucradoNombre_Completo = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo
+                        ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Delito.Descripcion
                         ,Es_FamiliarDescripcion = CultureHelper.GetTraduction(m.Es_Familiar_Binario.Clave.ToString(), "Descripcion") ?? (string)m.Es_Familiar_Binario.Descripcion
                         ,ParentescoDescripcion = CultureHelper.GetTraduction(m.Parentesco_Parentesco.Clave.ToString(), "Descripcion") ?? (string)m.Parentesco_Parentesco.Descripcion
@@ -749,8 +715,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-                        ,InvolucradoNombre_del_Tutor = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_del_Tutor") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_del_Tutor
-                        ,Probable_ResponsableNombre_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_del_Tutor") ?? (string)m.Probable_Responsable_Detalle_de_Datos_Generales.Nombre_del_Tutor
+                        ,InvolucradoNombre_Completo = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo
+                        ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Delito.Descripcion
                         ,Es_FamiliarDescripcion = CultureHelper.GetTraduction(m.Es_Familiar_Binario.Clave.ToString(), "Descripcion") ?? (string)m.Es_Familiar_Binario.Descripcion
                         ,ParentescoDescripcion = CultureHelper.GetTraduction(m.Parentesco_Parentesco.Clave.ToString(), "Descripcion") ?? (string)m.Parentesco_Parentesco.Descripcion
@@ -784,6 +750,60 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.NUAT =trans ??item.NUAT;
                 }
                 return Json(result.Modulo_Atencion_Inicials.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Relaciones_Involucrado_Detalle_de_Datos_Generales(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Detalle_de_Datos_Generales.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Datos_Generales.Nombre_Completo as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IDetalle_de_Datos_GeneralesApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Datos_Generales.Nombre_Completo ASC ").Resource;
+               
+                foreach (var item in result.Detalle_de_Datos_Generaless)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo");
+                    item.Nombre_Completo =trans ??item.Nombre_Completo;
+                }
+                return Json(result.Detalle_de_Datos_Generaless.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Relaciones_Probable_Responsable_Detalle_de_Imputado(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_ImputadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Detalle_de_Imputado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Imputado.Nombre_Completo_del_Tutor as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IDetalle_de_ImputadoApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Imputado.Nombre_Completo_del_Tutor ASC ").Resource;
+               
+                foreach (var item in result.Detalle_de_Imputados)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Imputado", "Nombre_Completo_del_Tutor");
+                    item.Nombre_Completo_del_Tutor =trans ??item.Nombre_Completo_del_Tutor;
+                }
+                return Json(result.Detalle_de_Imputados.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -840,19 +860,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 switch (filter.InvolucradoFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Detalle_de_Datos_Generales.Nombre_del_Tutor LIKE '" + filter.AdvanceInvolucrado + "%'";
+                        where += " AND Detalle_de_Datos_Generales.Nombre_Completo LIKE '" + filter.AdvanceInvolucrado + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Detalle_de_Datos_Generales.Nombre_del_Tutor LIKE '%" + filter.AdvanceInvolucrado + "'";
+                        where += " AND Detalle_de_Datos_Generales.Nombre_Completo LIKE '%" + filter.AdvanceInvolucrado + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Detalle_de_Datos_Generales.Nombre_del_Tutor = '" + filter.AdvanceInvolucrado + "'";
+                        where += " AND Detalle_de_Datos_Generales.Nombre_Completo = '" + filter.AdvanceInvolucrado + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Detalle_de_Datos_Generales.Nombre_del_Tutor LIKE '%" + filter.AdvanceInvolucrado + "%'";
+                        where += " AND Detalle_de_Datos_Generales.Nombre_Completo LIKE '%" + filter.AdvanceInvolucrado + "%'";
                         break;
                 }
             }
@@ -868,19 +888,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 switch (filter.Probable_ResponsableFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Detalle_de_Datos_Generales.Nombre_del_Tutor LIKE '" + filter.AdvanceProbable_Responsable + "%'";
+                        where += " AND Detalle_de_Imputado.Nombre_Completo_del_Tutor LIKE '" + filter.AdvanceProbable_Responsable + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Detalle_de_Datos_Generales.Nombre_del_Tutor LIKE '%" + filter.AdvanceProbable_Responsable + "'";
+                        where += " AND Detalle_de_Imputado.Nombre_Completo_del_Tutor LIKE '%" + filter.AdvanceProbable_Responsable + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Detalle_de_Datos_Generales.Nombre_del_Tutor = '" + filter.AdvanceProbable_Responsable + "'";
+                        where += " AND Detalle_de_Imputado.Nombre_Completo_del_Tutor = '" + filter.AdvanceProbable_Responsable + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Detalle_de_Datos_Generales.Nombre_del_Tutor LIKE '%" + filter.AdvanceProbable_Responsable + "%'";
+                        where += " AND Detalle_de_Imputado.Nombre_Completo_del_Tutor LIKE '%" + filter.AdvanceProbable_Responsable + "%'";
                         break;
                 }
             }
@@ -1424,8 +1444,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-                        ,InvolucradoNombre_del_Tutor = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_del_Tutor") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_del_Tutor
-                        ,Probable_ResponsableNombre_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_del_Tutor") ?? (string)m.Probable_Responsable_Detalle_de_Datos_Generales.Nombre_del_Tutor
+                        ,InvolucradoNombre_Completo = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo
+                        ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Delito.Descripcion
                         ,Es_FamiliarDescripcion = CultureHelper.GetTraduction(m.Es_Familiar_Binario.Clave.ToString(), "Descripcion") ?? (string)m.Es_Familiar_Binario.Descripcion
                         ,ParentescoDescripcion = CultureHelper.GetTraduction(m.Parentesco_Parentesco.Clave.ToString(), "Descripcion") ?? (string)m.Parentesco_Parentesco.Descripcion
@@ -1503,8 +1523,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-                        ,InvolucradoNombre_del_Tutor = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_del_Tutor") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_del_Tutor
-                        ,Probable_ResponsableNombre_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_del_Tutor") ?? (string)m.Probable_Responsable_Detalle_de_Datos_Generales.Nombre_del_Tutor
+                        ,InvolucradoNombre_Completo = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo
+                        ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Delito.Descripcion
                         ,Es_FamiliarDescripcion = CultureHelper.GetTraduction(m.Es_Familiar_Binario.Clave.ToString(), "Descripcion") ?? (string)m.Es_Familiar_Binario.Descripcion
                         ,ParentescoDescripcion = CultureHelper.GetTraduction(m.Parentesco_Parentesco.Clave.ToString(), "Descripcion") ?? (string)m.Parentesco_Parentesco.Descripcion
@@ -1584,9 +1604,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Modulo_Atencion_Inicial = m.Modulo_Atencion_Inicial
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                         ,Involucrado = m.Involucrado
-                        ,InvolucradoNombre_del_Tutor = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_del_Tutor") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_del_Tutor
+                        ,InvolucradoNombre_Completo = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo
                         ,Probable_Responsable = m.Probable_Responsable
-                        ,Probable_ResponsableNombre_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_del_Tutor") ?? (string)m.Probable_Responsable_Detalle_de_Datos_Generales.Nombre_del_Tutor
+                        ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                         ,Delito = m.Delito
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Delito.Descripcion
                         ,Es_Familiar = m.Es_Familiar

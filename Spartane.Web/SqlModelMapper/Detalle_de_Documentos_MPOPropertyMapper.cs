@@ -35,9 +35,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Involucrado[Nombre_Completo_del_Tutor]":
                 case "InvolucradoNombre_Completo_del_Tutor":
                     return "Detalle_de_Datos_Generales.Nombre_Completo_del_Tutor";
-                case "Probable_Responsable[Nombre_Completo_del_Tutor]":
-                case "Probable_ResponsableNombre_Completo_del_Tutor":
-                    return "Detalle_de_Imputado.Nombre_Completo_del_Tutor";
+                case "Probable_Responsable[Nombre_Completo_Detenido]":
+                case "Probable_ResponsableNombre_Completo_Detenido":
+                    return "Detalle_de_Imputado.Nombre_Completo_Detenido";
                 case "Observaciones":
                     return "Detalle_de_Documentos_MPO.Observaciones";
                 case "Archivo":

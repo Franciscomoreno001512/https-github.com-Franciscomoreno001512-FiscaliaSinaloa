@@ -124,8 +124,9 @@ namespace Spartane.Web.SqlModelMapper
                     return "Solicitud.Hora_de_Atencion_del_Especialista";
                 case "Rechazar":
                     return "Solicitud.Rechazar";
-                case "Motivo_de_Rechazo":
-                    return "Solicitud.Motivo_de_Rechazo";
+                case "Motivo_de_Rechazo[Descripcion]":
+                case "Motivo_de_RechazoDescripcion":
+                    return "Motivo_de_Rechazo_de_Solicitud.Descripcion";
                 case "Acuerdo_Cumplido[Descripcion]":
                 case "Acuerdo_CumplidoDescripcion":
                     return "A_Tiempo.Descripcion";

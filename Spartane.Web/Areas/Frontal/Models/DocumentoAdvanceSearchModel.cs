@@ -25,6 +25,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters DescripcionFilter { set; get; }
         public string Descripcion { set; get; }
 
+        public Filters DiligenciaFilter { set; get; }
+        public string AdvanceDiligencia { set; get; }
+        public int[] AdvanceDiligenciaMultiple { set; get; }
+
         public Filters OrigenFilter { set; get; }
         public string AdvanceOrigen { set; get; }
         public int[] AdvanceOrigenMultiple { set; get; }

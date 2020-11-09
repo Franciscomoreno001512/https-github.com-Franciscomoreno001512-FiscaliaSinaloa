@@ -15,9 +15,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Modulo_Atencion_Inicial { get; set; }
         public string Modulo_Atencion_InicialNUAT { get; set; }
         public int? Involucrado { get; set; }
-        public string InvolucradoNombre_del_Tutor { get; set; }
+        public string InvolucradoNombre_Completo { get; set; }
         public int? Probable_Responsable { get; set; }
-        public string Probable_ResponsableNombre_del_Tutor { get; set; }
+        public string Probable_ResponsableNombre_Completo_del_Tutor { get; set; }
         public int? Delito { get; set; }
         public string DelitoDescripcion { get; set; }
         public int? Es_Familiar { get; set; }
@@ -34,9 +34,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Modulo_Atencion_Inicial { get; set; }
         public string Modulo_Atencion_InicialNUAT { get; set; }
         public int? Involucrado { get; set; }
-        public string InvolucradoNombre_del_Tutor { get; set; }
+        public string InvolucradoNombre_Completo { get; set; }
         public int? Probable_Responsable { get; set; }
-        public string Probable_ResponsableNombre_del_Tutor { get; set; }
+        public string Probable_ResponsableNombre_Completo_del_Tutor { get; set; }
         public int? Delito { get; set; }
         public string DelitoDescripcion { get; set; }
         public int? Es_Familiar { get; set; }

@@ -6,12 +6,12 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
-    List<SelectListItem> varDetalle_de_Datos_Generales_Involucrado = null;
+ List<SelectListItem> varDetalle_de_Datos_Generales_Involucrado = null;
     if (ViewBag.Detalle_de_Datos_Generaless_Involucrado != null)
     { varDetalle_de_Datos_Generales_Involucrado = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Involucrado; }
-    List<SelectListItem> varDetalle_de_Datos_Generales_Probable_Responsable = null;
-    if (ViewBag.Detalle_de_Datos_Generaless_Probable_Responsable != null)
-    { varDetalle_de_Datos_Generales_Probable_Responsable = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Probable_Responsable; }
+ List<SelectListItem> varDetalle_de_Imputado_Probable_Responsable = null;
+    if (ViewBag.Detalle_de_Imputados_Probable_Responsable != null)
+    { varDetalle_de_Imputado_Probable_Responsable = (List<SelectListItem>)ViewBag.Detalle_de_Imputados_Probable_Responsable; }
     List<SelectListItem> varDelito_Delito = null;
     if (ViewBag.Delitos_Delito != null)
     { varDelito_Delito = (List<SelectListItem>)ViewBag.Delitos_Delito; }
@@ -72,48 +72,12 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_RelacionesResources.Involucrado</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.InvolucradoFilter, filters, new { @class = "form-control", @id = "ddlInvolucradoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceInvolucrado, new { @class = "form-control", @type = "text", @id = "txtAdvanceInvolucrado" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varDetalle_de_Datos_Generales_Involucrado!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceInvolucradoMultiple, varDetalle_de_Datos_Generales_Involucrado,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceInvolucrado"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_RelacionesResources.Probable_Responsable</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Probable_ResponsableFilter, filters, new { @class = "form-control", @id = "ddlProbable_ResponsableFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceProbable_Responsable, new { @class = "form-control", @type = "text", @id = "txtAdvanceProbable_Responsable" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varDetalle_de_Datos_Generales_Probable_Responsable!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceProbable_ResponsableMultiple, varDetalle_de_Datos_Generales_Probable_Responsable,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceProbable_Responsable"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varDetalle_de_Datos_Generales_Involucrado = null;
+    if (ViewBag.Detalle_de_Datos_Generaless_Involucrado != null)
+    { varDetalle_de_Datos_Generales_Involucrado = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Involucrado; }
+ List<SelectListItem> varDetalle_de_Imputado_Probable_Responsable = null;
+    if (ViewBag.Detalle_de_Imputados_Probable_Responsable != null)
+    { varDetalle_de_Imputado_Probable_Responsable = (List<SelectListItem>)ViewBag.Detalle_de_Imputados_Probable_Responsable; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_RelacionesResources.Delito</h3>
                 </div>

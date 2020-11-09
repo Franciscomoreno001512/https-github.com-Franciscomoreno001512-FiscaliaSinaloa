@@ -2492,6 +2492,7 @@
  <Content Include="Images\landing\perspective.png" />
  <Content Include="Images\Logo-90-90-blue.png" />
  <Content Include="Images\Logo-90-90-white.png" />
+ <Content Include="Images\logo-fiscalia-sinaloa.png" />
  <Content Include="Images\Logo-white.png" />
  <Content Include="Images\Logo.png" />
  <Content Include="Images\Logoxxx.png" />
@@ -11627,222 +11628,242 @@
  <Content Include="Uploads\Scripts\Rules\Detalle_Solicitante_AcuerdoIndexRules.js" />
  <Content Include="Uploads\Scripts\Rules\Detalle_Solicitante_AcuerdoCreateRules.js" />
  <Compile Include="Areas\WebApiConsumer\Tipo_de_Conclusion_Anticipada\Tipo_de_Conclusion_AnticipadaApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Tipo_de_Conclusion_Anticipada\ITipo_de_Conclusion_AnticipadaApiConsumer.cs" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_Conclusion_AnticipadaModel.cs" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_Conclusion_AnticipadaGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_Conclusion_AnticipadaMainModel.cs" />
-<Compile Include="Areas\Frontal\Controllers\Tipo_de_Conclusion_AnticipadaController.cs" />
-<Content Include="Areas\Frontal\Views\Tipo_de_Conclusion_Anticipada\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Tipo_de_Conclusion_Anticipada\Create.cshtml" />
-<Compile Include="Resource\GetResource\Tipo_de_Conclusion_Anticipada.cs" />
-<Content Include="Uploads\Resources\Tipo_de_Conclusion_AnticipadaResource.es-ES.xml" />
-<Compile Include="SqlModelMapper\Tipo_de_Conclusion_AnticipadaPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Tipo_de_Conclusion_AnticipadaResource.en-US.xml" />
-<Content Include="Uploads\Scripts\Tipo_de_Conclusion_Anticipada.js" />
-<Content Include="Scripts\Custom\Tipo_de_Conclusion_AnticipadaGeneral.js" />
-<Content Include="Areas\Frontal\Views\Tipo_de_Conclusion_Anticipada\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_Conclusion_AnticipadaAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_Conclusion_AnticipadaBusinessRuleModel.cs" />
-<Content Include="Uploads\Scripts\Rules\Tipo_de_Conclusion_AnticipadaCreateRules.js" />
-<Content Include="Uploads\Scripts\Rules\Tipo_de_Conclusion_AnticipadaIndexRules.js" />
-<Content Include="Areas\Frontal\Views\Tipo_de_Conclusion_Anticipada\_Print.cshtml" />
-<Compile Include="Areas\Frontal\Controllers\Detalle_Documentos_SolicitantesController.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Documentos_SolicitantesModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Documentos_SolicitantesGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Documentos_SolicitantesMainModel.cs" />
-<Content Include="Areas\Frontal\Views\Detalle_Documentos_Solicitantes\_Print.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_Documentos_Solicitantes\AddDetalle_Documentos_Solicitantes.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_Documentos_Solicitantes\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\WebApiConsumer\Detalle_Documentos_Solicitantes\Detalle_Documentos_SolicitantesApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Detalle_Documentos_Solicitantes\IDetalle_Documentos_SolicitantesApiConsumer.cs" />
-<Compile Include="Resource\GetResource\Detalle_Documentos_Solicitantes.cs" />
-<Content Include="Scripts\Custom\Detalle_Documentos_SolicitantesGeneral.js" />
-<Compile Include="SqlModelMapper\Detalle_Documentos_SolicitantesPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Detalle_Documentos_SolicitantesResource.en-US.xml" />
-<Content Include="Uploads\Resources\Detalle_Documentos_SolicitantesResource.es-ES.xml" />
-<Content Include="Uploads\Scripts\Detalle_Documentos_Solicitantes.js" />
-<Content Include="Uploads\Scripts\Rules\Detalle_Documentos_SolicitantesIndexRules.js" />
-<Content Include="Uploads\Scripts\Rules\Detalle_Documentos_SolicitantesCreateRules.js" />
-<Compile Include="Areas\Frontal\Controllers\Detalle_Documentos_RequeridosController.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Documentos_RequeridosModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Documentos_RequeridosGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Documentos_RequeridosMainModel.cs" />
-<Content Include="Areas\Frontal\Views\Detalle_Documentos_Requeridos\_Print.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_Documentos_Requeridos\AddDetalle_Documentos_Requeridos.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_Documentos_Requeridos\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\WebApiConsumer\Detalle_Documentos_Requeridos\Detalle_Documentos_RequeridosApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Detalle_Documentos_Requeridos\IDetalle_Documentos_RequeridosApiConsumer.cs" />
-<Compile Include="Resource\GetResource\Detalle_Documentos_Requeridos.cs" />
-<Content Include="Scripts\Custom\Detalle_Documentos_RequeridosGeneral.js" />
-<Compile Include="SqlModelMapper\Detalle_Documentos_RequeridosPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Detalle_Documentos_RequeridosResource.en-US.xml" />
-<Content Include="Uploads\Resources\Detalle_Documentos_RequeridosResource.es-ES.xml" />
-<Content Include="Uploads\Scripts\Detalle_Documentos_Requeridos.js" />
-<Content Include="Uploads\Scripts\Rules\Detalle_Documentos_RequeridosIndexRules.js" />
-<Content Include="Uploads\Scripts\Rules\Detalle_Documentos_RequeridosCreateRules.js" />
-<Compile Include="Areas\WebApiConsumer\Formato_de_Denuncia\Formato_de_DenunciaApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Formato_de_Denuncia\IFormato_de_DenunciaApiConsumer.cs" />
-<Compile Include="Areas\Frontal\Models\Formato_de_DenunciaModel.cs" />
-<Compile Include="Areas\Frontal\Models\Formato_de_DenunciaGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Formato_de_DenunciaMainModel.cs" />
-<Compile Include="Areas\Frontal\Controllers\Formato_de_DenunciaController.cs" />
-<Content Include="Areas\Frontal\Views\Formato_de_Denuncia\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Formato_de_Denuncia\Create.cshtml" />
-<Compile Include="Resource\GetResource\Formato_de_Denuncia.cs" />
-<Content Include="Uploads\Resources\Formato_de_DenunciaResource.es-ES.xml" />
-<Compile Include="SqlModelMapper\Formato_de_DenunciaPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Formato_de_DenunciaResource.en-US.xml" />
-<Content Include="Uploads\Scripts\Formato_de_Denuncia.js" />
-<Content Include="Scripts\Custom\Formato_de_DenunciaGeneral.js" />
-<Content Include="Areas\Frontal\Views\Formato_de_Denuncia\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\Frontal\Models\Formato_de_DenunciaAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Formato_de_DenunciaBusinessRuleModel.cs" />
-<Content Include="Uploads\Scripts\Rules\Formato_de_DenunciaCreateRules.js" />
-<Content Include="Uploads\Scripts\Rules\Formato_de_DenunciaIndexRules.js" />
-<Content Include="Areas\Frontal\Views\Formato_de_Denuncia\_Print.cshtml" />
-<Compile Include="Areas\WebApiConsumer\Unidad_de_Atenciòn\Unidad_de_AtenciònApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Unidad_de_Atenciòn\IUnidad_de_AtenciònApiConsumer.cs" />
-<Compile Include="Areas\Frontal\Models\Unidad_de_AtenciònModel.cs" />
-<Compile Include="Areas\Frontal\Models\Unidad_de_AtenciònGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Unidad_de_AtenciònMainModel.cs" />
-<Compile Include="Areas\Frontal\Controllers\Unidad_de_AtenciònController.cs" />
-<Content Include="Areas\Frontal\Views\Unidad_de_Atenciòn\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Unidad_de_Atenciòn\Create.cshtml" />
-<Compile Include="Resource\GetResource\Unidad_de_Atenciòn.cs" />
-<Content Include="Uploads\Resources\Unidad_de_AtenciònResource.es-ES.xml" />
-<Compile Include="SqlModelMapper\Unidad_de_AtenciònPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Unidad_de_AtenciònResource.en-US.xml" />
-<Content Include="Uploads\Scripts\Unidad_de_Atenciòn.js" />
-<Content Include="Scripts\Custom\Unidad_de_AtenciònGeneral.js" />
-<Content Include="Areas\Frontal\Views\Unidad_de_Atenciòn\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\Frontal\Models\Unidad_de_AtenciònAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Unidad_de_AtenciònBusinessRuleModel.cs" />
-<Content Include="Uploads\Scripts\Rules\Unidad_de_AtenciònCreateRules.js" />
-<Content Include="Uploads\Scripts\Rules\Unidad_de_AtenciònIndexRules.js" />
-<Content Include="Areas\Frontal\Views\Unidad_de_Atenciòn\_Print.cshtml" />
-<Compile Include="Areas\WebApiConsumer\Unidad_de_Atencion\Unidad_de_AtencionApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Unidad_de_Atencion\IUnidad_de_AtencionApiConsumer.cs" />
-<Compile Include="Areas\Frontal\Models\Unidad_de_AtencionModel.cs" />
-<Compile Include="Areas\Frontal\Models\Unidad_de_AtencionGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Unidad_de_AtencionMainModel.cs" />
-<Compile Include="Areas\Frontal\Controllers\Unidad_de_AtencionController.cs" />
-<Content Include="Areas\Frontal\Views\Unidad_de_Atencion\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Unidad_de_Atencion\Create.cshtml" />
-<Compile Include="Resource\GetResource\Unidad_de_Atencion.cs" />
-<Content Include="Uploads\Resources\Unidad_de_AtencionResource.es-ES.xml" />
-<Compile Include="SqlModelMapper\Unidad_de_AtencionPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Unidad_de_AtencionResource.en-US.xml" />
-<Content Include="Uploads\Scripts\Unidad_de_Atencion.js" />
-<Content Include="Scripts\Custom\Unidad_de_AtencionGeneral.js" />
-<Content Include="Areas\Frontal\Views\Unidad_de_Atencion\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\Frontal\Models\Unidad_de_AtencionAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Unidad_de_AtencionBusinessRuleModel.cs" />
-<Content Include="Uploads\Scripts\Rules\Unidad_de_AtencionCreateRules.js" />
-<Content Include="Uploads\Scripts\Rules\Unidad_de_AtencionIndexRules.js" />
-<Content Include="Areas\Frontal\Views\Unidad_de_Atencion\_Print.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_Documentos_Solicitantes\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_Documentos_Solicitantes\Create.cshtml" />
-<Compile Include="Areas\Frontal\Models\Detalle_Documentos_SolicitantesAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Documentos_SolicitantesBusinessRuleModel.cs" />
-<Compile Include="Areas\WebApiConsumer\Tipo_de_Documento\Tipo_de_DocumentoApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Tipo_de_Documento\ITipo_de_DocumentoApiConsumer.cs" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_DocumentoModel.cs" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_DocumentoGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_DocumentoMainModel.cs" />
-<Compile Include="Areas\Frontal\Controllers\Tipo_de_DocumentoController.cs" />
-<Content Include="Areas\Frontal\Views\Tipo_de_Documento\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Tipo_de_Documento\Create.cshtml" />
-<Compile Include="Resource\GetResource\Tipo_de_Documento.cs" />
-<Content Include="Uploads\Resources\Tipo_de_DocumentoResource.es-ES.xml" />
-<Compile Include="SqlModelMapper\Tipo_de_DocumentoPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Tipo_de_DocumentoResource.en-US.xml" />
-<Content Include="Uploads\Scripts\Tipo_de_Documento.js" />
-<Content Include="Scripts\Custom\Tipo_de_DocumentoGeneral.js" />
-<Content Include="Areas\Frontal\Views\Tipo_de_Documento\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_DocumentoAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Tipo_de_DocumentoBusinessRuleModel.cs" />
-<Content Include="Uploads\Scripts\Rules\Tipo_de_DocumentoCreateRules.js" />
-<Content Include="Uploads\Scripts\Rules\Tipo_de_DocumentoIndexRules.js" />
-<Content Include="Areas\Frontal\Views\Tipo_de_Documento\_Print.cshtml" />
-<Compile Include="Areas\WebApiConsumer\Documento\DocumentoApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Documento\IDocumentoApiConsumer.cs" />
-<Compile Include="Areas\Frontal\Models\DocumentoModel.cs" />
-<Compile Include="Areas\Frontal\Models\DocumentoGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\DocumentoMainModel.cs" />
-<Compile Include="Areas\Frontal\Controllers\DocumentoController.cs" />
-<Content Include="Areas\Frontal\Views\Documento\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Documento\Create.cshtml" />
-<Compile Include="Resource\GetResource\Documento.cs" />
-<Content Include="Uploads\Resources\DocumentoResource.es-ES.xml" />
-<Compile Include="SqlModelMapper\DocumentoPropertyMapper.cs" />
-<Content Include="Uploads\Resources\DocumentoResource.en-US.xml" />
-<Content Include="Uploads\Scripts\Documento.js" />
-<Content Include="Scripts\Custom\DocumentoGeneral.js" />
-<Content Include="Areas\Frontal\Views\Documento\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\Frontal\Models\DocumentoAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\DocumentoBusinessRuleModel.cs" />
-<Content Include="Uploads\Scripts\Rules\DocumentoCreateRules.js" />
-<Content Include="Uploads\Scripts\Rules\DocumentoIndexRules.js" />
-<Content Include="Areas\Frontal\Views\Documento\_Print.cshtml" />
-<Compile Include="Areas\Frontal\Controllers\Detalle_Involucrados_en_DocumentosController.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Involucrados_en_DocumentosModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Involucrados_en_DocumentosGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Involucrados_en_DocumentosMainModel.cs" />
-<Content Include="Areas\Frontal\Views\Detalle_Involucrados_en_Documentos\_Print.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_Involucrados_en_Documentos\AddDetalle_Involucrados_en_Documentos.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_Involucrados_en_Documentos\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\WebApiConsumer\Detalle_Involucrados_en_Documentos\Detalle_Involucrados_en_DocumentosApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Detalle_Involucrados_en_Documentos\IDetalle_Involucrados_en_DocumentosApiConsumer.cs" />
-<Compile Include="Resource\GetResource\Detalle_Involucrados_en_Documentos.cs" />
-<Content Include="Scripts\Custom\Detalle_Involucrados_en_DocumentosGeneral.js" />
-<Compile Include="SqlModelMapper\Detalle_Involucrados_en_DocumentosPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Detalle_Involucrados_en_DocumentosResource.en-US.xml" />
-<Content Include="Uploads\Resources\Detalle_Involucrados_en_DocumentosResource.es-ES.xml" />
-<Content Include="Uploads\Scripts\Detalle_Involucrados_en_Documentos.js" />
-<Content Include="Uploads\Scripts\Rules\Detalle_Involucrados_en_DocumentosIndexRules.js" />
-<Content Include="Uploads\Scripts\Rules\Detalle_Involucrados_en_DocumentosCreateRules.js" />
-<Compile Include="Areas\Frontal\Controllers\Detalle_Probable_Responsable_de_DocumentosController.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Probable_Responsable_de_DocumentosModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Probable_Responsable_de_DocumentosGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Probable_Responsable_de_DocumentosMainModel.cs" />
-<Content Include="Areas\Frontal\Views\Detalle_Probable_Responsable_de_Documentos\_Print.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_Probable_Responsable_de_Documentos\AddDetalle_Probable_Responsable_de_Documentos.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_Probable_Responsable_de_Documentos\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\WebApiConsumer\Detalle_Probable_Responsable_de_Documentos\Detalle_Probable_Responsable_de_DocumentosApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Detalle_Probable_Responsable_de_Documentos\IDetalle_Probable_Responsable_de_DocumentosApiConsumer.cs" />
-<Compile Include="Resource\GetResource\Detalle_Probable_Responsable_de_Documentos.cs" />
-<Content Include="Scripts\Custom\Detalle_Probable_Responsable_de_DocumentosGeneral.js" />
-<Compile Include="SqlModelMapper\Detalle_Probable_Responsable_de_DocumentosPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Detalle_Probable_Responsable_de_DocumentosResource.en-US.xml" />
-<Content Include="Uploads\Resources\Detalle_Probable_Responsable_de_DocumentosResource.es-ES.xml" />
-<Content Include="Uploads\Scripts\Detalle_Probable_Responsable_de_Documentos.js" />
-<Content Include="Uploads\Scripts\Rules\Detalle_Probable_Responsable_de_DocumentosIndexRules.js" />
-<Content Include="Uploads\Scripts\Rules\Detalle_Probable_Responsable_de_DocumentosCreateRules.js" />
-<Compile Include="Areas\Frontal\Controllers\Detalle_Delitos_de_DocumentosController.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Delitos_de_DocumentosModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Delitos_de_DocumentosGridModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Delitos_de_DocumentosMainModel.cs" />
-<Content Include="Areas\Frontal\Views\Detalle_Delitos_de_Documentos\_Print.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_Delitos_de_Documentos\AddDetalle_Delitos_de_Documentos.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_Delitos_de_Documentos\ShowAdvanceFilter.cshtml" />
-<Compile Include="Areas\WebApiConsumer\Detalle_Delitos_de_Documentos\Detalle_Delitos_de_DocumentosApiConsumer.cs" />
-<Compile Include="Areas\WebApiConsumer\Detalle_Delitos_de_Documentos\IDetalle_Delitos_de_DocumentosApiConsumer.cs" />
-<Compile Include="Resource\GetResource\Detalle_Delitos_de_Documentos.cs" />
-<Content Include="Scripts\Custom\Detalle_Delitos_de_DocumentosGeneral.js" />
-<Compile Include="SqlModelMapper\Detalle_Delitos_de_DocumentosPropertyMapper.cs" />
-<Content Include="Uploads\Resources\Detalle_Delitos_de_DocumentosResource.en-US.xml" />
-<Content Include="Uploads\Resources\Detalle_Delitos_de_DocumentosResource.es-ES.xml" />
-<Content Include="Uploads\Scripts\Detalle_Delitos_de_Documentos.js" />
-<Content Include="Uploads\Scripts\Rules\Detalle_Delitos_de_DocumentosIndexRules.js" />
-<Content Include="Uploads\Scripts\Rules\Detalle_Delitos_de_DocumentosCreateRules.js" />
-<Content Include="Areas\Frontal\Views\Detalle_Involucrados_en_Documentos\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_Involucrados_en_Documentos\Create.cshtml" />
-<Compile Include="Areas\Frontal\Models\Detalle_Involucrados_en_DocumentosAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Involucrados_en_DocumentosBusinessRuleModel.cs" />
-<Content Include="Areas\Frontal\Views\Detalle_Probable_Responsable_de_Documentos\Index.cshtml" />
-<Content Include="Areas\Frontal\Views\Detalle_Probable_Responsable_de_Documentos\Create.cshtml" />
-<Compile Include="Areas\Frontal\Models\Detalle_Probable_Responsable_de_DocumentosAdvanceSearchModel.cs" />
-<Compile Include="Areas\Frontal\Models\Detalle_Probable_Responsable_de_DocumentosBusinessRuleModel.cs" />
+ <Compile Include="Areas\WebApiConsumer\Tipo_de_Conclusion_Anticipada\ITipo_de_Conclusion_AnticipadaApiConsumer.cs" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_Conclusion_AnticipadaModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_Conclusion_AnticipadaGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_Conclusion_AnticipadaMainModel.cs" />
+ <Compile Include="Areas\Frontal\Controllers\Tipo_de_Conclusion_AnticipadaController.cs" />
+ <Content Include="Areas\Frontal\Views\Tipo_de_Conclusion_Anticipada\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Tipo_de_Conclusion_Anticipada\Create.cshtml" />
+ <Compile Include="Resource\GetResource\Tipo_de_Conclusion_Anticipada.cs" />
+ <Content Include="Uploads\Resources\Tipo_de_Conclusion_AnticipadaResource.es-ES.xml" />
+ <Compile Include="SqlModelMapper\Tipo_de_Conclusion_AnticipadaPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Tipo_de_Conclusion_AnticipadaResource.en-US.xml" />
+ <Content Include="Uploads\Scripts\Tipo_de_Conclusion_Anticipada.js" />
+ <Content Include="Scripts\Custom\Tipo_de_Conclusion_AnticipadaGeneral.js" />
+ <Content Include="Areas\Frontal\Views\Tipo_de_Conclusion_Anticipada\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_Conclusion_AnticipadaAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_Conclusion_AnticipadaBusinessRuleModel.cs" />
+ <Content Include="Uploads\Scripts\Rules\Tipo_de_Conclusion_AnticipadaCreateRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Tipo_de_Conclusion_AnticipadaIndexRules.js" />
+ <Content Include="Areas\Frontal\Views\Tipo_de_Conclusion_Anticipada\_Print.cshtml" />
+ <Compile Include="Areas\Frontal\Controllers\Detalle_Documentos_SolicitantesController.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Documentos_SolicitantesModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Documentos_SolicitantesGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Documentos_SolicitantesMainModel.cs" />
+ <Content Include="Areas\Frontal\Views\Detalle_Documentos_Solicitantes\_Print.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_Documentos_Solicitantes\AddDetalle_Documentos_Solicitantes.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_Documentos_Solicitantes\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Detalle_Documentos_Solicitantes\Detalle_Documentos_SolicitantesApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Detalle_Documentos_Solicitantes\IDetalle_Documentos_SolicitantesApiConsumer.cs" />
+ <Compile Include="Resource\GetResource\Detalle_Documentos_Solicitantes.cs" />
+ <Content Include="Scripts\Custom\Detalle_Documentos_SolicitantesGeneral.js" />
+ <Compile Include="SqlModelMapper\Detalle_Documentos_SolicitantesPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Detalle_Documentos_SolicitantesResource.en-US.xml" />
+ <Content Include="Uploads\Resources\Detalle_Documentos_SolicitantesResource.es-ES.xml" />
+ <Content Include="Uploads\Scripts\Detalle_Documentos_Solicitantes.js" />
+ <Content Include="Uploads\Scripts\Rules\Detalle_Documentos_SolicitantesIndexRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Detalle_Documentos_SolicitantesCreateRules.js" />
+ <Compile Include="Areas\Frontal\Controllers\Detalle_Documentos_RequeridosController.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Documentos_RequeridosModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Documentos_RequeridosGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Documentos_RequeridosMainModel.cs" />
+ <Content Include="Areas\Frontal\Views\Detalle_Documentos_Requeridos\_Print.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_Documentos_Requeridos\AddDetalle_Documentos_Requeridos.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_Documentos_Requeridos\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Detalle_Documentos_Requeridos\Detalle_Documentos_RequeridosApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Detalle_Documentos_Requeridos\IDetalle_Documentos_RequeridosApiConsumer.cs" />
+ <Compile Include="Resource\GetResource\Detalle_Documentos_Requeridos.cs" />
+ <Content Include="Scripts\Custom\Detalle_Documentos_RequeridosGeneral.js" />
+ <Compile Include="SqlModelMapper\Detalle_Documentos_RequeridosPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Detalle_Documentos_RequeridosResource.en-US.xml" />
+ <Content Include="Uploads\Resources\Detalle_Documentos_RequeridosResource.es-ES.xml" />
+ <Content Include="Uploads\Scripts\Detalle_Documentos_Requeridos.js" />
+ <Content Include="Uploads\Scripts\Rules\Detalle_Documentos_RequeridosIndexRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Detalle_Documentos_RequeridosCreateRules.js" />
+ <Compile Include="Areas\WebApiConsumer\Formato_de_Denuncia\Formato_de_DenunciaApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Formato_de_Denuncia\IFormato_de_DenunciaApiConsumer.cs" />
+ <Compile Include="Areas\Frontal\Models\Formato_de_DenunciaModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Formato_de_DenunciaGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Formato_de_DenunciaMainModel.cs" />
+ <Compile Include="Areas\Frontal\Controllers\Formato_de_DenunciaController.cs" />
+ <Content Include="Areas\Frontal\Views\Formato_de_Denuncia\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Formato_de_Denuncia\Create.cshtml" />
+ <Compile Include="Resource\GetResource\Formato_de_Denuncia.cs" />
+ <Content Include="Uploads\Resources\Formato_de_DenunciaResource.es-ES.xml" />
+ <Compile Include="SqlModelMapper\Formato_de_DenunciaPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Formato_de_DenunciaResource.en-US.xml" />
+ <Content Include="Uploads\Scripts\Formato_de_Denuncia.js" />
+ <Content Include="Scripts\Custom\Formato_de_DenunciaGeneral.js" />
+ <Content Include="Areas\Frontal\Views\Formato_de_Denuncia\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Formato_de_DenunciaAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Formato_de_DenunciaBusinessRuleModel.cs" />
+ <Content Include="Uploads\Scripts\Rules\Formato_de_DenunciaCreateRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Formato_de_DenunciaIndexRules.js" />
+ <Content Include="Areas\Frontal\Views\Formato_de_Denuncia\_Print.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Unidad_de_Atenciòn\Unidad_de_AtenciònApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Unidad_de_Atenciòn\IUnidad_de_AtenciònApiConsumer.cs" />
+ <Compile Include="Areas\Frontal\Models\Unidad_de_AtenciònModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Unidad_de_AtenciònGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Unidad_de_AtenciònMainModel.cs" />
+ <Compile Include="Areas\Frontal\Controllers\Unidad_de_AtenciònController.cs" />
+ <Content Include="Areas\Frontal\Views\Unidad_de_Atenciòn\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Unidad_de_Atenciòn\Create.cshtml" />
+ <Compile Include="Resource\GetResource\Unidad_de_Atenciòn.cs" />
+ <Content Include="Uploads\Resources\Unidad_de_AtenciònResource.es-ES.xml" />
+ <Compile Include="SqlModelMapper\Unidad_de_AtenciònPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Unidad_de_AtenciònResource.en-US.xml" />
+ <Content Include="Uploads\Scripts\Unidad_de_Atenciòn.js" />
+ <Content Include="Scripts\Custom\Unidad_de_AtenciònGeneral.js" />
+ <Content Include="Areas\Frontal\Views\Unidad_de_Atenciòn\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Unidad_de_AtenciònAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Unidad_de_AtenciònBusinessRuleModel.cs" />
+ <Content Include="Uploads\Scripts\Rules\Unidad_de_AtenciònCreateRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Unidad_de_AtenciònIndexRules.js" />
+ <Content Include="Areas\Frontal\Views\Unidad_de_Atenciòn\_Print.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Unidad_de_Atencion\Unidad_de_AtencionApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Unidad_de_Atencion\IUnidad_de_AtencionApiConsumer.cs" />
+ <Compile Include="Areas\Frontal\Models\Unidad_de_AtencionModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Unidad_de_AtencionGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Unidad_de_AtencionMainModel.cs" />
+ <Compile Include="Areas\Frontal\Controllers\Unidad_de_AtencionController.cs" />
+ <Content Include="Areas\Frontal\Views\Unidad_de_Atencion\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Unidad_de_Atencion\Create.cshtml" />
+ <Compile Include="Resource\GetResource\Unidad_de_Atencion.cs" />
+ <Content Include="Uploads\Resources\Unidad_de_AtencionResource.es-ES.xml" />
+ <Compile Include="SqlModelMapper\Unidad_de_AtencionPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Unidad_de_AtencionResource.en-US.xml" />
+ <Content Include="Uploads\Scripts\Unidad_de_Atencion.js" />
+ <Content Include="Scripts\Custom\Unidad_de_AtencionGeneral.js" />
+ <Content Include="Areas\Frontal\Views\Unidad_de_Atencion\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Unidad_de_AtencionAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Unidad_de_AtencionBusinessRuleModel.cs" />
+ <Content Include="Uploads\Scripts\Rules\Unidad_de_AtencionCreateRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Unidad_de_AtencionIndexRules.js" />
+ <Content Include="Areas\Frontal\Views\Unidad_de_Atencion\_Print.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_Documentos_Solicitantes\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_Documentos_Solicitantes\Create.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Documentos_SolicitantesAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Documentos_SolicitantesBusinessRuleModel.cs" />
+ <Compile Include="Areas\WebApiConsumer\Tipo_de_Documento\Tipo_de_DocumentoApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Tipo_de_Documento\ITipo_de_DocumentoApiConsumer.cs" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_DocumentoModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_DocumentoGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_DocumentoMainModel.cs" />
+ <Compile Include="Areas\Frontal\Controllers\Tipo_de_DocumentoController.cs" />
+ <Content Include="Areas\Frontal\Views\Tipo_de_Documento\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Tipo_de_Documento\Create.cshtml" />
+ <Compile Include="Resource\GetResource\Tipo_de_Documento.cs" />
+ <Content Include="Uploads\Resources\Tipo_de_DocumentoResource.es-ES.xml" />
+ <Compile Include="SqlModelMapper\Tipo_de_DocumentoPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Tipo_de_DocumentoResource.en-US.xml" />
+ <Content Include="Uploads\Scripts\Tipo_de_Documento.js" />
+ <Content Include="Scripts\Custom\Tipo_de_DocumentoGeneral.js" />
+ <Content Include="Areas\Frontal\Views\Tipo_de_Documento\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_DocumentoAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Tipo_de_DocumentoBusinessRuleModel.cs" />
+ <Content Include="Uploads\Scripts\Rules\Tipo_de_DocumentoCreateRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Tipo_de_DocumentoIndexRules.js" />
+ <Content Include="Areas\Frontal\Views\Tipo_de_Documento\_Print.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Documento\DocumentoApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Documento\IDocumentoApiConsumer.cs" />
+ <Compile Include="Areas\Frontal\Models\DocumentoModel.cs" />
+ <Compile Include="Areas\Frontal\Models\DocumentoGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\DocumentoMainModel.cs" />
+ <Compile Include="Areas\Frontal\Controllers\DocumentoController.cs" />
+ <Content Include="Areas\Frontal\Views\Documento\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Documento\Create.cshtml" />
+ <Compile Include="Resource\GetResource\Documento.cs" />
+ <Content Include="Uploads\Resources\DocumentoResource.es-ES.xml" />
+ <Compile Include="SqlModelMapper\DocumentoPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\DocumentoResource.en-US.xml" />
+ <Content Include="Uploads\Scripts\Documento.js" />
+ <Content Include="Scripts\Custom\DocumentoGeneral.js" />
+ <Content Include="Areas\Frontal\Views\Documento\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\Frontal\Models\DocumentoAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\DocumentoBusinessRuleModel.cs" />
+ <Content Include="Uploads\Scripts\Rules\DocumentoCreateRules.js" />
+ <Content Include="Uploads\Scripts\Rules\DocumentoIndexRules.js" />
+ <Content Include="Areas\Frontal\Views\Documento\_Print.cshtml" />
+ <Compile Include="Areas\Frontal\Controllers\Detalle_Involucrados_en_DocumentosController.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Involucrados_en_DocumentosModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Involucrados_en_DocumentosGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Involucrados_en_DocumentosMainModel.cs" />
+ <Content Include="Areas\Frontal\Views\Detalle_Involucrados_en_Documentos\_Print.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_Involucrados_en_Documentos\AddDetalle_Involucrados_en_Documentos.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_Involucrados_en_Documentos\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Detalle_Involucrados_en_Documentos\Detalle_Involucrados_en_DocumentosApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Detalle_Involucrados_en_Documentos\IDetalle_Involucrados_en_DocumentosApiConsumer.cs" />
+ <Compile Include="Resource\GetResource\Detalle_Involucrados_en_Documentos.cs" />
+ <Content Include="Scripts\Custom\Detalle_Involucrados_en_DocumentosGeneral.js" />
+ <Compile Include="SqlModelMapper\Detalle_Involucrados_en_DocumentosPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Detalle_Involucrados_en_DocumentosResource.en-US.xml" />
+ <Content Include="Uploads\Resources\Detalle_Involucrados_en_DocumentosResource.es-ES.xml" />
+ <Content Include="Uploads\Scripts\Detalle_Involucrados_en_Documentos.js" />
+ <Content Include="Uploads\Scripts\Rules\Detalle_Involucrados_en_DocumentosIndexRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Detalle_Involucrados_en_DocumentosCreateRules.js" />
+ <Compile Include="Areas\Frontal\Controllers\Detalle_Probable_Responsable_de_DocumentosController.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Probable_Responsable_de_DocumentosModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Probable_Responsable_de_DocumentosGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Probable_Responsable_de_DocumentosMainModel.cs" />
+ <Content Include="Areas\Frontal\Views\Detalle_Probable_Responsable_de_Documentos\_Print.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_Probable_Responsable_de_Documentos\AddDetalle_Probable_Responsable_de_Documentos.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_Probable_Responsable_de_Documentos\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Detalle_Probable_Responsable_de_Documentos\Detalle_Probable_Responsable_de_DocumentosApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Detalle_Probable_Responsable_de_Documentos\IDetalle_Probable_Responsable_de_DocumentosApiConsumer.cs" />
+ <Compile Include="Resource\GetResource\Detalle_Probable_Responsable_de_Documentos.cs" />
+ <Content Include="Scripts\Custom\Detalle_Probable_Responsable_de_DocumentosGeneral.js" />
+ <Compile Include="SqlModelMapper\Detalle_Probable_Responsable_de_DocumentosPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Detalle_Probable_Responsable_de_DocumentosResource.en-US.xml" />
+ <Content Include="Uploads\Resources\Detalle_Probable_Responsable_de_DocumentosResource.es-ES.xml" />
+ <Content Include="Uploads\Scripts\Detalle_Probable_Responsable_de_Documentos.js" />
+ <Content Include="Uploads\Scripts\Rules\Detalle_Probable_Responsable_de_DocumentosIndexRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Detalle_Probable_Responsable_de_DocumentosCreateRules.js" />
+ <Compile Include="Areas\Frontal\Controllers\Detalle_Delitos_de_DocumentosController.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Delitos_de_DocumentosModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Delitos_de_DocumentosGridModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Delitos_de_DocumentosMainModel.cs" />
+ <Content Include="Areas\Frontal\Views\Detalle_Delitos_de_Documentos\_Print.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_Delitos_de_Documentos\AddDetalle_Delitos_de_Documentos.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_Delitos_de_Documentos\ShowAdvanceFilter.cshtml" />
+ <Compile Include="Areas\WebApiConsumer\Detalle_Delitos_de_Documentos\Detalle_Delitos_de_DocumentosApiConsumer.cs" />
+ <Compile Include="Areas\WebApiConsumer\Detalle_Delitos_de_Documentos\IDetalle_Delitos_de_DocumentosApiConsumer.cs" />
+ <Compile Include="Resource\GetResource\Detalle_Delitos_de_Documentos.cs" />
+ <Content Include="Scripts\Custom\Detalle_Delitos_de_DocumentosGeneral.js" />
+ <Compile Include="SqlModelMapper\Detalle_Delitos_de_DocumentosPropertyMapper.cs" />
+ <Content Include="Uploads\Resources\Detalle_Delitos_de_DocumentosResource.en-US.xml" />
+ <Content Include="Uploads\Resources\Detalle_Delitos_de_DocumentosResource.es-ES.xml" />
+ <Content Include="Uploads\Scripts\Detalle_Delitos_de_Documentos.js" />
+ <Content Include="Uploads\Scripts\Rules\Detalle_Delitos_de_DocumentosIndexRules.js" />
+ <Content Include="Uploads\Scripts\Rules\Detalle_Delitos_de_DocumentosCreateRules.js" />
+ <Content Include="Areas\Frontal\Views\Detalle_Involucrados_en_Documentos\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_Involucrados_en_Documentos\Create.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Involucrados_en_DocumentosAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Involucrados_en_DocumentosBusinessRuleModel.cs" />
+ <Content Include="Areas\Frontal\Views\Detalle_Probable_Responsable_de_Documentos\Index.cshtml" />
+ <Content Include="Areas\Frontal\Views\Detalle_Probable_Responsable_de_Documentos\Create.cshtml" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Probable_Responsable_de_DocumentosAdvanceSearchModel.cs" />
+ <Compile Include="Areas\Frontal\Models\Detalle_Probable_Responsable_de_DocumentosBusinessRuleModel.cs" />
+ <Compile Include="Areas\WebApiConsumer\Motivo_de_Rechazo_de_Solicitud\Motivo_de_Rechazo_de_SolicitudApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Motivo_de_Rechazo_de_Solicitud\IMotivo_de_Rechazo_de_SolicitudApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Motivo_de_Rechazo_de_SolicitudModel.cs" />
+<Compile Include="Areas\Frontal\Models\Motivo_de_Rechazo_de_SolicitudGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Motivo_de_Rechazo_de_SolicitudMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Motivo_de_Rechazo_de_SolicitudController.cs" />
+<Content Include="Areas\Frontal\Views\Motivo_de_Rechazo_de_Solicitud\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Motivo_de_Rechazo_de_Solicitud\Create.cshtml" />
+<Compile Include="Resource\GetResource\Motivo_de_Rechazo_de_Solicitud.cs" />
+<Content Include="Uploads\Resources\Motivo_de_Rechazo_de_SolicitudResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Motivo_de_Rechazo_de_SolicitudPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Motivo_de_Rechazo_de_SolicitudResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Motivo_de_Rechazo_de_Solicitud.js" />
+<Content Include="Scripts\Custom\Motivo_de_Rechazo_de_SolicitudGeneral.js" />
+<Content Include="Areas\Frontal\Views\Motivo_de_Rechazo_de_Solicitud\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Motivo_de_Rechazo_de_SolicitudAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Motivo_de_Rechazo_de_SolicitudBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Motivo_de_Rechazo_de_SolicitudCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Motivo_de_Rechazo_de_SolicitudIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Motivo_de_Rechazo_de_Solicitud\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -12842,203 +12863,6 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

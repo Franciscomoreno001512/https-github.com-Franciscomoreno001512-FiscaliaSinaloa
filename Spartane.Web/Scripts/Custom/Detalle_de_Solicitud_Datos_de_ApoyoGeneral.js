@@ -1,4 +1,8 @@
-﻿
+﻿        function RemoveAttachmentMainArchivo_Adjunto () {
+            $("#hdnRemoveArchivo_Adjunto").val("1");
+            $("#divAttachmentArchivo_Adjunto").hide();
+        }
+
 
 
 
@@ -38,6 +42,17 @@ function GetAutoCompleteDetalle_de_Solicitud_Datos_de_Apoyo_Solicitante_Detalle_
         });
     }
     return AutoCompleteSolicitanteData;
+}
+var AutoCompleteDiligencia_a_EnviarData = [];
+function GetAutoCompleteDetalle_de_Solicitud_Datos_de_Apoyo_Diligencia_a_Enviar_Dilgencia_MASCData(data) {
+	AutoCompleteDiligencia_a_EnviarData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteDiligencia_a_EnviarData.push({
+            id: data[i].Clave,
+            text: data[i].Descripcion
+        });
+    }
+    return AutoCompleteDiligencia_a_EnviarData;
 }
 
 
@@ -85,6 +100,9 @@ function ClearControls() {
     $('#Solicitante').empty();
     $("#Solicitante").append('<option value=""></option>');
     $('#Solicitante').val('0').trigger('change');
+    $('#Diligencia_a_Enviar').empty();
+    $("#Diligencia_a_Enviar").append('<option value=""></option>');
+    $('#Diligencia_a_Enviar').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -223,6 +241,9 @@ $(document).ready(function () {
     $('#Solicitante').empty();
     $("#Solicitante").append('<option value=""></option>');
     $('#Solicitante').val('0').trigger('change');
+    $('#Diligencia_a_Enviar').empty();
+    $("#Diligencia_a_Enviar").append('<option value=""></option>');
+    $('#Diligencia_a_Enviar').val('0').trigger('change');
 
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);

@@ -330,7 +330,7 @@ function GetAutoCompleteDetalle_de_Documentos_MPO_Probable_Responsable_Detalle_d
     for (var i = 0; i < data.length; i++) {
         AutoCompleteProbable_ResponsableData.push({
             id: data[i].Clave,
-            text: data[i].Nombre_Completo_del_Tutor
+            text: data[i].Nombre_Completo_Detenido
         });
     }
     return AutoCompleteProbable_ResponsableData;

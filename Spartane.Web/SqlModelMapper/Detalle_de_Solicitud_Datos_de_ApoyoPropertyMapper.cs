@@ -42,6 +42,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Lengua_Originaria[Descripcion]":
                 case "Lengua_OriginariaDescripcion":
                     return "Dialecto.Descripcion";
+                case "Diligencia_a_Enviar[Descripcion]":
+                case "Diligencia_a_EnviarDescripcion":
+                    return "Dilgencia_MASC.Descripcion";
 
                 default:
                     return propertyName;
