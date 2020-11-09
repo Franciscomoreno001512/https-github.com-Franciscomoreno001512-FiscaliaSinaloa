@@ -46,6 +46,36 @@ namespace Resources
             }
         }
 
+        /// <summary>Fecha_de_Registro</summary>
+        public static string Fecha_de_Registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Reuniones_de_Mediacion.GetResource("Fecha_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_de_Registro</summary>
+        public static string Hora_de_Registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Reuniones_de_Mediacion.GetResource("Hora_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Usuario_que_Registra</summary>
+        public static string Usuario_que_Registra
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Reuniones_de_Mediacion.GetResource("Usuario_que_Registra", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Lugar</summary>
         public static string Lugar
         {
@@ -86,16 +116,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Mecanismo_Alterno</summary>
-        public static string Mecanismo_Alterno
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Reuniones_de_Mediacion.GetResource("Mecanismo_Alterno", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Tipo_de_Sesion</summary>
         public static string Tipo_de_Sesion
         {
@@ -133,46 +153,6 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_de_Reuniones_de_Mediacion.GetResource("Cumplimiento", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Fecha_de_Registro</summary>
-        public static string Fecha_de_Registro
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Reuniones_de_Mediacion.GetResource("Fecha_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Archivo_adjunto</summary>
-        public static string Archivo_adjunto
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Reuniones_de_Mediacion.GetResource("Archivo_adjunto", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Hora_de_Registro</summary>
-        public static string Hora_de_Registro
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Reuniones_de_Mediacion.GetResource("Hora_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Usuario_que_Registra</summary>
-        public static string Usuario_que_Registra
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_de_Reuniones_de_Mediacion.GetResource("Usuario_que_Registra", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

@@ -27,6 +27,7 @@ namespace Spartane.Core.Domain.Documento
         public bool? Requerido { get; set; }
         public bool? Solicitante { get; set; }
         public bool? Solicitar_Archivo_Adjunto { get; set; }
+        public bool? Solicitar_Numero_de_Oficio { get; set; }
 
         [ForeignKey("Diligencia")]
         public virtual Spartane.Core.Domain.Dilgencia_MASC.Dilgencia_MASC Diligencia_Dilgencia_MASC { get; set; }
@@ -48,6 +49,7 @@ namespace Spartane.Core.Domain.Documento
         public bool? Requerido { get; set; }
         public bool? Solicitante { get; set; }
         public bool? Solicitar_Archivo_Adjunto { get; set; }
+        public bool? Solicitar_Numero_de_Oficio { get; set; }
 
 		        [ForeignKey("Diligencia")]
         public virtual Spartane.Core.Domain.Dilgencia_MASC.Dilgencia_MASC Diligencia_Dilgencia_MASC { get; set; }

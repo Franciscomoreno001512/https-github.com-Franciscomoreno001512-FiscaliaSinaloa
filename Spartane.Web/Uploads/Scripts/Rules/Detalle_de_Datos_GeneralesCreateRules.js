@@ -916,6 +916,15 @@ if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowInd
 }
 //BusinessRuleId:2154, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+//BusinessRuleId:2162, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Modulo_Atencion_Inicial' + rowIndex),EvaluaQuery("SELECT NUAT FROM Modulo_Atencion_Inicial where Clave = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:2162, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

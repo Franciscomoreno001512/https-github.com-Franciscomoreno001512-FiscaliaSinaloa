@@ -137,6 +137,14 @@
  List<SelectListItem> varDocumento_Documento = null;
     if (ViewBag.Documentos_Documento != null)
     { varDocumento_Documento = (List<SelectListItem>)ViewBag.Documentos_Documento; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_documentosResources.Numero_de_Oficio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_de_OficioFilter, filters, new { @class = "form-control", @id = "ddlNumero_de_OficioFilter" })
+                    @Html.TextBoxFor(m => m.Numero_de_Oficio, new { @class = "form-control", @type = "text", @id = "txtNumero_de_Oficio" })
+                </div>
  List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
     if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
     { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
@@ -161,6 +169,14 @@
                     <label class="">@Resources.Resources.To: </label>
                     @Html.TextBoxFor(m => m.ToArchivo, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToArchivo", @data_min = "txtAdvanceFromArchivo" })
                     @Html.ValidationMessageFor(m => m.ToArchivo)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_documentosResources.Descripcion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
+                    @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
                 </div>
 
                 <div class="MarginBottom form-inline">
@@ -249,6 +265,11 @@
                 advanceSearch.DocumentoSearchType = 2;
             }
         }
+        if ($("#txtAdvanceNumero_de_Oficio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_documentosNumero_de_Oficio = $("#txtAdvanceNumero_de_Oficio").val();
+            advanceSearch.Detalle_de_documentosNumero_de_OficioSearchType = $("#ddlAdvanceNumero_de_OficioFilter").val();
+        }
         advanceSearch.SolicitanteSearchType = 0;
         if ($('#ddlAdvanceSolicitante').val().length > 0 || $("#txtAdvanceSolicitante").val() == "") {
 
@@ -303,6 +324,11 @@
             hasParameter = true;
             advanceSearch.Detalle_de_documentosArchivoFrom = $("#txtAdvanceFromArchivo").val();
             advanceSearch.Detalle_de_documentosArchivoTo = $("#txtAdvanceToArchivo").val();
+        }
+        if ($("#txtAdvanceDescripcion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_documentosDescripcion = $("#txtAdvanceDescripcion").val();
+            advanceSearch.Detalle_de_documentosDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

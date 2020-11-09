@@ -356,8 +356,8 @@
 <Object Id="45187" culture="es-es" value="Detalle de Devolución de Indicios" />
 <Object Id="45316" culture="en-us" value="Detalle de Documento MPO" />
 <Object Id="45316" culture="es-es" value="Detalle de Documento MPO" />
-<Object Id="45018" culture="en-us" value="Documentos" />
-<Object Id="45018" culture="es-es" value="Documentos" />
+<Object Id="45018" culture="en-us" value="Diligencias MASC" />
+<Object Id="45018" culture="es-es" value="Diligencias MASC" />
 <Object Id="45214" culture="en-us" value="Detalle de Documentos de Legislación" />
 <Object Id="45214" culture="es-es" value="Detalle de Documentos de Legislación" />
 <Object Id="45124" culture="en-us" value="Documentos generados en MASC" />
@@ -922,6 +922,12 @@
 <Object Id="45391" culture="es-es" value="Motivo de Rechazo de Solicitud" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
 
 
 

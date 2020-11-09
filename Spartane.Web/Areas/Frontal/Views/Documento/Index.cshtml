@@ -208,6 +208,7 @@
                                     <th>@Resources.DocumentoResources.Requerido</th>
                                     <th>@Resources.DocumentoResources.Solicitante</th>
                                     <th>@Resources.DocumentoResources.Solicitar_Archivo_Adjunto</th>
+                                    <th>@Resources.DocumentoResources.Solicitar_Numero_de_Oficio</th>
 
                                 </tr>
                             </thead>
@@ -220,6 +221,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
@@ -347,6 +349,7 @@
         var Requerido = $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitante = $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitar_Archivo_Adjunto = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitar_Numero_de_Oficio = $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -358,6 +361,7 @@
         + "&Requerido=" + Requerido
         + "&Solicitante=" + Solicitante
         + "&Solicitar_Archivo_Adjunto=" + Solicitar_Archivo_Adjunto
+        + "&Solicitar_Numero_de_Oficio=" + Solicitar_Numero_de_Oficio
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Documento/Export?format=")" + format
@@ -380,6 +384,7 @@
         var Requerido = $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitante = $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitar_Archivo_Adjunto = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Solicitar_Numero_de_Oficio = $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -391,6 +396,7 @@
         + "&Requerido=" + Requerido
         + "&Solicitante=" + Solicitante
         + "&Solicitar_Archivo_Adjunto=" + Solicitar_Archivo_Adjunto
+        + "&Solicitar_Numero_de_Oficio=" + Solicitar_Numero_de_Oficio
 ;
 
     }
@@ -571,11 +577,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -647,6 +653,7 @@
                 ,{ "data": "Requerido", "orderable": true, "name": "Requerido","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Solicitante", "orderable": true, "name": "Solicitante","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Solicitar_Archivo_Adjunto", "orderable": true, "name": "Solicitar_Archivo_Adjunto","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Solicitar_Numero_de_Oficio", "orderable": true, "name": "Solicitar_Numero_de_Oficio","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
 
             ],
 			"colReorder": true,

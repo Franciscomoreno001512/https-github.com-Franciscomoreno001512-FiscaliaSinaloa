@@ -1,8 +1,4 @@
-﻿        function RemoveAttachmentMainArchivo_adjunto () {
-            $("#hdnRemoveArchivo_adjunto").val("1");
-            $("#divAttachmentArchivo_adjunto").hide();
-        }
-
+﻿
 
 //Begin Declarations for Foreigns fields for Detalle_de_Solicitante_en_Reuniones MultiRow
 var Detalle_de_Solicitante_en_ReunionescountRowsChecked = 0;
@@ -593,6 +589,17 @@ function GetAutoCompleteDetalle_de_Reuniones_de_Mediacion_Numero_de_Expediente_S
     }
     return AutoCompleteNumero_de_ExpedienteData;
 }
+var AutoCompleteUsuario_que_RegistraData = [];
+function GetAutoCompleteDetalle_de_Reuniones_de_Mediacion_Usuario_que_Registra_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_RegistraData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_RegistraData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_RegistraData;
+}
 var AutoCompleteEspecialistaData = [];
 function GetAutoCompleteDetalle_de_Reuniones_de_Mediacion_Especialista_Spartan_UserData(data) {
 	AutoCompleteEspecialistaData = [];
@@ -603,17 +610,6 @@ function GetAutoCompleteDetalle_de_Reuniones_de_Mediacion_Especialista_Spartan_U
         });
     }
     return AutoCompleteEspecialistaData;
-}
-var AutoCompleteMecanismo_AlternoData = [];
-function GetAutoCompleteDetalle_de_Reuniones_de_Mediacion_Mecanismo_Alterno_Tipo_de_Mecanismo_AlternoData(data) {
-	AutoCompleteMecanismo_AlternoData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteMecanismo_AlternoData.push({
-            id: data[i].Clave,
-            text: data[i].Descripcion
-        });
-    }
-    return AutoCompleteMecanismo_AlternoData;
 }
 //Grid GetAutocomplete
 var AutoCompleteNombreData = [];
@@ -641,17 +637,6 @@ function GetAutoCompleteDetalle_de_Requerido_en_Reuniones_Nombre_Detalle_de_Soli
     return AutoCompleteNombreData;
 }
 
-var AutoCompleteUsuario_que_RegistraData = [];
-function GetAutoCompleteDetalle_de_Reuniones_de_Mediacion_Usuario_que_Registra_Spartan_UserData(data) {
-	AutoCompleteUsuario_que_RegistraData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteUsuario_que_RegistraData.push({
-            id: data[i].Id_User,
-            text: data[i].Name
-        });
-    }
-    return AutoCompleteUsuario_que_RegistraData;
-}
 
 
 function getDropdown(elementKey) {
@@ -692,17 +677,14 @@ function ClearControls() {
     $('#Numero_de_Expediente').empty();
     $("#Numero_de_Expediente").append('<option value=""></option>');
     $('#Numero_de_Expediente').val('0').trigger('change');
-    $('#Especialista').empty();
-    $("#Especialista").append('<option value=""></option>');
-    $('#Especialista').val('0').trigger('change');
-    $('#Mecanismo_Alterno').empty();
-    $("#Mecanismo_Alterno").append('<option value=""></option>');
-    $('#Mecanismo_Alterno').val('0').trigger('change');
-                Detalle_de_Solicitante_en_ReunionesClearGridData();
-                Detalle_de_Requerido_en_ReunionesClearGridData();
     $('#Usuario_que_Registra').empty();
     $("#Usuario_que_Registra").append('<option value=""></option>');
     $('#Usuario_que_Registra').val('0').trigger('change');
+    $('#Especialista').empty();
+    $("#Especialista").append('<option value=""></option>');
+    $('#Especialista').val('0').trigger('change');
+                Detalle_de_Solicitante_en_ReunionesClearGridData();
+                Detalle_de_Requerido_en_ReunionesClearGridData();
 
 }
 function ClearAttachmentsDiv() {
@@ -847,17 +829,14 @@ $(document).ready(function () {
 	    $('#Numero_de_Expediente').empty();
     $("#Numero_de_Expediente").append('<option value=""></option>');
     $('#Numero_de_Expediente').val('0').trigger('change');
-    $('#Especialista').empty();
-    $("#Especialista").append('<option value=""></option>');
-    $('#Especialista').val('0').trigger('change');
-    $('#Mecanismo_Alterno').empty();
-    $("#Mecanismo_Alterno").append('<option value=""></option>');
-    $('#Mecanismo_Alterno').val('0').trigger('change');
-                Detalle_de_Solicitante_en_ReunionesClearGridData();
-                Detalle_de_Requerido_en_ReunionesClearGridData();
     $('#Usuario_que_Registra').empty();
     $("#Usuario_que_Registra").append('<option value=""></option>');
     $('#Usuario_que_Registra').val('0').trigger('change');
+    $('#Especialista').empty();
+    $("#Especialista").append('<option value=""></option>');
+    $('#Especialista').val('0').trigger('change');
+                Detalle_de_Solicitante_en_ReunionesClearGridData();
+                Detalle_de_Requerido_en_ReunionesClearGridData();
 
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);

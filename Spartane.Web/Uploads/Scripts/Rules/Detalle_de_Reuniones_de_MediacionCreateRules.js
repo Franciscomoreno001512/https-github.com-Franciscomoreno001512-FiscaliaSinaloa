@@ -106,6 +106,13 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:1962, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2161, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Lugar' + rowIndex),EvaluaQuery(" exec uspGetDireccionUnidadMASC GLOBAL[SpartanOperationId]", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:2161, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

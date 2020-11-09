@@ -32,6 +32,8 @@ namespace Spartane.Web.SqlModelMapper
                 case "Documento[Descripcion]":
                 case "DocumentoDescripcion":
                     return "Documento.Descripcion";
+                case "Numero_de_Oficio":
+                    return "Detalle_de_documentos.Numero_de_Oficio";
                 case "Solicitante[Nombre_Completo]":
                 case "SolicitanteNombre_Completo":
                     return "Detalle_de_Solicitud_Solicitante.Nombre_Completo";
@@ -42,6 +44,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_de_documentos.Observaciones";
                 case "Archivo":
                     return "Detalle_de_documentos.Archivo";
+                case "Descripcion":
+                    return "Detalle_de_documentos.Descripcion";
 
                 default:
                     return propertyName;

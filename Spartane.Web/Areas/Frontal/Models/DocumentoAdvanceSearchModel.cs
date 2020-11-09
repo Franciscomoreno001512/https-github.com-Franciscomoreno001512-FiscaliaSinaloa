@@ -14,6 +14,7 @@ namespace Spartane.Web.Areas.Frontal.Models
             Requerido = RadioOptions.NoApply;
             Solicitante = RadioOptions.NoApply;
             Solicitar_Archivo_Adjunto = RadioOptions.NoApply;
+            Solicitar_Numero_de_Oficio = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -48,6 +49,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public RadioOptions Solicitante { set; get; }
 
         public RadioOptions Solicitar_Archivo_Adjunto { set; get; }
+
+        public RadioOptions Solicitar_Numero_de_Oficio { set; get; }
 
 
     }

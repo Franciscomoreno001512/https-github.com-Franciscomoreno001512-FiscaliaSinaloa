@@ -10,6 +10,7 @@
   <resource culture="es-es" name="Requerido" value="Solicitar Requerido/Probable Responsable"></resource>
   <resource culture="es-es" name="Solicitante" value="Solicitar Solicitante/Involucrado"></resource>
   <resource culture="es-es" name="Solicitar_Archivo_Adjunto" value="Solicitar Archivo Adjunto"></resource>
+  <resource culture="es-es" name="Solicitar_Numero_de_Oficio" value="Solicitar Número de Oficio"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

@@ -22,6 +22,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Tipo_de_DocumentoDescripcion { get; set; }
         public int? Documento { get; set; }
         public string DocumentoDescripcion { get; set; }
+        public string Numero_de_Oficio { get; set; }
         public int? Solicitante { get; set; }
         public string SolicitanteNombre_Completo { get; set; }
         public int? Requerido { get; set; }
@@ -32,6 +33,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Observaciones { get; set; }
         [Range(0, 9999999999)]
         public int? Archivo { get; set; }
+        public string Descripcion { get; set; }
 
     }
 	
@@ -49,6 +51,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Tipo_de_DocumentoDescripcion { get; set; }
         public int? Documento { get; set; }
         public string DocumentoDescripcion { get; set; }
+        public string Numero_de_Oficio { get; set; }
         public int? Solicitante { get; set; }
         public string SolicitanteNombre_Completo { get; set; }
         public int? Requerido { get; set; }
@@ -59,6 +62,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Observaciones { get; set; }
         [Range(0, 9999999999)]
         public int? Archivo { get; set; }
+        public string Descripcion { get; set; }
 
     }
 

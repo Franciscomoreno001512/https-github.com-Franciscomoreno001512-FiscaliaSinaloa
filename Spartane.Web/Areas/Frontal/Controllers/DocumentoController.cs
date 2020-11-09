@@ -177,6 +177,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Requerido = DocumentoData.Requerido.GetValueOrDefault()
                     ,Solicitante = DocumentoData.Solicitante.GetValueOrDefault()
                     ,Solicitar_Archivo_Adjunto = DocumentoData.Solicitar_Archivo_Adjunto.GetValueOrDefault()
+                    ,Solicitar_Numero_de_Oficio = DocumentoData.Solicitar_Numero_de_Oficio.GetValueOrDefault()
 
 					};
 				}
@@ -281,6 +282,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Requerido = DocumentoData.Requerido.GetValueOrDefault()
                     ,Solicitante = DocumentoData.Solicitante.GetValueOrDefault()
                     ,Solicitar_Archivo_Adjunto = DocumentoData.Solicitar_Archivo_Adjunto.GetValueOrDefault()
+                    ,Solicitar_Numero_de_Oficio = DocumentoData.Solicitar_Numero_de_Oficio.GetValueOrDefault()
 
 					};
 				}
@@ -525,6 +527,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Requerido = m.Requerido
 			,Solicitante = m.Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
+			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -647,6 +650,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Requerido = m.Requerido
 			,Solicitante = m.Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
+			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -796,6 +800,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (filter.Solicitar_Archivo_Adjunto != RadioOptions.NoApply)
                 where += " AND Documento.Solicitar_Archivo_Adjunto = " + Convert.ToInt32(filter.Solicitar_Archivo_Adjunto);
 
+            if (filter.Solicitar_Numero_de_Oficio != RadioOptions.NoApply)
+                where += " AND Documento.Solicitar_Numero_de_Oficio = " + Convert.ToInt32(filter.Solicitar_Numero_de_Oficio);
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -859,6 +866,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Requerido = varDocumento.Requerido
                         ,Solicitante = varDocumento.Solicitante
                         ,Solicitar_Archivo_Adjunto = varDocumento.Solicitar_Archivo_Adjunto
+                        ,Solicitar_Numero_de_Oficio = varDocumento.Solicitar_Numero_de_Oficio
 
                     };
 
@@ -1254,6 +1262,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Requerido = m.Requerido
 			,Solicitante = m.Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
+			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
 
             }).ToList();
 
@@ -1335,6 +1344,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Requerido = m.Requerido
 			,Solicitante = m.Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
+			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
 
             }).ToList();
 
@@ -1382,6 +1392,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Requerido = varDocumento.Requerido
                         ,Solicitante = varDocumento.Solicitante
                         ,Solicitar_Archivo_Adjunto = varDocumento.Solicitar_Archivo_Adjunto
+                        ,Solicitar_Numero_de_Oficio = varDocumento.Solicitar_Numero_de_Oficio
                     
                 };
 
@@ -1421,6 +1432,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Requerido = m.Requerido
 			,Solicitante = m.Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
+			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
 
                     
                 };

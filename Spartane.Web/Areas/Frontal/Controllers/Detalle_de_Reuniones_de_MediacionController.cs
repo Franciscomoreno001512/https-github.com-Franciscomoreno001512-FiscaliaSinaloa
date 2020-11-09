@@ -4,7 +4,7 @@ using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_de_Reuniones_de_Mediacion;
 using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Spartan_User;
-using Spartane.Core.Domain.Tipo_de_Mecanismo_Alterno;
+using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Sesion;
 using Spartane.Core.Domain.Detalle_de_Solicitante_en_Reuniones;
 
@@ -16,7 +16,6 @@ using Spartane.Core.Domain.Detalle_de_Solicitud_Requerido;
 
 
 using Spartane.Core.Domain.Cumplimiento;
-using Spartane.Core.Domain.Spartan_User;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -29,7 +28,7 @@ using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Reuniones_de_Mediacion;
 using Spartane.Web.Areas.WebApiConsumer.Solicitud;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
-using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Mecanismo_Alterno;
+using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Sesion;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Solicitante_en_Reuniones;
 
@@ -41,7 +40,6 @@ using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Solicitud_Requerido;
 
 
 using Spartane.Web.Areas.WebApiConsumer.Cumplimiento;
-using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -80,7 +78,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_de_Reuniones_de_MediacionApiConsumer _IDetalle_de_Reuniones_de_MediacionApiConsumer;
         private ISolicitudApiConsumer _ISolicitudApiConsumer;
         private ISpartan_UserApiConsumer _ISpartan_UserApiConsumer;
-        private ITipo_de_Mecanismo_AlternoApiConsumer _ITipo_de_Mecanismo_AlternoApiConsumer;
         private ITipo_de_SesionApiConsumer _ITipo_de_SesionApiConsumer;
         private IDetalle_de_Solicitante_en_ReunionesApiConsumer _IDetalle_de_Solicitante_en_ReunionesApiConsumer;
 
@@ -109,7 +106,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_Reuniones_de_MediacionController(IDetalle_de_Reuniones_de_MediacionService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Reuniones_de_MediacionApiConsumer Detalle_de_Reuniones_de_MediacionApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_Mecanismo_AlternoApiConsumer Tipo_de_Mecanismo_AlternoApiConsumer , ITipo_de_SesionApiConsumer Tipo_de_SesionApiConsumer , IDetalle_de_Solicitante_en_ReunionesApiConsumer Detalle_de_Solicitante_en_ReunionesApiConsumer , IDetalle_de_Solicitud_SolicitanteApiConsumer Detalle_de_Solicitud_SolicitanteApiConsumer  , IDetalle_de_Requerido_en_ReunionesApiConsumer Detalle_de_Requerido_en_ReunionesApiConsumer , IDetalle_de_Solicitud_RequeridoApiConsumer Detalle_de_Solicitud_RequeridoApiConsumer  , ICumplimientoApiConsumer CumplimientoApiConsumer )
+        public Detalle_de_Reuniones_de_MediacionController(IDetalle_de_Reuniones_de_MediacionService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Reuniones_de_MediacionApiConsumer Detalle_de_Reuniones_de_MediacionApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_SesionApiConsumer Tipo_de_SesionApiConsumer , IDetalle_de_Solicitante_en_ReunionesApiConsumer Detalle_de_Solicitante_en_ReunionesApiConsumer , IDetalle_de_Solicitud_SolicitanteApiConsumer Detalle_de_Solicitud_SolicitanteApiConsumer  , IDetalle_de_Requerido_en_ReunionesApiConsumer Detalle_de_Requerido_en_ReunionesApiConsumer , IDetalle_de_Solicitud_RequeridoApiConsumer Detalle_de_Solicitud_RequeridoApiConsumer  , ICumplimientoApiConsumer CumplimientoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -125,7 +122,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._ISolicitudApiConsumer = SolicitudApiConsumer;
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
-            this._ITipo_de_Mecanismo_AlternoApiConsumer = Tipo_de_Mecanismo_AlternoApiConsumer;
+            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._ITipo_de_SesionApiConsumer = Tipo_de_SesionApiConsumer;
             this._IDetalle_de_Solicitante_en_ReunionesApiConsumer = Detalle_de_Solicitante_en_ReunionesApiConsumer;
 
@@ -137,7 +134,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
             this._ICumplimientoApiConsumer = CumplimientoApiConsumer;
-            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
 
         }
 
@@ -219,29 +215,24 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Detalle_de_Reuniones_de_MediacionData.Clave 
 	                    ,Numero_de_Expediente = Detalle_de_Reuniones_de_MediacionData.Numero_de_Expediente
                     ,Numero_de_ExpedienteNumero_de_Folio = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Reuniones_de_MediacionData.Numero_de_Expediente), "Solicitud") ??  (string)Detalle_de_Reuniones_de_MediacionData.Numero_de_Expediente_Solicitud.Numero_de_Folio
+                    ,Fecha_de_Registro = (Detalle_de_Reuniones_de_MediacionData.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(Detalle_de_Reuniones_de_MediacionData.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_Registro = Detalle_de_Reuniones_de_MediacionData.Hora_de_Registro
+                    ,Usuario_que_Registra = Detalle_de_Reuniones_de_MediacionData.Usuario_que_Registra
+                    ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Reuniones_de_MediacionData.Usuario_que_Registra), "Spartan_User") ??  (string)Detalle_de_Reuniones_de_MediacionData.Usuario_que_Registra_Spartan_User.Name
                     ,Lugar = Detalle_de_Reuniones_de_MediacionData.Lugar
                     ,Fecha = (Detalle_de_Reuniones_de_MediacionData.Fecha == null ? string.Empty : Convert.ToDateTime(Detalle_de_Reuniones_de_MediacionData.Fecha).ToString(ConfigurationProperty.DateFormat))
                     ,Hora = Detalle_de_Reuniones_de_MediacionData.Hora
                     ,Especialista = Detalle_de_Reuniones_de_MediacionData.Especialista
                     ,EspecialistaName = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Reuniones_de_MediacionData.Especialista), "Spartan_User") ??  (string)Detalle_de_Reuniones_de_MediacionData.Especialista_Spartan_User.Name
-                    ,Mecanismo_Alterno = Detalle_de_Reuniones_de_MediacionData.Mecanismo_Alterno
-                    ,Mecanismo_AlternoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Reuniones_de_MediacionData.Mecanismo_Alterno), "Tipo_de_Mecanismo_Alterno") ??  (string)Detalle_de_Reuniones_de_MediacionData.Mecanismo_Alterno_Tipo_de_Mecanismo_Alterno.Descripcion
                     ,Tipo_de_Sesion = Detalle_de_Reuniones_de_MediacionData.Tipo_de_Sesion
                     ,Tipo_de_SesionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Reuniones_de_MediacionData.Tipo_de_Sesion), "Tipo_de_Sesion") ??  (string)Detalle_de_Reuniones_de_MediacionData.Tipo_de_Sesion_Tipo_de_Sesion.Descripcion
                     ,Cumplimiento = Detalle_de_Reuniones_de_MediacionData.Cumplimiento
                     ,CumplimientoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Reuniones_de_MediacionData.Cumplimiento), "Cumplimiento") ??  (string)Detalle_de_Reuniones_de_MediacionData.Cumplimiento_Cumplimiento.Descripcion
-                    ,Fecha_de_Registro = (Detalle_de_Reuniones_de_MediacionData.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(Detalle_de_Reuniones_de_MediacionData.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
-                    ,Archivo_adjunto = Detalle_de_Reuniones_de_MediacionData.Archivo_adjunto
-                    ,Hora_de_Registro = Detalle_de_Reuniones_de_MediacionData.Hora_de_Registro
-                    ,Usuario_que_Registra = Detalle_de_Reuniones_de_MediacionData.Usuario_que_Registra
-                    ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Reuniones_de_MediacionData.Usuario_que_Registra), "Spartan_User") ??  (string)Detalle_de_Reuniones_de_MediacionData.Usuario_que_Registra_Spartan_User.Name
 
 					};
 				}
 				
-				                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                ViewBag.Archivo_adjuntoSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varDetalle_de_Reuniones_de_Mediacion.Archivo_adjunto).Resource;
-
+				
 				
             }
             if (!_tokenManager.GenerateToken())
@@ -329,27 +320,22 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Detalle_de_Reuniones_de_MediacionData.Clave 
 	                    ,Numero_de_Expediente = Detalle_de_Reuniones_de_MediacionData.Numero_de_Expediente
                     ,Numero_de_ExpedienteNumero_de_Folio = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Reuniones_de_MediacionData.Numero_de_Expediente), "Solicitud") ??  (string)Detalle_de_Reuniones_de_MediacionData.Numero_de_Expediente_Solicitud.Numero_de_Folio
+                    ,Fecha_de_Registro = (Detalle_de_Reuniones_de_MediacionData.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(Detalle_de_Reuniones_de_MediacionData.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_de_Registro = Detalle_de_Reuniones_de_MediacionData.Hora_de_Registro
+                    ,Usuario_que_Registra = Detalle_de_Reuniones_de_MediacionData.Usuario_que_Registra
+                    ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Reuniones_de_MediacionData.Usuario_que_Registra), "Spartan_User") ??  (string)Detalle_de_Reuniones_de_MediacionData.Usuario_que_Registra_Spartan_User.Name
                     ,Lugar = Detalle_de_Reuniones_de_MediacionData.Lugar
                     ,Fecha = (Detalle_de_Reuniones_de_MediacionData.Fecha == null ? string.Empty : Convert.ToDateTime(Detalle_de_Reuniones_de_MediacionData.Fecha).ToString(ConfigurationProperty.DateFormat))
                     ,Hora = Detalle_de_Reuniones_de_MediacionData.Hora
                     ,Especialista = Detalle_de_Reuniones_de_MediacionData.Especialista
                     ,EspecialistaName = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Reuniones_de_MediacionData.Especialista), "Spartan_User") ??  (string)Detalle_de_Reuniones_de_MediacionData.Especialista_Spartan_User.Name
-                    ,Mecanismo_Alterno = Detalle_de_Reuniones_de_MediacionData.Mecanismo_Alterno
-                    ,Mecanismo_AlternoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Reuniones_de_MediacionData.Mecanismo_Alterno), "Tipo_de_Mecanismo_Alterno") ??  (string)Detalle_de_Reuniones_de_MediacionData.Mecanismo_Alterno_Tipo_de_Mecanismo_Alterno.Descripcion
                     ,Tipo_de_Sesion = Detalle_de_Reuniones_de_MediacionData.Tipo_de_Sesion
                     ,Tipo_de_SesionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Reuniones_de_MediacionData.Tipo_de_Sesion), "Tipo_de_Sesion") ??  (string)Detalle_de_Reuniones_de_MediacionData.Tipo_de_Sesion_Tipo_de_Sesion.Descripcion
                     ,Cumplimiento = Detalle_de_Reuniones_de_MediacionData.Cumplimiento
                     ,CumplimientoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Reuniones_de_MediacionData.Cumplimiento), "Cumplimiento") ??  (string)Detalle_de_Reuniones_de_MediacionData.Cumplimiento_Cumplimiento.Descripcion
-                    ,Fecha_de_Registro = (Detalle_de_Reuniones_de_MediacionData.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(Detalle_de_Reuniones_de_MediacionData.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
-                    ,Archivo_adjunto = Detalle_de_Reuniones_de_MediacionData.Archivo_adjunto
-                    ,Hora_de_Registro = Detalle_de_Reuniones_de_MediacionData.Hora_de_Registro
-                    ,Usuario_que_Registra = Detalle_de_Reuniones_de_MediacionData.Usuario_que_Registra
-                    ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Reuniones_de_MediacionData.Usuario_que_Registra), "Spartan_User") ??  (string)Detalle_de_Reuniones_de_MediacionData.Usuario_que_Registra_Spartan_User.Name
 
 					};
 				}
-                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                ViewBag.Archivo_adjuntoSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varDetalle_de_Reuniones_de_Mediacion.Archivo_adjunto).Resource;
 
             }
             if (!_tokenManager.GenerateToken())
@@ -424,27 +410,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name")?? m.Name,
                     Value = Convert.ToString(m.Id_User)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-		[HttpGet]
-        public ActionResult GetTipo_de_Mecanismo_AlternoAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ITipo_de_Mecanismo_AlternoApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ITipo_de_Mecanismo_AlternoApiConsumer.SelAll(false).Resource;
-				
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Mecanismo_Alterno", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
@@ -605,17 +570,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
                         ,Numero_de_ExpedienteNumero_de_Folio = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Folio
+                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Registro = m.Hora_de_Registro
+                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Lugar = m.Lugar
                         ,Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
 			,Hora = m.Hora
                         ,EspecialistaName = CultureHelper.GetTraduction(m.Especialista_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Especialista_Spartan_User.Name
-                        ,Mecanismo_AlternoDescripcion = CultureHelper.GetTraduction(m.Mecanismo_Alterno_Tipo_de_Mecanismo_Alterno.Clave.ToString(), "Tipo_de_Mecanismo_Alterno") ?? (string)m.Mecanismo_Alterno_Tipo_de_Mecanismo_Alterno.Descripcion
                         ,Tipo_de_SesionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sesion_Tipo_de_Sesion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sesion_Tipo_de_Sesion.Descripcion
                         ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
-                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
-			,Archivo_adjunto = m.Archivo_adjunto
-			,Hora_de_Registro = m.Hora_de_Registro
-                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -731,17 +694,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
                         ,Numero_de_ExpedienteNumero_de_Folio = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Folio
+                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Registro = m.Hora_de_Registro
+                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Lugar = m.Lugar
                         ,Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
 			,Hora = m.Hora
                         ,EspecialistaName = CultureHelper.GetTraduction(m.Especialista_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Especialista_Spartan_User.Name
-                        ,Mecanismo_AlternoDescripcion = CultureHelper.GetTraduction(m.Mecanismo_Alterno_Tipo_de_Mecanismo_Alterno.Clave.ToString(), "Tipo_de_Mecanismo_Alterno") ?? (string)m.Mecanismo_Alterno_Tipo_de_Mecanismo_Alterno.Descripcion
                         ,Tipo_de_SesionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sesion_Tipo_de_Sesion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sesion_Tipo_de_Sesion.Descripcion
                         ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
-                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
-			,Archivo_adjunto = m.Archivo_adjunto
-			,Hora_de_Registro = m.Hora_de_Registro
-                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -779,7 +740,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
-        public JsonResult GetDetalle_de_Reuniones_de_Mediacion_Especialista_Spartan_User(string query, string where)
+        public JsonResult GetDetalle_de_Reuniones_de_Mediacion_Usuario_que_Registra_Spartan_User(string query, string where)
         {
             try
             {
@@ -806,7 +767,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
-        public JsonResult GetDetalle_de_Reuniones_de_Mediacion_Mecanismo_Alterno_Tipo_de_Mecanismo_Alterno(string query, string where)
+        public JsonResult GetDetalle_de_Reuniones_de_Mediacion_Especialista_Spartan_User(string query, string where)
         {
             try
             {
@@ -814,18 +775,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where = "";
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _ITipo_de_Mecanismo_AlternoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Tipo_de_Mecanismo_Alterno.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Tipo_de_Mecanismo_Alterno.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _ITipo_de_Mecanismo_AlternoApiConsumer.ListaSelAll(1, 20,elWhere , " Tipo_de_Mecanismo_Alterno.Descripcion ASC ").Resource;
+				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
                
-                foreach (var item in result.Tipo_de_Mecanismo_Alternos)
+                foreach (var item in result.Spartan_Users)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Tipo_de_Mecanismo_Alterno", "Descripcion");
-                    item.Descripcion =trans ??item.Descripcion;
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name =trans ??item.Name;
                 }
-                return Json(result.Tipo_de_Mecanismo_Alternos.ToArray(), JsonRequestBehavior.AllowGet);
+                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -890,33 +851,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 
-        [HttpGet]
-        public JsonResult GetDetalle_de_Reuniones_de_Mediacion_Usuario_que_Registra_Spartan_User(string query, string where)
-        {
-            try
-            {
-                if (String.IsNullOrEmpty(where))
-                    where = "";
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
-               
-                foreach (var item in result.Spartan_Users)
-                {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
-                    item.Name =trans ??item.Name;
-                }
-                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
 
 
 
@@ -960,6 +894,55 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Numero_de_ExpedienteIds = string.Join(",", filter.AdvanceNumero_de_ExpedienteMultiple);
 
                 where += " AND Detalle_de_Reuniones_de_Mediacion.Numero_de_Expediente In (" + Numero_de_ExpedienteIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromFecha_de_Registro) || !string.IsNullOrEmpty(filter.ToFecha_de_Registro))
+            {
+                var Fecha_de_RegistroFrom = DateTime.ParseExact(filter.FromFecha_de_Registro, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var Fecha_de_RegistroTo = DateTime.ParseExact(filter.ToFecha_de_Registro, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.FromFecha_de_Registro))
+                    where += " AND Detalle_de_Reuniones_de_Mediacion.Fecha_de_Registro >= '" + Fecha_de_RegistroFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFecha_de_Registro))
+                    where += " AND Detalle_de_Reuniones_de_Mediacion.Fecha_de_Registro <= '" + Fecha_de_RegistroTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromHora_de_Registro) || !string.IsNullOrEmpty(filter.ToHora_de_Registro))
+            {
+                if (!string.IsNullOrEmpty(filter.FromHora_de_Registro))
+                    where += " AND Convert(TIME,Detalle_de_Reuniones_de_Mediacion.Hora_de_Registro) >='" + filter.FromHora_de_Registro + "'";
+                if (!string.IsNullOrEmpty(filter.ToHora_de_Registro))
+                    where += " AND Convert(TIME,Detalle_de_Reuniones_de_Mediacion.Hora_de_Registro) <='" + filter.ToHora_de_Registro + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceUsuario_que_Registra))
+            {
+                switch (filter.Usuario_que_RegistraFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Spartan_User.Name LIKE '" + filter.AdvanceUsuario_que_Registra + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Registra + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Spartan_User.Name = '" + filter.AdvanceUsuario_que_Registra + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Registra + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceUsuario_que_RegistraMultiple != null && filter.AdvanceUsuario_que_RegistraMultiple.Count() > 0)
+            {
+                var Usuario_que_RegistraIds = string.Join(",", filter.AdvanceUsuario_que_RegistraMultiple);
+
+                where += " AND Detalle_de_Reuniones_de_Mediacion.Usuario_que_Registra In (" + Usuario_que_RegistraIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.Lugar))
@@ -1033,34 +1016,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Detalle_de_Reuniones_de_Mediacion.Especialista In (" + EspecialistaIds + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvanceMecanismo_Alterno))
-            {
-                switch (filter.Mecanismo_AlternoFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Tipo_de_Mecanismo_Alterno.Descripcion LIKE '" + filter.AdvanceMecanismo_Alterno + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Tipo_de_Mecanismo_Alterno.Descripcion LIKE '%" + filter.AdvanceMecanismo_Alterno + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Tipo_de_Mecanismo_Alterno.Descripcion = '" + filter.AdvanceMecanismo_Alterno + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Tipo_de_Mecanismo_Alterno.Descripcion LIKE '%" + filter.AdvanceMecanismo_Alterno + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceMecanismo_AlternoMultiple != null && filter.AdvanceMecanismo_AlternoMultiple.Count() > 0)
-            {
-                var Mecanismo_AlternoIds = string.Join(",", filter.AdvanceMecanismo_AlternoMultiple);
-
-                where += " AND Detalle_de_Reuniones_de_Mediacion.Mecanismo_Alterno In (" + Mecanismo_AlternoIds + ")";
-            }
-
             if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_Sesion))
             {
                 switch (filter.Tipo_de_SesionFilter)
@@ -1115,58 +1070,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var CumplimientoIds = string.Join(",", filter.AdvanceCumplimientoMultiple);
 
                 where += " AND Detalle_de_Reuniones_de_Mediacion.Cumplimiento In (" + CumplimientoIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.FromFecha_de_Registro) || !string.IsNullOrEmpty(filter.ToFecha_de_Registro))
-            {
-                var Fecha_de_RegistroFrom = DateTime.ParseExact(filter.FromFecha_de_Registro, ConfigurationProperty.DateFormat,
-                    CultureInfo.InvariantCulture as IFormatProvider);
-                var Fecha_de_RegistroTo = DateTime.ParseExact(filter.ToFecha_de_Registro, ConfigurationProperty.DateFormat,
-                  CultureInfo.InvariantCulture as IFormatProvider);
-
-                if (!string.IsNullOrEmpty(filter.FromFecha_de_Registro))
-                    where += " AND Detalle_de_Reuniones_de_Mediacion.Fecha_de_Registro >= '" + Fecha_de_RegistroFrom.ToString("MM-dd-yyyy") + "'";
-                if (!string.IsNullOrEmpty(filter.ToFecha_de_Registro))
-                    where += " AND Detalle_de_Reuniones_de_Mediacion.Fecha_de_Registro <= '" + Fecha_de_RegistroTo.ToString("MM-dd-yyyy") + "'";
-            }
-
-            if (filter.Archivo_adjunto != RadioOptions.NoApply)
-                where += " AND Detalle_de_Reuniones_de_Mediacion.Archivo_adjunto " + (filter.Archivo_adjunto == RadioOptions.Yes ? ">" : "==") + " 0";
-
-            if (!string.IsNullOrEmpty(filter.FromHora_de_Registro) || !string.IsNullOrEmpty(filter.ToHora_de_Registro))
-            {
-                if (!string.IsNullOrEmpty(filter.FromHora_de_Registro))
-                    where += " AND Convert(TIME,Detalle_de_Reuniones_de_Mediacion.Hora_de_Registro) >='" + filter.FromHora_de_Registro + "'";
-                if (!string.IsNullOrEmpty(filter.ToHora_de_Registro))
-                    where += " AND Convert(TIME,Detalle_de_Reuniones_de_Mediacion.Hora_de_Registro) <='" + filter.ToHora_de_Registro + "'";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvanceUsuario_que_Registra))
-            {
-                switch (filter.Usuario_que_RegistraFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Spartan_User.Name LIKE '" + filter.AdvanceUsuario_que_Registra + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Registra + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Spartan_User.Name = '" + filter.AdvanceUsuario_que_Registra + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Registra + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceUsuario_que_RegistraMultiple != null && filter.AdvanceUsuario_que_RegistraMultiple.Count() > 0)
-            {
-                var Usuario_que_RegistraIds = string.Join(",", filter.AdvanceUsuario_que_RegistraMultiple);
-
-                where += " AND Detalle_de_Reuniones_de_Mediacion.Usuario_que_Registra In (" + Usuario_que_RegistraIds + ")";
             }
 
 
@@ -1410,22 +1313,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     _IDetalle_de_Reuniones_de_MediacionApiConsumer.SetAuthHeader(_tokenManager.Token);
 
 
-                    if (varDetalle_de_Reuniones_de_Mediacion.Archivo_adjuntoRemoveAttachment != 0 && varDetalle_de_Reuniones_de_Mediacion.Archivo_adjuntoFile == null)
-                    {
-                        varDetalle_de_Reuniones_de_Mediacion.Archivo_adjunto = 0;
-                    }
-
-                    if (varDetalle_de_Reuniones_de_Mediacion.Archivo_adjuntoFile != null)
-                    {
-                        var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varDetalle_de_Reuniones_de_Mediacion.Archivo_adjuntoFile);
-                        _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                        varDetalle_de_Reuniones_de_Mediacion.Archivo_adjunto = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
-                        {
-                            File = fileAsBytes,
-                            Description = varDetalle_de_Reuniones_de_Mediacion.Archivo_adjuntoFile.FileName,
-                            File_Size = fileAsBytes.Length
-                        }).Resource;
-                    }
 
                     
                     var result = "";
@@ -1433,18 +1320,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varDetalle_de_Reuniones_de_Mediacion.Clave
                         ,Numero_de_Expediente = varDetalle_de_Reuniones_de_Mediacion.Numero_de_Expediente
+                        ,Fecha_de_Registro = (!String.IsNullOrEmpty(varDetalle_de_Reuniones_de_Mediacion.Fecha_de_Registro)) ? DateTime.ParseExact(varDetalle_de_Reuniones_de_Mediacion.Fecha_de_Registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_Registro = varDetalle_de_Reuniones_de_Mediacion.Hora_de_Registro
+                        ,Usuario_que_Registra = varDetalle_de_Reuniones_de_Mediacion.Usuario_que_Registra
                         ,Lugar = varDetalle_de_Reuniones_de_Mediacion.Lugar
                         ,Fecha = (!String.IsNullOrEmpty(varDetalle_de_Reuniones_de_Mediacion.Fecha)) ? DateTime.ParseExact(varDetalle_de_Reuniones_de_Mediacion.Fecha, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora = varDetalle_de_Reuniones_de_Mediacion.Hora
                         ,Especialista = varDetalle_de_Reuniones_de_Mediacion.Especialista
-                        ,Mecanismo_Alterno = varDetalle_de_Reuniones_de_Mediacion.Mecanismo_Alterno
                         ,Tipo_de_Sesion = varDetalle_de_Reuniones_de_Mediacion.Tipo_de_Sesion
                         ,Cumplimiento = varDetalle_de_Reuniones_de_Mediacion.Cumplimiento
-                        ,Fecha_de_Registro = (!String.IsNullOrEmpty(varDetalle_de_Reuniones_de_Mediacion.Fecha_de_Registro)) ? DateTime.ParseExact(varDetalle_de_Reuniones_de_Mediacion.Fecha_de_Registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Archivo_adjunto = (varDetalle_de_Reuniones_de_Mediacion.Archivo_adjunto.HasValue && varDetalle_de_Reuniones_de_Mediacion.Archivo_adjunto != 0) ? ((int?)Convert.ToInt32(varDetalle_de_Reuniones_de_Mediacion.Archivo_adjunto.Value)) : null
-
-                        ,Hora_de_Registro = varDetalle_de_Reuniones_de_Mediacion.Hora_de_Registro
-                        ,Usuario_que_Registra = varDetalle_de_Reuniones_de_Mediacion.Usuario_que_Registra
 
                     };
 
@@ -2112,17 +1996,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,Numero_de_ExpedienteNumero_de_Folio = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Folio
+                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Registro = m.Hora_de_Registro
+                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Lugar = m.Lugar
                         ,Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
 			,Hora = m.Hora
                         ,EspecialistaName = CultureHelper.GetTraduction(m.Especialista_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Especialista_Spartan_User.Name
-                        ,Mecanismo_AlternoDescripcion = CultureHelper.GetTraduction(m.Mecanismo_Alterno_Tipo_de_Mecanismo_Alterno.Clave.ToString(), "Tipo_de_Mecanismo_Alterno") ?? (string)m.Mecanismo_Alterno_Tipo_de_Mecanismo_Alterno.Descripcion
                         ,Tipo_de_SesionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sesion_Tipo_de_Sesion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sesion_Tipo_de_Sesion.Descripcion
                         ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
-                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
-			,Archivo_adjunto = m.Archivo_adjunto
-			,Hora_de_Registro = m.Hora_de_Registro
-                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 
             }).ToList();
 
@@ -2197,17 +2079,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,Numero_de_ExpedienteNumero_de_Folio = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Folio
+                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Registro = m.Hora_de_Registro
+                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Lugar = m.Lugar
                         ,Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
 			,Hora = m.Hora
                         ,EspecialistaName = CultureHelper.GetTraduction(m.Especialista_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Especialista_Spartan_User.Name
-                        ,Mecanismo_AlternoDescripcion = CultureHelper.GetTraduction(m.Mecanismo_Alterno_Tipo_de_Mecanismo_Alterno.Clave.ToString(), "Tipo_de_Mecanismo_Alterno") ?? (string)m.Mecanismo_Alterno_Tipo_de_Mecanismo_Alterno.Descripcion
                         ,Tipo_de_SesionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sesion_Tipo_de_Sesion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sesion_Tipo_de_Sesion.Descripcion
                         ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
-                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
-			,Archivo_adjunto = m.Archivo_adjunto
-			,Hora_de_Registro = m.Hora_de_Registro
-                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 
             }).ToList();
 
@@ -2242,40 +2122,21 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_Reuniones_de_MediacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-				                    if (varDetalle_de_Reuniones_de_Mediacion.Archivo_adjuntoRemoveAttachment != 0 && varDetalle_de_Reuniones_de_Mediacion.Archivo_adjuntoFile == null)
-                    {
-                        varDetalle_de_Reuniones_de_Mediacion.Archivo_adjunto = 0;
-                    }
-
-                    if (varDetalle_de_Reuniones_de_Mediacion.Archivo_adjuntoFile != null)
-                    {
-                        var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varDetalle_de_Reuniones_de_Mediacion.Archivo_adjuntoFile);
-                        _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
-                        varDetalle_de_Reuniones_de_Mediacion.Archivo_adjunto = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
-                        {
-                            File = fileAsBytes,
-                            Description = varDetalle_de_Reuniones_de_Mediacion.Archivo_adjuntoFile.FileName,
-                            File_Size = fileAsBytes.Length
-                        }).Resource;
-                    }
-
+				
                 var result = "";
                 var Detalle_de_Reuniones_de_Mediacion_Datos_GeneralesInfo = new Detalle_de_Reuniones_de_Mediacion_Datos_Generales
                 {
                     Clave = varDetalle_de_Reuniones_de_Mediacion.Clave
                                             ,Numero_de_Expediente = varDetalle_de_Reuniones_de_Mediacion.Numero_de_Expediente
+                        ,Fecha_de_Registro = (!String.IsNullOrEmpty(varDetalle_de_Reuniones_de_Mediacion.Fecha_de_Registro)) ? DateTime.ParseExact(varDetalle_de_Reuniones_de_Mediacion.Fecha_de_Registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_de_Registro = varDetalle_de_Reuniones_de_Mediacion.Hora_de_Registro
+                        ,Usuario_que_Registra = varDetalle_de_Reuniones_de_Mediacion.Usuario_que_Registra
                         ,Lugar = varDetalle_de_Reuniones_de_Mediacion.Lugar
                         ,Fecha = (!String.IsNullOrEmpty(varDetalle_de_Reuniones_de_Mediacion.Fecha)) ? DateTime.ParseExact(varDetalle_de_Reuniones_de_Mediacion.Fecha, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora = varDetalle_de_Reuniones_de_Mediacion.Hora
                         ,Especialista = varDetalle_de_Reuniones_de_Mediacion.Especialista
-                        ,Mecanismo_Alterno = varDetalle_de_Reuniones_de_Mediacion.Mecanismo_Alterno
                         ,Tipo_de_Sesion = varDetalle_de_Reuniones_de_Mediacion.Tipo_de_Sesion
                         ,Cumplimiento = varDetalle_de_Reuniones_de_Mediacion.Cumplimiento
-                        ,Fecha_de_Registro = (!String.IsNullOrEmpty(varDetalle_de_Reuniones_de_Mediacion.Fecha_de_Registro)) ? DateTime.ParseExact(varDetalle_de_Reuniones_de_Mediacion.Fecha_de_Registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Archivo_adjunto = (varDetalle_de_Reuniones_de_Mediacion.Archivo_adjunto.HasValue && varDetalle_de_Reuniones_de_Mediacion.Archivo_adjunto != 0) ? ((int?)Convert.ToInt32(varDetalle_de_Reuniones_de_Mediacion.Archivo_adjunto.Value)) : null
-
-                        ,Hora_de_Registro = varDetalle_de_Reuniones_de_Mediacion.Hora_de_Registro
-                        ,Usuario_que_Registra = varDetalle_de_Reuniones_de_Mediacion.Usuario_que_Registra
                     
                 };
 
@@ -2310,22 +2171,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
                         ,Numero_de_Expediente = m.Numero_de_Expediente
                         ,Numero_de_ExpedienteNumero_de_Folio = CultureHelper.GetTraduction(m.Numero_de_Expediente_Solicitud.Clave.ToString(), "Solicitud") ?? (string)m.Numero_de_Expediente_Solicitud.Numero_de_Folio
+                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
+			,Hora_de_Registro = m.Hora_de_Registro
+                        ,Usuario_que_Registra = m.Usuario_que_Registra
+                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Lugar = m.Lugar
                         ,Fecha = (m.Fecha == null ? string.Empty : Convert.ToDateTime(m.Fecha).ToString(ConfigurationProperty.DateFormat))
 			,Hora = m.Hora
                         ,Especialista = m.Especialista
                         ,EspecialistaName = CultureHelper.GetTraduction(m.Especialista_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Especialista_Spartan_User.Name
-                        ,Mecanismo_Alterno = m.Mecanismo_Alterno
-                        ,Mecanismo_AlternoDescripcion = CultureHelper.GetTraduction(m.Mecanismo_Alterno_Tipo_de_Mecanismo_Alterno.Clave.ToString(), "Tipo_de_Mecanismo_Alterno") ?? (string)m.Mecanismo_Alterno_Tipo_de_Mecanismo_Alterno.Descripcion
                         ,Tipo_de_Sesion = m.Tipo_de_Sesion
                         ,Tipo_de_SesionDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sesion_Tipo_de_Sesion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sesion_Tipo_de_Sesion.Descripcion
                         ,Cumplimiento = m.Cumplimiento
                         ,CumplimientoDescripcion = CultureHelper.GetTraduction(m.Cumplimiento_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Cumplimiento_Cumplimiento.Descripcion
-                        ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
-			,Archivo_adjunto = m.Archivo_adjunto
-			,Hora_de_Registro = m.Hora_de_Registro
-                        ,Usuario_que_Registra = m.Usuario_que_Registra
-                        ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 
                     
                 };

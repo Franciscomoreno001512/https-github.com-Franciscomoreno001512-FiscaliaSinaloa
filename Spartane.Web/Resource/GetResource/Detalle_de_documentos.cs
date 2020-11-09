@@ -96,6 +96,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Numero_de_Oficio</summary>
+        public static string Numero_de_Oficio
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_documentos.GetResource("Numero_de_Oficio", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Solicitante</summary>
         public static string Solicitante
         {
@@ -143,6 +153,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_de_documentos.GetResource("Archivo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Descripcion</summary>
+        public static string Descripcion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_documentos.GetResource("Descripcion", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

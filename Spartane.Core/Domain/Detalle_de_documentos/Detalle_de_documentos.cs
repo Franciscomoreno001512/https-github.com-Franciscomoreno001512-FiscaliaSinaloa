@@ -29,12 +29,14 @@ namespace Spartane.Core.Domain.Detalle_de_documentos
         public int? Usuario_que_Registra { get; set; }
         public int? Tipo_de_Documento { get; set; }
         public int? Documento { get; set; }
+        public string Numero_de_Oficio { get; set; }
         public int? Solicitante { get; set; }
         public int? Requerido { get; set; }
         public int? Archivo_Adjunto { get; set; }
         public string Archivo_Adjunto_URL { get; set; }
         public string Observaciones { get; set; }
         public int? Archivo { get; set; }
+        public string Descripcion { get; set; }
 
         [ForeignKey("Solicitud")]
         public virtual Spartane.Core.Domain.Solicitud.Solicitud Solicitud_Solicitud { get; set; }
@@ -62,12 +64,14 @@ namespace Spartane.Core.Domain.Detalle_de_documentos
         public int? Usuario_que_Registra { get; set; }
         public int? Tipo_de_Documento { get; set; }
         public int? Documento { get; set; }
+        public string Numero_de_Oficio { get; set; }
         public int? Solicitante { get; set; }
         public int? Requerido { get; set; }
         public int? Archivo_Adjunto { get; set; }
         public string Archivo_Adjunto_URL { get; set; }
         public string Observaciones { get; set; }
         public int? Archivo { get; set; }
+        public string Descripcion { get; set; }
 
 		        [ForeignKey("Solicitud")]
         public virtual Spartane.Core.Domain.Solicitud.Solicitud Solicitud_Solicitud { get; set; }

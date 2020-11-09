@@ -6,35 +6,31 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_de_Reuniones_de_MediacionModel
 @{
-    Spartane_File attachedFileArchivo_adjunto = (Spartane_File)ViewBag.Archivo_adjuntoSpartane_File;
 
 /*
-    string Fecha = "";
-    if (Model.Fecha == "")
-    { Model.Fecha = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
     string Fecha_de_Registro = "";
     if (Model.Fecha_de_Registro == "")
     { Model.Fecha_de_Registro = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha = "";
+    if (Model.Fecha == "")
+    { Model.Fecha = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
 */
  List<SelectListItem> varSolicitud_Numero_de_Expediente = null;
     if (ViewBag.Solicituds_Numero_de_Expediente != null)
     { varSolicitud_Numero_de_Expediente = (List<SelectListItem>)ViewBag.Solicituds_Numero_de_Expediente; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
+    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
  List<SelectListItem> varSpartan_User_Especialista = null;
     if (ViewBag.Spartan_Users_Especialista != null)
     { varSpartan_User_Especialista = (List<SelectListItem>)ViewBag.Spartan_Users_Especialista; }
- List<SelectListItem> varTipo_de_Mecanismo_Alterno_Mecanismo_Alterno = null;
-    if (ViewBag.Tipo_de_Mecanismo_Alternos_Mecanismo_Alterno != null)
-    { varTipo_de_Mecanismo_Alterno_Mecanismo_Alterno = (List<SelectListItem>)ViewBag.Tipo_de_Mecanismo_Alternos_Mecanismo_Alterno; }
     List<SelectListItem> varTipo_de_Sesion_Tipo_de_Sesion = null;
     if (ViewBag.Tipo_de_Sesions_Tipo_de_Sesion != null)
     { varTipo_de_Sesion_Tipo_de_Sesion = (List<SelectListItem>)ViewBag.Tipo_de_Sesions_Tipo_de_Sesion; }
     List<SelectListItem> varCumplimiento_Cumplimiento = null;
     if (ViewBag.Cumplimientos_Cumplimiento != null)
     { varCumplimiento_Cumplimiento = (List<SelectListItem>)ViewBag.Cumplimientos_Cumplimiento; }
- List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
-    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
-    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
 
     Permission permissionDetalle_de_Solicitante_en_Reuniones = ViewBag.PermissionDetalle_de_Solicitante_en_Reuniones;
     Permission permissionDetalle_de_Requerido_en_Reuniones = ViewBag.PermissionDetalle_de_Requerido_en_Reuniones;
@@ -202,6 +198,42 @@
                                 </div>
                                 }
                             </div>
+                            <div class="form-group" id="divFecha_de_Registro">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Fecha_de_Registro</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Registro" data-attribute="266470" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Fecha_de_Registro">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Registro"  name="Fecha_de_Registro" type="text" value="@Model.Fecha_de_Registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Registro">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Hora_de_Registro</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Registro" data-attribute="266471" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Hora_de_Registro">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Hora_de_Registro"  name="Hora_de_Registro" type="text" data-autoclose="true" value="@Model.Hora_de_Registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Registra">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Usuario_que_Registra</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Registra" data-attribute="266472" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Usuario_que_Registra">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Reuniones_de_Mediacion_Usuario_que_Registra form-control select2-dropdown Datos_Generales' data-val="true" id="Usuario_que_Registra" name="Usuario_que_Registra">
+                                        <option value="@Model.Usuario_que_Registra">@(Model.Usuario_que_RegistraName??Model.Usuario_que_RegistraName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266472).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Registra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
                             <div class="form-group" id="divLugar">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Lugar</label>
                                 <div class="col-sm-8" data-field-id="Lugar" data-attribute="263428" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Lugar">
@@ -242,20 +274,6 @@
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Especialista');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-				<div class="form-group" id="divMecanismo_Alterno">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Mecanismo_Alterno</label>
-                                <div class="col-sm-8" data-field-id="Mecanismo_Alterno" data-attribute="265981" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Mecanismo_Alterno">
-                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Reuniones_de_Mediacion_Mecanismo_Alterno form-control select2-dropdown Datos_Generales' data-val="true" id="Mecanismo_Alterno" name="Mecanismo_Alterno">
-                                        <option value="@Model.Mecanismo_Alterno">@(Model.Mecanismo_AlternoDescripcion??Model.Mecanismo_AlternoDescripcion)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 265981).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Mecanismo_Alterno', 'Mecanismo_Alterno');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -419,60 +437,6 @@
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divFecha_de_Registro">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Fecha_de_Registro</label>
-                                <div class="col-sm-8" data-field-id="Fecha_de_Registro" data-attribute="266470" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Fecha_de_Registro">
-                                    <div class='input-group date' id='datetimepicker1'>
-                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Registro"  name="Fecha_de_Registro" type="text" value="@Model.Fecha_de_Registro">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            @if (attachedFileArchivo_adjunto != null && attachedFileArchivo_adjunto.File_Id > 0)
-                            {
-                                <div class="form-group" id="divAttachmentArchivo_adjunto">
-                                    <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
-                                    <div class="col-sm-8 Datos_Generales" data-field-id="Archivo_adjunto" data-attribute="265984" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Archivo_adjunto">
-                                        <a href="@Url.Content("~/Frontal/Detalle_de_Reuniones_de_Mediacion/GetFile")?id=@attachedFileArchivo_adjunto.File_Id" target="_blank">@attachedFileArchivo_adjunto.Description</a>
-                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainArchivo_adjunto('@attachedFileArchivo_adjunto.File_Id')" />
-                                    </div>
-                                    <input id="hdnRemoveArchivo_adjunto" name="RemoveArchivo_adjunto" value="0" type="hidden" />
-                                    <input class="form-control col-md-12 Datos_Generales" id="hdnAttachedArchivo_adjunto" type="hidden" name="Archivo_adjunto" value="@Model.Archivo_adjunto">
-                                </div>
-                            }
-                            <div class="form-group" id="divArchivo_adjunto">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Archivo_adjunto</label>
-                                <div class="col-sm-8" data-field-id="Archivo_adjunto" data-attribute="265984" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Archivo_adjunto">
-                                    <input type="file" name="Archivo_adjuntoFile" id="Archivo_adjuntoFile" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group" id="divHora_de_Registro">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Hora_de_Registro</label>
-                                <div class="col-sm-8" data-field-id="Hora_de_Registro" data-attribute="266471" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Hora_de_Registro">
-                                    <div class='input-group date' id='timePicker'>
-                                        <input class="form-control col-md-12 Datos_Generales" id="Hora_de_Registro"  name="Hora_de_Registro" type="text" data-autoclose="true" value="@Model.Hora_de_Registro">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-time"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-				<div class="form-group" id="divUsuario_que_Registra">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Reuniones_de_MediacionResources.Usuario_que_Registra</label>
-                                <div class="col-sm-8" data-field-id="Usuario_que_Registra" data-attribute="266472" data-field-name="@Resources.Detalle_de_Reuniones_de_MediacionResources.Usuario_que_Registra">
-                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Reuniones_de_Mediacion_Usuario_que_Registra form-control select2-dropdown Datos_Generales' data-val="true" id="Usuario_que_Registra" name="Usuario_que_Registra">
-                                        <option value="@Model.Usuario_que_Registra">@(Model.Usuario_que_RegistraName??Model.Usuario_que_RegistraName)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266472).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Registra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
                             </div>
                                 </div>
 
@@ -564,10 +528,6 @@
 
     <script type="text/javascript">
         
-        function RemoveAttachmentMainArchivo_adjunto () {
-            $("#hdnRemoveArchivo_adjunto").val("1");
-            $("#divAttachmentArchivo_adjunto").hide();
-        }
 
 
 	function GetTraduction(text) {
@@ -622,16 +582,7 @@
               showDetalle_de_Requerido_en_ReunionesGrid(null);
 
 		   
-                        $('#Fecha').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true,
-                format: "@ConfigurationProperty.DateFormatDatePicker"
-            });
-            $('#Hora').clockpicker();
-            $('#Fecha_de_Registro').datepicker({
+                        $('#Fecha_de_Registro').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
                 forceParse: false,
@@ -640,6 +591,15 @@
                 format: "@ConfigurationProperty.DateFormatDatePicker"
             });
             $('#Hora_de_Registro').clockpicker();
+            $('#Fecha').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora').clockpicker();
 
 
             initiateUIControls();
@@ -688,72 +648,6 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
-       var AutoCompleteEspecialistaData =[];
-       $(".AutoCompleteDetalle_de_Reuniones_de_Mediacion_Especialista").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Detalle_de_Reuniones_de_Mediacion/GetDetalle_de_Reuniones_de_Mediacion_Especialista_Spartan_User")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteDetalle_de_Reuniones_de_Mediacion_Especialista_Spartan_UserData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteDetalle_de_Reuniones_de_Mediacion_Especialista");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
-       var AutoCompleteMecanismo_AlternoData =[];
-       $(".AutoCompleteDetalle_de_Reuniones_de_Mediacion_Mecanismo_Alterno").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Detalle_de_Reuniones_de_Mediacion/GetDetalle_de_Reuniones_de_Mediacion_Mecanismo_Alterno_Tipo_de_Mecanismo_Alterno")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteDetalle_de_Reuniones_de_Mediacion_Mecanismo_Alterno_Tipo_de_Mecanismo_AlternoData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteDetalle_de_Reuniones_de_Mediacion_Mecanismo_Alterno");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
        var AutoCompleteUsuario_que_RegistraData =[];
        $(".AutoCompleteDetalle_de_Reuniones_de_Mediacion_Usuario_que_Registra").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -783,6 +677,39 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDetalle_de_Reuniones_de_Mediacion_Usuario_que_Registra");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteEspecialistaData =[];
+       $(".AutoCompleteDetalle_de_Reuniones_de_Mediacion_Especialista").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Reuniones_de_Mediacion/GetDetalle_de_Reuniones_de_Mediacion_Especialista_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Reuniones_de_Mediacion_Especialista_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Reuniones_de_Mediacion_Especialista");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -1717,6 +1644,17 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.Numero_de_Expediente).trigger('change');
                     }, 3000);
+                    $('#Fecha_de_Registro').val(result.data.Fecha_de_Registro);
+                    $('#Hora_de_Registro').val(result.data.Hora_de_Registro);
+                    var control = $('#Usuario_que_Registra');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Registra).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Registra).trigger('change');
+                    }, 3000);
                     $('#Lugar').val(result.data.Lugar);
                     $('#Fecha').val(result.data.Fecha);
                     $('#Hora').val(result.data.Hora);
@@ -1729,15 +1667,6 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.Especialista).trigger('change');
                     }, 3000);
-                    var control = $('#Mecanismo_Alterno');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.Mecanismo_Alterno).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Mecanismo_Alterno).trigger('change');
-                    }, 3000);
                     $('#Tipo_de_Sesion').val(result.data.Tipo_de_Sesion);
                     Detalle_de_Solicitante_en_ReunionesDataDataTable = result.Solicitanter;
                     showDetalle_de_Solicitante_en_ReunionesGrid(result.Solicitanter);
@@ -1748,18 +1677,6 @@
                     $('#Detalle_de_Requerido_en_ReunionesGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
                     $('#Detalle_de_Requerido_en_ReunionesGrid .gridDatePicker').attr("readonly", "");
                     $('#Cumplimiento').val(result.data.Cumplimiento);
-                    $('#Fecha_de_Registro').val(result.data.Fecha_de_Registro);
-                    $('#Archivo_adjunto').val(result.data.Archivo_adjunto);
-                    $('#Hora_de_Registro').val(result.data.Hora_de_Registro);
-                    var control = $('#Usuario_que_Registra');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.Usuario_que_Registra).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Usuario_que_Registra).trigger('change');
-                    }, 3000);
 
                 },
                 error: function (result) {
@@ -1772,19 +1689,15 @@
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Numero_de_Expediente', $('#Numero_de_Expediente').val());
+                data.append('Fecha_de_Registro', $('#Fecha_de_Registro').val());
+                data.append('Hora_de_Registro', $('#Hora_de_Registro').val());
+                data.append('Usuario_que_Registra', $('#Usuario_que_Registra').val());
                 data.append('Lugar', $('#Lugar').val());
                 data.append('Fecha', $('#Fecha').val());
                 data.append('Hora', $('#Hora').val());
                 data.append('Especialista', $('#Especialista').val());
-                data.append('Mecanismo_Alterno', $('#Mecanismo_Alterno').val());
                 data.append('Tipo_de_Sesion', $('#Tipo_de_Sesion').val());
                 data.append('Cumplimiento', $('#Cumplimiento').val());
-                data.append('Fecha_de_Registro', $('#Fecha_de_Registro').val());
-                data.append('Archivo_adjunto', $('#hdnAttachedArchivo_adjunto').val());
-                data.append('Archivo_adjuntoFile', $('#Archivo_adjuntoFile')[0].files[0]);
-                data.append('Archivo_adjuntoRemoveAttachment', $('#hdnRemoveArchivo_adjunto').val());
-                data.append('Hora_de_Registro', $('#Hora_de_Registro').val());
-                data.append('Usuario_que_Registra', $('#Usuario_que_Registra').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Detalle_de_Reuniones_de_Mediacion/Post_Datos_Generales")',

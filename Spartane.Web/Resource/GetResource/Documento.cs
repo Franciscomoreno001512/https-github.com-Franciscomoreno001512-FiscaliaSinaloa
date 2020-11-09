@@ -116,6 +116,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Solicitar_Numero_de_Oficio</summary>
+        public static string Solicitar_Numero_de_Oficio
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDocumento.GetResource("Solicitar_Numero_de_Oficio", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDocumento.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

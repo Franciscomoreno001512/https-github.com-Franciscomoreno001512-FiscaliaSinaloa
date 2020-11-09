@@ -55,6 +55,20 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:1972, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2157, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divArchivo_Adjunto').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex));
+
+}
+//BusinessRuleId:2157, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2158, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ DisabledControl($("#" + nameOfTable + "Tipo_de_Servicio" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Servicio' + rowIndex));}DisabledControl($("#" + nameOfTable + "Dictamen" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Dictamen' + rowIndex));}DisabledControl($("#" + nameOfTable + "Solicitante" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Solicitante' + rowIndex));}DisabledControl($("#" + nameOfTable + "Responsable" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Responsable' + rowIndex));}DisabledControl($("#" + nameOfTable + "Idioma" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Idioma' + rowIndex));}DisabledControl($("#" + nameOfTable + "Lengua_Originaria" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Lengua_Originaria' + rowIndex));}DisabledControl($("#" + nameOfTable + "Diligencia_a_Enviar" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Diligencia_a_Enviar' + rowIndex));}DisabledControl($("#" + nameOfTable + "Archivo_Adjunto" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo_Adjunto' + rowIndex));}
+
+}
+//BusinessRuleId:2158, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
