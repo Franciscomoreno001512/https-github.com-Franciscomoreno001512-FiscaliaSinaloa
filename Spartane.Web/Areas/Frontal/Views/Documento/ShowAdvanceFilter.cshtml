@@ -226,6 +226,10 @@
             hasParameter = true;
             advanceSearch.DocumentoSolicitar_Archivo_Adjunto = $("#ddlAdvanceSolicitar_Archivo_Adjunto").val();
         }
+        if ($("#ddlAdvanceSolicitar_Numero_de_Oficio").val() != "") {
+            hasParameter = true;
+            advanceSearch.DocumentoSolicitar_Numero_de_Oficio = $("#ddlAdvanceSolicitar_Numero_de_Oficio").val();
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblDocumento').DataTable().draw();

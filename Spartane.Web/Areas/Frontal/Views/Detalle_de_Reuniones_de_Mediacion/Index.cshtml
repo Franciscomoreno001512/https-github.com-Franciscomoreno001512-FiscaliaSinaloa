@@ -3,10 +3,9 @@
 @using Spartane.Core.Domain.Detalle_de_Reuniones_de_Mediacion;
 @using Spartane.Core.Domain.Solicitud;
 @using Spartane.Core.Domain.Spartan_User;
-@using Spartane.Core.Domain.Tipo_de_Mecanismo_Alterno;
+@using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Tipo_de_Sesion;
 @using Spartane.Core.Domain.Cumplimiento;
-@using Spartane.Core.Domain.Spartan_User;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -204,16 +203,15 @@
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Clave</th>
                                     <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Numero_de_Expediente</th>
+                                    <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Fecha_de_Registro</th>
+                                    <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Hora_de_Registro</th>
+                                    <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Usuario_que_Registra</th>
                                     <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Lugar</th>
                                     <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Fecha</th>
                                     <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Hora</th>
                                     <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Especialista</th>
-                                    <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Mecanismo_Alterno</th>
                                     <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Tipo_de_Sesion</th>
                                     <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Cumplimiento</th>
-                                    <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Fecha_de_Registro</th>
-                                    <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Hora_de_Registro</th>
-                                    <th>@Resources.Detalle_de_Reuniones_de_MediacionResources.Usuario_que_Registra</th>
 
                                 </tr>
                             </thead>
@@ -222,15 +220,14 @@
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
                                 </tr>
@@ -349,30 +346,28 @@
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Expediente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Lugar =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora = $($('table td .filterData.form-control:input')[counter++]).val();
         var Especialista =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Mecanismo_Alterno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Sesion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
         + "&Numero_de_Expediente=" + Numero_de_Expediente
+        + "&Fecha_de_Registro=" + Fecha_de_Registro
+        + "&Hora_de_Registro=" + Hora_de_Registro
+        + "&Usuario_que_Registra=" + Usuario_que_Registra
         + "&Lugar=" + Lugar
         + "&Fecha=" + Fecha
         + "&Hora=" + Hora
         + "&Especialista=" + Especialista
-        + "&Mecanismo_Alterno=" + Mecanismo_Alterno
         + "&Tipo_de_Sesion=" + Tipo_de_Sesion
         + "&Cumplimiento=" + Cumplimiento
-        + "&Fecha_de_Registro=" + Fecha_de_Registro
-        + "&Hora_de_Registro=" + Hora_de_Registro
-        + "&Usuario_que_Registra=" + Usuario_que_Registra
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Detalle_de_Reuniones_de_Mediacion/Export?format=")" + format
@@ -388,30 +383,28 @@
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Expediente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Lugar =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora = $($('table td .filterData.form-control:input')[counter++]).val();
         var Especialista =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Mecanismo_Alterno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Sesion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Registro = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Usuario_que_Registra =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
         + "&Numero_de_Expediente=" + Numero_de_Expediente
+        + "&Fecha_de_Registro=" + Fecha_de_Registro
+        + "&Hora_de_Registro=" + Hora_de_Registro
+        + "&Usuario_que_Registra=" + Usuario_que_Registra
         + "&Lugar=" + Lugar
         + "&Fecha=" + Fecha
         + "&Hora=" + Hora
         + "&Especialista=" + Especialista
-        + "&Mecanismo_Alterno=" + Mecanismo_Alterno
         + "&Tipo_de_Sesion=" + Tipo_de_Sesion
         + "&Cumplimiento=" + Cumplimiento
-        + "&Fecha_de_Registro=" + Fecha_de_Registro
-        + "&Hora_de_Registro=" + Hora_de_Registro
-        + "&Usuario_que_Registra=" + Usuario_que_Registra
 ;
 
     }
@@ -592,11 +585,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -661,16 +654,15 @@
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
                 ,{ "data": "Numero_de_ExpedienteNumero_de_Folio", "orderable": true, "name": "Numero_de_ExpedienteNumero_de_Folio"}
+                ,{ "data": "Fecha_de_Registro", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Registro" }
+                ,{ "data": "Hora_de_Registro", "orderable": true, "name": "Hora_de_Registro" }
+                ,{ "data": "Usuario_que_RegistraName", "orderable": true, "name": "Usuario_que_RegistraName"}
                 ,{ "data": "Lugar", "orderable": true, "name": "Lugar", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Fecha", "orderable": true, "searchable": true, "type": "date", "name": "Fecha" }
                 ,{ "data": "Hora", "orderable": true, "name": "Hora" }
                 ,{ "data": "EspecialistaName", "orderable": true, "name": "EspecialistaName"}
-                ,{ "data": "Mecanismo_AlternoDescripcion", "orderable": true, "name": "Mecanismo_AlternoDescripcion"}
                 ,{ "data": "Tipo_de_SesionDescripcion", "orderable": true, "name": "Tipo_de_SesionDescripcion" }
                 ,{ "data": "CumplimientoDescripcion", "orderable": true, "name": "CumplimientoDescripcion" }
-                ,{ "data": "Fecha_de_Registro", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Registro" }
-                ,{ "data": "Hora_de_Registro", "orderable": true, "name": "Hora_de_Registro" }
-                ,{ "data": "Usuario_que_RegistraName", "orderable": true, "name": "Usuario_que_RegistraName"}
 
             ],
 			"colReorder": true,

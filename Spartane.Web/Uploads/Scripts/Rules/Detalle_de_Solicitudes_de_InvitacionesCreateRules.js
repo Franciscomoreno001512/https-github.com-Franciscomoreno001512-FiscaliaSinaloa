@@ -221,6 +221,13 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2124, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2160, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Domicilio' + rowIndex),EvaluaQuery(" exec uspGetDireccionUnidadMASC GLOBAL[SpartanOperationId]", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:2160, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

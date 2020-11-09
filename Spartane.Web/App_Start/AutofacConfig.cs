@@ -6705,3 +6705,9 @@ builder.RegisterType<Motivo_de_Rechazo_de_SolicitudApiConsumer>().As<IMotivo_de_
 
 
 
+
+
+
+
+
+

@@ -3,19 +3,17 @@
   <resource culture="en-us" name="Detalle_de_Reuniones_de_Mediacion" value="Reuniones"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
   <resource culture="en-US" name="Numero_de_Expediente" value="Número de Expediente"></resource>
+  <resource culture="en-US" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="en-US" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="en-US" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
   <resource culture="en-US" name="Lugar" value="Lugar"></resource>
   <resource culture="en-US" name="Fecha" value="Fecha"></resource>
   <resource culture="en-US" name="Hora" value="Hora"></resource>
   <resource culture="en-US" name="Especialista" value="Facilitador"></resource>
-  <resource culture="en-US" name="Mecanismo_Alterno" value="Mecanismo Alterno"></resource>
   <resource culture="en-US" name="Tipo_de_Sesion" value="Tipo de Sesión"></resource>
   <resource culture="en-US" name="Solicitanter" value="Solicitante"></resource>
   <resource culture="en-US" name="Requeridor" value="Requerido"></resource>
   <resource culture="en-US" name="Cumplimiento" value="Cumplimiento"></resource>
-  <resource culture="en-US" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
-  <resource culture="en-US" name="Archivo_adjunto" value="Archivo adjunto"></resource>
-  <resource culture="en-US" name="Hora_de_Registro" value="Hora de Registro"></resource>
-  <resource culture="en-US" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

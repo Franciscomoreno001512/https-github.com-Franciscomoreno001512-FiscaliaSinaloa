@@ -19,6 +19,13 @@ namespace Spartane.Web.SqlModelMapper
                 case "Numero_de_Expediente[Numero_de_Folio]":
                 case "Numero_de_ExpedienteNumero_de_Folio":
                     return "Solicitud.Numero_de_Folio";
+                case "Fecha_de_Registro":
+                    return "Detalle_de_Reuniones_de_Mediacion.Fecha_de_Registro";
+                case "Hora_de_Registro":
+                    return "Detalle_de_Reuniones_de_Mediacion.Hora_de_Registro";
+                case "Usuario_que_Registra[Name]":
+                case "Usuario_que_RegistraName":
+                    return "Spartan_User.Name";
                 case "Lugar":
                     return "Detalle_de_Reuniones_de_Mediacion.Lugar";
                 case "Fecha":
@@ -28,22 +35,12 @@ namespace Spartane.Web.SqlModelMapper
                 case "Especialista[Name]":
                 case "EspecialistaName":
                     return "Spartan_User.Name";
-                case "Mecanismo_Alterno[Descripcion]":
-                case "Mecanismo_AlternoDescripcion":
-                    return "Tipo_de_Mecanismo_Alterno.Descripcion";
                 case "Tipo_de_Sesion[Descripcion]":
                 case "Tipo_de_SesionDescripcion":
                     return "Tipo_de_Sesion.Descripcion";
                 case "Cumplimiento[Descripcion]":
                 case "CumplimientoDescripcion":
                     return "Cumplimiento.Descripcion";
-                case "Fecha_de_Registro":
-                    return "Detalle_de_Reuniones_de_Mediacion.Fecha_de_Registro";
-                case "Hora_de_Registro":
-                    return "Detalle_de_Reuniones_de_Mediacion.Hora_de_Registro";
-                case "Usuario_que_Registra[Name]":
-                case "Usuario_que_RegistraName":
-                    return "Spartan_User.Name";
 
                 default:
                     return propertyName;
@@ -61,7 +58,7 @@ namespace Spartane.Web.SqlModelMapper
 
         public string GetOperatorString(object value, string columnName)
         {
-            if (columnName == "Fecha")
+            if (columnName == "Fecha_de_Registro")
             {
                 try
                 {
@@ -72,7 +69,7 @@ namespace Spartane.Web.SqlModelMapper
 
                 }
             }
-            if (columnName == "Fecha_de_Registro")
+            if (columnName == "Fecha")
             {
                 try
                 {

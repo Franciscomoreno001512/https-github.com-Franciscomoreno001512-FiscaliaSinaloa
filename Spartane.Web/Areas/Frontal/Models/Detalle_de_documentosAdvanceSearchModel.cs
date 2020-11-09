@@ -45,6 +45,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceDocumento { set; get; }
         public int[] AdvanceDocumentoMultiple { set; get; }
 
+        public Filters Numero_de_OficioFilter { set; get; }
+        public string Numero_de_Oficio { set; get; }
+
         public Filters SolicitanteFilter { set; get; }
         public string AdvanceSolicitante { set; get; }
         public int[] AdvanceSolicitanteMultiple { set; get; }
@@ -63,6 +66,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
         [IsNumberAfterAttribute("FromArchivo", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string ToArchivo { set; get; }
+
+        public Filters DescripcionFilter { set; get; }
+        public string Descripcion { set; get; }
 
 
     }

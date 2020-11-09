@@ -6,21 +6,18 @@
  List<SelectListItem> varSolicitud_Numero_de_Expediente = null;
     if (ViewBag.Solicituds_Numero_de_Expediente != null)
     { varSolicitud_Numero_de_Expediente = (List<SelectListItem>)ViewBag.Solicituds_Numero_de_Expediente; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
+    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
  List<SelectListItem> varSpartan_User_Especialista = null;
     if (ViewBag.Spartan_Users_Especialista != null)
     { varSpartan_User_Especialista = (List<SelectListItem>)ViewBag.Spartan_Users_Especialista; }
- List<SelectListItem> varTipo_de_Mecanismo_Alterno_Mecanismo_Alterno = null;
-    if (ViewBag.Tipo_de_Mecanismo_Alternos_Mecanismo_Alterno != null)
-    { varTipo_de_Mecanismo_Alterno_Mecanismo_Alterno = (List<SelectListItem>)ViewBag.Tipo_de_Mecanismo_Alternos_Mecanismo_Alterno; }
     List<SelectListItem> varTipo_de_Sesion_Tipo_de_Sesion = null;
     if (ViewBag.Tipo_de_Sesions_Tipo_de_Sesion != null)
     { varTipo_de_Sesion_Tipo_de_Sesion = (List<SelectListItem>)ViewBag.Tipo_de_Sesions_Tipo_de_Sesion; }
     List<SelectListItem> varCumplimiento_Cumplimiento = null;
     if (ViewBag.Cumplimientos_Cumplimiento != null)
     { varCumplimiento_Cumplimiento = (List<SelectListItem>)ViewBag.Cumplimientos_Cumplimiento; }
- List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
-    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
-    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -72,6 +69,47 @@
  List<SelectListItem> varSolicitud_Numero_de_Expediente = null;
     if (ViewBag.Solicituds_Numero_de_Expediente != null)
     { varSolicitud_Numero_de_Expediente = (List<SelectListItem>)ViewBag.Solicituds_Numero_de_Expediente; }
+        <div class="MarginBottom ">
+            <h3>@Resources.Detalle_de_Reuniones_de_MediacionResources.Fecha_de_Registro</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Registro" name="FromFecha_de_Registro" type="text" value="@Model.FromFecha_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Registro" name="ToFecha_de_Registro" type="text" value="@Model.ToFecha_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Detalle_de_Reuniones_de_MediacionResources.Hora_de_Registro</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_Registro" name="FromHora_de_Registro" type="text" value="@Model.FromHora_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_Registro" name="ToHora_de_Registro" type="text" value="@Model.ToHora_de_Registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
+    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_Reuniones_de_MediacionResources.Lugar</h3>
                 </div>
@@ -121,9 +159,6 @@
  List<SelectListItem> varSpartan_User_Especialista = null;
     if (ViewBag.Spartan_Users_Especialista != null)
     { varSpartan_User_Especialista = (List<SelectListItem>)ViewBag.Spartan_Users_Especialista; }
- List<SelectListItem> varTipo_de_Mecanismo_Alterno_Mecanismo_Alterno = null;
-    if (ViewBag.Tipo_de_Mecanismo_Alternos_Mecanismo_Alterno != null)
-    { varTipo_de_Mecanismo_Alterno_Mecanismo_Alterno = (List<SelectListItem>)ViewBag.Tipo_de_Mecanismo_Alternos_Mecanismo_Alterno; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_Reuniones_de_MediacionResources.Tipo_de_Sesion</h3>
                 </div>
@@ -166,47 +201,6 @@
                         });
                     }
                 </div>
-        <div class="MarginBottom ">
-            <h3>@Resources.Detalle_de_Reuniones_de_MediacionResources.Fecha_de_Registro</h3>
-        </div>
-        <div class="MarginBottom form-inline">
-            <label class="">@Resources.Resources.From:</label>
-            <div class="input-group date">
-                <input class="form-control" id="txtAdvanceFromFecha_de_Registro" name="FromFecha_de_Registro" type="text" value="@Model.FromFecha_de_Registro" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-            <label class="">@Resources.Resources.To: </label>
-            <div class="input-group date">
-                <input class="form-control" id="txtAdvanceToFecha_de_Registro" name="ToFecha_de_Registro" type="text" value="@Model.ToFecha_de_Registro" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-        <div class="MarginBottom ">
-            <h3>@Resources.Detalle_de_Reuniones_de_MediacionResources.Hora_de_Registro</h3>
-        </div>
-        <div class="MarginBottom form-inline">
-            <label class="">@Resources.Resources.From:</label>
-            <div class="input-group clock" data-autoclose="true">
-                <input class="form-control" id="txtAdvanceFromHora_de_Registro" name="FromHora_de_Registro" type="text" value="@Model.FromHora_de_Registro" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-time"></span>
-                </span>
-            </div>
-            <label class="">@Resources.Resources.To: </label>
-            <div class="input-group clock" data-autoclose="true">
-                <input class="form-control" id="txtAdvanceToHora_de_Registro" name="ToHora_de_Registro" type="text" value="@Model.ToHora_de_Registro" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-time"></span>
-                </span>
-            </div>
-        </div>
- List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
-    if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
-    { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_de_Reuniones_de_Mediacion/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -239,6 +233,31 @@
                 advanceSearch.Numero_de_ExpedienteSearchType = 2;
             }
         }
+        if ($("#txtAdvanceFromFecha_de_Registro").val() != "" || $("#txtAdvanceToFecha_de_Registro").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Reuniones_de_MediacionFecha_de_RegistroFrom = $("#txtAdvanceFromFecha_de_Registro").val();
+            advanceSearch.Detalle_de_Reuniones_de_MediacionFecha_de_RegistroTo = $("#txtAdvanceToFecha_de_Registro").val();
+        }
+        if ($("#txtAdvanceHora_de_Registro").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Reuniones_de_MediacionHora_de_Registro = $("#txtAdvanceHora_de_Registro").val();
+            advanceSearch.Detalle_de_Reuniones_de_MediacionHora_de_RegistroSearchType = $("#ddlAdvanceHora_de_RegistroFilter").val();
+        }
+        advanceSearch.Usuario_que_RegistraSearchType = 0;
+        if ($('#ddlAdvanceUsuario_que_Registra').val().length > 0 || $("#txtAdvanceUsuario_que_Registra").val() == "") {
+
+
+            if (isDetalle_de_Reuniones_de_MediacionTextSearch) {
+                advanceSearch.Usuario_que_RegistraName = $("#txtAdvanceUsuario_que_Registra").val();
+                advanceSearch.Usuario_que_RegistraNameSearchType = $("#ddlAdvanceUsuario_que_Registra").val();
+                advanceSearch.Usuario_que_RegistraSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Usuario_que_RegistraToSearch = $("#ddlAdvanceUsuario_que_Registra").val();
+                advanceSearch.Usuario_que_RegistraSearchType = 2;
+            }
+        }
         if ($("#txtAdvanceLugar").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_Reuniones_de_MediacionLugar = $("#txtAdvanceLugar").val();
@@ -267,21 +286,6 @@
 
                 advanceSearch.EspecialistaToSearch = $("#ddlAdvanceEspecialista").val();
                 advanceSearch.EspecialistaSearchType = 2;
-            }
-        }
-        advanceSearch.Mecanismo_AlternoSearchType = 0;
-        if ($('#ddlAdvanceMecanismo_Alterno').val().length > 0 || $("#txtAdvanceMecanismo_Alterno").val() == "") {
-
-
-            if (isDetalle_de_Reuniones_de_MediacionTextSearch) {
-                advanceSearch.Mecanismo_AlternoName = $("#txtAdvanceMecanismo_Alterno").val();
-                advanceSearch.Mecanismo_AlternoNameSearchType = $("#ddlAdvanceMecanismo_Alterno").val();
-                advanceSearch.Mecanismo_AlternoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Mecanismo_AlternoToSearch = $("#ddlAdvanceMecanismo_Alterno").val();
-                advanceSearch.Mecanismo_AlternoSearchType = 2;
             }
         }
         advanceSearch.Tipo_de_SesionSearchType = 0;
@@ -314,46 +318,6 @@
                 advanceSearch.CumplimientoSearchType = 2;
             }
         }
-        if ($("#txtAdvanceFromFecha_de_Registro").val() != "" || $("#txtAdvanceToFecha_de_Registro").val() != "") {
-            hasParameter = true;
-            advanceSearch.Detalle_de_Reuniones_de_MediacionFecha_de_RegistroFrom = $("#txtAdvanceFromFecha_de_Registro").val();
-            advanceSearch.Detalle_de_Reuniones_de_MediacionFecha_de_RegistroTo = $("#txtAdvanceToFecha_de_Registro").val();
-        }
-        advanceSearch.Archivo_adjuntoSearchType = 0;
-        if ($('#ddlAdvanceArchivo_adjunto').val().length > 0 || $("#txtAdvanceArchivo_adjunto").val() == "") {
-
-
-            if (isDetalle_de_Reuniones_de_MediacionTextSearch) {
-                advanceSearch.Archivo_adjuntoName = $("#txtAdvanceArchivo_adjunto").val();
-                advanceSearch.Archivo_adjuntoNameSearchType = $("#ddlAdvanceArchivo_adjunto").val();
-                advanceSearch.Archivo_adjuntoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Archivo_adjuntoToSearch = $("#ddlAdvanceArchivo_adjunto").val();
-                advanceSearch.Archivo_adjuntoSearchType = 2;
-            }
-        }
-        if ($("#txtAdvanceHora_de_Registro").val() != "") {
-            hasParameter = true;
-            advanceSearch.Detalle_de_Reuniones_de_MediacionHora_de_Registro = $("#txtAdvanceHora_de_Registro").val();
-            advanceSearch.Detalle_de_Reuniones_de_MediacionHora_de_RegistroSearchType = $("#ddlAdvanceHora_de_RegistroFilter").val();
-        }
-        advanceSearch.Usuario_que_RegistraSearchType = 0;
-        if ($('#ddlAdvanceUsuario_que_Registra').val().length > 0 || $("#txtAdvanceUsuario_que_Registra").val() == "") {
-
-
-            if (isDetalle_de_Reuniones_de_MediacionTextSearch) {
-                advanceSearch.Usuario_que_RegistraName = $("#txtAdvanceUsuario_que_Registra").val();
-                advanceSearch.Usuario_que_RegistraNameSearchType = $("#ddlAdvanceUsuario_que_Registra").val();
-                advanceSearch.Usuario_que_RegistraSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Usuario_que_RegistraToSearch = $("#ddlAdvanceUsuario_que_Registra").val();
-                advanceSearch.Usuario_que_RegistraSearchType = 2;
-            }
-        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblDetalle_de_Reuniones_de_Mediacion').DataTable().draw();
@@ -381,6 +345,15 @@
             isDetalle_de_Reuniones_de_MediacionTextSearch = false;
             $("#txtAdvanceNumero_de_Expediente").val('');
         });
+        $("#txtAdvanceUsuario_que_Registra").keypress(function () {
+            isDetalle_de_Reuniones_de_MediacionTextSearch = true;
+            $("#ddlAdvanceUsuario_que_Registra").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceUsuario_que_Registra").change(function () {
+            isDetalle_de_Reuniones_de_MediacionTextSearch = false;
+            $("#txtAdvanceUsuario_que_Registra").val('');
+        });
         $("#txtAdvanceEspecialista").keypress(function () {
             isDetalle_de_Reuniones_de_MediacionTextSearch = true;
             $("#ddlAdvanceEspecialista").val('').trigger("chosen:updated");
@@ -389,15 +362,6 @@
         $("#ddlAdvanceEspecialista").change(function () {
             isDetalle_de_Reuniones_de_MediacionTextSearch = false;
             $("#txtAdvanceEspecialista").val('');
-        });
-        $("#txtAdvanceMecanismo_Alterno").keypress(function () {
-            isDetalle_de_Reuniones_de_MediacionTextSearch = true;
-            $("#ddlAdvanceMecanismo_Alterno").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceMecanismo_Alterno").change(function () {
-            isDetalle_de_Reuniones_de_MediacionTextSearch = false;
-            $("#txtAdvanceMecanismo_Alterno").val('');
         });
         $("#txtAdvanceTipo_de_Sesion").keypress(function () {
             isDetalle_de_Reuniones_de_MediacionTextSearch = true;
@@ -416,15 +380,6 @@
         $("#ddlAdvanceCumplimiento").change(function () {
             isDetalle_de_Reuniones_de_MediacionTextSearch = false;
             $("#txtAdvanceCumplimiento").val('');
-        });
-        $("#txtAdvanceUsuario_que_Registra").keypress(function () {
-            isDetalle_de_Reuniones_de_MediacionTextSearch = true;
-            $("#ddlAdvanceUsuario_que_Registra").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceUsuario_que_Registra").change(function () {
-            isDetalle_de_Reuniones_de_MediacionTextSearch = false;
-            $("#txtAdvanceUsuario_que_Registra").val('');
         });
 
     });

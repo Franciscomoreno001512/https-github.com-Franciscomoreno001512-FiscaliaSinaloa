@@ -280,6 +280,12 @@
                                     @Html.CheckBoxFor(m => m.Solicitar_Archivo_Adjunto, new { @class = "i-checks Datos_Generales" })
                                 </div>
                             </div>
+                            <div class="form-group" id="divSolicitar_Numero_de_Oficio">
+                                <label class="col-sm-2 control-label">@Resources.DocumentoResources.Solicitar_Numero_de_Oficio</label>
+                                <div class="col-sm-8" data-field-id="Solicitar_Numero_de_Oficio" data-attribute="266699" data-field-name="@Resources.DocumentoResources.Solicitar_Numero_de_Oficio">
+                                    @Html.CheckBoxFor(m => m.Solicitar_Numero_de_Oficio, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -720,6 +726,7 @@
                     $('#Requerido').prop('checked', result.data.Requerido);
                     $('#Solicitante').prop('checked', result.data.Solicitante);
                     $('#Solicitar_Archivo_Adjunto').prop('checked', result.data.Solicitar_Archivo_Adjunto);
+                    $('#Solicitar_Numero_de_Oficio').prop('checked', result.data.Solicitar_Numero_de_Oficio);
 
                 },
                 error: function (result) {
@@ -739,6 +746,7 @@
                 data.append('Requerido', $('#Requerido').prop('checked'));
                 data.append('Solicitante', $('#Solicitante').prop('checked'));
                 data.append('Solicitar_Archivo_Adjunto', $('#Solicitar_Archivo_Adjunto').prop('checked'));
+                data.append('Solicitar_Numero_de_Oficio', $('#Solicitar_Numero_de_Oficio').prop('checked'));
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Documento/Post_Datos_Generales")',
