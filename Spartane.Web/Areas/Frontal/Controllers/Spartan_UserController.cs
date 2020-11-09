@@ -518,7 +518,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         public string GetDescriptionFromCatalogUnidad(IList<Core.Domain.Unidad.Unidad> catalogUnidad, int? unidadFromDataGet)
         {
 
-            if (unidadFromDataGet == null)
+            if (unidadFromDataGet == null || unidadFromDataGet ==0)
             {
                 return "";
             }

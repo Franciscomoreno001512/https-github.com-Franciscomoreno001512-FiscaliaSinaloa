@@ -30,6 +30,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Spartan_User.Username";
                 case "Password":
                     return "Spartan_User.Password";
+                case "UnidadDescription":
+                    return "Unidad.Descripcion";
 
                 default:
                     return propertyName;
@@ -39,7 +41,7 @@ namespace Spartane.Web.SqlModelMapper
         public SqlOperationType GetOperationType(string columnName)
         {
             var t = (typeof(Spartan_User).GetProperty(columnName));
-            if (t.PropertyType.FullName.Contains(typeof(System.DateTime).Name))
+            if (t!= null && t.PropertyType.FullName.Contains(typeof(System.DateTime).Name))
                 return SqlOperationType.Equals;
             else return SqlOperationType.Contains;
         }
