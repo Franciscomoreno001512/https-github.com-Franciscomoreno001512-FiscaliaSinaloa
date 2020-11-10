@@ -223,6 +223,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
         }
+        public object GetArchivoFisico(string Archivo)
+        {
+
+            try
+            {
+
+                if (Archivo.Length == 0)
+                    Archivo = "0";
+
+                var Base = System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
+
+                if (!_tokenManager.GenerateToken())
+                {
+                    throw new Exception("");
+                }
+
+                _ISpartaneQueryApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var Query = "EXEC dbo.uspGetArchivoFisico @Folio = " + Archivo;
+
+                var result = _ISpartaneQueryApiConsumer.ExecuteQuery(Query);
+                return Base + result.Resource.ToString();
+            }
+            catch (Exception)
+            {
+                return DBNull.Value;
+
+            }
+        }
 
     }
 }
