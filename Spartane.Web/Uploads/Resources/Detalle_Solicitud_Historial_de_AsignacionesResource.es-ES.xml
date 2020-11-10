@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_Solicitud_Historial_de_Asignaciones" value="Detalle Solicitud Historial de Asignaciones"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Fecha_cambio" value="Fecha de Cambio"></resource>
+  <resource culture="es-es" name="Hora_cambio" value="Hora de Cambio"></resource>
+  <resource culture="es-es" name="Usuario" value="Usuario"></resource>
+  <resource culture="es-es" name="Facilitador_Asignado" value="Facilitador Asignado"></resource>
+  <resource culture="es-es" name="Motivo_cambio" value="Motivo de Cambio"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

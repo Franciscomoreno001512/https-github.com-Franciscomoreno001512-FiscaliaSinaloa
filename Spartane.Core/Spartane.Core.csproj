@@ -1214,6 +1214,8 @@
 <Compile Include="Domain\Detalle_Delitos_de_Documentos\Detalle_Delitos_de_Documentos.cs" />
 <Compile Include="Domain\Motivo_de_Rechazo_de_Solicitud\Motivo_de_Rechazo_de_Solicitud.cs" />
 <Compile Include="Domain\Motivo_de_Rechazo_de_Solicitud\Motivo_de_Rechazo_de_SolicitudPagingModel.cs" />
+<Compile Include="Domain\Detalle_Solicitud_Historial_de_Asignaciones\Detalle_Solicitud_Historial_de_AsignacionesPagingModel.cs" />
+<Compile Include="Domain\Detalle_Solicitud_Historial_de_Asignaciones\Detalle_Solicitud_Historial_de_Asignaciones.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1234,6 +1236,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

@@ -406,6 +406,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Motivo_cambio_facilitador</summary>
+        public static string Motivo_cambio_facilitador
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Motivo_cambio_facilitador", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Asignar_Especialista_Automatico</summary>
         public static string Asignar_Especialista_Automatico
         {
@@ -473,6 +483,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderSolicitud.GetResource("Hora_de_Atencion_del_Especialista", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Historial_de_Asignaciones</summary>
+        public static string Historial_de_Asignaciones
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Historial_de_Asignaciones", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

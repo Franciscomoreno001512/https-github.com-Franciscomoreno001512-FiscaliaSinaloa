@@ -1370,6 +1370,9 @@ using Spartane.Web.Areas.WebApiConsumer.Detalle_Delitos_de_Documentos;
 using Spartane.Services.Motivo_de_Rechazo_de_Solicitud;
 using Spartane.Core.Domain.Motivo_de_Rechazo_de_Solicitud;
 using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Rechazo_de_Solicitud;
+using Spartane.Services.Detalle_Solicitud_Historial_de_Asignaciones;
+using Spartane.Core.Domain.Detalle_Solicitud_Historial_de_Asignaciones;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Solicitud_Historial_de_Asignaciones;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -2406,6 +2409,8 @@ builder.RegisterType<Detalle_Delitos_de_DocumentosService>().As<IDetalle_Delitos
 builder.RegisterType<Detalle_Delitos_de_DocumentosApiConsumer>().As<IDetalle_Delitos_de_DocumentosApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Motivo_de_Rechazo_de_SolicitudService>().As<IMotivo_de_Rechazo_de_SolicitudService>().InstancePerLifetimeScope();
 builder.RegisterType<Motivo_de_Rechazo_de_SolicitudApiConsumer>().As<IMotivo_de_Rechazo_de_SolicitudApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Solicitud_Historial_de_AsignacionesService>().As<IDetalle_Solicitud_Historial_de_AsignacionesService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Solicitud_Historial_de_AsignacionesApiConsumer>().As<IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -2586,6 +2591,14 @@ builder.RegisterType<Motivo_de_Rechazo_de_SolicitudApiConsumer>().As<IMotivo_de_
 
     }
 }
+
+
+
+
+
+
+
+
 
 
 

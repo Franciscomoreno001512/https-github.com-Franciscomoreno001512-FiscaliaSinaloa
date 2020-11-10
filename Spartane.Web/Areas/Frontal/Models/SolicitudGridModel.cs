@@ -63,6 +63,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string LatitudH { get; set; }
         public int? Especialista_AsignadoA { get; set; }
         public string Especialista_AsignadoAName { get; set; }
+        public string Motivo_cambio_facilitador { get; set; }
         public bool? Asignar_Especialista_Automatico { get; set; }
         public string Razone { get; set; }
         public int? Tipo_de_Mecanismo { get; set; }

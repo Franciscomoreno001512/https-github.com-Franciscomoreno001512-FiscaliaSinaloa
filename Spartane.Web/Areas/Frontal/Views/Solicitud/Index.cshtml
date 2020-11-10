@@ -256,6 +256,7 @@
                                     <th>@Resources.SolicitudResources.LongitudH</th>
                                     <th>@Resources.SolicitudResources.LatitudH</th>
                                     <th>@Resources.SolicitudResources.Especialista_AsignadoA</th>
+                                    <th>@Resources.SolicitudResources.Motivo_cambio_facilitador</th>
                                     <th>@Resources.SolicitudResources.Asignar_Especialista_Automatico</th>
                                     <th>@Resources.SolicitudResources.Razone</th>
                                     <th>@Resources.SolicitudResources.Tipo_de_Mecanismo</th>
@@ -309,6 +310,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -481,6 +483,7 @@
         var LongitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LatitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Especialista_AsignadoA =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_cambio_facilitador =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Asignar_Especialista_Automatico = $($('table td .filterData.form-control:input')[counter++]).val();
         var Razone =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Mecanismo =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -535,6 +538,7 @@
         + "&LongitudH=" + LongitudH
         + "&LatitudH=" + LatitudH
         + "&Especialista_AsignadoA=" + Especialista_AsignadoA
+        + "&Motivo_cambio_facilitador=" + Motivo_cambio_facilitador
         + "&Asignar_Especialista_Automatico=" + Asignar_Especialista_Automatico
         + "&Razone=" + Razone
         + "&Tipo_de_Mecanismo=" + Tipo_de_Mecanismo
@@ -600,6 +604,7 @@
         var LongitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LatitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Especialista_AsignadoA =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_cambio_facilitador =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Asignar_Especialista_Automatico = $($('table td .filterData.form-control:input')[counter++]).val();
         var Razone =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Mecanismo =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -654,6 +659,7 @@
         + "&LongitudH=" + LongitudH
         + "&LatitudH=" + LatitudH
         + "&Especialista_AsignadoA=" + Especialista_AsignadoA
+        + "&Motivo_cambio_facilitador=" + Motivo_cambio_facilitador
         + "&Asignar_Especialista_Automatico=" + Asignar_Especialista_Automatico
         + "&Razone=" + Razone
         + "&Tipo_de_Mecanismo=" + Tipo_de_Mecanismo
@@ -848,11 +854,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -953,6 +959,7 @@
                 ,{ "data": "LongitudH", "orderable": true, "name": "LongitudH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "LatitudH", "orderable": true, "name": "LatitudH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Especialista_AsignadoAName", "orderable": true, "name": "Especialista_AsignadoAName"}
+                ,{ "data": "Motivo_cambio_facilitador", "orderable": true, "name": "Motivo_cambio_facilitador", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Asignar_Especialista_Automatico", "orderable": true, "name": "Asignar_Especialista_Automatico","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Razone", "orderable": true, "name": "Razone", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Tipo_de_MecanismoDescripcion", "orderable": true, "name": "Tipo_de_MecanismoDescripcion" }

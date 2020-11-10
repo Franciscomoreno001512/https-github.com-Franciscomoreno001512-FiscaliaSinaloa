@@ -498,19 +498,19 @@ else
         //    sNombredelevento = '<i class="far fa-calendar-check"></i>';
         //} else {
         sIconhecho = '<strong> Hecho!! </strong>';
-        sNombredelevento = 'Expediente: ' + SeccionaTexto(obj.Numero_de_Expediente) + '<br>' +
-            'Tipo: ' + SeccionaTexto(obj.Tipo_de_Cita) + '<br>' +
-            'Hora: ' + SeccionaTexto(obj.Hora_de_la_Cita) ;
+        sNombredelevento = SeccionaTexto('Expediente: ' + obj.Numero_de_Expediente) + '<br>' +
+            SeccionaTexto('Tipo: ' + obj.Tipo_de_Cita) + '<br>' +
+            SeccionaTexto('Hora: ' + obj.Hora_de_la_Cita);
         //}
         var fecha1 = "'" + fecha + "'";
-        var html = '<div onclick="MuestraActividades(' + obj.Folio + ',event,' + fecha1 + ')" style="background-color: ' + '#111352' + ';  display:flex; flex-direction: column;align-items: center; solid #ffffff;">';
+        var html = '<div onclick="MuestraActividades(' + obj.Folio + ',event,' + fecha1 + ')" style="background-color: ' + '#111352' + ';  display:flex; flex-direction: column; solid: #ffffff;">';
         //if (pasado) {
         //    html = html + '<span style= "font-size: 12px; color: black">' + sIconhecho + '</span>';
         //}
 
         if (obj.cumplido) { cumplido = "SI"; }
 
-        html = html + '<span onmouseover="highlight(' + popupevento + ',event)" onmouseout="unhighlight(' + popupevento + ')" style="font-size: 10px;color: white;">' + sNombredelevento + '  </span>';
+        html = html + '<span onmouseover="highlight(' + popupevento + ',event)" onmouseout="unhighlight(' + popupevento + ')" style="font-size: 10px;color: white;padding-left: 5px;">' + sNombredelevento + '  </span>';
 
         html = html + "</div>";
         popupevento = "tooltip_evento" + index;
@@ -528,18 +528,25 @@ else
     }
 
     function SeccionaTexto(Texto) {
+        debugger;
+        var lineas 
 
         var newTexto = "";
-        if (Texto.length < 23)
-            return Texto;
-        else {
-            newTexto = Texto.substring(0, 22) + "<br>";
-            if (Texto.length > 44)
-                newTexto = newTexto + Texto.substring(23, 41) + "...";
-            else
-                newTexto = newTexto + Texto.substring(23, 44);
+        if (Texto != null) {
+            if (Texto.length < 19)
+                newTexto= Texto;
+            else {
+
+                do {
+                    var textExtraido = Texto.substring(0, 20)
+                    Texto = Texto.substring(20);
+                    newTexto = newTexto + textExtraido + "<br>";
+                } while (Texto.length >= 20);
+              
+                newTexto = newTexto + Texto;
+            }
         }
-        return newTexto.toUpperCase();;
+        return newTexto.toUpperCase();
     }
 
     function isMobile() {

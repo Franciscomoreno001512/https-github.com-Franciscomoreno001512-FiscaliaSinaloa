@@ -10,9 +10,22 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class SolicitudMainModel
     {
         public SolicitudModel SolicitudInfo { set; get; }
+        public Detalle_Solicitud_Historial_de_AsignacionesGridModelPost Detalle_Solicitud_Historial_de_AsignacionesGridInfo { set; get; }
         public Detalle_de_Solicitud_Bitacora_de_CoincidGridModelPost Detalle_de_Solicitud_Bitacora_de_CoincidGridInfo { set; get; }
         public Detalle_Historico_JAGridModelPost Detalle_Historico_JAGridInfo { set; get; }
 
+    }
+
+    public class Detalle_Solicitud_Historial_de_AsignacionesGridModelPost
+    {
+        public int Folio { get; set; }
+        public string Fecha_cambio { get; set; }
+        public string Hora_cambio { get; set; }
+        public int? Usuario { get; set; }
+        public int? Facilitador_Asignado { get; set; }
+        public string Motivo_cambio { get; set; }
+
+        public bool Removed { set; get; }
     }
 
     public class Detalle_de_Solicitud_Bitacora_de_CoincidGridModelPost

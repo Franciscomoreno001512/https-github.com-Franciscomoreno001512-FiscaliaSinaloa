@@ -20,6 +20,14 @@ using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Mecanismo_Alterno;
+using Spartane.Core.Domain.Detalle_Solicitud_Historial_de_Asignaciones;
+
+
+
+using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Spartan_User;
+
+
 using Spartane.Core.Domain.Detalle_de_Solicitud_Bitacora_de_Coincid;
 
 
@@ -70,6 +78,13 @@ using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Mecanismo_Alterno;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Solicitud_Historial_de_Asignaciones;
+
+
+
+using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
+using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
+
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Solicitud_Bitacora_de_Coincid;
 
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Acuerdo;
@@ -133,6 +148,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IEstadoApiConsumer _IEstadoApiConsumer;
         private IColoniaApiConsumer _IColoniaApiConsumer;
         private ITipo_de_Mecanismo_AlternoApiConsumer _ITipo_de_Mecanismo_AlternoApiConsumer;
+        private IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer;
+
+
+
+
         private IDetalle_de_Solicitud_Bitacora_de_CoincidApiConsumer _IDetalle_de_Solicitud_Bitacora_de_CoincidApiConsumer;
 
         private ITipo_de_AcuerdoApiConsumer _ITipo_de_AcuerdoApiConsumer;
@@ -164,7 +184,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public SolicitudController(ISolicitudService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, ISolicitudApiConsumer SolicitudApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IUnidadApiConsumer UnidadApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IRegionApiConsumer RegionApiConsumer , IEstatus_SolicitudApiConsumer Estatus_SolicitudApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , ITipo_de_Mecanismo_AlternoApiConsumer Tipo_de_Mecanismo_AlternoApiConsumer , IDetalle_de_Solicitud_Bitacora_de_CoincidApiConsumer Detalle_de_Solicitud_Bitacora_de_CoincidApiConsumer , ITipo_de_AcuerdoApiConsumer Tipo_de_AcuerdoApiConsumer , IRazon_de_IncumplimientoApiConsumer Razon_de_IncumplimientoApiConsumer  , IMotivo_de_Rechazo_de_SolicitudApiConsumer Motivo_de_Rechazo_de_SolicitudApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , ITipo_de_Conclusion_AnticipadaApiConsumer Tipo_de_Conclusion_AnticipadaApiConsumer , IDetalle_Historico_JAApiConsumer Detalle_Historico_JAApiConsumer  )
+        public SolicitudController(ISolicitudService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, ISolicitudApiConsumer SolicitudApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IUnidadApiConsumer UnidadApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IRegionApiConsumer RegionApiConsumer , IEstatus_SolicitudApiConsumer Estatus_SolicitudApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , ITipo_de_Mecanismo_AlternoApiConsumer Tipo_de_Mecanismo_AlternoApiConsumer , IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer Detalle_Solicitud_Historial_de_AsignacionesApiConsumer  , IDetalle_de_Solicitud_Bitacora_de_CoincidApiConsumer Detalle_de_Solicitud_Bitacora_de_CoincidApiConsumer , ITipo_de_AcuerdoApiConsumer Tipo_de_AcuerdoApiConsumer , IRazon_de_IncumplimientoApiConsumer Razon_de_IncumplimientoApiConsumer  , IMotivo_de_Rechazo_de_SolicitudApiConsumer Motivo_de_Rechazo_de_SolicitudApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , ITipo_de_Conclusion_AnticipadaApiConsumer Tipo_de_Conclusion_AnticipadaApiConsumer , IDetalle_Historico_JAApiConsumer Detalle_Historico_JAApiConsumer  )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -196,6 +216,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IColoniaApiConsumer = ColoniaApiConsumer;
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._ITipo_de_Mecanismo_AlternoApiConsumer = Tipo_de_Mecanismo_AlternoApiConsumer;
+            this._IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer = Detalle_Solicitud_Historial_de_AsignacionesApiConsumer;
+
+
+
+            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
+            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
+
             this._IDetalle_de_Solicitud_Bitacora_de_CoincidApiConsumer = Detalle_de_Solicitud_Bitacora_de_CoincidApiConsumer;
 
             this._ITipo_de_AcuerdoApiConsumer = Tipo_de_AcuerdoApiConsumer;
@@ -269,6 +296,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			
 			ViewBag.IsNew = true;
 
+            var permissionDetalle_Solicitud_Historial_de_Asignaciones = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45392, ModuleId);
+            ViewBag.PermissionDetalle_Solicitud_Historial_de_Asignaciones = permissionDetalle_Solicitud_Historial_de_Asignaciones;
             var permissionDetalle_de_Solicitud_Bitacora_de_Coincid = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45126, ModuleId);
             ViewBag.PermissionDetalle_de_Solicitud_Bitacora_de_Coincid = permissionDetalle_de_Solicitud_Bitacora_de_Coincid;
             var permissionDetalle_Historico_JA = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45190, ModuleId);
@@ -345,6 +374,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,LatitudH = SolicitudData.LatitudH
                     ,Especialista_AsignadoA = SolicitudData.Especialista_AsignadoA
                     ,Especialista_AsignadoAName = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Especialista_AsignadoA), "Spartan_User") ??  (string)SolicitudData.Especialista_AsignadoA_Spartan_User.Name
+                    ,Motivo_cambio_facilitador = SolicitudData.Motivo_cambio_facilitador
                     ,Asignar_Especialista_Automatico = SolicitudData.Asignar_Especialista_Automatico.GetValueOrDefault()
                     ,Razone = SolicitudData.Razone
                     ,Tipo_de_Mecanismo = SolicitudData.Tipo_de_Mecanismo
@@ -494,6 +524,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return null;
            _ISolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
 			SolicitudModel varSolicitud= new SolicitudModel();
+            var permissionDetalle_Solicitud_Historial_de_Asignaciones = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45392, ModuleId);
+            ViewBag.PermissionDetalle_Solicitud_Historial_de_Asignaciones = permissionDetalle_Solicitud_Historial_de_Asignaciones;
             var permissionDetalle_de_Solicitud_Bitacora_de_Coincid = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45126, ModuleId);
             ViewBag.PermissionDetalle_de_Solicitud_Bitacora_de_Coincid = permissionDetalle_de_Solicitud_Bitacora_de_Coincid;
             var permissionDetalle_Historico_JA = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45190, ModuleId);
@@ -564,6 +596,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,LatitudH = SolicitudData.LatitudH
                     ,Especialista_AsignadoA = SolicitudData.Especialista_AsignadoA
                     ,Especialista_AsignadoAName = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Especialista_AsignadoA), "Spartan_User") ??  (string)SolicitudData.Especialista_AsignadoA_Spartan_User.Name
+                    ,Motivo_cambio_facilitador = SolicitudData.Motivo_cambio_facilitador
                     ,Asignar_Especialista_Automatico = SolicitudData.Asignar_Especialista_Automatico.GetValueOrDefault()
                     ,Razone = SolicitudData.Razone
                     ,Tipo_de_Mecanismo = SolicitudData.Tipo_de_Mecanismo
@@ -1255,6 +1288,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
                         ,Especialista_AsignadoAName = CultureHelper.GetTraduction(m.Especialista_AsignadoA_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Especialista_AsignadoA_Spartan_User.Name
+			,Motivo_cambio_facilitador = m.Motivo_cambio_facilitador
 			,Asignar_Especialista_Automatico = m.Asignar_Especialista_Automatico
 			,Razone = m.Razone
                         ,Tipo_de_MecanismoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Mecanismo_Tipo_de_Mecanismo_Alterno.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Mecanismo_Tipo_de_Mecanismo_Alterno.Descripcion
@@ -1420,6 +1454,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
                         ,Especialista_AsignadoAName = CultureHelper.GetTraduction(m.Especialista_AsignadoA_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Especialista_AsignadoA_Spartan_User.Name
+			,Motivo_cambio_facilitador = m.Motivo_cambio_facilitador
 			,Asignar_Especialista_Automatico = m.Asignar_Especialista_Automatico
 			,Razone = m.Razone
                         ,Tipo_de_MecanismoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Mecanismo_Tipo_de_Mecanismo_Alterno.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Mecanismo_Tipo_de_Mecanismo_Alterno.Descripcion
@@ -1767,6 +1802,62 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+//Grid GetAutoComplete
+        [HttpGet]
+        public JsonResult GetDetalle_Solicitud_Historial_de_Asignaciones_Usuario_Spartan_User(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
+               
+                foreach (var item in result.Spartan_Users)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name =trans ??item.Name;
+                }
+                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_Solicitud_Historial_de_Asignaciones_Facilitador_Asignado_Spartan_User(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
+               
+                foreach (var item in result.Spartan_Users)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name =trans ??item.Name;
+                }
+                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+
 //Grid GetAutoComplete
 
 //Grid GetAutoComplete
@@ -2667,6 +2758,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Solicitud.Especialista_AsignadoA In (" + Especialista_AsignadoAIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.Motivo_cambio_facilitador))
+            {
+                switch (filter.Motivo_cambio_facilitadorFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud.Motivo_cambio_facilitador LIKE '" + filter.Motivo_cambio_facilitador + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud.Motivo_cambio_facilitador LIKE '%" + filter.Motivo_cambio_facilitador + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud.Motivo_cambio_facilitador = '" + filter.Motivo_cambio_facilitador + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud.Motivo_cambio_facilitador LIKE '%" + filter.Motivo_cambio_facilitador + "%'";
+                        break;
+                }
+            }
+
             if (filter.Asignar_Especialista_Automatico != RadioOptions.NoApply)
                 where += " AND Solicitud.Asignar_Especialista_Automatico = " + Convert.ToInt32(filter.Asignar_Especialista_Automatico);
 
@@ -2909,6 +3022,91 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return file == null ? new Grid_File { FileId = 0, FileSize = 0, FileName = "" } : new Grid_File { FileId = file.File_Id, FileName = file.Description, FileSize = file.File_Size ?? 0, };
         }
 
+        public ActionResult GetDetalle_Solicitud_Historial_de_Asignaciones(int draw, int start, int length, string RelationId = "0")
+        {
+            if (RelationId == "0")
+            {
+                return Json(new { recordsTotal = 0, recordsFiltered = 0, data = new List<Detalle_Solicitud_Historial_de_AsignacionesGridModel>() }, JsonRequestBehavior.AllowGet);
+            }
+
+            if (!_tokenManager.GenerateToken())
+                return null;
+            _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+            NameValueCollection filter = Request.QueryString;
+
+            var pageSize = length;
+            var pageIndex = start + 1;
+            string where = "Detalle_Solicitud_Historial_de_Asignaciones.Solicitud=" + RelationId;
+            if("int" == "string")
+            {
+	           where = "Detalle_Solicitud_Historial_de_Asignaciones.Solicitud='" + RelationId + "'";
+            }
+            var result = _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.ListaSelAll(start, pageSize, where,"").Resource;
+            if (result.Detalle_Solicitud_Historial_de_Asignacioness == null)
+                result.Detalle_Solicitud_Historial_de_Asignacioness = new List<Detalle_Solicitud_Historial_de_Asignaciones>();
+
+            _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+            var jsonResult = Json(new
+            {
+                data = result.Detalle_Solicitud_Historial_de_Asignacioness.Select(m => new Detalle_Solicitud_Historial_de_AsignacionesGridModel
+                {
+                    Folio = m.Folio
+
+			,Fecha_cambio = (m.Fecha_cambio == null ? string.Empty : Convert.ToDateTime(m.Fecha_cambio).ToString(ConfigurationProperty.DateFormat))
+			,Hora_cambio = m.Hora_cambio
+                        ,Usuario = m.Usuario
+                        ,UsuarioName = CultureHelper.GetTraduction(m.Usuario_Spartan_User.Id_User.ToString(), "Name") ??(string)m.Usuario_Spartan_User.Name
+                        ,Facilitador_Asignado = m.Facilitador_Asignado
+                        ,Facilitador_AsignadoName = CultureHelper.GetTraduction(m.Facilitador_Asignado_Spartan_User.Id_User.ToString(), "Name") ??(string)m.Facilitador_Asignado_Spartan_User.Name
+			,Motivo_cambio = m.Motivo_cambio
+
+                }).ToList(),
+                recordsTotal = result.RowCount,
+                recordsFiltered = result.RowCount,
+            }, JsonRequestBehavior.AllowGet);
+
+            jsonResult.MaxJsonLength = int.MaxValue;
+
+            return jsonResult;
+        }
+        public List<Detalle_Solicitud_Historial_de_AsignacionesGridModel> GetDetalle_Solicitud_Historial_de_AsignacionesData(string Id, int start, int length, out int RowCount)
+        {
+            RowCount = 0;
+            var pageSize = length;
+            var pageIndex = start + 1;
+            List<Detalle_Solicitud_Historial_de_AsignacionesGridModel> resultData = new List<Detalle_Solicitud_Historial_de_AsignacionesGridModel>();
+            string where = "Detalle_Solicitud_Historial_de_Asignaciones.Solicitud=" + Id;
+            if("int" == "string")
+            {
+                where = "Detalle_Solicitud_Historial_de_Asignaciones.Solicitud='" + Id + "'";
+            }
+            if (!_tokenManager.GenerateToken())
+                return null;
+            _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var result = _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.ListaSelAll(start, pageSize, where, "").Resource;
+            _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+            if (result.Detalle_Solicitud_Historial_de_Asignacioness != null)
+            {
+                resultData = result.Detalle_Solicitud_Historial_de_Asignacioness.Select(m => new Detalle_Solicitud_Historial_de_AsignacionesGridModel
+                    {
+                        Folio = m.Folio
+
+			,Fecha_cambio = (m.Fecha_cambio == null ? string.Empty : Convert.ToDateTime(m.Fecha_cambio).ToString(ConfigurationProperty.DateFormat))
+			,Hora_cambio = m.Hora_cambio
+                        ,Usuario = m.Usuario
+                        ,UsuarioName = CultureHelper.GetTraduction(m.Usuario_Spartan_User.Id_User.ToString(), "Name") ??(string)m.Usuario_Spartan_User.Name
+                        ,Facilitador_Asignado = m.Facilitador_Asignado
+                        ,Facilitador_AsignadoName = CultureHelper.GetTraduction(m.Facilitador_Asignado_Spartan_User.Id_User.ToString(), "Name") ??(string)m.Facilitador_Asignado_Spartan_User.Name
+			,Motivo_cambio = m.Motivo_cambio
+
+
+                    }).ToList();
+                RowCount = result.RowCount;
+            }
+            return resultData;
+        }
         public ActionResult GetDetalle_de_Solicitud_Bitacora_de_Coincid(int draw, int start, int length, string RelationId = "0")
         {
             if (RelationId == "0")
@@ -3096,6 +3294,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (id.ToString() != "0")
                 {
                         string where = "";
+                    _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
+                    where = "Detalle_Solicitud_Historial_de_Asignaciones.Solicitud=" + id;
+                    if("int" == "string")
+                    {
+	                where = "Detalle_Solicitud_Historial_de_Asignaciones.Solicitud='" + id + "'";
+                    }
+                    var Detalle_Solicitud_Historial_de_AsignacionesInfo =
+                        _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.ListaSelAll(1, int.MaxValue, where,"").Resource;
+
+                    if (Detalle_Solicitud_Historial_de_AsignacionesInfo.Detalle_Solicitud_Historial_de_Asignacioness.Count > 0)
+                    {
+                        var resultDetalle_Solicitud_Historial_de_Asignaciones = true;
+                        //Removing associated job history with attachment
+                        foreach (var Detalle_Solicitud_Historial_de_AsignacionesItem in Detalle_Solicitud_Historial_de_AsignacionesInfo.Detalle_Solicitud_Historial_de_Asignacioness)
+                            resultDetalle_Solicitud_Historial_de_Asignaciones = resultDetalle_Solicitud_Historial_de_Asignaciones
+                                              && _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.Delete(Detalle_Solicitud_Historial_de_AsignacionesItem.Folio, null,null).Resource;
+
+                        if (!resultDetalle_Solicitud_Historial_de_Asignaciones)
+                            return Json(false, JsonRequestBehavior.AllowGet);
+                    }
                     _IDetalle_de_Solicitud_Bitacora_de_CoincidApiConsumer.SetAuthHeader(_tokenManager.Token);
                     where = "Detalle_de_Solicitud_Bitacora_de_Coincid.Solicitud=" + id;
                     if("int" == "string")
@@ -3202,6 +3420,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,LongitudH = varSolicitud.LongitudH
                         ,LatitudH = varSolicitud.LatitudH
                         ,Especialista_AsignadoA = varSolicitud.Especialista_AsignadoA
+                        ,Motivo_cambio_facilitador = varSolicitud.Motivo_cambio_facilitador
                         ,Asignar_Especialista_Automatico = varSolicitud.Asignar_Especialista_Automatico
                         ,Razone = varSolicitud.Razone
                         ,Tipo_de_Mecanismo = varSolicitud.Tipo_de_Mecanismo
@@ -3232,6 +3451,147 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [NonAction]
+        public bool CopyDetalle_Solicitud_Historial_de_Asignaciones(int MasterId, int referenceId, List<Detalle_Solicitud_Historial_de_AsignacionesGridModelPost> Detalle_Solicitud_Historial_de_AsignacionesItems)
+        {
+            try
+            {
+                if (referenceId <= 0)
+                    return true;
+
+                if (!_tokenManager.GenerateToken())
+                    return false;
+
+                _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+                var Detalle_Solicitud_Historial_de_AsignacionesData = _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.ListaSelAll(1, int.MaxValue, "Detalle_Solicitud_Historial_de_Asignaciones.Solicitud=" + referenceId,"").Resource;
+                if (Detalle_Solicitud_Historial_de_AsignacionesData == null || Detalle_Solicitud_Historial_de_AsignacionesData.Detalle_Solicitud_Historial_de_Asignacioness.Count == 0)
+                    return true;
+
+                var result = true;
+
+                Detalle_Solicitud_Historial_de_AsignacionesGridModelPost modelDataToChange = null;
+                //var insertId = 0;
+                foreach (var varDetalle_Solicitud_Historial_de_Asignaciones in Detalle_Solicitud_Historial_de_AsignacionesData.Detalle_Solicitud_Historial_de_Asignacioness)
+                {
+                    if (!result)
+                        return result;
+
+                    //Initialization
+                    //insertId = 0;
+                    modelDataToChange = null;
+                    Detalle_Solicitud_Historial_de_Asignaciones Detalle_Solicitud_Historial_de_Asignaciones1 = varDetalle_Solicitud_Historial_de_Asignaciones;
+
+                    if (Detalle_Solicitud_Historial_de_AsignacionesItems != null && Detalle_Solicitud_Historial_de_AsignacionesItems.Any(m => m.Folio == Detalle_Solicitud_Historial_de_Asignaciones1.Folio))
+                    {
+                        modelDataToChange = Detalle_Solicitud_Historial_de_AsignacionesItems.FirstOrDefault(m => m.Folio == Detalle_Solicitud_Historial_de_Asignaciones1.Folio);
+                    }
+                    //Chaning Id Value
+                    varDetalle_Solicitud_Historial_de_Asignaciones.Solicitud = MasterId;
+                    var insertId = _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.Insert(varDetalle_Solicitud_Historial_de_Asignaciones,null,null).Resource;
+                    if (insertId > 0 && modelDataToChange != null)
+                        modelDataToChange.Folio = insertId;
+
+                    result = insertId > 0;
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult PostDetalle_Solicitud_Historial_de_Asignaciones(List<Detalle_Solicitud_Historial_de_AsignacionesGridModelPost> Detalle_Solicitud_Historial_de_AsignacionesItems, int MasterId, string referenceId)
+        {
+            try
+            {
+                bool result = true;
+
+                //if (referenceId > 0 && MasterId != referenceId)
+                //    if (!CopyDetalle_Solicitud_Historial_de_Asignaciones(MasterId, referenceId, Detalle_Solicitud_Historial_de_AsignacionesItems))
+                //        return Json(false, JsonRequestBehavior.AllowGet);
+
+                if (Detalle_Solicitud_Historial_de_AsignacionesItems != null && Detalle_Solicitud_Historial_de_AsignacionesItems.Count > 0)
+                {
+                    //Generating token
+                    if (!_tokenManager.GenerateToken())
+                        return Json(null, JsonRequestBehavior.AllowGet);
+
+                    _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                    _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+                    foreach (var Detalle_Solicitud_Historial_de_AsignacionesItem in Detalle_Solicitud_Historial_de_AsignacionesItems)
+                    {
+
+
+
+
+
+
+
+                        //Removal Request
+                        if (Detalle_Solicitud_Historial_de_AsignacionesItem.Removed)
+                        {
+                            result = result && _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.Delete(Detalle_Solicitud_Historial_de_AsignacionesItem.Folio, null,null).Resource;
+                            continue;
+                        }
+						if (referenceId.ToString() != MasterId.ToString())
+							Detalle_Solicitud_Historial_de_AsignacionesItem.Folio = 0;
+
+                        var Detalle_Solicitud_Historial_de_AsignacionesData = new Detalle_Solicitud_Historial_de_Asignaciones
+                        {
+                            Solicitud = MasterId
+                            ,Folio = Detalle_Solicitud_Historial_de_AsignacionesItem.Folio
+                            ,Fecha_cambio = (Detalle_Solicitud_Historial_de_AsignacionesItem.Fecha_cambio!= null) ? DateTime.ParseExact(Detalle_Solicitud_Historial_de_AsignacionesItem.Fecha_cambio, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                            ,Hora_cambio = Detalle_Solicitud_Historial_de_AsignacionesItem.Hora_cambio
+                            ,Usuario = (Convert.ToInt32(Detalle_Solicitud_Historial_de_AsignacionesItem.Usuario) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Solicitud_Historial_de_AsignacionesItem.Usuario))
+                            ,Facilitador_Asignado = (Convert.ToInt32(Detalle_Solicitud_Historial_de_AsignacionesItem.Facilitador_Asignado) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Solicitud_Historial_de_AsignacionesItem.Facilitador_Asignado))
+                            ,Motivo_cambio = Detalle_Solicitud_Historial_de_AsignacionesItem.Motivo_cambio
+
+                        };
+
+                        var resultId = Detalle_Solicitud_Historial_de_AsignacionesItem.Folio > 0
+                           ? _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.Update(Detalle_Solicitud_Historial_de_AsignacionesData,null,null).Resource
+                           : _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.Insert(Detalle_Solicitud_Historial_de_AsignacionesData,null,null).Resource;
+
+                        result = result && resultId != -1;
+                    }
+                }
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+
+        [HttpGet]
+        public ActionResult GetDetalle_Solicitud_Historial_de_Asignaciones_Spartan_UserAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ISpartan_UserApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+                    item.Name= CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+
 
         [NonAction]
         public bool CopyDetalle_de_Solicitud_Bitacora_de_Coincid(int MasterId, int referenceId, List<Detalle_de_Solicitud_Bitacora_de_CoincidGridModelPost> Detalle_de_Solicitud_Bitacora_de_CoincidItems)
@@ -3749,6 +4109,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
         [HttpGet]
+        public ActionResult AddDetalle_Solicitud_Historial_de_Asignaciones(int rowIndex = 0, int functionMode = 0)
+        {
+            ViewBag.currentRowIndex = rowIndex;
+            ViewBag.functionMode = functionMode;
+            return PartialView("../Detalle_Solicitud_Historial_de_Asignaciones/AddDetalle_Solicitud_Historial_de_Asignaciones");
+        }
+
+        [HttpGet]
         public ActionResult AddDetalle_de_Solicitud_Bitacora_de_Coincid(int rowIndex = 0, int functionMode = 0)
         {
             ViewBag.currentRowIndex = rowIndex;
@@ -3967,6 +4335,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
                         ,Especialista_AsignadoAName = CultureHelper.GetTraduction(m.Especialista_AsignadoA_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Especialista_AsignadoA_Spartan_User.Name
+			,Motivo_cambio_facilitador = m.Motivo_cambio_facilitador
 			,Asignar_Especialista_Automatico = m.Asignar_Especialista_Automatico
 			,Razone = m.Razone
                         ,Tipo_de_MecanismoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Mecanismo_Tipo_de_Mecanismo_Alterno.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Mecanismo_Tipo_de_Mecanismo_Alterno.Descripcion
@@ -4091,6 +4460,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
                         ,Especialista_AsignadoAName = CultureHelper.GetTraduction(m.Especialista_AsignadoA_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Especialista_AsignadoA_Spartan_User.Name
+			,Motivo_cambio_facilitador = m.Motivo_cambio_facilitador
 			,Asignar_Especialista_Automatico = m.Asignar_Especialista_Automatico
 			,Razone = m.Razone
                         ,Tipo_de_MecanismoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Mecanismo_Tipo_de_Mecanismo_Alterno.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Mecanismo_Tipo_de_Mecanismo_Alterno.Descripcion
@@ -4183,7 +4553,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var m = _ISolicitudApiConsumer.Get_Solicitud(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid;
+				                int RowCount_Detalle_Solicitud_Historial_de_Asignaciones;
+                var Detalle_Solicitud_Historial_de_AsignacionesData = GetDetalle_Solicitud_Historial_de_AsignacionesData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Solicitud_Historial_de_Asignaciones);
+                int RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid;
                 var Detalle_de_Solicitud_Bitacora_de_CoincidData = GetDetalle_de_Solicitud_Bitacora_de_CoincidData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid);
                 int RowCount_Detalle_Historico_JA;
                 var Detalle_Historico_JAData = GetDetalle_Historico_JAData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Historico_JA);
@@ -4219,6 +4591,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 				var resultData = new
                 {
                     data = result
+                    ,Historial_de_Asignaciones = Detalle_Solicitud_Historial_de_AsignacionesData
                     ,Coincidencias = Detalle_de_Solicitud_Bitacora_de_CoincidData
                     ,Historial = Detalle_Historico_JAData
 
@@ -4268,7 +4641,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var m = _ISolicitudApiConsumer.Get_Control(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid;
+				                int RowCount_Detalle_Solicitud_Historial_de_Asignaciones;
+                var Detalle_Solicitud_Historial_de_AsignacionesData = GetDetalle_Solicitud_Historial_de_AsignacionesData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Solicitud_Historial_de_Asignaciones);
+                int RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid;
                 var Detalle_de_Solicitud_Bitacora_de_CoincidData = GetDetalle_de_Solicitud_Bitacora_de_CoincidData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid);
                 int RowCount_Detalle_Historico_JA;
                 var Detalle_Historico_JAData = GetDetalle_Historico_JAData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Historico_JA);
@@ -4288,6 +4663,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 				var resultData = new
                 {
                     data = result
+                    ,Historial_de_Asignaciones = Detalle_Solicitud_Historial_de_AsignacionesData
                     ,Coincidencias = Detalle_de_Solicitud_Bitacora_de_CoincidData
                     ,Historial = Detalle_Historico_JAData
 
@@ -4352,7 +4728,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var m = _ISolicitudApiConsumer.Get_Hechos(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid;
+				                int RowCount_Detalle_Solicitud_Historial_de_Asignaciones;
+                var Detalle_Solicitud_Historial_de_AsignacionesData = GetDetalle_Solicitud_Historial_de_AsignacionesData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Solicitud_Historial_de_Asignaciones);
+                int RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid;
                 var Detalle_de_Solicitud_Bitacora_de_CoincidData = GetDetalle_de_Solicitud_Bitacora_de_CoincidData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid);
                 int RowCount_Detalle_Historico_JA;
                 var Detalle_Historico_JAData = GetDetalle_Historico_JAData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Historico_JA);
@@ -4390,6 +4768,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 				var resultData = new
                 {
                     data = result
+                    ,Historial_de_Asignaciones = Detalle_Solicitud_Historial_de_AsignacionesData
                     ,Coincidencias = Detalle_de_Solicitud_Bitacora_de_CoincidData
                     ,Historial = Detalle_Historico_JAData
 
@@ -4413,6 +4792,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varSolicitud.Clave
                                             ,Especialista_AsignadoA = varSolicitud.Especialista_AsignadoA
+                        ,Motivo_cambio_facilitador = varSolicitud.Motivo_cambio_facilitador
                         ,Asignar_Especialista_Automatico = varSolicitud.Asignar_Especialista_Automatico
                         ,Razone = varSolicitud.Razone
                         ,Tipo_de_Mecanismo = varSolicitud.Tipo_de_Mecanismo
@@ -4444,7 +4824,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var m = _ISolicitudApiConsumer.Get_Asignacion(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid;
+				                int RowCount_Detalle_Solicitud_Historial_de_Asignaciones;
+                var Detalle_Solicitud_Historial_de_AsignacionesData = GetDetalle_Solicitud_Historial_de_AsignacionesData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Solicitud_Historial_de_Asignaciones);
+                int RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid;
                 var Detalle_de_Solicitud_Bitacora_de_CoincidData = GetDetalle_de_Solicitud_Bitacora_de_CoincidData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid);
                 int RowCount_Detalle_Historico_JA;
                 var Detalle_Historico_JAData = GetDetalle_Historico_JAData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Historico_JA);
@@ -4454,6 +4836,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
                         ,Especialista_AsignadoA = m.Especialista_AsignadoA
                         ,Especialista_AsignadoAName = CultureHelper.GetTraduction(m.Especialista_AsignadoA_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Especialista_AsignadoA_Spartan_User.Name
+			,Motivo_cambio_facilitador = m.Motivo_cambio_facilitador
 			,Asignar_Especialista_Automatico = m.Asignar_Especialista_Automatico
 			,Razone = m.Razone
                         ,Tipo_de_Mecanismo = m.Tipo_de_Mecanismo
@@ -4468,6 +4851,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 				var resultData = new
                 {
                     data = result
+                    ,Historial_de_Asignaciones = Detalle_Solicitud_Historial_de_AsignacionesData
                     ,Coincidencias = Detalle_de_Solicitud_Bitacora_de_CoincidData
                     ,Historial = Detalle_Historico_JAData
 
@@ -4514,7 +4898,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var m = _ISolicitudApiConsumer.Get_Bitacora_de_Coincidencias(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid;
+				                int RowCount_Detalle_Solicitud_Historial_de_Asignaciones;
+                var Detalle_Solicitud_Historial_de_AsignacionesData = GetDetalle_Solicitud_Historial_de_AsignacionesData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Solicitud_Historial_de_Asignaciones);
+                int RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid;
                 var Detalle_de_Solicitud_Bitacora_de_CoincidData = GetDetalle_de_Solicitud_Bitacora_de_CoincidData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid);
                 int RowCount_Detalle_Historico_JA;
                 var Detalle_Historico_JAData = GetDetalle_Historico_JAData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Historico_JA);
@@ -4528,6 +4914,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 				var resultData = new
                 {
                     data = result
+                    ,Historial_de_Asignaciones = Detalle_Solicitud_Historial_de_AsignacionesData
                     ,Coincidencias = Detalle_de_Solicitud_Bitacora_de_CoincidData
                     ,Historial = Detalle_Historico_JAData
 
@@ -4581,7 +4968,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var m = _ISolicitudApiConsumer.Get_Cierre(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid;
+				                int RowCount_Detalle_Solicitud_Historial_de_Asignaciones;
+                var Detalle_Solicitud_Historial_de_AsignacionesData = GetDetalle_Solicitud_Historial_de_AsignacionesData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Solicitud_Historial_de_Asignaciones);
+                int RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid;
                 var Detalle_de_Solicitud_Bitacora_de_CoincidData = GetDetalle_de_Solicitud_Bitacora_de_CoincidData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid);
                 int RowCount_Detalle_Historico_JA;
                 var Detalle_Historico_JAData = GetDetalle_Historico_JAData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Historico_JA);
@@ -4606,6 +4995,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 				var resultData = new
                 {
                     data = result
+                    ,Historial_de_Asignaciones = Detalle_Solicitud_Historial_de_AsignacionesData
                     ,Coincidencias = Detalle_de_Solicitud_Bitacora_de_CoincidData
                     ,Historial = Detalle_Historico_JAData
 
@@ -4652,7 +5042,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var m = _ISolicitudApiConsumer.Get_Historial_de_Movimientos(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid;
+				                int RowCount_Detalle_Solicitud_Historial_de_Asignaciones;
+                var Detalle_Solicitud_Historial_de_AsignacionesData = GetDetalle_Solicitud_Historial_de_AsignacionesData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Solicitud_Historial_de_Asignaciones);
+                int RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid;
                 var Detalle_de_Solicitud_Bitacora_de_CoincidData = GetDetalle_de_Solicitud_Bitacora_de_CoincidData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_de_Solicitud_Bitacora_de_Coincid);
                 int RowCount_Detalle_Historico_JA;
                 var Detalle_Historico_JAData = GetDetalle_Historico_JAData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Historico_JA);
@@ -4666,6 +5058,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 				var resultData = new
                 {
                     data = result
+                    ,Historial_de_Asignaciones = Detalle_Solicitud_Historial_de_AsignacionesData
                     ,Coincidencias = Detalle_de_Solicitud_Bitacora_de_CoincidData
                     ,Historial = Detalle_Historico_JAData
 
