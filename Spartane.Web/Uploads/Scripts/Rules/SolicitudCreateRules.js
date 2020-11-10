@@ -1322,3 +1322,31 @@ function EjecutarValidacionesEditRowMRDetalle_de_Persona_Moral_JA(nameOfTable, r
     return result;
 }
 
+
+function EjecutarValidacionesAntesDeGuardarMRDetalle_Solicitud_Historial_de_Asignaciones(nameOfTable, rowIndex){ 
+ var result= true; 
+//NEWBUSINESSRULE_BEFORESAVINGMR_Detalle_Solicitud_Historial_de_Asignaciones// 
+ return result; 
+} 
+
+function EjecutarValidacionesDespuesDeGuardarMRDetalle_Solicitud_Historial_de_Asignaciones(nameOfTable, rowIndex){ 
+//NEWBUSINESSRULE_AFTERSAVINGMR_Detalle_Solicitud_Historial_de_Asignaciones// 
+} 
+
+function EjecutarValidacionesAlEliminarMRDetalle_Solicitud_Historial_de_Asignaciones(nameOfTable, rowIndex){ 
+ var result= true; 
+//NEWBUSINESSRULE_DELETEMR_Detalle_Solicitud_Historial_de_Asignaciones// 
+ return result; 
+} 
+
+function EjecutarValidacionesNewRowMRDetalle_Solicitud_Historial_de_Asignaciones(nameOfTable, rowIndex){ 
+ var result= true; 
+//NEWBUSINESSRULE_NEWROWMR_Detalle_Solicitud_Historial_de_Asignaciones// 
+  return result; 
+} 
+
+function EjecutarValidacionesEditRowMRDetalle_Solicitud_Historial_de_Asignaciones(nameOfTable, rowIndex){ 
+ var result= true; 
+//NEWBUSINESSRULE_EDITROWMR_Detalle_Solicitud_Historial_de_Asignaciones// 
+ return result; 
+} 

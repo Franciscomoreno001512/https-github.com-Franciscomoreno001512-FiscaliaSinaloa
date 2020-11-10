@@ -11864,6 +11864,23 @@
 <Content Include="Uploads\Scripts\Rules\Motivo_de_Rechazo_de_SolicitudCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Motivo_de_Rechazo_de_SolicitudIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Motivo_de_Rechazo_de_Solicitud\_Print.cshtml" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Solicitud_Historial_de_AsignacionesController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Solicitud_Historial_de_AsignacionesModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Solicitud_Historial_de_AsignacionesGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Solicitud_Historial_de_AsignacionesMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Solicitud_Historial_de_Asignaciones\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Solicitud_Historial_de_Asignaciones\AddDetalle_Solicitud_Historial_de_Asignaciones.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Solicitud_Historial_de_Asignaciones\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Solicitud_Historial_de_Asignaciones\Detalle_Solicitud_Historial_de_AsignacionesApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Solicitud_Historial_de_Asignaciones\IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Solicitud_Historial_de_Asignaciones.cs" />
+<Content Include="Scripts\Custom\Detalle_Solicitud_Historial_de_AsignacionesGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Solicitud_Historial_de_AsignacionesPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Solicitud_Historial_de_AsignacionesResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Solicitud_Historial_de_AsignacionesResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Solicitud_Historial_de_Asignaciones.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Solicitud_Historial_de_AsignacionesIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Solicitud_Historial_de_AsignacionesCreateRules.js" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -12863,6 +12880,23 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

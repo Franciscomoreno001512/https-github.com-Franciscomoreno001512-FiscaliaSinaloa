@@ -52,4 +52,6 @@
   <Role culture="es-es" Id="103" value="Seguimiento MASC"></Role>
   <Role culture="en-us" Id="104" value="Notificador"></Role>
   <Role culture="es-es" Id="104" value="Notificador"></Role>
+  <Role culture="en-us" Id="105" value="Director MASC"></Role>
+  <Role culture="es-es" Id="105" value="Director MASC"></Role>
 </Roles>

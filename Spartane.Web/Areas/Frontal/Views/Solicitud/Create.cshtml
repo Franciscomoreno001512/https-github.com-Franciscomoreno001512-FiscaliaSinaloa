@@ -98,6 +98,7 @@
     if (ViewBag.Tipo_de_Conclusion_Anticipadas_Tipo_de_Conclusion_Anticipada != null)
     { varTipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada = (List<SelectListItem>)ViewBag.Tipo_de_Conclusion_Anticipadas_Tipo_de_Conclusion_Anticipada; }
 
+    Permission permissionDetalle_Solicitud_Historial_de_Asignaciones = ViewBag.PermissionDetalle_Solicitud_Historial_de_Asignaciones;
     Permission permissionDetalle_de_Solicitud_Bitacora_de_Coincid = ViewBag.PermissionDetalle_de_Solicitud_Bitacora_de_Coincid;
     Permission permissionDetalle_Historico_JA = ViewBag.PermissionDetalle_Historico_JA;
 
@@ -205,6 +206,9 @@
 
                 }
             }
+                    <div aria-hidden="true" class="modal fade in AddDetalle_Solicitud_Historial_de_AsignacionesModal" id="AddDetalle_Solicitud_Historial_de_Asignaciones-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
                     <div aria-hidden="true" class="modal fade in AddDetalle_de_Solicitud_Bitacora_de_CoincidModal" id="AddDetalle_de_Solicitud_Bitacora_de_Coincid-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
                     </div>
 
@@ -742,6 +746,13 @@
                                 </div>
                                 }
                             </div>
+                            <div class="form-group" id="divMotivo_cambio_facilitador">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Motivo_cambio_facilitador</label>
+                                <div class="col-sm-8" data-field-id="Motivo_cambio_facilitador" data-attribute="266700" data-field-name="@Resources.SolicitudResources.Motivo_cambio_facilitador">
+                                    <textarea id="Motivo_cambio_facilitador" name="Motivo_cambio_facilitador" class="form-control Asignacion" rows="4" cols="50">@Model.Motivo_cambio_facilitador</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Motivo_cambio_facilitador" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             <div class="form-group" id="divAsignar_Especialista_Automatico">
                                 <label class="col-sm-2 control-label">@Resources.SolicitudResources.Asignar_Especialista_Automatico</label>
                                 <div class="col-sm-8" data-field-id="Asignar_Especialista_Automatico" data-attribute="262924" data-field-name="@Resources.SolicitudResources.Asignar_Especialista_Automatico">
@@ -826,6 +837,79 @@
                                         </span>
                                     </div>
                                 </div>
+                            </div>
+                            <div id="divHistorial_de_Asignaciones">
+                            <div class="ibox-title">
+                                <h5>@Resources.SolicitudResources.Historial_de_Asignaciones</h5>
+                                <div class="ibox-tools">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+									@if (permissionDetalle_Solicitud_Historial_de_Asignaciones.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Solicitud_Historial_de_AsignacionesfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_Solicitud_Historial_de_AsignacionesAddRow btn btn-primary">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </a>
+                                    }
+                                    <button onclick="SolicitudGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '266708')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#SolicitudBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>
+									@if (permissionDetalle_Solicitud_Historial_de_Asignaciones.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Solicitud_Historial_de_AsignacionesfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_Solicitud_Historial_de_Asignaciones-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
+                                            <i class="glyphicon glyphicon-new-window"></i>
+                                        </a>
+                                    }  
+                                </div>
+
+                                <br />
+
+                                <div style='overflow-x: auto;'>
+                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_Solicitud_Historial_de_AsignacionesGrid">
+                                        <thead>
+                                            <tr>
+                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+
+
+                                                <th class="Fecha_cambioHeader"><span>
+<button type="button" data-attribute="266703" data-field-id="Detalle_Solicitud_Historial_de_AsignacionesFecha_cambio" data-field-name="@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Fecha_cambio" data-toggle="modal" data-target="#SolicitudBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Fecha_cambio">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Fecha_cambio</span></th>
+                                                <th class="Hora_cambioHeader"><span>
+<button type="button" data-attribute="266704" data-field-id="Detalle_Solicitud_Historial_de_AsignacionesHora_cambio" data-field-name="@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Hora_cambio" data-toggle="modal" data-target="#SolicitudBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Hora_cambio">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Hora_cambio</span></th>
+                                                <th class="UsuarioHeader" style="width:250px"><span>
+<button type="button" data-attribute="266705" data-field-id="Detalle_Solicitud_Historial_de_AsignacionesUsuario" data-field-name="@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Usuario" data-toggle="modal" data-target="#SolicitudBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Usuario">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Usuario</span></th>
+                                                <th class="Facilitador_AsignadoHeader" style="width:250px"><span>
+<button type="button" data-attribute="266706" data-field-id="Detalle_Solicitud_Historial_de_AsignacionesFacilitador_Asignado" data-field-name="@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Facilitador_Asignado" data-toggle="modal" data-target="#SolicitudBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Facilitador_Asignado">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Facilitador_Asignado</span></th>
+                                                <th class="Motivo_cambioHeader"><span>
+<button type="button" data-attribute="266707" data-field-id="Detalle_Solicitud_Historial_de_AsignacionesMotivo_cambio" data-field-name="@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Motivo_cambio" data-toggle="modal" data-target="#SolicitudBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Motivo_cambio">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Motivo_cambio</span></th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
                             </div>
                             </div>
                                 </div>
@@ -1290,6 +1374,14 @@
         $(document).ready(function () {
             $('#ObjectId').val('45010');
 		                  
+
+
+
+
+
+           
+              showDetalle_Solicitud_Historial_de_AsignacionesGrid(null);
+              
 
 
 
@@ -1817,6 +1909,336 @@
 			
         });
 
+        var Detalle_Solicitud_Historial_de_AsignacionesinsertRowCurrentIndex = -1;
+        var Detalle_Solicitud_Historial_de_AsignacionesDataDataTable;
+        function getDetalle_Solicitud_Historial_de_AsignacionesData() {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Solicitud/GetDetalle_Solicitud_Historial_de_Asignaciones")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    Detalle_Solicitud_Historial_de_AsignacionesDataDataTable = result.data;
+                    showDetalle_Solicitud_Historial_de_AsignacionesGrid(result.data);
+                    $('#Detalle_Solicitud_Historial_de_AsignacionesGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_Solicitud_Historial_de_AsignacionesGrid .gridDatePicker').attr("readonly", "");
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+        function Detalle_Solicitud_Historial_de_AsignacionesGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+            var columnData = [];
+            var counter = 0;
+            var inputData = "<input type='text' class='fullWidth form-control' />";
+
+            columnData[counter++] = $($($.parseHTML(GetGridDatePicker())).val(data.Fecha_cambio)).addClass('Fecha_cambio').attr('id', nameOfTable + 'Fecha_cambio' + rowIndex).attr('data-field', 'Fecha_cambio');
+            columnData[counter++] = $($($.parseHTML(GetGridTimePicker())).val(data.Hora_cambio)).addClass('Hora_cambio').attr('id', nameOfTable + 'Hora_cambio' + rowIndex).attr('data-field', 'Hora_cambio');
+            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.UsuarioName != undefined ? data.UsuarioName : null, 'AutoComplete' + nameOfTable + 'Usuario', data.Usuario)))).addClass('Usuario').attr('id', nameOfTable + 'Usuario' + rowIndex).attr('data-field', 'Usuario').after($.parseHTML(addNew('Detalle_Solicitud_Historial_de_Asignaciones', 'Spartan_User','Usuario', 266705)));
+            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.Facilitador_AsignadoName != undefined ? data.Facilitador_AsignadoName : null, 'AutoComplete' + nameOfTable + 'Facilitador_Asignado', data.Facilitador_Asignado)))).addClass('Facilitador_Asignado').attr('id', nameOfTable + 'Facilitador_Asignado' + rowIndex).attr('data-field', 'Facilitador_Asignado').after($.parseHTML(addNew('Detalle_Solicitud_Historial_de_Asignaciones', 'Spartan_User','Facilitador_Asignado', 266706)));
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Motivo_cambio)).addClass('Motivo_cambio').attr('id', nameOfTable + 'Motivo_cambio' + rowIndex).attr('data-field', 'Motivo_cambio');
+
+            return columnData;
+        }
+
+
+
+        function GetFileInfo(fileData, fileUploadData) {
+
+            var $div = $("<div>");
+            if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+                //<i class="fa fa-times-circle" id='removeFileAttachment'>
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+
+            } else if (fileUploadData != null) {
+                return $.parseHTML(GetFileUploader());
+            } else {
+                $div.append("<label>" + fileData.FileName + "</label>");
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+            }
+        }
+
+        var removedDetalle_Solicitud_Historial_de_AsignacionesData = [];
+        function Detalle_Solicitud_Historial_de_AsignacionesDeleteRow(rowIndex, row) {
+            var rowIndexTable = Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetPosition($(row).parent().parent()[0]);
+            var permission = {            
+                 Delete: '@permissionDetalle_Solicitud_Historial_de_Asignaciones.Delete' == 'True'
+            };
+            if (!permission.Delete || isConsultMode)
+                return;            
+            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+              if (EjecutarValidacionesAlEliminarMRDetalle_Solicitud_Historial_de_Asignaciones('Detalle_Solicitud_Historial_de_Asignaciones_', '_' + rowIndex)) {
+                var prevData = Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetData(rowIndexTable );
+                removedDetalle_Solicitud_Historial_de_AsignacionesData.push(prevData);
+                Detalle_Solicitud_Historial_de_AsignacionesTable.fnDeleteRow(rowIndexTable );
+				showDetalle_Solicitud_Historial_de_AsignacionesGrid(Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetData());
+              }
+            }
+			initiateUIControls();
+        }
+
+        function Detalle_Solicitud_Historial_de_AsignacionesrowCreationGrid(row, data, index) {
+            var permission =  {            
+                 Edit: '@permissionDetalle_Solicitud_Historial_de_Asignaciones.Edit' == 'True',
+                 Delete: '@permissionDetalle_Solicitud_Historial_de_Asignaciones.Delete' == 'True'
+            };
+            setDetalle_Solicitud_Historial_de_AsignacionesValidation();
+            var Detalle_Solicitud_Historial_de_AsignacionesRowElement = "Detalle_Solicitud_Historial_de_Asignaciones_" + index.toString();
+            $(row).addClass(Detalle_Solicitud_Historial_de_AsignacionesRowElement);
+            var nameOfTable='Detalle_Solicitud_Historial_de_Asignaciones_';
+            var rowIndex = '_' + index;
+            Detalle_Solicitud_Historial_de_AsignacionesinsertRowCurrentIndex = index;
+
+            row.innerHTML = "";
+
+            if (data.IsInsertRow) {
+
+                if (row.childNodes.length != 0) {
+                    for (var i = 0; i < row.childNodes.length; i++) {
+                        row.childNodes[i].remove();
+                    }
+                }
+                var controls = GetInsertDetalle_Solicitud_Historial_de_AsignacionesRowControls(index);
+                var actionColInsert = $('<td>');
+
+                var abc = "if(dynamicFieldValidation('" + Detalle_Solicitud_Historial_de_AsignacionesRowElement + "')){ Detalle_Solicitud_Historial_de_AsignacionesInsertRow(" + index + "); }";
+                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
+                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_Solicitud_Historial_de_AsignacionesCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                actionColInsert.appendTo(row);
+
+                for (i = 0; i < controls.length; i++) {
+					var idHeader = $(controls[i]).data('field') + 'Header';
+					if($(controls[i]).length > 1){
+						idHeader = $($(controls[i])[1]).data('field') + 'Header';
+					}					
+
+					var classe = ($('#Detalle_Solicitud_Historial_de_AsignacionesGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_Solicitud_Historial_de_AsignacionesGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+				   
+					if ($(controls[i]).next().length > 0) {
+					    var div = $(controls[i]).next();
+					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+					}else
+					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+					
+                }
+                $('#Detalle_Solicitud_Historial_de_AsignacionesGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('#Detalle_Solicitud_Historial_de_AsignacionesGrid .gridDatePicker').attr("readonly", "");
+                return;
+            }
+
+            var actionCol = $('<td>');
+			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_Solicitud_Historial_de_AsignacionesEditRow(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                edit = "";
+            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_Solicitud_Historial_de_Asignaciones-form' onclick='Detalle_Solicitud_Historial_de_AsignacionesEditRowPopup(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                editPopUp = "";
+            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_Solicitud_Historial_de_AsignacionesDeleteRow(" + index + ", this)'>";
+            if (!permission.Delete || isConsultMode)
+                eliminar = "";
+            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+			if ($('.Action' + 'Header').css('display') != 'none')
+				actionCol.appendTo(row);
+
+            if ($('.Fecha_cambio' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Fecha_cambio'+rowIndex+'">').text(data.Fecha_cambio).appendTo(row);
+            else
+                $('<td style="display:none;" id="'+nameOfTable+'Fecha_cambio'+rowIndex+'">').text(data.Fecha_cambio).appendTo(row);
+            if ($('.Hora_cambio' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Hora_cambio'+rowIndex+'">').text(data.Hora_cambio).appendTo(row);
+            else
+                $('<td style="display:none;" id="'+nameOfTable+'Hora_cambio'+rowIndex+'">').text(data.Hora_cambio).appendTo(row);
+            if ($('.Usuario' + 'Header').css('display') != 'none'){
+                if (data.UsuarioName == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Usuario'+rowIndex+'">').text(data.Usuario).appendTo(row);}else{$('<td>').text(data.UsuarioName).appendTo(row);}
+}
+             else {
+                if (data.UsuarioName == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Usuario'+rowIndex+'">').text(data.Usuario).appendTo(row);}else{$('<td style:display:none;>').text(data.UsuarioName).appendTo(row);}
+}
+
+            if ($('.Facilitador_Asignado' + 'Header').css('display') != 'none'){
+                if (data.Facilitador_AsignadoName == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Facilitador_Asignado'+rowIndex+'">').text(data.Facilitador_Asignado).appendTo(row);}else{$('<td>').text(data.Facilitador_AsignadoName).appendTo(row);}
+}
+             else {
+                if (data.Facilitador_AsignadoName == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Facilitador_Asignado'+rowIndex+'">').text(data.Facilitador_Asignado).appendTo(row);}else{$('<td style:display:none;>').text(data.Facilitador_AsignadoName).appendTo(row);}
+}
+
+            if ($('.Motivo_cambio' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Motivo_cambio'+rowIndex+'">').text(data.Motivo_cambio).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Motivo_cambio'+rowIndex+'">').text(data.Motivo_cambio).appendTo(row);
+
+        }
+
+        var Detalle_Solicitud_Historial_de_AsignacionesTable;
+        function showDetalle_Solicitud_Historial_de_AsignacionesGrid(dataSet) {
+            //removedDetalle_Solicitud_Historial_de_AsignacionesData = [];
+            Detalle_Solicitud_Historial_de_AsignacionesTable = $('#Detalle_Solicitud_Historial_de_AsignacionesGrid').dataTable({
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [
+                ],
+                "createdRow": Detalle_Solicitud_Historial_de_AsignacionesrowCreationGrid,
+                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+                data: dataSet,
+                "columns": [
+                    { "data": null, 'visible': true, "orderable": false },
+
+                    { "data": "Fecha_cambio", "orderable": false },
+                    { "data": "Hora_cambio", "orderable": false },
+                    { "data": "Usuario", "orderable": false },
+                    { "data": "Facilitador_Asignado", "orderable": false },
+                    { "data": "Motivo_cambio", "orderable": false },
+
+                ],
+                "order": [[0, "asc"]],
+                "language": {
+                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                    "zeroRecords": "@Resources.Resources.NothingFound",
+                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                    "infoEmpty": "@Resources.Resources.NoRecords",
+                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                    "sSearch": "@Resources.Resources.Search",
+                    "paginate": {
+                        "previous": "@Resources.Resources.Previous",
+                        "next": "@Resources.Resources.Next"
+                    }
+                },
+				"bDestroy": true,
+                "fnDrawCallback": function (settings) {
+                    setDetalle_Solicitud_Historial_de_AsignacionesValidation();
+                }
+            }).on('init.dt', function (e, data) {
+                $('a').tooltip();
+            }).on('draw.dt', function () {
+                $('#Detalle_Solicitud_Historial_de_AsignacionesGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+            });
+        }
+
+
+
+
+    var Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems;
+        function GetDetalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItem() {
+            Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Solicitud/GetDetalle_Solicitud_Historial_de_Asignaciones_Spartan_UserAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+    var Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems;
+        function GetDetalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItem() {
+            Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Solicitud/GetDetalle_Solicitud_Historial_de_Asignaciones_Spartan_UserAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+
+        var Detalle_Solicitud_Historial_de_AsignacionesData = [];
+        var Detalle_Solicitud_Historial_de_AsignacionesdeletedItem = [];
+        var Detalle_Solicitud_Historial_de_AsignacionesDataMain = [];
+        var Detalle_Solicitud_Historial_de_AsignacionesDataMainPages = [];
+        var Detalle_Solicitud_Historial_de_AsignacionesnewItemCount = 0;
+        var Detalle_Solicitud_Historial_de_AsignacionesmaxItemIndex = 0;
+        var Detalle_Solicitud_Historial_de_AsignacionesDataMainInitialized = false;
+
+        function SendDetalle_Solicitud_Historial_de_Asignaciones(callBack, ClaveId) {
+            Detalle_Solicitud_Historial_de_AsignacionesData = GetDetalle_Solicitud_Historial_de_AsignacionesFromDataTable();
+
+            if (Detalle_Solicitud_Historial_de_AsignacionesData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
+                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
+                    ClaveId = $("#ReferenceClave").val();                
+                if ($("#ReferenceClave").val() == '')
+                    $("#ReferenceClave").val('0');
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Solicitud/PostDetalle_Solicitud_Historial_de_Asignaciones?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
+                    type: 'POST',
+                    data: GetDetalle_Solicitud_Historial_de_Asignaciones(),
+                    async: true,
+                    success: function (result) {
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            } else {
+                //showNotification("@Resources.Resources.SaveSuccess", "success");
+                //callBack(ClaveId);
+            }
+            return true;
+        }
+
+        function GetAddDetalle_Solicitud_Historial_de_AsignacionesPopup(currentRowIndex, mode, id) {
+
+            $.ajax({
+                url: "@Url.Action("AddDetalle_Solicitud_Historial_de_Asignaciones", "Detalle_Solicitud_Historial_de_Asignaciones")",
+                type: "GET",
+                async: false,
+                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+                success: function (data) {
+                    $(".AddDetalle_Solicitud_Historial_de_AsignacionesModal").html(data);
+                },
+                error: function () {
+
+                }
+            });
+
+            @*$.get('@Url.Action("AddDetalle_Solicitud_Historial_de_Asignaciones", "Detalle_Solicitud_Historial_de_Asignaciones")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddDetalle_Solicitud_Historial_de_AsignacionesModal").html(data);
+            });*@
+        }
+
+        function ShowMessagePendingRowDetalle_Solicitud_Historial_de_Asignaciones()
+        {
+            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Historial de Asignaciones"))')
+	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Historial de Asignaciones"))', "warning");
+        }
         var Detalle_de_Solicitud_Bitacora_de_CoincidinsertRowCurrentIndex = -1;
         var Detalle_de_Solicitud_Bitacora_de_CoincidDataDataTable;
         function getDetalle_de_Solicitud_Bitacora_de_CoincidData() {
@@ -2484,6 +2906,75 @@
 
 
 
+        $(".AutoCompleteDetalle_Solicitud_Historial_de_Asignaciones_Usuario").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud/GetDetalle_Solicitud_Historial_de_Asignaciones_Usuario_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Solicitud_Historial_de_Asignaciones_Usuario_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Solicitud_Historial_de_Asignaciones_Usuario");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val(' ');
+            $('.select2-search__field').keyup();
+        });
+        $(".AutoCompleteDetalle_Solicitud_Historial_de_Asignaciones_Facilitador_Asignado").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud/GetDetalle_Solicitud_Historial_de_Asignaciones_Facilitador_Asignado_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Solicitud_Historial_de_Asignaciones_Facilitador_Asignado_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Solicitud_Historial_de_Asignaciones_Facilitador_Asignado");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val(' ');
+            $('.select2-search__field').keyup();
+        });
+
+
+
+
+
 
 
 
@@ -3117,6 +3608,7 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.Especialista_AsignadoA).trigger('change');
                     }, 3000);
+                    $('#Motivo_cambio_facilitador').val(result.data.Motivo_cambio_facilitador);
                     $('#Asignar_Especialista_Automatico').prop('checked', result.data.Asignar_Especialista_Automatico);
                     $('#Razone').val(result.data.Razone);
                     $('#Tipo_de_Mecanismo').val(result.data.Tipo_de_Mecanismo);
@@ -3124,6 +3616,10 @@
                     $('#Hora_de_AsignacionA').val(result.data.Hora_de_AsignacionA);
                     $('#Fecha_de_Atencion_del_Especialista').val(result.data.Fecha_de_Atencion_del_Especialista);
                     $('#Hora_de_Atencion_del_Especialista').val(result.data.Hora_de_Atencion_del_Especialista);
+                    Detalle_Solicitud_Historial_de_AsignacionesDataDataTable = result.Historial_de_Asignaciones;
+                    showDetalle_Solicitud_Historial_de_AsignacionesGrid(result.Historial_de_Asignaciones);
+                    $('#Detalle_Solicitud_Historial_de_AsignacionesGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_Solicitud_Historial_de_AsignacionesGrid .gridDatePicker').attr("readonly", "");
 
                 },
                 error: function (result) {
@@ -3136,6 +3632,7 @@
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Especialista_AsignadoA', $('#Especialista_AsignadoA').val());
+                data.append('Motivo_cambio_facilitador', $('#Motivo_cambio_facilitador').val());
                 data.append('Asignar_Especialista_Automatico', $('#Asignar_Especialista_Automatico').prop('checked'));
                 data.append('Razone', $('#Razone').val());
                 data.append('Tipo_de_Mecanismo', $('#Tipo_de_Mecanismo').val());
@@ -3157,7 +3654,8 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Asignacion");
 					} else {
 						newId = result;
-                    
+                    					    SendDetalle_Solicitud_Historial_de_Asignaciones(null, newId);
+
 					}
 				},
 				error: function (result) {

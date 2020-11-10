@@ -477,6 +477,14 @@
     if (ViewBag.Spartan_Users_Especialista_AsignadoA != null)
     { varSpartan_User_Especialista_AsignadoA = (List<SelectListItem>)ViewBag.Spartan_Users_Especialista_AsignadoA; }
                 <div class="MarginBottom">
+                    <h3>@Resources.SolicitudResources.Motivo_cambio_facilitador</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Motivo_cambio_facilitadorFilter, filters, new { @class = "form-control", @id = "ddlMotivo_cambio_facilitadorFilter" })
+                    @Html.TextBoxFor(m => m.Motivo_cambio_facilitador, new { @class = "form-control", @type = "text", @id = "txtMotivo_cambio_facilitador" })
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.SolicitudResources.Razone</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -1074,6 +1082,11 @@
                 advanceSearch.Especialista_AsignadoAToSearch = $("#ddlAdvanceEspecialista_AsignadoA").val();
                 advanceSearch.Especialista_AsignadoASearchType = 2;
             }
+        }
+        if ($("#txtAdvanceMotivo_cambio_facilitador").val() != "") {
+            hasParameter = true;
+            advanceSearch.SolicitudMotivo_cambio_facilitador = $("#txtAdvanceMotivo_cambio_facilitador").val();
+            advanceSearch.SolicitudMotivo_cambio_facilitadorSearchType = $("#ddlAdvanceMotivo_cambio_facilitadorFilter").val();
         }
         if ($("#ddlAdvanceAsignar_Especialista_Automatico").val() != "") {
             hasParameter = true;

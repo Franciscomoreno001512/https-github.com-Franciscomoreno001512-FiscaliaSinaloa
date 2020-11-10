@@ -920,8 +920,18 @@
 <Object Id="45390" culture="es-es" value="Detalle Delitos de Documentos" />
 <Object Id="45391" culture="en-us" value="Motivo de Rechazo de Solicitud" />
 <Object Id="45391" culture="es-es" value="Motivo de Rechazo de Solicitud" />
+<Object Id="45392" culture="en-us" value="Detalle Solicitud Historial de Asignaciones" />
+<Object Id="45392" culture="es-es" value="Detalle Solicitud Historial de Asignaciones" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
 
 
 

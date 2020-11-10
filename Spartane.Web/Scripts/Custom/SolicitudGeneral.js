@@ -1,5 +1,303 @@
 ﻿
 
+//Begin Declarations for Foreigns fields for Detalle_Solicitud_Historial_de_Asignaciones MultiRow
+var Detalle_Solicitud_Historial_de_AsignacionescountRowsChecked = 0;
+
+
+
+function GetDetalle_Solicitud_Historial_de_Asignaciones_Spartan_UserName(Id) {
+    for (var i = 0; i < Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems.length; i++) {
+        if (Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems[i].Id_User == Id) {
+            return Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems[i].Name;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Solicitud_Historial_de_Asignaciones_Spartan_UserDropDown() {
+    var Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Solicitud_Historial_de_Asignaciones_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserDropdown);
+
+    for (var i = 0; i < Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems.length; i++) {
+        $('<option />', { value: Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems[i].Id_User, text: Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems[i].Name }).appendTo(Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserDropdown);
+    }
+    return Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserDropdown;
+}
+function GetDetalle_Solicitud_Historial_de_Asignaciones_Spartan_UserName(Id) {
+    for (var i = 0; i < Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems.length; i++) {
+        if (Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems[i].Id_User == Id) {
+            return Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems[i].Name;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Solicitud_Historial_de_Asignaciones_Spartan_UserDropDown() {
+    var Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Solicitud_Historial_de_Asignaciones_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserDropdown);
+
+    for (var i = 0; i < Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems.length; i++) {
+        $('<option />', { value: Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems[i].Id_User, text: Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserItems[i].Name }).appendTo(Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserDropdown);
+    }
+    return Detalle_Solicitud_Historial_de_Asignaciones_Spartan_UserDropdown;
+}
+
+
+
+function GetInsertDetalle_Solicitud_Historial_de_AsignacionesRowControls(index) {
+    var columnData = [];
+    var inputData = "<input type='text' class='fullWidth form-control'/>";
+
+    columnData[0] = $($.parseHTML(GetGridDatePicker())).addClass('Detalle_Solicitud_Historial_de_Asignaciones_Fecha_cambio Fecha_cambio').attr('id', 'Detalle_Solicitud_Historial_de_Asignaciones_Fecha_cambio_' + index).attr('data-field', 'Fecha_cambio');
+    columnData[1] = $($.parseHTML(GetGridTimePicker())).addClass('Detalle_Solicitud_Historial_de_Asignaciones_Hora_cambio Hora_cambio').attr('id', 'Detalle_Solicitud_Historial_de_Asignaciones_Hora_cambio_' + index).attr('data-field', 'Hora_cambio');
+    columnData[2] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Solicitud_Historial_de_Asignaciones_Usuario'))).addClass('Detalle_Solicitud_Historial_de_Asignaciones_Usuario Usuario').attr('id', 'Detalle_Solicitud_Historial_de_Asignaciones_Usuario_' + index).attr('data-field', 'Usuario').after($.parseHTML(addNew('Detalle_Solicitud_Historial_de_Asignaciones', 'Spartan_User', 'Usuario', 266705)));
+    columnData[3] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Solicitud_Historial_de_Asignaciones_Facilitador_Asignado'))).addClass('Detalle_Solicitud_Historial_de_Asignaciones_Facilitador_Asignado Facilitador_Asignado').attr('id', 'Detalle_Solicitud_Historial_de_Asignaciones_Facilitador_Asignado_' + index).attr('data-field', 'Facilitador_Asignado').after($.parseHTML(addNew('Detalle_Solicitud_Historial_de_Asignaciones', 'Spartan_User', 'Facilitador_Asignado', 266706)));
+    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Solicitud_Historial_de_Asignaciones_Motivo_cambio Motivo_cambio').attr('id', 'Detalle_Solicitud_Historial_de_Asignaciones_Motivo_cambio_' + index).attr('data-field', 'Motivo_cambio');
+
+
+    initiateUIControls();
+    return columnData;
+}
+
+function Detalle_Solicitud_Historial_de_AsignacionesInsertRow(rowIndex) {
+if (EjecutarValidacionesAntesDeGuardarMRDetalle_Solicitud_Historial_de_Asignaciones("Detalle_Solicitud_Historial_de_Asignaciones_", "_" + rowIndex)) {
+    var iPage = Detalle_Solicitud_Historial_de_AsignacionesTable.fnPagingInfo().iPage;
+    var nameOfGrid = 'Detalle_Solicitud_Historial_de_Asignaciones';
+    var prevData = Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetData(rowIndex);
+    var data = Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetNodes(rowIndex);
+    var counter = 1;
+    var newData = {
+        Folio: prevData.Folio,
+        IsInsertRow: false
+
+        ,Fecha_cambio:  data.childNodes[counter++].childNodes[0].value
+        ,Hora_cambio:  data.childNodes[counter++].childNodes[0].value
+        , UsuarioName:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
+        , Usuario:  data.childNodes[counter++].childNodes[0].value 	
+        , Facilitador_AsignadoName:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
+        , Facilitador_Asignado:  data.childNodes[counter++].childNodes[0].value 	
+        ,Motivo_cambio:  data.childNodes[counter++].childNodes[0].value
+
+    }
+    Detalle_Solicitud_Historial_de_AsignacionesTable.fnUpdate(newData, rowIndex, null, true);
+    Detalle_Solicitud_Historial_de_AsignacionesrowCreationGrid(data, newData, rowIndex);
+    Detalle_Solicitud_Historial_de_AsignacionesTable.fnPageChange(iPage);
+    Detalle_Solicitud_Historial_de_AsignacionescountRowsChecked--;	
+    EjecutarValidacionesDespuesDeGuardarMRDetalle_Solicitud_Historial_de_Asignaciones("Detalle_Solicitud_Historial_de_Asignaciones_", "_" + rowIndex);
+  }
+}
+
+function Detalle_Solicitud_Historial_de_AsignacionesCancelRow(rowIndex) {
+    var prevData = Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetData(rowIndex);
+    var data = Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetNodes(rowIndex);
+
+    if (prevData.IsInsertRow) {
+        Detalle_Solicitud_Historial_de_AsignacionesTable.fnDeleteRow(rowIndex, function (dtSettings, row) {
+            console.log('Row deleted');
+        }, true);
+    } else {
+        Detalle_Solicitud_Historial_de_AsignacionesrowCreationGrid(data, prevData, rowIndex);
+    }
+	showDetalle_Solicitud_Historial_de_AsignacionesGrid(Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetData());
+    Detalle_Solicitud_Historial_de_AsignacionescountRowsChecked--;
+	initiateUIControls();
+}
+
+function GetDetalle_Solicitud_Historial_de_AsignacionesFromDataTable() {
+    var Detalle_Solicitud_Historial_de_AsignacionesData = [];
+    var gridData = Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetData();
+    //debugger;
+    for (var i = 0; i < gridData.length; i++) {
+        if (gridData[i].IsInsertRow == null || !gridData[i].IsInsertRow)
+            Detalle_Solicitud_Historial_de_AsignacionesData.push({
+                Folio: gridData[i].Folio
+
+                ,Fecha_cambio: gridData[i].Fecha_cambio
+                ,Hora_cambio: gridData[i].Hora_cambio
+                ,Usuario: gridData[i].Usuario
+                ,Facilitador_Asignado: gridData[i].Facilitador_Asignado
+                ,Motivo_cambio: gridData[i].Motivo_cambio
+
+                ,Removed: false
+            });
+    }
+
+    for (i = 0; i < removedDetalle_Solicitud_Historial_de_AsignacionesData.length; i++) {
+        if (removedDetalle_Solicitud_Historial_de_AsignacionesData[i] != null && removedDetalle_Solicitud_Historial_de_AsignacionesData[i].Folio > 0)
+            Detalle_Solicitud_Historial_de_AsignacionesData.push({
+                Folio: removedDetalle_Solicitud_Historial_de_AsignacionesData[i].Folio
+
+                ,Fecha_cambio: removedDetalle_Solicitud_Historial_de_AsignacionesData[i].Fecha_cambio
+                ,Hora_cambio: removedDetalle_Solicitud_Historial_de_AsignacionesData[i].Hora_cambio
+                ,Usuario: removedDetalle_Solicitud_Historial_de_AsignacionesData[i].Usuario
+                ,Facilitador_Asignado: removedDetalle_Solicitud_Historial_de_AsignacionesData[i].Facilitador_Asignado
+                ,Motivo_cambio: removedDetalle_Solicitud_Historial_de_AsignacionesData[i].Motivo_cambio
+
+                , Removed: true
+            });
+    }	
+
+    return Detalle_Solicitud_Historial_de_AsignacionesData;
+}
+
+function Detalle_Solicitud_Historial_de_AsignacionesEditRow(rowIndex, currentRow, executeRules) {
+    var rowIndexTable = (currentRow) ? Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetPosition($(currentRow).parent().parent()[0]) : rowIndex;
+    Detalle_Solicitud_Historial_de_AsignacionescountRowsChecked++;
+    var Detalle_Solicitud_Historial_de_AsignacionesRowElement = "Detalle_Solicitud_Historial_de_Asignaciones_" + rowIndex.toString();
+    var prevData = Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetData(rowIndexTable );
+    var row = Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetNodes(rowIndexTable);
+    row.innerHTML = "";
+    var nameOfTable = "Detalle_Solicitud_Historial_de_Asignaciones_";
+    var rowIndexFormed = "_" + rowIndex;
+    var controls = Detalle_Solicitud_Historial_de_AsignacionesGetUpdateRowControls(prevData, "Detalle_Solicitud_Historial_de_Asignaciones_", "_" + rowIndex);
+
+    var abc = "if(dynamicFieldValidation('" + Detalle_Solicitud_Historial_de_AsignacionesRowElement + "')){ Detalle_Solicitud_Historial_de_AsignacionesInsertRow(" + rowIndex + "); }";
+    var updateRowClick = '<a  onclick="' + abc + '">';
+
+    var actionColInsert = $('<td>');
+    $('<i class="fa fa-check">').appendTo($(updateRowClick).appendTo(actionColInsert));
+    $('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_Solicitud_Historial_de_AsignacionesCancelRow(" + rowIndex + ")'>").appendTo(actionColInsert));
+    actionColInsert.appendTo(row);
+
+    for (i = 0; i < controls.length; i++) {
+        var idHeader = $(controls[i]).data('field') + 'Header';
+        if ($(controls[i]).length > 1) {
+            idHeader = $($(controls[i])[1]).data('field') + 'Header';
+        }
+		var classe = ($('#Detalle_Solicitud_Historial_de_AsignacionesGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + ($('#Detalle_Solicitud_Historial_de_AsignacionesGrid .' + idHeader).css('display') == 'none' ? ' hide' : '' );
+		  if ($(controls[i]).next().length > 0) {
+		        var div = $(controls[i]).next();
+		        $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+		    }
+		    else
+                $(controls[i]).appendTo($('<td class="' + classe +  '" id="td'+nameOfTable+idHeader.replace('Header', '')+rowIndexFormed+'">').appendTo(row));                   
+    }
+    
+    setDetalle_Solicitud_Historial_de_AsignacionesValidation();
+    initiateUIControls();
+    $('.Detalle_Solicitud_Historial_de_Asignaciones' + rowIndexFormed + ' .inputMoney').inputmask("currency", { prefix: "", rightAlign: false });
+    $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+    if(executeRules == null || (executeRules != null && executeRules == true))
+    {
+         EjecutarValidacionesEditRowMRDetalle_Solicitud_Historial_de_Asignaciones(nameOfTable, rowIndexFormed);
+    }
+}
+
+function Detalle_Solicitud_Historial_de_AsignacionesfnOpenAddRowPopUp() {
+    var currentRowIndex = Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetData().length;
+    Detalle_Solicitud_Historial_de_AsignacionesfnClickAddRow();
+    GetAddDetalle_Solicitud_Historial_de_AsignacionesPopup(currentRowIndex, 0);
+}
+
+function Detalle_Solicitud_Historial_de_AsignacionesEditRowPopup(rowIndex, currentRow) {
+    var rowIndexTable = Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetPosition($(currentRow).parent().parent()[0]);
+    var Detalle_Solicitud_Historial_de_AsignacionesRowElement = "Detalle_Solicitud_Historial_de_Asignaciones_" + rowIndex.toString();
+    var prevData = Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetData(rowIndexTable);
+    GetAddDetalle_Solicitud_Historial_de_AsignacionesPopup(rowIndex, 1, prevData.Folio);
+
+    $('#Detalle_Solicitud_Historial_de_AsignacionesFecha_cambio').val(prevData.Fecha_cambio);
+    $('#Detalle_Solicitud_Historial_de_AsignacionesHora_cambio').val(prevData.Hora_cambio);
+    $('#dvDetalle_Solicitud_Historial_de_AsignacionesUsuario').html($($.parseHTML(GetGridAutoComplete(prevData.Usuario.label,'AutoCompleteUsuario'))).addClass('Detalle_Solicitud_Historial_de_Asignaciones_Usuario'));
+    $('#dvDetalle_Solicitud_Historial_de_AsignacionesFacilitador_Asignado').html($($.parseHTML(GetGridAutoComplete(prevData.Facilitador_Asignado.label,'AutoCompleteFacilitador_Asignado'))).addClass('Detalle_Solicitud_Historial_de_Asignaciones_Facilitador_Asignado'));
+    $('#Detalle_Solicitud_Historial_de_AsignacionesMotivo_cambio').val(prevData.Motivo_cambio);
+
+    initiateUIControls();
+
+
+
+
+
+
+
+}
+
+function Detalle_Solicitud_Historial_de_AsignacionesAddInsertRow() {
+    if (Detalle_Solicitud_Historial_de_AsignacionesinsertRowCurrentIndex < 1)
+    {
+        Detalle_Solicitud_Historial_de_AsignacionesinsertRowCurrentIndex = 1;
+    }
+    return {
+        Folio: null,
+        IsInsertRow: true
+
+        ,Fecha_cambio: ""
+        ,Hora_cambio: ""
+        ,Usuario: ""
+        ,Facilitador_Asignado: ""
+        ,Motivo_cambio: ""
+
+    }
+}
+
+function Detalle_Solicitud_Historial_de_AsignacionesfnClickAddRow() {
+    Detalle_Solicitud_Historial_de_AsignacionescountRowsChecked++;
+    Detalle_Solicitud_Historial_de_AsignacionesTable.fnAddData(Detalle_Solicitud_Historial_de_AsignacionesAddInsertRow(), true);
+    Detalle_Solicitud_Historial_de_AsignacionesTable.fnPageChange('last');
+    initiateUIControls();
+	 //var tag = $('#Detalle_Solicitud_Historial_de_AsignacionesGrid tbody tr td .form-control').first().get(0).tagName.toLowerCase();
+    //$('#Detalle_Solicitud_Historial_de_AsignacionesGrid tbody tr:nth-of-type(' + (Detalle_Solicitud_Historial_de_AsignacionesinsertRowCurrentIndex + 1) + ') ' + tag ).focus();
+    EjecutarValidacionesNewRowMRDetalle_Solicitud_Historial_de_Asignaciones("Detalle_Solicitud_Historial_de_Asignaciones_", "_" + Detalle_Solicitud_Historial_de_AsignacionesinsertRowCurrentIndex);
+}
+
+function Detalle_Solicitud_Historial_de_AsignacionesClearGridData() {
+    Detalle_Solicitud_Historial_de_AsignacionesData = [];
+    Detalle_Solicitud_Historial_de_AsignacionesdeletedItem = [];
+    Detalle_Solicitud_Historial_de_AsignacionesDataMain = [];
+    Detalle_Solicitud_Historial_de_AsignacionesDataMainPages = [];
+    Detalle_Solicitud_Historial_de_AsignacionesnewItemCount = 0;
+    Detalle_Solicitud_Historial_de_AsignacionesmaxItemIndex = 0;
+    $("#Detalle_Solicitud_Historial_de_AsignacionesGrid").DataTable().clear();
+    $("#Detalle_Solicitud_Historial_de_AsignacionesGrid").DataTable().destroy();
+}
+
+//Used to Get Mecanismos Alternos Information
+function GetDetalle_Solicitud_Historial_de_Asignaciones() {
+    var form_data = new FormData();
+    for (var i = 0; i < Detalle_Solicitud_Historial_de_AsignacionesData.length; i++) {
+        form_data.append('[' + i + '].Folio', Detalle_Solicitud_Historial_de_AsignacionesData[i].Folio);
+
+        form_data.append('[' + i + '].Fecha_cambio', Detalle_Solicitud_Historial_de_AsignacionesData[i].Fecha_cambio);
+        form_data.append('[' + i + '].Hora_cambio', Detalle_Solicitud_Historial_de_AsignacionesData[i].Hora_cambio);
+        form_data.append('[' + i + '].Usuario', Detalle_Solicitud_Historial_de_AsignacionesData[i].Usuario);
+        form_data.append('[' + i + '].Facilitador_Asignado', Detalle_Solicitud_Historial_de_AsignacionesData[i].Facilitador_Asignado);
+        form_data.append('[' + i + '].Motivo_cambio', Detalle_Solicitud_Historial_de_AsignacionesData[i].Motivo_cambio);
+
+        form_data.append('[' + i + '].Removed', Detalle_Solicitud_Historial_de_AsignacionesData[i].Removed);
+    }
+    return form_data;
+}
+function Detalle_Solicitud_Historial_de_AsignacionesInsertRowFromPopup(rowIndex) {
+    //if (EjecutarValidacionesAntesDeGuardarMRDetalle_Solicitud_Historial_de_Asignaciones("Detalle_Solicitud_Historial_de_AsignacionesTable", rowIndex)) {
+    var prevData = Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetData(rowIndex);
+    var data = Detalle_Solicitud_Historial_de_AsignacionesTable.fnGetNodes(rowIndex);
+    var newData = {
+        Folio: prevData.Folio,
+        IsInsertRow: false
+
+        ,Fecha_cambio: $('#Detalle_Solicitud_Historial_de_AsignacionesFecha_cambio').val()
+        ,Hora_cambio: $('#Detalle_Solicitud_Historial_de_AsignacionesHora_cambio').val()
+        ,Usuario: $('#Detalle_Solicitud_Historial_de_AsignacionesUsuario').val()
+        ,Facilitador_Asignado: $('#Detalle_Solicitud_Historial_de_AsignacionesFacilitador_Asignado').val()
+        ,Motivo_cambio: $('#Detalle_Solicitud_Historial_de_AsignacionesMotivo_cambio').val()
+
+    }
+
+    Detalle_Solicitud_Historial_de_AsignacionesTable.fnUpdate(newData, rowIndex, null, true);
+    Detalle_Solicitud_Historial_de_AsignacionesrowCreationGrid(data, newData, rowIndex);
+    $('#AddDetalle_Solicitud_Historial_de_Asignaciones-form').modal({ show: false });
+    $('#AddDetalle_Solicitud_Historial_de_Asignaciones-form').modal('hide');
+    Detalle_Solicitud_Historial_de_AsignacionesEditRow(rowIndex);
+    Detalle_Solicitud_Historial_de_AsignacionesInsertRow(rowIndex);
+    //}
+}
+function Detalle_Solicitud_Historial_de_AsignacionesRemoveAddRow(rowIndex) {
+    Detalle_Solicitud_Historial_de_AsignacionesTable.fnDeleteRow(rowIndex, function (dtSettings, row) {
+    }, true);
+}
+
+//End Declarations for Foreigns fields for Detalle_Solicitud_Historial_de_Asignaciones MultiRow
 //Begin Declarations for Foreigns fields for Detalle_de_Solicitud_Bitacora_de_Coincid MultiRow
 var Detalle_de_Solicitud_Bitacora_de_CoincidcountRowsChecked = 0;
 
@@ -602,6 +900,48 @@ function Detalle_Historico_JARemoveAddRow(rowIndex) {
 
 
 $(function () {
+    function Detalle_Solicitud_Historial_de_AsignacionesinitializeMainArray(totalCount) {
+        if (Detalle_Solicitud_Historial_de_AsignacionesDataMain.length != totalCount && !Detalle_Solicitud_Historial_de_AsignacionesDataMainInitialized) {
+            Detalle_Solicitud_Historial_de_AsignacionesDataMainInitialized = true;
+            for (var i = 0; i < totalCount; i++) {
+                Detalle_Solicitud_Historial_de_AsignacionesDataMain[i] = null;
+            }
+        }
+    }
+    function Detalle_Solicitud_Historial_de_AsignacionesremoveFromMainArray() {
+        for (var j = 0; j < Detalle_Solicitud_Historial_de_AsignacionesdeletedItem.length; j++) {
+            for (var i = 0; i < Detalle_Solicitud_Historial_de_AsignacionesDataMain.length; i++) {
+                if (Detalle_Solicitud_Historial_de_AsignacionesDataMain[i] != null && Detalle_Solicitud_Historial_de_AsignacionesDataMain[i].Id == Detalle_Solicitud_Historial_de_AsignacionesdeletedItem[j]) {
+                    hDetalle_Solicitud_Historial_de_AsignacionesDataMain.splice(i, 1);
+                    break;
+                }
+            }
+        }
+    }
+    function Detalle_Solicitud_Historial_de_AsignacionescopyMainHistoryArray() {
+        var data = [];
+        for (var i = 0; i < Detalle_Solicitud_Historial_de_AsignacionesDataMain.length; i++) {
+            data[i] = Detalle_Solicitud_Historial_de_AsignacionesDataMain[i];
+
+        }
+        return data;
+    }
+    function Detalle_Solicitud_Historial_de_AsignacionesgetNewResult() {
+        var newData = copyMainDetalle_Solicitud_Historial_de_AsignacionesArray();
+
+        for (var i = 0; i < Detalle_Solicitud_Historial_de_AsignacionesData.length; i++) {
+            if (Detalle_Solicitud_Historial_de_AsignacionesData[i].Removed == null || Detalle_Solicitud_Historial_de_AsignacionesData[i].Removed == false) {
+                newData.splice(0, 0, Detalle_Solicitud_Historial_de_AsignacionesData[i]);
+            }
+        }
+        return newData;
+    }
+    function Detalle_Solicitud_Historial_de_AsignacionespushToMainArray(data, pageIndex, pageSize) {
+        for (var i = 0; i < data.length; i++) {
+            if (Detalle_Solicitud_Historial_de_AsignacionesDataMain[(pageIndex * pageSize) - pageSize + i] == null)
+                Detalle_Solicitud_Historial_de_AsignacionesDataMain[(pageIndex * pageSize) - pageSize + i] = data[i];
+        }
+    }
     function Detalle_de_Solicitud_Bitacora_de_CoincidinitializeMainArray(totalCount) {
         if (Detalle_de_Solicitud_Bitacora_de_CoincidDataMain.length != totalCount && !Detalle_de_Solicitud_Bitacora_de_CoincidDataMainInitialized) {
             Detalle_de_Solicitud_Bitacora_de_CoincidDataMainInitialized = true;
@@ -822,6 +1162,30 @@ function GetAutoCompleteSolicitud_Especialista_AsignadoA_Spartan_UserData(data) 
     return AutoCompleteEspecialista_AsignadoAData;
 }
 //Grid GetAutocomplete
+var AutoCompleteUsuarioData = [];
+function GetAutoCompleteDetalle_Solicitud_Historial_de_Asignaciones_Usuario_Spartan_UserData(data) {
+	AutoCompleteUsuarioData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuarioData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuarioData;
+}
+var AutoCompleteFacilitador_AsignadoData = [];
+function GetAutoCompleteDetalle_Solicitud_Historial_de_Asignaciones_Facilitador_Asignado_Spartan_UserData(data) {
+	AutoCompleteFacilitador_AsignadoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteFacilitador_AsignadoData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteFacilitador_AsignadoData;
+}
+
+//Grid GetAutocomplete
 
 //Grid GetAutocomplete
 var AutoCompleteUsuarioData = [];
@@ -909,6 +1273,7 @@ function ClearControls() {
     $('#Especialista_AsignadoA').empty();
     $("#Especialista_AsignadoA").append('<option value=""></option>');
     $('#Especialista_AsignadoA').val('0').trigger('change');
+                Detalle_Solicitud_Historial_de_AsignacionesClearGridData();
                 Detalle_de_Solicitud_Bitacora_de_CoincidClearGridData();
                 Detalle_Historico_JAClearGridData();
 
@@ -945,6 +1310,11 @@ function CheckValidation() {
     var $myForm = $('#CreateSolicitud');
     if (!$myForm[0].checkValidity()) {
         $myForm.submit();
+        return false;
+    }
+    if (Detalle_Solicitud_Historial_de_AsignacionescountRowsChecked > 0)
+    {
+        ShowMessagePendingRowDetalle_Solicitud_Historial_de_Asignaciones();
         return false;
     }
     if (Detalle_de_Solicitud_Bitacora_de_CoincidcountRowsChecked > 0)
@@ -1027,7 +1397,8 @@ $(document).ready(function () {
 					ClearControls();
 					ClearAttachmentsDiv();
 					ResetClaveLabel();
-	                getDetalle_de_Solicitud_Bitacora_de_CoincidData();
+	                getDetalle_Solicitud_Historial_de_AsignacionesData();
+                getDetalle_de_Solicitud_Bitacora_de_CoincidData();
                 getDetalle_Historico_JAData();
 
 					if (isPartial)
@@ -1088,12 +1459,14 @@ $(document).ready(function () {
     $('#Especialista_AsignadoA').empty();
     $("#Especialista_AsignadoA").append('<option value=""></option>');
     $('#Especialista_AsignadoA').val('0').trigger('change');
+                Detalle_Solicitud_Historial_de_AsignacionesClearGridData();
                 Detalle_de_Solicitud_Bitacora_de_CoincidClearGridData();
                 Detalle_Historico_JAClearGridData();
 
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);
-	                getDetalle_de_Solicitud_Bitacora_de_CoincidData();
+	                getDetalle_Solicitud_Historial_de_AsignacionesData();
+                getDetalle_de_Solicitud_Bitacora_de_CoincidData();
                 getDetalle_Historico_JAData();
 
 					EjecutarValidacionesDespuesDeGuardar();		

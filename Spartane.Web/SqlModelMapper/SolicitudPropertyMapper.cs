@@ -107,6 +107,8 @@ namespace Spartane.Web.SqlModelMapper
                 case "Especialista_AsignadoA[Name]":
                 case "Especialista_AsignadoAName":
                     return "Spartan_User.Name";
+                case "Motivo_cambio_facilitador":
+                    return "Solicitud.Motivo_cambio_facilitador";
                 case "Asignar_Especialista_Automatico":
                     return "Solicitud.Asignar_Especialista_Automatico";
                 case "Razone":

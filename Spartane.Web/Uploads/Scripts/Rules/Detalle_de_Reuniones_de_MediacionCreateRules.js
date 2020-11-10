@@ -113,6 +113,36 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2161, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2164, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Cumplimiento' + rowIndex));
+
+}
+//BusinessRuleId:2164, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2164, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Cumplimiento' + rowIndex));
+
+}
+//BusinessRuleId:2164, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2164, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Cumplimiento' + rowIndex));
+
+}
+//BusinessRuleId:2164, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+//BusinessRuleId:2165, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ fillMRFromQuery('Detalle_de_Solicitante_en_Reuniones', "exec uspLlenaSolicitantesReunion GLOBAL[SpartanOperationId]"); fillMRFromQuery('Detalle_de_Requerido_en_Reuniones', "exec uspLlenaRequeridosReunion GLOBAL[SpartanOperationId]");
+
+}
+//BusinessRuleId:2165, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -137,6 +167,20 @@ if(operation == 'New'){
 //BusinessRuleId:1699, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 
+
+//BusinessRuleId:2168, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery("exec uspGeneraCitaReunion GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2168, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:2170, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+ EvaluaQuery("exec uspGeneraCitaReunion FLDD[lblClave]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2170, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

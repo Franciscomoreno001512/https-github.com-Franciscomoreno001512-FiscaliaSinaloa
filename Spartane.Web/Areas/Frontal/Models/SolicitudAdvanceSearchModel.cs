@@ -164,6 +164,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceEspecialista_AsignadoA { set; get; }
         public int[] AdvanceEspecialista_AsignadoAMultiple { set; get; }
 
+        public Filters Motivo_cambio_facilitadorFilter { set; get; }
+        public string Motivo_cambio_facilitador { set; get; }
+
         public RadioOptions Asignar_Especialista_Automatico { set; get; }
 
         public Filters RazoneFilter { set; get; }

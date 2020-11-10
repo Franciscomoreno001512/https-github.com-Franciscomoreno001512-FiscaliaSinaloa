@@ -39,6 +39,7 @@
   <resource culture="es-es" name="LongitudH" value="Longitud"></resource>
   <resource culture="es-es" name="LatitudH" value="Latitud"></resource>
   <resource culture="es-es" name="Especialista_AsignadoA" value="Facilitador Asignado"></resource>
+  <resource culture="es-es" name="Motivo_cambio_facilitador" value="Motivo de Cambio de Facilitador"></resource>
   <resource culture="es-es" name="Asignar_Especialista_Automatico" value="Asignar Facilitador Manualmente"></resource>
   <resource culture="es-es" name="Razone" value="Razón de Asignación Manual"></resource>
   <resource culture="es-es" name="Tipo_de_Mecanismo" value="Tipo de Mecanismo"></resource>
@@ -46,6 +47,7 @@
   <resource culture="es-es" name="Hora_de_AsignacionA" value="Hora de Asignación"></resource>
   <resource culture="es-es" name="Fecha_de_Atencion_del_Especialista" value="Fecha de Atención del Facilitador"></resource>
   <resource culture="es-es" name="Hora_de_Atencion_del_Especialista" value="Hora de Atención del Facilitador"></resource>
+  <resource culture="es-es" name="Historial_de_Asignaciones" value="Historial de Asignaciones"></resource>
   <resource culture="es-es" name="Coincidencias" value="Coincidencias"></resource>
   <resource culture="es-es" name="Rechazar" value="Rechazar"></resource>
   <resource culture="es-es" name="Motivo_de_Rechazo" value="Motivo de Rechazo"></resource>
