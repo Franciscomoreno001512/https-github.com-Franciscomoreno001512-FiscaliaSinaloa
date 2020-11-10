@@ -6724,3 +6724,5 @@ builder.RegisterType<Detalle_Solicitud_Historial_de_AsignacionesApiConsumer>().A
 
 
 
+
+
