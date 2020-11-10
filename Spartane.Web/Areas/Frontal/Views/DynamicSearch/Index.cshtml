@@ -889,7 +889,7 @@
         var id = EvaluaQuery("select isnull(archivo,'') as Archivo from control_de_documentos where folio = " + folioControlDoc, "", "");// document.getElementById("Archivo").innerHTML;
             $.ajax({
                 async: false,
-                url: '@Url.Content("~/Frontal/Detalle_de_documentos/GetArchivoFisico")',
+                url: '@Url.Content("~/Frontal/General/GetArchivoFisico")',
                 data: { "Archivo": id },
                 type: 'POST',
                 success: function (result) {
