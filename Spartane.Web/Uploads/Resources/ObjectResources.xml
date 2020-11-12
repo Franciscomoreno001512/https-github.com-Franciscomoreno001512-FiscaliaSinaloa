@@ -922,8 +922,60 @@
 <Object Id="45391" culture="es-es" value="Motivo de Rechazo de Solicitud" />
 <Object Id="45392" culture="en-us" value="Detalle Solicitud Historial de Asignaciones" />
 <Object Id="45392" culture="es-es" value="Detalle Solicitud Historial de Asignaciones" />
+<Object Id="45393" culture="en-us" value="Forma de Cumplimiento" />
+<Object Id="45393" culture="es-es" value="Forma de Cumplimiento" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

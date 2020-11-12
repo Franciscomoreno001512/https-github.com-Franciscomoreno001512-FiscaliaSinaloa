@@ -76,13 +76,13 @@ namespace Resources
             }
         }
 
-        /// <summary>Motivo_cambio</summary>
-        public static string Motivo_cambio
+        /// <summary>Motivo_de_cambio</summary>
+        public static string Motivo_de_cambio
         {
             get
             {
                 SetPath();
-                return resourceProviderDetalle_Solicitud_Historial_de_Asignaciones.GetResource("Motivo_cambio", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderDetalle_Solicitud_Historial_de_Asignaciones.GetResource("Motivo_de_cambio", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

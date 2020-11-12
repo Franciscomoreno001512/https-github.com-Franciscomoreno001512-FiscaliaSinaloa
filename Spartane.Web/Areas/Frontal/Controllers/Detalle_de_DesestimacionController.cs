@@ -194,13 +194,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Detalle_de_Datos_Generaless_Nombre_Completo = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(true);
-            if (Detalle_de_Datos_Generaless_Nombre_Completo != null && Detalle_de_Datos_Generaless_Nombre_Completo.Resource != null)
-                ViewBag.Detalle_de_Datos_Generaless_Nombre_Completo = Detalle_de_Datos_Generaless_Nombre_Completo.Resource.Where(m => m.Nombre_Completo != null).OrderBy(m => m.Nombre_Completo).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo") ?? m.Nombre_Completo.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var A_Tiempos_Causal_de_Interrupcion = _IA_TiempoApiConsumer.SelAll(true);
             if (A_Tiempos_Causal_de_Interrupcion != null && A_Tiempos_Causal_de_Interrupcion.Resource != null)
@@ -303,13 +296,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Detalle_de_Datos_Generaless_Nombre_Completo = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(true);
-            if (Detalle_de_Datos_Generaless_Nombre_Completo != null && Detalle_de_Datos_Generaless_Nombre_Completo.Resource != null)
-                ViewBag.Detalle_de_Datos_Generaless_Nombre_Completo = Detalle_de_Datos_Generaless_Nombre_Completo.Resource.Where(m => m.Nombre_Completo != null).OrderBy(m => m.Nombre_Completo).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo") ?? m.Nombre_Completo.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var A_Tiempos_Causal_de_Interrupcion = _IA_TiempoApiConsumer.SelAll(true);
             if (A_Tiempos_Causal_de_Interrupcion != null && A_Tiempos_Causal_de_Interrupcion.Resource != null)
@@ -372,7 +358,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        [HttpGet]
+		[HttpGet]
         public ActionResult GetDetalle_de_Datos_GeneralesAll()
         {
             try
@@ -381,7 +367,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(false).Resource;
-                
+				
                 return Json(result.OrderBy(m => m.Nombre_Completo).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo")?? m.Nombre_Completo,
@@ -468,13 +454,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Detalle_de_Datos_Generaless_Nombre_Completo = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(true);
-            if (Detalle_de_Datos_Generaless_Nombre_Completo != null && Detalle_de_Datos_Generaless_Nombre_Completo.Resource != null)
-                ViewBag.Detalle_de_Datos_Generaless_Nombre_Completo = Detalle_de_Datos_Generaless_Nombre_Completo.Resource.Where(m => m.Nombre_Completo != null).OrderBy(m => m.Nombre_Completo).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo") ?? m.Nombre_Completo.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var A_Tiempos_Causal_de_Interrupcion = _IA_TiempoApiConsumer.SelAll(true);
             if (A_Tiempos_Causal_de_Interrupcion != null && A_Tiempos_Causal_de_Interrupcion.Resource != null)
@@ -507,13 +486,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Detalle_de_Datos_Generaless_Nombre_Completo = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(true);
-            if (Detalle_de_Datos_Generaless_Nombre_Completo != null && Detalle_de_Datos_Generaless_Nombre_Completo.Resource != null)
-                ViewBag.Detalle_de_Datos_Generaless_Nombre_Completo = Detalle_de_Datos_Generaless_Nombre_Completo.Resource.Where(m => m.Nombre_Completo != null).OrderBy(m => m.Nombre_Completo).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo") ?? m.Nombre_Completo.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var A_Tiempos_Causal_de_Interrupcion = _IA_TiempoApiConsumer.SelAll(true);
             if (A_Tiempos_Causal_de_Interrupcion != null && A_Tiempos_Causal_de_Interrupcion.Resource != null)
@@ -574,7 +546,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-                        ,Nombre_CompletoNombre_Completo = CultureHelper.GetTraduction(m.Nombre_Completo_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_Completo") ?? (string)m.Nombre_Completo_Detalle_de_Datos_Generales.Nombre_Completo
+                        ,Nombre_CompletoNombre_Completo = CultureHelper.GetTraduction(m.Nombre_Completo_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Nombre_Completo_Detalle_de_Datos_Generales.Nombre_Completo
                         ,Causal_de_InterrupcionDescripcion = CultureHelper.GetTraduction(m.Causal_de_Interrupcion_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Causal_de_Interrupcion_A_Tiempo.Descripcion
                         ,Causa_de_InterrupcionDescripcion = CultureHelper.GetTraduction(m.Causa_de_Interrupcion_Causas_de_Interrupcion.Clave.ToString(), "Descripcion") ?? (string)m.Causa_de_Interrupcion_Causas_de_Interrupcion.Descripcion
                         ,Datos_InsuficientesDescripcion = CultureHelper.GetTraduction(m.Datos_Insuficientes_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Datos_Insuficientes_A_Tiempo.Descripcion
@@ -694,7 +666,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-                        ,Nombre_CompletoNombre_Completo = CultureHelper.GetTraduction(m.Nombre_Completo_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_Completo") ?? (string)m.Nombre_Completo_Detalle_de_Datos_Generales.Nombre_Completo
+                        ,Nombre_CompletoNombre_Completo = CultureHelper.GetTraduction(m.Nombre_Completo_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Nombre_Completo_Detalle_de_Datos_Generales.Nombre_Completo
                         ,Causal_de_InterrupcionDescripcion = CultureHelper.GetTraduction(m.Causal_de_Interrupcion_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Causal_de_Interrupcion_A_Tiempo.Descripcion
                         ,Causa_de_InterrupcionDescripcion = CultureHelper.GetTraduction(m.Causa_de_Interrupcion_Causas_de_Interrupcion.Clave.ToString(), "Descripcion") ?? (string)m.Causa_de_Interrupcion_Causas_de_Interrupcion.Descripcion
                         ,Datos_InsuficientesDescripcion = CultureHelper.GetTraduction(m.Datos_Insuficientes_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Datos_Insuficientes_A_Tiempo.Descripcion
@@ -729,6 +701,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.NUAT =trans ??item.NUAT;
                 }
                 return Json(result.Modulo_Atencion_Inicials.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Desestimacion_Nombre_Completo_Detalle_de_Datos_Generales(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Detalle_de_Datos_Generales.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Datos_Generales.Nombre_Completo as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IDetalle_de_Datos_GeneralesApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Datos_Generales.Nombre_Completo ASC ").Resource;
+               
+                foreach (var item in result.Detalle_de_Datos_Generaless)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo");
+                    item.Nombre_Completo =trans ??item.Nombre_Completo;
+                }
+                return Json(result.Detalle_de_Datos_Generaless.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -1363,7 +1362,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-                        ,Nombre_CompletoNombre_Completo = CultureHelper.GetTraduction(m.Nombre_Completo_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_Completo") ?? (string)m.Nombre_Completo_Detalle_de_Datos_Generales.Nombre_Completo
+                        ,Nombre_CompletoNombre_Completo = CultureHelper.GetTraduction(m.Nombre_Completo_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Nombre_Completo_Detalle_de_Datos_Generales.Nombre_Completo
                         ,Causal_de_InterrupcionDescripcion = CultureHelper.GetTraduction(m.Causal_de_Interrupcion_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Causal_de_Interrupcion_A_Tiempo.Descripcion
                         ,Causa_de_InterrupcionDescripcion = CultureHelper.GetTraduction(m.Causa_de_Interrupcion_Causas_de_Interrupcion.Clave.ToString(), "Descripcion") ?? (string)m.Causa_de_Interrupcion_Causas_de_Interrupcion.Descripcion
                         ,Datos_InsuficientesDescripcion = CultureHelper.GetTraduction(m.Datos_Insuficientes_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Datos_Insuficientes_A_Tiempo.Descripcion
@@ -1442,7 +1441,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-                        ,Nombre_CompletoNombre_Completo = CultureHelper.GetTraduction(m.Nombre_Completo_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_Completo") ?? (string)m.Nombre_Completo_Detalle_de_Datos_Generales.Nombre_Completo
+                        ,Nombre_CompletoNombre_Completo = CultureHelper.GetTraduction(m.Nombre_Completo_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Nombre_Completo_Detalle_de_Datos_Generales.Nombre_Completo
                         ,Causal_de_InterrupcionDescripcion = CultureHelper.GetTraduction(m.Causal_de_Interrupcion_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Causal_de_Interrupcion_A_Tiempo.Descripcion
                         ,Causa_de_InterrupcionDescripcion = CultureHelper.GetTraduction(m.Causa_de_Interrupcion_Causas_de_Interrupcion.Clave.ToString(), "Descripcion") ?? (string)m.Causa_de_Interrupcion_Causas_de_Interrupcion.Descripcion
                         ,Datos_InsuficientesDescripcion = CultureHelper.GetTraduction(m.Datos_Insuficientes_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Datos_Insuficientes_A_Tiempo.Descripcion
@@ -1523,7 +1522,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Modulo_Atencion_Inicial = m.Modulo_Atencion_Inicial
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
                         ,Nombre_Completo = m.Nombre_Completo
-                        ,Nombre_CompletoNombre_Completo = CultureHelper.GetTraduction(m.Nombre_Completo_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_Completo") ?? (string)m.Nombre_Completo_Detalle_de_Datos_Generales.Nombre_Completo
+                        ,Nombre_CompletoNombre_Completo = CultureHelper.GetTraduction(m.Nombre_Completo_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Nombre_Completo_Detalle_de_Datos_Generales.Nombre_Completo
                         ,Causal_de_Interrupcion = m.Causal_de_Interrupcion
                         ,Causal_de_InterrupcionDescripcion = CultureHelper.GetTraduction(m.Causal_de_Interrupcion_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Causal_de_Interrupcion_A_Tiempo.Descripcion
                         ,Causa_de_Interrupcion = m.Causa_de_Interrupcion

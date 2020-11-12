@@ -281,6 +281,36 @@ public ApiResponse<int> Update_Hechos(Solicitud_Hechos entity)
             }
         }
 
+public ApiResponse<int> Update_Cierre(Solicitud_Cierre entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Cierre",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<Solicitud_Cierre> Get_Cierre(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Solicitud.Solicitud_Cierre>(baseApi, ApiControllerUrl + "/Get_Cierre?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.Solicitud.Solicitud_Cierre>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.Solicitud.Solicitud_Cierre>(false, null);
+            }
+        }
+
 public ApiResponse<int> Update_Asignacion(Solicitud_Asignacion entity)
         {
             try
@@ -338,36 +368,6 @@ public ApiResponse<int> Update_Bitacora_de_Coincidencias(Solicitud_Bitacora_de_C
             catch (Exception ex)
             {
                 return new ApiResponse<Core.Domain.Solicitud.Solicitud_Bitacora_de_Coincidencias>(false, null);
-            }
-        }
-
-public ApiResponse<int> Update_Cierre(Solicitud_Cierre entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Cierre",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Solicitud_Cierre> Get_Cierre(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Solicitud.Solicitud_Cierre>(baseApi, ApiControllerUrl + "/Get_Cierre?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Solicitud.Solicitud_Cierre>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Solicitud.Solicitud_Cierre>(false, null);
             }
         }
 

@@ -17,6 +17,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Usuario_que_RegistraName { get; set; }
         public int? Tipo_de_Acuerdo { get; set; }
         public string Tipo_de_AcuerdoDescripcion { get; set; }
+        public int? Forma_de_Cumplimiento { get; set; }
+        public string Forma_de_CumplimientoDescripcion { get; set; }
+        public string Descripcion_del_Cumplimiento { get; set; }
         public int? Solicitante { get; set; }
         public string SolicitanteNombre_Completo { get; set; }
         public int? Requerido { get; set; }

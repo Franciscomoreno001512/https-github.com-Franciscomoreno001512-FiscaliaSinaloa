@@ -18,7 +18,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string UsuarioName { get; set; }
         public int? Facilitador_Asignado { get; set; }
         public string Facilitador_AsignadoName { get; set; }
-        public string Motivo_cambio { get; set; }
+        public string Motivo_de_cambio { get; set; }
 
     }
 	
@@ -32,7 +32,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string UsuarioName { get; set; }
         public int? Facilitador_Asignado { get; set; }
         public string Facilitador_AsignadoName { get; set; }
-        public string Motivo_cambio { get; set; }
+        public string Motivo_de_cambio { get; set; }
 
     }
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Acuerdo;
+using Spartane.Core.Domain.Forma_de_Cumplimiento;
 using Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante;
 using Spartane.Core.Domain.Detalle_de_Solicitud_Requerido;
 using Spartane.Core.Domain.Periodicidad;
@@ -33,6 +34,8 @@ namespace Spartane.Core.Domain.Acuerdos_MASC
         public string Hora_de_Registro { get; set; }
         public int? Usuario_que_Registra { get; set; }
         public int? Tipo_de_Acuerdo { get; set; }
+        public int? Forma_de_Cumplimiento { get; set; }
+        public string Descripcion_del_Cumplimiento { get; set; }
         public int? Solicitante { get; set; }
         public int? Requerido { get; set; }
         public string Lugar_Acordado { get; set; }
@@ -62,6 +65,8 @@ namespace Spartane.Core.Domain.Acuerdos_MASC
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Registra_Spartan_User { get; set; }
         [ForeignKey("Tipo_de_Acuerdo")]
         public virtual Spartane.Core.Domain.Tipo_de_Acuerdo.Tipo_de_Acuerdo Tipo_de_Acuerdo_Tipo_de_Acuerdo { get; set; }
+        [ForeignKey("Forma_de_Cumplimiento")]
+        public virtual Spartane.Core.Domain.Forma_de_Cumplimiento.Forma_de_Cumplimiento Forma_de_Cumplimiento_Forma_de_Cumplimiento { get; set; }
         [ForeignKey("Solicitante")]
         public virtual Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante.Detalle_de_Solicitud_Solicitante Solicitante_Detalle_de_Solicitud_Solicitante { get; set; }
         [ForeignKey("Requerido")]
@@ -91,6 +96,8 @@ namespace Spartane.Core.Domain.Acuerdos_MASC
         public string Hora_de_Registro { get; set; }
         public int? Usuario_que_Registra { get; set; }
         public int? Tipo_de_Acuerdo { get; set; }
+        public int? Forma_de_Cumplimiento { get; set; }
+        public string Descripcion_del_Cumplimiento { get; set; }
         public int? Solicitante { get; set; }
         public int? Requerido { get; set; }
         public string Lugar_Acordado { get; set; }
@@ -115,6 +122,8 @@ namespace Spartane.Core.Domain.Acuerdos_MASC
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Registra_Spartan_User { get; set; }
         [ForeignKey("Tipo_de_Acuerdo")]
         public virtual Spartane.Core.Domain.Tipo_de_Acuerdo.Tipo_de_Acuerdo Tipo_de_Acuerdo_Tipo_de_Acuerdo { get; set; }
+        [ForeignKey("Forma_de_Cumplimiento")]
+        public virtual Spartane.Core.Domain.Forma_de_Cumplimiento.Forma_de_Cumplimiento Forma_de_Cumplimiento_Forma_de_Cumplimiento { get; set; }
         [ForeignKey("Solicitante")]
         public virtual Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante.Detalle_de_Solicitud_Solicitante Solicitante_Detalle_de_Solicitud_Solicitante { get; set; }
         [ForeignKey("Requerido")]

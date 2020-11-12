@@ -32,12 +32,24 @@
   <resource culture="es-es" name="ColoniaH" value="Colonia"></resource>
   <resource culture="es-es" name="CalleH" value="Calle"></resource>
   <resource culture="es-es" name="Numero_ExteriorH" value="Número Exterior"></resource>
-  <resource culture="es-es" name="Numero_InteriorH" value="Número Interior"></resource>
   <resource culture="es-es" name="Codigo_PostalH" value="Código Postal"></resource>
   <resource culture="es-es" name="Entre_Calle" value="Entre Calle"></resource>
+  <resource culture="es-es" name="Numero_InteriorH" value="Número Interior"></resource>
   <resource culture="es-es" name="y_Calle" value="y Calle"></resource>
   <resource culture="es-es" name="LongitudH" value="Longitud"></resource>
   <resource culture="es-es" name="LatitudH" value="Latitud"></resource>
+  <resource culture="es-es" name="Fecha_Validacion" value="Fecha de Validación"></resource>
+  <resource culture="es-es" name="Hora_Validacion" value="Hora de Validación"></resource>
+  <resource culture="es-es" name="Usuario_que_Valida" value="Usuario que Valida"></resource>
+  <resource culture="es-es" name="Resultado" value="Resultado"></resource>
+  <resource culture="es-es" name="Motivo_de_Rechazo_Solicitud" value="Motivo de Rechazo"></resource>
+  <resource culture="es-es" name="Rechazar" value="Rechazar"></resource>
+  <resource culture="es-es" name="Motivo_de_Rechazo" value="Motivo de Rechazo"></resource>
+  <resource culture="es-es" name="Acuerdo_Cumplido" value="Acuerdo Cumplido"></resource>
+  <resource culture="es-es" name="Razon_de_Incumplimiento" value="Razón de Incumplimiento"></resource>
+  <resource culture="es-es" name="Tipo_de_Conclusion_Anticipada" value="Tipo de Conclusión Anticipada"></resource>
+  <resource culture="es-es" name="Fecha_de_Cierre" value="Fecha de Cierre"></resource>
+  <resource culture="es-es" name="Hora_de_Cierre" value="Hora de Cierre"></resource>
   <resource culture="es-es" name="Especialista_AsignadoA" value="Facilitador Asignado"></resource>
   <resource culture="es-es" name="Motivo_cambio_facilitador" value="Motivo de Cambio de Facilitador"></resource>
   <resource culture="es-es" name="Asignar_Especialista_Automatico" value="Asignar Facilitador Manualmente"></resource>
@@ -49,21 +61,14 @@
   <resource culture="es-es" name="Hora_de_Atencion_del_Especialista" value="Hora de Atención del Facilitador"></resource>
   <resource culture="es-es" name="Historial_de_Asignaciones" value="Historial de Asignaciones"></resource>
   <resource culture="es-es" name="Coincidencias" value="Coincidencias"></resource>
-  <resource culture="es-es" name="Rechazar" value="Rechazar"></resource>
-  <resource culture="es-es" name="Motivo_de_Rechazo" value="Motivo de Rechazo"></resource>
-  <resource culture="es-es" name="Acuerdo_Cumplido" value="Acuerdo Cumplido"></resource>
-  <resource culture="es-es" name="Razon_de_Incumplimiento" value="Razón de Incumplimiento"></resource>
-  <resource culture="es-es" name="Tipo_de_Conclusion_Anticipada" value="Tipo de Conclusión Anticipada"></resource>
-  <resource culture="es-es" name="Fecha_de_Cierre" value="Fecha de Cierre"></resource>
-  <resource culture="es-es" name="Hora_de_Cierre" value="Hora de Cierre"></resource>
   <resource culture="es-es" name="Historial" value="Historial"></resource>
 
 <resource culture="es-es" name="TabSolicitud" value="Solicitud"></resource>
 <resource culture="es-es" name="TabControl" value="Control"></resource>
 <resource culture="es-es" name="TabHechos" value="Hechos"></resource>
+<resource culture="es-es" name="TabCierre" value="Cierre"></resource>
 <resource culture="es-es" name="TabAsignacion" value="Asignación"></resource>
 <resource culture="es-es" name="TabBitacora_de_Coincidencias" value="Bitácora de Coincidencias"></resource>
-<resource culture="es-es" name="TabCierre" value="Cierre"></resource>
 <resource culture="es-es" name="TabHistorial_de_Movimientos" value="Historial de Movimientos"></resource>
 
 </resources>

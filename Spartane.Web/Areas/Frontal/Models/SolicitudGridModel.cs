@@ -55,23 +55,19 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string ColoniaHNombre { get; set; }
         public string CalleH { get; set; }
         public string Numero_ExteriorH { get; set; }
-        public string Numero_InteriorH { get; set; }
         public int? Codigo_PostalH { get; set; }
         public string Entre_Calle { get; set; }
+        public string Numero_InteriorH { get; set; }
         public string y_Calle { get; set; }
         public string LongitudH { get; set; }
         public string LatitudH { get; set; }
-        public int? Especialista_AsignadoA { get; set; }
-        public string Especialista_AsignadoAName { get; set; }
-        public string Motivo_cambio_facilitador { get; set; }
-        public bool? Asignar_Especialista_Automatico { get; set; }
-        public string Razone { get; set; }
-        public int? Tipo_de_Mecanismo { get; set; }
-        public string Tipo_de_MecanismoDescripcion { get; set; }
-        public string Fecha_de_AsignacionA { get; set; }
-        public string Hora_de_AsignacionA { get; set; }
-        public string Fecha_de_Atencion_del_Especialista { get; set; }
-        public string Hora_de_Atencion_del_Especialista { get; set; }
+        public string Fecha_Validacion { get; set; }
+        public string Hora_Validacion { get; set; }
+        public int? Usuario_que_Valida { get; set; }
+        public string Usuario_que_ValidaName { get; set; }
+        public short? Resultado { get; set; }
+        public string ResultadoDescripcion { get; set; }
+        public string Motivo_de_Rechazo_Solicitud { get; set; }
         public bool? Rechazar { get; set; }
         public int? Motivo_de_Rechazo { get; set; }
         public string Motivo_de_RechazoDescripcion { get; set; }
@@ -83,6 +79,17 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Tipo_de_Conclusion_AnticipadaDescripcion { get; set; }
         public string Fecha_de_Cierre { get; set; }
         public string Hora_de_Cierre { get; set; }
+        public int? Especialista_AsignadoA { get; set; }
+        public string Especialista_AsignadoAName { get; set; }
+        public string Motivo_cambio_facilitador { get; set; }
+        public bool? Asignar_Especialista_Automatico { get; set; }
+        public string Razone { get; set; }
+        public int? Tipo_de_Mecanismo { get; set; }
+        public string Tipo_de_MecanismoDescripcion { get; set; }
+        public string Fecha_de_AsignacionA { get; set; }
+        public string Hora_de_AsignacionA { get; set; }
+        public string Fecha_de_Atencion_del_Especialista { get; set; }
+        public string Hora_de_Atencion_del_Especialista { get; set; }
         
     }
 }

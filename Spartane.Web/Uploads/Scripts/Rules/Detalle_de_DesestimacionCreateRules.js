@@ -64,6 +64,27 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:1986, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2236, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Modulo_Atencion_Inicial' + rowIndex),EvaluaQuery("SELECT NUAT FROM Modulo_Atencion_Inicial WHERE Clave = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:2236, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2314, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("SELECT COUNT(Clave) FROM Detalle_de_Datos_Generales WHERE Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]",rowIndex, nameOfTable)!=TryParseInt('0', '0') ) { var valor = $('#' + nameOfTable + 'Nombre_Completo' + rowIndex).val();   $('#' + nameOfTable + 'Nombre_Completo' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Nombre_Completo' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Nombre_Completo' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE_COMPLETO FROM Detalle_de_Datos_Generales WHERE Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Nombre_Completo' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE_COMPLETO FROM Detalle_de_Datos_Generales WHERE Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Nombre_Completo' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Nombre_Completo' + rowIndex).val(valor).trigger('change'); $('#divNombre_Completo').css('display', 'block');} else { $('#divNombre_Completo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Nombre_Completo' + rowIndex));}
+
+}
+//BusinessRuleId:2314, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2314, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("SELECT COUNT(Clave) FROM Detalle_de_Datos_Generales WHERE Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]",rowIndex, nameOfTable)!=TryParseInt('0', '0') ) { var valor = $('#' + nameOfTable + 'Nombre_Completo' + rowIndex).val();   $('#' + nameOfTable + 'Nombre_Completo' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Nombre_Completo' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Nombre_Completo' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE_COMPLETO FROM Detalle_de_Datos_Generales WHERE Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Nombre_Completo' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE_COMPLETO FROM Detalle_de_Datos_Generales WHERE Modulo_Atencion_Inicial = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Nombre_Completo' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Nombre_Completo' + rowIndex).val(valor).trigger('change'); $('#divNombre_Completo').css('display', 'block');} else { $('#divNombre_Completo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Nombre_Completo' + rowIndex));}
+
+}
+//BusinessRuleId:2314, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

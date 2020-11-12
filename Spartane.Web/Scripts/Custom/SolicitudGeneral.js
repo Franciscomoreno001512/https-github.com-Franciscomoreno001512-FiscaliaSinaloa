@@ -54,7 +54,7 @@ function GetInsertDetalle_Solicitud_Historial_de_AsignacionesRowControls(index) 
     columnData[1] = $($.parseHTML(GetGridTimePicker())).addClass('Detalle_Solicitud_Historial_de_Asignaciones_Hora_cambio Hora_cambio').attr('id', 'Detalle_Solicitud_Historial_de_Asignaciones_Hora_cambio_' + index).attr('data-field', 'Hora_cambio');
     columnData[2] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Solicitud_Historial_de_Asignaciones_Usuario'))).addClass('Detalle_Solicitud_Historial_de_Asignaciones_Usuario Usuario').attr('id', 'Detalle_Solicitud_Historial_de_Asignaciones_Usuario_' + index).attr('data-field', 'Usuario').after($.parseHTML(addNew('Detalle_Solicitud_Historial_de_Asignaciones', 'Spartan_User', 'Usuario', 266705)));
     columnData[3] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Solicitud_Historial_de_Asignaciones_Facilitador_Asignado'))).addClass('Detalle_Solicitud_Historial_de_Asignaciones_Facilitador_Asignado Facilitador_Asignado').attr('id', 'Detalle_Solicitud_Historial_de_Asignaciones_Facilitador_Asignado_' + index).attr('data-field', 'Facilitador_Asignado').after($.parseHTML(addNew('Detalle_Solicitud_Historial_de_Asignaciones', 'Spartan_User', 'Facilitador_Asignado', 266706)));
-    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Solicitud_Historial_de_Asignaciones_Motivo_cambio Motivo_cambio').attr('id', 'Detalle_Solicitud_Historial_de_Asignaciones_Motivo_cambio_' + index).attr('data-field', 'Motivo_cambio');
+    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Solicitud_Historial_de_Asignaciones_Motivo_de_cambio Motivo_de_cambio').attr('id', 'Detalle_Solicitud_Historial_de_Asignaciones_Motivo_de_cambio_' + index).attr('data-field', 'Motivo_de_cambio');
 
 
     initiateUIControls();
@@ -78,7 +78,7 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Solicitud_Historial_de_Asignacio
         , Usuario:  data.childNodes[counter++].childNodes[0].value 	
         , Facilitador_AsignadoName:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
         , Facilitador_Asignado:  data.childNodes[counter++].childNodes[0].value 	
-        ,Motivo_cambio:  data.childNodes[counter++].childNodes[0].value
+        ,Motivo_de_cambio:  data.childNodes[counter++].childNodes[0].value
 
     }
     Detalle_Solicitud_Historial_de_AsignacionesTable.fnUpdate(newData, rowIndex, null, true);
@@ -118,7 +118,7 @@ function GetDetalle_Solicitud_Historial_de_AsignacionesFromDataTable() {
                 ,Hora_cambio: gridData[i].Hora_cambio
                 ,Usuario: gridData[i].Usuario
                 ,Facilitador_Asignado: gridData[i].Facilitador_Asignado
-                ,Motivo_cambio: gridData[i].Motivo_cambio
+                ,Motivo_de_cambio: gridData[i].Motivo_de_cambio
 
                 ,Removed: false
             });
@@ -133,7 +133,7 @@ function GetDetalle_Solicitud_Historial_de_AsignacionesFromDataTable() {
                 ,Hora_cambio: removedDetalle_Solicitud_Historial_de_AsignacionesData[i].Hora_cambio
                 ,Usuario: removedDetalle_Solicitud_Historial_de_AsignacionesData[i].Usuario
                 ,Facilitador_Asignado: removedDetalle_Solicitud_Historial_de_AsignacionesData[i].Facilitador_Asignado
-                ,Motivo_cambio: removedDetalle_Solicitud_Historial_de_AsignacionesData[i].Motivo_cambio
+                ,Motivo_de_cambio: removedDetalle_Solicitud_Historial_de_AsignacionesData[i].Motivo_de_cambio
 
                 , Removed: true
             });
@@ -201,7 +201,7 @@ function Detalle_Solicitud_Historial_de_AsignacionesEditRowPopup(rowIndex, curre
     $('#Detalle_Solicitud_Historial_de_AsignacionesHora_cambio').val(prevData.Hora_cambio);
     $('#dvDetalle_Solicitud_Historial_de_AsignacionesUsuario').html($($.parseHTML(GetGridAutoComplete(prevData.Usuario.label,'AutoCompleteUsuario'))).addClass('Detalle_Solicitud_Historial_de_Asignaciones_Usuario'));
     $('#dvDetalle_Solicitud_Historial_de_AsignacionesFacilitador_Asignado').html($($.parseHTML(GetGridAutoComplete(prevData.Facilitador_Asignado.label,'AutoCompleteFacilitador_Asignado'))).addClass('Detalle_Solicitud_Historial_de_Asignaciones_Facilitador_Asignado'));
-    $('#Detalle_Solicitud_Historial_de_AsignacionesMotivo_cambio').val(prevData.Motivo_cambio);
+    $('#Detalle_Solicitud_Historial_de_AsignacionesMotivo_de_cambio').val(prevData.Motivo_de_cambio);
 
     initiateUIControls();
 
@@ -226,7 +226,7 @@ function Detalle_Solicitud_Historial_de_AsignacionesAddInsertRow() {
         ,Hora_cambio: ""
         ,Usuario: ""
         ,Facilitador_Asignado: ""
-        ,Motivo_cambio: ""
+        ,Motivo_de_cambio: ""
 
     }
 }
@@ -262,7 +262,7 @@ function GetDetalle_Solicitud_Historial_de_Asignaciones() {
         form_data.append('[' + i + '].Hora_cambio', Detalle_Solicitud_Historial_de_AsignacionesData[i].Hora_cambio);
         form_data.append('[' + i + '].Usuario', Detalle_Solicitud_Historial_de_AsignacionesData[i].Usuario);
         form_data.append('[' + i + '].Facilitador_Asignado', Detalle_Solicitud_Historial_de_AsignacionesData[i].Facilitador_Asignado);
-        form_data.append('[' + i + '].Motivo_cambio', Detalle_Solicitud_Historial_de_AsignacionesData[i].Motivo_cambio);
+        form_data.append('[' + i + '].Motivo_de_cambio', Detalle_Solicitud_Historial_de_AsignacionesData[i].Motivo_de_cambio);
 
         form_data.append('[' + i + '].Removed', Detalle_Solicitud_Historial_de_AsignacionesData[i].Removed);
     }
@@ -280,7 +280,7 @@ function Detalle_Solicitud_Historial_de_AsignacionesInsertRowFromPopup(rowIndex)
         ,Hora_cambio: $('#Detalle_Solicitud_Historial_de_AsignacionesHora_cambio').val()
         ,Usuario: $('#Detalle_Solicitud_Historial_de_AsignacionesUsuario').val()
         ,Facilitador_Asignado: $('#Detalle_Solicitud_Historial_de_AsignacionesFacilitador_Asignado').val()
-        ,Motivo_cambio: $('#Detalle_Solicitud_Historial_de_AsignacionesMotivo_cambio').val()
+        ,Motivo_de_cambio: $('#Detalle_Solicitud_Historial_de_AsignacionesMotivo_de_cambio').val()
 
     }
 
@@ -1150,6 +1150,17 @@ function GetAutoCompleteSolicitud_ColoniaH_ColoniaData(data) {
     }
     return AutoCompleteColoniaHData;
 }
+var AutoCompleteUsuario_que_ValidaData = [];
+function GetAutoCompleteSolicitud_Usuario_que_Valida_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_ValidaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_ValidaData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_ValidaData;
+}
 var AutoCompleteEspecialista_AsignadoAData = [];
 function GetAutoCompleteSolicitud_Especialista_AsignadoA_Spartan_UserData(data) {
 	AutoCompleteEspecialista_AsignadoAData = [];
@@ -1270,6 +1281,9 @@ function ClearControls() {
     $('#ColoniaH').empty();
     $("#ColoniaH").append('<option value=""></option>');
     $('#ColoniaH').val('0').trigger('change');
+    $('#Usuario_que_Valida').empty();
+    $("#Usuario_que_Valida").append('<option value=""></option>');
+    $('#Usuario_que_Valida').val('0').trigger('change');
     $('#Especialista_AsignadoA').empty();
     $("#Especialista_AsignadoA").append('<option value=""></option>');
     $('#Especialista_AsignadoA').val('0').trigger('change');
@@ -1456,6 +1470,9 @@ $(document).ready(function () {
     $('#ColoniaH').empty();
     $("#ColoniaH").append('<option value=""></option>');
     $('#ColoniaH').val('0').trigger('change');
+    $('#Usuario_que_Valida').empty();
+    $("#Usuario_que_Valida").append('<option value=""></option>');
+    $('#Usuario_que_Valida').val('0').trigger('change');
     $('#Especialista_AsignadoA').empty();
     $("#Especialista_AsignadoA").append('<option value=""></option>');
     $('#Especialista_AsignadoA').val('0').trigger('change');

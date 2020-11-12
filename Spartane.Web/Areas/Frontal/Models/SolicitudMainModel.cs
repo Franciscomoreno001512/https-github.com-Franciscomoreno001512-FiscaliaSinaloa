@@ -23,7 +23,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Hora_cambio { get; set; }
         public int? Usuario { get; set; }
         public int? Facilitador_Asignado { get; set; }
-        public string Motivo_cambio { get; set; }
+        public string Motivo_de_cambio { get; set; }
 
         public bool Removed { set; get; }
     }

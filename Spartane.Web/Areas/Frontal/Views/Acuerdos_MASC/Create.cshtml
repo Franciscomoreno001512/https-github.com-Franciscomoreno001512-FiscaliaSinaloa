@@ -32,6 +32,9 @@
     List<SelectListItem> varTipo_de_Acuerdo_Tipo_de_Acuerdo = null;
     if (ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo != null)
     { varTipo_de_Acuerdo_Tipo_de_Acuerdo = (List<SelectListItem>)ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo; }
+    List<SelectListItem> varForma_de_Cumplimiento_Forma_de_Cumplimiento = null;
+    if (ViewBag.Forma_de_Cumplimientos_Forma_de_Cumplimiento != null)
+    { varForma_de_Cumplimiento_Forma_de_Cumplimiento = (List<SelectListItem>)ViewBag.Forma_de_Cumplimientos_Forma_de_Cumplimiento; }
  List<SelectListItem> varDetalle_de_Solicitud_Solicitante_Solicitante = null;
     if (ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante != null)
     { varDetalle_de_Solicitud_Solicitante_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Solicitud_Solicitantes_Solicitante; }
@@ -279,6 +282,41 @@
                                     <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Acuerdo', 'Tipo_de_Acuerdo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
+                            </div>
+                            <div class="form-group" id="divForma_de_Cumplimiento">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Forma_de_Cumplimiento</label>
+                                <div class="col-sm-8" data-field-id="Forma_de_Cumplimiento" data-attribute="266722" data-field-name="@Resources.Acuerdos_MASCResources.Forma_de_Cumplimiento">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Forma de Cumplimiento must be a number." data-val-required="The Forma de Cumplimiento field is required." id="Forma_de_Cumplimiento" name="Forma_de_Cumplimiento">
+                                        <option value=""></option>
+                                        @if (varForma_de_Cumplimiento_Forma_de_Cumplimiento != null){ 
+                                            foreach (var itemForma_de_Cumplimiento in varForma_de_Cumplimiento_Forma_de_Cumplimiento)
+                                            {
+                                                if (itemForma_de_Cumplimiento.Value == Convert.ToString(Model.Forma_de_Cumplimiento))
+                                                {
+                                                    <option value="@itemForma_de_Cumplimiento.Value" selected>@itemForma_de_Cumplimiento.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemForma_de_Cumplimiento.Value">@itemForma_de_Cumplimiento.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Forma_de_Cumplimiento" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266722).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Forma_de_Cumplimiento', 'Forma_de_Cumplimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divDescripcion_del_Cumplimiento">
+                                <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Descripcion_del_Cumplimiento</label>
+                                <div class="col-sm-8" data-field-id="Descripcion_del_Cumplimiento" data-attribute="266723" data-field-name="@Resources.Acuerdos_MASCResources.Descripcion_del_Cumplimiento">
+                                    <textarea id="Descripcion_del_Cumplimiento" name="Descripcion_del_Cumplimiento" class="form-control Datos_Generales" rows="4" cols="50">@Model.Descripcion_del_Cumplimiento</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Descripcion_del_Cumplimiento" data-valmsg-replace="true"></span>*@
+                                </div>
                             </div>
 				<div class="form-group" id="divSolicitante">
                                 <label class="col-sm-2 control-label">@Resources.Acuerdos_MASCResources.Solicitante</label>
@@ -1296,6 +1334,8 @@
 	                    control.val(result.data.Usuario_que_Registra).trigger('change');
                     }, 3000);
                     $('#Tipo_de_Acuerdo').val(result.data.Tipo_de_Acuerdo);
+                    $('#Forma_de_Cumplimiento').val(result.data.Forma_de_Cumplimiento);
+                    $('#Descripcion_del_Cumplimiento').val(result.data.Descripcion_del_Cumplimiento);
                     var control = $('#Solicitante');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Solicitante).trigger('keyup');
@@ -1352,6 +1392,8 @@
                 data.append('Hora_de_Registro', $('#Hora_de_Registro').val());
                 data.append('Usuario_que_Registra', $('#Usuario_que_Registra').val());
                 data.append('Tipo_de_Acuerdo', $('#Tipo_de_Acuerdo').val());
+                data.append('Forma_de_Cumplimiento', $('#Forma_de_Cumplimiento').val());
+                data.append('Descripcion_del_Cumplimiento', $('#Descripcion_del_Cumplimiento').val());
                 data.append('Solicitante', $('#Solicitante').val());
                 data.append('Requerido', $('#Requerido').val());
                 data.append('Lugar_Acordado', $('#Lugar_Acordado').val());

@@ -6,7 +6,7 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
-    List<SelectListItem> varDetalle_de_Datos_Generales_Nombre_Completo = null;
+ List<SelectListItem> varDetalle_de_Datos_Generales_Nombre_Completo = null;
     if (ViewBag.Detalle_de_Datos_Generaless_Nombre_Completo != null)
     { varDetalle_de_Datos_Generales_Nombre_Completo = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Nombre_Completo; }
     List<SelectListItem> varA_Tiempo_Causal_de_Interrupcion = null;
@@ -69,27 +69,9 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_DesestimacionResources.Nombre_Completo</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Nombre_CompletoFilter, filters, new { @class = "form-control", @id = "ddlNombre_CompletoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceNombre_Completo, new { @class = "form-control", @type = "text", @id = "txtAdvanceNombre_Completo" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varDetalle_de_Datos_Generales_Nombre_Completo!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceNombre_CompletoMultiple, varDetalle_de_Datos_Generales_Nombre_Completo,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceNombre_Completo"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varDetalle_de_Datos_Generales_Nombre_Completo = null;
+    if (ViewBag.Detalle_de_Datos_Generaless_Nombre_Completo != null)
+    { varDetalle_de_Datos_Generales_Nombre_Completo = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Nombre_Completo; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_DesestimacionResources.Causal_de_Interrupcion</h3>
                 </div>

@@ -11881,6 +11881,26 @@
 <Content Include="Uploads\Scripts\Detalle_Solicitud_Historial_de_Asignaciones.js" />
 <Content Include="Uploads\Scripts\Rules\Detalle_Solicitud_Historial_de_AsignacionesIndexRules.js" />
 <Content Include="Uploads\Scripts\Rules\Detalle_Solicitud_Historial_de_AsignacionesCreateRules.js" />
+<Compile Include="Areas\WebApiConsumer\Forma_de_Cumplimiento\Forma_de_CumplimientoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Forma_de_Cumplimiento\IForma_de_CumplimientoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Forma_de_CumplimientoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Forma_de_CumplimientoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Forma_de_CumplimientoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Forma_de_CumplimientoController.cs" />
+<Content Include="Areas\Frontal\Views\Forma_de_Cumplimiento\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Forma_de_Cumplimiento\Create.cshtml" />
+<Compile Include="Resource\GetResource\Forma_de_Cumplimiento.cs" />
+<Content Include="Uploads\Resources\Forma_de_CumplimientoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Forma_de_CumplimientoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Forma_de_CumplimientoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Forma_de_Cumplimiento.js" />
+<Content Include="Scripts\Custom\Forma_de_CumplimientoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Forma_de_Cumplimiento\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Forma_de_CumplimientoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Forma_de_CumplimientoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Forma_de_CumplimientoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Forma_de_CumplimientoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Forma_de_Cumplimiento\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -12880,6 +12900,26 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

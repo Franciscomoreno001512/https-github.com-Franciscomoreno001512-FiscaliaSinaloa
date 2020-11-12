@@ -336,16 +336,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Numero_InteriorH</summary>
-        public static string Numero_InteriorH
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud.GetResource("Numero_InteriorH", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Codigo_PostalH</summary>
         public static string Codigo_PostalH
         {
@@ -363,6 +353,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderSolicitud.GetResource("Entre_Calle", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Numero_InteriorH</summary>
+        public static string Numero_InteriorH
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Numero_InteriorH", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -393,6 +393,126 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderSolicitud.GetResource("LatitudH", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Fecha_Validacion</summary>
+        public static string Fecha_Validacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Fecha_Validacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_Validacion</summary>
+        public static string Hora_Validacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Hora_Validacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Usuario_que_Valida</summary>
+        public static string Usuario_que_Valida
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Usuario_que_Valida", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Resultado</summary>
+        public static string Resultado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Resultado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Motivo_de_Rechazo_Solicitud</summary>
+        public static string Motivo_de_Rechazo_Solicitud
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Motivo_de_Rechazo_Solicitud", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Rechazar</summary>
+        public static string Rechazar
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Rechazar", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Motivo_de_Rechazo</summary>
+        public static string Motivo_de_Rechazo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Motivo_de_Rechazo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Acuerdo_Cumplido</summary>
+        public static string Acuerdo_Cumplido
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Acuerdo_Cumplido", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Razon_de_Incumplimiento</summary>
+        public static string Razon_de_Incumplimiento
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Razon_de_Incumplimiento", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Tipo_de_Conclusion_Anticipada</summary>
+        public static string Tipo_de_Conclusion_Anticipada
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Tipo_de_Conclusion_Anticipada", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Fecha_de_Cierre</summary>
+        public static string Fecha_de_Cierre
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Fecha_de_Cierre", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_de_Cierre</summary>
+        public static string Hora_de_Cierre
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Hora_de_Cierre", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -506,76 +626,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Rechazar</summary>
-        public static string Rechazar
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud.GetResource("Rechazar", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Motivo_de_Rechazo</summary>
-        public static string Motivo_de_Rechazo
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud.GetResource("Motivo_de_Rechazo", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Acuerdo_Cumplido</summary>
-        public static string Acuerdo_Cumplido
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud.GetResource("Acuerdo_Cumplido", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Razon_de_Incumplimiento</summary>
-        public static string Razon_de_Incumplimiento
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud.GetResource("Razon_de_Incumplimiento", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Tipo_de_Conclusion_Anticipada</summary>
-        public static string Tipo_de_Conclusion_Anticipada
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud.GetResource("Tipo_de_Conclusion_Anticipada", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Fecha_de_Cierre</summary>
-        public static string Fecha_de_Cierre
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud.GetResource("Fecha_de_Cierre", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Hora_de_Cierre</summary>
-        public static string Hora_de_Cierre
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud.GetResource("Hora_de_Cierre", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Historial</summary>
         public static string Historial
         {
@@ -590,9 +640,9 @@ namespace Resources
 	/// <summary>Solicitud</summary>	public static string TabSolicitud 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabSolicitud", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Control</summary>	public static string TabControl 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabControl", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Hechos</summary>	public static string TabHechos 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabHechos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Cierre</summary>	public static string TabCierre 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabCierre", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Asignación</summary>	public static string TabAsignacion 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabAsignacion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Bitácora de Coincidencias</summary>	public static string TabBitacora_de_Coincidencias 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabBitacora_de_Coincidencias", CultureInfo.CurrentUICulture.Name) as String;             		}	}
-	/// <summary>Cierre</summary>	public static string TabCierre 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabCierre", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Historial de Movimientos</summary>	public static string TabHistorial_de_Movimientos 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabHistorial_de_Movimientos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 
     }

@@ -26,8 +26,8 @@ namespace Spartane.Web.SqlModelMapper
                 case "Facilitador_Asignado[Name]":
                 case "Facilitador_AsignadoName":
                     return "Spartan_User.Name";
-                case "Motivo_cambio":
-                    return "Detalle_Solicitud_Historial_de_Asignaciones.Motivo_cambio";
+                case "Motivo_de_cambio":
+                    return "Detalle_Solicitud_Historial_de_Asignaciones.Motivo_de_cambio";
 
                 default:
                     return propertyName;

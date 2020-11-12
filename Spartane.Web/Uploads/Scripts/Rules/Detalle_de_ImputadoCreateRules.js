@@ -391,6 +391,13 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:1997, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2233, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Modulo_Atencion_Inicial' + rowIndex),EvaluaQuery("SELECT NUAT FROM Modulo_Atencion_Inicial WHERE Clave = GLOBAL[SpartanOperationId] ", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:2233, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

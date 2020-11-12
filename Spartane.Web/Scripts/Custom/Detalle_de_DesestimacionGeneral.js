@@ -17,6 +17,17 @@ function GetAutoCompleteDetalle_de_Desestimacion_Modulo_Atencion_Inicial_Modulo_
     }
     return AutoCompleteModulo_Atencion_InicialData;
 }
+var AutoCompleteNombre_CompletoData = [];
+function GetAutoCompleteDetalle_de_Desestimacion_Nombre_Completo_Detalle_de_Datos_GeneralesData(data) {
+	AutoCompleteNombre_CompletoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteNombre_CompletoData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre_Completo
+        });
+    }
+    return AutoCompleteNombre_CompletoData;
+}
 
 
 function getDropdown(elementKey) {
@@ -57,6 +68,9 @@ function ClearControls() {
     $('#Modulo_Atencion_Inicial').empty();
     $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
     $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+    $('#Nombre_Completo').empty();
+    $("#Nombre_Completo").append('<option value=""></option>');
+    $('#Nombre_Completo').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -189,6 +203,9 @@ $(document).ready(function () {
 	    $('#Modulo_Atencion_Inicial').empty();
     $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
     $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+    $('#Nombre_Completo').empty();
+    $("#Nombre_Completo").append('<option value=""></option>');
+    $('#Nombre_Completo').val('0').trigger('change');
 
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);

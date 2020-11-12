@@ -24,7 +24,7 @@ namespace Spartane.Core.Domain.Detalle_Solicitud_Historial_de_Asignaciones
         public string Hora_cambio { get; set; }
         public int? Usuario { get; set; }
         public int? Facilitador_Asignado { get; set; }
-        public string Motivo_cambio { get; set; }
+        public string Motivo_de_cambio { get; set; }
 
         [ForeignKey("Solicitud")]
         public virtual Spartane.Core.Domain.Solicitud.Solicitud Solicitud_Solicitud { get; set; }
@@ -43,7 +43,7 @@ namespace Spartane.Core.Domain.Detalle_Solicitud_Historial_de_Asignaciones
         public string Hora_cambio { get; set; }
         public int? Usuario { get; set; }
         public int? Facilitador_Asignado { get; set; }
-        public string Motivo_cambio { get; set; }
+        public string Motivo_de_cambio { get; set; }
 
 		        [ForeignKey("Solicitud")]
         public virtual Spartane.Core.Domain.Solicitud.Solicitud Solicitud_Solicitud { get; set; }

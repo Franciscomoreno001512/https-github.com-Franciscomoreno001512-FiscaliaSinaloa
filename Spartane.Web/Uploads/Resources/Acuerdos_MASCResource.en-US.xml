@@ -7,6 +7,8 @@
   <resource culture="en-US" name="Hora_de_Registro" value="Hora de Registro"></resource>
   <resource culture="en-US" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
   <resource culture="en-US" name="Tipo_de_Acuerdo" value="Tipo de Acuerdo"></resource>
+  <resource culture="en-US" name="Forma_de_Cumplimiento" value="Forma de Cumplimiento"></resource>
+  <resource culture="en-US" name="Descripcion_del_Cumplimiento" value="Descripción del Cumplimiento"></resource>
   <resource culture="en-US" name="Solicitante" value="Solicitante"></resource>
   <resource culture="en-US" name="Requerido" value="Requerido"></resource>
   <resource culture="en-US" name="Lugar_Acordado" value="Lugar para el Cumplmiento del Acuerdo"></resource>

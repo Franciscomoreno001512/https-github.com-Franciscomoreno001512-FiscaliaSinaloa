@@ -2376,13 +2376,7 @@ if( $('#' + nameOfTable + 'Estatus' + rowIndex).val()==TryParseInt('2', '2') && 
 
 
 
-//BusinessRuleId:2057, Attribute:2, Operation:Object, Event:AFTERSAVING
-if(operation == 'Update'){
-if( GetValueByControlType($('#' + nameOfTable + 'Estatus2' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') && GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('8', '8') && GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('6', '6') ) { EvaluaQuery(" exec uspGeneraSolicitudMASC_desde_AT FLDD[lblClave]", rowIndex, nameOfTable);} else {}
 
-
-}
-//BusinessRuleId:2057, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //BusinessRuleId:2064, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'Update'){
@@ -2398,6 +2392,13 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:2155, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:2057, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Estatus2' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') && GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('8', '8') && GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('6', '6') ) { EvaluaQuery(" exec uspGeneraSolicitudMASC_desde_AT FLDD[lblClave]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:2057, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

@@ -6,7 +6,7 @@
   <resource culture="en-US" name="Hora_cambio" value="Hora de Cambio"></resource>
   <resource culture="en-US" name="Usuario" value="Usuario"></resource>
   <resource culture="en-US" name="Facilitador_Asignado" value="Facilitador Asignado"></resource>
-  <resource culture="en-US" name="Motivo_cambio" value="Motivo de Cambio"></resource>
+  <resource culture="en-US" name="Motivo_de_cambio" value="Motivo de cambio"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

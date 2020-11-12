@@ -86,6 +86,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Forma_de_Cumplimiento</summary>
+        public static string Forma_de_Cumplimiento
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderAcuerdos_MASC.GetResource("Forma_de_Cumplimiento", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Descripcion_del_Cumplimiento</summary>
+        public static string Descripcion_del_Cumplimiento
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderAcuerdos_MASC.GetResource("Descripcion_del_Cumplimiento", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Solicitante</summary>
         public static string Solicitante
         {

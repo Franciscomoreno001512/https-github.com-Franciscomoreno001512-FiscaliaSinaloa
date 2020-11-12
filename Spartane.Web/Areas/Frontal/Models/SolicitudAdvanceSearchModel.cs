@@ -11,8 +11,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public SolicitudAdvanceSearchModel()
         {
-            Asignar_Especialista_Automatico = RadioOptions.NoApply;
             Rechazar = RadioOptions.NoApply;
+            Asignar_Especialista_Automatico = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -139,9 +139,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Numero_ExteriorHFilter { set; get; }
         public string Numero_ExteriorH { set; get; }
 
-        public Filters Numero_InteriorHFilter { set; get; }
-        public string Numero_InteriorH { set; get; }
-
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
         public string FromCodigo_PostalH { set; get; }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -151,6 +148,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Entre_CalleFilter { set; get; }
         public string Entre_Calle { set; get; }
 
+        public Filters Numero_InteriorHFilter { set; get; }
+        public string Numero_InteriorH { set; get; }
+
         public Filters y_CalleFilter { set; get; }
         public string y_Calle { set; get; }
 
@@ -159,6 +159,53 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public Filters LatitudHFilter { set; get; }
         public string LatitudH { set; get; }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string FromFecha_Validacion { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("FromFecha_Validacion", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_Validacion { set; get; }
+
+        public string ToHora_Validacion { set; get; }
+        public string FromHora_Validacion { set; get; }
+
+        public Filters Usuario_que_ValidaFilter { set; get; }
+        public string AdvanceUsuario_que_Valida { set; get; }
+        public int[] AdvanceUsuario_que_ValidaMultiple { set; get; }
+
+        public Filters ResultadoFilter { set; get; }
+        public string AdvanceResultado { set; get; }
+        public int[] AdvanceResultadoMultiple { set; get; }
+
+        public Filters Motivo_de_Rechazo_SolicitudFilter { set; get; }
+        public string Motivo_de_Rechazo_Solicitud { set; get; }
+
+        public RadioOptions Rechazar { set; get; }
+
+        public Filters Motivo_de_RechazoFilter { set; get; }
+        public string AdvanceMotivo_de_Rechazo { set; get; }
+        public int[] AdvanceMotivo_de_RechazoMultiple { set; get; }
+
+        public Filters Acuerdo_CumplidoFilter { set; get; }
+        public string AdvanceAcuerdo_Cumplido { set; get; }
+        public int[] AdvanceAcuerdo_CumplidoMultiple { set; get; }
+
+        public Filters Razon_de_IncumplimientoFilter { set; get; }
+        public string AdvanceRazon_de_Incumplimiento { set; get; }
+        public int[] AdvanceRazon_de_IncumplimientoMultiple { set; get; }
+
+        public Filters Tipo_de_Conclusion_AnticipadaFilter { set; get; }
+        public string AdvanceTipo_de_Conclusion_Anticipada { set; get; }
+        public int[] AdvanceTipo_de_Conclusion_AnticipadaMultiple { set; get; }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string FromFecha_de_Cierre { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("FromFecha_de_Cierre", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_de_Cierre { set; get; }
+
+        public string ToHora_de_Cierre { set; get; }
+        public string FromHora_de_Cierre { set; get; }
 
         public Filters Especialista_AsignadoAFilter { set; get; }
         public string AdvanceEspecialista_AsignadoA { set; get; }
@@ -193,33 +240,6 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public string ToHora_de_Atencion_del_Especialista { set; get; }
         public string FromHora_de_Atencion_del_Especialista { set; get; }
-
-        public RadioOptions Rechazar { set; get; }
-
-        public Filters Motivo_de_RechazoFilter { set; get; }
-        public string AdvanceMotivo_de_Rechazo { set; get; }
-        public int[] AdvanceMotivo_de_RechazoMultiple { set; get; }
-
-        public Filters Acuerdo_CumplidoFilter { set; get; }
-        public string AdvanceAcuerdo_Cumplido { set; get; }
-        public int[] AdvanceAcuerdo_CumplidoMultiple { set; get; }
-
-        public Filters Razon_de_IncumplimientoFilter { set; get; }
-        public string AdvanceRazon_de_Incumplimiento { set; get; }
-        public int[] AdvanceRazon_de_IncumplimientoMultiple { set; get; }
-
-        public Filters Tipo_de_Conclusion_AnticipadaFilter { set; get; }
-        public string AdvanceTipo_de_Conclusion_Anticipada { set; get; }
-        public int[] AdvanceTipo_de_Conclusion_AnticipadaMultiple { set; get; }
-
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        public string FromFecha_de_Cierre { set; get; }
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        [IsDateAfter("FromFecha_de_Cierre", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToFecha_de_Cierre { set; get; }
-
-        public string ToHora_de_Cierre { set; get; }
-        public string FromHora_de_Cierre { set; get; }
 
 
     }

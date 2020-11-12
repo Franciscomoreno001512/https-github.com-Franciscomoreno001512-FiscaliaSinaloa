@@ -92,18 +92,48 @@ namespace Spartane.Web.SqlModelMapper
                     return "Solicitud.CalleH";
                 case "Numero_ExteriorH":
                     return "Solicitud.Numero_ExteriorH";
-                case "Numero_InteriorH":
-                    return "Solicitud.Numero_InteriorH";
                 case "Codigo_PostalH":
                     return "Solicitud.Codigo_PostalH";
                 case "Entre_Calle":
                     return "Solicitud.Entre_Calle";
+                case "Numero_InteriorH":
+                    return "Solicitud.Numero_InteriorH";
                 case "y_Calle":
                     return "Solicitud.y_Calle";
                 case "LongitudH":
                     return "Solicitud.LongitudH";
                 case "LatitudH":
                     return "Solicitud.LatitudH";
+                case "Fecha_Validacion":
+                    return "Solicitud.Fecha_Validacion";
+                case "Hora_Validacion":
+                    return "Solicitud.Hora_Validacion";
+                case "Usuario_que_Valida[Name]":
+                case "Usuario_que_ValidaName":
+                    return "Spartan_User.Name";
+                case "Resultado[Descripcion]":
+                case "ResultadoDescripcion":
+                    return "Resultado_de_Revision.Descripcion";
+                case "Motivo_de_Rechazo_Solicitud":
+                    return "Solicitud.Motivo_de_Rechazo_Solicitud";
+                case "Rechazar":
+                    return "Solicitud.Rechazar";
+                case "Motivo_de_Rechazo[Descripcion]":
+                case "Motivo_de_RechazoDescripcion":
+                    return "Motivo_de_Rechazo_de_Solicitud.Descripcion";
+                case "Acuerdo_Cumplido[Descripcion]":
+                case "Acuerdo_CumplidoDescripcion":
+                    return "A_Tiempo.Descripcion";
+                case "Razon_de_Incumplimiento[Descripcion]":
+                case "Razon_de_IncumplimientoDescripcion":
+                    return "Razon_de_Incumplimiento.Descripcion";
+                case "Tipo_de_Conclusion_Anticipada[Descripcion]":
+                case "Tipo_de_Conclusion_AnticipadaDescripcion":
+                    return "Tipo_de_Conclusion_Anticipada.Descripcion";
+                case "Fecha_de_Cierre":
+                    return "Solicitud.Fecha_de_Cierre";
+                case "Hora_de_Cierre":
+                    return "Solicitud.Hora_de_Cierre";
                 case "Especialista_AsignadoA[Name]":
                 case "Especialista_AsignadoAName":
                     return "Spartan_User.Name";
@@ -124,24 +154,6 @@ namespace Spartane.Web.SqlModelMapper
                     return "Solicitud.Fecha_de_Atencion_del_Especialista";
                 case "Hora_de_Atencion_del_Especialista":
                     return "Solicitud.Hora_de_Atencion_del_Especialista";
-                case "Rechazar":
-                    return "Solicitud.Rechazar";
-                case "Motivo_de_Rechazo[Descripcion]":
-                case "Motivo_de_RechazoDescripcion":
-                    return "Motivo_de_Rechazo_de_Solicitud.Descripcion";
-                case "Acuerdo_Cumplido[Descripcion]":
-                case "Acuerdo_CumplidoDescripcion":
-                    return "A_Tiempo.Descripcion";
-                case "Razon_de_Incumplimiento[Descripcion]":
-                case "Razon_de_IncumplimientoDescripcion":
-                    return "Razon_de_Incumplimiento.Descripcion";
-                case "Tipo_de_Conclusion_Anticipada[Descripcion]":
-                case "Tipo_de_Conclusion_AnticipadaDescripcion":
-                    return "Tipo_de_Conclusion_Anticipada.Descripcion";
-                case "Fecha_de_Cierre":
-                    return "Solicitud.Fecha_de_Cierre";
-                case "Hora_de_Cierre":
-                    return "Solicitud.Hora_de_Cierre";
 
                 default:
                     return propertyName;
@@ -203,6 +215,32 @@ namespace Spartane.Web.SqlModelMapper
 
                 }
             }
+            if (columnName == "Fecha_Validacion")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            if (columnName == "Rechazar")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Fecha_de_Cierre")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
             if (columnName == "Asignar_Especialista_Automatico")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
@@ -219,21 +257,6 @@ namespace Spartane.Web.SqlModelMapper
                 }
             }
             if (columnName == "Fecha_de_Atencion_del_Especialista")
-            {
-                try
-                {
-                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
-                }
-                catch (Exception ex)
-                {
-
-                }
-            }
-            if (columnName == "Rechazar")
-            {
-                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
-            }
-            if (columnName == "Fecha_de_Cierre")
             {
                 try
                 {

@@ -122,7 +122,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,UsuarioName = CultureHelper.GetTraduction(Convert.ToString(Detalle_Solicitud_Historial_de_AsignacionesData.Usuario), "Spartan_User") ??  (string)Detalle_Solicitud_Historial_de_AsignacionesData.Usuario_Spartan_User.Name
                     ,Facilitador_Asignado = Detalle_Solicitud_Historial_de_AsignacionesData.Facilitador_Asignado
                     ,Facilitador_AsignadoName = CultureHelper.GetTraduction(Convert.ToString(Detalle_Solicitud_Historial_de_AsignacionesData.Facilitador_Asignado), "Spartan_User") ??  (string)Detalle_Solicitud_Historial_de_AsignacionesData.Facilitador_Asignado_Spartan_User.Name
-                    ,Motivo_cambio = Detalle_Solicitud_Historial_de_AsignacionesData.Motivo_cambio
+                    ,Motivo_de_cambio = Detalle_Solicitud_Historial_de_AsignacionesData.Motivo_de_cambio
 
                 };
 
@@ -169,7 +169,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,UsuarioName = CultureHelper.GetTraduction(Convert.ToString(Detalle_Solicitud_Historial_de_AsignacionesData.Usuario), "Spartan_User") ??  (string)Detalle_Solicitud_Historial_de_AsignacionesData.Usuario_Spartan_User.Name
                     ,Facilitador_Asignado = Detalle_Solicitud_Historial_de_AsignacionesData.Facilitador_Asignado
                     ,Facilitador_AsignadoName = CultureHelper.GetTraduction(Convert.ToString(Detalle_Solicitud_Historial_de_AsignacionesData.Facilitador_Asignado), "Spartan_User") ??  (string)Detalle_Solicitud_Historial_de_AsignacionesData.Facilitador_Asignado_Spartan_User.Name
-                    ,Motivo_cambio = Detalle_Solicitud_Historial_de_AsignacionesData.Motivo_cambio
+                    ,Motivo_de_cambio = Detalle_Solicitud_Historial_de_AsignacionesData.Motivo_de_cambio
 
 					};
 				}
@@ -244,7 +244,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_cambio = m.Hora_cambio
                         ,UsuarioName = CultureHelper.GetTraduction(m.Usuario_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_Spartan_User.Name
                         ,Facilitador_AsignadoName = CultureHelper.GetTraduction(m.Facilitador_Asignado_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Facilitador_Asignado_Spartan_User.Name
-			,Motivo_cambio = m.Motivo_cambio
+			,Motivo_de_cambio = m.Motivo_de_cambio
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -367,7 +367,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Hora_cambio = varDetalle_Solicitud_Historial_de_Asignaciones.Hora_cambio
                         ,Usuario = varDetalle_Solicitud_Historial_de_Asignaciones.Usuario
                         ,Facilitador_Asignado = varDetalle_Solicitud_Historial_de_Asignaciones.Facilitador_Asignado
-                        ,Motivo_cambio = varDetalle_Solicitud_Historial_de_Asignaciones.Motivo_cambio
+                        ,Motivo_de_cambio = varDetalle_Solicitud_Historial_de_Asignaciones.Motivo_de_cambio
 
                     };
 
@@ -599,7 +599,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ,Hora_cambio = m.Hora_cambio
                 ,UsuarioName = (string)m.Usuario_Spartan_User.Name
                 ,Facilitador_AsignadoName = (string)m.Facilitador_Asignado_Spartan_User.Name
-                ,Motivo_cambio = m.Motivo_cambio
+                ,Motivo_de_cambio = m.Motivo_de_cambio
 
             }).ToList();
 
@@ -650,7 +650,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ,Hora_cambio = m.Hora_cambio
                 ,UsuarioName = (string)m.Usuario_Spartan_User.Name
                 ,Facilitador_AsignadoName = (string)m.Facilitador_Asignado_Spartan_User.Name
-                ,Motivo_cambio = m.Motivo_cambio
+                ,Motivo_de_cambio = m.Motivo_de_cambio
 
             }).ToList();
 

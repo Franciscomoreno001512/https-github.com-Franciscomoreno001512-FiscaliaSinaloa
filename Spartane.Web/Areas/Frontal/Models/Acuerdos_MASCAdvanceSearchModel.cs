@@ -41,6 +41,13 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceTipo_de_Acuerdo { set; get; }
         public int[] AdvanceTipo_de_AcuerdoMultiple { set; get; }
 
+        public Filters Forma_de_CumplimientoFilter { set; get; }
+        public string AdvanceForma_de_Cumplimiento { set; get; }
+        public int[] AdvanceForma_de_CumplimientoMultiple { set; get; }
+
+        public Filters Descripcion_del_CumplimientoFilter { set; get; }
+        public string Descripcion_del_Cumplimiento { set; get; }
+
         public Filters SolicitanteFilter { set; get; }
         public string AdvanceSolicitante { set; get; }
         public int[] AdvanceSolicitanteMultiple { set; get; }

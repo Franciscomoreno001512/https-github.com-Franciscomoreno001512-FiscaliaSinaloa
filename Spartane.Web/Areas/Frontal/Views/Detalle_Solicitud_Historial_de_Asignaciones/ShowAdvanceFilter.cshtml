@@ -102,12 +102,12 @@
     if (ViewBag.Spartan_Users_Facilitador_Asignado != null)
     { varSpartan_User_Facilitador_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_Facilitador_Asignado; }
                 <div class="MarginBottom">
-                    <h3>@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Motivo_cambio</h3>
+                    <h3>@Resources.Detalle_Solicitud_Historial_de_AsignacionesResources.Motivo_de_cambio</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Motivo_cambioFilter, filters, new { @class = "form-control", @id = "ddlMotivo_cambioFilter" })
-                    @Html.TextBoxFor(m => m.Motivo_cambio, new { @class = "form-control", @type = "text", @id = "txtMotivo_cambio" })
+                    @Html.DropDownListFor(m => m.Motivo_de_cambioFilter, filters, new { @class = "form-control", @id = "ddlMotivo_de_cambioFilter" })
+                    @Html.TextBoxFor(m => m.Motivo_de_cambio, new { @class = "form-control", @type = "text", @id = "txtMotivo_de_cambio" })
                 </div>
 
                 <div class="MarginBottom form-inline">
@@ -166,10 +166,10 @@
                 advanceSearch.Facilitador_AsignadoSearchType = 2;
             }
         }
-        if ($("#txtAdvanceMotivo_cambio").val() != "") {
+        if ($("#txtAdvanceMotivo_de_cambio").val() != "") {
             hasParameter = true;
-            advanceSearch.Detalle_Solicitud_Historial_de_AsignacionesMotivo_cambio = $("#txtAdvanceMotivo_cambio").val();
-            advanceSearch.Detalle_Solicitud_Historial_de_AsignacionesMotivo_cambioSearchType = $("#ddlAdvanceMotivo_cambioFilter").val();
+            advanceSearch.Detalle_Solicitud_Historial_de_AsignacionesMotivo_de_cambio = $("#txtAdvanceMotivo_de_cambio").val();
+            advanceSearch.Detalle_Solicitud_Historial_de_AsignacionesMotivo_de_cambioSearchType = $("#ddlAdvanceMotivo_de_cambioFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

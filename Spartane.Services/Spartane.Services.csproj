@@ -1107,6 +1107,8 @@
 <Compile Include="Motivo_de_Rechazo_de_Solicitud\Motivo_de_Rechazo_de_SolicitudService.cs" />
 <Compile Include="Detalle_Solicitud_Historial_de_Asignaciones\IDetalle_Solicitud_Historial_de_AsignacionesService.cs" />
 <Compile Include="Detalle_Solicitud_Historial_de_Asignaciones\Detalle_Solicitud_Historial_de_AsignacionesService.cs" />
+<Compile Include="Forma_de_Cumplimiento\IForma_de_CumplimientoService.cs" />
+<Compile Include="Forma_de_Cumplimiento\Forma_de_CumplimientoService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1206,6 +1208,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

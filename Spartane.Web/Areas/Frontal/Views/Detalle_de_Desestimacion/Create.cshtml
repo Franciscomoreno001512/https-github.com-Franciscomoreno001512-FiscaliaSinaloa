@@ -13,7 +13,7 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
-    List<SelectListItem> varDetalle_de_Datos_Generales_Nombre_Completo = null;
+ List<SelectListItem> varDetalle_de_Datos_Generales_Nombre_Completo = null;
     if (ViewBag.Detalle_de_Datos_Generaless_Nombre_Completo != null)
     { varDetalle_de_Datos_Generales_Nombre_Completo = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Nombre_Completo; }
     List<SelectListItem> varA_Tiempo_Causal_de_Interrupcion = null;
@@ -184,28 +184,14 @@
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divNombre_Completo">
+				<div class="form-group" id="divNombre_Completo">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_DesestimacionResources.Nombre_Completo</label>
                                 <div class="col-sm-8" data-field-id="Nombre_Completo" data-attribute="264914" data-field-name="@Resources.Detalle_de_DesestimacionResources.Nombre_Completo">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Nombre Completo must be a number." data-val-required="The Nombre Completo field is required." id="Nombre_Completo" name="Nombre_Completo">
-                                        <option value=""></option>
-                                        @if (varDetalle_de_Datos_Generales_Nombre_Completo != null){ 
-                                            foreach (var itemNombre_Completo in varDetalle_de_Datos_Generales_Nombre_Completo)
-                                            {
-                                                if (itemNombre_Completo.Value == Convert.ToString(Model.Nombre_Completo))
-                                                {
-                                                    <option value="@itemNombre_Completo.Value" selected>@itemNombre_Completo.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemNombre_Completo.Value">@itemNombre_Completo.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Desestimacion_Nombre_Completo form-control select2-dropdown Datos_Generales' data-val="true" id="Nombre_Completo" name="Nombre_Completo">
+                                        <option value="@Model.Nombre_Completo">@(Model.Nombre_CompletoNombre_Completo??Model.Nombre_CompletoNombre_Completo)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Nombre_Completo" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 264914).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 264914).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_Datos_Generales', 'Nombre_Completo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -483,6 +469,39 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDetalle_de_Desestimacion_Modulo_Atencion_Inicial");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteNombre_CompletoData =[];
+       $(".AutoCompleteDetalle_de_Desestimacion_Nombre_Completo").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Desestimacion/GetDetalle_de_Desestimacion_Nombre_Completo_Detalle_de_Datos_Generales")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Desestimacion_Nombre_Completo_Detalle_de_Datos_GeneralesData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Desestimacion_Nombre_Completo");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -777,7 +796,15 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.Modulo_Atencion_Inicial).trigger('change');
                     }, 3000);
-                    $('#Nombre_Completo').val(result.data.Nombre_Completo);
+                    var control = $('#Nombre_Completo');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Nombre_Completo).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Nombre_Completo).trigger('change');
+                    }, 3000);
                     $('#Causal_de_Interrupcion').val(result.data.Causal_de_Interrupcion);
                     $('#Causa_de_Interrupcion').val(result.data.Causa_de_Interrupcion);
                     $('#Datos_Insuficientes').val(result.data.Datos_Insuficientes);

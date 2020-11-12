@@ -5,6 +5,7 @@ using Spartane.Core.Domain.Acuerdos_MASC;
 using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Acuerdo;
+using Spartane.Core.Domain.Forma_de_Cumplimiento;
 using Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante;
 using Spartane.Core.Domain.Detalle_de_Solicitud_Requerido;
 using Spartane.Core.Domain.Periodicidad;
@@ -26,6 +27,7 @@ using Spartane.Web.Areas.WebApiConsumer.Acuerdos_MASC;
 using Spartane.Web.Areas.WebApiConsumer.Solicitud;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Acuerdo;
+using Spartane.Web.Areas.WebApiConsumer.Forma_de_Cumplimiento;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Solicitud_Solicitante;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Solicitud_Requerido;
 using Spartane.Web.Areas.WebApiConsumer.Periodicidad;
@@ -73,6 +75,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ISolicitudApiConsumer _ISolicitudApiConsumer;
         private ISpartan_UserApiConsumer _ISpartan_UserApiConsumer;
         private ITipo_de_AcuerdoApiConsumer _ITipo_de_AcuerdoApiConsumer;
+        private IForma_de_CumplimientoApiConsumer _IForma_de_CumplimientoApiConsumer;
         private IDetalle_de_Solicitud_SolicitanteApiConsumer _IDetalle_de_Solicitud_SolicitanteApiConsumer;
         private IDetalle_de_Solicitud_RequeridoApiConsumer _IDetalle_de_Solicitud_RequeridoApiConsumer;
         private IPeriodicidadApiConsumer _IPeriodicidadApiConsumer;
@@ -96,7 +99,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Acuerdos_MASCController(IAcuerdos_MASCService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IAcuerdos_MASCApiConsumer Acuerdos_MASCApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_AcuerdoApiConsumer Tipo_de_AcuerdoApiConsumer , IDetalle_de_Solicitud_SolicitanteApiConsumer Detalle_de_Solicitud_SolicitanteApiConsumer , IDetalle_de_Solicitud_RequeridoApiConsumer Detalle_de_Solicitud_RequeridoApiConsumer , IPeriodicidadApiConsumer PeriodicidadApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IRazon_de_IncumplimientoApiConsumer Razon_de_IncumplimientoApiConsumer , IResultado_de_RevisionApiConsumer Resultado_de_RevisionApiConsumer )
+        public Acuerdos_MASCController(IAcuerdos_MASCService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IAcuerdos_MASCApiConsumer Acuerdos_MASCApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_AcuerdoApiConsumer Tipo_de_AcuerdoApiConsumer , IForma_de_CumplimientoApiConsumer Forma_de_CumplimientoApiConsumer , IDetalle_de_Solicitud_SolicitanteApiConsumer Detalle_de_Solicitud_SolicitanteApiConsumer , IDetalle_de_Solicitud_RequeridoApiConsumer Detalle_de_Solicitud_RequeridoApiConsumer , IPeriodicidadApiConsumer PeriodicidadApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IRazon_de_IncumplimientoApiConsumer Razon_de_IncumplimientoApiConsumer , IResultado_de_RevisionApiConsumer Resultado_de_RevisionApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -113,6 +116,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISolicitudApiConsumer = SolicitudApiConsumer;
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._ITipo_de_AcuerdoApiConsumer = Tipo_de_AcuerdoApiConsumer;
+            this._IForma_de_CumplimientoApiConsumer = Forma_de_CumplimientoApiConsumer;
             this._IDetalle_de_Solicitud_SolicitanteApiConsumer = Detalle_de_Solicitud_SolicitanteApiConsumer;
             this._IDetalle_de_Solicitud_RequeridoApiConsumer = Detalle_de_Solicitud_RequeridoApiConsumer;
             this._IPeriodicidadApiConsumer = PeriodicidadApiConsumer;
@@ -204,6 +208,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Acuerdos_MASCData.Usuario_que_Registra), "Spartan_User") ??  (string)Acuerdos_MASCData.Usuario_que_Registra_Spartan_User.Name
                     ,Tipo_de_Acuerdo = Acuerdos_MASCData.Tipo_de_Acuerdo
                     ,Tipo_de_AcuerdoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Acuerdos_MASCData.Tipo_de_Acuerdo), "Tipo_de_Acuerdo") ??  (string)Acuerdos_MASCData.Tipo_de_Acuerdo_Tipo_de_Acuerdo.Descripcion
+                    ,Forma_de_Cumplimiento = Acuerdos_MASCData.Forma_de_Cumplimiento
+                    ,Forma_de_CumplimientoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Acuerdos_MASCData.Forma_de_Cumplimiento), "Forma_de_Cumplimiento") ??  (string)Acuerdos_MASCData.Forma_de_Cumplimiento_Forma_de_Cumplimiento.Descripcion
+                    ,Descripcion_del_Cumplimiento = Acuerdos_MASCData.Descripcion_del_Cumplimiento
                     ,Solicitante = Acuerdos_MASCData.Solicitante
                     ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Acuerdos_MASCData.Solicitante), "Detalle_de_Solicitud_Solicitante") ??  (string)Acuerdos_MASCData.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
                     ,Requerido = Acuerdos_MASCData.Requerido
@@ -251,6 +258,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo = Tipo_de_Acuerdos_Tipo_de_Acuerdo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Acuerdo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IForma_de_CumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Forma_de_Cumplimientos_Forma_de_Cumplimiento = _IForma_de_CumplimientoApiConsumer.SelAll(true);
+            if (Forma_de_Cumplimientos_Forma_de_Cumplimiento != null && Forma_de_Cumplimientos_Forma_de_Cumplimiento.Resource != null)
+                ViewBag.Forma_de_Cumplimientos_Forma_de_Cumplimiento = Forma_de_Cumplimientos_Forma_de_Cumplimiento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Forma_de_Cumplimiento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IPeriodicidadApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Periodicidads_Periodicidad = _IPeriodicidadApiConsumer.SelAll(true);
@@ -350,6 +364,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Acuerdos_MASCData.Usuario_que_Registra), "Spartan_User") ??  (string)Acuerdos_MASCData.Usuario_que_Registra_Spartan_User.Name
                     ,Tipo_de_Acuerdo = Acuerdos_MASCData.Tipo_de_Acuerdo
                     ,Tipo_de_AcuerdoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Acuerdos_MASCData.Tipo_de_Acuerdo), "Tipo_de_Acuerdo") ??  (string)Acuerdos_MASCData.Tipo_de_Acuerdo_Tipo_de_Acuerdo.Descripcion
+                    ,Forma_de_Cumplimiento = Acuerdos_MASCData.Forma_de_Cumplimiento
+                    ,Forma_de_CumplimientoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Acuerdos_MASCData.Forma_de_Cumplimiento), "Forma_de_Cumplimiento") ??  (string)Acuerdos_MASCData.Forma_de_Cumplimiento_Forma_de_Cumplimiento.Descripcion
+                    ,Descripcion_del_Cumplimiento = Acuerdos_MASCData.Descripcion_del_Cumplimiento
                     ,Solicitante = Acuerdos_MASCData.Solicitante
                     ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Acuerdos_MASCData.Solicitante), "Detalle_de_Solicitud_Solicitante") ??  (string)Acuerdos_MASCData.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
                     ,Requerido = Acuerdos_MASCData.Requerido
@@ -395,6 +412,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo = Tipo_de_Acuerdos_Tipo_de_Acuerdo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Acuerdo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IForma_de_CumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Forma_de_Cumplimientos_Forma_de_Cumplimiento = _IForma_de_CumplimientoApiConsumer.SelAll(true);
+            if (Forma_de_Cumplimientos_Forma_de_Cumplimiento != null && Forma_de_Cumplimientos_Forma_de_Cumplimiento.Resource != null)
+                ViewBag.Forma_de_Cumplimientos_Forma_de_Cumplimiento = Forma_de_Cumplimientos_Forma_de_Cumplimiento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Forma_de_Cumplimiento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IPeriodicidadApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Periodicidads_Periodicidad = _IPeriodicidadApiConsumer.SelAll(true);
@@ -499,6 +523,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Acuerdo", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetForma_de_CumplimientoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IForma_de_CumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IForma_de_CumplimientoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Forma_de_Cumplimiento", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -673,6 +718,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Acuerdo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IForma_de_CumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Forma_de_Cumplimientos_Forma_de_Cumplimiento = _IForma_de_CumplimientoApiConsumer.SelAll(true);
+            if (Forma_de_Cumplimientos_Forma_de_Cumplimiento != null && Forma_de_Cumplimientos_Forma_de_Cumplimiento.Resource != null)
+                ViewBag.Forma_de_Cumplimientos_Forma_de_Cumplimiento = Forma_de_Cumplimientos_Forma_de_Cumplimiento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Forma_de_Cumplimiento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IPeriodicidadApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Periodicidads_Periodicidad = _IPeriodicidadApiConsumer.SelAll(true);
             if (Periodicidads_Periodicidad != null && Periodicidads_Periodicidad.Resource != null)
@@ -718,6 +770,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Acuerdos_Tipo_de_Acuerdo = Tipo_de_Acuerdos_Tipo_de_Acuerdo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Acuerdo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IForma_de_CumplimientoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Forma_de_Cumplimientos_Forma_de_Cumplimiento = _IForma_de_CumplimientoApiConsumer.SelAll(true);
+            if (Forma_de_Cumplimientos_Forma_de_Cumplimiento != null && Forma_de_Cumplimientos_Forma_de_Cumplimiento.Resource != null)
+                ViewBag.Forma_de_Cumplimientos_Forma_de_Cumplimiento = Forma_de_Cumplimientos_Forma_de_Cumplimiento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Forma_de_Cumplimiento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IPeriodicidadApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Periodicidads_Periodicidad = _IPeriodicidadApiConsumer.SelAll(true);
@@ -790,6 +849,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Registro = m.Hora_de_Registro
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_AcuerdoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Acuerdo_Tipo_de_Acuerdo.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Acuerdo_Tipo_de_Acuerdo.Descripcion
+                        ,Forma_de_CumplimientoDescripcion = CultureHelper.GetTraduction(m.Forma_de_Cumplimiento_Forma_de_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Forma_de_Cumplimiento_Forma_de_Cumplimiento.Descripcion
+			,Descripcion_del_Cumplimiento = m.Descripcion_del_Cumplimiento
                         ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
                         ,RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
 			,Lugar_Acordado = m.Lugar_Acordado
@@ -930,6 +991,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Registro = m.Hora_de_Registro
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_AcuerdoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Acuerdo_Tipo_de_Acuerdo.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Acuerdo_Tipo_de_Acuerdo.Descripcion
+                        ,Forma_de_CumplimientoDescripcion = CultureHelper.GetTraduction(m.Forma_de_Cumplimiento_Forma_de_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Forma_de_Cumplimiento_Forma_de_Cumplimiento.Descripcion
+			,Descripcion_del_Cumplimiento = m.Descripcion_del_Cumplimiento
                         ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
                         ,RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
 			,Lugar_Acordado = m.Lugar_Acordado
@@ -1242,6 +1305,56 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Tipo_de_AcuerdoIds = string.Join(",", filter.AdvanceTipo_de_AcuerdoMultiple);
 
                 where += " AND Acuerdos_MASC.Tipo_de_Acuerdo In (" + Tipo_de_AcuerdoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceForma_de_Cumplimiento))
+            {
+                switch (filter.Forma_de_CumplimientoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Forma_de_Cumplimiento.Descripcion LIKE '" + filter.AdvanceForma_de_Cumplimiento + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Forma_de_Cumplimiento.Descripcion LIKE '%" + filter.AdvanceForma_de_Cumplimiento + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Forma_de_Cumplimiento.Descripcion = '" + filter.AdvanceForma_de_Cumplimiento + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Forma_de_Cumplimiento.Descripcion LIKE '%" + filter.AdvanceForma_de_Cumplimiento + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceForma_de_CumplimientoMultiple != null && filter.AdvanceForma_de_CumplimientoMultiple.Count() > 0)
+            {
+                var Forma_de_CumplimientoIds = string.Join(",", filter.AdvanceForma_de_CumplimientoMultiple);
+
+                where += " AND Acuerdos_MASC.Forma_de_Cumplimiento In (" + Forma_de_CumplimientoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.Descripcion_del_Cumplimiento))
+            {
+                switch (filter.Descripcion_del_CumplimientoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Acuerdos_MASC.Descripcion_del_Cumplimiento LIKE '" + filter.Descripcion_del_Cumplimiento + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Acuerdos_MASC.Descripcion_del_Cumplimiento LIKE '%" + filter.Descripcion_del_Cumplimiento + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Acuerdos_MASC.Descripcion_del_Cumplimiento = '" + filter.Descripcion_del_Cumplimiento + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Acuerdos_MASC.Descripcion_del_Cumplimiento LIKE '%" + filter.Descripcion_del_Cumplimiento + "%'";
+                        break;
+                }
             }
 
             if (!string.IsNullOrEmpty(filter.AdvanceSolicitante))
@@ -1714,6 +1827,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Hora_de_Registro = varAcuerdos_MASC.Hora_de_Registro
                         ,Usuario_que_Registra = varAcuerdos_MASC.Usuario_que_Registra
                         ,Tipo_de_Acuerdo = varAcuerdos_MASC.Tipo_de_Acuerdo
+                        ,Forma_de_Cumplimiento = varAcuerdos_MASC.Forma_de_Cumplimiento
+                        ,Descripcion_del_Cumplimiento = varAcuerdos_MASC.Descripcion_del_Cumplimiento
                         ,Solicitante = varAcuerdos_MASC.Solicitante
                         ,Requerido = varAcuerdos_MASC.Requerido
                         ,Lugar_Acordado = varAcuerdos_MASC.Lugar_Acordado
@@ -2128,6 +2243,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Registro = m.Hora_de_Registro
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_AcuerdoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Acuerdo_Tipo_de_Acuerdo.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Acuerdo_Tipo_de_Acuerdo.Descripcion
+                        ,Forma_de_CumplimientoDescripcion = CultureHelper.GetTraduction(m.Forma_de_Cumplimiento_Forma_de_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Forma_de_Cumplimiento_Forma_de_Cumplimiento.Descripcion
+			,Descripcion_del_Cumplimiento = m.Descripcion_del_Cumplimiento
                         ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
                         ,RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
 			,Lugar_Acordado = m.Lugar_Acordado
@@ -2227,6 +2344,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Registro = m.Hora_de_Registro
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_AcuerdoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Acuerdo_Tipo_de_Acuerdo.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Acuerdo_Tipo_de_Acuerdo.Descripcion
+                        ,Forma_de_CumplimientoDescripcion = CultureHelper.GetTraduction(m.Forma_de_Cumplimiento_Forma_de_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Forma_de_Cumplimiento_Forma_de_Cumplimiento.Descripcion
+			,Descripcion_del_Cumplimiento = m.Descripcion_del_Cumplimiento
                         ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
                         ,RequeridoNombre_Completo = CultureHelper.GetTraduction(m.Requerido_Detalle_de_Solicitud_Requerido.Clave.ToString(), "Detalle_de_Solicitud_Requerido") ?? (string)m.Requerido_Detalle_de_Solicitud_Requerido.Nombre_Completo
 			,Lugar_Acordado = m.Lugar_Acordado
@@ -2308,6 +2427,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Hora_de_Registro = varAcuerdos_MASC.Hora_de_Registro
                         ,Usuario_que_Registra = varAcuerdos_MASC.Usuario_que_Registra
                         ,Tipo_de_Acuerdo = varAcuerdos_MASC.Tipo_de_Acuerdo
+                        ,Forma_de_Cumplimiento = varAcuerdos_MASC.Forma_de_Cumplimiento
+                        ,Descripcion_del_Cumplimiento = varAcuerdos_MASC.Descripcion_del_Cumplimiento
                         ,Solicitante = varAcuerdos_MASC.Solicitante
                         ,Requerido = varAcuerdos_MASC.Requerido
                         ,Lugar_Acordado = varAcuerdos_MASC.Lugar_Acordado
@@ -2361,6 +2482,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Tipo_de_Acuerdo = m.Tipo_de_Acuerdo
                         ,Tipo_de_AcuerdoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Acuerdo_Tipo_de_Acuerdo.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Acuerdo_Tipo_de_Acuerdo.Descripcion
+                        ,Forma_de_Cumplimiento = m.Forma_de_Cumplimiento
+                        ,Forma_de_CumplimientoDescripcion = CultureHelper.GetTraduction(m.Forma_de_Cumplimiento_Forma_de_Cumplimiento.Clave.ToString(), "Descripcion") ?? (string)m.Forma_de_Cumplimiento_Forma_de_Cumplimiento.Descripcion
+			,Descripcion_del_Cumplimiento = m.Descripcion_del_Cumplimiento
                         ,Solicitante = m.Solicitante
                         ,SolicitanteNombre_Completo = CultureHelper.GetTraduction(m.Solicitante_Detalle_de_Solicitud_Solicitante.Clave.ToString(), "Detalle_de_Solicitud_Solicitante") ?? (string)m.Solicitante_Detalle_de_Solicitud_Solicitante.Nombre_Completo
                         ,Requerido = m.Requerido
