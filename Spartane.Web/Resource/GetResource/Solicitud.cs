@@ -396,56 +396,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Fecha_Validacion</summary>
-        public static string Fecha_Validacion
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud.GetResource("Fecha_Validacion", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Hora_Validacion</summary>
-        public static string Hora_Validacion
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud.GetResource("Hora_Validacion", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Usuario_que_Valida</summary>
-        public static string Usuario_que_Valida
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud.GetResource("Usuario_que_Valida", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Resultado</summary>
-        public static string Resultado
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud.GetResource("Resultado", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Motivo_de_Rechazo_Solicitud</summary>
-        public static string Motivo_de_Rechazo_Solicitud
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud.GetResource("Motivo_de_Rechazo_Solicitud", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Rechazar</summary>
         public static string Rechazar
         {
@@ -513,6 +463,56 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderSolicitud.GetResource("Hora_de_Cierre", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Fecha_Validacion</summary>
+        public static string Fecha_Validacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Fecha_Validacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_Validacion</summary>
+        public static string Hora_Validacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Hora_Validacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Usuario_que_Valida</summary>
+        public static string Usuario_que_Valida
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Usuario_que_Valida", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Resultado</summary>
+        public static string Resultado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Resultado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Motivo_de_Rechazo_Solicitud</summary>
+        public static string Motivo_de_Rechazo_Solicitud
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Motivo_de_Rechazo_Solicitud", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

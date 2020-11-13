@@ -20,12 +20,12 @@
     string Fecha_del_Hecho = "";
     if (Model.Fecha_del_Hecho == "")
     { Model.Fecha_del_Hecho = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
-    string Fecha_Validacion = "";
-    if (Model.Fecha_Validacion == "")
-    { Model.Fecha_Validacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
     string Fecha_de_Cierre = "";
     if (Model.Fecha_de_Cierre == "")
     { Model.Fecha_de_Cierre = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_Validacion = "";
+    if (Model.Fecha_Validacion == "")
+    { Model.Fecha_Validacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
     string Fecha_de_AsignacionA = "";
     if (Model.Fecha_de_AsignacionA == "")
     { Model.Fecha_de_AsignacionA = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
@@ -82,12 +82,6 @@
  List<SelectListItem> varColonia_ColoniaH = null;
     if (ViewBag.Colonias_ColoniaH != null)
     { varColonia_ColoniaH = (List<SelectListItem>)ViewBag.Colonias_ColoniaH; }
- List<SelectListItem> varSpartan_User_Usuario_que_Valida = null;
-    if (ViewBag.Spartan_Users_Usuario_que_Valida != null)
-    { varSpartan_User_Usuario_que_Valida = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Valida; }
-    List<SelectListItem> varResultado_de_Revision_Resultado = null;
-    if (ViewBag.Resultado_de_Revisions_Resultado != null)
-    { varResultado_de_Revision_Resultado = (List<SelectListItem>)ViewBag.Resultado_de_Revisions_Resultado; }
     List<SelectListItem> varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo = null;
     if (ViewBag.Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo != null)
     { varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo = (List<SelectListItem>)ViewBag.Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo; }
@@ -100,6 +94,12 @@
     List<SelectListItem> varTipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada = null;
     if (ViewBag.Tipo_de_Conclusion_Anticipadas_Tipo_de_Conclusion_Anticipada != null)
     { varTipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada = (List<SelectListItem>)ViewBag.Tipo_de_Conclusion_Anticipadas_Tipo_de_Conclusion_Anticipada; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Valida = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Valida != null)
+    { varSpartan_User_Usuario_que_Valida = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Valida; }
+    List<SelectListItem> varResultado_de_Revision_Resultado = null;
+    if (ViewBag.Resultado_de_Revisions_Resultado != null)
+    { varResultado_de_Revision_Resultado = (List<SelectListItem>)ViewBag.Resultado_de_Revisions_Resultado; }
  List<SelectListItem> varSpartan_User_Especialista_AsignadoA = null;
     if (ViewBag.Spartan_Users_Especialista_AsignadoA != null)
     { varSpartan_User_Especialista_AsignadoA = (List<SelectListItem>)ViewBag.Spartan_Users_Especialista_AsignadoA; }
@@ -741,77 +741,6 @@
 
                             <div id="tabCierre" class="tab-pane">
                                 <div class="panel-body">
-                            <div class="form-group" id="divFecha_Validacion">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Fecha_Validacion</label>
-                                <div class="col-sm-8" data-field-id="Fecha_Validacion" data-attribute="266724" data-field-name="@Resources.SolicitudResources.Fecha_Validacion">
-                                    <div class='input-group date' id='datetimepicker1'>
-                                        <input class="form-control col-md-12 Cierre" id="Fecha_Validacion"  name="Fecha_Validacion" type="text" value="@Model.Fecha_Validacion">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group" id="divHora_Validacion">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Hora_Validacion</label>
-                                <div class="col-sm-8" data-field-id="Hora_Validacion" data-attribute="266725" data-field-name="@Resources.SolicitudResources.Hora_Validacion">
-                                    <div class='input-group date' id='timePicker'>
-                                        <input class="form-control col-md-12 Cierre" id="Hora_Validacion"  name="Hora_Validacion" type="text" data-autoclose="true" value="@Model.Hora_Validacion">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-time"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-				<div class="form-group" id="divUsuario_que_Valida">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Usuario_que_Valida</label>
-                                <div class="col-sm-8" data-field-id="Usuario_que_Valida" data-attribute="266726" data-field-name="@Resources.SolicitudResources.Usuario_que_Valida">
-                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_Usuario_que_Valida form-control select2-dropdown Cierre' data-val="true" id="Usuario_que_Valida" name="Usuario_que_Valida">
-                                        <option value="@Model.Usuario_que_Valida">@(Model.Usuario_que_ValidaName??Model.Usuario_que_ValidaName)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266726).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Valida');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divResultado">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Resultado</label>
-                                <div class="col-sm-8" data-field-id="Resultado" data-attribute="266727" data-field-name="@Resources.SolicitudResources.Resultado">
-                                    <select class="form-control Cierre" data-val="true" data-val-number="The field Resultado must be a number." data-val-required="The Resultado field is required." id="Resultado" name="Resultado">
-                                        <option value=""></option>
-                                        @if (varResultado_de_Revision_Resultado != null){ 
-                                            foreach (var itemResultado in varResultado_de_Revision_Resultado)
-                                            {
-                                                if (itemResultado.Value == Convert.ToString(Model.Resultado))
-                                                {
-                                                    <option value="@itemResultado.Value" selected>@itemResultado.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemResultado.Value">@itemResultado.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Resultado" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266727).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Resultado_de_Revision', 'Resultado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divMotivo_de_Rechazo_Solicitud">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Motivo_de_Rechazo_Solicitud</label>
-                                <div class="col-sm-8" data-field-id="Motivo_de_Rechazo_Solicitud" data-attribute="266728" data-field-name="@Resources.SolicitudResources.Motivo_de_Rechazo_Solicitud">
-                                    <textarea id="Motivo_de_Rechazo_Solicitud" name="Motivo_de_Rechazo_Solicitud" class="form-control Cierre" rows="4" cols="50">@Model.Motivo_de_Rechazo_Solicitud</textarea>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Motivo_de_Rechazo_Solicitud" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
                             <div class="form-group" id="divRechazar">
                                 <label class="col-sm-2 control-label">@Resources.SolicitudResources.Rechazar</label>
                                 <div class="col-sm-8" data-field-id="Rechazar" data-attribute="263018" data-field-name="@Resources.SolicitudResources.Rechazar">
@@ -950,6 +879,77 @@
                                             <span class="glyphicon glyphicon-time"></span>
                                         </span>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFecha_Validacion">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Fecha_Validacion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_Validacion" data-attribute="266724" data-field-name="@Resources.SolicitudResources.Fecha_Validacion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Cierre" id="Fecha_Validacion"  name="Fecha_Validacion" type="text" value="@Model.Fecha_Validacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_Validacion">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Hora_Validacion</label>
+                                <div class="col-sm-8" data-field-id="Hora_Validacion" data-attribute="266725" data-field-name="@Resources.SolicitudResources.Hora_Validacion">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Cierre" id="Hora_Validacion"  name="Hora_Validacion" type="text" data-autoclose="true" value="@Model.Hora_Validacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Valida">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Usuario_que_Valida</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Valida" data-attribute="266726" data-field-name="@Resources.SolicitudResources.Usuario_que_Valida">
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_Usuario_que_Valida form-control select2-dropdown Cierre' data-val="true" id="Usuario_que_Valida" name="Usuario_que_Valida">
+                                        <option value="@Model.Usuario_que_Valida">@(Model.Usuario_que_ValidaName??Model.Usuario_que_ValidaName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266726).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Valida');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divResultado">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Resultado</label>
+                                <div class="col-sm-8" data-field-id="Resultado" data-attribute="266727" data-field-name="@Resources.SolicitudResources.Resultado">
+                                    <select class="form-control Cierre" data-val="true" data-val-number="The field Resultado must be a number." data-val-required="The Resultado field is required." id="Resultado" name="Resultado">
+                                        <option value=""></option>
+                                        @if (varResultado_de_Revision_Resultado != null){ 
+                                            foreach (var itemResultado in varResultado_de_Revision_Resultado)
+                                            {
+                                                if (itemResultado.Value == Convert.ToString(Model.Resultado))
+                                                {
+                                                    <option value="@itemResultado.Value" selected>@itemResultado.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemResultado.Value">@itemResultado.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Resultado" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266727).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Resultado_de_Revision', 'Resultado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divMotivo_de_Rechazo_Solicitud">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Motivo_de_Rechazo_Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Motivo_de_Rechazo_Solicitud" data-attribute="266728" data-field-name="@Resources.SolicitudResources.Motivo_de_Rechazo_Solicitud">
+                                    <textarea id="Motivo_de_Rechazo_Solicitud" name="Motivo_de_Rechazo_Solicitud" class="form-control Cierre" rows="4" cols="50">@Model.Motivo_de_Rechazo_Solicitud</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Motivo_de_Rechazo_Solicitud" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             </div>
@@ -1514,15 +1514,6 @@
                 format: "@ConfigurationProperty.DateFormatDatePicker"
             });
             $('#Hora_Aproximada_del_Hecho').clockpicker();
-            $('#Fecha_Validacion').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true,
-                format: "@ConfigurationProperty.DateFormatDatePicker"
-            });
-            $('#Hora_Validacion').clockpicker();
             $('#Fecha_de_Cierre').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -1532,6 +1523,15 @@
                 format: "@ConfigurationProperty.DateFormatDatePicker"
             });
             $('#Hora_de_Cierre').clockpicker();
+            $('#Fecha_Validacion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_Validacion').clockpicker();
             $('#Fecha_de_AsignacionA').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -3721,6 +3721,13 @@
                 async: false,
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
+                    $('#Rechazar').prop('checked', result.data.Rechazar);
+                    $('#Motivo_de_Rechazo').val(result.data.Motivo_de_Rechazo);
+                    $('#Acuerdo_Cumplido').val(result.data.Acuerdo_Cumplido);
+                    $('#Razon_de_Incumplimiento').val(result.data.Razon_de_Incumplimiento);
+                    $('#Tipo_de_Conclusion_Anticipada').val(result.data.Tipo_de_Conclusion_Anticipada);
+                    $('#Fecha_de_Cierre').val(result.data.Fecha_de_Cierre);
+                    $('#Hora_de_Cierre').val(result.data.Hora_de_Cierre);
                     $('#Fecha_Validacion').val(result.data.Fecha_Validacion);
                     $('#Hora_Validacion').val(result.data.Hora_Validacion);
                     var control = $('#Usuario_que_Valida');
@@ -3734,13 +3741,6 @@
                     }, 3000);
                     $('#Resultado').val(result.data.Resultado);
                     $('#Motivo_de_Rechazo_Solicitud').val(result.data.Motivo_de_Rechazo_Solicitud);
-                    $('#Rechazar').prop('checked', result.data.Rechazar);
-                    $('#Motivo_de_Rechazo').val(result.data.Motivo_de_Rechazo);
-                    $('#Acuerdo_Cumplido').val(result.data.Acuerdo_Cumplido);
-                    $('#Razon_de_Incumplimiento').val(result.data.Razon_de_Incumplimiento);
-                    $('#Tipo_de_Conclusion_Anticipada').val(result.data.Tipo_de_Conclusion_Anticipada);
-                    $('#Fecha_de_Cierre').val(result.data.Fecha_de_Cierre);
-                    $('#Hora_de_Cierre').val(result.data.Hora_de_Cierre);
 
                 },
                 error: function (result) {
@@ -3752,18 +3752,18 @@
 		function Save_Cierre(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
-			                data.append('Fecha_Validacion', $('#Fecha_Validacion').val());
-                data.append('Hora_Validacion', $('#Hora_Validacion').val());
-                data.append('Usuario_que_Valida', $('#Usuario_que_Valida').val());
-                data.append('Resultado', $('#Resultado').val());
-                data.append('Motivo_de_Rechazo_Solicitud', $('#Motivo_de_Rechazo_Solicitud').val());
-                data.append('Rechazar', $('#Rechazar').prop('checked'));
+			                data.append('Rechazar', $('#Rechazar').prop('checked'));
                 data.append('Motivo_de_Rechazo', $('#Motivo_de_Rechazo').val());
                 data.append('Acuerdo_Cumplido', $('#Acuerdo_Cumplido').val());
                 data.append('Razon_de_Incumplimiento', $('#Razon_de_Incumplimiento').val());
                 data.append('Tipo_de_Conclusion_Anticipada', $('#Tipo_de_Conclusion_Anticipada').val());
                 data.append('Fecha_de_Cierre', $('#Fecha_de_Cierre').val());
                 data.append('Hora_de_Cierre', $('#Hora_de_Cierre').val());
+                data.append('Fecha_Validacion', $('#Fecha_Validacion').val());
+                data.append('Hora_Validacion', $('#Hora_Validacion').val());
+                data.append('Usuario_que_Valida', $('#Usuario_que_Valida').val());
+                data.append('Resultado', $('#Resultado').val());
+                data.append('Motivo_de_Rechazo_Solicitud', $('#Motivo_de_Rechazo_Solicitud').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Solicitud/Post_Cierre")',

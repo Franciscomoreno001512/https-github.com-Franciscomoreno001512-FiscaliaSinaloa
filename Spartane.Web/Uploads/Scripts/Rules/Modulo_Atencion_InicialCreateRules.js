@@ -1763,6 +1763,20 @@ if( EvaluaQuery("SELECT Urgencia FROM Asignacion_de_Turnos WHERE Folio = FLD[Tur
 }
 //BusinessRuleId:2085, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2431, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Denuncia' + rowIndex));
+
+}
+//BusinessRuleId:2431, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2431, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Denuncia' + rowIndex));
+
+}
+//BusinessRuleId:2431, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

@@ -17,12 +17,12 @@
 @using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Colonia;
 @using Spartane.Core.Domain.Colonia;
-@using Spartane.Core.Domain.Spartan_User;
-@using Spartane.Core.Domain.Resultado_de_Revision;
 @using Spartane.Core.Domain.Motivo_de_Rechazo_de_Solicitud;
 @using Spartane.Core.Domain.A_Tiempo;
 @using Spartane.Core.Domain.Razon_de_Incumplimiento;
 @using Spartane.Core.Domain.Tipo_de_Conclusion_Anticipada;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Resultado_de_Revision;
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Tipo_de_Mecanismo_Alterno;
 
@@ -257,11 +257,6 @@
                                     <th>@Resources.SolicitudResources.y_Calle</th>
                                     <th>@Resources.SolicitudResources.LongitudH</th>
                                     <th>@Resources.SolicitudResources.LatitudH</th>
-                                    <th>@Resources.SolicitudResources.Fecha_Validacion</th>
-                                    <th>@Resources.SolicitudResources.Hora_Validacion</th>
-                                    <th>@Resources.SolicitudResources.Usuario_que_Valida</th>
-                                    <th>@Resources.SolicitudResources.Resultado</th>
-                                    <th>@Resources.SolicitudResources.Motivo_de_Rechazo_Solicitud</th>
                                     <th>@Resources.SolicitudResources.Rechazar</th>
                                     <th>@Resources.SolicitudResources.Motivo_de_Rechazo</th>
                                     <th>@Resources.SolicitudResources.Acuerdo_Cumplido</th>
@@ -269,6 +264,11 @@
                                     <th>@Resources.SolicitudResources.Tipo_de_Conclusion_Anticipada</th>
                                     <th>@Resources.SolicitudResources.Fecha_de_Cierre</th>
                                     <th>@Resources.SolicitudResources.Hora_de_Cierre</th>
+                                    <th>@Resources.SolicitudResources.Fecha_Validacion</th>
+                                    <th>@Resources.SolicitudResources.Hora_Validacion</th>
+                                    <th>@Resources.SolicitudResources.Usuario_que_Valida</th>
+                                    <th>@Resources.SolicitudResources.Resultado</th>
+                                    <th>@Resources.SolicitudResources.Motivo_de_Rechazo_Solicitud</th>
                                     <th>@Resources.SolicitudResources.Especialista_AsignadoA</th>
                                     <th>@Resources.SolicitudResources.Motivo_cambio_facilitador</th>
                                     <th>@Resources.SolicitudResources.Asignar_Especialista_Automatico</th>
@@ -321,11 +321,6 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="time"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -333,6 +328,11 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
@@ -494,11 +494,6 @@
         var y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LongitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LatitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_Validacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_Validacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Usuario_que_Valida =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Motivo_de_Rechazo_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Rechazar = $($('table td .filterData.form-control:input')[counter++]).val();
         var Motivo_de_Rechazo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Acuerdo_Cumplido =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -506,6 +501,11 @@
         var Tipo_de_Conclusion_Anticipada =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Cierre = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Cierre = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_Validacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Validacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Valida =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_de_Rechazo_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Especialista_AsignadoA =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Motivo_cambio_facilitador =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Asignar_Especialista_Automatico = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -554,11 +554,6 @@
         + "&y_Calle=" + y_Calle
         + "&LongitudH=" + LongitudH
         + "&LatitudH=" + LatitudH
-        + "&Fecha_Validacion=" + Fecha_Validacion
-        + "&Hora_Validacion=" + Hora_Validacion
-        + "&Usuario_que_Valida=" + Usuario_que_Valida
-        + "&Resultado=" + Resultado
-        + "&Motivo_de_Rechazo_Solicitud=" + Motivo_de_Rechazo_Solicitud
         + "&Rechazar=" + Rechazar
         + "&Motivo_de_Rechazo=" + Motivo_de_Rechazo
         + "&Acuerdo_Cumplido=" + Acuerdo_Cumplido
@@ -566,6 +561,11 @@
         + "&Tipo_de_Conclusion_Anticipada=" + Tipo_de_Conclusion_Anticipada
         + "&Fecha_de_Cierre=" + Fecha_de_Cierre
         + "&Hora_de_Cierre=" + Hora_de_Cierre
+        + "&Fecha_Validacion=" + Fecha_Validacion
+        + "&Hora_Validacion=" + Hora_Validacion
+        + "&Usuario_que_Valida=" + Usuario_que_Valida
+        + "&Resultado=" + Resultado
+        + "&Motivo_de_Rechazo_Solicitud=" + Motivo_de_Rechazo_Solicitud
         + "&Especialista_AsignadoA=" + Especialista_AsignadoA
         + "&Motivo_cambio_facilitador=" + Motivo_cambio_facilitador
         + "&Asignar_Especialista_Automatico=" + Asignar_Especialista_Automatico
@@ -625,11 +625,6 @@
         var y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LongitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LatitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_Validacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_Validacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Usuario_que_Valida =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Motivo_de_Rechazo_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Rechazar = $($('table td .filterData.form-control:input')[counter++]).val();
         var Motivo_de_Rechazo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Acuerdo_Cumplido =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -637,6 +632,11 @@
         var Tipo_de_Conclusion_Anticipada =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Cierre = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Cierre = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_Validacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Validacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Valida =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_de_Rechazo_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Especialista_AsignadoA =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Motivo_cambio_facilitador =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Asignar_Especialista_Automatico = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -685,11 +685,6 @@
         + "&y_Calle=" + y_Calle
         + "&LongitudH=" + LongitudH
         + "&LatitudH=" + LatitudH
-        + "&Fecha_Validacion=" + Fecha_Validacion
-        + "&Hora_Validacion=" + Hora_Validacion
-        + "&Usuario_que_Valida=" + Usuario_que_Valida
-        + "&Resultado=" + Resultado
-        + "&Motivo_de_Rechazo_Solicitud=" + Motivo_de_Rechazo_Solicitud
         + "&Rechazar=" + Rechazar
         + "&Motivo_de_Rechazo=" + Motivo_de_Rechazo
         + "&Acuerdo_Cumplido=" + Acuerdo_Cumplido
@@ -697,6 +692,11 @@
         + "&Tipo_de_Conclusion_Anticipada=" + Tipo_de_Conclusion_Anticipada
         + "&Fecha_de_Cierre=" + Fecha_de_Cierre
         + "&Hora_de_Cierre=" + Hora_de_Cierre
+        + "&Fecha_Validacion=" + Fecha_Validacion
+        + "&Hora_Validacion=" + Hora_Validacion
+        + "&Usuario_que_Valida=" + Usuario_que_Valida
+        + "&Resultado=" + Resultado
+        + "&Motivo_de_Rechazo_Solicitud=" + Motivo_de_Rechazo_Solicitud
         + "&Especialista_AsignadoA=" + Especialista_AsignadoA
         + "&Motivo_cambio_facilitador=" + Motivo_cambio_facilitador
         + "&Asignar_Especialista_Automatico=" + Asignar_Especialista_Automatico
@@ -990,11 +990,6 @@
                 ,{ "data": "y_Calle", "orderable": true, "name": "y_Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "LongitudH", "orderable": true, "name": "LongitudH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "LatitudH", "orderable": true, "name": "LatitudH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Fecha_Validacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_Validacion" }
-                ,{ "data": "Hora_Validacion", "orderable": true, "name": "Hora_Validacion" }
-                ,{ "data": "Usuario_que_ValidaName", "orderable": true, "name": "Usuario_que_ValidaName"}
-                ,{ "data": "ResultadoDescripcion", "orderable": true, "name": "ResultadoDescripcion" }
-                ,{ "data": "Motivo_de_Rechazo_Solicitud", "orderable": true, "name": "Motivo_de_Rechazo_Solicitud", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Rechazar", "orderable": true, "name": "Rechazar","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Motivo_de_RechazoDescripcion", "orderable": true, "name": "Motivo_de_RechazoDescripcion" }
                 ,{ "data": "Acuerdo_CumplidoDescripcion", "orderable": true, "name": "Acuerdo_CumplidoDescripcion" }
@@ -1002,6 +997,11 @@
                 ,{ "data": "Tipo_de_Conclusion_AnticipadaDescripcion", "orderable": true, "name": "Tipo_de_Conclusion_AnticipadaDescripcion" }
                 ,{ "data": "Fecha_de_Cierre", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Cierre" }
                 ,{ "data": "Hora_de_Cierre", "orderable": true, "name": "Hora_de_Cierre" }
+                ,{ "data": "Fecha_Validacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_Validacion" }
+                ,{ "data": "Hora_Validacion", "orderable": true, "name": "Hora_Validacion" }
+                ,{ "data": "Usuario_que_ValidaName", "orderable": true, "name": "Usuario_que_ValidaName"}
+                ,{ "data": "ResultadoDescripcion", "orderable": true, "name": "ResultadoDescripcion" }
+                ,{ "data": "Motivo_de_Rechazo_Solicitud", "orderable": true, "name": "Motivo_de_Rechazo_Solicitud", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Especialista_AsignadoAName", "orderable": true, "name": "Especialista_AsignadoAName"}
                 ,{ "data": "Motivo_cambio_facilitador", "orderable": true, "name": "Motivo_cambio_facilitador", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Asignar_Especialista_Automatico", "orderable": true, "name": "Asignar_Especialista_Automatico","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}

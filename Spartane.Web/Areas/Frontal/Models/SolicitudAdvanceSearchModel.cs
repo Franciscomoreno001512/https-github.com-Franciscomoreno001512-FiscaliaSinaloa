@@ -160,26 +160,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters LatitudHFilter { set; get; }
         public string LatitudH { set; get; }
 
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        public string FromFecha_Validacion { set; get; }
-        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
-        [IsDateAfter("FromFecha_Validacion", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToFecha_Validacion { set; get; }
-
-        public string ToHora_Validacion { set; get; }
-        public string FromHora_Validacion { set; get; }
-
-        public Filters Usuario_que_ValidaFilter { set; get; }
-        public string AdvanceUsuario_que_Valida { set; get; }
-        public int[] AdvanceUsuario_que_ValidaMultiple { set; get; }
-
-        public Filters ResultadoFilter { set; get; }
-        public string AdvanceResultado { set; get; }
-        public int[] AdvanceResultadoMultiple { set; get; }
-
-        public Filters Motivo_de_Rechazo_SolicitudFilter { set; get; }
-        public string Motivo_de_Rechazo_Solicitud { set; get; }
-
         public RadioOptions Rechazar { set; get; }
 
         public Filters Motivo_de_RechazoFilter { set; get; }
@@ -206,6 +186,26 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public string ToHora_de_Cierre { set; get; }
         public string FromHora_de_Cierre { set; get; }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string FromFecha_Validacion { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("FromFecha_Validacion", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_Validacion { set; get; }
+
+        public string ToHora_Validacion { set; get; }
+        public string FromHora_Validacion { set; get; }
+
+        public Filters Usuario_que_ValidaFilter { set; get; }
+        public string AdvanceUsuario_que_Valida { set; get; }
+        public int[] AdvanceUsuario_que_ValidaMultiple { set; get; }
+
+        public Filters ResultadoFilter { set; get; }
+        public string AdvanceResultado { set; get; }
+        public int[] AdvanceResultadoMultiple { set; get; }
+
+        public Filters Motivo_de_Rechazo_SolicitudFilter { set; get; }
+        public string Motivo_de_Rechazo_Solicitud { set; get; }
 
         public Filters Especialista_AsignadoAFilter { set; get; }
         public string AdvanceEspecialista_AsignadoA { set; get; }

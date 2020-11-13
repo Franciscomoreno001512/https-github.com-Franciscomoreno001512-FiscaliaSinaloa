@@ -104,18 +104,6 @@ namespace Spartane.Web.SqlModelMapper
                     return "Solicitud.LongitudH";
                 case "LatitudH":
                     return "Solicitud.LatitudH";
-                case "Fecha_Validacion":
-                    return "Solicitud.Fecha_Validacion";
-                case "Hora_Validacion":
-                    return "Solicitud.Hora_Validacion";
-                case "Usuario_que_Valida[Name]":
-                case "Usuario_que_ValidaName":
-                    return "Spartan_User.Name";
-                case "Resultado[Descripcion]":
-                case "ResultadoDescripcion":
-                    return "Resultado_de_Revision.Descripcion";
-                case "Motivo_de_Rechazo_Solicitud":
-                    return "Solicitud.Motivo_de_Rechazo_Solicitud";
                 case "Rechazar":
                     return "Solicitud.Rechazar";
                 case "Motivo_de_Rechazo[Descripcion]":
@@ -134,6 +122,18 @@ namespace Spartane.Web.SqlModelMapper
                     return "Solicitud.Fecha_de_Cierre";
                 case "Hora_de_Cierre":
                     return "Solicitud.Hora_de_Cierre";
+                case "Fecha_Validacion":
+                    return "Solicitud.Fecha_Validacion";
+                case "Hora_Validacion":
+                    return "Solicitud.Hora_Validacion";
+                case "Usuario_que_Valida[Name]":
+                case "Usuario_que_ValidaName":
+                    return "Spartan_User.Name";
+                case "Resultado[Descripcion]":
+                case "ResultadoDescripcion":
+                    return "Resultado_de_Revision.Descripcion";
+                case "Motivo_de_Rechazo_Solicitud":
+                    return "Solicitud.Motivo_de_Rechazo_Solicitud";
                 case "Especialista_AsignadoA[Name]":
                 case "Especialista_AsignadoAName":
                     return "Spartan_User.Name";
@@ -215,7 +215,11 @@ namespace Spartane.Web.SqlModelMapper
 
                 }
             }
-            if (columnName == "Fecha_Validacion")
+            if (columnName == "Rechazar")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Fecha_de_Cierre")
             {
                 try
                 {
@@ -226,11 +230,7 @@ namespace Spartane.Web.SqlModelMapper
 
                 }
             }
-            if (columnName == "Rechazar")
-            {
-                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
-            }
-            if (columnName == "Fecha_de_Cierre")
+            if (columnName == "Fecha_Validacion")
             {
                 try
                 {

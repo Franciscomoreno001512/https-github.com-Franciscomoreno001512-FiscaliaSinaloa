@@ -18,12 +18,12 @@ using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
-using Spartane.Core.Domain.Spartan_User;
-using Spartane.Core.Domain.Resultado_de_Revision;
 using Spartane.Core.Domain.Motivo_de_Rechazo_de_Solicitud;
 using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.Razon_de_Incumplimiento;
 using Spartane.Core.Domain.Tipo_de_Conclusion_Anticipada;
+using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Resultado_de_Revision;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Mecanismo_Alterno;
 using Spartane.Core.Domain.Detalle_Solicitud_Historial_de_Asignaciones;
@@ -78,12 +78,12 @@ using Spartane.Web.Areas.WebApiConsumer.Estado;
 using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
-using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
-using Spartane.Web.Areas.WebApiConsumer.Resultado_de_Revision;
 using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Rechazo_de_Solicitud;
 using Spartane.Web.Areas.WebApiConsumer.A_Tiempo;
 using Spartane.Web.Areas.WebApiConsumer.Razon_de_Incumplimiento;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Conclusion_Anticipada;
+using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
+using Spartane.Web.Areas.WebApiConsumer.Resultado_de_Revision;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Mecanismo_Alterno;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Solicitud_Historial_de_Asignaciones;
@@ -151,11 +151,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IPaisApiConsumer _IPaisApiConsumer;
         private IEstadoApiConsumer _IEstadoApiConsumer;
         private IColoniaApiConsumer _IColoniaApiConsumer;
-        private IResultado_de_RevisionApiConsumer _IResultado_de_RevisionApiConsumer;
         private IMotivo_de_Rechazo_de_SolicitudApiConsumer _IMotivo_de_Rechazo_de_SolicitudApiConsumer;
         private IA_TiempoApiConsumer _IA_TiempoApiConsumer;
         private IRazon_de_IncumplimientoApiConsumer _IRazon_de_IncumplimientoApiConsumer;
         private ITipo_de_Conclusion_AnticipadaApiConsumer _ITipo_de_Conclusion_AnticipadaApiConsumer;
+        private IResultado_de_RevisionApiConsumer _IResultado_de_RevisionApiConsumer;
         private ITipo_de_Mecanismo_AlternoApiConsumer _ITipo_de_Mecanismo_AlternoApiConsumer;
         private IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer _IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer;
 
@@ -189,7 +189,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public SolicitudController(ISolicitudService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, ISolicitudApiConsumer SolicitudApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IUnidadApiConsumer UnidadApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IRegionApiConsumer RegionApiConsumer , IEstatus_SolicitudApiConsumer Estatus_SolicitudApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IResultado_de_RevisionApiConsumer Resultado_de_RevisionApiConsumer , IMotivo_de_Rechazo_de_SolicitudApiConsumer Motivo_de_Rechazo_de_SolicitudApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IRazon_de_IncumplimientoApiConsumer Razon_de_IncumplimientoApiConsumer , ITipo_de_Conclusion_AnticipadaApiConsumer Tipo_de_Conclusion_AnticipadaApiConsumer , ITipo_de_Mecanismo_AlternoApiConsumer Tipo_de_Mecanismo_AlternoApiConsumer , IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer Detalle_Solicitud_Historial_de_AsignacionesApiConsumer  , IDetalle_de_Solicitud_Bitacora_de_CoincidApiConsumer Detalle_de_Solicitud_Bitacora_de_CoincidApiConsumer , ITipo_de_AcuerdoApiConsumer Tipo_de_AcuerdoApiConsumer  , IDetalle_Historico_JAApiConsumer Detalle_Historico_JAApiConsumer  )
+        public SolicitudController(ISolicitudService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, ISolicitudApiConsumer SolicitudApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IUnidadApiConsumer UnidadApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IRegionApiConsumer RegionApiConsumer , IEstatus_SolicitudApiConsumer Estatus_SolicitudApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IMotivo_de_Rechazo_de_SolicitudApiConsumer Motivo_de_Rechazo_de_SolicitudApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IRazon_de_IncumplimientoApiConsumer Razon_de_IncumplimientoApiConsumer , ITipo_de_Conclusion_AnticipadaApiConsumer Tipo_de_Conclusion_AnticipadaApiConsumer , IResultado_de_RevisionApiConsumer Resultado_de_RevisionApiConsumer , ITipo_de_Mecanismo_AlternoApiConsumer Tipo_de_Mecanismo_AlternoApiConsumer , IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer Detalle_Solicitud_Historial_de_AsignacionesApiConsumer  , IDetalle_de_Solicitud_Bitacora_de_CoincidApiConsumer Detalle_de_Solicitud_Bitacora_de_CoincidApiConsumer , ITipo_de_AcuerdoApiConsumer Tipo_de_AcuerdoApiConsumer  , IDetalle_Historico_JAApiConsumer Detalle_Historico_JAApiConsumer  )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -219,12 +219,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IMunicipioApiConsumer = MunicipioApiConsumer;
             this._IColoniaApiConsumer = ColoniaApiConsumer;
             this._IColoniaApiConsumer = ColoniaApiConsumer;
-            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
-            this._IResultado_de_RevisionApiConsumer = Resultado_de_RevisionApiConsumer;
             this._IMotivo_de_Rechazo_de_SolicitudApiConsumer = Motivo_de_Rechazo_de_SolicitudApiConsumer;
             this._IA_TiempoApiConsumer = A_TiempoApiConsumer;
             this._IRazon_de_IncumplimientoApiConsumer = Razon_de_IncumplimientoApiConsumer;
             this._ITipo_de_Conclusion_AnticipadaApiConsumer = Tipo_de_Conclusion_AnticipadaApiConsumer;
+            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
+            this._IResultado_de_RevisionApiConsumer = Resultado_de_RevisionApiConsumer;
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._ITipo_de_Mecanismo_AlternoApiConsumer = Tipo_de_Mecanismo_AlternoApiConsumer;
             this._IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer = Detalle_Solicitud_Historial_de_AsignacionesApiConsumer;
@@ -379,13 +379,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,y_Calle = SolicitudData.y_Calle
                     ,LongitudH = SolicitudData.LongitudH
                     ,LatitudH = SolicitudData.LatitudH
-                    ,Fecha_Validacion = (SolicitudData.Fecha_Validacion == null ? string.Empty : Convert.ToDateTime(SolicitudData.Fecha_Validacion).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_Validacion = SolicitudData.Hora_Validacion
-                    ,Usuario_que_Valida = SolicitudData.Usuario_que_Valida
-                    ,Usuario_que_ValidaName = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Usuario_que_Valida), "Spartan_User") ??  (string)SolicitudData.Usuario_que_Valida_Spartan_User.Name
-                    ,Resultado = SolicitudData.Resultado
-                    ,ResultadoDescripcion = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Resultado), "Resultado_de_Revision") ??  (string)SolicitudData.Resultado_Resultado_de_Revision.Descripcion
-                    ,Motivo_de_Rechazo_Solicitud = SolicitudData.Motivo_de_Rechazo_Solicitud
                     ,Rechazar = SolicitudData.Rechazar.GetValueOrDefault()
                     ,Motivo_de_Rechazo = SolicitudData.Motivo_de_Rechazo
                     ,Motivo_de_RechazoDescripcion = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Motivo_de_Rechazo), "Motivo_de_Rechazo_de_Solicitud") ??  (string)SolicitudData.Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud.Descripcion
@@ -397,6 +390,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Tipo_de_Conclusion_AnticipadaDescripcion = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Tipo_de_Conclusion_Anticipada), "Tipo_de_Conclusion_Anticipada") ??  (string)SolicitudData.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Descripcion
                     ,Fecha_de_Cierre = (SolicitudData.Fecha_de_Cierre == null ? string.Empty : Convert.ToDateTime(SolicitudData.Fecha_de_Cierre).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_de_Cierre = SolicitudData.Hora_de_Cierre
+                    ,Fecha_Validacion = (SolicitudData.Fecha_Validacion == null ? string.Empty : Convert.ToDateTime(SolicitudData.Fecha_Validacion).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_Validacion = SolicitudData.Hora_Validacion
+                    ,Usuario_que_Valida = SolicitudData.Usuario_que_Valida
+                    ,Usuario_que_ValidaName = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Usuario_que_Valida), "Spartan_User") ??  (string)SolicitudData.Usuario_que_Valida_Spartan_User.Name
+                    ,Resultado = SolicitudData.Resultado
+                    ,ResultadoDescripcion = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Resultado), "Resultado_de_Revision") ??  (string)SolicitudData.Resultado_Resultado_de_Revision.Descripcion
+                    ,Motivo_de_Rechazo_Solicitud = SolicitudData.Motivo_de_Rechazo_Solicitud
                     ,Especialista_AsignadoA = SolicitudData.Especialista_AsignadoA
                     ,Especialista_AsignadoAName = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Especialista_AsignadoA), "Spartan_User") ??  (string)SolicitudData.Especialista_AsignadoA_Spartan_User.Name
                     ,Motivo_cambio_facilitador = SolicitudData.Motivo_cambio_facilitador
@@ -453,13 +453,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Lugar_Tipo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _IResultado_de_RevisionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Resultado_de_Revisions_Resultado = _IResultado_de_RevisionApiConsumer.SelAll(true);
-            if (Resultado_de_Revisions_Resultado != null && Resultado_de_Revisions_Resultado.Resource != null)
-                ViewBag.Resultado_de_Revisions_Resultado = Resultado_de_Revisions_Resultado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Revision", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IMotivo_de_Rechazo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo = _IMotivo_de_Rechazo_de_SolicitudApiConsumer.SelAll(true);
             if (Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo != null && Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo.Resource != null)
@@ -487,6 +480,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Conclusion_Anticipadas_Tipo_de_Conclusion_Anticipada = Tipo_de_Conclusion_Anticipadas_Tipo_de_Conclusion_Anticipada.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Conclusion_Anticipada", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IResultado_de_RevisionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resultado_de_Revisions_Resultado = _IResultado_de_RevisionApiConsumer.SelAll(true);
+            if (Resultado_de_Revisions_Resultado != null && Resultado_de_Revisions_Resultado.Resource != null)
+                ViewBag.Resultado_de_Revisions_Resultado = Resultado_de_Revisions_Resultado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Revision", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_Mecanismo_AlternoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Mecanismo_Alternos_Tipo_de_Mecanismo = _ITipo_de_Mecanismo_AlternoApiConsumer.SelAll(true);
@@ -615,13 +615,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,y_Calle = SolicitudData.y_Calle
                     ,LongitudH = SolicitudData.LongitudH
                     ,LatitudH = SolicitudData.LatitudH
-                    ,Fecha_Validacion = (SolicitudData.Fecha_Validacion == null ? string.Empty : Convert.ToDateTime(SolicitudData.Fecha_Validacion).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_Validacion = SolicitudData.Hora_Validacion
-                    ,Usuario_que_Valida = SolicitudData.Usuario_que_Valida
-                    ,Usuario_que_ValidaName = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Usuario_que_Valida), "Spartan_User") ??  (string)SolicitudData.Usuario_que_Valida_Spartan_User.Name
-                    ,Resultado = SolicitudData.Resultado
-                    ,ResultadoDescripcion = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Resultado), "Resultado_de_Revision") ??  (string)SolicitudData.Resultado_Resultado_de_Revision.Descripcion
-                    ,Motivo_de_Rechazo_Solicitud = SolicitudData.Motivo_de_Rechazo_Solicitud
                     ,Rechazar = SolicitudData.Rechazar.GetValueOrDefault()
                     ,Motivo_de_Rechazo = SolicitudData.Motivo_de_Rechazo
                     ,Motivo_de_RechazoDescripcion = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Motivo_de_Rechazo), "Motivo_de_Rechazo_de_Solicitud") ??  (string)SolicitudData.Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud.Descripcion
@@ -633,6 +626,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Tipo_de_Conclusion_AnticipadaDescripcion = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Tipo_de_Conclusion_Anticipada), "Tipo_de_Conclusion_Anticipada") ??  (string)SolicitudData.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Descripcion
                     ,Fecha_de_Cierre = (SolicitudData.Fecha_de_Cierre == null ? string.Empty : Convert.ToDateTime(SolicitudData.Fecha_de_Cierre).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_de_Cierre = SolicitudData.Hora_de_Cierre
+                    ,Fecha_Validacion = (SolicitudData.Fecha_Validacion == null ? string.Empty : Convert.ToDateTime(SolicitudData.Fecha_Validacion).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_Validacion = SolicitudData.Hora_Validacion
+                    ,Usuario_que_Valida = SolicitudData.Usuario_que_Valida
+                    ,Usuario_que_ValidaName = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Usuario_que_Valida), "Spartan_User") ??  (string)SolicitudData.Usuario_que_Valida_Spartan_User.Name
+                    ,Resultado = SolicitudData.Resultado
+                    ,ResultadoDescripcion = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Resultado), "Resultado_de_Revision") ??  (string)SolicitudData.Resultado_Resultado_de_Revision.Descripcion
+                    ,Motivo_de_Rechazo_Solicitud = SolicitudData.Motivo_de_Rechazo_Solicitud
                     ,Especialista_AsignadoA = SolicitudData.Especialista_AsignadoA
                     ,Especialista_AsignadoAName = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Especialista_AsignadoA), "Spartan_User") ??  (string)SolicitudData.Especialista_AsignadoA_Spartan_User.Name
                     ,Motivo_cambio_facilitador = SolicitudData.Motivo_cambio_facilitador
@@ -687,13 +687,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Lugar_Tipo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _IResultado_de_RevisionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Resultado_de_Revisions_Resultado = _IResultado_de_RevisionApiConsumer.SelAll(true);
-            if (Resultado_de_Revisions_Resultado != null && Resultado_de_Revisions_Resultado.Resource != null)
-                ViewBag.Resultado_de_Revisions_Resultado = Resultado_de_Revisions_Resultado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Revision", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IMotivo_de_Rechazo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo = _IMotivo_de_Rechazo_de_SolicitudApiConsumer.SelAll(true);
             if (Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo != null && Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo.Resource != null)
@@ -721,6 +714,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Conclusion_Anticipadas_Tipo_de_Conclusion_Anticipada = Tipo_de_Conclusion_Anticipadas_Tipo_de_Conclusion_Anticipada.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Conclusion_Anticipada", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IResultado_de_RevisionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resultado_de_Revisions_Resultado = _IResultado_de_RevisionApiConsumer.SelAll(true);
+            if (Resultado_de_Revisions_Resultado != null && Resultado_de_Revisions_Resultado.Resource != null)
+                ViewBag.Resultado_de_Revisions_Resultado = Resultado_de_Revisions_Resultado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Revision", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_Mecanismo_AlternoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Mecanismo_Alternos_Tipo_de_Mecanismo = _ITipo_de_Mecanismo_AlternoApiConsumer.SelAll(true);
@@ -960,27 +960,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
-        public ActionResult GetResultado_de_RevisionAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IResultado_de_RevisionApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IResultado_de_RevisionApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Revision", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
         public ActionResult GetMotivo_de_Rechazo_de_SolicitudAll()
         {
             try
@@ -1056,6 +1035,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Conclusion_Anticipada", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetResultado_de_RevisionAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IResultado_de_RevisionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IResultado_de_RevisionApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Revision", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -1153,13 +1153,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Lugar_Tipo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _IResultado_de_RevisionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Resultado_de_Revisions_Resultado = _IResultado_de_RevisionApiConsumer.SelAll(true);
-            if (Resultado_de_Revisions_Resultado != null && Resultado_de_Revisions_Resultado.Resource != null)
-                ViewBag.Resultado_de_Revisions_Resultado = Resultado_de_Revisions_Resultado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Revision", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IMotivo_de_Rechazo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo = _IMotivo_de_Rechazo_de_SolicitudApiConsumer.SelAll(true);
             if (Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo != null && Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo.Resource != null)
@@ -1187,6 +1180,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Conclusion_Anticipadas_Tipo_de_Conclusion_Anticipada = Tipo_de_Conclusion_Anticipadas_Tipo_de_Conclusion_Anticipada.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Conclusion_Anticipada", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IResultado_de_RevisionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resultado_de_Revisions_Resultado = _IResultado_de_RevisionApiConsumer.SelAll(true);
+            if (Resultado_de_Revisions_Resultado != null && Resultado_de_Revisions_Resultado.Resource != null)
+                ViewBag.Resultado_de_Revisions_Resultado = Resultado_de_Revisions_Resultado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Revision", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_Mecanismo_AlternoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Mecanismo_Alternos_Tipo_de_Mecanismo = _ITipo_de_Mecanismo_AlternoApiConsumer.SelAll(true);
@@ -1241,13 +1241,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Lugar_Tipo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _IResultado_de_RevisionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Resultado_de_Revisions_Resultado = _IResultado_de_RevisionApiConsumer.SelAll(true);
-            if (Resultado_de_Revisions_Resultado != null && Resultado_de_Revisions_Resultado.Resource != null)
-                ViewBag.Resultado_de_Revisions_Resultado = Resultado_de_Revisions_Resultado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Revision", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IMotivo_de_Rechazo_de_SolicitudApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo = _IMotivo_de_Rechazo_de_SolicitudApiConsumer.SelAll(true);
             if (Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo != null && Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo.Resource != null)
@@ -1275,6 +1268,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Conclusion_Anticipadas_Tipo_de_Conclusion_Anticipada = Tipo_de_Conclusion_Anticipadas_Tipo_de_Conclusion_Anticipada.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Conclusion_Anticipada", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IResultado_de_RevisionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resultado_de_Revisions_Resultado = _IResultado_de_RevisionApiConsumer.SelAll(true);
+            if (Resultado_de_Revisions_Resultado != null && Resultado_de_Revisions_Resultado.Resource != null)
+                ViewBag.Resultado_de_Revisions_Resultado = Resultado_de_Revisions_Resultado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Revision", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ITipo_de_Mecanismo_AlternoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Mecanismo_Alternos_Tipo_de_Mecanismo = _ITipo_de_Mecanismo_AlternoApiConsumer.SelAll(true);
@@ -1357,11 +1357,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,y_Calle = m.y_Calle
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
-                        ,Fecha_Validacion = (m.Fecha_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Validacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Validacion = m.Hora_Validacion
-                        ,Usuario_que_ValidaName = CultureHelper.GetTraduction(m.Usuario_que_Valida_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Valida_Spartan_User.Name
-                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Revision.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Revision.Descripcion
-			,Motivo_de_Rechazo_Solicitud = m.Motivo_de_Rechazo_Solicitud
 			,Rechazar = m.Rechazar
                         ,Motivo_de_RechazoDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud.Descripcion
                         ,Acuerdo_CumplidoDescripcion = CultureHelper.GetTraduction(m.Acuerdo_Cumplido_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Acuerdo_Cumplido_A_Tiempo.Descripcion
@@ -1369,6 +1364,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_Conclusion_AnticipadaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Descripcion
                         ,Fecha_de_Cierre = (m.Fecha_de_Cierre == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Cierre).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Cierre = m.Hora_de_Cierre
+                        ,Fecha_Validacion = (m.Fecha_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Validacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Validacion = m.Hora_Validacion
+                        ,Usuario_que_ValidaName = CultureHelper.GetTraduction(m.Usuario_que_Valida_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Valida_Spartan_User.Name
+                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Revision.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Revision.Descripcion
+			,Motivo_de_Rechazo_Solicitud = m.Motivo_de_Rechazo_Solicitud
                         ,Especialista_AsignadoAName = CultureHelper.GetTraduction(m.Especialista_AsignadoA_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Especialista_AsignadoA_Spartan_User.Name
 			,Motivo_cambio_facilitador = m.Motivo_cambio_facilitador
 			,Asignar_Especialista_Automatico = m.Asignar_Especialista_Automatico
@@ -1528,11 +1528,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,y_Calle = m.y_Calle
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
-                        ,Fecha_Validacion = (m.Fecha_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Validacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Validacion = m.Hora_Validacion
-                        ,Usuario_que_ValidaName = CultureHelper.GetTraduction(m.Usuario_que_Valida_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Valida_Spartan_User.Name
-                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Revision.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Revision.Descripcion
-			,Motivo_de_Rechazo_Solicitud = m.Motivo_de_Rechazo_Solicitud
 			,Rechazar = m.Rechazar
                         ,Motivo_de_RechazoDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud.Descripcion
                         ,Acuerdo_CumplidoDescripcion = CultureHelper.GetTraduction(m.Acuerdo_Cumplido_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Acuerdo_Cumplido_A_Tiempo.Descripcion
@@ -1540,6 +1535,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_Conclusion_AnticipadaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Descripcion
                         ,Fecha_de_Cierre = (m.Fecha_de_Cierre == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Cierre).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Cierre = m.Hora_de_Cierre
+                        ,Fecha_Validacion = (m.Fecha_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Validacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Validacion = m.Hora_Validacion
+                        ,Usuario_que_ValidaName = CultureHelper.GetTraduction(m.Usuario_que_Valida_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Valida_Spartan_User.Name
+                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Revision.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Revision.Descripcion
+			,Motivo_de_Rechazo_Solicitud = m.Motivo_de_Rechazo_Solicitud
                         ,Especialista_AsignadoAName = CultureHelper.GetTraduction(m.Especialista_AsignadoA_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Especialista_AsignadoA_Spartan_User.Name
 			,Motivo_cambio_facilitador = m.Motivo_cambio_facilitador
 			,Asignar_Especialista_Automatico = m.Asignar_Especialista_Automatico
@@ -2837,105 +2837,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
-            if (!string.IsNullOrEmpty(filter.FromFecha_Validacion) || !string.IsNullOrEmpty(filter.ToFecha_Validacion))
-            {
-                var Fecha_ValidacionFrom = DateTime.ParseExact(filter.FromFecha_Validacion, ConfigurationProperty.DateFormat,
-                    CultureInfo.InvariantCulture as IFormatProvider);
-                var Fecha_ValidacionTo = DateTime.ParseExact(filter.ToFecha_Validacion, ConfigurationProperty.DateFormat,
-                  CultureInfo.InvariantCulture as IFormatProvider);
-
-                if (!string.IsNullOrEmpty(filter.FromFecha_Validacion))
-                    where += " AND Solicitud.Fecha_Validacion >= '" + Fecha_ValidacionFrom.ToString("MM-dd-yyyy") + "'";
-                if (!string.IsNullOrEmpty(filter.ToFecha_Validacion))
-                    where += " AND Solicitud.Fecha_Validacion <= '" + Fecha_ValidacionTo.ToString("MM-dd-yyyy") + "'";
-            }
-
-            if (!string.IsNullOrEmpty(filter.FromHora_Validacion) || !string.IsNullOrEmpty(filter.ToHora_Validacion))
-            {
-                if (!string.IsNullOrEmpty(filter.FromHora_Validacion))
-                    where += " AND Convert(TIME,Solicitud.Hora_Validacion) >='" + filter.FromHora_Validacion + "'";
-                if (!string.IsNullOrEmpty(filter.ToHora_Validacion))
-                    where += " AND Convert(TIME,Solicitud.Hora_Validacion) <='" + filter.ToHora_Validacion + "'";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvanceUsuario_que_Valida))
-            {
-                switch (filter.Usuario_que_ValidaFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Spartan_User.Name LIKE '" + filter.AdvanceUsuario_que_Valida + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Valida + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Spartan_User.Name = '" + filter.AdvanceUsuario_que_Valida + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Valida + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceUsuario_que_ValidaMultiple != null && filter.AdvanceUsuario_que_ValidaMultiple.Count() > 0)
-            {
-                var Usuario_que_ValidaIds = string.Join(",", filter.AdvanceUsuario_que_ValidaMultiple);
-
-                where += " AND Solicitud.Usuario_que_Valida In (" + Usuario_que_ValidaIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvanceResultado))
-            {
-                switch (filter.ResultadoFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Resultado_de_Revision.Descripcion LIKE '" + filter.AdvanceResultado + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Resultado_de_Revision.Descripcion LIKE '%" + filter.AdvanceResultado + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Resultado_de_Revision.Descripcion = '" + filter.AdvanceResultado + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Resultado_de_Revision.Descripcion LIKE '%" + filter.AdvanceResultado + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvanceResultadoMultiple != null && filter.AdvanceResultadoMultiple.Count() > 0)
-            {
-                var ResultadoIds = string.Join(",", filter.AdvanceResultadoMultiple);
-
-                where += " AND Solicitud.Resultado In (" + ResultadoIds + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.Motivo_de_Rechazo_Solicitud))
-            {
-                switch (filter.Motivo_de_Rechazo_SolicitudFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Solicitud.Motivo_de_Rechazo_Solicitud LIKE '" + filter.Motivo_de_Rechazo_Solicitud + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Solicitud.Motivo_de_Rechazo_Solicitud LIKE '%" + filter.Motivo_de_Rechazo_Solicitud + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Solicitud.Motivo_de_Rechazo_Solicitud = '" + filter.Motivo_de_Rechazo_Solicitud + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Solicitud.Motivo_de_Rechazo_Solicitud LIKE '%" + filter.Motivo_de_Rechazo_Solicitud + "%'";
-                        break;
-                }
-            }
-
             if (filter.Rechazar != RadioOptions.NoApply)
                 where += " AND Solicitud.Rechazar = " + Convert.ToInt32(filter.Rechazar);
 
@@ -3070,6 +2971,105 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += " AND Convert(TIME,Solicitud.Hora_de_Cierre) >='" + filter.FromHora_de_Cierre + "'";
                 if (!string.IsNullOrEmpty(filter.ToHora_de_Cierre))
                     where += " AND Convert(TIME,Solicitud.Hora_de_Cierre) <='" + filter.ToHora_de_Cierre + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromFecha_Validacion) || !string.IsNullOrEmpty(filter.ToFecha_Validacion))
+            {
+                var Fecha_ValidacionFrom = DateTime.ParseExact(filter.FromFecha_Validacion, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var Fecha_ValidacionTo = DateTime.ParseExact(filter.ToFecha_Validacion, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.FromFecha_Validacion))
+                    where += " AND Solicitud.Fecha_Validacion >= '" + Fecha_ValidacionFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFecha_Validacion))
+                    where += " AND Solicitud.Fecha_Validacion <= '" + Fecha_ValidacionTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromHora_Validacion) || !string.IsNullOrEmpty(filter.ToHora_Validacion))
+            {
+                if (!string.IsNullOrEmpty(filter.FromHora_Validacion))
+                    where += " AND Convert(TIME,Solicitud.Hora_Validacion) >='" + filter.FromHora_Validacion + "'";
+                if (!string.IsNullOrEmpty(filter.ToHora_Validacion))
+                    where += " AND Convert(TIME,Solicitud.Hora_Validacion) <='" + filter.ToHora_Validacion + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceUsuario_que_Valida))
+            {
+                switch (filter.Usuario_que_ValidaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Spartan_User.Name LIKE '" + filter.AdvanceUsuario_que_Valida + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Valida + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Spartan_User.Name = '" + filter.AdvanceUsuario_que_Valida + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_Valida + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceUsuario_que_ValidaMultiple != null && filter.AdvanceUsuario_que_ValidaMultiple.Count() > 0)
+            {
+                var Usuario_que_ValidaIds = string.Join(",", filter.AdvanceUsuario_que_ValidaMultiple);
+
+                where += " AND Solicitud.Usuario_que_Valida In (" + Usuario_que_ValidaIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceResultado))
+            {
+                switch (filter.ResultadoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Resultado_de_Revision.Descripcion LIKE '" + filter.AdvanceResultado + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Resultado_de_Revision.Descripcion LIKE '%" + filter.AdvanceResultado + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Resultado_de_Revision.Descripcion = '" + filter.AdvanceResultado + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Resultado_de_Revision.Descripcion LIKE '%" + filter.AdvanceResultado + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceResultadoMultiple != null && filter.AdvanceResultadoMultiple.Count() > 0)
+            {
+                var ResultadoIds = string.Join(",", filter.AdvanceResultadoMultiple);
+
+                where += " AND Solicitud.Resultado In (" + ResultadoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.Motivo_de_Rechazo_Solicitud))
+            {
+                switch (filter.Motivo_de_Rechazo_SolicitudFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud.Motivo_de_Rechazo_Solicitud LIKE '" + filter.Motivo_de_Rechazo_Solicitud + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud.Motivo_de_Rechazo_Solicitud LIKE '%" + filter.Motivo_de_Rechazo_Solicitud + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud.Motivo_de_Rechazo_Solicitud = '" + filter.Motivo_de_Rechazo_Solicitud + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud.Motivo_de_Rechazo_Solicitud LIKE '%" + filter.Motivo_de_Rechazo_Solicitud + "%'";
+                        break;
+                }
             }
 
             if (!string.IsNullOrEmpty(filter.AdvanceEspecialista_AsignadoA))
@@ -3625,11 +3625,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,y_Calle = varSolicitud.y_Calle
                         ,LongitudH = varSolicitud.LongitudH
                         ,LatitudH = varSolicitud.LatitudH
-                        ,Fecha_Validacion = (!String.IsNullOrEmpty(varSolicitud.Fecha_Validacion)) ? DateTime.ParseExact(varSolicitud.Fecha_Validacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_Validacion = varSolicitud.Hora_Validacion
-                        ,Usuario_que_Valida = varSolicitud.Usuario_que_Valida
-                        ,Resultado = varSolicitud.Resultado
-                        ,Motivo_de_Rechazo_Solicitud = varSolicitud.Motivo_de_Rechazo_Solicitud
                         ,Rechazar = varSolicitud.Rechazar
                         ,Motivo_de_Rechazo = varSolicitud.Motivo_de_Rechazo
                         ,Acuerdo_Cumplido = varSolicitud.Acuerdo_Cumplido
@@ -3637,6 +3632,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_Conclusion_Anticipada = varSolicitud.Tipo_de_Conclusion_Anticipada
                         ,Fecha_de_Cierre = (!String.IsNullOrEmpty(varSolicitud.Fecha_de_Cierre)) ? DateTime.ParseExact(varSolicitud.Fecha_de_Cierre, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_Cierre = varSolicitud.Hora_de_Cierre
+                        ,Fecha_Validacion = (!String.IsNullOrEmpty(varSolicitud.Fecha_Validacion)) ? DateTime.ParseExact(varSolicitud.Fecha_Validacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_Validacion = varSolicitud.Hora_Validacion
+                        ,Usuario_que_Valida = varSolicitud.Usuario_que_Valida
+                        ,Resultado = varSolicitud.Resultado
+                        ,Motivo_de_Rechazo_Solicitud = varSolicitud.Motivo_de_Rechazo_Solicitud
                         ,Especialista_AsignadoA = varSolicitud.Especialista_AsignadoA
                         ,Motivo_cambio_facilitador = varSolicitud.Motivo_cambio_facilitador
                         ,Asignar_Especialista_Automatico = varSolicitud.Asignar_Especialista_Automatico
@@ -4545,11 +4545,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,y_Calle = m.y_Calle
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
-                        ,Fecha_Validacion = (m.Fecha_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Validacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Validacion = m.Hora_Validacion
-                        ,Usuario_que_ValidaName = CultureHelper.GetTraduction(m.Usuario_que_Valida_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Valida_Spartan_User.Name
-                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Revision.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Revision.Descripcion
-			,Motivo_de_Rechazo_Solicitud = m.Motivo_de_Rechazo_Solicitud
 			,Rechazar = m.Rechazar
                         ,Motivo_de_RechazoDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud.Descripcion
                         ,Acuerdo_CumplidoDescripcion = CultureHelper.GetTraduction(m.Acuerdo_Cumplido_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Acuerdo_Cumplido_A_Tiempo.Descripcion
@@ -4557,6 +4552,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_Conclusion_AnticipadaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Descripcion
                         ,Fecha_de_Cierre = (m.Fecha_de_Cierre == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Cierre).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Cierre = m.Hora_de_Cierre
+                        ,Fecha_Validacion = (m.Fecha_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Validacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Validacion = m.Hora_Validacion
+                        ,Usuario_que_ValidaName = CultureHelper.GetTraduction(m.Usuario_que_Valida_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Valida_Spartan_User.Name
+                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Revision.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Revision.Descripcion
+			,Motivo_de_Rechazo_Solicitud = m.Motivo_de_Rechazo_Solicitud
                         ,Especialista_AsignadoAName = CultureHelper.GetTraduction(m.Especialista_AsignadoA_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Especialista_AsignadoA_Spartan_User.Name
 			,Motivo_cambio_facilitador = m.Motivo_cambio_facilitador
 			,Asignar_Especialista_Automatico = m.Asignar_Especialista_Automatico
@@ -4675,11 +4675,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,y_Calle = m.y_Calle
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
-                        ,Fecha_Validacion = (m.Fecha_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Validacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Validacion = m.Hora_Validacion
-                        ,Usuario_que_ValidaName = CultureHelper.GetTraduction(m.Usuario_que_Valida_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Valida_Spartan_User.Name
-                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Revision.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Revision.Descripcion
-			,Motivo_de_Rechazo_Solicitud = m.Motivo_de_Rechazo_Solicitud
 			,Rechazar = m.Rechazar
                         ,Motivo_de_RechazoDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud.Descripcion
                         ,Acuerdo_CumplidoDescripcion = CultureHelper.GetTraduction(m.Acuerdo_Cumplido_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Acuerdo_Cumplido_A_Tiempo.Descripcion
@@ -4687,6 +4682,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_Conclusion_AnticipadaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Descripcion
                         ,Fecha_de_Cierre = (m.Fecha_de_Cierre == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Cierre).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Cierre = m.Hora_de_Cierre
+                        ,Fecha_Validacion = (m.Fecha_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Validacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Validacion = m.Hora_Validacion
+                        ,Usuario_que_ValidaName = CultureHelper.GetTraduction(m.Usuario_que_Valida_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Valida_Spartan_User.Name
+                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Revision.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Revision.Descripcion
+			,Motivo_de_Rechazo_Solicitud = m.Motivo_de_Rechazo_Solicitud
                         ,Especialista_AsignadoAName = CultureHelper.GetTraduction(m.Especialista_AsignadoA_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Especialista_AsignadoA_Spartan_User.Name
 			,Motivo_cambio_facilitador = m.Motivo_cambio_facilitador
 			,Asignar_Especialista_Automatico = m.Asignar_Especialista_Automatico
@@ -5012,18 +5012,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Solicitud_CierreInfo = new Solicitud_Cierre
                 {
                     Clave = varSolicitud.Clave
-                                            ,Fecha_Validacion = (!String.IsNullOrEmpty(varSolicitud.Fecha_Validacion)) ? DateTime.ParseExact(varSolicitud.Fecha_Validacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_Validacion = varSolicitud.Hora_Validacion
-                        ,Usuario_que_Valida = varSolicitud.Usuario_que_Valida
-                        ,Resultado = varSolicitud.Resultado
-                        ,Motivo_de_Rechazo_Solicitud = varSolicitud.Motivo_de_Rechazo_Solicitud
-                        ,Rechazar = varSolicitud.Rechazar
+                                            ,Rechazar = varSolicitud.Rechazar
                         ,Motivo_de_Rechazo = varSolicitud.Motivo_de_Rechazo
                         ,Acuerdo_Cumplido = varSolicitud.Acuerdo_Cumplido
                         ,Razon_de_Incumplimiento = varSolicitud.Razon_de_Incumplimiento
                         ,Tipo_de_Conclusion_Anticipada = varSolicitud.Tipo_de_Conclusion_Anticipada
                         ,Fecha_de_Cierre = (!String.IsNullOrEmpty(varSolicitud.Fecha_de_Cierre)) ? DateTime.ParseExact(varSolicitud.Fecha_de_Cierre, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_Cierre = varSolicitud.Hora_de_Cierre
+                        ,Fecha_Validacion = (!String.IsNullOrEmpty(varSolicitud.Fecha_Validacion)) ? DateTime.ParseExact(varSolicitud.Fecha_Validacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_Validacion = varSolicitud.Hora_Validacion
+                        ,Usuario_que_Valida = varSolicitud.Usuario_que_Valida
+                        ,Resultado = varSolicitud.Resultado
+                        ,Motivo_de_Rechazo_Solicitud = varSolicitud.Motivo_de_Rechazo_Solicitud
                     
                 };
 
@@ -5058,13 +5058,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var result = new Solicitud_CierreModel
                 {
                     Clave = m.Clave
-                        ,Fecha_Validacion = (m.Fecha_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Validacion).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Validacion = m.Hora_Validacion
-                        ,Usuario_que_Valida = m.Usuario_que_Valida
-                        ,Usuario_que_ValidaName = CultureHelper.GetTraduction(m.Usuario_que_Valida_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Valida_Spartan_User.Name
-                        ,Resultado = m.Resultado
-                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Revision.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Revision.Descripcion
-			,Motivo_de_Rechazo_Solicitud = m.Motivo_de_Rechazo_Solicitud
 			,Rechazar = m.Rechazar
                         ,Motivo_de_Rechazo = m.Motivo_de_Rechazo
                         ,Motivo_de_RechazoDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud.Descripcion
@@ -5076,6 +5069,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_Conclusion_AnticipadaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada.Descripcion
                         ,Fecha_de_Cierre = (m.Fecha_de_Cierre == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Cierre).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Cierre = m.Hora_de_Cierre
+                        ,Fecha_Validacion = (m.Fecha_Validacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_Validacion).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Validacion = m.Hora_Validacion
+                        ,Usuario_que_Valida = m.Usuario_que_Valida
+                        ,Usuario_que_ValidaName = CultureHelper.GetTraduction(m.Usuario_que_Valida_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Valida_Spartan_User.Name
+                        ,Resultado = m.Resultado
+                        ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Revision.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Revision.Descripcion
+			,Motivo_de_Rechazo_Solicitud = m.Motivo_de_Rechazo_Solicitud
 
                     
                 };

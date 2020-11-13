@@ -38,11 +38,6 @@
   <resource culture="es-es" name="y_Calle" value="y Calle"></resource>
   <resource culture="es-es" name="LongitudH" value="Longitud"></resource>
   <resource culture="es-es" name="LatitudH" value="Latitud"></resource>
-  <resource culture="es-es" name="Fecha_Validacion" value="Fecha de Validación"></resource>
-  <resource culture="es-es" name="Hora_Validacion" value="Hora de Validación"></resource>
-  <resource culture="es-es" name="Usuario_que_Valida" value="Usuario que Valida"></resource>
-  <resource culture="es-es" name="Resultado" value="Resultado"></resource>
-  <resource culture="es-es" name="Motivo_de_Rechazo_Solicitud" value="Motivo de Rechazo"></resource>
   <resource culture="es-es" name="Rechazar" value="Rechazar"></resource>
   <resource culture="es-es" name="Motivo_de_Rechazo" value="Motivo de Rechazo"></resource>
   <resource culture="es-es" name="Acuerdo_Cumplido" value="Acuerdo Cumplido"></resource>
@@ -50,6 +45,11 @@
   <resource culture="es-es" name="Tipo_de_Conclusion_Anticipada" value="Tipo de Conclusión Anticipada"></resource>
   <resource culture="es-es" name="Fecha_de_Cierre" value="Fecha de Cierre"></resource>
   <resource culture="es-es" name="Hora_de_Cierre" value="Hora de Cierre"></resource>
+  <resource culture="es-es" name="Fecha_Validacion" value="Fecha de Validación"></resource>
+  <resource culture="es-es" name="Hora_Validacion" value="Hora de Validación"></resource>
+  <resource culture="es-es" name="Usuario_que_Valida" value="Usuario que Valida"></resource>
+  <resource culture="es-es" name="Resultado" value="Resultado"></resource>
+  <resource culture="es-es" name="Motivo_de_Rechazo_Solicitud" value="Motivo de Rechazo"></resource>
   <resource culture="es-es" name="Especialista_AsignadoA" value="Facilitador Asignado"></resource>
   <resource culture="es-es" name="Motivo_cambio_facilitador" value="Motivo de Cambio de Facilitador"></resource>
   <resource culture="es-es" name="Asignar_Especialista_Automatico" value="Asignar Facilitador Manualmente"></resource>

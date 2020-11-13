@@ -46,14 +46,7 @@ if( GetValueByControlType($('#' + nameOfTable + 'Acuerdo_Cumplido' + rowIndex),n
 
 //BusinessRuleId:2101, Attribute:266688, Operation:Field, Event:None
 
-//BusinessRuleId:2421, Attribute:266505, Operation:Field, Event:None
-$("form#CreateAcuerdos_MASC").on('change', '#Tipo_de_Acuerdo', function () {
-	nameOfTable='';
-	rowIndex='';
-if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Acuerdo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divParcialidades').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Parcialidades' + rowIndex));$('#divPeriodicidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Periodicidad' + rowIndex));$('#divMonto_de_la_Parcialidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Parcialidad' + rowIndex));} else { $('#divParcialidades').css('display', 'block');$('#divPeriodicidad').css('display', 'block');$('#divMonto_de_la_Parcialidad').css('display', 'block');}
-});
-
-//BusinessRuleId:2421, Attribute:266505, Operation:Field, Event:None
+
 
 
 
@@ -65,6 +58,15 @@ if( GetValueByControlType($('#' + nameOfTable + 'Forma_de_Cumplimiento' + rowInd
 });
 
 //BusinessRuleId:2424, Attribute:266722, Operation:Field, Event:None
+
+//BusinessRuleId:2421, Attribute:266505, Operation:Field, Event:None
+$("form#CreateAcuerdos_MASC").on('change', '#Tipo_de_Acuerdo', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Acuerdo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divParcialidades').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Parcialidades' + rowIndex));$('#divPeriodicidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Periodicidad' + rowIndex));$('#divMonto_de_la_Parcialidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Parcialidad' + rowIndex));} else { $('#divParcialidades').css('display', 'block');$('#divPeriodicidad').css('display', 'block');$('#divMonto_de_la_Parcialidad').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Parcialidades' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Periodicidad' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Parcialidad' + rowIndex));}
+});
+
+//BusinessRuleId:2421, Attribute:266505, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -206,12 +208,7 @@ if( GetValueByControlType($('#' + nameOfTable + 'Acuerdo_Cumplido' + rowIndex),n
 }
 //BusinessRuleId:2100, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2423, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
- $('#divParcialidades').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Parcialidades' + rowIndex));$('#divPeriodicidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Periodicidad' + rowIndex));$('#divMonto_de_la_Parcialidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Parcialidad' + rowIndex));
-
-}
-//BusinessRuleId:2423, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 
 
 
@@ -221,6 +218,15 @@ if( GetValueByControlType($('#' + nameOfTable + 'Forma_de_Cumplimiento' + rowInd
 
 }
 //BusinessRuleId:2426, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+//BusinessRuleId:2423, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divParcialidades').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Parcialidades' + rowIndex));$('#divPeriodicidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Periodicidad' + rowIndex));$('#divMonto_de_la_Parcialidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Parcialidad' + rowIndex));
+
+}
+//BusinessRuleId:2423, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

@@ -19,12 +19,12 @@ using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
-using Spartane.Core.Domain.Spartan_User;
-using Spartane.Core.Domain.Resultado_de_Revision;
 using Spartane.Core.Domain.Motivo_de_Rechazo_de_Solicitud;
 using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.Razon_de_Incumplimiento;
 using Spartane.Core.Domain.Tipo_de_Conclusion_Anticipada;
+using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Resultado_de_Revision;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Mecanismo_Alterno;
 
@@ -76,11 +76,6 @@ namespace Spartane.Core.Domain.Solicitud
         public string y_Calle { get; set; }
         public string LongitudH { get; set; }
         public string LatitudH { get; set; }
-        public DateTime? Fecha_Validacion { get; set; }
-        public string Hora_Validacion { get; set; }
-        public int? Usuario_que_Valida { get; set; }
-        public short? Resultado { get; set; }
-        public string Motivo_de_Rechazo_Solicitud { get; set; }
         public bool? Rechazar { get; set; }
         public int? Motivo_de_Rechazo { get; set; }
         public short? Acuerdo_Cumplido { get; set; }
@@ -88,6 +83,11 @@ namespace Spartane.Core.Domain.Solicitud
         public int? Tipo_de_Conclusion_Anticipada { get; set; }
         public DateTime? Fecha_de_Cierre { get; set; }
         public string Hora_de_Cierre { get; set; }
+        public DateTime? Fecha_Validacion { get; set; }
+        public string Hora_Validacion { get; set; }
+        public int? Usuario_que_Valida { get; set; }
+        public short? Resultado { get; set; }
+        public string Motivo_de_Rechazo_Solicitud { get; set; }
         public int? Especialista_AsignadoA { get; set; }
         public string Motivo_cambio_facilitador { get; set; }
         public bool? Asignar_Especialista_Automatico { get; set; }
@@ -130,10 +130,6 @@ namespace Spartane.Core.Domain.Solicitud
         public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_Colonia { get; set; }
         [ForeignKey("ColoniaH")]
         public virtual Spartane.Core.Domain.Colonia.Colonia ColoniaH_Colonia { get; set; }
-        [ForeignKey("Usuario_que_Valida")]
-        public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Valida_Spartan_User { get; set; }
-        [ForeignKey("Resultado")]
-        public virtual Spartane.Core.Domain.Resultado_de_Revision.Resultado_de_Revision Resultado_Resultado_de_Revision { get; set; }
         [ForeignKey("Motivo_de_Rechazo")]
         public virtual Spartane.Core.Domain.Motivo_de_Rechazo_de_Solicitud.Motivo_de_Rechazo_de_Solicitud Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud { get; set; }
         [ForeignKey("Acuerdo_Cumplido")]
@@ -142,6 +138,10 @@ namespace Spartane.Core.Domain.Solicitud
         public virtual Spartane.Core.Domain.Razon_de_Incumplimiento.Razon_de_Incumplimiento Razon_de_Incumplimiento_Razon_de_Incumplimiento { get; set; }
         [ForeignKey("Tipo_de_Conclusion_Anticipada")]
         public virtual Spartane.Core.Domain.Tipo_de_Conclusion_Anticipada.Tipo_de_Conclusion_Anticipada Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada { get; set; }
+        [ForeignKey("Usuario_que_Valida")]
+        public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Valida_Spartan_User { get; set; }
+        [ForeignKey("Resultado")]
+        public virtual Spartane.Core.Domain.Resultado_de_Revision.Resultado_de_Revision Resultado_Resultado_de_Revision { get; set; }
         [ForeignKey("Especialista_AsignadoA")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Especialista_AsignadoA_Spartan_User { get; set; }
         [ForeignKey("Tipo_de_Mecanismo")]
@@ -241,11 +241,6 @@ namespace Spartane.Core.Domain.Solicitud
 	public class Solicitud_Cierre
     {
                 public int Clave { get; set; }
-        public DateTime? Fecha_Validacion { get; set; }
-        public string Hora_Validacion { get; set; }
-        public int? Usuario_que_Valida { get; set; }
-        public short? Resultado { get; set; }
-        public string Motivo_de_Rechazo_Solicitud { get; set; }
         public bool? Rechazar { get; set; }
         public int? Motivo_de_Rechazo { get; set; }
         public short? Acuerdo_Cumplido { get; set; }
@@ -253,12 +248,13 @@ namespace Spartane.Core.Domain.Solicitud
         public int? Tipo_de_Conclusion_Anticipada { get; set; }
         public DateTime? Fecha_de_Cierre { get; set; }
         public string Hora_de_Cierre { get; set; }
+        public DateTime? Fecha_Validacion { get; set; }
+        public string Hora_Validacion { get; set; }
+        public int? Usuario_que_Valida { get; set; }
+        public short? Resultado { get; set; }
+        public string Motivo_de_Rechazo_Solicitud { get; set; }
 
-		        [ForeignKey("Usuario_que_Valida")]
-        public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Valida_Spartan_User { get; set; }
-        [ForeignKey("Resultado")]
-        public virtual Spartane.Core.Domain.Resultado_de_Revision.Resultado_de_Revision Resultado_Resultado_de_Revision { get; set; }
-        [ForeignKey("Motivo_de_Rechazo")]
+		        [ForeignKey("Motivo_de_Rechazo")]
         public virtual Spartane.Core.Domain.Motivo_de_Rechazo_de_Solicitud.Motivo_de_Rechazo_de_Solicitud Motivo_de_Rechazo_Motivo_de_Rechazo_de_Solicitud { get; set; }
         [ForeignKey("Acuerdo_Cumplido")]
         public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Acuerdo_Cumplido_A_Tiempo { get; set; }
@@ -266,6 +262,10 @@ namespace Spartane.Core.Domain.Solicitud
         public virtual Spartane.Core.Domain.Razon_de_Incumplimiento.Razon_de_Incumplimiento Razon_de_Incumplimiento_Razon_de_Incumplimiento { get; set; }
         [ForeignKey("Tipo_de_Conclusion_Anticipada")]
         public virtual Spartane.Core.Domain.Tipo_de_Conclusion_Anticipada.Tipo_de_Conclusion_Anticipada Tipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada { get; set; }
+        [ForeignKey("Usuario_que_Valida")]
+        public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Valida_Spartan_User { get; set; }
+        [ForeignKey("Resultado")]
+        public virtual Spartane.Core.Domain.Resultado_de_Revision.Resultado_de_Revision Resultado_Resultado_de_Revision { get; set; }
 
     }
 

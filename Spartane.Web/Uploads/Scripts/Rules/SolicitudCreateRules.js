@@ -130,6 +130,15 @@ if(  EvaluaOperatorIn (EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfT
 
 //BusinessRuleId:2198, Attribute:262929, Operation:Field, Event:None
 
+//BusinessRuleId:2439, Attribute:266727, Operation:Field, Event:None
+$("form#CreateSolicitud").on('change', '#Resultado', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Resultado' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divMotivo_de_Rechazo_Solicitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo_Solicitud' + rowIndex));} else { $('#divMotivo_de_Rechazo_Solicitud').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo_Solicitud' + rowIndex));}
+});
+
+//BusinessRuleId:2439, Attribute:266727, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
@@ -1329,6 +1338,77 @@ if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Se
 
 }
 //BusinessRuleId:2419, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2434, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ DisabledControl($("#" + nameOfTable + "Fecha_Validacion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Validacion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Validacion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Validacion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Usuario_que_Valida" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Valida' + rowIndex));}
+
+}
+//BusinessRuleId:2434, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2434, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ DisabledControl($("#" + nameOfTable + "Fecha_Validacion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Validacion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Validacion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Validacion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Usuario_que_Valida" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Valida' + rowIndex));}
+
+}
+//BusinessRuleId:2434, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2434, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ DisabledControl($("#" + nameOfTable + "Fecha_Validacion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Validacion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Validacion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Validacion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Usuario_que_Valida" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Valida' + rowIndex));}
+
+}
+//BusinessRuleId:2434, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+//BusinessRuleId:2436, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ DisabledControl($("#" + nameOfTable + "Acuerdo_Cumplido" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Acuerdo_Cumplido' + rowIndex));}DisabledControl($("#" + nameOfTable + "Razon_de_Incumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Razon_de_Incumplimiento' + rowIndex));}
+
+}
+//BusinessRuleId:2436, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2435, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if(  EvaluaOperatorIn (GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex), EvaluaQuery("select STUFF((    select ',' + CONVERT(varchar(10),Clave) + ''   from Estatus_Solicitud where Clave not in (101, 102) for XML PATH('')  ), 1, 1, '')",rowIndex, nameOfTable) ) ) { $('#divFecha_Validacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Validacion' + rowIndex));$('#divHora_Validacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Validacion' + rowIndex));$('#divUsuario_que_Valida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Valida' + rowIndex));$('#divResultado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Resultado' + rowIndex));$('#divMotivo_de_Rechazo_Solicitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo_Solicitud' + rowIndex));} else {}
+
+}
+//BusinessRuleId:2435, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2438, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( TryParseInt('2', '2')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nameOfTable) ) { $('#divFecha_Validacion').css('display', 'block');$('#divHora_Validacion').css('display', 'block');$('#divUsuario_que_Valida').css('display', 'block');$('#divResultado').css('display', 'block'); DisabledControl($("#" + nameOfTable + "Fecha_Validacion" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Validacion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_Validacion" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Validacion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Usuario_que_Valida" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Valida' + rowIndex));}DisabledControl($("#" + nameOfTable + "Resultado" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Resultado' + rowIndex));} SetRequiredToControl( $('#' + nameOfTable + 'Fecha_Validacion' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Hora_Validacion' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Valida' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Resultado' + rowIndex));} else {}
+
+}
+//BusinessRuleId:2438, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+//BusinessRuleId:2437, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( TryParseInt('2', '2')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nameOfTable) ) { DisabledControl($("#" + nameOfTable + "Acuerdo_Cumplido" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Acuerdo_Cumplido' + rowIndex));}DisabledControl($("#" + nameOfTable + "Razon_de_Incumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Razon_de_Incumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_de_Cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_de_Cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "Rechazar" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Rechazar' + rowIndex));}DisabledControl($("#" + nameOfTable + "Tipo_de_Conclusion_Anticipada" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Conclusion_Anticipada' + rowIndex));}DisabledControl($("#" + nameOfTable + "Motivo_de_Rechazo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo' + rowIndex));} DisabledControl($("#" + nameOfTable + "Acuerdo_Cumplido" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Acuerdo_Cumplido' + rowIndex));}DisabledControl($("#" + nameOfTable + "Razon_de_Incumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Razon_de_Incumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fecha_de_Cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_de_Cierre" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Cierre' + rowIndex));}DisabledControl($("#" + nameOfTable + "Rechazar" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Rechazar' + rowIndex));}DisabledControl($("#" + nameOfTable + "Tipo_de_Conclusion_Anticipada" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Conclusion_Anticipada' + rowIndex));}DisabledControl($("#" + nameOfTable + "Motivo_de_Rechazo_Solicitud" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo_Solicitud' + rowIndex));}} else {}
+
+}
+//BusinessRuleId:2437, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2440, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)==TryParseInt('102', '102') && GetValueByControlType($('#' + nameOfTable + 'Resultado' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divMotivo_de_Rechazo_Solicitud').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo_Solicitud' + rowIndex));} else {}
+
+}
+//BusinessRuleId:2440, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2441, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)==TryParseInt('101', '101') && TryParseInt('2', '2')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nameOfTable) ) { AsignarValor($('#' + nameOfTable + '' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 105)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Hora_de_Cierre' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 108)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Usuario_que_Valida' + rowIndex),EvaluaQuery("select Name from Spartan_User where Id_User = GLOBAL[USERID]", rowIndex, nameOfTable));} else {}
+
+}
+//BusinessRuleId:2441, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }
