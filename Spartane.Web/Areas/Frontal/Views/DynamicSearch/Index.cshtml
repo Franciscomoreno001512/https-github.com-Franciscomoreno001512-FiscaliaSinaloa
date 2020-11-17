@@ -306,6 +306,7 @@
 
         });
         $('#TabsBadget').on('click', 'button', function () {
+            debugger;
             $('#TabsBadget button').css('background-color', 'transparent');
             $(this).css('background-color', '#ddd');
             TabSelected = $(this).data('name');
@@ -314,13 +315,13 @@
 
             var role = @Session["USERROLEID"] != null ? @Session["USERROLEID"] : 0;
             if ($('#LabelDetalle').text() == "Informe" && (role == 8 || role == 9 || role == 10 || role == 11)) {
-                FillDetailsByTab('Informes', 44799);
+                FillDetailsByTab('Informes', 44799, IdSelected,@ViewBag.idTablero);
                 //FillDetailsByTab($(this).data('name'), $(this).data('object'));
             } else {
-                FillDetailsByTab($(this).data('name'), $(this).data('object'));
+                FillDetailsByTab($(this).data('name'), $(this).data('object'),IdSelected,@ViewBag.idTablero);
             }
 
-            if (HasValidaPersmiso_New(TabSelected, ObjectSelected, role) === true) {
+            if (HasValidaPersmisoX( ObjectSelected, role, 2) === true) { // el 2 represta si tiene permio de nuevo
                 $('#new').css('display', 'block');
             }
             else {
@@ -439,8 +440,9 @@
 
     }
     function RefreshCatalog(catalog, control, id) {
+        debugger;
         GetDataToShow(IdSelected, @ViewBag.idTablero);
-        FillDetailsByTab(TabSelected, ObjectSelected);
+        FillDetailsByTab(TabSelected, ObjectSelected, IdSelected,@ViewBag.idTablero);
     }
 
     function EditRow() {
@@ -459,6 +461,7 @@
 
 
     function GetDataToShow(folio, idTablero) {
+        debugger;
        IdSelected = folio;
         $.ajax({
             url: url_content + "Frontal/DynamicSearch/GetDataToShow?id=" + folio.toString() + "&idTablero=" + idTablero,
@@ -518,15 +521,25 @@
     var ObjectSelectedName = '';
     var TabSelected = '';
     var IdSelected = "-1";
-    function FillDetailsByTab(idTab, object) {
+    function FillDetailsByTab(idTab, object, id, idTablero) {
+        debugger;
         ObjectSelected = object;
         $.ajax({
-            url: url_content + "Frontal/DynamicSearch/GetDetalleBySearchResult?idTab=" + idTab,
+            url: url_content + "Frontal/DynamicSearch/GetDetalleBySearchResult?idTab=" + idTab + "&id=" + id + "&idTablero=" + idTablero,
             type: 'GET',
             cache: false,
             dataType: "json",
             async: false,
             success: function (result) {
+                //aqui
+                var role = @Session["USERROLEID"] != null ? @Session["USERROLEID"] : 0;
+
+                var permisionDelete = false;
+                if (HasValidaPersmisoX( ObjectSelected, role, 4) === true) { // el 4 represta si tiene permio de Eliminar
+                    permisionDelete = true;
+                }
+
+
                 $('#TbodyDetails').html('');
                 $('#TrColumnsDetail').html('');
                 if (result[0].Details.Columns != null) {
@@ -556,12 +569,24 @@
                               <text>
 
                         if (ObjectSelected == "45018") { // 45018 representa el tab de documentos, solo se muestra cuando el tab es documentos
-                            htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i><i class="fa fa-pencil claseeditardocumento" title="Editar Documento"></i><i class="fa fa-search claseverdocumento" title="Ver Documento"></i></a></td>';
+                            if (permisionDelete) {
+                                htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i><i class="fa fa-pencil claseeditardocumento" title="Editar Documento"></i><i class="fa fa-search claseverdocumento" title="Ver Documento"></i></a><a class="classDelete"><i class="fa fa-trash" data-ObjectSelected="' +ObjectSelected+'"></i></a></td>';
+
+                            }
+                            else {
+                                htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i><i class="fa fa-pencil claseeditardocumento" title="Editar Documento"></i><i class="fa fa-search claseverdocumento" title="Ver Documento"></i></a></td>';
+
+                            }
 
                         }
                         else {
-                            htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a></td>';
+                            if (permisionDelete) {
+                                htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a><a class="classDelete"><i class="fa fa-trash" data-ObjectSelected="' + ObjectSelected +'"></i></a></td>';
 
+                            }
+                            else {
+                                htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a></td>';
+                            }
                         }
 
 
@@ -570,7 +595,16 @@
                         else
                         {
                             <text>
-                        htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a></td>';
+
+                        if (permisionDelete) {
+                            htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a><a class="classDelete"><i class="fa fa-trash"  data-ObjectSelected="' + ObjectSelected +'"></i></a></td>';
+
+                        }
+                        else {
+                            htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a></td>';
+
+                        }
+
 
                                 </text>
                         }
@@ -903,8 +937,58 @@
 
     });
 
+    $("body").on("click", ".classDelete", function (e) {
+        debugger;
+
+
+        var r = confirm("Está seguro de borrar el registro?");
+        if (r == true) {
+            var folioORClave = jQuery(this).closest('tr').find('td:eq(1)').text();
+            var dataObjectSelected = $(this).find("i").attr("data-ObjectSelected");
+
+            var querySelectNameOfTble = "select Class_name from spartan_metadata where object_id ='" + dataObjectSelected + "'";
+            var resultSelectNameOfTble = EvaluaQuery(querySelectNameOfTble);
+
+
+            //var querySelectNameOfKeyToDelete = "select top 1 Physical_Name from spartan_metadata where object_id ='" + dataObjectSelected + "'";
+            //var resultDeleteNameOfKeyToDelete = EvaluaQuery(querySelectNameOfKeyToDelete);
+
+          //  var queryDeleteNameOfTble = "Delete from " + resultSelectNameOfTble + " where " + resultDeleteNameOfKeyToDelete + " = '" + folioORClave + "'";7
+
+            var spToExecute = "exec SP_DEL" + resultSelectNameOfTble + " '" + folioORClave + "'";
+
+
+            var dele = EvaluaQuery(spToExecute);
+            var filterObj = '*[data-object="' + dataObjectSelected + '"]';
+            $("#TabsBadget").find(filterObj).click()
+
+
+        } else {
+           //ToDo
+        }
+
+
+
+        @*var id = EvaluaQuery("select isnull(archivo,'') as Archivo from control_de_documentos where folio = " + folioControlDoc, "", "");// document.getElementById("Archivo").innerHTML;
+            $.ajax({
+                async: false,
+                url: '@Url.Content("~/Frontal/General/GetArchivoFisico")',
+                data: { "Archivo": id },
+                type: 'POST',
+                success: function (result) {
+
+                    BaseUrl = result;
+
+                    window.open(BaseUrl);
+                }
+        });*@
+
+
+    });
+
+
     function GetIdFormatoFromDocumento(doc) {
-      
+
         var formatoID = EvaluaQuery(" usp_getIdFormatoFromDocumento  " + doc + "");
         return formatoID;
     }

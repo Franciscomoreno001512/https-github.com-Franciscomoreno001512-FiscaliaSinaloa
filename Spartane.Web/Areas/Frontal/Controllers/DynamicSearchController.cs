@@ -239,6 +239,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
         public JsonResult GetDataToShow(string id, int idTablero)
         {
+
             Session["SpartanOperationId"] = id;
             _tokenManager.GenerateToken();
             ModelSearchResult resultFinal = new ModelSearchResult();
@@ -274,6 +275,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
             resultFinal.Data = resultFinalFields;
+
 
             /*GRILLA DETALLE*/
             List<ResultGeneralDetail> resultDetail = new List<ResultGeneralDetail>();
@@ -335,12 +337,91 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Session["DataByTab"] = resultDetail;
             }
             resultFinal.Details = resultDetail;
+
             return Json(resultFinal, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetDetalleBySearchResult(string idTab)
+        public JsonResult GetDetalleBySearchResult(string id, int idTablero, string idTab)
         {
-            List<ResultGeneralDetail> allData = (List<ResultGeneralDetail>)Session["DataByTab"];
+
+            //List<ResultGeneralDetail> allData = (List<ResultGeneralDetail>)Session["DataByTab"];
+            //var data = allData.Where(x => x.Label == idTab).ToList();
+
+            ModelSearchResult resultFinal = new ModelSearchResult();
+            var serializer = new JavaScriptSerializer();
+            //serializer.RegisterConverters(new[] { new DynamicJsonConverter() });
+            //dynamic obj = serializer.Deserialize(result, typeof(object));
+
+
+            /*GRILLA DETALLE*/
+            List<ResultGeneralDetail> resultDetail = new List<ResultGeneralDetail>();
+            List<ModelSearchFields> resultFinalFieldsDetail = new List<ModelSearchFields>();
+            ResultGeneralDetail aux;
+            _tokenManager.GenerateToken();
+
+            _ISpartan_RDM_Operations_DetailApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var details = _ISpartan_RDM_Operations_DetailApiConsumer.ListaSelAll(0, 9999, "Spartan_RDM_Operations_Detail.Record_Detail_Management=" + idTablero.ToString(), "").Resource;
+            if (details.RowCount > 0)
+            {
+                foreach (var item in details.Spartan_RDM_Operations_Details)
+                {
+                    aux = new ResultGeneralDetail();
+                    aux.ObjectId = item.Object_Name.Value;
+                    var counter = _ISpartaneQueryApiConsumer.ExecuteQuery(item.Count_Query.Replace("@@LLAVE@@", id)).Resource;
+                    aux.Counter = Convert.ToInt32(counter);
+                    aux.Label = item.Object_Label;
+
+                    //Buscamos el nombre del archivo
+                    _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                    var fileInfo = _ISpartane_FileApiConsumer.GetByKey(item.Icono).Resource;
+                    //preparamos la url del archivo fisico
+                    aux.Icon = ConfigurationManager.AppSettings["BaseUrl"] + "/api/Spartan_File/Files/" + item.Icono + "/" + fileInfo.Description;
+
+                    aux.Details = new ModelResultsFields();
+                    string queryDataDetail = item.Query_Data.Replace("@@LLAVE@@", id);
+                    var resultQueryDetail = _ISpartaneQueryApiConsumer.ExecuteRawQuery(HttpUtility.UrlEncode(queryDataDetail)).Resource;
+                    if (resultQueryDetail != null && resultQueryDetail != "[]")
+                    {
+                        serializer = new JavaScriptSerializer();
+                        serializer.RegisterConverters(new[] { new DynamicJsonConverter() });
+                        dynamic objDetail = serializer.Deserialize(resultQueryDetail, typeof(object));
+
+                        List<ModelResultsValueFields> valuesColumnsDetail = new List<ModelResultsValueFields>();
+                        var columnsDictionaryDetail = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(resultQueryDetail);
+                        List<string> columnsDetail = new List<string>();
+                        foreach (var dict in columnsDictionaryDetail[0])
+                        {
+                            columnsDetail.Add(dict.Key);
+                        }
+                        aux.Details.Columns = columnsDetail;
+                        aux.Details.ValuesColumns = new List<ModelResultsValueFields>();
+                        foreach (var itemDetail in objDetail)
+                        {
+                            var row = new List<string>();
+                            foreach (var col in columnsDetail)
+                            {
+                                row.Add(itemDetail[col] == null ? "" : itemDetail[col].ToString());
+                            }
+                            var values = new ModelResultsValueFields();
+                            values.Values = row;
+                            valuesColumnsDetail.Add(values);
+                        }
+                        ModelResultsFields resultDetailNew = new ModelResultsFields();
+                        resultDetailNew.Columns = columnsDetail;
+                        resultDetailNew.ValuesColumns = valuesColumnsDetail;
+                        aux.Details = resultDetailNew;
+                    }
+                    resultDetail.Add(aux);
+                }
+                //  Session["DataByTab"] = resultDetail;
+            }
+            resultFinal.Details = resultDetail;
+
+
+            List<ResultGeneralDetail> allData = resultDetail;
             var data = allData.Where(x => x.Label == idTab).ToList();
+
+
+
             return Json(data, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetCatalog(int objectId, string detalle)

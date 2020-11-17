@@ -146,7 +146,7 @@ function showMessageRequired(item) {
 
 
 function checkClientValidate(formSelector) {
-   
+
     $('#textRequired').empty();
     var elementValid = true;
     $('.' + formSelector + ' .inputClientRequired').each(function () {
@@ -1374,7 +1374,7 @@ function GetHtmlAsString(idFormat, RecordId) {
 }
 
 function ShowMessageRequired(field) {
-   
+
     if (typeof (field) != "undefined") {
         return "El campo " + field + " es requerido";
     }
@@ -1384,7 +1384,7 @@ function ShowMessageRequired(field) {
 }
 
 function GeneratePDFFromControlDocumentos(FolioControlDocumentos) {
-   
+
     var res;
     $.ajax({
         url: url_content + "Frontal/Spartan_Format/GeneratePDFFromControlDocumentos?FolioControlDocumentos=" + FolioControlDocumentos,
@@ -1393,7 +1393,7 @@ function GeneratePDFFromControlDocumentos(FolioControlDocumentos) {
         dataType: "json",
         async: false,
         success: function (result) {
-          
+
             res = result;
             var spartanfileId = "";
             var FolioControlDocumentos = "";
@@ -1420,9 +1420,9 @@ function GeneratePDFFromControlDocumentos(FolioControlDocumentos) {
     return res;
 }
 
-function HasValidaPersmiso_New(tabSelected, objSelected, role) {
- 
-    var resulttado = EvaluaQueryDictionary(" usp_ValidaPersmiso  '" + objSelected + "'," + role);
+function HasValidaPersmisoX(objSelected, role, function_Id) {
+
+    var resulttado = EvaluaQueryDictionary(" usp_ValidaPersmiso  '" + objSelected + "'," + role + "," + function_Id);
 
     if (Object.keys(resulttado).length > 0) {
         return true;
@@ -1430,6 +1430,6 @@ function HasValidaPersmiso_New(tabSelected, objSelected, role) {
     else {
         return false;
     }
-    
+
 
 }
