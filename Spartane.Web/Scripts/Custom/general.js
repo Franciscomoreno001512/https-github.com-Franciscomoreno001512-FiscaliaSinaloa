@@ -1433,3 +1433,28 @@ function HasValidaPersmisoX(objSelected, role, function_Id) {
 
 
 }
+//fjmore
+function GetSpartanFileAndPost(SpartanFileId) {
+    debugger;
+    var res = -1;
+    $.ajax({
+        url: url_content + "Frontal/General/GetSpartanFileAndPost?SpartanFileId=" + SpartanFileId,
+        type: 'GET',
+        cache: false,
+        dataType: "json",
+        async: false,
+        success: function (result) {
+            debugger;
+            var sp = result.split('_');
+            if (sp != null && sp[1] != null) {
+                res = parseInt(sp[1]);
+            }
+           
+        },
+        error: function (result) {
+            debugger;
+            showNotification("Error obteniendo File", "error");
+        }
+    });
+    return res;
+}

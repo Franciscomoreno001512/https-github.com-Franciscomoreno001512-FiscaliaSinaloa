@@ -44,7 +44,7 @@ function GetAutoCompleteDetalle_de_Solicitud_Datos_de_Apoyo_Solicitante_Detalle_
     return AutoCompleteSolicitanteData;
 }
 var AutoCompleteDiligencia_a_EnviarData = [];
-function GetAutoCompleteDetalle_de_Solicitud_Datos_de_Apoyo_Diligencia_a_Enviar_Dilgencia_MASCData(data) {
+function GetAutoCompleteDetalle_de_Solicitud_Datos_de_Apoyo_Diligencia_a_Enviar_Detalle_de_documentosData(data) {
 	AutoCompleteDiligencia_a_EnviarData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompleteDiligencia_a_EnviarData.push({

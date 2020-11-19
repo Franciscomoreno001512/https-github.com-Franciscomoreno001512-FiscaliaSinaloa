@@ -228,6 +228,15 @@ if(operation == 'Update'){
 }
 //BusinessRuleId:2423, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+//BusinessRuleId:2442, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Acuerdo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divParcialidades').css('display', 'block');$('#divPeriodicidad').css('display', 'block');$('#divMonto_de_la_Parcialidad').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Parcialidades' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Periodicidad' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Parcialidad' + rowIndex));} else {}
+
+}
+//BusinessRuleId:2442, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

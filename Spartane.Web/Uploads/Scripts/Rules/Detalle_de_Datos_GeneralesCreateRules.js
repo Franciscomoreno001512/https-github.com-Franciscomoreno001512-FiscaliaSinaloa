@@ -61,15 +61,7 @@ if( $('#' + nameOfTable + 'Fecha_de_Nacimiento' + rowIndex).val()!=TryParseInt('
 
 
 
-//BusinessRuleId:1897, Attribute:263789, Operation:Field, Event:None
-$("form#CreateDetalle_de_Datos_Generales").on('change', '#Escolaridad', function () {
-	nameOfTable='';
-	rowIndex='';
-if( $('#' + nameOfTable + 'Escolaridad' + rowIndex).val()==TryParseInt('11', '11') ) { $('#divEspecialidad').css('display', 'block');$('#divEstudios_Superiores').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex));$('#divIncompleto').css('display', 'none');} else { $('#divEspecialidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));$('#divEstudios_Superiores').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex));$('#divIncompleto').css('display', 'block');}
-});
 
-
-//BusinessRuleId:1897, Attribute:263789, Operation:Field, Event:None
 
 
 
@@ -288,6 +280,15 @@ if( GetValueByControlType($('#' + nameOfTable + 'Incapaz' + rowIndex),nameOfTabl
 
 
 //BusinessRuleId:1898, Attribute:263803, Operation:Field, Event:None
+
+//BusinessRuleId:1897, Attribute:263789, Operation:Field, Event:None
+$("form#CreateDetalle_de_Datos_Generales").on('change', '#Escolaridad', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Escolaridad' + rowIndex),nameOfTable,rowIndex)==TryParseInt('11', '11') ) { $('#divEspecialidad').css('display', 'block');$('#divEstudios_Superiores').css('display', 'block'); } else { $('#divEspecialidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));$('#divEstudios_Superiores').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex));}
+});
+
+//BusinessRuleId:1897, Attribute:263789, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });

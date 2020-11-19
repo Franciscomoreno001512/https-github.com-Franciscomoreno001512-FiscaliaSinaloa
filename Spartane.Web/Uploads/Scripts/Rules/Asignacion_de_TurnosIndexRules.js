@@ -10,11 +10,14 @@ $(document).ready(function () {
 
 //BusinessRuleId:1612, Attribute:3, Operation:Object, Event:None
 if(operation == 'List'){
-if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('5', '5') || EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4')) {
- MRWhere=ReplaceQuery("Asignacion_de_Turnos.Folio in (select folio from Asignacion_de_Turnos where DATEDIFF(day, Fecha_de_Turno, GETDATE()) = 0)");} else {}
-
-
-}
+	if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') || EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('5', '5') ) 
+	{ 
+		MRWhere=ReplaceQuery("Asignacion_de_Turnos.Folio in (select folio from Asignacion_de_Turnos where DATEDIFF(day, Fecha_de_Turno, GETDATE()) = 0 AND UNIDAD_DE_ATENCION IN (SELECT UNIDAD FROM Relacion_Unidad_Usuario WHERE USUARIO = GLOBAL[USERID]))");} 
+		else {}
+	
+	
+	}
+	//BusinessRuleId:1612, Attribute:3, Operation:Object, Event:None
 //BusinessRuleId:1516, Attribute:3, Operation:Object, Event:None
 if(operation == 'List'){
 if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('5', '5') || EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4')) {
@@ -22,9 +25,6 @@ if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt(
 
 
 }
-
-
-
 
 
 //NEWBUSINESSRULE_BEFORECREATIONLIST//

@@ -32,9 +32,9 @@
     List<SelectListItem> varDialecto_Lengua_Originaria = null;
     if (ViewBag.Dialectos_Lengua_Originaria != null)
     { varDialecto_Lengua_Originaria = (List<SelectListItem>)ViewBag.Dialectos_Lengua_Originaria; }
- List<SelectListItem> varDilgencia_MASC_Diligencia_a_Enviar = null;
-    if (ViewBag.Dilgencia_MASCs_Diligencia_a_Enviar != null)
-    { varDilgencia_MASC_Diligencia_a_Enviar = (List<SelectListItem>)ViewBag.Dilgencia_MASCs_Diligencia_a_Enviar; }
+ List<SelectListItem> varDetalle_de_documentos_Diligencia_a_Enviar = null;
+    if (ViewBag.Detalle_de_documentoss_Diligencia_a_Enviar != null)
+    { varDetalle_de_documentos_Diligencia_a_Enviar = (List<SelectListItem>)ViewBag.Detalle_de_documentoss_Diligencia_a_Enviar; }
 
 
     Permission permission = ViewBag.Permission;
@@ -352,7 +352,7 @@
 				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266692).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Dilgencia_MASC', 'Diligencia_a_Enviar');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Detalle_de_documentos', 'Diligencia_a_Enviar');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -641,7 +641,7 @@
        $(".AutoCompleteDetalle_de_Solicitud_Datos_de_Apoyo_Diligencia_a_Enviar").select2({
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
-                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Datos_de_Apoyo/GetDetalle_de_Solicitud_Datos_de_Apoyo_Diligencia_a_Enviar_Dilgencia_MASC")",
+                url: "@Url.Content("~/Frontal/Detalle_de_Solicitud_Datos_de_Apoyo/GetDetalle_de_Solicitud_Datos_de_Apoyo_Diligencia_a_Enviar_Detalle_de_documentos")",
 		cache: false,
                 dataType: 'json',
                 async: true,
@@ -655,7 +655,7 @@
                     params.page = params.page || 1;
 
                     return {
-                        results: GetAutoCompleteDetalle_de_Solicitud_Datos_de_Apoyo_Diligencia_a_Enviar_Dilgencia_MASCData(data),
+                        results: GetAutoCompleteDetalle_de_Solicitud_Datos_de_Apoyo_Diligencia_a_Enviar_Detalle_de_documentosData(data),
                         pagination: {
                             more: false 
                         }

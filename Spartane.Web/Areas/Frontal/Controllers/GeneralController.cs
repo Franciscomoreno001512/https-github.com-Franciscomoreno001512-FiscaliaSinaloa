@@ -251,6 +251,36 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             }
         }
+        //fjmore
+        public JsonResult GetSpartanFileAndPost(int SpartanFileId)
+        {
+
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartaneFileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ISpartaneFileApiConsumer.GetByKey(SpartanFileId);
+                long resultadoInsert = -1;
+                if (result != null && result.Resource != null)
+                {
+                    resultadoInsert = _ISpartaneFileApiConsumer.Insert(new Core.Domain.SpartaneFile.Spartane_File
+                    {
+                        Date_Time = DateTime.Now,
+                        Description = "Archivo_" + DateTime.Now.ToString("dd-MM-yyyy hh mm ss fff") + "_.doc",
+                        File = result.Resource.File,
+                        File_Size = result.Resource.File.Length
+                    }).Resource;
+                }
+                string resu = "OK_" + resultadoInsert.ToString();
+                return Json(resu, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
 
     }
 }

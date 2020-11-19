@@ -8,7 +8,7 @@ using Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo;
 using Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante;
 using Spartane.Core.Domain.Idioma;
 using Spartane.Core.Domain.Dialecto;
-using Spartane.Core.Domain.Dilgencia_MASC;
+using Spartane.Core.Domain.Detalle_de_documentos;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -25,7 +25,7 @@ using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Servicio_de_Apoyo;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Solicitud_Solicitante;
 using Spartane.Web.Areas.WebApiConsumer.Idioma;
 using Spartane.Web.Areas.WebApiConsumer.Dialecto;
-using Spartane.Web.Areas.WebApiConsumer.Dilgencia_MASC;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_documentos;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -68,7 +68,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_de_Solicitud_SolicitanteApiConsumer _IDetalle_de_Solicitud_SolicitanteApiConsumer;
         private IIdiomaApiConsumer _IIdiomaApiConsumer;
         private IDialectoApiConsumer _IDialectoApiConsumer;
-        private IDilgencia_MASCApiConsumer _IDilgencia_MASCApiConsumer;
+        private IDetalle_de_documentosApiConsumer _IDetalle_de_documentosApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -86,7 +86,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_Solicitud_Datos_de_ApoyoController(IDetalle_de_Solicitud_Datos_de_ApoyoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Solicitud_Datos_de_ApoyoApiConsumer Detalle_de_Solicitud_Datos_de_ApoyoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_Servicio_de_ApoyoApiConsumer Tipo_de_Servicio_de_ApoyoApiConsumer , IDetalle_de_Solicitud_SolicitanteApiConsumer Detalle_de_Solicitud_SolicitanteApiConsumer , IIdiomaApiConsumer IdiomaApiConsumer , IDialectoApiConsumer DialectoApiConsumer , IDilgencia_MASCApiConsumer Dilgencia_MASCApiConsumer )
+        public Detalle_de_Solicitud_Datos_de_ApoyoController(IDetalle_de_Solicitud_Datos_de_ApoyoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_Solicitud_Datos_de_ApoyoApiConsumer Detalle_de_Solicitud_Datos_de_ApoyoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ISolicitudApiConsumer SolicitudApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_Servicio_de_ApoyoApiConsumer Tipo_de_Servicio_de_ApoyoApiConsumer , IDetalle_de_Solicitud_SolicitanteApiConsumer Detalle_de_Solicitud_SolicitanteApiConsumer , IIdiomaApiConsumer IdiomaApiConsumer , IDialectoApiConsumer DialectoApiConsumer , IDetalle_de_documentosApiConsumer Detalle_de_documentosApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -106,7 +106,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IDetalle_de_Solicitud_SolicitanteApiConsumer = Detalle_de_Solicitud_SolicitanteApiConsumer;
             this._IIdiomaApiConsumer = IdiomaApiConsumer;
             this._IDialectoApiConsumer = DialectoApiConsumer;
-            this._IDilgencia_MASCApiConsumer = Dilgencia_MASCApiConsumer;
+            this._IDetalle_de_documentosApiConsumer = Detalle_de_documentosApiConsumer;
 
         }
 
@@ -199,7 +199,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Lengua_Originaria = Detalle_de_Solicitud_Datos_de_ApoyoData.Lengua_Originaria
                     ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_Datos_de_ApoyoData.Lengua_Originaria), "Dialecto") ??  (string)Detalle_de_Solicitud_Datos_de_ApoyoData.Lengua_Originaria_Dialecto.Descripcion
                     ,Diligencia_a_Enviar = Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar
-                    ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar), "Dilgencia_MASC") ??  (string)Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar_Dilgencia_MASC.Descripcion
+                    ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar), "Detalle_de_documentos") ??  (string)Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar_Detalle_de_documentos.Descripcion
                     ,Archivo_Adjunto = Detalle_de_Solicitud_Datos_de_ApoyoData.Archivo_Adjunto
 
 					};
@@ -313,7 +313,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Lengua_Originaria = Detalle_de_Solicitud_Datos_de_ApoyoData.Lengua_Originaria
                     ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_Datos_de_ApoyoData.Lengua_Originaria), "Dialecto") ??  (string)Detalle_de_Solicitud_Datos_de_ApoyoData.Lengua_Originaria_Dialecto.Descripcion
                     ,Diligencia_a_Enviar = Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar
-                    ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar), "Dilgencia_MASC") ??  (string)Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar_Dilgencia_MASC.Descripcion
+                    ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar), "Detalle_de_documentos") ??  (string)Detalle_de_Solicitud_Datos_de_ApoyoData.Diligencia_a_Enviar_Detalle_de_documentos.Descripcion
                     ,Archivo_Adjunto = Detalle_de_Solicitud_Datos_de_ApoyoData.Archivo_Adjunto
 
 					};
@@ -493,18 +493,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 		[HttpGet]
-        public ActionResult GetDilgencia_MASCAll()
+        public ActionResult GetDetalle_de_documentosAll()
         {
             try
             {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _IDilgencia_MASCApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IDilgencia_MASCApiConsumer.SelAll(false).Resource;
+                _IDetalle_de_documentosApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IDetalle_de_documentosApiConsumer.SelAll(false).Resource;
 				
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Dilgencia_MASC", "Descripcion")?? m.Descripcion,
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_documentos", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -647,7 +647,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Responsable = m.Responsable
                         ,IdiomaDescripcion = CultureHelper.GetTraduction(m.Idioma_Idioma.Clave.ToString(), "Descripcion") ?? (string)m.Idioma_Idioma.Descripcion
                         ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(m.Lengua_Originaria_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Lengua_Originaria_Dialecto.Descripcion
-                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Dilgencia_MASC.Clave.ToString(), "Dilgencia_MASC") ?? (string)m.Diligencia_a_Enviar_Dilgencia_MASC.Descripcion
+                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Detalle_de_documentos.Clave.ToString(), "Detalle_de_documentos") ?? (string)m.Diligencia_a_Enviar_Detalle_de_documentos.Descripcion
 			,Archivo_Adjunto = m.Archivo_Adjunto
 
                     }).ToList(),
@@ -773,7 +773,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Responsable = m.Responsable
                         ,IdiomaDescripcion = CultureHelper.GetTraduction(m.Idioma_Idioma.Clave.ToString(), "Descripcion") ?? (string)m.Idioma_Idioma.Descripcion
                         ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(m.Lengua_Originaria_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Lengua_Originaria_Dialecto.Descripcion
-                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Dilgencia_MASC.Clave.ToString(), "Dilgencia_MASC") ?? (string)m.Diligencia_a_Enviar_Dilgencia_MASC.Descripcion
+                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Detalle_de_documentos.Clave.ToString(), "Detalle_de_documentos") ?? (string)m.Diligencia_a_Enviar_Detalle_de_documentos.Descripcion
 			,Archivo_Adjunto = m.Archivo_Adjunto
 
                 }).ToList(),
@@ -866,7 +866,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
-        public JsonResult GetDetalle_de_Solicitud_Datos_de_Apoyo_Diligencia_a_Enviar_Dilgencia_MASC(string query, string where)
+        public JsonResult GetDetalle_de_Solicitud_Datos_de_Apoyo_Diligencia_a_Enviar_Detalle_de_documentos(string query, string where)
         {
             try
             {
@@ -874,18 +874,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where = "";
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _IDilgencia_MASCApiConsumer.SetAuthHeader(_tokenManager.Token);
+                _IDetalle_de_documentosApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Dilgencia_MASC.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Dilgencia_MASC.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Detalle_de_documentos.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_documentos.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IDilgencia_MASCApiConsumer.ListaSelAll(1, 20,elWhere , " Dilgencia_MASC.Descripcion ASC ").Resource;
+				var result = _IDetalle_de_documentosApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_documentos.Descripcion ASC ").Resource;
                
-                foreach (var item in result.Dilgencia_MASCs)
+                foreach (var item in result.Detalle_de_documentoss)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Dilgencia_MASC", "Descripcion");
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_documentos", "Descripcion");
                     item.Descripcion =trans ??item.Descripcion;
                 }
-                return Json(result.Dilgencia_MASCs.ToArray(), JsonRequestBehavior.AllowGet);
+                return Json(result.Detalle_de_documentoss.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -1147,19 +1147,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 switch (filter.Diligencia_a_EnviarFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Dilgencia_MASC.Descripcion LIKE '" + filter.AdvanceDiligencia_a_Enviar + "%'";
+                        where += " AND Detalle_de_documentos.Descripcion LIKE '" + filter.AdvanceDiligencia_a_Enviar + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Dilgencia_MASC.Descripcion LIKE '%" + filter.AdvanceDiligencia_a_Enviar + "'";
+                        where += " AND Detalle_de_documentos.Descripcion LIKE '%" + filter.AdvanceDiligencia_a_Enviar + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Dilgencia_MASC.Descripcion = '" + filter.AdvanceDiligencia_a_Enviar + "'";
+                        where += " AND Detalle_de_documentos.Descripcion = '" + filter.AdvanceDiligencia_a_Enviar + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Dilgencia_MASC.Descripcion LIKE '%" + filter.AdvanceDiligencia_a_Enviar + "%'";
+                        where += " AND Detalle_de_documentos.Descripcion LIKE '%" + filter.AdvanceDiligencia_a_Enviar + "%'";
                         break;
                 }
             }
@@ -1654,7 +1654,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Responsable = m.Responsable
                         ,IdiomaDescripcion = CultureHelper.GetTraduction(m.Idioma_Idioma.Clave.ToString(), "Descripcion") ?? (string)m.Idioma_Idioma.Descripcion
                         ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(m.Lengua_Originaria_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Lengua_Originaria_Dialecto.Descripcion
-                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Dilgencia_MASC.Clave.ToString(), "Dilgencia_MASC") ?? (string)m.Diligencia_a_Enviar_Dilgencia_MASC.Descripcion
+                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Detalle_de_documentos.Clave.ToString(), "Detalle_de_documentos") ?? (string)m.Diligencia_a_Enviar_Detalle_de_documentos.Descripcion
 			,Archivo_Adjunto = m.Archivo_Adjunto
 
             }).ToList();
@@ -1739,7 +1739,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Responsable = m.Responsable
                         ,IdiomaDescripcion = CultureHelper.GetTraduction(m.Idioma_Idioma.Clave.ToString(), "Descripcion") ?? (string)m.Idioma_Idioma.Descripcion
                         ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(m.Lengua_Originaria_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Lengua_Originaria_Dialecto.Descripcion
-                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Dilgencia_MASC.Clave.ToString(), "Dilgencia_MASC") ?? (string)m.Diligencia_a_Enviar_Dilgencia_MASC.Descripcion
+                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Detalle_de_documentos.Clave.ToString(), "Detalle_de_documentos") ?? (string)m.Diligencia_a_Enviar_Detalle_de_documentos.Descripcion
 			,Archivo_Adjunto = m.Archivo_Adjunto
 
             }).ToList();
@@ -1854,7 +1854,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Lengua_Originaria = m.Lengua_Originaria
                         ,Lengua_OriginariaDescripcion = CultureHelper.GetTraduction(m.Lengua_Originaria_Dialecto.Clave.ToString(), "Descripcion") ?? (string)m.Lengua_Originaria_Dialecto.Descripcion
                         ,Diligencia_a_Enviar = m.Diligencia_a_Enviar
-                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Dilgencia_MASC.Clave.ToString(), "Dilgencia_MASC") ?? (string)m.Diligencia_a_Enviar_Dilgencia_MASC.Descripcion
+                        ,Diligencia_a_EnviarDescripcion = CultureHelper.GetTraduction(m.Diligencia_a_Enviar_Detalle_de_documentos.Clave.ToString(), "Detalle_de_documentos") ?? (string)m.Diligencia_a_Enviar_Detalle_de_documentos.Descripcion
 			,Archivo_Adjunto = m.Archivo_Adjunto
 
                     

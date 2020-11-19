@@ -3,6 +3,15 @@ var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
+//BusinessRuleId:2443, Attribute:265760, Operation:Field, Event:None
+$("form#CreateDetalle_de_Relaciones").on('change', '#Es_Familiar', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Es_Familiar' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divParentesco').css('display', 'block');} else { $('#divParentesco').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Parentesco' + rowIndex));}
+});
+
+//BusinessRuleId:2443, Attribute:265760, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
@@ -115,6 +124,27 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2174, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2444, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divParentesco').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Parentesco' + rowIndex));
+
+}
+//BusinessRuleId:2444, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2445, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Es_Familiar' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divParentesco').css('display', 'block');} else { $('#divParentesco').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Parentesco' + rowIndex));}
+
+}
+//BusinessRuleId:2445, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2445, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( GetValueByControlType($('#' + nameOfTable + 'Es_Familiar' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divParentesco').css('display', 'block');} else { $('#divParentesco').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Parentesco' + rowIndex));}
+
+}
+//BusinessRuleId:2445, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -131,6 +161,10 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:1733, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+
+
+
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

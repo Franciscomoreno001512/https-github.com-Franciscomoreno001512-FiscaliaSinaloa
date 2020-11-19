@@ -25,6 +25,23 @@ function EjecutarValidacionesAntesDeGuardar()
 function EjecutarValidacionesDespuesDeGuardar()
 {
 //NEWBUSINESSRULE_AFTERSAVING//
+
+//INSERTAR RELACIÓN USUARIO - UNIDAD CUANDO EL ROL ES ORIENTADOR O RECEPCIONISTA
+if(operation == 'New'){
+    if( GetValueByControlType($('#' + nameOfTable + 'Role' + rowIndex),nameOfTable,rowIndex)==TryParseInt('4', '4') || 
+    GetValueByControlType($('#' + nameOfTable + 'Role' + rowIndex),nameOfTable,rowIndex)==TryParseInt('5', '5') ) 
+    {
+EvaluaQuery("EXEC sp_RelacionUnidadUsuario GLOBAL[KeyValueInserted]", rowIndex, nameOfTable);} 
+else {}
+    }
+    if(operation == 'Update'){
+        if( GetValueByControlType($('#' + nameOfTable + 'Role' + rowIndex),nameOfTable,rowIndex)==TryParseInt('4', '4') || 
+        GetValueByControlType($('#' + nameOfTable + 'Role' + rowIndex),nameOfTable,rowIndex)==TryParseInt('5', '5') ) 
+        {
+    EvaluaQuery("EXEC sp_UpdRelacionUnidadUsuario FLDD[lblId_User]", rowIndex, nameOfTable);} 
+    else {}
+        }
+
 }
 
 

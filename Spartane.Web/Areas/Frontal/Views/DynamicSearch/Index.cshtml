@@ -957,9 +957,17 @@
 
             var spToExecute = "exec SP_DEL" + resultSelectNameOfTble + " '" + folioORClave + "'";
 
-
+            debugger;
             var dele = EvaluaQuery(spToExecute);
             var filterObj = '*[data-object="' + dataObjectSelected + '"]';
+            var badge = $("#TabsBadget").find(filterObj).find(".badge");
+            var cont = badge.text().trim();
+
+            if (cont != null && cont != "") {
+                var contItn = parseInt(cont) - 1;
+                badge.text(contItn)
+            }
+
             $("#TabsBadget").find(filterObj).click()
 
 

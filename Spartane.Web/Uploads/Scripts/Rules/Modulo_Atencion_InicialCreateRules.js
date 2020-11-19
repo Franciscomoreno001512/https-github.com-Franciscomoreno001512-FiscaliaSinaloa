@@ -1713,13 +1713,7 @@ if(operation == 'Update'){
 
 
 
-//BusinessRuleId:2087, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { var valor = $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).val();   $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Turno_Asignado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT Folio, NUMERO_DE_TURNO FROM Asignacion_de_Turnos WHERE Estatus_de_Turno = 1 AND ORIENTADOR = GLOBAL[USERID]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT Folio, NUMERO_DE_TURNO FROM Asignacion_de_Turnos WHERE Estatus_de_Turno = 1 AND ORIENTADOR = GLOBAL[USERID]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).val(valor).trigger('change');} else {}
 
-
-}
-//BusinessRuleId:2087, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:1891, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
@@ -1776,6 +1770,15 @@ if(operation == 'Update'){
 
 }
 //BusinessRuleId:2431, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+//BusinessRuleId:2087, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { var valor = $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).val();   $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Turno_Asignado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT Folio, NUMERO_DE_TURNO FROM Asignacion_de_Turnos WHERE Estatus_de_Turno = 1 AND ORIENTADOR = GLOBAL[USERID] AND Folio NOT IN (SELECT ISNULL(Turno_Asignado, 0) FROM dbo.Modulo_Atencion_Inicial)", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT Folio, NUMERO_DE_TURNO FROM Asignacion_de_Turnos WHERE Estatus_de_Turno = 1 AND ORIENTADOR = GLOBAL[USERID] AND Folio NOT IN (SELECT ISNULL(Turno_Asignado, 0) FROM dbo.Modulo_Atencion_Inicial)", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Turno_Asignado' + rowIndex).val(valor).trigger('change');} else {}
+
+}
+//BusinessRuleId:2087, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }
