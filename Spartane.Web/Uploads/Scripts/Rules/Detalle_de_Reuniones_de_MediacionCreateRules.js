@@ -139,7 +139,7 @@ if(operation == 'Consult'){
 //BusinessRuleId:2165, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
 	debugger;
- fillMRFromQuery('Detalle_de_Solicitante_en_Reuniones', "exec uspLlenaSolicitantesReunion 13"); fillMRFromQuery('Detalle_de_Requerido_en_Reuniones', "exec uspLlenaRequeridosReunion 13");
+    fillMRFromQuery('Detalle_de_Solicitante_en_Reuniones', "exec uspLlenaSolicitantesReunion GLOBAL[SpartanOperationId]"); fillMRFromQuery('Detalle_de_Requerido_en_Reuniones', "exec uspLlenaRequeridosReunion GLOBAL[SpartanOperationId]");
 
 }
 //BusinessRuleId:2165, Attribute:0, Operation:Object, Event:SCREENOPENING
