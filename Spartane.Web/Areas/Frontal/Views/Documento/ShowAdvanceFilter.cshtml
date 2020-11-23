@@ -222,6 +222,10 @@
             hasParameter = true;
             advanceSearch.DocumentoSolicitante = $("#ddlAdvanceSolicitante").val();
         }
+        if ($("#ddlAdvanceRequerido_o_Solicitante").val() != "") {
+            hasParameter = true;
+            advanceSearch.DocumentoRequerido_o_Solicitante = $("#ddlAdvanceRequerido_o_Solicitante").val();
+        }
         if ($("#ddlAdvanceSolicitar_Archivo_Adjunto").val() != "") {
             hasParameter = true;
             advanceSearch.DocumentoSolicitar_Archivo_Adjunto = $("#ddlAdvanceSolicitar_Archivo_Adjunto").val();

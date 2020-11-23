@@ -274,6 +274,12 @@
                                     @Html.CheckBoxFor(m => m.Solicitante, new { @class = "i-checks Datos_Generales" })
                                 </div>
                             </div>
+                            <div class="form-group" id="divRequerido_o_Solicitante">
+                                <label class="col-sm-2 control-label">@Resources.DocumentoResources.Requerido_o_Solicitante</label>
+                                <div class="col-sm-8" data-field-id="Requerido_o_Solicitante" data-attribute="267029" data-field-name="@Resources.DocumentoResources.Requerido_o_Solicitante">
+                                    @Html.CheckBoxFor(m => m.Requerido_o_Solicitante, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
                             <div class="form-group" id="divSolicitar_Archivo_Adjunto">
                                 <label class="col-sm-2 control-label">@Resources.DocumentoResources.Solicitar_Archivo_Adjunto</label>
                                 <div class="col-sm-8" data-field-id="Solicitar_Archivo_Adjunto" data-attribute="266639" data-field-name="@Resources.DocumentoResources.Solicitar_Archivo_Adjunto">
@@ -725,6 +731,7 @@
                     $('#idFormato').val(result.data.idFormato);
                     $('#Requerido').prop('checked', result.data.Requerido);
                     $('#Solicitante').prop('checked', result.data.Solicitante);
+                    $('#Requerido_o_Solicitante').prop('checked', result.data.Requerido_o_Solicitante);
                     $('#Solicitar_Archivo_Adjunto').prop('checked', result.data.Solicitar_Archivo_Adjunto);
                     $('#Solicitar_Numero_de_Oficio').prop('checked', result.data.Solicitar_Numero_de_Oficio);
 
@@ -745,6 +752,7 @@
                 data.append('idFormato', $('#idFormato').val());
                 data.append('Requerido', $('#Requerido').prop('checked'));
                 data.append('Solicitante', $('#Solicitante').prop('checked'));
+                data.append('Requerido_o_Solicitante', $('#Requerido_o_Solicitante').prop('checked'));
                 data.append('Solicitar_Archivo_Adjunto', $('#Solicitar_Archivo_Adjunto').prop('checked'));
                 data.append('Solicitar_Numero_de_Oficio', $('#Solicitar_Numero_de_Oficio').prop('checked'));
 

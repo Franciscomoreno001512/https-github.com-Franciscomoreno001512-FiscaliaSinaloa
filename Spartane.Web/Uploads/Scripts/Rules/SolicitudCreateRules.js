@@ -1408,12 +1408,7 @@ if( GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTabl
 
 
 
-//BusinessRuleId:2441, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex)==TryParseInt('101', '101') && TryParseInt('2', '2')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nameOfTable) ) { AsignarValor($('#' + nameOfTable + 'Usuario_que_Valida' + rowIndex),EvaluaQuery("select Name from Spartan_User where Id_User = GLOBAL[USERID]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Fecha_Validacion' + rowIndex),EvaluaQuery("select convert (varchar(11),getdate(),105)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Hora_Validacion' + rowIndex),EvaluaQuery("select convert (varchar(8),getdate(),108)", rowIndex, nameOfTable));} else {}
 
-}
-//BusinessRuleId:2441, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 
 
@@ -1433,6 +1428,24 @@ if( TryParseInt('2', '2')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nam
 
 }
 //BusinessRuleId:2438, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+//BusinessRuleId:2447, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Resultado' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') && TryParseInt('2', '2')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nameOfTable) &&  EvaluaOperatorIn (GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex), EvaluaQuery("select STUFF(( select ',' + CONVERT(varchar(10),Clave) + '' from Estatus_Solicitud where Clave in (101, 102) for XML PATH('') ), 1, 1, '')",rowIndex, nameOfTable) ) ) { $('#divMotivo_de_Rechazo_Solicitud').css('display', 'block'); DisabledControl($("#" + nameOfTable + "Motivo_de_Rechazo_Solicitud" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo_Solicitud' + rowIndex));} SetRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo_Solicitud' + rowIndex));} else { $('#divMotivo_de_Rechazo_Solicitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Motivo_de_Rechazo_Solicitud' + rowIndex));}
+
+}
+//BusinessRuleId:2447, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2441, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if(  EvaluaOperatorIn (GetValueByControlType($('#' + nameOfTable + 'Estatus' + rowIndex),nameOfTable,rowIndex), EvaluaQuery("select STUFF(( select ',' + CONVERT(varchar(10),Clave) + '' from Estatus_Solicitud where Clave in (101, 102) for XML PATH('') ), 1, 1, '')",rowIndex, nameOfTable) ) && TryParseInt('2', '2')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nameOfTable) ) { AsignarValor($('#' + nameOfTable + 'Usuario_que_Valida' + rowIndex),EvaluaQuery("select Name from Spartan_User where Id_User = GLOBAL[USERID]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Fecha_Validacion' + rowIndex),EvaluaQuery("select convert (varchar(11),getdate(),105)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Hora_Validacion' + rowIndex),EvaluaQuery("select convert (varchar(8),getdate(),108)", rowIndex, nameOfTable));} else {}
+
+}
+//BusinessRuleId:2441, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

@@ -13,6 +13,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         {
             Requerido = RadioOptions.NoApply;
             Solicitante = RadioOptions.NoApply;
+            Requerido_o_Solicitante = RadioOptions.NoApply;
             Solicitar_Archivo_Adjunto = RadioOptions.NoApply;
             Solicitar_Numero_de_Oficio = RadioOptions.NoApply;
 
@@ -47,6 +48,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public RadioOptions Requerido { set; get; }
 
         public RadioOptions Solicitante { set; get; }
+
+        public RadioOptions Requerido_o_Solicitante { set; get; }
 
         public RadioOptions Solicitar_Archivo_Adjunto { set; get; }
 

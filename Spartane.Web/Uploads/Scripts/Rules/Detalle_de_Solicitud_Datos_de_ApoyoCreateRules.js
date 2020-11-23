@@ -85,21 +85,27 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:1714, Attribute:2, Operation:Object, Event:AFTERSAVING
-
-
-
-    //fjmore
+   //fjmore
     if (operation == 'New') {
         debugger;
         var diligencia = $('#Diligencia_a_Enviar').val();
         var query = 'select top 1 cd.Archivo from detalle_de_documentos doc with (nolock) inner join Control_de_Documentos cd with (nolock) on doc.Archivo = cd.Folio where doc.Clave = ' + diligencia + '';
         var SpartanFileId = EvaluaQuery(query);
-        var resultado = GetSpartanFileAndPost(SpartanFileId);        if (resultado > 0) {            var key = EvaluaQuery(" select GLOBAL[keyvalueinserted]");            var queryUpd = 'update Detalle_de_Solicitud_Datos_de_Apoyo set Archivo_adjunto = ' + resultado + ' where Clave = ' + key + '';
+
+        var resultado = GetSpartanFileAndPost(SpartanFileId);
+        if (resultado > 0) {
+            var key = EvaluaQuery(" select GLOBAL[keyvalueinserted]");
+            var queryUpd = 'update Detalle_de_Solicitud_Datos_de_Apoyo set Archivo_adjunto = ' + resultado + ' where Clave = ' + key + '';
             var dataResult = EvaluaQuery(queryUpd);
            
-        }        else {            alert("No se pudo actualizar el archivo en detalle_de_documentos");        }
-    }
+        }
+        else {
 
+            alert("No se pudo actualizar el archivo en detalle_de_documentos");
+        }
+
+
+    }
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 
