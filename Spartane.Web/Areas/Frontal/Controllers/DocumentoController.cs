@@ -176,6 +176,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,idFormato = DocumentoData.idFormato
                     ,Requerido = DocumentoData.Requerido.GetValueOrDefault()
                     ,Solicitante = DocumentoData.Solicitante.GetValueOrDefault()
+                    ,Requerido_o_Solicitante = DocumentoData.Requerido_o_Solicitante.GetValueOrDefault()
                     ,Solicitar_Archivo_Adjunto = DocumentoData.Solicitar_Archivo_Adjunto.GetValueOrDefault()
                     ,Solicitar_Numero_de_Oficio = DocumentoData.Solicitar_Numero_de_Oficio.GetValueOrDefault()
 
@@ -281,6 +282,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,idFormato = DocumentoData.idFormato
                     ,Requerido = DocumentoData.Requerido.GetValueOrDefault()
                     ,Solicitante = DocumentoData.Solicitante.GetValueOrDefault()
+                    ,Requerido_o_Solicitante = DocumentoData.Requerido_o_Solicitante.GetValueOrDefault()
                     ,Solicitar_Archivo_Adjunto = DocumentoData.Solicitar_Archivo_Adjunto.GetValueOrDefault()
                     ,Solicitar_Numero_de_Oficio = DocumentoData.Solicitar_Numero_de_Oficio.GetValueOrDefault()
 
@@ -526,6 +528,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,idFormato = m.idFormato
 			,Requerido = m.Requerido
 			,Solicitante = m.Solicitante
+			,Requerido_o_Solicitante = m.Requerido_o_Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
 			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
 
@@ -649,6 +652,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,idFormato = m.idFormato
 			,Requerido = m.Requerido
 			,Solicitante = m.Solicitante
+			,Requerido_o_Solicitante = m.Requerido_o_Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
 			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
 
@@ -797,6 +801,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (filter.Solicitante != RadioOptions.NoApply)
                 where += " AND Documento.Solicitante = " + Convert.ToInt32(filter.Solicitante);
 
+            if (filter.Requerido_o_Solicitante != RadioOptions.NoApply)
+                where += " AND Documento.Requerido_o_Solicitante = " + Convert.ToInt32(filter.Requerido_o_Solicitante);
+
             if (filter.Solicitar_Archivo_Adjunto != RadioOptions.NoApply)
                 where += " AND Documento.Solicitar_Archivo_Adjunto = " + Convert.ToInt32(filter.Solicitar_Archivo_Adjunto);
 
@@ -865,6 +872,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,idFormato = varDocumento.idFormato
                         ,Requerido = varDocumento.Requerido
                         ,Solicitante = varDocumento.Solicitante
+                        ,Requerido_o_Solicitante = varDocumento.Requerido_o_Solicitante
                         ,Solicitar_Archivo_Adjunto = varDocumento.Solicitar_Archivo_Adjunto
                         ,Solicitar_Numero_de_Oficio = varDocumento.Solicitar_Numero_de_Oficio
 
@@ -1261,6 +1269,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,idFormato = m.idFormato
 			,Requerido = m.Requerido
 			,Solicitante = m.Solicitante
+			,Requerido_o_Solicitante = m.Requerido_o_Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
 			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
 
@@ -1343,6 +1352,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,idFormato = m.idFormato
 			,Requerido = m.Requerido
 			,Solicitante = m.Solicitante
+			,Requerido_o_Solicitante = m.Requerido_o_Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
 			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
 
@@ -1391,6 +1401,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,idFormato = varDocumento.idFormato
                         ,Requerido = varDocumento.Requerido
                         ,Solicitante = varDocumento.Solicitante
+                        ,Requerido_o_Solicitante = varDocumento.Requerido_o_Solicitante
                         ,Solicitar_Archivo_Adjunto = varDocumento.Solicitar_Archivo_Adjunto
                         ,Solicitar_Numero_de_Oficio = varDocumento.Solicitar_Numero_de_Oficio
                     
@@ -1431,6 +1442,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,idFormato = m.idFormato
 			,Requerido = m.Requerido
 			,Solicitante = m.Solicitante
+			,Requerido_o_Solicitante = m.Requerido_o_Solicitante
 			,Solicitar_Archivo_Adjunto = m.Solicitar_Archivo_Adjunto
 			,Solicitar_Numero_de_Oficio = m.Solicitar_Numero_de_Oficio
 

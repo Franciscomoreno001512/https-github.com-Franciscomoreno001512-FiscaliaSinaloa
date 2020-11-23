@@ -19,6 +19,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? idFormato { get; set; }
         public bool? Requerido { get; set; }
         public bool? Solicitante { get; set; }
+        public bool? Requerido_o_Solicitante { get; set; }
         public bool? Solicitar_Archivo_Adjunto { get; set; }
         public bool? Solicitar_Numero_de_Oficio { get; set; }
         

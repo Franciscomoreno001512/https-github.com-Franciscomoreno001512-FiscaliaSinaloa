@@ -106,6 +106,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Requerido_o_Solicitante</summary>
+        public static string Requerido_o_Solicitante
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDocumento.GetResource("Requerido_o_Solicitante", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Solicitar_Archivo_Adjunto</summary>
         public static string Solicitar_Archivo_Adjunto
         {

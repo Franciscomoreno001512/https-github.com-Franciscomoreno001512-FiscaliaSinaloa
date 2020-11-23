@@ -267,7 +267,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     resultadoInsert = _ISpartaneFileApiConsumer.Insert(new Core.Domain.SpartaneFile.Spartane_File
                     {
                         Date_Time = DateTime.Now,
-                        Description = "Archivo_" + DateTime.Now.ToString("dd-MM-yyyy hh mm ss fff") + "_.doc",
+                        Description = "Archivo_" + DateTime.Now.ToString("dd-MM-yyyy hh mm ss fff") + "_.pdf",
                         File = result.Resource.File,
                         File_Size = result.Resource.File.Length
                     }).Resource;

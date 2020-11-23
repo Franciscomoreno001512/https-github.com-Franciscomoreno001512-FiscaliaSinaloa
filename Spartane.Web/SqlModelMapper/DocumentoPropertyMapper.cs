@@ -33,6 +33,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Documento.Requerido";
                 case "Solicitante":
                     return "Documento.Solicitante";
+                case "Requerido_o_Solicitante":
+                    return "Documento.Requerido_o_Solicitante";
                 case "Solicitar_Archivo_Adjunto":
                     return "Documento.Solicitar_Archivo_Adjunto";
                 case "Solicitar_Numero_de_Oficio":
@@ -59,6 +61,10 @@ namespace Spartane.Web.SqlModelMapper
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
             if (columnName == "Solicitante")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Requerido_o_Solicitante")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }

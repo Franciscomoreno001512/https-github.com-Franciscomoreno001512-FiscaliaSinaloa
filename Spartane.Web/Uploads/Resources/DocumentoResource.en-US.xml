@@ -9,6 +9,7 @@
   <resource culture="en-US" name="idFormato" value="idFormato"></resource>
   <resource culture="en-US" name="Requerido" value="Solicitar Requerido/Probable Responsable"></resource>
   <resource culture="en-US" name="Solicitante" value="Solicitar Solicitante/Involucrado"></resource>
+  <resource culture="en-US" name="Requerido_o_Solicitante" value="Requerido o Solicitante"></resource>
   <resource culture="en-US" name="Solicitar_Archivo_Adjunto" value="Solicitar Archivo Adjunto"></resource>
   <resource culture="en-US" name="Solicitar_Numero_de_Oficio" value="Solicitar Número de Oficio"></resource>
 
