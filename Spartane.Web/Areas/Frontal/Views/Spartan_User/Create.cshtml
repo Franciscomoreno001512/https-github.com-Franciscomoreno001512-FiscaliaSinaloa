@@ -181,27 +181,22 @@
                                         </div>
 
 
+                                        <div class="form-group" id="divRegion">
+                                            <label class="col-sm-2 control-label">Region</label>
+                                            <div class="col-sm-8" data-field-id="Region" data-field-name="Region">
+                                                <select class="form-control" data-val="true" data-val-number="The field Region must be a number." data-val-required="The Region field is required." id="Region" name="Region">
 
+                                             
+                                                </select>
+                                            </div>
+                                        </div>
 
                                         <div class="form-group" id="divUnidad">
                                             <label class="col-sm-2 control-label">Unidad</label>
                                             <div class="col-sm-8" data-field-id="Unidad" data-field-name="Unidad">
-                                                <select class="form-control" data-val="true" data-val-number="The field Unidad must be a number." data-val-required="The Role field is required." id="Unidad" name="Unidad">
+                                                <select class="form-control" data-val="true" data-val-number="The field Unidad must be a number." data-val-required="The Unidad field is required." id="Unidad" name="Unidad">
 
-                                                    @*@if (varSpartan_User_Unidad != null)
-                                                        {
-                                                            foreach (var itemUnidad in varSpartan_User_Unidad)
-                                                            {
-                                                                if (itemUnidad.Value == Convert.ToString(Model.Unidad))
-                                                                {
-                                                                    <option value="@itemUnidad.Value" selected>@itemUnidad.Text</option>
-                                                                }
-                                                                else
-                                                                {
-                                                                    <option value="@itemUnidad.Value">@itemUnidad.Text</option>
-                                                                }
-                                                            }
-                                                        }*@
+                               
                                                 </select>
                                             </div>
                                         </div>
@@ -405,8 +400,7 @@
             initiateUIControls();
 			$('a').tooltip();
 			EjecutarValidacionesAlComienzo();
-            EjecutarValidacionesAlComienzo();
-            debugger;
+           
             var isNew = $('#hdnIsNew').val();
             if (isNew == "True") {
                
@@ -468,7 +462,7 @@
                         if (result < 0) {
                             showNotification("@Resources.Resources.ErrorSave", "error");
                         } else {
-                            debugger;
+                           
                             if (isNew == "True") {
                                 OperacionesSpartanUser_CargoUnidad(3, result)
                             }
@@ -618,7 +612,7 @@
 
 
             function OperacionesSpartanUser_CargoUnidad(tipoOperacion, idUser) {
-                debugger;
+              
                 if (tipoOperacion === 1) {
 
                     fillCom(1, idUser);
@@ -632,45 +626,98 @@
                     saveUnidadCargo(3, idUser);
                 }
                 if (tipoOperacion === 4) {
+                    debugger;
                   var datos=  GetUnidadCargo(4, idUser);
-                    var U_nidad = Object.keys(datos)[0];
-                    var Cargo = datos[U_nidad];
+                    var U_nidad = datos[0].unidad;
+                    var Cargo = datos[0].cargo;
+                    var Region = datos[0].region;;
                     $("#Unidad").val(U_nidad);
                     $("#Cargo").val(Cargo);
+                    $("#Region").val(Region);
+                   
                 }
 
             }
 
-            function fillCom(ope) {
+            function fillCom(region) {
 
-                var datos = EvaluaQueryDictionary("exec usp_operacionesSpartanUser_CargoUnidad " + ope);
-                var option1 = $('<option />');
-                option1.attr('value', "0").text("--Seleccione--");
+                FillRegiones();
+                var isNew = $('#hdnIsNew').val();
+                if (isNew != "True") {
+                    var datos = GetUnidadCargo(4, $("#lblId_User").text().trim());
+                    
+                    var Region = datos[0].region;;
+                   
+                    var datos = GetAllTableSQL("exec sp_listSelAll_unidad 'region.Clave =" + Region + "' , ''", '');
+                    var option1 = $('<option />');
+                    option1.attr('value', "0").text("--Seleccione--");
 
-                $('#Unidad').append(option1);
+                    $('#Unidad').append(option1);
 
-                $.each(datos, function (i, v) {
-                    var option2 = $('<option />');
-                    option2.attr('value', i).text(v);
+                    $.each(datos, function (i, v) {
+                        //aqui
+                        var option2 = $('<option />');
+                        option2.attr('value', v.Unidad_Clave).text(v.Unidad_Descripcion);
 
-                    $('#Unidad').append(option2);
-                });
+                        $('#Unidad').append(option2);
+                    });
+                }
+               
             }
 
             function saveUnidadCargo(ope,idUser) {
                 var claveUnidad = $('#Unidad').val();
                 var cargo = $('#Cargo').val();
-                var datos = EvaluaQuery("exec usp_operacionesSpartanUser_CargoUnidad " + ope + "," + "null,'" + claveUnidad + "', '" + cargo + "'," + idUser);
+                var region = $('#Region').val();
+                var datos = EvaluaQuery("exec usp_operacionesSpartanUser_CargoUnidad " + ope + "," + "null,'" + claveUnidad + "', '" + cargo + "'," + idUser + "," + region);
 
 
             }
 
             function GetUnidadCargo(ope, idUser) {
                 debugger;
-                var datos = EvaluaQueryDictionary("exec usp_operacionesSpartanUser_CargoUnidad " + ope + ',' + 'null,' + 'null' + ',' + 'null' + ',' + idUser);
+                var datos = GetAllTableSQL("exec usp_operacionesSpartanUser_CargoUnidad " + ope + ',' + 'null,' + 'null' + ',' + 'null' + ',' + idUser + ',null' );
                 return datos;
 
             }
+
+
+            function FillRegiones() {
+              
+                var datos = GetAllTableSQL("exec sp_listSelAll_region '',''")
+                var option1 = $('<option />');
+                option1.attr('value', "0").text("--Seleccione--");
+
+                $('#Region').append(option1);
+
+                $.each(datos, function (i, v) {
+                    //aqui
+                    var option2 = $('<option />');
+                    option2.attr('value', v.Region_Clave).text(v.Region_Descripcion);
+
+                    $('#Region').append(option2);
+                });
+
+            }
+
+            $("body").on("change", "#Region", function () {
+               
+                var self = $(this);
+                $('#Unidad').empty();
+                var datos = GetAllTableSQL("exec sp_listSelAll_unidad 'region.Clave =" + self.val() + "' , ''", '');
+                var option1 = $('<option />');
+                option1.attr('value', "0").text("--Seleccione--");
+
+                $('#Unidad').append(option1);
+
+                $.each(datos, function (i, v) {
+                    //aqui
+                    var option2 = $('<option />');
+                    option2.attr('value', v.Unidad_Clave).text(v.Unidad_Descripcion);
+
+                    $('#Unidad').append(option2);
+                });
+            });
 
         </script>
     }

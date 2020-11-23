@@ -39,6 +39,7 @@ using Spartane.Web.Areas.WebApiConsumer.GeneratePDF;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User_Historical_Password;
 
 using Spartane.Web.Areas.WebApiConsumer.Unidad;
+using Spartane.Web.Areas.WebApiConsumer.Region;
 
 namespace Spartane.Web.Areas.Frontal.Controllers
 {
@@ -63,13 +64,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ISpartan_Format_PermissionsApiConsumer _ISpartan_Format_PermissionsApiConsumer;
 
         private IUnidadApiConsumer _IUnidadApiConsumer;
+        private IRegionApiConsumer _IRegionApiConsumer;
 
         #endregion "variable declaration"
 
         #region "Constructor Declaration"
 
 
-        public Spartan_UserController(ISpartan_UserService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, ISpartan_UserApiConsumer Spartan_UserApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer , ISpartan_User_RoleApiConsumer Spartan_User_RoleApiConsumer , ISpartan_User_StatusApiConsumer Spartan_User_StatusApiConsumer , IUnidadApiConsumer UnidadApiConsumer)
+        public Spartan_UserController(ISpartan_UserService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, 
+            ISpartan_UserApiConsumer Spartan_UserApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer,
+            ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer FormatApiConsumer, 
+            ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer , 
+            ISpartan_User_RoleApiConsumer Spartan_User_RoleApiConsumer , ISpartan_User_StatusApiConsumer Spartan_User_StatusApiConsumer ,
+            IUnidadApiConsumer UnidadApiConsumer, IRegionApiConsumer RegionApiConsumer)
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -85,6 +92,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_User_RoleApiConsumer = Spartan_User_RoleApiConsumer;
             this._ISpartan_User_StatusApiConsumer = Spartan_User_StatusApiConsumer;
             this._IUnidadApiConsumer = UnidadApiConsumer;
+            this._IRegionApiConsumer = RegionApiConsumer;
 
         }
 
@@ -483,23 +491,32 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
             var catalogUnidad = GetUnidadCatalog();
+            var catalogRegion = GetRegionCatalog();
 
             return Json(new
             {
                 aaData = result.Spartan_Users.Select(m => new Spartan_UserGridModel
-            {
+                {
                     Id_User = m.Id_User
-			,Name = m.Name
-                        ,RoleDescription = (string)m.Role_Spartan_User_Role.Description
-			,Image = m.Image
-			,Email = m.Email
-                        ,StatusDescription = (string)m.Status_Spartan_User_Status.Description
-			,Username = m.Username
-			,Password = m.Password
+            ,
+                    Name = m.Name
+                        ,
+                    RoleDescription = (string)m.Role_Spartan_User_Role.Description
+            ,
+                    Image = m.Image
+            ,
+                    Email = m.Email
+                        ,
+                    StatusDescription = (string)m.Status_Spartan_User_Status.Description
+            ,
+                    Username = m.Username
+            ,
+                    Password = m.Password
             //fjmore
-            , Cargo = m.Cargo,
-                     UnidadDescription= GetDescriptionFromCatalogUnidad(catalogUnidad,m.Unidad) // catalogUnidad.Where(x=> x.Clave == m.Unidad).FirstOrDefault().Descripcion
-
+            ,
+                    Cargo = m.Cargo,
+                    UnidadDescription = GetDescriptionFromCatalogUnidad(catalogUnidad, m.Unidad), // catalogUnidad.Where(x=> x.Clave == m.Unidad).FirstOrDefault().Descripcion
+                     RegionDescription= GetDescriptionFromCatalogRegion(catalogRegion, m.Region)
                 }).ToList(),
                 iTotalRecords = result.RowCount,
                 iTotalDisplayRecords = result.RowCount,
@@ -514,6 +531,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = this._IUnidadApiConsumer.SelAll(false).Resource;
             return data;
         }
+        public IList<Core.Domain.Region.Region> GetRegionCatalog()
+        {
+
+            _IRegionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var data = this._IRegionApiConsumer.SelAll(false).Resource;
+            return data;
+        }
 
         public string GetDescriptionFromCatalogUnidad(IList<Core.Domain.Unidad.Unidad> catalogUnidad, int? unidadFromDataGet)
         {
@@ -525,6 +549,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             else
             {
                 return catalogUnidad.Where(x => x.Clave == unidadFromDataGet).FirstOrDefault().Descripcion;
+            }
+        }
+        public string GetDescriptionFromCatalogRegion(IList<Core.Domain.Region.Region> catalogRegion, int? regionFromDataGet)
+        {
+
+            if (regionFromDataGet == null || regionFromDataGet == 0)
+            {
+                return "";
+            }
+            else
+            {
+                return catalogRegion.Where(x => x.Clave == regionFromDataGet).FirstOrDefault().Descripcion;
             }
         }
 
@@ -1050,23 +1086,32 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
             var catalogUnidad = GetUnidadCatalog();
+            var cataloRegion = GetRegionCatalog();
 
-         
 
-                var data = result.Spartan_Users.Select(m => new Spartan_UserGridModel
+
+            var data = result.Spartan_Users.Select(m => new Spartan_UserGridModel
             {
                 Id_User = m.Id_User
-			,Name = m.Name
-                        ,RoleDescription = (string)m.Role_Spartan_User_Role.Description
-			,Image = m.Image
-			,Email = m.Email
-                        ,StatusDescription = (string)m.Status_Spartan_User_Status.Description
-			,Username = m.Username
-			,Password = m.Password,
-                 Cargo = m.Cargo,
-                    UnidadDescription = GetDescriptionFromCatalogUnidad(catalogUnidad, m.Unidad) // catalogUnidad.Where(x=> x.Clave == m.Unidad).FirstOrDefault().Descripcion
+            ,
+                Name = m.Name
+                        ,
+                RoleDescription = (string)m.Role_Spartan_User_Role.Description
+            ,
+                Image = m.Image
+            ,
+                Email = m.Email
+                        ,
+                StatusDescription = (string)m.Status_Spartan_User_Status.Description
+            ,
+                Username = m.Username
+            ,
+                Password = m.Password,
+                Cargo = m.Cargo,
+                UnidadDescription = GetDescriptionFromCatalogUnidad(catalogUnidad, m.Unidad),// catalogUnidad.Where(x=> x.Clave == m.Unidad).FirstOrDefault().Descripcion,
+                RegionDescription = GetDescriptionFromCatalogRegion(cataloRegion, m.Region)
 
-                }).ToList();
+            }).ToList();
 
             switch (exportFormatType)
             {
@@ -1109,19 +1154,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 result.Spartan_Users = new List<Spartane.Core.Domain.Spartan_User.Spartan_User>();
 
             var catalogUnidad = GetUnidadCatalog();
+            var catalogRegion = GetRegionCatalog();
             var data = result.Spartan_Users.Select(m => new Spartan_UserGridModel
             {
                 Id_User = m.Id_User
-			,Name = m.Name
-                        ,RoleDescription = (string)m.Role_Spartan_User_Role.Description
-			,Image = m.Image
-			,Email = m.Email
-                        ,StatusDescription = (string)m.Status_Spartan_User_Status.Description
-			,Username = m.Username
-			,Password = m.Password
-               ,Cargo = m.Cargo,
-                UnidadDescription = GetDescriptionFromCatalogUnidad(catalogUnidad, m.Unidad) // catalogUnidad.Where(x=> x.Clave == m.Unidad).FirstOrDefault().Descripcion
-
+            ,
+                Name = m.Name
+                        ,
+                RoleDescription = (string)m.Role_Spartan_User_Role.Description
+            ,
+                Image = m.Image
+            ,
+                Email = m.Email
+                        ,
+                StatusDescription = (string)m.Status_Spartan_User_Status.Description
+            ,
+                Username = m.Username
+            ,
+                Password = m.Password
+               ,
+                Cargo = m.Cargo,
+                UnidadDescription = GetDescriptionFromCatalogUnidad(catalogUnidad, m.Unidad), // catalogUnidad.Where(x=> x.Clave == m.Unidad).FirstOrDefault().Descripcion
+                RegionDescription = GetDescriptionFromCatalogRegion(catalogRegion, m.Region)
             }).ToList();
 
             return PartialView("_Print", data);

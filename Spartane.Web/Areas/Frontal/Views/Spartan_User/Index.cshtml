@@ -210,7 +210,9 @@
 
 
                                     <th>Cargo</th>
+                                    <th>Region</th>
                                     <th>Unidad</th>
+
 
                                 </tr>
                             </thead>
@@ -225,6 +227,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
@@ -339,7 +342,9 @@
         var Password = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
 
         var Cargo = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
+        var Region = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
         var Unidad = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
+       
 
 
         var queryString = "&Id_User=" + Id_User 
@@ -350,7 +355,9 @@
         + "&Username=" + Username
             + "&Password=" + Password
             + "&Cargo=" + Cargo
+            + "&Region=" + Region
             + "&Unidad=" + Unidad
+         
 ;
 
         var url = "@Url.Content("~/Frontal/Spartan_User/Export?format=")" + format
@@ -369,7 +376,9 @@
         var Password = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
 
         var Cargo = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
+        var Region = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
         var Unidad = $("#tblSpartan_User tfoot td:nth-child(2) :input").val();
+      
 
 
         return "&Id_User=" + Id_User 
@@ -380,7 +389,9 @@
         + "&Username=" + Username
             + "&Password=" + Password
             + "&Cargo=" + Cargo
+            + "&Region=" + Region
             + "&Unidad=" + Unidad
+          
 ;
 
     }
@@ -595,7 +606,9 @@
                 , { "data": "Password", "orderable": true }
 
                 , { "data": "Cargo", "orderable": true }
+                , { "data": "RegionDescription", "orderable": true }
                 , { "data": "UnidadDescription", "orderable": true }
+              
 
             ],
             "order": [[1, "asc"]],

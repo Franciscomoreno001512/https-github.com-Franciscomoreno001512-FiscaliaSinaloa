@@ -30,6 +30,8 @@ namespace Spartane.Core.Domain.Spartan_User
         public string Cargo { get; set; }
         public int? Unidad { get; set; }
 
+        public int? Region { get; set; }
+
 
         [ForeignKey("Role")]
         public virtual Spartane.Core.Domain.Spartan_User_Role.Spartan_User_Role Role_Spartan_User_Role { get; set; }

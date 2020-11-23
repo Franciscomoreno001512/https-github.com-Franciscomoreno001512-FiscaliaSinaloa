@@ -340,7 +340,7 @@ else
             dataType: "json",
             async: false,
             success: function (result) {
-                debugger;
+                ;
                 console.log("Actividades Eventos");
                 lActividadesEvento = result.Actividades_del_Evento;
                 console.log(lActividadesEvento);
@@ -355,7 +355,7 @@ else
         var query = "exec sp_Get_Actividades_por_Evento " + idEvento;
         var res = '';
         lActividadesEvento = ExecuteQueryTabla(query);
-        debugger;
+        ;
         return res;
     }
 
@@ -409,6 +409,7 @@ else
     }
 
     function llenarEventos() {
+        ;
         var calendarEl = document.getElementById('calendar');
         var eventos = [{ Realizado: false, Fecha: '2020-08-05T00:00:00', CalendarioId:1}];
         //var eventos = Function para obtener eventos por userID
@@ -458,7 +459,8 @@ else
                 if (fechaini < new Date())
                     pasado = true;
                 var evento = {
-                    customHtml: getCustomHtml(eventos[i], pasado, i, contador, fechaini.toISOString().slice(0, 10), calendar, color),
+                    //customHtml: getCustomHtml(eventos[i], pasado, i, contador, fechaini.toISOString().slice(0, 10), calendar, color),
+                    customHtml: getCustomHtml(eventos[i], i, fechaini.toISOString().slice(0, 10)),
                     start: fechaini.toISOString().slice(0, 10),
                     color: '#fff',
                     title: "Hora: " + eventos[i].Hora_de_la_Cita + ", Tipo Cita: " + eventos[i].Tipo_de_Cita + ", Núm. Expediente: " + eventos[i].Numero_de_Expediente ,//"Hora: " + resultJson[i]["Hora_de_la_Cita"] + ", Tipo Cita: " + resultJson[i]["Tipo_de_Cita"] + ", Núm. Expediente: " + resultJson[i]["Numero_de_Expediente"]
@@ -487,7 +489,8 @@ else
 
 
     function getCustomHtml(obj, index, fecha) {
-        var popupevento = "'" + "tooltip_evento" + index + "'";
+      
+        var popupevento = "'" + "tooltip_evento" + index + "'"; // fjmore hay un error en en la fecha llega el index
         var sNombredelevento = "";
         var sIconActividades = "";
         var sIconhecho = "";
@@ -508,7 +511,7 @@ else
         //    html = html + '<span style= "font-size: 12px; color: black">' + sIconhecho + '</span>';
         //}
 
-        if (obj.cumplido) { cumplido = "SI"; }
+        if (obj.Cumplida) { cumplido = "SI"; }
 
         html = html + '<span onmouseover="highlight(' + popupevento + ',event)" onmouseout="unhighlight(' + popupevento + ')" style="font-size: 10px;color: white;padding-left: 5px;">' + sNombredelevento + '  </span>';
 
@@ -521,14 +524,14 @@ else
             'Tipo: ' + obj.Tipo_de_Cita + '<br>' +
             'Cita: ' + obj.Cita + '<br>' +
             'Cumplida: ' + cumplido + '<br>' +
-            'Observaciones: ' + obj.Observaciones + '</div></div>';
+            'Observaciones: ' + (obj.Observaciones == null ? "" : obj.Observaciones)  + '</div></div>';
 
 
         return html;
     }
 
     function SeccionaTexto(Texto) {
-        debugger;
+       
         var lineas 
 
         var newTexto = "";
@@ -813,7 +816,7 @@ else
         var i = 1;
         $("input:checkbox[name='optradioFormat']:checked").each(function (index, item) {
             if ($(item).is(':checked')) {
-                debugger
+                
                 var FormatId = $(item).val();
                 var url = "@Url.Content("~/Frontal/Control_de_Citas/PrintFormats?idFormat=")" + FormatId + "&RecordId=" + RecordId;
                 var printWindow = window.open(url,'Imprimir Formato ' + i.toString() + '_blank');

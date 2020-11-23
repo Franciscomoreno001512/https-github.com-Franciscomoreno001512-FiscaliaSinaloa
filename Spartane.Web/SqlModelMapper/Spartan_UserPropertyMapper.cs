@@ -32,6 +32,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Spartan_User.Password";
                 case "UnidadDescription":
                     return "Unidad.Descripcion";
+                case "RegionDescription":
+                    return "Region.Descripcion";
 
                 default:
                     return propertyName;

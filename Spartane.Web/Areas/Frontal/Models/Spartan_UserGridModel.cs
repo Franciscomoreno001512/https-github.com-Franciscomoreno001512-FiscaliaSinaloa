@@ -25,6 +25,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Unidad { get; set; }
         public string UnidadDescription { get; set; }
 
+        public int? Region { get; set; }
+        public string RegionDescription { get; set; }
+
     }
 }
 

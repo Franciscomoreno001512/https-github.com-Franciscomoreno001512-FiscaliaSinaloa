@@ -1458,3 +1458,31 @@ function GetSpartanFileAndPost(SpartanFileId) {
     });
     return res;
 }
+function GetAllTableSQL( query) {
+    var res = null;
+    query = ReplaceFLD(query, '', '');
+    query = ReplaceFLDD(query, '', '');
+    query = ReplaceGLOBAL(query);
+    var data = {
+        query: query
+    };
+
+    $.ajax({
+        url: url_content + "Frontal/General/ExecuteQueryTable",
+        type: 'POST',
+        dataType: "json",
+        cache: false,
+        async: false,
+        data: data,
+        success: function (result) {
+           
+            var jsonObj = $.parseJSON(result);
+            
+            res = jsonObj;
+        },
+        error: function (result) {
+            showNotification("Error ejecutando query", "error");
+        }
+    });
+    return res;
+}
