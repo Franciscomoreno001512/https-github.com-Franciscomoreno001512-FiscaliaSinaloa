@@ -28,7 +28,7 @@ namespace Spartane.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            MenuHelper.GetLatestMenu();
+            //MenuHelper.GetLatestMenu();
             System.Web.Mvc.ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
             System.Web.Mvc.ModelBinders.Binders.Add(typeof(decimal?), new DecimalModelBinder());
         }

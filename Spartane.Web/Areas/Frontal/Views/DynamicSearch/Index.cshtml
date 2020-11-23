@@ -907,18 +907,18 @@
 
     $("body").on("click", ".claseeditardocumento", function (e) {
         debugger;
-        var documento =  jQuery(this).closest('tr').find('td:eq(7)').text();
+        var documento = jQuery(this).closest('tr').find('td:eq(7)').text(); // id del formato de la tabla documento
         var formatoid = GetIdFormatoFromDocumento(documento);
 
 
-        var FolioCcontrolDoc = jQuery(this).closest('tr').find('td:eq(12)').text(); // obtenemos el valor de la comluma clave oculta en la tabla perteneciente al td que se le dio click
+        var FolioCcontrolDoc = jQuery(this).closest('tr').find('td:eq(13)').text(); // obtenemos el valor de la comluma clave oculta en la tabla perteneciente al td que se le dio click
         var objectdID = "45018"
         OpenPrintFormats(FolioCcontrolDoc, @Spartane.Web.SessionHelper.Role, "", true, objectdID,formatoid);
     });
 
      $("body").on("click", ".claseverdocumento", function (e) {
         debugger;
-        var folioControlDoc = jQuery(this).closest('tr').find('td:eq(12)').text();
+        var folioControlDoc = jQuery(this).closest('tr').find('td:eq(13)').text();
 
         var id = EvaluaQuery("select isnull(archivo,'') as Archivo from control_de_documentos where folio = " + folioControlDoc, "", "");// document.getElementById("Archivo").innerHTML;
             $.ajax({
