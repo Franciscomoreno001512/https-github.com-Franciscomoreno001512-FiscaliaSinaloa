@@ -299,7 +299,7 @@
     }
 
     function ObtenerEventos(calendar) {
-        var wherever = "";
+        var wherever = MRWhere;
                 var lEventosEmpresa = [];
         var columns1 = [];
         var datacolumns = { data: "Boton", name: "Boton" };
@@ -941,7 +941,7 @@
 		setFilterNew('tblControl_de_Citas');
 
 		var oDatatableStateData;
-        // initialize datatable variable
+        @*// initialize datatable variableObtenerEventos
         table = $('#tblControl_de_Citas').DataTable({
             dom: '<"html5buttons"B>lTfgt<"bottom"ip>',
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
@@ -1079,7 +1079,7 @@
     });
 
 		ApplySearch(table);
-		$('tfoot tr').insertAfter($('thead tr'));
+		$('tfoot tr').insertAfter($('thead tr'));*@
 
 
         $('.clockpicker').clockpicker();

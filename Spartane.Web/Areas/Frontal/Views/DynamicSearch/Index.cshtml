@@ -356,45 +356,59 @@
         //Collapso de columnas
 
         $("#btn_rg_busqueda_ocultar").click(function () {
+            debugger;
+            var altoRegionInfoBusqueda = 0;
 			$('.panelbusqueda').hide();
             $("#btn_rg_busqueda_visualizar").show();
 			$("#btn_rg_busqueda_ocultar").hide();
-			var altura=$("#paneldatos").height();
-			debugger;
-			if (altura==0)
-				altura=alturaoriginal;
-			$("#panelresultados").height(altura);
+
+
+            //var altoRegionInfoBusqueda = $("#region_busqueda").height();
+
+            $("#panelresultados").find(".tab-content").height(305);
+
+
         });
 
 
         $("#btn_rg_busqueda_visualizar").click(function () {
+            debugger;
             $("#btn_rg_busqueda_visualizar").hide();
             $("#btn_rg_busqueda_ocultar").show();
 			$('.panelbusqueda').show();
         });
 
+        var totalRegionBusqueda = 0;
+        var totalregion_info_busqueda = 0;
+
+        var totalTamanofinal = 0;
         $("#btn_rg_info_busqueda_ocultar").click(function () {
+            debugger;
+            alturaoriginal = 0;
             $("#btn_rg_info_busqueda_ocultar").hide();
             $("#btn_rg_info_busqueda_visualizar").show();
 			alturaoriginal=$("#paneldatos").height();
 			$("#region_info_busqueda").hide();
-			var ancho1=0;
-			var ancho2=0;
-			ancho1=$("#region_busqueda").width();
-			ancho2=$("#region_info_busqueda").width();
-			$("#region_busqueda").width(ancho1 + ancho2 + 10);
+
+            totalRegionBusqueda=$("#region_busqueda").width();
+            totalregion_info_busqueda = $("#region_info_busqueda").width();
+
+            totalTamanofinal = totalRegionBusqueda + totalregion_info_busqueda + 10;
+            $("#region_busqueda").width(totalTamanofinal);
         });
 
 
         $("#btn_rg_info_busqueda_visualizar").click(function () {
+            debugger;
             $("#btn_rg_info_busqueda_ocultar").show();
             $("#btn_rg_info_busqueda_visualizar").hide();
-			$("#region_info_busqueda").show();
-			var ancho1=0;
-			var ancho2=0;
-			ancho1=$("#region_busqueda").width();
-			ancho2=$("#region_info_busqueda").width();
-			$("#region_busqueda").width(ancho1 - ancho2 - 10);
+            $("#region_info_busqueda").show();
+
+            $("#region_busqueda").width(totalRegionBusqueda);
+            $("#region_info_busqueda").width(totalregion_info_busqueda);
+            totalRegionBusqueda = 0;
+            totalregion_info_busqueda = 0;
+
         });
 
 
@@ -548,10 +562,10 @@
                     htmlColumns += '<th class="text-center">Acción</th>';
                     $.each(result[0].Details.Columns, function (i, c) {
 
-                        if(c == "Clave") {
-                            htmlColumns += '<th class="text-center" style="display:none;">' + c + '</th>';
+                        if (c == "Clave") {
+                            htmlColumns += '<th class="text-center" style="display:none;">' + c.replace(/_/g, " ") + '</th>';
                         } else {
-                            htmlColumns += '<th class="text-center">' + c + '</th>';
+                            htmlColumns += '<th class="text-center">' + c.replace(/_/g, " ") + '</th>';
                         }
 
                     });
