@@ -51,6 +51,7 @@ namespace Spartane.Core.Domain.Solicitud
         public int? Region { get; set; }
         public string NUC { get; set; }
         public string CDI { get; set; }
+        public string Causa_Penal { get; set; }
         public string Numero_de_Expediente { get; set; }
         public int? Estatus { get; set; }
         public DateTime? Fecha_en_que_llega_a_Coordinador { get; set; }
@@ -69,10 +70,10 @@ namespace Spartane.Core.Domain.Solicitud
         public int? Poblacion { get; set; }
         public int? ColoniaH { get; set; }
         public string CalleH { get; set; }
+        public string Numero_InteriorH { get; set; }
         public string Numero_ExteriorH { get; set; }
         public int? Codigo_PostalH { get; set; }
         public string Entre_Calle { get; set; }
-        public string Numero_InteriorH { get; set; }
         public string y_Calle { get; set; }
         public string LongitudH { get; set; }
         public string LatitudH { get; set; }
@@ -163,6 +164,7 @@ namespace Spartane.Core.Domain.Solicitud
         public int? Region { get; set; }
         public string NUC { get; set; }
         public string CDI { get; set; }
+        public string Causa_Penal { get; set; }
         public string Numero_de_Expediente { get; set; }
         public int? Estatus { get; set; }
         public DateTime? Fecha_en_que_llega_a_Coordinador { get; set; }
@@ -215,10 +217,10 @@ namespace Spartane.Core.Domain.Solicitud
         public int? Poblacion { get; set; }
         public int? ColoniaH { get; set; }
         public string CalleH { get; set; }
+        public string Numero_InteriorH { get; set; }
         public string Numero_ExteriorH { get; set; }
         public int? Codigo_PostalH { get; set; }
         public string Entre_Calle { get; set; }
-        public string Numero_InteriorH { get; set; }
         public string y_Calle { get; set; }
         public string LongitudH { get; set; }
         public string LatitudH { get; set; }

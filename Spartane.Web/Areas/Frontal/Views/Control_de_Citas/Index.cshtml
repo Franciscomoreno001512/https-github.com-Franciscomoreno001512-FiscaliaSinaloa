@@ -50,10 +50,10 @@
             <li class="active">
                 @if (Session["PhaseName"] != null)
                 {
-    <strong>@Session["PhaseName"].ToString()</strong> }
-else
-{
-<strong>@Resources.Control_de_CitasResources.Control_de_Citas</strong>}
+                    <strong>@Session["PhaseName"].ToString()</strong> }
+                else
+                {
+                    <strong>@Resources.Control_de_CitasResources.Control_de_Citas</strong>}
 
             </li>
         </ol>
@@ -61,42 +61,42 @@ else
     <div class="col-lg-2">
         @{ if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
             {
-<h2>&nbsp;</h2>
+                <h2>&nbsp;</h2>
                 <button onclick="Control_de_CitasGetBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton" data-toggle="modal" data-target="#Control_de_CitasBusinessRule-form">
                     <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
                         <i class="fa fa-cogs fa-spin"></i>
                     </a>
                 </button>
-                                <div aria-hidden="true" class="modal fade in Control_de_CitasPropertyBusinessModal" id="Control_de_CitasPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">
-                                                    Property & Business Rules
-                                                    <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                                </h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
-                                                    </div>
-                                                    <div class="clearfix col-sm-12">&nbsp;</div>
-                                                    <div class="col-sm-12">
-                                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Control_de_CitasBusinessRule-form" onclick="Control_de_CitasGetBusinessRule()">Business Rule</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                <div aria-hidden="true" class="modal fade in Control_de_CitasPropertyBusinessModal" id="Control_de_CitasPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    Property & Business Rules
+                                    <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+                                    </div>
+                                    <div class="clearfix col-sm-12">&nbsp;</div>
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Control_de_CitasBusinessRule-form" onclick="Control_de_CitasGetBusinessRule()">Business Rule</a>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                                                <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-                                                </div>
-                                                                <div aria-hidden="true" data-backdrop="static" class="modal fade in Control_de_CitasBusinessRuleModal" id="Control_de_CitasBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-                                                                </div>
-                                                                                <div aria-hidden="true" data-backdrop="static" class="modal fade in Control_de_CitasAddBusinessRuleModal" id="Control_de_CitasAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-                                                                                </div> } }
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in Control_de_CitasBusinessRuleModal" id="Control_de_CitasBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div>
+                <div aria-hidden="true" data-backdrop="static" class="modal fade in Control_de_CitasAddBusinessRuleModal" id="Control_de_CitasAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                </div> } }
     </div>
 </div>
 
@@ -187,12 +187,12 @@ else
                     <div id="botonera">
                         @if (permission.New)
                         {
-                    @Html.ActionLink(Resources.Resources.Create, "Create", "Control_de_Citas", new { @class = "btn btn-primary" })}
+                            @Html.ActionLink(Resources.Resources.Create, "Create", "Control_de_Citas", new { @class = "btn btn-primary" })}
                         @Html.ActionLink(@Resources.Resources.AdvanceSearch, "ShowAdvanceFilter", "Control_de_Citas", new { previousFilters = advanceSearch }, new { @class = ("btn btn-primary") })
                         <button onclick="ClearFilter()" class=" btn btn-primary">@Resources.Resources.ClearFilter</button>
 
                     </div>
-                  
+
 
                     <div class="table-responsive">
                         @*CODMANINI-ADD*@
@@ -489,7 +489,7 @@ else
 
 
     function getCustomHtml(obj, index, fecha) {
-      
+
         var popupevento = "'" + "tooltip_evento" + index + "'"; // fjmore hay un error en en la fecha llega el index
         var sNombredelevento = "";
         var sIconActividades = "";
@@ -531,8 +531,8 @@ else
     }
 
     function SeccionaTexto(Texto) {
-       
-        var lineas 
+
+        var lineas
 
         var newTexto = "";
         if (Texto != null) {
@@ -545,7 +545,7 @@ else
                     Texto = Texto.substring(20);
                     newTexto = newTexto + textExtraido + "<br>";
                 } while (Texto.length >= 20);
-              
+
                 newTexto = newTexto + Texto;
             }
         }
@@ -816,7 +816,7 @@ else
         var i = 1;
         $("input:checkbox[name='optradioFormat']:checked").each(function (index, item) {
             if ($(item).is(':checked')) {
-                
+
                 var FormatId = $(item).val();
                 var url = "@Url.Content("~/Frontal/Control_de_Citas/PrintFormats?idFormat=")" + FormatId + "&RecordId=" + RecordId;
                 var printWindow = window.open(url,'Imprimir Formato ' + i.toString() + '_blank');

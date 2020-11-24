@@ -157,6 +157,13 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2165, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2453, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divCumplimiento').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Cumplimiento' + rowIndex));
+
+}
+//BusinessRuleId:2453, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

@@ -434,6 +434,13 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="CDI" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divCausa_Penal">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Causa_Penal</label>
+                                <div class="col-sm-8" data-field-id="Causa_Penal" data-attribute="267098" data-field-name="@Resources.SolicitudResources.Causa_Penal">
+                                    <input class="form-control Solicitud" id="Causa_Penal" name="Causa_Penal" type="text" value="@Model.Causa_Penal">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Causa_Penal" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             <div class="form-group" id="divNumero_de_Expediente">
                                 <label class="col-sm-2 control-label">@Resources.SolicitudResources.Numero_de_Expediente</label>
                                 <div class="col-sm-8" data-field-id="Numero_de_Expediente" data-attribute="262889" data-field-name="@Resources.SolicitudResources.Numero_de_Expediente">
@@ -686,6 +693,13 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="CalleH" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divNumero_InteriorH">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Numero_InteriorH</label>
+                                <div class="col-sm-8" data-field-id="Numero_InteriorH" data-attribute="262896" data-field-name="@Resources.SolicitudResources.Numero_InteriorH">
+                                    <input class="form-control Hechos" id="Numero_InteriorH" name="Numero_InteriorH" type="text" value="@Model.Numero_InteriorH">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_InteriorH" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             <div class="form-group" id="divNumero_ExteriorH">
                                 <label class="col-sm-2 control-label">@Resources.SolicitudResources.Numero_ExteriorH</label>
                                 <div class="col-sm-8" data-field-id="Numero_ExteriorH" data-attribute="262895" data-field-name="@Resources.SolicitudResources.Numero_ExteriorH">
@@ -705,13 +719,6 @@
                                 <div class="col-sm-8" data-field-id="Entre_Calle" data-attribute="262899" data-field-name="@Resources.SolicitudResources.Entre_Calle">
                                     <input class="form-control Hechos" id="Entre_Calle" name="Entre_Calle" type="text" value="@Model.Entre_Calle">
                                     @*<span class="field-validation-valid" data-valmsg-for="Entre_Calle" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divNumero_InteriorH">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Numero_InteriorH</label>
-                                <div class="col-sm-8" data-field-id="Numero_InteriorH" data-attribute="262896" data-field-name="@Resources.SolicitudResources.Numero_InteriorH">
-                                    <input class="form-control Hechos" id="Numero_InteriorH" name="Numero_InteriorH" type="text" value="@Model.Numero_InteriorH">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_InteriorH" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divy_Calle">
@@ -3464,6 +3471,7 @@
                     $('#Region').val(result.data.Region);
                     $('#NUC').val(result.data.NUC);
                     $('#CDI').val(result.data.CDI);
+                    $('#Causa_Penal').val(result.data.Causa_Penal);
                     $('#Numero_de_Expediente').val(result.data.Numero_de_Expediente);
                     $('#Estatus').val(result.data.Estatus);
                     $('#Fecha_en_que_llega_a_Coordinador').val(result.data.Fecha_en_que_llega_a_Coordinador);
@@ -3490,6 +3498,7 @@
                 data.append('Region', $('#Region').val());
                 data.append('NUC', $('#NUC').val());
                 data.append('CDI', $('#CDI').val());
+                data.append('Causa_Penal', $('#Causa_Penal').val());
                 data.append('Numero_de_Expediente', $('#Numero_de_Expediente').val());
                 data.append('Estatus', $('#Estatus').val());
                 data.append('Fecha_en_que_llega_a_Coordinador', $('#Fecha_en_que_llega_a_Coordinador').val());
@@ -3652,10 +3661,10 @@
 	                    control.val(result.data.ColoniaH).trigger('change');
                     }, 3000);
                     $('#CalleH').val(result.data.CalleH);
+                    $('#Numero_InteriorH').val(result.data.Numero_InteriorH);
                     $('#Numero_ExteriorH').val(result.data.Numero_ExteriorH);
                     $('#Codigo_PostalH').val(result.data.Codigo_PostalH);
                     $('#Entre_Calle').val(result.data.Entre_Calle);
-                    $('#Numero_InteriorH').val(result.data.Numero_InteriorH);
                     $('#y_Calle').val(result.data.y_Calle);
                     $('#LongitudH').val(result.data.LongitudH);
                     $('#LatitudH').val(result.data.LatitudH);
@@ -3681,10 +3690,10 @@
                 data.append('Poblacion', $('#Poblacion').val());
                 data.append('ColoniaH', $('#ColoniaH').val());
                 data.append('CalleH', $('#CalleH').val());
+                data.append('Numero_InteriorH', $('#Numero_InteriorH').val());
                 data.append('Numero_ExteriorH', $('#Numero_ExteriorH').val());
                 data.append('Codigo_PostalH', $('#Codigo_PostalH').val());
                 data.append('Entre_Calle', $('#Entre_Calle').val());
-                data.append('Numero_InteriorH', $('#Numero_InteriorH').val());
                 data.append('y_Calle', $('#y_Calle').val());
                 data.append('LongitudH', $('#LongitudH').val());
                 data.append('LatitudH', $('#LatitudH').val());

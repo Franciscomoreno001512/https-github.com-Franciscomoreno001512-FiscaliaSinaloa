@@ -398,6 +398,27 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2233, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2454, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divEscolaridad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Escolaridad' + rowIndex));
+
+}
+//BusinessRuleId:2454, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2454, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divEscolaridad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Escolaridad' + rowIndex));
+
+}
+//BusinessRuleId:2454, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2454, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $('#divEscolaridad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Escolaridad' + rowIndex));
+
+}
+//BusinessRuleId:2454, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

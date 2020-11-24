@@ -146,6 +146,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Causa_Penal</summary>
+        public static string Causa_Penal
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Causa_Penal", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Numero_de_Expediente</summary>
         public static string Numero_de_Expediente
         {
@@ -326,6 +336,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Numero_InteriorH</summary>
+        public static string Numero_InteriorH
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Numero_InteriorH", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Numero_ExteriorH</summary>
         public static string Numero_ExteriorH
         {
@@ -353,16 +373,6 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderSolicitud.GetResource("Entre_Calle", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Numero_InteriorH</summary>
-        public static string Numero_InteriorH
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud.GetResource("Numero_InteriorH", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

@@ -44,6 +44,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Solicitud.NUC";
                 case "CDI":
                     return "Solicitud.CDI";
+                case "Causa_Penal":
+                    return "Solicitud.Causa_Penal";
                 case "Numero_de_Expediente":
                     return "Solicitud.Numero_de_Expediente";
                 case "Estatus[Descripcion]":
@@ -90,14 +92,14 @@ namespace Spartane.Web.SqlModelMapper
                     return "Colonia.Nombre";
                 case "CalleH":
                     return "Solicitud.CalleH";
+                case "Numero_InteriorH":
+                    return "Solicitud.Numero_InteriorH";
                 case "Numero_ExteriorH":
                     return "Solicitud.Numero_ExteriorH";
                 case "Codigo_PostalH":
                     return "Solicitud.Codigo_PostalH";
                 case "Entre_Calle":
                     return "Solicitud.Entre_Calle";
-                case "Numero_InteriorH":
-                    return "Solicitud.Numero_InteriorH";
                 case "y_Calle":
                     return "Solicitud.y_Calle";
                 case "LongitudH":

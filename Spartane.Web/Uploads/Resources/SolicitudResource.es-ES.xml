@@ -13,6 +13,7 @@
   <resource culture="es-es" name="Region" value="Región"></resource>
   <resource culture="es-es" name="NUC" value="NUC"></resource>
   <resource culture="es-es" name="CDI" value="CDI"></resource>
+  <resource culture="es-es" name="Causa_Penal" value="Número Causa Penal"></resource>
   <resource culture="es-es" name="Numero_de_Expediente" value="Número de Procedimiento"></resource>
   <resource culture="es-es" name="Estatus" value="Estatus"></resource>
   <resource culture="es-es" name="Fecha_en_que_llega_a_Coordinador" value="Fecha en que llega a Receptor"></resource>
@@ -31,10 +32,10 @@
   <resource culture="es-es" name="Poblacion" value="Población"></resource>
   <resource culture="es-es" name="ColoniaH" value="Colonia"></resource>
   <resource culture="es-es" name="CalleH" value="Calle"></resource>
+  <resource culture="es-es" name="Numero_InteriorH" value="Número Interior"></resource>
   <resource culture="es-es" name="Numero_ExteriorH" value="Número Exterior"></resource>
   <resource culture="es-es" name="Codigo_PostalH" value="Código Postal"></resource>
   <resource culture="es-es" name="Entre_Calle" value="Entre Calle"></resource>
-  <resource culture="es-es" name="Numero_InteriorH" value="Número Interior"></resource>
   <resource culture="es-es" name="y_Calle" value="y Calle"></resource>
   <resource culture="es-es" name="LongitudH" value="Longitud"></resource>
   <resource culture="es-es" name="LatitudH" value="Latitud"></resource>

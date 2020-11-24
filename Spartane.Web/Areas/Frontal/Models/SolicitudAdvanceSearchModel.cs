@@ -63,6 +63,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters CDIFilter { set; get; }
         public string CDI { set; get; }
 
+        public Filters Causa_PenalFilter { set; get; }
+        public string Causa_Penal { set; get; }
+
         public Filters Numero_de_ExpedienteFilter { set; get; }
         public string Numero_de_Expediente { set; get; }
 
@@ -136,6 +139,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters CalleHFilter { set; get; }
         public string CalleH { set; get; }
 
+        public Filters Numero_InteriorHFilter { set; get; }
+        public string Numero_InteriorH { set; get; }
+
         public Filters Numero_ExteriorHFilter { set; get; }
         public string Numero_ExteriorH { set; get; }
 
@@ -147,9 +153,6 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public Filters Entre_CalleFilter { set; get; }
         public string Entre_Calle { set; get; }
-
-        public Filters Numero_InteriorHFilter { set; get; }
-        public string Numero_InteriorH { set; get; }
 
         public Filters y_CalleFilter { set; get; }
         public string y_Calle { set; get; }

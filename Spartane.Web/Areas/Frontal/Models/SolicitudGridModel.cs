@@ -26,6 +26,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string RegionDescripcion { get; set; }
         public string NUC { get; set; }
         public string CDI { get; set; }
+        public string Causa_Penal { get; set; }
         public string Numero_de_Expediente { get; set; }
         public int? Estatus { get; set; }
         public string EstatusDescripcion { get; set; }
@@ -54,10 +55,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? ColoniaH { get; set; }
         public string ColoniaHNombre { get; set; }
         public string CalleH { get; set; }
+        public string Numero_InteriorH { get; set; }
         public string Numero_ExteriorH { get; set; }
         public int? Codigo_PostalH { get; set; }
         public string Entre_Calle { get; set; }
-        public string Numero_InteriorH { get; set; }
         public string y_Calle { get; set; }
         public string LongitudH { get; set; }
         public string LatitudH { get; set; }

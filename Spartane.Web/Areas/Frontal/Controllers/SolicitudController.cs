@@ -344,6 +344,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,RegionDescripcion = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Region), "Region") ??  (string)SolicitudData.Region_Region.Descripcion
                     ,NUC = SolicitudData.NUC
                     ,CDI = SolicitudData.CDI
+                    ,Causa_Penal = SolicitudData.Causa_Penal
                     ,Numero_de_Expediente = SolicitudData.Numero_de_Expediente
                     ,Estatus = SolicitudData.Estatus
                     ,EstatusDescripcion = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Estatus), "Estatus_Solicitud") ??  (string)SolicitudData.Estatus_Estatus_Solicitud.Descripcion
@@ -372,10 +373,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,ColoniaH = SolicitudData.ColoniaH
                     ,ColoniaHNombre = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.ColoniaH), "Colonia") ??  (string)SolicitudData.ColoniaH_Colonia.Nombre
                     ,CalleH = SolicitudData.CalleH
+                    ,Numero_InteriorH = SolicitudData.Numero_InteriorH
                     ,Numero_ExteriorH = SolicitudData.Numero_ExteriorH
                     ,Codigo_PostalH = SolicitudData.Codigo_PostalH
                     ,Entre_Calle = SolicitudData.Entre_Calle
-                    ,Numero_InteriorH = SolicitudData.Numero_InteriorH
                     ,y_Calle = SolicitudData.y_Calle
                     ,LongitudH = SolicitudData.LongitudH
                     ,LatitudH = SolicitudData.LatitudH
@@ -580,6 +581,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,RegionDescripcion = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Region), "Region") ??  (string)SolicitudData.Region_Region.Descripcion
                     ,NUC = SolicitudData.NUC
                     ,CDI = SolicitudData.CDI
+                    ,Causa_Penal = SolicitudData.Causa_Penal
                     ,Numero_de_Expediente = SolicitudData.Numero_de_Expediente
                     ,Estatus = SolicitudData.Estatus
                     ,EstatusDescripcion = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.Estatus), "Estatus_Solicitud") ??  (string)SolicitudData.Estatus_Estatus_Solicitud.Descripcion
@@ -608,10 +610,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,ColoniaH = SolicitudData.ColoniaH
                     ,ColoniaHNombre = CultureHelper.GetTraduction(Convert.ToString(SolicitudData.ColoniaH), "Colonia") ??  (string)SolicitudData.ColoniaH_Colonia.Nombre
                     ,CalleH = SolicitudData.CalleH
+                    ,Numero_InteriorH = SolicitudData.Numero_InteriorH
                     ,Numero_ExteriorH = SolicitudData.Numero_ExteriorH
                     ,Codigo_PostalH = SolicitudData.Codigo_PostalH
                     ,Entre_Calle = SolicitudData.Entre_Calle
-                    ,Numero_InteriorH = SolicitudData.Numero_InteriorH
                     ,y_Calle = SolicitudData.y_Calle
                     ,LongitudH = SolicitudData.LongitudH
                     ,LatitudH = SolicitudData.LatitudH
@@ -1332,6 +1334,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
 			,NUC = m.NUC
 			,CDI = m.CDI
+			,Causa_Penal = m.Causa_Penal
 			,Numero_de_Expediente = m.Numero_de_Expediente
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Solicitud.Descripcion
                         ,Fecha_en_que_llega_a_Coordinador = (m.Fecha_en_que_llega_a_Coordinador == null ? string.Empty : Convert.ToDateTime(m.Fecha_en_que_llega_a_Coordinador).ToString(ConfigurationProperty.DateFormat))
@@ -1350,10 +1353,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
                         ,ColoniaHNombre = CultureHelper.GetTraduction(m.ColoniaH_Colonia.Clave.ToString(), "Colonia") ?? (string)m.ColoniaH_Colonia.Nombre
 			,CalleH = m.CalleH
+			,Numero_InteriorH = m.Numero_InteriorH
 			,Numero_ExteriorH = m.Numero_ExteriorH
 			,Codigo_PostalH = m.Codigo_PostalH
 			,Entre_Calle = m.Entre_Calle
-			,Numero_InteriorH = m.Numero_InteriorH
 			,y_Calle = m.y_Calle
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
@@ -1503,6 +1506,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
 			,NUC = m.NUC
 			,CDI = m.CDI
+			,Causa_Penal = m.Causa_Penal
 			,Numero_de_Expediente = m.Numero_de_Expediente
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Solicitud.Descripcion
                         ,Fecha_en_que_llega_a_Coordinador = (m.Fecha_en_que_llega_a_Coordinador == null ? string.Empty : Convert.ToDateTime(m.Fecha_en_que_llega_a_Coordinador).ToString(ConfigurationProperty.DateFormat))
@@ -1521,10 +1525,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
                         ,ColoniaHNombre = CultureHelper.GetTraduction(m.ColoniaH_Colonia.Clave.ToString(), "Colonia") ?? (string)m.ColoniaH_Colonia.Nombre
 			,CalleH = m.CalleH
+			,Numero_InteriorH = m.Numero_InteriorH
 			,Numero_ExteriorH = m.Numero_ExteriorH
 			,Codigo_PostalH = m.Codigo_PostalH
 			,Entre_Calle = m.Entre_Calle
-			,Numero_InteriorH = m.Numero_InteriorH
 			,y_Calle = m.y_Calle
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
@@ -2282,6 +2286,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.Causa_Penal))
+            {
+                switch (filter.Causa_PenalFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud.Causa_Penal LIKE '" + filter.Causa_Penal + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud.Causa_Penal LIKE '%" + filter.Causa_Penal + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud.Causa_Penal = '" + filter.Causa_Penal + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud.Causa_Penal LIKE '%" + filter.Causa_Penal + "%'";
+                        break;
+                }
+            }
+
             if (!string.IsNullOrEmpty(filter.Numero_de_Expediente))
             {
                 switch (filter.Numero_de_ExpedienteFilter)
@@ -2697,6 +2723,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.Numero_InteriorH))
+            {
+                switch (filter.Numero_InteriorHFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Solicitud.Numero_InteriorH LIKE '" + filter.Numero_InteriorH + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Solicitud.Numero_InteriorH LIKE '%" + filter.Numero_InteriorH + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Solicitud.Numero_InteriorH = '" + filter.Numero_InteriorH + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Solicitud.Numero_InteriorH LIKE '%" + filter.Numero_InteriorH + "%'";
+                        break;
+                }
+            }
+
             if (!string.IsNullOrEmpty(filter.Numero_ExteriorH))
             {
                 switch (filter.Numero_ExteriorHFilter)
@@ -2745,28 +2793,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
                     case Models.Filters.Contains:
                         where += " AND Solicitud.Entre_Calle LIKE '%" + filter.Entre_Calle + "%'";
-                        break;
-                }
-            }
-
-            if (!string.IsNullOrEmpty(filter.Numero_InteriorH))
-            {
-                switch (filter.Numero_InteriorHFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Solicitud.Numero_InteriorH LIKE '" + filter.Numero_InteriorH + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Solicitud.Numero_InteriorH LIKE '%" + filter.Numero_InteriorH + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Solicitud.Numero_InteriorH = '" + filter.Numero_InteriorH + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Solicitud.Numero_InteriorH LIKE '%" + filter.Numero_InteriorH + "%'";
                         break;
                 }
             }
@@ -3600,6 +3626,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Region = varSolicitud.Region
                         ,NUC = varSolicitud.NUC
                         ,CDI = varSolicitud.CDI
+                        ,Causa_Penal = varSolicitud.Causa_Penal
                         ,Numero_de_Expediente = varSolicitud.Numero_de_Expediente
                         ,Estatus = varSolicitud.Estatus
                         ,Fecha_en_que_llega_a_Coordinador = (!String.IsNullOrEmpty(varSolicitud.Fecha_en_que_llega_a_Coordinador)) ? DateTime.ParseExact(varSolicitud.Fecha_en_que_llega_a_Coordinador, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
@@ -3618,10 +3645,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Poblacion = varSolicitud.Poblacion
                         ,ColoniaH = varSolicitud.ColoniaH
                         ,CalleH = varSolicitud.CalleH
+                        ,Numero_InteriorH = varSolicitud.Numero_InteriorH
                         ,Numero_ExteriorH = varSolicitud.Numero_ExteriorH
                         ,Codigo_PostalH = varSolicitud.Codigo_PostalH
                         ,Entre_Calle = varSolicitud.Entre_Calle
-                        ,Numero_InteriorH = varSolicitud.Numero_InteriorH
                         ,y_Calle = varSolicitud.y_Calle
                         ,LongitudH = varSolicitud.LongitudH
                         ,LatitudH = varSolicitud.LatitudH
@@ -4520,6 +4547,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
 			,NUC = m.NUC
 			,CDI = m.CDI
+			,Causa_Penal = m.Causa_Penal
 			,Numero_de_Expediente = m.Numero_de_Expediente
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Solicitud.Descripcion
                         ,Fecha_en_que_llega_a_Coordinador = (m.Fecha_en_que_llega_a_Coordinador == null ? string.Empty : Convert.ToDateTime(m.Fecha_en_que_llega_a_Coordinador).ToString(ConfigurationProperty.DateFormat))
@@ -4538,10 +4566,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
                         ,ColoniaHNombre = CultureHelper.GetTraduction(m.ColoniaH_Colonia.Clave.ToString(), "Colonia") ?? (string)m.ColoniaH_Colonia.Nombre
 			,CalleH = m.CalleH
+			,Numero_InteriorH = m.Numero_InteriorH
 			,Numero_ExteriorH = m.Numero_ExteriorH
 			,Codigo_PostalH = m.Codigo_PostalH
 			,Entre_Calle = m.Entre_Calle
-			,Numero_InteriorH = m.Numero_InteriorH
 			,y_Calle = m.y_Calle
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
@@ -4650,6 +4678,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
 			,NUC = m.NUC
 			,CDI = m.CDI
+			,Causa_Penal = m.Causa_Penal
 			,Numero_de_Expediente = m.Numero_de_Expediente
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Solicitud.Descripcion
                         ,Fecha_en_que_llega_a_Coordinador = (m.Fecha_en_que_llega_a_Coordinador == null ? string.Empty : Convert.ToDateTime(m.Fecha_en_que_llega_a_Coordinador).ToString(ConfigurationProperty.DateFormat))
@@ -4668,10 +4697,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,PoblacionNombre = CultureHelper.GetTraduction(m.Poblacion_Colonia.Clave.ToString(), "Colonia") ?? (string)m.Poblacion_Colonia.Nombre
                         ,ColoniaHNombre = CultureHelper.GetTraduction(m.ColoniaH_Colonia.Clave.ToString(), "Colonia") ?? (string)m.ColoniaH_Colonia.Nombre
 			,CalleH = m.CalleH
+			,Numero_InteriorH = m.Numero_InteriorH
 			,Numero_ExteriorH = m.Numero_ExteriorH
 			,Codigo_PostalH = m.Codigo_PostalH
 			,Entre_Calle = m.Entre_Calle
-			,Numero_InteriorH = m.Numero_InteriorH
 			,y_Calle = m.y_Calle
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH
@@ -4746,6 +4775,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Region = varSolicitud.Region
                         ,NUC = varSolicitud.NUC
                         ,CDI = varSolicitud.CDI
+                        ,Causa_Penal = varSolicitud.Causa_Penal
                         ,Numero_de_Expediente = varSolicitud.Numero_de_Expediente
                         ,Estatus = varSolicitud.Estatus
                         ,Fecha_en_que_llega_a_Coordinador = (!String.IsNullOrEmpty(varSolicitud.Fecha_en_que_llega_a_Coordinador)) ? DateTime.ParseExact(varSolicitud.Fecha_en_que_llega_a_Coordinador, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
@@ -4801,6 +4831,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
 			,NUC = m.NUC
 			,CDI = m.CDI
+			,Causa_Penal = m.Causa_Penal
 			,Numero_de_Expediente = m.Numero_de_Expediente
                         ,Estatus = m.Estatus
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Solicitud.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Solicitud.Descripcion
@@ -4918,10 +4949,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Poblacion = varSolicitud.Poblacion
                         ,ColoniaH = varSolicitud.ColoniaH
                         ,CalleH = varSolicitud.CalleH
+                        ,Numero_InteriorH = varSolicitud.Numero_InteriorH
                         ,Numero_ExteriorH = varSolicitud.Numero_ExteriorH
                         ,Codigo_PostalH = varSolicitud.Codigo_PostalH
                         ,Entre_Calle = varSolicitud.Entre_Calle
-                        ,Numero_InteriorH = varSolicitud.Numero_InteriorH
                         ,y_Calle = varSolicitud.y_Calle
                         ,LongitudH = varSolicitud.LongitudH
                         ,LatitudH = varSolicitud.LatitudH
@@ -4976,10 +5007,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,ColoniaH = m.ColoniaH
                         ,ColoniaHNombre = CultureHelper.GetTraduction(m.ColoniaH_Colonia.Clave.ToString(), "Colonia") ?? (string)m.ColoniaH_Colonia.Nombre
 			,CalleH = m.CalleH
+			,Numero_InteriorH = m.Numero_InteriorH
 			,Numero_ExteriorH = m.Numero_ExteriorH
 			,Codigo_PostalH = m.Codigo_PostalH
 			,Entre_Calle = m.Entre_Calle
-			,Numero_InteriorH = m.Numero_InteriorH
 			,y_Calle = m.y_Calle
 			,LongitudH = m.LongitudH
 			,LatitudH = m.LatitudH

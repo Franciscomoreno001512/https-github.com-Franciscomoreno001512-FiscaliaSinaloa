@@ -247,6 +247,14 @@
                     @Html.TextBoxFor(m => m.CDI, new { @class = "form-control", @type = "text", @id = "txtCDI" })
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.SolicitudResources.Causa_Penal</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Causa_PenalFilter, filters, new { @class = "form-control", @id = "ddlCausa_PenalFilter" })
+                    @Html.TextBoxFor(m => m.Causa_Penal, new { @class = "form-control", @type = "text", @id = "txtCausa_Penal" })
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.SolicitudResources.Numero_de_Expediente</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -421,6 +429,14 @@
                     @Html.TextBoxFor(m => m.CalleH, new { @class = "form-control", @type = "text", @id = "txtCalleH" })
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.SolicitudResources.Numero_InteriorH</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_InteriorHFilter, filters, new { @class = "form-control", @id = "ddlNumero_InteriorHFilter" })
+                    @Html.TextBoxFor(m => m.Numero_InteriorH, new { @class = "form-control", @type = "text", @id = "txtNumero_InteriorH" })
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.SolicitudResources.Numero_ExteriorH</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -446,14 +462,6 @@
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.Entre_CalleFilter, filters, new { @class = "form-control", @id = "ddlEntre_CalleFilter" })
                     @Html.TextBoxFor(m => m.Entre_Calle, new { @class = "form-control", @type = "text", @id = "txtEntre_Calle" })
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.SolicitudResources.Numero_InteriorH</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Numero_InteriorHFilter, filters, new { @class = "form-control", @id = "ddlNumero_InteriorHFilter" })
-                    @Html.TextBoxFor(m => m.Numero_InteriorH, new { @class = "form-control", @type = "text", @id = "txtNumero_InteriorH" })
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.SolicitudResources.y_Calle</h3>
@@ -919,6 +927,11 @@
             advanceSearch.SolicitudCDI = $("#txtAdvanceCDI").val();
             advanceSearch.SolicitudCDISearchType = $("#ddlAdvanceCDIFilter").val();
         }
+        if ($("#txtAdvanceCausa_Penal").val() != "") {
+            hasParameter = true;
+            advanceSearch.SolicitudCausa_Penal = $("#txtAdvanceCausa_Penal").val();
+            advanceSearch.SolicitudCausa_PenalSearchType = $("#ddlAdvanceCausa_PenalFilter").val();
+        }
         if ($("#txtAdvanceNumero_de_Expediente").val() != "") {
             hasParameter = true;
             advanceSearch.SolicitudNumero_de_Expediente = $("#txtAdvanceNumero_de_Expediente").val();
@@ -1109,6 +1122,11 @@
             advanceSearch.SolicitudCalleH = $("#txtAdvanceCalleH").val();
             advanceSearch.SolicitudCalleHSearchType = $("#ddlAdvanceCalleHFilter").val();
         }
+        if ($("#txtAdvanceNumero_InteriorH").val() != "") {
+            hasParameter = true;
+            advanceSearch.SolicitudNumero_InteriorH = $("#txtAdvanceNumero_InteriorH").val();
+            advanceSearch.SolicitudNumero_InteriorHSearchType = $("#ddlAdvanceNumero_InteriorHFilter").val();
+        }
         if ($("#txtAdvanceNumero_ExteriorH").val() != "") {
             hasParameter = true;
             advanceSearch.SolicitudNumero_ExteriorH = $("#txtAdvanceNumero_ExteriorH").val();
@@ -1123,11 +1141,6 @@
             hasParameter = true;
             advanceSearch.SolicitudEntre_Calle = $("#txtAdvanceEntre_Calle").val();
             advanceSearch.SolicitudEntre_CalleSearchType = $("#ddlAdvanceEntre_CalleFilter").val();
-        }
-        if ($("#txtAdvanceNumero_InteriorH").val() != "") {
-            hasParameter = true;
-            advanceSearch.SolicitudNumero_InteriorH = $("#txtAdvanceNumero_InteriorH").val();
-            advanceSearch.SolicitudNumero_InteriorHSearchType = $("#ddlAdvanceNumero_InteriorHFilter").val();
         }
         if ($("#txtAdvancey_Calle").val() != "") {
             hasParameter = true;
