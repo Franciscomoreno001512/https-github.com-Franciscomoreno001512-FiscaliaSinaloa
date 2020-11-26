@@ -292,6 +292,14 @@
                     @Html.TextBoxFor(m => m.NUAT, new { @class = "form-control", @type = "text", @id = "txtNUAT" })
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Modulo_Atencion_InicialResources.CDI</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.CDIFilter, filters, new { @class = "form-control", @id = "ddlCDIFilter" })
+                    @Html.TextBoxFor(m => m.CDI, new { @class = "form-control", @type = "text", @id = "txtCDI" })
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Modulo_Atencion_InicialResources.Expedientes_Relacionados</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -1258,6 +1266,11 @@
             hasParameter = true;
             advanceSearch.Modulo_Atencion_InicialNUAT = $("#txtAdvanceNUAT").val();
             advanceSearch.Modulo_Atencion_InicialNUATSearchType = $("#ddlAdvanceNUATFilter").val();
+        }
+        if ($("#txtAdvanceCDI").val() != "") {
+            hasParameter = true;
+            advanceSearch.Modulo_Atencion_InicialCDI = $("#txtAdvanceCDI").val();
+            advanceSearch.Modulo_Atencion_InicialCDISearchType = $("#ddlAdvanceCDIFilter").val();
         }
         if ($("#txtAdvanceExpedientes_Relacionados").val() != "") {
             hasParameter = true;

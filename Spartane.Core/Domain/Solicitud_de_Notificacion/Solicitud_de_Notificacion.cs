@@ -43,6 +43,7 @@ namespace Spartane.Core.Domain.Solicitud_de_Notificacion
         public string Hora_de_Notificacion { get; set; }
         public int? Notificador { get; set; }
         public int? Resultado { get; set; }
+        public int? Archivo { get; set; }
         public int? Incidente_en_la_Recepcion { get; set; }
 
         [ForeignKey("Usuario_que_Solicita")]
@@ -109,6 +110,7 @@ namespace Spartane.Core.Domain.Solicitud_de_Notificacion
         public string Hora_de_Notificacion { get; set; }
         public int? Notificador { get; set; }
         public int? Resultado { get; set; }
+        public int? Archivo { get; set; }
         public int? Incidente_en_la_Recepcion { get; set; }
 
 		        [ForeignKey("Notificador")]

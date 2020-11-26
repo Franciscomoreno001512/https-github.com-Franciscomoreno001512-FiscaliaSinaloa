@@ -207,6 +207,13 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divConsecutivo_CDI">
+                                <label class="col-sm-2 control-label">@Resources.RegionResources.Consecutivo_CDI</label>
+                                <div class="col-sm-8" data-field-id="Consecutivo_CDI" data-attribute="267102" data-field-name="@Resources.RegionResources.Consecutivo_CDI">
+                                    <input class="form-control inputNumber Datos_Generales" id="Consecutivo_CDI" name="Consecutivo_CDI" type="text" value="@Model.Consecutivo_CDI">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Consecutivo_CDI" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -341,24 +348,9 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('45077');
+		    
 		   
-		   
-			
-             @if(ViewBag.IsNew)
-            { 
-                <text>$('input:checkbox').prop('checked', false);</text>
-            }
-			else
-            {
-                <text>
-				if (Tab_Datos_Generales)
-					Fill_Datos_Generales();
-
-
-                </text>
-             }
-             EjecutarValidacionesAlComienzo();
-             
+            
 
             initiateUIControls();
 			$('a').tooltip();
@@ -375,6 +367,21 @@
 			
 			
 
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
         });
 
 
@@ -643,6 +650,7 @@
                     $('#Abreviacion').val(result.data.Abreviacion);
                     $('#Vigencia').val(result.data.Vigencia);
                     $('#Observaciones').val(result.data.Observaciones);
+                    $('#Consecutivo_CDI').val(result.data.Consecutivo_CDI);
 
                 },
                 error: function (result) {
@@ -658,6 +666,7 @@
                 data.append('Abreviacion', $('#Abreviacion').val());
                 data.append('Vigencia', $('#Vigencia').val());
                 data.append('Observaciones', $('#Observaciones').val());
+                data.append('Consecutivo_CDI', $('#Consecutivo_CDI').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Region/Post_Datos_Generales")',

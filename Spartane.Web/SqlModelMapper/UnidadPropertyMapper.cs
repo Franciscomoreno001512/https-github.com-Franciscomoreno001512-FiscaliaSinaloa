@@ -40,6 +40,8 @@ namespace Spartane.Web.SqlModelMapper
                 case "Supervisor[Name]":
                 case "SupervisorName":
                     return "Spartan_User.Name";
+                case "Consecutivo_CDI":
+                    return "Unidad.Consecutivo_CDI";
 
                 default:
                     return propertyName;

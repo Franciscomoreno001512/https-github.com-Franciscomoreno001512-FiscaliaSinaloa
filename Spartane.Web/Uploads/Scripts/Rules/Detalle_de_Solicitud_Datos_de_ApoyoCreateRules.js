@@ -89,7 +89,7 @@ if(operation == 'New'){
     if (operation == 'New') {
         debugger;
         var diligencia = $('#Diligencia_a_Enviar').val();
-        var query = 'select top 1 cd.Archivo from detalle_de_documentos doc with (nolock) inner join Control_de_Documentos cd with (nolock) on doc.Archivo = cd.Folio where doc.Archivo = ' + diligencia + '';
+        var query = 'select top 1 cd.Archivo from detalle_de_documentos doc with (nolock) inner join Control_de_Documentos cd with (nolock) on doc.Archivo = cd.Folio where doc.Clave = ' + diligencia + '';
         var SpartanFileId = EvaluaQuery(query);
 
         var resultado = GetSpartanFileAndPost(SpartanFileId);

@@ -59,6 +59,8 @@ namespace Spartane.Web.SqlModelMapper
                 case "Resultado[Descripcion]":
                 case "ResultadoDescripcion":
                     return "Resultado_de_Notificacion.Descripcion";
+                case "Archivo":
+                    return "Solicitud_de_Notificacion.Archivo";
                 case "Incidente_en_la_Recepcion[Descripcion]":
                 case "Incidente_en_la_RecepcionDescripcion":
                     return "Incidente_con_Invitacion.Descripcion";

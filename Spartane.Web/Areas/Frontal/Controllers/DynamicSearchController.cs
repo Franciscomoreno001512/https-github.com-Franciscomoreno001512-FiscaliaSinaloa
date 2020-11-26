@@ -47,6 +47,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             //  ID = id;  ////fjmore borre esto porque cuando multiples clientes entran se planchan la variable de sesion y toma la ultima y eso descompone todo
             _tokenManager.GenerateToken();
+            WhereWF = "";
             _service.SetAuthHeader(_tokenManager.Token);
             var management = _service.GetByKey(id, false).Resource;
             var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, Convert.ToInt32(management.Object), 1);
@@ -284,7 +285,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var details = _ISpartan_RDM_Operations_DetailApiConsumer.ListaSelAll(0, 9999, "Spartan_RDM_Operations_Detail.Record_Detail_Management=" + idTablero.ToString(), "").Resource;
             if (details.RowCount > 0)
             {
-                foreach (var item in details.Spartan_RDM_Operations_Details)
+                foreach (var item in details.Spartan_RDM_Operations_Details.OrderBy(x => x.Order_Shown))
                 {
                     aux = new ResultGeneralDetail();
                     aux.ObjectId = item.Object_Name.Value;

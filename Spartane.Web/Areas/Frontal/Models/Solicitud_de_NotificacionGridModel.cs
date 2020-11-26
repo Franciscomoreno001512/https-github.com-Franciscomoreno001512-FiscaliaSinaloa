@@ -35,6 +35,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string NotificadorName { get; set; }
         public int? Resultado { get; set; }
         public string ResultadoDescripcion { get; set; }
+        public int? Archivo { get; set; }
         public int? Incidente_en_la_Recepcion { get; set; }
         public string Incidente_en_la_RecepcionDescripcion { get; set; }
         

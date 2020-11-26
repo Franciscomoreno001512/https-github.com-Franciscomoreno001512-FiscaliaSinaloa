@@ -184,6 +184,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Observaciones = UnidadData.Observaciones
                     ,Supervisor = UnidadData.Supervisor
                     ,SupervisorName = CultureHelper.GetTraduction(Convert.ToString(UnidadData.Supervisor), "Spartan_User") ??  (string)UnidadData.Supervisor_Spartan_User.Name
+                    ,Consecutivo_CDI = UnidadData.Consecutivo_CDI
 
 					};
 				}
@@ -291,6 +292,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Observaciones = UnidadData.Observaciones
                     ,Supervisor = UnidadData.Supervisor
                     ,SupervisorName = CultureHelper.GetTraduction(Convert.ToString(UnidadData.Supervisor), "Spartan_User") ??  (string)UnidadData.Supervisor_Spartan_User.Name
+                    ,Consecutivo_CDI = UnidadData.Consecutivo_CDI
 
 					};
 				}
@@ -558,6 +560,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Direccion = m.Direccion
 			,Observaciones = m.Observaciones
                         ,SupervisorName = CultureHelper.GetTraduction(m.Supervisor_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Supervisor_Spartan_User.Name
+			,Consecutivo_CDI = m.Consecutivo_CDI
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -682,6 +685,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Direccion = m.Direccion
 			,Observaciones = m.Observaciones
                         ,SupervisorName = CultureHelper.GetTraduction(m.Supervisor_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Supervisor_Spartan_User.Name
+			,Consecutivo_CDI = m.Consecutivo_CDI
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -965,6 +969,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Unidad.Supervisor In (" + SupervisorIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.FromConsecutivo_CDI) || !string.IsNullOrEmpty(filter.ToConsecutivo_CDI))
+            {
+                if (!string.IsNullOrEmpty(filter.FromConsecutivo_CDI))
+                    where += " AND Unidad.Consecutivo_CDI >= " + filter.FromConsecutivo_CDI;
+                if (!string.IsNullOrEmpty(filter.ToConsecutivo_CDI))
+                    where += " AND Unidad.Consecutivo_CDI <= " + filter.ToConsecutivo_CDI;
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -1030,6 +1042,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Direccion = varUnidad.Direccion
                         ,Observaciones = varUnidad.Observaciones
                         ,Supervisor = varUnidad.Supervisor
+                        ,Consecutivo_CDI = varUnidad.Consecutivo_CDI
 
                     };
 
@@ -1427,6 +1440,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Direccion = m.Direccion
 			,Observaciones = m.Observaciones
                         ,SupervisorName = CultureHelper.GetTraduction(m.Supervisor_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Supervisor_Spartan_User.Name
+			,Consecutivo_CDI = m.Consecutivo_CDI
 
             }).ToList();
 
@@ -1510,6 +1524,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Direccion = m.Direccion
 			,Observaciones = m.Observaciones
                         ,SupervisorName = CultureHelper.GetTraduction(m.Supervisor_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Supervisor_Spartan_User.Name
+			,Consecutivo_CDI = m.Consecutivo_CDI
 
             }).ToList();
 
@@ -1559,6 +1574,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Direccion = varUnidad.Direccion
                         ,Observaciones = varUnidad.Observaciones
                         ,Supervisor = varUnidad.Supervisor
+                        ,Consecutivo_CDI = varUnidad.Consecutivo_CDI
                     
                 };
 
@@ -1601,6 +1617,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
                         ,Supervisor = m.Supervisor
                         ,SupervisorName = CultureHelper.GetTraduction(m.Supervisor_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Supervisor_Spartan_User.Name
+			,Consecutivo_CDI = m.Consecutivo_CDI
 
                     
                 };

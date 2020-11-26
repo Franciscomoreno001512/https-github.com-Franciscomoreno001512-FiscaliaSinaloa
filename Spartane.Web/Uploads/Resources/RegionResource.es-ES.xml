@@ -6,6 +6,7 @@
   <resource culture="es-es" name="Abreviacion" value="Abreviación"></resource>
   <resource culture="es-es" name="Vigencia" value="Vigencia"></resource>
   <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="es-es" name="Consecutivo_CDI" value="Consecutivo CDI"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

@@ -1780,6 +1780,48 @@ if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt(
 }
 //BusinessRuleId:2087, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+
+
+
+
+
+
+
+
+
+
+//BusinessRuleId:2487, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'CDI' + rowIndex)); DisabledControl($("#" + nameOfTable + "CDI" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'CDI' + rowIndex));} $('#divCDI').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'CDI' + rowIndex));
+
+}
+//BusinessRuleId:2487, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2487, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'CDI' + rowIndex)); DisabledControl($("#" + nameOfTable + "CDI" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'CDI' + rowIndex));} $('#divCDI').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'CDI' + rowIndex));
+
+}
+//BusinessRuleId:2487, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2487, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'CDI' + rowIndex)); DisabledControl($("#" + nameOfTable + "CDI" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'CDI' + rowIndex));} $('#divCDI').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'CDI' + rowIndex));
+
+}
+//BusinessRuleId:2487, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+//BusinessRuleId:2488, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') || EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('5', '5') ) { $('#divCDI').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'CDI' + rowIndex));} else {}
+
+}
+//BusinessRuleId:2488, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

@@ -12,6 +12,7 @@
   <resource culture="en-US" name="Direccion" value="Dirección"></resource>
   <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
   <resource culture="en-US" name="Supervisor" value="Supervisor"></resource>
+  <resource culture="en-US" name="Consecutivo_CDI" value="Consecutivo CDI"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

@@ -32,6 +32,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters ObservacionesFilter { set; get; }
         public string Observaciones { set; get; }
 
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string FromConsecutivo_CDI { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("FromConsecutivo_CDI", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToConsecutivo_CDI { set; get; }
+
 
     }
 }

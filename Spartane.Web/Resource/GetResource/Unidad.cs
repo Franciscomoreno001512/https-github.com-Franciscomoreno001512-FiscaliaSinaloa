@@ -136,6 +136,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Consecutivo_CDI</summary>
+        public static string Consecutivo_CDI
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderUnidad.GetResource("Consecutivo_CDI", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderUnidad.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

@@ -172,6 +172,36 @@ if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Se
 }
 //BusinessRuleId:2205, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+//BusinessRuleId:2457, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Forma_de_Invitacion' + rowIndex),nameOfTable,rowIndex)==TryParseInt('4', '4') ) { AsignarValor($('#' + nameOfTable + 'Fecha_de_Notificacion' + rowIndex),EvaluaQuery("select convert (varchar(11),getdate(),105)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Hora_de_Notificacion' + rowIndex),EvaluaQuery("select convert (varchar(8),getdate(),108)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Notificador' + rowIndex),EvaluaQuery(" select name from spartan_user where id_user=GLOBAL[USERID]", rowIndex, nameOfTable)); DisabledControl($("#" + nameOfTable + "Notificador" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Notificador' + rowIndex));}} else {}
+
+}
+//BusinessRuleId:2457, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2459, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divArchivo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo' + rowIndex));
+
+}
+//BusinessRuleId:2459, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2459, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divArchivo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo' + rowIndex));
+
+}
+//BusinessRuleId:2459, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2459, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $('#divArchivo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo' + rowIndex));
+
+}
+//BusinessRuleId:2459, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

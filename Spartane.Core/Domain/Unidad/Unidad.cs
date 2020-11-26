@@ -30,6 +30,7 @@ namespace Spartane.Core.Domain.Unidad
         public string Direccion { get; set; }
         public string Observaciones { get; set; }
         public int? Supervisor { get; set; }
+        public int? Consecutivo_CDI { get; set; }
 
         [ForeignKey("Clave_de_Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Clave_de_Municipio_Municipio { get; set; }
@@ -55,6 +56,7 @@ namespace Spartane.Core.Domain.Unidad
         public string Direccion { get; set; }
         public string Observaciones { get; set; }
         public int? Supervisor { get; set; }
+        public int? Consecutivo_CDI { get; set; }
 
 		        [ForeignKey("Clave_de_Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Clave_de_Municipio_Municipio { get; set; }

@@ -4,7 +4,113 @@ var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
 
+//Validar RFC
+$( "#RFC" ).blur(function() { 
+      var v = $('#' + nameOfTable + 'RFC' + rowIndex).val(); 
+      if (v != ""){ 
+          var valid = '^(([A-Z]|[a-z]){4})([0-9]{6})((([A-Z]|[a-z]|[0-9]){3}))'; 
+          var validRfc=new RegExp(valid); 
+          var matchArray=v.match(validRfc); 
+          if (matchArray==null || v.length>13) { 
+              $('#' + nameOfTable + 'RFC' + rowIndex).attr("placeholder", "El formato del RFC es incorrecto.").val("").focus().blur(); 
+              return false; 
+          } 
+      } 
+  });
+  
+//Validar CURP
+$( "#CURP" ).blur(function() { 
+      var v = $('#' + nameOfTable + 'CURP' + rowIndex).val(); 
+      if (v != ""){
+		var valid = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
+		validado = v.toUpperCase().match(valid);
+			
+		if (!validado) { //Coincide con el formato general?
+			$('#' + nameOfTable + 'CURP' + rowIndex).attr("placeholder", "El formato del CURP es incorrecto.").val("").focus().blur(); 
+            return false; 
+		}				
+      } 
+  });
+  
+//Validar dependiendo del tipo de identificacion seleccionada.
+$( "#Numero_de_Identificacion" ).blur(function() { 
+      var tipoVal = $('#' + nameOfTable + 'Tipo_de_Identificacion' + rowIndex).val();
+	  var NumeroVal = $('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex).val();
+	  var valid="";
+	  
+	  if (tipoVal != "" && NumeroVal != ""){	
+		if(tipoVal == 1) //IFE
+		{
+			
+			
+		}
+		
+		if(tipoVal == 6) //CURP
+		{
+			valid = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
+			validado = NumeroVal.toUpperCase().match(valid);
+			
+			if (!validado) { //Coincide con el formato general?
+				$('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex).attr("placeholder", "El formato del CURP es incorrecto.").val("").focus().blur(); 
+				return false; 
+			}		
+		}
+	}
+  });
 
+//Validar RFC_Tutor
+$( "#RFC_Tutor" ).blur(function() { 
+      var v = $('#' + nameOfTable + 'RFC_Tutor' + rowIndex).val(); 
+      if (v != ""){ 
+          var valid = '^(([A-Z]|[a-z]){4})([0-9]{6})((([A-Z]|[a-z]|[0-9]){3}))'; 
+          var validRfc=new RegExp(valid); 
+          var matchArray=v.match(validRfc); 
+          if (matchArray==null || v.length>13) { 
+              $('#' + nameOfTable + 'RFC_Tutor' + rowIndex).attr("placeholder", "El formato del RFC es incorrecto.").val("").focus().blur(); 
+              return false; 
+          } 
+      } 
+  });
+
+//Validar CURP_Tutor
+$( "#CURP_Tutor" ).blur(function() { 
+      var v = $('#' + nameOfTable + 'CURP_Tutor' + rowIndex).val(); 
+      if (v != ""){
+		var valid = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
+		validado = v.toUpperCase().match(valid);
+			
+		if (!validado) { //Coincide con el formato general?
+			$('#' + nameOfTable + 'CURP_Tutor' + rowIndex).attr("placeholder", "El formato del CURP es incorrecto.").val("").focus().blur(); 
+            return false; 
+		}				
+      } 
+  });
+  
+ //Validar dependiendo del tipo de identificacion seleccionada.
+$( "#Numero_de_Identificacion_del_Tutor" ).blur(function() { 
+      var tipoVal = $('#' + nameOfTable + 'Tipo_de_Identificacion_del_Tutor' + rowIndex).val();
+	  var NumeroVal = $('#' + nameOfTable + 'Numero_de_Identificacion_del_Tutor' + rowIndex).val();
+	  var valid="";
+	  
+	  if (tipoVal != "" && NumeroVal != ""){	
+		if(tipoVal == 1) //IFE
+		{
+			
+			
+		}
+		
+		if(tipoVal == 6) //CURP
+		{
+			valid = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
+			validado = NumeroVal.toUpperCase().match(valid);
+			
+			if (!validado) { //Coincide con el formato general?
+				$('#' + nameOfTable + 'Numero_de_Identificacion_del_Tutor' + rowIndex).attr("placeholder", "El formato del CURP es incorrecto.").val("").focus().blur(); 
+				return false; 
+			}		
+		}
+	}
+  });
 
 
 //BusinessRuleId:42, Attribute:263782, Operation:Field, Event:None
@@ -287,8 +393,25 @@ $("form#CreateDetalle_de_Datos_Generales").on('change', '#Escolaridad', function
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'Escolaridad' + rowIndex),nameOfTable,rowIndex)==TryParseInt('11', '11') ) { $('#divEspecialidad').css('display', 'block');$('#divEstudios_Superiores').css('display', 'block'); } else { $('#divEspecialidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));$('#divEstudios_Superiores').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Estudios_Superiores' + rowIndex));}
 });
-
+
+
 //BusinessRuleId:1897, Attribute:263789, Operation:Field, Event:None
+
+
+
+
+
+//BusinessRuleId:2460, Attribute:263863, Operation:Field, Event:None
+$("form#CreateDetalle_de_Datos_Generales").on('keyup', '#CURP', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'CURP' + rowIndex),nameOfTable,rowIndex)>TryParseInt('999999999999999999', '999999999999999999') ) { alert(DecodifyText('La Curp solo puede tener maximo 18 caracteres', rowIndex, nameOfTable));
+
+result=false;} else {}
+});
+
+
+//BusinessRuleId:2460, Attribute:263863, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });

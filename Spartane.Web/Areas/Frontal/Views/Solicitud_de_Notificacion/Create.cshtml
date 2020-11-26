@@ -577,6 +577,13 @@
                                 </div>
                                 }
                             </div>
+                            <div class="form-group" id="divArchivo">
+                                <label class="col-sm-2 control-label">@Resources.Solicitud_de_NotificacionResources.Archivo</label>
+                                <div class="col-sm-8" data-field-id="Archivo" data-attribute="267100" data-field-name="@Resources.Solicitud_de_NotificacionResources.Archivo">
+                                    <input class="form-control inputNumber Resultado_de_Notificacion" id="Archivo" name="Archivo" type="text" value="@Model.Archivo">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Archivo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             <div class="form-group" id="divIncidente_en_la_Recepcion">
                                 <label class="col-sm-2 control-label">@Resources.Solicitud_de_NotificacionResources.Incidente_en_la_Recepcion</label>
                                 <div class="col-sm-8" data-field-id="Incidente_en_la_Recepcion" data-attribute="266222" data-field-name="@Resources.Solicitud_de_NotificacionResources.Incidente_en_la_Recepcion">
@@ -1923,6 +1930,7 @@
 	                    control.val(result.data.Notificador).trigger('change');
                     }, 3000);
                     $('#Resultado').val(result.data.Resultado);
+                    $('#Archivo').val(result.data.Archivo);
                     $('#Incidente_en_la_Recepcion').val(result.data.Incidente_en_la_Recepcion);
 
                 },
@@ -1939,6 +1947,7 @@
                 data.append('Hora_de_Notificacion', $('#Hora_de_Notificacion').val());
                 data.append('Notificador', $('#Notificador').val());
                 data.append('Resultado', $('#Resultado').val());
+                data.append('Archivo', $('#Archivo').val());
                 data.append('Incidente_en_la_Recepcion', $('#Incidente_en_la_Recepcion').val());
 
 			$.ajax({

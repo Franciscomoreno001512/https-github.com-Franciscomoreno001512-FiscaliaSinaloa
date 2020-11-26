@@ -216,6 +216,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Archivo</summary>
+        public static string Archivo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Notificacion.GetResource("Archivo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Incidente_en_la_Recepcion</summary>
         public static string Incidente_en_la_Recepcion
         {

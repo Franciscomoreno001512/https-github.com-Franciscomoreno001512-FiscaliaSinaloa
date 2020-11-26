@@ -474,6 +474,13 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="NUAT" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divCDI">
+                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.CDI</label>
+                                <div class="col-sm-8" data-field-id="CDI" data-attribute="267101" data-field-name="@Resources.Modulo_Atencion_InicialResources.CDI">
+                                    <input class="form-control Datos_del_Caso" id="CDI" name="CDI" type="text" value="@Model.CDI">
+                                    @*<span class="field-validation-valid" data-valmsg-for="CDI" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             <div class="form-group" id="divExpedientes_Relacionados">
                                 <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Expedientes_Relacionados</label>
                                 <div class="col-sm-8" data-field-id="Expedientes_Relacionados" data-attribute="262829" data-field-name="@Resources.Modulo_Atencion_InicialResources.Expedientes_Relacionados">
@@ -1841,7 +1848,6 @@
 								<input type="hidden" id="hdnModulo_Atencion_InicialBusinessRuleFieldId" />
                                 <input type="hidden" id="hdnModulo_Atencion_InicialBusinessRuleFieldName" />
                                 <input type="hidden" id="hdnModulo_Atencion_InicialBusinessRuleAttribute" />
-                                <input type="button" value="@Resources.Resources.Finish" id="Modulo_Atencion_InicialFinalizar" name="Modulo_Atencion_InicialFinalizar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: finalizar" tabindex="17" />
 
                                 <input type="button" value="@Resources.Resources.Cancelar" id="Modulo_Atencion_InicialCancelar" name="Modulo_Atencion_InicialCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
 
@@ -3998,6 +4004,7 @@
                     $('#Region').val(result.data.Region);
                     $('#Tipo_de_Denuncia').val(result.data.Tipo_de_Denuncia);
                     $('#NUAT').val(result.data.NUAT);
+                    $('#CDI').val(result.data.CDI);
                     $('#Expedientes_Relacionados').val(result.data.Expedientes_Relacionados);
                     $('#Estatus').val(result.data.Estatus);
                     $('#Generar_Cita').val(result.data.Generar_Cita);
@@ -4029,6 +4036,7 @@
                 data.append('Region', $('#Region').val());
                 data.append('Tipo_de_Denuncia', $('#Tipo_de_Denuncia').val());
                 data.append('NUAT', $('#NUAT').val());
+                data.append('CDI', $('#CDI').val());
                 data.append('Expedientes_Relacionados', $('#Expedientes_Relacionados').val());
                 data.append('Estatus', $('#Estatus').val());
                 data.append('Generar_Cita', $('#Generar_Cita').val());
@@ -4724,41 +4732,6 @@
 			});
 		}
 
-		function Post_Estatus_de_Turno()
-        {
-            var data = new FormData();
-                data.append('Folio', $('#Turno_Asignado').val());
-
-			$.ajax({
-				url: '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Post_Estatus_de_Turno")',
-				type: 'POST',
-				data: data,
-				async: false,
-				dataType: "json",
-				contentType: false,
-				processData: false,
-                success: function (result) {
-                    console.log(result);
-					if (result < 0) {
-                        showNotification("@Resources.Resources.ErrorSave", "Error al actualizar Asignacion_de_Turnos");
-					} else {
-                        showNotification("Turno Finalizado Correctamente", "success");
-                        Actualizacion_de_TurnoBackToGrid();
-
-					}
-				},
-				error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "Error al actualizar Asignacion_de_Turnos");
-				},
-				cache: false
-		});
-		
-        }
-
-            
-            function Actualizacion_de_TurnoBackToGrid() {
-			  
-            }
 
     </script>
 }

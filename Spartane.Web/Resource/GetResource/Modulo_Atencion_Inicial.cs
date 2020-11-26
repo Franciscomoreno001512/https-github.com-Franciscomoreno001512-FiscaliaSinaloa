@@ -136,6 +136,16 @@ namespace Resources
             }
         }
 
+        /// <summary>CDI</summary>
+        public static string CDI
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderModulo_Atencion_Inicial.GetResource("CDI", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Expedientes_Relacionados</summary>
         public static string Expedientes_Relacionados
         {

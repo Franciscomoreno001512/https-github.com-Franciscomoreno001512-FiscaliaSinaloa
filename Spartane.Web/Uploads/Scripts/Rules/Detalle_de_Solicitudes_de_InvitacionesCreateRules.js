@@ -228,6 +228,26 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2160, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+
+
+
+
+//BusinessRuleId:2456, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $("a[href='#tabResultado_de_Notificacion']").css('display', 'none');
+
+}
+//BusinessRuleId:2456, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2458, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Notificacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Notificacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Notificador' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Resultado' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Incidente_en_la_Recepcion' + rowIndex));
+
+}
+//BusinessRuleId:2458, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

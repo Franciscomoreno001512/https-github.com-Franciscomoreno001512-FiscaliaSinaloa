@@ -211,6 +211,7 @@
                                     <th>@Resources.UnidadResources.Direccion</th>
                                     <th>@Resources.UnidadResources.Observaciones</th>
                                     <th>@Resources.UnidadResources.Supervisor</th>
+                                    <th>@Resources.UnidadResources.Consecutivo_CDI</th>
 
                                 </tr>
                             </thead>
@@ -228,6 +229,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
 
                                 </tr>
                             </tfoot>
@@ -354,6 +356,7 @@
         var Direccion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Supervisor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Consecutivo_CDI =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -367,6 +370,7 @@
         + "&Direccion=" + Direccion
         + "&Observaciones=" + Observaciones
         + "&Supervisor=" + Supervisor
+        + "&Consecutivo_CDI=" + Consecutivo_CDI
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Unidad/Export?format=")" + format
@@ -391,6 +395,7 @@
         var Direccion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Supervisor =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Consecutivo_CDI =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -404,6 +409,7 @@
         + "&Direccion=" + Direccion
         + "&Observaciones=" + Observaciones
         + "&Supervisor=" + Supervisor
+        + "&Consecutivo_CDI=" + Consecutivo_CDI
 ;
 
     }
@@ -584,11 +590,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -662,6 +668,7 @@
                 ,{ "data": "Direccion", "orderable": true, "name": "Direccion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Observaciones", "orderable": true, "name": "Observaciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "SupervisorName", "orderable": true, "name": "SupervisorName"}
+                ,{ "data": "Consecutivo_CDI","className": "dt-right", "orderable": true, "name": "Consecutivo_CDI" }
 
             ],
 			"colReorder": true,

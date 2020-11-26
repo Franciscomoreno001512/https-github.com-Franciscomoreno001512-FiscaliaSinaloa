@@ -224,6 +224,7 @@
                                     <th>@Resources.Solicitud_de_NotificacionResources.Hora_de_Notificacion</th>
                                     <th>@Resources.Solicitud_de_NotificacionResources.Notificador</th>
                                     <th>@Resources.Solicitud_de_NotificacionResources.Resultado</th>
+                                    <th>@Resources.Solicitud_de_NotificacionResources.Archivo</th>
                                     <th>@Resources.Solicitud_de_NotificacionResources.Incidente_en_la_Recepcion</th>
 
                                 </tr>
@@ -249,6 +250,7 @@
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
                                 </tr>
@@ -383,6 +385,7 @@
         var Hora_de_Notificacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Notificador =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Incidente_en_la_Recepcion =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
@@ -404,6 +407,7 @@
         + "&Hora_de_Notificacion=" + Hora_de_Notificacion
         + "&Notificador=" + Notificador
         + "&Resultado=" + Resultado
+        + "&Archivo=" + Archivo
         + "&Incidente_en_la_Recepcion=" + Incidente_en_la_Recepcion
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
@@ -436,6 +440,7 @@
         var Hora_de_Notificacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Notificador =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Incidente_en_la_Recepcion =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
@@ -457,6 +462,7 @@
         + "&Hora_de_Notificacion=" + Hora_de_Notificacion
         + "&Notificador=" + Notificador
         + "&Resultado=" + Resultado
+        + "&Archivo=" + Archivo
         + "&Incidente_en_la_Recepcion=" + Incidente_en_la_Recepcion
 ;
 
@@ -638,11 +644,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -723,6 +729,7 @@
                 ,{ "data": "Hora_de_Notificacion", "orderable": true, "name": "Hora_de_Notificacion" }
                 ,{ "data": "NotificadorName", "orderable": true, "name": "NotificadorName"}
                 ,{ "data": "ResultadoDescripcion", "orderable": true, "name": "ResultadoDescripcion" }
+                ,{ "data": "Archivo","className": "dt-right", "orderable": true, "name": "Archivo" }
                 ,{ "data": "Incidente_en_la_RecepcionDescripcion", "orderable": true, "name": "Incidente_en_la_RecepcionDescripcion" }
 
             ],

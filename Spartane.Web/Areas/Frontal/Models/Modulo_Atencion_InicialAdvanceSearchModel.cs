@@ -68,6 +68,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters NUATFilter { set; get; }
         public string NUAT { set; get; }
 
+        public Filters CDIFilter { set; get; }
+        public string CDI { set; get; }
+
         public Filters Expedientes_RelacionadosFilter { set; get; }
         public string Expedientes_Relacionados { set; get; }
 

@@ -94,6 +94,14 @@ function EjecutarValidacionesAntesDeGuardar(){
 function EjecutarValidacionesDespuesDeGuardar(){
 
 
+
+
+
+
+
+
+
+
 //BusinessRuleId:2008, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'Update'){
  EvaluaQuery("EXEC uspActualizaRequeridos FLDD[lblClave] ", rowIndex, nameOfTable);

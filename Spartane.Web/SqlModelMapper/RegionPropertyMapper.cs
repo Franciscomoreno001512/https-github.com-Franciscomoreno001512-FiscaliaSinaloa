@@ -25,6 +25,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Vigencia.Abreviacion";
                 case "Observaciones":
                     return "Region.Observaciones";
+                case "Consecutivo_CDI":
+                    return "Region.Consecutivo_CDI";
 
                 default:
                     return propertyName;

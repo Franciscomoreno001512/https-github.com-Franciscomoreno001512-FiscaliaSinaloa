@@ -42,6 +42,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Tipo_de_Denuncia.Descripcion";
                 case "NUAT":
                     return "Modulo_Atencion_Inicial.NUAT";
+                case "CDI":
+                    return "Modulo_Atencion_Inicial.CDI";
                 case "Expedientes_Relacionados":
                     return "Modulo_Atencion_Inicial.Expedientes_Relacionados";
                 case "Estatus[Descripcion]":

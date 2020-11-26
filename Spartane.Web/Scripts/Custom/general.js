@@ -1488,3 +1488,4 @@ function GetAllTableSQL( query) {
     });
     return res;
 }
+$(".glyphicon-new-window").parent().hide();

@@ -58,6 +58,7 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public int? Region { get; set; }
         public int? Tipo_de_Denuncia { get; set; }
         public string NUAT { get; set; }
+        public string CDI { get; set; }
         public string Expedientes_Relacionados { get; set; }
         public int? Estatus { get; set; }
         public DateTime? Generar_Cita { get; set; }
@@ -217,6 +218,7 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public int? Region { get; set; }
         public int? Tipo_de_Denuncia { get; set; }
         public string NUAT { get; set; }
+        public string CDI { get; set; }
         public string Expedientes_Relacionados { get; set; }
         public int? Estatus { get; set; }
         public DateTime? Generar_Cita { get; set; }

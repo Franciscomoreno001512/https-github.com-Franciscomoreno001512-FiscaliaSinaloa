@@ -20,6 +20,7 @@
   <resource culture="en-US" name="Hora_de_Notificacion" value="Hora de Notificación"></resource>
   <resource culture="en-US" name="Notificador" value="Notificador"></resource>
   <resource culture="en-US" name="Resultado" value="Resultado"></resource>
+  <resource culture="en-US" name="Archivo" value="Archivo"></resource>
   <resource culture="en-US" name="Incidente_en_la_Recepcion" value="Incidente en la Recepción"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>

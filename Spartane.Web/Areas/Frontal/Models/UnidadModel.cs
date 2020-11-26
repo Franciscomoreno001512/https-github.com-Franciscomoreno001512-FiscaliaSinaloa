@@ -27,6 +27,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Observaciones { get; set; }
         public int? Supervisor { get; set; }
         public string SupervisorName { get; set; }
+        [Range(0, 9999999999)]
+        public int? Consecutivo_CDI { get; set; }
 
     }
 	
@@ -49,6 +51,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Observaciones { get; set; }
         public int? Supervisor { get; set; }
         public string SupervisorName { get; set; }
+        [Range(0, 9999999999)]
+        public int? Consecutivo_CDI { get; set; }
 
     }
 

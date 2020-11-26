@@ -3,7 +3,59 @@ var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
-
+//Validar RFC
+$( "#RFC" ).blur(function() { 
+      var v = $('#' + nameOfTable + 'RFC' + rowIndex).val(); 
+      if (v != ""){ 
+          var valid = '^(([A-Z]|[a-z]){4})([0-9]{6})((([A-Z]|[a-z]|[0-9]){3}))'; 
+          var validRfc=new RegExp(valid); 
+          var matchArray=v.match(validRfc); 
+          if (matchArray==null || v.length>13) { 
+              $('#' + nameOfTable + 'RFC' + rowIndex).attr("placeholder", "El formato del RFC es incorrecto.").val("").focus().blur(); 
+              return false; 
+          } 
+      } 
+  });
+  
+//Validar CURP
+$( "#CURP" ).blur(function() { 
+      var v = $('#' + nameOfTable + 'CURP' + rowIndex).val(); 
+      if (v != ""){
+		var valid = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
+		validado = v.toUpperCase().match(valid);
+			
+		if (!validado) { //Coincide con el formato general?
+			$('#' + nameOfTable + 'CURP' + rowIndex).attr("placeholder", "El formato del CURP es incorrecto.").val("").focus().blur(); 
+            return false; 
+		}				
+      } 
+  });
+  
+//Validar dependiendo del tipo de identificacion seleccionada.
+$( "#Numero_de_Identificacion" ).blur(function() { 
+      var tipoVal = $('#' + nameOfTable + 'Tipo_de_Identificacion' + rowIndex).val();
+	  var NumeroVal = $('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex).val();
+	  var valid="";
+	  
+	  if (tipoVal != "" && NumeroVal != ""){	
+		if(tipoVal == 1) //IFE
+		{
+			
+			
+		}
+		
+		if(tipoVal == 6) //CURP
+		{
+			valid = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
+			validado = NumeroVal.toUpperCase().match(valid);
+			
+			if (!validado) { //Coincide con el formato general?
+				$('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex).attr("placeholder", "El formato del CURP es incorrecto.").val("").focus().blur(); 
+				return false; 
+			}		
+		}
+	}
+  });
 
 //BusinessRuleId:1936, Attribute:263148, Operation:Field, Event:None
 

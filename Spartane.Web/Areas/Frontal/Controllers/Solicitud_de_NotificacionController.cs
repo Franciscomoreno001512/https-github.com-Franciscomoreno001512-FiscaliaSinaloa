@@ -255,6 +255,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,NotificadorName = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_NotificacionData.Notificador), "Spartan_User") ??  (string)Solicitud_de_NotificacionData.Notificador_Spartan_User.Name
                     ,Resultado = Solicitud_de_NotificacionData.Resultado
                     ,ResultadoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_NotificacionData.Resultado), "Resultado_de_Notificacion") ??  (string)Solicitud_de_NotificacionData.Resultado_Resultado_de_Notificacion.Descripcion
+                    ,Archivo = Solicitud_de_NotificacionData.Archivo
                     ,Incidente_en_la_Recepcion = Solicitud_de_NotificacionData.Incidente_en_la_Recepcion
                     ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_NotificacionData.Incidente_en_la_Recepcion), "Incidente_con_Invitacion") ??  (string)Solicitud_de_NotificacionData.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
 
@@ -392,6 +393,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,NotificadorName = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_NotificacionData.Notificador), "Spartan_User") ??  (string)Solicitud_de_NotificacionData.Notificador_Spartan_User.Name
                     ,Resultado = Solicitud_de_NotificacionData.Resultado
                     ,ResultadoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_NotificacionData.Resultado), "Resultado_de_Notificacion") ??  (string)Solicitud_de_NotificacionData.Resultado_Resultado_de_Notificacion.Descripcion
+                    ,Archivo = Solicitud_de_NotificacionData.Archivo
                     ,Incidente_en_la_Recepcion = Solicitud_de_NotificacionData.Incidente_en_la_Recepcion
                     ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Solicitud_de_NotificacionData.Incidente_en_la_Recepcion), "Incidente_con_Invitacion") ??  (string)Solicitud_de_NotificacionData.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
 
@@ -815,6 +817,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Notificacion = m.Hora_de_Notificacion
                         ,NotificadorName = CultureHelper.GetTraduction(m.Notificador_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Notificador_Spartan_User.Name
                         ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
+			,Archivo = m.Archivo
                         ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
 
                     }).ToList(),
@@ -947,6 +950,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Notificacion = m.Hora_de_Notificacion
                         ,NotificadorName = CultureHelper.GetTraduction(m.Notificador_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Notificador_Spartan_User.Name
                         ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
+			,Archivo = m.Archivo
                         ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
 
                 }).ToList(),
@@ -1578,6 +1582,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Solicitud_de_Notificacion.Resultado In (" + ResultadoIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.FromArchivo) || !string.IsNullOrEmpty(filter.ToArchivo))
+            {
+                if (!string.IsNullOrEmpty(filter.FromArchivo))
+                    where += " AND Solicitud_de_Notificacion.Archivo >= " + filter.FromArchivo;
+                if (!string.IsNullOrEmpty(filter.ToArchivo))
+                    where += " AND Solicitud_de_Notificacion.Archivo <= " + filter.ToArchivo;
+            }
+
             if (!string.IsNullOrEmpty(filter.AdvanceIncidente_en_la_Recepcion))
             {
                 switch (filter.Incidente_en_la_RecepcionFilter)
@@ -1799,6 +1811,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Hora_de_Notificacion = varSolicitud_de_Notificacion.Hora_de_Notificacion
                         ,Notificador = varSolicitud_de_Notificacion.Notificador
                         ,Resultado = varSolicitud_de_Notificacion.Resultado
+                        ,Archivo = varSolicitud_de_Notificacion.Archivo
                         ,Incidente_en_la_Recepcion = varSolicitud_de_Notificacion.Incidente_en_la_Recepcion
 
                     };
@@ -2409,6 +2422,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Notificacion = m.Hora_de_Notificacion
                         ,NotificadorName = CultureHelper.GetTraduction(m.Notificador_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Notificador_Spartan_User.Name
                         ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
+			,Archivo = m.Archivo
                         ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
 
             }).ToList();
@@ -2500,6 +2514,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Notificacion = m.Hora_de_Notificacion
                         ,NotificadorName = CultureHelper.GetTraduction(m.Notificador_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Notificador_Spartan_User.Name
                         ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
+			,Archivo = m.Archivo
                         ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
 
             }).ToList();
@@ -2634,6 +2649,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Hora_de_Notificacion = varSolicitud_de_Notificacion.Hora_de_Notificacion
                         ,Notificador = varSolicitud_de_Notificacion.Notificador
                         ,Resultado = varSolicitud_de_Notificacion.Resultado
+                        ,Archivo = varSolicitud_de_Notificacion.Archivo
                         ,Incidente_en_la_Recepcion = varSolicitud_de_Notificacion.Incidente_en_la_Recepcion
                     
                 };
@@ -2671,6 +2687,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,NotificadorName = CultureHelper.GetTraduction(m.Notificador_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Notificador_Spartan_User.Name
                         ,Resultado = m.Resultado
                         ,ResultadoDescripcion = CultureHelper.GetTraduction(m.Resultado_Resultado_de_Notificacion.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Resultado_de_Notificacion.Descripcion
+			,Archivo = m.Archivo
                         ,Incidente_en_la_Recepcion = m.Incidente_en_la_Recepcion
                         ,Incidente_en_la_RecepcionDescripcion = CultureHelper.GetTraduction(m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Clave.ToString(), "Descripcion") ?? (string)m.Incidente_en_la_Recepcion_Incidente_con_Invitacion.Descripcion
 

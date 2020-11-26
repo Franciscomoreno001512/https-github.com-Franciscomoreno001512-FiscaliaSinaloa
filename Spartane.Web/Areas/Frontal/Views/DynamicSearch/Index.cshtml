@@ -354,7 +354,7 @@
         initiateUIControls();
 
         //Collapso de columnas
-
+        var tamañoTablaBusqusteda = 0;
         $("#btn_rg_busqueda_ocultar").click(function () {
             debugger;
             var altoRegionInfoBusqueda = 0;
@@ -366,6 +366,8 @@
             //var altoRegionInfoBusqueda = $("#region_busqueda").height();
 
             $("#panelresultados").find(".tab-content").height(305);
+            tamañoTablaBusqusteda = $(".scrollbar-container").find(".table-responsive").height();
+            $(".scrollbar-container").find(".table-responsive").height(306);
 
 
         });
@@ -375,7 +377,8 @@
             debugger;
             $("#btn_rg_busqueda_visualizar").hide();
             $("#btn_rg_busqueda_ocultar").show();
-			$('.panelbusqueda').show();
+            $('.panelbusqueda').show();
+            $(".scrollbar-container").find(".table-responsive").height(tamañoTablaBusqusteda);
         });
 
         var totalRegionBusqueda = 0;

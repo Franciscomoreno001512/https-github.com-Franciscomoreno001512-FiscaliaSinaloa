@@ -12,6 +12,7 @@
   <resource culture="es-es" name="Region" value="Región"></resource>
   <resource culture="es-es" name="Tipo_de_Denuncia" value="Tipo de Denuncia"></resource>
   <resource culture="es-es" name="NUAT" value="NUAT"></resource>
+  <resource culture="es-es" name="CDI" value="CDI"></resource>
   <resource culture="es-es" name="Expedientes_Relacionados" value="Expedientes Relacionados"></resource>
   <resource culture="es-es" name="Estatus" value="Estatus"></resource>
   <resource culture="es-es" name="Generar_Cita" value="Generar Cita"></resource>

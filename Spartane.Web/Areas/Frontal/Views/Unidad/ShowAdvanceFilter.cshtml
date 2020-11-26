@@ -180,6 +180,17 @@
  List<SelectListItem> varSpartan_User_Supervisor = null;
     if (ViewBag.Spartan_Users_Supervisor != null)
     { varSpartan_User_Supervisor = (List<SelectListItem>)ViewBag.Spartan_Users_Supervisor; }
+                <div class="MarginBottom ">
+                    <h3>@Resources.UnidadResources.Consecutivo_CDI</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromConsecutivo_CDI, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromConsecutivo_CDI" })
+                    @Html.ValidationMessageFor(m => m.FromConsecutivo_CDI)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToConsecutivo_CDI, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToConsecutivo_CDI", @data_min = "txtAdvanceFromConsecutivo_CDI" })
+                    @Html.ValidationMessageFor(m => m.ToConsecutivo_CDI)
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Unidad/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -286,6 +297,11 @@
                 advanceSearch.SupervisorToSearch = $("#ddlAdvanceSupervisor").val();
                 advanceSearch.SupervisorSearchType = 2;
             }
+        }
+        if ($("#txtAdvanceFromConsecutivo_CDI").val() != "" || $("#txtAdvanceToConsecutivo_CDI").val() != "") {
+            hasParameter = true;
+            advanceSearch.UnidadConsecutivo_CDIFrom = $("#txtAdvanceFromConsecutivo_CDI").val();
+            advanceSearch.UnidadConsecutivo_CDITo = $("#txtAdvanceToConsecutivo_CDI").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

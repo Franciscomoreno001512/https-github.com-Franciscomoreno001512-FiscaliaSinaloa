@@ -117,12 +117,11 @@ function EjecutarValidacionesAntesDeGuardar(){
 function EjecutarValidacionesDespuesDeGuardar(){
 
 
-//BusinessRuleId:2006, Attribute:2, Operation:Object, Event:AFTERSAVING
-if(operation == 'Update'){
- EvaluaQuery("EXEC uspActualizaSolicitantes FLDD[lblClave]", rowIndex, nameOfTable);
-
-}
-//BusinessRuleId:2006, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+
+
+
+
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

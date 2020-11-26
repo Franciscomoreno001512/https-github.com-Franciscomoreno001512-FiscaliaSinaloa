@@ -163,6 +163,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = RegionData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(RegionData.Vigencia), "Vigencia") ??  (string)RegionData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = RegionData.Observaciones
+                    ,Consecutivo_CDI = RegionData.Consecutivo_CDI
 
 					};
 				}
@@ -247,6 +248,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = RegionData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(RegionData.Vigencia), "Vigencia") ??  (string)RegionData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = RegionData.Observaciones
+                    ,Consecutivo_CDI = RegionData.Consecutivo_CDI
 
 					};
 				}
@@ -403,6 +405,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Abreviacion = m.Abreviacion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Consecutivo_CDI = m.Consecutivo_CDI
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -521,6 +524,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Abreviacion = m.Abreviacion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Consecutivo_CDI = m.Consecutivo_CDI
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -641,6 +645,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.FromConsecutivo_CDI) || !string.IsNullOrEmpty(filter.ToConsecutivo_CDI))
+            {
+                if (!string.IsNullOrEmpty(filter.FromConsecutivo_CDI))
+                    where += " AND Region.Consecutivo_CDI >= " + filter.FromConsecutivo_CDI;
+                if (!string.IsNullOrEmpty(filter.ToConsecutivo_CDI))
+                    where += " AND Region.Consecutivo_CDI <= " + filter.ToConsecutivo_CDI;
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -700,6 +712,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Abreviacion = varRegion.Abreviacion
                         ,Vigencia = varRegion.Vigencia
                         ,Observaciones = varRegion.Observaciones
+                        ,Consecutivo_CDI = varRegion.Consecutivo_CDI
 
                     };
 
@@ -1091,6 +1104,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Abreviacion = m.Abreviacion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Consecutivo_CDI = m.Consecutivo_CDI
 
             }).ToList();
 
@@ -1168,6 +1182,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Abreviacion = m.Abreviacion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Consecutivo_CDI = m.Consecutivo_CDI
 
             }).ToList();
 
@@ -1211,6 +1226,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Abreviacion = varRegion.Abreviacion
                         ,Vigencia = varRegion.Vigencia
                         ,Observaciones = varRegion.Observaciones
+                        ,Consecutivo_CDI = varRegion.Consecutivo_CDI
                     
                 };
 
@@ -1244,6 +1260,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Vigencia = m.Vigencia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Consecutivo_CDI = m.Consecutivo_CDI
 
                     
                 };

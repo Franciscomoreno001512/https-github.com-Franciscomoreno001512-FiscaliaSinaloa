@@ -88,6 +88,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceResultado { set; get; }
         public int[] AdvanceResultadoMultiple { set; get; }
 
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string FromArchivo { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("FromArchivo", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToArchivo { set; get; }
+
         public Filters Incidente_en_la_RecepcionFilter { set; get; }
         public string AdvanceIncidente_en_la_Recepcion { set; get; }
         public int[] AdvanceIncidente_en_la_RecepcionMultiple { set; get; }

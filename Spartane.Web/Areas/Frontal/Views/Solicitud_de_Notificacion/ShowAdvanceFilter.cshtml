@@ -310,6 +310,17 @@
                         });
                     }
                 </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Solicitud_de_NotificacionResources.Archivo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromArchivo, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromArchivo" })
+                    @Html.ValidationMessageFor(m => m.FromArchivo)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToArchivo, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToArchivo", @data_min = "txtAdvanceFromArchivo" })
+                    @Html.ValidationMessageFor(m => m.ToArchivo)
+                </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Solicitud_de_NotificacionResources.Incidente_en_la_Recepcion</h3>
                 </div>
@@ -522,6 +533,11 @@
                 advanceSearch.ResultadoToSearch = $("#ddlAdvanceResultado").val();
                 advanceSearch.ResultadoSearchType = 2;
             }
+        }
+        if ($("#txtAdvanceFromArchivo").val() != "" || $("#txtAdvanceToArchivo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_NotificacionArchivoFrom = $("#txtAdvanceFromArchivo").val();
+            advanceSearch.Solicitud_de_NotificacionArchivoTo = $("#txtAdvanceToArchivo").val();
         }
         advanceSearch.Incidente_en_la_RecepcionSearchType = 0;
         if ($('#ddlAdvanceIncidente_en_la_Recepcion').val().length > 0 || $("#txtAdvanceIncidente_en_la_Recepcion").val() == "") {

@@ -58,8 +58,6 @@ namespace Spartane.Web.Areas.WebApiConsumer.Modulo_Atencion_Inicial
 
 		ApiResponse<int> Update_Campos_Ocultos(Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Campos_Ocultos entity);
 		ApiResponse<Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Campos_Ocultos> Get_Campos_Ocultos(string Key);
-		ApiResponse<int> Update_Estatus_de_Turno(Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Datos_del_Caso entity);
-
 
 
     }

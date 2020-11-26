@@ -385,6 +385,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Tipo_de_Denuncia = Modulo_Atencion_InicialData.Tipo_de_Denuncia
                     ,Tipo_de_DenunciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Modulo_Atencion_InicialData.Tipo_de_Denuncia), "Tipo_de_Denuncia") ??  (string)Modulo_Atencion_InicialData.Tipo_de_Denuncia_Tipo_de_Denuncia.Descripcion
                     ,NUAT = Modulo_Atencion_InicialData.NUAT
+                    ,CDI = Modulo_Atencion_InicialData.CDI
                     ,Expedientes_Relacionados = Modulo_Atencion_InicialData.Expedientes_Relacionados
                     ,Estatus = Modulo_Atencion_InicialData.Estatus
                     ,EstatusDescripcion = CultureHelper.GetTraduction(Convert.ToString(Modulo_Atencion_InicialData.Estatus), "Estatus") ??  (string)Modulo_Atencion_InicialData.Estatus_Estatus.Descripcion
@@ -739,6 +740,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Tipo_de_Denuncia = Modulo_Atencion_InicialData.Tipo_de_Denuncia
                     ,Tipo_de_DenunciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Modulo_Atencion_InicialData.Tipo_de_Denuncia), "Tipo_de_Denuncia") ??  (string)Modulo_Atencion_InicialData.Tipo_de_Denuncia_Tipo_de_Denuncia.Descripcion
                     ,NUAT = Modulo_Atencion_InicialData.NUAT
+                    ,CDI = Modulo_Atencion_InicialData.CDI
                     ,Expedientes_Relacionados = Modulo_Atencion_InicialData.Expedientes_Relacionados
                     ,Estatus = Modulo_Atencion_InicialData.Estatus
                     ,EstatusDescripcion = CultureHelper.GetTraduction(Convert.ToString(Modulo_Atencion_InicialData.Estatus), "Estatus") ??  (string)Modulo_Atencion_InicialData.Estatus_Estatus.Descripcion
@@ -1971,6 +1973,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
                         ,Tipo_de_DenunciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Denuncia_Tipo_de_Denuncia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Denuncia_Tipo_de_Denuncia.Descripcion
 			,NUAT = m.NUAT
+			,CDI = m.CDI
 			,Expedientes_Relacionados = m.Expedientes_Relacionados
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus.Descripcion
                         ,Generar_Cita = (m.Generar_Cita == null ? string.Empty : Convert.ToDateTime(m.Generar_Cita).ToString(ConfigurationProperty.DateFormat))
@@ -2173,6 +2176,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
                         ,Tipo_de_DenunciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Denuncia_Tipo_de_Denuncia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Denuncia_Tipo_de_Denuncia.Descripcion
 			,NUAT = m.NUAT
+			,CDI = m.CDI
 			,Expedientes_Relacionados = m.Expedientes_Relacionados
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus.Descripcion
                         ,Generar_Cita = (m.Generar_Cita == null ? string.Empty : Convert.ToDateTime(m.Generar_Cita).ToString(ConfigurationProperty.DateFormat))
@@ -2784,6 +2788,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
                     case Models.Filters.Contains:
                         where += " AND Modulo_Atencion_Inicial.NUAT LIKE '%" + filter.NUAT + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.CDI))
+            {
+                switch (filter.CDIFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Modulo_Atencion_Inicial.CDI LIKE '" + filter.CDI + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Modulo_Atencion_Inicial.CDI LIKE '%" + filter.CDI + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Modulo_Atencion_Inicial.CDI = '" + filter.CDI + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Modulo_Atencion_Inicial.CDI LIKE '%" + filter.CDI + "%'";
                         break;
                 }
             }
@@ -4767,6 +4793,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Region = varModulo_Atencion_Inicial.Region
                         ,Tipo_de_Denuncia = varModulo_Atencion_Inicial.Tipo_de_Denuncia
                         ,NUAT = varModulo_Atencion_Inicial.NUAT
+                        ,CDI = varModulo_Atencion_Inicial.CDI
                         ,Expedientes_Relacionados = varModulo_Atencion_Inicial.Expedientes_Relacionados
                         ,Estatus = varModulo_Atencion_Inicial.Estatus
                         ,Generar_Cita = (!String.IsNullOrEmpty(varModulo_Atencion_Inicial.Generar_Cita)) ? DateTime.ParseExact(varModulo_Atencion_Inicial.Generar_Cita, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
@@ -5807,6 +5834,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
                         ,Tipo_de_DenunciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Denuncia_Tipo_de_Denuncia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Denuncia_Tipo_de_Denuncia.Descripcion
 			,NUAT = m.NUAT
+			,CDI = m.CDI
 			,Expedientes_Relacionados = m.Expedientes_Relacionados
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus.Descripcion
                         ,Generar_Cita = (m.Generar_Cita == null ? string.Empty : Convert.ToDateTime(m.Generar_Cita).ToString(ConfigurationProperty.DateFormat))
@@ -5968,6 +5996,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
                         ,Tipo_de_DenunciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Denuncia_Tipo_de_Denuncia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Denuncia_Tipo_de_Denuncia.Descripcion
 			,NUAT = m.NUAT
+			,CDI = m.CDI
 			,Expedientes_Relacionados = m.Expedientes_Relacionados
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus.Descripcion
                         ,Generar_Cita = (m.Generar_Cita == null ? string.Empty : Convert.ToDateTime(m.Generar_Cita).ToString(ConfigurationProperty.DateFormat))
@@ -6095,6 +6124,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Region = varModulo_Atencion_Inicial.Region
                         ,Tipo_de_Denuncia = varModulo_Atencion_Inicial.Tipo_de_Denuncia
                         ,NUAT = varModulo_Atencion_Inicial.NUAT
+                        ,CDI = varModulo_Atencion_Inicial.CDI
                         ,Expedientes_Relacionados = varModulo_Atencion_Inicial.Expedientes_Relacionados
                         ,Estatus = varModulo_Atencion_Inicial.Estatus
                         ,Generar_Cita = (!String.IsNullOrEmpty(varModulo_Atencion_Inicial.Generar_Cita)) ? DateTime.ParseExact(varModulo_Atencion_Inicial.Generar_Cita, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
@@ -6157,6 +6187,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo_de_Denuncia = m.Tipo_de_Denuncia
                         ,Tipo_de_DenunciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Denuncia_Tipo_de_Denuncia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Denuncia_Tipo_de_Denuncia.Descripcion
 			,NUAT = m.NUAT
+			,CDI = m.CDI
 			,Expedientes_Relacionados = m.Expedientes_Relacionados
                         ,Estatus = m.Estatus
                         ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus.Descripcion
@@ -7004,30 +7035,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(resultData, JsonRequestBehavior.AllowGet);
             }
             return Json(null, JsonRequestBehavior.AllowGet);            
-        }
-
-	    [HttpPost]
-        public ActionResult Post_Estatus_de_Turno(Modulo_Atencion_Inicial_Datos_del_Caso varModulo_Atencion_Inicial)
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IModulo_Atencion_InicialApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-                var result = "";
-                var Modulo_Atencion_Inicial = new Modulo_Atencion_Inicial_Datos_del_Caso
-                {
-                    Folio = varModulo_Atencion_Inicial.Folio
-                };
-
-                result = _IModulo_Atencion_InicialApiConsumer.Update_Estatus_de_Turno(Modulo_Atencion_Inicial).Resource.ToString();
-                return Json(result, JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
         }
 
 

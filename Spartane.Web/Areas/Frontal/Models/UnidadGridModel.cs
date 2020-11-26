@@ -23,6 +23,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Observaciones { get; set; }
         public int? Supervisor { get; set; }
         public string SupervisorName { get; set; }
+        public int? Consecutivo_CDI { get; set; }
         
     }
 }
