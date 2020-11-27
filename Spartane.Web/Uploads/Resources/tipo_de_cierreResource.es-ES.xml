@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="tipo_de_cierre" value="Tipo de Cierre"></resource>
+  <resource culture="es-es" name="clave" value="Clave"></resource>
+  <resource culture="es-es" name="descripcion" value="Descripción"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -2459,6 +2459,35 @@ if( GetValueByControlType($('#' + nameOfTable + 'Estatus2' + rowIndex),nameOfTab
 }
 //BusinessRuleId:2057, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+
+
+
+
+
+
+
+
+//BusinessRuleId:2499, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery(" exec sp_Canalizar_desde_AtencionInicial FLDD[lblClave], FLD[Estatus2]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2499, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:2499, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+ EvaluaQuery(" exec sp_Canalizar_desde_AtencionInicial FLDD[lblClave], FLD[Estatus2]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2499, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:2499, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Consult'){
+ EvaluaQuery(" exec sp_Canalizar_desde_AtencionInicial FLDD[lblClave], FLD[Estatus2]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2499, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

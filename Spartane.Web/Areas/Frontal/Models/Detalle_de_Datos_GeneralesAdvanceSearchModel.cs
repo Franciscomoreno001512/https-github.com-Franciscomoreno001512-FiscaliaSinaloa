@@ -34,6 +34,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceModulo_Atencion_Inicial { set; get; }
         public int[] AdvanceModulo_Atencion_InicialMultiple { set; get; }
 
+        public Filters Expediente_MPFilter { set; get; }
+        public string AdvanceExpediente_MP { set; get; }
+        public int[] AdvanceExpediente_MPMultiple { set; get; }
+
         public RadioOptions Datos_Confidenciales { set; get; }
 
         public RadioOptions Se_Informo_sobre_el_Procedimiento { set; get; }

@@ -1,0 +1,487 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.detalle_de_observaciones_mpiModel
+@{
+
+    string fecha = "";
+    if (Model.fecha == "")
+    { Model.fecha = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+    List<SelectListItem> varSpartan_User_usuario_que_realiza_observacion = null;
+    if (ViewBag.Spartan_Users_usuario_que_realiza_observacion != null)
+    { varSpartan_User_usuario_que_realiza_observacion = (List<SelectListItem>)ViewBag.Spartan_Users_usuario_que_realiza_observacion; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle de Observaciones MPI
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "detalle_de_observaciones_mpiRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal detalle_de_observaciones_mpiPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle de Observaciones MPI
+								<button onclick="detalle_de_observaciones_mpiGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#detalle_de_observaciones_mpiBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.detalle_de_observaciones_mpiResources.detalle_de_observaciones_mpi</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="detalle_de_observaciones_mpiDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in detalle_de_observaciones_mpiPropertyBusinessModal" id="detalle_de_observaciones_mpiPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#detalle_de_observaciones_mpiBusinessRule-form" onclick="detalle_de_observaciones_mpiGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in detalle_de_observaciones_mpiPropertyModal" id="detalle_de_observaciones_mpiPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in detalle_de_observaciones_mpiBusinessRuleModal" id="detalle_de_observaciones_mpiBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in detalle_de_observaciones_mpiAddBusinessRuleModal" id="detalle_de_observaciones_mpiAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "detalle_de_observaciones_mpi", FormMethod.Post, new { id = "Createdetalle_de_observaciones_mpi", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid detalle_de_observaciones_mpiCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divclave">
+                                <label class="col-sm-2 control-label">@Resources.detalle_de_observaciones_mpiResources.clave</label>
+                                <div class="col-sm-8" data-field-id="clave" data-attribute="267112" data-field-name="@Resources.detalle_de_observaciones_mpiResources.clave">
+                                    <label class="form-control" for="detalle_de_observaciones_mpiclave" id="detalle_de_observaciones_mpiclave">@Model.clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divobservaciones">
+                                <label class="col-sm-2 control-label">@Resources.detalle_de_observaciones_mpiResources.observaciones</label>
+                                <div class="col-sm-8" data-field-id="observaciones" data-attribute="267114" data-field-name="@Resources.detalle_de_observaciones_mpiResources.observaciones">
+                                    <input class="form-control" id="detalle_de_observaciones_mpiobservaciones" name="detalle_de_observaciones_mpiobservaciones" type="text" value="@Model.observaciones">
+                                </div>
+                            </div>
+<div class="form-group" id="divfecha">
+                                <label class="col-sm-2 control-label">@Resources.detalle_de_observaciones_mpiResources.fecha</label>
+                                <div class="col-sm-8" data-field-id="fecha" data-attribute="267115" data-field-name="@Resources.detalle_de_observaciones_mpiResources.fecha">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12" id="detalle_de_observaciones_mpifecha" readonly="readonly" name="detalle_de_observaciones_mpifecha" type="text" value="@Model.fecha">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divhora">
+                                <label class="col-sm-2 control-label">@Resources.detalle_de_observaciones_mpiResources.hora</label>
+                                <div class="col-sm-8" data-field-id="hora" data-attribute="267116" data-field-name="@Resources.detalle_de_observaciones_mpiResources.hora">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12" id="detalle_de_observaciones_mpihora" readonly="readonly" name="detalle_de_observaciones_mpihora" type="text" data-autoclose="true" value="@Model.hora">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+<div class="form-group" id="divusuario_que_realiza_observacion">
+	<label class="col-sm-2 control-label">@Resources.detalle_de_observaciones_mpiResources.usuario_que_realiza_observacion</label>
+	<div class="col-sm-8" data-field-id="usuario_que_realiza_observacion" data-attribute="267117" data-field-name="@Resources.detalle_de_observaciones_mpiResources.usuario_que_realiza_observacion">
+		<select class="form-control" data-val="true" data-val-number="The field Usuario que Realiza Observación must be a number." data-val-required="The Usuario que Realiza Observación field is required." id="detalle_de_observaciones_mpiusuario_que_realiza_observacion" name="detalle_de_observaciones_mpiusuario_que_realiza_observacion">
+			<option value=""></option>
+			@if (varSpartan_User_usuario_que_realiza_observacion != null){ 
+				foreach (var itemusuario_que_realiza_observacion in varSpartan_User_usuario_que_realiza_observacion)
+				{
+					if (itemusuario_que_realiza_observacion.Value == Convert.ToString(Model.usuario_que_realiza_observacion))
+					{
+						<option value="@itemusuario_que_realiza_observacion.Value" selected>@itemusuario_que_realiza_observacion.Text</option>
+					}
+					else
+					{
+						<option value="@itemusuario_que_realiza_observacion.Value">@itemusuario_que_realiza_observacion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.clave" id="Referenceclave" />
+												<input type="hidden" value="@Model.clave" name="clave" id="claveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="detalle_de_observaciones_mpiConfigureSave" name="detalle_de_observaciones_mpiConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdndetalle_de_observaciones_mpiConfigureType" />
+												<input type="hidden" id="hdndetalle_de_observaciones_mpiBusinessRuleFieldId" />
+												<input type="hidden" id="hdndetalle_de_observaciones_mpiBusinessRuleFieldName" />
+												<input type="hidden" id="hdndetalle_de_observaciones_mpiBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="detalle_de_observaciones_mpiGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#detalle_de_observaciones_mpiBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/detalle_de_observaciones_mpi.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/detalle_de_observaciones_mpiGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/detalle_de_observaciones_mpiCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Expediente_InicialCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var detalle_de_observaciones_mpiRowElement = "detalle_de_observaciones_mpiPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + detalle_de_observaciones_mpiRowElement + "')){ detalle_de_observaciones_mpiInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+            $('#detalle_de_observaciones_mpifecha').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#detalle_de_observaciones_mpihora').clockpicker();
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function Senddetalle_de_observaciones_mpiData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#Createdetalle_de_observaciones_mpi").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#Createdetalle_de_observaciones_mpi")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('detalle_de_observaciones_mpiCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/detalle_de_observaciones_mpi/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("detalle_de_observaciones_mpiPropertyBag", "detalle_de_observaciones_mpi")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function detalle_de_observaciones_mpiGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdndetalle_de_observaciones_mpiBusinessRuleFieldId').val(FieldId);
+				$('#hdndetalle_de_observaciones_mpiBusinessRuleFieldName').val(FieldName);
+				$('#hdndetalle_de_observaciones_mpiBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdndetalle_de_observaciones_mpiBusinessRuleFieldId').val(), FieldName: $('#hdndetalle_de_observaciones_mpiBusinessRuleFieldName').val(), ObjectId: '45469', Attribute: $('#hdndetalle_de_observaciones_mpiBusinessRuleAttribute').val(), Screen: 'detalle_de_observaciones_mpi' }, function (data) {
+                $(".detalle_de_observaciones_mpiBusinessRuleModal").html(data);
+            });
+        }
+        function detalle_de_observaciones_mpiGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdndetalle_de_observaciones_mpiBusinessRuleFieldId').val(FieldId);
+				$('#hdndetalle_de_observaciones_mpiBusinessRuleFieldName').val(FieldName);
+				$('#hdndetalle_de_observaciones_mpiBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdndetalle_de_observaciones_mpiBusinessRuleFieldId').val(), FieldName: $('#hdndetalle_de_observaciones_mpiBusinessRuleFieldName').val(), ObjectId: '45469', Attribute: $('#hdndetalle_de_observaciones_mpiBusinessRuleAttribute').val(), Screen: 'detalle_de_observaciones_mpi' }, function (data) {
+                $(".detalle_de_observaciones_mpiAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdndetalle_de_observaciones_mpiBusinessRuleFieldId').val(), FieldName: $('#hdndetalle_de_observaciones_mpiBusinessRuleFieldName').val(), ObjectId: '45469', Attribute: $('#hdndetalle_de_observaciones_mpiBusinessRuleAttribute').val(), Screen: 'detalle_de_observaciones_mpi' }, function (data) {
+				$(".detalle_de_observaciones_mpiBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/detalle_de_observaciones_mpi/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/detalle_de_observaciones_mpi/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/detalle_de_observaciones_mpi/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdndetalle_de_observaciones_mpiConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdndetalle_de_observaciones_mpiConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/detalle_de_observaciones_mpi/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdndetalle_de_observaciones_mpiConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/detalle_de_observaciones_mpi/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#detalle_de_observaciones_mpi' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#detalle_de_observaciones_mpi' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#detalle_de_observaciones_mpiConfigureSave').text('Save Settings');
+                    $('#hdndetalle_de_observaciones_mpiConfigureType').val("1");
+                });
+            }
+        }
+		$('#Createdetalle_de_observaciones_mpi').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdndetalle_de_observaciones_mpiBusinessRuleFieldId').val(fieldId);
+			$('#hdndetalle_de_observaciones_mpiBusinessRuleFieldName').val(fieldName);
+			$('#hdndetalle_de_observaciones_mpiBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

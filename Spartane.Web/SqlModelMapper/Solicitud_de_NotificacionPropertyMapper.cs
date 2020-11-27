@@ -32,12 +32,8 @@ namespace Spartane.Web.SqlModelMapper
                 case "Expediente_Mecanismos_Alternos[Numero_de_Folio]":
                 case "Expediente_Mecanismos_AlternosNumero_de_Folio":
                     return "Solicitud.Numero_de_Folio";
-                case "Carpeta_de_Investigacion[NIC]":
-                case "Carpeta_de_InvestigacionNIC":
-                    return "Expediente_Inicial.NIC";
-                case "Forma_de_Invitacion[Descripcion]":
-                case "Forma_de_InvitacionDescripcion":
-                    return "Tipo_de_Invitacion.Descripcion";
+                case "Carpeta_de_Investigacion":
+                    return "Solicitud_de_Notificacion.Carpeta_de_Investigacion";
                 case "Numero_de_Invitacion":
                     return "Solicitud_de_Notificacion.Numero_de_Invitacion";
                 case "Fecha_de_la_cita":
@@ -56,6 +52,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Notificador[Name]":
                 case "NotificadorName":
                     return "Spartan_User.Name";
+                case "Forma_de_Invitacion[Descripcion]":
+                case "Forma_de_InvitacionDescripcion":
+                    return "Tipo_de_Invitacion.Descripcion";
                 case "Resultado[Descripcion]":
                 case "ResultadoDescripcion":
                     return "Resultado_de_Notificacion.Descripcion";
@@ -64,6 +63,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Incidente_en_la_Recepcion[Descripcion]":
                 case "Incidente_en_la_RecepcionDescripcion":
                     return "Incidente_con_Invitacion.Descripcion";
+                case "Documento[Descripcion]":
+                case "DocumentoDescripcion":
+                    return "Documento.Descripcion";
 
                 default:
                     return propertyName;

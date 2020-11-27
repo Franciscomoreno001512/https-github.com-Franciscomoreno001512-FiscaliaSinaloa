@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="detalle_de_observaciones_mpi" value="Detalle de Observaciones MPI"></resource>
+  <resource culture="en-US" name="clave" value="Clave"></resource>
+  <resource culture="en-US" name="observaciones" value="Observaciones"></resource>
+  <resource culture="en-US" name="fecha" value="Fecha de Observación"></resource>
+  <resource culture="en-US" name="hora" value="Hora de Observación"></resource>
+  <resource culture="en-US" name="usuario_que_realiza_observacion" value="Usuario que Realiza Observación"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

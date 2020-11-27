@@ -478,17 +478,6 @@ function GetAutoCompleteSolicitud_de_Notificacion_Expediente_Mecanismos_Alternos
     }
     return AutoCompleteExpediente_Mecanismos_AlternosData;
 }
-var AutoCompleteCarpeta_de_InvestigacionData = [];
-function GetAutoCompleteSolicitud_de_Notificacion_Carpeta_de_Investigacion_Expediente_InicialData(data) {
-	AutoCompleteCarpeta_de_InvestigacionData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteCarpeta_de_InvestigacionData.push({
-            id: data[i].Clave,
-            text: data[i].NIC
-        });
-    }
-    return AutoCompleteCarpeta_de_InvestigacionData;
-}
 //Grid GetAutocomplete
 var AutoCompleteEstadoData = [];
 function GetAutoCompleteDetalle_de_Invitado_de_Notificacion_Estado_EstadoData(data) {
@@ -546,6 +535,17 @@ function GetAutoCompleteSolicitud_de_Notificacion_Notificador_Spartan_UserData(d
     }
     return AutoCompleteNotificadorData;
 }
+var AutoCompleteDocumentoData = [];
+function GetAutoCompleteSolicitud_de_Notificacion_Documento_DocumentoData(data) {
+	AutoCompleteDocumentoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteDocumentoData.push({
+            id: data[i].Clave,
+            text: data[i].Descripcion
+        });
+    }
+    return AutoCompleteDocumentoData;
+}
 
 
 function getDropdown(elementKey) {
@@ -592,13 +592,13 @@ function ClearControls() {
     $('#Expediente_Mecanismos_Alternos').empty();
     $("#Expediente_Mecanismos_Alternos").append('<option value=""></option>');
     $('#Expediente_Mecanismos_Alternos').val('0').trigger('change');
-    $('#Carpeta_de_Investigacion').empty();
-    $("#Carpeta_de_Investigacion").append('<option value=""></option>');
-    $('#Carpeta_de_Investigacion').val('0').trigger('change');
                 Detalle_de_Invitado_de_NotificacionClearGridData();
     $('#Notificador').empty();
     $("#Notificador").append('<option value=""></option>');
     $('#Notificador').val('0').trigger('change');
+    $('#Documento').empty();
+    $("#Documento").append('<option value=""></option>');
+    $('#Documento').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -662,7 +662,8 @@ $(document).ready(function () {
     });
 	$("form#CreateSolicitud_de_Notificacion").on('click', '#Solicitud_de_NotificacionGuardar', function () {
 		$('#Solicitud_de_NotificacionGuardar').attr('disabled', true);
-		$('#Solicitud_de_NotificacionGuardar').unbind()
+        $('#Solicitud_de_NotificacionGuardar').unbind()
+        debugger;
         if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
 				if (!SendSolicitud_de_NotificacionData(function () {
 					EjecutarValidacionesDespuesDeGuardar();
@@ -743,13 +744,13 @@ $(document).ready(function () {
     $('#Expediente_Mecanismos_Alternos').empty();
     $("#Expediente_Mecanismos_Alternos").append('<option value=""></option>');
     $('#Expediente_Mecanismos_Alternos').val('0').trigger('change');
-    $('#Carpeta_de_Investigacion').empty();
-    $("#Carpeta_de_Investigacion").append('<option value=""></option>');
-    $('#Carpeta_de_Investigacion').val('0').trigger('change');
                 Detalle_de_Invitado_de_NotificacionClearGridData();
     $('#Notificador').empty();
     $("#Notificador").append('<option value=""></option>');
     $('#Notificador').val('0').trigger('change');
+    $('#Documento').empty();
+    $("#Documento").append('<option value=""></option>');
+    $('#Documento').val('0').trigger('change');
 
 					ResetClaveLabel();
 					$("#ReferenceFolio").val(currentId);

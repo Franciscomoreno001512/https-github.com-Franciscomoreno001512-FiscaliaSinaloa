@@ -1376,6 +1376,21 @@ using Spartane.Web.Areas.WebApiConsumer.Detalle_Solicitud_Historial_de_Asignacio
 using Spartane.Services.Forma_de_Cumplimiento;
 using Spartane.Core.Domain.Forma_de_Cumplimiento;
 using Spartane.Web.Areas.WebApiConsumer.Forma_de_Cumplimiento;
+using Spartane.Services.Tipo_de_Crimen;
+using Spartane.Core.Domain.Tipo_de_Crimen;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Crimen;
+using Spartane.Services.detalle_de_observaciones_mpi;
+using Spartane.Core.Domain.detalle_de_observaciones_mpi;
+using Spartane.Web.Areas.WebApiConsumer.detalle_de_observaciones_mpi;
+using Spartane.Services.estatus_mpi;
+using Spartane.Core.Domain.estatus_mpi;
+using Spartane.Web.Areas.WebApiConsumer.estatus_mpi;
+using Spartane.Services.expediente_ministerio_publico;
+using Spartane.Core.Domain.expediente_ministerio_publico;
+using Spartane.Web.Areas.WebApiConsumer.expediente_ministerio_publico;
+using Spartane.Services.tipo_de_cierre;
+using Spartane.Core.Domain.tipo_de_cierre;
+using Spartane.Web.Areas.WebApiConsumer.tipo_de_cierre;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -2416,6 +2431,16 @@ builder.RegisterType<Detalle_Solicitud_Historial_de_AsignacionesService>().As<ID
 builder.RegisterType<Detalle_Solicitud_Historial_de_AsignacionesApiConsumer>().As<IDetalle_Solicitud_Historial_de_AsignacionesApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Forma_de_CumplimientoService>().As<IForma_de_CumplimientoService>().InstancePerLifetimeScope();
 builder.RegisterType<Forma_de_CumplimientoApiConsumer>().As<IForma_de_CumplimientoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_CrimenService>().As<ITipo_de_CrimenService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_CrimenApiConsumer>().As<ITipo_de_CrimenApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<detalle_de_observaciones_mpiService>().As<Idetalle_de_observaciones_mpiService>().InstancePerLifetimeScope();
+builder.RegisterType<detalle_de_observaciones_mpiApiConsumer>().As<Idetalle_de_observaciones_mpiApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<estatus_mpiService>().As<Iestatus_mpiService>().InstancePerLifetimeScope();
+builder.RegisterType<estatus_mpiApiConsumer>().As<Iestatus_mpiApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<expediente_ministerio_publicoService>().As<Iexpediente_ministerio_publicoService>().InstancePerLifetimeScope();
+builder.RegisterType<expediente_ministerio_publicoApiConsumer>().As<Iexpediente_ministerio_publicoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<tipo_de_cierreService>().As<Itipo_de_cierreService>().InstancePerLifetimeScope();
+builder.RegisterType<tipo_de_cierreApiConsumer>().As<Itipo_de_cierreApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -2596,6 +2621,32 @@ builder.RegisterType<Forma_de_CumplimientoApiConsumer>().As<IForma_de_Cumplimien
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

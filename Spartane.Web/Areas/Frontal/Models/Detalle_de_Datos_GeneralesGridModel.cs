@@ -11,6 +11,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
         public string Modulo_Atencion_InicialNUAT { get; set; }
+        public int? Expediente_MP { get; set; }
+        public string Expediente_MPnic { get; set; }
         public bool? Datos_Confidenciales { get; set; }
         public bool? Se_Informo_sobre_el_Procedimiento { get; set; }
         public int? Tipo_de_Compareciente { get; set; }

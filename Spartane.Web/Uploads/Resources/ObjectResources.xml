@@ -924,8 +924,44 @@
 <Object Id="45392" culture="es-es" value="Detalle Solicitud Historial de Asignaciones" />
 <Object Id="45393" culture="en-us" value="Forma de Cumplimiento" />
 <Object Id="45393" culture="es-es" value="Forma de Cumplimiento" />
+<Object Id="45465" culture="en-us" value="Tipo de Crimen" />
+<Object Id="45465" culture="es-es" value="Tipo de Crimen" />
+<Object Id="45469" culture="en-us" value="Detalle de Observaciones MPI" />
+<Object Id="45469" culture="es-es" value="Detalle de Observaciones MPI" />
+<Object Id="45466" culture="en-us" value="Estatus MPI" />
+<Object Id="45466" culture="es-es" value="Estatus MPI" />
+<Object Id="45468" culture="en-us" value="Expediente Ministerio Público" />
+<Object Id="45468" culture="es-es" value="Expediente Ministerio Público" />
+<Object Id="45467" culture="en-us" value="Tipo de Cierre" />
+<Object Id="45467" culture="es-es" value="Tipo de Cierre" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -23,6 +23,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceModulo_Atencion_Inicial { set; get; }
         public int[] AdvanceModulo_Atencion_InicialMultiple { set; get; }
 
+        public Filters Expediente_MPFilter { set; get; }
+        public string AdvanceExpediente_MP { set; get; }
+        public int[] AdvanceExpediente_MPMultiple { set; get; }
+
         public Filters InvolucradoFilter { set; get; }
         public string AdvanceInvolucrado { set; get; }
         public int[] AdvanceInvolucradoMultiple { set; get; }

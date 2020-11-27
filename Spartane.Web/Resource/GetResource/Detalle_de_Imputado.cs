@@ -56,6 +56,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Expediente_MP</summary>
+        public static string Expediente_MP
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Imputado.GetResource("Expediente_MP", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Quien_Resulte_Responsable</summary>
         public static string Quien_Resulte_Responsable
         {

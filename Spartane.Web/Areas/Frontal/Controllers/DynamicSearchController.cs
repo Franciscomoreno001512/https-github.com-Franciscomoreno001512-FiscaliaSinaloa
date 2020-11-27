@@ -68,6 +68,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 GetResultSearchTable(null);
             }
             ViewBag.idTablero = id;
+            Session["idTablero"] = id;
             return View();
         }
 

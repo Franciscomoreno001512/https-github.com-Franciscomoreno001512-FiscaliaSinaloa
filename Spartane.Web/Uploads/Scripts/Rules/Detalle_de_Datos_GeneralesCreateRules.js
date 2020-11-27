@@ -111,8 +111,7 @@ $( "#Numero_de_Identificacion_del_Tutor" ).blur(function() {
 		}
 	}
   });
-
-
+  
 //BusinessRuleId:42, Attribute:263782, Operation:Field, Event:None
 $("form#CreateDetalle_de_Datos_Generales").on('change', '#Fecha_de_Nacimiento', function () {
 	nameOfTable='';
@@ -412,6 +411,17 @@ result=false;} else {}
 
 
 //BusinessRuleId:2460, Attribute:263863, Operation:Field, Event:None
+
+//BusinessRuleId:570, Attribute:263782, Operation:Field, Event:None
+$("form#CreateDetalle_de_Datos_Generales").on('change', '#Fecha_de_Nacimiento', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Fecha_de_Nacimiento' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') && EvaluaQuery("SELECT DATEDIFF(DAY,CONVERT(DATE,CONVERT(VARCHAR(10),GETDATE(),103),103),"
++" CONVERT(DATE,CONVERT(VARCHAR(10),'FLD[Fecha_de_Nacimiento]',103),103))",rowIndex, nameOfTable)>TryParseInt('0', '0') ) { alert(DecodifyText('No se puede ingresar una fecha mayor al día de hoy', rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Fecha_de_Nacimiento' + rowIndex), ''); AsignarValor($('#' + nameOfTable + 'Edad' + rowIndex),'');} else {}
+});
+
+
+//BusinessRuleId:570, Attribute:263782, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -1283,6 +1293,23 @@ if( EvaluaQuery("EXEC uspGetInvolucradoEditar GLOBAL[SpartanOperationId], FLDD[l
 
 }
 //BusinessRuleId:2432, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:1274, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("DECLARE @date date, @tmpdate date, @years int"
++" "
++" SELECT @date = convert(date,(convert(varchar(10),'FLD[Fecha_de_Nacimiento]',103)),103)"
++" "
++" SELECT @tmpdate = @date"
++" "
++" SELECT @years = DATEDIFF(yy, @tmpdate, GETDATE()) - CASE WHEN (MONTH(@date) > MONTH(GETDATE())) OR (MONTH(@date) = MONTH(GETDATE()) AND DAY(@date) > DAY(GETDATE())) THEN 1 ELSE 0 END"
++" "
++" SELECT @tmpdate = DATEADD(yy, @years, @tmpdate)"
++" "
++" SELECT @years",rowIndex, nameOfTable)<TryParseInt('18', '18') && GetValueByControlType($('#' + nameOfTable + 'Fecha_de_Nacimiento' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') || GetValueByControlType($('#' + nameOfTable + 'Incapaz' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $("a[href='#tabDatos_del_Tutor']").css('display', 'block');} else { $("a[href='#tabDatos_del_Tutor']").css('display', 'none');}
+
+}
+//BusinessRuleId:1274, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

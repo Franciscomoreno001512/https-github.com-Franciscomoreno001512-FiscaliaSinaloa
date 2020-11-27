@@ -1,0 +1,1519 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.expediente_ministerio_publicoModel
+@{
+
+/*
+    string fecha_de_registro = "";
+    if (Model.fecha_de_registro == "")
+    { Model.fecha_de_registro = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Canalizacion = "";
+    if (Model.Fecha_de_Canalizacion == "")
+    { Model.Fecha_de_Canalizacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string fecha_de_inicio_de_acuerdo = "";
+    if (Model.fecha_de_inicio_de_acuerdo == "")
+    { Model.fecha_de_inicio_de_acuerdo = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string fecha_de_cumplimiento = "";
+    if (Model.fecha_de_cumplimiento == "")
+    { Model.fecha_de_cumplimiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string fecha_de_cierre = "";
+    if (Model.fecha_de_cierre == "")
+    { Model.fecha_de_cierre = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+*/
+ List<SelectListItem> varSpartan_User_usuario_que_registra = null;
+    if (ViewBag.Spartan_Users_usuario_que_registra != null)
+    { varSpartan_User_usuario_que_registra = (List<SelectListItem>)ViewBag.Spartan_Users_usuario_que_registra; }
+ List<SelectListItem> varUnidad_unidad = null;
+    if (ViewBag.Unidads_unidad != null)
+    { varUnidad_unidad = (List<SelectListItem>)ViewBag.Unidads_unidad; }
+    List<SelectListItem> varA_Tiempo_detenido = null;
+    if (ViewBag.A_Tiempos_detenido != null)
+    { varA_Tiempo_detenido = (List<SelectListItem>)ViewBag.A_Tiempos_detenido; }
+    List<SelectListItem> varestatus_mpi_estatus = null;
+    if (ViewBag.estatus_mpis_estatus != null)
+    { varestatus_mpi_estatus = (List<SelectListItem>)ViewBag.estatus_mpis_estatus; }
+    List<SelectListItem> vardetalle_de_observaciones_mpi_observaciones = null;
+    if (ViewBag.detalle_de_observaciones_mpis_observaciones != null)
+    { vardetalle_de_observaciones_mpi_observaciones = (List<SelectListItem>)ViewBag.detalle_de_observaciones_mpis_observaciones; }
+ List<SelectListItem> varSpartan_User_usuario_que_canaliza = null;
+    if (ViewBag.Spartan_Users_usuario_que_canaliza != null)
+    { varSpartan_User_usuario_que_canaliza = (List<SelectListItem>)ViewBag.Spartan_Users_usuario_que_canaliza; }
+    List<SelectListItem> varEstatus_Orientador_canalizar_a = null;
+    if (ViewBag.Estatus_Orientadors_canalizar_a != null)
+    { varEstatus_Orientador_canalizar_a = (List<SelectListItem>)ViewBag.Estatus_Orientadors_canalizar_a; }
+    List<SelectListItem> varTipo_de_Acuerdo_tipo_de_acuerdo = null;
+    if (ViewBag.Tipo_de_Acuerdos_tipo_de_acuerdo != null)
+    { varTipo_de_Acuerdo_tipo_de_acuerdo = (List<SelectListItem>)ViewBag.Tipo_de_Acuerdos_tipo_de_acuerdo; }
+    List<SelectListItem> varPeriodicidad_periodicidad = null;
+    if (ViewBag.Periodicidads_periodicidad != null)
+    { varPeriodicidad_periodicidad = (List<SelectListItem>)ViewBag.Periodicidads_periodicidad; }
+    List<SelectListItem> vartipo_de_cierre_tipo_de_cierre = null;
+    if (ViewBag.tipo_de_cierres_tipo_de_cierre != null)
+    { vartipo_de_cierre_tipo_de_cierre = (List<SelectListItem>)ViewBag.tipo_de_cierres_tipo_de_cierre; }
+
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.expediente_ministerio_publicoResources.expediente_ministerio_publico
+                <button onclick="expediente_ministerio_publicoGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#expediente_ministerio_publicoBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.expediente_ministerio_publicoResources.expediente_ministerio_publico</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="expediente_ministerio_publicoDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in expediente_ministerio_publicoPropertyBusinessModal" id="expediente_ministerio_publicoPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#expediente_ministerio_publicoBusinessRule-form" onclick="expediente_ministerio_publicoGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in expediente_ministerio_publicoBusinessRuleModal" id="expediente_ministerio_publicoBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "expediente_ministerio_publico", FormMethod.Post, new { id = "Createexpediente_ministerio_publico", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid expediente_ministerio_publicoCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_del_Caso"> @Resources.expediente_ministerio_publicoResources.TabDatos_del_Caso</a></li>
+<li class=""><a data-toggle="tab" href="#tabCanalizar"> @Resources.expediente_ministerio_publicoResources.TabCanalizar</a></li>
+<li class=""><a data-toggle="tab" href="#tabDatos_del_Acuerdo"> @Resources.expediente_ministerio_publicoResources.TabDatos_del_Acuerdo</a></li>
+<li class=""><a data-toggle="tab" href="#tabCierre_de_Expediente"> @Resources.expediente_ministerio_publicoResources.TabCierre_de_Expediente</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_del_Caso" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divclave">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.clave</label>
+                                <div class="col-sm-8" data-field-id="clave" data-attribute="267111" data-field-name="@Resources.expediente_ministerio_publicoResources.clave">
+                                    <label class="form-control" for="clave" id="lblclave">
+                                    @if (Model.clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divfecha_de_registro">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.fecha_de_registro</label>
+                                <div class="col-sm-8" data-field-id="fecha_de_registro" data-attribute="267118" data-field-name="@Resources.expediente_ministerio_publicoResources.fecha_de_registro">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_del_Caso" id="fecha_de_registro"  name="fecha_de_registro" type="text" value="@Model.fecha_de_registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divhora_de_registro">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.hora_de_registro</label>
+                                <div class="col-sm-8" data-field-id="hora_de_registro" data-attribute="267119" data-field-name="@Resources.expediente_ministerio_publicoResources.hora_de_registro">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_del_Caso" id="hora_de_registro"  name="hora_de_registro" type="text" data-autoclose="true" value="@Model.hora_de_registro">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divusuario_que_registra">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.usuario_que_registra</label>
+                                <div class="col-sm-8" data-field-id="usuario_que_registra" data-attribute="267120" data-field-name="@Resources.expediente_ministerio_publicoResources.usuario_que_registra">
+                                    <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_usuario_que_registra form-control select2-dropdown Datos_del_Caso' data-val="true" id="usuario_que_registra" name="usuario_que_registra">
+                                        <option value="@Model.usuario_que_registra">@(Model.usuario_que_registraName??Model.usuario_que_registraName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267120).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'usuario_que_registra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divunidad">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.unidad</label>
+                                <div class="col-sm-8" data-field-id="unidad" data-attribute="267121" data-field-name="@Resources.expediente_ministerio_publicoResources.unidad">
+                                    <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_unidad form-control select2-dropdown Datos_del_Caso' data-val="true" id="unidad" name="unidad">
+                                        <option value="@Model.unidad">@(Model.unidadDescripcion??Model.unidadDescripcion)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267121).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Unidad', 'unidad');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divnuat">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.nuat</label>
+                                <div class="col-sm-8" data-field-id="nuat" data-attribute="267122" data-field-name="@Resources.expediente_ministerio_publicoResources.nuat">
+                                    <input class="form-control Datos_del_Caso" id="nuat" name="nuat" type="text" value="@Model.nuat">
+                                    @*<span class="field-validation-valid" data-valmsg-for="nuat" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divnic">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.nic</label>
+                                <div class="col-sm-8" data-field-id="nic" data-attribute="267123" data-field-name="@Resources.expediente_ministerio_publicoResources.nic">
+                                    <input class="form-control Datos_del_Caso" id="nic" name="nic" type="text" value="@Model.nic">
+                                    @*<span class="field-validation-valid" data-valmsg-for="nic" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divdetenido">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.detenido</label>
+                                <div class="col-sm-8" data-field-id="detenido" data-attribute="267124" data-field-name="@Resources.expediente_ministerio_publicoResources.detenido">
+                                    <select class="form-control Datos_del_Caso" data-val="true" data-val-number="The field Detenido must be a number." data-val-required="The Detenido field is required." id="detenido" name="detenido">
+                                        <option value=""></option>
+                                        @if (varA_Tiempo_detenido != null){ 
+                                            foreach (var itemdetenido in varA_Tiempo_detenido)
+                                            {
+                                                if (itemdetenido.Value == Convert.ToString(Model.detenido))
+                                                {
+                                                    <option value="@itemdetenido.Value" selected>@itemdetenido.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemdetenido.Value">@itemdetenido.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="detenido" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267124).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('A_Tiempo', 'detenido');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divhora_del_detenido">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.hora_del_detenido</label>
+                                <div class="col-sm-8" data-field-id="hora_del_detenido" data-attribute="267125" data-field-name="@Resources.expediente_ministerio_publicoResources.hora_del_detenido">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_del_Caso" id="hora_del_detenido"  name="hora_del_detenido" type="text" data-autoclose="true" value="@Model.hora_del_detenido">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divhora_puesto_a_disposicion">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.hora_puesto_a_disposicion</label>
+                                <div class="col-sm-8" data-field-id="hora_puesto_a_disposicion" data-attribute="267126" data-field-name="@Resources.expediente_ministerio_publicoResources.hora_puesto_a_disposicion">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_del_Caso" id="hora_puesto_a_disposicion"  name="hora_puesto_a_disposicion" type="text" data-autoclose="true" value="@Model.hora_puesto_a_disposicion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divestatus">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.estatus</label>
+                                <div class="col-sm-8" data-field-id="estatus" data-attribute="267127" data-field-name="@Resources.expediente_ministerio_publicoResources.estatus">
+                                    <select class="form-control Datos_del_Caso" data-val="true" data-val-number="The field Estatus must be a number." data-val-required="The Estatus field is required." id="estatus" name="estatus">
+                                        <option value=""></option>
+                                        @if (varestatus_mpi_estatus != null){ 
+                                            foreach (var itemestatus in varestatus_mpi_estatus)
+                                            {
+                                                if (itemestatus.Value == Convert.ToString(Model.estatus))
+                                                {
+                                                    <option value="@itemestatus.Value" selected>@itemestatus.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemestatus.Value">@itemestatus.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="estatus" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267127).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('estatus_mpi', 'estatus');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divobservaciones">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.observaciones</label>
+                                <div class="col-sm-8" data-field-id="observaciones" data-attribute="267128" data-field-name="@Resources.expediente_ministerio_publicoResources.observaciones">
+                                    <select class="form-control Datos_del_Caso" data-val="true" data-val-number="The field Observaciones must be a number." data-val-required="The Observaciones field is required." id="observaciones" name="observaciones">
+                                        <option value=""></option>
+                                        @if (vardetalle_de_observaciones_mpi_observaciones != null){ 
+                                            foreach (var itemobservaciones in vardetalle_de_observaciones_mpi_observaciones)
+                                            {
+                                                if (itemobservaciones.Value == Convert.ToString(Model.observaciones))
+                                                {
+                                                    <option value="@itemobservaciones.Value" selected>@itemobservaciones.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemobservaciones.Value">@itemobservaciones.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="observaciones" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267128).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('detalle_de_observaciones_mpi', 'observaciones');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabCanalizar" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divFecha_de_Canalizacion">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.Fecha_de_Canalizacion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Canalizacion" data-attribute="267129" data-field-name="@Resources.expediente_ministerio_publicoResources.Fecha_de_Canalizacion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Canalizar" id="Fecha_de_Canalizacion"  name="Fecha_de_Canalizacion" type="text" value="@Model.Fecha_de_Canalizacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Canalizacion">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.Hora_de_Canalizacion</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Canalizacion" data-attribute="267130" data-field-name="@Resources.expediente_ministerio_publicoResources.Hora_de_Canalizacion">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Canalizar" id="Hora_de_Canalizacion"  name="Hora_de_Canalizacion" type="text" data-autoclose="true" value="@Model.Hora_de_Canalizacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divusuario_que_canaliza">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.usuario_que_canaliza</label>
+                                <div class="col-sm-8" data-field-id="usuario_que_canaliza" data-attribute="267131" data-field-name="@Resources.expediente_ministerio_publicoResources.usuario_que_canaliza">
+                                    <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_usuario_que_canaliza form-control select2-dropdown Canalizar' data-val="true" id="usuario_que_canaliza" name="usuario_que_canaliza">
+                                        <option value="@Model.usuario_que_canaliza">@(Model.usuario_que_canalizaName??Model.usuario_que_canalizaName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267131).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'usuario_que_canaliza');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divcanalizar_a">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.canalizar_a</label>
+                                <div class="col-sm-8" data-field-id="canalizar_a" data-attribute="267132" data-field-name="@Resources.expediente_ministerio_publicoResources.canalizar_a">
+                                    <select class="form-control Canalizar" data-val="true" data-val-number="The field Canalizar a must be a number." data-val-required="The Canalizar a field is required." id="canalizar_a" name="canalizar_a">
+                                        <option value=""></option>
+                                        @if (varEstatus_Orientador_canalizar_a != null){ 
+                                            foreach (var itemcanalizar_a in varEstatus_Orientador_canalizar_a)
+                                            {
+                                                if (itemcanalizar_a.Value == Convert.ToString(Model.canalizar_a))
+                                                {
+                                                    <option value="@itemcanalizar_a.Value" selected>@itemcanalizar_a.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemcanalizar_a.Value">@itemcanalizar_a.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="canalizar_a" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267132).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Estatus_Orientador', 'canalizar_a');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabDatos_del_Acuerdo" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divtipo_de_acuerdo">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.tipo_de_acuerdo</label>
+                                <div class="col-sm-8" data-field-id="tipo_de_acuerdo" data-attribute="267133" data-field-name="@Resources.expediente_ministerio_publicoResources.tipo_de_acuerdo">
+                                    <select class="form-control Datos_del_Acuerdo" data-val="true" data-val-number="The field Tipo de Acuerdo must be a number." data-val-required="The Tipo de Acuerdo field is required." id="tipo_de_acuerdo" name="tipo_de_acuerdo">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Acuerdo_tipo_de_acuerdo != null){ 
+                                            foreach (var itemtipo_de_acuerdo in varTipo_de_Acuerdo_tipo_de_acuerdo)
+                                            {
+                                                if (itemtipo_de_acuerdo.Value == Convert.ToString(Model.tipo_de_acuerdo))
+                                                {
+                                                    <option value="@itemtipo_de_acuerdo.Value" selected>@itemtipo_de_acuerdo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemtipo_de_acuerdo.Value">@itemtipo_de_acuerdo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="tipo_de_acuerdo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267133).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Acuerdo', 'tipo_de_acuerdo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divfecha_de_inicio_de_acuerdo">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.fecha_de_inicio_de_acuerdo</label>
+                                <div class="col-sm-8" data-field-id="fecha_de_inicio_de_acuerdo" data-attribute="267134" data-field-name="@Resources.expediente_ministerio_publicoResources.fecha_de_inicio_de_acuerdo">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_del_Acuerdo" id="fecha_de_inicio_de_acuerdo"  name="fecha_de_inicio_de_acuerdo" type="text" value="@Model.fecha_de_inicio_de_acuerdo">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divfecha_de_cumplimiento">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.fecha_de_cumplimiento</label>
+                                <div class="col-sm-8" data-field-id="fecha_de_cumplimiento" data-attribute="267135" data-field-name="@Resources.expediente_ministerio_publicoResources.fecha_de_cumplimiento">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_del_Acuerdo" id="fecha_de_cumplimiento"  name="fecha_de_cumplimiento" type="text" value="@Model.fecha_de_cumplimiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divhora_de_cumplimiento">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.hora_de_cumplimiento</label>
+                                <div class="col-sm-8" data-field-id="hora_de_cumplimiento" data-attribute="267136" data-field-name="@Resources.expediente_ministerio_publicoResources.hora_de_cumplimiento">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_del_Acuerdo" id="hora_de_cumplimiento"  name="hora_de_cumplimiento" type="text" data-autoclose="true" value="@Model.hora_de_cumplimiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divdomicilio_para_el_cumplimiento">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.domicilio_para_el_cumplimiento</label>
+                                <div class="col-sm-8" data-field-id="domicilio_para_el_cumplimiento" data-attribute="267137" data-field-name="@Resources.expediente_ministerio_publicoResources.domicilio_para_el_cumplimiento">
+                                    <textarea id="domicilio_para_el_cumplimiento" name="domicilio_para_el_cumplimiento" class="form-control Datos_del_Acuerdo" rows="4" cols="50">@Model.domicilio_para_el_cumplimiento</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="domicilio_para_el_cumplimiento" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                              <div class="form-group" id="divmonto_de_reparacion_de_danos">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.monto_de_reparacion_de_danos</label>
+								<div class="col-sm-8">
+									<div class="input-group m-b" data-field-id="monto_de_reparacion_de_danos" data-attribute="267138" data-field-name="@Resources.expediente_ministerio_publicoResources.monto_de_reparacion_de_danos">
+										<span class="input-group-addon">$</span>
+										@if(Model.monto_de_reparacion_de_danos.HasValue)
+						{
+						<input class="form-control col-md-12 inputNumber inputMoney Datos_del_Acuerdo" id="monto_de_reparacion_de_danos" name="monto_de_reparacion_de_danos" type="text" min="0.00" max="999999.99" value="@Model.monto_de_reparacion_de_danos.Value.ToString("N", CultureInfo.InvariantCulture)">
+						}
+						else
+						{
+						<input class="form-control col-md-12 inputNumber inputMoney Datos_del_Acuerdo" id="monto_de_reparacion_de_danos" name="monto_de_reparacion_de_danos" type="text" min="0.00" max="999999.99" value="">
+						}  
+									</div>
+								</div>
+                            </div>
+                            <div class="form-group" id="divparcialidades">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.parcialidades</label>
+                                <div class="col-sm-8" data-field-id="parcialidades" data-attribute="267139" data-field-name="@Resources.expediente_ministerio_publicoResources.parcialidades">
+                                    <input class="form-control inputNumber Datos_del_Acuerdo" id="parcialidades" name="parcialidades" type="text" value="@Model.parcialidades">
+                                    @*<span class="field-validation-valid" data-valmsg-for="parcialidades" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divperiodicidad">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.periodicidad</label>
+                                <div class="col-sm-8" data-field-id="periodicidad" data-attribute="267140" data-field-name="@Resources.expediente_ministerio_publicoResources.periodicidad">
+                                    <select class="form-control Datos_del_Acuerdo" data-val="true" data-val-number="The field Periodicidad must be a number." data-val-required="The Periodicidad field is required." id="periodicidad" name="periodicidad">
+                                        <option value=""></option>
+                                        @if (varPeriodicidad_periodicidad != null){ 
+                                            foreach (var itemperiodicidad in varPeriodicidad_periodicidad)
+                                            {
+                                                if (itemperiodicidad.Value == Convert.ToString(Model.periodicidad))
+                                                {
+                                                    <option value="@itemperiodicidad.Value" selected>@itemperiodicidad.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemperiodicidad.Value">@itemperiodicidad.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="periodicidad" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267140).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Periodicidad', 'periodicidad');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divacepta_acuerdo">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.acepta_acuerdo</label>
+                                <div class="col-sm-8" data-field-id="acepta_acuerdo" data-attribute="267141" data-field-name="@Resources.expediente_ministerio_publicoResources.acepta_acuerdo">
+                                    @Html.CheckBoxFor(m => m.acepta_acuerdo, new { @class = "i-checks Datos_del_Acuerdo" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divmotivo_de_rechazo_de_acuerdo">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.motivo_de_rechazo_de_acuerdo</label>
+                                <div class="col-sm-8" data-field-id="motivo_de_rechazo_de_acuerdo" data-attribute="267142" data-field-name="@Resources.expediente_ministerio_publicoResources.motivo_de_rechazo_de_acuerdo">
+                                    <textarea id="motivo_de_rechazo_de_acuerdo" name="motivo_de_rechazo_de_acuerdo" class="form-control Datos_del_Acuerdo" rows="4" cols="50">@Model.motivo_de_rechazo_de_acuerdo</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="motivo_de_rechazo_de_acuerdo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabCierre_de_Expediente" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divfecha_de_cierre">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.fecha_de_cierre</label>
+                                <div class="col-sm-8" data-field-id="fecha_de_cierre" data-attribute="267143" data-field-name="@Resources.expediente_ministerio_publicoResources.fecha_de_cierre">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Cierre_de_Expediente" id="fecha_de_cierre"  name="fecha_de_cierre" type="text" value="@Model.fecha_de_cierre">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divhora_de_cierre">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.hora_de_cierre</label>
+                                <div class="col-sm-8" data-field-id="hora_de_cierre" data-attribute="267144" data-field-name="@Resources.expediente_ministerio_publicoResources.hora_de_cierre">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Cierre_de_Expediente" id="hora_de_cierre"  name="hora_de_cierre" type="text" data-autoclose="true" value="@Model.hora_de_cierre">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divtipo_de_cierre">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.tipo_de_cierre</label>
+                                <div class="col-sm-8" data-field-id="tipo_de_cierre" data-attribute="267145" data-field-name="@Resources.expediente_ministerio_publicoResources.tipo_de_cierre">
+                                    <select class="form-control Cierre_de_Expediente" data-val="true" data-val-number="The field Tipo de Cierre must be a number." data-val-required="The Tipo de Cierre field is required." id="tipo_de_cierre" name="tipo_de_cierre">
+                                        <option value=""></option>
+                                        @if (vartipo_de_cierre_tipo_de_cierre != null){ 
+                                            foreach (var itemtipo_de_cierre in vartipo_de_cierre_tipo_de_cierre)
+                                            {
+                                                if (itemtipo_de_cierre.Value == Convert.ToString(Model.tipo_de_cierre))
+                                                {
+                                                    <option value="@itemtipo_de_cierre.Value" selected>@itemtipo_de_cierre.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemtipo_de_cierre.Value">@itemtipo_de_cierre.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="tipo_de_cierre" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267145).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('tipo_de_cierre', 'tipo_de_cierre');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divcomentarios_de_cierre">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.comentarios_de_cierre</label>
+                                <div class="col-sm-8" data-field-id="comentarios_de_cierre" data-attribute="267146" data-field-name="@Resources.expediente_ministerio_publicoResources.comentarios_de_cierre">
+                                    <textarea id="comentarios_de_cierre" name="comentarios_de_cierre" class="form-control Cierre_de_Expediente" rows="4" cols="50">@Model.comentarios_de_cierre</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="comentarios_de_cierre" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.clave" id="Referenceclave" />
+                                <input type="hidden" value="@Model.clave" name="clave" id="claveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="expediente_ministerio_publicoGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('expediente_ministerio_publicoCreateForm');"  />
+									<button onclick="expediente_ministerio_publicoGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#expediente_ministerio_publicoBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="expediente_ministerio_publicoGuardarYNuevo" onclick="return checkClientValidate('expediente_ministerio_publicoCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="expediente_ministerio_publicoGuardarYCopia" onclick="return checkClientValidate('expediente_ministerio_publicoCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnexpediente_ministerio_publicoBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnexpediente_ministerio_publicoBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnexpediente_ministerio_publicoBusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="expediente_ministerio_publicoCancelar" name="expediente_ministerio_publicoCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                <button onclick="expediente_ministerio_publicoGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#expediente_ministerio_publicoBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/expediente_ministerio_publico.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/expediente_ministerio_publicoGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/expediente_ministerio_publicoCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_del_Caso = true;
+
+		var Tab_Canalizar = true;
+
+		var Tab_Datos_del_Acuerdo = true;
+
+		var Tab_Cierre_de_Expediente = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45468');
+		    
+		   
+                        $('#fecha_de_registro').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#hora_de_registro').clockpicker();
+            $('#hora_del_detenido').clockpicker();
+            $('#hora_puesto_a_disposicion').clockpicker();
+            $('#Fecha_de_Canalizacion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_de_Canalizacion').clockpicker();
+            $('#fecha_de_inicio_de_acuerdo').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#fecha_de_cumplimiento').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#hora_de_cumplimiento').clockpicker();
+            $('#fecha_de_cierre').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#hora_de_cierre').clockpicker();
+
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#expediente_ministerio_publicoGuardarYNuevo').hide();
+                $('#expediente_ministerio_publicoGuardarYCopia').hide();
+                $('#expediente_ministerio_publicoCancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#expediente_ministerio_publicoGuardar').val('Actualizar Seccion ' + '@Resources.expediente_ministerio_publicoResources.expediente_ministerio_publico' )
+            }
+
+			
+			       var AutoCompleteusuario_que_registraData =[];
+       $(".AutoCompleteexpediente_ministerio_publico_usuario_que_registra").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_usuario_que_registra_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteexpediente_ministerio_publico_usuario_que_registra_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteexpediente_ministerio_publico_usuario_que_registra");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteunidadData =[];
+       $(".AutoCompleteexpediente_ministerio_publico_unidad").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_unidad_Unidad")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteexpediente_ministerio_publico_unidad_UnidadData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteexpediente_ministerio_publico_unidad");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteusuario_que_canalizaData =[];
+       $(".AutoCompleteexpediente_ministerio_publico_usuario_que_canaliza").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_usuario_que_canaliza_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteexpediente_ministerio_publico_usuario_que_canaliza_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteexpediente_ministerio_publico_usuario_que_canaliza");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_del_Caso)
+					Fill_Datos_del_Caso();
+
+				if (Tab_Canalizar)
+					Fill_Canalizar();
+
+				if (Tab_Datos_del_Acuerdo)
+					Fill_Datos_del_Acuerdo();
+
+				if (Tab_Cierre_de_Expediente)
+					Fill_Cierre_de_Expediente();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
+        });
+
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/expediente_ministerio_publico/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+
+        function Sendexpediente_ministerio_publicoData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#Createexpediente_ministerio_publico").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#Createexpediente_ministerio_publico")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#Referenceclave").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_del_Caso && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Datos_del_Caso')) {
+				return false;
+			}						
+
+			if (Tab_Canalizar && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Canalizar')) {
+				return false;
+			}						
+
+			if (Tab_Datos_del_Acuerdo && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Datos_del_Acuerdo')) {
+				return false;
+			}						
+
+			if (Tab_Cierre_de_Expediente && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Cierre_de_Expediente')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+            }
+			
+			
+			if (Tab_Datos_del_Caso)
+				Save_Datos_del_Caso(id);
+
+			if (Tab_Canalizar)
+				Save_Canalizar(id);
+
+			if (Tab_Datos_del_Acuerdo)
+				Save_Datos_del_Acuerdo(id);
+
+			if (Tab_Cierre_de_Expediente)
+				Save_Cierre_de_Expediente(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/expediente_ministerio_publico/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".expediente_ministerio_publicoBusinessRuleModal").html(data);
+			});
+		}
+                function expediente_ministerio_publicoGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45468');
+			$('#Screen').val('expediente_ministerio_publico');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function expediente_ministerio_publicoBackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/expediente_ministerio_publico/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/expediente_ministerio_publico/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/expediente_ministerio_publico/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/expediente_ministerio_publico/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/expediente_ministerio_publico/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#Createexpediente_ministerio_publico').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        expediente_ministerio_publicoGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_del_Caso()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Get_Datos_del_Caso")?Id=" + $("#Referenceclave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#clave').val(result.data.clave);
+                    $('#fecha_de_registro').val(result.data.fecha_de_registro);
+                    $('#hora_de_registro').val(result.data.hora_de_registro);
+                    var control = $('#usuario_que_registra');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.usuario_que_registra).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.usuario_que_registra).trigger('change');
+                    }, 3000);
+                    var control = $('#unidad');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.unidad).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.unidad).trigger('change');
+                    }, 3000);
+                    $('#nuat').val(result.data.nuat);
+                    $('#nic').val(result.data.nic);
+                    $('#detenido').val(result.data.detenido);
+                    $('#hora_del_detenido').val(result.data.hora_del_detenido);
+                    $('#hora_puesto_a_disposicion').val(result.data.hora_puesto_a_disposicion);
+                    $('#estatus').val(result.data.estatus);
+                    $('#observaciones').val(result.data.observaciones);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_del_Caso(newId) {
+			var data = new FormData();
+			data.append('clave', newId);
+			                data.append('fecha_de_registro', $('#fecha_de_registro').val());
+                data.append('hora_de_registro', $('#hora_de_registro').val());
+                data.append('usuario_que_registra', $('#usuario_que_registra').val());
+                data.append('unidad', $('#unidad').val());
+                data.append('nuat', $('#nuat').val());
+                data.append('nic', $('#nic').val());
+                data.append('detenido', $('#detenido').val());
+                data.append('hora_del_detenido', $('#hora_del_detenido').val());
+                data.append('hora_puesto_a_disposicion', $('#hora_puesto_a_disposicion').val());
+                data.append('estatus', $('#estatus').val());
+                data.append('observaciones', $('#observaciones').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/expediente_ministerio_publico/Post_Datos_del_Caso")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_del_Caso");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_del_Caso");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Canalizar()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Get_Canalizar")?Id=" + $("#Referenceclave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#clave').val(result.data.clave);
+                    $('#Fecha_de_Canalizacion').val(result.data.Fecha_de_Canalizacion);
+                    $('#Hora_de_Canalizacion').val(result.data.Hora_de_Canalizacion);
+                    var control = $('#usuario_que_canaliza');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.usuario_que_canaliza).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.usuario_que_canaliza).trigger('change');
+                    }, 3000);
+                    $('#canalizar_a').val(result.data.canalizar_a);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Canalizar(newId) {
+			var data = new FormData();
+			data.append('clave', newId);
+			                data.append('Fecha_de_Canalizacion', $('#Fecha_de_Canalizacion').val());
+                data.append('Hora_de_Canalizacion', $('#Hora_de_Canalizacion').val());
+                data.append('usuario_que_canaliza', $('#usuario_que_canaliza').val());
+                data.append('canalizar_a', $('#canalizar_a').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/expediente_ministerio_publico/Post_Canalizar")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Canalizar");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Canalizar");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Datos_del_Acuerdo()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Get_Datos_del_Acuerdo")?Id=" + $("#Referenceclave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#clave').val(result.data.clave);
+                    $('#tipo_de_acuerdo').val(result.data.tipo_de_acuerdo);
+                    $('#fecha_de_inicio_de_acuerdo').val(result.data.fecha_de_inicio_de_acuerdo);
+                    $('#fecha_de_cumplimiento').val(result.data.fecha_de_cumplimiento);
+                    $('#hora_de_cumplimiento').val(result.data.hora_de_cumplimiento);
+                    $('#domicilio_para_el_cumplimiento').val(result.data.domicilio_para_el_cumplimiento);
+                    $('#monto_de_reparacion_de_danos').val(result.data.monto_de_reparacion_de_danos);
+                    $('#parcialidades').val(result.data.parcialidades);
+                    $('#periodicidad').val(result.data.periodicidad);
+                    $('#acepta_acuerdo').prop('checked', result.data.acepta_acuerdo);
+                    $('#motivo_de_rechazo_de_acuerdo').val(result.data.motivo_de_rechazo_de_acuerdo);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_del_Acuerdo(newId) {
+			var data = new FormData();
+			data.append('clave', newId);
+			                data.append('tipo_de_acuerdo', $('#tipo_de_acuerdo').val());
+                data.append('fecha_de_inicio_de_acuerdo', $('#fecha_de_inicio_de_acuerdo').val());
+                data.append('fecha_de_cumplimiento', $('#fecha_de_cumplimiento').val());
+                data.append('hora_de_cumplimiento', $('#hora_de_cumplimiento').val());
+                data.append('domicilio_para_el_cumplimiento', $('#domicilio_para_el_cumplimiento').val());
+ 
+               data.append('monto_de_reparacion_de_danos', Number($('#monto_de_reparacion_de_danos').val().replace(/[^0-9.-]+/g, "")));
+                data.append('parcialidades', $('#parcialidades').val());
+                data.append('periodicidad', $('#periodicidad').val());
+                data.append('acepta_acuerdo', $('#acepta_acuerdo').prop('checked'));
+                data.append('motivo_de_rechazo_de_acuerdo', $('#motivo_de_rechazo_de_acuerdo').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/expediente_ministerio_publico/Post_Datos_del_Acuerdo")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_del_Acuerdo");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_del_Acuerdo");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Cierre_de_Expediente()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Get_Cierre_de_Expediente")?Id=" + $("#Referenceclave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#clave').val(result.data.clave);
+                    $('#fecha_de_cierre').val(result.data.fecha_de_cierre);
+                    $('#hora_de_cierre').val(result.data.hora_de_cierre);
+                    $('#tipo_de_cierre').val(result.data.tipo_de_cierre);
+                    $('#comentarios_de_cierre').val(result.data.comentarios_de_cierre);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Cierre_de_Expediente(newId) {
+			var data = new FormData();
+			data.append('clave', newId);
+			                data.append('fecha_de_cierre', $('#fecha_de_cierre').val());
+                data.append('hora_de_cierre', $('#hora_de_cierre').val());
+                data.append('tipo_de_cierre', $('#tipo_de_cierre').val());
+                data.append('comentarios_de_cierre', $('#comentarios_de_cierre').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/expediente_ministerio_publico/Post_Cierre_de_Expediente")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Cierre_de_Expediente");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Cierre_de_Expediente");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="expediente_ministerio_publico_cmbLabelSelect" name="expediente_ministerio_publico_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_de_Relaciones;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+using Spartane.Core.Domain.expediente_ministerio_publico;
 using Spartane.Core.Domain.Detalle_de_Datos_Generales;
 using Spartane.Core.Domain.Detalle_de_Imputado;
 using Spartane.Core.Domain.Delito;
@@ -19,6 +20,7 @@ using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Relaciones;
 using Spartane.Web.Areas.WebApiConsumer.Modulo_Atencion_Inicial;
+using Spartane.Web.Areas.WebApiConsumer.expediente_ministerio_publico;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Datos_Generales;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Imputado;
 using Spartane.Web.Areas.WebApiConsumer.Delito;
@@ -61,6 +63,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_de_RelacionesService service = null;
         private IDetalle_de_RelacionesApiConsumer _IDetalle_de_RelacionesApiConsumer;
         private IModulo_Atencion_InicialApiConsumer _IModulo_Atencion_InicialApiConsumer;
+        private Iexpediente_ministerio_publicoApiConsumer _Iexpediente_ministerio_publicoApiConsumer;
         private IDetalle_de_Datos_GeneralesApiConsumer _IDetalle_de_Datos_GeneralesApiConsumer;
         private IDetalle_de_ImputadoApiConsumer _IDetalle_de_ImputadoApiConsumer;
         private IDelitoApiConsumer _IDelitoApiConsumer;
@@ -83,7 +86,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_de_RelacionesController(IDetalle_de_RelacionesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_RelacionesApiConsumer Detalle_de_RelacionesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer , IDelitoApiConsumer DelitoApiConsumer , IBinarioApiConsumer BinarioApiConsumer , IParentescoApiConsumer ParentescoApiConsumer )
+        public Detalle_de_RelacionesController(IDetalle_de_RelacionesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_de_RelacionesApiConsumer Detalle_de_RelacionesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer , IDelitoApiConsumer DelitoApiConsumer , IBinarioApiConsumer BinarioApiConsumer , IParentescoApiConsumer ParentescoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -98,6 +101,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._IModulo_Atencion_InicialApiConsumer = Modulo_Atencion_InicialApiConsumer;
+            this._Iexpediente_ministerio_publicoApiConsumer = expediente_ministerio_publicoApiConsumer;
             this._IDetalle_de_Datos_GeneralesApiConsumer = Detalle_de_Datos_GeneralesApiConsumer;
             this._IDetalle_de_ImputadoApiConsumer = Detalle_de_ImputadoApiConsumer;
             this._IDelitoApiConsumer = DelitoApiConsumer;
@@ -180,6 +184,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Detalle_de_RelacionesData.Clave 
 	                    ,Modulo_Atencion_Inicial = Detalle_de_RelacionesData.Modulo_Atencion_Inicial
                     ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Modulo_Atencion_Inicial), "Modulo_Atencion_Inicial") ??  (string)Detalle_de_RelacionesData.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
+                    ,Expediente_MP = Detalle_de_RelacionesData.Expediente_MP
+                    ,Expediente_MPnic = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Expediente_MP), "expediente_ministerio_publico") ??  (string)Detalle_de_RelacionesData.Expediente_MP_expediente_ministerio_publico.nic
                     ,Involucrado = Detalle_de_RelacionesData.Involucrado
                     ,InvolucradoNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Involucrado), "Detalle_de_Datos_Generales") ??  (string)Detalle_de_RelacionesData.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo
                     ,Probable_Responsable = Detalle_de_RelacionesData.Probable_Responsable
@@ -285,6 +291,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Detalle_de_RelacionesData.Clave 
 	                    ,Modulo_Atencion_Inicial = Detalle_de_RelacionesData.Modulo_Atencion_Inicial
                     ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Modulo_Atencion_Inicial), "Modulo_Atencion_Inicial") ??  (string)Detalle_de_RelacionesData.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
+                    ,Expediente_MP = Detalle_de_RelacionesData.Expediente_MP
+                    ,Expediente_MPnic = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Expediente_MP), "expediente_ministerio_publico") ??  (string)Detalle_de_RelacionesData.Expediente_MP_expediente_ministerio_publico.nic
                     ,Involucrado = Detalle_de_RelacionesData.Involucrado
                     ,InvolucradoNombre_Completo = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_RelacionesData.Involucrado), "Detalle_de_Datos_Generales") ??  (string)Detalle_de_RelacionesData.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo
                     ,Probable_Responsable = Detalle_de_RelacionesData.Probable_Responsable
@@ -358,6 +366,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Atencion_Inicial", "NUAT")?? m.NUAT,
                     Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
+        public ActionResult Getexpediente_ministerio_publicoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _Iexpediente_ministerio_publicoApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.nic).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nic")?? m.nic,
+                    Value = Convert.ToString(m.clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
@@ -595,6 +624,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
+                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
                         ,InvolucradoNombre_Completo = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo
                         ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Delito.Descripcion
@@ -715,6 +745,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
+                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
                         ,InvolucradoNombre_Completo = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo
                         ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Delito.Descripcion
@@ -750,6 +781,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.NUAT =trans ??item.NUAT;
                 }
                 return Json(result.Modulo_Atencion_Inicials.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Relaciones_Expediente_MP_expediente_ministerio_publico(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(expediente_ministerio_publico.clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(expediente_ministerio_publico.nic as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _Iexpediente_ministerio_publicoApiConsumer.ListaSelAll(1, 20,elWhere , " expediente_ministerio_publico.nic ASC ").Resource;
+               
+                foreach (var item in result.expediente_ministerio_publicos)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.clave), "expediente_ministerio_publico", "nic");
+                    item.nic =trans ??item.nic;
+                }
+                return Json(result.expediente_ministerio_publicos.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -853,6 +911,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Modulo_Atencion_InicialIds = string.Join(",", filter.AdvanceModulo_Atencion_InicialMultiple);
 
                 where += " AND Detalle_de_Relaciones.Modulo_Atencion_Inicial In (" + Modulo_Atencion_InicialIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceExpediente_MP))
+            {
+                switch (filter.Expediente_MPFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND expediente_ministerio_publico.nic LIKE '" + filter.AdvanceExpediente_MP + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND expediente_ministerio_publico.nic LIKE '%" + filter.AdvanceExpediente_MP + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND expediente_ministerio_publico.nic = '" + filter.AdvanceExpediente_MP + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND expediente_ministerio_publico.nic LIKE '%" + filter.AdvanceExpediente_MP + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceExpediente_MPMultiple != null && filter.AdvanceExpediente_MPMultiple.Count() > 0)
+            {
+                var Expediente_MPIds = string.Join(",", filter.AdvanceExpediente_MPMultiple);
+
+                where += " AND Detalle_de_Relaciones.Expediente_MP In (" + Expediente_MPIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.AdvanceInvolucrado))
@@ -1051,6 +1137,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varDetalle_de_Relaciones.Clave
                         ,Modulo_Atencion_Inicial = varDetalle_de_Relaciones.Modulo_Atencion_Inicial
+                        ,Expediente_MP = varDetalle_de_Relaciones.Expediente_MP
                         ,Involucrado = varDetalle_de_Relaciones.Involucrado
                         ,Probable_Responsable = varDetalle_de_Relaciones.Probable_Responsable
                         ,Delito = varDetalle_de_Relaciones.Delito
@@ -1444,6 +1531,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
+                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
                         ,InvolucradoNombre_Completo = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo
                         ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Delito.Descripcion
@@ -1523,6 +1611,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
+                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
                         ,InvolucradoNombre_Completo = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo
                         ,Probable_ResponsableNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Probable_Responsable_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Probable_Responsable_Detalle_de_Imputado.Nombre_Completo_del_Tutor
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Delito.Descripcion
@@ -1568,6 +1657,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varDetalle_de_Relaciones.Clave
                                             ,Modulo_Atencion_Inicial = varDetalle_de_Relaciones.Modulo_Atencion_Inicial
+                        ,Expediente_MP = varDetalle_de_Relaciones.Expediente_MP
                         ,Involucrado = varDetalle_de_Relaciones.Involucrado
                         ,Probable_Responsable = varDetalle_de_Relaciones.Probable_Responsable
                         ,Delito = varDetalle_de_Relaciones.Delito
@@ -1603,6 +1693,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
                         ,Modulo_Atencion_Inicial = m.Modulo_Atencion_Inicial
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "Modulo_Atencion_Inicial") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
+                        ,Expediente_MP = m.Expediente_MP
+                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
                         ,Involucrado = m.Involucrado
                         ,InvolucradoNombre_Completo = CultureHelper.GetTraduction(m.Involucrado_Detalle_de_Datos_Generales.Clave.ToString(), "Detalle_de_Datos_Generales") ?? (string)m.Involucrado_Detalle_de_Datos_Generales.Nombre_Completo
                         ,Probable_Responsable = m.Probable_Responsable
