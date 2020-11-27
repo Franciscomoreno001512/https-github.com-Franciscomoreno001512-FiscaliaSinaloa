@@ -87,6 +87,16 @@
     a#btn_rg_info_busqueda_visualizar {
         margin: 0 0 0 10px;
     }
+
+    #claseeditardocumento {
+        margin-left: 10px;
+    }
+
+    #claseverdocumento {
+        margin-left: 10px;
+    }
+
+
 </style>
 <div id="printFormatModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
     <div class="modal-dialog" role="document">
@@ -397,7 +407,9 @@
             totalregion_info_busqueda = $("#region_info_busqueda").width();
 
             totalTamanofinal = totalRegionBusqueda + totalregion_info_busqueda + 10;
-            $("#region_busqueda").width(totalTamanofinal);
+            //$("#region_busqueda").width(totalTamanofinal);
+			$("#region_busqueda").css("padding-right", "15px");
+            $("#region_busqueda").css("width", "100%");
         });
 
 
@@ -405,12 +417,25 @@
             debugger;
             $("#btn_rg_info_busqueda_ocultar").show();
             $("#btn_rg_info_busqueda_visualizar").hide();
-            $("#region_info_busqueda").show();
 
-            $("#region_busqueda").width(totalRegionBusqueda);
+
+            $("#region_busqueda").css("width", 100);
+
+            $("#region_info_busqueda").show();
+            $("#region_info_busqueda").css("position", "absolute");
+            $("#region_info_busqueda").css("right", "2px");
+
+            var tamañobusqueda2 = 0;
+            tamañobusqueda2 = $("#region_info_busqueda").width();
+
+            $("#region_busqueda").css("padding-right", tamañobusqueda2 + 25);
+            $("#region_busqueda").css("width", "100%");
             $("#region_info_busqueda").width(totalregion_info_busqueda);
-            totalRegionBusqueda = 0;
+         
+			totalRegionBusqueda = 0;
             totalregion_info_busqueda = 0;
+
+            
 
         });
 
@@ -587,7 +612,8 @@
 
                         if (ObjectSelected == "45018") { // 45018 representa el tab de documentos, solo se muestra cuando el tab es documentos
                             if (permisionDelete) {
-                                htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i><i class="fa fa-pencil claseeditardocumento" title="Editar Documento"></i><i class="fa fa-search claseverdocumento" title="Ver Documento"></i></a><a class="classDelete"><i class="fa fa-trash" data-ObjectSelected="' +ObjectSelected+'"></i></a></td>';
+								htmlValues += '<td class="text-center" style="width:70px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails hidden" style="padding-left: 10px;"><i class="fa fa-print "></i></a><a class="claseeditardocumento"><img src="~/Images/icono-editar-documento.PNG" width="16px" height="16px"></a><a class="claseverdocumento"><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a><a class="classDelete"><i class="fa fa-trash" data-ObjectSelected="' + ObjectSelected + '"></i></a></td>';
+                                //htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i><i class="fa fa-pencil claseeditardocumento" title="Editar Documento"></i><i class="fa fa-search claseverdocumento" title="Ver Documento"></i></a><a class="classDelete"><i class="fa fa-trash" data-ObjectSelected="' + ObjectSelected + '"></i></a></td>';
 
                             }
                             else {
