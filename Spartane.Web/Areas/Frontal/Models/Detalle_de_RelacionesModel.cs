@@ -14,6 +14,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
         public string Modulo_Atencion_InicialNUAT { get; set; }
+        public int? Expediente_MP { get; set; }
+        public string Expediente_MPnic { get; set; }
         public int? Involucrado { get; set; }
         public string InvolucradoNombre_Completo { get; set; }
         public int? Probable_Responsable { get; set; }
@@ -33,6 +35,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
         public string Modulo_Atencion_InicialNUAT { get; set; }
+        public int? Expediente_MP { get; set; }
+        public string Expediente_MPnic { get; set; }
         public int? Involucrado { get; set; }
         public string InvolucradoNombre_Completo { get; set; }
         public int? Probable_Responsable { get; set; }

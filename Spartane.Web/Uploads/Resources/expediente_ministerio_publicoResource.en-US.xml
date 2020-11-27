@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="expediente_ministerio_publico" value="Expediente Ministerio Público"></resource>
+  <resource culture="en-US" name="clave" value="Clave"></resource>
+  <resource culture="en-US" name="fecha_de_registro" value="Fecha de Registro"></resource>
+  <resource culture="en-US" name="hora_de_registro" value="Hora de Registro"></resource>
+  <resource culture="en-US" name="usuario_que_registra" value="Usuario que Registra"></resource>
+  <resource culture="en-US" name="unidad" value="Unidad MP"></resource>
+  <resource culture="en-US" name="nuat" value="NUAT"></resource>
+  <resource culture="en-US" name="nic" value="CDI"></resource>
+  <resource culture="en-US" name="detenido" value="Detenido"></resource>
+  <resource culture="en-US" name="hora_del_detenido" value="Hora del Detenido"></resource>
+  <resource culture="en-US" name="hora_puesto_a_disposicion" value="Hora de Puesto a Disposición"></resource>
+  <resource culture="en-US" name="estatus" value="Estatus"></resource>
+  <resource culture="en-US" name="observaciones" value="Observaciones"></resource>
+  <resource culture="en-US" name="Fecha_de_Canalizacion" value="Fecha de Canalización"></resource>
+  <resource culture="en-US" name="Hora_de_Canalizacion" value="Hora de Canalización"></resource>
+  <resource culture="en-US" name="usuario_que_canaliza" value="Usuario que Canaliza"></resource>
+  <resource culture="en-US" name="canalizar_a" value="Canalizar a"></resource>
+  <resource culture="en-US" name="tipo_de_acuerdo" value="Tipo de Acuerdo"></resource>
+  <resource culture="en-US" name="fecha_de_inicio_de_acuerdo" value="Fecha de Inicio de Acuerdo"></resource>
+  <resource culture="en-US" name="fecha_de_cumplimiento" value="Fecha de Cumplimiento del Acuerdo"></resource>
+  <resource culture="en-US" name="hora_de_cumplimiento" value="Hora de Cumplimiento del Acuerdo"></resource>
+  <resource culture="en-US" name="domicilio_para_el_cumplimiento" value="Domicilio para el Cumplimiento del Acuerdo"></resource>
+  <resource culture="en-US" name="monto_de_reparacion_de_danos" value="Monto de Reparación de Daños"></resource>
+  <resource culture="en-US" name="parcialidades" value="Parcialidades"></resource>
+  <resource culture="en-US" name="periodicidad" value="Periodicidad"></resource>
+  <resource culture="en-US" name="acepta_acuerdo" value="¿Se Acepta Acuerdo?"></resource>
+  <resource culture="en-US" name="motivo_de_rechazo_de_acuerdo" value="Motivo de Rechazo de Acuerdo"></resource>
+  <resource culture="en-US" name="fecha_de_cierre" value="Fecha de Cierre"></resource>
+  <resource culture="en-US" name="hora_de_cierre" value="Hora de Cierre"></resource>
+  <resource culture="en-US" name="tipo_de_cierre" value="Tipo de Cierre"></resource>
+  <resource culture="en-US" name="comentarios_de_cierre" value="Comentarios"></resource>
+
+<resource culture="en-US" name="TabDatos_del_Caso" value="Datos del Caso"></resource>
+<resource culture="en-US" name="TabCanalizar" value="Canalizar"></resource>
+<resource culture="en-US" name="TabDatos_del_Acuerdo" value="Datos del Acuerdo"></resource>
+<resource culture="en-US" name="TabCierre_de_Expediente" value="Cierre de Expediente"></resource>
+
+</resources>

@@ -129,6 +129,22 @@ if( $('#' + nameOfTable + 'Persona_Moral_Dueno' + rowIndex).prop("checked") === 
 
 //BusinessRuleId:1930, Attribute:265778, Operation:Field, Event:None
 
+
+
+
+
+
+
+//BusinessRuleId:2503, Attribute:265612, Operation:Field, Event:None
+$("form#CreateDetalle_de_Delito").on('change', '#Fecha_del_Delito', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Fecha_del_Delito' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') && EvaluaQuery("SELECT DATEDIFF(DAY,CONVERT(DATE,CONVERT(VARCHAR(10),GETDATE(),103),103), CONVERT(DATE,CONVERT(VARCHAR(10),'FLD[Fecha_del_Delito]',103),103))",rowIndex, nameOfTable)>TryParseInt('0', '0') ) { alert(DecodifyText('No se puede ingresar una fecha mayor al día de hoy.', rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Fecha_del_Delito' + rowIndex),'');} else {}
+});
+
+
+//BusinessRuleId:2503, Attribute:265612, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
@@ -513,28 +529,32 @@ if(operation == 'Update'){
 //BusinessRuleId:1933, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  $('#divEstado_del_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Robo' + rowIndex));$('#divMunicipio_del_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Robo' + rowIndex));$('#divColonia_del_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Robo' + rowIndex));$('#divCodigo_Postal_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal_Robo' + rowIndex));$('#divCalle_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Calle_Robo' + rowIndex));$('#divEntre_Calle_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle_Robo' + rowIndex));$('#divy_Calle_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle_Robo' + rowIndex));$('#divNumero_Exterior_del_Delito_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito_Robo' + rowIndex));$('#divNumero_Interior_del_Delito_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito_Robo' + rowIndex));$('#divReferencia_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia_Robo' + rowIndex));$('#divLatitud_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud_Robo' + rowIndex));$('#divLongitud_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud_Robo' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Calle_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud_Robo' + rowIndex));
-
+
+
 }
 //BusinessRuleId:1933, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:1933, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
  $('#divEstado_del_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Robo' + rowIndex));$('#divMunicipio_del_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Robo' + rowIndex));$('#divColonia_del_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Robo' + rowIndex));$('#divCodigo_Postal_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal_Robo' + rowIndex));$('#divCalle_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Calle_Robo' + rowIndex));$('#divEntre_Calle_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle_Robo' + rowIndex));$('#divy_Calle_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle_Robo' + rowIndex));$('#divNumero_Exterior_del_Delito_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito_Robo' + rowIndex));$('#divNumero_Interior_del_Delito_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito_Robo' + rowIndex));$('#divReferencia_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia_Robo' + rowIndex));$('#divLatitud_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud_Robo' + rowIndex));$('#divLongitud_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud_Robo' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Calle_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud_Robo' + rowIndex));
-
+
+
 }
 //BusinessRuleId:1933, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:1933, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
  $('#divEstado_del_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Robo' + rowIndex));$('#divMunicipio_del_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Robo' + rowIndex));$('#divColonia_del_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Robo' + rowIndex));$('#divCodigo_Postal_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal_Robo' + rowIndex));$('#divCalle_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Calle_Robo' + rowIndex));$('#divEntre_Calle_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle_Robo' + rowIndex));$('#divy_Calle_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle_Robo' + rowIndex));$('#divNumero_Exterior_del_Delito_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito_Robo' + rowIndex));$('#divNumero_Interior_del_Delito_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito_Robo' + rowIndex));$('#divReferencia_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia_Robo' + rowIndex));$('#divLatitud_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud_Robo' + rowIndex));$('#divLongitud_Robo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud_Robo' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Calle_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud_Robo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud_Robo' + rowIndex));
-
+
+
 }
 //BusinessRuleId:1933, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2235, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  AsignarValor($('#' + nameOfTable + 'Expediente_Inicial' + rowIndex),EvaluaQuery(" SELECT NUAT FROM Modulo_Atencion_Inicial WHERE Clave = GLOBAL[SpartanOperationId]", rowIndex, nameOfTable));
-
+
+
 }
 //BusinessRuleId:2235, Attribute:0, Operation:Object, Event:SCREENOPENING
 
@@ -542,6 +562,22 @@ if(operation == 'New'){
 }
 function EjecutarValidacionesAntesDeGuardar(){
 	var result = true;
+//BusinessRuleId:2502, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'New'){
+ EvaluaQuery("EXEC uspGetDelitoPrincipalEditar GLOBAL[SpartanOperationId], FLDD[lblFolio], FLD[Delito_Principal]", rowIndex, nameOfTable);
+
+
+}
+//BusinessRuleId:2502, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:2502, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'Update'){
+ EvaluaQuery("EXEC uspGetDelitoPrincipalEditar GLOBAL[SpartanOperationId], FLDD[lblFolio], FLD[Delito_Principal]", rowIndex, nameOfTable);
+
+
+}
+//BusinessRuleId:2502, Attribute:2, Operation:Object, Event:BEFORESAVING
+
 //NEWBUSINESSRULE_BEFORESAVING//
     return result;
 }

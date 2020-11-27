@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+using Spartane.Core.Domain.expediente_ministerio_publico;
 using Spartane.Core.Domain.Formato_de_Denuncia;
 using Spartane.Core.Domain.Delitos_Violencia_Genero;
 using Spartane.Core.Domain.Titulo_del_Delito;
@@ -66,6 +67,7 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         public string Descripcion_corta { get; set; }
         public bool? Robo_de_Vehiculo { get; set; }
         public int? Expediente_Inicial { get; set; }
+        public int? Expediente_MP { get; set; }
         public int? Tipo_de_Denuncia { get; set; }
         public DateTime? Fecha_del_Delito { get; set; }
         public string Hora_del_Delito { get; set; }
@@ -173,6 +175,8 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
 
         [ForeignKey("Expediente_Inicial")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Expediente_Inicial_Modulo_Atencion_Inicial { get; set; }
+        [ForeignKey("Expediente_MP")]
+        public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
         [ForeignKey("Tipo_de_Denuncia")]
         public virtual Spartane.Core.Domain.Formato_de_Denuncia.Formato_de_Denuncia Tipo_de_Denuncia_Formato_de_Denuncia { get; set; }
         [ForeignKey("Delito_Violencia_Genero")]
@@ -274,6 +278,7 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
         public string Descripcion_corta { get; set; }
         public bool? Robo_de_Vehiculo { get; set; }
         public int? Expediente_Inicial { get; set; }
+        public int? Expediente_MP { get; set; }
         public int? Tipo_de_Denuncia { get; set; }
         public DateTime? Fecha_del_Delito { get; set; }
         public string Hora_del_Delito { get; set; }
@@ -312,6 +317,8 @@ namespace Spartane.Core.Domain.Detalle_de_Delito
 
 		        [ForeignKey("Expediente_Inicial")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Expediente_Inicial_Modulo_Atencion_Inicial { get; set; }
+        [ForeignKey("Expediente_MP")]
+        public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
         [ForeignKey("Tipo_de_Denuncia")]
         public virtual Spartane.Core.Domain.Formato_de_Denuncia.Formato_de_Denuncia Tipo_de_Denuncia_Formato_de_Denuncia { get; set; }
         [ForeignKey("Delito_Violencia_Genero")]

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+using Spartane.Core.Domain.expediente_ministerio_publico;
 using Spartane.Core.Domain.Detalle_de_Datos_Generales;
 using Spartane.Core.Domain.Detalle_de_Imputado;
 using Spartane.Core.Domain.Delito;
@@ -23,6 +24,7 @@ namespace Spartane.Core.Domain.Detalle_de_Relaciones
     {
         public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
+        public int? Expediente_MP { get; set; }
         public int? Involucrado { get; set; }
         public int? Probable_Responsable { get; set; }
         public int? Delito { get; set; }
@@ -31,6 +33,8 @@ namespace Spartane.Core.Domain.Detalle_de_Relaciones
 
         [ForeignKey("Modulo_Atencion_Inicial")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
+        [ForeignKey("Expediente_MP")]
+        public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
         [ForeignKey("Involucrado")]
         public virtual Spartane.Core.Domain.Detalle_de_Datos_Generales.Detalle_de_Datos_Generales Involucrado_Detalle_de_Datos_Generales { get; set; }
         [ForeignKey("Probable_Responsable")]
@@ -48,6 +52,7 @@ namespace Spartane.Core.Domain.Detalle_de_Relaciones
     {
                 public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
+        public int? Expediente_MP { get; set; }
         public int? Involucrado { get; set; }
         public int? Probable_Responsable { get; set; }
         public int? Delito { get; set; }
@@ -56,6 +61,8 @@ namespace Spartane.Core.Domain.Detalle_de_Relaciones
 
 		        [ForeignKey("Modulo_Atencion_Inicial")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
+        [ForeignKey("Expediente_MP")]
+        public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
         [ForeignKey("Involucrado")]
         public virtual Spartane.Core.Domain.Detalle_de_Datos_Generales.Detalle_de_Datos_Generales Involucrado_Detalle_de_Datos_Generales { get; set; }
         [ForeignKey("Probable_Responsable")]

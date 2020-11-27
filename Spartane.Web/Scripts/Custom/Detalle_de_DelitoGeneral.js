@@ -581,6 +581,17 @@ function GetAutoCompleteDetalle_de_Delito_Expediente_Inicial_Modulo_Atencion_Ini
     }
     return AutoCompleteExpediente_InicialData;
 }
+var AutoCompleteExpediente_MPData = [];
+function GetAutoCompleteDetalle_de_Delito_Expediente_MP_expediente_ministerio_publicoData(data) {
+	AutoCompleteExpediente_MPData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_MPData.push({
+            id: data[i].clave,
+            text: data[i].nic
+        });
+    }
+    return AutoCompleteExpediente_MPData;
+}
 //Grid GetAutocomplete
 
 //Grid GetAutocomplete
@@ -746,6 +757,9 @@ function ClearControls() {
     $('#Expediente_Inicial').empty();
     $("#Expediente_Inicial").append('<option value=""></option>');
     $('#Expediente_Inicial').val('0').trigger('change');
+    $('#Expediente_MP').empty();
+    $("#Expediente_MP").append('<option value=""></option>');
+    $('#Expediente_MP').val('0').trigger('change');
                 Agravantes_del_DelitoClearGridData();
                 Circunstancias_del_DelitoClearGridData();
     $('#Estado_del_Delito').empty();
@@ -925,6 +939,9 @@ $(document).ready(function () {
 	    $('#Expediente_Inicial').empty();
     $("#Expediente_Inicial").append('<option value=""></option>');
     $('#Expediente_Inicial').val('0').trigger('change');
+    $('#Expediente_MP').empty();
+    $("#Expediente_MP").append('<option value=""></option>');
+    $('#Expediente_MP').val('0').trigger('change');
                 Agravantes_del_DelitoClearGridData();
                 Circunstancias_del_DelitoClearGridData();
     $('#Estado_del_Delito').empty();

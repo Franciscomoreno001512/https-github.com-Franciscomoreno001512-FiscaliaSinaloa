@@ -3,6 +3,7 @@ var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
+
 //Validar RFC
 $( "#RFC" ).blur(function() { 
       var v = $('#' + nameOfTable + 'RFC' + rowIndex).val(); 
@@ -112,6 +113,89 @@ if( $('#' + nameOfTable + 'Persona_Moral' + rowIndex).prop("checked") === true )
 
 
 //BusinessRuleId:1978, Attribute:266591, Operation:Field, Event:None
+
+//BusinessRuleId:688, Attribute:263141, Operation:Field, Event:None
+$("form#CreateDetalle_de_Imputado").on('change', '#Fecha_de_Nacimiento', function () {
+	nameOfTable='';
+	rowIndex='';
+if( EvaluaQuery("DECLARE @date date, @tmpdate date, @years int"
++" "
++" SELECT @date = convert(date,(convert(varchar(10),'FLD[Fecha_de_Nacimiento]',103)),103)"
++" "
++" SELECT @tmpdate = @date"
++" "
++" SELECT @years = DATEDIFF(yy, @tmpdate, GETDATE()) - CASE WHEN (MONTH(@date) > MONTH(GETDATE())) OR (MONTH(@date) = MONTH(GETDATE()) AND DAY(@date) > DAY(GETDATE())) THEN 1 ELSE 0 END"
++" "
++" SELECT @tmpdate = DATEADD(yy, @years, @tmpdate)"
++" "
++" SELECT @years",rowIndex, nameOfTable)<TryParseInt('18', '18') && GetValueByControlType($('#' + nameOfTable + 'Fecha_de_Nacimiento' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') ) { $("a[href='#tabDatos_del_Tutor']").css('display', 'block');} else { $("a[href='#tabDatos_del_Tutor']").css('display', 'none');}
+});
+
+
+//BusinessRuleId:688, Attribute:263141, Operation:Field, Event:None
+
+//BusinessRuleId:83, Attribute:263141, Operation:Field, Event:None
+$("form#CreateDetalle_de_Imputado").on('change', '#Fecha_de_Nacimiento', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Fecha_de_Nacimiento' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') ) { AsignarValor($('#' + nameOfTable + 'Edad' + rowIndex),EvaluaQuery("DECLARE @date date, @tmpdate date, @years int"
++" "
++" SELECT @date = convert(date,(convert(varchar(10),'FLD[Fecha_de_Nacimiento]',103)),103)"
++" "
++" SELECT @tmpdate = @date"
++" "
++" SELECT @years = DATEDIFF(yy, @tmpdate, GETDATE()) - CASE WHEN (MONTH(@date) > MONTH(GETDATE())) OR (MONTH(@date) = MONTH(GETDATE()) AND DAY(@date) > DAY(GETDATE())) THEN 1 ELSE 0 END"
++" "
++" SELECT @tmpdate = DATEADD(yy, @years, @tmpdate)"
++" "
++" SELECT @years", rowIndex, nameOfTable));} else {}
+});
+
+
+//BusinessRuleId:83, Attribute:263141, Operation:Field, Event:None
+
+//BusinessRuleId:597, Attribute:263141, Operation:Field, Event:None
+$("form#CreateDetalle_de_Imputado").on('change', '#Fecha_de_Nacimiento', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Fecha_de_Nacimiento' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') && EvaluaQuery("SELECT DATEDIFF(DAY,CONVERT(DATE,CONVERT(VARCHAR(10),GETDATE(),103),103),"
++" "
++" CONVERT(DATE,CONVERT(VARCHAR(10),'FLD[Fecha_de_Nacimiento]',103),103))",rowIndex, nameOfTable)>TryParseInt('0', '0') ) { alert(DecodifyText('No se puede ingresar una fecha mayor al día de hoy', rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Fecha_de_Nacimiento' + rowIndex),''); AsignarValor($('#' + nameOfTable + 'Edad' + rowIndex),'');} else {}
+});
+
+
+//BusinessRuleId:597, Attribute:263141, Operation:Field, Event:None
+
+//BusinessRuleId:1384, Attribute:263217, Operation:Field, Event:None
+$("form#CreateDetalle_de_Imputado").on('change', '#Fecha_de_Nacimiento_del_Tutor', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Fecha_de_Nacimiento_del_Tutor' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') && EvaluaQuery("SELECT DATEDIFF(DAY,CONVERT(DATE,CONVERT(VARCHAR(10),GETDATE(),103),103),"
++" CONVERT(DATE,CONVERT(VARCHAR(10),'FLD[Fecha_de_Nacimiento_del_Tutor]',103),103))",rowIndex, nameOfTable)>TryParseInt('0', '0') ) { alert(DecodifyText('No se puede ingresar una fecha mayor al dìa de hoy', rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Fecha_de_Nacimiento_del_Tutor' + rowIndex),''); AsignarValor($('#' + nameOfTable + 'Edad_del_Tutor' + rowIndex),'');} else {}
+});
+
+
+//BusinessRuleId:1384, Attribute:263217, Operation:Field, Event:None
+
+//BusinessRuleId:1374, Attribute:263217, Operation:Field, Event:None
+$("form#CreateDetalle_de_Imputado").on('change', '#Fecha_de_Nacimiento_del_Tutor', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Fecha_de_Nacimiento_del_Tutor' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') ) { AsignarValor($('#' + nameOfTable + 'Edad_del_Tutor' + rowIndex),EvaluaQuery("DECLARE @date date, @tmpdate date, @years int"
++" "
++" SELECT @date = convert(date,(convert(varchar(10),'FLD[Fecha_de_Nacimiento_del_Tutor]',103)),103)"
++" "
++" SELECT @tmpdate = @date"
++" "
++" SELECT @years = DATEDIFF(yy, @tmpdate, GETDATE()) - CASE WHEN (MONTH(@date) > MONTH(GETDATE())) OR (MONTH(@date) = MONTH(GETDATE()) AND DAY(@date) > DAY(GETDATE())) THEN 1 ELSE 0 END"
++" "
++" SELECT @tmpdate = DATEADD(yy, @years, @tmpdate)"
++" "
++" SELECT @years", rowIndex, nameOfTable));} else {}
+});
+
+
+//BusinessRuleId:1374, Attribute:263217, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -425,51 +509,93 @@ if(operation == 'Consult'){
 //BusinessRuleId:1997, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  $('#divNombre_Completo2').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Nombre_Completo2' + rowIndex));
-
+
+
 }
 //BusinessRuleId:1997, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:1997, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
  $('#divNombre_Completo2').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Nombre_Completo2' + rowIndex));
-
+
+
 }
 //BusinessRuleId:1997, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:1997, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
  $('#divNombre_Completo2').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Nombre_Completo2' + rowIndex));
-
+
+
 }
 //BusinessRuleId:1997, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2233, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  AsignarValor($('#' + nameOfTable + 'Modulo_Atencion_Inicial' + rowIndex),EvaluaQuery("SELECT NUAT FROM Modulo_Atencion_Inicial WHERE Clave = GLOBAL[SpartanOperationId] ", rowIndex, nameOfTable));
-
+
+
 }
 //BusinessRuleId:2233, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2454, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  $('#divEscolaridad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Escolaridad' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2454, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2454, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
  $('#divEscolaridad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Escolaridad' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2454, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2454, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
  $('#divEscolaridad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Escolaridad' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2454, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+//BusinessRuleId:2493, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ DisabledControl($("#" + nameOfTable + "Edad" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Edad' + rowIndex));} DisabledControl($("#" + nameOfTable + "Edad_del_Tutor" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Edad_del_Tutor' + rowIndex));}
+
+}
+//BusinessRuleId:2493, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2493, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ DisabledControl($("#" + nameOfTable + "Edad" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Edad' + rowIndex));} DisabledControl($("#" + nameOfTable + "Edad_del_Tutor" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Edad_del_Tutor' + rowIndex));}
+
+}
+//BusinessRuleId:2493, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:1358, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("DECLARE @date date, @tmpdate date, @years int"
++" "
++" SELECT @date = convert(date,(convert(varchar(10),'FLD[Fecha_de_Nacimiento]',103)),103)"
++" "
++" SELECT @tmpdate = @date"
++" "
++" SELECT @years = DATEDIFF(yy, @tmpdate, GETDATE()) - CASE WHEN (MONTH(@date) > MONTH(GETDATE())) OR (MONTH(@date) = MONTH(GETDATE()) AND DAY(@date) > DAY(GETDATE())) THEN 1 ELSE 0 END"
++" "
++" SELECT @tmpdate = DATEADD(yy, @years, @tmpdate)"
++" "
++" SELECT @years",rowIndex, nameOfTable)<TryParseInt('18', '18') && GetValueByControlType($('#' + nameOfTable + 'Fecha_de_Nacimiento' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') || GetValueByControlType($('#' + nameOfTable + 'Inimputable' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $("a[href='#tabDatos_del_Tutor']").css('display', 'block');} else { $("a[href='#tabDatos_del_Tutor']").css('display', 'none');}
+
+}
+//BusinessRuleId:1358, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }
@@ -490,14 +616,16 @@ function EjecutarValidacionesAntesDeGuardar(){
 //BusinessRuleId:1998, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'New'){
  AsignarValor($('#' + nameOfTable + 'Nombre_Completo2' + rowIndex),EvaluaQuery("SELECT 'FLD[Nombres2]' + ' ' + 'FLD[Apellido_Paterno2]' + ' ' + 'FLD[Apellido_Materno2]'", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Nombre_Completo_Detenido' + rowIndex),EvaluaQuery(" SELECT 'FLD[Nombre]' + ' ' + 'FLD[Apellido_Paterno]' + ' ' + 'FLD[Apellido_Materno]'", rowIndex, nameOfTable));
-
+
+
 }
 //BusinessRuleId:1998, Attribute:2, Operation:Object, Event:BEFORESAVING
 
 //BusinessRuleId:1998, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'Update'){
  AsignarValor($('#' + nameOfTable + 'Nombre_Completo2' + rowIndex),EvaluaQuery("SELECT 'FLD[Nombres2]' + ' ' + 'FLD[Apellido_Paterno2]' + ' ' + 'FLD[Apellido_Materno2]'", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Nombre_Completo_Detenido' + rowIndex),EvaluaQuery(" SELECT 'FLD[Nombre]' + ' ' + 'FLD[Apellido_Paterno]' + ' ' + 'FLD[Apellido_Materno]'", rowIndex, nameOfTable));
-
+
+
 }
 //BusinessRuleId:1998, Attribute:2, Operation:Object, Event:BEFORESAVING
 

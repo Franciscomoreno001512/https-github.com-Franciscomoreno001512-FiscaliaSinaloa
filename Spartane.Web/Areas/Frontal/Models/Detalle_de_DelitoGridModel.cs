@@ -13,6 +13,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool? Robo_de_Vehiculo { get; set; }
         public int? Expediente_Inicial { get; set; }
         public string Expediente_InicialNUAT { get; set; }
+        public int? Expediente_MP { get; set; }
+        public string Expediente_MPnic { get; set; }
         public int? Tipo_de_Denuncia { get; set; }
         public string Tipo_de_DenunciaDescripcion { get; set; }
         public string Fecha_del_Delito { get; set; }

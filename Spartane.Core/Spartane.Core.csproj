@@ -1218,6 +1218,16 @@
 <Compile Include="Domain\Detalle_Solicitud_Historial_de_Asignaciones\Detalle_Solicitud_Historial_de_Asignaciones.cs" />
 <Compile Include="Domain\Forma_de_Cumplimiento\Forma_de_Cumplimiento.cs" />
 <Compile Include="Domain\Forma_de_Cumplimiento\Forma_de_CumplimientoPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Crimen\Tipo_de_Crimen.cs" />
+<Compile Include="Domain\Tipo_de_Crimen\Tipo_de_CrimenPagingModel.cs" />
+<Compile Include="Domain\detalle_de_observaciones_mpi\detalle_de_observaciones_mpiPagingModel.cs" />
+<Compile Include="Domain\detalle_de_observaciones_mpi\detalle_de_observaciones_mpi.cs" />
+<Compile Include="Domain\estatus_mpi\estatus_mpi.cs" />
+<Compile Include="Domain\estatus_mpi\estatus_mpiPagingModel.cs" />
+<Compile Include="Domain\expediente_ministerio_publico\expediente_ministerio_publico.cs" />
+<Compile Include="Domain\expediente_ministerio_publico\expediente_ministerio_publicoPagingModel.cs" />
+<Compile Include="Domain\tipo_de_cierre\tipo_de_cierre.cs" />
+<Compile Include="Domain\tipo_de_cierre\tipo_de_cierrePagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1238,6 +1248,16 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
 
 
 

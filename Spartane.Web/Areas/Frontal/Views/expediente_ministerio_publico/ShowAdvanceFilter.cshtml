@@ -1,0 +1,995 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.expediente_ministerio_publicoAdvanceSearchModel
+@{
+ List<SelectListItem> varSpartan_User_usuario_que_registra = null;
+    if (ViewBag.Spartan_Users_usuario_que_registra != null)
+    { varSpartan_User_usuario_que_registra = (List<SelectListItem>)ViewBag.Spartan_Users_usuario_que_registra; }
+ List<SelectListItem> varUnidad_unidad = null;
+    if (ViewBag.Unidads_unidad != null)
+    { varUnidad_unidad = (List<SelectListItem>)ViewBag.Unidads_unidad; }
+    List<SelectListItem> varA_Tiempo_detenido = null;
+    if (ViewBag.A_Tiempos_detenido != null)
+    { varA_Tiempo_detenido = (List<SelectListItem>)ViewBag.A_Tiempos_detenido; }
+    List<SelectListItem> varestatus_mpi_estatus = null;
+    if (ViewBag.estatus_mpis_estatus != null)
+    { varestatus_mpi_estatus = (List<SelectListItem>)ViewBag.estatus_mpis_estatus; }
+    List<SelectListItem> vardetalle_de_observaciones_mpi_observaciones = null;
+    if (ViewBag.detalle_de_observaciones_mpis_observaciones != null)
+    { vardetalle_de_observaciones_mpi_observaciones = (List<SelectListItem>)ViewBag.detalle_de_observaciones_mpis_observaciones; }
+ List<SelectListItem> varSpartan_User_usuario_que_canaliza = null;
+    if (ViewBag.Spartan_Users_usuario_que_canaliza != null)
+    { varSpartan_User_usuario_que_canaliza = (List<SelectListItem>)ViewBag.Spartan_Users_usuario_que_canaliza; }
+    List<SelectListItem> varEstatus_Orientador_canalizar_a = null;
+    if (ViewBag.Estatus_Orientadors_canalizar_a != null)
+    { varEstatus_Orientador_canalizar_a = (List<SelectListItem>)ViewBag.Estatus_Orientadors_canalizar_a; }
+    List<SelectListItem> varTipo_de_Acuerdo_tipo_de_acuerdo = null;
+    if (ViewBag.Tipo_de_Acuerdos_tipo_de_acuerdo != null)
+    { varTipo_de_Acuerdo_tipo_de_acuerdo = (List<SelectListItem>)ViewBag.Tipo_de_Acuerdos_tipo_de_acuerdo; }
+    List<SelectListItem> varPeriodicidad_periodicidad = null;
+    if (ViewBag.Periodicidads_periodicidad != null)
+    { varPeriodicidad_periodicidad = (List<SelectListItem>)ViewBag.Periodicidads_periodicidad; }
+    List<SelectListItem> vartipo_de_cierre_tipo_de_cierre = null;
+    if (ViewBag.tipo_de_cierres_tipo_de_cierre != null)
+    { vartipo_de_cierre_tipo_de_cierre = (List<SelectListItem>)ViewBag.tipo_de_cierres_tipo_de_cierre; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "expediente_ministerio_publico", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.expediente_ministerio_publicoResources.clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromclave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromclave" })
+                    @Html.ValidationMessageFor(m => m.Fromclave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Toclave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToclave", @data_min = "txtAdvanceFromclave" })
+                    @Html.ValidationMessageFor(m => m.Toclave)
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.expediente_ministerio_publicoResources.fecha_de_registro</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromfecha_de_registro" name="Fromfecha_de_registro" type="text" value="@Model.Fromfecha_de_registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceTofecha_de_registro" name="Tofecha_de_registro" type="text" value="@Model.Tofecha_de_registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.expediente_ministerio_publicoResources.hora_de_registro</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromhora_de_registro" name="Fromhora_de_registro" type="text" value="@Model.Fromhora_de_registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceTohora_de_registro" name="Tohora_de_registro" type="text" value="@Model.Tohora_de_registro" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+ List<SelectListItem> varSpartan_User_usuario_que_registra = null;
+    if (ViewBag.Spartan_Users_usuario_que_registra != null)
+    { varSpartan_User_usuario_que_registra = (List<SelectListItem>)ViewBag.Spartan_Users_usuario_que_registra; }
+ List<SelectListItem> varUnidad_unidad = null;
+    if (ViewBag.Unidads_unidad != null)
+    { varUnidad_unidad = (List<SelectListItem>)ViewBag.Unidads_unidad; }
+                <div class="MarginBottom">
+                    <h3>@Resources.expediente_ministerio_publicoResources.nuat</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.nuatFilter, filters, new { @class = "form-control", @id = "ddlnuatFilter" })
+                    @Html.TextBoxFor(m => m.nuat, new { @class = "form-control", @type = "text", @id = "txtnuat" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.expediente_ministerio_publicoResources.nic</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.nicFilter, filters, new { @class = "form-control", @id = "ddlnicFilter" })
+                    @Html.TextBoxFor(m => m.nic, new { @class = "form-control", @type = "text", @id = "txtnic" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.expediente_ministerio_publicoResources.detenido</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.detenidoFilter, filters, new { @class = "form-control", @id = "ddldetenidoFilter" })
+                    @Html.TextBoxFor(m => m.Advancedetenido, new { @class = "form-control", @type = "text", @id = "txtAdvancedetenido" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varA_Tiempo_detenido!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvancedetenidoMultiple, varA_Tiempo_detenido,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancedetenido"
+                        });
+                    }
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.expediente_ministerio_publicoResources.hora_del_detenido</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromhora_del_detenido" name="Fromhora_del_detenido" type="text" value="@Model.Fromhora_del_detenido" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceTohora_del_detenido" name="Tohora_del_detenido" type="text" value="@Model.Tohora_del_detenido" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.expediente_ministerio_publicoResources.hora_puesto_a_disposicion</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromhora_puesto_a_disposicion" name="Fromhora_puesto_a_disposicion" type="text" value="@Model.Fromhora_puesto_a_disposicion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceTohora_puesto_a_disposicion" name="Tohora_puesto_a_disposicion" type="text" value="@Model.Tohora_puesto_a_disposicion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.expediente_ministerio_publicoResources.estatus</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.estatusFilter, filters, new { @class = "form-control", @id = "ddlestatusFilter" })
+                    @Html.TextBoxFor(m => m.Advanceestatus, new { @class = "form-control", @type = "text", @id = "txtAdvanceestatus" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varestatus_mpi_estatus!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceestatusMultiple, varestatus_mpi_estatus,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceestatus"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.expediente_ministerio_publicoResources.observaciones</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.observacionesFilter, filters, new { @class = "form-control", @id = "ddlobservacionesFilter" })
+                    @Html.TextBoxFor(m => m.Advanceobservaciones, new { @class = "form-control", @type = "text", @id = "txtAdvanceobservaciones" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (vardetalle_de_observaciones_mpi_observaciones!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceobservacionesMultiple, vardetalle_de_observaciones_mpi_observaciones,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceobservaciones"
+                        });
+                    }
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.expediente_ministerio_publicoResources.Fecha_de_Canalizacion</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Canalizacion" name="FromFecha_de_Canalizacion" type="text" value="@Model.FromFecha_de_Canalizacion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Canalizacion" name="ToFecha_de_Canalizacion" type="text" value="@Model.ToFecha_de_Canalizacion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.expediente_ministerio_publicoResources.Hora_de_Canalizacion</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_Canalizacion" name="FromHora_de_Canalizacion" type="text" value="@Model.FromHora_de_Canalizacion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_Canalizacion" name="ToHora_de_Canalizacion" type="text" value="@Model.ToHora_de_Canalizacion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+ List<SelectListItem> varSpartan_User_usuario_que_canaliza = null;
+    if (ViewBag.Spartan_Users_usuario_que_canaliza != null)
+    { varSpartan_User_usuario_que_canaliza = (List<SelectListItem>)ViewBag.Spartan_Users_usuario_que_canaliza; }
+                <div class="MarginBottom">
+                    <h3>@Resources.expediente_ministerio_publicoResources.canalizar_a</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.canalizar_aFilter, filters, new { @class = "form-control", @id = "ddlcanalizar_aFilter" })
+                    @Html.TextBoxFor(m => m.Advancecanalizar_a, new { @class = "form-control", @type = "text", @id = "txtAdvancecanalizar_a" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstatus_Orientador_canalizar_a!=null)
+                    {
+                        @Html.ListBoxFor(m => m.Advancecanalizar_aMultiple, varEstatus_Orientador_canalizar_a,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancecanalizar_a"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.expediente_ministerio_publicoResources.tipo_de_acuerdo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.tipo_de_acuerdoFilter, filters, new { @class = "form-control", @id = "ddltipo_de_acuerdoFilter" })
+                    @Html.TextBoxFor(m => m.Advancetipo_de_acuerdo, new { @class = "form-control", @type = "text", @id = "txtAdvancetipo_de_acuerdo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Acuerdo_tipo_de_acuerdo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.Advancetipo_de_acuerdoMultiple, varTipo_de_Acuerdo_tipo_de_acuerdo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancetipo_de_acuerdo"
+                        });
+                    }
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.expediente_ministerio_publicoResources.fecha_de_inicio_de_acuerdo</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromfecha_de_inicio_de_acuerdo" name="Fromfecha_de_inicio_de_acuerdo" type="text" value="@Model.Fromfecha_de_inicio_de_acuerdo" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceTofecha_de_inicio_de_acuerdo" name="Tofecha_de_inicio_de_acuerdo" type="text" value="@Model.Tofecha_de_inicio_de_acuerdo" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.expediente_ministerio_publicoResources.fecha_de_cumplimiento</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromfecha_de_cumplimiento" name="Fromfecha_de_cumplimiento" type="text" value="@Model.Fromfecha_de_cumplimiento" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceTofecha_de_cumplimiento" name="Tofecha_de_cumplimiento" type="text" value="@Model.Tofecha_de_cumplimiento" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.expediente_ministerio_publicoResources.hora_de_cumplimiento</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromhora_de_cumplimiento" name="Fromhora_de_cumplimiento" type="text" value="@Model.Fromhora_de_cumplimiento" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceTohora_de_cumplimiento" name="Tohora_de_cumplimiento" type="text" value="@Model.Tohora_de_cumplimiento" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.expediente_ministerio_publicoResources.domicilio_para_el_cumplimiento</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.domicilio_para_el_cumplimientoFilter, filters, new { @class = "form-control", @id = "ddldomicilio_para_el_cumplimientoFilter" })
+                    @Html.TextBoxFor(m => m.domicilio_para_el_cumplimiento, new { @class = "form-control", @type = "text", @id = "txtdomicilio_para_el_cumplimiento" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.expediente_ministerio_publicoResources.parcialidades</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromparcialidades, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromparcialidades" })
+                    @Html.ValidationMessageFor(m => m.Fromparcialidades)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Toparcialidades, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToparcialidades", @data_min = "txtAdvanceFromparcialidades" })
+                    @Html.ValidationMessageFor(m => m.Toparcialidades)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.expediente_ministerio_publicoResources.periodicidad</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.periodicidadFilter, filters, new { @class = "form-control", @id = "ddlperiodicidadFilter" })
+                    @Html.TextBoxFor(m => m.Advanceperiodicidad, new { @class = "form-control", @type = "text", @id = "txtAdvanceperiodicidad" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varPeriodicidad_periodicidad!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceperiodicidadMultiple, varPeriodicidad_periodicidad,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceperiodicidad"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.expediente_ministerio_publicoResources.motivo_de_rechazo_de_acuerdo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.motivo_de_rechazo_de_acuerdoFilter, filters, new { @class = "form-control", @id = "ddlmotivo_de_rechazo_de_acuerdoFilter" })
+                    @Html.TextBoxFor(m => m.motivo_de_rechazo_de_acuerdo, new { @class = "form-control", @type = "text", @id = "txtmotivo_de_rechazo_de_acuerdo" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.expediente_ministerio_publicoResources.fecha_de_cierre</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromfecha_de_cierre" name="Fromfecha_de_cierre" type="text" value="@Model.Fromfecha_de_cierre" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceTofecha_de_cierre" name="Tofecha_de_cierre" type="text" value="@Model.Tofecha_de_cierre" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.expediente_ministerio_publicoResources.hora_de_cierre</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromhora_de_cierre" name="Fromhora_de_cierre" type="text" value="@Model.Fromhora_de_cierre" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceTohora_de_cierre" name="Tohora_de_cierre" type="text" value="@Model.Tohora_de_cierre" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.expediente_ministerio_publicoResources.tipo_de_cierre</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.tipo_de_cierreFilter, filters, new { @class = "form-control", @id = "ddltipo_de_cierreFilter" })
+                    @Html.TextBoxFor(m => m.Advancetipo_de_cierre, new { @class = "form-control", @type = "text", @id = "txtAdvancetipo_de_cierre" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (vartipo_de_cierre_tipo_de_cierre!=null)
+                    {
+                        @Html.ListBoxFor(m => m.Advancetipo_de_cierreMultiple, vartipo_de_cierre_tipo_de_cierre,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancetipo_de_cierre"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.expediente_ministerio_publicoResources.comentarios_de_cierre</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.comentarios_de_cierreFilter, filters, new { @class = "form-control", @id = "ddlcomentarios_de_cierreFilter" })
+                    @Html.TextBoxFor(m => m.comentarios_de_cierre, new { @class = "form-control", @type = "text", @id = "txtcomentarios_de_cierre" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/expediente_ministerio_publico/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromclave").val() != "" || $("#txtAdvanceToclave").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicoclaveFrom = $("#txtAdvanceFromclave").val();
+            advanceSearch.expediente_ministerio_publicoclaveTo = $("#txtAdvanceToclave").val();
+        }
+        if ($("#txtAdvanceFromfecha_de_registro").val() != "" || $("#txtAdvanceTofecha_de_registro").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicofecha_de_registroFrom = $("#txtAdvanceFromfecha_de_registro").val();
+            advanceSearch.expediente_ministerio_publicofecha_de_registroTo = $("#txtAdvanceTofecha_de_registro").val();
+        }
+        if ($("#txtAdvancehora_de_registro").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicohora_de_registro = $("#txtAdvancehora_de_registro").val();
+            advanceSearch.expediente_ministerio_publicohora_de_registroSearchType = $("#ddlAdvancehora_de_registroFilter").val();
+        }
+        advanceSearch.usuario_que_registraSearchType = 0;
+        if ($('#ddlAdvanceusuario_que_registra').val().length > 0 || $("#txtAdvanceusuario_que_registra").val() == "") {
+
+
+            if (isexpediente_ministerio_publicoTextSearch) {
+                advanceSearch.usuario_que_registraName = $("#txtAdvanceusuario_que_registra").val();
+                advanceSearch.usuario_que_registraNameSearchType = $("#ddlAdvanceusuario_que_registra").val();
+                advanceSearch.usuario_que_registraSearchType = 1;
+            }
+            else {
+
+                advanceSearch.usuario_que_registraToSearch = $("#ddlAdvanceusuario_que_registra").val();
+                advanceSearch.usuario_que_registraSearchType = 2;
+            }
+        }
+        advanceSearch.unidadSearchType = 0;
+        if ($('#ddlAdvanceunidad').val().length > 0 || $("#txtAdvanceunidad").val() == "") {
+
+
+            if (isexpediente_ministerio_publicoTextSearch) {
+                advanceSearch.unidadName = $("#txtAdvanceunidad").val();
+                advanceSearch.unidadNameSearchType = $("#ddlAdvanceunidad").val();
+                advanceSearch.unidadSearchType = 1;
+            }
+            else {
+
+                advanceSearch.unidadToSearch = $("#ddlAdvanceunidad").val();
+                advanceSearch.unidadSearchType = 2;
+            }
+        }
+        if ($("#txtAdvancenuat").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publiconuat = $("#txtAdvancenuat").val();
+            advanceSearch.expediente_ministerio_publiconuatSearchType = $("#ddlAdvancenuatFilter").val();
+        }
+        if ($("#txtAdvancenic").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publiconic = $("#txtAdvancenic").val();
+            advanceSearch.expediente_ministerio_publiconicSearchType = $("#ddlAdvancenicFilter").val();
+        }
+        advanceSearch.detenidoSearchType = 0;
+        if ($('#ddlAdvancedetenido').val().length > 0 || $("#txtAdvancedetenido").val() == "") {
+
+
+            if (isexpediente_ministerio_publicoTextSearch) {
+                advanceSearch.detenidoName = $("#txtAdvancedetenido").val();
+                advanceSearch.detenidoNameSearchType = $("#ddlAdvancedetenido").val();
+                advanceSearch.detenidoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.detenidoToSearch = $("#ddlAdvancedetenido").val();
+                advanceSearch.detenidoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvancehora_del_detenido").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicohora_del_detenido = $("#txtAdvancehora_del_detenido").val();
+            advanceSearch.expediente_ministerio_publicohora_del_detenidoSearchType = $("#ddlAdvancehora_del_detenidoFilter").val();
+        }
+        if ($("#txtAdvancehora_puesto_a_disposicion").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicohora_puesto_a_disposicion = $("#txtAdvancehora_puesto_a_disposicion").val();
+            advanceSearch.expediente_ministerio_publicohora_puesto_a_disposicionSearchType = $("#ddlAdvancehora_puesto_a_disposicionFilter").val();
+        }
+        advanceSearch.estatusSearchType = 0;
+        if ($('#ddlAdvanceestatus').val().length > 0 || $("#txtAdvanceestatus").val() == "") {
+
+
+            if (isexpediente_ministerio_publicoTextSearch) {
+                advanceSearch.estatusName = $("#txtAdvanceestatus").val();
+                advanceSearch.estatusNameSearchType = $("#ddlAdvanceestatus").val();
+                advanceSearch.estatusSearchType = 1;
+            }
+            else {
+
+                advanceSearch.estatusToSearch = $("#ddlAdvanceestatus").val();
+                advanceSearch.estatusSearchType = 2;
+            }
+        }
+        advanceSearch.observacionesSearchType = 0;
+        if ($('#ddlAdvanceobservaciones').val().length > 0 || $("#txtAdvanceobservaciones").val() == "") {
+
+
+            if (isexpediente_ministerio_publicoTextSearch) {
+                advanceSearch.observacionesName = $("#txtAdvanceobservaciones").val();
+                advanceSearch.observacionesNameSearchType = $("#ddlAdvanceobservaciones").val();
+                advanceSearch.observacionesSearchType = 1;
+            }
+            else {
+
+                advanceSearch.observacionesToSearch = $("#ddlAdvanceobservaciones").val();
+                advanceSearch.observacionesSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromFecha_de_Canalizacion").val() != "" || $("#txtAdvanceToFecha_de_Canalizacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicoFecha_de_CanalizacionFrom = $("#txtAdvanceFromFecha_de_Canalizacion").val();
+            advanceSearch.expediente_ministerio_publicoFecha_de_CanalizacionTo = $("#txtAdvanceToFecha_de_Canalizacion").val();
+        }
+        if ($("#txtAdvanceHora_de_Canalizacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicoHora_de_Canalizacion = $("#txtAdvanceHora_de_Canalizacion").val();
+            advanceSearch.expediente_ministerio_publicoHora_de_CanalizacionSearchType = $("#ddlAdvanceHora_de_CanalizacionFilter").val();
+        }
+        advanceSearch.usuario_que_canalizaSearchType = 0;
+        if ($('#ddlAdvanceusuario_que_canaliza').val().length > 0 || $("#txtAdvanceusuario_que_canaliza").val() == "") {
+
+
+            if (isexpediente_ministerio_publicoTextSearch) {
+                advanceSearch.usuario_que_canalizaName = $("#txtAdvanceusuario_que_canaliza").val();
+                advanceSearch.usuario_que_canalizaNameSearchType = $("#ddlAdvanceusuario_que_canaliza").val();
+                advanceSearch.usuario_que_canalizaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.usuario_que_canalizaToSearch = $("#ddlAdvanceusuario_que_canaliza").val();
+                advanceSearch.usuario_que_canalizaSearchType = 2;
+            }
+        }
+        advanceSearch.canalizar_aSearchType = 0;
+        if ($('#ddlAdvancecanalizar_a').val().length > 0 || $("#txtAdvancecanalizar_a").val() == "") {
+
+
+            if (isexpediente_ministerio_publicoTextSearch) {
+                advanceSearch.canalizar_aName = $("#txtAdvancecanalizar_a").val();
+                advanceSearch.canalizar_aNameSearchType = $("#ddlAdvancecanalizar_a").val();
+                advanceSearch.canalizar_aSearchType = 1;
+            }
+            else {
+
+                advanceSearch.canalizar_aToSearch = $("#ddlAdvancecanalizar_a").val();
+                advanceSearch.canalizar_aSearchType = 2;
+            }
+        }
+        advanceSearch.tipo_de_acuerdoSearchType = 0;
+        if ($('#ddlAdvancetipo_de_acuerdo').val().length > 0 || $("#txtAdvancetipo_de_acuerdo").val() == "") {
+
+
+            if (isexpediente_ministerio_publicoTextSearch) {
+                advanceSearch.tipo_de_acuerdoName = $("#txtAdvancetipo_de_acuerdo").val();
+                advanceSearch.tipo_de_acuerdoNameSearchType = $("#ddlAdvancetipo_de_acuerdo").val();
+                advanceSearch.tipo_de_acuerdoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.tipo_de_acuerdoToSearch = $("#ddlAdvancetipo_de_acuerdo").val();
+                advanceSearch.tipo_de_acuerdoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromfecha_de_inicio_de_acuerdo").val() != "" || $("#txtAdvanceTofecha_de_inicio_de_acuerdo").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicofecha_de_inicio_de_acuerdoFrom = $("#txtAdvanceFromfecha_de_inicio_de_acuerdo").val();
+            advanceSearch.expediente_ministerio_publicofecha_de_inicio_de_acuerdoTo = $("#txtAdvanceTofecha_de_inicio_de_acuerdo").val();
+        }
+        if ($("#txtAdvanceFromfecha_de_cumplimiento").val() != "" || $("#txtAdvanceTofecha_de_cumplimiento").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicofecha_de_cumplimientoFrom = $("#txtAdvanceFromfecha_de_cumplimiento").val();
+            advanceSearch.expediente_ministerio_publicofecha_de_cumplimientoTo = $("#txtAdvanceTofecha_de_cumplimiento").val();
+        }
+        if ($("#txtAdvancehora_de_cumplimiento").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicohora_de_cumplimiento = $("#txtAdvancehora_de_cumplimiento").val();
+            advanceSearch.expediente_ministerio_publicohora_de_cumplimientoSearchType = $("#ddlAdvancehora_de_cumplimientoFilter").val();
+        }
+        if ($("#txtAdvancedomicilio_para_el_cumplimiento").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicodomicilio_para_el_cumplimiento = $("#txtAdvancedomicilio_para_el_cumplimiento").val();
+            advanceSearch.expediente_ministerio_publicodomicilio_para_el_cumplimientoSearchType = $("#ddlAdvancedomicilio_para_el_cumplimientoFilter").val();
+        }
+        if ($("#txtAdvanceFrommonto_de_reparacion_de_danos").val() != "" || $("#txtAdvanceTomonto_de_reparacion_de_danos").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicomonto_de_reparacion_de_danosFrom = $("#txtAdvanceFrommonto_de_reparacion_de_danos").val();
+            advanceSearch.expediente_ministerio_publicomonto_de_reparacion_de_danosTo = $("#txtAdvanceTomonto_de_reparacion_de_danos").val();
+        }
+        if ($("#txtAdvanceFromparcialidades").val() != "" || $("#txtAdvanceToparcialidades").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicoparcialidadesFrom = $("#txtAdvanceFromparcialidades").val();
+            advanceSearch.expediente_ministerio_publicoparcialidadesTo = $("#txtAdvanceToparcialidades").val();
+        }
+        advanceSearch.periodicidadSearchType = 0;
+        if ($('#ddlAdvanceperiodicidad').val().length > 0 || $("#txtAdvanceperiodicidad").val() == "") {
+
+
+            if (isexpediente_ministerio_publicoTextSearch) {
+                advanceSearch.periodicidadName = $("#txtAdvanceperiodicidad").val();
+                advanceSearch.periodicidadNameSearchType = $("#ddlAdvanceperiodicidad").val();
+                advanceSearch.periodicidadSearchType = 1;
+            }
+            else {
+
+                advanceSearch.periodicidadToSearch = $("#ddlAdvanceperiodicidad").val();
+                advanceSearch.periodicidadSearchType = 2;
+            }
+        }
+        if ($("#ddlAdvanceacepta_acuerdo").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicoacepta_acuerdo = $("#ddlAdvanceacepta_acuerdo").val();
+        }
+        if ($("#txtAdvancemotivo_de_rechazo_de_acuerdo").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicomotivo_de_rechazo_de_acuerdo = $("#txtAdvancemotivo_de_rechazo_de_acuerdo").val();
+            advanceSearch.expediente_ministerio_publicomotivo_de_rechazo_de_acuerdoSearchType = $("#ddlAdvancemotivo_de_rechazo_de_acuerdoFilter").val();
+        }
+        if ($("#txtAdvanceFromfecha_de_cierre").val() != "" || $("#txtAdvanceTofecha_de_cierre").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicofecha_de_cierreFrom = $("#txtAdvanceFromfecha_de_cierre").val();
+            advanceSearch.expediente_ministerio_publicofecha_de_cierreTo = $("#txtAdvanceTofecha_de_cierre").val();
+        }
+        if ($("#txtAdvancehora_de_cierre").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicohora_de_cierre = $("#txtAdvancehora_de_cierre").val();
+            advanceSearch.expediente_ministerio_publicohora_de_cierreSearchType = $("#ddlAdvancehora_de_cierreFilter").val();
+        }
+        advanceSearch.tipo_de_cierreSearchType = 0;
+        if ($('#ddlAdvancetipo_de_cierre').val().length > 0 || $("#txtAdvancetipo_de_cierre").val() == "") {
+
+
+            if (isexpediente_ministerio_publicoTextSearch) {
+                advanceSearch.tipo_de_cierreName = $("#txtAdvancetipo_de_cierre").val();
+                advanceSearch.tipo_de_cierreNameSearchType = $("#ddlAdvancetipo_de_cierre").val();
+                advanceSearch.tipo_de_cierreSearchType = 1;
+            }
+            else {
+
+                advanceSearch.tipo_de_cierreToSearch = $("#ddlAdvancetipo_de_cierre").val();
+                advanceSearch.tipo_de_cierreSearchType = 2;
+            }
+        }
+        if ($("#txtAdvancecomentarios_de_cierre").val() != "") {
+            hasParameter = true;
+            advanceSearch.expediente_ministerio_publicocomentarios_de_cierre = $("#txtAdvancecomentarios_de_cierre").val();
+            advanceSearch.expediente_ministerio_publicocomentarios_de_cierreSearchType = $("#ddlAdvancecomentarios_de_cierreFilter").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblexpediente_ministerio_publico').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isexpediente_ministerio_publicoTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceusuario_que_registra").keypress(function () {
+            isexpediente_ministerio_publicoTextSearch = true;
+            $("#ddlAdvanceusuario_que_registra").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceusuario_que_registra").change(function () {
+            isexpediente_ministerio_publicoTextSearch = false;
+            $("#txtAdvanceusuario_que_registra").val('');
+        });
+        $("#txtAdvanceunidad").keypress(function () {
+            isexpediente_ministerio_publicoTextSearch = true;
+            $("#ddlAdvanceunidad").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceunidad").change(function () {
+            isexpediente_ministerio_publicoTextSearch = false;
+            $("#txtAdvanceunidad").val('');
+        });
+        $("#txtAdvancedetenido").keypress(function () {
+            isexpediente_ministerio_publicoTextSearch = true;
+            $("#ddlAdvancedetenido").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancedetenido").change(function () {
+            isexpediente_ministerio_publicoTextSearch = false;
+            $("#txtAdvancedetenido").val('');
+        });
+        $("#txtAdvanceestatus").keypress(function () {
+            isexpediente_ministerio_publicoTextSearch = true;
+            $("#ddlAdvanceestatus").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceestatus").change(function () {
+            isexpediente_ministerio_publicoTextSearch = false;
+            $("#txtAdvanceestatus").val('');
+        });
+        $("#txtAdvanceobservaciones").keypress(function () {
+            isexpediente_ministerio_publicoTextSearch = true;
+            $("#ddlAdvanceobservaciones").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceobservaciones").change(function () {
+            isexpediente_ministerio_publicoTextSearch = false;
+            $("#txtAdvanceobservaciones").val('');
+        });
+        $("#txtAdvanceusuario_que_canaliza").keypress(function () {
+            isexpediente_ministerio_publicoTextSearch = true;
+            $("#ddlAdvanceusuario_que_canaliza").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceusuario_que_canaliza").change(function () {
+            isexpediente_ministerio_publicoTextSearch = false;
+            $("#txtAdvanceusuario_que_canaliza").val('');
+        });
+        $("#txtAdvancecanalizar_a").keypress(function () {
+            isexpediente_ministerio_publicoTextSearch = true;
+            $("#ddlAdvancecanalizar_a").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancecanalizar_a").change(function () {
+            isexpediente_ministerio_publicoTextSearch = false;
+            $("#txtAdvancecanalizar_a").val('');
+        });
+        $("#txtAdvancetipo_de_acuerdo").keypress(function () {
+            isexpediente_ministerio_publicoTextSearch = true;
+            $("#ddlAdvancetipo_de_acuerdo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancetipo_de_acuerdo").change(function () {
+            isexpediente_ministerio_publicoTextSearch = false;
+            $("#txtAdvancetipo_de_acuerdo").val('');
+        });
+        $("#txtAdvanceperiodicidad").keypress(function () {
+            isexpediente_ministerio_publicoTextSearch = true;
+            $("#ddlAdvanceperiodicidad").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceperiodicidad").change(function () {
+            isexpediente_ministerio_publicoTextSearch = false;
+            $("#txtAdvanceperiodicidad").val('');
+        });
+        $("#txtAdvancetipo_de_cierre").keypress(function () {
+            isexpediente_ministerio_publicoTextSearch = true;
+            $("#ddlAdvancetipo_de_cierre").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancetipo_de_cierre").change(function () {
+            isexpediente_ministerio_publicoTextSearch = false;
+            $("#txtAdvancetipo_de_cierre").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

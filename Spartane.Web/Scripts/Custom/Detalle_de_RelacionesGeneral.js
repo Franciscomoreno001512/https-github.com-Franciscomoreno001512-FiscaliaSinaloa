@@ -17,6 +17,17 @@ function GetAutoCompleteDetalle_de_Relaciones_Modulo_Atencion_Inicial_Modulo_Ate
     }
     return AutoCompleteModulo_Atencion_InicialData;
 }
+var AutoCompleteExpediente_MPData = [];
+function GetAutoCompleteDetalle_de_Relaciones_Expediente_MP_expediente_ministerio_publicoData(data) {
+	AutoCompleteExpediente_MPData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_MPData.push({
+            id: data[i].clave,
+            text: data[i].nic
+        });
+    }
+    return AutoCompleteExpediente_MPData;
+}
 var AutoCompleteInvolucradoData = [];
 function GetAutoCompleteDetalle_de_Relaciones_Involucrado_Detalle_de_Datos_GeneralesData(data) {
 	AutoCompleteInvolucradoData = [];
@@ -79,6 +90,9 @@ function ClearControls() {
     $('#Modulo_Atencion_Inicial').empty();
     $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
     $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+    $('#Expediente_MP').empty();
+    $("#Expediente_MP").append('<option value=""></option>');
+    $('#Expediente_MP').val('0').trigger('change');
     $('#Involucrado').empty();
     $("#Involucrado").append('<option value=""></option>');
     $('#Involucrado').val('0').trigger('change');
@@ -217,6 +231,9 @@ $(document).ready(function () {
 	    $('#Modulo_Atencion_Inicial').empty();
     $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
     $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+    $('#Expediente_MP').empty();
+    $("#Expediente_MP").append('<option value=""></option>');
+    $('#Expediente_MP').val('0').trigger('change');
     $('#Involucrado').empty();
     $("#Involucrado").append('<option value=""></option>');
     $('#Involucrado').val('0').trigger('change');

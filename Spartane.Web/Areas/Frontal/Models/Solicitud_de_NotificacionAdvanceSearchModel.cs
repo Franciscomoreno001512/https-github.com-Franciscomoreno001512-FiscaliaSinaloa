@@ -45,12 +45,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int[] AdvanceExpediente_Mecanismos_AlternosMultiple { set; get; }
 
         public Filters Carpeta_de_InvestigacionFilter { set; get; }
-        public string AdvanceCarpeta_de_Investigacion { set; get; }
-        public int[] AdvanceCarpeta_de_InvestigacionMultiple { set; get; }
-
-        public Filters Forma_de_InvitacionFilter { set; get; }
-        public string AdvanceForma_de_Invitacion { set; get; }
-        public int[] AdvanceForma_de_InvitacionMultiple { set; get; }
+        public string Carpeta_de_Investigacion { set; get; }
 
         public Filters Numero_de_InvitacionFilter { set; get; }
         public string Numero_de_Invitacion { set; get; }
@@ -84,6 +79,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceNotificador { set; get; }
         public int[] AdvanceNotificadorMultiple { set; get; }
 
+        public Filters Forma_de_InvitacionFilter { set; get; }
+        public string AdvanceForma_de_Invitacion { set; get; }
+        public int[] AdvanceForma_de_InvitacionMultiple { set; get; }
+
         public Filters ResultadoFilter { set; get; }
         public string AdvanceResultado { set; get; }
         public int[] AdvanceResultadoMultiple { set; get; }
@@ -97,6 +96,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Incidente_en_la_RecepcionFilter { set; get; }
         public string AdvanceIncidente_en_la_Recepcion { set; get; }
         public int[] AdvanceIncidente_en_la_RecepcionMultiple { set; get; }
+
+        public Filters DocumentoFilter { set; get; }
+        public string AdvanceDocumento { set; get; }
+        public int[] AdvanceDocumentoMultiple { set; get; }
 
 
     }

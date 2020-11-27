@@ -9,7 +9,6 @@
   <resource culture="en-US" name="Expediente_Atencion_Temprana" value="Expediente Atención Temprana"></resource>
   <resource culture="en-US" name="Expediente_Mecanismos_Alternos" value="Expediente Mecanismos Alternos"></resource>
   <resource culture="en-US" name="Carpeta_de_Investigacion" value="Carpeta de Investigación"></resource>
-  <resource culture="en-US" name="Forma_de_Invitacion" value="Forma de Invitación"></resource>
   <resource culture="en-US" name="Numero_de_Invitacion" value="Número de Invitación"></resource>
   <resource culture="en-US" name="Fecha_de_la_cita" value="Fecha de la cita"></resource>
   <resource culture="en-US" name="Hora_de_la_Cita" value="Hora de la Cita"></resource>
@@ -19,9 +18,11 @@
   <resource culture="en-US" name="Fecha_de_Notificacion" value="Fecha de Notificación"></resource>
   <resource culture="en-US" name="Hora_de_Notificacion" value="Hora de Notificación"></resource>
   <resource culture="en-US" name="Notificador" value="Notificador"></resource>
+  <resource culture="en-US" name="Forma_de_Invitacion" value="Forma de Invitación"></resource>
   <resource culture="en-US" name="Resultado" value="Resultado"></resource>
   <resource culture="en-US" name="Archivo" value="Archivo"></resource>
   <resource culture="en-US" name="Incidente_en_la_Recepcion" value="Incidente en la Recepción"></resource>
+  <resource culture="en-US" name="Documento" value="Documento"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 <resource culture="en-US" name="TabResultado_de_Notificacion" value="Resultado de Notificación"></resource>

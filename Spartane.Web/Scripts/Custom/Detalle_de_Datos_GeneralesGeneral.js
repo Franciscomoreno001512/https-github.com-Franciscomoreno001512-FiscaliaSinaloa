@@ -1618,6 +1618,17 @@ function GetAutoCompleteDetalle_de_Datos_Generales_Modulo_Atencion_Inicial_Modul
     }
     return AutoCompleteModulo_Atencion_InicialData;
 }
+var AutoCompleteExpediente_MPData = [];
+function GetAutoCompleteDetalle_de_Datos_Generales_Expediente_MP_expediente_ministerio_publicoData(data) {
+	AutoCompleteExpediente_MPData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_MPData.push({
+            id: data[i].clave,
+            text: data[i].nic
+        });
+    }
+    return AutoCompleteExpediente_MPData;
+}
 var AutoCompleteNacionalidadData = [];
 function GetAutoCompleteDetalle_de_Datos_Generales_Nacionalidad_NacionalidadData(data) {
 	AutoCompleteNacionalidadData = [];
@@ -1932,6 +1943,9 @@ function ClearControls() {
     $('#Modulo_Atencion_Inicial').empty();
     $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
     $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+    $('#Expediente_MP').empty();
+    $("#Expediente_MP").append('<option value=""></option>');
+    $('#Expediente_MP').val('0').trigger('change');
     $('#Nacionalidad').empty();
     $("#Nacionalidad").append('<option value=""></option>');
     $('#Nacionalidad').val('0').trigger('change');
@@ -2159,6 +2173,9 @@ $(document).ready(function () {
 	    $('#Modulo_Atencion_Inicial').empty();
     $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
     $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+    $('#Expediente_MP').empty();
+    $("#Expediente_MP").append('<option value=""></option>');
+    $('#Expediente_MP').val('0').trigger('change');
     $('#Nacionalidad').empty();
     $("#Nacionalidad").append('<option value=""></option>');
     $('#Nacionalidad').val('0').trigger('change');
