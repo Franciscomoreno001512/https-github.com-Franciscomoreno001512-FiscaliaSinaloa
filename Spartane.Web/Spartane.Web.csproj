@@ -2474,6 +2474,8 @@
     <Content Include="Images\green-help.png" />
     <Content Include="Images\header.jpg" />
     <Content Include="Images\hechos.png" />
+    <Content Include="Images\icono-editar-documento.png" />
+    <Content Include="Images\icono-ver-documento.png" />
     <Content Include="Images\inVisible.png" />
     <Content Include="Images\invitaciones.png" />
     <Content Include="Images\involucrados.png" />
