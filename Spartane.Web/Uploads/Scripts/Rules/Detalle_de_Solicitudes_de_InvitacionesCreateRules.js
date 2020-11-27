@@ -273,8 +273,15 @@ function EjecutarValidacionesAntesDeGuardar(){
 	var result = true;
 
 
+    //fjmore
+    var numItemsSolicitanteGrid = Detalle_de_Solicitante_en_InvitacionesTable.fnGetData();
+    var numItemsInvitacionesGrid = Detalle_de_Requerido_en_InvitacionesTable.fnGetData();
 
+    if (numItemsSolicitanteGrid == 0 && numItemsInvitacionesGrid == 0) {
+        alert("Para generar una invitación debe seleccionar por lo menos un Requerido o un Solicitante, favor de revisar");
+        result = false;
 
+    }
 
 
 
