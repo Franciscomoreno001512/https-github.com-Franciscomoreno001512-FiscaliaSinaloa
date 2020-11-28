@@ -10,6 +10,8 @@ $('.modal').on('hidden.bs.modal', function (e) {
 
 });
 
+var controlDocumentoDynamiSeach = false; 
+
 $(function () {
 
     //$('#datetimepicker1 > input').mask("00-00-0000", { clearIfNotMatch: true });
@@ -1342,10 +1344,20 @@ function utf8_to_b64(str) {
 }
 
 function ReadSesionVar() {
-    // debugger;
+    debugger;
+
+
+    var data = localStorage.getItem('controlDocumentoDynamiSeach');
+    if (data == "false" ) {
+        controlDocumentoDynamiSeach = false; 
+        localStorage.setItem('controlDocumentoDynamiSeach', "");
+    }
+  
     var FolioControlDocumentos = GetSessionValue("KeyValueInserted");
     if (FolioControlDocumentos != "-1" && FolioControlDocumentos != "") {
+
         clearInterval(timerInterval1);
+        permitirCerrar = true;
         GeneratePDFFromControlDocumentos(FolioControlDocumentos);
     }
 }
@@ -1385,6 +1397,7 @@ function ShowMessageRequired(field) {
 
 function GeneratePDFFromControlDocumentos(FolioControlDocumentos) {
     debugger;
+
     var res;
     $.ajax({
         url: url_content + "Frontal/Spartan_Format/GeneratePDFFromControlDocumentos?FolioControlDocumentos=" + FolioControlDocumentos,
@@ -1406,6 +1419,7 @@ function GeneratePDFFromControlDocumentos(FolioControlDocumentos) {
                     FolioControlDocumentos = dileid[1];
                     $("#Archivo").val(FolioControlDocumentos);
                     $("#Archivo_VerDocto").removeClass("hidden");
+                  
 
                     var upd = EvaluaQuery("update detalle_de_documentos set Archivo = " + FolioControlDocumentos + " where clave=" + $("#ReferenceClave").text());
                 }

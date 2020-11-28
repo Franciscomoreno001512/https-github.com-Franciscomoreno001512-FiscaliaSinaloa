@@ -173,48 +173,54 @@ $(document).ready(function () {
             window.close();
       }
     });
-	$("form#CreateDetalle_de_documentos").on('click', '#Detalle_de_documentosGuardar', function () {
-		$('#Detalle_de_documentosGuardar').attr('disabled', true);
-		$('#Detalle_de_documentosGuardar').unbind()
+    $("form#CreateDetalle_de_documentos").on('click', '#Detalle_de_documentosGuardar', function () {
+
+        debugger;
+
+        if ($("#Archivo").val() == '0' || $("#Archivo").val() == '') {
+            alert('No se puede guardar por no se ha generado un documento.')
+        } else {
+      
+
+        $('#Detalle_de_documentosGuardar').attr('disabled', true);
+        $('#Detalle_de_documentosGuardar').unbind()
         if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
-				if (!SendDetalle_de_documentosData(function () {
-					EjecutarValidacionesDespuesDeGuardar();
-					if (!isPartial  && !viewInEframe)
-						Detalle_de_documentosBackToGrid();
-					else if (viewInEframe) 
-                    {
-                        $('#Detalle_de_documentosGuardar').removeAttr('disabled');
-                        $('#Detalle_de_documentosGuardar').bind()
+            if (!SendDetalle_de_documentosData(function () {
+                EjecutarValidacionesDespuesDeGuardar();
+                if (!isPartial && !viewInEframe)
+                    Detalle_de_documentosBackToGrid();
+                else if (viewInEframe) {
+                    $('#Detalle_de_documentosGuardar').removeAttr('disabled');
+                    $('#Detalle_de_documentosGuardar').bind()
+                }
+                else {
+                    if (!isMR)
+                        window.opener.RefreshCatalog('Detalle_de_documentos', nameAttribute);
+                    else {
+                        var control = $(window.opener.document.getElementsByClassName(nameMR + "_" + nameAttribute)[0]);
+                        if (!control.hasClass('AutoComplete')) {
+                            if (control.attr("data-isfilter") == "true") {
+                                eval(GetReglaFilter(control, $(window.opener.document.getElementById('ObjectId')).val()));
+                            }
+                            else {
+                                eval('window.opener.Get' + nameMR + '_Detalle_de_documentosItem()');
+                                var control = $(window.opener.document.getElementsByClassName(nameMR + "_" + nameAttribute)[0]);
+                                control.html(eval('window.opener.Get' + nameMR + '_Detalle_de_documentosDropDown().get(0)').innerHTML);
+                            }
+                        }
                     }
-					else {						
-						if (!isMR)
-							window.opener.RefreshCatalog('Detalle_de_documentos', nameAttribute);
-						else {
-							var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
-							if(!control.hasClass('AutoComplete'))
-							{
-							if (control.attr("data-isfilter") == "true") {
-									eval(GetReglaFilter(control,  $(window.opener.document.getElementById('ObjectId')).val()));								    
-								}
-								else 
-								{
-									eval('window.opener.Get' + nameMR + '_Detalle_de_documentosItem()');
-									var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
-									control.html(eval('window.opener.Get' + nameMR + '_Detalle_de_documentosDropDown().get(0)').innerHTML);  
-								}								
-							}
-						}
-						window.close();						
-						}
-				})) {
-					$('#Detalle_de_documentosGuardar').removeAttr('disabled');
-					$('#Detalle_de_documentosGuardar').bind()
-				}
-		}
-		else {
-			$('#Detalle_de_documentosGuardar').removeAttr('disabled');
-			$('#Detalle_de_documentosGuardar').bind()
-		}
+                    window.close();
+                }
+            })) {
+                $('#Detalle_de_documentosGuardar').removeAttr('disabled');
+                $('#Detalle_de_documentosGuardar').bind()
+            }
+        }
+        else {
+            $('#Detalle_de_documentosGuardar').removeAttr('disabled');
+            $('#Detalle_de_documentosGuardar').bind()
+        }
+    }
     });
 	$("form#CreateDetalle_de_documentos").on('click', '#Detalle_de_documentosGuardarYNuevo', function () {	
 		if (EjecutarValidacionesAntesDeGuardar()) {
