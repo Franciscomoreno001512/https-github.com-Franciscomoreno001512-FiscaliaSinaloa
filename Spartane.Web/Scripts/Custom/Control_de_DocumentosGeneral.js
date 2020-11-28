@@ -426,14 +426,20 @@ $(document).ready(function () {
         e.preventDefault();
         return false;
     });
-	$("form#CreateControl_de_Documentos").on('click', '#Control_de_DocumentosCancelar', function () {
+    $("form#CreateControl_de_Documentos").on('click', '#Control_de_DocumentosCancelar', function () {
+
+       
+
 	  if (!isPartial) {
         Control_de_DocumentosBackToGrid();
 	  } else {
             window.close();
       }
     });
-	$("form#CreateControl_de_Documentos").on('click', '#Control_de_DocumentosGuardar', function () {
+    $("form#CreateControl_de_Documentos").on('click', '#Control_de_DocumentosGuardar', function () {
+
+  
+
 		$('#Control_de_DocumentosGuardar').attr('disabled', true);
 		$('#Control_de_DocumentosGuardar').unbind()
         if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
