@@ -1145,9 +1145,7 @@
         }
 
         function EditarDocto() {
-
             debugger;
-
             if ( controlDocumentoDynamiSeach == true ) {
                 alert('Existe una ventana abierta');
             }
@@ -1163,19 +1161,13 @@
             }
             else {
                 GuardarRegistro(formaid);
-
             }
 
             }
-
-
-
-
         }
 
 
     function GuardarRegistro(formaid) {
-
             debugger;
             $("#Archivo").val("0");
             if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
@@ -1188,22 +1180,12 @@
                     //aqui
                     $("#ReferenceClave").text(idvalor);
                     $("#ReferenceClave").val(idvalor);
-
-
                     OpenPrintFormats(idvalor, @Spartane.Web.SessionHelper.Role, "", false, "45018", formaid);
-
-
-
-
 
                 }, false)) {
 
                 }
             }
-
-
-
-
         }
 
 
