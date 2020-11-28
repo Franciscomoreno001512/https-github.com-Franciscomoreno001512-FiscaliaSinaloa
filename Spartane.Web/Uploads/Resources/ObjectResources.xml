@@ -6,6 +6,8 @@
   <Object Id="5" culture="es-es" value="Gestión de Expedientes MASC" />
   <Object Id="6" culture="en-us" value="Gestión de Expedientes AT" />
   <Object Id="6" culture="es-es" value="Gestión de Expedientes AT" />
+  <Object Id="7" culture="en-us" value="Gestión de Expedientes MP" />
+  <Object Id="7" culture="es-es" value="Gestión de Expedientes MP" />  
   <Object Id="31754" culture="en-us" value="Formats List" />
   <Object Id="31754" culture="es-es" value="Listado de Formatos" />
   <Object Id="10" culture="en-us" value="Format Permissions" />
@@ -934,8 +936,40 @@
 <Object Id="45468" culture="es-es" value="Expediente Ministerio Público" />
 <Object Id="45467" culture="en-us" value="Tipo de Cierre" />
 <Object Id="45467" culture="es-es" value="Tipo de Cierre" />
+<Object Id="45473" culture="en-us" value="Asignación de Agente" />
+<Object Id="45473" culture="es-es" value="Asignación de Agente" />
+<Object Id="45470" culture="en-us" value="Categoría de Servicio de Apoyo" />
+<Object Id="45470" culture="es-es" value="Categoría de Servicio de Apoyo" />
+<Object Id="45474" culture="en-us" value="Diligencias MP" />
+<Object Id="45474" culture="es-es" value="Diligencias MP" />
+<Object Id="45471" culture="en-us" value="Documentos MP" />
+<Object Id="45471" culture="es-es" value="Documentos MP" />
+<Object Id="45472" culture="en-us" value="Indicios MP" />
+<Object Id="45472" culture="es-es" value="Indicios MP" />
+<Object Id="45475" culture="en-us" value="IPH" />
+<Object Id="45475" culture="es-es" value="IPH" />
+<Object Id="45476" culture="en-us" value="Servicios de Apoyo MP" />
+<Object Id="45476" culture="es-es" value="Servicios de Apoyo MP" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

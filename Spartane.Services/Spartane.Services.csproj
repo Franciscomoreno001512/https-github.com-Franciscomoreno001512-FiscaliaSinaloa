@@ -1119,6 +1119,20 @@
 <Compile Include="expediente_ministerio_publico\expediente_ministerio_publicoService.cs" />
 <Compile Include="tipo_de_cierre\Itipo_de_cierreService.cs" />
 <Compile Include="tipo_de_cierre\tipo_de_cierreService.cs" />
+<Compile Include="Asignacion_de_Agente\IAsignacion_de_AgenteService.cs" />
+<Compile Include="Asignacion_de_Agente\Asignacion_de_AgenteService.cs" />
+<Compile Include="Categoria_de_Servicio_de_Apoyo\ICategoria_de_Servicio_de_ApoyoService.cs" />
+<Compile Include="Categoria_de_Servicio_de_Apoyo\Categoria_de_Servicio_de_ApoyoService.cs" />
+<Compile Include="Diligencias_MP\IDiligencias_MPService.cs" />
+<Compile Include="Diligencias_MP\Diligencias_MPService.cs" />
+<Compile Include="Documentos_MP\IDocumentos_MPService.cs" />
+<Compile Include="Documentos_MP\Documentos_MPService.cs" />
+<Compile Include="Indicios_MP\IIndicios_MPService.cs" />
+<Compile Include="Indicios_MP\Indicios_MPService.cs" />
+<Compile Include="IPH\IIPHService.cs" />
+<Compile Include="IPH\IPHService.cs" />
+<Compile Include="Servicios_de_Apoyo_MP\IServicios_de_Apoyo_MPService.cs" />
+<Compile Include="Servicios_de_Apoyo_MP\Servicios_de_Apoyo_MPService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1218,6 +1232,20 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -10,6 +10,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
 
 });
 
+var controlDocumentoDynamiSeach = false; 								 
 $(function () {
 
     //$('#datetimepicker1 > input').mask("00-00-0000", { clearIfNotMatch: true });
@@ -1342,10 +1343,20 @@ function utf8_to_b64(str) {
 }
 
 function ReadSesionVar() {
-    // debugger;
+    debugger;
+
+
+    var data = localStorage.getItem('controlDocumentoDynamiSeach');
+    if (data == "false" ) {
+        controlDocumentoDynamiSeach = false; 
+        localStorage.setItem('controlDocumentoDynamiSeach', "");
+    }
+  
     var FolioControlDocumentos = GetSessionValue("KeyValueInserted");
     if (FolioControlDocumentos != "-1" && FolioControlDocumentos != "") {
+
         clearInterval(timerInterval1);
+        permitirCerrar = true;
         GeneratePDFFromControlDocumentos(FolioControlDocumentos);
     }
 }

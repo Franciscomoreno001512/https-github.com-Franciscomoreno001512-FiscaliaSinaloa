@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Diligencias_MP" value="Diligencias MP"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="es-es" name="Fecha" value="Fecha"></resource>
+  <resource culture="es-es" name="Hora" value="Hora"></resource>
+  <resource culture="es-es" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="es-es" name="Tipo_de_Documento" value="Tipo de Documento"></resource>
+  <resource culture="es-es" name="Documento" value="Documento"></resource>
+  <resource culture="es-es" name="Numero_de_Oficio" value="Número de Oficio"></resource>
+  <resource culture="es-es" name="Involucrado" value="Involucrado"></resource>
+  <resource culture="es-es" name="Probable_Responsable" value="Probable Responsable"></resource>
+  <resource culture="es-es" name="Archivo_Adjunto" value="Archivo Adjunto"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="es-es" name="Archivo" value="Archivo"></resource>
+  <resource culture="es-es" name="Descripcion" value="Descripción"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>
