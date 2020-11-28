@@ -1228,6 +1228,20 @@
 <Compile Include="Domain\expediente_ministerio_publico\expediente_ministerio_publicoPagingModel.cs" />
 <Compile Include="Domain\tipo_de_cierre\tipo_de_cierre.cs" />
 <Compile Include="Domain\tipo_de_cierre\tipo_de_cierrePagingModel.cs" />
+<Compile Include="Domain\Asignacion_de_Agente\Asignacion_de_Agente.cs" />
+<Compile Include="Domain\Asignacion_de_Agente\Asignacion_de_AgentePagingModel.cs" />
+<Compile Include="Domain\Categoria_de_Servicio_de_Apoyo\Categoria_de_Servicio_de_Apoyo.cs" />
+<Compile Include="Domain\Categoria_de_Servicio_de_Apoyo\Categoria_de_Servicio_de_ApoyoPagingModel.cs" />
+<Compile Include="Domain\Diligencias_MP\Diligencias_MP.cs" />
+<Compile Include="Domain\Diligencias_MP\Diligencias_MPPagingModel.cs" />
+<Compile Include="Domain\Documentos_MP\Documentos_MP.cs" />
+<Compile Include="Domain\Documentos_MP\Documentos_MPPagingModel.cs" />
+<Compile Include="Domain\Indicios_MP\Indicios_MP.cs" />
+<Compile Include="Domain\Indicios_MP\Indicios_MPPagingModel.cs" />
+<Compile Include="Domain\IPH\IPH.cs" />
+<Compile Include="Domain\IPH\IPHPagingModel.cs" />
+<Compile Include="Domain\Servicios_de_Apoyo_MP\Servicios_de_Apoyo_MP.cs" />
+<Compile Include="Domain\Servicios_de_Apoyo_MP\Servicios_de_Apoyo_MPPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1248,6 +1262,20 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

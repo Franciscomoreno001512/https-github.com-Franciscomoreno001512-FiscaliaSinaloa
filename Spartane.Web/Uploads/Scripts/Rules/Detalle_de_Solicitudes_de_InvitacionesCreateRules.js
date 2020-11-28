@@ -267,13 +267,19 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2492, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2505, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Incidente_en_la_Recepcion' + rowIndex));
+
+}
+//BusinessRuleId:2505, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
+	debugger;
 	var result = true;
-
-
-    //fjmore
+   //fjmore
     var numItemsSolicitanteGrid = Detalle_de_Solicitante_en_InvitacionesTable.fnGetData();
     var numItemsInvitacionesGrid = Detalle_de_Requerido_en_InvitacionesTable.fnGetData();
 
@@ -282,6 +288,24 @@ function EjecutarValidacionesAntesDeGuardar(){
         result = false;
 
     }
+
+    var resultdato = true;
+    $.each(numItemsSolicitanteGrid, function (i, v) {
+        if (v.NombreNombre_Completo == "") {
+            resultdato = false;
+        }
+    });
+
+    $.each(numItemsInvitacionesGrid, function (i, v) {
+        if (v.NombreNombre_Completo == "") {
+            resultdato = false;
+        }
+    });
+ if (resultdato == false) {
+        alert("Para generar una invitación debe escribir el Nombre de la persona en Requerido o Solicitante, favor de revisar");
+    }
+    result = resultdato;
+
 
 
 
