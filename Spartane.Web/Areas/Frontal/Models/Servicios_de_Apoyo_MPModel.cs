@@ -27,8 +27,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Hora_de_Termino_para_Entrega { get; set; }
         public int? Diligencia_a_Enviar { get; set; }
         public string Diligencia_a_EnviarDescripcion { get; set; }
-        [Range(0, 9999999999)]
         public int? Archivo { get; set; }
+        public HttpPostedFileBase ArchivoFile { set; get; }
+        public int ArchivoRemoveAttachment { set; get; }
         public string Fecha_de_Atencion { get; set; }
         public string Hora_de_Atencion { get; set; }
         public int? Usuario_que_Atiende { get; set; }
@@ -58,8 +59,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Hora_de_Termino_para_Entrega { get; set; }
         public int? Diligencia_a_Enviar { get; set; }
         public string Diligencia_a_EnviarDescripcion { get; set; }
-        [Range(0, 9999999999)]
         public int? Archivo { get; set; }
+        public HttpPostedFileBase ArchivoFile { set; get; }
+        public int ArchivoRemoveAttachment { set; get; }
 
     }
 

@@ -116,6 +116,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Configuracion_de_Planeacion</summary>
+        public static string Configuracion_de_Planeacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDelito.GetResource("Configuracion_de_Planeacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDelito.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

@@ -203,6 +203,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 				}
 				
 				                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                ViewBag.ArchivoSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varServicios_de_Apoyo_MP.Archivo).Resource;
+                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
                 ViewBag.Archivo_AdjuntoSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varServicios_de_Apoyo_MP.Archivo_Adjunto).Resource;
 
 				
@@ -310,6 +312,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 					};
 				}
+                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                ViewBag.ArchivoSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varServicios_de_Apoyo_MP.Archivo).Resource;
                 _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
                 ViewBag.Archivo_AdjuntoSpartane_File = _ISpartane_FileApiConsumer.GetByKey(varServicios_de_Apoyo_MP.Archivo_Adjunto).Resource;
 
@@ -1048,13 +1052,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Servicios_de_Apoyo_MP.Diligencia_a_Enviar In (" + Diligencia_a_EnviarIds + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.FromArchivo) || !string.IsNullOrEmpty(filter.ToArchivo))
-            {
-                if (!string.IsNullOrEmpty(filter.FromArchivo))
-                    where += " AND Servicios_de_Apoyo_MP.Archivo >= " + filter.FromArchivo;
-                if (!string.IsNullOrEmpty(filter.ToArchivo))
-                    where += " AND Servicios_de_Apoyo_MP.Archivo <= " + filter.ToArchivo;
-            }
+            if (filter.Archivo != RadioOptions.NoApply)
+                where += " AND Servicios_de_Apoyo_MP.Archivo " + (filter.Archivo == RadioOptions.Yes ? ">" : "==") + " 0";
 
             if (!string.IsNullOrEmpty(filter.FromFecha_de_Atencion) || !string.IsNullOrEmpty(filter.ToFecha_de_Atencion))
             {
@@ -1157,6 +1156,22 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     _IServicios_de_Apoyo_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
 
 
+                    if (varServicios_de_Apoyo_MP.ArchivoRemoveAttachment != 0 && varServicios_de_Apoyo_MP.ArchivoFile == null)
+                    {
+                        varServicios_de_Apoyo_MP.Archivo = 0;
+                    }
+
+                    if (varServicios_de_Apoyo_MP.ArchivoFile != null)
+                    {
+                        var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varServicios_de_Apoyo_MP.ArchivoFile);
+                        _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                        varServicios_de_Apoyo_MP.Archivo = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
+                        {
+                            File = fileAsBytes,
+                            Description = varServicios_de_Apoyo_MP.ArchivoFile.FileName,
+                            File_Size = fileAsBytes.Length
+                        }).Resource;
+                    }
                     if (varServicios_de_Apoyo_MP.Archivo_AdjuntoRemoveAttachment != 0 && varServicios_de_Apoyo_MP.Archivo_AdjuntoFile == null)
                     {
                         varServicios_de_Apoyo_MP.Archivo_Adjunto = 0;
@@ -1189,7 +1204,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Termino_para_Entrega = (!String.IsNullOrEmpty(varServicios_de_Apoyo_MP.Fecha_de_Termino_para_Entrega)) ? DateTime.ParseExact(varServicios_de_Apoyo_MP.Fecha_de_Termino_para_Entrega, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_Termino_para_Entrega = varServicios_de_Apoyo_MP.Hora_de_Termino_para_Entrega
                         ,Diligencia_a_Enviar = varServicios_de_Apoyo_MP.Diligencia_a_Enviar
-                        ,Archivo = varServicios_de_Apoyo_MP.Archivo
+                        ,Archivo = (varServicios_de_Apoyo_MP.Archivo.HasValue && varServicios_de_Apoyo_MP.Archivo != 0) ? ((int?)Convert.ToInt32(varServicios_de_Apoyo_MP.Archivo.Value)) : null
+
                         ,Fecha_de_Atencion = (!String.IsNullOrEmpty(varServicios_de_Apoyo_MP.Fecha_de_Atencion)) ? DateTime.ParseExact(varServicios_de_Apoyo_MP.Fecha_de_Atencion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_Atencion = varServicios_de_Apoyo_MP.Hora_de_Atencion
                         ,Usuario_que_Atiende = varServicios_de_Apoyo_MP.Usuario_que_Atiende
@@ -1719,7 +1735,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IServicios_de_Apoyo_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
-				
+				                    if (varServicios_de_Apoyo_MP.ArchivoRemoveAttachment != 0 && varServicios_de_Apoyo_MP.ArchivoFile == null)
+                    {
+                        varServicios_de_Apoyo_MP.Archivo = 0;
+                    }
+
+                    if (varServicios_de_Apoyo_MP.ArchivoFile != null)
+                    {
+                        var fileAsBytes = HttpPostedFileHelper.GetPostedFileAsBytes(varServicios_de_Apoyo_MP.ArchivoFile);
+                        _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                        varServicios_de_Apoyo_MP.Archivo = (int)_ISpartane_FileApiConsumer.Insert(new Spartane_File()
+                        {
+                            File = fileAsBytes,
+                            Description = varServicios_de_Apoyo_MP.ArchivoFile.FileName,
+                            File_Size = fileAsBytes.Length
+                        }).Resource;
+                    }
+
                 var result = "";
                 var Servicios_de_Apoyo_MP_Datos_GeneralesInfo = new Servicios_de_Apoyo_MP_Datos_Generales
                 {
@@ -1734,7 +1766,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Termino_para_Entrega = (!String.IsNullOrEmpty(varServicios_de_Apoyo_MP.Fecha_de_Termino_para_Entrega)) ? DateTime.ParseExact(varServicios_de_Apoyo_MP.Fecha_de_Termino_para_Entrega, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_Termino_para_Entrega = varServicios_de_Apoyo_MP.Hora_de_Termino_para_Entrega
                         ,Diligencia_a_Enviar = varServicios_de_Apoyo_MP.Diligencia_a_Enviar
-                        ,Archivo = varServicios_de_Apoyo_MP.Archivo
+                        ,Archivo = (varServicios_de_Apoyo_MP.Archivo.HasValue && varServicios_de_Apoyo_MP.Archivo != 0) ? ((int?)Convert.ToInt32(varServicios_de_Apoyo_MP.Archivo.Value)) : null
+
                     
                 };
 

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Audiencia_Defensor_Victima" value="Detalle Audiencia Defensor Víctima"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Nombre_del_Imputado" value="Nombre del Imputado"></resource>
+  <resource culture="en-US" name="Abogado" value="Abogado"></resource>
+  <resource culture="en-US" name="Cedula_Profesional" value="Cedula Profesional"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

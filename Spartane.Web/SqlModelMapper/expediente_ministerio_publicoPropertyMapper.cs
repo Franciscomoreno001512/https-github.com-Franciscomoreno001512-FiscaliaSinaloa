@@ -23,9 +23,18 @@ namespace Spartane.Web.SqlModelMapper
                 case "usuario_que_registra[Name]":
                 case "usuario_que_registraName":
                     return "Spartan_User.Name";
+                case "Tipo_de_Denuncia[Descripcion]":
+                case "Tipo_de_DenunciaDescripcion":
+                    return "Tipo_de_Denuncia.Descripcion";
                 case "unidad[Descripcion]":
                 case "unidadDescripcion":
                     return "Unidad.Descripcion";
+                case "Municipio[Nombre]":
+                case "MunicipioNombre":
+                    return "Municipio.Nombre";
+                case "Region[Descripcion]":
+                case "RegionDescripcion":
+                    return "Region.Descripcion";
                 case "nuat":
                     return "expediente_ministerio_publico.nuat";
                 case "nic":
@@ -40,9 +49,40 @@ namespace Spartane.Web.SqlModelMapper
                 case "estatus[descripcion]":
                 case "estatusdescripcion":
                     return "estatus_mpi.descripcion";
-                case "observaciones[clave]":
-                case "observacionesclave":
-                    return "detalle_de_observaciones_mpi.clave";
+                case "Titulo_del_Hecho":
+                    return "expediente_ministerio_publico.Titulo_del_Hecho";
+                case "Fecha_del_Hecho":
+                    return "expediente_ministerio_publico.Fecha_del_Hecho";
+                case "Narrativa_Breve_de_los_Hechos":
+                    return "expediente_ministerio_publico.Narrativa_Breve_de_los_Hechos";
+                case "Hora_Aproximada_del_Hecho":
+                    return "expediente_ministerio_publico.Hora_Aproximada_del_Hecho";
+                case "Lugar_de_los_Hechos[Descripcion]":
+                case "Lugar_de_los_HechosDescripcion":
+                    return "Lugar_Tipo.Descripcion";
+                case "PaisH[Nombre]":
+                case "PaisHNombre":
+                    return "Pais.Nombre";
+                case "Poblacion[Nombre]":
+                case "PoblacionNombre":
+                    return "Colonia.Nombre";
+                case "ColoniaH[Nombre]":
+                case "ColoniaHNombre":
+                    return "Colonia.Nombre";
+                case "CalleH":
+                    return "expediente_ministerio_publico.CalleH";
+                case "Numero_ExteriorH":
+                    return "expediente_ministerio_publico.Numero_ExteriorH";
+                case "Numero_InteriorH":
+                    return "expediente_ministerio_publico.Numero_InteriorH";
+                case "Codigo_PostalH":
+                    return "expediente_ministerio_publico.Codigo_PostalH";
+                case "Entre_Calle":
+                    return "expediente_ministerio_publico.Entre_Calle";
+                case "LongitudH":
+                    return "expediente_ministerio_publico.LongitudH";
+                case "LatitudH":
+                    return "expediente_ministerio_publico.LatitudH";
                 case "Fecha_de_Canalizacion":
                     return "expediente_ministerio_publico.Fecha_de_Canalizacion";
                 case "Hora_de_Canalizacion":
@@ -71,14 +111,18 @@ namespace Spartane.Web.SqlModelMapper
                 case "periodicidad[Descripcion]":
                 case "periodicidadDescripcion":
                     return "Periodicidad.Descripcion";
-                case "acepta_acuerdo":
-                    return "expediente_ministerio_publico.acepta_acuerdo";
+                case "acepta_acuerdo[Descripcion]":
+                case "acepta_acuerdoDescripcion":
+                    return "A_Tiempo.Descripcion";
                 case "motivo_de_rechazo_de_acuerdo":
                     return "expediente_ministerio_publico.motivo_de_rechazo_de_acuerdo";
                 case "fecha_de_cierre":
                     return "expediente_ministerio_publico.fecha_de_cierre";
                 case "hora_de_cierre":
                     return "expediente_ministerio_publico.hora_de_cierre";
+                case "Usuario_que_Cierra[Name]":
+                case "Usuario_que_CierraName":
+                    return "Spartan_User.Name";
                 case "tipo_de_cierre[descripcion]":
                 case "tipo_de_cierredescripcion":
                     return "tipo_de_cierre.descripcion";
@@ -102,6 +146,17 @@ namespace Spartane.Web.SqlModelMapper
         public string GetOperatorString(object value, string columnName)
         {
             if (columnName == "fecha_de_registro")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            if (columnName == "Fecha_del_Hecho")
             {
                 try
                 {
@@ -144,10 +199,6 @@ namespace Spartane.Web.SqlModelMapper
                 {
 
                 }
-            }
-            if (columnName == "acepta_acuerdo")
-            {
-                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
             if (columnName == "fecha_de_cierre")
             {

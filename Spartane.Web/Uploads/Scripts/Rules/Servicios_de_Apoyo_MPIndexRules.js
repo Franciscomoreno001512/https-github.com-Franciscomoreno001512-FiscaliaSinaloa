@@ -1,4 +1,4 @@
-﻿var operation = $('#Operation').val();
+var operation = $('#Operation').val();
 var nameOfTable = '';
 var rowIndex = '';
 $(document).ready(function () {

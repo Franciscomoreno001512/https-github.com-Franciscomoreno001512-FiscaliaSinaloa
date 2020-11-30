@@ -682,15 +682,7 @@ if( EvaluaQuery("EXEC uspGetDelitoPrincipalEditar GLOBAL[SpartanOperationId], FL
     return result;
 }
 function EjecutarValidacionesDespuesDeGuardar(){
-//BusinessRuleId:1732, Attribute:2, Operation:Object, Event:AFTERSAVING
-if(operation == 'New'){
- EvaluaQuery("update Detalle_de_Delito"
-+" 	set Expediente_Inicial= GLOBAL[SpartanOperationId]"
-+" 	where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);
 
-
-}
-//BusinessRuleId:1732, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //BusinessRuleId:2512, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){

@@ -11,6 +11,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public Servicios_de_Apoyo_MPAdvanceSearchModel()
         {
+            Archivo = RadioOptions.NoApply;
             Archivo_Adjunto = RadioOptions.NoApply;
 
         }
@@ -61,11 +62,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceDiligencia_a_Enviar { set; get; }
         public int[] AdvanceDiligencia_a_EnviarMultiple { set; get; }
 
-        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
-        public string FromArchivo { set; get; }
-        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
-        [IsNumberAfterAttribute("FromArchivo", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
-        public string ToArchivo { set; get; }
+        public RadioOptions Archivo { set; get; }
 
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
         public string FromFecha_de_Atencion { set; get; }

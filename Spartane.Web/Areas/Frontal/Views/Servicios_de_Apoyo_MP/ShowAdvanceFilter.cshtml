@@ -204,17 +204,6 @@
  List<SelectListItem> varDiligencias_MP_Diligencia_a_Enviar = null;
     if (ViewBag.Diligencias_MPs_Diligencia_a_Enviar != null)
     { varDiligencias_MP_Diligencia_a_Enviar = (List<SelectListItem>)ViewBag.Diligencias_MPs_Diligencia_a_Enviar; }
-                <div class="MarginBottom ">
-                    <h3>@Resources.Servicios_de_Apoyo_MPResources.Archivo</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.From:</label>
-                    @Html.TextBoxFor(m => m.FromArchivo, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromArchivo" })
-                    @Html.ValidationMessageFor(m => m.FromArchivo)
-                    <label class="">@Resources.Resources.To: </label>
-                    @Html.TextBoxFor(m => m.ToArchivo, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToArchivo", @data_min = "txtAdvanceFromArchivo" })
-                    @Html.ValidationMessageFor(m => m.ToArchivo)
-                </div>
         <div class="MarginBottom ">
             <h3>@Resources.Servicios_de_Apoyo_MPResources.Fecha_de_Atencion</h3>
         </div>
@@ -373,10 +362,20 @@
                 advanceSearch.Diligencia_a_EnviarSearchType = 2;
             }
         }
-        if ($("#txtAdvanceFromArchivo").val() != "" || $("#txtAdvanceToArchivo").val() != "") {
-            hasParameter = true;
-            advanceSearch.Servicios_de_Apoyo_MPArchivoFrom = $("#txtAdvanceFromArchivo").val();
-            advanceSearch.Servicios_de_Apoyo_MPArchivoTo = $("#txtAdvanceToArchivo").val();
+        advanceSearch.ArchivoSearchType = 0;
+        if ($('#ddlAdvanceArchivo').val().length > 0 || $("#txtAdvanceArchivo").val() == "") {
+
+
+            if (isServicios_de_Apoyo_MPTextSearch) {
+                advanceSearch.ArchivoName = $("#txtAdvanceArchivo").val();
+                advanceSearch.ArchivoNameSearchType = $("#ddlAdvanceArchivo").val();
+                advanceSearch.ArchivoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ArchivoToSearch = $("#ddlAdvanceArchivo").val();
+                advanceSearch.ArchivoSearchType = 2;
+            }
         }
         if ($("#txtAdvanceFromFecha_de_Atencion").val() != "" || $("#txtAdvanceToFecha_de_Atencion").val() != "") {
             hasParameter = true;

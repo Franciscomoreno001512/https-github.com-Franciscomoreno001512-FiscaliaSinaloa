@@ -29,6 +29,9 @@ namespace Spartane.Web.Areas.WebApiConsumer.expediente_ministerio_publico
 		ApiResponse<int> Update_Datos_del_Caso(Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Datos_del_Caso entity);
 		ApiResponse<Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Datos_del_Caso> Get_Datos_del_Caso(string Key);
 
+		ApiResponse<int> Update_Hechos(Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Hechos entity);
+		ApiResponse<Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Hechos> Get_Hechos(string Key);
+
 		ApiResponse<int> Update_Canalizar(Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Canalizar entity);
 		ApiResponse<Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Canalizar> Get_Canalizar(string Key);
 

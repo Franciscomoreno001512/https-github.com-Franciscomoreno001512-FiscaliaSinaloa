@@ -17,6 +17,7 @@
     if (ViewBag.Grupo_del_Delitos_Grupo_del_Delito != null)
     { varGrupo_del_Delito_Grupo_del_Delito = (List<SelectListItem>)ViewBag.Grupo_del_Delitos_Grupo_del_Delito; }
 
+    Permission permissionConfiguracion_de_Planeacion = ViewBag.PermissionConfiguracion_de_Planeacion;
 
     Permission permission = ViewBag.Permission;
 	
@@ -122,6 +123,9 @@
 
                 }
             }
+                    <div aria-hidden="true" class="modal fade in AddConfiguracion_de_PlaneacionModal" id="AddConfiguracion_de_Planeacion-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
 
         </div>
     </div>
@@ -253,6 +257,81 @@
                                 <div class="col-sm-8" data-field-id="Activo" data-attribute="262550" data-field-name="@Resources.DelitoResources.Activo">
                                     @Html.CheckBoxFor(m => m.Activo, new { @class = "i-checks Datos_Generales" })
                                 </div>
+                            </div>
+                            <div id="divConfiguracion_de_Planeacion">
+                            <div class="ibox-title">
+                                <h5>@Resources.DelitoResources.Configuracion_de_Planeacion</h5>
+                                <div class="ibox-tools">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+									@if (permissionConfiguracion_de_Planeacion.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Configuracion_de_PlaneacionfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Configuracion_de_PlaneacionAddRow btn btn-primary">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </a>
+                                    }
+                                    <button onclick="DelitoGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '267355')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#DelitoBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>
+									@if (permissionConfiguracion_de_Planeacion.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Configuracion_de_PlaneacionfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddConfiguracion_de_Planeacion-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
+                                            <i class="glyphicon glyphicon-new-window"></i>
+                                        </a>
+                                    }  
+                                </div>
+
+                                <br />
+
+                                <div style='overflow-x: auto;'>
+                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Configuracion_de_PlaneacionGrid">
+                                        <thead>
+                                            <tr>
+                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+
+
+                                                <th class="CategoriaHeader"><span>
+<button type="button" data-attribute="267348" data-field-id="Configuracion_de_PlaneacionCategoria" data-field-name="@Resources.Configuracion_de_PlaneacionResources.Categoria" data-toggle="modal" data-target="#DelitoBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Configuracion_de_PlaneacionResources.Categoria">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Configuracion_de_PlaneacionResources.Categoria</span></th>
+                                                <th class="ServicioHeader"><span>
+<button type="button" data-attribute="267349" data-field-id="Configuracion_de_PlaneacionServicio" data-field-name="@Resources.Configuracion_de_PlaneacionResources.Servicio" data-toggle="modal" data-target="#DelitoBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Configuracion_de_PlaneacionResources.Servicio">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Configuracion_de_PlaneacionResources.Servicio</span></th>
+                                                <th class="EntregableHeader"><span>
+<button type="button" data-attribute="267350" data-field-id="Configuracion_de_PlaneacionEntregable" data-field-name="@Resources.Configuracion_de_PlaneacionResources.Entregable" data-toggle="modal" data-target="#DelitoBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Configuracion_de_PlaneacionResources.Entregable">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Configuracion_de_PlaneacionResources.Entregable</span></th>
+                                                <th class="Tiempo_EstandarHeader"><span>
+<button type="button" data-attribute="267351" data-field-id="Configuracion_de_PlaneacionTiempo_Estandar" data-field-name="@Resources.Configuracion_de_PlaneacionResources.Tiempo_Estandar" data-toggle="modal" data-target="#DelitoBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Configuracion_de_PlaneacionResources.Tiempo_Estandar">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>
+@Resources.Configuracion_de_PlaneacionResources.Tiempo_Estandar</span></th>
+                                                <th class="PonderacionHeader"><span>
+<button type="button" data-attribute="267352" data-field-id="Configuracion_de_PlaneacionPonderacion" data-field-name="@Resources.Configuracion_de_PlaneacionResources.Ponderacion" data-toggle="modal" data-target="#DelitoBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Configuracion_de_PlaneacionResources.Ponderacion">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>
+@Resources.Configuracion_de_PlaneacionResources.Ponderacion</span></th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
                             </div>
                             </div>
                                 </div>
@@ -388,24 +467,17 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('44991');
-		   
-		   
-			
-             @if(ViewBag.IsNew)
-            { 
-                <text>$('input:checkbox').prop('checked', false);</text>
-            }
-			else
-            {
-                <text>
-				if (Tab_Datos_Generales)
-					Fill_Datos_Generales();
+		                  
+            GetConfiguracion_de_Planeacion_Categoria_de_Servicio_de_ApoyoItem();
+            GetConfiguracion_de_Planeacion_Tipo_de_Servicio_de_ApoyoItem();
 
 
-                </text>
-             }
-             EjecutarValidacionesAlComienzo();
-             
+
+           
+              showConfiguracion_de_PlaneacionGrid(null);
+
+		   
+            
 
             initiateUIControls();
 			$('a').tooltip();
@@ -422,8 +494,347 @@
 			
 			
 
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
         });
 
+        var Configuracion_de_PlaneacioninsertRowCurrentIndex = -1;
+        var Configuracion_de_PlaneacionDataDataTable;
+        function getConfiguracion_de_PlaneacionData() {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Delito/GetConfiguracion_de_Planeacion")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    Configuracion_de_PlaneacionDataDataTable = result.data;
+                    showConfiguracion_de_PlaneacionGrid(result.data);
+                    $('#Configuracion_de_PlaneacionGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Configuracion_de_PlaneacionGrid .gridDatePicker').attr("readonly", "");
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+        function Configuracion_de_PlaneacionGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+            var columnData = [];
+            var counter = 0;
+            var inputData = "<input type='text' class='fullWidth form-control' />";
+
+           columnData[counter++] = $($(GetConfiguracion_de_Planeacion_Categoria_de_Servicio_de_ApoyoDropDown()).val(data.Categoria)).addClass('Categoria inputNumber').attr('id', nameOfTable + 'Categoria' + rowIndex).attr('data-field', 'Categoria').after($.parseHTML(addNew('Configuracion_de_Planeacion', 'Categoria_de_Servicio_de_Apoyo','Categoria', 267348)));
+           columnData[counter++] = $($(GetConfiguracion_de_Planeacion_Tipo_de_Servicio_de_ApoyoDropDown()).val(data.Servicio)).addClass('Servicio inputNumber').attr('id', nameOfTable + 'Servicio' + rowIndex).attr('data-field', 'Servicio').after($.parseHTML(addNew('Configuracion_de_Planeacion', 'Tipo_de_Servicio_de_Apoyo','Servicio', 267349)));
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Entregable)).addClass('Entregable').attr('id', nameOfTable + 'Entregable' + rowIndex).attr('data-field', 'Entregable');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Tiempo_Estandar)).addClass('Tiempo_Estandar inputNumber').attr('id', nameOfTable + 'Tiempo_Estandar' + rowIndex).attr('data-field', 'Tiempo_Estandar');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Ponderacion)).addClass('Ponderacion inputNumber').attr('id', nameOfTable + 'Ponderacion' + rowIndex).attr('data-field', 'Ponderacion');
+
+            return columnData;
+        }
+
+
+
+        function GetFileInfo(fileData, fileUploadData) {
+
+            var $div = $("<div>");
+            if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+                //<i class="fa fa-times-circle" id='removeFileAttachment'>
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+
+            } else if (fileUploadData != null) {
+                return $.parseHTML(GetFileUploader());
+            } else {
+                $div.append("<label>" + fileData.FileName + "</label>");
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+            }
+        }
+
+        var removedConfiguracion_de_PlaneacionData = [];
+        function Configuracion_de_PlaneacionDeleteRow(rowIndex, row) {
+            var rowIndexTable = Configuracion_de_PlaneacionTable.fnGetPosition($(row).parent().parent()[0]);
+            var permission = {            
+                 Delete: '@permissionConfiguracion_de_Planeacion.Delete' == 'True'
+            };
+            if (!permission.Delete || isConsultMode)
+                return;            
+            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+              if (EjecutarValidacionesAlEliminarMRConfiguracion_de_Planeacion('Configuracion_de_Planeacion_', '_' + rowIndex)) {
+                var prevData = Configuracion_de_PlaneacionTable.fnGetData(rowIndexTable );
+                removedConfiguracion_de_PlaneacionData.push(prevData);
+                Configuracion_de_PlaneacionTable.fnDeleteRow(rowIndexTable );
+				showConfiguracion_de_PlaneacionGrid(Configuracion_de_PlaneacionTable.fnGetData());
+              }
+            }
+			initiateUIControls();
+        }
+
+        function Configuracion_de_PlaneacionrowCreationGrid(row, data, index) {
+            var permission =  {            
+                 Edit: '@permissionConfiguracion_de_Planeacion.Edit' == 'True',
+                 Delete: '@permissionConfiguracion_de_Planeacion.Delete' == 'True'
+            };
+            setConfiguracion_de_PlaneacionValidation();
+            var Configuracion_de_PlaneacionRowElement = "Configuracion_de_Planeacion_" + index.toString();
+            $(row).addClass(Configuracion_de_PlaneacionRowElement);
+            var nameOfTable='Configuracion_de_Planeacion_';
+            var rowIndex = '_' + index;
+            Configuracion_de_PlaneacioninsertRowCurrentIndex = index;
+
+            row.innerHTML = "";
+
+            if (data.IsInsertRow) {
+
+                if (row.childNodes.length != 0) {
+                    for (var i = 0; i < row.childNodes.length; i++) {
+                        row.childNodes[i].remove();
+                    }
+                }
+                var controls = GetInsertConfiguracion_de_PlaneacionRowControls(index);
+                var actionColInsert = $('<td>');
+
+                var abc = "if(dynamicFieldValidation('" + Configuracion_de_PlaneacionRowElement + "')){ Configuracion_de_PlaneacionInsertRow(" + index + "); }";
+                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
+                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Configuracion_de_PlaneacionCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                actionColInsert.appendTo(row);
+
+                for (i = 0; i < controls.length; i++) {
+					var idHeader = $(controls[i]).data('field') + 'Header';
+					if($(controls[i]).length > 1){
+						idHeader = $($(controls[i])[1]).data('field') + 'Header';
+					}					
+
+					var classe = ($('#Configuracion_de_PlaneacionGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Configuracion_de_PlaneacionGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+				   
+					if ($(controls[i]).next().length > 0) {
+					    var div = $(controls[i]).next();
+					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+					}else
+					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+					
+                }
+                $('#Configuracion_de_PlaneacionGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('#Configuracion_de_PlaneacionGrid .gridDatePicker').attr("readonly", "");
+                return;
+            }
+
+            var actionCol = $('<td>');
+			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Configuracion_de_PlaneacionEditRow(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                edit = "";
+            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddConfiguracion_de_Planeacion-form' onclick='Configuracion_de_PlaneacionEditRowPopup(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                editPopUp = "";
+            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Configuracion_de_PlaneacionDeleteRow(" + index + ", this)'>";
+            if (!permission.Delete || isConsultMode)
+                eliminar = "";
+            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+			if ($('.Action' + 'Header').css('display') != 'none')
+				actionCol.appendTo(row);
+
+            if ($('.Categoria' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Categoria'+rowIndex+'">').text(GetConfiguracion_de_Planeacion_Categoria_de_Servicio_de_ApoyoName(data.Categoria)).appendTo(row);
+	    else 
+		$('<td style="display:none;" id="'+nameOfTable+'Categoria'+rowIndex+'">').text(GetConfiguracion_de_Planeacion_Categoria_de_Servicio_de_ApoyoName(data.Categoria)).appendTo(row);
+            if ($('.Servicio' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Servicio'+rowIndex+'">').text(GetConfiguracion_de_Planeacion_Tipo_de_Servicio_de_ApoyoName(data.Servicio)).appendTo(row);
+	    else 
+		$('<td style="display:none;" id="'+nameOfTable+'Servicio'+rowIndex+'">').text(GetConfiguracion_de_Planeacion_Tipo_de_Servicio_de_ApoyoName(data.Servicio)).appendTo(row);
+            if ($('.Entregable' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Entregable'+rowIndex+'">').text(data.Entregable).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Entregable'+rowIndex+'">').text(data.Entregable).appendTo(row);
+            if ($('.Tiempo_Estandar' + 'Header').css('display') != 'none')
+                $('<td class="dt-right"  id="'+nameOfTable+'Tiempo_Estandar'+rowIndex+'">').text(data.Tiempo_Estandar).appendTo(row);
+            else 
+                 $('<td class="dt-right" style="display:none;"  id="'+nameOfTable+'Tiempo_Estandar'+rowIndex+'">').text(data.Tiempo_Estandar).appendTo(row);
+            if ($('.Ponderacion' + 'Header').css('display') != 'none')
+                $('<td class="dt-right"  id="'+nameOfTable+'Ponderacion'+rowIndex+'">').text(data.Ponderacion).appendTo(row);
+            else 
+                 $('<td class="dt-right" style="display:none;"  id="'+nameOfTable+'Ponderacion'+rowIndex+'">').text(data.Ponderacion).appendTo(row);
+
+        }
+
+        var Configuracion_de_PlaneacionTable;
+        function showConfiguracion_de_PlaneacionGrid(dataSet) {
+            //removedConfiguracion_de_PlaneacionData = [];
+            Configuracion_de_PlaneacionTable = $('#Configuracion_de_PlaneacionGrid').dataTable({
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [
+                ],
+                "createdRow": Configuracion_de_PlaneacionrowCreationGrid,
+                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+                data: dataSet,
+                "columns": [
+                    { "data": null, 'visible': true, "orderable": false },
+
+                    { "data": "Categoria", "orderable": false },
+                    { "data": "Servicio", "orderable": false },
+                    { "data": "Entregable", "orderable": false },
+                    { "data": "Tiempo_Estandar", "className": "dt-right", "orderable": false },
+                    { "data": "Ponderacion", "className": "dt-right", "orderable": false },
+
+                ],
+                "order": [[0, "asc"]],
+                "language": {
+                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                    "zeroRecords": "@Resources.Resources.NothingFound",
+                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                    "infoEmpty": "@Resources.Resources.NoRecords",
+                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                    "sSearch": "@Resources.Resources.Search",
+                    "paginate": {
+                        "previous": "@Resources.Resources.Previous",
+                        "next": "@Resources.Resources.Next"
+                    }
+                },
+				"bDestroy": true,
+                "fnDrawCallback": function (settings) {
+                    setConfiguracion_de_PlaneacionValidation();
+                }
+            }).on('init.dt', function (e, data) {
+                $('a').tooltip();
+            }).on('draw.dt', function () {
+                $('#Configuracion_de_PlaneacionGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+            });
+        }
+
+
+    var Configuracion_de_Planeacion_Categoria_de_Servicio_de_ApoyoItems;
+        function GetConfiguracion_de_Planeacion_Categoria_de_Servicio_de_ApoyoItem() {
+            Configuracion_de_Planeacion_Categoria_de_Servicio_de_ApoyoItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Delito/GetConfiguracion_de_Planeacion_Categoria_de_Servicio_de_ApoyoAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Configuracion_de_Planeacion_Categoria_de_Servicio_de_ApoyoItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+    var Configuracion_de_Planeacion_Tipo_de_Servicio_de_ApoyoItems;
+        function GetConfiguracion_de_Planeacion_Tipo_de_Servicio_de_ApoyoItem() {
+            Configuracion_de_Planeacion_Tipo_de_Servicio_de_ApoyoItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Delito/GetConfiguracion_de_Planeacion_Tipo_de_Servicio_de_ApoyoAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Configuracion_de_Planeacion_Tipo_de_Servicio_de_ApoyoItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+
+
+
+        var Configuracion_de_PlaneacionData = [];
+        var Configuracion_de_PlaneaciondeletedItem = [];
+        var Configuracion_de_PlaneacionDataMain = [];
+        var Configuracion_de_PlaneacionDataMainPages = [];
+        var Configuracion_de_PlaneacionnewItemCount = 0;
+        var Configuracion_de_PlaneacionmaxItemIndex = 0;
+        var Configuracion_de_PlaneacionDataMainInitialized = false;
+
+        function SendConfiguracion_de_Planeacion(callBack, ClaveId) {
+            Configuracion_de_PlaneacionData = GetConfiguracion_de_PlaneacionFromDataTable();
+
+            if (Configuracion_de_PlaneacionData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
+                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
+                    ClaveId = $("#ReferenceClave").val();                
+                if ($("#ReferenceClave").val() == '')
+                    $("#ReferenceClave").val('0');
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Delito/PostConfiguracion_de_Planeacion?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
+                    type: 'POST',
+                    data: GetConfiguracion_de_Planeacion(),
+                    async: true,
+                    success: function (result) {
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            } else {
+                //showNotification("@Resources.Resources.SaveSuccess", "success");
+                //callBack(ClaveId);
+            }
+            return true;
+        }
+
+        function GetAddConfiguracion_de_PlaneacionPopup(currentRowIndex, mode, id) {
+
+            $.ajax({
+                url: "@Url.Action("AddConfiguracion_de_Planeacion", "Configuracion_de_Planeacion")",
+                type: "GET",
+                async: false,
+                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+                success: function (data) {
+                    $(".AddConfiguracion_de_PlaneacionModal").html(data);
+                },
+                error: function () {
+
+                }
+            });
+
+            @*$.get('@Url.Action("AddConfiguracion_de_Planeacion", "Configuracion_de_Planeacion")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddConfiguracion_de_PlaneacionModal").html(data);
+            });*@
+        }
+
+        function ShowMessagePendingRowConfiguracion_de_Planeacion()
+        {
+            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Configuración de Planeación"))')
+	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Configuración de Planeación"))', "warning");
+        }
 
 
         function initiateUIControls() {
@@ -440,6 +851,13 @@
             $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
 			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
 			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+
+
+
+
+
+
 
         }
 
@@ -694,6 +1112,10 @@
                     $('#Alta_Incidencia').prop('checked', result.data.Alta_Incidencia);
                     $('#Tentativa').prop('checked', result.data.Tentativa);
                     $('#Activo').prop('checked', result.data.Activo);
+                    Configuracion_de_PlaneacionDataDataTable = result.Configuracion_de_Planeacion;
+                    showConfiguracion_de_PlaneacionGrid(result.Configuracion_de_Planeacion);
+                    $('#Configuracion_de_PlaneacionGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Configuracion_de_PlaneacionGrid .gridDatePicker').attr("readonly", "");
 
                 },
                 error: function (result) {
@@ -727,7 +1149,8 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
 					} else {
 						newId = result;
-                    
+                    					    SendConfiguracion_de_Planeacion(null, newId);
+
 					}
 				},
 				error: function (result) {

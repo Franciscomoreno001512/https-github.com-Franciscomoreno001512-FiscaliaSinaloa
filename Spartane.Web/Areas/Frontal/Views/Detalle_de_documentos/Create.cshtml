@@ -537,6 +537,8 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('45018');
+			
+			localStorage.setItem('controlDocumentoDynamiSeach',"");
 
 
                         $('#Fecha').datepicker({
@@ -1144,14 +1146,29 @@
         });
         }
 
-        function EditarDocto() {
+         function EditarDocto() {
+
             debugger;
+			
+			    var _controlDocumentoDynamiSeach = localStorage.getItem('controlDocumentoDynamiSeach');
+   // if (_controlDocumentoDynamiSeach != "true" ) {
+     //   controlDocumentoDynamiSeach = false; 
+        
+   // }
+	
+	controlDocumentoDynamiSeach = false; 
+	if (_controlDocumentoDynamiSeach == "true" ) {
+        controlDocumentoDynamiSeach = true; 
+        
+    }
+
             if ( controlDocumentoDynamiSeach == true ) {
                 alert('Existe una ventana abierta');
             }
             else {
                 permitirCerrar = false;
                 controlDocumentoDynamiSeach = true; 
+				localStorage.setItem('controlDocumentoDynamiSeach',"true");
             var isedit = ($("#Archivo").val() != "" && $("#Archivo").val() != "0" && $("#Archivo").val() != "-1");
             var folioControlDocumentos = $("#Archivo").val();
             $('.loading').css('display', 'none');

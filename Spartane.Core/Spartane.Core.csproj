@@ -1242,6 +1242,26 @@
 <Compile Include="Domain\IPH\IPHPagingModel.cs" />
 <Compile Include="Domain\Servicios_de_Apoyo_MP\Servicios_de_Apoyo_MP.cs" />
 <Compile Include="Domain\Servicios_de_Apoyo_MP\Servicios_de_Apoyo_MPPagingModel.cs" />
+<Compile Include="Domain\Configuracion_de_Planeacion\Configuracion_de_PlaneacionPagingModel.cs" />
+<Compile Include="Domain\Configuracion_de_Planeacion\Configuracion_de_Planeacion.cs" />
+<Compile Include="Domain\Detalle_Plan_Actos_de_Investigacion\Detalle_Plan_Actos_de_InvestigacionPagingModel.cs" />
+<Compile Include="Domain\Detalle_Plan_Actos_de_Investigacion\Detalle_Plan_Actos_de_Investigacion.cs" />
+<Compile Include="Domain\Plan_de_Investigacion\Plan_de_Investigacion.cs" />
+<Compile Include="Domain\Plan_de_Investigacion\Plan_de_InvestigacionPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Audiencia\Tipo_de_Audiencia.cs" />
+<Compile Include="Domain\Tipo_de_Audiencia\Tipo_de_AudienciaPagingModel.cs" />
+<Compile Include="Domain\Audiencia\Audiencia.cs" />
+<Compile Include="Domain\Audiencia\AudienciaPagingModel.cs" />
+<Compile Include="Domain\Resultado_de_Audiencia\Resultado_de_Audiencia.cs" />
+<Compile Include="Domain\Resultado_de_Audiencia\Resultado_de_AudienciaPagingModel.cs" />
+<Compile Include="Domain\Audiencias_MP\Audiencias_MP.cs" />
+<Compile Include="Domain\Audiencias_MP\Audiencias_MPPagingModel.cs" />
+<Compile Include="Domain\Detalle_Audiencia_Defensor_Imputado\Detalle_Audiencia_Defensor_ImputadoPagingModel.cs" />
+<Compile Include="Domain\Detalle_Audiencia_Defensor_Imputado\Detalle_Audiencia_Defensor_Imputado.cs" />
+<Compile Include="Domain\Detalle_Audiencia_Defensor_Victima\Detalle_Audiencia_Defensor_VictimaPagingModel.cs" />
+<Compile Include="Domain\Detalle_Audiencia_Defensor_Victima\Detalle_Audiencia_Defensor_Victima.cs" />
+<Compile Include="Domain\Detalle_Audiencia_Archivos_Adjuntos\Detalle_Audiencia_Archivos_AdjuntosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Audiencia_Archivos_Adjuntos\Detalle_Audiencia_Archivos_Adjuntos.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1262,6 +1282,26 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

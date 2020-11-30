@@ -6,6 +6,7 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Servicios_de_Apoyo_MPModel
 @{
+    Spartane_File attachedFileArchivo = (Spartane_File)ViewBag.ArchivoSpartane_File;
     Spartane_File attachedFileArchivo_Adjunto = (Spartane_File)ViewBag.Archivo_AdjuntoSpartane_File;
 
 /*
@@ -333,11 +334,22 @@
                                 </div>
                                 }
                             </div>
+                            @if (attachedFileArchivo != null && attachedFileArchivo.File_Id > 0)
+                            {
+                                <div class="form-group" id="divAttachmentArchivo">
+                                    <label class="col-sm-2 control-label">@Resources.Resources.PreviouslyAttachedFile</label>
+                                    <div class="col-sm-8 Datos_Generales" data-field-id="Archivo" data-attribute="267340" data-field-name="@Resources.Servicios_de_Apoyo_MPResources.Archivo">
+                                        <a href="@Url.Content("~/Frontal/Servicios_de_Apoyo_MP/GetFile")?id=@attachedFileArchivo.File_Id" target="_blank">@attachedFileArchivo.Description</a>
+                                        <img src="@Url.Content("~/Content/Images/RemoveAttachment.png")" onclick="RemoveAttachmentMainArchivo('@attachedFileArchivo.File_Id')" />
+                                    </div>
+                                    <input id="hdnRemoveArchivo" name="RemoveArchivo" value="0" type="hidden" />
+                                    <input class="form-control col-md-12 Datos_Generales" id="hdnAttachedArchivo" type="hidden" name="Archivo" value="@Model.Archivo">
+                                </div>
+                            }
                             <div class="form-group" id="divArchivo">
                                 <label class="col-sm-2 control-label">@Resources.Servicios_de_Apoyo_MPResources.Archivo</label>
                                 <div class="col-sm-8" data-field-id="Archivo" data-attribute="267340" data-field-name="@Resources.Servicios_de_Apoyo_MPResources.Archivo">
-                                    <input class="form-control inputNumber Datos_Generales" id="Archivo" name="Archivo" type="text" value="@Model.Archivo">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Archivo" data-valmsg-replace="true"></span>*@
+                                    <input type="file" name="ArchivoFile" id="ArchivoFile" class="form-control" />
                                 </div>
                             </div>
                             </div>
@@ -491,6 +503,10 @@
 
     <script type="text/javascript">
         
+        function RemoveAttachmentMainArchivo () {
+            $("#hdnRemoveArchivo").val("1");
+            $("#divAttachmentArchivo").hide();
+        }
         function RemoveAttachmentMainArchivo_Adjunto () {
             $("#hdnRemoveArchivo_Adjunto").val("1");
             $("#divAttachmentArchivo_Adjunto").hide();
@@ -1063,7 +1079,9 @@
                 data.append('Fecha_de_Termino_para_Entrega', $('#Fecha_de_Termino_para_Entrega').val());
                 data.append('Hora_de_Termino_para_Entrega', $('#Hora_de_Termino_para_Entrega').val());
                 data.append('Diligencia_a_Enviar', $('#Diligencia_a_Enviar').val());
-                data.append('Archivo', $('#Archivo').val());
+                data.append('Archivo', $('#hdnAttachedArchivo').val());
+                data.append('ArchivoFile', $('#ArchivoFile')[0].files[0]);
+                data.append('ArchivoRemoveAttachment', $('#hdnRemoveArchivo').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Servicios_de_Apoyo_MP/Post_Datos_Generales")',

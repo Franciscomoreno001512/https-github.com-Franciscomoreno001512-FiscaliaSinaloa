@@ -213,7 +213,6 @@
                                     <th>@Resources.Servicios_de_Apoyo_MPResources.Fecha_de_Termino_para_Entrega</th>
                                     <th>@Resources.Servicios_de_Apoyo_MPResources.Hora_de_Termino_para_Entrega</th>
                                     <th>@Resources.Servicios_de_Apoyo_MPResources.Diligencia_a_Enviar</th>
-                                    <th>@Resources.Servicios_de_Apoyo_MPResources.Archivo</th>
                                     <th>@Resources.Servicios_de_Apoyo_MPResources.Fecha_de_Atencion</th>
                                     <th>@Resources.Servicios_de_Apoyo_MPResources.Hora_de_Atencion</th>
                                     <th>@Resources.Servicios_de_Apoyo_MPResources.Usuario_que_Atiende</th>
@@ -234,7 +233,6 @@
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -364,7 +362,6 @@
         var Fecha_de_Termino_para_Entrega = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Termino_para_Entrega = $($('table td .filterData.form-control:input')[counter++]).val();
         var Diligencia_a_Enviar =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Atencion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Atencion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Usuario_que_Atiende =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -381,7 +378,6 @@
         + "&Fecha_de_Termino_para_Entrega=" + Fecha_de_Termino_para_Entrega
         + "&Hora_de_Termino_para_Entrega=" + Hora_de_Termino_para_Entrega
         + "&Diligencia_a_Enviar=" + Diligencia_a_Enviar
-        + "&Archivo=" + Archivo
         + "&Fecha_de_Atencion=" + Fecha_de_Atencion
         + "&Hora_de_Atencion=" + Hora_de_Atencion
         + "&Usuario_que_Atiende=" + Usuario_que_Atiende
@@ -409,7 +405,6 @@
         var Fecha_de_Termino_para_Entrega = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Termino_para_Entrega = $($('table td .filterData.form-control:input')[counter++]).val();
         var Diligencia_a_Enviar =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Atencion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Atencion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Usuario_que_Atiende =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -426,7 +421,6 @@
         + "&Fecha_de_Termino_para_Entrega=" + Fecha_de_Termino_para_Entrega
         + "&Hora_de_Termino_para_Entrega=" + Hora_de_Termino_para_Entrega
         + "&Diligencia_a_Enviar=" + Diligencia_a_Enviar
-        + "&Archivo=" + Archivo
         + "&Fecha_de_Atencion=" + Fecha_de_Atencion
         + "&Hora_de_Atencion=" + Hora_de_Atencion
         + "&Usuario_que_Atiende=" + Usuario_que_Atiende
@@ -610,11 +604,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -688,7 +682,6 @@
                 ,{ "data": "Fecha_de_Termino_para_Entrega", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Termino_para_Entrega" }
                 ,{ "data": "Hora_de_Termino_para_Entrega", "orderable": true, "name": "Hora_de_Termino_para_Entrega" }
                 ,{ "data": "Diligencia_a_EnviarDescripcion", "orderable": true, "name": "Diligencia_a_EnviarDescripcion"}
-                ,{ "data": "Archivo","className": "dt-right", "orderable": true, "name": "Archivo" }
                 ,{ "data": "Fecha_de_Atencion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Atencion" }
                 ,{ "data": "Hora_de_Atencion", "orderable": true, "name": "Hora_de_Atencion" }
                 ,{ "data": "Usuario_que_AtiendeName", "orderable": true, "name": "Usuario_que_AtiendeName"}

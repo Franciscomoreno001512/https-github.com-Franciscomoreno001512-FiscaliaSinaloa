@@ -10,6 +10,7 @@
   <resource culture="es-es" name="Alta_Incidencia" value="Alta Incidencia"></resource>
   <resource culture="es-es" name="Tentativa" value="Tentativa"></resource>
   <resource culture="es-es" name="Activo" value="Activo"></resource>
+  <resource culture="es-es" name="Configuracion_de_Planeacion" value="Configuración de Planeación"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

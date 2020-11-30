@@ -3,6 +3,7 @@
   <resource culture="es-es" name="Tipo_de_Servicio_de_Apoyo" value="Tipo de Servicio de Apoyo"></resource>
   <resource culture="es-es" name="Clave" value="Clave"></resource>
   <resource culture="es-es" name="Servicio" value="Servicio"></resource>
+  <resource culture="es-es" name="Categoria" value="Categoria"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

@@ -717,6 +717,10 @@ if(operation == 'New'){
 
 
 
+
+
+
+
 //BusinessRuleId:2511, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
 if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('3', '3') ) { EvaluaQuery(" update Detalle_de_Imputado set Expediente_MP = GLOBAL[SpartanOperationId] where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}

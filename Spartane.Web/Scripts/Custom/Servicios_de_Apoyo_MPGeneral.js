@@ -1,4 +1,8 @@
-﻿        function RemoveAttachmentMainArchivo_Adjunto () {
+﻿        function RemoveAttachmentMainArchivo () {
+            $("#hdnRemoveArchivo").val("1");
+            $("#divAttachmentArchivo").hide();
+        }
+        function RemoveAttachmentMainArchivo_Adjunto () {
             $("#hdnRemoveArchivo_Adjunto").val("1");
             $("#divAttachmentArchivo_Adjunto").hide();
         }

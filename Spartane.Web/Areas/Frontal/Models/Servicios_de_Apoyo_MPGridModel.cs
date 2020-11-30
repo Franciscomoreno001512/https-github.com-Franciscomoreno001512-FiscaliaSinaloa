@@ -25,6 +25,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Diligencia_a_Enviar { get; set; }
         public string Diligencia_a_EnviarDescripcion { get; set; }
         public int? Archivo { get; set; }
+        public Grid_File ArchivoFileInfo { set; get; }
         public string Fecha_de_Atencion { get; set; }
         public string Hora_de_Atencion { get; set; }
         public int? Usuario_que_Atiende { get; set; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Spartane.Core.Domain.Categoria_de_Servicio_de_Apoyo;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,7 +18,10 @@ namespace Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo
     {
         public int Clave { get; set; }
         public string Servicio { get; set; }
+        public short? Categoria { get; set; }
 
+        [ForeignKey("Categoria")]
+        public virtual Spartane.Core.Domain.Categoria_de_Servicio_de_Apoyo.Categoria_de_Servicio_de_Apoyo Categoria_Categoria_de_Servicio_de_Apoyo { get; set; }
 
     }
 	
@@ -25,8 +29,11 @@ namespace Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo
     {
                 public int Clave { get; set; }
         public string Servicio { get; set; }
+        public short? Categoria { get; set; }
 
-		
+		        [ForeignKey("Categoria")]
+        public virtual Spartane.Core.Domain.Categoria_de_Servicio_de_Apoyo.Categoria_de_Servicio_de_Apoyo Categoria_Categoria_de_Servicio_de_Apoyo { get; set; }
+
     }
 
 

@@ -1133,6 +1133,26 @@
 <Compile Include="IPH\IPHService.cs" />
 <Compile Include="Servicios_de_Apoyo_MP\IServicios_de_Apoyo_MPService.cs" />
 <Compile Include="Servicios_de_Apoyo_MP\Servicios_de_Apoyo_MPService.cs" />
+<Compile Include="Configuracion_de_Planeacion\IConfiguracion_de_PlaneacionService.cs" />
+<Compile Include="Configuracion_de_Planeacion\Configuracion_de_PlaneacionService.cs" />
+<Compile Include="Detalle_Plan_Actos_de_Investigacion\IDetalle_Plan_Actos_de_InvestigacionService.cs" />
+<Compile Include="Detalle_Plan_Actos_de_Investigacion\Detalle_Plan_Actos_de_InvestigacionService.cs" />
+<Compile Include="Plan_de_Investigacion\IPlan_de_InvestigacionService.cs" />
+<Compile Include="Plan_de_Investigacion\Plan_de_InvestigacionService.cs" />
+<Compile Include="Tipo_de_Audiencia\ITipo_de_AudienciaService.cs" />
+<Compile Include="Tipo_de_Audiencia\Tipo_de_AudienciaService.cs" />
+<Compile Include="Audiencia\IAudienciaService.cs" />
+<Compile Include="Audiencia\AudienciaService.cs" />
+<Compile Include="Resultado_de_Audiencia\IResultado_de_AudienciaService.cs" />
+<Compile Include="Resultado_de_Audiencia\Resultado_de_AudienciaService.cs" />
+<Compile Include="Audiencias_MP\IAudiencias_MPService.cs" />
+<Compile Include="Audiencias_MP\Audiencias_MPService.cs" />
+<Compile Include="Detalle_Audiencia_Defensor_Imputado\IDetalle_Audiencia_Defensor_ImputadoService.cs" />
+<Compile Include="Detalle_Audiencia_Defensor_Imputado\Detalle_Audiencia_Defensor_ImputadoService.cs" />
+<Compile Include="Detalle_Audiencia_Defensor_Victima\IDetalle_Audiencia_Defensor_VictimaService.cs" />
+<Compile Include="Detalle_Audiencia_Defensor_Victima\Detalle_Audiencia_Defensor_VictimaService.cs" />
+<Compile Include="Detalle_Audiencia_Archivos_Adjuntos\IDetalle_Audiencia_Archivos_AdjuntosService.cs" />
+<Compile Include="Detalle_Audiencia_Archivos_Adjuntos\Detalle_Audiencia_Archivos_AdjuntosService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1232,6 +1252,26 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

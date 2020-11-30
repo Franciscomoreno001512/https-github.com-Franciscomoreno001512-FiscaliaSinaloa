@@ -41,8 +41,6 @@ namespace Spartane.Web.SqlModelMapper
                 case "Diligencia_a_Enviar[Descripcion]":
                 case "Diligencia_a_EnviarDescripcion":
                     return "Diligencias_MP.Descripcion";
-                case "Archivo":
-                    return "Servicios_de_Apoyo_MP.Archivo";
                 case "Fecha_de_Atencion":
                     return "Servicios_de_Apoyo_MP.Fecha_de_Atencion";
                 case "Hora_de_Atencion":

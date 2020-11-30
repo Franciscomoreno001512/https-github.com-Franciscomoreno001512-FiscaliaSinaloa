@@ -8,6 +8,7 @@ using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Categoria_de_Servicio_de_Apoyo;
 using Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo;
 using Spartane.Core.Domain.Diligencias_MP;
+using Spartane.Core.Domain.Spartane_File;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Spartane_File;
 
@@ -34,6 +35,7 @@ namespace Spartane.Core.Domain.Servicios_de_Apoyo_MP
         public string Hora_de_Termino_para_Entrega { get; set; }
         public int? Diligencia_a_Enviar { get; set; }
         public int? Archivo { get; set; }
+        public string Archivo_URL { get; set; }
         public DateTime? Fecha_de_Atencion { get; set; }
         public string Hora_de_Atencion { get; set; }
         public int? Usuario_que_Atiende { get; set; }
@@ -50,6 +52,8 @@ namespace Spartane.Core.Domain.Servicios_de_Apoyo_MP
         public virtual Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo.Tipo_de_Servicio_de_Apoyo Tipo_de_Servicio_Tipo_de_Servicio_de_Apoyo { get; set; }
         [ForeignKey("Diligencia_a_Enviar")]
         public virtual Spartane.Core.Domain.Diligencias_MP.Diligencias_MP Diligencia_a_Enviar_Diligencias_MP { get; set; }
+        [ForeignKey("Archivo")]
+        public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Archivo_Spartane_File { get; set; }
         [ForeignKey("Usuario_que_Atiende")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Atiende_Spartan_User { get; set; }
         [ForeignKey("Archivo_Adjunto")]
@@ -71,6 +75,7 @@ namespace Spartane.Core.Domain.Servicios_de_Apoyo_MP
         public string Hora_de_Termino_para_Entrega { get; set; }
         public int? Diligencia_a_Enviar { get; set; }
         public int? Archivo { get; set; }
+        public string Archivo_URL { get; set; }
 
 		        [ForeignKey("Expediente_MP")]
         public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
@@ -82,6 +87,8 @@ namespace Spartane.Core.Domain.Servicios_de_Apoyo_MP
         public virtual Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo.Tipo_de_Servicio_de_Apoyo Tipo_de_Servicio_Tipo_de_Servicio_de_Apoyo { get; set; }
         [ForeignKey("Diligencia_a_Enviar")]
         public virtual Spartane.Core.Domain.Diligencias_MP.Diligencias_MP Diligencia_a_Enviar_Diligencias_MP { get; set; }
+        [ForeignKey("Archivo")]
+        public virtual Spartane.Core.Domain.Spartane_File.Spartane_File Archivo_Spartane_File { get; set; }
 
     }
 

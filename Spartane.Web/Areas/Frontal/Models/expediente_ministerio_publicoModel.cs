@@ -16,8 +16,14 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string hora_de_registro { get; set; }
         public int? usuario_que_registra { get; set; }
         public string usuario_que_registraName { get; set; }
+        public int? Tipo_de_Denuncia { get; set; }
+        public string Tipo_de_DenunciaDescripcion { get; set; }
         public int? unidad { get; set; }
         public string unidadDescripcion { get; set; }
+        public int? Municipio { get; set; }
+        public string MunicipioNombre { get; set; }
+        public int? Region { get; set; }
+        public string RegionDescripcion { get; set; }
         public string nuat { get; set; }
         public string nic { get; set; }
         public short? detenido { get; set; }
@@ -26,8 +32,26 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string hora_puesto_a_disposicion { get; set; }
         public short? estatus { get; set; }
         public string estatusdescripcion { get; set; }
-        public int? observaciones { get; set; }
-        public int observacionesclave { get; set; }
+        public string Titulo_del_Hecho { get; set; }
+        public string Fecha_del_Hecho { get; set; }
+        public string Narrativa_Breve_de_los_Hechos { get; set; }
+        public string Hora_Aproximada_del_Hecho { get; set; }
+        public int? Lugar_de_los_Hechos { get; set; }
+        public string Lugar_de_los_HechosDescripcion { get; set; }
+        public int? PaisH { get; set; }
+        public string PaisHNombre { get; set; }
+        public int? Poblacion { get; set; }
+        public string PoblacionNombre { get; set; }
+        public int? ColoniaH { get; set; }
+        public string ColoniaHNombre { get; set; }
+        public string CalleH { get; set; }
+        public string Numero_ExteriorH { get; set; }
+        public string Numero_InteriorH { get; set; }
+        [Range(0, 9999999999)]
+        public int? Codigo_PostalH { get; set; }
+        public string Entre_Calle { get; set; }
+        public string LongitudH { get; set; }
+        public string LatitudH { get; set; }
         public string Fecha_de_Canalizacion { get; set; }
         public string Hora_de_Canalizacion { get; set; }
         public int? usuario_que_canaliza { get; set; }
@@ -46,10 +70,13 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? parcialidades { get; set; }
         public int? periodicidad { get; set; }
         public string periodicidadDescripcion { get; set; }
-        public bool acepta_acuerdo { get; set; }
+        public short? acepta_acuerdo { get; set; }
+        public string acepta_acuerdoDescripcion { get; set; }
         public string motivo_de_rechazo_de_acuerdo { get; set; }
         public string fecha_de_cierre { get; set; }
         public string hora_de_cierre { get; set; }
+        public int? Usuario_que_Cierra { get; set; }
+        public string Usuario_que_CierraName { get; set; }
         public int? tipo_de_cierre { get; set; }
         public string tipo_de_cierredescripcion { get; set; }
         public string comentarios_de_cierre { get; set; }
@@ -64,8 +91,14 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string hora_de_registro { get; set; }
         public int? usuario_que_registra { get; set; }
         public string usuario_que_registraName { get; set; }
+        public int? Tipo_de_Denuncia { get; set; }
+        public string Tipo_de_DenunciaDescripcion { get; set; }
         public int? unidad { get; set; }
         public string unidadDescripcion { get; set; }
+        public int? Municipio { get; set; }
+        public string MunicipioNombre { get; set; }
+        public int? Region { get; set; }
+        public string RegionDescripcion { get; set; }
         public string nuat { get; set; }
         public string nic { get; set; }
         public short? detenido { get; set; }
@@ -74,8 +107,33 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string hora_puesto_a_disposicion { get; set; }
         public short? estatus { get; set; }
         public string estatusdescripcion { get; set; }
-        public int? observaciones { get; set; }
-        public int observacionesclave { get; set; }
+
+    }
+
+	public class expediente_ministerio_publico_HechosModel
+    {
+        [Required]
+        public int clave { get; set; }
+        public string Titulo_del_Hecho { get; set; }
+        public string Fecha_del_Hecho { get; set; }
+        public string Narrativa_Breve_de_los_Hechos { get; set; }
+        public string Hora_Aproximada_del_Hecho { get; set; }
+        public int? Lugar_de_los_Hechos { get; set; }
+        public string Lugar_de_los_HechosDescripcion { get; set; }
+        public int? PaisH { get; set; }
+        public string PaisHNombre { get; set; }
+        public int? Poblacion { get; set; }
+        public string PoblacionNombre { get; set; }
+        public int? ColoniaH { get; set; }
+        public string ColoniaHNombre { get; set; }
+        public string CalleH { get; set; }
+        public string Numero_ExteriorH { get; set; }
+        public string Numero_InteriorH { get; set; }
+        [Range(0, 9999999999)]
+        public int? Codigo_PostalH { get; set; }
+        public string Entre_Calle { get; set; }
+        public string LongitudH { get; set; }
+        public string LatitudH { get; set; }
 
     }
 
@@ -108,7 +166,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? parcialidades { get; set; }
         public int? periodicidad { get; set; }
         public string periodicidadDescripcion { get; set; }
-        public bool? acepta_acuerdo { get; set; }
+        public short? acepta_acuerdo { get; set; }
+        public string acepta_acuerdoDescripcion { get; set; }
         public string motivo_de_rechazo_de_acuerdo { get; set; }
 
     }
@@ -119,6 +178,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int clave { get; set; }
         public string fecha_de_cierre { get; set; }
         public string hora_de_cierre { get; set; }
+        public int? Usuario_que_Cierra { get; set; }
+        public string Usuario_que_CierraName { get; set; }
         public int? tipo_de_cierre { get; set; }
         public string tipo_de_cierredescripcion { get; set; }
         public string comentarios_de_cierre { get; set; }

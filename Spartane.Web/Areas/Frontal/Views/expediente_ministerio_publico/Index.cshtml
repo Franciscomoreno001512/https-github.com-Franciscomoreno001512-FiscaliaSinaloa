@@ -2,14 +2,22 @@
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.expediente_ministerio_publico;
 @using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Tipo_de_Denuncia;
 @using Spartane.Core.Domain.Unidad;
+@using Spartane.Core.Domain.Municipio;
+@using Spartane.Core.Domain.Region;
 @using Spartane.Core.Domain.A_Tiempo;
 @using Spartane.Core.Domain.estatus_mpi;
-@using Spartane.Core.Domain.detalle_de_observaciones_mpi;
+@using Spartane.Core.Domain.Lugar_Tipo;
+@using Spartane.Core.Domain.Pais;
+@using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.Colonia;
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Estatus_Orientador;
 @using Spartane.Core.Domain.Tipo_de_Acuerdo;
 @using Spartane.Core.Domain.Periodicidad;
+@using Spartane.Core.Domain.A_Tiempo;
+@using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.tipo_de_cierre;
 
 @using Spartane.Core.Domain.Permission
@@ -210,14 +218,31 @@
                                     <th>@Resources.expediente_ministerio_publicoResources.fecha_de_registro</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.hora_de_registro</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.usuario_que_registra</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Tipo_de_Denuncia</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.unidad</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Municipio</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Region</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.nuat</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.nic</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.detenido</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.hora_del_detenido</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.hora_puesto_a_disposicion</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.estatus</th>
-                                    <th>@Resources.expediente_ministerio_publicoResources.observaciones</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Titulo_del_Hecho</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Fecha_del_Hecho</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Narrativa_Breve_de_los_Hechos</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Hora_Aproximada_del_Hecho</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Lugar_de_los_Hechos</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.PaisH</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Poblacion</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.ColoniaH</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.CalleH</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Numero_ExteriorH</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Numero_InteriorH</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Codigo_PostalH</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Entre_Calle</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.LongitudH</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.LatitudH</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.Fecha_de_Canalizacion</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.Hora_de_Canalizacion</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.usuario_que_canaliza</th>
@@ -234,6 +259,7 @@
                                     <th>@Resources.expediente_ministerio_publicoResources.motivo_de_rechazo_de_acuerdo</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.fecha_de_cierre</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.hora_de_cierre</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Usuario_que_Cierra</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.tipo_de_cierre</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.comentarios_de_cierre</th>
 
@@ -250,8 +276,25 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
@@ -266,10 +309,11 @@
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
@@ -391,14 +435,31 @@
         var fecha_de_registro = $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_de_registro = $($('table td .filterData.form-control:input')[counter++]).val();
         var usuario_que_registra =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var unidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
         var nuat =  $($('table td .filterData.form-control:input')[counter++]).val();
         var nic =  $($('table td .filterData.form-control:input')[counter++]).val();
         var detenido =  $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_del_detenido = $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_puesto_a_disposicion = $($('table td .filterData.form-control:input')[counter++]).val();
         var estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Narrativa_Breve_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Aproximada_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Lugar_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var PaisH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ColoniaH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var CalleH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_ExteriorH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_InteriorH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_PostalH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entre_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var LongitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var LatitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Canalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Canalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var usuario_que_canaliza =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -411,10 +472,11 @@
         var monto_de_reparacion_de_danos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var parcialidades =  $($('table td .filterData.form-control:input')[counter++]).val();
         var periodicidad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var acepta_acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var acepta_acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var motivo_de_rechazo_de_acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var fecha_de_cierre = $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_de_cierre = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Cierra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var tipo_de_cierre =  $($('table td .filterData.form-control:input')[counter++]).val();
         var comentarios_de_cierre =  $($('table td .filterData.form-control:input')[counter++]).val();
 
@@ -423,14 +485,31 @@
         + "&fecha_de_registro=" + fecha_de_registro
         + "&hora_de_registro=" + hora_de_registro
         + "&usuario_que_registra=" + usuario_que_registra
+        + "&Tipo_de_Denuncia=" + Tipo_de_Denuncia
         + "&unidad=" + unidad
+        + "&Municipio=" + Municipio
+        + "&Region=" + Region
         + "&nuat=" + nuat
         + "&nic=" + nic
         + "&detenido=" + detenido
         + "&hora_del_detenido=" + hora_del_detenido
         + "&hora_puesto_a_disposicion=" + hora_puesto_a_disposicion
         + "&estatus=" + estatus
-        + "&observaciones=" + observaciones
+        + "&Titulo_del_Hecho=" + Titulo_del_Hecho
+        + "&Fecha_del_Hecho=" + Fecha_del_Hecho
+        + "&Narrativa_Breve_de_los_Hechos=" + Narrativa_Breve_de_los_Hechos
+        + "&Hora_Aproximada_del_Hecho=" + Hora_Aproximada_del_Hecho
+        + "&Lugar_de_los_Hechos=" + Lugar_de_los_Hechos
+        + "&PaisH=" + PaisH
+        + "&Poblacion=" + Poblacion
+        + "&ColoniaH=" + ColoniaH
+        + "&CalleH=" + CalleH
+        + "&Numero_ExteriorH=" + Numero_ExteriorH
+        + "&Numero_InteriorH=" + Numero_InteriorH
+        + "&Codigo_PostalH=" + Codigo_PostalH
+        + "&Entre_Calle=" + Entre_Calle
+        + "&LongitudH=" + LongitudH
+        + "&LatitudH=" + LatitudH
         + "&Fecha_de_Canalizacion=" + Fecha_de_Canalizacion
         + "&Hora_de_Canalizacion=" + Hora_de_Canalizacion
         + "&usuario_que_canaliza=" + usuario_que_canaliza
@@ -447,6 +526,7 @@
         + "&motivo_de_rechazo_de_acuerdo=" + motivo_de_rechazo_de_acuerdo
         + "&fecha_de_cierre=" + fecha_de_cierre
         + "&hora_de_cierre=" + hora_de_cierre
+        + "&Usuario_que_Cierra=" + Usuario_que_Cierra
         + "&tipo_de_cierre=" + tipo_de_cierre
         + "&comentarios_de_cierre=" + comentarios_de_cierre
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
@@ -466,14 +546,31 @@
         var fecha_de_registro = $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_de_registro = $($('table td .filterData.form-control:input')[counter++]).val();
         var usuario_que_registra =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var unidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
         var nuat =  $($('table td .filterData.form-control:input')[counter++]).val();
         var nic =  $($('table td .filterData.form-control:input')[counter++]).val();
         var detenido =  $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_del_detenido = $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_puesto_a_disposicion = $($('table td .filterData.form-control:input')[counter++]).val();
         var estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Narrativa_Breve_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Aproximada_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Lugar_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var PaisH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ColoniaH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var CalleH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_ExteriorH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_InteriorH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Codigo_PostalH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Entre_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var LongitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var LatitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Canalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Canalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var usuario_que_canaliza =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -486,10 +583,11 @@
         var monto_de_reparacion_de_danos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var parcialidades =  $($('table td .filterData.form-control:input')[counter++]).val();
         var periodicidad =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var acepta_acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var acepta_acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var motivo_de_rechazo_de_acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var fecha_de_cierre = $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_de_cierre = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Cierra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var tipo_de_cierre =  $($('table td .filterData.form-control:input')[counter++]).val();
         var comentarios_de_cierre =  $($('table td .filterData.form-control:input')[counter++]).val();
 
@@ -498,14 +596,31 @@
         + "&fecha_de_registro=" + fecha_de_registro
         + "&hora_de_registro=" + hora_de_registro
         + "&usuario_que_registra=" + usuario_que_registra
+        + "&Tipo_de_Denuncia=" + Tipo_de_Denuncia
         + "&unidad=" + unidad
+        + "&Municipio=" + Municipio
+        + "&Region=" + Region
         + "&nuat=" + nuat
         + "&nic=" + nic
         + "&detenido=" + detenido
         + "&hora_del_detenido=" + hora_del_detenido
         + "&hora_puesto_a_disposicion=" + hora_puesto_a_disposicion
         + "&estatus=" + estatus
-        + "&observaciones=" + observaciones
+        + "&Titulo_del_Hecho=" + Titulo_del_Hecho
+        + "&Fecha_del_Hecho=" + Fecha_del_Hecho
+        + "&Narrativa_Breve_de_los_Hechos=" + Narrativa_Breve_de_los_Hechos
+        + "&Hora_Aproximada_del_Hecho=" + Hora_Aproximada_del_Hecho
+        + "&Lugar_de_los_Hechos=" + Lugar_de_los_Hechos
+        + "&PaisH=" + PaisH
+        + "&Poblacion=" + Poblacion
+        + "&ColoniaH=" + ColoniaH
+        + "&CalleH=" + CalleH
+        + "&Numero_ExteriorH=" + Numero_ExteriorH
+        + "&Numero_InteriorH=" + Numero_InteriorH
+        + "&Codigo_PostalH=" + Codigo_PostalH
+        + "&Entre_Calle=" + Entre_Calle
+        + "&LongitudH=" + LongitudH
+        + "&LatitudH=" + LatitudH
         + "&Fecha_de_Canalizacion=" + Fecha_de_Canalizacion
         + "&Hora_de_Canalizacion=" + Hora_de_Canalizacion
         + "&usuario_que_canaliza=" + usuario_que_canaliza
@@ -522,6 +637,7 @@
         + "&motivo_de_rechazo_de_acuerdo=" + motivo_de_rechazo_de_acuerdo
         + "&fecha_de_cierre=" + fecha_de_cierre
         + "&hora_de_cierre=" + hora_de_cierre
+        + "&Usuario_que_Cierra=" + Usuario_que_Cierra
         + "&tipo_de_cierre=" + tipo_de_cierre
         + "&comentarios_de_cierre=" + comentarios_de_cierre
 ;
@@ -704,11 +820,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -775,14 +891,31 @@
                 ,{ "data": "fecha_de_registro", "orderable": true, "searchable": true, "type": "date", "name": "fecha_de_registro" }
                 ,{ "data": "hora_de_registro", "orderable": true, "name": "hora_de_registro" }
                 ,{ "data": "usuario_que_registraName", "orderable": true, "name": "usuario_que_registraName"}
+                ,{ "data": "Tipo_de_DenunciaDescripcion", "orderable": true, "name": "Tipo_de_DenunciaDescripcion" }
                 ,{ "data": "unidadDescripcion", "orderable": true, "name": "unidadDescripcion"}
+                ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre" }
+                ,{ "data": "RegionDescripcion", "orderable": true, "name": "RegionDescripcion" }
                 ,{ "data": "nuat", "orderable": true, "name": "nuat", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "nic", "orderable": true, "name": "nic", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "detenidoDescripcion", "orderable": true, "name": "detenidoDescripcion" }
                 ,{ "data": "hora_del_detenido", "orderable": true, "name": "hora_del_detenido" }
                 ,{ "data": "hora_puesto_a_disposicion", "orderable": true, "name": "hora_puesto_a_disposicion" }
                 ,{ "data": "estatusdescripcion", "orderable": true, "name": "estatusdescripcion" }
-                ,{ "data": "observacionesclave", "orderable": true, "name": "observacionesclave" }
+                ,{ "data": "Titulo_del_Hecho", "orderable": true, "name": "Titulo_del_Hecho", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_del_Hecho", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_del_Hecho" }
+                ,{ "data": "Narrativa_Breve_de_los_Hechos", "orderable": true, "name": "Narrativa_Breve_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Hora_Aproximada_del_Hecho", "orderable": true, "name": "Hora_Aproximada_del_Hecho" }
+                ,{ "data": "Lugar_de_los_HechosDescripcion", "orderable": true, "name": "Lugar_de_los_HechosDescripcion" }
+                ,{ "data": "PaisHNombre", "orderable": true, "name": "PaisHNombre" }
+                ,{ "data": "PoblacionNombre", "orderable": true, "name": "PoblacionNombre" }
+                ,{ "data": "ColoniaHNombre", "orderable": true, "name": "ColoniaHNombre" }
+                ,{ "data": "CalleH", "orderable": true, "name": "CalleH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_ExteriorH", "orderable": true, "name": "Numero_ExteriorH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_InteriorH", "orderable": true, "name": "Numero_InteriorH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Codigo_PostalH","className": "dt-right", "orderable": true, "name": "Codigo_PostalH" }
+                ,{ "data": "Entre_Calle", "orderable": true, "name": "Entre_Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "LongitudH", "orderable": true, "name": "LongitudH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "LatitudH", "orderable": true, "name": "LatitudH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Fecha_de_Canalizacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Canalizacion" }
                 ,{ "data": "Hora_de_Canalizacion", "orderable": true, "name": "Hora_de_Canalizacion" }
                 ,{ "data": "usuario_que_canalizaName", "orderable": true, "name": "usuario_que_canalizaName"}
@@ -795,10 +928,11 @@
                 ,{ "data": "monto_de_reparacion_de_danos", "orderable": true, "name": "monto_de_reparacion_de_danos", "className": "dt-right", render: $.fn.dataTable.render.number(',', '.', 2, '$') }
                 ,{ "data": "parcialidades","className": "dt-right", "orderable": true, "name": "parcialidades" }
                 ,{ "data": "periodicidadDescripcion", "orderable": true, "name": "periodicidadDescripcion" }
-                ,{ "data": "acepta_acuerdo", "orderable": true, "name": "acepta_acuerdo","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "acepta_acuerdoDescripcion", "orderable": true, "name": "acepta_acuerdoDescripcion" }
                 ,{ "data": "motivo_de_rechazo_de_acuerdo", "orderable": true, "name": "motivo_de_rechazo_de_acuerdo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "fecha_de_cierre", "orderable": true, "searchable": true, "type": "date", "name": "fecha_de_cierre" }
                 ,{ "data": "hora_de_cierre", "orderable": true, "name": "hora_de_cierre" }
+                ,{ "data": "Usuario_que_CierraName", "orderable": true, "name": "Usuario_que_CierraName" }
                 ,{ "data": "tipo_de_cierredescripcion", "orderable": true, "name": "tipo_de_cierredescripcion" }
                 ,{ "data": "comentarios_de_cierre", "orderable": true, "name": "comentarios_de_cierre", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
 

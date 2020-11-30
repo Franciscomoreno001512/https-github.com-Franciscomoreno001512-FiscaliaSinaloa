@@ -571,6 +571,7 @@
     var ObjectSelectedName = '';
     var TabSelected = '';
     var IdSelected = "-1";
+	var idModule = getParameterByName('id');										
     function FillDetailsByTab(idTab, object, id, idTablero) {
         debugger;
         ObjectSelected = object;
@@ -599,7 +600,7 @@
                     $.each(result[0].Details.Columns, function (i, c) {
 
                         if (ObjectSelected == "45018") {
-                            if (c == "Clave" || c == "Documento" || c == "Campo" || c == "Archivo" || c == "Descripcion") {
+                            if (c == "Clave" || (c == "Documento" && idModule == '1') || (c == "Campo" && idModule == '1') || (c == "Archivo" && idModule == '1') || (c == "Descripcion" && idModule == '1')) {
                                 htmlColumns += '<th class="text-center" style="display:none;">' + c.replace(/_/g, " ") + '</th>';
                             } else {
                                 htmlColumns += '<th class="text-center">' + c.replace(/_/g, " ") + '</th>';
@@ -683,7 +684,7 @@
                         $.each(v.Values, function (i, v2) {
                             if (ObjectSelected == "45018" || ObjectSelected == "45474" ) {
 							
-                                if (i == 0 || i == 6 || i == 10 || i == 12 || i == 11) {
+                                if (i == 0 || (i == 6 && idModule == '1') || (i == 10 && idModule == '1') || (i == 12 && idModule == '1') || (i == 11 && idModule == '1')) {
                                     htmlValues += '<td class="text-center text-muted" style="display:none;">' + v2 + '</td>';
                                 } else {
                                     htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
@@ -712,6 +713,14 @@
                 showNotification("Error buscando variable", "error");
             }
         });
+    }
+
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
     function GetSearchFields(idTablero) {

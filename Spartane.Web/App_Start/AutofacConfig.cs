@@ -1412,6 +1412,36 @@ using Spartane.Web.Areas.WebApiConsumer.IPH;
 using Spartane.Services.Servicios_de_Apoyo_MP;
 using Spartane.Core.Domain.Servicios_de_Apoyo_MP;
 using Spartane.Web.Areas.WebApiConsumer.Servicios_de_Apoyo_MP;
+using Spartane.Services.Configuracion_de_Planeacion;
+using Spartane.Core.Domain.Configuracion_de_Planeacion;
+using Spartane.Web.Areas.WebApiConsumer.Configuracion_de_Planeacion;
+using Spartane.Services.Detalle_Plan_Actos_de_Investigacion;
+using Spartane.Core.Domain.Detalle_Plan_Actos_de_Investigacion;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Plan_Actos_de_Investigacion;
+using Spartane.Services.Plan_de_Investigacion;
+using Spartane.Core.Domain.Plan_de_Investigacion;
+using Spartane.Web.Areas.WebApiConsumer.Plan_de_Investigacion;
+using Spartane.Services.Tipo_de_Audiencia;
+using Spartane.Core.Domain.Tipo_de_Audiencia;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Audiencia;
+using Spartane.Services.Audiencia;
+using Spartane.Core.Domain.Audiencia;
+using Spartane.Web.Areas.WebApiConsumer.Audiencia;
+using Spartane.Services.Resultado_de_Audiencia;
+using Spartane.Core.Domain.Resultado_de_Audiencia;
+using Spartane.Web.Areas.WebApiConsumer.Resultado_de_Audiencia;
+using Spartane.Services.Audiencias_MP;
+using Spartane.Core.Domain.Audiencias_MP;
+using Spartane.Web.Areas.WebApiConsumer.Audiencias_MP;
+using Spartane.Services.Detalle_Audiencia_Defensor_Imputado;
+using Spartane.Core.Domain.Detalle_Audiencia_Defensor_Imputado;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Audiencia_Defensor_Imputado;
+using Spartane.Services.Detalle_Audiencia_Defensor_Victima;
+using Spartane.Core.Domain.Detalle_Audiencia_Defensor_Victima;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Audiencia_Defensor_Victima;
+using Spartane.Services.Detalle_Audiencia_Archivos_Adjuntos;
+using Spartane.Core.Domain.Detalle_Audiencia_Archivos_Adjuntos;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Audiencia_Archivos_Adjuntos;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -2476,6 +2506,26 @@ builder.RegisterType<IPHService>().As<IIPHService>().InstancePerLifetimeScope();
 builder.RegisterType<IPHApiConsumer>().As<IIPHApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Servicios_de_Apoyo_MPService>().As<IServicios_de_Apoyo_MPService>().InstancePerLifetimeScope();
 builder.RegisterType<Servicios_de_Apoyo_MPApiConsumer>().As<IServicios_de_Apoyo_MPApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Configuracion_de_PlaneacionService>().As<IConfiguracion_de_PlaneacionService>().InstancePerLifetimeScope();
+builder.RegisterType<Configuracion_de_PlaneacionApiConsumer>().As<IConfiguracion_de_PlaneacionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Plan_Actos_de_InvestigacionService>().As<IDetalle_Plan_Actos_de_InvestigacionService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Plan_Actos_de_InvestigacionApiConsumer>().As<IDetalle_Plan_Actos_de_InvestigacionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Plan_de_InvestigacionService>().As<IPlan_de_InvestigacionService>().InstancePerLifetimeScope();
+builder.RegisterType<Plan_de_InvestigacionApiConsumer>().As<IPlan_de_InvestigacionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_AudienciaService>().As<ITipo_de_AudienciaService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_AudienciaApiConsumer>().As<ITipo_de_AudienciaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<AudienciaService>().As<IAudienciaService>().InstancePerLifetimeScope();
+builder.RegisterType<AudienciaApiConsumer>().As<IAudienciaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Resultado_de_AudienciaService>().As<IResultado_de_AudienciaService>().InstancePerLifetimeScope();
+builder.RegisterType<Resultado_de_AudienciaApiConsumer>().As<IResultado_de_AudienciaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Audiencias_MPService>().As<IAudiencias_MPService>().InstancePerLifetimeScope();
+builder.RegisterType<Audiencias_MPApiConsumer>().As<IAudiencias_MPApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Audiencia_Defensor_ImputadoService>().As<IDetalle_Audiencia_Defensor_ImputadoService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Audiencia_Defensor_ImputadoApiConsumer>().As<IDetalle_Audiencia_Defensor_ImputadoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Audiencia_Defensor_VictimaService>().As<IDetalle_Audiencia_Defensor_VictimaService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Audiencia_Defensor_VictimaApiConsumer>().As<IDetalle_Audiencia_Defensor_VictimaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Audiencia_Archivos_AdjuntosService>().As<IDetalle_Audiencia_Archivos_AdjuntosService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Audiencia_Archivos_AdjuntosApiConsumer>().As<IDetalle_Audiencia_Archivos_AdjuntosApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -2656,6 +2706,66 @@ builder.RegisterType<Servicios_de_Apoyo_MPApiConsumer>().As<IServicios_de_Apoyo_
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

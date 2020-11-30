@@ -221,6 +221,36 @@ public ApiResponse<int> Update_Datos_del_Caso(expediente_ministerio_publico_Dato
             }
         }
 
+public ApiResponse<int> Update_Hechos(expediente_ministerio_publico_Hechos entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Hechos",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<expediente_ministerio_publico_Hechos> Get_Hechos(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Hechos>(baseApi, ApiControllerUrl + "/Get_Hechos?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Hechos>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Hechos>(false, null);
+            }
+        }
+
 public ApiResponse<int> Update_Canalizar(expediente_ministerio_publico_Canalizar entity)
         {
             try
