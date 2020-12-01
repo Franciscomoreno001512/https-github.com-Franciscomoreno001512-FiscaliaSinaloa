@@ -13,6 +13,7 @@
   <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
   <resource culture="es-es" name="Supervisor" value="Supervisor"></resource>
   <resource culture="es-es" name="Consecutivo_CDI" value="Consecutivo CDI"></resource>
+  <resource culture="es-es" name="Tipo_de_Asignacion_de_MP" value="Tipo de Asignación de MP"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

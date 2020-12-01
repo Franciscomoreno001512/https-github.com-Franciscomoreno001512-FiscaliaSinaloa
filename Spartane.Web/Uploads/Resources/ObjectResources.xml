@@ -970,8 +970,38 @@
 <Object Id="45485" culture="es-es" value="Detalle Audiencia Defensor Víctima" />
 <Object Id="45486" culture="en-us" value="Detalle Audiencia Archivos Adjuntos" />
 <Object Id="45486" culture="es-es" value="Detalle Audiencia Archivos Adjuntos" />
+<Object Id="45487" culture="en-us" value="Tipo de Asignación de MP" />
+<Object Id="45487" culture="es-es" value="Tipo de Asignación de MP" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

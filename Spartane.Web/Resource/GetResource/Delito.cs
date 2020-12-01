@@ -126,6 +126,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Robo_de_Vehiculo</summary>
+        public static string Robo_de_Vehiculo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDelito.GetResource("Robo_de_Vehiculo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDelito.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

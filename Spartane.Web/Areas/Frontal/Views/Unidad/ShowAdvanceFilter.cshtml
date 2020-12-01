@@ -15,6 +15,9 @@
  List<SelectListItem> varSpartan_User_Supervisor = null;
     if (ViewBag.Spartan_Users_Supervisor != null)
     { varSpartan_User_Supervisor = (List<SelectListItem>)ViewBag.Spartan_Users_Supervisor; }
+    List<SelectListItem> varTipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP = null;
+    if (ViewBag.Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP != null)
+    { varTipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP = (List<SelectListItem>)ViewBag.Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -191,6 +194,27 @@
                     @Html.TextBoxFor(m => m.ToConsecutivo_CDI, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToConsecutivo_CDI", @data_min = "txtAdvanceFromConsecutivo_CDI" })
                     @Html.ValidationMessageFor(m => m.ToConsecutivo_CDI)
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.UnidadResources.Tipo_de_Asignacion_de_MP</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_Asignacion_de_MPFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_Asignacion_de_MPFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Asignacion_de_MP, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Asignacion_de_MP" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_Asignacion_de_MPMultiple, varTipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Asignacion_de_MP"
+                        });
+                    }
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Unidad/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -303,6 +327,21 @@
             advanceSearch.UnidadConsecutivo_CDIFrom = $("#txtAdvanceFromConsecutivo_CDI").val();
             advanceSearch.UnidadConsecutivo_CDITo = $("#txtAdvanceToConsecutivo_CDI").val();
         }
+        advanceSearch.Tipo_de_Asignacion_de_MPSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Asignacion_de_MP').val().length > 0 || $("#txtAdvanceTipo_de_Asignacion_de_MP").val() == "") {
+
+
+            if (isUnidadTextSearch) {
+                advanceSearch.Tipo_de_Asignacion_de_MPName = $("#txtAdvanceTipo_de_Asignacion_de_MP").val();
+                advanceSearch.Tipo_de_Asignacion_de_MPNameSearchType = $("#ddlAdvanceTipo_de_Asignacion_de_MP").val();
+                advanceSearch.Tipo_de_Asignacion_de_MPSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_Asignacion_de_MPToSearch = $("#ddlAdvanceTipo_de_Asignacion_de_MP").val();
+                advanceSearch.Tipo_de_Asignacion_de_MPSearchType = 2;
+            }
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblUnidad').DataTable().draw();
@@ -356,6 +395,15 @@
         $("#ddlAdvanceSupervisor").change(function () {
             isUnidadTextSearch = false;
             $("#txtAdvanceSupervisor").val('');
+        });
+        $("#txtAdvanceTipo_de_Asignacion_de_MP").keypress(function () {
+            isUnidadTextSearch = true;
+            $("#ddlAdvanceTipo_de_Asignacion_de_MP").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Asignacion_de_MP").change(function () {
+            isUnidadTextSearch = false;
+            $("#txtAdvanceTipo_de_Asignacion_de_MP").val('');
         });
 
     });

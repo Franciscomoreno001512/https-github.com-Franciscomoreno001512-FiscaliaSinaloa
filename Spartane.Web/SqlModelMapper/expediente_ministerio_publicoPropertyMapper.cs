@@ -63,6 +63,12 @@ namespace Spartane.Web.SqlModelMapper
                 case "PaisH[Nombre]":
                 case "PaisHNombre":
                     return "Pais.Nombre";
+                case "Estado[Nombre]":
+                case "EstadoNombre":
+                    return "Estado.Nombre";
+                case "Municipio_Hechos[Nombre]":
+                case "Municipio_HechosNombre":
+                    return "Municipio.Nombre";
                 case "Poblacion[Nombre]":
                 case "PoblacionNombre":
                     return "Colonia.Nombre";
@@ -71,14 +77,16 @@ namespace Spartane.Web.SqlModelMapper
                     return "Colonia.Nombre";
                 case "CalleH":
                     return "expediente_ministerio_publico.CalleH";
-                case "Numero_ExteriorH":
-                    return "expediente_ministerio_publico.Numero_ExteriorH";
                 case "Numero_InteriorH":
                     return "expediente_ministerio_publico.Numero_InteriorH";
+                case "Numero_ExteriorH":
+                    return "expediente_ministerio_publico.Numero_ExteriorH";
                 case "Codigo_PostalH":
                     return "expediente_ministerio_publico.Codigo_PostalH";
                 case "Entre_Calle":
                     return "expediente_ministerio_publico.Entre_Calle";
+                case "Y_Calle":
+                    return "expediente_ministerio_publico.Y_Calle";
                 case "LongitudH":
                     return "expediente_ministerio_publico.LongitudH";
                 case "LatitudH":

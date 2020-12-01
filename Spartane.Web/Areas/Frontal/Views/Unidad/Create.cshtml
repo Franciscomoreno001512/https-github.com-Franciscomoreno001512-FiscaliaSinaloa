@@ -22,6 +22,9 @@
  List<SelectListItem> varSpartan_User_Supervisor = null;
     if (ViewBag.Spartan_Users_Supervisor != null)
     { varSpartan_User_Supervisor = (List<SelectListItem>)ViewBag.Spartan_Users_Supervisor; }
+    List<SelectListItem> varTipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP = null;
+    if (ViewBag.Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP != null)
+    { varTipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP = (List<SelectListItem>)ViewBag.Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP; }
 
 
     Permission permission = ViewBag.Permission;
@@ -313,6 +316,34 @@
                                     <input class="form-control inputNumber Datos_Generales" id="Consecutivo_CDI" name="Consecutivo_CDI" type="text" value="@Model.Consecutivo_CDI">
                                     @*<span class="field-validation-valid" data-valmsg-for="Consecutivo_CDI" data-valmsg-replace="true"></span>*@
                                 </div>
+                            </div>
+                            <div class="form-group" id="divTipo_de_Asignacion_de_MP">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.Tipo_de_Asignacion_de_MP</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Asignacion_de_MP" data-attribute="267438" data-field-name="@Resources.UnidadResources.Tipo_de_Asignacion_de_MP">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Asignación de MP must be a number." data-val-required="The Tipo de Asignación de MP field is required." id="Tipo_de_Asignacion_de_MP" name="Tipo_de_Asignacion_de_MP">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP != null){ 
+                                            foreach (var itemTipo_de_Asignacion_de_MP in varTipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP)
+                                            {
+                                                if (itemTipo_de_Asignacion_de_MP.Value == Convert.ToString(Model.Tipo_de_Asignacion_de_MP))
+                                                {
+                                                    <option value="@itemTipo_de_Asignacion_de_MP.Value" selected>@itemTipo_de_Asignacion_de_MP.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Asignacion_de_MP.Value">@itemTipo_de_Asignacion_de_MP.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Asignacion_de_MP" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267438).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Asignacion_de_MP', 'Tipo_de_Asignacion_de_MP');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
                             </div>
                             </div>
                                 </div>
@@ -798,6 +829,7 @@
 	                    control.val(result.data.Supervisor).trigger('change');
                     }, 3000);
                     $('#Consecutivo_CDI').val(result.data.Consecutivo_CDI);
+                    $('#Tipo_de_Asignacion_de_MP').val(result.data.Tipo_de_Asignacion_de_MP);
 
                 },
                 error: function (result) {
@@ -820,6 +852,7 @@
                 data.append('Observaciones', $('#Observaciones').val());
                 data.append('Supervisor', $('#Supervisor').val());
                 data.append('Consecutivo_CDI', $('#Consecutivo_CDI').val());
+                data.append('Tipo_de_Asignacion_de_MP', $('#Tipo_de_Asignacion_de_MP').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Unidad/Post_Datos_Generales")',

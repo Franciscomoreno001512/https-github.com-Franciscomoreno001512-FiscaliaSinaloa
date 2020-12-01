@@ -286,6 +286,7 @@ function EjecutarValidacionesAntesDeGuardar(){
     if (numItemsSolicitanteGrid == 0 && numItemsInvitacionesGrid == 0) {
         alert("Para generar una invitación debe seleccionar por lo menos un Requerido o un Solicitante, favor de revisar");
         result = false;
+        return result;
 
     }
 
@@ -305,9 +306,6 @@ function EjecutarValidacionesAntesDeGuardar(){
         alert("Para generar una invitación debe escribir el Nombre de la persona en Requerido o Solicitante, favor de revisar");
     }
     result = resultdato;
-
-
-
 
 
 //NEWBUSINESSRULE_BEFORESAVING//

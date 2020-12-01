@@ -236,6 +236,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Estado</summary>
+        public static string Estado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Estado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Municipio_Hechos</summary>
+        public static string Municipio_Hechos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Municipio_Hechos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Poblacion</summary>
         public static string Poblacion
         {
@@ -266,16 +286,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Numero_ExteriorH</summary>
-        public static string Numero_ExteriorH
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderexpediente_ministerio_publico.GetResource("Numero_ExteriorH", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Numero_InteriorH</summary>
         public static string Numero_InteriorH
         {
@@ -283,6 +293,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderexpediente_ministerio_publico.GetResource("Numero_InteriorH", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Numero_ExteriorH</summary>
+        public static string Numero_ExteriorH
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Numero_ExteriorH", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -303,6 +323,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderexpediente_ministerio_publico.GetResource("Entre_Calle", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Y_Calle</summary>
+        public static string Y_Calle
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Y_Calle", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -521,7 +551,7 @@ namespace Resources
 	/// <summary>Hechos</summary>	public static string TabHechos 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabHechos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Canalizar</summary>	public static string TabCanalizar 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabCanalizar", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Datos del Acuerdo</summary>	public static string TabDatos_del_Acuerdo 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabDatos_del_Acuerdo", CultureInfo.CurrentUICulture.Name) as String;             		}	}
-	/// <summary>Cierre de Expediente</summary>	public static string TabCierre_de_Expediente 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabCierre_de_Expediente", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Resolución o Dictaminación</summary>	public static string TabResolucion_o_Dictaminacion 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabResolucion_o_Dictaminacion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 
     }
 }

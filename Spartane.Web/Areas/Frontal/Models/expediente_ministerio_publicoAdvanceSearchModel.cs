@@ -91,6 +91,14 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvancePaisH { set; get; }
         public int[] AdvancePaisHMultiple { set; get; }
 
+        public Filters EstadoFilter { set; get; }
+        public string AdvanceEstado { set; get; }
+        public int[] AdvanceEstadoMultiple { set; get; }
+
+        public Filters Municipio_HechosFilter { set; get; }
+        public string AdvanceMunicipio_Hechos { set; get; }
+        public int[] AdvanceMunicipio_HechosMultiple { set; get; }
+
         public Filters PoblacionFilter { set; get; }
         public string AdvancePoblacion { set; get; }
         public int[] AdvancePoblacionMultiple { set; get; }
@@ -102,11 +110,11 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters CalleHFilter { set; get; }
         public string CalleH { set; get; }
 
-        public Filters Numero_ExteriorHFilter { set; get; }
-        public string Numero_ExteriorH { set; get; }
-
         public Filters Numero_InteriorHFilter { set; get; }
         public string Numero_InteriorH { set; get; }
+
+        public Filters Numero_ExteriorHFilter { set; get; }
+        public string Numero_ExteriorH { set; get; }
 
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
         public string FromCodigo_PostalH { set; get; }
@@ -116,6 +124,9 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public Filters Entre_CalleFilter { set; get; }
         public string Entre_Calle { set; get; }
+
+        public Filters Y_CalleFilter { set; get; }
+        public string Y_Calle { set; get; }
 
         public Filters LongitudHFilter { set; get; }
         public string LongitudH { set; get; }

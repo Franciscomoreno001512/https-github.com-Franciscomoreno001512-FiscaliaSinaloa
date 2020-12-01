@@ -12325,6 +12325,26 @@
 <Content Include="Uploads\Scripts\Detalle_Audiencia_Archivos_Adjuntos.js" />
 <Content Include="Uploads\Scripts\Rules\Detalle_Audiencia_Archivos_AdjuntosIndexRules.js" />
 <Content Include="Uploads\Scripts\Rules\Detalle_Audiencia_Archivos_AdjuntosCreateRules.js" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Asignacion_de_MP\Tipo_de_Asignacion_de_MPApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Asignacion_de_MP\ITipo_de_Asignacion_de_MPApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Asignacion_de_MPModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Asignacion_de_MPGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Asignacion_de_MPMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_Asignacion_de_MPController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Asignacion_de_MP\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Asignacion_de_MP\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Asignacion_de_MP.cs" />
+<Content Include="Uploads\Resources\Tipo_de_Asignacion_de_MPResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_Asignacion_de_MPPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_Asignacion_de_MPResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Asignacion_de_MP.js" />
+<Content Include="Scripts\Custom\Tipo_de_Asignacion_de_MPGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Asignacion_de_MP\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Asignacion_de_MPAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Asignacion_de_MPBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_Asignacion_de_MPCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_Asignacion_de_MPIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Asignacion_de_MP\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -13324,6 +13344,26 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

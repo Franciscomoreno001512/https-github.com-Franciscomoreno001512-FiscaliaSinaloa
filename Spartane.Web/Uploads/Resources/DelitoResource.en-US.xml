@@ -11,6 +11,7 @@
   <resource culture="en-US" name="Tentativa" value="Tentativa"></resource>
   <resource culture="en-US" name="Activo" value="Activo"></resource>
   <resource culture="en-US" name="Configuracion_de_Planeacion" value="Configuración de Planeación"></resource>
+  <resource culture="en-US" name="Robo_de_Vehiculo" value="Robo de Vehículo"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 
