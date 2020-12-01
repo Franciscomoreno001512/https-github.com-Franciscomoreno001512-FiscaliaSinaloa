@@ -1,15 +1,137 @@
-﻿var operation = $('#Operation').val();
+var operation = $('#Operation').val();
 var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
+//BusinessRuleId:484, Attribute:263924, Operation:Field, Event:None
+$("form#CreateEncuesta").on('change', '#Numero_de_Preguntas', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divPregunta_1').css('display', 'block'); $('#divPregunta_2').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_2' + rowIndex)); $('#divPregunta_3').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_3' + rowIndex)); $('#divPregunta_4').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_4' + rowIndex)); $('#divPregunta_5').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_5' + rowIndex)); $('#divPregunta_6').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_6' + rowIndex)); $('#divPregunta_7').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_7' + rowIndex)); $('#divPregunta_8').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_8' + rowIndex)); $('#divPregunta_9').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_9' + rowIndex)); $('#divPregunta_10').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_10' + rowIndex));} else {}
+});
+
+//BusinessRuleId:484, Attribute:263924, Operation:Field, Event:None
+
+//BusinessRuleId:485, Attribute:263924, Operation:Field, Event:None
+$("form#CreateEncuesta").on('change', '#Numero_de_Preguntas', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divPregunta_1').css('display', 'block'); $('#divPregunta_2').css('display', 'block'); $('#divPregunta_3').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_3' + rowIndex)); $('#divPregunta_4').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_4' + rowIndex)); $('#divPregunta_5').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_5' + rowIndex)); $('#divPregunta_6').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_6' + rowIndex)); $('#divPregunta_7').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_7' + rowIndex)); $('#divPregunta_8').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_8' + rowIndex)); $('#divPregunta_9').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_9' + rowIndex)); $('#divPregunta_10').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_10' + rowIndex));} else {}
+});
+
+//BusinessRuleId:485, Attribute:263924, Operation:Field, Event:None
+
+//BusinessRuleId:486, Attribute:263924, Operation:Field, Event:None
+$("form#CreateEncuesta").on('change', '#Numero_de_Preguntas', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex),nameOfTable,rowIndex)==TryParseInt('3', '3') ) { $('#divPregunta_3').css('display', 'block'); $('#divPregunta_1').css('display', 'block'); $('#divPregunta_2').css('display', 'block'); $('#divPregunta_4').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_4' + rowIndex)); $('#divPregunta_5').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_5' + rowIndex)); $('#divPregunta_6').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_6' + rowIndex)); $('#divPregunta_7').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_7' + rowIndex)); $('#divPregunta_8').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_8' + rowIndex)); $('#divPregunta_9').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_9' + rowIndex)); $('#divPregunta_10').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_10' + rowIndex));} else {}
+});
+
+//BusinessRuleId:486, Attribute:263924, Operation:Field, Event:None
+
+//BusinessRuleId:487, Attribute:263924, Operation:Field, Event:None
+$("form#CreateEncuesta").on('change', '#Numero_de_Preguntas', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex),nameOfTable,rowIndex)==TryParseInt('4', '4') ) { $('#divPregunta_4').css('display', 'block'); $('#divPregunta_1').css('display', 'block'); $('#divPregunta_2').css('display', 'block'); $('#divPregunta_3').css('display', 'block'); $('#divPregunta_5').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_5' + rowIndex)); $('#divPregunta_6').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_6' + rowIndex)); $('#divPregunta_7').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_7' + rowIndex)); $('#divPregunta_8').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_8' + rowIndex)); $('#divPregunta_9').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_9' + rowIndex)); $('#divPregunta_10').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_10' + rowIndex));} else {}
+});
+
+//BusinessRuleId:487, Attribute:263924, Operation:Field, Event:None
+
+//BusinessRuleId:488, Attribute:263924, Operation:Field, Event:None
+$("form#CreateEncuesta").on('change', '#Numero_de_Preguntas', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex),nameOfTable,rowIndex)==TryParseInt('5', '5') ) { $('#divPregunta_1').css('display', 'block'); $('#divPregunta_2').css('display', 'block'); $('#divPregunta_3').css('display', 'block'); $('#divPregunta_4').css('display', 'block'); $('#divPregunta_5').css('display', 'block'); $('#divPregunta_6').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_6' + rowIndex)); $('#divPregunta_7').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_7' + rowIndex)); $('#divPregunta_8').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_8' + rowIndex)); $('#divPregunta_9').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_9' + rowIndex)); $('#divPregunta_10').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_10' + rowIndex));} else {}
+});
+
+//BusinessRuleId:488, Attribute:263924, Operation:Field, Event:None
+
+//BusinessRuleId:489, Attribute:263924, Operation:Field, Event:None
+$("form#CreateEncuesta").on('change', '#Numero_de_Preguntas', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex),nameOfTable,rowIndex)==TryParseInt('6', '6') ) { $('#divPregunta_1').css('display', 'block'); $('#divPregunta_2').css('display', 'block'); $('#divPregunta_4').css('display', 'block'); $('#divPregunta_3').css('display', 'block'); $('#divPregunta_5').css('display', 'block'); $('#divPregunta_6').css('display', 'block'); $('#divPregunta_7').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_7' + rowIndex)); $('#divPregunta_8').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_8' + rowIndex)); $('#divPregunta_9').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_9' + rowIndex)); $('#divPregunta_10').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_10' + rowIndex));} else {}
+});
+
+//BusinessRuleId:489, Attribute:263924, Operation:Field, Event:None
+
+//BusinessRuleId:490, Attribute:263924, Operation:Field, Event:None
+$("form#CreateEncuesta").on('change', '#Numero_de_Preguntas', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex),nameOfTable,rowIndex)==TryParseInt('7', '7') ) { $('#divPregunta_1').css('display', 'block'); $('#divPregunta_2').css('display', 'block'); $('#divPregunta_3').css('display', 'block'); $('#divPregunta_4').css('display', 'block'); $('#divPregunta_5').css('display', 'block'); $('#divPregunta_6').css('display', 'block'); $('#divPregunta_7').css('display', 'block'); $('#divPregunta_8').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_8' + rowIndex)); $('#divPregunta_9').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_9' + rowIndex)); $('#divPregunta_10').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_10' + rowIndex));} else {}
+});
+
+//BusinessRuleId:490, Attribute:263924, Operation:Field, Event:None
+
+//BusinessRuleId:491, Attribute:263924, Operation:Field, Event:None
+$("form#CreateEncuesta").on('change', '#Numero_de_Preguntas', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex),nameOfTable,rowIndex)==TryParseInt('8', '8') ) { $('#divPregunta_1').css('display', 'block'); $('#divPregunta_2').css('display', 'block'); $('#divPregunta_3').css('display', 'block'); $('#divPregunta_4').css('display', 'block'); $('#divPregunta_5').css('display', 'block'); $('#divPregunta_6').css('display', 'block'); $('#divPregunta_7').css('display', 'block'); $('#divPregunta_8').css('display', 'block'); $('#divPregunta_9').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_9' + rowIndex)); $('#divPregunta_10').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_10' + rowIndex));} else {}
+});
+
+//BusinessRuleId:491, Attribute:263924, Operation:Field, Event:None
+
+//BusinessRuleId:492, Attribute:263924, Operation:Field, Event:None
+$("form#CreateEncuesta").on('change', '#Numero_de_Preguntas', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex),nameOfTable,rowIndex)==TryParseInt('9', '9') ) { $('#divPregunta_1').css('display', 'block'); $('#divPregunta_2').css('display', 'block'); $('#divPregunta_3').css('display', 'block'); $('#divPregunta_4').css('display', 'block'); $('#divPregunta_5').css('display', 'block'); $('#divPregunta_6').css('display', 'block'); $('#divPregunta_7').css('display', 'block'); $('#divPregunta_8').css('display', 'block'); $('#divPregunta_9').css('display', 'block'); $('#divPregunta_10').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_10' + rowIndex));} else {}
+});
+
+//BusinessRuleId:492, Attribute:263924, Operation:Field, Event:None
+
+//BusinessRuleId:493, Attribute:263924, Operation:Field, Event:None
+$("form#CreateEncuesta").on('change', '#Numero_de_Preguntas', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex),nameOfTable,rowIndex)==TryParseInt('10', '10') ) { $('#divPregunta_1').css('display', 'block'); $('#divPregunta_2').css('display', 'block'); $('#divPregunta_3').css('display', 'block'); $('#divPregunta_4').css('display', 'block'); $('#divPregunta_5').css('display', 'block'); $('#divPregunta_6').css('display', 'block'); $('#divPregunta_7').css('display', 'block'); $('#divPregunta_8').css('display', 'block'); $('#divPregunta_9').css('display', 'block'); $('#divPregunta_10').css('display', 'block');} else {}
+});
+
+//BusinessRuleId:493, Attribute:263924, Operation:Field, Event:None
+
+
+
+//BusinessRuleId:2616, Attribute:263924, Operation:Field, Event:None
+$("form#CreateEncuesta").on('change', '#Numero_de_Preguntas', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex),nameOfTable,rowIndex)<TryParseInt('1', '1') ) { $('#divPregunta_1').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_1' + rowIndex));$('#divPregunta_2').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_2' + rowIndex));$('#divPregunta_3').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_3' + rowIndex));$('#divPregunta_4').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_4' + rowIndex));$('#divPregunta_5').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_5' + rowIndex));$('#divPregunta_6').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_6' + rowIndex));$('#divPregunta_7').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_7' + rowIndex));$('#divPregunta_8').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_8' + rowIndex));$('#divPregunta_9').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_9' + rowIndex));$('#divPregunta_10').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_10' + rowIndex));} else {}
+});
+
+//BusinessRuleId:2616, Attribute:263924, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
+//BusinessRuleId:480, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divPregunta_1').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_1' + rowIndex)); $('#divPregunta_2').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_2' + rowIndex)); $('#divPregunta_3').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_3' + rowIndex)); $('#divPregunta_4').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_4' + rowIndex)); $('#divPregunta_5').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_5' + rowIndex)); $('#divPregunta_6').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_6' + rowIndex)); $('#divPregunta_7').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_7' + rowIndex)); $('#divPregunta_8').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_8' + rowIndex)); $('#divPregunta_9').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_9' + rowIndex)); $('#divPregunta_10').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Pregunta_10' + rowIndex));
+
+}
+//BusinessRuleId:480, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
 	var result = true;
+//BusinessRuleId:517, Attribute:0, Operation:Object, Event:BEFORESAVING
+if(operation == 'New'){
+ CreateSessionVar('varpreguntas', EvaluaQuery("SELECT [Numero_de_Preguntas]", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:517, Attribute:0, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:517, Attribute:0, Operation:Object, Event:BEFORESAVING
+if(operation == 'Update'){
+ CreateSessionVar('varpreguntas', EvaluaQuery("SELECT [Numero_de_Preguntas]", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:517, Attribute:0, Operation:Object, Event:BEFORESAVING
+
 //NEWBUSINESSRULE_BEFORESAVING//
     return result;
 }

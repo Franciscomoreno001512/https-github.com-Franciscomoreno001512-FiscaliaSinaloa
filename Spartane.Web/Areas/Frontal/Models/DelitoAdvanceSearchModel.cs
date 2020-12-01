@@ -16,6 +16,7 @@ namespace Spartane.Web.Areas.Frontal.Models
             Alta_Incidencia = RadioOptions.NoApply;
             Tentativa = RadioOptions.NoApply;
             Activo = RadioOptions.NoApply;
+            Robo_de_Vehiculo = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -44,6 +45,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public RadioOptions Tentativa { set; get; }
 
         public RadioOptions Activo { set; get; }
+
+        public RadioOptions Robo_de_Vehiculo { set; get; }
 
 
     }

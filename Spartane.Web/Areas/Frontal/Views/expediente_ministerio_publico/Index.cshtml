@@ -10,6 +10,8 @@
 @using Spartane.Core.Domain.estatus_mpi;
 @using Spartane.Core.Domain.Lugar_Tipo;
 @using Spartane.Core.Domain.Pais;
+@using Spartane.Core.Domain.Estado;
+@using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Colonia;
 @using Spartane.Core.Domain.Colonia;
 @using Spartane.Core.Domain.Spartan_User;
@@ -234,13 +236,16 @@
                                     <th>@Resources.expediente_ministerio_publicoResources.Hora_Aproximada_del_Hecho</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.Lugar_de_los_Hechos</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.PaisH</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Estado</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Municipio_Hechos</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.Poblacion</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.ColoniaH</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.CalleH</th>
-                                    <th>@Resources.expediente_ministerio_publicoResources.Numero_ExteriorH</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.Numero_InteriorH</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Numero_ExteriorH</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.Codigo_PostalH</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.Entre_Calle</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.Y_Calle</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.LongitudH</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.LatitudH</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.Fecha_de_Canalizacion</th>
@@ -293,7 +298,10 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -451,13 +459,16 @@
         var Hora_Aproximada_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
         var Lugar_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var PaisH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var ColoniaH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var CalleH =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_ExteriorH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_InteriorH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_ExteriorH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Codigo_PostalH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Entre_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LongitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LatitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Canalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -501,13 +512,16 @@
         + "&Hora_Aproximada_del_Hecho=" + Hora_Aproximada_del_Hecho
         + "&Lugar_de_los_Hechos=" + Lugar_de_los_Hechos
         + "&PaisH=" + PaisH
+        + "&Estado=" + Estado
+        + "&Municipio_Hechos=" + Municipio_Hechos
         + "&Poblacion=" + Poblacion
         + "&ColoniaH=" + ColoniaH
         + "&CalleH=" + CalleH
-        + "&Numero_ExteriorH=" + Numero_ExteriorH
         + "&Numero_InteriorH=" + Numero_InteriorH
+        + "&Numero_ExteriorH=" + Numero_ExteriorH
         + "&Codigo_PostalH=" + Codigo_PostalH
         + "&Entre_Calle=" + Entre_Calle
+        + "&Y_Calle=" + Y_Calle
         + "&LongitudH=" + LongitudH
         + "&LatitudH=" + LatitudH
         + "&Fecha_de_Canalizacion=" + Fecha_de_Canalizacion
@@ -562,13 +576,16 @@
         var Hora_Aproximada_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
         var Lugar_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var PaisH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Municipio_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Poblacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var ColoniaH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var CalleH =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_ExteriorH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_InteriorH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_ExteriorH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Codigo_PostalH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Entre_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LongitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LatitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Canalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -612,13 +629,16 @@
         + "&Hora_Aproximada_del_Hecho=" + Hora_Aproximada_del_Hecho
         + "&Lugar_de_los_Hechos=" + Lugar_de_los_Hechos
         + "&PaisH=" + PaisH
+        + "&Estado=" + Estado
+        + "&Municipio_Hechos=" + Municipio_Hechos
         + "&Poblacion=" + Poblacion
         + "&ColoniaH=" + ColoniaH
         + "&CalleH=" + CalleH
-        + "&Numero_ExteriorH=" + Numero_ExteriorH
         + "&Numero_InteriorH=" + Numero_InteriorH
+        + "&Numero_ExteriorH=" + Numero_ExteriorH
         + "&Codigo_PostalH=" + Codigo_PostalH
         + "&Entre_Calle=" + Entre_Calle
+        + "&Y_Calle=" + Y_Calle
         + "&LongitudH=" + LongitudH
         + "&LatitudH=" + LatitudH
         + "&Fecha_de_Canalizacion=" + Fecha_de_Canalizacion
@@ -820,11 +840,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -893,7 +913,7 @@
                 ,{ "data": "usuario_que_registraName", "orderable": true, "name": "usuario_que_registraName"}
                 ,{ "data": "Tipo_de_DenunciaDescripcion", "orderable": true, "name": "Tipo_de_DenunciaDescripcion" }
                 ,{ "data": "unidadDescripcion", "orderable": true, "name": "unidadDescripcion"}
-                ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre" }
+                ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}
                 ,{ "data": "RegionDescripcion", "orderable": true, "name": "RegionDescripcion" }
                 ,{ "data": "nuat", "orderable": true, "name": "nuat", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "nic", "orderable": true, "name": "nic", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
@@ -906,14 +926,17 @@
                 ,{ "data": "Narrativa_Breve_de_los_Hechos", "orderable": true, "name": "Narrativa_Breve_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Hora_Aproximada_del_Hecho", "orderable": true, "name": "Hora_Aproximada_del_Hecho" }
                 ,{ "data": "Lugar_de_los_HechosDescripcion", "orderable": true, "name": "Lugar_de_los_HechosDescripcion" }
-                ,{ "data": "PaisHNombre", "orderable": true, "name": "PaisHNombre" }
-                ,{ "data": "PoblacionNombre", "orderable": true, "name": "PoblacionNombre" }
-                ,{ "data": "ColoniaHNombre", "orderable": true, "name": "ColoniaHNombre" }
+                ,{ "data": "PaisHNombre", "orderable": true, "name": "PaisHNombre"}
+                ,{ "data": "EstadoNombre", "orderable": true, "name": "EstadoNombre"}
+                ,{ "data": "Municipio_HechosNombre", "orderable": true, "name": "Municipio_HechosNombre"}
+                ,{ "data": "PoblacionNombre", "orderable": true, "name": "PoblacionNombre"}
+                ,{ "data": "ColoniaHNombre", "orderable": true, "name": "ColoniaHNombre"}
                 ,{ "data": "CalleH", "orderable": true, "name": "CalleH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Numero_ExteriorH", "orderable": true, "name": "Numero_ExteriorH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Numero_InteriorH", "orderable": true, "name": "Numero_InteriorH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Numero_ExteriorH", "orderable": true, "name": "Numero_ExteriorH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Codigo_PostalH","className": "dt-right", "orderable": true, "name": "Codigo_PostalH" }
                 ,{ "data": "Entre_Calle", "orderable": true, "name": "Entre_Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Y_Calle", "orderable": true, "name": "Y_Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "LongitudH", "orderable": true, "name": "LongitudH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "LatitudH", "orderable": true, "name": "LatitudH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Fecha_de_Canalizacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Canalizacion" }

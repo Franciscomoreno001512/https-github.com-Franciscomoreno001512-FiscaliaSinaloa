@@ -19,6 +19,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool? Alta_Incidencia { get; set; }
         public bool? Tentativa { get; set; }
         public bool? Activo { get; set; }
+        public bool? Robo_de_Vehiculo { get; set; }
         
     }
 }

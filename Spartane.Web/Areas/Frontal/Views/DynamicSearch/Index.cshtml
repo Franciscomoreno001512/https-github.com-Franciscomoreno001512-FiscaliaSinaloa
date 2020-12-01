@@ -311,6 +311,7 @@
             $('#new').css('display', 'none');
             GetDataToShow($($(this).find('td')[0]).html(), @ViewBag.idTablero);
             DisabledAE($($(this).find('td')[3]).html());
+			BussinesRoles($('#wf').val());
 
         });
         $('#TabsBadget').on('click', 'button', function () {
@@ -334,6 +335,23 @@
             }
             else {
                 $('#new').css('display', 'none');
+            }
+			
+			var value = $('#wf').val();
+            switch (value) {
+                case "Canalizados":
+                    $(".editDetails").prop("disabled", true);
+                    $(".classDelete").hide();
+                    $(".editDetails").hide();
+                    break;
+                case "Cerrados":
+                    $(".editDetails").prop("disabled", true);
+                    $(".classDelete").hide();
+                    $(".editDetails").hide();
+                    break;
+                default:
+                    console.log("")
+                    break;
             }
 
 
@@ -798,7 +816,29 @@
             $("button[data-name='Involucrados']").prop("disabled", false);
         }
     }
-
+    function BussinesRoles(value) {
+        switch (value) {
+            case "Canalizados":
+                //Declaraciones ejecutadas cuando el resultado de expresión coincide con el valor1
+                $("#btnEditarRegistro").prop("disabled", true);
+                $("#new").prop("disabled", true);
+                $(".editDetails").prop("disabled", true);
+                $(".classDelete").hide();
+                $(".editDetails").hide();
+                break;
+            case "Cerrados":
+                //Declaraciones ejecutadas cuando el resultado de expresión coincide con el valor1
+                $("#btnEditarRegistro").prop("disabled", true);
+                $("#new").prop("disabled", true);
+                $(".editDetails").prop("disabled", true);
+                $(".classDelete").hide();
+                $(".editDetails").hide();
+                break;
+            default:
+                console.log("")
+                break;
+        }
+    }
 
     function GetResultSearchTable() {
 

@@ -6,6 +6,7 @@ using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Region;
 using Spartane.Core.Domain.Vigencia;
 using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Tipo_de_Asignacion_de_MP;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -20,6 +21,7 @@ using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Region;
 using Spartane.Web.Areas.WebApiConsumer.Vigencia;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Asignacion_de_MP;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -60,6 +62,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IRegionApiConsumer _IRegionApiConsumer;
         private IVigenciaApiConsumer _IVigenciaApiConsumer;
         private ISpartan_UserApiConsumer _ISpartan_UserApiConsumer;
+        private ITipo_de_Asignacion_de_MPApiConsumer _ITipo_de_Asignacion_de_MPApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -77,7 +80,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public UnidadController(IUnidadService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IUnidadApiConsumer UnidadApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IRegionApiConsumer RegionApiConsumer , IVigenciaApiConsumer VigenciaApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer )
+        public UnidadController(IUnidadService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IUnidadApiConsumer UnidadApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IRegionApiConsumer RegionApiConsumer , IVigenciaApiConsumer VigenciaApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_Asignacion_de_MPApiConsumer Tipo_de_Asignacion_de_MPApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -95,6 +98,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IRegionApiConsumer = RegionApiConsumer;
             this._IVigenciaApiConsumer = VigenciaApiConsumer;
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
+            this._ITipo_de_Asignacion_de_MPApiConsumer = Tipo_de_Asignacion_de_MPApiConsumer;
 
         }
 
@@ -185,6 +189,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Supervisor = UnidadData.Supervisor
                     ,SupervisorName = CultureHelper.GetTraduction(Convert.ToString(UnidadData.Supervisor), "Spartan_User") ??  (string)UnidadData.Supervisor_Spartan_User.Name
                     ,Consecutivo_CDI = UnidadData.Consecutivo_CDI
+                    ,Tipo_de_Asignacion_de_MP = UnidadData.Tipo_de_Asignacion_de_MP
+                    ,Tipo_de_Asignacion_de_MPDescripcion = CultureHelper.GetTraduction(Convert.ToString(UnidadData.Tipo_de_Asignacion_de_MP), "Tipo_de_Asignacion_de_MP") ??  (string)UnidadData.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Descripcion
 
 					};
 				}
@@ -215,6 +221,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Vigencias_Vigencia = Vigencias_Vigencia.Resource.Where(m => m.Abreviacion != null).OrderBy(m => m.Abreviacion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Vigencia", "Abreviacion") ?? m.Abreviacion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_Asignacion_de_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP = _ITipo_de_Asignacion_de_MPApiConsumer.SelAll(true);
+            if (Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP != null && Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP.Resource != null)
+                ViewBag.Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP = Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Asignacion_de_MP", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -293,6 +306,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Supervisor = UnidadData.Supervisor
                     ,SupervisorName = CultureHelper.GetTraduction(Convert.ToString(UnidadData.Supervisor), "Spartan_User") ??  (string)UnidadData.Supervisor_Spartan_User.Name
                     ,Consecutivo_CDI = UnidadData.Consecutivo_CDI
+                    ,Tipo_de_Asignacion_de_MP = UnidadData.Tipo_de_Asignacion_de_MP
+                    ,Tipo_de_Asignacion_de_MPDescripcion = CultureHelper.GetTraduction(Convert.ToString(UnidadData.Tipo_de_Asignacion_de_MP), "Tipo_de_Asignacion_de_MP") ??  (string)UnidadData.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Descripcion
 
 					};
 				}
@@ -321,6 +336,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Vigencias_Vigencia = Vigencias_Vigencia.Resource.Where(m => m.Abreviacion != null).OrderBy(m => m.Abreviacion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Vigencia", "Abreviacion") ?? m.Abreviacion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_Asignacion_de_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP = _ITipo_de_Asignacion_de_MPApiConsumer.SelAll(true);
+            if (Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP != null && Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP.Resource != null)
+                ViewBag.Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP = Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Asignacion_de_MP", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -426,6 +448,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpGet]
+        public ActionResult GetTipo_de_Asignacion_de_MPAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_Asignacion_de_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_Asignacion_de_MPApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Asignacion_de_MP", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -480,6 +523,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Vigencia", "Abreviacion") ?? m.Abreviacion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _ITipo_de_Asignacion_de_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP = _ITipo_de_Asignacion_de_MPApiConsumer.SelAll(true);
+            if (Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP != null && Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP.Resource != null)
+                ViewBag.Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP = Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Asignacion_de_MP", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             return View(model);  
@@ -511,6 +561,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Vigencias_Vigencia = Vigencias_Vigencia.Resource.Where(m => m.Abreviacion != null).OrderBy(m => m.Abreviacion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Vigencia", "Abreviacion") ?? m.Abreviacion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_Asignacion_de_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP = _ITipo_de_Asignacion_de_MPApiConsumer.SelAll(true);
+            if (Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP != null && Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP.Resource != null)
+                ViewBag.Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP = Tipo_de_Asignacion_de_MPs_Tipo_de_Asignacion_de_MP.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Asignacion_de_MP", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -561,6 +618,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
                         ,SupervisorName = CultureHelper.GetTraduction(m.Supervisor_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Supervisor_Spartan_User.Name
 			,Consecutivo_CDI = m.Consecutivo_CDI
+                        ,Tipo_de_Asignacion_de_MPDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Descripcion
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -686,6 +744,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
                         ,SupervisorName = CultureHelper.GetTraduction(m.Supervisor_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Supervisor_Spartan_User.Name
 			,Consecutivo_CDI = m.Consecutivo_CDI
+                        ,Tipo_de_Asignacion_de_MPDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Descripcion
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -977,6 +1036,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += " AND Unidad.Consecutivo_CDI <= " + filter.ToConsecutivo_CDI;
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_Asignacion_de_MP))
+            {
+                switch (filter.Tipo_de_Asignacion_de_MPFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Tipo_de_Asignacion_de_MP.Descripcion LIKE '" + filter.AdvanceTipo_de_Asignacion_de_MP + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Tipo_de_Asignacion_de_MP.Descripcion LIKE '%" + filter.AdvanceTipo_de_Asignacion_de_MP + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Tipo_de_Asignacion_de_MP.Descripcion = '" + filter.AdvanceTipo_de_Asignacion_de_MP + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Tipo_de_Asignacion_de_MP.Descripcion LIKE '%" + filter.AdvanceTipo_de_Asignacion_de_MP + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceTipo_de_Asignacion_de_MPMultiple != null && filter.AdvanceTipo_de_Asignacion_de_MPMultiple.Count() > 0)
+            {
+                var Tipo_de_Asignacion_de_MPIds = string.Join(",", filter.AdvanceTipo_de_Asignacion_de_MPMultiple);
+
+                where += " AND Unidad.Tipo_de_Asignacion_de_MP In (" + Tipo_de_Asignacion_de_MPIds + ")";
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -1043,6 +1130,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Observaciones = varUnidad.Observaciones
                         ,Supervisor = varUnidad.Supervisor
                         ,Consecutivo_CDI = varUnidad.Consecutivo_CDI
+                        ,Tipo_de_Asignacion_de_MP = varUnidad.Tipo_de_Asignacion_de_MP
 
                     };
 
@@ -1441,6 +1529,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
                         ,SupervisorName = CultureHelper.GetTraduction(m.Supervisor_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Supervisor_Spartan_User.Name
 			,Consecutivo_CDI = m.Consecutivo_CDI
+                        ,Tipo_de_Asignacion_de_MPDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Descripcion
 
             }).ToList();
 
@@ -1525,6 +1614,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
                         ,SupervisorName = CultureHelper.GetTraduction(m.Supervisor_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Supervisor_Spartan_User.Name
 			,Consecutivo_CDI = m.Consecutivo_CDI
+                        ,Tipo_de_Asignacion_de_MPDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Descripcion
 
             }).ToList();
 
@@ -1575,6 +1665,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Observaciones = varUnidad.Observaciones
                         ,Supervisor = varUnidad.Supervisor
                         ,Consecutivo_CDI = varUnidad.Consecutivo_CDI
+                        ,Tipo_de_Asignacion_de_MP = varUnidad.Tipo_de_Asignacion_de_MP
                     
                 };
 
@@ -1618,6 +1709,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Supervisor = m.Supervisor
                         ,SupervisorName = CultureHelper.GetTraduction(m.Supervisor_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Supervisor_Spartan_User.Name
 			,Consecutivo_CDI = m.Consecutivo_CDI
+                        ,Tipo_de_Asignacion_de_MP = m.Tipo_de_Asignacion_de_MP
+                        ,Tipo_de_Asignacion_de_MPDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Descripcion
 
                     
                 };

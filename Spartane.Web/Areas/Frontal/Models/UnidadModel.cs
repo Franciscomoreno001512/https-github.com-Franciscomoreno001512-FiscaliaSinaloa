@@ -29,6 +29,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string SupervisorName { get; set; }
         [Range(0, 9999999999)]
         public int? Consecutivo_CDI { get; set; }
+        public int? Tipo_de_Asignacion_de_MP { get; set; }
+        public string Tipo_de_Asignacion_de_MPDescripcion { get; set; }
 
     }
 	
@@ -53,6 +55,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string SupervisorName { get; set; }
         [Range(0, 9999999999)]
         public int? Consecutivo_CDI { get; set; }
+        public int? Tipo_de_Asignacion_de_MP { get; set; }
+        public string Tipo_de_Asignacion_de_MPDescripcion { get; set; }
 
     }
 

@@ -197,6 +197,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Alta_Incidencia = DelitoData.Alta_Incidencia.GetValueOrDefault()
                     ,Tentativa = DelitoData.Tentativa.GetValueOrDefault()
                     ,Activo = DelitoData.Activo.GetValueOrDefault()
+                    ,Robo_de_Vehiculo = DelitoData.Robo_de_Vehiculo.GetValueOrDefault()
 
 					};
 				}
@@ -295,6 +296,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Alta_Incidencia = DelitoData.Alta_Incidencia.GetValueOrDefault()
                     ,Tentativa = DelitoData.Tentativa.GetValueOrDefault()
                     ,Activo = DelitoData.Activo.GetValueOrDefault()
+                    ,Robo_de_Vehiculo = DelitoData.Robo_de_Vehiculo.GetValueOrDefault()
 
 					};
 				}
@@ -497,6 +499,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Alta_Incidencia = m.Alta_Incidencia
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
+			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -619,6 +622,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Alta_Incidencia = m.Alta_Incidencia
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
+			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -739,6 +743,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             if (filter.Activo != RadioOptions.NoApply)
                 where += " AND Delito.Activo = " + Convert.ToInt32(filter.Activo);
+
+            if (filter.Robo_de_Vehiculo != RadioOptions.NoApply)
+                where += " AND Delito.Robo_de_Vehiculo = " + Convert.ToInt32(filter.Robo_de_Vehiculo);
 
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
@@ -908,6 +915,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Alta_Incidencia = varDelito.Alta_Incidencia
                         ,Tentativa = varDelito.Tentativa
                         ,Activo = varDelito.Activo
+                        ,Robo_de_Vehiculo = varDelito.Robo_de_Vehiculo
 
                     };
 
@@ -1474,6 +1482,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Alta_Incidencia = m.Alta_Incidencia
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
+			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
 
             }).ToList();
 
@@ -1555,6 +1564,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Alta_Incidencia = m.Alta_Incidencia
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
+			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
 
             }).ToList();
 
@@ -1602,6 +1612,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Alta_Incidencia = varDelito.Alta_Incidencia
                         ,Tentativa = varDelito.Tentativa
                         ,Activo = varDelito.Activo
+                        ,Robo_de_Vehiculo = varDelito.Robo_de_Vehiculo
                     
                 };
 
@@ -1642,6 +1653,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Alta_Incidencia = m.Alta_Incidencia
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
+			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
 
                     
                 };

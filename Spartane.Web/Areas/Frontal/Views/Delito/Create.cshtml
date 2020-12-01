@@ -333,6 +333,12 @@
                                 </div>
                             </div>
                             </div>
+                            <div class="form-group" id="divRobo_de_Vehiculo">
+                                <label class="col-sm-2 control-label">@Resources.DelitoResources.Robo_de_Vehiculo</label>
+                                <div class="col-sm-8" data-field-id="Robo_de_Vehiculo" data-attribute="267440" data-field-name="@Resources.DelitoResources.Robo_de_Vehiculo">
+                                    @Html.CheckBoxFor(m => m.Robo_de_Vehiculo, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -1116,6 +1122,7 @@
                     showConfiguracion_de_PlaneacionGrid(result.Configuracion_de_Planeacion);
                     $('#Configuracion_de_PlaneacionGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
                     $('#Configuracion_de_PlaneacionGrid .gridDatePicker').attr("readonly", "");
+                    $('#Robo_de_Vehiculo').prop('checked', result.data.Robo_de_Vehiculo);
 
                 },
                 error: function (result) {
@@ -1135,6 +1142,7 @@
                 data.append('Alta_Incidencia', $('#Alta_Incidencia').prop('checked'));
                 data.append('Tentativa', $('#Tentativa').prop('checked'));
                 data.append('Activo', $('#Activo').prop('checked'));
+                data.append('Robo_de_Vehiculo', $('#Robo_de_Vehiculo').prop('checked'));
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Delito/Post_Datos_Generales")',
