@@ -62,6 +62,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         [IsNumberAfterAttribute("FromConsecutivo_CDI", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string ToConsecutivo_CDI { set; get; }
 
+        public Filters Tipo_de_Asignacion_de_MPFilter { set; get; }
+        public string AdvanceTipo_de_Asignacion_de_MP { set; get; }
+        public int[] AdvanceTipo_de_Asignacion_de_MPMultiple { set; get; }
+
 
     }
 }

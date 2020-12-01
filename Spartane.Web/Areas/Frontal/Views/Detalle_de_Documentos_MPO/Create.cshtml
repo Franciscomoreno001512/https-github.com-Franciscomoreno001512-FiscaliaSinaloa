@@ -464,23 +464,23 @@
         @Styles.Render("~/plugins/select2Styles")
         @Styles.Render("~/Content/plugins/chosen/chosenStyles")
         <style>
-                    .dataTables_filter {
-                        display: none;
-                    }
+            .dataTables_filter {
+                display: none;
+            }
 
-                    .select2-results {
-                        background-color: #fff;
-                    }
+            .select2-results {
+                background-color: #fff;
+            }
 
-                    .select2-container .select2-dropdown {
-                        height: auto !important;
-                    }
+            .select2-container .select2-dropdown {
+                height: auto !important;
+            }
 
-                    div.dataTables_info {
-                        display: inline-block;
-                        float: right;
-                    }
-                    /*i {
+            div.dataTables_info {
+                display: inline-block;
+                float: right;
+            }
+            /*i {
                 font-size: 25px !important;
                 display: block;
                 color: #676a6c;
@@ -488,9 +488,9 @@
                 margin-right: 6px;
             }*/
 
-                    .fullWidth {
-                        width: 100%;
-                    }
+            .fullWidth {
+                width: 100%;
+            }
         </style>
     }
 
@@ -508,7 +508,6 @@
             $("#hdnRemoveArchivo_Adjunto").val("1");
             $("#divAttachmentArchivo_Adjunto").hide();
         }
-
 
 	function GetTraduction(text) {
          switch (text.toLowerCase()) {
@@ -1484,19 +1483,33 @@
         function EditarDocto() {
 
             debugger;
-            var isedit = ($("#Archivo").val() != "" && $("#Archivo").val() != "0" && $("#Archivo").val() != "-1");
-            var folioControlDocumentos = $("#Archivo").val();
-            $('.loading').css('display', 'none');
-            var formaid = GetIdFormatoFromDocumento();
-            if (isedit) {
-                OpenPrintFormats(folioControlDocumentos, @Spartane.Web.SessionHelper.Role, "", true, "45018", formaid);
+
+
+            var _controlDocumentoDynamiSeach = localStorage.getItem('controlDocumentoDynamiSeach');
+            controlDocumentoDynamiSeach = false;
+            if (_controlDocumentoDynamiSeach == "true" ) {
+                controlDocumentoDynamiSeach = true;
+
+            }
+
+            if ( controlDocumentoDynamiSeach == true ) {
+                alert('Existe una ventana abierta');
             }
             else {
-                GuardarRegistro(formaid);
+                //permitirCerrar = false;
+                localStorage.setItem('controlDocumentoDynamiSeach',"true");
+                var isedit = ($("#Archivo").val() != "" && $("#Archivo").val() != "0" && $("#Archivo").val() != "-1");
+                var folioControlDocumentos = $("#Archivo").val();
+                $('.loading').css('display', 'none');
+                var formaid = GetIdFormatoFromDocumento();
+                if (isedit) {
+                    OpenPrintFormats(folioControlDocumentos, @Spartane.Web.SessionHelper.Role, "", true, "45018", formaid);
+                }
+                else {
+                    GuardarRegistro(formaid);
 
+                }
             }
-
-
 
         }
 

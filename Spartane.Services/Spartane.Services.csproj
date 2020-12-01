@@ -1153,6 +1153,8 @@
 <Compile Include="Detalle_Audiencia_Defensor_Victima\Detalle_Audiencia_Defensor_VictimaService.cs" />
 <Compile Include="Detalle_Audiencia_Archivos_Adjuntos\IDetalle_Audiencia_Archivos_AdjuntosService.cs" />
 <Compile Include="Detalle_Audiencia_Archivos_Adjuntos\Detalle_Audiencia_Archivos_AdjuntosService.cs" />
+<Compile Include="Tipo_de_Asignacion_de_MP\ITipo_de_Asignacion_de_MPService.cs" />
+<Compile Include="Tipo_de_Asignacion_de_MP\Tipo_de_Asignacion_de_MPService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1252,6 +1254,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

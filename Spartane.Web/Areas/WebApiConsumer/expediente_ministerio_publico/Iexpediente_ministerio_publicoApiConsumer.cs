@@ -38,8 +38,8 @@ namespace Spartane.Web.Areas.WebApiConsumer.expediente_ministerio_publico
 		ApiResponse<int> Update_Datos_del_Acuerdo(Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Datos_del_Acuerdo entity);
 		ApiResponse<Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Datos_del_Acuerdo> Get_Datos_del_Acuerdo(string Key);
 
-		ApiResponse<int> Update_Cierre_de_Expediente(Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Cierre_de_Expediente entity);
-		ApiResponse<Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Cierre_de_Expediente> Get_Cierre_de_Expediente(string Key);
+		ApiResponse<int> Update_Resolucion_o_Dictaminacion(Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Resolucion_o_Dictaminacion entity);
+		ApiResponse<Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Resolucion_o_Dictaminacion> Get_Resolucion_o_Dictaminacion(string Key);
 
 
     }

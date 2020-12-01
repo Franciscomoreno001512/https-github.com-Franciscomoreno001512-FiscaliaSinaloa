@@ -12,7 +12,7 @@
     List<SelectListItem> varTipo_de_Documento_Tipo_de_Documento = null;
     if (ViewBag.Tipo_de_Documentos_Tipo_de_Documento != null)
     { varTipo_de_Documento_Tipo_de_Documento = (List<SelectListItem>)ViewBag.Tipo_de_Documentos_Tipo_de_Documento; }
-    List<SelectListItem> varDocumento_Documento = null;
+ List<SelectListItem> varDocumento_Documento = null;
     if (ViewBag.Documentos_Documento != null)
     { varDocumento_Documento = (List<SelectListItem>)ViewBag.Documentos_Documento; }
  List<SelectListItem> varDetalle_de_Datos_Generales_Involucrado = null;
@@ -134,27 +134,9 @@
                         });
                     }
                 </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_de_Documentos_MPOResources.Documento</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.DocumentoFilter, filters, new { @class = "form-control", @id = "ddlDocumentoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceDocumento, new { @class = "form-control", @type = "text", @id = "txtAdvanceDocumento" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varDocumento_Documento!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceDocumentoMultiple, varDocumento_Documento,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceDocumento"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varDocumento_Documento = null;
+    if (ViewBag.Documentos_Documento != null)
+    { varDocumento_Documento = (List<SelectListItem>)ViewBag.Documentos_Documento; }
  List<SelectListItem> varDetalle_de_Datos_Generales_Involucrado = null;
     if (ViewBag.Detalle_de_Datos_Generaless_Involucrado != null)
     { varDetalle_de_Datos_Generales_Involucrado = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Involucrado; }

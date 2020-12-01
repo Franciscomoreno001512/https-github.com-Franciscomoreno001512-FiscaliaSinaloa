@@ -1262,6 +1262,8 @@
 <Compile Include="Domain\Detalle_Audiencia_Defensor_Victima\Detalle_Audiencia_Defensor_Victima.cs" />
 <Compile Include="Domain\Detalle_Audiencia_Archivos_Adjuntos\Detalle_Audiencia_Archivos_AdjuntosPagingModel.cs" />
 <Compile Include="Domain\Detalle_Audiencia_Archivos_Adjuntos\Detalle_Audiencia_Archivos_Adjuntos.cs" />
+<Compile Include="Domain\Tipo_de_Asignacion_de_MP\Tipo_de_Asignacion_de_MP.cs" />
+<Compile Include="Domain\Tipo_de_Asignacion_de_MP\Tipo_de_Asignacion_de_MPPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1282,6 +1284,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

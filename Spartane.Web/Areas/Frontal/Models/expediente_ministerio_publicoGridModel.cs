@@ -37,15 +37,20 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Lugar_de_los_HechosDescripcion { get; set; }
         public int? PaisH { get; set; }
         public string PaisHNombre { get; set; }
+        public int? Estado { get; set; }
+        public string EstadoNombre { get; set; }
+        public int? Municipio_Hechos { get; set; }
+        public string Municipio_HechosNombre { get; set; }
         public int? Poblacion { get; set; }
         public string PoblacionNombre { get; set; }
         public int? ColoniaH { get; set; }
         public string ColoniaHNombre { get; set; }
         public string CalleH { get; set; }
-        public string Numero_ExteriorH { get; set; }
         public string Numero_InteriorH { get; set; }
+        public string Numero_ExteriorH { get; set; }
         public int? Codigo_PostalH { get; set; }
         public string Entre_Calle { get; set; }
+        public string Y_Calle { get; set; }
         public string LongitudH { get; set; }
         public string LatitudH { get; set; }
         public string Fecha_de_Canalizacion { get; set; }

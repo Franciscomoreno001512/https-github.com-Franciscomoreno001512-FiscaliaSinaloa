@@ -207,6 +207,7 @@
                                     <th>@Resources.DelitoResources.Alta_Incidencia</th>
                                     <th>@Resources.DelitoResources.Tentativa</th>
                                     <th>@Resources.DelitoResources.Activo</th>
+                                    <th>@Resources.DelitoResources.Robo_de_Vehiculo</th>
 
                                 </tr>
                             </thead>
@@ -217,6 +218,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
@@ -346,6 +348,7 @@
         var Alta_Incidencia = $($('table td .filterData.form-control:input')[counter++]).val();
         var Tentativa = $($('table td .filterData.form-control:input')[counter++]).val();
         var Activo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Robo_de_Vehiculo = $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -357,6 +360,7 @@
         + "&Alta_Incidencia=" + Alta_Incidencia
         + "&Tentativa=" + Tentativa
         + "&Activo=" + Activo
+        + "&Robo_de_Vehiculo=" + Robo_de_Vehiculo
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Delito/Export?format=")" + format
@@ -379,6 +383,7 @@
         var Alta_Incidencia = $($('table td .filterData.form-control:input')[counter++]).val();
         var Tentativa = $($('table td .filterData.form-control:input')[counter++]).val();
         var Activo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Robo_de_Vehiculo = $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -390,6 +395,7 @@
         + "&Alta_Incidencia=" + Alta_Incidencia
         + "&Tentativa=" + Tentativa
         + "&Activo=" + Activo
+        + "&Robo_de_Vehiculo=" + Robo_de_Vehiculo
 ;
 
     }
@@ -570,11 +576,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -646,6 +652,7 @@
                 ,{ "data": "Alta_Incidencia", "orderable": true, "name": "Alta_Incidencia","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Tentativa", "orderable": true, "name": "Tentativa","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Activo", "orderable": true, "name": "Activo","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Robo_de_Vehiculo", "orderable": true, "name": "Robo_de_Vehiculo","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
 
             ],
 			"colReorder": true,

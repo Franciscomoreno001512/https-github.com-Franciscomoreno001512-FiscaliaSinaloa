@@ -184,6 +184,243 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:2540, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:500, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta1' + rowIndex),EvaluaQuery("SELECT Pregunta_1 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:500, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:500, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta1' + rowIndex),EvaluaQuery("SELECT Pregunta_1 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:500, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:500, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta1' + rowIndex),EvaluaQuery("SELECT Pregunta_1 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:500, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:501, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta2' + rowIndex),EvaluaQuery("SELECT Pregunta_2 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:501, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:501, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta2' + rowIndex),EvaluaQuery("SELECT Pregunta_2 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:501, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:501, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta2' + rowIndex),EvaluaQuery("SELECT Pregunta_2 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:501, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:502, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta3' + rowIndex),EvaluaQuery(" SELECT Pregunta_3 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:502, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:502, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta3' + rowIndex),EvaluaQuery(" SELECT Pregunta_3 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:502, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:502, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta3' + rowIndex),EvaluaQuery(" SELECT Pregunta_3 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:502, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:529, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta4' + rowIndex),EvaluaQuery(" SELECT Pregunta_4 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:529, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:529, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta4' + rowIndex),EvaluaQuery(" SELECT Pregunta_4 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:529, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:529, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta4' + rowIndex),EvaluaQuery(" SELECT Pregunta_4 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:529, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:530, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta5' + rowIndex),EvaluaQuery(" SELECT Pregunta_5 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:530, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:530, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta5' + rowIndex),EvaluaQuery(" SELECT Pregunta_5 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:530, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:530, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta5' + rowIndex),EvaluaQuery(" SELECT Pregunta_5 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:530, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:531, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta6' + rowIndex),EvaluaQuery(" SELECT Pregunta_6 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:531, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:531, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta6' + rowIndex),EvaluaQuery(" SELECT Pregunta_6 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:531, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:531, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta6' + rowIndex),EvaluaQuery(" SELECT Pregunta_6 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:531, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:532, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta7' + rowIndex),EvaluaQuery(" SELECT Pregunta_7 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:532, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:532, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta7' + rowIndex),EvaluaQuery(" SELECT Pregunta_7 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:532, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:532, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta7' + rowIndex),EvaluaQuery(" SELECT Pregunta_7 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:532, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:534, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta8' + rowIndex),EvaluaQuery(" SELECT Pregunta_8 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:534, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:534, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta8' + rowIndex),EvaluaQuery(" SELECT Pregunta_8 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:534, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:534, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta8' + rowIndex),EvaluaQuery(" SELECT Pregunta_8 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:534, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:535, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta9' + rowIndex),EvaluaQuery(" SELECT Pregunta_9 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:535, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:535, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta9' + rowIndex),EvaluaQuery(" SELECT Pregunta_9 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:535, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:535, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta9' + rowIndex),EvaluaQuery(" SELECT Pregunta_9 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:535, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:536, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta9' + rowIndex),EvaluaQuery("SELECT Pregunta_9 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:536, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:536, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta9' + rowIndex),EvaluaQuery("SELECT Pregunta_9 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:536, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:536, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta9' + rowIndex),EvaluaQuery("SELECT Pregunta_9 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:536, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+//BusinessRuleId:537, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta10' + rowIndex),EvaluaQuery(" SELECT Pregunta_10 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:537, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:537, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta10' + rowIndex),EvaluaQuery(" SELECT Pregunta_10 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:537, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:537, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ AsignarValor($('#' + nameOfTable + 'Pregunta10' + rowIndex),EvaluaQuery(" SELECT Pregunta_10 FROM Encuesta WHERE Clave = 1", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:537, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

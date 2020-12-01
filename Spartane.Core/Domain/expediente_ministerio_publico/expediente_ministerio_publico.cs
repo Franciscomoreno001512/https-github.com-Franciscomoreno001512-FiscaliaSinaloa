@@ -12,6 +12,8 @@ using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.estatus_mpi;
 using Spartane.Core.Domain.Lugar_Tipo;
 using Spartane.Core.Domain.Pais;
+using Spartane.Core.Domain.Estado;
+using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Spartan_User;
@@ -53,13 +55,16 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public string Hora_Aproximada_del_Hecho { get; set; }
         public int? Lugar_de_los_Hechos { get; set; }
         public int? PaisH { get; set; }
+        public int? Estado { get; set; }
+        public int? Municipio_Hechos { get; set; }
         public int? Poblacion { get; set; }
         public int? ColoniaH { get; set; }
         public string CalleH { get; set; }
-        public string Numero_ExteriorH { get; set; }
         public string Numero_InteriorH { get; set; }
+        public string Numero_ExteriorH { get; set; }
         public int? Codigo_PostalH { get; set; }
         public string Entre_Calle { get; set; }
+        public string Y_Calle { get; set; }
         public string LongitudH { get; set; }
         public string LatitudH { get; set; }
         public DateTime? Fecha_de_Canalizacion { get; set; }
@@ -100,6 +105,10 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public virtual Spartane.Core.Domain.Lugar_Tipo.Lugar_Tipo Lugar_de_los_Hechos_Lugar_Tipo { get; set; }
         [ForeignKey("PaisH")]
         public virtual Spartane.Core.Domain.Pais.Pais PaisH_Pais { get; set; }
+        [ForeignKey("Estado")]
+        public virtual Spartane.Core.Domain.Estado.Estado Estado_Estado { get; set; }
+        [ForeignKey("Municipio_Hechos")]
+        public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Hechos_Municipio { get; set; }
         [ForeignKey("Poblacion")]
         public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_Colonia { get; set; }
         [ForeignKey("ColoniaH")]
@@ -164,13 +173,16 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public string Hora_Aproximada_del_Hecho { get; set; }
         public int? Lugar_de_los_Hechos { get; set; }
         public int? PaisH { get; set; }
+        public int? Estado { get; set; }
+        public int? Municipio_Hechos { get; set; }
         public int? Poblacion { get; set; }
         public int? ColoniaH { get; set; }
         public string CalleH { get; set; }
-        public string Numero_ExteriorH { get; set; }
         public string Numero_InteriorH { get; set; }
+        public string Numero_ExteriorH { get; set; }
         public int? Codigo_PostalH { get; set; }
         public string Entre_Calle { get; set; }
+        public string Y_Calle { get; set; }
         public string LongitudH { get; set; }
         public string LatitudH { get; set; }
 
@@ -178,6 +190,10 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public virtual Spartane.Core.Domain.Lugar_Tipo.Lugar_Tipo Lugar_de_los_Hechos_Lugar_Tipo { get; set; }
         [ForeignKey("PaisH")]
         public virtual Spartane.Core.Domain.Pais.Pais PaisH_Pais { get; set; }
+        [ForeignKey("Estado")]
+        public virtual Spartane.Core.Domain.Estado.Estado Estado_Estado { get; set; }
+        [ForeignKey("Municipio_Hechos")]
+        public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Hechos_Municipio { get; set; }
         [ForeignKey("Poblacion")]
         public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_Colonia { get; set; }
         [ForeignKey("ColoniaH")]
@@ -223,7 +239,7 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
 
     }
 
-	public class expediente_ministerio_publico_Cierre_de_Expediente
+	public class expediente_ministerio_publico_Resolucion_o_Dictaminacion
     {
                 public int clave { get; set; }
         public DateTime? fecha_de_cierre { get; set; }

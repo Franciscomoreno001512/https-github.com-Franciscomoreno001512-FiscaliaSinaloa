@@ -1442,6 +1442,9 @@ using Spartane.Web.Areas.WebApiConsumer.Detalle_Audiencia_Defensor_Victima;
 using Spartane.Services.Detalle_Audiencia_Archivos_Adjuntos;
 using Spartane.Core.Domain.Detalle_Audiencia_Archivos_Adjuntos;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Audiencia_Archivos_Adjuntos;
+using Spartane.Services.Tipo_de_Asignacion_de_MP;
+using Spartane.Core.Domain.Tipo_de_Asignacion_de_MP;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Asignacion_de_MP;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -2526,6 +2529,8 @@ builder.RegisterType<Detalle_Audiencia_Defensor_VictimaService>().As<IDetalle_Au
 builder.RegisterType<Detalle_Audiencia_Defensor_VictimaApiConsumer>().As<IDetalle_Audiencia_Defensor_VictimaApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Detalle_Audiencia_Archivos_AdjuntosService>().As<IDetalle_Audiencia_Archivos_AdjuntosService>().InstancePerLifetimeScope();
 builder.RegisterType<Detalle_Audiencia_Archivos_AdjuntosApiConsumer>().As<IDetalle_Audiencia_Archivos_AdjuntosApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_Asignacion_de_MPService>().As<ITipo_de_Asignacion_de_MPService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_Asignacion_de_MPApiConsumer>().As<ITipo_de_Asignacion_de_MPApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -2706,6 +2711,34 @@ builder.RegisterType<Detalle_Audiencia_Archivos_AdjuntosApiConsumer>().As<IDetal
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

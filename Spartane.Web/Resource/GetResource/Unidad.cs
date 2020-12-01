@@ -146,6 +146,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Tipo_de_Asignacion_de_MP</summary>
+        public static string Tipo_de_Asignacion_de_MP
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderUnidad.GetResource("Tipo_de_Asignacion_de_MP", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderUnidad.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 
