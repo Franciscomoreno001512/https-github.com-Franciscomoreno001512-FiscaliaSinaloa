@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Audiencias_MP" value="Audiencias MP"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="es-es" name="Tipo_de_Audiencia" value="Tipo de Audiencia"></resource>
+  <resource culture="es-es" name="Audiencia" value="Audiencia"></resource>
+  <resource culture="es-es" name="Fecha" value="Fecha"></resource>
+  <resource culture="es-es" name="Hora" value="Hora"></resource>
+  <resource culture="es-es" name="Defensor_del_Imputado" value="Defensor del Imputado"></resource>
+  <resource culture="es-es" name="Defensor_por_Victima" value="Defensor por Víctima"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="es-es" name="Resultado_de_Audiencia" value="Resultado de Audiencia"></resource>
+  <resource culture="es-es" name="Archivos" value="Archivos"></resource>
+  <resource culture="es-es" name="Asignar_MP_Litigacion" value="Asignar MP Litigación"></resource>
+  <resource culture="es-es" name="MP_Litigacion" value="MP Litigación"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -26,6 +26,7 @@ namespace Spartane.Core.Domain.Delito
         public bool? Alta_Incidencia { get; set; }
         public bool? Tentativa { get; set; }
         public bool? Activo { get; set; }
+        public bool? Robo_de_Vehiculo { get; set; }
 
         [ForeignKey("Titulo_del_Delito")]
         public virtual Spartane.Core.Domain.Titulo_del_Delito.Titulo_del_Delito Titulo_del_Delito_Titulo_del_Delito { get; set; }
@@ -45,6 +46,7 @@ namespace Spartane.Core.Domain.Delito
         public bool? Alta_Incidencia { get; set; }
         public bool? Tentativa { get; set; }
         public bool? Activo { get; set; }
+        public bool? Robo_de_Vehiculo { get; set; }
 
 		        [ForeignKey("Titulo_del_Delito")]
         public virtual Spartane.Core.Domain.Titulo_del_Delito.Titulo_del_Delito Titulo_del_Delito_Titulo_del_Delito { get; set; }

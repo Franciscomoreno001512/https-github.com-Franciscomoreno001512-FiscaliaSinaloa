@@ -1,0 +1,2075 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Audiencias_MPModel
+@{
+
+/*
+    string Fecha = "";
+    if (Model.Fecha == "")
+    { Model.Fecha = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+
+*/
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+    List<SelectListItem> varTipo_de_Audiencia_Tipo_de_Audiencia = null;
+    if (ViewBag.Tipo_de_Audiencias_Tipo_de_Audiencia != null)
+    { varTipo_de_Audiencia_Tipo_de_Audiencia = (List<SelectListItem>)ViewBag.Tipo_de_Audiencias_Tipo_de_Audiencia; }
+    List<SelectListItem> varAudiencia_Audiencia = null;
+    if (ViewBag.Audiencias_Audiencia != null)
+    { varAudiencia_Audiencia = (List<SelectListItem>)ViewBag.Audiencias_Audiencia; }
+    List<SelectListItem> varResultado_de_Audiencia_Resultado_de_Audiencia = null;
+    if (ViewBag.Resultado_de_Audiencias_Resultado_de_Audiencia != null)
+    { varResultado_de_Audiencia_Resultado_de_Audiencia = (List<SelectListItem>)ViewBag.Resultado_de_Audiencias_Resultado_de_Audiencia; }
+ List<SelectListItem> varSpartan_User_MP_Litigacion = null;
+    if (ViewBag.Spartan_Users_MP_Litigacion != null)
+    { varSpartan_User_MP_Litigacion = (List<SelectListItem>)ViewBag.Spartan_Users_MP_Litigacion; }
+
+    Permission permissionDetalle_Audiencia_Defensor_Imputado = ViewBag.PermissionDetalle_Audiencia_Defensor_Imputado;
+    Permission permissionDetalle_Audiencia_Defensor_Victima = ViewBag.PermissionDetalle_Audiencia_Defensor_Victima;
+    Permission permissionDetalle_Audiencia_Archivos_Adjuntos = ViewBag.PermissionDetalle_Audiencia_Archivos_Adjuntos;
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.Audiencias_MPResources.Audiencias_MP
+                <button onclick="Audiencias_MPGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Audiencias_MPResources.Audiencias_MP</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="Audiencias_MPDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in Audiencias_MPPropertyBusinessModal" id="Audiencias_MPPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form" onclick="Audiencias_MPGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Audiencias_MPBusinessRuleModal" id="Audiencias_MPBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+                    <div aria-hidden="true" class="modal fade in AddDetalle_Audiencia_Defensor_ImputadoModal" id="AddDetalle_Audiencia_Defensor_Imputado-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
+                    <div aria-hidden="true" class="modal fade in AddDetalle_Audiencia_Defensor_VictimaModal" id="AddDetalle_Audiencia_Defensor_Victima-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
+                    <div aria-hidden="true" class="modal fade in AddDetalle_Audiencia_Archivos_AdjuntosModal" id="AddDetalle_Audiencia_Archivos_Adjuntos-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Audiencias_MP", FormMethod.Post, new { id = "CreateAudiencias_MP", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Audiencias_MPCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Audiencias_MPResources.TabDatos_Generales</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Audiencias_MPResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="267387" data-field-name="@Resources.Audiencias_MPResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+				<div class="form-group" id="divExpediente_MP">
+                                <label class="col-sm-2 control-label">@Resources.Audiencias_MPResources.Expediente_MP</label>
+                                <div class="col-sm-8" data-field-id="Expediente_MP" data-attribute="267388" data-field-name="@Resources.Audiencias_MPResources.Expediente_MP">
+                                    <select class='fullWidth AutoComplete AutoCompleteAudiencias_MP_Expediente_MP form-control select2-dropdown Datos_Generales' data-val="true" id="Expediente_MP" name="Expediente_MP">
+                                        <option value="@Model.Expediente_MP">@(Model.Expediente_MPnic??Model.Expediente_MPnic)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267388).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('expediente_ministerio_publico', 'Expediente_MP');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo_de_Audiencia">
+                                <label class="col-sm-2 control-label">@Resources.Audiencias_MPResources.Tipo_de_Audiencia</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Audiencia" data-attribute="267389" data-field-name="@Resources.Audiencias_MPResources.Tipo_de_Audiencia">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Audiencia must be a number." data-val-required="The Tipo de Audiencia field is required." id="Tipo_de_Audiencia" name="Tipo_de_Audiencia">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Audiencia_Tipo_de_Audiencia != null){ 
+                                            foreach (var itemTipo_de_Audiencia in varTipo_de_Audiencia_Tipo_de_Audiencia)
+                                            {
+                                                if (itemTipo_de_Audiencia.Value == Convert.ToString(Model.Tipo_de_Audiencia))
+                                                {
+                                                    <option value="@itemTipo_de_Audiencia.Value" selected>@itemTipo_de_Audiencia.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Audiencia.Value">@itemTipo_de_Audiencia.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Audiencia" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267389).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Audiencia', 'Tipo_de_Audiencia');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divAudiencia">
+                                <label class="col-sm-2 control-label">@Resources.Audiencias_MPResources.Audiencia</label>
+                                <div class="col-sm-8" data-field-id="Audiencia" data-attribute="267390" data-field-name="@Resources.Audiencias_MPResources.Audiencia">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Audiencia must be a number." data-val-required="The Audiencia field is required." id="Audiencia" name="Audiencia">
+                                        <option value=""></option>
+                                        @if (varAudiencia_Audiencia != null){ 
+                                            foreach (var itemAudiencia in varAudiencia_Audiencia)
+                                            {
+                                                if (itemAudiencia.Value == Convert.ToString(Model.Audiencia))
+                                                {
+                                                    <option value="@itemAudiencia.Value" selected>@itemAudiencia.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemAudiencia.Value">@itemAudiencia.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Audiencia" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267390).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Audiencia', 'Audiencia');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divFecha">
+                                <label class="col-sm-2 control-label">@Resources.Audiencias_MPResources.Fecha</label>
+                                <div class="col-sm-8" data-field-id="Fecha" data-attribute="267391" data-field-name="@Resources.Audiencias_MPResources.Fecha">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha"  name="Fecha" type="text" value="@Model.Fecha">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora">
+                                <label class="col-sm-2 control-label">@Resources.Audiencias_MPResources.Hora</label>
+                                <div class="col-sm-8" data-field-id="Hora" data-attribute="267392" data-field-name="@Resources.Audiencias_MPResources.Hora">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Hora"  name="Hora" type="text" data-autoclose="true" value="@Model.Hora">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="divDefensor_del_Imputado">
+                            <div class="ibox-title">
+                                <h5>@Resources.Audiencias_MPResources.Defensor_del_Imputado</h5>
+                                <div class="ibox-tools">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+									@if (permissionDetalle_Audiencia_Defensor_Imputado.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Audiencia_Defensor_ImputadofnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_Audiencia_Defensor_ImputadoAddRow btn btn-primary">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </a>
+                                    }
+                                    <button onclick="Audiencias_MPGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '267393')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>
+									@if (permissionDetalle_Audiencia_Defensor_Imputado.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Audiencia_Defensor_ImputadofnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_Audiencia_Defensor_Imputado-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
+                                            <i class="glyphicon glyphicon-new-window"></i>
+                                        </a>
+                                    }  
+                                </div>
+
+                                <br />
+
+                                <div style='overflow-x: auto;'>
+                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_Audiencia_Defensor_ImputadoGrid">
+                                        <thead>
+                                            <tr>
+                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+
+
+                                                <th class="Nombre_Del_ImputadoHeader" style="width:250px"><span>
+<button type="button" data-attribute="267405" data-field-id="Detalle_Audiencia_Defensor_ImputadoNombre_Del_Imputado" data-field-name="@Resources.Detalle_Audiencia_Defensor_ImputadoResources.Nombre_Del_Imputado" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Audiencia_Defensor_ImputadoResources.Nombre_Del_Imputado">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Audiencia_Defensor_ImputadoResources.Nombre_Del_Imputado</span></th>
+                                                <th class="AbogadoHeader"><span>
+<button type="button" data-attribute="267406" data-field-id="Detalle_Audiencia_Defensor_ImputadoAbogado" data-field-name="@Resources.Detalle_Audiencia_Defensor_ImputadoResources.Abogado" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Audiencia_Defensor_ImputadoResources.Abogado">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Audiencia_Defensor_ImputadoResources.Abogado</span></th>
+                                                <th class="Cedula_ProfesionalHeader"><span>
+<button type="button" data-attribute="267407" data-field-id="Detalle_Audiencia_Defensor_ImputadoCedula_Profesional" data-field-name="@Resources.Detalle_Audiencia_Defensor_ImputadoResources.Cedula_Profesional" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Audiencia_Defensor_ImputadoResources.Cedula_Profesional">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Audiencia_Defensor_ImputadoResources.Cedula_Profesional</span></th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                            <div id="divDefensor_por_Victima">
+                            <div class="ibox-title">
+                                <h5>@Resources.Audiencias_MPResources.Defensor_por_Victima</h5>
+                                <div class="ibox-tools">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+									@if (permissionDetalle_Audiencia_Defensor_Victima.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Audiencia_Defensor_VictimafnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_Audiencia_Defensor_VictimaAddRow btn btn-primary">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </a>
+                                    }
+                                    <button onclick="Audiencias_MPGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '267394')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>
+									@if (permissionDetalle_Audiencia_Defensor_Victima.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Audiencia_Defensor_VictimafnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_Audiencia_Defensor_Victima-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
+                                            <i class="glyphicon glyphicon-new-window"></i>
+                                        </a>
+                                    }  
+                                </div>
+
+                                <br />
+
+                                <div style='overflow-x: auto;'>
+                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_Audiencia_Defensor_VictimaGrid">
+                                        <thead>
+                                            <tr>
+                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+
+
+                                                <th class="Nombre_del_ImputadoHeader" style="width:250px"><span>
+<button type="button" data-attribute="267410" data-field-id="Detalle_Audiencia_Defensor_VictimaNombre_del_Imputado" data-field-name="@Resources.Detalle_Audiencia_Defensor_VictimaResources.Nombre_del_Imputado" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Audiencia_Defensor_VictimaResources.Nombre_del_Imputado">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Audiencia_Defensor_VictimaResources.Nombre_del_Imputado</span></th>
+                                                <th class="AbogadoHeader"><span>
+<button type="button" data-attribute="267411" data-field-id="Detalle_Audiencia_Defensor_VictimaAbogado" data-field-name="@Resources.Detalle_Audiencia_Defensor_VictimaResources.Abogado" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Audiencia_Defensor_VictimaResources.Abogado">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Audiencia_Defensor_VictimaResources.Abogado</span></th>
+                                                <th class="Cedula_ProfesionalHeader"><span>
+<button type="button" data-attribute="267412" data-field-id="Detalle_Audiencia_Defensor_VictimaCedula_Profesional" data-field-name="@Resources.Detalle_Audiencia_Defensor_VictimaResources.Cedula_Profesional" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Audiencia_Defensor_VictimaResources.Cedula_Profesional">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Audiencia_Defensor_VictimaResources.Cedula_Profesional</span></th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="form-group" id="divObservaciones">
+                                <label class="col-sm-2 control-label">@Resources.Audiencias_MPResources.Observaciones</label>
+                                <div class="col-sm-8" data-field-id="Observaciones" data-attribute="267396" data-field-name="@Resources.Audiencias_MPResources.Observaciones">
+                                    <textarea id="Observaciones" name="Observaciones" class="form-control Datos_Generales" rows="4" cols="50">@Model.Observaciones</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divResultado_de_Audiencia">
+                                <label class="col-sm-2 control-label">@Resources.Audiencias_MPResources.Resultado_de_Audiencia</label>
+                                <div class="col-sm-8" data-field-id="Resultado_de_Audiencia" data-attribute="267398" data-field-name="@Resources.Audiencias_MPResources.Resultado_de_Audiencia">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Resultado de Audiencia must be a number." data-val-required="The Resultado de Audiencia field is required." id="Resultado_de_Audiencia" name="Resultado_de_Audiencia">
+                                        <option value=""></option>
+                                        @if (varResultado_de_Audiencia_Resultado_de_Audiencia != null){ 
+                                            foreach (var itemResultado_de_Audiencia in varResultado_de_Audiencia_Resultado_de_Audiencia)
+                                            {
+                                                if (itemResultado_de_Audiencia.Value == Convert.ToString(Model.Resultado_de_Audiencia))
+                                                {
+                                                    <option value="@itemResultado_de_Audiencia.Value" selected>@itemResultado_de_Audiencia.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemResultado_de_Audiencia.Value">@itemResultado_de_Audiencia.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Resultado_de_Audiencia" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267398).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Resultado_de_Audiencia', 'Resultado_de_Audiencia');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div id="divArchivos">
+                            <div class="ibox-title">
+                                <h5>@Resources.Audiencias_MPResources.Archivos</h5>
+                                <div class="ibox-tools">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+									@if (permissionDetalle_Audiencia_Archivos_Adjuntos.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Audiencia_Archivos_AdjuntosfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_Audiencia_Archivos_AdjuntosAddRow btn btn-primary">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </a>
+                                    }
+                                    <button onclick="Audiencias_MPGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '267399')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>
+									@if (permissionDetalle_Audiencia_Archivos_Adjuntos.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Audiencia_Archivos_AdjuntosfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_Audiencia_Archivos_Adjuntos-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
+                                            <i class="glyphicon glyphicon-new-window"></i>
+                                        </a>
+                                    }  
+                                </div>
+
+                                <br />
+
+                                <div style='overflow-x: auto;'>
+                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_Audiencia_Archivos_AdjuntosGrid">
+                                        <thead>
+                                            <tr>
+                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+
+
+                                                <th class="Nombre_ArchivoHeader"><span>
+<button type="button" data-attribute="267415" data-field-id="Detalle_Audiencia_Archivos_AdjuntosNombre_Archivo" data-field-name="@Resources.Detalle_Audiencia_Archivos_AdjuntosResources.Nombre_Archivo" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Audiencia_Archivos_AdjuntosResources.Nombre_Archivo">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Audiencia_Archivos_AdjuntosResources.Nombre_Archivo</span></th>
+                                                <th class="Archivo_AdjuntoHeader"><span>
+<button type="button" data-attribute="267416" data-field-id="Detalle_Audiencia_Archivos_AdjuntosArchivo_Adjunto" data-field-name="@Resources.Detalle_Audiencia_Archivos_AdjuntosResources.Archivo_Adjunto" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Audiencia_Archivos_AdjuntosResources.Archivo_Adjunto">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Audiencia_Archivos_AdjuntosResources.Archivo_Adjunto</span></th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="form-group" id="divAsignar_MP_Litigacion">
+                                <label class="col-sm-2 control-label">@Resources.Audiencias_MPResources.Asignar_MP_Litigacion</label>
+                                <div class="col-sm-8" data-field-id="Asignar_MP_Litigacion" data-attribute="267400" data-field-name="@Resources.Audiencias_MPResources.Asignar_MP_Litigacion">
+                                    @Html.CheckBoxFor(m => m.Asignar_MP_Litigacion, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+				<div class="form-group" id="divMP_Litigacion">
+                                <label class="col-sm-2 control-label">@Resources.Audiencias_MPResources.MP_Litigacion</label>
+                                <div class="col-sm-8" data-field-id="MP_Litigacion" data-attribute="267401" data-field-name="@Resources.Audiencias_MPResources.MP_Litigacion">
+                                    <select class='fullWidth AutoComplete AutoCompleteAudiencias_MP_MP_Litigacion form-control select2-dropdown Datos_Generales' data-val="true" id="MP_Litigacion" name="MP_Litigacion">
+                                        <option value="@Model.MP_Litigacion">@(Model.MP_LitigacionName??Model.MP_LitigacionName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267401).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'MP_Litigacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+                                <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Audiencias_MPGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Audiencias_MPCreateForm');"  />
+									<button onclick="Audiencias_MPGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Audiencias_MPGuardarYNuevo" onclick="return checkClientValidate('Audiencias_MPCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Audiencias_MPGuardarYCopia" onclick="return checkClientValidate('Audiencias_MPCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnAudiencias_MPBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnAudiencias_MPBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnAudiencias_MPBusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Audiencias_MPCancelar" name="Audiencias_MPCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+
+                                <button onclick="Audiencias_MPGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Audiencias_MPBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Audiencias_MP.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Audiencias_MPGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Audiencias_MPCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_Generales = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45483');
+		                  
+
+
+
+           
+              showDetalle_Audiencia_Defensor_ImputadoGrid(null);
+              
+
+
+
+           
+              showDetalle_Audiencia_Defensor_VictimaGrid(null);
+              
+
+
+           
+              showDetalle_Audiencia_Archivos_AdjuntosGrid(null);
+
+		   
+                        $('#Fecha').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora').clockpicker();
+
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#Audiencias_MPGuardarYNuevo').hide();
+                $('#Audiencias_MPGuardarYCopia').hide();
+                $('#Audiencias_MPCancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#Audiencias_MPGuardar').val('Actualizar Seccion ' + '@Resources.Audiencias_MPResources.Audiencias_MP' )
+            }
+
+			
+			       var AutoCompleteExpediente_MPData =[];
+       $(".AutoCompleteAudiencias_MP_Expediente_MP").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Audiencias_MP/GetAudiencias_MP_Expediente_MP_expediente_ministerio_publico")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteAudiencias_MP_Expediente_MP_expediente_ministerio_publicoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteAudiencias_MP_Expediente_MP");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteMP_LitigacionData =[];
+       $(".AutoCompleteAudiencias_MP_MP_Litigacion").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Audiencias_MP/GetAudiencias_MP_MP_Litigacion_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteAudiencias_MP_MP_Litigacion_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteAudiencias_MP_MP_Litigacion");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
+        });
+
+        var Detalle_Audiencia_Defensor_ImputadoinsertRowCurrentIndex = -1;
+        var Detalle_Audiencia_Defensor_ImputadoDataDataTable;
+        function getDetalle_Audiencia_Defensor_ImputadoData() {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Audiencias_MP/GetDetalle_Audiencia_Defensor_Imputado")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    Detalle_Audiencia_Defensor_ImputadoDataDataTable = result.data;
+                    showDetalle_Audiencia_Defensor_ImputadoGrid(result.data);
+                    $('#Detalle_Audiencia_Defensor_ImputadoGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_Audiencia_Defensor_ImputadoGrid .gridDatePicker').attr("readonly", "");
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+        function Detalle_Audiencia_Defensor_ImputadoGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+            var columnData = [];
+            var counter = 0;
+            var inputData = "<input type='text' class='fullWidth form-control' />";
+
+            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.Nombre_Del_ImputadoNombre_Completo_del_Tutor != undefined ? data.Nombre_Del_ImputadoNombre_Completo_del_Tutor : null, 'AutoComplete' + nameOfTable + 'Nombre_Del_Imputado', data.Nombre_Del_Imputado)))).addClass('Nombre_Del_Imputado').attr('id', nameOfTable + 'Nombre_Del_Imputado' + rowIndex).attr('data-field', 'Nombre_Del_Imputado').after($.parseHTML(addNew('Detalle_Audiencia_Defensor_Imputado', 'Detalle_de_Imputado','Nombre_Del_Imputado', 267405)));
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Abogado)).addClass('Abogado').attr('id', nameOfTable + 'Abogado' + rowIndex).attr('data-field', 'Abogado');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Cedula_Profesional)).addClass('Cedula_Profesional').attr('id', nameOfTable + 'Cedula_Profesional' + rowIndex).attr('data-field', 'Cedula_Profesional');
+
+            return columnData;
+        }
+
+
+
+        function GetFileInfo(fileData, fileUploadData) {
+
+            var $div = $("<div>");
+            if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+                //<i class="fa fa-times-circle" id='removeFileAttachment'>
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+
+            } else if (fileUploadData != null) {
+                return $.parseHTML(GetFileUploader());
+            } else {
+                $div.append("<label>" + fileData.FileName + "</label>");
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+            }
+        }
+
+        var removedDetalle_Audiencia_Defensor_ImputadoData = [];
+        function Detalle_Audiencia_Defensor_ImputadoDeleteRow(rowIndex, row) {
+            var rowIndexTable = Detalle_Audiencia_Defensor_ImputadoTable.fnGetPosition($(row).parent().parent()[0]);
+            var permission = {            
+                 Delete: '@permissionDetalle_Audiencia_Defensor_Imputado.Delete' == 'True'
+            };
+            if (!permission.Delete || isConsultMode)
+                return;            
+            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+              if (EjecutarValidacionesAlEliminarMRDetalle_Audiencia_Defensor_Imputado('Detalle_Audiencia_Defensor_Imputado_', '_' + rowIndex)) {
+                var prevData = Detalle_Audiencia_Defensor_ImputadoTable.fnGetData(rowIndexTable );
+                removedDetalle_Audiencia_Defensor_ImputadoData.push(prevData);
+                Detalle_Audiencia_Defensor_ImputadoTable.fnDeleteRow(rowIndexTable );
+				showDetalle_Audiencia_Defensor_ImputadoGrid(Detalle_Audiencia_Defensor_ImputadoTable.fnGetData());
+              }
+            }
+			initiateUIControls();
+        }
+
+        function Detalle_Audiencia_Defensor_ImputadorowCreationGrid(row, data, index) {
+            var permission =  {            
+                 Edit: '@permissionDetalle_Audiencia_Defensor_Imputado.Edit' == 'True',
+                 Delete: '@permissionDetalle_Audiencia_Defensor_Imputado.Delete' == 'True'
+            };
+            setDetalle_Audiencia_Defensor_ImputadoValidation();
+            var Detalle_Audiencia_Defensor_ImputadoRowElement = "Detalle_Audiencia_Defensor_Imputado_" + index.toString();
+            $(row).addClass(Detalle_Audiencia_Defensor_ImputadoRowElement);
+            var nameOfTable='Detalle_Audiencia_Defensor_Imputado_';
+            var rowIndex = '_' + index;
+            Detalle_Audiencia_Defensor_ImputadoinsertRowCurrentIndex = index;
+
+            row.innerHTML = "";
+
+            if (data.IsInsertRow) {
+
+                if (row.childNodes.length != 0) {
+                    for (var i = 0; i < row.childNodes.length; i++) {
+                        row.childNodes[i].remove();
+                    }
+                }
+                var controls = GetInsertDetalle_Audiencia_Defensor_ImputadoRowControls(index);
+                var actionColInsert = $('<td>');
+
+                var abc = "if(dynamicFieldValidation('" + Detalle_Audiencia_Defensor_ImputadoRowElement + "')){ Detalle_Audiencia_Defensor_ImputadoInsertRow(" + index + "); }";
+                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
+                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_Audiencia_Defensor_ImputadoCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                actionColInsert.appendTo(row);
+
+                for (i = 0; i < controls.length; i++) {
+					var idHeader = $(controls[i]).data('field') + 'Header';
+					if($(controls[i]).length > 1){
+						idHeader = $($(controls[i])[1]).data('field') + 'Header';
+					}					
+
+					var classe = ($('#Detalle_Audiencia_Defensor_ImputadoGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_Audiencia_Defensor_ImputadoGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+				   
+					if ($(controls[i]).next().length > 0) {
+					    var div = $(controls[i]).next();
+					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+					}else
+					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+					
+                }
+                $('#Detalle_Audiencia_Defensor_ImputadoGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('#Detalle_Audiencia_Defensor_ImputadoGrid .gridDatePicker').attr("readonly", "");
+                return;
+            }
+
+            var actionCol = $('<td>');
+			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_Audiencia_Defensor_ImputadoEditRow(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                edit = "";
+            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_Audiencia_Defensor_Imputado-form' onclick='Detalle_Audiencia_Defensor_ImputadoEditRowPopup(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                editPopUp = "";
+            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_Audiencia_Defensor_ImputadoDeleteRow(" + index + ", this)'>";
+            if (!permission.Delete || isConsultMode)
+                eliminar = "";
+            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+			if ($('.Action' + 'Header').css('display') != 'none')
+				actionCol.appendTo(row);
+
+            if ($('.Nombre_Del_Imputado' + 'Header').css('display') != 'none'){
+                if (data.Nombre_Del_ImputadoNombre_Completo_del_Tutor == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Nombre_Del_Imputado'+rowIndex+'">').text(data.Nombre_Del_Imputado).appendTo(row);}else{$('<td>').text(data.Nombre_Del_ImputadoNombre_Completo_del_Tutor).appendTo(row);}
+}
+             else {
+                if (data.Nombre_Del_ImputadoNombre_Completo_del_Tutor == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Nombre_Del_Imputado'+rowIndex+'">').text(data.Nombre_Del_Imputado).appendTo(row);}else{$('<td style:display:none;>').text(data.Nombre_Del_ImputadoNombre_Completo_del_Tutor).appendTo(row);}
+}
+
+            if ($('.Abogado' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Abogado'+rowIndex+'">').text(data.Abogado).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Abogado'+rowIndex+'">').text(data.Abogado).appendTo(row);
+            if ($('.Cedula_Profesional' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Cedula_Profesional'+rowIndex+'">').text(data.Cedula_Profesional).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Cedula_Profesional'+rowIndex+'">').text(data.Cedula_Profesional).appendTo(row);
+
+        }
+
+        var Detalle_Audiencia_Defensor_ImputadoTable;
+        function showDetalle_Audiencia_Defensor_ImputadoGrid(dataSet) {
+            //removedDetalle_Audiencia_Defensor_ImputadoData = [];
+            Detalle_Audiencia_Defensor_ImputadoTable = $('#Detalle_Audiencia_Defensor_ImputadoGrid').dataTable({
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [
+                ],
+                "createdRow": Detalle_Audiencia_Defensor_ImputadorowCreationGrid,
+                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+                data: dataSet,
+                "columns": [
+                    { "data": null, 'visible': true, "orderable": false },
+
+                    { "data": "Nombre_Del_Imputado", "orderable": false },
+                    { "data": "Abogado", "orderable": false },
+                    { "data": "Cedula_Profesional", "orderable": false },
+
+                ],
+                "order": [[0, "asc"]],
+                "language": {
+                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                    "zeroRecords": "@Resources.Resources.NothingFound",
+                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                    "infoEmpty": "@Resources.Resources.NoRecords",
+                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                    "sSearch": "@Resources.Resources.Search",
+                    "paginate": {
+                        "previous": "@Resources.Resources.Previous",
+                        "next": "@Resources.Resources.Next"
+                    }
+                },
+				"bDestroy": true,
+                "fnDrawCallback": function (settings) {
+                    setDetalle_Audiencia_Defensor_ImputadoValidation();
+                }
+            }).on('init.dt', function (e, data) {
+                $('a').tooltip();
+            }).on('draw.dt', function () {
+                $('#Detalle_Audiencia_Defensor_ImputadoGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+            });
+        }
+
+
+    var Detalle_Audiencia_Defensor_Imputado_Detalle_de_ImputadoItems;
+        function GetDetalle_Audiencia_Defensor_Imputado_Detalle_de_ImputadoItem() {
+            Detalle_Audiencia_Defensor_Imputado_Detalle_de_ImputadoItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Audiencias_MP/GetDetalle_Audiencia_Defensor_Imputado_Detalle_de_ImputadoAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_Audiencia_Defensor_Imputado_Detalle_de_ImputadoItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+
+
+        var Detalle_Audiencia_Defensor_ImputadoData = [];
+        var Detalle_Audiencia_Defensor_ImputadodeletedItem = [];
+        var Detalle_Audiencia_Defensor_ImputadoDataMain = [];
+        var Detalle_Audiencia_Defensor_ImputadoDataMainPages = [];
+        var Detalle_Audiencia_Defensor_ImputadonewItemCount = 0;
+        var Detalle_Audiencia_Defensor_ImputadomaxItemIndex = 0;
+        var Detalle_Audiencia_Defensor_ImputadoDataMainInitialized = false;
+
+        function SendDetalle_Audiencia_Defensor_Imputado(callBack, ClaveId) {
+            Detalle_Audiencia_Defensor_ImputadoData = GetDetalle_Audiencia_Defensor_ImputadoFromDataTable();
+
+            if (Detalle_Audiencia_Defensor_ImputadoData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
+                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
+                    ClaveId = $("#ReferenceClave").val();                
+                if ($("#ReferenceClave").val() == '')
+                    $("#ReferenceClave").val('0');
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Audiencias_MP/PostDetalle_Audiencia_Defensor_Imputado?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
+                    type: 'POST',
+                    data: GetDetalle_Audiencia_Defensor_Imputado(),
+                    async: true,
+                    success: function (result) {
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            } else {
+                //showNotification("@Resources.Resources.SaveSuccess", "success");
+                //callBack(ClaveId);
+            }
+            return true;
+        }
+
+        function GetAddDetalle_Audiencia_Defensor_ImputadoPopup(currentRowIndex, mode, id) {
+
+            $.ajax({
+                url: "@Url.Action("AddDetalle_Audiencia_Defensor_Imputado", "Detalle_Audiencia_Defensor_Imputado")",
+                type: "GET",
+                async: false,
+                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+                success: function (data) {
+                    $(".AddDetalle_Audiencia_Defensor_ImputadoModal").html(data);
+                },
+                error: function () {
+
+                }
+            });
+
+            @*$.get('@Url.Action("AddDetalle_Audiencia_Defensor_Imputado", "Detalle_Audiencia_Defensor_Imputado")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddDetalle_Audiencia_Defensor_ImputadoModal").html(data);
+            });*@
+        }
+
+        function ShowMessagePendingRowDetalle_Audiencia_Defensor_Imputado()
+        {
+            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Defensor del Imputado"))')
+	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Defensor del Imputado"))', "warning");
+        }
+        var Detalle_Audiencia_Defensor_VictimainsertRowCurrentIndex = -1;
+        var Detalle_Audiencia_Defensor_VictimaDataDataTable;
+        function getDetalle_Audiencia_Defensor_VictimaData() {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Audiencias_MP/GetDetalle_Audiencia_Defensor_Victima")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    Detalle_Audiencia_Defensor_VictimaDataDataTable = result.data;
+                    showDetalle_Audiencia_Defensor_VictimaGrid(result.data);
+                    $('#Detalle_Audiencia_Defensor_VictimaGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_Audiencia_Defensor_VictimaGrid .gridDatePicker').attr("readonly", "");
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+        function Detalle_Audiencia_Defensor_VictimaGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+            var columnData = [];
+            var counter = 0;
+            var inputData = "<input type='text' class='fullWidth form-control' />";
+
+            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.Nombre_del_ImputadoNombre_Completo_del_Tutor != undefined ? data.Nombre_del_ImputadoNombre_Completo_del_Tutor : null, 'AutoComplete' + nameOfTable + 'Nombre_del_Imputado', data.Nombre_del_Imputado)))).addClass('Nombre_del_Imputado').attr('id', nameOfTable + 'Nombre_del_Imputado' + rowIndex).attr('data-field', 'Nombre_del_Imputado').after($.parseHTML(addNew('Detalle_Audiencia_Defensor_Victima', 'Detalle_de_Imputado','Nombre_del_Imputado', 267410)));
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Abogado)).addClass('Abogado').attr('id', nameOfTable + 'Abogado' + rowIndex).attr('data-field', 'Abogado');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Cedula_Profesional)).addClass('Cedula_Profesional').attr('id', nameOfTable + 'Cedula_Profesional' + rowIndex).attr('data-field', 'Cedula_Profesional');
+
+            return columnData;
+        }
+
+
+
+        function GetFileInfo(fileData, fileUploadData) {
+
+            var $div = $("<div>");
+            if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+                //<i class="fa fa-times-circle" id='removeFileAttachment'>
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+
+            } else if (fileUploadData != null) {
+                return $.parseHTML(GetFileUploader());
+            } else {
+                $div.append("<label>" + fileData.FileName + "</label>");
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+            }
+        }
+
+        var removedDetalle_Audiencia_Defensor_VictimaData = [];
+        function Detalle_Audiencia_Defensor_VictimaDeleteRow(rowIndex, row) {
+            var rowIndexTable = Detalle_Audiencia_Defensor_VictimaTable.fnGetPosition($(row).parent().parent()[0]);
+            var permission = {            
+                 Delete: '@permissionDetalle_Audiencia_Defensor_Victima.Delete' == 'True'
+            };
+            if (!permission.Delete || isConsultMode)
+                return;            
+            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+              if (EjecutarValidacionesAlEliminarMRDetalle_Audiencia_Defensor_Victima('Detalle_Audiencia_Defensor_Victima_', '_' + rowIndex)) {
+                var prevData = Detalle_Audiencia_Defensor_VictimaTable.fnGetData(rowIndexTable );
+                removedDetalle_Audiencia_Defensor_VictimaData.push(prevData);
+                Detalle_Audiencia_Defensor_VictimaTable.fnDeleteRow(rowIndexTable );
+				showDetalle_Audiencia_Defensor_VictimaGrid(Detalle_Audiencia_Defensor_VictimaTable.fnGetData());
+              }
+            }
+			initiateUIControls();
+        }
+
+        function Detalle_Audiencia_Defensor_VictimarowCreationGrid(row, data, index) {
+            var permission =  {            
+                 Edit: '@permissionDetalle_Audiencia_Defensor_Victima.Edit' == 'True',
+                 Delete: '@permissionDetalle_Audiencia_Defensor_Victima.Delete' == 'True'
+            };
+            setDetalle_Audiencia_Defensor_VictimaValidation();
+            var Detalle_Audiencia_Defensor_VictimaRowElement = "Detalle_Audiencia_Defensor_Victima_" + index.toString();
+            $(row).addClass(Detalle_Audiencia_Defensor_VictimaRowElement);
+            var nameOfTable='Detalle_Audiencia_Defensor_Victima_';
+            var rowIndex = '_' + index;
+            Detalle_Audiencia_Defensor_VictimainsertRowCurrentIndex = index;
+
+            row.innerHTML = "";
+
+            if (data.IsInsertRow) {
+
+                if (row.childNodes.length != 0) {
+                    for (var i = 0; i < row.childNodes.length; i++) {
+                        row.childNodes[i].remove();
+                    }
+                }
+                var controls = GetInsertDetalle_Audiencia_Defensor_VictimaRowControls(index);
+                var actionColInsert = $('<td>');
+
+                var abc = "if(dynamicFieldValidation('" + Detalle_Audiencia_Defensor_VictimaRowElement + "')){ Detalle_Audiencia_Defensor_VictimaInsertRow(" + index + "); }";
+                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
+                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_Audiencia_Defensor_VictimaCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                actionColInsert.appendTo(row);
+
+                for (i = 0; i < controls.length; i++) {
+					var idHeader = $(controls[i]).data('field') + 'Header';
+					if($(controls[i]).length > 1){
+						idHeader = $($(controls[i])[1]).data('field') + 'Header';
+					}					
+
+					var classe = ($('#Detalle_Audiencia_Defensor_VictimaGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_Audiencia_Defensor_VictimaGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+				   
+					if ($(controls[i]).next().length > 0) {
+					    var div = $(controls[i]).next();
+					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+					}else
+					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+					
+                }
+                $('#Detalle_Audiencia_Defensor_VictimaGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('#Detalle_Audiencia_Defensor_VictimaGrid .gridDatePicker').attr("readonly", "");
+                return;
+            }
+
+            var actionCol = $('<td>');
+			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_Audiencia_Defensor_VictimaEditRow(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                edit = "";
+            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_Audiencia_Defensor_Victima-form' onclick='Detalle_Audiencia_Defensor_VictimaEditRowPopup(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                editPopUp = "";
+            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_Audiencia_Defensor_VictimaDeleteRow(" + index + ", this)'>";
+            if (!permission.Delete || isConsultMode)
+                eliminar = "";
+            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+			if ($('.Action' + 'Header').css('display') != 'none')
+				actionCol.appendTo(row);
+
+            if ($('.Nombre_del_Imputado' + 'Header').css('display') != 'none'){
+                if (data.Nombre_del_ImputadoNombre_Completo_del_Tutor == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Nombre_del_Imputado'+rowIndex+'">').text(data.Nombre_del_Imputado).appendTo(row);}else{$('<td>').text(data.Nombre_del_ImputadoNombre_Completo_del_Tutor).appendTo(row);}
+}
+             else {
+                if (data.Nombre_del_ImputadoNombre_Completo_del_Tutor == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Nombre_del_Imputado'+rowIndex+'">').text(data.Nombre_del_Imputado).appendTo(row);}else{$('<td style:display:none;>').text(data.Nombre_del_ImputadoNombre_Completo_del_Tutor).appendTo(row);}
+}
+
+            if ($('.Abogado' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Abogado'+rowIndex+'">').text(data.Abogado).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Abogado'+rowIndex+'">').text(data.Abogado).appendTo(row);
+            if ($('.Cedula_Profesional' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Cedula_Profesional'+rowIndex+'">').text(data.Cedula_Profesional).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Cedula_Profesional'+rowIndex+'">').text(data.Cedula_Profesional).appendTo(row);
+
+        }
+
+        var Detalle_Audiencia_Defensor_VictimaTable;
+        function showDetalle_Audiencia_Defensor_VictimaGrid(dataSet) {
+            //removedDetalle_Audiencia_Defensor_VictimaData = [];
+            Detalle_Audiencia_Defensor_VictimaTable = $('#Detalle_Audiencia_Defensor_VictimaGrid').dataTable({
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [
+                ],
+                "createdRow": Detalle_Audiencia_Defensor_VictimarowCreationGrid,
+                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+                data: dataSet,
+                "columns": [
+                    { "data": null, 'visible': true, "orderable": false },
+
+                    { "data": "Nombre_del_Imputado", "orderable": false },
+                    { "data": "Abogado", "orderable": false },
+                    { "data": "Cedula_Profesional", "orderable": false },
+
+                ],
+                "order": [[0, "asc"]],
+                "language": {
+                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                    "zeroRecords": "@Resources.Resources.NothingFound",
+                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                    "infoEmpty": "@Resources.Resources.NoRecords",
+                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                    "sSearch": "@Resources.Resources.Search",
+                    "paginate": {
+                        "previous": "@Resources.Resources.Previous",
+                        "next": "@Resources.Resources.Next"
+                    }
+                },
+				"bDestroy": true,
+                "fnDrawCallback": function (settings) {
+                    setDetalle_Audiencia_Defensor_VictimaValidation();
+                }
+            }).on('init.dt', function (e, data) {
+                $('a').tooltip();
+            }).on('draw.dt', function () {
+                $('#Detalle_Audiencia_Defensor_VictimaGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+            });
+        }
+
+
+    var Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoItems;
+        function GetDetalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoItem() {
+            Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Audiencias_MP/GetDetalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+
+
+
+        var Detalle_Audiencia_Defensor_VictimaData = [];
+        var Detalle_Audiencia_Defensor_VictimadeletedItem = [];
+        var Detalle_Audiencia_Defensor_VictimaDataMain = [];
+        var Detalle_Audiencia_Defensor_VictimaDataMainPages = [];
+        var Detalle_Audiencia_Defensor_VictimanewItemCount = 0;
+        var Detalle_Audiencia_Defensor_VictimamaxItemIndex = 0;
+        var Detalle_Audiencia_Defensor_VictimaDataMainInitialized = false;
+
+        function SendDetalle_Audiencia_Defensor_Victima(callBack, ClaveId) {
+            Detalle_Audiencia_Defensor_VictimaData = GetDetalle_Audiencia_Defensor_VictimaFromDataTable();
+
+            if (Detalle_Audiencia_Defensor_VictimaData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
+                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
+                    ClaveId = $("#ReferenceClave").val();                
+                if ($("#ReferenceClave").val() == '')
+                    $("#ReferenceClave").val('0');
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Audiencias_MP/PostDetalle_Audiencia_Defensor_Victima?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
+                    type: 'POST',
+                    data: GetDetalle_Audiencia_Defensor_Victima(),
+                    async: true,
+                    success: function (result) {
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            } else {
+                //showNotification("@Resources.Resources.SaveSuccess", "success");
+                //callBack(ClaveId);
+            }
+            return true;
+        }
+
+        function GetAddDetalle_Audiencia_Defensor_VictimaPopup(currentRowIndex, mode, id) {
+
+            $.ajax({
+                url: "@Url.Action("AddDetalle_Audiencia_Defensor_Victima", "Detalle_Audiencia_Defensor_Victima")",
+                type: "GET",
+                async: false,
+                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+                success: function (data) {
+                    $(".AddDetalle_Audiencia_Defensor_VictimaModal").html(data);
+                },
+                error: function () {
+
+                }
+            });
+
+            @*$.get('@Url.Action("AddDetalle_Audiencia_Defensor_Victima", "Detalle_Audiencia_Defensor_Victima")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddDetalle_Audiencia_Defensor_VictimaModal").html(data);
+            });*@
+        }
+
+        function ShowMessagePendingRowDetalle_Audiencia_Defensor_Victima()
+        {
+            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Defensor por Víctima"))')
+	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Defensor por Víctima"))', "warning");
+        }
+        var Detalle_Audiencia_Archivos_AdjuntosinsertRowCurrentIndex = -1;
+        var Detalle_Audiencia_Archivos_AdjuntosDataDataTable;
+        function getDetalle_Audiencia_Archivos_AdjuntosData() {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Audiencias_MP/GetDetalle_Audiencia_Archivos_Adjuntos")" + "?draw=1&start=1&length=2147483647" + ($("#ReferenceClave").val() != "" ? "&RelationId=" + $("#ReferenceClave").val() : ""),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                    Detalle_Audiencia_Archivos_AdjuntosDataDataTable = result.data;
+                    showDetalle_Audiencia_Archivos_AdjuntosGrid(result.data);
+                    $('#Detalle_Audiencia_Archivos_AdjuntosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_Audiencia_Archivos_AdjuntosGrid .gridDatePicker').attr("readonly", "");
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+        function Detalle_Audiencia_Archivos_AdjuntosGetUpdateRowControls(data, nameOfTable, rowIndex) {
+
+            var columnData = [];
+            var counter = 0;
+            var inputData = "<input type='text' class='fullWidth form-control' />";
+
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Nombre_Archivo)).addClass('Nombre_Archivo').attr('id', nameOfTable + 'Nombre_Archivo' + rowIndex).attr('data-field', 'Nombre_Archivo');
+            columnData[counter++] = data.Archivo_AdjuntoDetail == null || (data.Archivo_AdjuntoFileInfo.FileId == null || (data.Archivo_AdjuntoFileInfo.FileId <= 0 && data.Archivo_AdjuntoFileInfo.FileName  == '')) ? $($.parseHTML(GetFileUploader())).attr('id', nameOfTable + 'Archivo_Adjunto' + rowIndex).attr('data-field', 'Archivo_Adjunto','Spartane_File') : $(GetFileInfo(data.Archivo_AdjuntoFileInfo, data.Archivo_AdjuntoDetail)).attr('id', nameOfTable + 'Archivo_Adjunto' + rowIndex).attr('data-field', 'Archivo_Adjunto','Spartane_File');
+
+            return columnData;
+        }
+
+
+
+        function GetFileInfo(fileData, fileUploadData) {
+
+            var $div = $("<div>");
+            if (fileUploadData != null && fileUploadData.files.length > 0) {
+
+                $div.append("<label>" + fileUploadData.files[0].name + "</label>");
+                //<i class="fa fa-times-circle" id='removeFileAttachment'>
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+
+            } else if (fileUploadData != null) {
+                return $.parseHTML(GetFileUploader());
+            } else {
+                $div.append("<label>" + fileData.FileName + "</label>");
+                $div.append($("<i class='fa fa-times-circle' id='removeFileAttachment'>").click(function () {
+                    if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+                        var parent = $(this).parent().parent();
+                        parent.empty();
+                        parent.append("<input type='file'>");
+                    }
+                }));
+                return $div;
+            }
+        }
+
+        var removedDetalle_Audiencia_Archivos_AdjuntosData = [];
+        function Detalle_Audiencia_Archivos_AdjuntosDeleteRow(rowIndex, row) {
+            var rowIndexTable = Detalle_Audiencia_Archivos_AdjuntosTable.fnGetPosition($(row).parent().parent()[0]);
+            var permission = {            
+                 Delete: '@permissionDetalle_Audiencia_Archivos_Adjuntos.Delete' == 'True'
+            };
+            if (!permission.Delete || isConsultMode)
+                return;            
+            if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
+              if (EjecutarValidacionesAlEliminarMRDetalle_Audiencia_Archivos_Adjuntos('Detalle_Audiencia_Archivos_Adjuntos_', '_' + rowIndex)) {
+                var prevData = Detalle_Audiencia_Archivos_AdjuntosTable.fnGetData(rowIndexTable );
+                removedDetalle_Audiencia_Archivos_AdjuntosData.push(prevData);
+                Detalle_Audiencia_Archivos_AdjuntosTable.fnDeleteRow(rowIndexTable );
+				showDetalle_Audiencia_Archivos_AdjuntosGrid(Detalle_Audiencia_Archivos_AdjuntosTable.fnGetData());
+              }
+            }
+			initiateUIControls();
+        }
+
+        function Detalle_Audiencia_Archivos_AdjuntosrowCreationGrid(row, data, index) {
+            var permission =  {            
+                 Edit: '@permissionDetalle_Audiencia_Archivos_Adjuntos.Edit' == 'True',
+                 Delete: '@permissionDetalle_Audiencia_Archivos_Adjuntos.Delete' == 'True'
+            };
+            setDetalle_Audiencia_Archivos_AdjuntosValidation();
+            var Detalle_Audiencia_Archivos_AdjuntosRowElement = "Detalle_Audiencia_Archivos_Adjuntos_" + index.toString();
+            $(row).addClass(Detalle_Audiencia_Archivos_AdjuntosRowElement);
+            var nameOfTable='Detalle_Audiencia_Archivos_Adjuntos_';
+            var rowIndex = '_' + index;
+            Detalle_Audiencia_Archivos_AdjuntosinsertRowCurrentIndex = index;
+
+            row.innerHTML = "";
+
+            if (data.IsInsertRow) {
+
+                if (row.childNodes.length != 0) {
+                    for (var i = 0; i < row.childNodes.length; i++) {
+                        row.childNodes[i].remove();
+                    }
+                }
+                var controls = GetInsertDetalle_Audiencia_Archivos_AdjuntosRowControls(index);
+                var actionColInsert = $('<td>');
+
+                var abc = "if(dynamicFieldValidation('" + Detalle_Audiencia_Archivos_AdjuntosRowElement + "')){ Detalle_Audiencia_Archivos_AdjuntosInsertRow(" + index + "); }";
+                var insertRowHTML = '<a  data-toggle="tooltip" title="Confirmar Registro" onclick="' + abc + '">';
+                $('<i class="fa fa-check">').appendTo($(insertRowHTML).appendTo(actionColInsert));
+				$('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='Detalle_Audiencia_Archivos_AdjuntosCancelRow(" + index + ")'>").appendTo(actionColInsert));
+                actionColInsert.appendTo(row);
+
+                for (i = 0; i < controls.length; i++) {
+					var idHeader = $(controls[i]).data('field') + 'Header';
+					if($(controls[i]).length > 1){
+						idHeader = $($(controls[i])[1]).data('field') + 'Header';
+					}					
+
+					var classe = ($('#Detalle_Audiencia_Archivos_AdjuntosGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_Audiencia_Archivos_AdjuntosGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
+				   
+					if ($(controls[i]).next().length > 0) {
+					    var div = $(controls[i]).next();
+					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+					}else
+					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
+					
+                }
+                $('#Detalle_Audiencia_Archivos_AdjuntosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('#Detalle_Audiencia_Archivos_AdjuntosGrid .gridDatePicker').attr("readonly", "");
+                return;
+            }
+
+            var actionCol = $('<td>');
+			var edit = "<a title='@Resources.Resources.Edit' class='edit-MR' onclick='Detalle_Audiencia_Archivos_AdjuntosEditRow(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                edit = "";
+            var editPopUp = "<a title='@Resources.Resources.Edit' class='edit-popup-MR' data-toggle='modal' data-target='#AddDetalle_Audiencia_Archivos_Adjuntos-form' onclick='Detalle_Audiencia_Archivos_AdjuntosEditRowPopup(" + index + ", this)'>";
+            if (!permission.Edit || isConsultMode)
+                editPopUp = "";
+            var eliminar = "<a title='@Resources.Resources.Delete' class='eliminar-MR' onclick='Detalle_Audiencia_Archivos_AdjuntosDeleteRow(" + index + ", this)'>";
+            if (!permission.Delete || isConsultMode)
+                eliminar = "";
+            $('<i class="fa fa-pencil">').appendTo($(edit).appendTo(actionCol));
+            //$('<i class="fa fa-edit">').appendTo($(editPopUp).appendTo(actionCol));
+            $('<i class="fa fa-trash-o">').appendTo($(eliminar).appendTo(actionCol));
+			if ($('.Action' + 'Header').css('display') != 'none')
+				actionCol.appendTo(row);
+
+            if ($('.Nombre_Archivo' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Nombre_Archivo'+rowIndex+'">').text(data.Nombre_Archivo).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Nombre_Archivo'+rowIndex+'">').text(data.Nombre_Archivo).appendTo(row);
+            if ($('.Archivo_Adjunto' + 'Header').css('display') != 'none'){
+                var Archivo_AdjuntofileTd = $('<td>');
+            if (data.Archivo_AdjuntoDetail != null && data.Archivo_AdjuntoDetail.files != null) {
+                if (data.Archivo_AdjuntoDetail.files.length > 0)
+                    $("<a >" + data.Archivo_AdjuntoDetail.files[0].name + "</a>").appendTo(Archivo_AdjuntofileTd);
+            }
+            else if (data.Archivo_AdjuntoFileInfo != null && data.Archivo_AdjuntoFileInfo.FileId > 0) {
+                $("<a href='" + '@Url.Content("~/Frontal/Detalle_Audiencia_Archivos_Adjuntos/GetFile?id=")' + data.Archivo_AdjuntoFileInfo.FileId + "' target='_blank'>" + data.Archivo_AdjuntoFileInfo.FileName + "</a>").appendTo(Archivo_AdjuntofileTd);
+            } else if (data.Archivo_AdjuntoFileInfo != null){
+                $("<a >" + data.Archivo_AdjuntoFileInfo.FileName + "</a>").appendTo(Archivo_AdjuntofileTd);
+            }
+            Archivo_AdjuntofileTd.appendTo(row);
+}
+
+        }
+
+        var Detalle_Audiencia_Archivos_AdjuntosTable;
+        function showDetalle_Audiencia_Archivos_AdjuntosGrid(dataSet) {
+            //removedDetalle_Audiencia_Archivos_AdjuntosData = [];
+            Detalle_Audiencia_Archivos_AdjuntosTable = $('#Detalle_Audiencia_Archivos_AdjuntosGrid').dataTable({
+                dom: '<"html5buttons"B>lTgitp',
+                buttons: [
+                ],
+                "createdRow": Detalle_Audiencia_Archivos_AdjuntosrowCreationGrid,
+                "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+                data: dataSet,
+                "columns": [
+                    { "data": null, 'visible': true, "orderable": false },
+
+                    { "data": "Nombre_Archivo", "orderable": false },
+                    { "data": "Archivo_AdjuntoFileInfo", "orderable": false },
+
+                ],
+                "order": [[0, "asc"]],
+                "language": {
+                    "lengthMenu": "@Resources.Resources.Display" + " _MENU_ " + "@Resources.Resources.RecordsPerPage",
+                    "zeroRecords": "@Resources.Resources.NothingFound",
+                    "info": "@Resources.Resources.ShowingPages" + " _PAGE_ " + "@Resources.Resources.of" + " _PAGES_",
+                    "infoEmpty": "@Resources.Resources.NoRecords",
+                    "infoFiltered": "(" + "@Resources.Resources.FilteredFrom" + " _MAX_ " + "@Resources.Resources.TotalRecords" + ")",
+                    "sSearch": "@Resources.Resources.Search",
+                    "paginate": {
+                        "previous": "@Resources.Resources.Previous",
+                        "next": "@Resources.Resources.Next"
+                    }
+                },
+				"bDestroy": true,
+                "fnDrawCallback": function (settings) {
+                    setDetalle_Audiencia_Archivos_AdjuntosValidation();
+                }
+            }).on('init.dt', function (e, data) {
+                $('a').tooltip();
+            }).on('draw.dt', function () {
+                $('#Detalle_Audiencia_Archivos_AdjuntosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+            });
+        }
+
+
+
+
+
+        var Detalle_Audiencia_Archivos_AdjuntosData = [];
+        var Detalle_Audiencia_Archivos_AdjuntosdeletedItem = [];
+        var Detalle_Audiencia_Archivos_AdjuntosDataMain = [];
+        var Detalle_Audiencia_Archivos_AdjuntosDataMainPages = [];
+        var Detalle_Audiencia_Archivos_AdjuntosnewItemCount = 0;
+        var Detalle_Audiencia_Archivos_AdjuntosmaxItemIndex = 0;
+        var Detalle_Audiencia_Archivos_AdjuntosDataMainInitialized = false;
+
+        function SendDetalle_Audiencia_Archivos_Adjuntos(callBack, ClaveId) {
+            Detalle_Audiencia_Archivos_AdjuntosData = GetDetalle_Audiencia_Archivos_AdjuntosFromDataTable();
+
+            if (Detalle_Audiencia_Archivos_AdjuntosData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
+                if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
+                    ClaveId = $("#ReferenceClave").val();                
+                if ($("#ReferenceClave").val() == '')
+                    $("#ReferenceClave").val('0');
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Audiencias_MP/PostDetalle_Audiencia_Archivos_Adjuntos?MasterId=")' + ClaveId + "&referenceId=" + $("#ReferenceClave").val(),
+                    type: 'POST',
+                    data: GetDetalle_Audiencia_Archivos_Adjuntos(),
+                    async: true,
+                    success: function (result) {
+
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            } else {
+                //showNotification("@Resources.Resources.SaveSuccess", "success");
+                //callBack(ClaveId);
+            }
+            return true;
+        }
+
+        function GetAddDetalle_Audiencia_Archivos_AdjuntosPopup(currentRowIndex, mode, id) {
+
+            $.ajax({
+                url: "@Url.Action("AddDetalle_Audiencia_Archivos_Adjuntos", "Detalle_Audiencia_Archivos_Adjuntos")",
+                type: "GET",
+                async: false,
+                data: { rowIndex: currentRowIndex, functionMode: mode, id: id },
+                success: function (data) {
+                    $(".AddDetalle_Audiencia_Archivos_AdjuntosModal").html(data);
+                },
+                error: function () {
+
+                }
+            });
+
+            @*$.get('@Url.Action("AddDetalle_Audiencia_Archivos_Adjuntos", "Detalle_Audiencia_Archivos_Adjuntos")', { rowIndex: currentRowIndex }, function (data) {
+                $(".AddDetalle_Audiencia_Archivos_AdjuntosModal").html(data);
+            });*@
+        }
+
+        function ShowMessagePendingRowDetalle_Audiencia_Archivos_Adjuntos()
+        {
+            //alert('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Archivos"))')
+	    showNotification('@Html.Raw(string.Format(Resources.Resources.PendingRow, "Archivos"))', "warning");
+        }
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+        $(".AutoCompleteDetalle_Audiencia_Defensor_Imputado_Nombre_Del_Imputado").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Audiencias_MP/GetDetalle_Audiencia_Defensor_Imputado_Nombre_Del_Imputado_Detalle_de_Imputado")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Audiencia_Defensor_Imputado_Nombre_Del_Imputado_Detalle_de_ImputadoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Audiencia_Defensor_Imputado_Nombre_Del_Imputado");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val(' ');
+            $('.select2-search__field').keyup();
+        });
+
+
+
+
+        $(".AutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Audiencias_MP/GetDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_Imputado")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_ImputadoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val(' ');
+            $('.select2-search__field').keyup();
+        });
+
+
+
+
+
+
+
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/Audiencias_MP/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+
+        function SendAudiencias_MPData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateAudiencias_MP").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateAudiencias_MP")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#ReferenceClave").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_Generales && !checkClientValidate('Audiencias_MPCreateForm', 'Datos_Generales')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+            }
+			
+			
+			if (Tab_Datos_Generales)
+				Save_Datos_Generales(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Audiencias_MP/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".Audiencias_MPBusinessRuleModal").html(data);
+			});
+		}
+                function Audiencias_MPGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45483');
+			$('#Screen').val('Audiencias_MP');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function Audiencias_MPBackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/Audiencias_MP/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Audiencias_MP/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Audiencias_MP/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Audiencias_MP/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Audiencias_MP/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateAudiencias_MP').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        Audiencias_MPGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_Generales()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Audiencias_MP/Get_Datos_Generales")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    var control = $('#Expediente_MP');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Expediente_MP).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Expediente_MP).trigger('change');
+                    }, 3000);
+                    $('#Tipo_de_Audiencia').val(result.data.Tipo_de_Audiencia);
+                    $('#Audiencia').val(result.data.Audiencia);
+                    $('#Fecha').val(result.data.Fecha);
+                    $('#Hora').val(result.data.Hora);
+                    Detalle_Audiencia_Defensor_ImputadoDataDataTable = result.Defensor_del_Imputado;
+                    showDetalle_Audiencia_Defensor_ImputadoGrid(result.Defensor_del_Imputado);
+                    $('#Detalle_Audiencia_Defensor_ImputadoGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_Audiencia_Defensor_ImputadoGrid .gridDatePicker').attr("readonly", "");
+                    Detalle_Audiencia_Defensor_VictimaDataDataTable = result.Defensor_por_Victima;
+                    showDetalle_Audiencia_Defensor_VictimaGrid(result.Defensor_por_Victima);
+                    $('#Detalle_Audiencia_Defensor_VictimaGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_Audiencia_Defensor_VictimaGrid .gridDatePicker').attr("readonly", "");
+                    $('#Observaciones').val(result.data.Observaciones);
+                    $('#Resultado_de_Audiencia').val(result.data.Resultado_de_Audiencia);
+                    Detalle_Audiencia_Archivos_AdjuntosDataDataTable = result.Archivos;
+                    showDetalle_Audiencia_Archivos_AdjuntosGrid(result.Archivos);
+                    $('#Detalle_Audiencia_Archivos_AdjuntosGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
+                    $('#Detalle_Audiencia_Archivos_AdjuntosGrid .gridDatePicker').attr("readonly", "");
+                    $('#Asignar_MP_Litigacion').prop('checked', result.data.Asignar_MP_Litigacion);
+                    var control = $('#MP_Litigacion');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.MP_Litigacion).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.MP_Litigacion).trigger('change');
+                    }, 3000);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_Generales(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Expediente_MP', $('#Expediente_MP').val());
+                data.append('Tipo_de_Audiencia', $('#Tipo_de_Audiencia').val());
+                data.append('Audiencia', $('#Audiencia').val());
+                data.append('Fecha', $('#Fecha').val());
+                data.append('Hora', $('#Hora').val());
+                data.append('Observaciones', $('#Observaciones').val());
+                data.append('Resultado_de_Audiencia', $('#Resultado_de_Audiencia').val());
+                data.append('Asignar_MP_Litigacion', $('#Asignar_MP_Litigacion').prop('checked'));
+                data.append('MP_Litigacion', $('#MP_Litigacion').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Audiencias_MP/Post_Datos_Generales")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
+					} else {
+						newId = result;
+                    					    SendDetalle_Audiencia_Defensor_Imputado(null, newId);
+					    SendDetalle_Audiencia_Defensor_Victima(null, newId);
+					    SendDetalle_Audiencia_Archivos_Adjuntos(null, newId);
+
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="Audiencias_MP_cmbLabelSelect" name="Audiencias_MP_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

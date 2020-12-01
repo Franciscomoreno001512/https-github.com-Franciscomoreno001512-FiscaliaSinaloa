@@ -425,23 +425,23 @@
         @Styles.Render("~/plugins/select2Styles")
         @Styles.Render("~/Content/plugins/chosen/chosenStyles")
         <style>
-            .dataTables_filter {
-                display: none;
-            }
+                    .dataTables_filter {
+                        display: none;
+                    }
 
-            .select2-results {
-                background-color: #fff;
-            }
+                    .select2-results {
+                        background-color: #fff;
+                    }
 
-            .select2-container .select2-dropdown {
-                height: auto !important;
-            }
+                    .select2-container .select2-dropdown {
+                        height: auto !important;
+                    }
 
-            div.dataTables_info {
-                display: inline-block;
-                float: right;
-            }
-            /*i {
+                    div.dataTables_info {
+                        display: inline-block;
+                        float: right;
+                    }
+                    /*i {
                 font-size: 25px !important;
                 display: block;
                 color: #676a6c;
@@ -449,9 +449,9 @@
                 margin-right: 6px;
             }*/
 
-            .fullWidth {
-                width: 100%;
-            }
+                    .fullWidth {
+                        width: 100%;
+                    }
         </style>
     }
 
@@ -490,7 +490,6 @@
                 }
        
             });
-
         function RemoveAttachmentMainArchivo_Adjunto () {
             $("#hdnRemoveArchivo_Adjunto").val("1");
             $("#divAttachmentArchivo_Adjunto").hide();
@@ -538,6 +537,8 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('45018');
+			
+			localStorage.setItem('controlDocumentoDynamiSeach',"");
 
 
                         $('#Fecha').datepicker({
@@ -1075,12 +1076,8 @@
             });
         }
 
-            function Save_Datos_Generales(newId) {
-                debugger; 
-
- 
-
-                    	var data = new FormData();
+		function Save_Datos_Generales(newId) {
+			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Solicitud', $('#Solicitud').val());
                 data.append('Fecha', $('#Fecha').val());
@@ -1119,9 +1116,7 @@
 				},
 				cache: false
 			});
-
-        
-         }
+            }
 
             function GetIdFormatoFromDocumento()
     {
@@ -1151,9 +1146,21 @@
         });
         }
 
-        function EditarDocto() {
+         function EditarDocto() {
 
             debugger;
+			
+			    var _controlDocumentoDynamiSeach = localStorage.getItem('controlDocumentoDynamiSeach');
+   // if (_controlDocumentoDynamiSeach != "true" ) {
+     //   controlDocumentoDynamiSeach = false; 
+        
+   // }
+	
+	controlDocumentoDynamiSeach = false; 
+	if (_controlDocumentoDynamiSeach == "true" ) {
+        controlDocumentoDynamiSeach = true; 
+        
+    }
 
             if ( controlDocumentoDynamiSeach == true ) {
                 alert('Existe una ventana abierta');
@@ -1161,6 +1168,7 @@
             else {
                 permitirCerrar = false;
                 controlDocumentoDynamiSeach = true; 
+				localStorage.setItem('controlDocumentoDynamiSeach',"true");
             var isedit = ($("#Archivo").val() != "" && $("#Archivo").val() != "0" && $("#Archivo").val() != "-1");
             var folioControlDocumentos = $("#Archivo").val();
             $('.loading').css('display', 'none');
@@ -1170,19 +1178,13 @@
             }
             else {
                 GuardarRegistro(formaid);
-
             }
 
             }
-
-
-
-
         }
 
 
     function GuardarRegistro(formaid) {
-
             debugger;
             $("#Archivo").val("0");
             if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
@@ -1195,31 +1197,16 @@
                     //aqui
                     $("#ReferenceClave").text(idvalor);
                     $("#ReferenceClave").val(idvalor);
-
-
                     OpenPrintFormats(idvalor, @Spartane.Web.SessionHelper.Role, "", false, "45018", formaid);
-
-
-
-
 
                 }, false)) {
 
                 }
             }
-
-
-
-
         }
 
 
-
-
         </script>
-  
-
-
     }
     <input type="hidden" id="FieldId" name="FieldId" value="" />
     <input type="hidden" id="FieldName" name="FieldName" value="" />

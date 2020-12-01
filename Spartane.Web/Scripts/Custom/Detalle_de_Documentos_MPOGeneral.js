@@ -313,6 +313,17 @@ function GetAutoCompleteDetalle_de_Documentos_MPO_Usuario_que_Registra_Spartan_U
     }
     return AutoCompleteUsuario_que_RegistraData;
 }
+var AutoCompleteDocumentoData = [];
+function GetAutoCompleteDetalle_de_Documentos_MPO_Documento_DocumentoData(data) {
+	AutoCompleteDocumentoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteDocumentoData.push({
+            id: data[i].Clave,
+            text: data[i].Descripcion
+        });
+    }
+    return AutoCompleteDocumentoData;
+}
 var AutoCompleteInvolucradoData = [];
 function GetAutoCompleteDetalle_de_Documentos_MPO_Involucrado_Detalle_de_Datos_GeneralesData(data) {
 	AutoCompleteInvolucradoData = [];
@@ -391,6 +402,9 @@ function ClearControls() {
     $('#Usuario_que_Registra').empty();
     $("#Usuario_que_Registra").append('<option value=""></option>');
     $('#Usuario_que_Registra').val('0').trigger('change');
+    $('#Documento').empty();
+    $("#Documento").append('<option value=""></option>');
+    $('#Documento').val('0').trigger('change');
     $('#Involucrado').empty();
     $("#Involucrado").append('<option value=""></option>');
     $('#Involucrado').val('0').trigger('change');
@@ -539,6 +553,9 @@ $(document).ready(function () {
     $('#Usuario_que_Registra').empty();
     $("#Usuario_que_Registra").append('<option value=""></option>');
     $('#Usuario_que_Registra').val('0').trigger('change');
+    $('#Documento').empty();
+    $("#Documento").append('<option value=""></option>');
+    $('#Documento').val('0').trigger('change');
     $('#Involucrado').empty();
     $("#Involucrado").append('<option value=""></option>');
     $('#Involucrado').val('0').trigger('change');

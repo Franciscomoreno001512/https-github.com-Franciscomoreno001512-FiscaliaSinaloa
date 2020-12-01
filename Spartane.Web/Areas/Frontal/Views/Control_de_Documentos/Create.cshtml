@@ -1555,6 +1555,12 @@ CKEDITOR.replace('Pie_de_Pagina', {
                 debugger;
                 localStorage.setItem('controlDocumentoDynamiSeach',"false");
             });
+			
+			 window.addEventListener('beforeunload', (event) => {
+                debugger;
+                localStorage.setItem('controlDocumentoDynamiSeach',"false");
+       
+            });
         </script>
     }
     <input type="hidden" id="FieldId" name="FieldId" value="" />

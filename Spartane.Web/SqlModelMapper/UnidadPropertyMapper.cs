@@ -42,6 +42,9 @@ namespace Spartane.Web.SqlModelMapper
                     return "Spartan_User.Name";
                 case "Consecutivo_CDI":
                     return "Unidad.Consecutivo_CDI";
+                case "Tipo_de_Asignacion_de_MP[Descripcion]":
+                case "Tipo_de_Asignacion_de_MPDescripcion":
+                    return "Tipo_de_Asignacion_de_MP.Descripcion";
 
                 default:
                     return propertyName;

@@ -1119,6 +1119,42 @@
 <Compile Include="expediente_ministerio_publico\expediente_ministerio_publicoService.cs" />
 <Compile Include="tipo_de_cierre\Itipo_de_cierreService.cs" />
 <Compile Include="tipo_de_cierre\tipo_de_cierreService.cs" />
+<Compile Include="Asignacion_de_Agente\IAsignacion_de_AgenteService.cs" />
+<Compile Include="Asignacion_de_Agente\Asignacion_de_AgenteService.cs" />
+<Compile Include="Categoria_de_Servicio_de_Apoyo\ICategoria_de_Servicio_de_ApoyoService.cs" />
+<Compile Include="Categoria_de_Servicio_de_Apoyo\Categoria_de_Servicio_de_ApoyoService.cs" />
+<Compile Include="Diligencias_MP\IDiligencias_MPService.cs" />
+<Compile Include="Diligencias_MP\Diligencias_MPService.cs" />
+<Compile Include="Documentos_MP\IDocumentos_MPService.cs" />
+<Compile Include="Documentos_MP\Documentos_MPService.cs" />
+<Compile Include="Indicios_MP\IIndicios_MPService.cs" />
+<Compile Include="Indicios_MP\Indicios_MPService.cs" />
+<Compile Include="IPH\IIPHService.cs" />
+<Compile Include="IPH\IPHService.cs" />
+<Compile Include="Servicios_de_Apoyo_MP\IServicios_de_Apoyo_MPService.cs" />
+<Compile Include="Servicios_de_Apoyo_MP\Servicios_de_Apoyo_MPService.cs" />
+<Compile Include="Configuracion_de_Planeacion\IConfiguracion_de_PlaneacionService.cs" />
+<Compile Include="Configuracion_de_Planeacion\Configuracion_de_PlaneacionService.cs" />
+<Compile Include="Detalle_Plan_Actos_de_Investigacion\IDetalle_Plan_Actos_de_InvestigacionService.cs" />
+<Compile Include="Detalle_Plan_Actos_de_Investigacion\Detalle_Plan_Actos_de_InvestigacionService.cs" />
+<Compile Include="Plan_de_Investigacion\IPlan_de_InvestigacionService.cs" />
+<Compile Include="Plan_de_Investigacion\Plan_de_InvestigacionService.cs" />
+<Compile Include="Tipo_de_Audiencia\ITipo_de_AudienciaService.cs" />
+<Compile Include="Tipo_de_Audiencia\Tipo_de_AudienciaService.cs" />
+<Compile Include="Audiencia\IAudienciaService.cs" />
+<Compile Include="Audiencia\AudienciaService.cs" />
+<Compile Include="Resultado_de_Audiencia\IResultado_de_AudienciaService.cs" />
+<Compile Include="Resultado_de_Audiencia\Resultado_de_AudienciaService.cs" />
+<Compile Include="Audiencias_MP\IAudiencias_MPService.cs" />
+<Compile Include="Audiencias_MP\Audiencias_MPService.cs" />
+<Compile Include="Detalle_Audiencia_Defensor_Imputado\IDetalle_Audiencia_Defensor_ImputadoService.cs" />
+<Compile Include="Detalle_Audiencia_Defensor_Imputado\Detalle_Audiencia_Defensor_ImputadoService.cs" />
+<Compile Include="Detalle_Audiencia_Defensor_Victima\IDetalle_Audiencia_Defensor_VictimaService.cs" />
+<Compile Include="Detalle_Audiencia_Defensor_Victima\Detalle_Audiencia_Defensor_VictimaService.cs" />
+<Compile Include="Detalle_Audiencia_Archivos_Adjuntos\IDetalle_Audiencia_Archivos_AdjuntosService.cs" />
+<Compile Include="Detalle_Audiencia_Archivos_Adjuntos\Detalle_Audiencia_Archivos_AdjuntosService.cs" />
+<Compile Include="Tipo_de_Asignacion_de_MP\ITipo_de_Asignacion_de_MPService.cs" />
+<Compile Include="Tipo_de_Asignacion_de_MP\Tipo_de_Asignacion_de_MPService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1218,6 +1254,42 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

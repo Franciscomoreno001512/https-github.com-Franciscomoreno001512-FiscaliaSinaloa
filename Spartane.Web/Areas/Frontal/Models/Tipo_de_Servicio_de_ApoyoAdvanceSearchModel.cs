@@ -22,6 +22,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters ServicioFilter { set; get; }
         public string Servicio { set; get; }
 
+        public Filters CategoriaFilter { set; get; }
+        public string AdvanceCategoria { set; get; }
+        public int[] AdvanceCategoriaMultiple { set; get; }
+
 
     }
 }

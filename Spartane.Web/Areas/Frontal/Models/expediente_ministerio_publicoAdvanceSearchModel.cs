@@ -11,7 +11,6 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public expediente_ministerio_publicoAdvanceSearchModel()
         {
-            acepta_acuerdo = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -33,9 +32,21 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Advanceusuario_que_registra { set; get; }
         public int[] Advanceusuario_que_registraMultiple { set; get; }
 
+        public Filters Tipo_de_DenunciaFilter { set; get; }
+        public string AdvanceTipo_de_Denuncia { set; get; }
+        public int[] AdvanceTipo_de_DenunciaMultiple { set; get; }
+
         public Filters unidadFilter { set; get; }
         public string Advanceunidad { set; get; }
         public int[] AdvanceunidadMultiple { set; get; }
+
+        public Filters MunicipioFilter { set; get; }
+        public string AdvanceMunicipio { set; get; }
+        public int[] AdvanceMunicipioMultiple { set; get; }
+
+        public Filters RegionFilter { set; get; }
+        public string AdvanceRegion { set; get; }
+        public int[] AdvanceRegionMultiple { set; get; }
 
         public Filters nuatFilter { set; get; }
         public string nuat { set; get; }
@@ -57,9 +68,71 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Advanceestatus { set; get; }
         public int[] AdvanceestatusMultiple { set; get; }
 
-        public Filters observacionesFilter { set; get; }
-        public string Advanceobservaciones { set; get; }
-        public int[] AdvanceobservacionesMultiple { set; get; }
+        public Filters Titulo_del_HechoFilter { set; get; }
+        public string Titulo_del_Hecho { set; get; }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string FromFecha_del_Hecho { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("FromFecha_del_Hecho", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_del_Hecho { set; get; }
+
+        public Filters Narrativa_Breve_de_los_HechosFilter { set; get; }
+        public string Narrativa_Breve_de_los_Hechos { set; get; }
+
+        public string ToHora_Aproximada_del_Hecho { set; get; }
+        public string FromHora_Aproximada_del_Hecho { set; get; }
+
+        public Filters Lugar_de_los_HechosFilter { set; get; }
+        public string AdvanceLugar_de_los_Hechos { set; get; }
+        public int[] AdvanceLugar_de_los_HechosMultiple { set; get; }
+
+        public Filters PaisHFilter { set; get; }
+        public string AdvancePaisH { set; get; }
+        public int[] AdvancePaisHMultiple { set; get; }
+
+        public Filters EstadoFilter { set; get; }
+        public string AdvanceEstado { set; get; }
+        public int[] AdvanceEstadoMultiple { set; get; }
+
+        public Filters Municipio_HechosFilter { set; get; }
+        public string AdvanceMunicipio_Hechos { set; get; }
+        public int[] AdvanceMunicipio_HechosMultiple { set; get; }
+
+        public Filters PoblacionFilter { set; get; }
+        public string AdvancePoblacion { set; get; }
+        public int[] AdvancePoblacionMultiple { set; get; }
+
+        public Filters ColoniaHFilter { set; get; }
+        public string AdvanceColoniaH { set; get; }
+        public int[] AdvanceColoniaHMultiple { set; get; }
+
+        public Filters CalleHFilter { set; get; }
+        public string CalleH { set; get; }
+
+        public Filters Numero_InteriorHFilter { set; get; }
+        public string Numero_InteriorH { set; get; }
+
+        public Filters Numero_ExteriorHFilter { set; get; }
+        public string Numero_ExteriorH { set; get; }
+
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string FromCodigo_PostalH { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("FromCodigo_PostalH", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToCodigo_PostalH { set; get; }
+
+        public Filters Entre_CalleFilter { set; get; }
+        public string Entre_Calle { set; get; }
+
+        public Filters Y_CalleFilter { set; get; }
+        public string Y_Calle { set; get; }
+
+        public Filters LongitudHFilter { set; get; }
+        public string LongitudH { set; get; }
+
+        public Filters LatitudHFilter { set; get; }
+        public string LatitudH { set; get; }
 
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
         public string FromFecha_de_Canalizacion { set; get; }
@@ -116,7 +189,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Advanceperiodicidad { set; get; }
         public int[] AdvanceperiodicidadMultiple { set; get; }
 
-        public RadioOptions acepta_acuerdo { set; get; }
+        public Filters acepta_acuerdoFilter { set; get; }
+        public string Advanceacepta_acuerdo { set; get; }
+        public int[] Advanceacepta_acuerdoMultiple { set; get; }
 
         public Filters motivo_de_rechazo_de_acuerdoFilter { set; get; }
         public string motivo_de_rechazo_de_acuerdo { set; get; }
@@ -129,6 +204,10 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public string Tohora_de_cierre { set; get; }
         public string Fromhora_de_cierre { set; get; }
+
+        public Filters Usuario_que_CierraFilter { set; get; }
+        public string AdvanceUsuario_que_Cierra { set; get; }
+        public int[] AdvanceUsuario_que_CierraMultiple { set; get; }
 
         public Filters tipo_de_cierreFilter { set; get; }
         public string Advancetipo_de_cierre { set; get; }

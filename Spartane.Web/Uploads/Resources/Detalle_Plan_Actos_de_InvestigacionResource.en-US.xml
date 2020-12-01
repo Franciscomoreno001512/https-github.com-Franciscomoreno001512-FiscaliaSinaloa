@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Plan_Actos_de_Investigacion" value="Detalle Plan Actos de Investigación"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Categoria" value="Categoría"></resource>
+  <resource culture="en-US" name="Servicio_a_Solicitar" value="Servicio a Solicitar"></resource>
+  <resource culture="en-US" name="Hecho_Delictivo_Acreditado" value="Hecho Delictivo Acreditado"></resource>
+  <resource culture="en-US" name="Tiempo_Estandar" value="Tiempo Estándar (días)"></resource>
+  <resource culture="en-US" name="Ponderacion" value="Ponderación"></resource>
+  <resource culture="en-US" name="Fecha_Contestacion" value="Fecha de Contestación"></resource>
+  <resource culture="en-US" name="Hora_Contestacion" value="Hora de Contestación"></resource>
+  <resource culture="en-US" name="Contestacion" value="Contestación"></resource>
+  <resource culture="en-US" name="Archivo_Adjunto" value="Archivo Adjunto"></resource>
+  <resource culture="en-US" name="Usuario_que_Contesta" value="Usuario que Contesta"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Servicios_de_Apoyo_MP" value="Servicios de Apoyo MP"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="es-es" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="es-es" name="Categoria" value="Categoría"></resource>
+  <resource culture="es-es" name="Tipo_de_Servicio" value="Tipo de Servicio"></resource>
+  <resource culture="es-es" name="Solicitud" value="Solicitud"></resource>
+  <resource culture="es-es" name="Fecha_de_Termino_para_Entrega" value="Fecha de Término para Entrega"></resource>
+  <resource culture="es-es" name="Hora_de_Termino_para_Entrega" value="Hora de Término para Entrega"></resource>
+  <resource culture="es-es" name="Diligencia_a_Enviar" value="Diligencia a Enviar"></resource>
+  <resource culture="es-es" name="Archivo" value="Archivo"></resource>
+  <resource culture="es-es" name="Fecha_de_Atencion" value="Fecha de Atención"></resource>
+  <resource culture="es-es" name="Hora_de_Atencion" value="Hora de Atención"></resource>
+  <resource culture="es-es" name="Usuario_que_Atiende" value="Usuario que Atiende"></resource>
+  <resource culture="es-es" name="Archivo_Adjunto" value="Archivo Adjunto"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="es-es" name="TabContestacion" value="Contestación"></resource>
+
+</resources>

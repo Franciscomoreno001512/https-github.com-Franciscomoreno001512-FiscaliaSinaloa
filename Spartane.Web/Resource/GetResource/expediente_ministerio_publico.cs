@@ -66,6 +66,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Tipo_de_Denuncia</summary>
+        public static string Tipo_de_Denuncia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Tipo_de_Denuncia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>unidad</summary>
         public static string unidad
         {
@@ -73,6 +83,26 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderexpediente_ministerio_publico.GetResource("unidad", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Municipio</summary>
+        public static string Municipio
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Municipio", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Region</summary>
+        public static string Region
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Region", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -143,6 +173,186 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderexpediente_ministerio_publico.GetResource("observaciones", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Titulo_del_Hecho</summary>
+        public static string Titulo_del_Hecho
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Titulo_del_Hecho", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Fecha_del_Hecho</summary>
+        public static string Fecha_del_Hecho
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Fecha_del_Hecho", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Narrativa_Breve_de_los_Hechos</summary>
+        public static string Narrativa_Breve_de_los_Hechos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Narrativa_Breve_de_los_Hechos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_Aproximada_del_Hecho</summary>
+        public static string Hora_Aproximada_del_Hecho
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Hora_Aproximada_del_Hecho", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Lugar_de_los_Hechos</summary>
+        public static string Lugar_de_los_Hechos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Lugar_de_los_Hechos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>PaisH</summary>
+        public static string PaisH
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("PaisH", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Estado</summary>
+        public static string Estado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Estado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Municipio_Hechos</summary>
+        public static string Municipio_Hechos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Municipio_Hechos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Poblacion</summary>
+        public static string Poblacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Poblacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>ColoniaH</summary>
+        public static string ColoniaH
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("ColoniaH", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>CalleH</summary>
+        public static string CalleH
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("CalleH", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Numero_InteriorH</summary>
+        public static string Numero_InteriorH
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Numero_InteriorH", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Numero_ExteriorH</summary>
+        public static string Numero_ExteriorH
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Numero_ExteriorH", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Codigo_PostalH</summary>
+        public static string Codigo_PostalH
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Codigo_PostalH", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Entre_Calle</summary>
+        public static string Entre_Calle
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Entre_Calle", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Y_Calle</summary>
+        public static string Y_Calle
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Y_Calle", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>LongitudH</summary>
+        public static string LongitudH
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("LongitudH", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>LatitudH</summary>
+        public static string LatitudH
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("LatitudH", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -306,6 +516,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Usuario_que_Cierra</summary>
+        public static string Usuario_que_Cierra
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("Usuario_que_Cierra", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>tipo_de_cierre</summary>
         public static string tipo_de_cierre
         {
@@ -328,9 +548,10 @@ namespace Resources
 
 
 	/// <summary>Datos del Caso</summary>	public static string TabDatos_del_Caso 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabDatos_del_Caso", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Hechos</summary>	public static string TabHechos 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabHechos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Canalizar</summary>	public static string TabCanalizar 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabCanalizar", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Datos del Acuerdo</summary>	public static string TabDatos_del_Acuerdo 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabDatos_del_Acuerdo", CultureInfo.CurrentUICulture.Name) as String;             		}	}
-	/// <summary>Cierre de Expediente</summary>	public static string TabCierre_de_Expediente 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabCierre_de_Expediente", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Resolución o Dictaminación</summary>	public static string TabResolucion_o_Dictaminacion 	{		get		{			SetPath();  			return resourceProviderexpediente_ministerio_publico.GetResource("TabResolucion_o_Dictaminacion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 
     }
 }

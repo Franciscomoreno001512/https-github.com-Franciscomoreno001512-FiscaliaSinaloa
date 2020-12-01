@@ -102,6 +102,20 @@ if(operation == 'New'){
 }
 //BusinessRuleId:1736, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+//BusinessRuleId:2601, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery("exec sp_Desestimar_desde_AtencionInicial FLD[Modulo_Atencion_Inicial]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2601, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:2601, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+ EvaluaQuery("exec sp_Desestimar_desde_AtencionInicial FLD[Modulo_Atencion_Inicial]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2601, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

@@ -145,6 +145,34 @@ if( GetValueByControlType($('#' + nameOfTable + 'Es_Familiar' + rowIndex),nameOf
 }
 //BusinessRuleId:2445, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2506, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divExpediente_MP').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));
+
+}
+//BusinessRuleId:2506, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2506, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divExpediente_MP').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));
+
+}
+//BusinessRuleId:2506, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2506, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $('#divExpediente_MP').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));
+
+}
+//BusinessRuleId:2506, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2553, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divModulo_Atencion_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo_Atencion_Inicial' + rowIndex));
+
+}
+//BusinessRuleId:2553, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -165,6 +193,20 @@ if(operation == 'New'){
 
 
 
+
+//BusinessRuleId:2517, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('3', '3') ) { EvaluaQuery(" update Detalle_de_Relaciones set Expediente_MP = GLOBAL[SpartanOperationId] where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:2517, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:2517, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('3', '3') ) { EvaluaQuery(" update Detalle_de_Relaciones set Expediente_MP = GLOBAL[SpartanOperationId] where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:2517, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

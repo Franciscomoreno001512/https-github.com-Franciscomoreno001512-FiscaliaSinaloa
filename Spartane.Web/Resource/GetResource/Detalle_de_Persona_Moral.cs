@@ -46,6 +46,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Expediente_MP</summary>
+        public static string Expediente_MP
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Persona_Moral.GetResource("Expediente_MP", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Nombre</summary>
         public static string Nombre
         {

@@ -5,7 +5,10 @@
   <resource culture="en-US" name="fecha_de_registro" value="Fecha de Registro"></resource>
   <resource culture="en-US" name="hora_de_registro" value="Hora de Registro"></resource>
   <resource culture="en-US" name="usuario_que_registra" value="Usuario que Registra"></resource>
+  <resource culture="en-US" name="Tipo_de_Denuncia" value="Tipo de Denuncia"></resource>
   <resource culture="en-US" name="unidad" value="Unidad MP"></resource>
+  <resource culture="en-US" name="Municipio" value="Municipio"></resource>
+  <resource culture="en-US" name="Region" value="Región"></resource>
   <resource culture="en-US" name="nuat" value="NUAT"></resource>
   <resource culture="en-US" name="nic" value="CDI"></resource>
   <resource culture="en-US" name="detenido" value="Detenido"></resource>
@@ -13,6 +16,24 @@
   <resource culture="en-US" name="hora_puesto_a_disposicion" value="Hora de Puesto a Disposición"></resource>
   <resource culture="en-US" name="estatus" value="Estatus"></resource>
   <resource culture="en-US" name="observaciones" value="Observaciones"></resource>
+  <resource culture="en-US" name="Titulo_del_Hecho" value="Titulo del Hecho"></resource>
+  <resource culture="en-US" name="Fecha_del_Hecho" value="Fecha del Hecho "></resource>
+  <resource culture="en-US" name="Narrativa_Breve_de_los_Hechos" value="Narrativa Breve de los Hechos"></resource>
+  <resource culture="en-US" name="Hora_Aproximada_del_Hecho" value="Hora Aproximada del Hecho"></resource>
+  <resource culture="en-US" name="Lugar_de_los_Hechos" value="Lugar de los Hechos"></resource>
+  <resource culture="en-US" name="PaisH" value="País"></resource>
+  <resource culture="en-US" name="Estado" value="Estado"></resource>
+  <resource culture="en-US" name="Municipio_Hechos" value="Municipio"></resource>
+  <resource culture="en-US" name="Poblacion" value="Población"></resource>
+  <resource culture="en-US" name="ColoniaH" value="Colonia"></resource>
+  <resource culture="en-US" name="CalleH" value="Calle"></resource>
+  <resource culture="en-US" name="Numero_InteriorH" value="Número Interior"></resource>
+  <resource culture="en-US" name="Numero_ExteriorH" value="Número Exterior"></resource>
+  <resource culture="en-US" name="Codigo_PostalH" value="Código Postal"></resource>
+  <resource culture="en-US" name="Entre_Calle" value="Entre Calle"></resource>
+  <resource culture="en-US" name="Y_Calle" value="Y Calle"></resource>
+  <resource culture="en-US" name="LongitudH" value="Longitud"></resource>
+  <resource culture="en-US" name="LatitudH" value="Latitud"></resource>
   <resource culture="en-US" name="Fecha_de_Canalizacion" value="Fecha de Canalización"></resource>
   <resource culture="en-US" name="Hora_de_Canalizacion" value="Hora de Canalización"></resource>
   <resource culture="en-US" name="usuario_que_canaliza" value="Usuario que Canaliza"></resource>
@@ -27,14 +48,16 @@
   <resource culture="en-US" name="periodicidad" value="Periodicidad"></resource>
   <resource culture="en-US" name="acepta_acuerdo" value="¿Se Acepta Acuerdo?"></resource>
   <resource culture="en-US" name="motivo_de_rechazo_de_acuerdo" value="Motivo de Rechazo de Acuerdo"></resource>
-  <resource culture="en-US" name="fecha_de_cierre" value="Fecha de Cierre"></resource>
-  <resource culture="en-US" name="hora_de_cierre" value="Hora de Cierre"></resource>
-  <resource culture="en-US" name="tipo_de_cierre" value="Tipo de Cierre"></resource>
+  <resource culture="en-US" name="fecha_de_cierre" value="Fecha"></resource>
+  <resource culture="en-US" name="hora_de_cierre" value="Hora"></resource>
+  <resource culture="en-US" name="Usuario_que_Cierra" value="Usuario"></resource>
+  <resource culture="en-US" name="tipo_de_cierre" value="Resolución o Dictaminación"></resource>
   <resource culture="en-US" name="comentarios_de_cierre" value="Comentarios"></resource>
 
 <resource culture="en-US" name="TabDatos_del_Caso" value="Datos del Caso"></resource>
+<resource culture="en-US" name="TabHechos" value="Hechos"></resource>
 <resource culture="en-US" name="TabCanalizar" value="Canalizar"></resource>
 <resource culture="en-US" name="TabDatos_del_Acuerdo" value="Datos del Acuerdo"></resource>
-<resource culture="en-US" name="TabCierre_de_Expediente" value="Cierre de Expediente"></resource>
+<resource culture="en-US" name="TabResolucion_o_Dictaminacion" value="Resolución o Dictaminación"></resource>
 
 </resources>

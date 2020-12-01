@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+using Spartane.Core.Domain.expediente_ministerio_publico;
 using Spartane.Core.Domain.Pais;
 using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
@@ -26,6 +27,7 @@ namespace Spartane.Core.Domain.Detalle_de_Persona_Moral
     {
         public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
+        public int? Expediente_MP { get; set; }
         public string Nombre { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
@@ -61,6 +63,8 @@ namespace Spartane.Core.Domain.Detalle_de_Persona_Moral
 
         [ForeignKey("Modulo_Atencion_Inicial")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
+        [ForeignKey("Expediente_MP")]
+        public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
         [ForeignKey("Pais")]
         public virtual Spartane.Core.Domain.Pais.Pais Pais_Pais { get; set; }
         [ForeignKey("Estado")]
@@ -84,6 +88,7 @@ namespace Spartane.Core.Domain.Detalle_de_Persona_Moral
     {
                 public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
+        public int? Expediente_MP { get; set; }
         public string Nombre { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
@@ -113,6 +118,8 @@ namespace Spartane.Core.Domain.Detalle_de_Persona_Moral
 
 		        [ForeignKey("Modulo_Atencion_Inicial")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
+        [ForeignKey("Expediente_MP")]
+        public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
         [ForeignKey("Pais")]
         public virtual Spartane.Core.Domain.Pais.Pais Pais_Pais { get; set; }
         [ForeignKey("Estado")]

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Indicios_MP" value="Indicios MP"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="en-US" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="en-US" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="en-US" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="en-US" name="Numero_de_Indicio" value="Número de Indicio"></resource>
+  <resource culture="en-US" name="Nombre_de_Indicio" value="Nombre de Indicio"></resource>
+  <resource culture="en-US" name="Descripcion_de_Indicio" value="Descripción de Indicio"></resource>
+  <resource culture="en-US" name="Ubicacion" value="Ubicación"></resource>
+  <resource culture="en-US" name="Estatus" value="Estatus"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

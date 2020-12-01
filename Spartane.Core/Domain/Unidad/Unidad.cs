@@ -7,6 +7,7 @@ using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Region;
 using Spartane.Core.Domain.Vigencia;
 using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Tipo_de_Asignacion_de_MP;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,6 +32,7 @@ namespace Spartane.Core.Domain.Unidad
         public string Observaciones { get; set; }
         public int? Supervisor { get; set; }
         public int? Consecutivo_CDI { get; set; }
+        public int? Tipo_de_Asignacion_de_MP { get; set; }
 
         [ForeignKey("Clave_de_Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Clave_de_Municipio_Municipio { get; set; }
@@ -40,6 +42,8 @@ namespace Spartane.Core.Domain.Unidad
         public virtual Spartane.Core.Domain.Vigencia.Vigencia Vigencia_Vigencia { get; set; }
         [ForeignKey("Supervisor")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Supervisor_Spartan_User { get; set; }
+        [ForeignKey("Tipo_de_Asignacion_de_MP")]
+        public virtual Spartane.Core.Domain.Tipo_de_Asignacion_de_MP.Tipo_de_Asignacion_de_MP Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP { get; set; }
 
     }
 	
@@ -57,6 +61,7 @@ namespace Spartane.Core.Domain.Unidad
         public string Observaciones { get; set; }
         public int? Supervisor { get; set; }
         public int? Consecutivo_CDI { get; set; }
+        public int? Tipo_de_Asignacion_de_MP { get; set; }
 
 		        [ForeignKey("Clave_de_Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Clave_de_Municipio_Municipio { get; set; }
@@ -66,6 +71,8 @@ namespace Spartane.Core.Domain.Unidad
         public virtual Spartane.Core.Domain.Vigencia.Vigencia Vigencia_Vigencia { get; set; }
         [ForeignKey("Supervisor")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Supervisor_Spartan_User { get; set; }
+        [ForeignKey("Tipo_de_Asignacion_de_MP")]
+        public virtual Spartane.Core.Domain.Tipo_de_Asignacion_de_MP.Tipo_de_Asignacion_de_MP Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP { get; set; }
 
     }
 

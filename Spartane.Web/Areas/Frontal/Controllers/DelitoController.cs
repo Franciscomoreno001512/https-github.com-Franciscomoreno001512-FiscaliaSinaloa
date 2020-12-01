@@ -4,6 +4,14 @@ using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Delito;
 using Spartane.Core.Domain.Titulo_del_Delito;
 using Spartane.Core.Domain.Grupo_del_Delito;
+using Spartane.Core.Domain.Configuracion_de_Planeacion;
+
+using Spartane.Core.Domain.Categoria_de_Servicio_de_Apoyo;
+using Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo;
+
+
+
+
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -16,6 +24,11 @@ using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Delito;
 using Spartane.Web.Areas.WebApiConsumer.Titulo_del_Delito;
 using Spartane.Web.Areas.WebApiConsumer.Grupo_del_Delito;
+using Spartane.Web.Areas.WebApiConsumer.Configuracion_de_Planeacion;
+
+using Spartane.Web.Areas.WebApiConsumer.Categoria_de_Servicio_de_Apoyo;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Servicio_de_Apoyo;
+
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -54,6 +67,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDelitoApiConsumer _IDelitoApiConsumer;
         private ITitulo_del_DelitoApiConsumer _ITitulo_del_DelitoApiConsumer;
         private IGrupo_del_DelitoApiConsumer _IGrupo_del_DelitoApiConsumer;
+        private IConfiguracion_de_PlaneacionApiConsumer _IConfiguracion_de_PlaneacionApiConsumer;
+
+        private ICategoria_de_Servicio_de_ApoyoApiConsumer _ICategoria_de_Servicio_de_ApoyoApiConsumer;
+        private ITipo_de_Servicio_de_ApoyoApiConsumer _ITipo_de_Servicio_de_ApoyoApiConsumer;
+
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -71,7 +89,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public DelitoController(IDelitoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDelitoApiConsumer DelitoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ITitulo_del_DelitoApiConsumer Titulo_del_DelitoApiConsumer , IGrupo_del_DelitoApiConsumer Grupo_del_DelitoApiConsumer )
+        public DelitoController(IDelitoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDelitoApiConsumer DelitoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ITitulo_del_DelitoApiConsumer Titulo_del_DelitoApiConsumer , IGrupo_del_DelitoApiConsumer Grupo_del_DelitoApiConsumer , IConfiguracion_de_PlaneacionApiConsumer Configuracion_de_PlaneacionApiConsumer , ICategoria_de_Servicio_de_ApoyoApiConsumer Categoria_de_Servicio_de_ApoyoApiConsumer , ITipo_de_Servicio_de_ApoyoApiConsumer Tipo_de_Servicio_de_ApoyoApiConsumer  )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -87,6 +105,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._ITitulo_del_DelitoApiConsumer = Titulo_del_DelitoApiConsumer;
             this._IGrupo_del_DelitoApiConsumer = Grupo_del_DelitoApiConsumer;
+            this._IConfiguracion_de_PlaneacionApiConsumer = Configuracion_de_PlaneacionApiConsumer;
+
+            this._ICategoria_de_Servicio_de_ApoyoApiConsumer = Categoria_de_Servicio_de_ApoyoApiConsumer;
+            this._ITipo_de_Servicio_de_ApoyoApiConsumer = Tipo_de_Servicio_de_ApoyoApiConsumer;
+
 
         }
 
@@ -144,6 +167,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			
 			ViewBag.IsNew = true;
 
+            var permissionConfiguracion_de_Planeacion = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45477, ModuleId);
+            ViewBag.PermissionConfiguracion_de_Planeacion = permissionConfiguracion_de_Planeacion;
 
 
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short))&& Id.ToString() != "0"))
@@ -172,6 +197,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Alta_Incidencia = DelitoData.Alta_Incidencia.GetValueOrDefault()
                     ,Tentativa = DelitoData.Tentativa.GetValueOrDefault()
                     ,Activo = DelitoData.Activo.GetValueOrDefault()
+                    ,Robo_de_Vehiculo = DelitoData.Robo_de_Vehiculo.GetValueOrDefault()
 
 					};
 				}
@@ -246,6 +272,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return null;
            _IDelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
 			DelitoModel varDelito= new DelitoModel();
+            var permissionConfiguracion_de_Planeacion = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45477, ModuleId);
+            ViewBag.PermissionConfiguracion_de_Planeacion = permissionConfiguracion_de_Planeacion;
 
 
             if (id.ToString() != "0")
@@ -268,6 +296,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Alta_Incidencia = DelitoData.Alta_Incidencia.GetValueOrDefault()
                     ,Tentativa = DelitoData.Tentativa.GetValueOrDefault()
                     ,Activo = DelitoData.Activo.GetValueOrDefault()
+                    ,Robo_de_Vehiculo = DelitoData.Robo_de_Vehiculo.GetValueOrDefault()
 
 					};
 				}
@@ -470,6 +499,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Alta_Incidencia = m.Alta_Incidencia
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
+			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -592,6 +622,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Alta_Incidencia = m.Alta_Incidencia
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
+			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -600,6 +631,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+
+//Grid GetAutoComplete
 
 
 
@@ -711,6 +744,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (filter.Activo != RadioOptions.NoApply)
                 where += " AND Delito.Activo = " + Convert.ToInt32(filter.Activo);
 
+            if (filter.Robo_de_Vehiculo != RadioOptions.NoApply)
+                where += " AND Delito.Robo_de_Vehiculo = " + Convert.ToInt32(filter.Robo_de_Vehiculo);
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -722,6 +758,91 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return file == null ? new Grid_File { FileId = 0, FileSize = 0, FileName = "" } : new Grid_File { FileId = file.File_Id, FileName = file.Description, FileSize = file.File_Size ?? 0, };
         }
 
+        public ActionResult GetConfiguracion_de_Planeacion(int draw, int start, int length, string RelationId = "0")
+        {
+            if (RelationId == "0")
+            {
+                return Json(new { recordsTotal = 0, recordsFiltered = 0, data = new List<Configuracion_de_PlaneacionGridModel>() }, JsonRequestBehavior.AllowGet);
+            }
+
+            if (!_tokenManager.GenerateToken())
+                return null;
+            _IConfiguracion_de_PlaneacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+            NameValueCollection filter = Request.QueryString;
+
+            var pageSize = length;
+            var pageIndex = start + 1;
+            string where = "Configuracion_de_Planeacion.Delito=" + RelationId;
+            if("int" == "string")
+            {
+	           where = "Configuracion_de_Planeacion.Delito='" + RelationId + "'";
+            }
+            var result = _IConfiguracion_de_PlaneacionApiConsumer.ListaSelAll(start, pageSize, where,"").Resource;
+            if (result.Configuracion_de_Planeacions == null)
+                result.Configuracion_de_Planeacions = new List<Configuracion_de_Planeacion>();
+
+            _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+            var jsonResult = Json(new
+            {
+                data = result.Configuracion_de_Planeacions.Select(m => new Configuracion_de_PlaneacionGridModel
+                {
+                    Folio = m.Folio
+
+                        ,Categoria = m.Categoria
+                        ,CategoriaDescripcion = CultureHelper.GetTraduction(m.Categoria_Categoria_de_Servicio_de_Apoyo.Clave.ToString(), "Descripcion") ??(string)m.Categoria_Categoria_de_Servicio_de_Apoyo.Descripcion
+                        ,Servicio = m.Servicio
+                        ,ServicioServicio = CultureHelper.GetTraduction(m.Servicio_Tipo_de_Servicio_de_Apoyo.Clave.ToString(), "Servicio") ??(string)m.Servicio_Tipo_de_Servicio_de_Apoyo.Servicio
+			,Entregable = m.Entregable
+			,Tiempo_Estandar = m.Tiempo_Estandar
+			,Ponderacion = m.Ponderacion
+
+                }).ToList(),
+                recordsTotal = result.RowCount,
+                recordsFiltered = result.RowCount,
+            }, JsonRequestBehavior.AllowGet);
+
+            jsonResult.MaxJsonLength = int.MaxValue;
+
+            return jsonResult;
+        }
+        public List<Configuracion_de_PlaneacionGridModel> GetConfiguracion_de_PlaneacionData(string Id, int start, int length, out int RowCount)
+        {
+            RowCount = 0;
+            var pageSize = length;
+            var pageIndex = start + 1;
+            List<Configuracion_de_PlaneacionGridModel> resultData = new List<Configuracion_de_PlaneacionGridModel>();
+            string where = "Configuracion_de_Planeacion.Delito=" + Id;
+            if("int" == "string")
+            {
+                where = "Configuracion_de_Planeacion.Delito='" + Id + "'";
+            }
+            if (!_tokenManager.GenerateToken())
+                return null;
+            _IConfiguracion_de_PlaneacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var result = _IConfiguracion_de_PlaneacionApiConsumer.ListaSelAll(start, pageSize, where, "").Resource;
+            _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+            if (result.Configuracion_de_Planeacions != null)
+            {
+                resultData = result.Configuracion_de_Planeacions.Select(m => new Configuracion_de_PlaneacionGridModel
+                    {
+                        Folio = m.Folio
+
+                        ,Categoria = m.Categoria
+                        ,CategoriaDescripcion = CultureHelper.GetTraduction(m.Categoria_Categoria_de_Servicio_de_Apoyo.Clave.ToString(), "Descripcion") ??(string)m.Categoria_Categoria_de_Servicio_de_Apoyo.Descripcion
+                        ,Servicio = m.Servicio
+                        ,ServicioServicio = CultureHelper.GetTraduction(m.Servicio_Tipo_de_Servicio_de_Apoyo.Clave.ToString(), "Servicio") ??(string)m.Servicio_Tipo_de_Servicio_de_Apoyo.Servicio
+			,Entregable = m.Entregable
+			,Tiempo_Estandar = m.Tiempo_Estandar
+			,Ponderacion = m.Ponderacion
+
+
+                    }).ToList();
+                RowCount = result.RowCount;
+            }
+            return resultData;
+        }
 
 
         [HttpDelete]
@@ -737,6 +858,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (id.ToString() != "0")
                 {
                         string where = "";
+                    _IConfiguracion_de_PlaneacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                    where = "Configuracion_de_Planeacion.Delito=" + id;
+                    if("int" == "string")
+                    {
+	                where = "Configuracion_de_Planeacion.Delito='" + id + "'";
+                    }
+                    var Configuracion_de_PlaneacionInfo =
+                        _IConfiguracion_de_PlaneacionApiConsumer.ListaSelAll(1, int.MaxValue, where,"").Resource;
+
+                    if (Configuracion_de_PlaneacionInfo.Configuracion_de_Planeacions.Count > 0)
+                    {
+                        var resultConfiguracion_de_Planeacion = true;
+                        //Removing associated job history with attachment
+                        foreach (var Configuracion_de_PlaneacionItem in Configuracion_de_PlaneacionInfo.Configuracion_de_Planeacions)
+                            resultConfiguracion_de_Planeacion = resultConfiguracion_de_Planeacion
+                                              && _IConfiguracion_de_PlaneacionApiConsumer.Delete(Configuracion_de_PlaneacionItem.Folio, null,null).Resource;
+
+                        if (!resultConfiguracion_de_Planeacion)
+                            return Json(false, JsonRequestBehavior.AllowGet);
+                    }
 
                 }
                 var result = _IDelitoApiConsumer.Delete(id, null, null).Resource;
@@ -774,6 +915,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Alta_Incidencia = varDelito.Alta_Incidencia
                         ,Tentativa = varDelito.Tentativa
                         ,Activo = varDelito.Activo
+                        ,Robo_de_Vehiculo = varDelito.Robo_de_Vehiculo
 
                     };
 
@@ -790,6 +932,169 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [NonAction]
+        public bool CopyConfiguracion_de_Planeacion(int MasterId, int referenceId, List<Configuracion_de_PlaneacionGridModelPost> Configuracion_de_PlaneacionItems)
+        {
+            try
+            {
+                if (referenceId <= 0)
+                    return true;
+
+                if (!_tokenManager.GenerateToken())
+                    return false;
+
+                _IConfiguracion_de_PlaneacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+                var Configuracion_de_PlaneacionData = _IConfiguracion_de_PlaneacionApiConsumer.ListaSelAll(1, int.MaxValue, "Configuracion_de_Planeacion.Delito=" + referenceId,"").Resource;
+                if (Configuracion_de_PlaneacionData == null || Configuracion_de_PlaneacionData.Configuracion_de_Planeacions.Count == 0)
+                    return true;
+
+                var result = true;
+
+                Configuracion_de_PlaneacionGridModelPost modelDataToChange = null;
+                //var insertId = 0;
+                foreach (var varConfiguracion_de_Planeacion in Configuracion_de_PlaneacionData.Configuracion_de_Planeacions)
+                {
+                    if (!result)
+                        return result;
+
+                    //Initialization
+                    //insertId = 0;
+                    modelDataToChange = null;
+                    Configuracion_de_Planeacion Configuracion_de_Planeacion1 = varConfiguracion_de_Planeacion;
+
+                    if (Configuracion_de_PlaneacionItems != null && Configuracion_de_PlaneacionItems.Any(m => m.Folio == Configuracion_de_Planeacion1.Folio))
+                    {
+                        modelDataToChange = Configuracion_de_PlaneacionItems.FirstOrDefault(m => m.Folio == Configuracion_de_Planeacion1.Folio);
+                    }
+                    //Chaning Id Value
+                    varConfiguracion_de_Planeacion.Delito = MasterId;
+                    var insertId = _IConfiguracion_de_PlaneacionApiConsumer.Insert(varConfiguracion_de_Planeacion,null,null).Resource;
+                    if (insertId > 0 && modelDataToChange != null)
+                        modelDataToChange.Folio = insertId;
+
+                    result = insertId > 0;
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult PostConfiguracion_de_Planeacion(List<Configuracion_de_PlaneacionGridModelPost> Configuracion_de_PlaneacionItems, int MasterId, string referenceId)
+        {
+            try
+            {
+                bool result = true;
+
+                //if (referenceId > 0 && MasterId != referenceId)
+                //    if (!CopyConfiguracion_de_Planeacion(MasterId, referenceId, Configuracion_de_PlaneacionItems))
+                //        return Json(false, JsonRequestBehavior.AllowGet);
+
+                if (Configuracion_de_PlaneacionItems != null && Configuracion_de_PlaneacionItems.Count > 0)
+                {
+                    //Generating token
+                    if (!_tokenManager.GenerateToken())
+                        return Json(null, JsonRequestBehavior.AllowGet);
+
+                    _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                    _IConfiguracion_de_PlaneacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+                    foreach (var Configuracion_de_PlaneacionItem in Configuracion_de_PlaneacionItems)
+                    {
+
+
+
+
+
+
+
+                        //Removal Request
+                        if (Configuracion_de_PlaneacionItem.Removed)
+                        {
+                            result = result && _IConfiguracion_de_PlaneacionApiConsumer.Delete(Configuracion_de_PlaneacionItem.Folio, null,null).Resource;
+                            continue;
+                        }
+						if (referenceId.ToString() != MasterId.ToString())
+							Configuracion_de_PlaneacionItem.Folio = 0;
+
+                        var Configuracion_de_PlaneacionData = new Configuracion_de_Planeacion
+                        {
+                            Delito = MasterId
+                            ,Folio = Configuracion_de_PlaneacionItem.Folio
+                            ,Categoria = (Convert.ToInt16(Configuracion_de_PlaneacionItem.Categoria) == 0 ? (Int16?)null : Convert.ToInt16(Configuracion_de_PlaneacionItem.Categoria))
+                            ,Servicio = (Convert.ToInt32(Configuracion_de_PlaneacionItem.Servicio) == 0 ? (Int32?)null : Convert.ToInt32(Configuracion_de_PlaneacionItem.Servicio))
+                            ,Entregable = Configuracion_de_PlaneacionItem.Entregable
+                            ,Tiempo_Estandar = Configuracion_de_PlaneacionItem.Tiempo_Estandar
+                            ,Ponderacion = Configuracion_de_PlaneacionItem.Ponderacion
+
+                        };
+
+                        var resultId = Configuracion_de_PlaneacionItem.Folio > 0
+                           ? _IConfiguracion_de_PlaneacionApiConsumer.Update(Configuracion_de_PlaneacionData,null,null).Resource
+                           : _IConfiguracion_de_PlaneacionApiConsumer.Insert(Configuracion_de_PlaneacionData,null,null).Resource;
+
+                        result = result && resultId != -1;
+                    }
+                }
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpGet]
+        public ActionResult GetConfiguracion_de_Planeacion_Categoria_de_Servicio_de_ApoyoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ICategoria_de_Servicio_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ICategoria_de_Servicio_de_ApoyoApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Categoria_de_Servicio_de_Apoyo", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetConfiguracion_de_Planeacion_Tipo_de_Servicio_de_ApoyoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_Servicio_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_Servicio_de_ApoyoApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Tipo_de_Servicio_de_Apoyo", "Servicio");
+                  item.Servicio= trans??item.Servicio;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
 
 
 
@@ -995,6 +1300,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return result;
         }
 
+        [HttpGet]
+        public ActionResult AddConfiguracion_de_Planeacion(int rowIndex = 0, int functionMode = 0)
+        {
+            ViewBag.currentRowIndex = rowIndex;
+            ViewBag.functionMode = functionMode;
+            return PartialView("../Configuracion_de_Planeacion/AddConfiguracion_de_Planeacion");
+        }
+
 
 
         #endregion "Controller Methods"
@@ -1169,6 +1482,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Alta_Incidencia = m.Alta_Incidencia
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
+			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
 
             }).ToList();
 
@@ -1250,6 +1564,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Alta_Incidencia = m.Alta_Incidencia
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
+			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
 
             }).ToList();
 
@@ -1297,6 +1612,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Alta_Incidencia = varDelito.Alta_Incidencia
                         ,Tentativa = varDelito.Tentativa
                         ,Activo = varDelito.Activo
+                        ,Robo_de_Vehiculo = varDelito.Robo_de_Vehiculo
                     
                 };
 
@@ -1321,7 +1637,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var m = _IDelitoApiConsumer.Get_Datos_Generales(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				
+				                int RowCount_Configuracion_de_Planeacion;
+                var Configuracion_de_PlaneacionData = GetConfiguracion_de_PlaneacionData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Configuracion_de_Planeacion);
+
                 var result = new Delito_Datos_GeneralesModel
                 {
                     Clave = m.Clave
@@ -1335,12 +1653,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Alta_Incidencia = m.Alta_Incidencia
 			,Tentativa = m.Tentativa
 			,Activo = m.Activo
+			,Robo_de_Vehiculo = m.Robo_de_Vehiculo
 
                     
                 };
 				var resultData = new
                 {
                     data = result
+                    ,Configuracion_de_Planeacion = Configuracion_de_PlaneacionData
 
                 };
                 return Json(resultData, JsonRequestBehavior.AllowGet);

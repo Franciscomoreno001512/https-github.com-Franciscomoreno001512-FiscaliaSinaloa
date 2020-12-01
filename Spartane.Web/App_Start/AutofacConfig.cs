@@ -1391,6 +1391,60 @@ using Spartane.Web.Areas.WebApiConsumer.expediente_ministerio_publico;
 using Spartane.Services.tipo_de_cierre;
 using Spartane.Core.Domain.tipo_de_cierre;
 using Spartane.Web.Areas.WebApiConsumer.tipo_de_cierre;
+using Spartane.Services.Asignacion_de_Agente;
+using Spartane.Core.Domain.Asignacion_de_Agente;
+using Spartane.Web.Areas.WebApiConsumer.Asignacion_de_Agente;
+using Spartane.Services.Categoria_de_Servicio_de_Apoyo;
+using Spartane.Core.Domain.Categoria_de_Servicio_de_Apoyo;
+using Spartane.Web.Areas.WebApiConsumer.Categoria_de_Servicio_de_Apoyo;
+using Spartane.Services.Diligencias_MP;
+using Spartane.Core.Domain.Diligencias_MP;
+using Spartane.Web.Areas.WebApiConsumer.Diligencias_MP;
+using Spartane.Services.Documentos_MP;
+using Spartane.Core.Domain.Documentos_MP;
+using Spartane.Web.Areas.WebApiConsumer.Documentos_MP;
+using Spartane.Services.Indicios_MP;
+using Spartane.Core.Domain.Indicios_MP;
+using Spartane.Web.Areas.WebApiConsumer.Indicios_MP;
+using Spartane.Services.IPH;
+using Spartane.Core.Domain.IPH;
+using Spartane.Web.Areas.WebApiConsumer.IPH;
+using Spartane.Services.Servicios_de_Apoyo_MP;
+using Spartane.Core.Domain.Servicios_de_Apoyo_MP;
+using Spartane.Web.Areas.WebApiConsumer.Servicios_de_Apoyo_MP;
+using Spartane.Services.Configuracion_de_Planeacion;
+using Spartane.Core.Domain.Configuracion_de_Planeacion;
+using Spartane.Web.Areas.WebApiConsumer.Configuracion_de_Planeacion;
+using Spartane.Services.Detalle_Plan_Actos_de_Investigacion;
+using Spartane.Core.Domain.Detalle_Plan_Actos_de_Investigacion;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Plan_Actos_de_Investigacion;
+using Spartane.Services.Plan_de_Investigacion;
+using Spartane.Core.Domain.Plan_de_Investigacion;
+using Spartane.Web.Areas.WebApiConsumer.Plan_de_Investigacion;
+using Spartane.Services.Tipo_de_Audiencia;
+using Spartane.Core.Domain.Tipo_de_Audiencia;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Audiencia;
+using Spartane.Services.Audiencia;
+using Spartane.Core.Domain.Audiencia;
+using Spartane.Web.Areas.WebApiConsumer.Audiencia;
+using Spartane.Services.Resultado_de_Audiencia;
+using Spartane.Core.Domain.Resultado_de_Audiencia;
+using Spartane.Web.Areas.WebApiConsumer.Resultado_de_Audiencia;
+using Spartane.Services.Audiencias_MP;
+using Spartane.Core.Domain.Audiencias_MP;
+using Spartane.Web.Areas.WebApiConsumer.Audiencias_MP;
+using Spartane.Services.Detalle_Audiencia_Defensor_Imputado;
+using Spartane.Core.Domain.Detalle_Audiencia_Defensor_Imputado;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Audiencia_Defensor_Imputado;
+using Spartane.Services.Detalle_Audiencia_Defensor_Victima;
+using Spartane.Core.Domain.Detalle_Audiencia_Defensor_Victima;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Audiencia_Defensor_Victima;
+using Spartane.Services.Detalle_Audiencia_Archivos_Adjuntos;
+using Spartane.Core.Domain.Detalle_Audiencia_Archivos_Adjuntos;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Audiencia_Archivos_Adjuntos;
+using Spartane.Services.Tipo_de_Asignacion_de_MP;
+using Spartane.Core.Domain.Tipo_de_Asignacion_de_MP;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Asignacion_de_MP;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -2441,6 +2495,42 @@ builder.RegisterType<expediente_ministerio_publicoService>().As<Iexpediente_mini
 builder.RegisterType<expediente_ministerio_publicoApiConsumer>().As<Iexpediente_ministerio_publicoApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<tipo_de_cierreService>().As<Itipo_de_cierreService>().InstancePerLifetimeScope();
 builder.RegisterType<tipo_de_cierreApiConsumer>().As<Itipo_de_cierreApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Asignacion_de_AgenteService>().As<IAsignacion_de_AgenteService>().InstancePerLifetimeScope();
+builder.RegisterType<Asignacion_de_AgenteApiConsumer>().As<IAsignacion_de_AgenteApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Categoria_de_Servicio_de_ApoyoService>().As<ICategoria_de_Servicio_de_ApoyoService>().InstancePerLifetimeScope();
+builder.RegisterType<Categoria_de_Servicio_de_ApoyoApiConsumer>().As<ICategoria_de_Servicio_de_ApoyoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Diligencias_MPService>().As<IDiligencias_MPService>().InstancePerLifetimeScope();
+builder.RegisterType<Diligencias_MPApiConsumer>().As<IDiligencias_MPApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Documentos_MPService>().As<IDocumentos_MPService>().InstancePerLifetimeScope();
+builder.RegisterType<Documentos_MPApiConsumer>().As<IDocumentos_MPApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Indicios_MPService>().As<IIndicios_MPService>().InstancePerLifetimeScope();
+builder.RegisterType<Indicios_MPApiConsumer>().As<IIndicios_MPApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<IPHService>().As<IIPHService>().InstancePerLifetimeScope();
+builder.RegisterType<IPHApiConsumer>().As<IIPHApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Servicios_de_Apoyo_MPService>().As<IServicios_de_Apoyo_MPService>().InstancePerLifetimeScope();
+builder.RegisterType<Servicios_de_Apoyo_MPApiConsumer>().As<IServicios_de_Apoyo_MPApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Configuracion_de_PlaneacionService>().As<IConfiguracion_de_PlaneacionService>().InstancePerLifetimeScope();
+builder.RegisterType<Configuracion_de_PlaneacionApiConsumer>().As<IConfiguracion_de_PlaneacionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Plan_Actos_de_InvestigacionService>().As<IDetalle_Plan_Actos_de_InvestigacionService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Plan_Actos_de_InvestigacionApiConsumer>().As<IDetalle_Plan_Actos_de_InvestigacionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Plan_de_InvestigacionService>().As<IPlan_de_InvestigacionService>().InstancePerLifetimeScope();
+builder.RegisterType<Plan_de_InvestigacionApiConsumer>().As<IPlan_de_InvestigacionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_AudienciaService>().As<ITipo_de_AudienciaService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_AudienciaApiConsumer>().As<ITipo_de_AudienciaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<AudienciaService>().As<IAudienciaService>().InstancePerLifetimeScope();
+builder.RegisterType<AudienciaApiConsumer>().As<IAudienciaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Resultado_de_AudienciaService>().As<IResultado_de_AudienciaService>().InstancePerLifetimeScope();
+builder.RegisterType<Resultado_de_AudienciaApiConsumer>().As<IResultado_de_AudienciaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Audiencias_MPService>().As<IAudiencias_MPService>().InstancePerLifetimeScope();
+builder.RegisterType<Audiencias_MPApiConsumer>().As<IAudiencias_MPApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Audiencia_Defensor_ImputadoService>().As<IDetalle_Audiencia_Defensor_ImputadoService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Audiencia_Defensor_ImputadoApiConsumer>().As<IDetalle_Audiencia_Defensor_ImputadoApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Audiencia_Defensor_VictimaService>().As<IDetalle_Audiencia_Defensor_VictimaService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Audiencia_Defensor_VictimaApiConsumer>().As<IDetalle_Audiencia_Defensor_VictimaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Audiencia_Archivos_AdjuntosService>().As<IDetalle_Audiencia_Archivos_AdjuntosService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Audiencia_Archivos_AdjuntosApiConsumer>().As<IDetalle_Audiencia_Archivos_AdjuntosApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_Asignacion_de_MPService>().As<ITipo_de_Asignacion_de_MPService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_Asignacion_de_MPApiConsumer>().As<ITipo_de_Asignacion_de_MPApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -2621,6 +2711,112 @@ builder.RegisterType<tipo_de_cierreApiConsumer>().As<Itipo_de_cierreApiConsumer>
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

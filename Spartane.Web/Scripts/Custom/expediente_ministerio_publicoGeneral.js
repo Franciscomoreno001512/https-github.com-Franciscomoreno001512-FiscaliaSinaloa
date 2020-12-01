@@ -1,8 +1,320 @@
 ﻿
 
+//Begin Declarations for Foreigns fields for detalle_de_observaciones_mpi MultiRow
+var detalle_de_observaciones_mpicountRowsChecked = 0;
+
+
+
+
+function Getdetalle_de_observaciones_mpi_Spartan_UserName(Id) {
+    for (var i = 0; i < detalle_de_observaciones_mpi_Spartan_UserItems.length; i++) {
+        if (detalle_de_observaciones_mpi_Spartan_UserItems[i].Id_User == Id) {
+            return detalle_de_observaciones_mpi_Spartan_UserItems[i].Name;
+        }
+    }
+    return "";
+}
+
+function Getdetalle_de_observaciones_mpi_Spartan_UserDropDown() {
+    var detalle_de_observaciones_mpi_Spartan_UserDropdown = $('<select class="form-control" />');      var labelSelect = $("#detalle_de_observaciones_mpi_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(detalle_de_observaciones_mpi_Spartan_UserDropdown);
+    if(detalle_de_observaciones_mpi_Spartan_UserItems != null)
+    {
+       for (var i = 0; i < detalle_de_observaciones_mpi_Spartan_UserItems.length; i++) {
+           $('<option />', { value: detalle_de_observaciones_mpi_Spartan_UserItems[i].Id_User, text:    detalle_de_observaciones_mpi_Spartan_UserItems[i].Name }).appendTo(detalle_de_observaciones_mpi_Spartan_UserDropdown);
+       }
+    }
+    return detalle_de_observaciones_mpi_Spartan_UserDropdown;
+}
+
+
+function GetInsertdetalle_de_observaciones_mpiRowControls(index) {
+    var columnData = [];
+    var inputData = "<input type='text' class='fullWidth form-control'/>";
+
+    columnData[0] = $($.parseHTML(inputData)).addClass('detalle_de_observaciones_mpi_observaciones observaciones').attr('id', 'detalle_de_observaciones_mpi_observaciones_' + index).attr('data-field', 'observaciones');
+    columnData[1] = $($.parseHTML(GetGridDatePicker())).addClass('detalle_de_observaciones_mpi_fecha fecha').attr('id', 'detalle_de_observaciones_mpi_fecha_' + index).attr('data-field', 'fecha');
+    columnData[2] = $($.parseHTML(GetGridTimePicker())).addClass('detalle_de_observaciones_mpi_hora hora').attr('id', 'detalle_de_observaciones_mpi_hora_' + index).attr('data-field', 'hora');
+    columnData[3] = $(Getdetalle_de_observaciones_mpi_Spartan_UserDropDown()).addClass('detalle_de_observaciones_mpi_usuario_que_realiza_observacion usuario_que_realiza_observacion').attr('id', 'detalle_de_observaciones_mpi_usuario_que_realiza_observacion_' + index).attr('data-field', 'usuario_que_realiza_observacion').after($.parseHTML(addNew('detalle_de_observaciones_mpi', 'Spartan_User', 'usuario_que_realiza_observacion', 267117)));
+
+
+    initiateUIControls();
+    return columnData;
+}
+
+function detalle_de_observaciones_mpiInsertRow(rowIndex) {
+if (EjecutarValidacionesAntesDeGuardarMRdetalle_de_observaciones_mpi("detalle_de_observaciones_mpi_", "_" + rowIndex)) {
+    var iPage = detalle_de_observaciones_mpiTable.fnPagingInfo().iPage;
+    var nameOfGrid = 'detalle_de_observaciones_mpi';
+    var prevData = detalle_de_observaciones_mpiTable.fnGetData(rowIndex);
+    var data = detalle_de_observaciones_mpiTable.fnGetNodes(rowIndex);
+    var counter = 1;
+    var newData = {
+        clave: prevData.clave,
+        IsInsertRow: false
+
+        ,observaciones:  data.childNodes[counter++].childNodes[0].value
+        ,fecha:  data.childNodes[counter++].childNodes[0].value
+        ,hora:  data.childNodes[counter++].childNodes[0].value
+        ,usuario_que_realiza_observacion:  data.childNodes[counter++].childNodes[0].value
+
+    }
+    detalle_de_observaciones_mpiTable.fnUpdate(newData, rowIndex, null, true);
+    detalle_de_observaciones_mpirowCreationGrid(data, newData, rowIndex);
+    detalle_de_observaciones_mpiTable.fnPageChange(iPage);
+    detalle_de_observaciones_mpicountRowsChecked--;	
+    EjecutarValidacionesDespuesDeGuardarMRdetalle_de_observaciones_mpi("detalle_de_observaciones_mpi_", "_" + rowIndex);
+  }
+}
+
+function detalle_de_observaciones_mpiCancelRow(rowIndex) {
+    var prevData = detalle_de_observaciones_mpiTable.fnGetData(rowIndex);
+    var data = detalle_de_observaciones_mpiTable.fnGetNodes(rowIndex);
+
+    if (prevData.IsInsertRow) {
+        detalle_de_observaciones_mpiTable.fnDeleteRow(rowIndex, function (dtSettings, row) {
+            console.log('Row deleted');
+        }, true);
+    } else {
+        detalle_de_observaciones_mpirowCreationGrid(data, prevData, rowIndex);
+    }
+	showdetalle_de_observaciones_mpiGrid(detalle_de_observaciones_mpiTable.fnGetData());
+    detalle_de_observaciones_mpicountRowsChecked--;
+	initiateUIControls();
+}
+
+function Getdetalle_de_observaciones_mpiFromDataTable() {
+    var detalle_de_observaciones_mpiData = [];
+    var gridData = detalle_de_observaciones_mpiTable.fnGetData();
+    //debugger;
+    for (var i = 0; i < gridData.length; i++) {
+        if (gridData[i].IsInsertRow == null || !gridData[i].IsInsertRow)
+            detalle_de_observaciones_mpiData.push({
+                clave: gridData[i].clave
+
+                ,observaciones: gridData[i].observaciones
+                ,fecha: gridData[i].fecha
+                ,hora: gridData[i].hora
+                ,usuario_que_realiza_observacion: gridData[i].usuario_que_realiza_observacion
+
+                ,Removed: false
+            });
+    }
+
+    for (i = 0; i < removeddetalle_de_observaciones_mpiData.length; i++) {
+        if (removeddetalle_de_observaciones_mpiData[i] != null && removeddetalle_de_observaciones_mpiData[i].clave > 0)
+            detalle_de_observaciones_mpiData.push({
+                clave: removeddetalle_de_observaciones_mpiData[i].clave
+
+                ,observaciones: removeddetalle_de_observaciones_mpiData[i].observaciones
+                ,fecha: removeddetalle_de_observaciones_mpiData[i].fecha
+                ,hora: removeddetalle_de_observaciones_mpiData[i].hora
+                ,usuario_que_realiza_observacion: removeddetalle_de_observaciones_mpiData[i].usuario_que_realiza_observacion
+
+                , Removed: true
+            });
+    }	
+
+    return detalle_de_observaciones_mpiData;
+}
+
+function detalle_de_observaciones_mpiEditRow(rowIndex, currentRow, executeRules) {
+    var rowIndexTable = (currentRow) ? detalle_de_observaciones_mpiTable.fnGetPosition($(currentRow).parent().parent()[0]) : rowIndex;
+    detalle_de_observaciones_mpicountRowsChecked++;
+    var detalle_de_observaciones_mpiRowElement = "detalle_de_observaciones_mpi_" + rowIndex.toString();
+    var prevData = detalle_de_observaciones_mpiTable.fnGetData(rowIndexTable );
+    var row = detalle_de_observaciones_mpiTable.fnGetNodes(rowIndexTable);
+    row.innerHTML = "";
+    var nameOfTable = "detalle_de_observaciones_mpi_";
+    var rowIndexFormed = "_" + rowIndex;
+    var controls = detalle_de_observaciones_mpiGetUpdateRowControls(prevData, "detalle_de_observaciones_mpi_", "_" + rowIndex);
+
+    var abc = "if(dynamicFieldValidation('" + detalle_de_observaciones_mpiRowElement + "')){ detalle_de_observaciones_mpiInsertRow(" + rowIndex + "); }";
+    var updateRowClick = '<a  onclick="' + abc + '">';
+
+    var actionColInsert = $('<td>');
+    $('<i class="fa fa-check">').appendTo($(updateRowClick).appendTo(actionColInsert));
+    $('<i class="fa fa-times">').appendTo($("<a data-toggle='tooltip' title='Cancelar Registro' onclick='detalle_de_observaciones_mpiCancelRow(" + rowIndex + ")'>").appendTo(actionColInsert));
+    actionColInsert.appendTo(row);
+
+    for (i = 0; i < controls.length; i++) {
+        var idHeader = $(controls[i]).data('field') + 'Header';
+        if ($(controls[i]).length > 1) {
+            idHeader = $($(controls[i])[1]).data('field') + 'Header';
+        }
+		var classe = ($('#detalle_de_observaciones_mpiGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + ($('#detalle_de_observaciones_mpiGrid .' + idHeader).css('display') == 'none' ? ' hide' : '' );
+		  if ($(controls[i]).next().length > 0) {
+		        var div = $(controls[i]).next();
+		        $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
+		    }
+		    else
+                $(controls[i]).appendTo($('<td class="' + classe +  '" id="td'+nameOfTable+idHeader.replace('Header', '')+rowIndexFormed+'">').appendTo(row));                   
+    }
+    
+    setdetalle_de_observaciones_mpiValidation();
+    initiateUIControls();
+    $('.detalle_de_observaciones_mpi' + rowIndexFormed + ' .inputMoney').inputmask("currency", { prefix: "", rightAlign: false });
+    $('.gridDatePicker').inputmask("99-99-9999", { "placeholder": "dd-mm-yyyy" });
+    if(executeRules == null || (executeRules != null && executeRules == true))
+    {
+         EjecutarValidacionesEditRowMRdetalle_de_observaciones_mpi(nameOfTable, rowIndexFormed);
+    }
+}
+
+function detalle_de_observaciones_mpifnOpenAddRowPopUp() {
+    var currentRowIndex = detalle_de_observaciones_mpiTable.fnGetData().length;
+    detalle_de_observaciones_mpifnClickAddRow();
+    GetAdddetalle_de_observaciones_mpiPopup(currentRowIndex, 0);
+}
+
+function detalle_de_observaciones_mpiEditRowPopup(rowIndex, currentRow) {
+    var rowIndexTable = detalle_de_observaciones_mpiTable.fnGetPosition($(currentRow).parent().parent()[0]);
+    var detalle_de_observaciones_mpiRowElement = "detalle_de_observaciones_mpi_" + rowIndex.toString();
+    var prevData = detalle_de_observaciones_mpiTable.fnGetData(rowIndexTable);
+    GetAdddetalle_de_observaciones_mpiPopup(rowIndex, 1, prevData.clave);
+
+    $('#detalle_de_observaciones_mpiobservaciones').val(prevData.observaciones);
+    $('#detalle_de_observaciones_mpifecha').val(prevData.fecha);
+    $('#detalle_de_observaciones_mpihora').val(prevData.hora);
+    $('#detalle_de_observaciones_mpiusuario_que_realiza_observacion').val(prevData.usuario_que_realiza_observacion);
+
+    initiateUIControls();
+
+
+
+
+
+
+}
+
+function detalle_de_observaciones_mpiAddInsertRow() {
+    if (detalle_de_observaciones_mpiinsertRowCurrentIndex < 1)
+    {
+        detalle_de_observaciones_mpiinsertRowCurrentIndex = 1;
+    }
+    return {
+        clave: null,
+        IsInsertRow: true
+
+        ,observaciones: ""
+        ,fecha: ""
+        ,hora: ""
+        ,usuario_que_realiza_observacion: ""
+
+    }
+}
+
+function detalle_de_observaciones_mpifnClickAddRow() {
+    detalle_de_observaciones_mpicountRowsChecked++;
+    detalle_de_observaciones_mpiTable.fnAddData(detalle_de_observaciones_mpiAddInsertRow(), true);
+    detalle_de_observaciones_mpiTable.fnPageChange('last');
+    initiateUIControls();
+	 //var tag = $('#detalle_de_observaciones_mpiGrid tbody tr td .form-control').first().get(0).tagName.toLowerCase();
+    //$('#detalle_de_observaciones_mpiGrid tbody tr:nth-of-type(' + (detalle_de_observaciones_mpiinsertRowCurrentIndex + 1) + ') ' + tag ).focus();
+    EjecutarValidacionesNewRowMRdetalle_de_observaciones_mpi("detalle_de_observaciones_mpi_", "_" + detalle_de_observaciones_mpiinsertRowCurrentIndex);
+}
+
+function detalle_de_observaciones_mpiClearGridData() {
+    detalle_de_observaciones_mpiData = [];
+    detalle_de_observaciones_mpideletedItem = [];
+    detalle_de_observaciones_mpiDataMain = [];
+    detalle_de_observaciones_mpiDataMainPages = [];
+    detalle_de_observaciones_mpinewItemCount = 0;
+    detalle_de_observaciones_mpimaxItemIndex = 0;
+    $("#detalle_de_observaciones_mpiGrid").DataTable().clear();
+    $("#detalle_de_observaciones_mpiGrid").DataTable().destroy();
+}
+
+//Used to Get Expediente Ministerio Público Information
+function Getdetalle_de_observaciones_mpi() {
+    var form_data = new FormData();
+    for (var i = 0; i < detalle_de_observaciones_mpiData.length; i++) {
+        form_data.append('[' + i + '].clave', detalle_de_observaciones_mpiData[i].clave);
+
+        form_data.append('[' + i + '].observaciones', detalle_de_observaciones_mpiData[i].observaciones);
+        form_data.append('[' + i + '].fecha', detalle_de_observaciones_mpiData[i].fecha);
+        form_data.append('[' + i + '].hora', detalle_de_observaciones_mpiData[i].hora);
+        form_data.append('[' + i + '].usuario_que_realiza_observacion', detalle_de_observaciones_mpiData[i].usuario_que_realiza_observacion);
+
+        form_data.append('[' + i + '].Removed', detalle_de_observaciones_mpiData[i].Removed);
+    }
+    return form_data;
+}
+function detalle_de_observaciones_mpiInsertRowFromPopup(rowIndex) {
+    //if (EjecutarValidacionesAntesDeGuardarMRdetalle_de_observaciones_mpi("detalle_de_observaciones_mpiTable", rowIndex)) {
+    var prevData = detalle_de_observaciones_mpiTable.fnGetData(rowIndex);
+    var data = detalle_de_observaciones_mpiTable.fnGetNodes(rowIndex);
+    var newData = {
+        clave: prevData.clave,
+        IsInsertRow: false
+
+        ,observaciones: $('#detalle_de_observaciones_mpiobservaciones').val()
+        ,fecha: $('#detalle_de_observaciones_mpifecha').val()
+        ,hora: $('#detalle_de_observaciones_mpihora').val()
+        ,usuario_que_realiza_observacion: $('#detalle_de_observaciones_mpiusuario_que_realiza_observacion').val()
+
+    }
+
+    detalle_de_observaciones_mpiTable.fnUpdate(newData, rowIndex, null, true);
+    detalle_de_observaciones_mpirowCreationGrid(data, newData, rowIndex);
+    $('#Adddetalle_de_observaciones_mpi-form').modal({ show: false });
+    $('#Adddetalle_de_observaciones_mpi-form').modal('hide');
+    detalle_de_observaciones_mpiEditRow(rowIndex);
+    detalle_de_observaciones_mpiInsertRow(rowIndex);
+    //}
+}
+function detalle_de_observaciones_mpiRemoveAddRow(rowIndex) {
+    detalle_de_observaciones_mpiTable.fnDeleteRow(rowIndex, function (dtSettings, row) {
+    }, true);
+}
+
+//End Declarations for Foreigns fields for detalle_de_observaciones_mpi MultiRow
 
 
 $(function () {
+    function detalle_de_observaciones_mpiinitializeMainArray(totalCount) {
+        if (detalle_de_observaciones_mpiDataMain.length != totalCount && !detalle_de_observaciones_mpiDataMainInitialized) {
+            detalle_de_observaciones_mpiDataMainInitialized = true;
+            for (var i = 0; i < totalCount; i++) {
+                detalle_de_observaciones_mpiDataMain[i] = null;
+            }
+        }
+    }
+    function detalle_de_observaciones_mpiremoveFromMainArray() {
+        for (var j = 0; j < detalle_de_observaciones_mpideletedItem.length; j++) {
+            for (var i = 0; i < detalle_de_observaciones_mpiDataMain.length; i++) {
+                if (detalle_de_observaciones_mpiDataMain[i] != null && detalle_de_observaciones_mpiDataMain[i].Id == detalle_de_observaciones_mpideletedItem[j]) {
+                    hdetalle_de_observaciones_mpiDataMain.splice(i, 1);
+                    break;
+                }
+            }
+        }
+    }
+    function detalle_de_observaciones_mpicopyMainHistoryArray() {
+        var data = [];
+        for (var i = 0; i < detalle_de_observaciones_mpiDataMain.length; i++) {
+            data[i] = detalle_de_observaciones_mpiDataMain[i];
+
+        }
+        return data;
+    }
+    function detalle_de_observaciones_mpigetNewResult() {
+        var newData = copyMaindetalle_de_observaciones_mpiArray();
+
+        for (var i = 0; i < detalle_de_observaciones_mpiData.length; i++) {
+            if (detalle_de_observaciones_mpiData[i].Removed == null || detalle_de_observaciones_mpiData[i].Removed == false) {
+                newData.splice(0, 0, detalle_de_observaciones_mpiData[i]);
+            }
+        }
+        return newData;
+    }
+    function detalle_de_observaciones_mpipushToMainArray(data, pageIndex, pageSize) {
+        for (var i = 0; i < data.length; i++) {
+            if (detalle_de_observaciones_mpiDataMain[(pageIndex * pageSize) - pageSize + i] == null)
+                detalle_de_observaciones_mpiDataMain[(pageIndex * pageSize) - pageSize + i] = data[i];
+        }
+    }
 
 });
 
@@ -27,6 +339,74 @@ function GetAutoCompleteexpediente_ministerio_publico_unidad_UnidadData(data) {
         });
     }
     return AutoCompleteunidadData;
+}
+var AutoCompleteMunicipioData = [];
+function GetAutoCompleteexpediente_ministerio_publico_Municipio_MunicipioData(data) {
+	AutoCompleteMunicipioData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteMunicipioData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteMunicipioData;
+}
+//Grid GetAutocomplete
+
+var AutoCompletePaisHData = [];
+function GetAutoCompleteexpediente_ministerio_publico_PaisH_PaisData(data) {
+	AutoCompletePaisHData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompletePaisHData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompletePaisHData;
+}
+var AutoCompleteEstadoData = [];
+function GetAutoCompleteexpediente_ministerio_publico_Estado_EstadoData(data) {
+	AutoCompleteEstadoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteEstadoData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteEstadoData;
+}
+var AutoCompleteMunicipio_HechosData = [];
+function GetAutoCompleteexpediente_ministerio_publico_Municipio_Hechos_MunicipioData(data) {
+	AutoCompleteMunicipio_HechosData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteMunicipio_HechosData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteMunicipio_HechosData;
+}
+var AutoCompletePoblacionData = [];
+function GetAutoCompleteexpediente_ministerio_publico_Poblacion_ColoniaData(data) {
+	AutoCompletePoblacionData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompletePoblacionData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompletePoblacionData;
+}
+var AutoCompleteColoniaHData = [];
+function GetAutoCompleteexpediente_ministerio_publico_ColoniaH_ColoniaData(data) {
+	AutoCompleteColoniaHData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteColoniaHData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteColoniaHData;
 }
 var AutoCompleteusuario_que_canalizaData = [];
 function GetAutoCompleteexpediente_ministerio_publico_usuario_que_canaliza_Spartan_UserData(data) {
@@ -82,6 +462,25 @@ function ClearControls() {
     $('#unidad').empty();
     $("#unidad").append('<option value=""></option>');
     $('#unidad').val('0').trigger('change');
+    $('#Municipio').empty();
+    $("#Municipio").append('<option value=""></option>');
+    $('#Municipio').val('0').trigger('change');
+                detalle_de_observaciones_mpiClearGridData();
+    $('#PaisH').empty();
+    $("#PaisH").append('<option value=""></option>');
+    $('#PaisH').val('0').trigger('change');
+    $('#Estado').empty();
+    $("#Estado").append('<option value=""></option>');
+    $('#Estado').val('0').trigger('change');
+    $('#Municipio_Hechos').empty();
+    $("#Municipio_Hechos").append('<option value=""></option>');
+    $('#Municipio_Hechos').val('0').trigger('change');
+    $('#Poblacion').empty();
+    $("#Poblacion").append('<option value=""></option>');
+    $('#Poblacion').val('0').trigger('change');
+    $('#ColoniaH').empty();
+    $("#ColoniaH").append('<option value=""></option>');
+    $('#ColoniaH').val('0').trigger('change');
     $('#usuario_que_canaliza').empty();
     $("#usuario_que_canaliza").append('<option value=""></option>');
     $('#usuario_que_canaliza').val('0').trigger('change');
@@ -119,6 +518,11 @@ function CheckValidation() {
     var $myForm = $('#Createexpediente_ministerio_publico');
     if (!$myForm[0].checkValidity()) {
         $myForm.submit();
+        return false;
+    }
+    if (detalle_de_observaciones_mpicountRowsChecked > 0)
+    {
+        ShowMessagePendingRowdetalle_de_observaciones_mpi();
         return false;
     }
 	
@@ -191,7 +595,8 @@ $(document).ready(function () {
 					ClearControls();
 					ClearAttachmentsDiv();
 					ResetClaveLabel();
-	
+	                getdetalle_de_observaciones_mpiData();
+
 					if (isPartial)
 					{
 						 if (!isMR)
@@ -220,13 +625,33 @@ $(document).ready(function () {
     $('#unidad').empty();
     $("#unidad").append('<option value=""></option>');
     $('#unidad').val('0').trigger('change');
+    $('#Municipio').empty();
+    $("#Municipio").append('<option value=""></option>');
+    $('#Municipio').val('0').trigger('change');
+                detalle_de_observaciones_mpiClearGridData();
+    $('#PaisH').empty();
+    $("#PaisH").append('<option value=""></option>');
+    $('#PaisH').val('0').trigger('change');
+    $('#Estado').empty();
+    $("#Estado").append('<option value=""></option>');
+    $('#Estado').val('0').trigger('change');
+    $('#Municipio_Hechos').empty();
+    $("#Municipio_Hechos").append('<option value=""></option>');
+    $('#Municipio_Hechos').val('0').trigger('change');
+    $('#Poblacion').empty();
+    $("#Poblacion").append('<option value=""></option>');
+    $('#Poblacion').val('0').trigger('change');
+    $('#ColoniaH').empty();
+    $("#ColoniaH").append('<option value=""></option>');
+    $('#ColoniaH').val('0').trigger('change');
     $('#usuario_que_canaliza').empty();
     $("#usuario_que_canaliza").append('<option value=""></option>');
     $('#usuario_que_canaliza').val('0').trigger('change');
 
 					ResetClaveLabel();
 					$("#Referenceclave").val(currentId);
-	
+	                getdetalle_de_observaciones_mpiData();
+
 					EjecutarValidacionesDespuesDeGuardar();		
 					if (isPartial)
 					{

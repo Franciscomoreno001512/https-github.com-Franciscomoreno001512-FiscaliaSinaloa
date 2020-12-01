@@ -221,6 +221,36 @@ public ApiResponse<int> Update_Datos_del_Caso(expediente_ministerio_publico_Dato
             }
         }
 
+public ApiResponse<int> Update_Hechos(expediente_ministerio_publico_Hechos entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Hechos",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1 );
+            }
+        }
+
+        public ApiResponse<expediente_ministerio_publico_Hechos> Get_Hechos(string Key)
+        {
+            try
+            {
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Hechos>(baseApi, ApiControllerUrl + "/Get_Hechos?id=" + Key,
+                      Method.GET, ApiHeader);
+
+                return new ApiResponse<Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Hechos>(true, varRecords);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Hechos>(false, null);
+            }
+        }
+
 public ApiResponse<int> Update_Canalizar(expediente_ministerio_publico_Canalizar entity)
         {
             try
@@ -281,11 +311,11 @@ public ApiResponse<int> Update_Datos_del_Acuerdo(expediente_ministerio_publico_D
             }
         }
 
-public ApiResponse<int> Update_Cierre_de_Expediente(expediente_ministerio_publico_Cierre_de_Expediente entity)
+public ApiResponse<int> Update_Resolucion_o_Dictaminacion(expediente_ministerio_publico_Resolucion_o_Dictaminacion entity)
         {
             try
             {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Cierre_de_Expediente",
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Resolucion_o_Dictaminacion",
                       Method.PUT, ApiHeader, entity);
 
                 return new ApiResponse<int>(true, result);
@@ -296,18 +326,18 @@ public ApiResponse<int> Update_Cierre_de_Expediente(expediente_ministerio_public
             }
         }
 
-        public ApiResponse<expediente_ministerio_publico_Cierre_de_Expediente> Get_Cierre_de_Expediente(string Key)
+        public ApiResponse<expediente_ministerio_publico_Resolucion_o_Dictaminacion> Get_Resolucion_o_Dictaminacion(string Key)
         {
             try
             {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Cierre_de_Expediente>(baseApi, ApiControllerUrl + "/Get_Cierre_de_Expediente?id=" + Key,
+                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Resolucion_o_Dictaminacion>(baseApi, ApiControllerUrl + "/Get_Resolucion_o_Dictaminacion?id=" + Key,
                       Method.GET, ApiHeader);
 
-                return new ApiResponse<Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Cierre_de_Expediente>(true, varRecords);
+                return new ApiResponse<Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Resolucion_o_Dictaminacion>(true, varRecords);
             }
             catch (Exception ex)
             {
-                return new ApiResponse<Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Cierre_de_Expediente>(false, null);
+                return new ApiResponse<Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Resolucion_o_Dictaminacion>(false, null);
             }
         }
 

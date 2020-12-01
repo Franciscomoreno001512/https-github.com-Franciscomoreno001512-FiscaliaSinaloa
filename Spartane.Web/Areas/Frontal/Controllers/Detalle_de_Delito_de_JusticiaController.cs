@@ -1597,11 +1597,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        
-
-
-
-        [HttpPost]
+        [HttpGet]
+       
         public JsonResult ClearAdvanceFilter()
         {
             Session["AdvanceSearch"] = null;

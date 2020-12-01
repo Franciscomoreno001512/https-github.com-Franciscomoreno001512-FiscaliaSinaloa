@@ -10,6 +10,9 @@
 /*
 
 */
+    List<SelectListItem> varCategoria_de_Servicio_de_Apoyo_Categoria = null;
+    if (ViewBag.Categoria_de_Servicio_de_Apoyos_Categoria != null)
+    { varCategoria_de_Servicio_de_Apoyo_Categoria = (List<SelectListItem>)ViewBag.Categoria_de_Servicio_de_Apoyos_Categoria; }
 
 
     Permission permission = ViewBag.Permission;
@@ -162,6 +165,34 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Servicio" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divCategoria">
+                                <label class="col-sm-2 control-label">@Resources.Tipo_de_Servicio_de_ApoyoResources.Categoria</label>
+                                <div class="col-sm-8" data-field-id="Categoria" data-attribute="267356" data-field-name="@Resources.Tipo_de_Servicio_de_ApoyoResources.Categoria">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Categoria must be a number." data-val-required="The Categoria field is required." id="Categoria" name="Categoria">
+                                        <option value=""></option>
+                                        @if (varCategoria_de_Servicio_de_Apoyo_Categoria != null){ 
+                                            foreach (var itemCategoria in varCategoria_de_Servicio_de_Apoyo_Categoria)
+                                            {
+                                                if (itemCategoria.Value == Convert.ToString(Model.Categoria))
+                                                {
+                                                    <option value="@itemCategoria.Value" selected>@itemCategoria.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemCategoria.Value">@itemCategoria.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Categoria" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267356).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Categoria_de_Servicio_de_Apoyo', 'Categoria');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
                             </div>
                                 </div>
 
@@ -296,24 +327,9 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('45038');
+		    
 		   
-		   
-			
-             @if(ViewBag.IsNew)
-            { 
-                <text>$('input:checkbox').prop('checked', false);</text>
-            }
-			else
-            {
-                <text>
-				if (Tab_Datos_Generales)
-					Fill_Datos_Generales();
-
-
-                </text>
-             }
-             EjecutarValidacionesAlComienzo();
-             
+            
 
             initiateUIControls();
 			$('a').tooltip();
@@ -330,6 +346,21 @@
 			
 			
 
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
         });
 
 
@@ -595,6 +626,7 @@
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Servicio').val(result.data.Servicio);
+                    $('#Categoria').val(result.data.Categoria);
 
                 },
                 error: function (result) {
@@ -607,6 +639,7 @@
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Servicio', $('#Servicio').val());
+                data.append('Categoria', $('#Categoria').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Tipo_de_Servicio_de_Apoyo/Post_Datos_Generales")',
