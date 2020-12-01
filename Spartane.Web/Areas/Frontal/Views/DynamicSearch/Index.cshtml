@@ -313,6 +313,7 @@
             DisabledAE($($(this).find('td')[3]).html());
 			BussinesRoles($('#wf').val());
 
+
         });
         $('#TabsBadget').on('click', 'button', function () {
             debugger;
@@ -336,25 +337,12 @@
             else {
                 $('#new').css('display', 'none');
             }
-			
-			var value = $('#wf').val();
+            var value = $('#wf').val();
             switch (value) {
                 case "Canalizados":
                     $(".editDetails").prop("disabled", true);
                     $(".classDelete").hide();
                     $(".editDetails").hide();
-                    break;
-                case "Cerrados":
-                    $(".editDetails").prop("disabled", true);
-                    $(".classDelete").hide();
-                    $(".editDetails").hide();
-                    break;
-                default:
-                    console.log("")
-                    break;
-            }
-
-
                     break;
                 case "Cerrados":
                     $(".editDetails").prop("disabled", true);
@@ -498,7 +486,7 @@
     }
     var bPreguntar = true
     function GetCatalogPopup(id) {
-       
+
         var edit = '';
         var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
         url = url.replace("Catalog", ObjectSelectedName);
@@ -510,7 +498,7 @@
         url += '&preguntar=1'
         //window.open(htmlDecode(url), '_blank', 'left=300,top=50,width=1200,height=700,toolbar=0,resizable=0');
         window.open(htmlDecode(url), '_blank', 'left=300,top=50,width=' + screen.availWidth + ',height=' + screen.availHeight + ',toolbar=0,resizable=0');
-        
+
     }
 
     function preguntarAntesDeSalir() {
@@ -600,7 +588,7 @@
     var ObjectSelectedName = '';
     var TabSelected = '';
     var IdSelected = "-1";
-	var idModule = getParameterByName('id');										
+	var idModule = getParameterByName('id');
     function FillDetailsByTab(idTab, object, id, idTablero) {
         debugger;
         ObjectSelected = object;
@@ -643,11 +631,11 @@
                         }
 
 
-																													   
-																															 
-							   
-																									   
-						 
+
+
+
+
+
 
                     });
                     $('#TrColumnsDetail').html(htmlColumns);
@@ -712,7 +700,7 @@
 
                         $.each(v.Values, function (i, v2) {
                             if (ObjectSelected == "45018" || ObjectSelected == "45474" ) {
-							
+
                                 if (i == 0 || (i == 6 && idModule == '1') || (i == 10 && idModule == '1') || (i == 12 && idModule == '1') || (i == 11 && idModule == '1')) {
                                     htmlValues += '<td class="text-center text-muted" style="display:none;">' + v2 + '</td>';
                                 } else {
@@ -726,7 +714,7 @@
                                     htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
                                 }
                             }
-                            
+
 
                         });
                         htmlValues += '</tr>';
@@ -827,7 +815,8 @@
             $("button[data-name='Involucrados']").prop("disabled", false);
         }
     }
-    function BussinesRoles(value) {
+
+	function BussinesRoles(value) {
         switch (value) {
             case "Canalizados":
                 //Declaraciones ejecutadas cuando el resultado de expresión coincide con el valor1
@@ -850,6 +839,7 @@
                 break;
         }
     }
+
 
     function GetResultSearchTable() {
 
