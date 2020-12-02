@@ -1486,15 +1486,7 @@ function EjecutarValidacionesDespuesDeGuardar(){
 
 
 
-//BusinessRuleId:1729, Attribute:2, Operation:Object, Event:AFTERSAVING
-if(operation == 'New'){
- EvaluaQuery("  update Detalle_de_Datos_Generales"
-+" 	set Modulo_Atencion_Inicial= GLOBAL[SpartanOperationId]"
-+" 	where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);
 
-
-}
-//BusinessRuleId:1729, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 
 
@@ -1558,6 +1550,19 @@ if(operation == 'Update'){
 
 
 
+
+
+
+
+
+//BusinessRuleId:1729, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('3', '3') ) { EvaluaQuery("  update Detalle_de_Datos_Generales"
++" 	set Modulo_Atencion_Inicial= GLOBAL[SpartanOperationId]"
++" 	where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:1729, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //BusinessRuleId:2513, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
