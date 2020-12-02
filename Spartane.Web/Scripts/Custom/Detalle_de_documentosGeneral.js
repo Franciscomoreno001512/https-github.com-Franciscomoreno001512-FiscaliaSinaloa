@@ -177,7 +177,7 @@ $(document).ready(function () {
         debugger;
 
         if ($("#Archivo").val() == '0' || $("#Archivo").val() == '') {
-            alert('No se puede guardar por no se ha generado un documento.')
+            alert('No se puede guardar porque no se ha generado un documento.')
         } else {
 		$('#Detalle_de_documentosGuardar').attr('disabled', true);
 		$('#Detalle_de_documentosGuardar').unbind()
