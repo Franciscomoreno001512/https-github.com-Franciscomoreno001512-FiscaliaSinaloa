@@ -248,10 +248,12 @@ if(operation == 'Update'){
 
 
 
+
+
 //BusinessRuleId:2599, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
- $("a[href='#tabDatos_del_Acuerdo']").css('display', 'none'); $("a[href='#tabCierre_de_Expediente']").css('display', 'none'); $("a[href='#tabCanalizar']").css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'canalizar_a' + rowIndex));
-
+ $("a[href='#tabDatos_del_Acuerdo']").css('display', 'none'); $("a[href='#tabResolucion_o_Dictaminacion']").css('display', 'none'); $("a[href='#tabCanalizar']").css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'canalizar_a' + rowIndex));
+
 }
 //BusinessRuleId:2599, Attribute:0, Operation:Object, Event:SCREENOPENING
 

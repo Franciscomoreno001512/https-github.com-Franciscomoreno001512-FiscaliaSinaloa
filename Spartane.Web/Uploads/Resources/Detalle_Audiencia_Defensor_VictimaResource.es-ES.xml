@@ -2,7 +2,7 @@
 <resources>
   <resource culture="es-es" name="Detalle_Audiencia_Defensor_Victima" value="Detalle Audiencia Defensor Víctima"></resource>
   <resource culture="es-es" name="Clave" value="Clave"></resource>
-  <resource culture="es-es" name="Nombre_del_Imputado" value="Nombre del Imputado"></resource>
+  <resource culture="es-es" name="Nombre_del_Imputado" value="Nombre de la Víctima"></resource>
   <resource culture="es-es" name="Abogado" value="Abogado"></resource>
   <resource culture="es-es" name="Cedula_Profesional" value="Cedula Profesional"></resource>
 

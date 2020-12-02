@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Audiencias_MP;
-using Spartane.Core.Domain.Detalle_de_Imputado;
+using Spartane.Core.Domain.Detalle_de_Datos_Generales;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -26,7 +26,7 @@ namespace Spartane.Core.Domain.Detalle_Audiencia_Defensor_Victima
         [ForeignKey("Audiencia")]
         public virtual Spartane.Core.Domain.Audiencias_MP.Audiencias_MP Audiencia_Audiencias_MP { get; set; }
         [ForeignKey("Nombre_del_Imputado")]
-        public virtual Spartane.Core.Domain.Detalle_de_Imputado.Detalle_de_Imputado Nombre_del_Imputado_Detalle_de_Imputado { get; set; }
+        public virtual Spartane.Core.Domain.Detalle_de_Datos_Generales.Detalle_de_Datos_Generales Nombre_del_Imputado_Detalle_de_Datos_Generales { get; set; }
 
     }
 	
@@ -41,7 +41,7 @@ namespace Spartane.Core.Domain.Detalle_Audiencia_Defensor_Victima
 		        [ForeignKey("Audiencia")]
         public virtual Spartane.Core.Domain.Audiencias_MP.Audiencias_MP Audiencia_Audiencias_MP { get; set; }
         [ForeignKey("Nombre_del_Imputado")]
-        public virtual Spartane.Core.Domain.Detalle_de_Imputado.Detalle_de_Imputado Nombre_del_Imputado_Detalle_de_Imputado { get; set; }
+        public virtual Spartane.Core.Domain.Detalle_de_Datos_Generales.Detalle_de_Datos_Generales Nombre_del_Imputado_Detalle_de_Datos_Generales { get; set; }
 
     }
 

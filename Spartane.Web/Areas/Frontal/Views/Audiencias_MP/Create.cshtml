@@ -1092,7 +1092,7 @@
             var counter = 0;
             var inputData = "<input type='text' class='fullWidth form-control' />";
 
-            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.Nombre_del_ImputadoNombre_Completo_del_Tutor != undefined ? data.Nombre_del_ImputadoNombre_Completo_del_Tutor : null, 'AutoComplete' + nameOfTable + 'Nombre_del_Imputado', data.Nombre_del_Imputado)))).addClass('Nombre_del_Imputado').attr('id', nameOfTable + 'Nombre_del_Imputado' + rowIndex).attr('data-field', 'Nombre_del_Imputado').after($.parseHTML(addNew('Detalle_Audiencia_Defensor_Victima', 'Detalle_de_Imputado','Nombre_del_Imputado', 267410)));
+            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.Nombre_del_ImputadoNombre_Completo != undefined ? data.Nombre_del_ImputadoNombre_Completo : null, 'AutoComplete' + nameOfTable + 'Nombre_del_Imputado', data.Nombre_del_Imputado)))).addClass('Nombre_del_Imputado').attr('id', nameOfTable + 'Nombre_del_Imputado' + rowIndex).attr('data-field', 'Nombre_del_Imputado').after($.parseHTML(addNew('Detalle_Audiencia_Defensor_Victima', 'Detalle_de_Datos_Generales','Nombre_del_Imputado', 267410)));
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Abogado)).addClass('Abogado').attr('id', nameOfTable + 'Abogado' + rowIndex).attr('data-field', 'Abogado');
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Cedula_Profesional)).addClass('Cedula_Profesional').attr('id', nameOfTable + 'Cedula_Profesional' + rowIndex).attr('data-field', 'Cedula_Profesional');
 
@@ -1218,10 +1218,10 @@
 				actionCol.appendTo(row);
 
             if ($('.Nombre_del_Imputado' + 'Header').css('display') != 'none'){
-                if (data.Nombre_del_ImputadoNombre_Completo_del_Tutor == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Nombre_del_Imputado'+rowIndex+'">').text(data.Nombre_del_Imputado).appendTo(row);}else{$('<td>').text(data.Nombre_del_ImputadoNombre_Completo_del_Tutor).appendTo(row);}
+                if (data.Nombre_del_ImputadoNombre_Completo == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Nombre_del_Imputado'+rowIndex+'">').text(data.Nombre_del_Imputado).appendTo(row);}else{$('<td>').text(data.Nombre_del_ImputadoNombre_Completo).appendTo(row);}
 }
              else {
-                if (data.Nombre_del_ImputadoNombre_Completo_del_Tutor == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Nombre_del_Imputado'+rowIndex+'">').text(data.Nombre_del_Imputado).appendTo(row);}else{$('<td style:display:none;>').text(data.Nombre_del_ImputadoNombre_Completo_del_Tutor).appendTo(row);}
+                if (data.Nombre_del_ImputadoNombre_Completo == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Nombre_del_Imputado'+rowIndex+'">').text(data.Nombre_del_Imputado).appendTo(row);}else{$('<td style:display:none;>').text(data.Nombre_del_ImputadoNombre_Completo).appendTo(row);}
 }
 
             if ($('.Abogado' + 'Header').css('display') != 'none')
@@ -1279,10 +1279,10 @@
         }
 
 
-    var Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoItems;
-        function GetDetalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoItem() {
-            Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoItems = null;
-            var ajaxUrl = "@Url.Content("~/Frontal/Audiencias_MP/GetDetalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoAll")";
+    var Detalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesItems;
+        function GetDetalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesItem() {
+            Detalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Audiencias_MP/GetDetalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesAll")";
             $.ajax({
                 url: ajaxUrl,
                 type: 'GET',
@@ -1290,7 +1290,7 @@
                 async: false,
                 global: false,
                 success: function (result) {
-                    Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoItems = result;
+                    Detalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesItems = result;
                 },
                 error: function (result) {
                     showNotification("@Resources.Resources.ErrorContactingServer", "error");
@@ -1697,7 +1697,7 @@
         $(".AutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado").select2({
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
-                url: "@Url.Content("~/Frontal/Audiencias_MP/GetDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_Imputado")",
+                url: "@Url.Content("~/Frontal/Audiencias_MP/GetDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_Datos_Generales")",
 		cache: false,
                 dataType: 'json',
                 async: true,
@@ -1711,7 +1711,7 @@
                     params.page = params.page || 1;
 
                     return {
-                        results: GetAutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_ImputadoData(data),
+                        results: GetAutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_Datos_GeneralesData(data),
                         pagination: {
                             more: false 
                         }

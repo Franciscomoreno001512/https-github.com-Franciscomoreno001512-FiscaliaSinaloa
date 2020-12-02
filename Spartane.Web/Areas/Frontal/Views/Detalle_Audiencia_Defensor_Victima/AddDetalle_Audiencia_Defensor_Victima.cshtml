@@ -8,9 +8,9 @@
 @{
 
 
- List<SelectListItem> varDetalle_de_Imputado_Nombre_del_Imputado = null;
-    if (ViewBag.Detalle_de_Imputados_Nombre_del_Imputado != null)
-    { varDetalle_de_Imputado_Nombre_del_Imputado = (List<SelectListItem>)ViewBag.Detalle_de_Imputados_Nombre_del_Imputado; }
+ List<SelectListItem> varDetalle_de_Datos_Generales_Nombre_del_Imputado = null;
+    if (ViewBag.Detalle_de_Datos_Generaless_Nombre_del_Imputado != null)
+    { varDetalle_de_Datos_Generales_Nombre_del_Imputado = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Nombre_del_Imputado; }
 
 
     Permission permission = ViewBag.Permission;
@@ -139,8 +139,8 @@
 <div class="form-group" id="divNombre_del_Imputado">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_Audiencia_Defensor_VictimaResources.Nombre_del_Imputado</label>
                                 <div class="col-sm-8" data-field-id="Nombre_del_Imputado" data-attribute="267410" data-field-name="@Resources.Detalle_Audiencia_Defensor_VictimaResources.Nombre_del_Imputado">
-                                    <select class='fullWidth AutoCompleteDetalle_de_Imputado form-control select2-dropdown' data-val="true" id="Detalle_Audiencia_Defensor_VictimaNombre_del_Imputado" name="Detalle_Audiencia_Defensor_VictimaNombre_del_Imputado">
-                                        <option value="@Model.Nombre_del_Imputado">@(Model.Nombre_del_ImputadoNombre_Completo_del_Tutor??Model.Nombre_del_ImputadoNombre_Completo_del_Tutor)</option>
+                                    <select class='fullWidth AutoCompleteDetalle_de_Datos_Generales form-control select2-dropdown' data-val="true" id="Detalle_Audiencia_Defensor_VictimaNombre_del_Imputado" name="Detalle_Audiencia_Defensor_VictimaNombre_del_Imputado">
+                                        <option value="@Model.Nombre_del_Imputado">@(Model.Nombre_del_ImputadoNombre_Completo??Model.Nombre_del_ImputadoNombre_Completo)</option>
                                     </select>
                                 </div>
                             </div>
@@ -261,7 +261,7 @@
        $(".AutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado").select2({
             dropdownCssClass: 'fullWidth form-control',
             ajax: {
-                url: "@Url.Content("~/Frontal/Detalle_Audiencia_Defensor_Victima/GetDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_Imputado")",
+                url: "@Url.Content("~/Frontal/Detalle_Audiencia_Defensor_Victima/GetDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_Datos_Generales")",
 		cache: false,
                 dataType: 'json',
                 async: true,
@@ -275,7 +275,7 @@
                     params.page = params.page || 1;
 
                     return {
-                        results: GetAutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_ImputadoData(data),
+                        results: GetAutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_Datos_GeneralesData(data),
                         pagination: {
                             more: false 
                         }

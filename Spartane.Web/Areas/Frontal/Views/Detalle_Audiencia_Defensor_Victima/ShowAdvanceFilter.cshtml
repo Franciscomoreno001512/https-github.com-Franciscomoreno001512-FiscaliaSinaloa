@@ -3,9 +3,9 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_Audiencia_Defensor_VictimaAdvanceSearchModel
 @{
- List<SelectListItem> varDetalle_de_Imputado_Nombre_del_Imputado = null;
-    if (ViewBag.Detalle_de_Imputados_Nombre_del_Imputado != null)
-    { varDetalle_de_Imputado_Nombre_del_Imputado = (List<SelectListItem>)ViewBag.Detalle_de_Imputados_Nombre_del_Imputado; }
+ List<SelectListItem> varDetalle_de_Datos_Generales_Nombre_del_Imputado = null;
+    if (ViewBag.Detalle_de_Datos_Generaless_Nombre_del_Imputado != null)
+    { varDetalle_de_Datos_Generales_Nombre_del_Imputado = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Nombre_del_Imputado; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -54,9 +54,9 @@
                     @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
- List<SelectListItem> varDetalle_de_Imputado_Nombre_del_Imputado = null;
-    if (ViewBag.Detalle_de_Imputados_Nombre_del_Imputado != null)
-    { varDetalle_de_Imputado_Nombre_del_Imputado = (List<SelectListItem>)ViewBag.Detalle_de_Imputados_Nombre_del_Imputado; }
+ List<SelectListItem> varDetalle_de_Datos_Generales_Nombre_del_Imputado = null;
+    if (ViewBag.Detalle_de_Datos_Generaless_Nombre_del_Imputado != null)
+    { varDetalle_de_Datos_Generales_Nombre_del_Imputado = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Nombre_del_Imputado; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_Audiencia_Defensor_VictimaResources.Abogado</h3>
                 </div>

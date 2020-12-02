@@ -7,12 +7,12 @@ $(function () {
 });
 
 var AutoCompleteNombre_del_ImputadoData = [];
-function GetAutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_ImputadoData(data) {
+function GetAutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_Datos_GeneralesData(data) {
 	AutoCompleteNombre_del_ImputadoData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompleteNombre_del_ImputadoData.push({
             id: data[i].Clave,
-            text: data[i].Nombre_Completo_del_Tutor
+            text: data[i].Nombre_Completo
         });
     }
     return AutoCompleteNombre_del_ImputadoData;
