@@ -234,16 +234,20 @@ if(operation == 'New'){
 }
 //BusinessRuleId:1730, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+
+
+
+
 //BusinessRuleId:2552, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
- EvaluaQuery(" update Detalle_de_Persona_Moral set Expediente_MP = GLOBAL[SpartanOperationId] where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);
+if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('3', '3') ) { EvaluaQuery(" update Detalle_de_Persona_Moral set Expediente_MP = GLOBAL[SpartanOperationId] where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}
 
 }
 //BusinessRuleId:2552, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //BusinessRuleId:2552, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'Update'){
- EvaluaQuery(" update Detalle_de_Persona_Moral set Expediente_MP = GLOBAL[SpartanOperationId] where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);
+if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('3', '3') ) { EvaluaQuery(" update Detalle_de_Persona_Moral set Expediente_MP = GLOBAL[SpartanOperationId] where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}
 
 }
 //BusinessRuleId:2552, Attribute:2, Operation:Object, Event:AFTERSAVING

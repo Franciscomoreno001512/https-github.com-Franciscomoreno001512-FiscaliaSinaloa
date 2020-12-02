@@ -16,9 +16,9 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Detalle_Audiencia_Defensor_Victima.Clave";
-                case "Nombre_del_Imputado[Nombre_Completo_del_Tutor]":
-                case "Nombre_del_ImputadoNombre_Completo_del_Tutor":
-                    return "Detalle_de_Imputado.Nombre_Completo_del_Tutor";
+                case "Nombre_del_Imputado[Nombre_Completo]":
+                case "Nombre_del_ImputadoNombre_Completo":
+                    return "Detalle_de_Datos_Generales.Nombre_Completo";
                 case "Abogado":
                     return "Detalle_Audiencia_Defensor_Victima.Abogado";
                 case "Cedula_Profesional":

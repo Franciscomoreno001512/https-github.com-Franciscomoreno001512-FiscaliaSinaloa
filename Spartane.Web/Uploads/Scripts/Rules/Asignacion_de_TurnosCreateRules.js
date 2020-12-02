@@ -478,9 +478,32 @@ if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt(
 }
 //BusinessRuleId:1989, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+//BusinessRuleId:2630, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));
+
+}
+//BusinessRuleId:2630, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2630, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));
+
+}
+//BusinessRuleId:2630, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2630, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Modulo' + rowIndex));
+
+}
+//BusinessRuleId:2630, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //BusinessRuleId:1513, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
-if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') || EvaluaQuery("select GLOBAL[USERROLEID]	",rowIndex, nameOfTable)==TryParseInt('5', '5') ) { AsignarValor($('#' + nameOfTable + 'Recepcion' + rowIndex),EvaluaQuery(" select GLOBAL[USERID]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Unidad_de_Atencion' + rowIndex),EvaluaQuery(" SELECT CLAVE FROM UNIDAD WHERE CLAVE = (SELECT TOP 1 UNIDAD FROM Relacion_Unidad_Usuario WHERE USUARIO = GLOBAL[USERID])", rowIndex, nameOfTable)); DisabledControl($("#" + nameOfTable + "Unidad_de_Atencion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Unidad_de_Atencion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Recepcion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Recepcion' + rowIndex));}} else {}
+if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') || EvaluaQuery("select GLOBAL[USERROLEID]	",rowIndex, nameOfTable)==TryParseInt('5', '5') ) { AsignarValor($('#' + nameOfTable + 'Recepcion' + rowIndex),EvaluaQuery(" select GLOBAL[USERID]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Unidad_de_Atencion' + rowIndex),EvaluaQuery(" SELECT CLAVE FROM UNIDAD WHERE CLAVE = (SELECT TOP 1 UNIDAD FROM Relacion_Unidad_Usuario WHERE USUARIO = GLOBAL[USERID])", rowIndex, nameOfTable)); DisabledControl($("#" + nameOfTable + "Unidad_de_Atencion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Unidad_de_Atencion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Recepcion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Recepcion' + rowIndex));} AsignarValor($('#' + nameOfTable + 'Modulo' + rowIndex),EvaluaQuery(" SELECT CLAVE FROM Modulo WHERE Unidad_de_Atencion = (SELECT TOP 1 UNIDAD FROM Relacion_Unidad_Usuario WHERE USUARIO = GLOBAL[USERID]) AND Orientador = GLOBAL[USERID]", rowIndex, nameOfTable));} else {}
 
 }
 //BusinessRuleId:1513, Attribute:0, Operation:Object, Event:SCREENOPENING

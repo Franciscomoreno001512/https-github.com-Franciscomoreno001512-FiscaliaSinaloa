@@ -10,7 +10,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public int Clave { get; set; }
         public int? Nombre_del_Imputado { get; set; }
-        public string Nombre_del_ImputadoNombre_Completo_del_Tutor { get; set; }
+        public string Nombre_del_ImputadoNombre_Completo { get; set; }
         public string Abogado { get; set; }
         public string Cedula_Profesional { get; set; }
         

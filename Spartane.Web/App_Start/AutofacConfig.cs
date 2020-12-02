@@ -7050,3 +7050,17 @@ builder.RegisterType<Tipo_de_Asignacion_de_MPApiConsumer>().As<ITipo_de_Asignaci
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
