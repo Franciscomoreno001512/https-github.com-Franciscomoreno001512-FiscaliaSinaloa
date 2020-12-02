@@ -12345,6 +12345,706 @@
 <Content Include="Uploads\Scripts\Rules\Tipo_de_Asignacion_de_MPCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Tipo_de_Asignacion_de_MPIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Tipo_de_Asignacion_de_MP\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Aparato_Electronicos_y_Multimedia\Aparato_Electronicos_y_MultimediaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Aparato_Electronicos_y_Multimedia\IAparato_Electronicos_y_MultimediaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Aparato_Electronicos_y_MultimediaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Aparato_Electronicos_y_MultimediaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Aparato_Electronicos_y_MultimediaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Aparato_Electronicos_y_MultimediaController.cs" />
+<Content Include="Areas\Frontal\Views\Aparato_Electronicos_y_Multimedia\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Aparato_Electronicos_y_Multimedia\Create.cshtml" />
+<Compile Include="Resource\GetResource\Aparato_Electronicos_y_Multimedia.cs" />
+<Content Include="Uploads\Resources\Aparato_Electronicos_y_MultimediaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Aparato_Electronicos_y_MultimediaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Aparato_Electronicos_y_MultimediaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Aparato_Electronicos_y_Multimedia.js" />
+<Content Include="Scripts\Custom\Aparato_Electronicos_y_MultimediaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Aparato_Electronicos_y_Multimedia\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Aparato_Electronicos_y_MultimediaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Aparato_Electronicos_y_MultimediaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Aparato_Electronicos_y_MultimediaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Aparato_Electronicos_y_MultimediaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Aparato_Electronicos_y_Multimedia\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Calibre_de_Arma\Calibre_de_ArmaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Calibre_de_Arma\ICalibre_de_ArmaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Calibre_de_ArmaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Calibre_de_ArmaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Calibre_de_ArmaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Calibre_de_ArmaController.cs" />
+<Content Include="Areas\Frontal\Views\Calibre_de_Arma\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Calibre_de_Arma\Create.cshtml" />
+<Compile Include="Resource\GetResource\Calibre_de_Arma.cs" />
+<Content Include="Uploads\Resources\Calibre_de_ArmaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Calibre_de_ArmaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Calibre_de_ArmaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Calibre_de_Arma.js" />
+<Content Include="Scripts\Custom\Calibre_de_ArmaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Calibre_de_Arma\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Calibre_de_ArmaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Calibre_de_ArmaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Calibre_de_ArmaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Calibre_de_ArmaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Calibre_de_Arma\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Clasificacion_de_Artefacto_y_Explosivo\Clasificacion_de_Artefacto_y_ExplosivoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Clasificacion_de_Artefacto_y_Explosivo\IClasificacion_de_Artefacto_y_ExplosivoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Clasificacion_de_Artefacto_y_ExplosivoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Clasificacion_de_Artefacto_y_ExplosivoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Clasificacion_de_Artefacto_y_ExplosivoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Clasificacion_de_Artefacto_y_ExplosivoController.cs" />
+<Content Include="Areas\Frontal\Views\Clasificacion_de_Artefacto_y_Explosivo\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Clasificacion_de_Artefacto_y_Explosivo\Create.cshtml" />
+<Compile Include="Resource\GetResource\Clasificacion_de_Artefacto_y_Explosivo.cs" />
+<Content Include="Uploads\Resources\Clasificacion_de_Artefacto_y_ExplosivoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Clasificacion_de_Artefacto_y_ExplosivoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Clasificacion_de_Artefacto_y_ExplosivoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Clasificacion_de_Artefacto_y_Explosivo.js" />
+<Content Include="Scripts\Custom\Clasificacion_de_Artefacto_y_ExplosivoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Clasificacion_de_Artefacto_y_Explosivo\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Clasificacion_de_Artefacto_y_ExplosivoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Clasificacion_de_Artefacto_y_ExplosivoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Clasificacion_de_Artefacto_y_ExplosivoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Clasificacion_de_Artefacto_y_ExplosivoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Clasificacion_de_Artefacto_y_Explosivo\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Color_de_medio_de_trasporte\Color_de_medio_de_trasporteApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Color_de_medio_de_trasporte\IColor_de_medio_de_trasporteApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Color_de_medio_de_trasporteModel.cs" />
+<Compile Include="Areas\Frontal\Models\Color_de_medio_de_trasporteGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Color_de_medio_de_trasporteMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Color_de_medio_de_trasporteController.cs" />
+<Content Include="Areas\Frontal\Views\Color_de_medio_de_trasporte\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Color_de_medio_de_trasporte\Create.cshtml" />
+<Compile Include="Resource\GetResource\Color_de_medio_de_trasporte.cs" />
+<Content Include="Uploads\Resources\Color_de_medio_de_trasporteResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Color_de_medio_de_trasportePropertyMapper.cs" />
+<Content Include="Uploads\Resources\Color_de_medio_de_trasporteResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Color_de_medio_de_trasporte.js" />
+<Content Include="Scripts\Custom\Color_de_medio_de_trasporteGeneral.js" />
+<Content Include="Areas\Frontal\Views\Color_de_medio_de_trasporte\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Color_de_medio_de_trasporteAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Color_de_medio_de_trasporteBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Color_de_medio_de_trasporteCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Color_de_medio_de_trasporteIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Color_de_medio_de_trasporte\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detencion\DetencionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detencion\IDetencionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\DetencionModel.cs" />
+<Compile Include="Areas\Frontal\Models\DetencionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\DetencionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\DetencionController.cs" />
+<Content Include="Areas\Frontal\Views\Detencion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Detencion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Detencion.cs" />
+<Content Include="Uploads\Resources\DetencionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\DetencionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\DetencionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Detencion.js" />
+<Content Include="Scripts\Custom\DetencionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Detencion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\DetencionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\DetencionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\DetencionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\DetencionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Detencion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Documentos_Multimedia\Documentos_MultimediaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Documentos_Multimedia\IDocumentos_MultimediaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Documentos_MultimediaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Documentos_MultimediaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Documentos_MultimediaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Documentos_MultimediaController.cs" />
+<Content Include="Areas\Frontal\Views\Documentos_Multimedia\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Documentos_Multimedia\Create.cshtml" />
+<Compile Include="Resource\GetResource\Documentos_Multimedia.cs" />
+<Content Include="Uploads\Resources\Documentos_MultimediaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Documentos_MultimediaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Documentos_MultimediaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Documentos_Multimedia.js" />
+<Content Include="Scripts\Custom\Documentos_MultimediaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Documentos_Multimedia\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Documentos_MultimediaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Documentos_MultimediaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Documentos_MultimediaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Documentos_MultimediaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Documentos_Multimedia\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Marca_de_Arma\Marca_de_ArmaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Marca_de_Arma\IMarca_de_ArmaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_ArmaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_ArmaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_ArmaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Marca_de_ArmaController.cs" />
+<Content Include="Areas\Frontal\Views\Marca_de_Arma\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Marca_de_Arma\Create.cshtml" />
+<Compile Include="Resource\GetResource\Marca_de_Arma.cs" />
+<Content Include="Uploads\Resources\Marca_de_ArmaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Marca_de_ArmaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Marca_de_ArmaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Marca_de_Arma.js" />
+<Content Include="Scripts\Custom\Marca_de_ArmaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Marca_de_Arma\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Marca_de_ArmaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_ArmaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Marca_de_ArmaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Marca_de_ArmaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Marca_de_Arma\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Marca_de_Equipo_de_Comunicacion\Marca_de_Equipo_de_ComunicacionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Marca_de_Equipo_de_Comunicacion\IMarca_de_Equipo_de_ComunicacionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Equipo_de_ComunicacionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Equipo_de_ComunicacionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Equipo_de_ComunicacionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Marca_de_Equipo_de_ComunicacionController.cs" />
+<Content Include="Areas\Frontal\Views\Marca_de_Equipo_de_Comunicacion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Marca_de_Equipo_de_Comunicacion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Marca_de_Equipo_de_Comunicacion.cs" />
+<Content Include="Uploads\Resources\Marca_de_Equipo_de_ComunicacionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Marca_de_Equipo_de_ComunicacionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Marca_de_Equipo_de_ComunicacionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Marca_de_Equipo_de_Comunicacion.js" />
+<Content Include="Scripts\Custom\Marca_de_Equipo_de_ComunicacionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Marca_de_Equipo_de_Comunicacion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Equipo_de_ComunicacionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Equipo_de_ComunicacionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Marca_de_Equipo_de_ComunicacionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Marca_de_Equipo_de_ComunicacionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Marca_de_Equipo_de_Comunicacion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Marca_de_Equipo_Tactico\Marca_de_Equipo_TacticoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Marca_de_Equipo_Tactico\IMarca_de_Equipo_TacticoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Equipo_TacticoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Equipo_TacticoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Equipo_TacticoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Marca_de_Equipo_TacticoController.cs" />
+<Content Include="Areas\Frontal\Views\Marca_de_Equipo_Tactico\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Marca_de_Equipo_Tactico\Create.cshtml" />
+<Compile Include="Resource\GetResource\Marca_de_Equipo_Tactico.cs" />
+<Content Include="Uploads\Resources\Marca_de_Equipo_TacticoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Marca_de_Equipo_TacticoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Marca_de_Equipo_TacticoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Marca_de_Equipo_Tactico.js" />
+<Content Include="Scripts\Custom\Marca_de_Equipo_TacticoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Marca_de_Equipo_Tactico\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Equipo_TacticoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Equipo_TacticoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Marca_de_Equipo_TacticoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Marca_de_Equipo_TacticoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Marca_de_Equipo_Tactico\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Marca_de_Medio_de_transporte\Marca_de_Medio_de_transporteApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Marca_de_Medio_de_transporte\IMarca_de_Medio_de_transporteApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Medio_de_transporteModel.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Medio_de_transporteGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Medio_de_transporteMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Marca_de_Medio_de_transporteController.cs" />
+<Content Include="Areas\Frontal\Views\Marca_de_Medio_de_transporte\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Marca_de_Medio_de_transporte\Create.cshtml" />
+<Compile Include="Resource\GetResource\Marca_de_Medio_de_transporte.cs" />
+<Content Include="Uploads\Resources\Marca_de_Medio_de_transporteResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Marca_de_Medio_de_transportePropertyMapper.cs" />
+<Content Include="Uploads\Resources\Marca_de_Medio_de_transporteResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Marca_de_Medio_de_transporte.js" />
+<Content Include="Scripts\Custom\Marca_de_Medio_de_transporteGeneral.js" />
+<Content Include="Areas\Frontal\Views\Marca_de_Medio_de_transporte\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Medio_de_transporteAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Marca_de_Medio_de_transporteBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Marca_de_Medio_de_transporteCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Marca_de_Medio_de_transporteIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Marca_de_Medio_de_transporte\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Metodo_de_Destruccion\Metodo_de_DestruccionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Metodo_de_Destruccion\IMetodo_de_DestruccionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Metodo_de_DestruccionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Metodo_de_DestruccionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Metodo_de_DestruccionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Metodo_de_DestruccionController.cs" />
+<Content Include="Areas\Frontal\Views\Metodo_de_Destruccion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Metodo_de_Destruccion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Metodo_de_Destruccion.cs" />
+<Content Include="Uploads\Resources\Metodo_de_DestruccionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Metodo_de_DestruccionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Metodo_de_DestruccionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Metodo_de_Destruccion.js" />
+<Content Include="Scripts\Custom\Metodo_de_DestruccionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Metodo_de_Destruccion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Metodo_de_DestruccionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Metodo_de_DestruccionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Metodo_de_DestruccionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Metodo_de_DestruccionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Metodo_de_Destruccion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Modelo_de_equipo_tactico\Modelo_de_equipo_tacticoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Modelo_de_equipo_tactico\IModelo_de_equipo_tacticoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Modelo_de_equipo_tacticoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modelo_de_equipo_tacticoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modelo_de_equipo_tacticoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Modelo_de_equipo_tacticoController.cs" />
+<Content Include="Areas\Frontal\Views\Modelo_de_equipo_tactico\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Modelo_de_equipo_tactico\Create.cshtml" />
+<Compile Include="Resource\GetResource\Modelo_de_equipo_tactico.cs" />
+<Content Include="Uploads\Resources\Modelo_de_equipo_tacticoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Modelo_de_equipo_tacticoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Modelo_de_equipo_tacticoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Modelo_de_equipo_tactico.js" />
+<Content Include="Scripts\Custom\Modelo_de_equipo_tacticoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Modelo_de_equipo_tactico\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Modelo_de_equipo_tacticoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modelo_de_equipo_tacticoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Modelo_de_equipo_tacticoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Modelo_de_equipo_tacticoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Modelo_de_equipo_tactico\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Modelo_de_medio_de_transporte\Modelo_de_medio_de_transporteApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Modelo_de_medio_de_transporte\IModelo_de_medio_de_transporteApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Modelo_de_medio_de_transporteModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modelo_de_medio_de_transporteGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modelo_de_medio_de_transporteMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Modelo_de_medio_de_transporteController.cs" />
+<Content Include="Areas\Frontal\Views\Modelo_de_medio_de_transporte\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Modelo_de_medio_de_transporte\Create.cshtml" />
+<Compile Include="Resource\GetResource\Modelo_de_medio_de_transporte.cs" />
+<Content Include="Uploads\Resources\Modelo_de_medio_de_transporteResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Modelo_de_medio_de_transportePropertyMapper.cs" />
+<Content Include="Uploads\Resources\Modelo_de_medio_de_transporteResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Modelo_de_medio_de_transporte.js" />
+<Content Include="Scripts\Custom\Modelo_de_medio_de_transporteGeneral.js" />
+<Content Include="Areas\Frontal\Views\Modelo_de_medio_de_transporte\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Modelo_de_medio_de_transporteAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modelo_de_medio_de_transporteBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Modelo_de_medio_de_transporteCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Modelo_de_medio_de_transporteIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Modelo_de_medio_de_transporte\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Procedencia_del_medio_de_transporte\Procedencia_del_medio_de_transporteApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Procedencia_del_medio_de_transporte\IProcedencia_del_medio_de_transporteApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Procedencia_del_medio_de_transporteModel.cs" />
+<Compile Include="Areas\Frontal\Models\Procedencia_del_medio_de_transporteGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Procedencia_del_medio_de_transporteMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Procedencia_del_medio_de_transporteController.cs" />
+<Content Include="Areas\Frontal\Views\Procedencia_del_medio_de_transporte\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Procedencia_del_medio_de_transporte\Create.cshtml" />
+<Compile Include="Resource\GetResource\Procedencia_del_medio_de_transporte.cs" />
+<Content Include="Uploads\Resources\Procedencia_del_medio_de_transporteResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Procedencia_del_medio_de_transportePropertyMapper.cs" />
+<Content Include="Uploads\Resources\Procedencia_del_medio_de_transporteResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Procedencia_del_medio_de_transporte.js" />
+<Content Include="Scripts\Custom\Procedencia_del_medio_de_transporteGeneral.js" />
+<Content Include="Areas\Frontal\Views\Procedencia_del_medio_de_transporte\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Procedencia_del_medio_de_transporteAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Procedencia_del_medio_de_transporteBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Procedencia_del_medio_de_transporteCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Procedencia_del_medio_de_transporteIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Procedencia_del_medio_de_transporte\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Terreno_de_Inmuebles\Terreno_de_InmueblesApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Terreno_de_Inmuebles\ITerreno_de_InmueblesApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Terreno_de_InmueblesModel.cs" />
+<Compile Include="Areas\Frontal\Models\Terreno_de_InmueblesGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Terreno_de_InmueblesMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Terreno_de_InmueblesController.cs" />
+<Content Include="Areas\Frontal\Views\Terreno_de_Inmuebles\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Terreno_de_Inmuebles\Create.cshtml" />
+<Compile Include="Resource\GetResource\Terreno_de_Inmuebles.cs" />
+<Content Include="Uploads\Resources\Terreno_de_InmueblesResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Terreno_de_InmueblesPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Terreno_de_InmueblesResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Terreno_de_Inmuebles.js" />
+<Content Include="Scripts\Custom\Terreno_de_InmueblesGeneral.js" />
+<Content Include="Areas\Frontal\Views\Terreno_de_Inmuebles\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Terreno_de_InmueblesAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Terreno_de_InmueblesBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Terreno_de_InmueblesCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Terreno_de_InmueblesIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Terreno_de_Inmuebles\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_Artefacto\Tipo_ArtefactoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_Artefacto\ITipo_ArtefactoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_ArtefactoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_ArtefactoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_ArtefactoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_ArtefactoController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_Artefacto\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_Artefacto\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_Artefacto.cs" />
+<Content Include="Uploads\Resources\Tipo_ArtefactoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_ArtefactoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_ArtefactoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_Artefacto.js" />
+<Content Include="Scripts\Custom\Tipo_ArtefactoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_Artefacto\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_ArtefactoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_ArtefactoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_ArtefactoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_ArtefactoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_Artefacto\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_Clasificacion\Tipo_ClasificacionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_Clasificacion\ITipo_ClasificacionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_ClasificacionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_ClasificacionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_ClasificacionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_ClasificacionController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_Clasificacion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_Clasificacion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_Clasificacion.cs" />
+<Content Include="Uploads\Resources\Tipo_ClasificacionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_ClasificacionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_ClasificacionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_Clasificacion.js" />
+<Content Include="Scripts\Custom\Tipo_ClasificacionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_Clasificacion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_ClasificacionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_ClasificacionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_ClasificacionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_ClasificacionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_Clasificacion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Arma\Tipo_de_ArmaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Arma\ITipo_de_ArmaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ArmaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ArmaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ArmaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_ArmaController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Arma\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Arma\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Arma.cs" />
+<Content Include="Uploads\Resources\Tipo_de_ArmaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_ArmaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_ArmaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Arma.js" />
+<Content Include="Scripts\Custom\Tipo_de_ArmaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Arma\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ArmaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ArmaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_ArmaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_ArmaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Arma\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Dinero\Tipo_de_DineroApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Dinero\ITipo_de_DineroApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DineroModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DineroGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DineroMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_DineroController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Dinero\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Dinero\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Dinero.cs" />
+<Content Include="Uploads\Resources\Tipo_de_DineroResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_DineroPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_DineroResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Dinero.js" />
+<Content Include="Scripts\Custom\Tipo_de_DineroGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Dinero\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DineroAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DineroBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_DineroCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_DineroIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Dinero\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Droga\Tipo_de_DrogaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Droga\ITipo_de_DrogaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DrogaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DrogaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DrogaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_DrogaController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Droga\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Droga\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Droga.cs" />
+<Content Include="Uploads\Resources\Tipo_de_DrogaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_DrogaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_DrogaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Droga.js" />
+<Content Include="Scripts\Custom\Tipo_de_DrogaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Droga\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DrogaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DrogaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_DrogaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_DrogaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Droga\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Equipo_de_Comunicacion\Tipo_de_Equipo_de_ComunicacionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Equipo_de_Comunicacion\ITipo_de_Equipo_de_ComunicacionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Equipo_de_ComunicacionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Equipo_de_ComunicacionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Equipo_de_ComunicacionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_Equipo_de_ComunicacionController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Equipo_de_Comunicacion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Equipo_de_Comunicacion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Equipo_de_Comunicacion.cs" />
+<Content Include="Uploads\Resources\Tipo_de_Equipo_de_ComunicacionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_Equipo_de_ComunicacionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_Equipo_de_ComunicacionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Equipo_de_Comunicacion.js" />
+<Content Include="Scripts\Custom\Tipo_de_Equipo_de_ComunicacionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Equipo_de_Comunicacion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Equipo_de_ComunicacionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Equipo_de_ComunicacionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_Equipo_de_ComunicacionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_Equipo_de_ComunicacionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Equipo_de_Comunicacion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Equipo_Tactico\Tipo_de_Equipo_TacticoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Equipo_Tactico\ITipo_de_Equipo_TacticoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Equipo_TacticoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Equipo_TacticoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Equipo_TacticoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_Equipo_TacticoController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Equipo_Tactico\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Equipo_Tactico\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Equipo_Tactico.cs" />
+<Content Include="Uploads\Resources\Tipo_de_Equipo_TacticoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_Equipo_TacticoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_Equipo_TacticoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Equipo_Tactico.js" />
+<Content Include="Scripts\Custom\Tipo_de_Equipo_TacticoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Equipo_Tactico\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Equipo_TacticoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Equipo_TacticoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_Equipo_TacticoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_Equipo_TacticoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Equipo_Tactico\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Inmueble\Tipo_de_InmuebleApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Inmueble\ITipo_de_InmuebleApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_InmuebleModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_InmuebleGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_InmuebleMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_InmuebleController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Inmueble\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Inmueble\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Inmueble.cs" />
+<Content Include="Uploads\Resources\Tipo_de_InmuebleResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_InmueblePropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_InmuebleResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Inmueble.js" />
+<Content Include="Scripts\Custom\Tipo_de_InmuebleGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Inmueble\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_InmuebleAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_InmuebleBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_InmuebleCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_InmuebleIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Inmueble\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_medios_de_transporte\Tipo_de_medios_de_transporteApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_medios_de_transporte\ITipo_de_medios_de_transporteApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_medios_de_transporteModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_medios_de_transporteGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_medios_de_transporteMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_medios_de_transporteController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_medios_de_transporte\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_medios_de_transporte\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_medios_de_transporte.cs" />
+<Content Include="Uploads\Resources\Tipo_de_medios_de_transporteResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_medios_de_transportePropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_medios_de_transporteResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_medios_de_transporte.js" />
+<Content Include="Scripts\Custom\Tipo_de_medios_de_transporteGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_medios_de_transporte\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_medios_de_transporteAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_medios_de_transporteBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_medios_de_transporteCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_medios_de_transporteIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_medios_de_transporte\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Moneda\Tipo_de_MonedaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Moneda\ITipo_de_MonedaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_MonedaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_MonedaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_MonedaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_MonedaController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Moneda\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Moneda\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Moneda.cs" />
+<Content Include="Uploads\Resources\Tipo_de_MonedaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_MonedaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_MonedaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Moneda.js" />
+<Content Include="Scripts\Custom\Tipo_de_MonedaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Moneda\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_MonedaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_MonedaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_MonedaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_MonedaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Moneda\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Orientacion\Tipo_de_OrientacionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Orientacion\ITipo_de_OrientacionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_OrientacionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_OrientacionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_OrientacionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_OrientacionController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Orientacion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Orientacion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Orientacion.cs" />
+<Content Include="Uploads\Resources\Tipo_de_OrientacionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_OrientacionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_OrientacionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Orientacion.js" />
+<Content Include="Scripts\Custom\Tipo_de_OrientacionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Orientacion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_OrientacionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_OrientacionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_OrientacionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_OrientacionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Orientacion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Pirateria\Tipo_de_PirateriaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Pirateria\ITipo_de_PirateriaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_PirateriaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_PirateriaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_PirateriaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_PirateriaController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Pirateria\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Pirateria\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Pirateria.cs" />
+<Content Include="Uploads\Resources\Tipo_de_PirateriaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_PirateriaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_PirateriaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Pirateria.js" />
+<Content Include="Scripts\Custom\Tipo_de_PirateriaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Pirateria\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_PirateriaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_PirateriaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_PirateriaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_PirateriaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Pirateria\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Pista_de_Aterrizaje\Tipo_de_Pista_de_AterrizajeApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Pista_de_Aterrizaje\ITipo_de_Pista_de_AterrizajeApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Pista_de_AterrizajeModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Pista_de_AterrizajeGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Pista_de_AterrizajeMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_Pista_de_AterrizajeController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Pista_de_Aterrizaje\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Pista_de_Aterrizaje\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Pista_de_Aterrizaje.cs" />
+<Content Include="Uploads\Resources\Tipo_de_Pista_de_AterrizajeResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_Pista_de_AterrizajePropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_Pista_de_AterrizajeResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Pista_de_Aterrizaje.js" />
+<Content Include="Scripts\Custom\Tipo_de_Pista_de_AterrizajeGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Pista_de_Aterrizaje\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Pista_de_AterrizajeAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Pista_de_AterrizajeBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_Pista_de_AterrizajeCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_Pista_de_AterrizajeIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Pista_de_Aterrizaje\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Plantio\Tipo_de_PlantioApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Plantio\ITipo_de_PlantioApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_PlantioModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_PlantioGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_PlantioMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_PlantioController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Plantio\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Plantio\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Plantio.cs" />
+<Content Include="Uploads\Resources\Tipo_de_PlantioResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_PlantioPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_PlantioResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Plantio.js" />
+<Content Include="Scripts\Custom\Tipo_de_PlantioGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Plantio\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_PlantioAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_PlantioBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_PlantioCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_PlantioIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Plantio\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Suelo\Tipo_de_SueloApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Suelo\ITipo_de_SueloApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_SueloModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_SueloGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_SueloMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_SueloController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Suelo\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Suelo\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Suelo.cs" />
+<Content Include="Uploads\Resources\Tipo_de_SueloResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_SueloPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_SueloResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Suelo.js" />
+<Content Include="Scripts\Custom\Tipo_de_SueloGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Suelo\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_SueloAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_SueloBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_SueloCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_SueloIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Suelo\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Zona\Tipo_de_ZonaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Zona\ITipo_de_ZonaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ZonaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ZonaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ZonaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_ZonaController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Zona\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Zona\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Zona.cs" />
+<Content Include="Uploads\Resources\Tipo_de_ZonaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_ZonaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_ZonaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Zona.js" />
+<Content Include="Scripts\Custom\Tipo_de_ZonaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Zona\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ZonaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ZonaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_ZonaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_ZonaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Zona\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Unidad_de_Medida_de_Equipo_Tactico\Unidad_de_Medida_de_Equipo_TacticoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Unidad_de_Medida_de_Equipo_Tactico\IUnidad_de_Medida_de_Equipo_TacticoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_Medida_de_Equipo_TacticoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_Medida_de_Equipo_TacticoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_Medida_de_Equipo_TacticoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Unidad_de_Medida_de_Equipo_TacticoController.cs" />
+<Content Include="Areas\Frontal\Views\Unidad_de_Medida_de_Equipo_Tactico\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Unidad_de_Medida_de_Equipo_Tactico\Create.cshtml" />
+<Compile Include="Resource\GetResource\Unidad_de_Medida_de_Equipo_Tactico.cs" />
+<Content Include="Uploads\Resources\Unidad_de_Medida_de_Equipo_TacticoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Unidad_de_Medida_de_Equipo_TacticoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Unidad_de_Medida_de_Equipo_TacticoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Unidad_de_Medida_de_Equipo_Tactico.js" />
+<Content Include="Scripts\Custom\Unidad_de_Medida_de_Equipo_TacticoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Unidad_de_Medida_de_Equipo_Tactico\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_Medida_de_Equipo_TacticoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_Medida_de_Equipo_TacticoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Unidad_de_Medida_de_Equipo_TacticoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Unidad_de_Medida_de_Equipo_TacticoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Unidad_de_Medida_de_Equipo_Tactico\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Unidad_de_Medida_de_pirateria\Unidad_de_Medida_de_pirateriaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Unidad_de_Medida_de_pirateria\IUnidad_de_Medida_de_pirateriaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_Medida_de_pirateriaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_Medida_de_pirateriaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_Medida_de_pirateriaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Unidad_de_Medida_de_pirateriaController.cs" />
+<Content Include="Areas\Frontal\Views\Unidad_de_Medida_de_pirateria\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Unidad_de_Medida_de_pirateria\Create.cshtml" />
+<Compile Include="Resource\GetResource\Unidad_de_Medida_de_pirateria.cs" />
+<Content Include="Uploads\Resources\Unidad_de_Medida_de_pirateriaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Unidad_de_Medida_de_pirateriaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Unidad_de_Medida_de_pirateriaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Unidad_de_Medida_de_pirateria.js" />
+<Content Include="Scripts\Custom\Unidad_de_Medida_de_pirateriaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Unidad_de_Medida_de_pirateria\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_Medida_de_pirateriaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_Medida_de_pirateriaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Unidad_de_Medida_de_pirateriaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Unidad_de_Medida_de_pirateriaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Unidad_de_Medida_de_pirateria\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Unidad_de_medida_de_tipo_de_droga\Unidad_de_medida_de_tipo_de_drogaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Unidad_de_medida_de_tipo_de_droga\IUnidad_de_medida_de_tipo_de_drogaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_medida_de_tipo_de_drogaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_medida_de_tipo_de_drogaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_medida_de_tipo_de_drogaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Unidad_de_medida_de_tipo_de_drogaController.cs" />
+<Content Include="Areas\Frontal\Views\Unidad_de_medida_de_tipo_de_droga\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Unidad_de_medida_de_tipo_de_droga\Create.cshtml" />
+<Compile Include="Resource\GetResource\Unidad_de_medida_de_tipo_de_droga.cs" />
+<Content Include="Uploads\Resources\Unidad_de_medida_de_tipo_de_drogaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Unidad_de_medida_de_tipo_de_drogaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Unidad_de_medida_de_tipo_de_drogaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Unidad_de_medida_de_tipo_de_droga.js" />
+<Content Include="Scripts\Custom\Unidad_de_medida_de_tipo_de_drogaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Unidad_de_medida_de_tipo_de_droga\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_medida_de_tipo_de_drogaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Unidad_de_medida_de_tipo_de_drogaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Unidad_de_medida_de_tipo_de_drogaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Unidad_de_medida_de_tipo_de_drogaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Unidad_de_medida_de_tipo_de_droga\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Uso_del_medio_de_transporte\Uso_del_medio_de_transporteApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Uso_del_medio_de_transporte\IUso_del_medio_de_transporteApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Uso_del_medio_de_transporteModel.cs" />
+<Compile Include="Areas\Frontal\Models\Uso_del_medio_de_transporteGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Uso_del_medio_de_transporteMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Uso_del_medio_de_transporteController.cs" />
+<Content Include="Areas\Frontal\Views\Uso_del_medio_de_transporte\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Uso_del_medio_de_transporte\Create.cshtml" />
+<Compile Include="Resource\GetResource\Uso_del_medio_de_transporte.cs" />
+<Content Include="Uploads\Resources\Uso_del_medio_de_transporteResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Uso_del_medio_de_transportePropertyMapper.cs" />
+<Content Include="Uploads\Resources\Uso_del_medio_de_transporteResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Uso_del_medio_de_transporte.js" />
+<Content Include="Scripts\Custom\Uso_del_medio_de_transporteGeneral.js" />
+<Content Include="Areas\Frontal\Views\Uso_del_medio_de_transporte\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Uso_del_medio_de_transporteAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Uso_del_medio_de_transporteBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Uso_del_medio_de_transporteCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Uso_del_medio_de_transporteIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Uso_del_medio_de_transporte\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -13344,6 +14044,706 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
