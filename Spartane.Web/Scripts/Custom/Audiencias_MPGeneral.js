@@ -262,24 +262,24 @@ function Detalle_Audiencia_Defensor_ImputadoRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Audiencia_Defensor_Victima MultiRow
 var Detalle_Audiencia_Defensor_VictimacountRowsChecked = 0;
 
-function GetDetalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoName(Id) {
-    for (var i = 0; i < Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoItems.length; i++) {
-        if (Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoItems[i].Clave == Id) {
-            return Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoItems[i].Nombre_Completo_del_Tutor;
+function GetDetalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesName(Id) {
+    for (var i = 0; i < Detalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesItems.length; i++) {
+        if (Detalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesItems[i].Clave == Id) {
+            return Detalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesItems[i].Nombre_Completo;
         }
     }
     return "";
 }
 
-function GetDetalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoDropDown() {
-    var Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Audiencia_Defensor_Victima_cmbLabelSelect").val();
+function GetDetalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesDropDown() {
+    var Detalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Audiencia_Defensor_Victima_cmbLabelSelect").val();
 
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoDropdown);
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesDropdown);
 
-    for (var i = 0; i < Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoItems.length; i++) {
-        $('<option />', { value: Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoItems[i].Clave, text: Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoItems[i].Nombre_Completo_del_Tutor }).appendTo(Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoDropdown);
+    for (var i = 0; i < Detalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesItems.length; i++) {
+        $('<option />', { value: Detalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesItems[i].Clave, text: Detalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesItems[i].Nombre_Completo }).appendTo(Detalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesDropdown);
     }
-    return Detalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoDropdown;
+    return Detalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesDropdown;
 }
 
 
@@ -289,7 +289,7 @@ function GetInsertDetalle_Audiencia_Defensor_VictimaRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado'))).addClass('Detalle_Audiencia_Defensor_Victima_Nombre_del_Imputado Nombre_del_Imputado').attr('id', 'Detalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_' + index).attr('data-field', 'Nombre_del_Imputado').after($.parseHTML(addNew('Detalle_Audiencia_Defensor_Victima', 'Detalle_de_Imputado', 'Nombre_del_Imputado', 267410)));
+    columnData[0] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado'))).addClass('Detalle_Audiencia_Defensor_Victima_Nombre_del_Imputado Nombre_del_Imputado').attr('id', 'Detalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_' + index).attr('data-field', 'Nombre_del_Imputado').after($.parseHTML(addNew('Detalle_Audiencia_Defensor_Victima', 'Detalle_de_Datos_Generales', 'Nombre_del_Imputado', 267410)));
     columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_Audiencia_Defensor_Victima_Abogado Abogado').attr('id', 'Detalle_Audiencia_Defensor_Victima_Abogado_' + index).attr('data-field', 'Abogado');
     columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Audiencia_Defensor_Victima_Cedula_Profesional Cedula_Profesional').attr('id', 'Detalle_Audiencia_Defensor_Victima_Cedula_Profesional_' + index).attr('data-field', 'Cedula_Profesional');
 
@@ -309,7 +309,7 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Audiencia_Defensor_Victima("Deta
         Clave: prevData.Clave,
         IsInsertRow: false
 
-        , Nombre_del_ImputadoNombre_Completo_del_Tutor:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
+        , Nombre_del_ImputadoNombre_Completo:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
         , Nombre_del_Imputado:  data.childNodes[counter++].childNodes[0].value 	
         ,Abogado:  data.childNodes[counter++].childNodes[0].value
         ,Cedula_Profesional:  data.childNodes[counter++].childNodes[0].value
@@ -926,12 +926,12 @@ function GetAutoCompleteDetalle_Audiencia_Defensor_Imputado_Nombre_Del_Imputado_
 
 //Grid GetAutocomplete
 var AutoCompleteNombre_del_ImputadoData = [];
-function GetAutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_ImputadoData(data) {
+function GetAutoCompleteDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_Datos_GeneralesData(data) {
 	AutoCompleteNombre_del_ImputadoData = [];
     for (var i = 0; i < data.length; i++) {
         AutoCompleteNombre_del_ImputadoData.push({
             id: data[i].Clave,
-            text: data[i].Nombre_Completo_del_Tutor
+            text: data[i].Nombre_Completo
         });
     }
     return AutoCompleteNombre_del_ImputadoData;

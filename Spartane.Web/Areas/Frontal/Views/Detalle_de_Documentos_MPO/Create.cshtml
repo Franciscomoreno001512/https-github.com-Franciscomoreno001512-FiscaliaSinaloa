@@ -464,23 +464,23 @@
         @Styles.Render("~/plugins/select2Styles")
         @Styles.Render("~/Content/plugins/chosen/chosenStyles")
         <style>
-            .dataTables_filter {
-                display: none;
-            }
+                    .dataTables_filter {
+                        display: none;
+                    }
 
-            .select2-results {
-                background-color: #fff;
-            }
+                    .select2-results {
+                        background-color: #fff;
+                    }
 
-            .select2-container .select2-dropdown {
-                height: auto !important;
-            }
+                    .select2-container .select2-dropdown {
+                        height: auto !important;
+                    }
 
-            div.dataTables_info {
-                display: inline-block;
-                float: right;
-            }
-            /*i {
+                    div.dataTables_info {
+                        display: inline-block;
+                        float: right;
+                    }
+                    /*i {
                 font-size: 25px !important;
                 display: block;
                 color: #676a6c;
@@ -488,9 +488,9 @@
                 margin-right: 6px;
             }*/
 
-            .fullWidth {
-                width: 100%;
-            }
+                    .fullWidth {
+                        width: 100%;
+                    }
         </style>
     }
 
@@ -533,7 +533,7 @@
             $("#hdnRemoveArchivo_Adjunto").val("1");
             $("#divAttachmentArchivo_Adjunto").hide();
         }
-
+ 
 	function GetTraduction(text) {
          switch (text.toLowerCase()) {
             case 'edit':
@@ -1512,10 +1512,10 @@
 
 
             var _controlDocumentoDynamiSeach = localStorage.getItem('controlDocumentoDynamiSeach');
-            controlDocumentoDynamiSeach = false;
+            controlDocumentoDynamiSeach = false; 
             if (_controlDocumentoDynamiSeach == "true" ) {
-                controlDocumentoDynamiSeach = true;
-
+                controlDocumentoDynamiSeach = true; 
+                
             }
 
             if ( controlDocumentoDynamiSeach == true ) {

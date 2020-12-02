@@ -1882,6 +1882,13 @@ if( GetValueByControlType($('#' + nameOfTable + 'Cerrar' + rowIndex),nameOfTable
 }
 //BusinessRuleId:2536, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2629, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetRequiredToControl( $('#' + nameOfTable + 'Turno_Asignado' + rowIndex));
+
+}
+//BusinessRuleId:2629, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

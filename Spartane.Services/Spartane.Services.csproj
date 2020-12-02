@@ -1155,6 +1155,76 @@
 <Compile Include="Detalle_Audiencia_Archivos_Adjuntos\Detalle_Audiencia_Archivos_AdjuntosService.cs" />
 <Compile Include="Tipo_de_Asignacion_de_MP\ITipo_de_Asignacion_de_MPService.cs" />
 <Compile Include="Tipo_de_Asignacion_de_MP\Tipo_de_Asignacion_de_MPService.cs" />
+<Compile Include="Aparato_Electronicos_y_Multimedia\IAparato_Electronicos_y_MultimediaService.cs" />
+<Compile Include="Aparato_Electronicos_y_Multimedia\Aparato_Electronicos_y_MultimediaService.cs" />
+<Compile Include="Calibre_de_Arma\ICalibre_de_ArmaService.cs" />
+<Compile Include="Calibre_de_Arma\Calibre_de_ArmaService.cs" />
+<Compile Include="Clasificacion_de_Artefacto_y_Explosivo\IClasificacion_de_Artefacto_y_ExplosivoService.cs" />
+<Compile Include="Clasificacion_de_Artefacto_y_Explosivo\Clasificacion_de_Artefacto_y_ExplosivoService.cs" />
+<Compile Include="Color_de_medio_de_trasporte\IColor_de_medio_de_trasporteService.cs" />
+<Compile Include="Color_de_medio_de_trasporte\Color_de_medio_de_trasporteService.cs" />
+<Compile Include="Detencion\IDetencionService.cs" />
+<Compile Include="Detencion\DetencionService.cs" />
+<Compile Include="Documentos_Multimedia\IDocumentos_MultimediaService.cs" />
+<Compile Include="Documentos_Multimedia\Documentos_MultimediaService.cs" />
+<Compile Include="Marca_de_Arma\IMarca_de_ArmaService.cs" />
+<Compile Include="Marca_de_Arma\Marca_de_ArmaService.cs" />
+<Compile Include="Marca_de_Equipo_de_Comunicacion\IMarca_de_Equipo_de_ComunicacionService.cs" />
+<Compile Include="Marca_de_Equipo_de_Comunicacion\Marca_de_Equipo_de_ComunicacionService.cs" />
+<Compile Include="Marca_de_Equipo_Tactico\IMarca_de_Equipo_TacticoService.cs" />
+<Compile Include="Marca_de_Equipo_Tactico\Marca_de_Equipo_TacticoService.cs" />
+<Compile Include="Marca_de_Medio_de_transporte\IMarca_de_Medio_de_transporteService.cs" />
+<Compile Include="Marca_de_Medio_de_transporte\Marca_de_Medio_de_transporteService.cs" />
+<Compile Include="Metodo_de_Destruccion\IMetodo_de_DestruccionService.cs" />
+<Compile Include="Metodo_de_Destruccion\Metodo_de_DestruccionService.cs" />
+<Compile Include="Modelo_de_equipo_tactico\IModelo_de_equipo_tacticoService.cs" />
+<Compile Include="Modelo_de_equipo_tactico\Modelo_de_equipo_tacticoService.cs" />
+<Compile Include="Modelo_de_medio_de_transporte\IModelo_de_medio_de_transporteService.cs" />
+<Compile Include="Modelo_de_medio_de_transporte\Modelo_de_medio_de_transporteService.cs" />
+<Compile Include="Procedencia_del_medio_de_transporte\IProcedencia_del_medio_de_transporteService.cs" />
+<Compile Include="Procedencia_del_medio_de_transporte\Procedencia_del_medio_de_transporteService.cs" />
+<Compile Include="Terreno_de_Inmuebles\ITerreno_de_InmueblesService.cs" />
+<Compile Include="Terreno_de_Inmuebles\Terreno_de_InmueblesService.cs" />
+<Compile Include="Tipo_Artefacto\ITipo_ArtefactoService.cs" />
+<Compile Include="Tipo_Artefacto\Tipo_ArtefactoService.cs" />
+<Compile Include="Tipo_Clasificacion\ITipo_ClasificacionService.cs" />
+<Compile Include="Tipo_Clasificacion\Tipo_ClasificacionService.cs" />
+<Compile Include="Tipo_de_Arma\ITipo_de_ArmaService.cs" />
+<Compile Include="Tipo_de_Arma\Tipo_de_ArmaService.cs" />
+<Compile Include="Tipo_de_Dinero\ITipo_de_DineroService.cs" />
+<Compile Include="Tipo_de_Dinero\Tipo_de_DineroService.cs" />
+<Compile Include="Tipo_de_Droga\ITipo_de_DrogaService.cs" />
+<Compile Include="Tipo_de_Droga\Tipo_de_DrogaService.cs" />
+<Compile Include="Tipo_de_Equipo_de_Comunicacion\ITipo_de_Equipo_de_ComunicacionService.cs" />
+<Compile Include="Tipo_de_Equipo_de_Comunicacion\Tipo_de_Equipo_de_ComunicacionService.cs" />
+<Compile Include="Tipo_de_Equipo_Tactico\ITipo_de_Equipo_TacticoService.cs" />
+<Compile Include="Tipo_de_Equipo_Tactico\Tipo_de_Equipo_TacticoService.cs" />
+<Compile Include="Tipo_de_Inmueble\ITipo_de_InmuebleService.cs" />
+<Compile Include="Tipo_de_Inmueble\Tipo_de_InmuebleService.cs" />
+<Compile Include="Tipo_de_medios_de_transporte\ITipo_de_medios_de_transporteService.cs" />
+<Compile Include="Tipo_de_medios_de_transporte\Tipo_de_medios_de_transporteService.cs" />
+<Compile Include="Tipo_de_Moneda\ITipo_de_MonedaService.cs" />
+<Compile Include="Tipo_de_Moneda\Tipo_de_MonedaService.cs" />
+<Compile Include="Tipo_de_Orientacion\ITipo_de_OrientacionService.cs" />
+<Compile Include="Tipo_de_Orientacion\Tipo_de_OrientacionService.cs" />
+<Compile Include="Tipo_de_Pirateria\ITipo_de_PirateriaService.cs" />
+<Compile Include="Tipo_de_Pirateria\Tipo_de_PirateriaService.cs" />
+<Compile Include="Tipo_de_Pista_de_Aterrizaje\ITipo_de_Pista_de_AterrizajeService.cs" />
+<Compile Include="Tipo_de_Pista_de_Aterrizaje\Tipo_de_Pista_de_AterrizajeService.cs" />
+<Compile Include="Tipo_de_Plantio\ITipo_de_PlantioService.cs" />
+<Compile Include="Tipo_de_Plantio\Tipo_de_PlantioService.cs" />
+<Compile Include="Tipo_de_Suelo\ITipo_de_SueloService.cs" />
+<Compile Include="Tipo_de_Suelo\Tipo_de_SueloService.cs" />
+<Compile Include="Tipo_de_Zona\ITipo_de_ZonaService.cs" />
+<Compile Include="Tipo_de_Zona\Tipo_de_ZonaService.cs" />
+<Compile Include="Unidad_de_Medida_de_Equipo_Tactico\IUnidad_de_Medida_de_Equipo_TacticoService.cs" />
+<Compile Include="Unidad_de_Medida_de_Equipo_Tactico\Unidad_de_Medida_de_Equipo_TacticoService.cs" />
+<Compile Include="Unidad_de_Medida_de_pirateria\IUnidad_de_Medida_de_pirateriaService.cs" />
+<Compile Include="Unidad_de_Medida_de_pirateria\Unidad_de_Medida_de_pirateriaService.cs" />
+<Compile Include="Unidad_de_medida_de_tipo_de_droga\IUnidad_de_medida_de_tipo_de_drogaService.cs" />
+<Compile Include="Unidad_de_medida_de_tipo_de_droga\Unidad_de_medida_de_tipo_de_drogaService.cs" />
+<Compile Include="Uso_del_medio_de_transporte\IUso_del_medio_de_transporteService.cs" />
+<Compile Include="Uso_del_medio_de_transporte\Uso_del_medio_de_transporteService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1254,6 +1324,76 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

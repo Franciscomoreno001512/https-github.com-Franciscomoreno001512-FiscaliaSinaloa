@@ -1328,15 +1328,7 @@ if(operation == 'Update'){
 
 
 
-//BusinessRuleId:2432, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( EvaluaQuery("EXEC uspGetInvolucradoEditar GLOBAL[SpartanOperationId], FLDD[lblClave]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { var valor = $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).val();   $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave, Descripcion from Tipo_de_Compareciente", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave, Descripcion from Tipo_de_Compareciente", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).val(valor).trigger('change');} else { var valor = $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).val();   $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave, Descripcion from Tipo_de_Compareciente"
-+" WHERE Clave <> 1", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave, Descripcion from Tipo_de_Compareciente"
-+" WHERE Clave <> 1", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).val(valor).trigger('change');}
 
-
-}
-//BusinessRuleId:2432, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:1274, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
@@ -1494,15 +1486,7 @@ function EjecutarValidacionesDespuesDeGuardar(){
 
 
 
-//BusinessRuleId:1729, Attribute:2, Operation:Object, Event:AFTERSAVING
-if(operation == 'New'){
- EvaluaQuery("  update Detalle_de_Datos_Generales"
-+" 	set Modulo_Atencion_Inicial= GLOBAL[SpartanOperationId]"
-+" 	where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);
 
-
-}
-//BusinessRuleId:1729, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 
 
@@ -1566,6 +1550,19 @@ if(operation == 'Update'){
 
 
 
+
+
+
+
+
+//BusinessRuleId:1729, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTablero]'))==TryParseInt('3', '3') ) { EvaluaQuery("  update Detalle_de_Datos_Generales"
++" 	set Modulo_Atencion_Inicial= GLOBAL[SpartanOperationId]"
++" 	where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:1729, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //BusinessRuleId:2513, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){

@@ -1264,6 +1264,76 @@
 <Compile Include="Domain\Detalle_Audiencia_Archivos_Adjuntos\Detalle_Audiencia_Archivos_Adjuntos.cs" />
 <Compile Include="Domain\Tipo_de_Asignacion_de_MP\Tipo_de_Asignacion_de_MP.cs" />
 <Compile Include="Domain\Tipo_de_Asignacion_de_MP\Tipo_de_Asignacion_de_MPPagingModel.cs" />
+<Compile Include="Domain\Aparato_Electronicos_y_Multimedia\Aparato_Electronicos_y_Multimedia.cs" />
+<Compile Include="Domain\Aparato_Electronicos_y_Multimedia\Aparato_Electronicos_y_MultimediaPagingModel.cs" />
+<Compile Include="Domain\Calibre_de_Arma\Calibre_de_Arma.cs" />
+<Compile Include="Domain\Calibre_de_Arma\Calibre_de_ArmaPagingModel.cs" />
+<Compile Include="Domain\Clasificacion_de_Artefacto_y_Explosivo\Clasificacion_de_Artefacto_y_Explosivo.cs" />
+<Compile Include="Domain\Clasificacion_de_Artefacto_y_Explosivo\Clasificacion_de_Artefacto_y_ExplosivoPagingModel.cs" />
+<Compile Include="Domain\Color_de_medio_de_trasporte\Color_de_medio_de_trasporte.cs" />
+<Compile Include="Domain\Color_de_medio_de_trasporte\Color_de_medio_de_trasportePagingModel.cs" />
+<Compile Include="Domain\Detencion\Detencion.cs" />
+<Compile Include="Domain\Detencion\DetencionPagingModel.cs" />
+<Compile Include="Domain\Documentos_Multimedia\Documentos_Multimedia.cs" />
+<Compile Include="Domain\Documentos_Multimedia\Documentos_MultimediaPagingModel.cs" />
+<Compile Include="Domain\Marca_de_Arma\Marca_de_Arma.cs" />
+<Compile Include="Domain\Marca_de_Arma\Marca_de_ArmaPagingModel.cs" />
+<Compile Include="Domain\Marca_de_Equipo_de_Comunicacion\Marca_de_Equipo_de_Comunicacion.cs" />
+<Compile Include="Domain\Marca_de_Equipo_de_Comunicacion\Marca_de_Equipo_de_ComunicacionPagingModel.cs" />
+<Compile Include="Domain\Marca_de_Equipo_Tactico\Marca_de_Equipo_Tactico.cs" />
+<Compile Include="Domain\Marca_de_Equipo_Tactico\Marca_de_Equipo_TacticoPagingModel.cs" />
+<Compile Include="Domain\Marca_de_Medio_de_transporte\Marca_de_Medio_de_transporte.cs" />
+<Compile Include="Domain\Marca_de_Medio_de_transporte\Marca_de_Medio_de_transportePagingModel.cs" />
+<Compile Include="Domain\Metodo_de_Destruccion\Metodo_de_Destruccion.cs" />
+<Compile Include="Domain\Metodo_de_Destruccion\Metodo_de_DestruccionPagingModel.cs" />
+<Compile Include="Domain\Modelo_de_equipo_tactico\Modelo_de_equipo_tactico.cs" />
+<Compile Include="Domain\Modelo_de_equipo_tactico\Modelo_de_equipo_tacticoPagingModel.cs" />
+<Compile Include="Domain\Modelo_de_medio_de_transporte\Modelo_de_medio_de_transporte.cs" />
+<Compile Include="Domain\Modelo_de_medio_de_transporte\Modelo_de_medio_de_transportePagingModel.cs" />
+<Compile Include="Domain\Procedencia_del_medio_de_transporte\Procedencia_del_medio_de_transporte.cs" />
+<Compile Include="Domain\Procedencia_del_medio_de_transporte\Procedencia_del_medio_de_transportePagingModel.cs" />
+<Compile Include="Domain\Terreno_de_Inmuebles\Terreno_de_Inmuebles.cs" />
+<Compile Include="Domain\Terreno_de_Inmuebles\Terreno_de_InmueblesPagingModel.cs" />
+<Compile Include="Domain\Tipo_Artefacto\Tipo_Artefacto.cs" />
+<Compile Include="Domain\Tipo_Artefacto\Tipo_ArtefactoPagingModel.cs" />
+<Compile Include="Domain\Tipo_Clasificacion\Tipo_Clasificacion.cs" />
+<Compile Include="Domain\Tipo_Clasificacion\Tipo_ClasificacionPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Arma\Tipo_de_Arma.cs" />
+<Compile Include="Domain\Tipo_de_Arma\Tipo_de_ArmaPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Dinero\Tipo_de_Dinero.cs" />
+<Compile Include="Domain\Tipo_de_Dinero\Tipo_de_DineroPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Droga\Tipo_de_Droga.cs" />
+<Compile Include="Domain\Tipo_de_Droga\Tipo_de_DrogaPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Equipo_de_Comunicacion\Tipo_de_Equipo_de_Comunicacion.cs" />
+<Compile Include="Domain\Tipo_de_Equipo_de_Comunicacion\Tipo_de_Equipo_de_ComunicacionPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Equipo_Tactico\Tipo_de_Equipo_Tactico.cs" />
+<Compile Include="Domain\Tipo_de_Equipo_Tactico\Tipo_de_Equipo_TacticoPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Inmueble\Tipo_de_Inmueble.cs" />
+<Compile Include="Domain\Tipo_de_Inmueble\Tipo_de_InmueblePagingModel.cs" />
+<Compile Include="Domain\Tipo_de_medios_de_transporte\Tipo_de_medios_de_transporte.cs" />
+<Compile Include="Domain\Tipo_de_medios_de_transporte\Tipo_de_medios_de_transportePagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Moneda\Tipo_de_Moneda.cs" />
+<Compile Include="Domain\Tipo_de_Moneda\Tipo_de_MonedaPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Orientacion\Tipo_de_Orientacion.cs" />
+<Compile Include="Domain\Tipo_de_Orientacion\Tipo_de_OrientacionPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Pirateria\Tipo_de_Pirateria.cs" />
+<Compile Include="Domain\Tipo_de_Pirateria\Tipo_de_PirateriaPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Pista_de_Aterrizaje\Tipo_de_Pista_de_Aterrizaje.cs" />
+<Compile Include="Domain\Tipo_de_Pista_de_Aterrizaje\Tipo_de_Pista_de_AterrizajePagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Plantio\Tipo_de_Plantio.cs" />
+<Compile Include="Domain\Tipo_de_Plantio\Tipo_de_PlantioPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Suelo\Tipo_de_Suelo.cs" />
+<Compile Include="Domain\Tipo_de_Suelo\Tipo_de_SueloPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Zona\Tipo_de_Zona.cs" />
+<Compile Include="Domain\Tipo_de_Zona\Tipo_de_ZonaPagingModel.cs" />
+<Compile Include="Domain\Unidad_de_Medida_de_Equipo_Tactico\Unidad_de_Medida_de_Equipo_Tactico.cs" />
+<Compile Include="Domain\Unidad_de_Medida_de_Equipo_Tactico\Unidad_de_Medida_de_Equipo_TacticoPagingModel.cs" />
+<Compile Include="Domain\Unidad_de_Medida_de_pirateria\Unidad_de_Medida_de_pirateria.cs" />
+<Compile Include="Domain\Unidad_de_Medida_de_pirateria\Unidad_de_Medida_de_pirateriaPagingModel.cs" />
+<Compile Include="Domain\Unidad_de_medida_de_tipo_de_droga\Unidad_de_medida_de_tipo_de_droga.cs" />
+<Compile Include="Domain\Unidad_de_medida_de_tipo_de_droga\Unidad_de_medida_de_tipo_de_drogaPagingModel.cs" />
+<Compile Include="Domain\Uso_del_medio_de_transporte\Uso_del_medio_de_transporte.cs" />
+<Compile Include="Domain\Uso_del_medio_de_transporte\Uso_del_medio_de_transportePagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1284,6 +1354,76 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

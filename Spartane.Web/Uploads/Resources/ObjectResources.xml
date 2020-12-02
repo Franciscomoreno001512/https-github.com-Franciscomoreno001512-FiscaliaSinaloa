@@ -972,8 +972,164 @@
 <Object Id="45486" culture="es-es" value="Detalle Audiencia Archivos Adjuntos" />
 <Object Id="45487" culture="en-us" value="Tipo de Asignación de MP" />
 <Object Id="45487" culture="es-es" value="Tipo de Asignación de MP" />
+<Object Id="45504" culture="en-us" value="Aparato Electronicos y Multimedia" />
+<Object Id="45504" culture="es-es" value="Aparato Electronicos y Multimedia" />
+<Object Id="45492" culture="en-us" value="Calibre de Arma" />
+<Object Id="45492" culture="es-es" value="Calibre de Arma" />
+<Object Id="45493" culture="en-us" value="Clasificación de Artefacto y Explosivo" />
+<Object Id="45493" culture="es-es" value="Clasificación de Artefacto y Explosivo" />
+<Object Id="45513" culture="en-us" value="Color de medio de trasporte" />
+<Object Id="45513" culture="es-es" value="Color de medio de trasporte" />
+<Object Id="45516" culture="en-us" value="Detención" />
+<Object Id="45516" culture="es-es" value="Detención" />
+<Object Id="45505" culture="en-us" value="Documentos Multimedia" />
+<Object Id="45505" culture="es-es" value="Documentos Multimedia" />
+<Object Id="45491" culture="en-us" value="Marca de Arma" />
+<Object Id="45491" culture="es-es" value="Marca de Arma" />
+<Object Id="45520" culture="en-us" value="Marca de Equipo de Comunicacion" />
+<Object Id="45520" culture="es-es" value="Marca de Equipo de Comunicacion" />
+<Object Id="45522" culture="en-us" value="Marca de Equipo Tactico" />
+<Object Id="45522" culture="es-es" value="Marca de Equipo Tactico" />
+<Object Id="45510" culture="en-us" value="Marca de Medio de transporte" />
+<Object Id="45510" culture="es-es" value="Marca de Medio de transporte" />
+<Object Id="45503" culture="en-us" value="Método de Destrucción" />
+<Object Id="45503" culture="es-es" value="Método de Destrucción" />
+<Object Id="45523" culture="en-us" value="Modelo de equipo tactico" />
+<Object Id="45523" culture="es-es" value="Modelo de equipo tactico" />
+<Object Id="45512" culture="en-us" value="Modelo de medio de transporte" />
+<Object Id="45512" culture="es-es" value="Modelo de medio de transporte" />
+<Object Id="45515" culture="en-us" value="Procedencia del medio de transporte" />
+<Object Id="45515" culture="es-es" value="Procedencia del medio de transporte" />
+<Object Id="45508" culture="en-us" value="Terreno de Inmuebles " />
+<Object Id="45508" culture="es-es" value="Terreno de Inmuebles " />
+<Object Id="45495" culture="en-us" value="Tipo Artefacto" />
+<Object Id="45495" culture="es-es" value="Tipo Artefacto" />
+<Object Id="45494" culture="en-us" value="Tipo Clasificación" />
+<Object Id="45494" culture="es-es" value="Tipo Clasificación" />
+<Object Id="45490" culture="en-us" value="Tipo de Arma" />
+<Object Id="45490" culture="es-es" value="Tipo de Arma" />
+<Object Id="45518" culture="en-us" value="Tipo de Dinero" />
+<Object Id="45518" culture="es-es" value="Tipo de Dinero" />
+<Object Id="45496" culture="en-us" value="Tipo de Droga" />
+<Object Id="45496" culture="es-es" value="Tipo de Droga" />
+<Object Id="45519" culture="en-us" value="Tipo de Equipo de Comunicacion" />
+<Object Id="45519" culture="es-es" value="Tipo de Equipo de Comunicacion" />
+<Object Id="45521" culture="en-us" value="Tipo de Equipo Tactico" />
+<Object Id="45521" culture="es-es" value="Tipo de Equipo Tactico" />
+<Object Id="45507" culture="en-us" value="Tipo de Inmueble" />
+<Object Id="45507" culture="es-es" value="Tipo de Inmueble" />
+<Object Id="45509" culture="en-us" value="Tipo de medios de transporte" />
+<Object Id="45509" culture="es-es" value="Tipo de medios de transporte" />
+<Object Id="45517" culture="en-us" value="Tipo de Moneda" />
+<Object Id="45517" culture="es-es" value="Tipo de Moneda" />
+<Object Id="45500" culture="en-us" value="Tipo de Orientación" />
+<Object Id="45500" culture="es-es" value="Tipo de Orientación" />
+<Object Id="45525" culture="en-us" value="Tipo de Piratería" />
+<Object Id="45525" culture="es-es" value="Tipo de Piratería" />
+<Object Id="45498" culture="en-us" value="Tipo de Pista de Aterrizaje" />
+<Object Id="45498" culture="es-es" value="Tipo de Pista de Aterrizaje" />
+<Object Id="45501" culture="en-us" value="Tipo de Plantío" />
+<Object Id="45501" culture="es-es" value="Tipo de Plantío" />
+<Object Id="45499" culture="en-us" value="Tipo de Suelo" />
+<Object Id="45499" culture="es-es" value="Tipo de Suelo" />
+<Object Id="45506" culture="en-us" value="Tipo de Zona" />
+<Object Id="45506" culture="es-es" value="Tipo de Zona" />
+<Object Id="45524" culture="en-us" value="Unidad de Medida de Equipo Tactico" />
+<Object Id="45524" culture="es-es" value="Unidad de Medida de Equipo Tactico" />
+<Object Id="45526" culture="en-us" value="Unidad de Medida de piratería" />
+<Object Id="45526" culture="es-es" value="Unidad de Medida de piratería" />
+<Object Id="45497" culture="en-us" value="Unidad de medida de tipo de droga " />
+<Object Id="45497" culture="es-es" value="Unidad de medida de tipo de droga " />
+<Object Id="45514" culture="en-us" value="Uso del medio de transporte" />
+<Object Id="45514" culture="es-es" value="Uso del medio de transporte" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

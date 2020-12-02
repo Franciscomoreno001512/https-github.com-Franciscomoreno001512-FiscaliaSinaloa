@@ -13,7 +13,7 @@ using Spartane.Core.Domain.Detalle_de_Imputado;
 
 using Spartane.Core.Domain.Detalle_Audiencia_Defensor_Victima;
 
-using Spartane.Core.Domain.Detalle_de_Imputado;
+using Spartane.Core.Domain.Detalle_de_Datos_Generales;
 
 
 
@@ -43,7 +43,7 @@ using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Imputado;
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Audiencia_Defensor_Victima;
 
-using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Imputado;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Datos_Generales;
 
 using Spartane.Web.Areas.WebApiConsumer.Resultado_de_Audiencia;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Audiencia_Archivos_Adjuntos;
@@ -96,6 +96,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Audiencia_Defensor_VictimaApiConsumer _IDetalle_Audiencia_Defensor_VictimaApiConsumer;
 
+        private IDetalle_de_Datos_GeneralesApiConsumer _IDetalle_de_Datos_GeneralesApiConsumer;
 
         private IResultado_de_AudienciaApiConsumer _IResultado_de_AudienciaApiConsumer;
         private IDetalle_Audiencia_Archivos_AdjuntosApiConsumer _IDetalle_Audiencia_Archivos_AdjuntosApiConsumer;
@@ -120,7 +121,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Audiencias_MPController(IAudiencias_MPService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IAudiencias_MPApiConsumer Audiencias_MPApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ITipo_de_AudienciaApiConsumer Tipo_de_AudienciaApiConsumer , IAudienciaApiConsumer AudienciaApiConsumer , IDetalle_Audiencia_Defensor_ImputadoApiConsumer Detalle_Audiencia_Defensor_ImputadoApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer  , IDetalle_Audiencia_Defensor_VictimaApiConsumer Detalle_Audiencia_Defensor_VictimaApiConsumer  , IResultado_de_AudienciaApiConsumer Resultado_de_AudienciaApiConsumer , IDetalle_Audiencia_Archivos_AdjuntosApiConsumer Detalle_Audiencia_Archivos_AdjuntosApiConsumer  , ISpartan_UserApiConsumer Spartan_UserApiConsumer )
+        public Audiencias_MPController(IAudiencias_MPService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IAudiencias_MPApiConsumer Audiencias_MPApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ITipo_de_AudienciaApiConsumer Tipo_de_AudienciaApiConsumer , IAudienciaApiConsumer AudienciaApiConsumer , IDetalle_Audiencia_Defensor_ImputadoApiConsumer Detalle_Audiencia_Defensor_ImputadoApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer  , IDetalle_Audiencia_Defensor_VictimaApiConsumer Detalle_Audiencia_Defensor_VictimaApiConsumer , IDetalle_de_Datos_GeneralesApiConsumer Detalle_de_Datos_GeneralesApiConsumer  , IResultado_de_AudienciaApiConsumer Resultado_de_AudienciaApiConsumer , IDetalle_Audiencia_Archivos_AdjuntosApiConsumer Detalle_Audiencia_Archivos_AdjuntosApiConsumer  , ISpartan_UserApiConsumer Spartan_UserApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -143,7 +144,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             this._IDetalle_Audiencia_Defensor_VictimaApiConsumer = Detalle_Audiencia_Defensor_VictimaApiConsumer;
 
-            this._IDetalle_de_ImputadoApiConsumer = Detalle_de_ImputadoApiConsumer;
+            this._IDetalle_de_Datos_GeneralesApiConsumer = Detalle_de_Datos_GeneralesApiConsumer;
 
             this._IResultado_de_AudienciaApiConsumer = Resultado_de_AudienciaApiConsumer;
             this._IDetalle_Audiencia_Archivos_AdjuntosApiConsumer = Detalle_Audiencia_Archivos_AdjuntosApiConsumer;
@@ -836,7 +837,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 //Grid GetAutoComplete
         [HttpGet]
-        public JsonResult GetDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_Imputado(string query, string where)
+        public JsonResult GetDetalle_Audiencia_Defensor_Victima_Nombre_del_Imputado_Detalle_de_Datos_Generales(string query, string where)
         {
             try
             {
@@ -844,18 +845,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where = "";
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _IDetalle_de_ImputadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Detalle_de_Imputado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Imputado.Nombre_Completo_del_Tutor as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Detalle_de_Datos_Generales.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Datos_Generales.Nombre_Completo as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IDetalle_de_ImputadoApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Imputado.Nombre_Completo_del_Tutor ASC ").Resource;
+				var result = _IDetalle_de_Datos_GeneralesApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Datos_Generales.Nombre_Completo ASC ").Resource;
                
-                foreach (var item in result.Detalle_de_Imputados)
+                foreach (var item in result.Detalle_de_Datos_Generaless)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Imputado", "Nombre_Completo_del_Tutor");
-                    item.Nombre_Completo_del_Tutor =trans ??item.Nombre_Completo_del_Tutor;
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo");
+                    item.Nombre_Completo =trans ??item.Nombre_Completo;
                 }
-                return Json(result.Detalle_de_Imputados.ToArray(), JsonRequestBehavior.AllowGet);
+                return Json(result.Detalle_de_Datos_Generaless.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -1218,7 +1219,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
 
                         ,Nombre_del_Imputado = m.Nombre_del_Imputado
-                        ,Nombre_del_ImputadoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Nombre_del_Imputado_Detalle_de_Imputado.Clave.ToString(), "Nombre_Completo_del_Tutor") ??(string)m.Nombre_del_Imputado_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                        ,Nombre_del_ImputadoNombre_Completo = CultureHelper.GetTraduction(m.Nombre_del_Imputado_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_Completo") ??(string)m.Nombre_del_Imputado_Detalle_de_Datos_Generales.Nombre_Completo
 			,Abogado = m.Abogado
 			,Cedula_Profesional = m.Cedula_Profesional
 
@@ -1254,7 +1255,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         Clave = m.Clave
 
                         ,Nombre_del_Imputado = m.Nombre_del_Imputado
-                        ,Nombre_del_ImputadoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Nombre_del_Imputado_Detalle_de_Imputado.Clave.ToString(), "Nombre_Completo_del_Tutor") ??(string)m.Nombre_del_Imputado_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                        ,Nombre_del_ImputadoNombre_Completo = CultureHelper.GetTraduction(m.Nombre_del_Imputado_Detalle_de_Datos_Generales.Clave.ToString(), "Nombre_Completo") ??(string)m.Nombre_del_Imputado_Detalle_de_Datos_Generales.Nombre_Completo
 			,Abogado = m.Abogado
 			,Cedula_Profesional = m.Cedula_Profesional
 
@@ -1719,17 +1720,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
         [HttpGet]
-        public ActionResult GetDetalle_Audiencia_Defensor_Victima_Detalle_de_ImputadoAll()
+        public ActionResult GetDetalle_Audiencia_Defensor_Victima_Detalle_de_Datos_GeneralesAll()
         {
             try
             {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _IDetalle_de_ImputadoApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IDetalle_de_ImputadoApiConsumer.SelAll(false).Resource;
+                _IDetalle_de_Datos_GeneralesApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IDetalle_de_Datos_GeneralesApiConsumer.SelAll(false).Resource;
                 foreach (var item in result)
                 {
-                    item.Nombre_Completo_del_Tutor= CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Imputado", "Nombre_Completo_del_Tutor");
+                    item.Nombre_Completo= CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Datos_Generales", "Nombre_Completo");
                 }
                 return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
             }
