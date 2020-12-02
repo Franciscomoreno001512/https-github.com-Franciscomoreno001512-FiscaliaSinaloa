@@ -501,8 +501,33 @@
 
     @section Scripts {
 
-
         <script type="text/javascript">
+
+            var permitirCerrar = true
+            var validarPermitirCerrar = false;
+
+            function getParameterByName(name) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+                if (results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " ")) == '1') {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            validarPermitirCerrar = getParameterByName('preguntar');
+
+            window.addEventListener('beforeunload', (event) => {
+                debugger;
+                if (validarPermitirCerrar) {
+                    if (permitirCerrar == false) {
+                        event.returnValue = `Are you sure you want to leave?`;
+                    }
+                }
+
+            });
 
         function RemoveAttachmentMainArchivo_Adjunto () {
             $("#hdnRemoveArchivo_Adjunto").val("1");
@@ -1168,7 +1193,8 @@
 			var id = $("#ReferenceClave").val();
             var isNew = $('#hdnIsNew').val();
 
-			if (Tab_Datos_Generales && !checkClientValidate('Detalle_de_Documentos_MPOCreateForm', 'Datos_Generales')) {
+            if (Tab_Datos_Generales && !checkClientValidate('Detalle_de_Documentos_MPOCreateForm', 'Datos_Generales')) {
+                localStorage.setItem('controlDocumentoDynamiSeach', "");
 				return false;
 			}
 
@@ -1496,7 +1522,8 @@
                 alert('Existe una ventana abierta');
             }
             else {
-                //permitirCerrar = false;
+                permitirCerrar = false;
+                controlDocumentoDynamiSeach = true; 
                 localStorage.setItem('controlDocumentoDynamiSeach',"true");
                 var isedit = ($("#Archivo").val() != "" && $("#Archivo").val() != "0" && $("#Archivo").val() != "-1");
                 var folioControlDocumentos = $("#Archivo").val();

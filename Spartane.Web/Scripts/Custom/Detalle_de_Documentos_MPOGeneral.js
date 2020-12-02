@@ -474,6 +474,12 @@ $(document).ready(function () {
       }
     });
 	$("form#CreateDetalle_de_Documentos_MPO").on('click', '#Detalle_de_Documentos_MPOGuardar', function () {
+		        debugger;
+
+        if ($("#Archivo").val() == '0' || $("#Archivo").val() == '') {
+            alert('No se puede guardar porque no se ha generado un documento.')
+        } else {
+			
 		$('#Detalle_de_Documentos_MPOGuardar').attr('disabled', true);
 		$('#Detalle_de_Documentos_MPOGuardar').unbind()
         if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
@@ -517,6 +523,10 @@ $(document).ready(function () {
 		}
     });
 	$("form#CreateDetalle_de_Documentos_MPO").on('click', '#Detalle_de_Documentos_MPOGuardarYNuevo', function () {	
+        debugger;
+        if ($("#Archivo").val() == '0' || $("#Archivo").val() == '') {
+            alert('No se puede guardar porque no se ha generado un documento.')
+        } else {
 		if (EjecutarValidacionesAntesDeGuardar()) {
 			if (CheckValidation()) {
 				SendDetalle_de_Documentos_MPOData(function () {
@@ -541,8 +551,13 @@ $(document).ready(function () {
 				});
 			}
 		}		
+        }
     });
     $("form#CreateDetalle_de_Documentos_MPO").on('click', '#Detalle_de_Documentos_MPOGuardarYCopia', function () {
+        debugger;
+        if ($("#Archivo").val() == '0' || $("#Archivo").val() == '') {
+            alert('No se puede guardar porque no se ha generado un documento.')
+        } else { 		
 		if (EjecutarValidacionesAntesDeGuardar()) {
 			if (CheckValidation())
 				SendDetalle_de_Documentos_MPOData(function (currentId) {
