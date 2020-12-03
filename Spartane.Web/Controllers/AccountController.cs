@@ -238,7 +238,7 @@ namespace Spartane.Web.Controllers
                         Session.Timeout = Convert.ToInt32(ConfigurationManager.AppSettings["SessionTimeOut"]);
                         Session["LANGUAGEID"] = (model.SelectedLanguage.HasValue) ? model.SelectedLanguage.Value : 1;
                         SessionHelper.Relogin = false;
-                       
+                      
                         return RedirectToLocal("~/Frontal/Home/Index");
                     }
                     else

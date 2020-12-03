@@ -1546,7 +1546,21 @@ CKEDITOR.replace('Pie_de_Pagina', {
 			});
 		}
 
-
+            $("form#CreateControl_de_Documentos").on('click', '#Control_de_DocumentosCancelar', function () {
+                debugger;
+                localStorage.setItem('controlDocumentoDynamiSeach', "false");
+                
+            });
+            $("form#CreateControl_de_Documentos").on('click', '#Control_de_DocumentosGuardar', function () {
+                debugger;
+                localStorage.setItem('controlDocumentoDynamiSeach',"false");
+            });
+			
+			 window.addEventListener('beforeunload', (event) => {
+                debugger;
+                localStorage.setItem('controlDocumentoDynamiSeach',"false");
+       
+            });
         </script>
     }
     <input type="hidden" id="FieldId" name="FieldId" value="" />

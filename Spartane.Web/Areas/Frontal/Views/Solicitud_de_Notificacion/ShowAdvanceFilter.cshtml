@@ -15,24 +15,24 @@
  List<SelectListItem> varSolicitud_Expediente_Mecanismos_Alternos = null;
     if (ViewBag.Solicituds_Expediente_Mecanismos_Alternos != null)
     { varSolicitud_Expediente_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Solicituds_Expediente_Mecanismos_Alternos; }
- List<SelectListItem> varExpediente_Inicial_Carpeta_de_Investigacion = null;
-    if (ViewBag.Expediente_Inicials_Carpeta_de_Investigacion != null)
-    { varExpediente_Inicial_Carpeta_de_Investigacion = (List<SelectListItem>)ViewBag.Expediente_Inicials_Carpeta_de_Investigacion; }
-    List<SelectListItem> varTipo_de_Invitacion_Forma_de_Invitacion = null;
-    if (ViewBag.Tipo_de_Invitacions_Forma_de_Invitacion != null)
-    { varTipo_de_Invitacion_Forma_de_Invitacion = (List<SelectListItem>)ViewBag.Tipo_de_Invitacions_Forma_de_Invitacion; }
     List<SelectListItem> varEstatus_de_Notificacion_Estatus = null;
     if (ViewBag.Estatus_de_Notificacions_Estatus != null)
     { varEstatus_de_Notificacion_Estatus = (List<SelectListItem>)ViewBag.Estatus_de_Notificacions_Estatus; }
  List<SelectListItem> varSpartan_User_Notificador = null;
     if (ViewBag.Spartan_Users_Notificador != null)
     { varSpartan_User_Notificador = (List<SelectListItem>)ViewBag.Spartan_Users_Notificador; }
+    List<SelectListItem> varTipo_de_Invitacion_Forma_de_Invitacion = null;
+    if (ViewBag.Tipo_de_Invitacions_Forma_de_Invitacion != null)
+    { varTipo_de_Invitacion_Forma_de_Invitacion = (List<SelectListItem>)ViewBag.Tipo_de_Invitacions_Forma_de_Invitacion; }
     List<SelectListItem> varResultado_de_Notificacion_Resultado = null;
     if (ViewBag.Resultado_de_Notificacions_Resultado != null)
     { varResultado_de_Notificacion_Resultado = (List<SelectListItem>)ViewBag.Resultado_de_Notificacions_Resultado; }
     List<SelectListItem> varIncidente_con_Invitacion_Incidente_en_la_Recepcion = null;
     if (ViewBag.Incidente_con_Invitacions_Incidente_en_la_Recepcion != null)
     { varIncidente_con_Invitacion_Incidente_en_la_Recepcion = (List<SelectListItem>)ViewBag.Incidente_con_Invitacions_Incidente_en_la_Recepcion; }
+ List<SelectListItem> varDocumento_Documento = null;
+    if (ViewBag.Documentos_Documento != null)
+    { varDocumento_Documento = (List<SelectListItem>)ViewBag.Documentos_Documento; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -149,29 +149,13 @@
  List<SelectListItem> varSolicitud_Expediente_Mecanismos_Alternos = null;
     if (ViewBag.Solicituds_Expediente_Mecanismos_Alternos != null)
     { varSolicitud_Expediente_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Solicituds_Expediente_Mecanismos_Alternos; }
- List<SelectListItem> varExpediente_Inicial_Carpeta_de_Investigacion = null;
-    if (ViewBag.Expediente_Inicials_Carpeta_de_Investigacion != null)
-    { varExpediente_Inicial_Carpeta_de_Investigacion = (List<SelectListItem>)ViewBag.Expediente_Inicials_Carpeta_de_Investigacion; }
                 <div class="MarginBottom">
-                    <h3>@Resources.Solicitud_de_NotificacionResources.Forma_de_Invitacion</h3>
+                    <h3>@Resources.Solicitud_de_NotificacionResources.Carpeta_de_Investigacion</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Forma_de_InvitacionFilter, filters, new { @class = "form-control", @id = "ddlForma_de_InvitacionFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceForma_de_Invitacion, new { @class = "form-control", @type = "text", @id = "txtAdvanceForma_de_Invitacion" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varTipo_de_Invitacion_Forma_de_Invitacion!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceForma_de_InvitacionMultiple, varTipo_de_Invitacion_Forma_de_Invitacion,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceForma_de_Invitacion"
-                        });
-                    }
+                    @Html.DropDownListFor(m => m.Carpeta_de_InvestigacionFilter, filters, new { @class = "form-control", @id = "ddlCarpeta_de_InvestigacionFilter" })
+                    @Html.TextBoxFor(m => m.Carpeta_de_Investigacion, new { @class = "form-control", @type = "text", @id = "txtCarpeta_de_Investigacion" })
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Solicitud_de_NotificacionResources.Numero_de_Invitacion</h3>
@@ -290,6 +274,27 @@
     if (ViewBag.Spartan_Users_Notificador != null)
     { varSpartan_User_Notificador = (List<SelectListItem>)ViewBag.Spartan_Users_Notificador; }
                 <div class="MarginBottom">
+                    <h3>@Resources.Solicitud_de_NotificacionResources.Forma_de_Invitacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Forma_de_InvitacionFilter, filters, new { @class = "form-control", @id = "ddlForma_de_InvitacionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceForma_de_Invitacion, new { @class = "form-control", @type = "text", @id = "txtAdvanceForma_de_Invitacion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Invitacion_Forma_de_Invitacion!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceForma_de_InvitacionMultiple, varTipo_de_Invitacion_Forma_de_Invitacion,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceForma_de_Invitacion"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Solicitud_de_NotificacionResources.Resultado</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -342,6 +347,9 @@
                         });
                     }
                 </div>
+ List<SelectListItem> varDocumento_Documento = null;
+    if (ViewBag.Documentos_Documento != null)
+    { varDocumento_Documento = (List<SelectListItem>)ViewBag.Documentos_Documento; }
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Solicitud_de_Notificacion/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -429,35 +437,10 @@
                 advanceSearch.Expediente_Mecanismos_AlternosSearchType = 2;
             }
         }
-        advanceSearch.Carpeta_de_InvestigacionSearchType = 0;
-        if ($('#ddlAdvanceCarpeta_de_Investigacion').val().length > 0 || $("#txtAdvanceCarpeta_de_Investigacion").val() == "") {
-
-
-            if (isSolicitud_de_NotificacionTextSearch) {
-                advanceSearch.Carpeta_de_InvestigacionName = $("#txtAdvanceCarpeta_de_Investigacion").val();
-                advanceSearch.Carpeta_de_InvestigacionNameSearchType = $("#ddlAdvanceCarpeta_de_Investigacion").val();
-                advanceSearch.Carpeta_de_InvestigacionSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Carpeta_de_InvestigacionToSearch = $("#ddlAdvanceCarpeta_de_Investigacion").val();
-                advanceSearch.Carpeta_de_InvestigacionSearchType = 2;
-            }
-        }
-        advanceSearch.Forma_de_InvitacionSearchType = 0;
-        if ($('#ddlAdvanceForma_de_Invitacion').val().length > 0 || $("#txtAdvanceForma_de_Invitacion").val() == "") {
-
-
-            if (isSolicitud_de_NotificacionTextSearch) {
-                advanceSearch.Forma_de_InvitacionName = $("#txtAdvanceForma_de_Invitacion").val();
-                advanceSearch.Forma_de_InvitacionNameSearchType = $("#ddlAdvanceForma_de_Invitacion").val();
-                advanceSearch.Forma_de_InvitacionSearchType = 1;
-            }
-            else {
-
-                advanceSearch.Forma_de_InvitacionToSearch = $("#ddlAdvanceForma_de_Invitacion").val();
-                advanceSearch.Forma_de_InvitacionSearchType = 2;
-            }
+        if ($("#txtAdvanceCarpeta_de_Investigacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Solicitud_de_NotificacionCarpeta_de_Investigacion = $("#txtAdvanceCarpeta_de_Investigacion").val();
+            advanceSearch.Solicitud_de_NotificacionCarpeta_de_InvestigacionSearchType = $("#ddlAdvanceCarpeta_de_InvestigacionFilter").val();
         }
         if ($("#txtAdvanceNumero_de_Invitacion").val() != "") {
             hasParameter = true;
@@ -519,6 +502,21 @@
                 advanceSearch.NotificadorSearchType = 2;
             }
         }
+        advanceSearch.Forma_de_InvitacionSearchType = 0;
+        if ($('#ddlAdvanceForma_de_Invitacion').val().length > 0 || $("#txtAdvanceForma_de_Invitacion").val() == "") {
+
+
+            if (isSolicitud_de_NotificacionTextSearch) {
+                advanceSearch.Forma_de_InvitacionName = $("#txtAdvanceForma_de_Invitacion").val();
+                advanceSearch.Forma_de_InvitacionNameSearchType = $("#ddlAdvanceForma_de_Invitacion").val();
+                advanceSearch.Forma_de_InvitacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Forma_de_InvitacionToSearch = $("#ddlAdvanceForma_de_Invitacion").val();
+                advanceSearch.Forma_de_InvitacionSearchType = 2;
+            }
+        }
         advanceSearch.ResultadoSearchType = 0;
         if ($('#ddlAdvanceResultado').val().length > 0 || $("#txtAdvanceResultado").val() == "") {
 
@@ -552,6 +550,21 @@
 
                 advanceSearch.Incidente_en_la_RecepcionToSearch = $("#ddlAdvanceIncidente_en_la_Recepcion").val();
                 advanceSearch.Incidente_en_la_RecepcionSearchType = 2;
+            }
+        }
+        advanceSearch.DocumentoSearchType = 0;
+        if ($('#ddlAdvanceDocumento').val().length > 0 || $("#txtAdvanceDocumento").val() == "") {
+
+
+            if (isSolicitud_de_NotificacionTextSearch) {
+                advanceSearch.DocumentoName = $("#txtAdvanceDocumento").val();
+                advanceSearch.DocumentoNameSearchType = $("#ddlAdvanceDocumento").val();
+                advanceSearch.DocumentoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.DocumentoToSearch = $("#ddlAdvanceDocumento").val();
+                advanceSearch.DocumentoSearchType = 2;
             }
         }
 
@@ -608,24 +621,6 @@
             isSolicitud_de_NotificacionTextSearch = false;
             $("#txtAdvanceExpediente_Mecanismos_Alternos").val('');
         });
-        $("#txtAdvanceCarpeta_de_Investigacion").keypress(function () {
-            isSolicitud_de_NotificacionTextSearch = true;
-            $("#ddlAdvanceCarpeta_de_Investigacion").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceCarpeta_de_Investigacion").change(function () {
-            isSolicitud_de_NotificacionTextSearch = false;
-            $("#txtAdvanceCarpeta_de_Investigacion").val('');
-        });
-        $("#txtAdvanceForma_de_Invitacion").keypress(function () {
-            isSolicitud_de_NotificacionTextSearch = true;
-            $("#ddlAdvanceForma_de_Invitacion").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceForma_de_Invitacion").change(function () {
-            isSolicitud_de_NotificacionTextSearch = false;
-            $("#txtAdvanceForma_de_Invitacion").val('');
-        });
         $("#txtAdvanceEstatus").keypress(function () {
             isSolicitud_de_NotificacionTextSearch = true;
             $("#ddlAdvanceEstatus").val('').trigger("chosen:updated");
@@ -644,6 +639,15 @@
             isSolicitud_de_NotificacionTextSearch = false;
             $("#txtAdvanceNotificador").val('');
         });
+        $("#txtAdvanceForma_de_Invitacion").keypress(function () {
+            isSolicitud_de_NotificacionTextSearch = true;
+            $("#ddlAdvanceForma_de_Invitacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceForma_de_Invitacion").change(function () {
+            isSolicitud_de_NotificacionTextSearch = false;
+            $("#txtAdvanceForma_de_Invitacion").val('');
+        });
         $("#txtAdvanceResultado").keypress(function () {
             isSolicitud_de_NotificacionTextSearch = true;
             $("#ddlAdvanceResultado").val('').trigger("chosen:updated");
@@ -661,6 +665,15 @@
         $("#ddlAdvanceIncidente_en_la_Recepcion").change(function () {
             isSolicitud_de_NotificacionTextSearch = false;
             $("#txtAdvanceIncidente_en_la_Recepcion").val('');
+        });
+        $("#txtAdvanceDocumento").keypress(function () {
+            isSolicitud_de_NotificacionTextSearch = true;
+            $("#ddlAdvanceDocumento").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDocumento").change(function () {
+            isSolicitud_de_NotificacionTextSearch = false;
+            $("#txtAdvanceDocumento").val('');
         });
 
     });

@@ -17,6 +17,17 @@ function GetAutoCompleteDetalle_de_Persona_Moral_Modulo_Atencion_Inicial_Modulo_
     }
     return AutoCompleteModulo_Atencion_InicialData;
 }
+var AutoCompleteExpediente_MPData = [];
+function GetAutoCompleteDetalle_de_Persona_Moral_Expediente_MP_expediente_ministerio_publicoData(data) {
+	AutoCompleteExpediente_MPData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_MPData.push({
+            id: data[i].clave,
+            text: data[i].nic
+        });
+    }
+    return AutoCompleteExpediente_MPData;
+}
 var AutoCompletePaisData = [];
 function GetAutoCompleteDetalle_de_Persona_Moral_Pais_PaisData(data) {
 	AutoCompletePaisData = [];
@@ -112,6 +123,9 @@ function ClearControls() {
     $('#Modulo_Atencion_Inicial').empty();
     $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
     $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+    $('#Expediente_MP').empty();
+    $("#Expediente_MP").append('<option value=""></option>');
+    $('#Expediente_MP').val('0').trigger('change');
     $('#Pais').empty();
     $("#Pais").append('<option value=""></option>');
     $('#Pais').val('0').trigger('change');
@@ -259,6 +273,9 @@ $(document).ready(function () {
 	    $('#Modulo_Atencion_Inicial').empty();
     $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
     $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+    $('#Expediente_MP').empty();
+    $("#Expediente_MP").append('<option value=""></option>');
+    $('#Expediente_MP').val('0').trigger('change');
     $('#Pais').empty();
     $("#Pais").append('<option value=""></option>');
     $('#Pais').val('0').trigger('change');

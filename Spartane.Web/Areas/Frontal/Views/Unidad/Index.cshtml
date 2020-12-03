@@ -5,6 +5,7 @@
 @using Spartane.Core.Domain.Region;
 @using Spartane.Core.Domain.Vigencia;
 @using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Tipo_de_Asignacion_de_MP;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -212,6 +213,7 @@
                                     <th>@Resources.UnidadResources.Observaciones</th>
                                     <th>@Resources.UnidadResources.Supervisor</th>
                                     <th>@Resources.UnidadResources.Consecutivo_CDI</th>
+                                    <th>@Resources.UnidadResources.Tipo_de_Asignacion_de_MP</th>
 
                                 </tr>
                             </thead>
@@ -230,6 +232,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
 
                                 </tr>
                             </tfoot>
@@ -357,6 +360,7 @@
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Supervisor =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Consecutivo_CDI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Asignacion_de_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -371,6 +375,7 @@
         + "&Observaciones=" + Observaciones
         + "&Supervisor=" + Supervisor
         + "&Consecutivo_CDI=" + Consecutivo_CDI
+        + "&Tipo_de_Asignacion_de_MP=" + Tipo_de_Asignacion_de_MP
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Unidad/Export?format=")" + format
@@ -396,6 +401,7 @@
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Supervisor =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Consecutivo_CDI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Asignacion_de_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -410,6 +416,7 @@
         + "&Observaciones=" + Observaciones
         + "&Supervisor=" + Supervisor
         + "&Consecutivo_CDI=" + Consecutivo_CDI
+        + "&Tipo_de_Asignacion_de_MP=" + Tipo_de_Asignacion_de_MP
 ;
 
     }
@@ -590,11 +597,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -669,6 +676,7 @@
                 ,{ "data": "Observaciones", "orderable": true, "name": "Observaciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "SupervisorName", "orderable": true, "name": "SupervisorName"}
                 ,{ "data": "Consecutivo_CDI","className": "dt-right", "orderable": true, "name": "Consecutivo_CDI" }
+                ,{ "data": "Tipo_de_Asignacion_de_MPDescripcion", "orderable": true, "name": "Tipo_de_Asignacion_de_MPDescripcion" }
 
             ],
 			"colReorder": true,

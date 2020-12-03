@@ -18,6 +18,9 @@ namespace Spartane.Web.SqlModelMapper
                     return "Tipo_de_Servicio_de_Apoyo.Clave";
                 case "Servicio":
                     return "Tipo_de_Servicio_de_Apoyo.Servicio";
+                case "Categoria[Descripcion]":
+                case "CategoriaDescripcion":
+                    return "Categoria_de_Servicio_de_Apoyo.Descripcion";
 
                 default:
                     return propertyName;

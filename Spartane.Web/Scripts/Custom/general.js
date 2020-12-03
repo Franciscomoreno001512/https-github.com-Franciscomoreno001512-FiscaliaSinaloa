@@ -10,6 +10,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
 
 });
 
+var controlDocumentoDynamiSeach = false; 								 
 $(function () {
 
     //$('#datetimepicker1 > input').mask("00-00-0000", { clearIfNotMatch: true });
@@ -1140,6 +1141,66 @@ function AsignarValor(nameOfControl, val) {
     }
 }
 
+function AsignarValor2(nameOfControl, val) {
+    var control = jQuery.type(nameOfControl) == "string" ? $('#' + nameOfControl) : nameOfControl;
+    nameOfControl = jQuery.type(nameOfControl) == "string" ? nameOfControl : control.selector;
+
+    var controlFile = $(nameOfControl + "File")
+    if (controlFile.length) {
+        var file = GetFile(val)
+        if ($('#' + nameOfControl).length) {
+            $('#' + nameOfControl).val(587);
+        }
+        else {
+            controlFile.parent().append('<input type="hidden" id="' + nameOfControl + '" name="' + nameOfControl + '" value="' + file.id + '" />')
+        }
+        controlFile.parent().append('<a href="' + file.url + '">' + file.name + '</a>');
+    }
+    else {
+        if (control.is('input:checkbox')) {
+            var arrayTrue = ["true", "si", "yes", "1", "verdadero"]; var value = val.toString().toLowerCase().replace('"', ''); control.prop('checked', arrayTrue.indexOf(value) > -1).trigger('change');
+        }
+        if (control.is('input:text') || control.is('textarea')) {
+            control.val(val);
+        }
+        if (control.is('select') && !control.hasClass('AutoComplete')) {
+            control.val(val).trigger('change');
+        }
+        if (control.hasClass('AutoComplete')) {
+
+            control.select2('open');
+            $('.select2-search__field').val(val).trigger('keyup');
+            control.select2('close');
+            var data =  eval("AutoCompleteusuario_que_realiza_observacionData");
+            control.select2({ data: data });
+            setTimeout(function () {
+                var data = eval("AutoCompleteusuario_que_realiza_observacionData");
+                control.select2({ data: data });
+                $.each(data, function (key, value) {
+                    if (value.text == val)
+                        control.val(value.id).trigger('change');
+                });
+            }, 2000);
+			/*control.select2('open');
+			 $('.select2-search__field').val('Ad').trigger('keyup');	
+			 control.select2('close'); 
+			
+			 setTimeout(function () {
+						   var data = eval('AutoComplete' + control.selector.replace(nameOfTable, '').replace(rowIndex, '').replace('#', '') + 'Data');		
+					
+						control.select2({ data: data });
+						 $.each( data, function( key, value ) {
+						 if (value.text == val) 
+						control.val(value.id).trigger('change');
+						 });		
+				
+				
+                }, 2000);*/
+
+        }
+    }
+}
+
 
 
 function EvaluaOperatorIn(parameter1, parameter2) {
@@ -1342,10 +1403,20 @@ function utf8_to_b64(str) {
 }
 
 function ReadSesionVar() {
-    // debugger;
+    debugger;
+
+
+    var data = localStorage.getItem('controlDocumentoDynamiSeach');
+    if (data == "false" ) {
+        controlDocumentoDynamiSeach = false; 
+        localStorage.setItem('controlDocumentoDynamiSeach', "");
+    }
+  
     var FolioControlDocumentos = GetSessionValue("KeyValueInserted");
     if (FolioControlDocumentos != "-1" && FolioControlDocumentos != "") {
+
         clearInterval(timerInterval1);
+        permitirCerrar = true;
         GeneratePDFFromControlDocumentos(FolioControlDocumentos);
     }
 }

@@ -46,6 +46,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Categoria</summary>
+        public static string Categoria
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderTipo_de_Servicio_de_Apoyo.GetResource("Categoria", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderTipo_de_Servicio_de_Apoyo.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

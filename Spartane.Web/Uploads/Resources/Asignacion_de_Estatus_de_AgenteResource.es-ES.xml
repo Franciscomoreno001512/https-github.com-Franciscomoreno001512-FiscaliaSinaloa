@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Asignacion_de_Estatus_de_Agente" value="Asignación de Estatus de Agente"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="MP" value="MP"></resource>
+  <resource culture="es-es" name="Unidad" value="Unidad"></resource>
+  <resource culture="es-es" name="Estatus" value="Estatus"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

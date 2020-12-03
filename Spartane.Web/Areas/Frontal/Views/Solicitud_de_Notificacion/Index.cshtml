@@ -5,12 +5,12 @@
 @using Spartane.Core.Domain.Origen_de_Invitacion;
 @using Spartane.Core.Domain.Modulo_Atencion_Inicial;
 @using Spartane.Core.Domain.Solicitud;
-@using Spartane.Core.Domain.Expediente_Inicial;
-@using Spartane.Core.Domain.Tipo_de_Invitacion;
 @using Spartane.Core.Domain.Estatus_de_Notificacion;
 @using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Tipo_de_Invitacion;
 @using Spartane.Core.Domain.Resultado_de_Notificacion;
 @using Spartane.Core.Domain.Incidente_con_Invitacion;
+@using Spartane.Core.Domain.Documento;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -214,7 +214,6 @@
                                     <th>@Resources.Solicitud_de_NotificacionResources.Expediente_Atencion_Temprana</th>
                                     <th>@Resources.Solicitud_de_NotificacionResources.Expediente_Mecanismos_Alternos</th>
                                     <th>@Resources.Solicitud_de_NotificacionResources.Carpeta_de_Investigacion</th>
-                                    <th>@Resources.Solicitud_de_NotificacionResources.Forma_de_Invitacion</th>
                                     <th>@Resources.Solicitud_de_NotificacionResources.Numero_de_Invitacion</th>
                                     <th>@Resources.Solicitud_de_NotificacionResources.Fecha_de_la_cita</th>
                                     <th>@Resources.Solicitud_de_NotificacionResources.Hora_de_la_Cita</th>
@@ -223,9 +222,11 @@
                                     <th>@Resources.Solicitud_de_NotificacionResources.Fecha_de_Notificacion</th>
                                     <th>@Resources.Solicitud_de_NotificacionResources.Hora_de_Notificacion</th>
                                     <th>@Resources.Solicitud_de_NotificacionResources.Notificador</th>
+                                    <th>@Resources.Solicitud_de_NotificacionResources.Forma_de_Invitacion</th>
                                     <th>@Resources.Solicitud_de_NotificacionResources.Resultado</th>
                                     <th>@Resources.Solicitud_de_NotificacionResources.Archivo</th>
                                     <th>@Resources.Solicitud_de_NotificacionResources.Incidente_en_la_Recepcion</th>
+                                    <th>@Resources.Solicitud_de_NotificacionResources.Documento</th>
 
                                 </tr>
                             </thead>
@@ -241,16 +242,17 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
                                 </tr>
@@ -375,7 +377,6 @@
         var Expediente_Atencion_Temprana =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Expediente_Mecanismos_Alternos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Carpeta_de_Investigacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Forma_de_Invitacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Invitacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_la_cita = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_la_Cita = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -384,9 +385,11 @@
         var Fecha_de_Notificacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Notificacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Notificador =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_de_Invitacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Incidente_en_la_Recepcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Documento =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Folio=" + Folio 
@@ -397,7 +400,6 @@
         + "&Expediente_Atencion_Temprana=" + Expediente_Atencion_Temprana
         + "&Expediente_Mecanismos_Alternos=" + Expediente_Mecanismos_Alternos
         + "&Carpeta_de_Investigacion=" + Carpeta_de_Investigacion
-        + "&Forma_de_Invitacion=" + Forma_de_Invitacion
         + "&Numero_de_Invitacion=" + Numero_de_Invitacion
         + "&Fecha_de_la_cita=" + Fecha_de_la_cita
         + "&Hora_de_la_Cita=" + Hora_de_la_Cita
@@ -406,9 +408,11 @@
         + "&Fecha_de_Notificacion=" + Fecha_de_Notificacion
         + "&Hora_de_Notificacion=" + Hora_de_Notificacion
         + "&Notificador=" + Notificador
+        + "&Forma_de_Invitacion=" + Forma_de_Invitacion
         + "&Resultado=" + Resultado
         + "&Archivo=" + Archivo
         + "&Incidente_en_la_Recepcion=" + Incidente_en_la_Recepcion
+        + "&Documento=" + Documento
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Solicitud_de_Notificacion/Export?format=")" + format
@@ -430,7 +434,6 @@
         var Expediente_Atencion_Temprana =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Expediente_Mecanismos_Alternos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Carpeta_de_Investigacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Forma_de_Invitacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Invitacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_la_cita = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_la_Cita = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -439,9 +442,11 @@
         var Fecha_de_Notificacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Notificacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Notificador =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_de_Invitacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Archivo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Incidente_en_la_Recepcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Documento =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Folio=" + Folio 
@@ -452,7 +457,6 @@
         + "&Expediente_Atencion_Temprana=" + Expediente_Atencion_Temprana
         + "&Expediente_Mecanismos_Alternos=" + Expediente_Mecanismos_Alternos
         + "&Carpeta_de_Investigacion=" + Carpeta_de_Investigacion
-        + "&Forma_de_Invitacion=" + Forma_de_Invitacion
         + "&Numero_de_Invitacion=" + Numero_de_Invitacion
         + "&Fecha_de_la_cita=" + Fecha_de_la_cita
         + "&Hora_de_la_Cita=" + Hora_de_la_Cita
@@ -461,9 +465,11 @@
         + "&Fecha_de_Notificacion=" + Fecha_de_Notificacion
         + "&Hora_de_Notificacion=" + Hora_de_Notificacion
         + "&Notificador=" + Notificador
+        + "&Forma_de_Invitacion=" + Forma_de_Invitacion
         + "&Resultado=" + Resultado
         + "&Archivo=" + Archivo
         + "&Incidente_en_la_Recepcion=" + Incidente_en_la_Recepcion
+        + "&Documento=" + Documento
 ;
 
     }
@@ -644,11 +650,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -718,8 +724,7 @@
                 ,{ "data": "OrigenDescripcion", "orderable": true, "name": "OrigenDescripcion" }
                 ,{ "data": "Expediente_Atencion_TempranaFolio", "orderable": true, "name": "Expediente_Atencion_TempranaFolio"}
                 ,{ "data": "Expediente_Mecanismos_AlternosNumero_de_Folio", "orderable": true, "name": "Expediente_Mecanismos_AlternosNumero_de_Folio"}
-                ,{ "data": "Carpeta_de_InvestigacionNIC", "orderable": true, "name": "Carpeta_de_InvestigacionNIC"}
-                ,{ "data": "Forma_de_InvitacionDescripcion", "orderable": true, "name": "Forma_de_InvitacionDescripcion" }
+                ,{ "data": "Carpeta_de_Investigacion", "orderable": true, "name": "Carpeta_de_Investigacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Numero_de_Invitacion", "orderable": true, "name": "Numero_de_Invitacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Fecha_de_la_cita", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_la_cita" }
                 ,{ "data": "Hora_de_la_Cita", "orderable": true, "name": "Hora_de_la_Cita" }
@@ -728,9 +733,11 @@
                 ,{ "data": "Fecha_de_Notificacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Notificacion" }
                 ,{ "data": "Hora_de_Notificacion", "orderable": true, "name": "Hora_de_Notificacion" }
                 ,{ "data": "NotificadorName", "orderable": true, "name": "NotificadorName"}
+                ,{ "data": "Forma_de_InvitacionDescripcion", "orderable": true, "name": "Forma_de_InvitacionDescripcion" }
                 ,{ "data": "ResultadoDescripcion", "orderable": true, "name": "ResultadoDescripcion" }
                 ,{ "data": "Archivo","className": "dt-right", "orderable": true, "name": "Archivo" }
                 ,{ "data": "Incidente_en_la_RecepcionDescripcion", "orderable": true, "name": "Incidente_en_la_RecepcionDescripcion" }
+                ,{ "data": "DocumentoDescripcion", "orderable": true, "name": "DocumentoDescripcion"}
 
             ],
 			"colReorder": true,

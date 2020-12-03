@@ -22,10 +22,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Expediente_Atencion_TempranaFolio { get; set; }
         public int? Expediente_Mecanismos_Alternos { get; set; }
         public string Expediente_Mecanismos_AlternosNumero_de_Folio { get; set; }
-        public int? Carpeta_de_Investigacion { get; set; }
-        public string Carpeta_de_InvestigacionNIC { get; set; }
-        public int? Forma_de_Invitacion { get; set; }
-        public string Forma_de_InvitacionDescripcion { get; set; }
+        public string Carpeta_de_Investigacion { get; set; }
         public string Numero_de_Invitacion { get; set; }
         public string Fecha_de_la_cita { get; set; }
         public string Hora_de_la_Cita { get; set; }
@@ -36,12 +33,16 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Hora_de_Notificacion { get; set; }
         public int? Notificador { get; set; }
         public string NotificadorName { get; set; }
+        public int? Forma_de_Invitacion { get; set; }
+        public string Forma_de_InvitacionDescripcion { get; set; }
         public int? Resultado { get; set; }
         public string ResultadoDescripcion { get; set; }
         [Range(0, 9999999999)]
         public int? Archivo { get; set; }
         public int? Incidente_en_la_Recepcion { get; set; }
         public string Incidente_en_la_RecepcionDescripcion { get; set; }
+        public int? Documento { get; set; }
+        public string DocumentoDescripcion { get; set; }
 
     }
 	
@@ -59,10 +60,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Expediente_Atencion_TempranaFolio { get; set; }
         public int? Expediente_Mecanismos_Alternos { get; set; }
         public string Expediente_Mecanismos_AlternosNumero_de_Folio { get; set; }
-        public int? Carpeta_de_Investigacion { get; set; }
-        public string Carpeta_de_InvestigacionNIC { get; set; }
-        public int? Forma_de_Invitacion { get; set; }
-        public string Forma_de_InvitacionDescripcion { get; set; }
+        public string Carpeta_de_Investigacion { get; set; }
         public string Numero_de_Invitacion { get; set; }
         public string Fecha_de_la_cita { get; set; }
         public string Hora_de_la_Cita { get; set; }
@@ -80,12 +78,16 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Hora_de_Notificacion { get; set; }
         public int? Notificador { get; set; }
         public string NotificadorName { get; set; }
+        public int? Forma_de_Invitacion { get; set; }
+        public string Forma_de_InvitacionDescripcion { get; set; }
         public int? Resultado { get; set; }
         public string ResultadoDescripcion { get; set; }
         [Range(0, 9999999999)]
         public int? Archivo { get; set; }
         public int? Incidente_en_la_Recepcion { get; set; }
         public string Incidente_en_la_RecepcionDescripcion { get; set; }
+        public int? Documento { get; set; }
+        public string DocumentoDescripcion { get; set; }
 
     }
 

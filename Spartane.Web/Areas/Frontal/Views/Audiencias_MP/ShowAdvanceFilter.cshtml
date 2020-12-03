@@ -1,0 +1,484 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Audiencias_MPAdvanceSearchModel
+@{
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+    List<SelectListItem> varTipo_de_Audiencia_Tipo_de_Audiencia = null;
+    if (ViewBag.Tipo_de_Audiencias_Tipo_de_Audiencia != null)
+    { varTipo_de_Audiencia_Tipo_de_Audiencia = (List<SelectListItem>)ViewBag.Tipo_de_Audiencias_Tipo_de_Audiencia; }
+    List<SelectListItem> varAudiencia_Audiencia = null;
+    if (ViewBag.Audiencias_Audiencia != null)
+    { varAudiencia_Audiencia = (List<SelectListItem>)ViewBag.Audiencias_Audiencia; }
+    List<SelectListItem> varResultado_de_Audiencia_Resultado_de_Audiencia = null;
+    if (ViewBag.Resultado_de_Audiencias_Resultado_de_Audiencia != null)
+    { varResultado_de_Audiencia_Resultado_de_Audiencia = (List<SelectListItem>)ViewBag.Resultado_de_Audiencias_Resultado_de_Audiencia; }
+ List<SelectListItem> varSpartan_User_MP_Litigacion = null;
+    if (ViewBag.Spartan_Users_MP_Litigacion != null)
+    { varSpartan_User_MP_Litigacion = (List<SelectListItem>)ViewBag.Spartan_Users_MP_Litigacion; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Audiencias_MP", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Audiencias_MPResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Audiencias_MPResources.Tipo_de_Audiencia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_AudienciaFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_AudienciaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Audiencia, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Audiencia" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Audiencia_Tipo_de_Audiencia!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_AudienciaMultiple, varTipo_de_Audiencia_Tipo_de_Audiencia,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Audiencia"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Audiencias_MPResources.Audiencia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AudienciaFilter, filters, new { @class = "form-control", @id = "ddlAudienciaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceAudiencia, new { @class = "form-control", @type = "text", @id = "txtAdvanceAudiencia" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varAudiencia_Audiencia!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceAudienciaMultiple, varAudiencia_Audiencia,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceAudiencia"
+                        });
+                    }
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Audiencias_MPResources.Fecha</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha" name="FromFecha" type="text" value="@Model.FromFecha" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha" name="ToFecha" type="text" value="@Model.ToFecha" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Audiencias_MPResources.Hora</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora" name="FromHora" type="text" value="@Model.FromHora" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora" name="ToHora" type="text" value="@Model.ToHora" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Audiencias_MPResources.Observaciones</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Audiencias_MPResources.Resultado_de_Audiencia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Resultado_de_AudienciaFilter, filters, new { @class = "form-control", @id = "ddlResultado_de_AudienciaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceResultado_de_Audiencia, new { @class = "form-control", @type = "text", @id = "txtAdvanceResultado_de_Audiencia" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varResultado_de_Audiencia_Resultado_de_Audiencia!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceResultado_de_AudienciaMultiple, varResultado_de_Audiencia_Resultado_de_Audiencia,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceResultado_de_Audiencia"
+                        });
+                    }
+                </div>
+ List<SelectListItem> varSpartan_User_MP_Litigacion = null;
+    if (ViewBag.Spartan_Users_MP_Litigacion != null)
+    { varSpartan_User_MP_Litigacion = (List<SelectListItem>)ViewBag.Spartan_Users_MP_Litigacion; }
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Audiencias_MP/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.Audiencias_MPClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.Audiencias_MPClaveTo = $("#txtAdvanceToClave").val();
+        }
+        advanceSearch.Expediente_MPSearchType = 0;
+        if ($('#ddlAdvanceExpediente_MP').val().length > 0 || $("#txtAdvanceExpediente_MP").val() == "") {
+
+
+            if (isAudiencias_MPTextSearch) {
+                advanceSearch.Expediente_MPName = $("#txtAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPNameSearchType = $("#ddlAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Expediente_MPToSearch = $("#ddlAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_de_AudienciaSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Audiencia').val().length > 0 || $("#txtAdvanceTipo_de_Audiencia").val() == "") {
+
+
+            if (isAudiencias_MPTextSearch) {
+                advanceSearch.Tipo_de_AudienciaName = $("#txtAdvanceTipo_de_Audiencia").val();
+                advanceSearch.Tipo_de_AudienciaNameSearchType = $("#ddlAdvanceTipo_de_Audiencia").val();
+                advanceSearch.Tipo_de_AudienciaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_AudienciaToSearch = $("#ddlAdvanceTipo_de_Audiencia").val();
+                advanceSearch.Tipo_de_AudienciaSearchType = 2;
+            }
+        }
+        advanceSearch.AudienciaSearchType = 0;
+        if ($('#ddlAdvanceAudiencia').val().length > 0 || $("#txtAdvanceAudiencia").val() == "") {
+
+
+            if (isAudiencias_MPTextSearch) {
+                advanceSearch.AudienciaName = $("#txtAdvanceAudiencia").val();
+                advanceSearch.AudienciaNameSearchType = $("#ddlAdvanceAudiencia").val();
+                advanceSearch.AudienciaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.AudienciaToSearch = $("#ddlAdvanceAudiencia").val();
+                advanceSearch.AudienciaSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromFecha").val() != "" || $("#txtAdvanceToFecha").val() != "") {
+            hasParameter = true;
+            advanceSearch.Audiencias_MPFechaFrom = $("#txtAdvanceFromFecha").val();
+            advanceSearch.Audiencias_MPFechaTo = $("#txtAdvanceToFecha").val();
+        }
+        if ($("#txtAdvanceHora").val() != "") {
+            hasParameter = true;
+            advanceSearch.Audiencias_MPHora = $("#txtAdvanceHora").val();
+            advanceSearch.Audiencias_MPHoraSearchType = $("#ddlAdvanceHoraFilter").val();
+        }
+        if ($("#txtAdvanceObservaciones").val() != "") {
+            hasParameter = true;
+            advanceSearch.Audiencias_MPObservaciones = $("#txtAdvanceObservaciones").val();
+            advanceSearch.Audiencias_MPObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+        advanceSearch.Resultado_de_AudienciaSearchType = 0;
+        if ($('#ddlAdvanceResultado_de_Audiencia').val().length > 0 || $("#txtAdvanceResultado_de_Audiencia").val() == "") {
+
+
+            if (isAudiencias_MPTextSearch) {
+                advanceSearch.Resultado_de_AudienciaName = $("#txtAdvanceResultado_de_Audiencia").val();
+                advanceSearch.Resultado_de_AudienciaNameSearchType = $("#ddlAdvanceResultado_de_Audiencia").val();
+                advanceSearch.Resultado_de_AudienciaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Resultado_de_AudienciaToSearch = $("#ddlAdvanceResultado_de_Audiencia").val();
+                advanceSearch.Resultado_de_AudienciaSearchType = 2;
+            }
+        }
+        if ($("#ddlAdvanceAsignar_MP_Litigacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Audiencias_MPAsignar_MP_Litigacion = $("#ddlAdvanceAsignar_MP_Litigacion").val();
+        }
+        advanceSearch.MP_LitigacionSearchType = 0;
+        if ($('#ddlAdvanceMP_Litigacion').val().length > 0 || $("#txtAdvanceMP_Litigacion").val() == "") {
+
+
+            if (isAudiencias_MPTextSearch) {
+                advanceSearch.MP_LitigacionName = $("#txtAdvanceMP_Litigacion").val();
+                advanceSearch.MP_LitigacionNameSearchType = $("#ddlAdvanceMP_Litigacion").val();
+                advanceSearch.MP_LitigacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.MP_LitigacionToSearch = $("#ddlAdvanceMP_Litigacion").val();
+                advanceSearch.MP_LitigacionSearchType = 2;
+            }
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblAudiencias_MP').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isAudiencias_MPTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceExpediente_MP").keypress(function () {
+            isAudiencias_MPTextSearch = true;
+            $("#ddlAdvanceExpediente_MP").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceExpediente_MP").change(function () {
+            isAudiencias_MPTextSearch = false;
+            $("#txtAdvanceExpediente_MP").val('');
+        });
+        $("#txtAdvanceTipo_de_Audiencia").keypress(function () {
+            isAudiencias_MPTextSearch = true;
+            $("#ddlAdvanceTipo_de_Audiencia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Audiencia").change(function () {
+            isAudiencias_MPTextSearch = false;
+            $("#txtAdvanceTipo_de_Audiencia").val('');
+        });
+        $("#txtAdvanceAudiencia").keypress(function () {
+            isAudiencias_MPTextSearch = true;
+            $("#ddlAdvanceAudiencia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceAudiencia").change(function () {
+            isAudiencias_MPTextSearch = false;
+            $("#txtAdvanceAudiencia").val('');
+        });
+        $("#txtAdvanceResultado_de_Audiencia").keypress(function () {
+            isAudiencias_MPTextSearch = true;
+            $("#ddlAdvanceResultado_de_Audiencia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceResultado_de_Audiencia").change(function () {
+            isAudiencias_MPTextSearch = false;
+            $("#txtAdvanceResultado_de_Audiencia").val('');
+        });
+        $("#txtAdvanceMP_Litigacion").keypress(function () {
+            isAudiencias_MPTextSearch = true;
+            $("#ddlAdvanceMP_Litigacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMP_Litigacion").change(function () {
+            isAudiencias_MPTextSearch = false;
+            $("#txtAdvanceMP_Litigacion").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

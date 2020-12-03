@@ -3,6 +3,7 @@
   <resource culture="en-us" name="Detalle_de_Datos_Generales" value="Involucrados AT"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
   <resource culture="en-US" name="Modulo_Atencion_Inicial" value="Módulo Atención Inicial"></resource>
+  <resource culture="en-US" name="Expediente_MP" value="Expediente MP"></resource>
   <resource culture="en-US" name="Datos_Confidenciales" value="Desea que sus Datos se Guarden de Forma Confidencial"></resource>
   <resource culture="en-US" name="Se_Informo_sobre_el_Procedimiento" value="Resguardo de Identidad"></resource>
   <resource culture="en-US" name="Tipo_de_Compareciente" value="Tipo de Compareciente"></resource>

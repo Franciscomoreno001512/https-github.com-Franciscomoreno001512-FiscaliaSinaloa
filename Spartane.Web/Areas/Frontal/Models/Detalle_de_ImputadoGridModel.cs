@@ -12,6 +12,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool? Persona_Moral { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
         public string Modulo_Atencion_InicialNUAT { get; set; }
+        public int? Expediente_MP { get; set; }
+        public string Expediente_MPnic { get; set; }
         public bool? Quien_Resulte_Responsable { get; set; }
         public bool? Se_Presenta_con_Detenido { get; set; }
         public string Folio_Registro_Nacional_de_Detenciones { get; set; }

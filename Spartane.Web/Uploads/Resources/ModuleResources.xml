@@ -42,4 +42,6 @@
   <Module culture="es-es" Id="89" value="Turnos"></Module>
   <Module culture="en-us" Id="90" value="Notificadores"></Module>
   <Module culture="es-es" Id="90" value="Notificadores"></Module>
+  <Module culture="en-us" Id="91" value="Ministerio Público"></Module>
+  <Module culture="es-es" Id="91" value="Ministerio Público"></Module>
 </Modules>

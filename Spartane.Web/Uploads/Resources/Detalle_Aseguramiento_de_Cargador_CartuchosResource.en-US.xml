@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Aseguramiento_de_Cargador_Cartuchos" value="Detalle Aseguramiento de Cargador Cartuchos"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="cartuchos_municiones" value="No. de Cartuchos/Municiones"></resource>
+  <resource culture="en-US" name="Cartuchos_Habiles" value="Cartuchos Hábiles"></resource>
+  <resource culture="en-US" name="Cartuchos_Percutidos" value="Cartuchos Percutidos"></resource>
+  <resource culture="en-US" name="cargadores" value="No. de Cargadores "></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

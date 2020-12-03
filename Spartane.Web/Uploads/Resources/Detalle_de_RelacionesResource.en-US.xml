@@ -3,6 +3,7 @@
   <resource culture="en-us" name="Detalle_de_Relaciones" value="Relaciones"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
   <resource culture="en-US" name="Modulo_Atencion_Inicial" value="Módulo Atención Inicial"></resource>
+  <resource culture="en-US" name="Expediente_MP" value="Expediente MP"></resource>
   <resource culture="en-US" name="Involucrado" value="Involucrado"></resource>
   <resource culture="en-US" name="Probable_Responsable" value="Probable Responsable"></resource>
   <resource culture="en-US" name="Delito" value="Delito"></resource>

@@ -34,6 +34,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Delito.Tentativa";
                 case "Activo":
                     return "Delito.Activo";
+                case "Robo_de_Vehiculo":
+                    return "Delito.Robo_de_Vehiculo";
 
                 default:
                     return propertyName;
@@ -68,6 +70,10 @@ namespace Spartane.Web.SqlModelMapper
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
             if (columnName == "Activo")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Robo_de_Vehiculo")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }

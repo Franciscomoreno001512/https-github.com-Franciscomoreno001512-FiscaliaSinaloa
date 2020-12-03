@@ -334,24 +334,9 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('44999');
+		    
 		   
-		   
-			
-             @if(ViewBag.IsNew)
-            { 
-                <text>$('input:checkbox').prop('checked', false);</text>
-            }
-			else
-            {
-                <text>
-				if (Tab_Datos_Generales)
-					Fill_Datos_Generales();
-
-
-                </text>
-             }
-             EjecutarValidacionesAlComienzo();
-             
+            
 
             initiateUIControls();
 			$('a').tooltip();
@@ -368,6 +353,21 @@
 			
 			
 
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
         });
 
 

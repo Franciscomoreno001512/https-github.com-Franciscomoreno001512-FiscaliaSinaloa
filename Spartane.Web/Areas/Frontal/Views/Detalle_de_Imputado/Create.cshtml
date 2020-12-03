@@ -23,6 +23,9 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
     List<SelectListItem> varGenero_Sexo = null;
     if (ViewBag.Generos_Sexo != null)
     { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
@@ -457,6 +460,20 @@
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Modulo_Atencion_Inicial', 'Modulo_Atencion_Inicial');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divExpediente_MP">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ImputadoResources.Expediente_MP</label>
+                                <div class="col-sm-8" data-field-id="Expediente_MP" data-attribute="267147" data-field-name="@Resources.Detalle_de_ImputadoResources.Expediente_MP">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Imputado_Expediente_MP form-control select2-dropdown Datos_Generales' data-val="true" id="Expediente_MP" name="Expediente_MP">
+                                        <option value="@Model.Expediente_MP">@(Model.Expediente_MPnic??Model.Expediente_MPnic)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267147).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('expediente_ministerio_publico', 'Expediente_MP');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -3733,6 +3750,39 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDetalle_de_Imputado_Modulo_Atencion_Inicial");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteExpediente_MPData =[];
+       $(".AutoCompleteDetalle_de_Imputado_Expediente_MP").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Imputado/GetDetalle_de_Imputado_Expediente_MP_expediente_ministerio_publico")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Imputado_Expediente_MP_expediente_ministerio_publicoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Imputado_Expediente_MP");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -7026,6 +7076,15 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.Modulo_Atencion_Inicial).trigger('change');
                     }, 3000);
+                    var control = $('#Expediente_MP');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Expediente_MP).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Expediente_MP).trigger('change');
+                    }, 3000);
                     $('#Quien_Resulte_Responsable').prop('checked', result.data.Quien_Resulte_Responsable);
                     $('#Se_Presenta_con_Detenido').prop('checked', result.data.Se_Presenta_con_Detenido);
                     $('#Folio_Registro_Nacional_de_Detenciones').val(result.data.Folio_Registro_Nacional_de_Detenciones);
@@ -7194,6 +7253,7 @@
 			data.append('Clave', newId);
 			                data.append('Persona_Moral', $('#Persona_Moral').prop('checked'));
                 data.append('Modulo_Atencion_Inicial', $('#Modulo_Atencion_Inicial').val());
+                data.append('Expediente_MP', $('#Expediente_MP').val());
                 data.append('Quien_Resulte_Responsable', $('#Quien_Resulte_Responsable').prop('checked'));
                 data.append('Se_Presenta_con_Detenido', $('#Se_Presenta_con_Detenido').prop('checked'));
                 data.append('Folio_Registro_Nacional_de_Detenciones', $('#Folio_Registro_Nacional_de_Detenciones').val());

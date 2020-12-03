@@ -2,6 +2,7 @@
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Detalle_de_Persona_Moral;
 @using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+@using Spartane.Core.Domain.expediente_ministerio_publico;
 @using Spartane.Core.Domain.Pais;
 @using Spartane.Core.Domain.Estado;
 @using Spartane.Core.Domain.Municipio;
@@ -207,6 +208,7 @@
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Detalle_de_Persona_MoralResources.Clave</th>
                                     <th>@Resources.Detalle_de_Persona_MoralResources.Modulo_Atencion_Inicial</th>
+                                    <th>@Resources.Detalle_de_Persona_MoralResources.Expediente_MP</th>
                                     <th>@Resources.Detalle_de_Persona_MoralResources.Nombre</th>
                                     <th>@Resources.Detalle_de_Persona_MoralResources.Apellido_Paterno</th>
                                     <th>@Resources.Detalle_de_Persona_MoralResources.Apellido_Materno</th>
@@ -246,6 +248,7 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -396,6 +399,7 @@
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Modulo_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombre =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -432,6 +436,7 @@
 
         var queryString = "&Clave=" + Clave 
         + "&Modulo_Atencion_Inicial=" + Modulo_Atencion_Inicial
+        + "&Expediente_MP=" + Expediente_MP
         + "&Nombre=" + Nombre
         + "&Apellido_Paterno=" + Apellido_Paterno
         + "&Apellido_Materno=" + Apellido_Materno
@@ -479,6 +484,7 @@
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Modulo_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombre =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -515,6 +521,7 @@
 
         return "&Clave=" + Clave 
         + "&Modulo_Atencion_Inicial=" + Modulo_Atencion_Inicial
+        + "&Expediente_MP=" + Expediente_MP
         + "&Nombre=" + Nombre
         + "&Apellido_Paterno=" + Apellido_Paterno
         + "&Apellido_Materno=" + Apellido_Materno
@@ -727,11 +734,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -796,6 +803,7 @@
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
                 ,{ "data": "Modulo_Atencion_InicialNUAT", "orderable": true, "name": "Modulo_Atencion_InicialNUAT"}
+                ,{ "data": "Expediente_MPnic", "orderable": true, "name": "Expediente_MPnic"}
                 ,{ "data": "Nombre", "orderable": true, "name": "Nombre", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Paterno", "orderable": true, "name": "Apellido_Paterno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Apellido_Materno", "orderable": true, "name": "Apellido_Materno", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }

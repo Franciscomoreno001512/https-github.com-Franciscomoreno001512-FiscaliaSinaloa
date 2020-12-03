@@ -16,8 +16,8 @@
   <Role culture="es-es" Id="7" value="Coordinador de Servicios de Apoyo"></Role>
   <Role culture="en-us" Id="8" value="Agente del Ministerio Público Orientador"></Role>
   <Role culture="es-es" Id="8" value="Agente del Ministerio Público Orientador"></Role>
-  <Role culture="en-us" Id="9" value="Agente del Ministerio Público Investigador"></Role>
-  <Role culture="es-es" Id="9" value="Agente del Ministerio Público Investigador"></Role>
+  <Role culture="en-us" Id="9" value="Agente del Ministerio Público"></Role>
+  <Role culture="es-es" Id="9" value="Agente del Ministerio Público"></Role>
   <Role culture="en-us" Id="10" value="Diseñador"></Role>
   <Role culture="es-es" Id="10" value="Diseñador"></Role>
   <Role culture="en-us" Id="11" value="Juez de Control"></Role>
@@ -32,8 +32,8 @@
   <Role culture="es-es" Id="15" value="Policía Ministerial"></Role>
   <Role culture="en-us" Id="16" value="Policía Ministerial de Seguimiento"></Role>
   <Role culture="es-es" Id="16" value="Policía Ministerial de Seguimiento"></Role>
-  <Role culture="en-us" Id="17" value="Coordinador del Ministerio Público Investigador"></Role>
-  <Role culture="es-es" Id="17" value="Coordinador del Ministerio Público Investigador"></Role>
+  <Role culture="en-us" Id="17" value="Coordinador del Ministerio Público"></Role>
+  <Role culture="es-es" Id="17" value="Coordinador del Ministerio Público"></Role>
   <Role culture="en-us" Id="18" value="Almacen"></Role>
   <Role culture="es-es" Id="18" value="Almacen"></Role>
   <Role culture="en-us" Id="19" value="Coordinador de Servicios Periciales"></Role>

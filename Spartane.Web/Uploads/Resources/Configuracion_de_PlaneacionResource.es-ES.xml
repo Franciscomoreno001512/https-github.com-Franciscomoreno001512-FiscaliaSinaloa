@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Configuracion_de_Planeacion" value="Configuración de Planeación"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Categoria" value="Categoria"></resource>
+  <resource culture="es-es" name="Servicio" value="Servicio"></resource>
+  <resource culture="es-es" name="Entregable" value="Entregable"></resource>
+  <resource culture="es-es" name="Tiempo_Estandar" value="Tiempo Estándar (días)"></resource>
+  <resource culture="es-es" name="Ponderacion" value="Ponderación"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

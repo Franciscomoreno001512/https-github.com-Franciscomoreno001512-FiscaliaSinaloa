@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Documentos_MP" value="Documentos MP"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="es-es" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="es-es" name="Documento" value="Documento"></resource>
+  <resource culture="es-es" name="Archivo_Adjunto" value="Archivo Adjunto"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

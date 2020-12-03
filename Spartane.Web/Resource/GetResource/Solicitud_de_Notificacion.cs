@@ -106,16 +106,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Forma_de_Invitacion</summary>
-        public static string Forma_de_Invitacion
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderSolicitud_de_Notificacion.GetResource("Forma_de_Invitacion", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Numero_de_Invitacion</summary>
         public static string Numero_de_Invitacion
         {
@@ -206,6 +196,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Forma_de_Invitacion</summary>
+        public static string Forma_de_Invitacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Notificacion.GetResource("Forma_de_Invitacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Resultado</summary>
         public static string Resultado
         {
@@ -233,6 +233,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderSolicitud_de_Notificacion.GetResource("Incidente_en_la_Recepcion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Documento</summary>
+        public static string Documento
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud_de_Notificacion.GetResource("Documento", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

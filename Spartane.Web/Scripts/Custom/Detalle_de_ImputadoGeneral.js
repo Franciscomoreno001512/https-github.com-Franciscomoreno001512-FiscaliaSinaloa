@@ -2221,6 +2221,17 @@ function GetAutoCompleteDetalle_de_Imputado_Modulo_Atencion_Inicial_Modulo_Atenc
     }
     return AutoCompleteModulo_Atencion_InicialData;
 }
+var AutoCompleteExpediente_MPData = [];
+function GetAutoCompleteDetalle_de_Imputado_Expediente_MP_expediente_ministerio_publicoData(data) {
+	AutoCompleteExpediente_MPData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_MPData.push({
+            id: data[i].clave,
+            text: data[i].nic
+        });
+    }
+    return AutoCompleteExpediente_MPData;
+}
 //Grid GetAutocomplete
 var AutoCompleteMunicipio_de_DetencionData = [];
 function GetAutoCompleteLugar_de_Detencion_Municipio_de_Detencion_MunicipioData(data) {
@@ -2539,6 +2550,9 @@ function ClearControls() {
     $('#Modulo_Atencion_Inicial').empty();
     $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
     $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+    $('#Expediente_MP').empty();
+    $("#Expediente_MP").append('<option value=""></option>');
+    $('#Expediente_MP').val('0').trigger('change');
                 Lugar_de_DetencionClearGridData();
     $('#Pais_de_Origen').empty();
     $("#Pais_de_Origen").append('<option value=""></option>');
@@ -2777,6 +2791,9 @@ $(document).ready(function () {
 	    $('#Modulo_Atencion_Inicial').empty();
     $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
     $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+    $('#Expediente_MP').empty();
+    $("#Expediente_MP").append('<option value=""></option>');
+    $('#Expediente_MP').val('0').trigger('change');
                 Lugar_de_DetencionClearGridData();
     $('#Pais_de_Origen').empty();
     $("#Pais_de_Origen").append('<option value=""></option>');

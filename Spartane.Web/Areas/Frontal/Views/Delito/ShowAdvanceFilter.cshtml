@@ -179,6 +179,10 @@
             hasParameter = true;
             advanceSearch.DelitoActivo = $("#ddlAdvanceActivo").val();
         }
+        if ($("#ddlAdvanceRobo_de_Vehiculo").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoRobo_de_Vehiculo = $("#ddlAdvanceRobo_de_Vehiculo").val();
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblDelito').DataTable().draw();

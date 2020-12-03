@@ -1,0 +1,410 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.expediente_ministerio_publicoGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.clave
+            </td>
+                        <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.clave
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.fecha_de_registro
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.hora_de_registro
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.usuario_que_registra
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Tipo_de_Denuncia
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.MP_Asignado
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.unidad
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Region
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.nuat
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.nic
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.detenido
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.hora_del_detenido
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.hora_puesto_a_disposicion
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.estatus
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Titulo_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Fecha_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Narrativa_Breve_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Hora_Aproximada_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Lugar_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.PaisH
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Estado
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Municipio_Hechos
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Poblacion
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.ColoniaH
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.CalleH
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Numero_InteriorH
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Numero_ExteriorH
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Codigo_PostalH
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Entre_Calle
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Y_Calle
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.LongitudH
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.LatitudH
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Fecha_de_Canalizacion
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Hora_de_Canalizacion
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.usuario_que_canaliza
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.canalizar_a
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.tipo_de_acuerdo
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.fecha_de_inicio_de_acuerdo
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.fecha_de_cumplimiento
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.hora_de_cumplimiento
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.domicilio_para_el_cumplimiento
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.monto_de_reparacion_de_danos
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.parcialidades
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.periodicidad
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.acepta_acuerdo
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.motivo_de_rechazo_de_acuerdo
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.fecha_de_cierre
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.hora_de_cierre
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.Usuario_que_Cierra
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.tipo_de_cierre
+            </td>
+            <td class="column1">
+                @Resources.expediente_ministerio_publicoResources.comentarios_de_cierre
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.clave
+                    </td>
+					                    <td>
+                        @item.clave
+                    </td>
+                    <td>
+                        @item.fecha_de_registro
+                    </td>
+                    <td>
+                        @item.hora_de_registro
+                    </td>
+                    <td>
+                        @item.usuario_que_registra
+                    </td>
+                    <td>
+                        @item.Tipo_de_DenunciaDescripcion
+                    </td>
+                    <td>
+                        @item.MP_Asignado
+                    </td>
+                    <td>
+                        @item.unidad
+                    </td>
+                    <td>
+                        @item.Municipio
+                    </td>
+                    <td>
+                        @item.RegionDescripcion
+                    </td>
+                    <td>
+                        @item.nuat
+                    </td>
+                    <td>
+                        @item.nic
+                    </td>
+                    <td>
+                        @item.detenidoDescripcion
+                    </td>
+                    <td>
+                        @item.hora_del_detenido
+                    </td>
+                    <td>
+                        @item.hora_puesto_a_disposicion
+                    </td>
+                    <td>
+                        @item.estatusdescripcion
+                    </td>
+                    <td>
+                        @item.Titulo_del_Hecho
+                    </td>
+                    <td>
+                        @item.Fecha_del_Hecho
+                    </td>
+                    <td>
+                        @item.Narrativa_Breve_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Hora_Aproximada_del_Hecho
+                    </td>
+                    <td>
+                        @item.Lugar_de_los_HechosDescripcion
+                    </td>
+                    <td>
+                        @item.PaisH
+                    </td>
+                    <td>
+                        @item.Estado
+                    </td>
+                    <td>
+                        @item.Municipio_Hechos
+                    </td>
+                    <td>
+                        @item.Poblacion
+                    </td>
+                    <td>
+                        @item.ColoniaH
+                    </td>
+                    <td>
+                        @item.CalleH
+                    </td>
+                    <td>
+                        @item.Numero_InteriorH
+                    </td>
+                    <td>
+                        @item.Numero_ExteriorH
+                    </td>
+                    <td>
+                        @item.Codigo_PostalH
+                    </td>
+                    <td>
+                        @item.Entre_Calle
+                    </td>
+                    <td>
+                        @item.Y_Calle
+                    </td>
+                    <td>
+                        @item.LongitudH
+                    </td>
+                    <td>
+                        @item.LatitudH
+                    </td>
+                    <td>
+                        @item.Fecha_de_Canalizacion
+                    </td>
+                    <td>
+                        @item.Hora_de_Canalizacion
+                    </td>
+                    <td>
+                        @item.usuario_que_canaliza
+                    </td>
+                    <td>
+                        @item.canalizar_aDescripcion
+                    </td>
+                    <td>
+                        @item.tipo_de_acuerdoDescripcion
+                    </td>
+                    <td>
+                        @item.fecha_de_inicio_de_acuerdo
+                    </td>
+                    <td>
+                        @item.fecha_de_cumplimiento
+                    </td>
+                    <td>
+                        @item.hora_de_cumplimiento
+                    </td>
+                    <td>
+                        @item.domicilio_para_el_cumplimiento
+                    </td>
+                    <td>
+                        @item.monto_de_reparacion_de_danos
+                    </td>
+                    <td>
+                        @item.parcialidades
+                    </td>
+                    <td>
+                        @item.periodicidadDescripcion
+                    </td>
+                    <td>
+                        @item.acepta_acuerdoDescripcion
+                    </td>
+                    <td>
+                        @item.motivo_de_rechazo_de_acuerdo
+                    </td>
+                    <td>
+                        @item.fecha_de_cierre
+                    </td>
+                    <td>
+                        @item.hora_de_cierre
+                    </td>
+                    <td>
+                        @item.Usuario_que_Cierra
+                    </td>
+                    <td>
+                        @item.tipo_de_cierredescripcion
+                    </td>
+                    <td>
+                        @item.comentarios_de_cierre
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

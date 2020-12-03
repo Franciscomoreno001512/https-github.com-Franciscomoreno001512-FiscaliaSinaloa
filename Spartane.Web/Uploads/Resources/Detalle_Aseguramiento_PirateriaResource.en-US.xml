@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Aseguramiento_Pirateria" value="Detalle Aseguramiento Pirateria"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Tipo" value="Tipo"></resource>
+  <resource culture="en-US" name="Descripcion" value="Descripción"></resource>
+  <resource culture="en-US" name="Cantidad" value="Cantidad"></resource>
+  <resource culture="en-US" name="Unidad_de_Medicion" value="Unidad de Medición"></resource>
+  <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

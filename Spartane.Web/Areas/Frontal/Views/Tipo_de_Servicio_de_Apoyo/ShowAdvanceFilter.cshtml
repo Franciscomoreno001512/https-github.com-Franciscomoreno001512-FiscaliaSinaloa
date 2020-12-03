@@ -3,6 +3,9 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Tipo_de_Servicio_de_ApoyoAdvanceSearchModel
 @{
+    List<SelectListItem> varCategoria_de_Servicio_de_Apoyo_Categoria = null;
+    if (ViewBag.Categoria_de_Servicio_de_Apoyos_Categoria != null)
+    { varCategoria_de_Servicio_de_Apoyo_Categoria = (List<SelectListItem>)ViewBag.Categoria_de_Servicio_de_Apoyos_Categoria; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -59,6 +62,27 @@
                     @Html.DropDownListFor(m => m.ServicioFilter, filters, new { @class = "form-control", @id = "ddlServicioFilter" })
                     @Html.TextBoxFor(m => m.Servicio, new { @class = "form-control", @type = "text", @id = "txtServicio" })
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Tipo_de_Servicio_de_ApoyoResources.Categoria</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.CategoriaFilter, filters, new { @class = "form-control", @id = "ddlCategoriaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceCategoria, new { @class = "form-control", @type = "text", @id = "txtAdvanceCategoria" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varCategoria_de_Servicio_de_Apoyo_Categoria!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceCategoriaMultiple, varCategoria_de_Servicio_de_Apoyo_Categoria,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceCategoria"
+                        });
+                    }
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Tipo_de_Servicio_de_Apoyo/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -81,6 +105,21 @@
             advanceSearch.Tipo_de_Servicio_de_ApoyoServicio = $("#txtAdvanceServicio").val();
             advanceSearch.Tipo_de_Servicio_de_ApoyoServicioSearchType = $("#ddlAdvanceServicioFilter").val();
         }
+        advanceSearch.CategoriaSearchType = 0;
+        if ($('#ddlAdvanceCategoria').val().length > 0 || $("#txtAdvanceCategoria").val() == "") {
+
+
+            if (isTipo_de_Servicio_de_ApoyoTextSearch) {
+                advanceSearch.CategoriaName = $("#txtAdvanceCategoria").val();
+                advanceSearch.CategoriaNameSearchType = $("#ddlAdvanceCategoria").val();
+                advanceSearch.CategoriaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.CategoriaToSearch = $("#ddlAdvanceCategoria").val();
+                advanceSearch.CategoriaSearchType = 2;
+            }
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblTipo_de_Servicio_de_Apoyo').DataTable().draw();
@@ -99,6 +138,15 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceCategoria").keypress(function () {
+            isTipo_de_Servicio_de_ApoyoTextSearch = true;
+            $("#ddlAdvanceCategoria").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceCategoria").change(function () {
+            isTipo_de_Servicio_de_ApoyoTextSearch = false;
+            $("#txtAdvanceCategoria").val('');
+        });
 
     });
 </script>

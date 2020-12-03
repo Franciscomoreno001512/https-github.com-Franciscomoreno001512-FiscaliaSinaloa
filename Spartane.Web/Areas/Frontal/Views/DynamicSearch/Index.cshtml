@@ -87,6 +87,14 @@
     a#btn_rg_info_busqueda_visualizar {
         margin: 0 0 0 10px;
     }
+
+    #claseeditardocumento {
+        margin-left: 10px;
+    }
+
+    #claseverdocumento {
+        margin-left: 10px;
+    }
 </style>
 <div id="printFormatModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
     <div class="modal-dialog" role="document">
@@ -303,6 +311,7 @@
             $('#new').css('display', 'none');
             GetDataToShow($($(this).find('td')[0]).html(), @ViewBag.idTablero);
             DisabledAE($($(this).find('td')[3]).html());
+			BussinesRoles($('#wf').val());
 
         });
         $('#TabsBadget').on('click', 'button', function () {
@@ -326,6 +335,23 @@
             }
             else {
                 $('#new').css('display', 'none');
+            }
+			
+			var value = $('#wf').val();
+            switch (value) {
+                case "Canalizados":
+                    $(".editDetails").prop("disabled", true);
+                    $(".classDelete").hide();
+                    $(".editDetails").hide();
+                    break;
+                case "Cerrados":
+                    $(".editDetails").prop("disabled", true);
+                    $(".classDelete").hide();
+                    $(".editDetails").hide();
+                    break;
+                default:
+                    console.log("")
+                    break;
             }
 
 
@@ -397,7 +423,9 @@
             totalregion_info_busqueda = $("#region_info_busqueda").width();
 
             totalTamanofinal = totalRegionBusqueda + totalregion_info_busqueda + 10;
-            $("#region_busqueda").width(totalTamanofinal);
+            //$("#region_busqueda").width(totalTamanofinal);
+			$("#region_busqueda").css("padding-right", "15px");
+            $("#region_busqueda").css("width", "100%");
         });
 
 
@@ -405,12 +433,25 @@
             debugger;
             $("#btn_rg_info_busqueda_ocultar").show();
             $("#btn_rg_info_busqueda_visualizar").hide();
-            $("#region_info_busqueda").show();
 
-            $("#region_busqueda").width(totalRegionBusqueda);
+
+            $("#region_busqueda").css("width", 100);
+
+            $("#region_info_busqueda").show();
+            $("#region_info_busqueda").css("position", "absolute");
+            $("#region_info_busqueda").css("right", "2px");
+
+            var tamañobusqueda2 = 0;
+            tamañobusqueda2 = $("#region_info_busqueda").width();
+
+            $("#region_busqueda").css("padding-right", tamañobusqueda2 + 25);
+            $("#region_busqueda").css("width", "100%");
             $("#region_info_busqueda").width(totalregion_info_busqueda);
-            totalRegionBusqueda = 0;
+
+			totalRegionBusqueda = 0;
             totalregion_info_busqueda = 0;
+
+
 
         });
 
@@ -444,8 +485,9 @@
             }
         });
     }
-
+    var bPreguntar = true
     function GetCatalogPopup(id) {
+       
         var edit = '';
         var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
         url = url.replace("Catalog", ObjectSelectedName);
@@ -453,9 +495,18 @@
             edit = '&Id=' + id;
             url += edit;
         }
-        window.open(htmlDecode(url), '_blank', 'left=300,top=50,width=1200,height=700,toolbar=0,resizable=0');
 
+        url += '&preguntar=1'
+        //window.open(htmlDecode(url), '_blank', 'left=300,top=50,width=1200,height=700,toolbar=0,resizable=0');
+        window.open(htmlDecode(url), '_blank', 'left=300,top=50,width=' + screen.availWidth + ',height=' + screen.availHeight + ',toolbar=0,resizable=0');
+        
     }
+
+    function preguntarAntesDeSalir() {
+        if (bPreguntar)
+            return "¿Seguro que quieres salir?";
+    }
+
     function RefreshCatalog(catalog, control, id) {
         debugger;
         GetDataToShow(IdSelected, @ViewBag.idTablero);
@@ -538,6 +589,7 @@
     var ObjectSelectedName = '';
     var TabSelected = '';
     var IdSelected = "-1";
+	var idModule = getParameterByName('id');										
     function FillDetailsByTab(idTab, object, id, idTablero) {
         debugger;
         ObjectSelected = object;
@@ -565,11 +617,26 @@
                     htmlColumns += '<th class="text-center">Acción</th>';
                     $.each(result[0].Details.Columns, function (i, c) {
 
-                        if (c == "Clave") {
-                            htmlColumns += '<th class="text-center" style="display:none;">' + c.replace(/_/g, " ") + '</th>';
+                        if (ObjectSelected == "45018") {
+                            if (c == "Clave" || (c == "Documento" && idModule == '1') || (c == "Campo" && idModule == '1') || (c == "Archivo" && idModule == '1') || (c == "Descripcion" && idModule == '1')) {
+                                htmlColumns += '<th class="text-center" style="display:none;">' + c.replace(/_/g, " ") + '</th>';
+                            } else {
+                                htmlColumns += '<th class="text-center">' + c.replace(/_/g, " ") + '</th>';
+                            }
                         } else {
-                            htmlColumns += '<th class="text-center">' + c.replace(/_/g, " ") + '</th>';
+                            if (c == "Clave") {
+                                htmlColumns += '<th class="text-center" style="display:none;">' + c.replace(/_/g, " ") + '</th>';
+                            } else {
+                                htmlColumns += '<th class="text-center">' + c.replace(/_/g, " ") + '</th>';
+                            }
                         }
+
+
+																													   
+																															 
+							   
+																									   
+						 
 
                     });
                     $('#TrColumnsDetail').html(htmlColumns);
@@ -581,28 +648,30 @@
                         htmlValues += '<tr>';
 
 
-                        @if(ViewBag.idTablero == 1)
+                        @if(ViewBag.idTablero == 1 || ViewBag.idTablero == 3)
                         {
                               <text>
 
-                        if (ObjectSelected == "45018") { // 45018 representa el tab de documentos, solo se muestra cuando el tab es documentos
+                        if (ObjectSelected == "45018" || ObjectSelected == "45474") { // 45018 representa el tab de documentos, solo se muestra cuando el tab es documentos
                             if (permisionDelete) {
-                                htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i><i class="fa fa-pencil claseeditardocumento" title="Editar Documento"></i><i class="fa fa-search claseverdocumento" title="Ver Documento"></i></a><a class="classDelete"><i class="fa fa-trash" data-ObjectSelected="' +ObjectSelected+'"></i></a></td>';
+								htmlValues += '<td class="text-center" style="width:80px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails hidden" style="padding-left: 10px;"><i class="fa fa-print "></i></a><a class="claseeditardocumento"><img src="~/Images/icono-editar-documento.PNG" width="16px" height="16px"></a><a class="claseverdocumento"><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a><a class="classDelete"><i class="fa fa-trash" data-ObjectSelected="' + ObjectSelected + '"></i></a></td>';
+                                //htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i><i class="fa fa-pencil claseeditardocumento" title="Editar Documento"></i><i class="fa fa-search claseverdocumento" title="Ver Documento"></i></a><a class="classDelete"><i class="fa fa-trash" data-ObjectSelected="' + ObjectSelected + '"></i></a></td>';
 
                             }
                             else {
-                                htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i><i class="fa fa-pencil claseeditardocumento" title="Editar Documento"></i><i class="fa fa-search claseverdocumento" title="Ver Documento"></i></a></td>';
+                                //htmlValues += '<td class="text-center" style="width:70px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i><i class="fa fa-pencil claseeditardocumento" title="Editar Documento"></i><i class="fa fa-search claseverdocumento" title="Ver Documento"></i></a></td>';
+                                htmlValues += '<td class="text-center" style="width:80px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails hidden" style="padding-left: 10px;"><i class="fa fa-print"></i></a><a class="claseeditardocumento"  title="Editar Documento"  style="padding-left: 5px;"><img src="~/Images/icono-editar-documento.PNG" width="16px" height="16px"></a><a class="claseverdocumento"  title="Ver Documento"  style="padding-left: 5px;"><img src="~/Images/icono-ver-documento.PNG" width="16px" height="16px"></a></td>';
 
                             }
 
                         }
                         else {
                             if (permisionDelete) {
-                                htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a><a class="classDelete"><i class="fa fa-trash" data-ObjectSelected="' + ObjectSelected +'"></i></a></td>';
+                                htmlValues += '<td class="text-center" style="width:80px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a><a class="classDelete"><i class="fa fa-trash" data-ObjectSelected="' + ObjectSelected +'"></i></a></td>';
 
                             }
                             else {
-                                htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a></td>';
+                                htmlValues += '<td class="text-center" style="width:80px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails " style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a></td>';
                             }
                         }
 
@@ -614,11 +683,11 @@
                             <text>
 
                         if (permisionDelete) {
-                            htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a><a class="classDelete"><i class="fa fa-trash"  data-ObjectSelected="' + ObjectSelected +'"></i></a></td>';
+                            htmlValues += '<td class="text-center" style="width:80px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a><a class="classDelete"><i class="fa fa-trash"  data-ObjectSelected="' + ObjectSelected +'"></i></a></td>';
 
                         }
                         else {
-                            htmlValues += '<td class="text-center"><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a></td>';
+                            htmlValues += '<td class="text-center" style="width:80px;" ><a class="editDetails"><i class="fa fa-edit"></i></a><a class="printDetails" style="padding-left: 10px;"><i class="fa fa-print hidden"></i></a></td>';
 
                         }
 
@@ -631,11 +700,23 @@
 
 
                         $.each(v.Values, function (i, v2) {
-                            if(i == 0) {
-                                htmlValues += '<td class="text-center text-muted" style="display:none;">' + v2 + '</td>';
-                            } else {
-                                htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
+                            if (ObjectSelected == "45018" || ObjectSelected == "45474" ) {
+							
+                                if (i == 0 || (i == 6 && idModule == '1') || (i == 10 && idModule == '1') || (i == 12 && idModule == '1') || (i == 11 && idModule == '1')) {
+                                    htmlValues += '<td class="text-center text-muted" style="display:none;">' + v2 + '</td>';
+                                } else {
+                                    htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
+                                }
                             }
+                            else {
+                                if (i == 0 ) {
+                                    htmlValues += '<td class="text-center text-muted" style="display:none;">' + v2 + '</td>';
+                                } else {
+                                    htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
+                                }
+                            }
+                            
+
                         });
                         htmlValues += '</tr>';
                     });
@@ -650,6 +731,14 @@
                 showNotification("Error buscando variable", "error");
             }
         });
+    }
+
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
     function GetSearchFields(idTablero) {
@@ -727,7 +816,29 @@
             $("button[data-name='Involucrados']").prop("disabled", false);
         }
     }
-
+    function BussinesRoles(value) {
+        switch (value) {
+            case "Canalizados":
+                //Declaraciones ejecutadas cuando el resultado de expresión coincide con el valor1
+                $("#btnEditarRegistro").prop("disabled", true);
+                $("#new").prop("disabled", true);
+                $(".editDetails").prop("disabled", true);
+                $(".classDelete").hide();
+                $(".editDetails").hide();
+                break;
+            case "Cerrados":
+                //Declaraciones ejecutadas cuando el resultado de expresión coincide con el valor1
+                $("#btnEditarRegistro").prop("disabled", true);
+                $("#new").prop("disabled", true);
+                $(".editDetails").prop("disabled", true);
+                $(".classDelete").hide();
+                $(".editDetails").hide();
+                break;
+            default:
+                console.log("")
+                break;
+        }
+    }
 
     function GetResultSearchTable() {
 

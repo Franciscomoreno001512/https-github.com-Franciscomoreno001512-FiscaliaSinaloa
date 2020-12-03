@@ -6,6 +6,9 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Expediente_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Expediente_Inicial != null)
     { varModulo_Atencion_Inicial_Expediente_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Expediente_Inicial; }
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
     List<SelectListItem> varFormato_de_Denuncia_Tipo_de_Denuncia = null;
     if (ViewBag.Formato_de_Denuncias_Tipo_de_Denuncia != null)
     { varFormato_de_Denuncia_Tipo_de_Denuncia = (List<SelectListItem>)ViewBag.Formato_de_Denuncias_Tipo_de_Denuncia; }
@@ -203,6 +206,9 @@
  List<SelectListItem> varModulo_Atencion_Inicial_Expediente_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Expediente_Inicial != null)
     { varModulo_Atencion_Inicial_Expediente_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Expediente_Inicial; }
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_DelitoResources.Tipo_de_Denuncia</h3>
                 </div>
@@ -1434,6 +1440,21 @@
                 advanceSearch.Expediente_InicialSearchType = 2;
             }
         }
+        advanceSearch.Expediente_MPSearchType = 0;
+        if ($('#ddlAdvanceExpediente_MP').val().length > 0 || $("#txtAdvanceExpediente_MP").val() == "") {
+
+
+            if (isDetalle_de_DelitoTextSearch) {
+                advanceSearch.Expediente_MPName = $("#txtAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPNameSearchType = $("#ddlAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Expediente_MPToSearch = $("#ddlAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPSearchType = 2;
+            }
+        }
         advanceSearch.Tipo_de_DenunciaSearchType = 0;
         if ($('#ddlAdvanceTipo_de_Denuncia').val().length > 0 || $("#txtAdvanceTipo_de_Denuncia").val() == "") {
 
@@ -2427,6 +2448,15 @@
         $("#ddlAdvanceExpediente_Inicial").change(function () {
             isDetalle_de_DelitoTextSearch = false;
             $("#txtAdvanceExpediente_Inicial").val('');
+        });
+        $("#txtAdvanceExpediente_MP").keypress(function () {
+            isDetalle_de_DelitoTextSearch = true;
+            $("#ddlAdvanceExpediente_MP").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceExpediente_MP").change(function () {
+            isDetalle_de_DelitoTextSearch = false;
+            $("#txtAdvanceExpediente_MP").val('');
         });
         $("#txtAdvanceTipo_de_Denuncia").keypress(function () {
             isDetalle_de_DelitoTextSearch = true;

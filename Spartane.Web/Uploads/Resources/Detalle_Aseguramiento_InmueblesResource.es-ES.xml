@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_Aseguramiento_Inmuebles" value="Detalle Aseguramiento Inmuebles"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Zona" value="Zona"></resource>
+  <resource culture="es-es" name="Tipo" value="Tipo"></resource>
+  <resource culture="es-es" name="Terreno" value="Terreno"></resource>
+  <resource culture="es-es" name="Especifique_Otro" value="Especifique Otro"></resource>
+  <resource culture="es-es" name="Calle" value="Calle"></resource>
+  <resource culture="es-es" name="Exterior" value="No. Ext"></resource>
+  <resource culture="es-es" name="Interior" value="No. Int"></resource>
+  <resource culture="es-es" name="C_P" value="C.P"></resource>
+  <resource culture="es-es" name="Estado" value="Estado"></resource>
+  <resource culture="es-es" name="Municipio" value="Municipio"></resource>
+  <resource culture="es-es" name="Colonia" value="Colonia"></resource>
+  <resource culture="es-es" name="Registro_Publico_Propiedad" value="Reg. Pub. de la Prop."></resource>
+  <resource culture="es-es" name="Entrecalles" value="Entrecalles"></resource>
+  <resource culture="es-es" name="Propietario" value="Propietario"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

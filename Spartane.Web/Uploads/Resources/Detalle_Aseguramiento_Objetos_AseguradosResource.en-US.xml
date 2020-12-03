@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Aseguramiento_Objetos_Asegurados" value="Detalle Aseguramiento Objetos Asegurados"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Numero" value="Número"></resource>
+  <resource culture="en-US" name="Tipo" value="Tipo"></resource>
+  <resource culture="en-US" name="Marca" value="Marca"></resource>
+  <resource culture="en-US" name="Serie" value="Serie"></resource>
+  <resource culture="en-US" name="IMEI" value="IMEI"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

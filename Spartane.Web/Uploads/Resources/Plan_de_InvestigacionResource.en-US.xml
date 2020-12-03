@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Plan_de_Investigacion" value="Plan de Investigación"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="en-US" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="en-US" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="en-US" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="en-US" name="Fecha_Reunion_Mando_Ministerial" value="Fecha de Reunión de Mando Ministerial"></resource>
+  <resource culture="en-US" name="Hora_Reunion_Mando_Ministerial" value="Hora de Reunión de Mando Ministerial"></resource>
+  <resource culture="en-US" name="Asistentes" value="Asistentes"></resource>
+  <resource culture="en-US" name="Acuerdos" value="Acuerdos"></resource>
+  <resource culture="en-US" name="Detalle" value="Detalle"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="en-US" name="TabActos_de_Investigacion" value="Actos de Investigación"></resource>
+
+</resources>

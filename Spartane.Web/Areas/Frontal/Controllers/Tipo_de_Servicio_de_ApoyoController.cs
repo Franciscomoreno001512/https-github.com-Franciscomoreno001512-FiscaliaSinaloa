@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo;
+using Spartane.Core.Domain.Categoria_de_Servicio_de_Apoyo;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -12,6 +13,7 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Servicio_de_Apoyo;
+using Spartane.Web.Areas.WebApiConsumer.Categoria_de_Servicio_de_Apoyo;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -48,6 +50,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private ITipo_de_Servicio_de_ApoyoService service = null;
         private ITipo_de_Servicio_de_ApoyoApiConsumer _ITipo_de_Servicio_de_ApoyoApiConsumer;
+        private ICategoria_de_Servicio_de_ApoyoApiConsumer _ICategoria_de_Servicio_de_ApoyoApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -65,7 +68,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Tipo_de_Servicio_de_ApoyoController(ITipo_de_Servicio_de_ApoyoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, ITipo_de_Servicio_de_ApoyoApiConsumer Tipo_de_Servicio_de_ApoyoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer )
+        public Tipo_de_Servicio_de_ApoyoController(ITipo_de_Servicio_de_ApoyoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, ITipo_de_Servicio_de_ApoyoApiConsumer Tipo_de_Servicio_de_ApoyoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ICategoria_de_Servicio_de_ApoyoApiConsumer Categoria_de_Servicio_de_ApoyoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -79,6 +82,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_Format_PermissionsApiConsumer = Spartan_Format_PermissionsApiConsumer;
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
+            this._ICategoria_de_Servicio_de_ApoyoApiConsumer = Categoria_de_Servicio_de_ApoyoApiConsumer;
 
         }
 
@@ -155,6 +159,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Tipo_de_Servicio_de_ApoyoData.Clave 
 	                    ,Servicio = Tipo_de_Servicio_de_ApoyoData.Servicio
+                    ,Categoria = Tipo_de_Servicio_de_ApoyoData.Categoria
+                    ,CategoriaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Tipo_de_Servicio_de_ApoyoData.Categoria), "Categoria_de_Servicio_de_Apoyo") ??  (string)Tipo_de_Servicio_de_ApoyoData.Categoria_Categoria_de_Servicio_de_Apoyo.Descripcion
 
 					};
 				}
@@ -165,6 +171,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ICategoria_de_Servicio_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Categoria_de_Servicio_de_Apoyos_Categoria = _ICategoria_de_Servicio_de_ApoyoApiConsumer.SelAll(true);
+            if (Categoria_de_Servicio_de_Apoyos_Categoria != null && Categoria_de_Servicio_de_Apoyos_Categoria.Resource != null)
+                ViewBag.Categoria_de_Servicio_de_Apoyos_Categoria = Categoria_de_Servicio_de_Apoyos_Categoria.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Categoria_de_Servicio_de_Apoyo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             ViewBag.Consult = consult == 1;
@@ -228,6 +241,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Tipo_de_Servicio_de_ApoyoData.Clave 
 	                    ,Servicio = Tipo_de_Servicio_de_ApoyoData.Servicio
+                    ,Categoria = Tipo_de_Servicio_de_ApoyoData.Categoria
+                    ,CategoriaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Tipo_de_Servicio_de_ApoyoData.Categoria), "Categoria_de_Servicio_de_Apoyo") ??  (string)Tipo_de_Servicio_de_ApoyoData.Categoria_Categoria_de_Servicio_de_Apoyo.Descripcion
 
 					};
 				}
@@ -236,6 +251,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ICategoria_de_Servicio_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Categoria_de_Servicio_de_Apoyos_Categoria = _ICategoria_de_Servicio_de_ApoyoApiConsumer.SelAll(true);
+            if (Categoria_de_Servicio_de_Apoyos_Categoria != null && Categoria_de_Servicio_de_Apoyos_Categoria.Resource != null)
+                ViewBag.Categoria_de_Servicio_de_Apoyos_Categoria = Categoria_de_Servicio_de_Apoyos_Categoria.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Categoria_de_Servicio_de_Apoyo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             return PartialView("AddTipo_de_Servicio_de_Apoyo", varTipo_de_Servicio_de_Apoyo);
@@ -256,6 +278,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetCategoria_de_Servicio_de_ApoyoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ICategoria_de_Servicio_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ICategoria_de_Servicio_de_ApoyoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Categoria_de_Servicio_de_Apoyo", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -289,6 +332,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ICategoria_de_Servicio_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Categoria_de_Servicio_de_Apoyos_Categoria = _ICategoria_de_Servicio_de_ApoyoApiConsumer.SelAll(true);
+            if (Categoria_de_Servicio_de_Apoyos_Categoria != null && Categoria_de_Servicio_de_Apoyos_Categoria.Resource != null)
+                ViewBag.Categoria_de_Servicio_de_Apoyos_Categoria = Categoria_de_Servicio_de_Apoyos_Categoria.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Categoria_de_Servicio_de_Apoyo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             return View(model);  
@@ -300,6 +350,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ICategoria_de_Servicio_de_ApoyoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Categoria_de_Servicio_de_Apoyos_Categoria = _ICategoria_de_Servicio_de_ApoyoApiConsumer.SelAll(true);
+            if (Categoria_de_Servicio_de_Apoyos_Categoria != null && Categoria_de_Servicio_de_Apoyos_Categoria.Resource != null)
+                ViewBag.Categoria_de_Servicio_de_Apoyos_Categoria = Categoria_de_Servicio_de_Apoyos_Categoria.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Categoria_de_Servicio_de_Apoyo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             var previousFiltersObj = new Tipo_de_Servicio_de_ApoyoAdvanceSearchModel();
@@ -339,6 +396,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
 			,Servicio = m.Servicio
+                        ,CategoriaDescripcion = CultureHelper.GetTraduction(m.Categoria_Categoria_de_Servicio_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.Categoria_Categoria_de_Servicio_de_Apoyo.Descripcion
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -454,6 +512,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
 			,Servicio = m.Servicio
+                        ,CategoriaDescripcion = CultureHelper.GetTraduction(m.Categoria_Categoria_de_Servicio_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.Categoria_Categoria_de_Servicio_de_Apoyo.Descripcion
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -500,6 +559,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         where += " AND Tipo_de_Servicio_de_Apoyo.Servicio LIKE '%" + filter.Servicio + "%'";
                         break;
                 }
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceCategoria))
+            {
+                switch (filter.CategoriaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Categoria_de_Servicio_de_Apoyo.Descripcion LIKE '" + filter.AdvanceCategoria + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Categoria_de_Servicio_de_Apoyo.Descripcion LIKE '%" + filter.AdvanceCategoria + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Categoria_de_Servicio_de_Apoyo.Descripcion = '" + filter.AdvanceCategoria + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Categoria_de_Servicio_de_Apoyo.Descripcion LIKE '%" + filter.AdvanceCategoria + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceCategoriaMultiple != null && filter.AdvanceCategoriaMultiple.Count() > 0)
+            {
+                var CategoriaIds = string.Join(",", filter.AdvanceCategoriaMultiple);
+
+                where += " AND Tipo_de_Servicio_de_Apoyo.Categoria In (" + CategoriaIds + ")";
             }
 
 
@@ -558,6 +645,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varTipo_de_Servicio_de_Apoyo.Clave
                         ,Servicio = varTipo_de_Servicio_de_Apoyo.Servicio
+                        ,Categoria = varTipo_de_Servicio_de_Apoyo.Categoria
 
                     };
 
@@ -946,6 +1034,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Servicio = m.Servicio
+                        ,CategoriaDescripcion = CultureHelper.GetTraduction(m.Categoria_Categoria_de_Servicio_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.Categoria_Categoria_de_Servicio_de_Apoyo.Descripcion
 
             }).ToList();
 
@@ -1020,6 +1109,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Servicio = m.Servicio
+                        ,CategoriaDescripcion = CultureHelper.GetTraduction(m.Categoria_Categoria_de_Servicio_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.Categoria_Categoria_de_Servicio_de_Apoyo.Descripcion
 
             }).ToList();
 
@@ -1060,6 +1150,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varTipo_de_Servicio_de_Apoyo.Clave
                                             ,Servicio = varTipo_de_Servicio_de_Apoyo.Servicio
+                        ,Categoria = varTipo_de_Servicio_de_Apoyo.Categoria
                     
                 };
 
@@ -1089,6 +1180,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 			,Servicio = m.Servicio
+                        ,Categoria = m.Categoria
+                        ,CategoriaDescripcion = CultureHelper.GetTraduction(m.Categoria_Categoria_de_Servicio_de_Apoyo.Clave.ToString(), "Descripcion") ?? (string)m.Categoria_Categoria_de_Servicio_de_Apoyo.Descripcion
 
                     
                 };
