@@ -1098,29 +1098,11 @@ if(operation == 'Update'){
 }
 //BusinessRuleId:1304, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:1309, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
 
 
 
-}
-//BusinessRuleId:1309, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:1309, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
 
 
-
-}
-//BusinessRuleId:1309, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:1309, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
-
-
-
-}
-//BusinessRuleId:1309, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:1407, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
@@ -1888,6 +1870,27 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:2629, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:1309, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+
+
+}
+//BusinessRuleId:1309, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:1309, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+
+
+}
+//BusinessRuleId:1309, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:1309, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+
+
+}
+//BusinessRuleId:1309, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

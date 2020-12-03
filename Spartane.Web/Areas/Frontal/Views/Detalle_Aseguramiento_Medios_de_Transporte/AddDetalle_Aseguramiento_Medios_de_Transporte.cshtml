@@ -1,0 +1,735 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_Medios_de_TransporteModel
+@{
+
+
+    List<SelectListItem> varTipo_de_medios_de_transporte_Tipo = null;
+    if (ViewBag.Tipo_de_medios_de_transportes_Tipo != null)
+    { varTipo_de_medios_de_transporte_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_medios_de_transportes_Tipo; }
+ List<SelectListItem> varMarca_de_Medio_de_transporte_Marca = null;
+    if (ViewBag.Marca_de_Medio_de_transportes_Marca != null)
+    { varMarca_de_Medio_de_transporte_Marca = (List<SelectListItem>)ViewBag.Marca_de_Medio_de_transportes_Marca; }
+ List<SelectListItem> varSubmarca_de_medio_de_transporte_Submarca = null;
+    if (ViewBag.Submarca_de_medio_de_transportes_Submarca != null)
+    { varSubmarca_de_medio_de_transporte_Submarca = (List<SelectListItem>)ViewBag.Submarca_de_medio_de_transportes_Submarca; }
+ List<SelectListItem> varModelo_de_medio_de_transporte_Modelo = null;
+    if (ViewBag.Modelo_de_medio_de_transportes_Modelo != null)
+    { varModelo_de_medio_de_transporte_Modelo = (List<SelectListItem>)ViewBag.Modelo_de_medio_de_transportes_Modelo; }
+    List<SelectListItem> varColor_de_medio_de_trasporte_Color = null;
+    if (ViewBag.Color_de_medio_de_trasportes_Color != null)
+    { varColor_de_medio_de_trasporte_Color = (List<SelectListItem>)ViewBag.Color_de_medio_de_trasportes_Color; }
+    List<SelectListItem> varUso_del_medio_de_transporte_Uso = null;
+    if (ViewBag.Uso_del_medio_de_transportes_Uso != null)
+    { varUso_del_medio_de_transporte_Uso = (List<SelectListItem>)ViewBag.Uso_del_medio_de_transportes_Uso; }
+    List<SelectListItem> varProcedencia_del_medio_de_transporte_Procedencia = null;
+    if (ViewBag.Procedencia_del_medio_de_transportes_Procedencia != null)
+    { varProcedencia_del_medio_de_transporte_Procedencia = (List<SelectListItem>)ViewBag.Procedencia_del_medio_de_transportes_Procedencia; }
+    List<SelectListItem> varDetencion_Detencion = null;
+    if (ViewBag.Detencions_Detencion != null)
+    { varDetencion_Detencion = (List<SelectListItem>)ViewBag.Detencions_Detencion; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle Aseguramiento Medios de Transporte
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_Aseguramiento_Medios_de_TransporteRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_Aseguramiento_Medios_de_TransportePop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle Aseguramiento Medios de Transporte
+								<button onclick="Detalle_Aseguramiento_Medios_de_TransporteGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_Aseguramiento_Medios_de_TransporteBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Detalle_Aseguramiento_Medios_de_Transporte</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_Aseguramiento_Medios_de_TransporteDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_Aseguramiento_Medios_de_TransportePropertyBusinessModal" id="Detalle_Aseguramiento_Medios_de_TransportePropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_Aseguramiento_Medios_de_TransporteBusinessRule-form" onclick="Detalle_Aseguramiento_Medios_de_TransporteGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Aseguramiento_Medios_de_TransportePropertyModal" id="Detalle_Aseguramiento_Medios_de_TransportePropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Aseguramiento_Medios_de_TransporteBusinessRuleModal" id="Detalle_Aseguramiento_Medios_de_TransporteBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Aseguramiento_Medios_de_TransporteAddBusinessRuleModal" id="Detalle_Aseguramiento_Medios_de_TransporteAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_Aseguramiento_Medios_de_Transporte", FormMethod.Post, new { id = "CreateDetalle_Aseguramiento_Medios_de_Transporte", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_Aseguramiento_Medios_de_TransporteCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="267564" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Clave">
+                                    <label class="form-control" for="Detalle_Aseguramiento_Medios_de_TransporteClave" id="Detalle_Aseguramiento_Medios_de_TransporteClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divTipo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Tipo</label>
+	<div class="col-sm-8" data-field-id="Tipo" data-attribute="267566" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Tipo">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Detalle_Aseguramiento_Medios_de_TransporteTipo" name="Detalle_Aseguramiento_Medios_de_TransporteTipo">
+			<option value=""></option>
+			@if (varTipo_de_medios_de_transporte_Tipo != null){ 
+				foreach (var itemTipo in varTipo_de_medios_de_transporte_Tipo)
+				{
+					if (itemTipo.Value == Convert.ToString(Model.Tipo))
+					{
+						<option value="@itemTipo.Value" selected>@itemTipo.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo.Value">@itemTipo.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEspecifique">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Especifique</label>
+                                <div class="col-sm-8" data-field-id="Especifique" data-attribute="267567" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Especifique">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteEspecifique" name="Detalle_Aseguramiento_Medios_de_TransporteEspecifique" type="text" value="@Model.Especifique">
+                                </div>
+                            </div>
+<div class="form-group" id="divMarca">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Marca</label>
+                                <div class="col-sm-8" data-field-id="Marca" data-attribute="267664" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Marca">
+                                    <select class='fullWidth AutoCompleteMarca_de_Medio_de_transporte form-control select2-dropdown' data-val="true" id="Detalle_Aseguramiento_Medios_de_TransporteMarca" name="Detalle_Aseguramiento_Medios_de_TransporteMarca">
+                                        <option value="@Model.Marca">@(Model.MarcaDescripcion??Model.MarcaDescripcion)</option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="form-group" id="divSubmarca">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Submarca</label>
+                                <div class="col-sm-8" data-field-id="Submarca" data-attribute="267667" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Submarca">
+                                    <select class='fullWidth AutoCompleteSubmarca_de_medio_de_transporte form-control select2-dropdown' data-val="true" id="Detalle_Aseguramiento_Medios_de_TransporteSubmarca" name="Detalle_Aseguramiento_Medios_de_TransporteSubmarca">
+                                        <option value="@Model.Submarca">@(Model.SubmarcaDescripcion??Model.SubmarcaDescripcion)</option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="form-group" id="divModelo">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Modelo</label>
+                                <div class="col-sm-8" data-field-id="Modelo" data-attribute="267668" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Modelo">
+                                    <select class='fullWidth AutoCompleteModelo_de_medio_de_transporte form-control select2-dropdown' data-val="true" id="Detalle_Aseguramiento_Medios_de_TransporteModelo" name="Detalle_Aseguramiento_Medios_de_TransporteModelo">
+                                        <option value="@Model.Modelo">@(Model.ModeloDescripcion??Model.ModeloDescripcion)</option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="form-group" id="divPlacas">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Placas</label>
+                                <div class="col-sm-8" data-field-id="Placas" data-attribute="267669" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Placas">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransportePlacas" name="Detalle_Aseguramiento_Medios_de_TransportePlacas" type="text" value="@Model.Placas">
+                                </div>
+                            </div>
+<div class="form-group" id="divColor">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Color</label>
+	<div class="col-sm-8" data-field-id="Color" data-attribute="267670" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Color">
+		<select class="form-control" data-val="true" data-val-number="The field Color must be a number." data-val-required="The Color field is required." id="Detalle_Aseguramiento_Medios_de_TransporteColor" name="Detalle_Aseguramiento_Medios_de_TransporteColor">
+			<option value=""></option>
+			@if (varColor_de_medio_de_trasporte_Color != null){ 
+				foreach (var itemColor in varColor_de_medio_de_trasporte_Color)
+				{
+					if (itemColor.Value == Convert.ToString(Model.Color))
+					{
+						<option value="@itemColor.Value" selected>@itemColor.Text</option>
+					}
+					else
+					{
+						<option value="@itemColor.Value">@itemColor.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divNumero_de_Motor">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Numero_de_Motor</label>
+                                <div class="col-sm-8" data-field-id="Numero_de_Motor" data-attribute="267672" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Numero_de_Motor">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteNumero_de_Motor" name="Detalle_Aseguramiento_Medios_de_TransporteNumero_de_Motor" type="text" value="@Model.Numero_de_Motor">
+                                </div>
+                            </div>
+<div class="form-group" id="divSerie">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Serie</label>
+                                <div class="col-sm-8" data-field-id="Serie" data-attribute="267673" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Serie">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteSerie" name="Detalle_Aseguramiento_Medios_de_TransporteSerie" type="text" value="@Model.Serie">
+                                </div>
+                            </div>
+<div class="form-group" id="divUso">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Uso</label>
+	<div class="col-sm-8" data-field-id="Uso" data-attribute="267674" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Uso">
+		<select class="form-control" data-val="true" data-val-number="The field Uso must be a number." data-val-required="The Uso field is required." id="Detalle_Aseguramiento_Medios_de_TransporteUso" name="Detalle_Aseguramiento_Medios_de_TransporteUso">
+			<option value=""></option>
+			@if (varUso_del_medio_de_transporte_Uso != null){ 
+				foreach (var itemUso in varUso_del_medio_de_transporte_Uso)
+				{
+					if (itemUso.Value == Convert.ToString(Model.Uso))
+					{
+						<option value="@itemUso.Value" selected>@itemUso.Text</option>
+					}
+					else
+					{
+						<option value="@itemUso.Value">@itemUso.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCap__De_Pasajeros">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Cap__De_Pasajeros</label>
+	<div class="col-sm-8" data-field-id="Cap__De_Pasajeros" data-attribute="267675" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Cap__De_Pasajeros">
+		<input class="form-control inputNumber" id="Detalle_Aseguramiento_Medios_de_TransporteCap__De_Pasajeros" name="Detalle_Aseguramiento_Medios_de_TransporteCap__De_Pasajeros" type="text" value="@Model.Cap__De_Pasajeros">
+	</div>
+</div>
+<div class="form-group" id="divProcedencia">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Procedencia</label>
+	<div class="col-sm-8" data-field-id="Procedencia" data-attribute="267676" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Procedencia">
+		<select class="form-control" data-val="true" data-val-number="The field Procedencia must be a number." data-val-required="The Procedencia field is required." id="Detalle_Aseguramiento_Medios_de_TransporteProcedencia" name="Detalle_Aseguramiento_Medios_de_TransporteProcedencia">
+			<option value=""></option>
+			@if (varProcedencia_del_medio_de_transporte_Procedencia != null){ 
+				foreach (var itemProcedencia in varProcedencia_del_medio_de_transporte_Procedencia)
+				{
+					if (itemProcedencia.Value == Convert.ToString(Model.Procedencia))
+					{
+						<option value="@itemProcedencia.Value" selected>@itemProcedencia.Text</option>
+					}
+					else
+					{
+						<option value="@itemProcedencia.Value">@itemProcedencia.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divEmpresa">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Empresa</label>
+                                <div class="col-sm-8" data-field-id="Empresa" data-attribute="267677" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Empresa">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteEmpresa" name="Detalle_Aseguramiento_Medios_de_TransporteEmpresa" type="text" value="@Model.Empresa">
+                                </div>
+                            </div>
+<div class="form-group" id="divCapacidad_de_Carga">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Capacidad_de_Carga</label>
+                                <div class="col-sm-8" data-field-id="Capacidad_de_Carga" data-attribute="267678" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Capacidad_de_Carga">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteCapacidad_de_Carga" name="Detalle_Aseguramiento_Medios_de_TransporteCapacidad_de_Carga" type="text" value="@Model.Capacidad_de_Carga">
+                                </div>
+                            </div>
+<div class="form-group" id="divOrigen">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Origen</label>
+                                <div class="col-sm-8" data-field-id="Origen" data-attribute="267679" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Origen">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteOrigen" name="Detalle_Aseguramiento_Medios_de_TransporteOrigen" type="text" value="@Model.Origen">
+                                </div>
+                            </div>
+<div class="form-group" id="divDestino">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Destino</label>
+                                <div class="col-sm-8" data-field-id="Destino" data-attribute="267680" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Destino">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteDestino" name="Detalle_Aseguramiento_Medios_de_TransporteDestino" type="text" value="@Model.Destino">
+                                </div>
+                            </div>
+<div class="form-group" id="divObservaciones">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Observaciones</label>
+                                <div class="col-sm-8" data-field-id="Observaciones" data-attribute="267681" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Observaciones">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteObservaciones" name="Detalle_Aseguramiento_Medios_de_TransporteObservaciones" type="text" value="@Model.Observaciones">
+                                </div>
+                            </div>
+<div class="form-group" id="divDetencion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Detencion</label>
+	<div class="col-sm-8" data-field-id="Detencion" data-attribute="267682" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Detencion">
+		<select class="form-control" data-val="true" data-val-number="The field Detención must be a number." data-val-required="The Detención field is required." id="Detalle_Aseguramiento_Medios_de_TransporteDetencion" name="Detalle_Aseguramiento_Medios_de_TransporteDetencion">
+			<option value=""></option>
+			@if (varDetencion_Detencion != null){ 
+				foreach (var itemDetencion in varDetencion_Detencion)
+				{
+					if (itemDetencion.Value == Convert.ToString(Model.Detencion))
+					{
+						<option value="@itemDetencion.Value" selected>@itemDetencion.Text</option>
+					}
+					else
+					{
+						<option value="@itemDetencion.Value">@itemDetencion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_Aseguramiento_Medios_de_TransporteConfigureSave" name="Detalle_Aseguramiento_Medios_de_TransporteConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_Aseguramiento_Medios_de_TransporteConfigureType" />
+												<input type="hidden" id="hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_Aseguramiento_Medios_de_TransporteGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_Aseguramiento_Medios_de_TransporteBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_Aseguramiento_Medios_de_Transporte.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_Aseguramiento_Medios_de_TransporteGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_Aseguramiento_Medios_de_TransporteCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/AseguramientosCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_Aseguramiento_Medios_de_TransporteRowElement = "Detalle_Aseguramiento_Medios_de_TransportePop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_Aseguramiento_Medios_de_TransporteRowElement + "')){ Detalle_Aseguramiento_Medios_de_TransporteInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+       var AutoCompleteMarcaData =[];
+       $(".AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Marca").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_Aseguramiento_Medios_de_Transporte/GetDetalle_Aseguramiento_Medios_de_Transporte_Marca_Marca_de_Medio_de_transporte")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Marca_Marca_de_Medio_de_transporteData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Marca");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteSubmarcaData =[];
+       $(".AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Submarca").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_Aseguramiento_Medios_de_Transporte/GetDetalle_Aseguramiento_Medios_de_Transporte_Submarca_Submarca_de_medio_de_transporte")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Submarca_Submarca_de_medio_de_transporteData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Submarca");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteModeloData =[];
+       $(".AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Modelo").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_Aseguramiento_Medios_de_Transporte/GetDetalle_Aseguramiento_Medios_de_Transporte_Modelo_Modelo_de_medio_de_transporte")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Modelo_Modelo_de_medio_de_transporteData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Modelo");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_Aseguramiento_Medios_de_TransporteData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_Aseguramiento_Medios_de_Transporte").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_Aseguramiento_Medios_de_Transporte")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_Aseguramiento_Medios_de_TransporteCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_Aseguramiento_Medios_de_Transporte/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_Aseguramiento_Medios_de_TransportePropertyBag", "Detalle_Aseguramiento_Medios_de_Transporte")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_Aseguramiento_Medios_de_TransporteGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleFieldName').val(), ObjectId: '45528', Attribute: $('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleAttribute').val(), Screen: 'Detalle_Aseguramiento_Medios_de_Transporte' }, function (data) {
+                $(".Detalle_Aseguramiento_Medios_de_TransporteBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_Aseguramiento_Medios_de_TransporteGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleFieldName').val(), ObjectId: '45528', Attribute: $('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleAttribute').val(), Screen: 'Detalle_Aseguramiento_Medios_de_Transporte' }, function (data) {
+                $(".Detalle_Aseguramiento_Medios_de_TransporteAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleFieldName').val(), ObjectId: '45528', Attribute: $('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleAttribute').val(), Screen: 'Detalle_Aseguramiento_Medios_de_Transporte' }, function (data) {
+				$(".Detalle_Aseguramiento_Medios_de_TransporteBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_Aseguramiento_Medios_de_Transporte/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_Aseguramiento_Medios_de_Transporte/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_Aseguramiento_Medios_de_Transporte/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_Aseguramiento_Medios_de_TransporteConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_Aseguramiento_Medios_de_TransporteConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_Aseguramiento_Medios_de_Transporte/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_Aseguramiento_Medios_de_TransporteConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_Aseguramiento_Medios_de_Transporte/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_Aseguramiento_Medios_de_Transporte' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_Aseguramiento_Medios_de_Transporte' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_Aseguramiento_Medios_de_TransporteConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_Aseguramiento_Medios_de_TransporteConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_Aseguramiento_Medios_de_Transporte').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_Aseguramiento_Medios_de_TransporteBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

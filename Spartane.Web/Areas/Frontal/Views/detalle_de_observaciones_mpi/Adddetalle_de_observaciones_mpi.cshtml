@@ -11,7 +11,7 @@
     if (Model.fecha == "")
     { Model.fecha = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
-    List<SelectListItem> varSpartan_User_usuario_que_realiza_observacion = null;
+ List<SelectListItem> varSpartan_User_usuario_que_realiza_observacion = null;
     if (ViewBag.Spartan_Users_usuario_que_realiza_observacion != null)
     { varSpartan_User_usuario_que_realiza_observacion = (List<SelectListItem>)ViewBag.Spartan_Users_usuario_que_realiza_observacion; }
 
@@ -168,26 +168,13 @@
                                 </div>
                             </div>
 <div class="form-group" id="divusuario_que_realiza_observacion">
-	<label class="col-sm-2 control-label">@Resources.detalle_de_observaciones_mpiResources.usuario_que_realiza_observacion</label>
-	<div class="col-sm-8" data-field-id="usuario_que_realiza_observacion" data-attribute="267117" data-field-name="@Resources.detalle_de_observaciones_mpiResources.usuario_que_realiza_observacion">
-		<select class="form-control" data-val="true" data-val-number="The field Usuario que Realiza Observación must be a number." data-val-required="The Usuario que Realiza Observación field is required." id="detalle_de_observaciones_mpiusuario_que_realiza_observacion" name="detalle_de_observaciones_mpiusuario_que_realiza_observacion">
-			<option value=""></option>
-			@if (varSpartan_User_usuario_que_realiza_observacion != null){ 
-				foreach (var itemusuario_que_realiza_observacion in varSpartan_User_usuario_que_realiza_observacion)
-				{
-					if (itemusuario_que_realiza_observacion.Value == Convert.ToString(Model.usuario_que_realiza_observacion))
-					{
-						<option value="@itemusuario_que_realiza_observacion.Value" selected>@itemusuario_que_realiza_observacion.Text</option>
-					}
-					else
-					{
-						<option value="@itemusuario_que_realiza_observacion.Value">@itemusuario_que_realiza_observacion.Text</option>
-					}
-				}
-			}
-		</select>
-	</div>
-</div>
+                                <label class="col-sm-2 control-label">@Resources.detalle_de_observaciones_mpiResources.usuario_que_realiza_observacion</label>
+                                <div class="col-sm-8" data-field-id="usuario_que_realiza_observacion" data-attribute="267117" data-field-name="@Resources.detalle_de_observaciones_mpiResources.usuario_que_realiza_observacion">
+                                    <select class='fullWidth AutoCompleteSpartan_User form-control select2-dropdown' data-val="true" id="detalle_de_observaciones_mpiusuario_que_realiza_observacion" name="detalle_de_observaciones_mpiusuario_que_realiza_observacion">
+                                        <option value="@Model.usuario_que_realiza_observacion">@(Model.usuario_que_realiza_observacionName??Model.usuario_que_realiza_observacionName)</option>
+                                    </select>
+                                </div>
+                            </div>
 
 								</div>	
 							</div>
@@ -297,6 +284,39 @@
             initiateUIControls();
             EjecutarValidacionesAlComienzo();
 			$('a').tooltip();
+        });
+       var AutoCompleteusuario_que_realiza_observacionData =[];
+       $(".AutoCompletedetalle_de_observaciones_mpi_usuario_que_realiza_observacion").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/detalle_de_observaciones_mpi/Getdetalle_de_observaciones_mpi_usuario_que_realiza_observacion_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompletedetalle_de_observaciones_mpi_usuario_que_realiza_observacion_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompletedetalle_de_observaciones_mpi_usuario_que_realiza_observacion");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
         });
 
 

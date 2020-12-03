@@ -3,6 +3,7 @@
 @using Spartane.Core.Domain.expediente_ministerio_publico;
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Tipo_de_Denuncia;
+@using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Unidad;
 @using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Region;
@@ -221,6 +222,7 @@
                                     <th>@Resources.expediente_ministerio_publicoResources.hora_de_registro</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.usuario_que_registra</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.Tipo_de_Denuncia</th>
+                                    <th>@Resources.expediente_ministerio_publicoResources.MP_Asignado</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.unidad</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.Municipio</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.Region</th>
@@ -276,6 +278,7 @@
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -444,6 +447,7 @@
         var hora_de_registro = $($('table td .filterData.form-control:input')[counter++]).val();
         var usuario_que_registra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var MP_Asignado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var unidad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -497,6 +501,7 @@
         + "&hora_de_registro=" + hora_de_registro
         + "&usuario_que_registra=" + usuario_que_registra
         + "&Tipo_de_Denuncia=" + Tipo_de_Denuncia
+        + "&MP_Asignado=" + MP_Asignado
         + "&unidad=" + unidad
         + "&Municipio=" + Municipio
         + "&Region=" + Region
@@ -561,6 +566,7 @@
         var hora_de_registro = $($('table td .filterData.form-control:input')[counter++]).val();
         var usuario_que_registra =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Denuncia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var MP_Asignado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var unidad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -614,6 +620,7 @@
         + "&hora_de_registro=" + hora_de_registro
         + "&usuario_que_registra=" + usuario_que_registra
         + "&Tipo_de_Denuncia=" + Tipo_de_Denuncia
+        + "&MP_Asignado=" + MP_Asignado
         + "&unidad=" + unidad
         + "&Municipio=" + Municipio
         + "&Region=" + Region
@@ -840,11 +847,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -912,6 +919,7 @@
                 ,{ "data": "hora_de_registro", "orderable": true, "name": "hora_de_registro" }
                 ,{ "data": "usuario_que_registraName", "orderable": true, "name": "usuario_que_registraName"}
                 ,{ "data": "Tipo_de_DenunciaDescripcion", "orderable": true, "name": "Tipo_de_DenunciaDescripcion" }
+                ,{ "data": "MP_AsignadoName", "orderable": true, "name": "MP_AsignadoName"}
                 ,{ "data": "unidadDescripcion", "orderable": true, "name": "unidadDescripcion"}
                 ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}
                 ,{ "data": "RegionDescripcion", "orderable": true, "name": "RegionDescripcion" }
@@ -955,7 +963,7 @@
                 ,{ "data": "motivo_de_rechazo_de_acuerdo", "orderable": true, "name": "motivo_de_rechazo_de_acuerdo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "fecha_de_cierre", "orderable": true, "searchable": true, "type": "date", "name": "fecha_de_cierre" }
                 ,{ "data": "hora_de_cierre", "orderable": true, "name": "hora_de_cierre" }
-                ,{ "data": "Usuario_que_CierraName", "orderable": true, "name": "Usuario_que_CierraName" }
+                ,{ "data": "Usuario_que_CierraName", "orderable": true, "name": "Usuario_que_CierraName"}
                 ,{ "data": "tipo_de_cierredescripcion", "orderable": true, "name": "tipo_de_cierredescripcion" }
                 ,{ "data": "comentarios_de_cierre", "orderable": true, "name": "comentarios_de_cierre", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
 

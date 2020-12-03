@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Aseguramiento_Otros_Aseguramientos" value="Detalle Aseguramiento Otros Aseguramientos"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Tipo" value="Tipo"></resource>
+  <resource culture="en-US" name="Marca" value="Marca"></resource>
+  <resource culture="en-US" name="Modelo" value="Modelo"></resource>
+  <resource culture="en-US" name="Inventario" value="Inventario"></resource>
+  <resource culture="en-US" name="Serie" value="Serie"></resource>
+  <resource culture="en-US" name="Unidad_de_Medida" value="Unidad de Medida"></resource>
+  <resource culture="en-US" name="Cantidad" value="Cantidad"></resource>
+  <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>
