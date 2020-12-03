@@ -1334,6 +1334,48 @@
 <Compile Include="Domain\Unidad_de_medida_de_tipo_de_droga\Unidad_de_medida_de_tipo_de_drogaPagingModel.cs" />
 <Compile Include="Domain\Uso_del_medio_de_transporte\Uso_del_medio_de_transporte.cs" />
 <Compile Include="Domain\Uso_del_medio_de_transporte\Uso_del_medio_de_transportePagingModel.cs" />
+<Compile Include="Domain\Aseguramientos\Aseguramientos.cs" />
+<Compile Include="Domain\Aseguramientos\AseguramientosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Armas_Involucradas\Detalle_Aseguramiento_Armas_InvolucradasPagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Armas_Involucradas\Detalle_Aseguramiento_Armas_Involucradas.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Artefactos_y_Explosivos\Detalle_Aseguramiento_Artefactos_y_ExplosivosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Artefactos_y_Explosivos\Detalle_Aseguramiento_Artefactos_y_Explosivos.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_de_Cargador_Cartuchos\Detalle_Aseguramiento_de_Cargador_CartuchosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_de_Cargador_Cartuchos\Detalle_Aseguramiento_de_Cargador_Cartuchos.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_de_Drogas_Involucradas\Detalle_Aseguramiento_de_Drogas_InvolucradasPagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_de_Drogas_Involucradas\Detalle_Aseguramiento_de_Drogas_Involucradas.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_de_Pistas_de_Aterrizaje\Detalle_Aseguramiento_de_Pistas_de_AterrizajePagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_de_Pistas_de_Aterrizaje\Detalle_Aseguramiento_de_Pistas_de_Aterrizaje.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_de_Plantios\Detalle_Aseguramiento_de_PlantiosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_de_Plantios\Detalle_Aseguramiento_de_Plantios.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Documentos\Detalle_Aseguramiento_DocumentosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Documentos\Detalle_Aseguramiento_Documentos.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Electronicos_y_Multimedia\Detalle_Aseguramiento_Electronicos_y_MultimediaPagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Electronicos_y_Multimedia\Detalle_Aseguramiento_Electronicos_y_Multimedia.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Inmuebles\Detalle_Aseguramiento_InmueblesPagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Inmuebles\Detalle_Aseguramiento_Inmuebles.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Medios_de_Transporte\Detalle_Aseguramiento_Medios_de_TransportePagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Medios_de_Transporte\Detalle_Aseguramiento_Medios_de_Transporte.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Moneda\Detalle_Aseguramiento_MonedaPagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Moneda\Detalle_Aseguramiento_Moneda.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Objetos_Asegurados\Detalle_Aseguramiento_Objetos_AseguradosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Objetos_Asegurados\Detalle_Aseguramiento_Objetos_Asegurados.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Otros\Detalle_Aseguramiento_OtrosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Otros\Detalle_Aseguramiento_Otros.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Otros_Aseguramientos\Detalle_Aseguramiento_Otros_AseguramientosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Otros_Aseguramientos\Detalle_Aseguramiento_Otros_Aseguramientos.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Pirateria\Detalle_Aseguramiento_PirateriaPagingModel.cs" />
+<Compile Include="Domain\Detalle_Aseguramiento_Pirateria\Detalle_Aseguramiento_Pirateria.cs" />
+<Compile Include="Domain\Submarca_de_medio_de_transporte\Submarca_de_medio_de_transporte.cs" />
+<Compile Include="Domain\Submarca_de_medio_de_transporte\Submarca_de_medio_de_transportePagingModel.cs" />
+<Compile Include="Domain\Asignacion_de_Estatus_de_Agente\Asignacion_de_Estatus_de_Agente.cs" />
+<Compile Include="Domain\Asignacion_de_Estatus_de_Agente\Asignacion_de_Estatus_de_AgentePagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Agente_MP\Estatus_de_Agente_MP.cs" />
+<Compile Include="Domain\Estatus_de_Agente_MP\Estatus_de_Agente_MPPagingModel.cs" />
+<Compile Include="Domain\Condiciones_en_Suspension_Condicional\Condiciones_en_Suspension_Condicional.cs" />
+<Compile Include="Domain\Condiciones_en_Suspension_Condicional\Condiciones_en_Suspension_CondicionalPagingModel.cs" />
+<Compile Include="Domain\Generador_de_Turnos\Generador_de_Turnos.cs" />
+<Compile Include="Domain\Generador_de_Turnos\Generador_de_TurnosPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1354,6 +1396,48 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

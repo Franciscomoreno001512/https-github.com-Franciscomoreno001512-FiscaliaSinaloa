@@ -4,6 +4,7 @@ using System.Web.Script.Serialization;
 using Spartane.Core.Domain.expediente_ministerio_publico;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Denuncia;
+using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Unidad;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Region;
@@ -41,6 +42,7 @@ using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.expediente_ministerio_publico;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Denuncia;
+using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Unidad;
 using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Region;
@@ -154,6 +156,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._ITipo_de_DenunciaApiConsumer = Tipo_de_DenunciaApiConsumer;
+            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._IUnidadApiConsumer = UnidadApiConsumer;
             this._IMunicipioApiConsumer = MunicipioApiConsumer;
             this._IRegionApiConsumer = RegionApiConsumer;
@@ -261,6 +264,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,usuario_que_registraName = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.usuario_que_registra), "Spartan_User") ??  (string)expediente_ministerio_publicoData.usuario_que_registra_Spartan_User.Name
                     ,Tipo_de_Denuncia = expediente_ministerio_publicoData.Tipo_de_Denuncia
                     ,Tipo_de_DenunciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.Tipo_de_Denuncia), "Tipo_de_Denuncia") ??  (string)expediente_ministerio_publicoData.Tipo_de_Denuncia_Tipo_de_Denuncia.Descripcion
+                    ,MP_Asignado = expediente_ministerio_publicoData.MP_Asignado
+                    ,MP_AsignadoName = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.MP_Asignado), "Spartan_User") ??  (string)expediente_ministerio_publicoData.MP_Asignado_Spartan_User.Name
                     ,unidad = expediente_ministerio_publicoData.unidad
                     ,unidadDescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.unidad), "Unidad") ??  (string)expediente_ministerio_publicoData.unidad_Unidad.Descripcion
                     ,Municipio = expediente_ministerio_publicoData.Municipio
@@ -397,13 +402,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.A_Tiempos_acepta_acuerdo = A_Tiempos_acepta_acuerdo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Spartan_Users_Usuario_que_Cierra = _ISpartan_UserApiConsumer.SelAll(true);
-            if (Spartan_Users_Usuario_que_Cierra != null && Spartan_Users_Usuario_que_Cierra.Resource != null)
-                ViewBag.Spartan_Users_Usuario_que_Cierra = Spartan_Users_Usuario_que_Cierra.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
                 }).ToList();
             _Itipo_de_cierreApiConsumer.SetAuthHeader(_tokenManager.Token);
             var tipo_de_cierres_tipo_de_cierre = _Itipo_de_cierreApiConsumer.SelAll(true);
@@ -482,6 +480,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,usuario_que_registraName = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.usuario_que_registra), "Spartan_User") ??  (string)expediente_ministerio_publicoData.usuario_que_registra_Spartan_User.Name
                     ,Tipo_de_Denuncia = expediente_ministerio_publicoData.Tipo_de_Denuncia
                     ,Tipo_de_DenunciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.Tipo_de_Denuncia), "Tipo_de_Denuncia") ??  (string)expediente_ministerio_publicoData.Tipo_de_Denuncia_Tipo_de_Denuncia.Descripcion
+                    ,MP_Asignado = expediente_ministerio_publicoData.MP_Asignado
+                    ,MP_AsignadoName = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.MP_Asignado), "Spartan_User") ??  (string)expediente_ministerio_publicoData.MP_Asignado_Spartan_User.Name
                     ,unidad = expediente_ministerio_publicoData.unidad
                     ,unidadDescripcion = CultureHelper.GetTraduction(Convert.ToString(expediente_ministerio_publicoData.unidad), "Unidad") ??  (string)expediente_ministerio_publicoData.unidad_Unidad.Descripcion
                     ,Municipio = expediente_ministerio_publicoData.Municipio
@@ -616,13 +616,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.A_Tiempos_acepta_acuerdo = A_Tiempos_acepta_acuerdo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Spartan_Users_Usuario_que_Cierra = _ISpartan_UserApiConsumer.SelAll(true);
-            if (Spartan_Users_Usuario_que_Cierra != null && Spartan_Users_Usuario_que_Cierra.Resource != null)
-                ViewBag.Spartan_Users_Usuario_que_Cierra = Spartan_Users_Usuario_que_Cierra.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
                 }).ToList();
             _Itipo_de_cierreApiConsumer.SetAuthHeader(_tokenManager.Token);
             var tipo_de_cierres_tipo_de_cierre = _Itipo_de_cierreApiConsumer.SelAll(true);
@@ -946,7 +939,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
-        
         public ActionResult Gettipo_de_cierreAll()
         {
             try
@@ -1063,13 +1055,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Spartan_Users_Usuario_que_Cierra = _ISpartan_UserApiConsumer.SelAll(true);
-            if (Spartan_Users_Usuario_que_Cierra != null && Spartan_Users_Usuario_que_Cierra.Resource != null)
-                ViewBag.Spartan_Users_Usuario_que_Cierra = Spartan_Users_Usuario_que_Cierra.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
-                }).ToList();
             _Itipo_de_cierreApiConsumer.SetAuthHeader(_tokenManager.Token);
             var tipo_de_cierres_tipo_de_cierre = _Itipo_de_cierreApiConsumer.SelAll(true);
             if (tipo_de_cierres_tipo_de_cierre != null && tipo_de_cierres_tipo_de_cierre.Resource != null)
@@ -1151,13 +1136,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "A_Tiempo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Spartan_Users_Usuario_que_Cierra = _ISpartan_UserApiConsumer.SelAll(true);
-            if (Spartan_Users_Usuario_que_Cierra != null && Spartan_Users_Usuario_que_Cierra.Resource != null)
-                ViewBag.Spartan_Users_Usuario_que_Cierra = Spartan_Users_Usuario_que_Cierra.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
-                }).ToList();
             _Itipo_de_cierreApiConsumer.SetAuthHeader(_tokenManager.Token);
             var tipo_de_cierres_tipo_de_cierre = _Itipo_de_cierreApiConsumer.SelAll(true);
             if (tipo_de_cierres_tipo_de_cierre != null && tipo_de_cierres_tipo_de_cierre.Resource != null)
@@ -1207,6 +1185,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,hora_de_registro = m.hora_de_registro
                         ,usuario_que_registraName = CultureHelper.GetTraduction(m.usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.usuario_que_registra_Spartan_User.Name
                         ,Tipo_de_DenunciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Denuncia_Tipo_de_Denuncia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Denuncia_Tipo_de_Denuncia.Descripcion
+                        ,MP_AsignadoName = CultureHelper.GetTraduction(m.MP_Asignado_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.MP_Asignado_Spartan_User.Name
                         ,unidadDescripcion = CultureHelper.GetTraduction(m.unidad_Unidad.Clave.ToString(), "Unidad") ?? (string)m.unidad_Unidad.Descripcion
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
@@ -1250,7 +1229,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,motivo_de_rechazo_de_acuerdo = m.motivo_de_rechazo_de_acuerdo
                         ,fecha_de_cierre = (m.fecha_de_cierre == null ? string.Empty : Convert.ToDateTime(m.fecha_de_cierre).ToString(ConfigurationProperty.DateFormat))
 			,hora_de_cierre = m.hora_de_cierre
-                        ,Usuario_que_CierraName = CultureHelper.GetTraduction(m.Usuario_que_Cierra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Cierra_Spartan_User.Name
+                        ,Usuario_que_CierraName = CultureHelper.GetTraduction(m.Usuario_que_Cierra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Cierra_Spartan_User.Name
                         ,tipo_de_cierredescripcion = CultureHelper.GetTraduction(m.tipo_de_cierre_tipo_de_cierre.clave.ToString(), "descripcion") ?? (string)m.tipo_de_cierre_tipo_de_cierre.descripcion
 			,comentarios_de_cierre = m.comentarios_de_cierre
 
@@ -1371,6 +1350,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,hora_de_registro = m.hora_de_registro
                         ,usuario_que_registraName = CultureHelper.GetTraduction(m.usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.usuario_que_registra_Spartan_User.Name
                         ,Tipo_de_DenunciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Denuncia_Tipo_de_Denuncia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Denuncia_Tipo_de_Denuncia.Descripcion
+                        ,MP_AsignadoName = CultureHelper.GetTraduction(m.MP_Asignado_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.MP_Asignado_Spartan_User.Name
                         ,unidadDescripcion = CultureHelper.GetTraduction(m.unidad_Unidad.Clave.ToString(), "Unidad") ?? (string)m.unidad_Unidad.Descripcion
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
@@ -1414,7 +1394,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,motivo_de_rechazo_de_acuerdo = m.motivo_de_rechazo_de_acuerdo
                         ,fecha_de_cierre = (m.fecha_de_cierre == null ? string.Empty : Convert.ToDateTime(m.fecha_de_cierre).ToString(ConfigurationProperty.DateFormat))
 			,hora_de_cierre = m.hora_de_cierre
-                        ,Usuario_que_CierraName = CultureHelper.GetTraduction(m.Usuario_que_Cierra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Cierra_Spartan_User.Name
+                        ,Usuario_que_CierraName = CultureHelper.GetTraduction(m.Usuario_que_Cierra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Cierra_Spartan_User.Name
                         ,tipo_de_cierredescripcion = CultureHelper.GetTraduction(m.tipo_de_cierre_tipo_de_cierre.clave.ToString(), "descripcion") ?? (string)m.tipo_de_cierre_tipo_de_cierre.descripcion
 			,comentarios_de_cierre = m.comentarios_de_cierre
 
@@ -1428,6 +1408,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         [HttpGet]
         public JsonResult Getexpediente_ministerio_publico_usuario_que_registra_Spartan_User(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
+               
+                foreach (var item in result.Spartan_Users)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name =trans ??item.Name;
+                }
+                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult Getexpediente_ministerio_publico_MP_Asignado_Spartan_User(string query, string where)
         {
             try
             {
@@ -1508,6 +1515,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 //Grid GetAutoComplete
+        [HttpGet]
+        public JsonResult Getdetalle_de_observaciones_mpi_usuario_que_realiza_observacion_Spartan_User(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
+               
+                foreach (var item in result.Spartan_Users)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name =trans ??item.Name;
+                }
+                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         [HttpGet]
         public JsonResult Getexpediente_ministerio_publico_PaisH_Pais(string query, string where)
@@ -1671,6 +1705,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpGet]
+        public JsonResult Getexpediente_ministerio_publico_Usuario_que_Cierra_Spartan_User(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
+               
+                foreach (var item in result.Spartan_Users)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name =trans ??item.Name;
+                }
+                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -1763,6 +1824,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Tipo_de_DenunciaIds = string.Join(",", filter.AdvanceTipo_de_DenunciaMultiple);
 
                 where += " AND expediente_ministerio_publico.Tipo_de_Denuncia In (" + Tipo_de_DenunciaIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceMP_Asignado))
+            {
+                switch (filter.MP_AsignadoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Spartan_User.Name LIKE '" + filter.AdvanceMP_Asignado + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceMP_Asignado + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Spartan_User.Name = '" + filter.AdvanceMP_Asignado + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceMP_Asignado + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceMP_AsignadoMultiple != null && filter.AdvanceMP_AsignadoMultiple.Count() > 0)
+            {
+                var MP_AsignadoIds = string.Join(",", filter.AdvanceMP_AsignadoMultiple);
+
+                where += " AND expediente_ministerio_publico.MP_Asignado In (" + MP_AsignadoIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.Advanceunidad))
@@ -2874,6 +2963,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,hora_de_registro = varexpediente_ministerio_publico.hora_de_registro
                         ,usuario_que_registra = varexpediente_ministerio_publico.usuario_que_registra
                         ,Tipo_de_Denuncia = varexpediente_ministerio_publico.Tipo_de_Denuncia
+                        ,MP_Asignado = varexpediente_ministerio_publico.MP_Asignado
                         ,unidad = varexpediente_ministerio_publico.unidad
                         ,Municipio = varexpediente_ministerio_publico.Municipio
                         ,Region = varexpediente_ministerio_publico.Region
@@ -3066,8 +3156,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var result = _ISpartan_UserApiConsumer.SelAll(false).Resource;
                 foreach (var item in result)
                 {
-				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
-                  item.Name= trans??item.Name;
+                    item.Name= CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
                 }
                 return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -3459,6 +3548,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,hora_de_registro = m.hora_de_registro
                         ,usuario_que_registraName = CultureHelper.GetTraduction(m.usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.usuario_que_registra_Spartan_User.Name
                         ,Tipo_de_DenunciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Denuncia_Tipo_de_Denuncia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Denuncia_Tipo_de_Denuncia.Descripcion
+                        ,MP_AsignadoName = CultureHelper.GetTraduction(m.MP_Asignado_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.MP_Asignado_Spartan_User.Name
                         ,unidadDescripcion = CultureHelper.GetTraduction(m.unidad_Unidad.Clave.ToString(), "Unidad") ?? (string)m.unidad_Unidad.Descripcion
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
@@ -3502,7 +3592,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,motivo_de_rechazo_de_acuerdo = m.motivo_de_rechazo_de_acuerdo
                         ,fecha_de_cierre = (m.fecha_de_cierre == null ? string.Empty : Convert.ToDateTime(m.fecha_de_cierre).ToString(ConfigurationProperty.DateFormat))
 			,hora_de_cierre = m.hora_de_cierre
-                        ,Usuario_que_CierraName = CultureHelper.GetTraduction(m.Usuario_que_Cierra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Cierra_Spartan_User.Name
+                        ,Usuario_que_CierraName = CultureHelper.GetTraduction(m.Usuario_que_Cierra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Cierra_Spartan_User.Name
                         ,tipo_de_cierredescripcion = CultureHelper.GetTraduction(m.tipo_de_cierre_tipo_de_cierre.clave.ToString(), "descripcion") ?? (string)m.tipo_de_cierre_tipo_de_cierre.descripcion
 			,comentarios_de_cierre = m.comentarios_de_cierre
 
@@ -3582,6 +3672,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,hora_de_registro = m.hora_de_registro
                         ,usuario_que_registraName = CultureHelper.GetTraduction(m.usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.usuario_que_registra_Spartan_User.Name
                         ,Tipo_de_DenunciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Denuncia_Tipo_de_Denuncia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Denuncia_Tipo_de_Denuncia.Descripcion
+                        ,MP_AsignadoName = CultureHelper.GetTraduction(m.MP_Asignado_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.MP_Asignado_Spartan_User.Name
                         ,unidadDescripcion = CultureHelper.GetTraduction(m.unidad_Unidad.Clave.ToString(), "Unidad") ?? (string)m.unidad_Unidad.Descripcion
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Municipio") ?? (string)m.Municipio_Municipio.Nombre
                         ,RegionDescripcion = CultureHelper.GetTraduction(m.Region_Region.Clave.ToString(), "Descripcion") ?? (string)m.Region_Region.Descripcion
@@ -3625,7 +3716,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,motivo_de_rechazo_de_acuerdo = m.motivo_de_rechazo_de_acuerdo
                         ,fecha_de_cierre = (m.fecha_de_cierre == null ? string.Empty : Convert.ToDateTime(m.fecha_de_cierre).ToString(ConfigurationProperty.DateFormat))
 			,hora_de_cierre = m.hora_de_cierre
-                        ,Usuario_que_CierraName = CultureHelper.GetTraduction(m.Usuario_que_Cierra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Cierra_Spartan_User.Name
+                        ,Usuario_que_CierraName = CultureHelper.GetTraduction(m.Usuario_que_Cierra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Cierra_Spartan_User.Name
                         ,tipo_de_cierredescripcion = CultureHelper.GetTraduction(m.tipo_de_cierre_tipo_de_cierre.clave.ToString(), "descripcion") ?? (string)m.tipo_de_cierre_tipo_de_cierre.descripcion
 			,comentarios_de_cierre = m.comentarios_de_cierre
 
@@ -3671,6 +3762,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,hora_de_registro = varexpediente_ministerio_publico.hora_de_registro
                         ,usuario_que_registra = varexpediente_ministerio_publico.usuario_que_registra
                         ,Tipo_de_Denuncia = varexpediente_ministerio_publico.Tipo_de_Denuncia
+                        ,MP_Asignado = varexpediente_ministerio_publico.MP_Asignado
                         ,unidad = varexpediente_ministerio_publico.unidad
                         ,Municipio = varexpediente_ministerio_publico.Municipio
                         ,Region = varexpediente_ministerio_publico.Region
@@ -3716,6 +3808,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,usuario_que_registraName = CultureHelper.GetTraduction(m.usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.usuario_que_registra_Spartan_User.Name
                         ,Tipo_de_Denuncia = m.Tipo_de_Denuncia
                         ,Tipo_de_DenunciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Denuncia_Tipo_de_Denuncia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Denuncia_Tipo_de_Denuncia.Descripcion
+                        ,MP_Asignado = m.MP_Asignado
+                        ,MP_AsignadoName = CultureHelper.GetTraduction(m.MP_Asignado_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.MP_Asignado_Spartan_User.Name
                         ,unidad = m.unidad
                         ,unidadDescripcion = CultureHelper.GetTraduction(m.unidad_Unidad.Clave.ToString(), "Unidad") ?? (string)m.unidad_Unidad.Descripcion
                         ,Municipio = m.Municipio
@@ -4041,7 +4135,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,fecha_de_cierre = (m.fecha_de_cierre == null ? string.Empty : Convert.ToDateTime(m.fecha_de_cierre).ToString(ConfigurationProperty.DateFormat))
 			,hora_de_cierre = m.hora_de_cierre
                         ,Usuario_que_Cierra = m.Usuario_que_Cierra
-                        ,Usuario_que_CierraName = CultureHelper.GetTraduction(m.Usuario_que_Cierra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Cierra_Spartan_User.Name
+                        ,Usuario_que_CierraName = CultureHelper.GetTraduction(m.Usuario_que_Cierra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Cierra_Spartan_User.Name
                         ,tipo_de_cierre = m.tipo_de_cierre
                         ,tipo_de_cierredescripcion = CultureHelper.GetTraduction(m.tipo_de_cierre_tipo_de_cierre.clave.ToString(), "descripcion") ?? (string)m.tipo_de_cierre_tipo_de_cierre.descripcion
 			,comentarios_de_cierre = m.comentarios_de_cierre

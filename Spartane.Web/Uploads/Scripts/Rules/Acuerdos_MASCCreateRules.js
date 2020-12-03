@@ -279,10 +279,22 @@ if(operation == 'Update'){
 }
 //BusinessRuleId:2147, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+
+
 //BusinessRuleId:2018, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
- EvaluaQuery(" update Acuerdos_MASC set Numero_de_Expediente = GLOBAL[SpartanOperationId] where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable); 
- EvaluaQuery(" exec uspEnviaAcuerdoMAC_a_AT GLOBAL[keyvalueinserted]", rowIndex, nameOfTable); 
+ EvaluaQuery(" update Acuerdos_MASC "
++" set Numero_de_Expediente = GLOBAL[SpartanOperationId] "
++" where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable); EvaluaQuery(" exec uspEnviaAcuerdoMAC_a_AT GLOBAL[keyvalueinserted]", rowIndex, nameOfTable); SendEmailQuery('SAPROJ - Nuevo Acuerdo por Autorizar', EvaluaQuery("exec uspGetCorreoOrigen GLOBAL[SpartanOperationId]"), "Por este medio se le notifica que la unidad de Mecanismos Alternos ha generado un nuevo Acuerdo, el cual requiere su autorización."
++" <br><br>"
++" <b>Acuerdo:</b> FLDD[Tipo_de_Acuerdo]"
++" <br><b>Domicilio Acordado:</b> FLD[Domicilio_Acordado]"
++" <br><b>Monto Total:</b> FLD[Monto_Total]"
++" <br><b>Parcialidades:</b>FLD[Parcialidades]"
++" <br><b>Periodicidad:</b> FLDD[Periodicidad]"
++" <br><br>"
++" Favor de ingresar a SAPROJ para realizar la revisión correspondiente.",rowIndex,nameOfTable);
+
 }
 //BusinessRuleId:2018, Attribute:2, Operation:Object, Event:AFTERSAVING
 

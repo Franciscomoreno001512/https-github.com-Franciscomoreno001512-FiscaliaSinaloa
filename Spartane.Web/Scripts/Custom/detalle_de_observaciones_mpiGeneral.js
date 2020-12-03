@@ -6,6 +6,17 @@ $(function () {
 
 });
 
+var AutoCompleteusuario_que_realiza_observacionData = [];
+function GetAutoCompletedetalle_de_observaciones_mpi_usuario_que_realiza_observacion_Spartan_UserData(data) {
+	AutoCompleteusuario_que_realiza_observacionData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteusuario_que_realiza_observacionData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteusuario_que_realiza_observacionData;
+}
 
 
 function getDropdown(elementKey) {
@@ -43,6 +54,9 @@ function ClearControls() {
     $('#Createdetalle_de_observaciones_mpi')[0].reset();
     ClearFormControls();
     $("#claveId").val("0");
+    $('#usuario_que_realiza_observacion').empty();
+    $("#usuario_que_realiza_observacion").append('<option value=""></option>');
+    $('#usuario_que_realiza_observacion').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -172,7 +186,10 @@ $(document).ready(function () {
 			if (CheckValidation())
 				Senddetalle_de_observaciones_mpiData(function (currentId) {
 					$("#claveId").val("0");
-	
+	    $('#usuario_que_realiza_observacion').empty();
+    $("#usuario_que_realiza_observacion").append('<option value=""></option>');
+    $('#usuario_que_realiza_observacion').val('0').trigger('change');
+
 					ResetClaveLabel();
 					$("#Referenceclave").val(currentId);
 	

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Aseguramiento_Electronicos_y_Multimedia" value="Detalle Aseguramiento Electrónicos y Multimedia"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Aparatos" value="Aparatos"></resource>
+  <resource culture="en-US" name="Documentos_Multimedia" value="Documentos Multimedia"></resource>
+  <resource culture="en-US" name="Descripcion" value="Descripción"></resource>
+  <resource culture="en-US" name="Cantidad" value="Cantidad"></resource>
+  <resource culture="en-US" name="A_resguardo" value="A resguardo"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

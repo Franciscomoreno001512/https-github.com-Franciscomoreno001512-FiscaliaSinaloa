@@ -19,11 +19,9 @@ function Getdetalle_de_observaciones_mpi_Spartan_UserDropDown() {
     var detalle_de_observaciones_mpi_Spartan_UserDropdown = $('<select class="form-control" />');      var labelSelect = $("#detalle_de_observaciones_mpi_cmbLabelSelect").val();
 
     $('<option />', { value: '', text: labelSelect }).appendTo(detalle_de_observaciones_mpi_Spartan_UserDropdown);
-    if(detalle_de_observaciones_mpi_Spartan_UserItems != null)
-    {
-       for (var i = 0; i < detalle_de_observaciones_mpi_Spartan_UserItems.length; i++) {
-           $('<option />', { value: detalle_de_observaciones_mpi_Spartan_UserItems[i].Id_User, text:    detalle_de_observaciones_mpi_Spartan_UserItems[i].Name }).appendTo(detalle_de_observaciones_mpi_Spartan_UserDropdown);
-       }
+
+    for (var i = 0; i < detalle_de_observaciones_mpi_Spartan_UserItems.length; i++) {
+        $('<option />', { value: detalle_de_observaciones_mpi_Spartan_UserItems[i].Id_User, text: detalle_de_observaciones_mpi_Spartan_UserItems[i].Name }).appendTo(detalle_de_observaciones_mpi_Spartan_UserDropdown);
     }
     return detalle_de_observaciones_mpi_Spartan_UserDropdown;
 }
@@ -36,7 +34,7 @@ function GetInsertdetalle_de_observaciones_mpiRowControls(index) {
     columnData[0] = $($.parseHTML(inputData)).addClass('detalle_de_observaciones_mpi_observaciones observaciones').attr('id', 'detalle_de_observaciones_mpi_observaciones_' + index).attr('data-field', 'observaciones');
     columnData[1] = $($.parseHTML(GetGridDatePicker())).addClass('detalle_de_observaciones_mpi_fecha fecha').attr('id', 'detalle_de_observaciones_mpi_fecha_' + index).attr('data-field', 'fecha');
     columnData[2] = $($.parseHTML(GetGridTimePicker())).addClass('detalle_de_observaciones_mpi_hora hora').attr('id', 'detalle_de_observaciones_mpi_hora_' + index).attr('data-field', 'hora');
-    columnData[3] = $(Getdetalle_de_observaciones_mpi_Spartan_UserDropDown()).addClass('detalle_de_observaciones_mpi_usuario_que_realiza_observacion usuario_que_realiza_observacion').attr('id', 'detalle_de_observaciones_mpi_usuario_que_realiza_observacion_' + index).attr('data-field', 'usuario_que_realiza_observacion').after($.parseHTML(addNew('detalle_de_observaciones_mpi', 'Spartan_User', 'usuario_que_realiza_observacion', 267117)));
+    columnData[3] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompletedetalle_de_observaciones_mpi_usuario_que_realiza_observacion'))).addClass('detalle_de_observaciones_mpi_usuario_que_realiza_observacion usuario_que_realiza_observacion').attr('id', 'detalle_de_observaciones_mpi_usuario_que_realiza_observacion_' + index).attr('data-field', 'usuario_que_realiza_observacion').after($.parseHTML(addNew('detalle_de_observaciones_mpi', 'Spartan_User', 'usuario_que_realiza_observacion', 267117)));
 
 
     initiateUIControls();
@@ -57,7 +55,8 @@ if (EjecutarValidacionesAntesDeGuardarMRdetalle_de_observaciones_mpi("detalle_de
         ,observaciones:  data.childNodes[counter++].childNodes[0].value
         ,fecha:  data.childNodes[counter++].childNodes[0].value
         ,hora:  data.childNodes[counter++].childNodes[0].value
-        ,usuario_que_realiza_observacion:  data.childNodes[counter++].childNodes[0].value
+        , usuario_que_realiza_observacionName:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
+        , usuario_que_realiza_observacion:  data.childNodes[counter++].childNodes[0].value 	
 
     }
     detalle_de_observaciones_mpiTable.fnUpdate(newData, rowIndex, null, true);
@@ -177,7 +176,7 @@ function detalle_de_observaciones_mpiEditRowPopup(rowIndex, currentRow) {
     $('#detalle_de_observaciones_mpiobservaciones').val(prevData.observaciones);
     $('#detalle_de_observaciones_mpifecha').val(prevData.fecha);
     $('#detalle_de_observaciones_mpihora').val(prevData.hora);
-    $('#detalle_de_observaciones_mpiusuario_que_realiza_observacion').val(prevData.usuario_que_realiza_observacion);
+    $('#dvdetalle_de_observaciones_mpiusuario_que_realiza_observacion').html($($.parseHTML(GetGridAutoComplete(prevData.usuario_que_realiza_observacion.label,'AutoCompleteusuario_que_realiza_observacion'))).addClass('detalle_de_observaciones_mpi_usuario_que_realiza_observacion'));
 
     initiateUIControls();
 
@@ -329,6 +328,17 @@ function GetAutoCompleteexpediente_ministerio_publico_usuario_que_registra_Spart
     }
     return AutoCompleteusuario_que_registraData;
 }
+var AutoCompleteMP_AsignadoData = [];
+function GetAutoCompleteexpediente_ministerio_publico_MP_Asignado_Spartan_UserData(data) {
+	AutoCompleteMP_AsignadoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteMP_AsignadoData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteMP_AsignadoData;
+}
 var AutoCompleteunidadData = [];
 function GetAutoCompleteexpediente_ministerio_publico_unidad_UnidadData(data) {
 	AutoCompleteunidadData = [];
@@ -352,6 +362,17 @@ function GetAutoCompleteexpediente_ministerio_publico_Municipio_MunicipioData(da
     return AutoCompleteMunicipioData;
 }
 //Grid GetAutocomplete
+var AutoCompleteusuario_que_realiza_observacionData = [];
+function GetAutoCompletedetalle_de_observaciones_mpi_usuario_que_realiza_observacion_Spartan_UserData(data) {
+	AutoCompleteusuario_que_realiza_observacionData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteusuario_que_realiza_observacionData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteusuario_que_realiza_observacionData;
+}
 
 var AutoCompletePaisHData = [];
 function GetAutoCompleteexpediente_ministerio_publico_PaisH_PaisData(data) {
@@ -419,6 +440,17 @@ function GetAutoCompleteexpediente_ministerio_publico_usuario_que_canaliza_Spart
     }
     return AutoCompleteusuario_que_canalizaData;
 }
+var AutoCompleteUsuario_que_CierraData = [];
+function GetAutoCompleteexpediente_ministerio_publico_Usuario_que_Cierra_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_CierraData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_CierraData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_CierraData;
+}
 
 
 function getDropdown(elementKey) {
@@ -459,6 +491,9 @@ function ClearControls() {
     $('#usuario_que_registra').empty();
     $("#usuario_que_registra").append('<option value=""></option>');
     $('#usuario_que_registra').val('0').trigger('change');
+    $('#MP_Asignado').empty();
+    $("#MP_Asignado").append('<option value=""></option>');
+    $('#MP_Asignado').val('0').trigger('change');
     $('#unidad').empty();
     $("#unidad").append('<option value=""></option>');
     $('#unidad').val('0').trigger('change');
@@ -484,6 +519,9 @@ function ClearControls() {
     $('#usuario_que_canaliza').empty();
     $("#usuario_que_canaliza").append('<option value=""></option>');
     $('#usuario_que_canaliza').val('0').trigger('change');
+    $('#Usuario_que_Cierra').empty();
+    $("#Usuario_que_Cierra").append('<option value=""></option>');
+    $('#Usuario_que_Cierra').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -622,6 +660,9 @@ $(document).ready(function () {
 	    $('#usuario_que_registra').empty();
     $("#usuario_que_registra").append('<option value=""></option>');
     $('#usuario_que_registra').val('0').trigger('change');
+    $('#MP_Asignado').empty();
+    $("#MP_Asignado").append('<option value=""></option>');
+    $('#MP_Asignado').val('0').trigger('change');
     $('#unidad').empty();
     $("#unidad").append('<option value=""></option>');
     $('#unidad').val('0').trigger('change');
@@ -647,6 +688,9 @@ $(document).ready(function () {
     $('#usuario_que_canaliza').empty();
     $("#usuario_que_canaliza").append('<option value=""></option>');
     $('#usuario_que_canaliza').val('0').trigger('change');
+    $('#Usuario_que_Cierra').empty();
+    $("#Usuario_que_Cierra").append('<option value=""></option>');
+    $('#Usuario_que_Cierra').val('0').trigger('change');
 
 					ResetClaveLabel();
 					$("#Referenceclave").val(currentId);

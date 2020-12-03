@@ -144,24 +144,7 @@ if(operation == 'Consult'){
 
 
 
-//BusinessRuleId:1510, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'Numero_de_Turno' + rowIndex),EvaluaQuery("declare @Num int"
-+" set @Num = (SELECT 0)"
-+" declare @Count int"
-+" set @Count = (SELECT COUNT(Folio) from Asignacion_de_Turnos where DATEDIFF(DAY,Fecha_de_Turno,GETDATE()) = 0)"
-+" "
-+" "
-+" while @Num <= @Count"
-+" BEGIN"
-+" SET @Num = @Num + 1"
-+" END "
-+" "
-+" SELECT @Num		", rowIndex, nameOfTable));
 
-
-}
-//BusinessRuleId:1510, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:1514, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
@@ -507,6 +490,13 @@ if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt(
 
 }
 //BusinessRuleId:1513, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:1510, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Numero_de_Turno' + rowIndex),EvaluaQuery("exec uspGeneraTurnoAutomatico", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:1510, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

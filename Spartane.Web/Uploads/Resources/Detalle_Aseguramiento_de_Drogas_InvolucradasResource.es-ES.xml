@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_Aseguramiento_de_Drogas_Involucradas" value="Detalle Aseguramiento de Drogas Involucradas"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Tipo" value="Tipo"></resource>
+  <resource culture="es-es" name="Unidad_de_Medida" value="Unidad de Medida"></resource>
+  <resource culture="es-es" name="Cantidad" value="Cantidad"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

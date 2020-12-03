@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Aseguramientos" value="Aseguramientos"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Expediente" value="Expediente"></resource>
+  <resource culture="en-US" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="en-US" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="en-US" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="en-US" name="Medios_de_Transporte_Involucrados" value="Medios de Transporte Involucrados"></resource>
+  <resource culture="en-US" name="Drogas_Involucradas" value="Drogas Involucradas"></resource>
+  <resource culture="en-US" name="Armas_Involucradas" value="Armas Involucradas"></resource>
+  <resource culture="en-US" name="Artefactos_y_Explosivos" value="Artefactos y Explosivos"></resource>
+  <resource culture="en-US" name="Cargadores_y_Cartuchos" value="Cargadores y Cartuchos "></resource>
+  <resource culture="en-US" name="Equipo_de_Comunicaciones" value="Equipo de Comunicaciones"></resource>
+  <resource culture="en-US" name="Documentos" value="Documentos"></resource>
+  <resource culture="en-US" name="Moneda" value="Moneda"></resource>
+  <resource culture="en-US" name="Equipo_Tactico" value="Equipo Táctico"></resource>
+  <resource culture="en-US" name="Electronicos_y_Multimedia" value="Electrónicos y Multimedia"></resource>
+  <resource culture="en-US" name="Pirateria" value="Piratería"></resource>
+  <resource culture="en-US" name="Inmuebles" value="Inmuebles"></resource>
+  <resource culture="en-US" name="Plantios" value="Plantíos"></resource>
+  <resource culture="en-US" name="Pistas_de_Aterrizaje" value="Pistas de Aterrizaje"></resource>
+  <resource culture="en-US" name="Otros" value="Otros"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="en-US" name="TabMedios_de_Transporte_Involucrados" value="Medios de Transporte Involucrados"></resource>
+<resource culture="en-US" name="TabDrogas_Involucradas" value="Drogas Involucradas"></resource>
+<resource culture="en-US" name="TabArmas_Involucradas" value="Armas Involucradas"></resource>
+<resource culture="en-US" name="TabObjetos_Asegurados" value="Objetos Asegurados"></resource>
+<resource culture="en-US" name="TabOtros_Aseguramientos" value="Otros Aseguramientos"></resource>
+
+</resources>

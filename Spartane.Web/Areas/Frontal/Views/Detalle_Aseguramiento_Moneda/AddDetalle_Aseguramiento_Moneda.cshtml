@@ -1,0 +1,483 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_MonedaModel
+@{
+
+
+    List<SelectListItem> varTipo_de_Moneda_Tipo = null;
+    if (ViewBag.Tipo_de_Monedas_Tipo != null)
+    { varTipo_de_Moneda_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Monedas_Tipo; }
+    List<SelectListItem> varTipo_de_Dinero_Descripcion = null;
+    if (ViewBag.Tipo_de_Dineros_Descripcion != null)
+    { varTipo_de_Dinero_Descripcion = (List<SelectListItem>)ViewBag.Tipo_de_Dineros_Descripcion; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle Aseguramiento Moneda
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_Aseguramiento_MonedaRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_Aseguramiento_MonedaPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle Aseguramiento Moneda
+								<button onclick="Detalle_Aseguramiento_MonedaGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_Aseguramiento_MonedaBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_Aseguramiento_MonedaResources.Detalle_Aseguramiento_Moneda</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_Aseguramiento_MonedaDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_Aseguramiento_MonedaPropertyBusinessModal" id="Detalle_Aseguramiento_MonedaPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_Aseguramiento_MonedaBusinessRule-form" onclick="Detalle_Aseguramiento_MonedaGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Aseguramiento_MonedaPropertyModal" id="Detalle_Aseguramiento_MonedaPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Aseguramiento_MonedaBusinessRuleModal" id="Detalle_Aseguramiento_MonedaBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Aseguramiento_MonedaAddBusinessRuleModal" id="Detalle_Aseguramiento_MonedaAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_Aseguramiento_Moneda", FormMethod.Post, new { id = "CreateDetalle_Aseguramiento_Moneda", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_Aseguramiento_MonedaCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_MonedaResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="267568" data-field-name="@Resources.Detalle_Aseguramiento_MonedaResources.Clave">
+                                    <label class="form-control" for="Detalle_Aseguramiento_MonedaClave" id="Detalle_Aseguramiento_MonedaClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divTipo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_MonedaResources.Tipo</label>
+	<div class="col-sm-8" data-field-id="Tipo" data-attribute="267570" data-field-name="@Resources.Detalle_Aseguramiento_MonedaResources.Tipo">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Detalle_Aseguramiento_MonedaTipo" name="Detalle_Aseguramiento_MonedaTipo">
+			<option value=""></option>
+			@if (varTipo_de_Moneda_Tipo != null){ 
+				foreach (var itemTipo in varTipo_de_Moneda_Tipo)
+				{
+					if (itemTipo.Value == Convert.ToString(Model.Tipo))
+					{
+						<option value="@itemTipo.Value" selected>@itemTipo.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo.Value">@itemTipo.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divCantidad">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_MonedaResources.Cantidad</label>
+                                <div class="col-sm-8" data-field-id="Cantidad" data-attribute="267571" data-field-name="@Resources.Detalle_Aseguramiento_MonedaResources.Cantidad">
+                                    <input class="form-control col-md-12 inputNumber" id="Detalle_Aseguramiento_MonedaCantidad" name="Detalle_Aseguramiento_MonedaCantidad" type="text" min="0.00" max="999999.99" value="@Model.Cantidad.ToString()">
+                                </div>
+                            </div>
+<div class="form-group" id="divObservaciones">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_MonedaResources.Observaciones</label>
+                                <div class="col-sm-8" data-field-id="Observaciones" data-attribute="267572" data-field-name="@Resources.Detalle_Aseguramiento_MonedaResources.Observaciones">
+                                    <input class="form-control" id="Detalle_Aseguramiento_MonedaObservaciones" name="Detalle_Aseguramiento_MonedaObservaciones" type="text" value="@Model.Observaciones">
+                                </div>
+                            </div>
+<div class="form-group" id="divDescripcion">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_MonedaResources.Descripcion</label>
+	<div class="col-sm-8" data-field-id="Descripcion" data-attribute="267573" data-field-name="@Resources.Detalle_Aseguramiento_MonedaResources.Descripcion">
+		<select class="form-control" data-val="true" data-val-number="The field Descripción must be a number." data-val-required="The Descripción field is required." id="Detalle_Aseguramiento_MonedaDescripcion" name="Detalle_Aseguramiento_MonedaDescripcion">
+			<option value=""></option>
+			@if (varTipo_de_Dinero_Descripcion != null){ 
+				foreach (var itemDescripcion in varTipo_de_Dinero_Descripcion)
+				{
+					if (itemDescripcion.Value == Convert.ToString(Model.Descripcion))
+					{
+						<option value="@itemDescripcion.Value" selected>@itemDescripcion.Text</option>
+					}
+					else
+					{
+						<option value="@itemDescripcion.Value">@itemDescripcion.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_Aseguramiento_MonedaConfigureSave" name="Detalle_Aseguramiento_MonedaConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_Aseguramiento_MonedaConfigureType" />
+												<input type="hidden" id="hdnDetalle_Aseguramiento_MonedaBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_Aseguramiento_MonedaBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_Aseguramiento_MonedaBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_Aseguramiento_MonedaGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_Aseguramiento_MonedaBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_Aseguramiento_Moneda.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_Aseguramiento_MonedaGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_Aseguramiento_MonedaCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/AseguramientosCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_Aseguramiento_MonedaRowElement = "Detalle_Aseguramiento_MonedaPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_Aseguramiento_MonedaRowElement + "')){ Detalle_Aseguramiento_MonedaInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_Aseguramiento_MonedaData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_Aseguramiento_Moneda").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_Aseguramiento_Moneda")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_Aseguramiento_MonedaCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_Aseguramiento_Moneda/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_Aseguramiento_MonedaPropertyBag", "Detalle_Aseguramiento_Moneda")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_Aseguramiento_MonedaGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_Aseguramiento_MonedaBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_Aseguramiento_MonedaBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_Aseguramiento_MonedaBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_Aseguramiento_MonedaBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Aseguramiento_MonedaBusinessRuleFieldName').val(), ObjectId: '45529', Attribute: $('#hdnDetalle_Aseguramiento_MonedaBusinessRuleAttribute').val(), Screen: 'Detalle_Aseguramiento_Moneda' }, function (data) {
+                $(".Detalle_Aseguramiento_MonedaBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_Aseguramiento_MonedaGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_Aseguramiento_MonedaBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_Aseguramiento_MonedaBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_Aseguramiento_MonedaBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_Aseguramiento_MonedaBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Aseguramiento_MonedaBusinessRuleFieldName').val(), ObjectId: '45529', Attribute: $('#hdnDetalle_Aseguramiento_MonedaBusinessRuleAttribute').val(), Screen: 'Detalle_Aseguramiento_Moneda' }, function (data) {
+                $(".Detalle_Aseguramiento_MonedaAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_Aseguramiento_MonedaBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Aseguramiento_MonedaBusinessRuleFieldName').val(), ObjectId: '45529', Attribute: $('#hdnDetalle_Aseguramiento_MonedaBusinessRuleAttribute').val(), Screen: 'Detalle_Aseguramiento_Moneda' }, function (data) {
+				$(".Detalle_Aseguramiento_MonedaBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_Aseguramiento_Moneda/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_Aseguramiento_Moneda/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_Aseguramiento_Moneda/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_Aseguramiento_MonedaConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_Aseguramiento_MonedaConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_Aseguramiento_Moneda/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_Aseguramiento_MonedaConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_Aseguramiento_Moneda/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_Aseguramiento_Moneda' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_Aseguramiento_Moneda' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_Aseguramiento_MonedaConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_Aseguramiento_MonedaConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_Aseguramiento_Moneda').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_Aseguramiento_MonedaBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_Aseguramiento_MonedaBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_Aseguramiento_MonedaBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

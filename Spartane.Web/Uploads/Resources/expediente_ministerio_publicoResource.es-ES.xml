@@ -6,6 +6,7 @@
   <resource culture="es-es" name="hora_de_registro" value="Hora de Registro"></resource>
   <resource culture="es-es" name="usuario_que_registra" value="Usuario que Registra"></resource>
   <resource culture="es-es" name="Tipo_de_Denuncia" value="Tipo de Denuncia"></resource>
+  <resource culture="es-es" name="MP_Asignado" value="MP Asignado"></resource>
   <resource culture="es-es" name="unidad" value="Unidad MP"></resource>
   <resource culture="es-es" name="Municipio" value="Municipio"></resource>
   <resource culture="es-es" name="Region" value="Región"></resource>
