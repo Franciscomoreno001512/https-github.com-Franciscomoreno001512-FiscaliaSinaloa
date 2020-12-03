@@ -26,6 +26,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Tipo_de_Denuncia[Descripcion]":
                 case "Tipo_de_DenunciaDescripcion":
                     return "Tipo_de_Denuncia.Descripcion";
+                case "MP_Asignado[Name]":
+                case "MP_AsignadoName":
+                    return "Spartan_User.Name";
                 case "unidad[Descripcion]":
                 case "unidadDescripcion":
                     return "Unidad.Descripcion";

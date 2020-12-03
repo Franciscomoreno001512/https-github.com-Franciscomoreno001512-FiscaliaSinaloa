@@ -125,13 +125,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Spartan_Users_usuario_que_realiza_observacion = _ISpartan_UserApiConsumer.SelAll(true);
-            if (Spartan_Users_usuario_que_realiza_observacion != null && Spartan_Users_usuario_que_realiza_observacion.Resource != null)
-                ViewBag.Spartan_Users_usuario_que_realiza_observacion = Spartan_Users_usuario_que_realiza_observacion.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
-                }).ToList();
 
 
             ViewBag.Consult = consult == 1;
@@ -178,13 +171,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Spartan_Users_usuario_que_realiza_observacion = _ISpartan_UserApiConsumer.SelAll(true);
-            if (Spartan_Users_usuario_que_realiza_observacion != null && Spartan_Users_usuario_que_realiza_observacion.Resource != null)
-                ViewBag.Spartan_Users_usuario_que_realiza_observacion = Spartan_Users_usuario_que_realiza_observacion.Resource.Where(m => m.Name != null).OrderBy(m => m.Name).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name") ?? m.Name.ToString(), Value = Convert.ToString(m.Id_User)
-                }).ToList();
 
 
             return PartialView("Adddetalle_de_observaciones_mpi", vardetalle_de_observaciones_mpi);
@@ -205,7 +191,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
-        [HttpGet]
+		[HttpGet]
         public ActionResult GetSpartan_UserAll()
         {
             try
@@ -214,7 +200,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ISpartan_UserApiConsumer.SelAll(false).Resource;
-                
+				
                 return Json(result.OrderBy(m => m.Name).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name")?? m.Name,
@@ -250,7 +236,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,observaciones = m.observaciones
                         ,fecha = (m.fecha == null ? string.Empty : Convert.ToDateTime(m.fecha).ToString(ConfigurationProperty.DateFormat))
 			,hora = m.hora
-                        ,usuario_que_realiza_observacionName = CultureHelper.GetTraduction(m.usuario_que_realiza_observacion_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.usuario_que_realiza_observacion_Spartan_User.Name
+                        ,usuario_que_realiza_observacionName = CultureHelper.GetTraduction(m.usuario_que_realiza_observacion_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.usuario_que_realiza_observacion_Spartan_User.Name
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -258,6 +244,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
+        [HttpGet]
+        public JsonResult Getdetalle_de_observaciones_mpi_usuario_que_realiza_observacion_Spartan_User(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
+               
+                foreach (var item in result.Spartan_Users)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name =trans ??item.Name;
+                }
+                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 

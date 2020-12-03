@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Aseguramiento_de_Pistas_de_Aterrizaje" value="Detalle Aseguramiento de Pistas de Aterrizaje"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Tipo" value="Tipo"></resource>
+  <resource culture="en-US" name="Suelo" value="Suelo"></resource>
+  <resource culture="en-US" name="Descripcion" value="Descripción"></resource>
+  <resource culture="en-US" name="Localizacion_1" value="Localización 1"></resource>
+  <resource culture="en-US" name="Localizacion_2" value="Localización 2"></resource>
+  <resource culture="en-US" name="Latitud" value="Latitud"></resource>
+  <resource culture="en-US" name="Longitud" value="Longitud"></resource>
+  <resource culture="en-US" name="Orientacion_de" value="Orientación de "></resource>
+  <resource culture="en-US" name="Orientacion" value="Orientación"></resource>
+  <resource culture="en-US" name="Largo" value="Largo"></resource>
+  <resource culture="en-US" name="Ancho" value="Ancho"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

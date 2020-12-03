@@ -13045,6 +13045,381 @@
 <Content Include="Uploads\Scripts\Rules\Uso_del_medio_de_transporteCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Uso_del_medio_de_transporteIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Uso_del_medio_de_transporte\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Aseguramientos\AseguramientosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Aseguramientos\IAseguramientosApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\AseguramientosModel.cs" />
+<Compile Include="Areas\Frontal\Models\AseguramientosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\AseguramientosMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\AseguramientosController.cs" />
+<Content Include="Areas\Frontal\Views\Aseguramientos\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Aseguramientos\Create.cshtml" />
+<Compile Include="Resource\GetResource\Aseguramientos.cs" />
+<Content Include="Uploads\Resources\AseguramientosResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\AseguramientosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\AseguramientosResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Aseguramientos.js" />
+<Content Include="Scripts\Custom\AseguramientosGeneral.js" />
+<Content Include="Areas\Frontal\Views\Aseguramientos\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\AseguramientosAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\AseguramientosBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\AseguramientosCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\AseguramientosIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Aseguramientos\_Print.cshtml" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_Armas_InvolucradasController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Armas_InvolucradasModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Armas_InvolucradasGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Armas_InvolucradasMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Armas_Involucradas\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Armas_Involucradas\AddDetalle_Aseguramiento_Armas_Involucradas.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Armas_Involucradas\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Armas_Involucradas\Detalle_Aseguramiento_Armas_InvolucradasApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Armas_Involucradas\IDetalle_Aseguramiento_Armas_InvolucradasApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_Armas_Involucradas.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_Armas_InvolucradasGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_Armas_InvolucradasPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_Armas_InvolucradasResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_Armas_InvolucradasResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_Armas_Involucradas.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_Armas_InvolucradasIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_Armas_InvolucradasCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_Artefactos_y_ExplosivosController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Artefactos_y_ExplosivosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Artefactos_y_ExplosivosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Artefactos_y_ExplosivosMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Artefactos_y_Explosivos\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Artefactos_y_Explosivos\AddDetalle_Aseguramiento_Artefactos_y_Explosivos.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Artefactos_y_Explosivos\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Artefactos_y_Explosivos\Detalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Artefactos_y_Explosivos\IDetalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_Artefactos_y_Explosivos.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_Artefactos_y_ExplosivosGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_Artefactos_y_ExplosivosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_Artefactos_y_ExplosivosResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_Artefactos_y_ExplosivosResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_Artefactos_y_Explosivos.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_Artefactos_y_ExplosivosIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_Artefactos_y_ExplosivosCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_de_Cargador_CartuchosController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_de_Cargador_CartuchosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_de_Cargador_CartuchosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_de_Cargador_CartuchosMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_de_Cargador_Cartuchos\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_de_Cargador_Cartuchos\AddDetalle_Aseguramiento_de_Cargador_Cartuchos.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_de_Cargador_Cartuchos\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_de_Cargador_Cartuchos\Detalle_Aseguramiento_de_Cargador_CartuchosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_de_Cargador_Cartuchos\IDetalle_Aseguramiento_de_Cargador_CartuchosApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_de_Cargador_Cartuchos.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_de_Cargador_CartuchosGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_de_Cargador_CartuchosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_de_Cargador_CartuchosResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_de_Cargador_CartuchosResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_de_Cargador_Cartuchos.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_de_Cargador_CartuchosIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_de_Cargador_CartuchosCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_de_Drogas_InvolucradasController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_de_Drogas_InvolucradasModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_de_Drogas_InvolucradasGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_de_Drogas_InvolucradasMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_de_Drogas_Involucradas\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_de_Drogas_Involucradas\AddDetalle_Aseguramiento_de_Drogas_Involucradas.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_de_Drogas_Involucradas\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_de_Drogas_Involucradas\Detalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_de_Drogas_Involucradas\IDetalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_de_Drogas_Involucradas.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_de_Drogas_InvolucradasGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_de_Drogas_InvolucradasPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_de_Drogas_InvolucradasResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_de_Drogas_InvolucradasResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_de_Drogas_Involucradas.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_de_Drogas_InvolucradasIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_de_Drogas_InvolucradasCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_de_Pistas_de_AterrizajeController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_de_Pistas_de_AterrizajeModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_de_Pistas_de_AterrizajeGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_de_Pistas_de_AterrizajeMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_de_Pistas_de_Aterrizaje\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_de_Pistas_de_Aterrizaje\AddDetalle_Aseguramiento_de_Pistas_de_Aterrizaje.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_de_Pistas_de_Aterrizaje\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_de_Pistas_de_Aterrizaje\Detalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_de_Pistas_de_Aterrizaje\IDetalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_de_Pistas_de_Aterrizaje.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_de_Pistas_de_AterrizajeGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_de_Pistas_de_AterrizajePropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_de_Pistas_de_AterrizajeResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_de_Pistas_de_AterrizajeResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_de_Pistas_de_Aterrizaje.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_de_Pistas_de_AterrizajeIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_de_Pistas_de_AterrizajeCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_de_PlantiosController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_de_PlantiosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_de_PlantiosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_de_PlantiosMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_de_Plantios\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_de_Plantios\AddDetalle_Aseguramiento_de_Plantios.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_de_Plantios\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_de_Plantios\Detalle_Aseguramiento_de_PlantiosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_de_Plantios\IDetalle_Aseguramiento_de_PlantiosApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_de_Plantios.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_de_PlantiosGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_de_PlantiosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_de_PlantiosResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_de_PlantiosResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_de_Plantios.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_de_PlantiosIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_de_PlantiosCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_DocumentosController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_DocumentosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_DocumentosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_DocumentosMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Documentos\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Documentos\AddDetalle_Aseguramiento_Documentos.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Documentos\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Documentos\Detalle_Aseguramiento_DocumentosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Documentos\IDetalle_Aseguramiento_DocumentosApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_Documentos.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_DocumentosGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_DocumentosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_DocumentosResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_DocumentosResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_Documentos.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_DocumentosIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_DocumentosCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_Electronicos_y_MultimediaController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Electronicos_y_MultimediaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Electronicos_y_MultimediaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Electronicos_y_MultimediaMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Electronicos_y_Multimedia\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Electronicos_y_Multimedia\AddDetalle_Aseguramiento_Electronicos_y_Multimedia.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Electronicos_y_Multimedia\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Electronicos_y_Multimedia\Detalle_Aseguramiento_Electronicos_y_MultimediaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Electronicos_y_Multimedia\IDetalle_Aseguramiento_Electronicos_y_MultimediaApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_Electronicos_y_Multimedia.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_Electronicos_y_MultimediaGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_Electronicos_y_MultimediaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_Electronicos_y_MultimediaResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_Electronicos_y_MultimediaResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_Electronicos_y_Multimedia.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_Electronicos_y_MultimediaIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_Electronicos_y_MultimediaCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_InmueblesController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_InmueblesModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_InmueblesGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_InmueblesMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Inmuebles\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Inmuebles\AddDetalle_Aseguramiento_Inmuebles.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Inmuebles\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Inmuebles\Detalle_Aseguramiento_InmueblesApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Inmuebles\IDetalle_Aseguramiento_InmueblesApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_Inmuebles.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_InmueblesGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_InmueblesPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_InmueblesResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_InmueblesResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_Inmuebles.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_InmueblesIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_InmueblesCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_Medios_de_TransporteController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Medios_de_TransporteModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Medios_de_TransporteGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Medios_de_TransporteMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Medios_de_Transporte\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Medios_de_Transporte\AddDetalle_Aseguramiento_Medios_de_Transporte.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Medios_de_Transporte\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Medios_de_Transporte\Detalle_Aseguramiento_Medios_de_TransporteApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Medios_de_Transporte\IDetalle_Aseguramiento_Medios_de_TransporteApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_Medios_de_Transporte.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_Medios_de_TransporteGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_Medios_de_TransportePropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_Medios_de_TransporteResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_Medios_de_TransporteResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_Medios_de_Transporte.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_Medios_de_TransporteIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_Medios_de_TransporteCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_MonedaController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_MonedaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_MonedaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_MonedaMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Moneda\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Moneda\AddDetalle_Aseguramiento_Moneda.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Moneda\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Moneda\Detalle_Aseguramiento_MonedaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Moneda\IDetalle_Aseguramiento_MonedaApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_Moneda.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_MonedaGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_MonedaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_MonedaResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_MonedaResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_Moneda.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_MonedaIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_MonedaCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_Objetos_AseguradosController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Objetos_AseguradosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Objetos_AseguradosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Objetos_AseguradosMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Objetos_Asegurados\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Objetos_Asegurados\AddDetalle_Aseguramiento_Objetos_Asegurados.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Objetos_Asegurados\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Objetos_Asegurados\Detalle_Aseguramiento_Objetos_AseguradosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Objetos_Asegurados\IDetalle_Aseguramiento_Objetos_AseguradosApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_Objetos_Asegurados.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_Objetos_AseguradosGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_Objetos_AseguradosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_Objetos_AseguradosResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_Objetos_AseguradosResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_Objetos_Asegurados.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_Objetos_AseguradosIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_Objetos_AseguradosCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_OtrosController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_OtrosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_OtrosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_OtrosMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Otros\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Otros\AddDetalle_Aseguramiento_Otros.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Otros\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Otros\Detalle_Aseguramiento_OtrosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Otros\IDetalle_Aseguramiento_OtrosApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_Otros.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_OtrosGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_OtrosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_OtrosResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_OtrosResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_Otros.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_OtrosIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_OtrosCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_Otros_AseguramientosController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Otros_AseguramientosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Otros_AseguramientosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_Otros_AseguramientosMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Otros_Aseguramientos\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Otros_Aseguramientos\AddDetalle_Aseguramiento_Otros_Aseguramientos.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Otros_Aseguramientos\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Otros_Aseguramientos\Detalle_Aseguramiento_Otros_AseguramientosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Otros_Aseguramientos\IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_Otros_Aseguramientos.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_Otros_AseguramientosGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_Otros_AseguramientosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_Otros_AseguramientosResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_Otros_AseguramientosResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_Otros_Aseguramientos.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_Otros_AseguramientosIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_Otros_AseguramientosCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Aseguramiento_PirateriaController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_PirateriaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_PirateriaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Aseguramiento_PirateriaMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Pirateria\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Pirateria\AddDetalle_Aseguramiento_Pirateria.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Aseguramiento_Pirateria\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Pirateria\Detalle_Aseguramiento_PirateriaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Aseguramiento_Pirateria\IDetalle_Aseguramiento_PirateriaApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Aseguramiento_Pirateria.cs" />
+<Content Include="Scripts\Custom\Detalle_Aseguramiento_PirateriaGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Aseguramiento_PirateriaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_PirateriaResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Aseguramiento_PirateriaResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Aseguramiento_Pirateria.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_PirateriaIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Aseguramiento_PirateriaCreateRules.js" />
+<Compile Include="Areas\WebApiConsumer\Submarca_de_medio_de_transporte\Submarca_de_medio_de_transporteApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Submarca_de_medio_de_transporte\ISubmarca_de_medio_de_transporteApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Submarca_de_medio_de_transporteModel.cs" />
+<Compile Include="Areas\Frontal\Models\Submarca_de_medio_de_transporteGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Submarca_de_medio_de_transporteMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Submarca_de_medio_de_transporteController.cs" />
+<Content Include="Areas\Frontal\Views\Submarca_de_medio_de_transporte\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Submarca_de_medio_de_transporte\Create.cshtml" />
+<Compile Include="Resource\GetResource\Submarca_de_medio_de_transporte.cs" />
+<Content Include="Uploads\Resources\Submarca_de_medio_de_transporteResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Submarca_de_medio_de_transportePropertyMapper.cs" />
+<Content Include="Uploads\Resources\Submarca_de_medio_de_transporteResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Submarca_de_medio_de_transporte.js" />
+<Content Include="Scripts\Custom\Submarca_de_medio_de_transporteGeneral.js" />
+<Content Include="Areas\Frontal\Views\Submarca_de_medio_de_transporte\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Submarca_de_medio_de_transporteAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Submarca_de_medio_de_transporteBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Submarca_de_medio_de_transporteCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Submarca_de_medio_de_transporteIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Submarca_de_medio_de_transporte\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Asignacion_de_Estatus_de_Agente\Asignacion_de_Estatus_de_AgenteApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Asignacion_de_Estatus_de_Agente\IAsignacion_de_Estatus_de_AgenteApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Asignacion_de_Estatus_de_AgenteModel.cs" />
+<Compile Include="Areas\Frontal\Models\Asignacion_de_Estatus_de_AgenteGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Asignacion_de_Estatus_de_AgenteMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Asignacion_de_Estatus_de_AgenteController.cs" />
+<Content Include="Areas\Frontal\Views\Asignacion_de_Estatus_de_Agente\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Asignacion_de_Estatus_de_Agente\Create.cshtml" />
+<Compile Include="Resource\GetResource\Asignacion_de_Estatus_de_Agente.cs" />
+<Content Include="Uploads\Resources\Asignacion_de_Estatus_de_AgenteResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Asignacion_de_Estatus_de_AgentePropertyMapper.cs" />
+<Content Include="Uploads\Resources\Asignacion_de_Estatus_de_AgenteResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Asignacion_de_Estatus_de_Agente.js" />
+<Content Include="Scripts\Custom\Asignacion_de_Estatus_de_AgenteGeneral.js" />
+<Content Include="Areas\Frontal\Views\Asignacion_de_Estatus_de_Agente\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Asignacion_de_Estatus_de_AgenteAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Asignacion_de_Estatus_de_AgenteBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Asignacion_de_Estatus_de_AgenteCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Asignacion_de_Estatus_de_AgenteIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Asignacion_de_Estatus_de_Agente\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Estatus_de_Agente_MP\Estatus_de_Agente_MPApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Estatus_de_Agente_MP\IEstatus_de_Agente_MPApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Agente_MPModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Agente_MPGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Agente_MPMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Estatus_de_Agente_MPController.cs" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Agente_MP\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Agente_MP\Create.cshtml" />
+<Compile Include="Resource\GetResource\Estatus_de_Agente_MP.cs" />
+<Content Include="Uploads\Resources\Estatus_de_Agente_MPResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Estatus_de_Agente_MPPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Estatus_de_Agente_MPResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Estatus_de_Agente_MP.js" />
+<Content Include="Scripts\Custom\Estatus_de_Agente_MPGeneral.js" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Agente_MP\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Agente_MPAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_Agente_MPBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Estatus_de_Agente_MPCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Estatus_de_Agente_MPIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Agente_MP\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Condiciones_en_Suspension_Condicional\Condiciones_en_Suspension_CondicionalApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Condiciones_en_Suspension_Condicional\ICondiciones_en_Suspension_CondicionalApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Condiciones_en_Suspension_CondicionalModel.cs" />
+<Compile Include="Areas\Frontal\Models\Condiciones_en_Suspension_CondicionalGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Condiciones_en_Suspension_CondicionalMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Condiciones_en_Suspension_CondicionalController.cs" />
+<Content Include="Areas\Frontal\Views\Condiciones_en_Suspension_Condicional\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Condiciones_en_Suspension_Condicional\Create.cshtml" />
+<Compile Include="Resource\GetResource\Condiciones_en_Suspension_Condicional.cs" />
+<Content Include="Uploads\Resources\Condiciones_en_Suspension_CondicionalResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Condiciones_en_Suspension_CondicionalPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Condiciones_en_Suspension_CondicionalResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Condiciones_en_Suspension_Condicional.js" />
+<Content Include="Scripts\Custom\Condiciones_en_Suspension_CondicionalGeneral.js" />
+<Content Include="Areas\Frontal\Views\Condiciones_en_Suspension_Condicional\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Condiciones_en_Suspension_CondicionalAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Condiciones_en_Suspension_CondicionalBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Condiciones_en_Suspension_CondicionalCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Condiciones_en_Suspension_CondicionalIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Condiciones_en_Suspension_Condicional\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Generador_de_Turnos\Generador_de_TurnosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Generador_de_Turnos\IGenerador_de_TurnosApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_de_TurnosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_de_TurnosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_de_TurnosMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Generador_de_TurnosController.cs" />
+<Content Include="Areas\Frontal\Views\Generador_de_Turnos\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Generador_de_Turnos\Create.cshtml" />
+<Compile Include="Resource\GetResource\Generador_de_Turnos.cs" />
+<Content Include="Uploads\Resources\Generador_de_TurnosResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Generador_de_TurnosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Generador_de_TurnosResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Generador_de_Turnos.js" />
+<Content Include="Scripts\Custom\Generador_de_TurnosGeneral.js" />
+<Content Include="Areas\Frontal\Views\Generador_de_Turnos\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Generador_de_TurnosAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_de_TurnosBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Generador_de_TurnosCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Generador_de_TurnosIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Generador_de_Turnos\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -14044,6 +14419,381 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

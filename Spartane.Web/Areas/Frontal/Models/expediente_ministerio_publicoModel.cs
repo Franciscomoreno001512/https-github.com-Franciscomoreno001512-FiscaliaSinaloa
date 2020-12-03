@@ -18,6 +18,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string usuario_que_registraName { get; set; }
         public int? Tipo_de_Denuncia { get; set; }
         public string Tipo_de_DenunciaDescripcion { get; set; }
+        public int? MP_Asignado { get; set; }
+        public string MP_AsignadoName { get; set; }
         public int? unidad { get; set; }
         public string unidadDescripcion { get; set; }
         public int? Municipio { get; set; }
@@ -98,6 +100,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string usuario_que_registraName { get; set; }
         public int? Tipo_de_Denuncia { get; set; }
         public string Tipo_de_DenunciaDescripcion { get; set; }
+        public int? MP_Asignado { get; set; }
+        public string MP_AsignadoName { get; set; }
         public int? unidad { get; set; }
         public string unidadDescripcion { get; set; }
         public int? Municipio { get; set; }

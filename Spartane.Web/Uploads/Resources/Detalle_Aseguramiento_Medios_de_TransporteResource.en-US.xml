@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Aseguramiento_Medios_de_Transporte" value="Detalle Aseguramiento Medios de Transporte"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Tipo" value="Tipo"></resource>
+  <resource culture="en-US" name="Especifique" value="Especifique"></resource>
+  <resource culture="en-US" name="Marca" value="Marca"></resource>
+  <resource culture="en-US" name="Submarca" value="Submarca"></resource>
+  <resource culture="en-US" name="Modelo" value="Modelo/Año"></resource>
+  <resource culture="en-US" name="Placas" value="Placa/Matrícula"></resource>
+  <resource culture="en-US" name="Color" value="Color"></resource>
+  <resource culture="en-US" name="Numero_de_Motor" value="Número de Motor"></resource>
+  <resource culture="en-US" name="Serie" value="No. de Serie/NIV"></resource>
+  <resource culture="en-US" name="Uso" value="Uso"></resource>
+  <resource culture="en-US" name="Cap__De_Pasajeros" value="Cap. De Pasajeros"></resource>
+  <resource culture="en-US" name="Procedencia" value="Procedencia"></resource>
+  <resource culture="en-US" name="Empresa" value="Empresa"></resource>
+  <resource culture="en-US" name="Capacidad_de_Carga" value="Capacidad de Carga/Tipo de Carga"></resource>
+  <resource culture="en-US" name="Origen" value="Origen"></resource>
+  <resource culture="en-US" name="Destino" value="Destino"></resource>
+  <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="en-US" name="Detencion" value="Detención"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -1042,8 +1042,260 @@
 <Object Id="45497" culture="es-es" value="Unidad de medida de tipo de droga " />
 <Object Id="45514" culture="en-us" value="Uso del medio de transporte" />
 <Object Id="45514" culture="es-es" value="Uso del medio de transporte" />
+<Object Id="45488" culture="en-us" value="Aseguramientos" />
+<Object Id="45488" culture="es-es" value="Aseguramientos" />
+<Object Id="45489" culture="en-us" value="Detalle Aseguramiento Armas Involucradas" />
+<Object Id="45489" culture="es-es" value="Detalle Aseguramiento Armas Involucradas" />
+<Object Id="45527" culture="en-us" value="Detalle Aseguramiento Artefactos y Explosivos" />
+<Object Id="45527" culture="es-es" value="Detalle Aseguramiento Artefactos y Explosivos" />
+<Object Id="45534" culture="en-us" value="Detalle Aseguramiento de Cargador Cartuchos" />
+<Object Id="45534" culture="es-es" value="Detalle Aseguramiento de Cargador Cartuchos" />
+<Object Id="45535" culture="en-us" value="Detalle Aseguramiento de Drogas Involucradas" />
+<Object Id="45535" culture="es-es" value="Detalle Aseguramiento de Drogas Involucradas" />
+<Object Id="45536" culture="en-us" value="Detalle Aseguramiento de Pistas de Aterrizaje" />
+<Object Id="45536" culture="es-es" value="Detalle Aseguramiento de Pistas de Aterrizaje" />
+<Object Id="45537" culture="en-us" value="Detalle Aseguramiento de Plantios" />
+<Object Id="45537" culture="es-es" value="Detalle Aseguramiento de Plantios" />
+<Object Id="45538" culture="en-us" value="Detalle Aseguramiento Documentos" />
+<Object Id="45538" culture="es-es" value="Detalle Aseguramiento Documentos" />
+<Object Id="45502" culture="en-us" value="Detalle Aseguramiento Electrónicos y Multimedia" />
+<Object Id="45502" culture="es-es" value="Detalle Aseguramiento Electrónicos y Multimedia" />
+<Object Id="45511" culture="en-us" value="Detalle Aseguramiento Inmuebles" />
+<Object Id="45511" culture="es-es" value="Detalle Aseguramiento Inmuebles" />
+<Object Id="45528" culture="en-us" value="Detalle Aseguramiento Medios de Transporte" />
+<Object Id="45528" culture="es-es" value="Detalle Aseguramiento Medios de Transporte" />
+<Object Id="45529" culture="en-us" value="Detalle Aseguramiento Moneda" />
+<Object Id="45529" culture="es-es" value="Detalle Aseguramiento Moneda" />
+<Object Id="45530" culture="en-us" value="Detalle Aseguramiento Objetos Asegurados" />
+<Object Id="45530" culture="es-es" value="Detalle Aseguramiento Objetos Asegurados" />
+<Object Id="45531" culture="en-us" value="Detalle Aseguramiento Otros" />
+<Object Id="45531" culture="es-es" value="Detalle Aseguramiento Otros" />
+<Object Id="45532" culture="en-us" value="Detalle Aseguramiento Otros Aseguramientos" />
+<Object Id="45532" culture="es-es" value="Detalle Aseguramiento Otros Aseguramientos" />
+<Object Id="45533" culture="en-us" value="Detalle Aseguramiento Pirateria" />
+<Object Id="45533" culture="es-es" value="Detalle Aseguramiento Pirateria" />
+<Object Id="45539" culture="en-us" value="Submarca de medio de transporte" />
+<Object Id="45539" culture="es-es" value="Submarca de medio de transporte" />
+<Object Id="45540" culture="en-us" value="Asignación de Estatus de Agente" />
+<Object Id="45540" culture="es-es" value="Asignación de Estatus de Agente" />
+<Object Id="45541" culture="en-us" value="Estatus de Agente MP" />
+<Object Id="45541" culture="es-es" value="Estatus de Agente MP" />
+<Object Id="45542" culture="en-us" value="Condiciones en Suspensión Condicional" />
+<Object Id="45542" culture="es-es" value="Condiciones en Suspensión Condicional" />
+<Object Id="45543" culture="en-us" value="Generador de Turnos" />
+<Object Id="45543" culture="es-es" value="Generador de Turnos" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
