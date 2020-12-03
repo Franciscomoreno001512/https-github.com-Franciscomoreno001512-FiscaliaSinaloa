@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Generador_de_Turnos" value="Generador de Turnos"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Fecha_de_Generador_de_Turno" value="Fecha de Generador de Turno"></resource>
+  <resource culture="es-es" name="Numero_de_Turno" value="Numero de Turno"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

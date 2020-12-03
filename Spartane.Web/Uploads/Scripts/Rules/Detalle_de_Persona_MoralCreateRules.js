@@ -13,30 +13,29 @@ if( $('#' + nameOfTable + 'Colonia' + rowIndex).val()!=TryParseInt('null', 'null
 });
 
 //BusinessRuleId:638, Attribute:263907, Operation:Field, Event:None
+$( "#Celular" ).blur(function() { 
+            var v = $('#' + nameOfTable + 'Celular' + rowIndex).val(); 
+            if (v != ""){ 
+               let  v=$('#' + nameOfTable + 'Celular' + rowIndex).val()
+               var regNUM = /^[0-9]{10}$/ 
+               var validacionnum=regNUM.test(v)
+                if (validacionnum==false ) { 
+                    $('#' + nameOfTable + 'Celular' + rowIndex).attr("placeholder", "ingrese un numero de celular valido").val("").focus().blur(); 
+                } 
+            } 
+        });
+		$( "#Telefono" ).blur(function() { 
+            var v = $('#' + nameOfTable + 'Telefono' + rowIndex).val(); 
+            if (v != ""){ 
+               let  v=$('#' + nameOfTable + 'Telefono' + rowIndex).val()
+               var regNUM = /^[0-9]{10}$/ 
+               var validacionnum=regNUM.test(v)
+                if (validacionnum==false ) { 
+                    $('#' + nameOfTable + 'Telefono' + rowIndex).attr("placeholder", "ingrese un numero de celular valido").val("").focus().blur(); 
+                } 
+            } 
+        });
 
-//BusinessRuleId:661, Attribute:263913, Operation:Field, Event:None
-$("form#CreateDetalle_de_Persona_Moral").on('keyup', '#Celular', function () {
-	nameOfTable='';
-	rowIndex='';
-if( $('#' + nameOfTable + 'Celular' + rowIndex).val()!=TryParseInt('null', 'null') && EvaluaQuery("select LEN('FLD[Celular]')",rowIndex, nameOfTable)<TryParseInt('10', '10') || EvaluaQuery("SELECT ISNUMERIC('FLD[Celular]')",rowIndex, nameOfTable)==TryParseInt('0', '0') && $('#' + nameOfTable + 'Celular' + rowIndex).val()!=TryParseInt('', '') ) { alert(DecodifyText('El número de teléfono debe tener 10 dígitos sin letras', rowIndex, nameOfTable));
-result=false; AsignarValor($('#' + nameOfTable + 'Celular' + rowIndex),'');
-result=false;
-result=false;} else {}
-});
-
-//BusinessRuleId:661, Attribute:263913, Operation:Field, Event:None
-
-//BusinessRuleId:662, Attribute:263911, Operation:Field, Event:None
-$("form#CreateDetalle_de_Persona_Moral").on('keyup', '#Telefono', function () {
-	nameOfTable='';
-	rowIndex='';
-if( $('#' + nameOfTable + 'Telefono' + rowIndex).val()!=TryParseInt('null', 'null') && EvaluaQuery("select LEN('FLD[Telefono]')",rowIndex, nameOfTable)<TryParseInt('10', '10') || EvaluaQuery("SELECT ISNUMERIC('FLD[Telefono]')",rowIndex, nameOfTable)==TryParseInt('0', '0') && $('#' + nameOfTable + 'Telefono' + rowIndex).val()!=TryParseInt('', '') ) { alert(DecodifyText('El número de teléfono debe tener 10 dígitos sin letras', rowIndex, nameOfTable));
-result=false; AsignarValor($('#' + nameOfTable + 'Telefono' + rowIndex),'');
-result=false;
-result=false;} else {}
-});
-
-//BusinessRuleId:662, Attribute:263911, Operation:Field, Event:None
 
 //BusinessRuleId:580, Attribute:263903, Operation:Field, Event:None
 $("form#CreateDetalle_de_Persona_Moral").on('change', '#Pais', function () {
@@ -64,6 +63,22 @@ if( GetValueByControlType($('#' + nameOfTable + 'Municipio' + rowIndex),nameOfTa
 });
 
 //BusinessRuleId:584, Attribute:263905, Operation:Field, Event:None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //NEWBUSINESSRULE_NONE//
 });

@@ -1,0 +1,489 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_Objetos_AseguradosModel
+@{
+
+
+    List<SelectListItem> varTipo_de_Equipo_de_Comunicacion_Tipo = null;
+    if (ViewBag.Tipo_de_Equipo_de_Comunicacions_Tipo != null)
+    { varTipo_de_Equipo_de_Comunicacion_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Equipo_de_Comunicacions_Tipo; }
+    List<SelectListItem> varMarca_de_Equipo_de_Comunicacion_Marca = null;
+    if (ViewBag.Marca_de_Equipo_de_Comunicacions_Marca != null)
+    { varMarca_de_Equipo_de_Comunicacion_Marca = (List<SelectListItem>)ViewBag.Marca_de_Equipo_de_Comunicacions_Marca; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle Aseguramiento Objetos Asegurados
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_Aseguramiento_Objetos_AseguradosRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_Aseguramiento_Objetos_AseguradosPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle Aseguramiento Objetos Asegurados
+								<button onclick="Detalle_Aseguramiento_Objetos_AseguradosGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_Aseguramiento_Objetos_AseguradosBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_Aseguramiento_Objetos_AseguradosResources.Detalle_Aseguramiento_Objetos_Asegurados</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_Aseguramiento_Objetos_AseguradosDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_Aseguramiento_Objetos_AseguradosPropertyBusinessModal" id="Detalle_Aseguramiento_Objetos_AseguradosPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_Aseguramiento_Objetos_AseguradosBusinessRule-form" onclick="Detalle_Aseguramiento_Objetos_AseguradosGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Aseguramiento_Objetos_AseguradosPropertyModal" id="Detalle_Aseguramiento_Objetos_AseguradosPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Aseguramiento_Objetos_AseguradosBusinessRuleModal" id="Detalle_Aseguramiento_Objetos_AseguradosBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Aseguramiento_Objetos_AseguradosAddBusinessRuleModal" id="Detalle_Aseguramiento_Objetos_AseguradosAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_Aseguramiento_Objetos_Asegurados", FormMethod.Post, new { id = "CreateDetalle_Aseguramiento_Objetos_Asegurados", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_Aseguramiento_Objetos_AseguradosCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Objetos_AseguradosResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="267574" data-field-name="@Resources.Detalle_Aseguramiento_Objetos_AseguradosResources.Clave">
+                                    <label class="form-control" for="Detalle_Aseguramiento_Objetos_AseguradosClave" id="Detalle_Aseguramiento_Objetos_AseguradosClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divNumero">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Objetos_AseguradosResources.Numero</label>
+                                <div class="col-sm-8" data-field-id="Numero" data-attribute="267576" data-field-name="@Resources.Detalle_Aseguramiento_Objetos_AseguradosResources.Numero">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Objetos_AseguradosNumero" name="Detalle_Aseguramiento_Objetos_AseguradosNumero" type="text" value="@Model.Numero">
+                                </div>
+                            </div>
+<div class="form-group" id="divTipo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Objetos_AseguradosResources.Tipo</label>
+	<div class="col-sm-8" data-field-id="Tipo" data-attribute="267577" data-field-name="@Resources.Detalle_Aseguramiento_Objetos_AseguradosResources.Tipo">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Detalle_Aseguramiento_Objetos_AseguradosTipo" name="Detalle_Aseguramiento_Objetos_AseguradosTipo">
+			<option value=""></option>
+			@if (varTipo_de_Equipo_de_Comunicacion_Tipo != null){ 
+				foreach (var itemTipo in varTipo_de_Equipo_de_Comunicacion_Tipo)
+				{
+					if (itemTipo.Value == Convert.ToString(Model.Tipo))
+					{
+						<option value="@itemTipo.Value" selected>@itemTipo.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo.Value">@itemTipo.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMarca">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Objetos_AseguradosResources.Marca</label>
+	<div class="col-sm-8" data-field-id="Marca" data-attribute="267578" data-field-name="@Resources.Detalle_Aseguramiento_Objetos_AseguradosResources.Marca">
+		<select class="form-control" data-val="true" data-val-number="The field Marca must be a number." data-val-required="The Marca field is required." id="Detalle_Aseguramiento_Objetos_AseguradosMarca" name="Detalle_Aseguramiento_Objetos_AseguradosMarca">
+			<option value=""></option>
+			@if (varMarca_de_Equipo_de_Comunicacion_Marca != null){ 
+				foreach (var itemMarca in varMarca_de_Equipo_de_Comunicacion_Marca)
+				{
+					if (itemMarca.Value == Convert.ToString(Model.Marca))
+					{
+						<option value="@itemMarca.Value" selected>@itemMarca.Text</option>
+					}
+					else
+					{
+						<option value="@itemMarca.Value">@itemMarca.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divSerie">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Objetos_AseguradosResources.Serie</label>
+                                <div class="col-sm-8" data-field-id="Serie" data-attribute="267579" data-field-name="@Resources.Detalle_Aseguramiento_Objetos_AseguradosResources.Serie">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Objetos_AseguradosSerie" name="Detalle_Aseguramiento_Objetos_AseguradosSerie" type="text" value="@Model.Serie">
+                                </div>
+                            </div>
+<div class="form-group" id="divIMEI">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Objetos_AseguradosResources.IMEI</label>
+                                <div class="col-sm-8" data-field-id="IMEI" data-attribute="267580" data-field-name="@Resources.Detalle_Aseguramiento_Objetos_AseguradosResources.IMEI">
+                                    <input class="form-control" id="Detalle_Aseguramiento_Objetos_AseguradosIMEI" name="Detalle_Aseguramiento_Objetos_AseguradosIMEI" type="text" value="@Model.IMEI">
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_Aseguramiento_Objetos_AseguradosConfigureSave" name="Detalle_Aseguramiento_Objetos_AseguradosConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_Aseguramiento_Objetos_AseguradosConfigureType" />
+												<input type="hidden" id="hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_Aseguramiento_Objetos_AseguradosGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_Aseguramiento_Objetos_AseguradosBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_Aseguramiento_Objetos_Asegurados.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_Aseguramiento_Objetos_AseguradosGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_Aseguramiento_Objetos_AseguradosCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/AseguramientosCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_Aseguramiento_Objetos_AseguradosRowElement = "Detalle_Aseguramiento_Objetos_AseguradosPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_Aseguramiento_Objetos_AseguradosRowElement + "')){ Detalle_Aseguramiento_Objetos_AseguradosInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_Aseguramiento_Objetos_AseguradosData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_Aseguramiento_Objetos_Asegurados").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_Aseguramiento_Objetos_Asegurados")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_Aseguramiento_Objetos_AseguradosCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_Aseguramiento_Objetos_Asegurados/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_Aseguramiento_Objetos_AseguradosPropertyBag", "Detalle_Aseguramiento_Objetos_Asegurados")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_Aseguramiento_Objetos_AseguradosGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleFieldName').val(), ObjectId: '45530', Attribute: $('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleAttribute').val(), Screen: 'Detalle_Aseguramiento_Objetos_Asegurados' }, function (data) {
+                $(".Detalle_Aseguramiento_Objetos_AseguradosBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_Aseguramiento_Objetos_AseguradosGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleFieldName').val(), ObjectId: '45530', Attribute: $('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleAttribute').val(), Screen: 'Detalle_Aseguramiento_Objetos_Asegurados' }, function (data) {
+                $(".Detalle_Aseguramiento_Objetos_AseguradosAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleFieldName').val(), ObjectId: '45530', Attribute: $('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleAttribute').val(), Screen: 'Detalle_Aseguramiento_Objetos_Asegurados' }, function (data) {
+				$(".Detalle_Aseguramiento_Objetos_AseguradosBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_Aseguramiento_Objetos_Asegurados/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_Aseguramiento_Objetos_Asegurados/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_Aseguramiento_Objetos_Asegurados/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_Aseguramiento_Objetos_AseguradosConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_Aseguramiento_Objetos_AseguradosConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_Aseguramiento_Objetos_Asegurados/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_Aseguramiento_Objetos_AseguradosConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_Aseguramiento_Objetos_Asegurados/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_Aseguramiento_Objetos_Asegurados' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_Aseguramiento_Objetos_Asegurados' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_Aseguramiento_Objetos_AseguradosConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_Aseguramiento_Objetos_AseguradosConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_Aseguramiento_Objetos_Asegurados').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_Aseguramiento_Objetos_AseguradosBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Denuncia;
+using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Unidad;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Region;
@@ -40,6 +41,7 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public string hora_de_registro { get; set; }
         public int? usuario_que_registra { get; set; }
         public int? Tipo_de_Denuncia { get; set; }
+        public int? MP_Asignado { get; set; }
         public int? unidad { get; set; }
         public int? Municipio { get; set; }
         public int? Region { get; set; }
@@ -91,6 +93,8 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User usuario_que_registra_Spartan_User { get; set; }
         [ForeignKey("Tipo_de_Denuncia")]
         public virtual Spartane.Core.Domain.Tipo_de_Denuncia.Tipo_de_Denuncia Tipo_de_Denuncia_Tipo_de_Denuncia { get; set; }
+        [ForeignKey("MP_Asignado")]
+        public virtual Spartane.Core.Domain.Spartan_User.Spartan_User MP_Asignado_Spartan_User { get; set; }
         [ForeignKey("unidad")]
         public virtual Spartane.Core.Domain.Unidad.Unidad unidad_Unidad { get; set; }
         [ForeignKey("Municipio")]
@@ -137,6 +141,7 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public string hora_de_registro { get; set; }
         public int? usuario_que_registra { get; set; }
         public int? Tipo_de_Denuncia { get; set; }
+        public int? MP_Asignado { get; set; }
         public int? unidad { get; set; }
         public int? Municipio { get; set; }
         public int? Region { get; set; }
@@ -151,6 +156,8 @@ namespace Spartane.Core.Domain.expediente_ministerio_publico
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User usuario_que_registra_Spartan_User { get; set; }
         [ForeignKey("Tipo_de_Denuncia")]
         public virtual Spartane.Core.Domain.Tipo_de_Denuncia.Tipo_de_Denuncia Tipo_de_Denuncia_Tipo_de_Denuncia { get; set; }
+        [ForeignKey("MP_Asignado")]
+        public virtual Spartane.Core.Domain.Spartan_User.Spartan_User MP_Asignado_Spartan_User { get; set; }
         [ForeignKey("unidad")]
         public virtual Spartane.Core.Domain.Unidad.Unidad unidad_Unidad { get; set; }
         [ForeignKey("Municipio")]

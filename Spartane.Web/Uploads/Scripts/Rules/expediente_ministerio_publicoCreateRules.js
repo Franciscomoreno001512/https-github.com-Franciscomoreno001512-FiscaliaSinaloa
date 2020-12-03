@@ -14,14 +14,7 @@ $(document).ready(function () {
 
 
 
-//BusinessRuleId:2607, Attribute:267145, Operation:Field, Event:None
-$("form#Createexpediente_ministerio_publico").on('change', '#tipo_de_cierre', function () {
-	nameOfTable='';
-	rowIndex='';
-if( GetValueByControlType($('#' + nameOfTable + 'tipo_de_cierre' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('', '') ) { AsignarValor($('#' + nameOfTable + 'fecha_de_cierre' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 105)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'hora_de_cierre' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 108)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Usuario_que_Cierra' + rowIndex),EvaluaQuery(" SELECT GLOBAL[USERID]", rowIndex, nameOfTable));} else { AsignarValor($('#' + nameOfTable + 'fecha_de_cierre' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'hora_de_cierre' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Usuario_que_Cierra' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));}
-});
 
-//BusinessRuleId:2607, Attribute:267145, Operation:Field, Event:None
 
 
 
@@ -121,14 +114,34 @@ $("form#Createexpediente_ministerio_publico").on('change', '#Estado', function (
 
 
 
+
+
+//BusinessRuleId:2607, Attribute:267145, Operation:Field, Event:None
+$("form#Createexpediente_ministerio_publico").on('change', '#tipo_de_cierre', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'tipo_de_cierre' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') ) { AsignarValor($('#' + nameOfTable + 'fecha_de_cierre' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 105)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'hora_de_cierre' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 108)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Usuario_que_Cierra' + rowIndex),EvaluaQuery("SELECT name FROM Spartan_User "
++"     WHERE Id_User = GLOBAL[USERID]", rowIndex, nameOfTable));} else { AsignarValor($('#' + nameOfTable + 'fecha_de_cierre' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'hora_de_cierre' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Usuario_que_Cierra' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));}
+});
+
+//BusinessRuleId:2607, Attribute:267145, Operation:Field, Event:None
+
 //BusinessRuleId:2606, Attribute:267132, Operation:Field, Event:None
 $("form#Createexpediente_ministerio_publico").on('change', '#canalizar_a', function () {
 	nameOfTable='';
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'canalizar_a' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') ) { AsignarValor($('#' + nameOfTable + 'Fecha_de_Canalizacion' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 105)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Hora_de_Canalizacion' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 108)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'usuario_que_canaliza' + rowIndex),EvaluaQuery("SELECT  Name FROM Spartan_User where Id_User=GLOBAL[USERID]", rowIndex, nameOfTable));} else { AsignarValor($('#' + nameOfTable + 'Fecha_de_Canalizacion' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Hora_de_Canalizacion' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'usuario_que_canaliza' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Fecha_de_Canalizacion' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Hora_de_Canalizacion' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));}
 });
-
+
 //BusinessRuleId:2606, Attribute:267132, Operation:Field, Event:None
+
+
+
+
+
+
+
+
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -190,7 +203,14 @@ if(operation == 'Update'){
 
 //BusinessRuleId:2586, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'fecha_de_registro' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 105)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'hora_de_registro' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 108)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'usuario_que_registra' + rowIndex),EvaluaQuery("select name from Spartan_User where Id_User = GLOBAL[USERID]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'unidad' + rowIndex),EvaluaQuery(" exec usp_GetUnidadDescByIdUser GLOBAL[USERID]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'estatus' + rowIndex),'1'); AsignarValor($('#' + nameOfTable + 'Municipio' + rowIndex),EvaluaQuery("select m.Nombre from Spartan_User spu "
+ AsignarValor($('#' + nameOfTable + 'fecha_de_registro' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 105)", rowIndex, nameOfTable)); 
+ AsignarValor($('#' + nameOfTable + 'hora_de_registro' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 108)", rowIndex, nameOfTable)); 
+ AsignarValor($('#' + nameOfTable + 'usuario_que_registra' + rowIndex),
+ EvaluaQuery("select name from Spartan_User where Id_User = GLOBAL[USERID]", rowIndex, nameOfTable)); 
+ debugger;
+ AsignarValor($('#' + nameOfTable + 'unidad' + rowIndex),EvaluaQuery(" exec usp_GetUnidadDescByIdUser GLOBAL[USERID]", rowIndex, nameOfTable)); 
+ 
+ AsignarValor($('#' + nameOfTable + 'estatus' + rowIndex),'1'); AsignarValor($('#' + nameOfTable + 'Municipio' + rowIndex),EvaluaQuery("select m.Nombre from Spartan_User spu "
 +" inner join Unidad u on spu.Unidad = u.Clave "
 +" inner join Municipio m on u.Clave_de_Municipio = m.Clave"
 +" where spu. Id_User = GLOBAL[USERID]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Region' + rowIndex),EvaluaQuery("select u.Clave_de_Region from Spartan_User spu"
@@ -232,23 +252,58 @@ if( GetValueByControlType($('#' + nameOfTable + 'detenido' + rowIndex),nameOfTab
 }
 //BusinessRuleId:2588, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+
+
+
+
+
+
+
+
 //BusinessRuleId:2585, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'comentarios_de_cierre' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'tipo_de_cierre' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Titulo_del_Hecho' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Region' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_del_Hecho' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Narrativa_Breve_de_los_Hechos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Aproximada_del_Hecho' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Lugar_de_los_Hechos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'PaisH' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'ColoniaH' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'CalleH' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_ExteriorH' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_InteriorH' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_PostalH' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'LongitudH' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'LatitudH' + rowIndex)); DisabledControl($("#" + nameOfTable + "tipo_de_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'tipo_de_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "fecha_de_inicio_de_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'fecha_de_inicio_de_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "fecha_de_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'fecha_de_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "hora_de_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'hora_de_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "domicilio_para_el_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'domicilio_para_el_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "monto_de_reparacion_de_danos" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'monto_de_reparacion_de_danos' + rowIndex));}DisabledControl($("#" + nameOfTable + "parcialidades" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'parcialidades' + rowIndex));}DisabledControl($("#" + nameOfTable + "periodicidad" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'periodicidad' + rowIndex));} SetNotRequiredToControl( $('#' + nameOfTable + 'Estado' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_Hechos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Y_Calle' + rowIndex));
-
+
 }
 //BusinessRuleId:2585, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2585, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'comentarios_de_cierre' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'tipo_de_cierre' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Titulo_del_Hecho' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Region' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_del_Hecho' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Narrativa_Breve_de_los_Hechos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Aproximada_del_Hecho' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Lugar_de_los_Hechos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'PaisH' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'ColoniaH' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'CalleH' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_ExteriorH' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_InteriorH' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_PostalH' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'LongitudH' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'LatitudH' + rowIndex)); DisabledControl($("#" + nameOfTable + "tipo_de_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'tipo_de_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "fecha_de_inicio_de_acuerdo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'fecha_de_inicio_de_acuerdo' + rowIndex));}DisabledControl($("#" + nameOfTable + "fecha_de_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'fecha_de_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "hora_de_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'hora_de_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "domicilio_para_el_cumplimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'domicilio_para_el_cumplimiento' + rowIndex));}DisabledControl($("#" + nameOfTable + "monto_de_reparacion_de_danos" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'monto_de_reparacion_de_danos' + rowIndex));}DisabledControl($("#" + nameOfTable + "parcialidades" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'parcialidades' + rowIndex));}DisabledControl($("#" + nameOfTable + "periodicidad" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'periodicidad' + rowIndex));} SetNotRequiredToControl( $('#' + nameOfTable + 'Estado' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_Hechos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Y_Calle' + rowIndex));
-
+
 }
 //BusinessRuleId:2585, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2637, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ DisabledControl($("#" + nameOfTable + "MP_Asignado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'MP_Asignado' + rowIndex));}
+
+}
+//BusinessRuleId:2637, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2637, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ DisabledControl($("#" + nameOfTable + "MP_Asignado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'MP_Asignado' + rowIndex));}
+
+}
+//BusinessRuleId:2637, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2637, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ DisabledControl($("#" + nameOfTable + "MP_Asignado" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'MP_Asignado' + rowIndex));}
+
+}
+//BusinessRuleId:2637, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2638, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'MP_Asignado' + rowIndex),EvaluaQuery(" SELECT name FROM Spartan_User "
++"     WHERE Id_User = GLOBAL[USERID]", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:2638, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2599, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
@@ -261,17 +316,25 @@ if(operation == 'New'){
 }
 function EjecutarValidacionesAntesDeGuardar(){
 	var result = true;
+//BusinessRuleId:2639, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'nic' + rowIndex),EvaluaQuery("exec uspGetCDI FLD[unidad]", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:2639, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:2640, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'nuat' + rowIndex),EvaluaQuery("exec uspGeneraNUAT_MP FLD[Tipo_de_Denuncia],FLD[Region]", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:2640, Attribute:2, Operation:Object, Event:BEFORESAVING
+
 //NEWBUSINESSRULE_BEFORESAVING//
     return result;
 }
 function EjecutarValidacionesDespuesDeGuardar(){
-//BusinessRuleId:2618, Attribute:2, Operation:Object, Event:AFTERSAVING
-if(operation == 'Update'){
- EvaluaQuery("exec ups_LimpiarExpedienteMPUsuarioQueCanaliza FLD[lblclave]"
-+" ", rowIndex, nameOfTable);
 
-}
-//BusinessRuleId:2618, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //BusinessRuleId:2617, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
@@ -279,6 +342,14 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:2617, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:2618, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+ EvaluaQuery("exec ups_LimpiarExpedienteMPUsuarioQueCanaliza FLDD[lblclave]"
++" ", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2618, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }
@@ -325,17 +396,47 @@ if(operation == 'Update'){
 }
 //BusinessRuleId:2602, Attribute:267128, Operation:Object, Event:NEWROWMR
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+debugger;
 //BusinessRuleId:2609, Attribute:267128, Operation:Object, Event:NEWROWMR
 if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'fecha' + rowIndex),EvaluaQuery("select convert (varchar(11),getdate(),105) ", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'hora' + rowIndex),EvaluaQuery(" select convert (varchar(8),getdate(),108)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'usuario_que_realiza_observacion' + rowIndex),EvaluaQuery(" select GLOBAL[USERID]", rowIndex, nameOfTable));
-
+ AsignarValor($('#' + nameOfTable + 'fecha' + rowIndex),EvaluaQuery("select convert (varchar(11),getdate(),105) ", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'hora' + rowIndex),EvaluaQuery(" select convert (varchar(8),getdate(),108)", rowIndex, nameOfTable)); 
+ debugger;
+ AsignarValor2($('#' + nameOfTable + 'usuario_que_realiza_observacion' + rowIndex),EvaluaQuery("SELECT name FROM Spartan_User WHERE Id_User =GLOBAL[USERID]", rowIndex, nameOfTable));
+
 }
 //BusinessRuleId:2609, Attribute:267128, Operation:Object, Event:NEWROWMR
 
 //BusinessRuleId:2609, Attribute:267128, Operation:Object, Event:NEWROWMR
 if(operation == 'Update'){
- AsignarValor($('#' + nameOfTable + 'fecha' + rowIndex),EvaluaQuery("select convert (varchar(11),getdate(),105) ", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'hora' + rowIndex),EvaluaQuery(" select convert (varchar(8),getdate(),108)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'usuario_que_realiza_observacion' + rowIndex),EvaluaQuery(" select GLOBAL[USERID]", rowIndex, nameOfTable));
-
+ AsignarValor($('#' + nameOfTable + 'fecha' + rowIndex),EvaluaQuery("select convert (varchar(11),getdate(),105) ", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'hora' + rowIndex),EvaluaQuery(" select convert (varchar(8),getdate(),108)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'usuario_que_realiza_observacion' + rowIndex),EvaluaQuery("SELECT name FROM Spartan_User WHERE Id_User =GLOBAL[USERID]", rowIndex, nameOfTable));
+
 }
 //BusinessRuleId:2609, Attribute:267128, Operation:Object, Event:NEWROWMR
 

@@ -1,0 +1,678 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_Medios_de_TransporteAdvanceSearchModel
+@{
+    List<SelectListItem> varTipo_de_medios_de_transporte_Tipo = null;
+    if (ViewBag.Tipo_de_medios_de_transportes_Tipo != null)
+    { varTipo_de_medios_de_transporte_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_medios_de_transportes_Tipo; }
+ List<SelectListItem> varMarca_de_Medio_de_transporte_Marca = null;
+    if (ViewBag.Marca_de_Medio_de_transportes_Marca != null)
+    { varMarca_de_Medio_de_transporte_Marca = (List<SelectListItem>)ViewBag.Marca_de_Medio_de_transportes_Marca; }
+ List<SelectListItem> varSubmarca_de_medio_de_transporte_Submarca = null;
+    if (ViewBag.Submarca_de_medio_de_transportes_Submarca != null)
+    { varSubmarca_de_medio_de_transporte_Submarca = (List<SelectListItem>)ViewBag.Submarca_de_medio_de_transportes_Submarca; }
+ List<SelectListItem> varModelo_de_medio_de_transporte_Modelo = null;
+    if (ViewBag.Modelo_de_medio_de_transportes_Modelo != null)
+    { varModelo_de_medio_de_transporte_Modelo = (List<SelectListItem>)ViewBag.Modelo_de_medio_de_transportes_Modelo; }
+    List<SelectListItem> varColor_de_medio_de_trasporte_Color = null;
+    if (ViewBag.Color_de_medio_de_trasportes_Color != null)
+    { varColor_de_medio_de_trasporte_Color = (List<SelectListItem>)ViewBag.Color_de_medio_de_trasportes_Color; }
+    List<SelectListItem> varUso_del_medio_de_transporte_Uso = null;
+    if (ViewBag.Uso_del_medio_de_transportes_Uso != null)
+    { varUso_del_medio_de_transporte_Uso = (List<SelectListItem>)ViewBag.Uso_del_medio_de_transportes_Uso; }
+    List<SelectListItem> varProcedencia_del_medio_de_transporte_Procedencia = null;
+    if (ViewBag.Procedencia_del_medio_de_transportes_Procedencia != null)
+    { varProcedencia_del_medio_de_transporte_Procedencia = (List<SelectListItem>)ViewBag.Procedencia_del_medio_de_transportes_Procedencia; }
+    List<SelectListItem> varDetencion_Detencion = null;
+    if (ViewBag.Detencions_Detencion != null)
+    { varDetencion_Detencion = (List<SelectListItem>)ViewBag.Detencions_Detencion; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Detalle_Aseguramiento_Medios_de_Transporte", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Tipo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.TipoFilter, filters, new { @class = "form-control", @id = "ddlTipoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_medios_de_transporte_Tipo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipoMultiple, varTipo_de_medios_de_transporte_Tipo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Especifique</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.EspecifiqueFilter, filters, new { @class = "form-control", @id = "ddlEspecifiqueFilter" })
+                    @Html.TextBoxFor(m => m.Especifique, new { @class = "form-control", @type = "text", @id = "txtEspecifique" })
+                </div>
+ List<SelectListItem> varMarca_de_Medio_de_transporte_Marca = null;
+    if (ViewBag.Marca_de_Medio_de_transportes_Marca != null)
+    { varMarca_de_Medio_de_transporte_Marca = (List<SelectListItem>)ViewBag.Marca_de_Medio_de_transportes_Marca; }
+ List<SelectListItem> varSubmarca_de_medio_de_transporte_Submarca = null;
+    if (ViewBag.Submarca_de_medio_de_transportes_Submarca != null)
+    { varSubmarca_de_medio_de_transporte_Submarca = (List<SelectListItem>)ViewBag.Submarca_de_medio_de_transportes_Submarca; }
+ List<SelectListItem> varModelo_de_medio_de_transporte_Modelo = null;
+    if (ViewBag.Modelo_de_medio_de_transportes_Modelo != null)
+    { varModelo_de_medio_de_transporte_Modelo = (List<SelectListItem>)ViewBag.Modelo_de_medio_de_transportes_Modelo; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Placas</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.PlacasFilter, filters, new { @class = "form-control", @id = "ddlPlacasFilter" })
+                    @Html.TextBoxFor(m => m.Placas, new { @class = "form-control", @type = "text", @id = "txtPlacas" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Color</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ColorFilter, filters, new { @class = "form-control", @id = "ddlColorFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceColor, new { @class = "form-control", @type = "text", @id = "txtAdvanceColor" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varColor_de_medio_de_trasporte_Color!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceColorMultiple, varColor_de_medio_de_trasporte_Color,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceColor"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Numero_de_Motor</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_de_MotorFilter, filters, new { @class = "form-control", @id = "ddlNumero_de_MotorFilter" })
+                    @Html.TextBoxFor(m => m.Numero_de_Motor, new { @class = "form-control", @type = "text", @id = "txtNumero_de_Motor" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Serie</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.SerieFilter, filters, new { @class = "form-control", @id = "ddlSerieFilter" })
+                    @Html.TextBoxFor(m => m.Serie, new { @class = "form-control", @type = "text", @id = "txtSerie" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Uso</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.UsoFilter, filters, new { @class = "form-control", @id = "ddlUsoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceUso, new { @class = "form-control", @type = "text", @id = "txtAdvanceUso" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varUso_del_medio_de_transporte_Uso!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceUsoMultiple, varUso_del_medio_de_transporte_Uso,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceUso"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Cap__De_Pasajeros</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromCap__De_Pasajeros, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromCap__De_Pasajeros" })
+                    @Html.ValidationMessageFor(m => m.FromCap__De_Pasajeros)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToCap__De_Pasajeros, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToCap__De_Pasajeros", @data_min = "txtAdvanceFromCap__De_Pasajeros" })
+                    @Html.ValidationMessageFor(m => m.ToCap__De_Pasajeros)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Procedencia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ProcedenciaFilter, filters, new { @class = "form-control", @id = "ddlProcedenciaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceProcedencia, new { @class = "form-control", @type = "text", @id = "txtAdvanceProcedencia" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varProcedencia_del_medio_de_transporte_Procedencia!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceProcedenciaMultiple, varProcedencia_del_medio_de_transporte_Procedencia,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceProcedencia"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Empresa</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.EmpresaFilter, filters, new { @class = "form-control", @id = "ddlEmpresaFilter" })
+                    @Html.TextBoxFor(m => m.Empresa, new { @class = "form-control", @type = "text", @id = "txtEmpresa" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Capacidad_de_Carga</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Capacidad_de_CargaFilter, filters, new { @class = "form-control", @id = "ddlCapacidad_de_CargaFilter" })
+                    @Html.TextBoxFor(m => m.Capacidad_de_Carga, new { @class = "form-control", @type = "text", @id = "txtCapacidad_de_Carga" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Origen</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.OrigenFilter, filters, new { @class = "form-control", @id = "ddlOrigenFilter" })
+                    @Html.TextBoxFor(m => m.Origen, new { @class = "form-control", @type = "text", @id = "txtOrigen" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Destino</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DestinoFilter, filters, new { @class = "form-control", @id = "ddlDestinoFilter" })
+                    @Html.TextBoxFor(m => m.Destino, new { @class = "form-control", @type = "text", @id = "txtDestino" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Observaciones</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Detencion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DetencionFilter, filters, new { @class = "form-control", @id = "ddlDetencionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceDetencion, new { @class = "form-control", @type = "text", @id = "txtAdvanceDetencion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varDetencion_Detencion!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceDetencionMultiple, varDetencion_Detencion,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceDetencion"
+                        });
+                    }
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_Aseguramiento_Medios_de_Transporte/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteClaveTo = $("#txtAdvanceToClave").val();
+        }
+        advanceSearch.TipoSearchType = 0;
+        if ($('#ddlAdvanceTipo').val().length > 0 || $("#txtAdvanceTipo").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
+                advanceSearch.TipoName = $("#txtAdvanceTipo").val();
+                advanceSearch.TipoNameSearchType = $("#ddlAdvanceTipo").val();
+                advanceSearch.TipoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.TipoToSearch = $("#ddlAdvanceTipo").val();
+                advanceSearch.TipoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceEspecifique").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteEspecifique = $("#txtAdvanceEspecifique").val();
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteEspecifiqueSearchType = $("#ddlAdvanceEspecifiqueFilter").val();
+        }
+        advanceSearch.MarcaSearchType = 0;
+        if ($('#ddlAdvanceMarca').val().length > 0 || $("#txtAdvanceMarca").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
+                advanceSearch.MarcaName = $("#txtAdvanceMarca").val();
+                advanceSearch.MarcaNameSearchType = $("#ddlAdvanceMarca").val();
+                advanceSearch.MarcaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.MarcaToSearch = $("#ddlAdvanceMarca").val();
+                advanceSearch.MarcaSearchType = 2;
+            }
+        }
+        advanceSearch.SubmarcaSearchType = 0;
+        if ($('#ddlAdvanceSubmarca').val().length > 0 || $("#txtAdvanceSubmarca").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
+                advanceSearch.SubmarcaName = $("#txtAdvanceSubmarca").val();
+                advanceSearch.SubmarcaNameSearchType = $("#ddlAdvanceSubmarca").val();
+                advanceSearch.SubmarcaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.SubmarcaToSearch = $("#ddlAdvanceSubmarca").val();
+                advanceSearch.SubmarcaSearchType = 2;
+            }
+        }
+        advanceSearch.ModeloSearchType = 0;
+        if ($('#ddlAdvanceModelo').val().length > 0 || $("#txtAdvanceModelo").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
+                advanceSearch.ModeloName = $("#txtAdvanceModelo").val();
+                advanceSearch.ModeloNameSearchType = $("#ddlAdvanceModelo").val();
+                advanceSearch.ModeloSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ModeloToSearch = $("#ddlAdvanceModelo").val();
+                advanceSearch.ModeloSearchType = 2;
+            }
+        }
+        if ($("#txtAdvancePlacas").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransportePlacas = $("#txtAdvancePlacas").val();
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransportePlacasSearchType = $("#ddlAdvancePlacasFilter").val();
+        }
+        advanceSearch.ColorSearchType = 0;
+        if ($('#ddlAdvanceColor').val().length > 0 || $("#txtAdvanceColor").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
+                advanceSearch.ColorName = $("#txtAdvanceColor").val();
+                advanceSearch.ColorNameSearchType = $("#ddlAdvanceColor").val();
+                advanceSearch.ColorSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ColorToSearch = $("#ddlAdvanceColor").val();
+                advanceSearch.ColorSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNumero_de_Motor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteNumero_de_Motor = $("#txtAdvanceNumero_de_Motor").val();
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteNumero_de_MotorSearchType = $("#ddlAdvanceNumero_de_MotorFilter").val();
+        }
+        if ($("#txtAdvanceSerie").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteSerie = $("#txtAdvanceSerie").val();
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteSerieSearchType = $("#ddlAdvanceSerieFilter").val();
+        }
+        advanceSearch.UsoSearchType = 0;
+        if ($('#ddlAdvanceUso').val().length > 0 || $("#txtAdvanceUso").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
+                advanceSearch.UsoName = $("#txtAdvanceUso").val();
+                advanceSearch.UsoNameSearchType = $("#ddlAdvanceUso").val();
+                advanceSearch.UsoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.UsoToSearch = $("#ddlAdvanceUso").val();
+                advanceSearch.UsoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromCap__De_Pasajeros").val() != "" || $("#txtAdvanceToCap__De_Pasajeros").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteCap__De_PasajerosFrom = $("#txtAdvanceFromCap__De_Pasajeros").val();
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteCap__De_PasajerosTo = $("#txtAdvanceToCap__De_Pasajeros").val();
+        }
+        advanceSearch.ProcedenciaSearchType = 0;
+        if ($('#ddlAdvanceProcedencia').val().length > 0 || $("#txtAdvanceProcedencia").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
+                advanceSearch.ProcedenciaName = $("#txtAdvanceProcedencia").val();
+                advanceSearch.ProcedenciaNameSearchType = $("#ddlAdvanceProcedencia").val();
+                advanceSearch.ProcedenciaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ProcedenciaToSearch = $("#ddlAdvanceProcedencia").val();
+                advanceSearch.ProcedenciaSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceEmpresa").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteEmpresa = $("#txtAdvanceEmpresa").val();
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteEmpresaSearchType = $("#ddlAdvanceEmpresaFilter").val();
+        }
+        if ($("#txtAdvanceCapacidad_de_Carga").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteCapacidad_de_Carga = $("#txtAdvanceCapacidad_de_Carga").val();
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteCapacidad_de_CargaSearchType = $("#ddlAdvanceCapacidad_de_CargaFilter").val();
+        }
+        if ($("#txtAdvanceOrigen").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteOrigen = $("#txtAdvanceOrigen").val();
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteOrigenSearchType = $("#ddlAdvanceOrigenFilter").val();
+        }
+        if ($("#txtAdvanceDestino").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteDestino = $("#txtAdvanceDestino").val();
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteDestinoSearchType = $("#ddlAdvanceDestinoFilter").val();
+        }
+        if ($("#txtAdvanceObservaciones").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteObservaciones = $("#txtAdvanceObservaciones").val();
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+        advanceSearch.DetencionSearchType = 0;
+        if ($('#ddlAdvanceDetencion').val().length > 0 || $("#txtAdvanceDetencion").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
+                advanceSearch.DetencionName = $("#txtAdvanceDetencion").val();
+                advanceSearch.DetencionNameSearchType = $("#ddlAdvanceDetencion").val();
+                advanceSearch.DetencionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.DetencionToSearch = $("#ddlAdvanceDetencion").val();
+                advanceSearch.DetencionSearchType = 2;
+            }
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblDetalle_Aseguramiento_Medios_de_Transporte').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceTipo").keypress(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
+            $("#ddlAdvanceTipo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo").change(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
+            $("#txtAdvanceTipo").val('');
+        });
+        $("#txtAdvanceMarca").keypress(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
+            $("#ddlAdvanceMarca").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMarca").change(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
+            $("#txtAdvanceMarca").val('');
+        });
+        $("#txtAdvanceSubmarca").keypress(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
+            $("#ddlAdvanceSubmarca").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceSubmarca").change(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
+            $("#txtAdvanceSubmarca").val('');
+        });
+        $("#txtAdvanceModelo").keypress(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
+            $("#ddlAdvanceModelo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceModelo").change(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
+            $("#txtAdvanceModelo").val('');
+        });
+        $("#txtAdvanceColor").keypress(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
+            $("#ddlAdvanceColor").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceColor").change(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
+            $("#txtAdvanceColor").val('');
+        });
+        $("#txtAdvanceUso").keypress(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
+            $("#ddlAdvanceUso").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceUso").change(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
+            $("#txtAdvanceUso").val('');
+        });
+        $("#txtAdvanceProcedencia").keypress(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
+            $("#ddlAdvanceProcedencia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceProcedencia").change(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
+            $("#txtAdvanceProcedencia").val('');
+        });
+        $("#txtAdvanceDetencion").keypress(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
+            $("#ddlAdvanceDetencion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDetencion").change(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
+            $("#txtAdvanceDetencion").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

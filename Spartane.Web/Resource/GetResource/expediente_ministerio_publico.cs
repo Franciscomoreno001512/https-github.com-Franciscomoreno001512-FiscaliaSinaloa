@@ -76,6 +76,16 @@ namespace Resources
             }
         }
 
+        /// <summary>MP_Asignado</summary>
+        public static string MP_Asignado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderexpediente_ministerio_publico.GetResource("MP_Asignado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>unidad</summary>
         public static string unidad
         {

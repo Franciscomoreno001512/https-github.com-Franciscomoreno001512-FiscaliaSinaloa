@@ -467,6 +467,7 @@
 
             var permitirCerrar = true
             var validarPermitirCerrar = false;
+            localStorage.setItem('controlDocumentoDynamiSeach', "");
 
             function getParameterByName(name) {
                 name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -835,7 +836,8 @@
 			var id = $("#ReferenceClave").val();
             var isNew = $('#hdnIsNew').val();
 
-			if (Tab_Datos_Generales && !checkClientValidate('Detalle_de_documentosCreateForm', 'Datos_Generales')) {
+            if (Tab_Datos_Generales && !checkClientValidate('Detalle_de_documentosCreateForm', 'Datos_Generales')) {
+                localStorage.setItem('controlDocumentoDynamiSeach', "");
 				return false;
 			}
 
@@ -1150,17 +1152,13 @@
 
             debugger;
 			
-			    var _controlDocumentoDynamiSeach = localStorage.getItem('controlDocumentoDynamiSeach');
-   // if (_controlDocumentoDynamiSeach != "true" ) {
-     //   controlDocumentoDynamiSeach = false; 
+            var _controlDocumentoDynamiSeach = localStorage.getItem('controlDocumentoDynamiSeach');
+
+	        controlDocumentoDynamiSeach = false; 
+	        if (_controlDocumentoDynamiSeach == "true" ) {
+                controlDocumentoDynamiSeach = true; 
         
-   // }
-	
-	controlDocumentoDynamiSeach = false; 
-	if (_controlDocumentoDynamiSeach == "true" ) {
-        controlDocumentoDynamiSeach = true; 
-        
-    }
+            }
 
             if ( controlDocumentoDynamiSeach == true ) {
                 alert('Existe una ventana abierta');

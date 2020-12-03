@@ -474,49 +474,57 @@ $(document).ready(function () {
       }
     });
 	$("form#CreateDetalle_de_Documentos_MPO").on('click', '#Detalle_de_Documentos_MPOGuardar', function () {
-		$('#Detalle_de_Documentos_MPOGuardar').attr('disabled', true);
-		$('#Detalle_de_Documentos_MPOGuardar').unbind()
-        if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
-				if (!SendDetalle_de_Documentos_MPOData(function () {
-					EjecutarValidacionesDespuesDeGuardar();
-					if (!isPartial  && !viewInEframe)
-						Detalle_de_Documentos_MPOBackToGrid();
-					else if (viewInEframe) 
-                    {
+		        debugger;
+
+        if ($("#Archivo").val() == '0' || $("#Archivo").val() == '') {
+            alert('No se puede guardar porque no se ha generado un documento.')
+        } else {
+
+            $('#Detalle_de_Documentos_MPOGuardar').attr('disabled', true);
+            $('#Detalle_de_Documentos_MPOGuardar').unbind()
+            if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
+                if (!SendDetalle_de_Documentos_MPOData(function () {
+                    EjecutarValidacionesDespuesDeGuardar();
+                    if (!isPartial && !viewInEframe)
+                        Detalle_de_Documentos_MPOBackToGrid();
+                    else if (viewInEframe) {
                         $('#Detalle_de_Documentos_MPOGuardar').removeAttr('disabled');
                         $('#Detalle_de_Documentos_MPOGuardar').bind()
                     }
-					else {						
-						if (!isMR)
-							window.opener.RefreshCatalog('Detalle_de_Documentos_MPO', nameAttribute);
-						else {
-							var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
-							if(!control.hasClass('AutoComplete'))
-							{
-							if (control.attr("data-isfilter") == "true") {
-									eval(GetReglaFilter(control,  $(window.opener.document.getElementById('ObjectId')).val()));								    
-								}
-								else 
-								{
-									eval('window.opener.Get' + nameMR + '_Detalle_de_Documentos_MPOItem()');
-									var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
-									control.html(eval('window.opener.Get' + nameMR + '_Detalle_de_Documentos_MPODropDown().get(0)').innerHTML);  
-								}								
-							}
-						}
-						window.close();						
-						}
-				})) {
-					$('#Detalle_de_Documentos_MPOGuardar').removeAttr('disabled');
-					$('#Detalle_de_Documentos_MPOGuardar').bind()
-				}
-		}
-		else {
-			$('#Detalle_de_Documentos_MPOGuardar').removeAttr('disabled');
-			$('#Detalle_de_Documentos_MPOGuardar').bind()
-		}
+                    else {
+                        if (!isMR)
+                            window.opener.RefreshCatalog('Detalle_de_Documentos_MPO', nameAttribute);
+                        else {
+                            var control = $(window.opener.document.getElementsByClassName(nameMR + "_" + nameAttribute)[0]);
+                            if (!control.hasClass('AutoComplete')) {
+                                if (control.attr("data-isfilter") == "true") {
+                                    eval(GetReglaFilter(control, $(window.opener.document.getElementById('ObjectId')).val()));
+                                }
+                                else {
+                                    eval('window.opener.Get' + nameMR + '_Detalle_de_Documentos_MPOItem()');
+                                    var control = $(window.opener.document.getElementsByClassName(nameMR + "_" + nameAttribute)[0]);
+                                    control.html(eval('window.opener.Get' + nameMR + '_Detalle_de_Documentos_MPODropDown().get(0)').innerHTML);
+                                }
+                            }
+                        }
+                        window.close();
+                    }
+                })) {
+                    $('#Detalle_de_Documentos_MPOGuardar').removeAttr('disabled');
+                    $('#Detalle_de_Documentos_MPOGuardar').bind()
+                }
+            }
+            else {
+                $('#Detalle_de_Documentos_MPOGuardar').removeAttr('disabled');
+                $('#Detalle_de_Documentos_MPOGuardar').bind()
+            }
+        }
     });
 	$("form#CreateDetalle_de_Documentos_MPO").on('click', '#Detalle_de_Documentos_MPOGuardarYNuevo', function () {	
+        debugger;
+        if ($("#Archivo").val() == '0' || $("#Archivo").val() == '') {
+            alert('No se puede guardar porque no se ha generado un documento.')
+        } else {
 		if (EjecutarValidacionesAntesDeGuardar()) {
 			if (CheckValidation()) {
 				SendDetalle_de_Documentos_MPOData(function () {
@@ -541,47 +549,52 @@ $(document).ready(function () {
 				});
 			}
 		}		
+        }
     });
     $("form#CreateDetalle_de_Documentos_MPO").on('click', '#Detalle_de_Documentos_MPOGuardarYCopia', function () {
-		if (EjecutarValidacionesAntesDeGuardar()) {
-			if (CheckValidation())
-				SendDetalle_de_Documentos_MPOData(function (currentId) {
-					$("#ClaveId").val("0");
-	    $('#Modulo_Atencion_Inicial').empty();
-    $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
-    $('#Modulo_Atencion_Inicial').val('0').trigger('change');
-    $('#Usuario_que_Registra').empty();
-    $("#Usuario_que_Registra").append('<option value=""></option>');
-    $('#Usuario_que_Registra').val('0').trigger('change');
-    $('#Documento').empty();
-    $("#Documento").append('<option value=""></option>');
-    $('#Documento').val('0').trigger('change');
-    $('#Involucrado').empty();
-    $("#Involucrado").append('<option value=""></option>');
-    $('#Involucrado').val('0').trigger('change');
-    $('#Probable_Responsable').empty();
-    $("#Probable_Responsable").append('<option value=""></option>');
-    $('#Probable_Responsable').val('0').trigger('change');
-                Detalle_Delitos_de_DocumentosClearGridData();
+        debugger;
+        if ($("#Archivo").val() == '0' || $("#Archivo").val() == '') {
+            alert('No se puede guardar porque no se ha generado un documento.')
+        } else {
+            if (EjecutarValidacionesAntesDeGuardar()) {
+                if (CheckValidation())
+                    SendDetalle_de_Documentos_MPOData(function (currentId) {
+                        $("#ClaveId").val("0");
+                        $('#Modulo_Atencion_Inicial').empty();
+                        $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
+                        $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+                        $('#Usuario_que_Registra').empty();
+                        $("#Usuario_que_Registra").append('<option value=""></option>');
+                        $('#Usuario_que_Registra').val('0').trigger('change');
+                        $('#Documento').empty();
+                        $("#Documento").append('<option value=""></option>');
+                        $('#Documento').val('0').trigger('change');
+                        $('#Involucrado').empty();
+                        $("#Involucrado").append('<option value=""></option>');
+                        $('#Involucrado').val('0').trigger('change');
+                        $('#Probable_Responsable').empty();
+                        $("#Probable_Responsable").append('<option value=""></option>');
+                        $('#Probable_Responsable').val('0').trigger('change');
+                        Detalle_Delitos_de_DocumentosClearGridData();
 
-					ResetClaveLabel();
-					$("#ReferenceClave").val(currentId);
-	                getDetalle_Delitos_de_DocumentosData();
+                        ResetClaveLabel();
+                        $("#ReferenceClave").val(currentId);
+                        getDetalle_Delitos_de_DocumentosData();
 
-					EjecutarValidacionesDespuesDeGuardar();		
-					if (isPartial)
-					{
-						 if (!isMR)
-					        window.opener.RefreshCatalog('Detalle_de_Documentos_MPO',nameAttribute);
-					    else {
-                            eval('window.opener.Get' + nameMR + '_Detalle_de_Documentos_MPOItem()');                          
-                            var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);						
-							control.html(eval('window.opener.Get' + nameMR + '_Detalle_de_Documentos_MPODropDown().get(0)').innerHTML);                          
-					    }	
-					}						
-			setIsNew();
-				});
-		}
+                        EjecutarValidacionesDespuesDeGuardar();
+                        if (isPartial) {
+                            if (!isMR)
+                                window.opener.RefreshCatalog('Detalle_de_Documentos_MPO', nameAttribute);
+                            else {
+                                eval('window.opener.Get' + nameMR + '_Detalle_de_Documentos_MPOItem()');
+                                var control = $(window.opener.document.getElementsByClassName(nameMR + "_" + nameAttribute)[0]);
+                                control.html(eval('window.opener.Get' + nameMR + '_Detalle_de_Documentos_MPODropDown().get(0)').innerHTML);
+                            }
+                        }
+                        setIsNew();
+                    });
+            }
+        }
     });
 });
 
