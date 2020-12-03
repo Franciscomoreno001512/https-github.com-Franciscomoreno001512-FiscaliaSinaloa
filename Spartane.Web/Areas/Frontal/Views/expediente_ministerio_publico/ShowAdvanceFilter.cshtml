@@ -9,6 +9,9 @@
     List<SelectListItem> varTipo_de_Denuncia_Tipo_de_Denuncia = null;
     if (ViewBag.Tipo_de_Denuncias_Tipo_de_Denuncia != null)
     { varTipo_de_Denuncia_Tipo_de_Denuncia = (List<SelectListItem>)ViewBag.Tipo_de_Denuncias_Tipo_de_Denuncia; }
+ List<SelectListItem> varSpartan_User_MP_Asignado = null;
+    if (ViewBag.Spartan_Users_MP_Asignado != null)
+    { varSpartan_User_MP_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_MP_Asignado; }
  List<SelectListItem> varUnidad_unidad = null;
     if (ViewBag.Unidads_unidad != null)
     { varUnidad_unidad = (List<SelectListItem>)ViewBag.Unidads_unidad; }
@@ -57,7 +60,7 @@
     List<SelectListItem> varA_Tiempo_acepta_acuerdo = null;
     if (ViewBag.A_Tiempos_acepta_acuerdo != null)
     { varA_Tiempo_acepta_acuerdo = (List<SelectListItem>)ViewBag.A_Tiempos_acepta_acuerdo; }
-    List<SelectListItem> varSpartan_User_Usuario_que_Cierra = null;
+ List<SelectListItem> varSpartan_User_Usuario_que_Cierra = null;
     if (ViewBag.Spartan_Users_Usuario_que_Cierra != null)
     { varSpartan_User_Usuario_que_Cierra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Cierra; }
     List<SelectListItem> vartipo_de_cierre_tipo_de_cierre = null;
@@ -173,6 +176,9 @@
                         });
                     }
                 </div>
+ List<SelectListItem> varSpartan_User_MP_Asignado = null;
+    if (ViewBag.Spartan_Users_MP_Asignado != null)
+    { varSpartan_User_MP_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_MP_Asignado; }
  List<SelectListItem> varUnidad_unidad = null;
     if (ViewBag.Unidads_unidad != null)
     { varUnidad_unidad = (List<SelectListItem>)ViewBag.Unidads_unidad; }
@@ -700,27 +706,9 @@
                 </span>
             </div>
         </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.expediente_ministerio_publicoResources.Usuario_que_Cierra</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Usuario_que_CierraFilter, filters, new { @class = "form-control", @id = "ddlUsuario_que_CierraFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceUsuario_que_Cierra, new { @class = "form-control", @type = "text", @id = "txtAdvanceUsuario_que_Cierra" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varSpartan_User_Usuario_que_Cierra!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceUsuario_que_CierraMultiple, varSpartan_User_Usuario_que_Cierra,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceUsuario_que_Cierra"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_Cierra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Cierra != null)
+    { varSpartan_User_Usuario_que_Cierra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Cierra; }
                 <div class="MarginBottom">
                     <h3>@Resources.expediente_ministerio_publicoResources.tipo_de_cierre</h3>
                 </div>
@@ -805,6 +793,21 @@
 
                 advanceSearch.Tipo_de_DenunciaToSearch = $("#ddlAdvanceTipo_de_Denuncia").val();
                 advanceSearch.Tipo_de_DenunciaSearchType = 2;
+            }
+        }
+        advanceSearch.MP_AsignadoSearchType = 0;
+        if ($('#ddlAdvanceMP_Asignado').val().length > 0 || $("#txtAdvanceMP_Asignado").val() == "") {
+
+
+            if (isexpediente_ministerio_publicoTextSearch) {
+                advanceSearch.MP_AsignadoName = $("#txtAdvanceMP_Asignado").val();
+                advanceSearch.MP_AsignadoNameSearchType = $("#ddlAdvanceMP_Asignado").val();
+                advanceSearch.MP_AsignadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.MP_AsignadoToSearch = $("#ddlAdvanceMP_Asignado").val();
+                advanceSearch.MP_AsignadoSearchType = 2;
             }
         }
         advanceSearch.unidadSearchType = 0;
@@ -1252,6 +1255,15 @@
         $("#ddlAdvanceTipo_de_Denuncia").change(function () {
             isexpediente_ministerio_publicoTextSearch = false;
             $("#txtAdvanceTipo_de_Denuncia").val('');
+        });
+        $("#txtAdvanceMP_Asignado").keypress(function () {
+            isexpediente_ministerio_publicoTextSearch = true;
+            $("#ddlAdvanceMP_Asignado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMP_Asignado").change(function () {
+            isexpediente_ministerio_publicoTextSearch = false;
+            $("#txtAdvanceMP_Asignado").val('');
         });
         $("#txtAdvanceunidad").keypress(function () {
             isexpediente_ministerio_publicoTextSearch = true;

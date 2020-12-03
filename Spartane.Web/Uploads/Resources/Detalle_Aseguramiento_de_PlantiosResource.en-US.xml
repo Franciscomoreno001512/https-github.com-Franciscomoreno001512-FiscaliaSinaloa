@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Aseguramiento_de_Plantios" value="Detalle Aseguramiento de Plantios"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Tipo" value="Tipo"></resource>
+  <resource culture="en-US" name="No__de_Plantios" value="No. de Plantíos"></resource>
+  <resource culture="en-US" name="Kilogramos" value="Kilogramos"></resource>
+  <resource culture="en-US" name="Metodo_de_Destruccion" value="Método de Destrucción"></resource>
+  <resource culture="en-US" name="Superficie" value="Superficie"></resource>
+  <resource culture="en-US" name="Altura" value="Altura"></resource>
+  <resource culture="en-US" name="Densidad" value="Densidad"></resource>
+  <resource culture="en-US" name="Peso_por_planta" value="Peso por planta"></resource>
+  <resource culture="en-US" name="Latitud" value="Latitud"></resource>
+  <resource culture="en-US" name="Longitud" value="Longitud"></resource>
+  <resource culture="en-US" name="Largo" value="Largo"></resource>
+  <resource culture="en-US" name="Ancho" value="Ancho"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

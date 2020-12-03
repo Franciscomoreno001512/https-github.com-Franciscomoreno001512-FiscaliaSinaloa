@@ -3,7 +3,7 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.detalle_de_observaciones_mpiAdvanceSearchModel
 @{
-    List<SelectListItem> varSpartan_User_usuario_que_realiza_observacion = null;
+ List<SelectListItem> varSpartan_User_usuario_que_realiza_observacion = null;
     if (ViewBag.Spartan_Users_usuario_que_realiza_observacion != null)
     { varSpartan_User_usuario_que_realiza_observacion = (List<SelectListItem>)ViewBag.Spartan_Users_usuario_que_realiza_observacion; }
 
@@ -100,27 +100,9 @@
                 </span>
             </div>
         </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.detalle_de_observaciones_mpiResources.usuario_que_realiza_observacion</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.usuario_que_realiza_observacionFilter, filters, new { @class = "form-control", @id = "ddlusuario_que_realiza_observacionFilter" })
-                    @Html.TextBoxFor(m => m.Advanceusuario_que_realiza_observacion, new { @class = "form-control", @type = "text", @id = "txtAdvanceusuario_que_realiza_observacion" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varSpartan_User_usuario_que_realiza_observacion!=null)
-                    {
-                        @Html.ListBoxFor(m => m.Advanceusuario_que_realiza_observacionMultiple, varSpartan_User_usuario_que_realiza_observacion,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceusuario_que_realiza_observacion"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varSpartan_User_usuario_que_realiza_observacion = null;
+    if (ViewBag.Spartan_Users_usuario_que_realiza_observacion != null)
+    { varSpartan_User_usuario_que_realiza_observacion = (List<SelectListItem>)ViewBag.Spartan_Users_usuario_que_realiza_observacion; }
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/detalle_de_observaciones_mpi/")" value=" ">@Resources.Resources.Cancelar</a>

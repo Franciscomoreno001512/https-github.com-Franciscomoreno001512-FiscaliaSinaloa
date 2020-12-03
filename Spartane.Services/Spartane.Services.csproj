@@ -1225,6 +1225,48 @@
 <Compile Include="Unidad_de_medida_de_tipo_de_droga\Unidad_de_medida_de_tipo_de_drogaService.cs" />
 <Compile Include="Uso_del_medio_de_transporte\IUso_del_medio_de_transporteService.cs" />
 <Compile Include="Uso_del_medio_de_transporte\Uso_del_medio_de_transporteService.cs" />
+<Compile Include="Aseguramientos\IAseguramientosService.cs" />
+<Compile Include="Aseguramientos\AseguramientosService.cs" />
+<Compile Include="Detalle_Aseguramiento_Armas_Involucradas\IDetalle_Aseguramiento_Armas_InvolucradasService.cs" />
+<Compile Include="Detalle_Aseguramiento_Armas_Involucradas\Detalle_Aseguramiento_Armas_InvolucradasService.cs" />
+<Compile Include="Detalle_Aseguramiento_Artefactos_y_Explosivos\IDetalle_Aseguramiento_Artefactos_y_ExplosivosService.cs" />
+<Compile Include="Detalle_Aseguramiento_Artefactos_y_Explosivos\Detalle_Aseguramiento_Artefactos_y_ExplosivosService.cs" />
+<Compile Include="Detalle_Aseguramiento_de_Cargador_Cartuchos\IDetalle_Aseguramiento_de_Cargador_CartuchosService.cs" />
+<Compile Include="Detalle_Aseguramiento_de_Cargador_Cartuchos\Detalle_Aseguramiento_de_Cargador_CartuchosService.cs" />
+<Compile Include="Detalle_Aseguramiento_de_Drogas_Involucradas\IDetalle_Aseguramiento_de_Drogas_InvolucradasService.cs" />
+<Compile Include="Detalle_Aseguramiento_de_Drogas_Involucradas\Detalle_Aseguramiento_de_Drogas_InvolucradasService.cs" />
+<Compile Include="Detalle_Aseguramiento_de_Pistas_de_Aterrizaje\IDetalle_Aseguramiento_de_Pistas_de_AterrizajeService.cs" />
+<Compile Include="Detalle_Aseguramiento_de_Pistas_de_Aterrizaje\Detalle_Aseguramiento_de_Pistas_de_AterrizajeService.cs" />
+<Compile Include="Detalle_Aseguramiento_de_Plantios\IDetalle_Aseguramiento_de_PlantiosService.cs" />
+<Compile Include="Detalle_Aseguramiento_de_Plantios\Detalle_Aseguramiento_de_PlantiosService.cs" />
+<Compile Include="Detalle_Aseguramiento_Documentos\IDetalle_Aseguramiento_DocumentosService.cs" />
+<Compile Include="Detalle_Aseguramiento_Documentos\Detalle_Aseguramiento_DocumentosService.cs" />
+<Compile Include="Detalle_Aseguramiento_Electronicos_y_Multimedia\IDetalle_Aseguramiento_Electronicos_y_MultimediaService.cs" />
+<Compile Include="Detalle_Aseguramiento_Electronicos_y_Multimedia\Detalle_Aseguramiento_Electronicos_y_MultimediaService.cs" />
+<Compile Include="Detalle_Aseguramiento_Inmuebles\IDetalle_Aseguramiento_InmueblesService.cs" />
+<Compile Include="Detalle_Aseguramiento_Inmuebles\Detalle_Aseguramiento_InmueblesService.cs" />
+<Compile Include="Detalle_Aseguramiento_Medios_de_Transporte\IDetalle_Aseguramiento_Medios_de_TransporteService.cs" />
+<Compile Include="Detalle_Aseguramiento_Medios_de_Transporte\Detalle_Aseguramiento_Medios_de_TransporteService.cs" />
+<Compile Include="Detalle_Aseguramiento_Moneda\IDetalle_Aseguramiento_MonedaService.cs" />
+<Compile Include="Detalle_Aseguramiento_Moneda\Detalle_Aseguramiento_MonedaService.cs" />
+<Compile Include="Detalle_Aseguramiento_Objetos_Asegurados\IDetalle_Aseguramiento_Objetos_AseguradosService.cs" />
+<Compile Include="Detalle_Aseguramiento_Objetos_Asegurados\Detalle_Aseguramiento_Objetos_AseguradosService.cs" />
+<Compile Include="Detalle_Aseguramiento_Otros\IDetalle_Aseguramiento_OtrosService.cs" />
+<Compile Include="Detalle_Aseguramiento_Otros\Detalle_Aseguramiento_OtrosService.cs" />
+<Compile Include="Detalle_Aseguramiento_Otros_Aseguramientos\IDetalle_Aseguramiento_Otros_AseguramientosService.cs" />
+<Compile Include="Detalle_Aseguramiento_Otros_Aseguramientos\Detalle_Aseguramiento_Otros_AseguramientosService.cs" />
+<Compile Include="Detalle_Aseguramiento_Pirateria\IDetalle_Aseguramiento_PirateriaService.cs" />
+<Compile Include="Detalle_Aseguramiento_Pirateria\Detalle_Aseguramiento_PirateriaService.cs" />
+<Compile Include="Submarca_de_medio_de_transporte\ISubmarca_de_medio_de_transporteService.cs" />
+<Compile Include="Submarca_de_medio_de_transporte\Submarca_de_medio_de_transporteService.cs" />
+<Compile Include="Asignacion_de_Estatus_de_Agente\IAsignacion_de_Estatus_de_AgenteService.cs" />
+<Compile Include="Asignacion_de_Estatus_de_Agente\Asignacion_de_Estatus_de_AgenteService.cs" />
+<Compile Include="Estatus_de_Agente_MP\IEstatus_de_Agente_MPService.cs" />
+<Compile Include="Estatus_de_Agente_MP\Estatus_de_Agente_MPService.cs" />
+<Compile Include="Condiciones_en_Suspension_Condicional\ICondiciones_en_Suspension_CondicionalService.cs" />
+<Compile Include="Condiciones_en_Suspension_Condicional\Condiciones_en_Suspension_CondicionalService.cs" />
+<Compile Include="Generador_de_Turnos\IGenerador_de_TurnosService.cs" />
+<Compile Include="Generador_de_Turnos\Generador_de_TurnosService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1324,6 +1366,48 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

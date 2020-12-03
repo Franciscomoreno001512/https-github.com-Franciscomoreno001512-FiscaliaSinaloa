@@ -34,6 +34,9 @@
     List<SelectListItem> varTipo_de_Denuncia_Tipo_de_Denuncia = null;
     if (ViewBag.Tipo_de_Denuncias_Tipo_de_Denuncia != null)
     { varTipo_de_Denuncia_Tipo_de_Denuncia = (List<SelectListItem>)ViewBag.Tipo_de_Denuncias_Tipo_de_Denuncia; }
+ List<SelectListItem> varSpartan_User_MP_Asignado = null;
+    if (ViewBag.Spartan_Users_MP_Asignado != null)
+    { varSpartan_User_MP_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_MP_Asignado; }
  List<SelectListItem> varUnidad_unidad = null;
     if (ViewBag.Unidads_unidad != null)
     { varUnidad_unidad = (List<SelectListItem>)ViewBag.Unidads_unidad; }
@@ -82,7 +85,7 @@
     List<SelectListItem> varA_Tiempo_acepta_acuerdo = null;
     if (ViewBag.A_Tiempos_acepta_acuerdo != null)
     { varA_Tiempo_acepta_acuerdo = (List<SelectListItem>)ViewBag.A_Tiempos_acepta_acuerdo; }
-    List<SelectListItem> varSpartan_User_Usuario_que_Cierra = null;
+ List<SelectListItem> varSpartan_User_Usuario_que_Cierra = null;
     if (ViewBag.Spartan_Users_Usuario_que_Cierra != null)
     { varSpartan_User_Usuario_que_Cierra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Cierra; }
     List<SelectListItem> vartipo_de_cierre_tipo_de_cierre = null;
@@ -305,6 +308,20 @@
                                 </div>
                                 }
                             </div>
+				<div class="form-group" id="divMP_Asignado">
+                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.MP_Asignado</label>
+                                <div class="col-sm-8" data-field-id="MP_Asignado" data-attribute="267671" data-field-name="@Resources.expediente_ministerio_publicoResources.MP_Asignado">
+                                    <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_MP_Asignado form-control select2-dropdown Datos_del_Caso' data-val="true" id="MP_Asignado" name="MP_Asignado">
+                                        <option value="@Model.MP_Asignado">@(Model.MP_AsignadoName??Model.MP_AsignadoName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267671).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'MP_Asignado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
 				<div class="form-group" id="divunidad">
                                 <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.unidad</label>
                                 <div class="col-sm-8" data-field-id="unidad" data-attribute="267121" data-field-name="@Resources.expediente_ministerio_publicoResources.unidad">
@@ -507,7 +524,7 @@
                                                                 <i class="fa fa-cogs fa-spin"></i>
                                                             </a>
                                                         </button>@Resources.detalle_de_observaciones_mpiResources.hora</span></th>
-                                                <th class="usuario_que_realiza_observacionHeader"><span>
+                                                <th class="usuario_que_realiza_observacionHeader" style="width:250px"><span>
 <button type="button" data-attribute="267117" data-field-id="detalle_de_observaciones_mpiusuario_que_realiza_observacion" data-field-name="@Resources.detalle_de_observaciones_mpiResources.usuario_que_realiza_observacion" data-toggle="modal" data-target="#expediente_ministerio_publicoBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
                                                             <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.detalle_de_observaciones_mpiResources.usuario_que_realiza_observacion">
                                                                 <i class="fa fa-cogs fa-spin"></i>
@@ -974,28 +991,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group" id="divUsuario_que_Cierra">
+				<div class="form-group" id="divUsuario_que_Cierra">
                                 <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.Usuario_que_Cierra</label>
                                 <div class="col-sm-8" data-field-id="Usuario_que_Cierra" data-attribute="267353" data-field-name="@Resources.expediente_ministerio_publicoResources.Usuario_que_Cierra">
-                                    <select class="form-control Resolucion_o_Dictaminacion" data-val="true" data-val-number="The field Usuario must be a number." data-val-required="The Usuario field is required." id="Usuario_que_Cierra" name="Usuario_que_Cierra">
-                                        <option value=""></option>
-                                        @if (varSpartan_User_Usuario_que_Cierra != null){ 
-                                            foreach (var itemUsuario_que_Cierra in varSpartan_User_Usuario_que_Cierra)
-                                            {
-                                                if (itemUsuario_que_Cierra.Value == Convert.ToString(Model.Usuario_que_Cierra))
-                                                {
-                                                    <option value="@itemUsuario_que_Cierra.Value" selected>@itemUsuario_que_Cierra.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemUsuario_que_Cierra.Value">@itemUsuario_que_Cierra.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_Usuario_que_Cierra form-control select2-dropdown Resolucion_o_Dictaminacion' data-val="true" id="Usuario_que_Cierra" name="Usuario_que_Cierra">
+                                        <option value="@Model.Usuario_que_Cierra">@(Model.Usuario_que_CierraName??Model.Usuario_que_CierraName)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Usuario_que_Cierra" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267353).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267353).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Cierra');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -1183,7 +1186,7 @@
 
 
 
-            Getdetalle_de_observaciones_mpi_Spartan_UserItem();
+
            
               showdetalle_de_observaciones_mpiGrid(null);
 
@@ -1287,6 +1290,39 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteexpediente_ministerio_publico_usuario_que_registra");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteMP_AsignadoData =[];
+       $(".AutoCompleteexpediente_ministerio_publico_MP_Asignado").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_MP_Asignado_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteexpediente_ministerio_publico_MP_Asignado_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteexpediente_ministerio_publico_MP_Asignado");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -1555,6 +1591,39 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
+       var AutoCompleteUsuario_que_CierraData =[];
+       $(".AutoCompleteexpediente_ministerio_publico_Usuario_que_Cierra").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_Usuario_que_Cierra_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteexpediente_ministerio_publico_Usuario_que_Cierra_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteexpediente_ministerio_publico_Usuario_que_Cierra");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
 
 
             @if(ViewBag.IsNew)
@@ -1614,7 +1683,7 @@
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.observaciones)).addClass('observaciones').attr('id', nameOfTable + 'observaciones' + rowIndex).attr('data-field', 'observaciones');
             columnData[counter++] = $($($.parseHTML(GetGridDatePicker())).val(data.fecha)).addClass('fecha').attr('id', nameOfTable + 'fecha' + rowIndex).attr('data-field', 'fecha');
             columnData[counter++] = $($($.parseHTML(GetGridTimePicker())).val(data.hora)).addClass('hora').attr('id', nameOfTable + 'hora' + rowIndex).attr('data-field', 'hora');
-           columnData[counter++] = $($(Getdetalle_de_observaciones_mpi_Spartan_UserDropDown()).val(data.usuario_que_realiza_observacion)).addClass('usuario_que_realiza_observacion inputNumber').attr('id', nameOfTable + 'usuario_que_realiza_observacion' + rowIndex).attr('data-field', 'usuario_que_realiza_observacion').after($.parseHTML(addNew('detalle_de_observaciones_mpi', 'Spartan_User','usuario_que_realiza_observacion', 267117)));
+            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.usuario_que_realiza_observacionName != undefined ? data.usuario_que_realiza_observacionName : null, 'AutoComplete' + nameOfTable + 'usuario_que_realiza_observacion', data.usuario_que_realiza_observacion)))).addClass('usuario_que_realiza_observacion').attr('id', nameOfTable + 'usuario_que_realiza_observacion' + rowIndex).attr('data-field', 'usuario_que_realiza_observacion').after($.parseHTML(addNew('detalle_de_observaciones_mpi', 'Spartan_User','usuario_que_realiza_observacion', 267117)));
 
             return columnData;
         }
@@ -1749,10 +1818,13 @@
                 $('<td id="'+nameOfTable+'hora'+rowIndex+'">').text(data.hora).appendTo(row);
             else
                 $('<td style="display:none;" id="'+nameOfTable+'hora'+rowIndex+'">').text(data.hora).appendTo(row);
-            if ($('.usuario_que_realiza_observacion' + 'Header').css('display') != 'none')
-                $('<td id="'+nameOfTable+'usuario_que_realiza_observacion'+rowIndex+'">').text(Getdetalle_de_observaciones_mpi_Spartan_UserName(data.usuario_que_realiza_observacion)).appendTo(row);
-	    else 
-		$('<td style="display:none;" id="'+nameOfTable+'usuario_que_realiza_observacion'+rowIndex+'">').text(Getdetalle_de_observaciones_mpi_Spartan_UserName(data.usuario_que_realiza_observacion)).appendTo(row);
+            if ($('.usuario_que_realiza_observacion' + 'Header').css('display') != 'none'){
+                if (data.usuario_que_realiza_observacionName == undefined){$('<td class="dt-right"  id="'+nameOfTable+'usuario_que_realiza_observacion'+rowIndex+'">').text(data.usuario_que_realiza_observacion).appendTo(row);}else{$('<td>').text(data.usuario_que_realiza_observacionName).appendTo(row);}
+}
+             else {
+                if (data.usuario_que_realiza_observacionName == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'usuario_que_realiza_observacion'+rowIndex+'">').text(data.usuario_que_realiza_observacion).appendTo(row);}else{$('<td style:display:none;>').text(data.usuario_que_realiza_observacionName).appendTo(row);}
+}
+
 
         }
 
@@ -1906,7 +1978,38 @@
 
 
 
+        $(".AutoCompletedetalle_de_observaciones_mpi_usuario_que_realiza_observacion").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getdetalle_de_observaciones_mpi_usuario_que_realiza_observacion_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
 
+                    return {
+                        results: GetAutoCompletedetalle_de_observaciones_mpi_usuario_que_realiza_observacion_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompletedetalle_de_observaciones_mpi_usuario_que_realiza_observacion");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val(' ');
+            $('.select2-search__field').keyup();
+        });
 
 
         }
@@ -2194,6 +2297,15 @@
 	                    control.val(result.data.usuario_que_registra).trigger('change');
                     }, 3000);
                     $('#Tipo_de_Denuncia').val(result.data.Tipo_de_Denuncia);
+                    var control = $('#MP_Asignado');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.MP_Asignado).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.MP_Asignado).trigger('change');
+                    }, 3000);
                     var control = $('#unidad');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.unidad).trigger('keyup');
@@ -2238,6 +2350,7 @@
                 data.append('hora_de_registro', $('#hora_de_registro').val());
                 data.append('usuario_que_registra', $('#usuario_que_registra').val());
                 data.append('Tipo_de_Denuncia', $('#Tipo_de_Denuncia').val());
+                data.append('MP_Asignado', $('#MP_Asignado').val());
                 data.append('unidad', $('#unidad').val());
                 data.append('Municipio', $('#Municipio').val());
                 data.append('Region', $('#Region').val());
@@ -2528,7 +2641,15 @@
                                         $('#clave').val(result.data.clave);
                     $('#fecha_de_cierre').val(result.data.fecha_de_cierre);
                     $('#hora_de_cierre').val(result.data.hora_de_cierre);
-                    $('#Usuario_que_Cierra').val(result.data.Usuario_que_Cierra);
+                    var control = $('#Usuario_que_Cierra');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Cierra).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Cierra).trigger('change');
+                    }, 3000);
                     $('#tipo_de_cierre').val(result.data.tipo_de_cierre);
                     $('#comentarios_de_cierre').val(result.data.comentarios_de_cierre);
 

@@ -36,6 +36,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceTipo_de_Denuncia { set; get; }
         public int[] AdvanceTipo_de_DenunciaMultiple { set; get; }
 
+        public Filters MP_AsignadoFilter { set; get; }
+        public string AdvanceMP_Asignado { set; get; }
+        public int[] AdvanceMP_AsignadoMultiple { set; get; }
+
         public Filters unidadFilter { set; get; }
         public string Advanceunidad { set; get; }
         public int[] AdvanceunidadMultiple { set; get; }

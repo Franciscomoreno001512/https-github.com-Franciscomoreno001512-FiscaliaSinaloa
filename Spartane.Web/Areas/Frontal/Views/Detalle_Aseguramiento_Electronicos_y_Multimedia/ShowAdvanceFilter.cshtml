@@ -1,0 +1,353 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_Electronicos_y_MultimediaAdvanceSearchModel
+@{
+    List<SelectListItem> varAparato_Electronicos_y_Multimedia_Aparatos = null;
+    if (ViewBag.Aparato_Electronicos_y_Multimedias_Aparatos != null)
+    { varAparato_Electronicos_y_Multimedia_Aparatos = (List<SelectListItem>)ViewBag.Aparato_Electronicos_y_Multimedias_Aparatos; }
+    List<SelectListItem> varDocumentos_Multimedia_Documentos_Multimedia = null;
+    if (ViewBag.Documentos_Multimedias_Documentos_Multimedia != null)
+    { varDocumentos_Multimedia_Documentos_Multimedia = (List<SelectListItem>)ViewBag.Documentos_Multimedias_Documentos_Multimedia; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Detalle_Aseguramiento_Electronicos_y_Multimedia", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_Aseguramiento_Electronicos_y_MultimediaResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Electronicos_y_MultimediaResources.Aparatos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AparatosFilter, filters, new { @class = "form-control", @id = "ddlAparatosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceAparatos, new { @class = "form-control", @type = "text", @id = "txtAdvanceAparatos" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varAparato_Electronicos_y_Multimedia_Aparatos!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceAparatosMultiple, varAparato_Electronicos_y_Multimedia_Aparatos,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceAparatos"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Electronicos_y_MultimediaResources.Documentos_Multimedia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Documentos_MultimediaFilter, filters, new { @class = "form-control", @id = "ddlDocumentos_MultimediaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceDocumentos_Multimedia, new { @class = "form-control", @type = "text", @id = "txtAdvanceDocumentos_Multimedia" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varDocumentos_Multimedia_Documentos_Multimedia!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceDocumentos_MultimediaMultiple, varDocumentos_Multimedia_Documentos_Multimedia,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceDocumentos_Multimedia"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Electronicos_y_MultimediaResources.Descripcion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
+                    @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_Aseguramiento_Electronicos_y_MultimediaResources.Cantidad</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromCantidad, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isDecimalKey(this, event);", @id = "txtAdvanceFromCantidad" })
+                    @Html.ValidationMessageFor(m => m.FromCantidad)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToCantidad, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isDecimalKey(this, event);", @id = "txtAdvanceToCantidad", @data_min = "txtAdvanceFromCantidad" })
+                    @Html.ValidationMessageFor(m => m.ToCantidad)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Electronicos_y_MultimediaResources.A_resguardo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.A_resguardoFilter, filters, new { @class = "form-control", @id = "ddlA_resguardoFilter" })
+                    @Html.TextBoxFor(m => m.A_resguardo, new { @class = "form-control", @type = "text", @id = "txtA_resguardo" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_Aseguramiento_Electronicos_y_Multimedia/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Electronicos_y_MultimediaClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.Detalle_Aseguramiento_Electronicos_y_MultimediaClaveTo = $("#txtAdvanceToClave").val();
+        }
+        advanceSearch.AparatosSearchType = 0;
+        if ($('#ddlAdvanceAparatos').val().length > 0 || $("#txtAdvanceAparatos").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Electronicos_y_MultimediaTextSearch) {
+                advanceSearch.AparatosName = $("#txtAdvanceAparatos").val();
+                advanceSearch.AparatosNameSearchType = $("#ddlAdvanceAparatos").val();
+                advanceSearch.AparatosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.AparatosToSearch = $("#ddlAdvanceAparatos").val();
+                advanceSearch.AparatosSearchType = 2;
+            }
+        }
+        advanceSearch.Documentos_MultimediaSearchType = 0;
+        if ($('#ddlAdvanceDocumentos_Multimedia').val().length > 0 || $("#txtAdvanceDocumentos_Multimedia").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Electronicos_y_MultimediaTextSearch) {
+                advanceSearch.Documentos_MultimediaName = $("#txtAdvanceDocumentos_Multimedia").val();
+                advanceSearch.Documentos_MultimediaNameSearchType = $("#ddlAdvanceDocumentos_Multimedia").val();
+                advanceSearch.Documentos_MultimediaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Documentos_MultimediaToSearch = $("#ddlAdvanceDocumentos_Multimedia").val();
+                advanceSearch.Documentos_MultimediaSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceDescripcion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Electronicos_y_MultimediaDescripcion = $("#txtAdvanceDescripcion").val();
+            advanceSearch.Detalle_Aseguramiento_Electronicos_y_MultimediaDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
+        }
+        if ($("#txtAdvanceFromCantidad").val() != "" || $("#txtAdvanceToCantidad").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Electronicos_y_MultimediaCantidadFrom = $("#txtAdvanceFromCantidad").val();
+            advanceSearch.Detalle_Aseguramiento_Electronicos_y_MultimediaCantidadTo = $("#txtAdvanceToCantidad").val();
+        }
+        if ($("#txtAdvanceA_resguardo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Electronicos_y_MultimediaA_resguardo = $("#txtAdvanceA_resguardo").val();
+            advanceSearch.Detalle_Aseguramiento_Electronicos_y_MultimediaA_resguardoSearchType = $("#ddlAdvanceA_resguardoFilter").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblDetalle_Aseguramiento_Electronicos_y_Multimedia').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isDetalle_Aseguramiento_Electronicos_y_MultimediaTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceAparatos").keypress(function () {
+            isDetalle_Aseguramiento_Electronicos_y_MultimediaTextSearch = true;
+            $("#ddlAdvanceAparatos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceAparatos").change(function () {
+            isDetalle_Aseguramiento_Electronicos_y_MultimediaTextSearch = false;
+            $("#txtAdvanceAparatos").val('');
+        });
+        $("#txtAdvanceDocumentos_Multimedia").keypress(function () {
+            isDetalle_Aseguramiento_Electronicos_y_MultimediaTextSearch = true;
+            $("#ddlAdvanceDocumentos_Multimedia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDocumentos_Multimedia").change(function () {
+            isDetalle_Aseguramiento_Electronicos_y_MultimediaTextSearch = false;
+            $("#txtAdvanceDocumentos_Multimedia").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

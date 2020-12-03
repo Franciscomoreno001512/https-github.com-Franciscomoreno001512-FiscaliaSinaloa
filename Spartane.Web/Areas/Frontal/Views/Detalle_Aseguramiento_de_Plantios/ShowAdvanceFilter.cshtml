@@ -1,0 +1,453 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_de_PlantiosAdvanceSearchModel
+@{
+    List<SelectListItem> varTipo_de_Plantio_Tipo = null;
+    if (ViewBag.Tipo_de_Plantios_Tipo != null)
+    { varTipo_de_Plantio_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Plantios_Tipo; }
+    List<SelectListItem> varMetodo_de_Destruccion_Metodo_de_Destruccion = null;
+    if (ViewBag.Metodo_de_Destruccions_Metodo_de_Destruccion != null)
+    { varMetodo_de_Destruccion_Metodo_de_Destruccion = (List<SelectListItem>)ViewBag.Metodo_de_Destruccions_Metodo_de_Destruccion; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Detalle_Aseguramiento_de_Plantios", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_Aseguramiento_de_PlantiosResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_de_PlantiosResources.Tipo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.TipoFilter, filters, new { @class = "form-control", @id = "ddlTipoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Plantio_Tipo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipoMultiple, varTipo_de_Plantio_Tipo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_Aseguramiento_de_PlantiosResources.No__de_Plantios</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromNo__de_Plantios, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromNo__de_Plantios" })
+                    @Html.ValidationMessageFor(m => m.FromNo__de_Plantios)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToNo__de_Plantios, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToNo__de_Plantios", @data_min = "txtAdvanceFromNo__de_Plantios" })
+                    @Html.ValidationMessageFor(m => m.ToNo__de_Plantios)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_Aseguramiento_de_PlantiosResources.Kilogramos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromKilogramos, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isDecimalKey(this, event);", @id = "txtAdvanceFromKilogramos" })
+                    @Html.ValidationMessageFor(m => m.FromKilogramos)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToKilogramos, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isDecimalKey(this, event);", @id = "txtAdvanceToKilogramos", @data_min = "txtAdvanceFromKilogramos" })
+                    @Html.ValidationMessageFor(m => m.ToKilogramos)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_de_PlantiosResources.Metodo_de_Destruccion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Metodo_de_DestruccionFilter, filters, new { @class = "form-control", @id = "ddlMetodo_de_DestruccionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMetodo_de_Destruccion, new { @class = "form-control", @type = "text", @id = "txtAdvanceMetodo_de_Destruccion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMetodo_de_Destruccion_Metodo_de_Destruccion!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMetodo_de_DestruccionMultiple, varMetodo_de_Destruccion_Metodo_de_Destruccion,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMetodo_de_Destruccion"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_de_PlantiosResources.Superficie</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.SuperficieFilter, filters, new { @class = "form-control", @id = "ddlSuperficieFilter" })
+                    @Html.TextBoxFor(m => m.Superficie, new { @class = "form-control", @type = "text", @id = "txtSuperficie" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_de_PlantiosResources.Altura</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AlturaFilter, filters, new { @class = "form-control", @id = "ddlAlturaFilter" })
+                    @Html.TextBoxFor(m => m.Altura, new { @class = "form-control", @type = "text", @id = "txtAltura" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_de_PlantiosResources.Densidad</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DensidadFilter, filters, new { @class = "form-control", @id = "ddlDensidadFilter" })
+                    @Html.TextBoxFor(m => m.Densidad, new { @class = "form-control", @type = "text", @id = "txtDensidad" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_de_PlantiosResources.Peso_por_planta</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Peso_por_plantaFilter, filters, new { @class = "form-control", @id = "ddlPeso_por_plantaFilter" })
+                    @Html.TextBoxFor(m => m.Peso_por_planta, new { @class = "form-control", @type = "text", @id = "txtPeso_por_planta" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_de_PlantiosResources.Latitud</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.LatitudFilter, filters, new { @class = "form-control", @id = "ddlLatitudFilter" })
+                    @Html.TextBoxFor(m => m.Latitud, new { @class = "form-control", @type = "text", @id = "txtLatitud" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_de_PlantiosResources.Longitud</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.LongitudFilter, filters, new { @class = "form-control", @id = "ddlLongitudFilter" })
+                    @Html.TextBoxFor(m => m.Longitud, new { @class = "form-control", @type = "text", @id = "txtLongitud" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_Aseguramiento_de_PlantiosResources.Largo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromLargo, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isDecimalKey(this, event);", @id = "txtAdvanceFromLargo" })
+                    @Html.ValidationMessageFor(m => m.FromLargo)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToLargo, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isDecimalKey(this, event);", @id = "txtAdvanceToLargo", @data_min = "txtAdvanceFromLargo" })
+                    @Html.ValidationMessageFor(m => m.ToLargo)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_Aseguramiento_de_PlantiosResources.Ancho</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromAncho, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isDecimalKey(this, event);", @id = "txtAdvanceFromAncho" })
+                    @Html.ValidationMessageFor(m => m.FromAncho)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToAncho, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isDecimalKey(this, event);", @id = "txtAdvanceToAncho", @data_min = "txtAdvanceFromAncho" })
+                    @Html.ValidationMessageFor(m => m.ToAncho)
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_Aseguramiento_de_Plantios/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosClaveTo = $("#txtAdvanceToClave").val();
+        }
+        advanceSearch.TipoSearchType = 0;
+        if ($('#ddlAdvanceTipo').val().length > 0 || $("#txtAdvanceTipo").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_de_PlantiosTextSearch) {
+                advanceSearch.TipoName = $("#txtAdvanceTipo").val();
+                advanceSearch.TipoNameSearchType = $("#ddlAdvanceTipo").val();
+                advanceSearch.TipoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.TipoToSearch = $("#ddlAdvanceTipo").val();
+                advanceSearch.TipoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromNo__de_Plantios").val() != "" || $("#txtAdvanceToNo__de_Plantios").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosNo__de_PlantiosFrom = $("#txtAdvanceFromNo__de_Plantios").val();
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosNo__de_PlantiosTo = $("#txtAdvanceToNo__de_Plantios").val();
+        }
+        if ($("#txtAdvanceFromKilogramos").val() != "" || $("#txtAdvanceToKilogramos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosKilogramosFrom = $("#txtAdvanceFromKilogramos").val();
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosKilogramosTo = $("#txtAdvanceToKilogramos").val();
+        }
+        advanceSearch.Metodo_de_DestruccionSearchType = 0;
+        if ($('#ddlAdvanceMetodo_de_Destruccion').val().length > 0 || $("#txtAdvanceMetodo_de_Destruccion").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_de_PlantiosTextSearch) {
+                advanceSearch.Metodo_de_DestruccionName = $("#txtAdvanceMetodo_de_Destruccion").val();
+                advanceSearch.Metodo_de_DestruccionNameSearchType = $("#ddlAdvanceMetodo_de_Destruccion").val();
+                advanceSearch.Metodo_de_DestruccionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Metodo_de_DestruccionToSearch = $("#ddlAdvanceMetodo_de_Destruccion").val();
+                advanceSearch.Metodo_de_DestruccionSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceSuperficie").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosSuperficie = $("#txtAdvanceSuperficie").val();
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosSuperficieSearchType = $("#ddlAdvanceSuperficieFilter").val();
+        }
+        if ($("#txtAdvanceAltura").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosAltura = $("#txtAdvanceAltura").val();
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosAlturaSearchType = $("#ddlAdvanceAlturaFilter").val();
+        }
+        if ($("#txtAdvanceDensidad").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosDensidad = $("#txtAdvanceDensidad").val();
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosDensidadSearchType = $("#ddlAdvanceDensidadFilter").val();
+        }
+        if ($("#txtAdvancePeso_por_planta").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosPeso_por_planta = $("#txtAdvancePeso_por_planta").val();
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosPeso_por_plantaSearchType = $("#ddlAdvancePeso_por_plantaFilter").val();
+        }
+        if ($("#txtAdvanceLatitud").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosLatitud = $("#txtAdvanceLatitud").val();
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosLatitudSearchType = $("#ddlAdvanceLatitudFilter").val();
+        }
+        if ($("#txtAdvanceLongitud").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosLongitud = $("#txtAdvanceLongitud").val();
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosLongitudSearchType = $("#ddlAdvanceLongitudFilter").val();
+        }
+        if ($("#txtAdvanceFromLargo").val() != "" || $("#txtAdvanceToLargo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosLargoFrom = $("#txtAdvanceFromLargo").val();
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosLargoTo = $("#txtAdvanceToLargo").val();
+        }
+        if ($("#txtAdvanceFromAncho").val() != "" || $("#txtAdvanceToAncho").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosAnchoFrom = $("#txtAdvanceFromAncho").val();
+            advanceSearch.Detalle_Aseguramiento_de_PlantiosAnchoTo = $("#txtAdvanceToAncho").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblDetalle_Aseguramiento_de_Plantios').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isDetalle_Aseguramiento_de_PlantiosTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceTipo").keypress(function () {
+            isDetalle_Aseguramiento_de_PlantiosTextSearch = true;
+            $("#ddlAdvanceTipo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo").change(function () {
+            isDetalle_Aseguramiento_de_PlantiosTextSearch = false;
+            $("#txtAdvanceTipo").val('');
+        });
+        $("#txtAdvanceMetodo_de_Destruccion").keypress(function () {
+            isDetalle_Aseguramiento_de_PlantiosTextSearch = true;
+            $("#ddlAdvanceMetodo_de_Destruccion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMetodo_de_Destruccion").change(function () {
+            isDetalle_Aseguramiento_de_PlantiosTextSearch = false;
+            $("#txtAdvanceMetodo_de_Destruccion").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+
