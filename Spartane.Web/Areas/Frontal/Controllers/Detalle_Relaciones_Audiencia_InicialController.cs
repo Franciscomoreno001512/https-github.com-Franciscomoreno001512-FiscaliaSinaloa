@@ -118,7 +118,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = (int)Detalle_Relaciones_Audiencia_InicialData.Clave
                     ,Imputado = Detalle_Relaciones_Audiencia_InicialData.Imputado
-                    ,ImputadoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(Convert.ToString(Detalle_Relaciones_Audiencia_InicialData.Imputado), "Detalle_de_Imputado") ??  (string)Detalle_Relaciones_Audiencia_InicialData.Imputado_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                    ,ImputadoNombre_Completo_Detenido = CultureHelper.GetTraduction(Convert.ToString(Detalle_Relaciones_Audiencia_InicialData.Imputado), "Detalle_de_Imputado") ??  (string)Detalle_Relaciones_Audiencia_InicialData.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                     ,Delito = Detalle_Relaciones_Audiencia_InicialData.Delito
                     ,DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Relaciones_Audiencia_InicialData.Delito), "Delito") ??  (string)Detalle_Relaciones_Audiencia_InicialData.Delito_Delito.Descripcion
 
@@ -162,7 +162,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Detalle_Relaciones_Audiencia_InicialData.Clave 
 	                    ,Imputado = Detalle_Relaciones_Audiencia_InicialData.Imputado
-                    ,ImputadoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(Convert.ToString(Detalle_Relaciones_Audiencia_InicialData.Imputado), "Detalle_de_Imputado") ??  (string)Detalle_Relaciones_Audiencia_InicialData.Imputado_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                    ,ImputadoNombre_Completo_Detenido = CultureHelper.GetTraduction(Convert.ToString(Detalle_Relaciones_Audiencia_InicialData.Imputado), "Detalle_de_Imputado") ??  (string)Detalle_Relaciones_Audiencia_InicialData.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                     ,Delito = Detalle_Relaciones_Audiencia_InicialData.Delito
                     ,DelitoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Relaciones_Audiencia_InicialData.Delito), "Delito") ??  (string)Detalle_Relaciones_Audiencia_InicialData.Delito_Delito.Descripcion
 
@@ -203,9 +203,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 _IDetalle_de_ImputadoApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IDetalle_de_ImputadoApiConsumer.SelAll(false).Resource;
 				
-                return Json(result.OrderBy(m => m.Nombre_Completo_del_Tutor).Select(m => new SelectListItem
+                return Json(result.OrderBy(m => m.Nombre_Completo_Detenido).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Imputado", "Nombre_Completo_del_Tutor")?? m.Nombre_Completo_del_Tutor,
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Imputado", "Nombre_Completo_Detenido")?? m.Nombre_Completo_Detenido,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -256,7 +256,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_Relaciones_Audiencia_Inicials.Select(m => new Detalle_Relaciones_Audiencia_InicialGridModel
                     {
                     Clave = m.Clave
-                        ,ImputadoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                        ,ImputadoNombre_Completo_Detenido = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                         ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
 
                     }).ToList(),
@@ -276,14 +276,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_ImputadoApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Detalle_de_Imputado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Imputado.Nombre_Completo_del_Tutor as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Detalle_de_Imputado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Imputado.Nombre_Completo_Detenido as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IDetalle_de_ImputadoApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Imputado.Nombre_Completo_del_Tutor ASC ").Resource;
+				var result = _IDetalle_de_ImputadoApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Imputado.Nombre_Completo_Detenido ASC ").Resource;
                
                 foreach (var item in result.Detalle_de_Imputados)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Imputado", "Nombre_Completo_del_Tutor");
-                    item.Nombre_Completo_del_Tutor =trans ??item.Nombre_Completo_del_Tutor;
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Imputado", "Nombre_Completo_Detenido");
+                    item.Nombre_Completo_Detenido =trans ??item.Nombre_Completo_Detenido;
                 }
                 return Json(result.Detalle_de_Imputados.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -605,7 +605,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Relaciones_Audiencia_Inicials.Select(m => new Detalle_Relaciones_Audiencia_InicialGridModel
             {
                 Clave = m.Clave
-                ,ImputadoNombre_Completo_del_Tutor = (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                ,ImputadoNombre_Completo_Detenido = (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                 ,DelitoDescripcion = (string)m.Delito_Delito.Descripcion
 
             }).ToList();
@@ -653,7 +653,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Relaciones_Audiencia_Inicials.Select(m => new Detalle_Relaciones_Audiencia_InicialGridModel
             {
                 Clave = m.Clave
-                ,ImputadoNombre_Completo_del_Tutor = (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                ,ImputadoNombre_Completo_Detenido = (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                 ,DelitoDescripcion = (string)m.Delito_Delito.Descripcion
 
             }).ToList();

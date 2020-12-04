@@ -758,7 +758,7 @@
             var counter = 0;
             var inputData = "<input type='text' class='fullWidth form-control' />";
 
-            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.ImputadoNombre_Completo_del_Tutor != undefined ? data.ImputadoNombre_Completo_del_Tutor : null, 'AutoComplete' + nameOfTable + 'Imputado', data.Imputado)))).addClass('Imputado').attr('id', nameOfTable + 'Imputado' + rowIndex).attr('data-field', 'Imputado').after($.parseHTML(addNew('Detalle_Relaciones_Audiencia_Inicial', 'Detalle_de_Imputado','Imputado', 267755)));
+            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.ImputadoNombre_Completo_Detenido != undefined ? data.ImputadoNombre_Completo_Detenido : null, 'AutoComplete' + nameOfTable + 'Imputado', data.Imputado)))).addClass('Imputado').attr('id', nameOfTable + 'Imputado' + rowIndex).attr('data-field', 'Imputado').after($.parseHTML(addNew('Detalle_Relaciones_Audiencia_Inicial', 'Detalle_de_Imputado','Imputado', 267755)));
             columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.DelitoDescripcion != undefined ? data.DelitoDescripcion : null, 'AutoComplete' + nameOfTable + 'Delito', data.Delito)))).addClass('Delito').attr('id', nameOfTable + 'Delito' + rowIndex).attr('data-field', 'Delito').after($.parseHTML(addNew('Detalle_Relaciones_Audiencia_Inicial', 'Delito','Delito', 267756)));
 
             return columnData;
@@ -883,10 +883,10 @@
 				actionCol.appendTo(row);
 
             if ($('.Imputado' + 'Header').css('display') != 'none'){
-                if (data.ImputadoNombre_Completo_del_Tutor == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Imputado'+rowIndex+'">').text(data.Imputado).appendTo(row);}else{$('<td>').text(data.ImputadoNombre_Completo_del_Tutor).appendTo(row);}
+                if (data.ImputadoNombre_Completo_Detenido == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Imputado'+rowIndex+'">').text(data.Imputado).appendTo(row);}else{$('<td>').text(data.ImputadoNombre_Completo_Detenido).appendTo(row);}
 }
              else {
-                if (data.ImputadoNombre_Completo_del_Tutor == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Imputado'+rowIndex+'">').text(data.Imputado).appendTo(row);}else{$('<td style:display:none;>').text(data.ImputadoNombre_Completo_del_Tutor).appendTo(row);}
+                if (data.ImputadoNombre_Completo_Detenido == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Imputado'+rowIndex+'">').text(data.Imputado).appendTo(row);}else{$('<td style:display:none;>').text(data.ImputadoNombre_Completo_Detenido).appendTo(row);}
 }
 
             if ($('.Delito' + 'Header').css('display') != 'none'){

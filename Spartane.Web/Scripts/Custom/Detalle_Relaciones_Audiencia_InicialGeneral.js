@@ -12,7 +12,7 @@ function GetAutoCompleteDetalle_Relaciones_Audiencia_Inicial_Imputado_Detalle_de
     for (var i = 0; i < data.length; i++) {
         AutoCompleteImputadoData.push({
             id: data[i].Clave,
-            text: data[i].Nombre_Completo_del_Tutor
+            text: data[i].Nombre_Completo_Detenido
         });
     }
     return AutoCompleteImputadoData;
