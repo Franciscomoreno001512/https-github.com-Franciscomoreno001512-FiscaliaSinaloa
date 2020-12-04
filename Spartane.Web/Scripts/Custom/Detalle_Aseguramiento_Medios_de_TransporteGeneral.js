@@ -17,17 +17,6 @@ function GetAutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Marca_Marca_d
     }
     return AutoCompleteMarcaData;
 }
-var AutoCompleteSubmarcaData = [];
-function GetAutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Submarca_Submarca_de_medio_de_transporteData(data) {
-	AutoCompleteSubmarcaData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteSubmarcaData.push({
-            id: data[i].Clave,
-            text: data[i].Descripcion
-        });
-    }
-    return AutoCompleteSubmarcaData;
-}
 var AutoCompleteModeloData = [];
 function GetAutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Modelo_Modelo_de_medio_de_transporteData(data) {
 	AutoCompleteModeloData = [];
@@ -79,9 +68,6 @@ function ClearControls() {
     $('#Marca').empty();
     $("#Marca").append('<option value=""></option>');
     $('#Marca').val('0').trigger('change');
-    $('#Submarca').empty();
-    $("#Submarca").append('<option value=""></option>');
-    $('#Submarca').val('0').trigger('change');
     $('#Modelo').empty();
     $("#Modelo").append('<option value=""></option>');
     $('#Modelo').val('0').trigger('change');
@@ -217,9 +203,6 @@ $(document).ready(function () {
 	    $('#Marca').empty();
     $("#Marca").append('<option value=""></option>');
     $('#Marca').val('0').trigger('change');
-    $('#Submarca').empty();
-    $("#Submarca").append('<option value=""></option>');
-    $('#Submarca').val('0').trigger('change');
     $('#Modelo').empty();
     $("#Modelo").append('<option value=""></option>');
     $('#Modelo').val('0').trigger('change');

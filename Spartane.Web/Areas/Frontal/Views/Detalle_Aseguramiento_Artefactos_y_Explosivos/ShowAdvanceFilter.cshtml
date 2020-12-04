@@ -3,12 +3,9 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_Artefactos_y_ExplosivosAdvanceSearchModel
 @{
-    List<SelectListItem> varTipo_Clasificacion_Clasificacion = null;
-    if (ViewBag.Tipo_Clasificacions_Clasificacion != null)
-    { varTipo_Clasificacion_Clasificacion = (List<SelectListItem>)ViewBag.Tipo_Clasificacions_Clasificacion; }
-    List<SelectListItem> varTipo_Artefacto_Tipo = null;
-    if (ViewBag.Tipo_Artefactos_Tipo != null)
-    { varTipo_Artefacto_Tipo = (List<SelectListItem>)ViewBag.Tipo_Artefactos_Tipo; }
+    List<SelectListItem> varClasificacion_de_Artefacto_y_Explosivo_Clasificacion = null;
+    if (ViewBag.Clasificacion_de_Artefacto_y_Explosivos_Clasificacion != null)
+    { varClasificacion_de_Artefacto_y_Explosivo_Clasificacion = (List<SelectListItem>)ViewBag.Clasificacion_de_Artefacto_y_Explosivos_Clasificacion; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -65,9 +62,9 @@
                     @Html.DropDownListFor(m => m.ClasificacionFilter, filters, new { @class = "form-control", @id = "ddlClasificacionFilter" })
                     @Html.TextBoxFor(m => m.AdvanceClasificacion, new { @class = "form-control", @type = "text", @id = "txtAdvanceClasificacion" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varTipo_Clasificacion_Clasificacion!=null)
+                    @if (varClasificacion_de_Artefacto_y_Explosivo_Clasificacion!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvanceClasificacionMultiple, varTipo_Clasificacion_Clasificacion,
+                        @Html.ListBoxFor(m => m.AdvanceClasificacionMultiple, varClasificacion_de_Artefacto_y_Explosivo_Clasificacion,
                         new
                         {
                             @class = "form-control chosen-select",
@@ -75,27 +72,6 @@
                             @data_placeholder = "",
                             @style = "width: 350px;",
                             @id = "ddlAdvanceClasificacion"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_Aseguramiento_Artefactos_y_ExplosivosResources.Tipo</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.TipoFilter, filters, new { @class = "form-control", @id = "ddlTipoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceTipo, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varTipo_Artefacto_Tipo!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceTipoMultiple, varTipo_Artefacto_Tipo,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceTipo"
                         });
                     }
                 </div>
@@ -158,21 +134,6 @@
                 advanceSearch.ClasificacionSearchType = 2;
             }
         }
-        advanceSearch.TipoSearchType = 0;
-        if ($('#ddlAdvanceTipo').val().length > 0 || $("#txtAdvanceTipo").val() == "") {
-
-
-            if (isDetalle_Aseguramiento_Artefactos_y_ExplosivosTextSearch) {
-                advanceSearch.TipoName = $("#txtAdvanceTipo").val();
-                advanceSearch.TipoNameSearchType = $("#ddlAdvanceTipo").val();
-                advanceSearch.TipoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.TipoToSearch = $("#ddlAdvanceTipo").val();
-                advanceSearch.TipoSearchType = 2;
-            }
-        }
         if ($("#txtAdvanceFromCantidad").val() != "" || $("#txtAdvanceToCantidad").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_Aseguramiento_Artefactos_y_ExplosivosCantidadFrom = $("#txtAdvanceFromCantidad").val();
@@ -214,15 +175,6 @@
         $("#ddlAdvanceClasificacion").change(function () {
             isDetalle_Aseguramiento_Artefactos_y_ExplosivosTextSearch = false;
             $("#txtAdvanceClasificacion").val('');
-        });
-        $("#txtAdvanceTipo").keypress(function () {
-            isDetalle_Aseguramiento_Artefactos_y_ExplosivosTextSearch = true;
-            $("#ddlAdvanceTipo").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceTipo").change(function () {
-            isDetalle_Aseguramiento_Artefactos_y_ExplosivosTextSearch = false;
-            $("#txtAdvanceTipo").val('');
         });
 
     });

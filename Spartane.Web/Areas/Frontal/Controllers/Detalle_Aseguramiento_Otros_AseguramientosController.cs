@@ -2,9 +2,6 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_Otros_Aseguramientos;
-using Spartane.Core.Domain.Tipo_de_Equipo_Tactico;
-using Spartane.Core.Domain.Marca_de_Equipo_Tactico;
-using Spartane.Core.Domain.Modelo_de_equipo_tactico;
 using Spartane.Core.Domain.Unidad_de_Medida_de_Equipo_Tactico;
 
 using Spartane.Core.Enums;
@@ -16,9 +13,6 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Otros_Aseguramientos;
-using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Equipo_Tactico;
-using Spartane.Web.Areas.WebApiConsumer.Marca_de_Equipo_Tactico;
-using Spartane.Web.Areas.WebApiConsumer.Modelo_de_equipo_tactico;
 using Spartane.Web.Areas.WebApiConsumer.Unidad_de_Medida_de_Equipo_Tactico;
 
 using Spartane.Web.AuthFilters;
@@ -46,9 +40,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_Otros_AseguramientosService service = null;
         private IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer _IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer;
-        private ITipo_de_Equipo_TacticoApiConsumer _ITipo_de_Equipo_TacticoApiConsumer;
-        private IMarca_de_Equipo_TacticoApiConsumer _IMarca_de_Equipo_TacticoApiConsumer;
-        private IModelo_de_equipo_tacticoApiConsumer _IModelo_de_equipo_tacticoApiConsumer;
         private IUnidad_de_Medida_de_Equipo_TacticoApiConsumer _IUnidad_de_Medida_de_Equipo_TacticoApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
@@ -63,7 +54,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_Otros_AseguramientosController(IDetalle_Aseguramiento_Otros_AseguramientosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer Detalle_Aseguramiento_Otros_AseguramientosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_Equipo_TacticoApiConsumer Tipo_de_Equipo_TacticoApiConsumer , IMarca_de_Equipo_TacticoApiConsumer Marca_de_Equipo_TacticoApiConsumer , IModelo_de_equipo_tacticoApiConsumer Modelo_de_equipo_tacticoApiConsumer , IUnidad_de_Medida_de_Equipo_TacticoApiConsumer Unidad_de_Medida_de_Equipo_TacticoApiConsumer )
+        public Detalle_Aseguramiento_Otros_AseguramientosController(IDetalle_Aseguramiento_Otros_AseguramientosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer Detalle_Aseguramiento_Otros_AseguramientosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IUnidad_de_Medida_de_Equipo_TacticoApiConsumer Unidad_de_Medida_de_Equipo_TacticoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -73,9 +64,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
-            this._ITipo_de_Equipo_TacticoApiConsumer = Tipo_de_Equipo_TacticoApiConsumer;
-            this._IMarca_de_Equipo_TacticoApiConsumer = Marca_de_Equipo_TacticoApiConsumer;
-            this._IModelo_de_equipo_tacticoApiConsumer = Modelo_de_equipo_tacticoApiConsumer;
             this._IUnidad_de_Medida_de_Equipo_TacticoApiConsumer = Unidad_de_Medida_de_Equipo_TacticoApiConsumer;
 
         }
@@ -126,11 +114,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = (int)Detalle_Aseguramiento_Otros_AseguramientosData.Clave
                     ,Tipo = Detalle_Aseguramiento_Otros_AseguramientosData.Tipo
-                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Otros_AseguramientosData.Tipo), "Tipo_de_Equipo_Tactico") ??  (string)Detalle_Aseguramiento_Otros_AseguramientosData.Tipo_Tipo_de_Equipo_Tactico.Descripcion
                     ,Marca = Detalle_Aseguramiento_Otros_AseguramientosData.Marca
-                    ,MarcaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Otros_AseguramientosData.Marca), "Marca_de_Equipo_Tactico") ??  (string)Detalle_Aseguramiento_Otros_AseguramientosData.Marca_Marca_de_Equipo_Tactico.Descripcion
                     ,Modelo = Detalle_Aseguramiento_Otros_AseguramientosData.Modelo
-                    ,ModeloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Otros_AseguramientosData.Modelo), "Modelo_de_equipo_tactico") ??  (string)Detalle_Aseguramiento_Otros_AseguramientosData.Modelo_Modelo_de_equipo_tactico.Descripcion
                     ,Inventario = Detalle_Aseguramiento_Otros_AseguramientosData.Inventario
                     ,Serie = Detalle_Aseguramiento_Otros_AseguramientosData.Serie
                     ,Unidad_de_Medida = Detalle_Aseguramiento_Otros_AseguramientosData.Unidad_de_Medida
@@ -144,27 +129,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Equipo_Tacticos_Tipo = _ITipo_de_Equipo_TacticoApiConsumer.SelAll(true);
-            if (Tipo_de_Equipo_Tacticos_Tipo != null && Tipo_de_Equipo_Tacticos_Tipo.Resource != null)
-                ViewBag.Tipo_de_Equipo_Tacticos_Tipo = Tipo_de_Equipo_Tacticos_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Equipo_Tactico", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IMarca_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Marca_de_Equipo_Tacticos_Marca = _IMarca_de_Equipo_TacticoApiConsumer.SelAll(true);
-            if (Marca_de_Equipo_Tacticos_Marca != null && Marca_de_Equipo_Tacticos_Marca.Resource != null)
-                ViewBag.Marca_de_Equipo_Tacticos_Marca = Marca_de_Equipo_Tacticos_Marca.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Marca_de_Equipo_Tactico", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IModelo_de_equipo_tacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Modelo_de_equipo_tacticos_Modelo = _IModelo_de_equipo_tacticoApiConsumer.SelAll(true);
-            if (Modelo_de_equipo_tacticos_Modelo != null && Modelo_de_equipo_tacticos_Modelo.Resource != null)
-                ViewBag.Modelo_de_equipo_tacticos_Modelo = Modelo_de_equipo_tacticos_Modelo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modelo_de_equipo_tactico", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IUnidad_de_Medida_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida = _IUnidad_de_Medida_de_Equipo_TacticoApiConsumer.SelAll(true);
             if (Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida != null && Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida.Resource != null)
@@ -206,11 +170,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Detalle_Aseguramiento_Otros_AseguramientosData.Clave 
 	                    ,Tipo = Detalle_Aseguramiento_Otros_AseguramientosData.Tipo
-                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Otros_AseguramientosData.Tipo), "Tipo_de_Equipo_Tactico") ??  (string)Detalle_Aseguramiento_Otros_AseguramientosData.Tipo_Tipo_de_Equipo_Tactico.Descripcion
                     ,Marca = Detalle_Aseguramiento_Otros_AseguramientosData.Marca
-                    ,MarcaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Otros_AseguramientosData.Marca), "Marca_de_Equipo_Tactico") ??  (string)Detalle_Aseguramiento_Otros_AseguramientosData.Marca_Marca_de_Equipo_Tactico.Descripcion
                     ,Modelo = Detalle_Aseguramiento_Otros_AseguramientosData.Modelo
-                    ,ModeloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Otros_AseguramientosData.Modelo), "Modelo_de_equipo_tactico") ??  (string)Detalle_Aseguramiento_Otros_AseguramientosData.Modelo_Modelo_de_equipo_tactico.Descripcion
                     ,Inventario = Detalle_Aseguramiento_Otros_AseguramientosData.Inventario
                     ,Serie = Detalle_Aseguramiento_Otros_AseguramientosData.Serie
                     ,Unidad_de_Medida = Detalle_Aseguramiento_Otros_AseguramientosData.Unidad_de_Medida
@@ -225,27 +186,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Equipo_Tacticos_Tipo = _ITipo_de_Equipo_TacticoApiConsumer.SelAll(true);
-            if (Tipo_de_Equipo_Tacticos_Tipo != null && Tipo_de_Equipo_Tacticos_Tipo.Resource != null)
-                ViewBag.Tipo_de_Equipo_Tacticos_Tipo = Tipo_de_Equipo_Tacticos_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Equipo_Tactico", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IMarca_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Marca_de_Equipo_Tacticos_Marca = _IMarca_de_Equipo_TacticoApiConsumer.SelAll(true);
-            if (Marca_de_Equipo_Tacticos_Marca != null && Marca_de_Equipo_Tacticos_Marca.Resource != null)
-                ViewBag.Marca_de_Equipo_Tacticos_Marca = Marca_de_Equipo_Tacticos_Marca.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Marca_de_Equipo_Tactico", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IModelo_de_equipo_tacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Modelo_de_equipo_tacticos_Modelo = _IModelo_de_equipo_tacticoApiConsumer.SelAll(true);
-            if (Modelo_de_equipo_tacticos_Modelo != null && Modelo_de_equipo_tacticos_Modelo.Resource != null)
-                ViewBag.Modelo_de_equipo_tacticos_Modelo = Modelo_de_equipo_tacticos_Modelo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modelo_de_equipo_tactico", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _IUnidad_de_Medida_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida = _IUnidad_de_Medida_de_Equipo_TacticoApiConsumer.SelAll(true);
             if (Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida != null && Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida.Resource != null)
@@ -273,69 +213,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
-        [HttpGet]
-        public ActionResult GetTipo_de_Equipo_TacticoAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ITipo_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ITipo_de_Equipo_TacticoApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Equipo_Tactico", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public ActionResult GetMarca_de_Equipo_TacticoAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IMarca_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IMarca_de_Equipo_TacticoApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Marca_de_Equipo_Tactico", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public ActionResult GetModelo_de_equipo_tacticoAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IModelo_de_equipo_tacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IModelo_de_equipo_tacticoApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modelo_de_equipo_tactico", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
         [HttpGet]
         public ActionResult GetUnidad_de_Medida_de_Equipo_TacticoAll()
         {
@@ -378,9 +255,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_Aseguramiento_Otros_Aseguramientoss.Select(m => new Detalle_Aseguramiento_Otros_AseguramientosGridModel
                     {
                     Clave = m.Clave
-                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Equipo_Tactico.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Equipo_Tactico.Descripcion
-                        ,MarcaDescripcion = CultureHelper.GetTraduction(m.Marca_Marca_de_Equipo_Tactico.Clave.ToString(), "Descripcion") ?? (string)m.Marca_Marca_de_Equipo_Tactico.Descripcion
-                        ,ModeloDescripcion = CultureHelper.GetTraduction(m.Modelo_Modelo_de_equipo_tactico.Clave.ToString(), "Descripcion") ?? (string)m.Modelo_Modelo_de_equipo_tactico.Descripcion
+			,Tipo = m.Tipo
+			,Marca = m.Marca
+			,Modelo = m.Modelo
 			,Inventario = m.Inventario
 			,Serie = m.Serie
                         ,Unidad_de_MedidaDescripcion = CultureHelper.GetTraduction(m.Unidad_de_Medida_Unidad_de_Medida_de_Equipo_Tactico.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_de_Medida_Unidad_de_Medida_de_Equipo_Tactico.Descripcion
@@ -685,9 +562,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Otros_Aseguramientoss.Select(m => new Detalle_Aseguramiento_Otros_AseguramientosGridModel
             {
                 Clave = m.Clave
-                ,TipoDescripcion = (string)m.Tipo_Tipo_de_Equipo_Tactico.Descripcion
-                ,MarcaDescripcion = (string)m.Marca_Marca_de_Equipo_Tactico.Descripcion
-                ,ModeloDescripcion = (string)m.Modelo_Modelo_de_equipo_tactico.Descripcion
+                ,Tipo = m.Tipo
+                ,Marca = m.Marca
+                ,Modelo = m.Modelo
                 ,Inventario = m.Inventario
                 ,Serie = m.Serie
                 ,Unidad_de_MedidaDescripcion = (string)m.Unidad_de_Medida_Unidad_de_Medida_de_Equipo_Tactico.Descripcion
@@ -739,9 +616,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Otros_Aseguramientoss.Select(m => new Detalle_Aseguramiento_Otros_AseguramientosGridModel
             {
                 Clave = m.Clave
-                ,TipoDescripcion = (string)m.Tipo_Tipo_de_Equipo_Tactico.Descripcion
-                ,MarcaDescripcion = (string)m.Marca_Marca_de_Equipo_Tactico.Descripcion
-                ,ModeloDescripcion = (string)m.Modelo_Modelo_de_equipo_tactico.Descripcion
+                ,Tipo = m.Tipo
+                ,Marca = m.Marca
+                ,Modelo = m.Modelo
                 ,Inventario = m.Inventario
                 ,Serie = m.Serie
                 ,Unidad_de_MedidaDescripcion = (string)m.Unidad_de_Medida_Unidad_de_Medida_de_Equipo_Tactico.Descripcion

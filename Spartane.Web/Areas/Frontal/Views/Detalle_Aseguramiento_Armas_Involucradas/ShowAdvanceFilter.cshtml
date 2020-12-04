@@ -12,9 +12,9 @@
     List<SelectListItem> varCalibre_de_Arma_Calibre = null;
     if (ViewBag.Calibre_de_Armas_Calibre != null)
     { varCalibre_de_Arma_Calibre = (List<SelectListItem>)ViewBag.Calibre_de_Armas_Calibre; }
-    List<SelectListItem> varClasificacion_de_Artefacto_y_Explosivo_Clasificacion = null;
-    if (ViewBag.Clasificacion_de_Artefacto_y_Explosivos_Clasificacion != null)
-    { varClasificacion_de_Artefacto_y_Explosivo_Clasificacion = (List<SelectListItem>)ViewBag.Clasificacion_de_Artefacto_y_Explosivos_Clasificacion; }
+    List<SelectListItem> varTipo_Clasificacion_Clasificacion = null;
+    if (ViewBag.Tipo_Clasificacions_Clasificacion != null)
+    { varTipo_Clasificacion_Clasificacion = (List<SelectListItem>)ViewBag.Tipo_Clasificacions_Clasificacion; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -166,9 +166,9 @@
                     @Html.DropDownListFor(m => m.ClasificacionFilter, filters, new { @class = "form-control", @id = "ddlClasificacionFilter" })
                     @Html.TextBoxFor(m => m.AdvanceClasificacion, new { @class = "form-control", @type = "text", @id = "txtAdvanceClasificacion" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varClasificacion_de_Artefacto_y_Explosivo_Clasificacion!=null)
+                    @if (varTipo_Clasificacion_Clasificacion!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvanceClasificacionMultiple, varClasificacion_de_Artefacto_y_Explosivo_Clasificacion,
+                        @Html.ListBoxFor(m => m.AdvanceClasificacionMultiple, varTipo_Clasificacion_Clasificacion,
                         new
                         {
                             @class = "form-control chosen-select",

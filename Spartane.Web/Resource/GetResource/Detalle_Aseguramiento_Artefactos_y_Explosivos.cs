@@ -46,16 +46,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Tipo</summary>
-        public static string Tipo
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_Aseguramiento_Artefactos_y_Explosivos.GetResource("Tipo", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Cantidad</summary>
         public static string Cantidad
         {

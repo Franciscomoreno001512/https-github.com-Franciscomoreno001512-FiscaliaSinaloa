@@ -8,12 +8,9 @@
 @{
 
 
-    List<SelectListItem> varTipo_Clasificacion_Clasificacion = null;
-    if (ViewBag.Tipo_Clasificacions_Clasificacion != null)
-    { varTipo_Clasificacion_Clasificacion = (List<SelectListItem>)ViewBag.Tipo_Clasificacions_Clasificacion; }
-    List<SelectListItem> varTipo_Artefacto_Tipo = null;
-    if (ViewBag.Tipo_Artefactos_Tipo != null)
-    { varTipo_Artefacto_Tipo = (List<SelectListItem>)ViewBag.Tipo_Artefactos_Tipo; }
+    List<SelectListItem> varClasificacion_de_Artefacto_y_Explosivo_Clasificacion = null;
+    if (ViewBag.Clasificacion_de_Artefacto_y_Explosivos_Clasificacion != null)
+    { varClasificacion_de_Artefacto_y_Explosivo_Clasificacion = (List<SelectListItem>)ViewBag.Clasificacion_de_Artefacto_y_Explosivos_Clasificacion; }
 
 
     Permission permission = ViewBag.Permission;
@@ -144,8 +141,8 @@
 	<div class="col-sm-8" data-field-id="Clasificacion" data-attribute="267544" data-field-name="@Resources.Detalle_Aseguramiento_Artefactos_y_ExplosivosResources.Clasificacion">
 		<select class="form-control" data-val="true" data-val-number="The field Clasificación must be a number." data-val-required="The Clasificación field is required." id="Detalle_Aseguramiento_Artefactos_y_ExplosivosClasificacion" name="Detalle_Aseguramiento_Artefactos_y_ExplosivosClasificacion">
 			<option value=""></option>
-			@if (varTipo_Clasificacion_Clasificacion != null){ 
-				foreach (var itemClasificacion in varTipo_Clasificacion_Clasificacion)
+			@if (varClasificacion_de_Artefacto_y_Explosivo_Clasificacion != null){ 
+				foreach (var itemClasificacion in varClasificacion_de_Artefacto_y_Explosivo_Clasificacion)
 				{
 					if (itemClasificacion.Value == Convert.ToString(Model.Clasificacion))
 					{
@@ -154,27 +151,6 @@
 					else
 					{
 						<option value="@itemClasificacion.Value">@itemClasificacion.Text</option>
-					}
-				}
-			}
-		</select>
-	</div>
-</div>
-<div class="form-group" id="divTipo">
-	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Artefactos_y_ExplosivosResources.Tipo</label>
-	<div class="col-sm-8" data-field-id="Tipo" data-attribute="267545" data-field-name="@Resources.Detalle_Aseguramiento_Artefactos_y_ExplosivosResources.Tipo">
-		<select class="form-control" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Detalle_Aseguramiento_Artefactos_y_ExplosivosTipo" name="Detalle_Aseguramiento_Artefactos_y_ExplosivosTipo">
-			<option value=""></option>
-			@if (varTipo_Artefacto_Tipo != null){ 
-				foreach (var itemTipo in varTipo_Artefacto_Tipo)
-				{
-					if (itemTipo.Value == Convert.ToString(Model.Tipo))
-					{
-						<option value="@itemTipo.Value" selected>@itemTipo.Text</option>
-					}
-					else
-					{
-						<option value="@itemTipo.Value">@itemTipo.Text</option>
 					}
 				}
 			}

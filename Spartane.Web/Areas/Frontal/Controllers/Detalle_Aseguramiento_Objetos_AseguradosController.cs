@@ -2,8 +2,6 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_Objetos_Asegurados;
-using Spartane.Core.Domain.Tipo_de_Equipo_de_Comunicacion;
-using Spartane.Core.Domain.Marca_de_Equipo_de_Comunicacion;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -14,8 +12,6 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Objetos_Asegurados;
-using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Equipo_de_Comunicacion;
-using Spartane.Web.Areas.WebApiConsumer.Marca_de_Equipo_de_Comunicacion;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -42,8 +38,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_Objetos_AseguradosService service = null;
         private IDetalle_Aseguramiento_Objetos_AseguradosApiConsumer _IDetalle_Aseguramiento_Objetos_AseguradosApiConsumer;
-        private ITipo_de_Equipo_de_ComunicacionApiConsumer _ITipo_de_Equipo_de_ComunicacionApiConsumer;
-        private IMarca_de_Equipo_de_ComunicacionApiConsumer _IMarca_de_Equipo_de_ComunicacionApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -57,7 +51,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_Objetos_AseguradosController(IDetalle_Aseguramiento_Objetos_AseguradosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_Objetos_AseguradosApiConsumer Detalle_Aseguramiento_Objetos_AseguradosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_Equipo_de_ComunicacionApiConsumer Tipo_de_Equipo_de_ComunicacionApiConsumer , IMarca_de_Equipo_de_ComunicacionApiConsumer Marca_de_Equipo_de_ComunicacionApiConsumer )
+        public Detalle_Aseguramiento_Objetos_AseguradosController(IDetalle_Aseguramiento_Objetos_AseguradosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_Objetos_AseguradosApiConsumer Detalle_Aseguramiento_Objetos_AseguradosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -67,8 +61,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
-            this._ITipo_de_Equipo_de_ComunicacionApiConsumer = Tipo_de_Equipo_de_ComunicacionApiConsumer;
-            this._IMarca_de_Equipo_de_ComunicacionApiConsumer = Marca_de_Equipo_de_ComunicacionApiConsumer;
 
         }
 
@@ -119,9 +111,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = (int)Detalle_Aseguramiento_Objetos_AseguradosData.Clave
                     ,Numero = Detalle_Aseguramiento_Objetos_AseguradosData.Numero
                     ,Tipo = Detalle_Aseguramiento_Objetos_AseguradosData.Tipo
-                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Objetos_AseguradosData.Tipo), "Tipo_de_Equipo_de_Comunicacion") ??  (string)Detalle_Aseguramiento_Objetos_AseguradosData.Tipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
                     ,Marca = Detalle_Aseguramiento_Objetos_AseguradosData.Marca
-                    ,MarcaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Objetos_AseguradosData.Marca), "Marca_de_Equipo_de_Comunicacion") ??  (string)Detalle_Aseguramiento_Objetos_AseguradosData.Marca_Marca_de_Equipo_de_Comunicacion.Descripcion
                     ,Serie = Detalle_Aseguramiento_Objetos_AseguradosData.Serie
                     ,IMEI = Detalle_Aseguramiento_Objetos_AseguradosData.IMEI
 
@@ -131,20 +121,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Equipo_de_Comunicacions_Tipo = _ITipo_de_Equipo_de_ComunicacionApiConsumer.SelAll(true);
-            if (Tipo_de_Equipo_de_Comunicacions_Tipo != null && Tipo_de_Equipo_de_Comunicacions_Tipo.Resource != null)
-                ViewBag.Tipo_de_Equipo_de_Comunicacions_Tipo = Tipo_de_Equipo_de_Comunicacions_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Equipo_de_Comunicacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IMarca_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Marca_de_Equipo_de_Comunicacions_Marca = _IMarca_de_Equipo_de_ComunicacionApiConsumer.SelAll(true);
-            if (Marca_de_Equipo_de_Comunicacions_Marca != null && Marca_de_Equipo_de_Comunicacions_Marca.Resource != null)
-                ViewBag.Marca_de_Equipo_de_Comunicacions_Marca = Marca_de_Equipo_de_Comunicacions_Marca.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Marca_de_Equipo_de_Comunicacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
 
 
             ViewBag.Consult = consult == 1;
@@ -180,9 +156,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Detalle_Aseguramiento_Objetos_AseguradosData.Clave 
 	                    ,Numero = Detalle_Aseguramiento_Objetos_AseguradosData.Numero
                     ,Tipo = Detalle_Aseguramiento_Objetos_AseguradosData.Tipo
-                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Objetos_AseguradosData.Tipo), "Tipo_de_Equipo_de_Comunicacion") ??  (string)Detalle_Aseguramiento_Objetos_AseguradosData.Tipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
                     ,Marca = Detalle_Aseguramiento_Objetos_AseguradosData.Marca
-                    ,MarcaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Objetos_AseguradosData.Marca), "Marca_de_Equipo_de_Comunicacion") ??  (string)Detalle_Aseguramiento_Objetos_AseguradosData.Marca_Marca_de_Equipo_de_Comunicacion.Descripcion
                     ,Serie = Detalle_Aseguramiento_Objetos_AseguradosData.Serie
                     ,IMEI = Detalle_Aseguramiento_Objetos_AseguradosData.IMEI
 
@@ -193,20 +167,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Equipo_de_Comunicacions_Tipo = _ITipo_de_Equipo_de_ComunicacionApiConsumer.SelAll(true);
-            if (Tipo_de_Equipo_de_Comunicacions_Tipo != null && Tipo_de_Equipo_de_Comunicacions_Tipo.Resource != null)
-                ViewBag.Tipo_de_Equipo_de_Comunicacions_Tipo = Tipo_de_Equipo_de_Comunicacions_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Equipo_de_Comunicacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IMarca_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Marca_de_Equipo_de_Comunicacions_Marca = _IMarca_de_Equipo_de_ComunicacionApiConsumer.SelAll(true);
-            if (Marca_de_Equipo_de_Comunicacions_Marca != null && Marca_de_Equipo_de_Comunicacions_Marca.Resource != null)
-                ViewBag.Marca_de_Equipo_de_Comunicacions_Marca = Marca_de_Equipo_de_Comunicacions_Marca.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Marca_de_Equipo_de_Comunicacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
 
 
             return PartialView("AddDetalle_Aseguramiento_Objetos_Asegurados", varDetalle_Aseguramiento_Objetos_Asegurados);
@@ -227,48 +187,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
-        [HttpGet]
-        public ActionResult GetTipo_de_Equipo_de_ComunicacionAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ITipo_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ITipo_de_Equipo_de_ComunicacionApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Equipo_de_Comunicacion", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public ActionResult GetMarca_de_Equipo_de_ComunicacionAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IMarca_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IMarca_de_Equipo_de_ComunicacionApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Marca_de_Equipo_de_Comunicacion", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
 
 
 
@@ -291,8 +209,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
 			,Numero = m.Numero
-                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Equipo_de_Comunicacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
-                        ,MarcaDescripcion = CultureHelper.GetTraduction(m.Marca_Marca_de_Equipo_de_Comunicacion.Clave.ToString(), "Descripcion") ?? (string)m.Marca_Marca_de_Equipo_de_Comunicacion.Descripcion
+			,Tipo = m.Tipo
+			,Marca = m.Marca
 			,Serie = m.Serie
 			,IMEI = m.IMEI
 
@@ -592,8 +510,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                 ,Numero = m.Numero
-                ,TipoDescripcion = (string)m.Tipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
-                ,MarcaDescripcion = (string)m.Marca_Marca_de_Equipo_de_Comunicacion.Descripcion
+                ,Tipo = m.Tipo
+                ,Marca = m.Marca
                 ,Serie = m.Serie
                 ,IMEI = m.IMEI
 
@@ -643,8 +561,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                 ,Numero = m.Numero
-                ,TipoDescripcion = (string)m.Tipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
-                ,MarcaDescripcion = (string)m.Marca_Marca_de_Equipo_de_Comunicacion.Descripcion
+                ,Tipo = m.Tipo
+                ,Marca = m.Marca
                 ,Serie = m.Serie
                 ,IMEI = m.IMEI
 

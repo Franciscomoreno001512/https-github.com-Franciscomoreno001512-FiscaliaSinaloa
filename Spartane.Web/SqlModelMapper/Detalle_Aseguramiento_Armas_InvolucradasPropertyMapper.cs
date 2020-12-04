@@ -35,7 +35,7 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_Aseguramiento_Armas_Involucradas.Inventario";
                 case "Clasificacion[Descripcion]":
                 case "ClasificacionDescripcion":
-                    return "Clasificacion_de_Artefacto_y_Explosivo.Descripcion";
+                    return "Tipo_Clasificacion.Descripcion";
                 case "Cantidad":
                     return "Detalle_Aseguramiento_Armas_Involucradas.Cantidad";
                 case "Lugar_de_Hallazgo":

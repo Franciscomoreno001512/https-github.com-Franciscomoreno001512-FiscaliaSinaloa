@@ -7,7 +7,7 @@ using Spartane.Core.Domain.Aseguramientos;
 using Spartane.Core.Domain.Tipo_de_Arma;
 using Spartane.Core.Domain.Marca_de_Arma;
 using Spartane.Core.Domain.Calibre_de_Arma;
-using Spartane.Core.Domain.Clasificacion_de_Artefacto_y_Explosivo;
+using Spartane.Core.Domain.Tipo_Clasificacion;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -29,7 +29,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Armas_Involucradas
         public string Matricula { get; set; }
         public string Serie { get; set; }
         public string Inventario { get; set; }
-        public short? Clasificacion { get; set; }
+        public int? Clasificacion { get; set; }
         public int? Cantidad { get; set; }
         public string Lugar_de_Hallazgo { get; set; }
         public string Observaciones { get; set; }
@@ -43,7 +43,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Armas_Involucradas
         [ForeignKey("Calibre")]
         public virtual Spartane.Core.Domain.Calibre_de_Arma.Calibre_de_Arma Calibre_Calibre_de_Arma { get; set; }
         [ForeignKey("Clasificacion")]
-        public virtual Spartane.Core.Domain.Clasificacion_de_Artefacto_y_Explosivo.Clasificacion_de_Artefacto_y_Explosivo Clasificacion_Clasificacion_de_Artefacto_y_Explosivo { get; set; }
+        public virtual Spartane.Core.Domain.Tipo_Clasificacion.Tipo_Clasificacion Clasificacion_Tipo_Clasificacion { get; set; }
 
     }
 	
@@ -58,7 +58,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Armas_Involucradas
         public string Matricula { get; set; }
         public string Serie { get; set; }
         public string Inventario { get; set; }
-        public short? Clasificacion { get; set; }
+        public int? Clasificacion { get; set; }
         public int? Cantidad { get; set; }
         public string Lugar_de_Hallazgo { get; set; }
         public string Observaciones { get; set; }
@@ -72,7 +72,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Armas_Involucradas
         [ForeignKey("Calibre")]
         public virtual Spartane.Core.Domain.Calibre_de_Arma.Calibre_de_Arma Calibre_Calibre_de_Arma { get; set; }
         [ForeignKey("Clasificacion")]
-        public virtual Spartane.Core.Domain.Clasificacion_de_Artefacto_y_Explosivo.Clasificacion_de_Artefacto_y_Explosivo Clasificacion_Clasificacion_de_Artefacto_y_Explosivo { get; set; }
+        public virtual Spartane.Core.Domain.Tipo_Clasificacion.Tipo_Clasificacion Clasificacion_Tipo_Clasificacion { get; set; }
 
     }
 

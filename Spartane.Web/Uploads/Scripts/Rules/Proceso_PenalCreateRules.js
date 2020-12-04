@@ -2,7 +2,38 @@ var operation = $('#Operation').val();
 var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
+$('#Proceso_PenalGuardarYNuevo').hide();
+$('#Proceso_PenalGuardarYCopia').hide();
 $(document).ready(function () {
+
+
+
+
+
+
+//BusinessRuleId:2768, Attribute:267807, Operation:Field, Event:None
+$("form#CreateProceso_Penal").on('change', '#Resolucion', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Resolucion' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divPlazo_meses').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Plazo_meses' + rowIndex));$('#divTipo_de_Sentencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Sentencia' + rowIndex));$('#divcuantia_de_pena_anios').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'cuantia_de_pena_anios' + rowIndex));$('#divcuantia_de_pena_meses').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'cuantia_de_pena_meses' + rowIndex));$('#divMonto_de_la_Reparacion_del_Dano').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Reparacion_del_Dano' + rowIndex)); if('true' == 'true')
+{
+	$('#divCondiciones').css('display', 'none');
+}
+else
+{
+	$('#divCondiciones').css('display', 'block');
+}} else { $('#divPlazo_meses').css('display', 'block');$('#divTipo_de_Sentencia').css('display', 'block');$('#divcuantia_de_pena_anios').css('display', 'block');$('#divcuantia_de_pena_meses').css('display', 'block');$('#divMonto_de_la_Reparacion_del_Dano').css('display', 'block'); if('false' == 'true')
+{
+	$('#divCondiciones').css('display', 'none');
+}
+else
+{
+	$('#divCondiciones').css('display', 'block');
+}}
+});
+
+//BusinessRuleId:2768, Attribute:267807, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
@@ -13,6 +44,54 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2749, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2761, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ DisabledControl($("#" + nameOfTable + "Fecha_de_Registro" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Registro' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_de_Registro" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Registro' + rowIndex));}DisabledControl($("#" + nameOfTable + "Usuario_que_Registra" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Registra' + rowIndex));} $('#divExpediente_MP').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));
+
+}
+//BusinessRuleId:2761, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2761, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ DisabledControl($("#" + nameOfTable + "Fecha_de_Registro" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Registro' + rowIndex));}DisabledControl($("#" + nameOfTable + "Hora_de_Registro" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Registro' + rowIndex));}DisabledControl($("#" + nameOfTable + "Usuario_que_Registra" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Registra' + rowIndex));} $('#divExpediente_MP').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));
+
+}
+//BusinessRuleId:2761, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+//BusinessRuleId:2763, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Fecha_de_Registro' + rowIndex),EvaluaQuery(" select convert (varchar(11),getdate(),105)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Hora_de_Registro' + rowIndex),EvaluaQuery(" select convert (varchar(8),getdate(),108)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Usuario_que_Registra' + rowIndex),EvaluaQuery("select GLOBAL[USERID]", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:2763, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+//BusinessRuleId:2769, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Resolucion' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divPlazo_meses').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Plazo_meses' + rowIndex));$('#divTipo_de_Sentencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Sentencia' + rowIndex));$('#divcuantia_de_pena_anios').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'cuantia_de_pena_anios' + rowIndex));$('#divcuantia_de_pena_meses').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'cuantia_de_pena_meses' + rowIndex));$('#divMonto_de_la_Reparacion_del_Dano').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_la_Reparacion_del_Dano' + rowIndex)); if('true' == 'true')
+{
+	$('#divCondiciones').css('display', 'none');
+}
+else
+{
+	$('#divCondiciones').css('display', 'block');
+}} else { $('#divPlazo_meses').css('display', 'block');$('#divTipo_de_Sentencia').css('display', 'block');$('#divcuantia_de_pena_anios').css('display', 'block');$('#divcuantia_de_pena_meses').css('display', 'block');$('#divMonto_de_la_Reparacion_del_Dano').css('display', 'block'); if('false' == 'true')
+{
+	$('#divCondiciones').css('display', 'none');
+}
+else
+{
+	$('#divCondiciones').css('display', 'block');
+}}
+
+}
+//BusinessRuleId:2769, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -21,6 +100,13 @@ function EjecutarValidacionesAntesDeGuardar(){
     return result;
 }
 function EjecutarValidacionesDespuesDeGuardar(){
+//BusinessRuleId:2767, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery(" update Proceso_Penal set expediente_mp = GLOBAL[SpartanOperationId] where clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2767, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

@@ -317,7 +317,7 @@
                                 <label class="col-sm-2 control-label">@Resources.Proceso_PenalResources.Imputado</label>
                                 <div class="col-sm-8" data-field-id="Imputado" data-attribute="267771" data-field-name="@Resources.Proceso_PenalResources.Imputado">
                                     <select class='fullWidth AutoComplete AutoCompleteProceso_Penal_Imputado form-control select2-dropdown Fase_Complementaria' data-val="true" id="Imputado" name="Imputado">
-                                        <option value="@Model.Imputado">@(Model.ImputadoNombre_Completo_del_Tutor??Model.ImputadoNombre_Completo_del_Tutor)</option>
+                                        <option value="@Model.Imputado">@(Model.ImputadoNombre_Completo_Detenido??Model.ImputadoNombre_Completo_Detenido)</option>
                                     </select>
                                 </div>
 				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267771).New)
