@@ -1667,6 +1667,15 @@ using Spartane.Web.Areas.WebApiConsumer.Detalle_Medios_Prueba_Imputado;
 using Spartane.Services.Detalle_Medidas_Cautelares_Proceso_Penal;
 using Spartane.Core.Domain.Detalle_Medidas_Cautelares_Proceso_Penal;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Medidas_Cautelares_Proceso_Penal;
+using Spartane.Services.Detalle_Relaciones_Audiencia_Inicial;
+using Spartane.Core.Domain.Detalle_Relaciones_Audiencia_Inicial;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Relaciones_Audiencia_Inicial;
+using Spartane.Services.Detalle_Medios_Prueba_Admitidos;
+using Spartane.Core.Domain.Detalle_Medios_Prueba_Admitidos;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Medios_Prueba_Admitidos;
+using Spartane.Services.Detalle_Condiciones_Proceso_Penal;
+using Spartane.Core.Domain.Detalle_Condiciones_Proceso_Penal;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Condiciones_Proceso_Penal;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -2901,6 +2910,12 @@ builder.RegisterType<Detalle_Medios_Prueba_ImputadoService>().As<IDetalle_Medios
 builder.RegisterType<Detalle_Medios_Prueba_ImputadoApiConsumer>().As<IDetalle_Medios_Prueba_ImputadoApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Detalle_Medidas_Cautelares_Proceso_PenalService>().As<IDetalle_Medidas_Cautelares_Proceso_PenalService>().InstancePerLifetimeScope();
 builder.RegisterType<Detalle_Medidas_Cautelares_Proceso_PenalApiConsumer>().As<IDetalle_Medidas_Cautelares_Proceso_PenalApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Relaciones_Audiencia_InicialService>().As<IDetalle_Relaciones_Audiencia_InicialService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Relaciones_Audiencia_InicialApiConsumer>().As<IDetalle_Relaciones_Audiencia_InicialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Medios_Prueba_AdmitidosService>().As<IDetalle_Medios_Prueba_AdmitidosService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Medios_Prueba_AdmitidosApiConsumer>().As<IDetalle_Medios_Prueba_AdmitidosApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Condiciones_Proceso_PenalService>().As<IDetalle_Condiciones_Proceso_PenalService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Condiciones_Proceso_PenalApiConsumer>().As<IDetalle_Condiciones_Proceso_PenalApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3081,6 +3096,20 @@ builder.RegisterType<Detalle_Medidas_Cautelares_Proceso_PenalApiConsumer>().As<I
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

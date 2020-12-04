@@ -1412,6 +1412,12 @@
 <Compile Include="Domain\Detalle_Medios_Prueba_Imputado\Detalle_Medios_Prueba_Imputado.cs" />
 <Compile Include="Domain\Detalle_Medidas_Cautelares_Proceso_Penal\Detalle_Medidas_Cautelares_Proceso_PenalPagingModel.cs" />
 <Compile Include="Domain\Detalle_Medidas_Cautelares_Proceso_Penal\Detalle_Medidas_Cautelares_Proceso_Penal.cs" />
+<Compile Include="Domain\Detalle_Relaciones_Audiencia_Inicial\Detalle_Relaciones_Audiencia_InicialPagingModel.cs" />
+<Compile Include="Domain\Detalle_Relaciones_Audiencia_Inicial\Detalle_Relaciones_Audiencia_Inicial.cs" />
+<Compile Include="Domain\Detalle_Medios_Prueba_Admitidos\Detalle_Medios_Prueba_AdmitidosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Medios_Prueba_Admitidos\Detalle_Medios_Prueba_Admitidos.cs" />
+<Compile Include="Domain\Detalle_Condiciones_Proceso_Penal\Detalle_Condiciones_Proceso_PenalPagingModel.cs" />
+<Compile Include="Domain\Detalle_Condiciones_Proceso_Penal\Detalle_Condiciones_Proceso_Penal.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1432,6 +1438,12 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
 
 
 

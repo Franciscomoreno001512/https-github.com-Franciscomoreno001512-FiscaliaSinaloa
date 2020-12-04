@@ -13762,6 +13762,63 @@
 <Compile Include="Areas\WebApiConsumer\Detalle_Medidas_Cautelares_Proceso_Penal\IDetalle_Medidas_Cautelares_Proceso_PenalApiConsumer.cs" />
 <Compile Include="Resource\GetResource\Detalle_Medidas_Cautelares_Proceso_Penal.cs" />
 <Content Include="Scripts\Custom\Detalle_Medidas_Cautelares_Proceso_PenalGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Medidas_Cautelares_Proceso_PenalPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Medidas_Cautelares_Proceso_PenalResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Medidas_Cautelares_Proceso_PenalResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Medidas_Cautelares_Proceso_Penal.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Medidas_Cautelares_Proceso_PenalIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Medidas_Cautelares_Proceso_PenalCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Relaciones_Audiencia_InicialController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Relaciones_Audiencia_InicialModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Relaciones_Audiencia_InicialGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Relaciones_Audiencia_InicialMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Relaciones_Audiencia_Inicial\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Relaciones_Audiencia_Inicial\AddDetalle_Relaciones_Audiencia_Inicial.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Relaciones_Audiencia_Inicial\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Relaciones_Audiencia_Inicial\Detalle_Relaciones_Audiencia_InicialApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Relaciones_Audiencia_Inicial\IDetalle_Relaciones_Audiencia_InicialApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Relaciones_Audiencia_Inicial.cs" />
+<Content Include="Scripts\Custom\Detalle_Relaciones_Audiencia_InicialGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Relaciones_Audiencia_InicialPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Relaciones_Audiencia_InicialResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Relaciones_Audiencia_InicialResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Relaciones_Audiencia_Inicial.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Relaciones_Audiencia_InicialIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Relaciones_Audiencia_InicialCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Medios_Prueba_AdmitidosController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Medios_Prueba_AdmitidosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Medios_Prueba_AdmitidosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Medios_Prueba_AdmitidosMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Medios_Prueba_Admitidos\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Medios_Prueba_Admitidos\AddDetalle_Medios_Prueba_Admitidos.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Medios_Prueba_Admitidos\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Medios_Prueba_Admitidos\Detalle_Medios_Prueba_AdmitidosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Medios_Prueba_Admitidos\IDetalle_Medios_Prueba_AdmitidosApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Medios_Prueba_Admitidos.cs" />
+<Content Include="Scripts\Custom\Detalle_Medios_Prueba_AdmitidosGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Medios_Prueba_AdmitidosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Medios_Prueba_AdmitidosResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Medios_Prueba_AdmitidosResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Medios_Prueba_Admitidos.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Medios_Prueba_AdmitidosIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Medios_Prueba_AdmitidosCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Condiciones_Proceso_PenalController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Condiciones_Proceso_PenalModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Condiciones_Proceso_PenalGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Condiciones_Proceso_PenalMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Condiciones_Proceso_Penal\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Condiciones_Proceso_Penal\AddDetalle_Condiciones_Proceso_Penal.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Condiciones_Proceso_Penal\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Condiciones_Proceso_Penal\Detalle_Condiciones_Proceso_PenalApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Condiciones_Proceso_Penal\IDetalle_Condiciones_Proceso_PenalApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Condiciones_Proceso_Penal.cs" />
+<Content Include="Scripts\Custom\Detalle_Condiciones_Proceso_PenalGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Condiciones_Proceso_PenalPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Condiciones_Proceso_PenalResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Condiciones_Proceso_PenalResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Condiciones_Proceso_Penal.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Condiciones_Proceso_PenalIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Condiciones_Proceso_PenalCreateRules.js" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -14761,6 +14818,63 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

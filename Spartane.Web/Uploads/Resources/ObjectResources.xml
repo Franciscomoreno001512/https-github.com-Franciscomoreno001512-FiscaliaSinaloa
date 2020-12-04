@@ -1120,8 +1120,28 @@
 <Object Id="45560" culture="es-es" value="Detalle Medios Prueba Imputado" />
 <Object Id="45561" culture="en-us" value="Detalle Medidas Cautelares Proceso Penal" />
 <Object Id="45561" culture="es-es" value="Detalle Medidas Cautelares Proceso Penal" />
+<Object Id="45562" culture="en-us" value="Detalle Relaciones Audiencia Inicial" />
+<Object Id="45562" culture="es-es" value="Detalle Relaciones Audiencia Inicial" />
+<Object Id="45563" culture="en-us" value="Detalle Medios Prueba Admitidos" />
+<Object Id="45563" culture="es-es" value="Detalle Medios Prueba Admitidos" />
+<Object Id="45564" culture="en-us" value="Detalle Condiciones Proceso Penal" />
+<Object Id="45564" culture="es-es" value="Detalle Condiciones Proceso Penal" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
