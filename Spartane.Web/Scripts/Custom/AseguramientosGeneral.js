@@ -44,25 +44,7 @@ function GetDetalle_Aseguramiento_Medios_de_Transporte_Marca_de_Medio_de_transpo
     }
     return Detalle_Aseguramiento_Medios_de_Transporte_Marca_de_Medio_de_transporteDropdown;
 }
-function GetDetalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteItems.length; i++) {
-        if (Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteItems[i].Descripcion;
-        }
-    }
-    return "";
-}
 
-function GetDetalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteDropDown() {
-    var Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Medios_de_Transporte_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteDropdown);
-
-    for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteItems.length; i++) {
-        $('<option />', { value: Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteItems[i].Clave, text: Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteDropdown);
-    }
-    return Detalle_Aseguramiento_Medios_de_Transporte_Submarca_de_medio_de_transporteDropdown;
-}
 function GetDetalle_Aseguramiento_Medios_de_Transporte_Modelo_de_medio_de_transporteName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_Modelo_de_medio_de_transporteItems.length; i++) {
         if (Detalle_Aseguramiento_Medios_de_Transporte_Modelo_de_medio_de_transporteItems[i].Clave == Id) {
@@ -154,27 +136,6 @@ function GetDetalle_Aseguramiento_Medios_de_Transporte_Procedencia_del_medio_de_
 
 
 
-function GetDetalle_Aseguramiento_Medios_de_Transporte_DetencionName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_DetencionItems.length; i++) {
-        if (Detalle_Aseguramiento_Medios_de_Transporte_DetencionItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Medios_de_Transporte_DetencionItems[i].Descripcion;
-        }
-    }
-    return "";
-}
-
-function GetDetalle_Aseguramiento_Medios_de_Transporte_DetencionDropDown() {
-    var Detalle_Aseguramiento_Medios_de_Transporte_DetencionDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Medios_de_Transporte_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_DetencionDropdown);
-    if(Detalle_Aseguramiento_Medios_de_Transporte_DetencionItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Medios_de_Transporte_DetencionItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Medios_de_Transporte_DetencionItems[i].Clave, text:    Detalle_Aseguramiento_Medios_de_Transporte_DetencionItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Medios_de_Transporte_DetencionDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Medios_de_Transporte_DetencionDropdown;
-}
 
 
 function GetInsertDetalle_Aseguramiento_Medios_de_TransporteRowControls(index) {
@@ -184,7 +145,7 @@ function GetInsertDetalle_Aseguramiento_Medios_de_TransporteRowControls(index) {
     columnData[0] = $(GetDetalle_Aseguramiento_Medios_de_Transporte_Tipo_de_medios_de_transporteDropDown()).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Tipo_de_medios_de_transporte', 'Tipo', 267566)));
     columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Especifique Especifique').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Especifique_' + index).attr('data-field', 'Especifique');
     columnData[2] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Marca'))).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Marca Marca').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Marca_' + index).attr('data-field', 'Marca').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Marca_de_Medio_de_transporte', 'Marca', 267664)));
-    columnData[3] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Submarca'))).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Submarca Submarca').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Submarca_' + index).attr('data-field', 'Submarca').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Submarca_de_medio_de_transporte', 'Submarca', 267667)));
+    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Submarca Submarca').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Submarca_' + index).attr('data-field', 'Submarca');
     columnData[4] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Modelo'))).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Modelo Modelo').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Modelo_' + index).attr('data-field', 'Modelo').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Modelo_de_medio_de_transporte', 'Modelo', 267668)));
     columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Placas Placas').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Placas_' + index).attr('data-field', 'Placas');
     columnData[6] = $(GetDetalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteDropDown()).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Color Color').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Color_' + index).attr('data-field', 'Color').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Color_de_medio_de_trasporte', 'Color', 267670)));
@@ -198,7 +159,6 @@ function GetInsertDetalle_Aseguramiento_Medios_de_TransporteRowControls(index) {
     columnData[14] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Origen Origen').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Origen_' + index).attr('data-field', 'Origen');
     columnData[15] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Destino Destino').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Destino_' + index).attr('data-field', 'Destino');
     columnData[16] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Observaciones_' + index).attr('data-field', 'Observaciones');
-    columnData[17] = $(GetDetalle_Aseguramiento_Medios_de_Transporte_DetencionDropDown()).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Detencion Detencion').attr('id', 'Detalle_Aseguramiento_Medios_de_Transporte_Detencion_' + index).attr('data-field', 'Detencion').after($.parseHTML(addNew('Detalle_Aseguramiento_Medios_de_Transporte', 'Detencion', 'Detencion', 267682)));
 
 
     initiateUIControls();
@@ -220,8 +180,7 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Medios_de_Transpor
         ,Especifique:  data.childNodes[counter++].childNodes[0].value
         , MarcaDescripcion:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
         , Marca:  data.childNodes[counter++].childNodes[0].value 	
-        , SubmarcaDescripcion:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
-        , Submarca:  data.childNodes[counter++].childNodes[0].value 	
+        ,Submarca:  data.childNodes[counter++].childNodes[0].value
         , ModeloDescripcion:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
         , Modelo:  data.childNodes[counter++].childNodes[0].value 	
         ,Placas:  data.childNodes[counter++].childNodes[0].value
@@ -236,7 +195,6 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Medios_de_Transpor
         ,Origen:  data.childNodes[counter++].childNodes[0].value
         ,Destino:  data.childNodes[counter++].childNodes[0].value
         ,Observaciones:  data.childNodes[counter++].childNodes[0].value
-        ,Detencion:  data.childNodes[counter++].childNodes[0].value
 
     }
     Detalle_Aseguramiento_Medios_de_TransporteTable.fnUpdate(newData, rowIndex, null, true);
@@ -289,7 +247,6 @@ function GetDetalle_Aseguramiento_Medios_de_TransporteFromDataTable() {
                 ,Origen: gridData[i].Origen
                 ,Destino: gridData[i].Destino
                 ,Observaciones: gridData[i].Observaciones
-                ,Detencion: gridData[i].Detencion
 
                 ,Removed: false
             });
@@ -317,7 +274,6 @@ function GetDetalle_Aseguramiento_Medios_de_TransporteFromDataTable() {
                 ,Origen: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Origen
                 ,Destino: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Destino
                 ,Observaciones: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Observaciones
-                ,Detencion: removedDetalle_Aseguramiento_Medios_de_TransporteData[i].Detencion
 
                 , Removed: true
             });
@@ -384,7 +340,7 @@ function Detalle_Aseguramiento_Medios_de_TransporteEditRowPopup(rowIndex, curren
     $('#Detalle_Aseguramiento_Medios_de_TransporteTipo').val(prevData.Tipo);
     $('#Detalle_Aseguramiento_Medios_de_TransporteEspecifique').val(prevData.Especifique);
     $('#dvDetalle_Aseguramiento_Medios_de_TransporteMarca').html($($.parseHTML(GetGridAutoComplete(prevData.Marca.label,'AutoCompleteMarca'))).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Marca'));
-    $('#dvDetalle_Aseguramiento_Medios_de_TransporteSubmarca').html($($.parseHTML(GetGridAutoComplete(prevData.Submarca.label,'AutoCompleteSubmarca'))).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Submarca'));
+    $('#Detalle_Aseguramiento_Medios_de_TransporteSubmarca').val(prevData.Submarca);
     $('#dvDetalle_Aseguramiento_Medios_de_TransporteModelo').html($($.parseHTML(GetGridAutoComplete(prevData.Modelo.label,'AutoCompleteModelo'))).addClass('Detalle_Aseguramiento_Medios_de_Transporte_Modelo'));
     $('#Detalle_Aseguramiento_Medios_de_TransportePlacas').val(prevData.Placas);
     $('#Detalle_Aseguramiento_Medios_de_TransporteColor').val(prevData.Color);
@@ -398,10 +354,8 @@ function Detalle_Aseguramiento_Medios_de_TransporteEditRowPopup(rowIndex, curren
     $('#Detalle_Aseguramiento_Medios_de_TransporteOrigen').val(prevData.Origen);
     $('#Detalle_Aseguramiento_Medios_de_TransporteDestino').val(prevData.Destino);
     $('#Detalle_Aseguramiento_Medios_de_TransporteObservaciones').val(prevData.Observaciones);
-    $('#Detalle_Aseguramiento_Medios_de_TransporteDetencion').val(prevData.Detencion);
 
     initiateUIControls();
-
 
 
 
@@ -449,7 +403,6 @@ function Detalle_Aseguramiento_Medios_de_TransporteAddInsertRow() {
         ,Origen: ""
         ,Destino: ""
         ,Observaciones: ""
-        ,Detencion: ""
 
     }
 }
@@ -498,7 +451,6 @@ function GetDetalle_Aseguramiento_Medios_de_Transporte() {
         form_data.append('[' + i + '].Origen', Detalle_Aseguramiento_Medios_de_TransporteData[i].Origen);
         form_data.append('[' + i + '].Destino', Detalle_Aseguramiento_Medios_de_TransporteData[i].Destino);
         form_data.append('[' + i + '].Observaciones', Detalle_Aseguramiento_Medios_de_TransporteData[i].Observaciones);
-        form_data.append('[' + i + '].Detencion', Detalle_Aseguramiento_Medios_de_TransporteData[i].Detencion);
 
         form_data.append('[' + i + '].Removed', Detalle_Aseguramiento_Medios_de_TransporteData[i].Removed);
     }
@@ -530,7 +482,6 @@ function Detalle_Aseguramiento_Medios_de_TransporteInsertRowFromPopup(rowIndex) 
         ,Origen: $('#Detalle_Aseguramiento_Medios_de_TransporteOrigen').val()
         ,Destino: $('#Detalle_Aseguramiento_Medios_de_TransporteDestino').val()
         ,Observaciones: $('#Detalle_Aseguramiento_Medios_de_TransporteObservaciones').val()
-        ,Detencion: $('#Detalle_Aseguramiento_Medios_de_TransporteDetencion').val()
 
     }
 
@@ -908,26 +859,26 @@ function GetDetalle_Aseguramiento_Armas_Involucradas_Calibre_de_ArmaDropDown() {
 
 
 
-function GetDetalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoItems.length; i++) {
-        if (Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Descripcion;
+function GetDetalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionItems.length; i++) {
+        if (Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionItems[i].Descripcion;
         }
     }
     return "";
 }
 
-function GetDetalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoDropDown() {
-    var Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Armas_Involucradas_cmbLabelSelect").val();
+function GetDetalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionDropDown() {
+    var Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Armas_Involucradas_cmbLabelSelect").val();
 
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoDropdown);
-    if(Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoItems != null)
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionDropdown);
+    if(Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionItems != null)
     {
-       for (var i = 0; i < Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Clave, text:    Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoDropdown);
+       for (var i = 0; i < Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionItems[i].Clave, text:    Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionDropdown);
        }
     }
-    return Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoDropdown;
+    return Detalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionDropdown;
 }
 
 
@@ -945,7 +896,7 @@ function GetInsertDetalle_Aseguramiento_Armas_InvolucradasRowControls(index) {
     columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Matricula Matricula').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Matricula_' + index).attr('data-field', 'Matricula');
     columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Serie Serie').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Serie_' + index).attr('data-field', 'Serie');
     columnData[6] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Inventario Inventario').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Inventario_' + index).attr('data-field', 'Inventario');
-    columnData[7] = $(GetDetalle_Aseguramiento_Armas_Involucradas_Clasificacion_de_Artefacto_y_ExplosivoDropDown()).addClass('Detalle_Aseguramiento_Armas_Involucradas_Clasificacion Clasificacion').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_' + index).attr('data-field', 'Clasificacion').after($.parseHTML(addNew('Detalle_Aseguramiento_Armas_Involucradas', 'Clasificacion_de_Artefacto_y_Explosivo', 'Clasificacion', 267538)));
+    columnData[7] = $(GetDetalle_Aseguramiento_Armas_Involucradas_Tipo_ClasificacionDropDown()).addClass('Detalle_Aseguramiento_Armas_Involucradas_Clasificacion Clasificacion').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Clasificacion_' + index).attr('data-field', 'Clasificacion').after($.parseHTML(addNew('Detalle_Aseguramiento_Armas_Involucradas', 'Tipo_Clasificacion', 'Clasificacion', 267538)));
     columnData[8] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Armas_Involucradas_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Cantidad_' + index).attr('data-field', 'Cantidad');
     columnData[9] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Lugar_de_Hallazgo Lugar_de_Hallazgo').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Lugar_de_Hallazgo_' + index).attr('data-field', 'Lugar_de_Hallazgo');
     columnData[10] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Armas_Involucradas_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Armas_Involucradas_Observaciones_' + index).attr('data-field', 'Observaciones');
@@ -1242,47 +1193,26 @@ function Detalle_Aseguramiento_Armas_InvolucradasRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Artefactos_y_Explosivos MultiRow
 var Detalle_Aseguramiento_Artefactos_y_ExplosivoscountRowsChecked = 0;
 
-function GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionItems.length; i++) {
-        if (Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionItems[i].Descripcion;
+function GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoItems.length; i++) {
+        if (Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Descripcion;
         }
     }
     return "";
 }
 
-function GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionDropDown() {
-    var Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Artefactos_y_Explosivos_cmbLabelSelect").val();
+function GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoDropDown() {
+    var Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Artefactos_y_Explosivos_cmbLabelSelect").val();
 
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionDropdown);
-    if(Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionItems != null)
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoDropdown);
+    if(Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoItems != null)
     {
-       for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionItems[i].Clave, text:    Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionDropdown);
+       for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Clave, text:    Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoDropdown);
        }
     }
-    return Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionDropdown;
-}
-function GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoItems.length; i++) {
-        if (Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoItems[i].Descripcion;
-        }
-    }
-    return "";
-}
-
-function GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoDropDown() {
-    var Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Artefactos_y_Explosivos_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoDropdown);
-    if(Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoItems[i].Clave, text:    Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoDropdown;
+    return Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoDropdown;
 }
 
 
@@ -1293,11 +1223,10 @@ function GetInsertDetalle_Aseguramiento_Artefactos_y_ExplosivosRowControls(index
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ClasificacionDropDown()).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion Clasificacion').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_' + index).attr('data-field', 'Clasificacion').after($.parseHTML(addNew('Detalle_Aseguramiento_Artefactos_y_Explosivos', 'Tipo_Clasificacion', 'Clasificacion', 267544)));
-    columnData[1] = $(GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_ArtefactoDropDown()).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Artefactos_y_Explosivos', 'Tipo_Artefacto', 'Tipo', 267545)));
-    columnData[2] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Cantidad_' + index).attr('data-field', 'Cantidad');
-    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Lugar_de_Hallazgo Lugar_de_Hallazgo').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Lugar_de_Hallazgo_' + index).attr('data-field', 'Lugar_de_Hallazgo');
-    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Observaciones_' + index).attr('data-field', 'Observaciones');
+    columnData[0] = $(GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoDropDown()).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion Clasificacion').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_' + index).attr('data-field', 'Clasificacion').after($.parseHTML(addNew('Detalle_Aseguramiento_Artefactos_y_Explosivos', 'Clasificacion_de_Artefacto_y_Explosivo', 'Clasificacion', 267544)));
+    columnData[1] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Cantidad_' + index).attr('data-field', 'Cantidad');
+    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Lugar_de_Hallazgo Lugar_de_Hallazgo').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Lugar_de_Hallazgo_' + index).attr('data-field', 'Lugar_de_Hallazgo');
+    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Artefactos_y_Explosivos_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Artefactos_y_Explosivos_Observaciones_' + index).attr('data-field', 'Observaciones');
 
 
     initiateUIControls();
@@ -1316,7 +1245,6 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Artefactos_y_Explo
         IsInsertRow: false
 
         ,Clasificacion:  data.childNodes[counter++].childNodes[0].value
-        ,Tipo:  data.childNodes[counter++].childNodes[0].value
         ,Cantidad: data.childNodes[counter++].childNodes[0].value
         ,Lugar_de_Hallazgo:  data.childNodes[counter++].childNodes[0].value
         ,Observaciones:  data.childNodes[counter++].childNodes[0].value
@@ -1356,7 +1284,6 @@ function GetDetalle_Aseguramiento_Artefactos_y_ExplosivosFromDataTable() {
                 Clave: gridData[i].Clave
 
                 ,Clasificacion: gridData[i].Clasificacion
-                ,Tipo: gridData[i].Tipo
                 ,Cantidad: gridData[i].Cantidad
                 ,Lugar_de_Hallazgo: gridData[i].Lugar_de_Hallazgo
                 ,Observaciones: gridData[i].Observaciones
@@ -1371,7 +1298,6 @@ function GetDetalle_Aseguramiento_Artefactos_y_ExplosivosFromDataTable() {
                 Clave: removedDetalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Clave
 
                 ,Clasificacion: removedDetalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Clasificacion
-                ,Tipo: removedDetalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Tipo
                 ,Cantidad: removedDetalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Cantidad
                 ,Lugar_de_Hallazgo: removedDetalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Lugar_de_Hallazgo
                 ,Observaciones: removedDetalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Observaciones
@@ -1439,13 +1365,11 @@ function Detalle_Aseguramiento_Artefactos_y_ExplosivosEditRowPopup(rowIndex, cur
     GetAddDetalle_Aseguramiento_Artefactos_y_ExplosivosPopup(rowIndex, 1, prevData.Clave);
 
     $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosClasificacion').val(prevData.Clasificacion);
-    $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosTipo').val(prevData.Tipo);
     $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosCantidad').val(prevData.Cantidad);
     $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosLugar_de_Hallazgo').val(prevData.Lugar_de_Hallazgo);
     $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosObservaciones').val(prevData.Observaciones);
 
     initiateUIControls();
-
 
 
 
@@ -1464,7 +1388,6 @@ function Detalle_Aseguramiento_Artefactos_y_ExplosivosAddInsertRow() {
         IsInsertRow: true
 
         ,Clasificacion: ""
-        ,Tipo: ""
         ,Cantidad: ""
         ,Lugar_de_Hallazgo: ""
         ,Observaciones: ""
@@ -1500,7 +1423,6 @@ function GetDetalle_Aseguramiento_Artefactos_y_Explosivos() {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Clave);
 
         form_data.append('[' + i + '].Clasificacion', Detalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Clasificacion);
-        form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Tipo);
         form_data.append('[' + i + '].Cantidad', Detalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Cantidad);
         form_data.append('[' + i + '].Lugar_de_Hallazgo', Detalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Lugar_de_Hallazgo);
         form_data.append('[' + i + '].Observaciones', Detalle_Aseguramiento_Artefactos_y_ExplosivosData[i].Observaciones);
@@ -1518,7 +1440,6 @@ function Detalle_Aseguramiento_Artefactos_y_ExplosivosInsertRowFromPopup(rowInde
         IsInsertRow: false
 
         ,Clasificacion: $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosClasificacion').val()
-        ,Tipo: $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosTipo').val()
         ,Cantidad: $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosCantidad').val()
         ,Lugar_de_Hallazgo: $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosLugar_de_Hallazgo').val()
         ,Observaciones: $('#Detalle_Aseguramiento_Artefactos_y_ExplosivosObservaciones').val()
@@ -1796,48 +1717,8 @@ function Detalle_Aseguramiento_de_Cargador_CartuchosRemoveAddRow(rowIndex) {
 var Detalle_Aseguramiento_Objetos_AseguradoscountRowsChecked = 0;
 
 
-function GetDetalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionItems.length; i++) {
-        if (Detalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionItems[i].Descripcion;
-        }
-    }
-    return "";
-}
 
-function GetDetalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionDropDown() {
-    var Detalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Objetos_Asegurados_cmbLabelSelect").val();
 
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionDropdown);
-    if(Detalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionItems[i].Clave, text:    Detalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionDropdown;
-}
-function GetDetalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionItems.length; i++) {
-        if (Detalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionItems[i].Descripcion;
-        }
-    }
-    return "";
-}
-
-function GetDetalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionDropDown() {
-    var Detalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Objetos_Asegurados_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionDropdown);
-    if(Detalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionItems[i].Clave, text:    Detalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionDropdown;
-}
 
 
 
@@ -1847,8 +1728,8 @@ function GetInsertDetalle_Aseguramiento_Objetos_AseguradosRowControls(index) {
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
     columnData[0] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Numero Numero').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Numero_' + index).attr('data-field', 'Numero');
-    columnData[1] = $(GetDetalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionDropDown()).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Objetos_Asegurados', 'Tipo_de_Equipo_de_Comunicacion', 'Tipo', 267577)));
-    columnData[2] = $(GetDetalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionDropDown()).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Marca Marca').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Marca_' + index).attr('data-field', 'Marca').after($.parseHTML(addNew('Detalle_Aseguramiento_Objetos_Asegurados', 'Marca_de_Equipo_de_Comunicacion', 'Marca', 267578)));
+    columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Tipo_' + index).attr('data-field', 'Tipo');
+    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Marca Marca').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Marca_' + index).attr('data-field', 'Marca');
     columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Objetos_Asegurados_Serie Serie').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_Serie_' + index).attr('data-field', 'Serie');
     columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Objetos_Asegurados_IMEI IMEI').attr('id', 'Detalle_Aseguramiento_Objetos_Asegurados_IMEI_' + index).attr('data-field', 'IMEI');
 
@@ -2095,27 +1976,7 @@ function Detalle_Aseguramiento_Objetos_AseguradosRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Documentos MultiRow
 var Detalle_Aseguramiento_DocumentoscountRowsChecked = 0;
 
-function GetDetalle_Aseguramiento_Documentos_Tipo_de_DocumentoName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoItems.length; i++) {
-        if (Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoItems[i].Descripcion;
-        }
-    }
-    return "";
-}
 
-function GetDetalle_Aseguramiento_Documentos_Tipo_de_DocumentoDropDown() {
-    var Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Documentos_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoDropdown);
-    if(Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoItems[i].Clave, text:    Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Documentos_Tipo_de_DocumentoDropdown;
-}
 
 
 
@@ -2125,7 +1986,7 @@ function GetInsertDetalle_Aseguramiento_DocumentosRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_Documentos_Tipo_de_DocumentoDropDown()).addClass('Detalle_Aseguramiento_Documentos_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Documentos_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Documentos', 'Tipo_de_Documento', 'Tipo', 267645)));
+    columnData[0] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Documentos_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Documentos_Tipo_' + index).attr('data-field', 'Tipo');
     columnData[1] = $($.parseHTML("<input type='text' class='fullWidth form-control inputNumber'/>")).addClass('Detalle_Aseguramiento_Documentos_Cantidad Cantidad').attr('id', 'Detalle_Aseguramiento_Documentos_Cantidad_' + index).attr('data-field', 'Cantidad');
     columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Documentos_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Documentos_Observaciones_' + index).attr('data-field', 'Observaciones');
     columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Documentos_Descipcion_de_Documento Descipcion_de_Documento').attr('id', 'Detalle_Aseguramiento_Documentos_Descipcion_de_Documento_' + index).attr('data-field', 'Descipcion_de_Documento');
@@ -2655,69 +2516,9 @@ function Detalle_Aseguramiento_MonedaRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Otros_Aseguramientos MultiRow
 var Detalle_Aseguramiento_Otros_AseguramientoscountRowsChecked = 0;
 
-function GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems.length; i++) {
-        if (Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems[i].Descripcion;
-        }
-    }
-    return "";
-}
 
-function GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropDown() {
-    var Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Otros_Aseguramientos_cmbLabelSelect").val();
 
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropdown);
-    if(Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems[i].Clave, text:    Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropdown;
-}
-function GetDetalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoItems.length; i++) {
-        if (Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoItems[i].Descripcion;
-        }
-    }
-    return "";
-}
 
-function GetDetalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoDropDown() {
-    var Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Otros_Aseguramientos_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoDropdown);
-    if(Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoItems[i].Clave, text:    Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoDropdown;
-}
-function GetDetalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoItems.length; i++) {
-        if (Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoItems[i].Descripcion;
-        }
-    }
-    return "";
-}
-
-function GetDetalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoDropDown() {
-    var Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Otros_Aseguramientos_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoDropdown);
-    if(Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoItems[i].Clave, text:    Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoDropdown;
-}
 
 
 function GetDetalle_Aseguramiento_Otros_Aseguramientos_Unidad_de_Medida_de_Equipo_TacticoName(Id) {
@@ -2749,9 +2550,9 @@ function GetInsertDetalle_Aseguramiento_Otros_AseguramientosRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Tipo_de_Equipo_Tactico', 'Tipo', 267589)));
-    columnData[1] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Marca_de_Equipo_TacticoDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Marca Marca').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Marca_' + index).attr('data-field', 'Marca').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Marca_de_Equipo_Tactico', 'Marca', 267590)));
-    columnData[2] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Modelo_de_equipo_tacticoDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Modelo Modelo').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_' + index).attr('data-field', 'Modelo').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Modelo_de_equipo_tactico', 'Modelo', 267591)));
+    columnData[0] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_' + index).attr('data-field', 'Tipo');
+    columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Marca Marca').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Marca_' + index).attr('data-field', 'Marca');
+    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Modelo Modelo').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_' + index).attr('data-field', 'Modelo');
     columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Inventario Inventario').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Inventario_' + index).attr('data-field', 'Inventario');
     columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Serie Serie').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Serie_' + index).attr('data-field', 'Serie');
     columnData[5] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Unidad_de_Medida_de_Equipo_TacticoDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Unidad_de_Medida Unidad_de_Medida').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Unidad_de_Medida_' + index).attr('data-field', 'Unidad_de_Medida').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Unidad_de_Medida_de_Equipo_Tactico', 'Unidad_de_Medida', 267594)));
@@ -3646,48 +3447,7 @@ function GetDetalle_Aseguramiento_Inmuebles_Tipo_de_ZonaDropDown() {
     }
     return Detalle_Aseguramiento_Inmuebles_Tipo_de_ZonaDropdown;
 }
-function GetDetalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleItems.length; i++) {
-        if (Detalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleItems[i].Descripcion;
-        }
-    }
-    return "";
-}
 
-function GetDetalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleDropDown() {
-    var Detalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Inmuebles_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleDropdown);
-    if(Detalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleItems[i].Clave, text:    Detalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleDropdown;
-}
-function GetDetalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesItems.length; i++) {
-        if (Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesItems[i].Descripcion;
-        }
-    }
-    return "";
-}
-
-function GetDetalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesDropDown() {
-    var Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Inmuebles_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesDropdown);
-    if(Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesItems[i].Clave, text:    Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesDropdown;
-}
 
 
 
@@ -3743,20 +3503,19 @@ function GetInsertDetalle_Aseguramiento_InmueblesRowControls(index) {
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
     columnData[0] = $(GetDetalle_Aseguramiento_Inmuebles_Tipo_de_ZonaDropDown()).addClass('Detalle_Aseguramiento_Inmuebles_Zona Zona').attr('id', 'Detalle_Aseguramiento_Inmuebles_Zona_' + index).attr('data-field', 'Zona').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Tipo_de_Zona', 'Zona', 267549)));
-    columnData[1] = $(GetDetalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleDropDown()).addClass('Detalle_Aseguramiento_Inmuebles_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Inmuebles_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Tipo_de_Inmueble', 'Tipo', 267550)));
-    columnData[2] = $(GetDetalle_Aseguramiento_Inmuebles_Terreno_de_InmueblesDropDown()).addClass('Detalle_Aseguramiento_Inmuebles_Terreno Terreno').attr('id', 'Detalle_Aseguramiento_Inmuebles_Terreno_' + index).attr('data-field', 'Terreno').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Terreno_de_Inmuebles', 'Terreno', 267551)));
-    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Especifique_Otro Especifique_Otro').attr('id', 'Detalle_Aseguramiento_Inmuebles_Especifique_Otro_' + index).attr('data-field', 'Especifique_Otro');
-    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Calle Calle').attr('id', 'Detalle_Aseguramiento_Inmuebles_Calle_' + index).attr('data-field', 'Calle');
-    columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Exterior Exterior').attr('id', 'Detalle_Aseguramiento_Inmuebles_Exterior_' + index).attr('data-field', 'Exterior');
-    columnData[6] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Interior Interior').attr('id', 'Detalle_Aseguramiento_Inmuebles_Interior_' + index).attr('data-field', 'Interior');
-    columnData[7] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_C_P C_P').attr('id', 'Detalle_Aseguramiento_Inmuebles_C_P_' + index).attr('data-field', 'C_P');
-    columnData[8] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Inmuebles_Estado'))).addClass('Detalle_Aseguramiento_Inmuebles_Estado Estado').attr('id', 'Detalle_Aseguramiento_Inmuebles_Estado_' + index).attr('data-field', 'Estado').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Estado', 'Estado', 267557)));
-    columnData[9] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Inmuebles_Municipio'))).addClass('Detalle_Aseguramiento_Inmuebles_Municipio Municipio').attr('id', 'Detalle_Aseguramiento_Inmuebles_Municipio_' + index).attr('data-field', 'Municipio').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Municipio', 'Municipio', 267558)));
-    columnData[10] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Colonia Colonia').attr('id', 'Detalle_Aseguramiento_Inmuebles_Colonia_' + index).attr('data-field', 'Colonia');
-    columnData[11] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Registro_Publico_Propiedad Registro_Publico_Propiedad').attr('id', 'Detalle_Aseguramiento_Inmuebles_Registro_Publico_Propiedad_' + index).attr('data-field', 'Registro_Publico_Propiedad');
-    columnData[12] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Entrecalles Entrecalles').attr('id', 'Detalle_Aseguramiento_Inmuebles_Entrecalles_' + index).attr('data-field', 'Entrecalles');
-    columnData[13] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Propietario Propietario').attr('id', 'Detalle_Aseguramiento_Inmuebles_Propietario_' + index).attr('data-field', 'Propietario');
-    columnData[14] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Inmuebles_Observaciones_' + index).attr('data-field', 'Observaciones');
+    columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Inmuebles_Tipo_' + index).attr('data-field', 'Tipo');
+    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Especifique_Otro Especifique_Otro').attr('id', 'Detalle_Aseguramiento_Inmuebles_Especifique_Otro_' + index).attr('data-field', 'Especifique_Otro');
+    columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Calle Calle').attr('id', 'Detalle_Aseguramiento_Inmuebles_Calle_' + index).attr('data-field', 'Calle');
+    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Exterior Exterior').attr('id', 'Detalle_Aseguramiento_Inmuebles_Exterior_' + index).attr('data-field', 'Exterior');
+    columnData[5] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Interior Interior').attr('id', 'Detalle_Aseguramiento_Inmuebles_Interior_' + index).attr('data-field', 'Interior');
+    columnData[6] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_C_P C_P').attr('id', 'Detalle_Aseguramiento_Inmuebles_C_P_' + index).attr('data-field', 'C_P');
+    columnData[7] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Inmuebles_Estado'))).addClass('Detalle_Aseguramiento_Inmuebles_Estado Estado').attr('id', 'Detalle_Aseguramiento_Inmuebles_Estado_' + index).attr('data-field', 'Estado').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Estado', 'Estado', 267557)));
+    columnData[8] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Aseguramiento_Inmuebles_Municipio'))).addClass('Detalle_Aseguramiento_Inmuebles_Municipio Municipio').attr('id', 'Detalle_Aseguramiento_Inmuebles_Municipio_' + index).attr('data-field', 'Municipio').after($.parseHTML(addNew('Detalle_Aseguramiento_Inmuebles', 'Municipio', 'Municipio', 267558)));
+    columnData[9] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Colonia Colonia').attr('id', 'Detalle_Aseguramiento_Inmuebles_Colonia_' + index).attr('data-field', 'Colonia');
+    columnData[10] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Registro_Publico_Propiedad Registro_Publico_Propiedad').attr('id', 'Detalle_Aseguramiento_Inmuebles_Registro_Publico_Propiedad_' + index).attr('data-field', 'Registro_Publico_Propiedad');
+    columnData[11] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Entrecalles Entrecalles').attr('id', 'Detalle_Aseguramiento_Inmuebles_Entrecalles_' + index).attr('data-field', 'Entrecalles');
+    columnData[12] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Propietario Propietario').attr('id', 'Detalle_Aseguramiento_Inmuebles_Propietario_' + index).attr('data-field', 'Propietario');
+    columnData[13] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Inmuebles_Observaciones Observaciones').attr('id', 'Detalle_Aseguramiento_Inmuebles_Observaciones_' + index).attr('data-field', 'Observaciones');
 
 
     initiateUIControls();
@@ -3776,7 +3535,6 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Inmuebles("Detalle
 
         ,Zona:  data.childNodes[counter++].childNodes[0].value
         ,Tipo:  data.childNodes[counter++].childNodes[0].value
-        ,Terreno:  data.childNodes[counter++].childNodes[0].value
         ,Especifique_Otro:  data.childNodes[counter++].childNodes[0].value
         ,Calle:  data.childNodes[counter++].childNodes[0].value
         ,Exterior:  data.childNodes[counter++].childNodes[0].value
@@ -3828,7 +3586,6 @@ function GetDetalle_Aseguramiento_InmueblesFromDataTable() {
 
                 ,Zona: gridData[i].Zona
                 ,Tipo: gridData[i].Tipo
-                ,Terreno: gridData[i].Terreno
                 ,Especifique_Otro: gridData[i].Especifique_Otro
                 ,Calle: gridData[i].Calle
                 ,Exterior: gridData[i].Exterior
@@ -3853,7 +3610,6 @@ function GetDetalle_Aseguramiento_InmueblesFromDataTable() {
 
                 ,Zona: removedDetalle_Aseguramiento_InmueblesData[i].Zona
                 ,Tipo: removedDetalle_Aseguramiento_InmueblesData[i].Tipo
-                ,Terreno: removedDetalle_Aseguramiento_InmueblesData[i].Terreno
                 ,Especifique_Otro: removedDetalle_Aseguramiento_InmueblesData[i].Especifique_Otro
                 ,Calle: removedDetalle_Aseguramiento_InmueblesData[i].Calle
                 ,Exterior: removedDetalle_Aseguramiento_InmueblesData[i].Exterior
@@ -3931,7 +3687,6 @@ function Detalle_Aseguramiento_InmueblesEditRowPopup(rowIndex, currentRow) {
 
     $('#Detalle_Aseguramiento_InmueblesZona').val(prevData.Zona);
     $('#Detalle_Aseguramiento_InmueblesTipo').val(prevData.Tipo);
-    $('#Detalle_Aseguramiento_InmueblesTerreno').val(prevData.Terreno);
     $('#Detalle_Aseguramiento_InmueblesEspecifique_Otro').val(prevData.Especifique_Otro);
     $('#Detalle_Aseguramiento_InmueblesCalle').val(prevData.Calle);
     $('#Detalle_Aseguramiento_InmueblesExterior').val(prevData.Exterior);
@@ -3962,7 +3717,6 @@ function Detalle_Aseguramiento_InmueblesEditRowPopup(rowIndex, currentRow) {
 
 
 
-
 }
 
 function Detalle_Aseguramiento_InmueblesAddInsertRow() {
@@ -3976,7 +3730,6 @@ function Detalle_Aseguramiento_InmueblesAddInsertRow() {
 
         ,Zona: ""
         ,Tipo: ""
-        ,Terreno: ""
         ,Especifique_Otro: ""
         ,Calle: ""
         ,Exterior: ""
@@ -4022,7 +3775,6 @@ function GetDetalle_Aseguramiento_Inmuebles() {
 
         form_data.append('[' + i + '].Zona', Detalle_Aseguramiento_InmueblesData[i].Zona);
         form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_InmueblesData[i].Tipo);
-        form_data.append('[' + i + '].Terreno', Detalle_Aseguramiento_InmueblesData[i].Terreno);
         form_data.append('[' + i + '].Especifique_Otro', Detalle_Aseguramiento_InmueblesData[i].Especifique_Otro);
         form_data.append('[' + i + '].Calle', Detalle_Aseguramiento_InmueblesData[i].Calle);
         form_data.append('[' + i + '].Exterior', Detalle_Aseguramiento_InmueblesData[i].Exterior);
@@ -4050,7 +3802,6 @@ function Detalle_Aseguramiento_InmueblesInsertRowFromPopup(rowIndex) {
 
         ,Zona: $('#Detalle_Aseguramiento_InmueblesZona').val()
         ,Tipo: $('#Detalle_Aseguramiento_InmueblesTipo').val()
-        ,Terreno: $('#Detalle_Aseguramiento_InmueblesTerreno').val()
         ,Especifique_Otro: $('#Detalle_Aseguramiento_InmueblesEspecifique_Otro').val()
         ,Calle: $('#Detalle_Aseguramiento_InmueblesCalle').val()
         ,Exterior: $('#Detalle_Aseguramiento_InmueblesExterior').val()
@@ -4454,48 +4205,8 @@ function Detalle_Aseguramiento_de_PlantiosRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_de_Pistas_de_Aterrizaje MultiRow
 var Detalle_Aseguramiento_de_Pistas_de_AterrizajecountRowsChecked = 0;
 
-function GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeItems.length; i++) {
-        if (Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeItems[i].Descripcion;
-        }
-    }
-    return "";
-}
 
-function GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeDropDown() {
-    var Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_cmbLabelSelect").val();
 
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeDropdown);
-    if(Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeItems[i].Clave, text:    Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeDropdown;
-}
-function GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloItems.length; i++) {
-        if (Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloItems[i].Descripcion;
-        }
-    }
-    return "";
-}
-
-function GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloDropDown() {
-    var Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloDropdown);
-    if(Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloItems[i].Clave, text:    Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloDropdown;
-}
 
 
 
@@ -4551,8 +4262,8 @@ function GetInsertDetalle_Aseguramiento_de_Pistas_de_AterrizajeRowControls(index
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeDropDown()).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje', 'Tipo_de_Pista_de_Aterrizaje', 'Tipo', 267618)));
-    columnData[1] = $(GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_SueloDropDown()).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Suelo Suelo').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Suelo_' + index).attr('data-field', 'Suelo').after($.parseHTML(addNew('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje', 'Tipo_de_Suelo', 'Suelo', 267619)));
+    columnData[0] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_' + index).attr('data-field', 'Tipo');
+    columnData[1] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Suelo Suelo').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Suelo_' + index).attr('data-field', 'Suelo');
     columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Descripcion Descripcion').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Descripcion_' + index).attr('data-field', 'Descripcion');
     columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Localizacion_1 Localizacion_1').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Localizacion_1_' + index).attr('data-field', 'Localizacion_1');
     columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Localizacion_2 Localizacion_2').attr('id', 'Detalle_Aseguramiento_de_Pistas_de_Aterrizaje_Localizacion_2_' + index).attr('data-field', 'Localizacion_2');
@@ -5770,17 +5481,6 @@ function GetAutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Marca_Marca_d
         });
     }
     return AutoCompleteMarcaData;
-}
-var AutoCompleteSubmarcaData = [];
-function GetAutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Submarca_Submarca_de_medio_de_transporteData(data) {
-	AutoCompleteSubmarcaData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteSubmarcaData.push({
-            id: data[i].Clave,
-            text: data[i].Descripcion
-        });
-    }
-    return AutoCompleteSubmarcaData;
 }
 var AutoCompleteModeloData = [];
 function GetAutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Modelo_Modelo_de_medio_de_transporteData(data) {

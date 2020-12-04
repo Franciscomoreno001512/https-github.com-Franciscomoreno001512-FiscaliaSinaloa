@@ -8,12 +8,6 @@
 @{
 
 
-    List<SelectListItem> varTipo_de_Pista_de_Aterrizaje_Tipo = null;
-    if (ViewBag.Tipo_de_Pista_de_Aterrizajes_Tipo != null)
-    { varTipo_de_Pista_de_Aterrizaje_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Pista_de_Aterrizajes_Tipo; }
-    List<SelectListItem> varTipo_de_Suelo_Suelo = null;
-    if (ViewBag.Tipo_de_Suelos_Suelo != null)
-    { varTipo_de_Suelo_Suelo = (List<SelectListItem>)ViewBag.Tipo_de_Suelos_Suelo; }
     List<SelectListItem> varTipo_de_Orientacion_Orientacion_de = null;
     if (ViewBag.Tipo_de_Orientacions_Orientacion_de != null)
     { varTipo_de_Orientacion_Orientacion_de = (List<SelectListItem>)ViewBag.Tipo_de_Orientacions_Orientacion_de; }
@@ -146,47 +140,17 @@
                                 </div>
                             </div>
 <div class="form-group" id="divTipo">
-	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Tipo</label>
-	<div class="col-sm-8" data-field-id="Tipo" data-attribute="267618" data-field-name="@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Tipo">
-		<select class="form-control" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Detalle_Aseguramiento_de_Pistas_de_AterrizajeTipo" name="Detalle_Aseguramiento_de_Pistas_de_AterrizajeTipo">
-			<option value=""></option>
-			@if (varTipo_de_Pista_de_Aterrizaje_Tipo != null){ 
-				foreach (var itemTipo in varTipo_de_Pista_de_Aterrizaje_Tipo)
-				{
-					if (itemTipo.Value == Convert.ToString(Model.Tipo))
-					{
-						<option value="@itemTipo.Value" selected>@itemTipo.Text</option>
-					}
-					else
-					{
-						<option value="@itemTipo.Value">@itemTipo.Text</option>
-					}
-				}
-			}
-		</select>
-	</div>
-</div>
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Tipo</label>
+                                <div class="col-sm-8" data-field-id="Tipo" data-attribute="267618" data-field-name="@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Tipo">
+                                    <input class="form-control" id="Detalle_Aseguramiento_de_Pistas_de_AterrizajeTipo" name="Detalle_Aseguramiento_de_Pistas_de_AterrizajeTipo" type="text" value="@Model.Tipo">
+                                </div>
+                            </div>
 <div class="form-group" id="divSuelo">
-	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Suelo</label>
-	<div class="col-sm-8" data-field-id="Suelo" data-attribute="267619" data-field-name="@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Suelo">
-		<select class="form-control" data-val="true" data-val-number="The field Suelo must be a number." data-val-required="The Suelo field is required." id="Detalle_Aseguramiento_de_Pistas_de_AterrizajeSuelo" name="Detalle_Aseguramiento_de_Pistas_de_AterrizajeSuelo">
-			<option value=""></option>
-			@if (varTipo_de_Suelo_Suelo != null){ 
-				foreach (var itemSuelo in varTipo_de_Suelo_Suelo)
-				{
-					if (itemSuelo.Value == Convert.ToString(Model.Suelo))
-					{
-						<option value="@itemSuelo.Value" selected>@itemSuelo.Text</option>
-					}
-					else
-					{
-						<option value="@itemSuelo.Value">@itemSuelo.Text</option>
-					}
-				}
-			}
-		</select>
-	</div>
-</div>
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Suelo</label>
+                                <div class="col-sm-8" data-field-id="Suelo" data-attribute="267619" data-field-name="@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Suelo">
+                                    <input class="form-control" id="Detalle_Aseguramiento_de_Pistas_de_AterrizajeSuelo" name="Detalle_Aseguramiento_de_Pistas_de_AterrizajeSuelo" type="text" value="@Model.Suelo">
+                                </div>
+                            </div>
 <div class="form-group" id="divDescripcion">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Descripcion</label>
                                 <div class="col-sm-8" data-field-id="Descripcion" data-attribute="267620" data-field-name="@Resources.Detalle_Aseguramiento_de_Pistas_de_AterrizajeResources.Descripcion">

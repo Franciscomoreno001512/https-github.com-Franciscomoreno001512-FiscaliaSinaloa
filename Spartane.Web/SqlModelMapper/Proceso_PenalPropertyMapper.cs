@@ -26,9 +26,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Usuario_que_Registra[Name]":
                 case "Usuario_que_RegistraName":
                     return "Spartan_User.Name";
-                case "Imputado[Nombre_Completo_del_Tutor]":
-                case "ImputadoNombre_Completo_del_Tutor":
-                    return "Detalle_de_Imputado.Nombre_Completo_del_Tutor";
+                case "Imputado[Nombre_Completo_Detenido]":
+                case "ImputadoNombre_Completo_Detenido":
+                    return "Detalle_de_Imputado.Nombre_Completo_Detenido";
                 case "Reclasificacion_Juridica[Descripcion]":
                 case "Reclasificacion_JuridicaDescripcion":
                     return "A_Tiempo.Descripcion";

@@ -24,9 +24,8 @@ namespace Spartane.Web.SqlModelMapper
                 case "Marca[Descripcion]":
                 case "MarcaDescripcion":
                     return "Marca_de_Medio_de_transporte.Descripcion";
-                case "Submarca[Descripcion]":
-                case "SubmarcaDescripcion":
-                    return "Submarca_de_medio_de_transporte.Descripcion";
+                case "Submarca":
+                    return "Detalle_Aseguramiento_Medios_de_Transporte.Submarca";
                 case "Modelo[Descripcion]":
                 case "ModeloDescripcion":
                     return "Modelo_de_medio_de_transporte.Descripcion";
@@ -57,9 +56,6 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_Aseguramiento_Medios_de_Transporte.Destino";
                 case "Observaciones":
                     return "Detalle_Aseguramiento_Medios_de_Transporte.Observaciones";
-                case "Detencion[Descripcion]":
-                case "DetencionDescripcion":
-                    return "Detencion.Descripcion";
 
                 default:
                     return propertyName;

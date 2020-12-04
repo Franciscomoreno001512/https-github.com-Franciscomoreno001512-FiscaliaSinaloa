@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 using Spartane.Core.Domain.Aseguramientos;
 using Spartane.Core.Domain.Tipo_de_medios_de_transporte;
 using Spartane.Core.Domain.Marca_de_Medio_de_transporte;
-using Spartane.Core.Domain.Submarca_de_medio_de_transporte;
 using Spartane.Core.Domain.Modelo_de_medio_de_transporte;
 using Spartane.Core.Domain.Color_de_medio_de_trasporte;
 using Spartane.Core.Domain.Uso_del_medio_de_transporte;
 using Spartane.Core.Domain.Procedencia_del_medio_de_transporte;
-using Spartane.Core.Domain.Detencion;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -29,7 +27,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Medios_de_Transporte
         public short? Tipo { get; set; }
         public string Especifique { get; set; }
         public short? Marca { get; set; }
-        public short? Submarca { get; set; }
+        public string Submarca { get; set; }
         public short? Modelo { get; set; }
         public string Placas { get; set; }
         public short? Color { get; set; }
@@ -43,7 +41,6 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Medios_de_Transporte
         public string Origen { get; set; }
         public string Destino { get; set; }
         public string Observaciones { get; set; }
-        public short? Detencion { get; set; }
 
         [ForeignKey("Aseguramiento")]
         public virtual Spartane.Core.Domain.Aseguramientos.Aseguramientos Aseguramiento_Aseguramientos { get; set; }
@@ -51,8 +48,6 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Medios_de_Transporte
         public virtual Spartane.Core.Domain.Tipo_de_medios_de_transporte.Tipo_de_medios_de_transporte Tipo_Tipo_de_medios_de_transporte { get; set; }
         [ForeignKey("Marca")]
         public virtual Spartane.Core.Domain.Marca_de_Medio_de_transporte.Marca_de_Medio_de_transporte Marca_Marca_de_Medio_de_transporte { get; set; }
-        [ForeignKey("Submarca")]
-        public virtual Spartane.Core.Domain.Submarca_de_medio_de_transporte.Submarca_de_medio_de_transporte Submarca_Submarca_de_medio_de_transporte { get; set; }
         [ForeignKey("Modelo")]
         public virtual Spartane.Core.Domain.Modelo_de_medio_de_transporte.Modelo_de_medio_de_transporte Modelo_Modelo_de_medio_de_transporte { get; set; }
         [ForeignKey("Color")]
@@ -61,8 +56,6 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Medios_de_Transporte
         public virtual Spartane.Core.Domain.Uso_del_medio_de_transporte.Uso_del_medio_de_transporte Uso_Uso_del_medio_de_transporte { get; set; }
         [ForeignKey("Procedencia")]
         public virtual Spartane.Core.Domain.Procedencia_del_medio_de_transporte.Procedencia_del_medio_de_transporte Procedencia_Procedencia_del_medio_de_transporte { get; set; }
-        [ForeignKey("Detencion")]
-        public virtual Spartane.Core.Domain.Detencion.Detencion Detencion_Detencion { get; set; }
 
     }
 	
@@ -73,7 +66,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Medios_de_Transporte
         public short? Tipo { get; set; }
         public string Especifique { get; set; }
         public short? Marca { get; set; }
-        public short? Submarca { get; set; }
+        public string Submarca { get; set; }
         public short? Modelo { get; set; }
         public string Placas { get; set; }
         public short? Color { get; set; }
@@ -87,7 +80,6 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Medios_de_Transporte
         public string Origen { get; set; }
         public string Destino { get; set; }
         public string Observaciones { get; set; }
-        public short? Detencion { get; set; }
 
 		        [ForeignKey("Aseguramiento")]
         public virtual Spartane.Core.Domain.Aseguramientos.Aseguramientos Aseguramiento_Aseguramientos { get; set; }
@@ -95,8 +87,6 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Medios_de_Transporte
         public virtual Spartane.Core.Domain.Tipo_de_medios_de_transporte.Tipo_de_medios_de_transporte Tipo_Tipo_de_medios_de_transporte { get; set; }
         [ForeignKey("Marca")]
         public virtual Spartane.Core.Domain.Marca_de_Medio_de_transporte.Marca_de_Medio_de_transporte Marca_Marca_de_Medio_de_transporte { get; set; }
-        [ForeignKey("Submarca")]
-        public virtual Spartane.Core.Domain.Submarca_de_medio_de_transporte.Submarca_de_medio_de_transporte Submarca_Submarca_de_medio_de_transporte { get; set; }
         [ForeignKey("Modelo")]
         public virtual Spartane.Core.Domain.Modelo_de_medio_de_transporte.Modelo_de_medio_de_transporte Modelo_Modelo_de_medio_de_transporte { get; set; }
         [ForeignKey("Color")]
@@ -105,8 +95,6 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Medios_de_Transporte
         public virtual Spartane.Core.Domain.Uso_del_medio_de_transporte.Uso_del_medio_de_transporte Uso_Uso_del_medio_de_transporte { get; set; }
         [ForeignKey("Procedencia")]
         public virtual Spartane.Core.Domain.Procedencia_del_medio_de_transporte.Procedencia_del_medio_de_transporte Procedencia_Procedencia_del_medio_de_transporte { get; set; }
-        [ForeignKey("Detencion")]
-        public virtual Spartane.Core.Domain.Detencion.Detencion Detencion_Detencion { get; set; }
 
     }
 

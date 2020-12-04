@@ -19,7 +19,6 @@
   <resource culture="en-US" name="Origen" value="Origen"></resource>
   <resource culture="en-US" name="Destino" value="Destino"></resource>
   <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
-  <resource culture="en-US" name="Detencion" value="Detención"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 
