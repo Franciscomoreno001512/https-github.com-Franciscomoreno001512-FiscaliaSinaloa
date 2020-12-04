@@ -1267,6 +1267,42 @@
 <Compile Include="Condiciones_en_Suspension_Condicional\Condiciones_en_Suspension_CondicionalService.cs" />
 <Compile Include="Generador_de_Turnos\IGenerador_de_TurnosService.cs" />
 <Compile Include="Generador_de_Turnos\Generador_de_TurnosService.cs" />
+<Compile Include="Auto_de_Vinculacion_a_Proceso\IAuto_de_Vinculacion_a_ProcesoService.cs" />
+<Compile Include="Auto_de_Vinculacion_a_Proceso\Auto_de_Vinculacion_a_ProcesoService.cs" />
+<Compile Include="Resultado_de_Investigacion_Complementaria\IResultado_de_Investigacion_ComplementariaService.cs" />
+<Compile Include="Resultado_de_Investigacion_Complementaria\Resultado_de_Investigacion_ComplementariaService.cs" />
+<Compile Include="Resolucion\IResolucionService.cs" />
+<Compile Include="Resolucion\ResolucionService.cs" />
+<Compile Include="Plazo_de_Investigacion_Complementaria\IPlazo_de_Investigacion_ComplementariaService.cs" />
+<Compile Include="Plazo_de_Investigacion_Complementaria\Plazo_de_Investigacion_ComplementariaService.cs" />
+<Compile Include="Especificacion_Detencion\IEspecificacion_DetencionService.cs" />
+<Compile Include="Especificacion_Detencion\Especificacion_DetencionService.cs" />
+<Compile Include="Resultado_de_Audiencia_Intermedia\IResultado_de_Audiencia_IntermediaService.cs" />
+<Compile Include="Resultado_de_Audiencia_Intermedia\Resultado_de_Audiencia_IntermediaService.cs" />
+<Compile Include="Tribunal_de_Enjuiciamiento\ITribunal_de_EnjuiciamientoService.cs" />
+<Compile Include="Tribunal_de_Enjuiciamiento\Tribunal_de_EnjuiciamientoService.cs" />
+<Compile Include="Control_de_Detencion\IControl_de_DetencionService.cs" />
+<Compile Include="Control_de_Detencion\Control_de_DetencionService.cs" />
+<Compile Include="Audiencia_Inicial\IAudiencia_InicialService.cs" />
+<Compile Include="Audiencia_Inicial\Audiencia_InicialService.cs" />
+<Compile Include="Continuacion_de_Proceso\IContinuacion_de_ProcesoService.cs" />
+<Compile Include="Continuacion_de_Proceso\Continuacion_de_ProcesoService.cs" />
+<Compile Include="Formulacion_de_Imputacion\IFormulacion_de_ImputacionService.cs" />
+<Compile Include="Formulacion_de_Imputacion\Formulacion_de_ImputacionService.cs" />
+<Compile Include="Plazo_Constitucional\IPlazo_ConstitucionalService.cs" />
+<Compile Include="Plazo_Constitucional\Plazo_ConstitucionalService.cs" />
+<Compile Include="Vinculacion_a_Proceso\IVinculacion_a_ProcesoService.cs" />
+<Compile Include="Vinculacion_a_Proceso\Vinculacion_a_ProcesoService.cs" />
+<Compile Include="Detalle_Medios_Prueba_Victima\IDetalle_Medios_Prueba_VictimaService.cs" />
+<Compile Include="Detalle_Medios_Prueba_Victima\Detalle_Medios_Prueba_VictimaService.cs" />
+<Compile Include="Proceso_Penal\IProceso_PenalService.cs" />
+<Compile Include="Proceso_Penal\Proceso_PenalService.cs" />
+<Compile Include="Detalle_Delitos_Proceso_Penal\IDetalle_Delitos_Proceso_PenalService.cs" />
+<Compile Include="Detalle_Delitos_Proceso_Penal\Detalle_Delitos_Proceso_PenalService.cs" />
+<Compile Include="Detalle_Medios_Prueba_Imputado\IDetalle_Medios_Prueba_ImputadoService.cs" />
+<Compile Include="Detalle_Medios_Prueba_Imputado\Detalle_Medios_Prueba_ImputadoService.cs" />
+<Compile Include="Detalle_Medidas_Cautelares_Proceso_Penal\IDetalle_Medidas_Cautelares_Proceso_PenalService.cs" />
+<Compile Include="Detalle_Medidas_Cautelares_Proceso_Penal\Detalle_Medidas_Cautelares_Proceso_PenalService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1366,6 +1402,42 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
