@@ -1084,8 +1084,233 @@
 <Object Id="45542" culture="es-es" value="Condiciones en Suspensión Condicional" />
 <Object Id="45543" culture="en-us" value="Generador de Turnos" />
 <Object Id="45543" culture="es-es" value="Generador de Turnos" />
+<Object Id="45544" culture="en-us" value="Auto de Vinculación a Proceso" />
+<Object Id="45544" culture="es-es" value="Auto de Vinculación a Proceso" />
+<Object Id="45545" culture="en-us" value="Resultado de Investigación Complementaria" />
+<Object Id="45545" culture="es-es" value="Resultado de Investigación Complementaria" />
+<Object Id="45546" culture="en-us" value="Resolución" />
+<Object Id="45546" culture="es-es" value="Resolución" />
+<Object Id="45547" culture="en-us" value="Plazo de Investigación Complementaria" />
+<Object Id="45547" culture="es-es" value="Plazo de Investigación Complementaria" />
+<Object Id="45548" culture="en-us" value="Especificación Detención" />
+<Object Id="45548" culture="es-es" value="Especificación Detención" />
+<Object Id="45549" culture="en-us" value="Resultado de Audiencia Intermedia" />
+<Object Id="45549" culture="es-es" value="Resultado de Audiencia Intermedia" />
+<Object Id="45550" culture="en-us" value="Tribunal de Enjuiciamiento" />
+<Object Id="45550" culture="es-es" value="Tribunal de Enjuiciamiento" />
+<Object Id="45551" culture="en-us" value="Control de Detención" />
+<Object Id="45551" culture="es-es" value="Control de Detención" />
+<Object Id="45552" culture="en-us" value="Audiencia Inicial" />
+<Object Id="45552" culture="es-es" value="Audiencia Inicial" />
+<Object Id="45553" culture="en-us" value="Continuación de Proceso" />
+<Object Id="45553" culture="es-es" value="Continuación de Proceso" />
+<Object Id="45554" culture="en-us" value="Formulación de Imputación" />
+<Object Id="45554" culture="es-es" value="Formulación de Imputación" />
+<Object Id="45555" culture="en-us" value="Plazo Constitucional" />
+<Object Id="45555" culture="es-es" value="Plazo Constitucional" />
+<Object Id="45556" culture="en-us" value="Vinculación a Proceso" />
+<Object Id="45556" culture="es-es" value="Vinculación a Proceso" />
+<Object Id="45557" culture="en-us" value="Detalle Medios Prueba Víctima" />
+<Object Id="45557" culture="es-es" value="Detalle Medios Prueba Víctima" />
+<Object Id="45558" culture="en-us" value="Proceso Penal" />
+<Object Id="45558" culture="es-es" value="Proceso Penal" />
+<Object Id="45559" culture="en-us" value="Detalle Delitos Proceso Penal" />
+<Object Id="45559" culture="es-es" value="Detalle Delitos Proceso Penal" />
+<Object Id="45560" culture="en-us" value="Detalle Medios Prueba Imputado" />
+<Object Id="45560" culture="es-es" value="Detalle Medios Prueba Imputado" />
+<Object Id="45561" culture="en-us" value="Detalle Medidas Cautelares Proceso Penal" />
+<Object Id="45561" culture="es-es" value="Detalle Medidas Cautelares Proceso Penal" />
+<Object Id="45562" culture="en-us" value="Detalle Relaciones Audiencia Inicial" />
+<Object Id="45562" culture="es-es" value="Detalle Relaciones Audiencia Inicial" />
+<Object Id="45563" culture="en-us" value="Detalle Medios Prueba Admitidos" />
+<Object Id="45563" culture="es-es" value="Detalle Medios Prueba Admitidos" />
+<Object Id="45564" culture="en-us" value="Detalle Condiciones Proceso Penal" />
+<Object Id="45564" culture="es-es" value="Detalle Condiciones Proceso Penal" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

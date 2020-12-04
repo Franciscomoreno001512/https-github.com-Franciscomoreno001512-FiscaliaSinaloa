@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Audiencia_Inicial" value="Audiencia Inicial"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="es-es" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="es-es" name="Nombre_del_Juez_de_Control" value="Nombre del Juez de Control"></resource>
+  <resource culture="es-es" name="causa_penal" value="Causa Penal o Cuadernillo"></resource>
+  <resource culture="es-es" name="Fecha_Audiencia_Inicial" value="Fecha Audiencia Inicial"></resource>
+  <resource culture="es-es" name="Hora_Audiencia_Inicial" value="Hora Audiencia Inicial"></resource>
+  <resource culture="es-es" name="Sala_de_Audiencia" value="Sala de Audiencia"></resource>
+  <resource culture="es-es" name="Relaciones" value="Relaciones"></resource>
+  <resource culture="es-es" name="Con_Detenido" value="Con Detenido"></resource>
+  <resource culture="es-es" name="Especificar_Detencion" value="Especifique"></resource>
+  <resource culture="es-es" name="Control_de_Detencion" value="Control de Detención"></resource>
+  <resource culture="es-es" name="Especificar_Control_Detencion" value="Especifique"></resource>
+  <resource culture="es-es" name="Formulacion_de_Imputacion" value="Formulación de Imputación"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>
