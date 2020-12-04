@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_Medios_Prueba_Victima" value="Detalle Medios Prueba Víctima"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Medio_de_Prueba_Presentado" value="Medio de Prueba Presentado"></resource>
+  <resource culture="es-es" name="Fecha_de_Presentacion" value="Fecha de Presentación"></resource>
+  <resource culture="es-es" name="Archivo_Adjunto" value="Archivo Adjunto"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

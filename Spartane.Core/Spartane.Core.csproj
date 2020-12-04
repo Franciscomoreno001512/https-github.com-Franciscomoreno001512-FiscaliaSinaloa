@@ -1376,6 +1376,48 @@
 <Compile Include="Domain\Condiciones_en_Suspension_Condicional\Condiciones_en_Suspension_CondicionalPagingModel.cs" />
 <Compile Include="Domain\Generador_de_Turnos\Generador_de_Turnos.cs" />
 <Compile Include="Domain\Generador_de_Turnos\Generador_de_TurnosPagingModel.cs" />
+<Compile Include="Domain\Auto_de_Vinculacion_a_Proceso\Auto_de_Vinculacion_a_Proceso.cs" />
+<Compile Include="Domain\Auto_de_Vinculacion_a_Proceso\Auto_de_Vinculacion_a_ProcesoPagingModel.cs" />
+<Compile Include="Domain\Resultado_de_Investigacion_Complementaria\Resultado_de_Investigacion_Complementaria.cs" />
+<Compile Include="Domain\Resultado_de_Investigacion_Complementaria\Resultado_de_Investigacion_ComplementariaPagingModel.cs" />
+<Compile Include="Domain\Resolucion\Resolucion.cs" />
+<Compile Include="Domain\Resolucion\ResolucionPagingModel.cs" />
+<Compile Include="Domain\Plazo_de_Investigacion_Complementaria\Plazo_de_Investigacion_Complementaria.cs" />
+<Compile Include="Domain\Plazo_de_Investigacion_Complementaria\Plazo_de_Investigacion_ComplementariaPagingModel.cs" />
+<Compile Include="Domain\Especificacion_Detencion\Especificacion_Detencion.cs" />
+<Compile Include="Domain\Especificacion_Detencion\Especificacion_DetencionPagingModel.cs" />
+<Compile Include="Domain\Resultado_de_Audiencia_Intermedia\Resultado_de_Audiencia_Intermedia.cs" />
+<Compile Include="Domain\Resultado_de_Audiencia_Intermedia\Resultado_de_Audiencia_IntermediaPagingModel.cs" />
+<Compile Include="Domain\Tribunal_de_Enjuiciamiento\Tribunal_de_Enjuiciamiento.cs" />
+<Compile Include="Domain\Tribunal_de_Enjuiciamiento\Tribunal_de_EnjuiciamientoPagingModel.cs" />
+<Compile Include="Domain\Control_de_Detencion\Control_de_Detencion.cs" />
+<Compile Include="Domain\Control_de_Detencion\Control_de_DetencionPagingModel.cs" />
+<Compile Include="Domain\Audiencia_Inicial\Audiencia_Inicial.cs" />
+<Compile Include="Domain\Audiencia_Inicial\Audiencia_InicialPagingModel.cs" />
+<Compile Include="Domain\Continuacion_de_Proceso\Continuacion_de_Proceso.cs" />
+<Compile Include="Domain\Continuacion_de_Proceso\Continuacion_de_ProcesoPagingModel.cs" />
+<Compile Include="Domain\Formulacion_de_Imputacion\Formulacion_de_Imputacion.cs" />
+<Compile Include="Domain\Formulacion_de_Imputacion\Formulacion_de_ImputacionPagingModel.cs" />
+<Compile Include="Domain\Plazo_Constitucional\Plazo_Constitucional.cs" />
+<Compile Include="Domain\Plazo_Constitucional\Plazo_ConstitucionalPagingModel.cs" />
+<Compile Include="Domain\Vinculacion_a_Proceso\Vinculacion_a_Proceso.cs" />
+<Compile Include="Domain\Vinculacion_a_Proceso\Vinculacion_a_ProcesoPagingModel.cs" />
+<Compile Include="Domain\Detalle_Medios_Prueba_Victima\Detalle_Medios_Prueba_VictimaPagingModel.cs" />
+<Compile Include="Domain\Detalle_Medios_Prueba_Victima\Detalle_Medios_Prueba_Victima.cs" />
+<Compile Include="Domain\Proceso_Penal\Proceso_Penal.cs" />
+<Compile Include="Domain\Proceso_Penal\Proceso_PenalPagingModel.cs" />
+<Compile Include="Domain\Detalle_Delitos_Proceso_Penal\Detalle_Delitos_Proceso_PenalPagingModel.cs" />
+<Compile Include="Domain\Detalle_Delitos_Proceso_Penal\Detalle_Delitos_Proceso_Penal.cs" />
+<Compile Include="Domain\Detalle_Medios_Prueba_Imputado\Detalle_Medios_Prueba_ImputadoPagingModel.cs" />
+<Compile Include="Domain\Detalle_Medios_Prueba_Imputado\Detalle_Medios_Prueba_Imputado.cs" />
+<Compile Include="Domain\Detalle_Medidas_Cautelares_Proceso_Penal\Detalle_Medidas_Cautelares_Proceso_PenalPagingModel.cs" />
+<Compile Include="Domain\Detalle_Medidas_Cautelares_Proceso_Penal\Detalle_Medidas_Cautelares_Proceso_Penal.cs" />
+<Compile Include="Domain\Detalle_Relaciones_Audiencia_Inicial\Detalle_Relaciones_Audiencia_InicialPagingModel.cs" />
+<Compile Include="Domain\Detalle_Relaciones_Audiencia_Inicial\Detalle_Relaciones_Audiencia_Inicial.cs" />
+<Compile Include="Domain\Detalle_Medios_Prueba_Admitidos\Detalle_Medios_Prueba_AdmitidosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Medios_Prueba_Admitidos\Detalle_Medios_Prueba_Admitidos.cs" />
+<Compile Include="Domain\Detalle_Condiciones_Proceso_Penal\Detalle_Condiciones_Proceso_PenalPagingModel.cs" />
+<Compile Include="Domain\Detalle_Condiciones_Proceso_Penal\Detalle_Condiciones_Proceso_Penal.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1396,6 +1438,48 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
