@@ -7914,3 +7914,7 @@ builder.RegisterType<Detalle_Condiciones_Proceso_PenalApiConsumer>().As<IDetalle
 
 
 
+
+
+
+
