@@ -1624,6 +1624,14 @@ $(document).ready(function () {
 				});
 		}
     });
+    $("form#CreateModulo_Atencion_Inicial").on('click', '#Modulo_Atencion_InicialFinalizar', function () {
+        debugger;
+        Post_Estatus_de_Turno(function () {
+
+        });
+
+    });
+
 });
 
 function setIsNew() {
