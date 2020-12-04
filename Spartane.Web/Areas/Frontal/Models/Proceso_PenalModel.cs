@@ -19,7 +19,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Usuario_que_Registra { get; set; }
         public string Usuario_que_RegistraName { get; set; }
         public int? Imputado { get; set; }
-        public string ImputadoNombre_Completo_del_Tutor { get; set; }
+        public string ImputadoNombre_Completo_Detenido { get; set; }
         public short? Reclasificacion_Juridica { get; set; }
         public string Reclasificacion_JuridicaDescripcion { get; set; }
         public int? Plazo_Constitucional { get; set; }
@@ -88,7 +88,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Usuario_que_Registra { get; set; }
         public string Usuario_que_RegistraName { get; set; }
         public int? Imputado { get; set; }
-        public string ImputadoNombre_Completo_del_Tutor { get; set; }
+        public string ImputadoNombre_Completo_Detenido { get; set; }
         public short? Reclasificacion_Juridica { get; set; }
         public string Reclasificacion_JuridicaDescripcion { get; set; }
         public int? Plazo_Constitucional { get; set; }

@@ -6,12 +6,6 @@
     List<SelectListItem> varTipo_de_Zona_Zona = null;
     if (ViewBag.Tipo_de_Zonas_Zona != null)
     { varTipo_de_Zona_Zona = (List<SelectListItem>)ViewBag.Tipo_de_Zonas_Zona; }
-    List<SelectListItem> varTipo_de_Inmueble_Tipo = null;
-    if (ViewBag.Tipo_de_Inmuebles_Tipo != null)
-    { varTipo_de_Inmueble_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Inmuebles_Tipo; }
-    List<SelectListItem> varTerreno_de_Inmuebles_Terreno = null;
-    if (ViewBag.Terreno_de_Inmuebless_Terreno != null)
-    { varTerreno_de_Inmuebles_Terreno = (List<SelectListItem>)ViewBag.Terreno_de_Inmuebless_Terreno; }
  List<SelectListItem> varEstado_Estado = null;
     if (ViewBag.Estados_Estado != null)
     { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
@@ -93,41 +87,7 @@
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.TipoFilter, filters, new { @class = "form-control", @id = "ddlTipoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceTipo, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varTipo_de_Inmueble_Tipo!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceTipoMultiple, varTipo_de_Inmueble_Tipo,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceTipo"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_Aseguramiento_InmueblesResources.Terreno</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.TerrenoFilter, filters, new { @class = "form-control", @id = "ddlTerrenoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceTerreno, new { @class = "form-control", @type = "text", @id = "txtAdvanceTerreno" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varTerreno_de_Inmuebles_Terreno!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceTerrenoMultiple, varTerreno_de_Inmuebles_Terreno,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceTerreno"
-                        });
-                    }
+                    @Html.TextBoxFor(m => m.Tipo, new { @class = "form-control", @type = "text", @id = "txtTipo" })
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_InmueblesResources.Especifique_Otro</h3>
@@ -247,35 +207,10 @@
                 advanceSearch.ZonaSearchType = 2;
             }
         }
-        advanceSearch.TipoSearchType = 0;
-        if ($('#ddlAdvanceTipo').val().length > 0 || $("#txtAdvanceTipo").val() == "") {
-
-
-            if (isDetalle_Aseguramiento_InmueblesTextSearch) {
-                advanceSearch.TipoName = $("#txtAdvanceTipo").val();
-                advanceSearch.TipoNameSearchType = $("#ddlAdvanceTipo").val();
-                advanceSearch.TipoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.TipoToSearch = $("#ddlAdvanceTipo").val();
-                advanceSearch.TipoSearchType = 2;
-            }
-        }
-        advanceSearch.TerrenoSearchType = 0;
-        if ($('#ddlAdvanceTerreno').val().length > 0 || $("#txtAdvanceTerreno").val() == "") {
-
-
-            if (isDetalle_Aseguramiento_InmueblesTextSearch) {
-                advanceSearch.TerrenoName = $("#txtAdvanceTerreno").val();
-                advanceSearch.TerrenoNameSearchType = $("#ddlAdvanceTerreno").val();
-                advanceSearch.TerrenoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.TerrenoToSearch = $("#ddlAdvanceTerreno").val();
-                advanceSearch.TerrenoSearchType = 2;
-            }
+        if ($("#txtAdvanceTipo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_InmueblesTipo = $("#txtAdvanceTipo").val();
+            advanceSearch.Detalle_Aseguramiento_InmueblesTipoSearchType = $("#ddlAdvanceTipoFilter").val();
         }
         if ($("#txtAdvanceEspecifique_Otro").val() != "") {
             hasParameter = true;
@@ -383,24 +318,6 @@
         $("#ddlAdvanceZona").change(function () {
             isDetalle_Aseguramiento_InmueblesTextSearch = false;
             $("#txtAdvanceZona").val('');
-        });
-        $("#txtAdvanceTipo").keypress(function () {
-            isDetalle_Aseguramiento_InmueblesTextSearch = true;
-            $("#ddlAdvanceTipo").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceTipo").change(function () {
-            isDetalle_Aseguramiento_InmueblesTextSearch = false;
-            $("#txtAdvanceTipo").val('');
-        });
-        $("#txtAdvanceTerreno").keypress(function () {
-            isDetalle_Aseguramiento_InmueblesTextSearch = true;
-            $("#ddlAdvanceTerreno").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceTerreno").change(function () {
-            isDetalle_Aseguramiento_InmueblesTextSearch = false;
-            $("#txtAdvanceTerreno").val('');
         });
         $("#txtAdvanceEstado").keypress(function () {
             isDetalle_Aseguramiento_InmueblesTextSearch = true;

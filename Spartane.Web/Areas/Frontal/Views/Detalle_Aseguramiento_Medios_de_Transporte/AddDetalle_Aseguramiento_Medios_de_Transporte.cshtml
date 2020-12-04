@@ -14,9 +14,6 @@
  List<SelectListItem> varMarca_de_Medio_de_transporte_Marca = null;
     if (ViewBag.Marca_de_Medio_de_transportes_Marca != null)
     { varMarca_de_Medio_de_transporte_Marca = (List<SelectListItem>)ViewBag.Marca_de_Medio_de_transportes_Marca; }
- List<SelectListItem> varSubmarca_de_medio_de_transporte_Submarca = null;
-    if (ViewBag.Submarca_de_medio_de_transportes_Submarca != null)
-    { varSubmarca_de_medio_de_transporte_Submarca = (List<SelectListItem>)ViewBag.Submarca_de_medio_de_transportes_Submarca; }
  List<SelectListItem> varModelo_de_medio_de_transporte_Modelo = null;
     if (ViewBag.Modelo_de_medio_de_transportes_Modelo != null)
     { varModelo_de_medio_de_transporte_Modelo = (List<SelectListItem>)ViewBag.Modelo_de_medio_de_transportes_Modelo; }
@@ -29,9 +26,6 @@
     List<SelectListItem> varProcedencia_del_medio_de_transporte_Procedencia = null;
     if (ViewBag.Procedencia_del_medio_de_transportes_Procedencia != null)
     { varProcedencia_del_medio_de_transporte_Procedencia = (List<SelectListItem>)ViewBag.Procedencia_del_medio_de_transportes_Procedencia; }
-    List<SelectListItem> varDetencion_Detencion = null;
-    if (ViewBag.Detencions_Detencion != null)
-    { varDetencion_Detencion = (List<SelectListItem>)ViewBag.Detencions_Detencion; }
 
 
     Permission permission = ViewBag.Permission;
@@ -195,9 +189,7 @@
 <div class="form-group" id="divSubmarca">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Submarca</label>
                                 <div class="col-sm-8" data-field-id="Submarca" data-attribute="267667" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Submarca">
-                                    <select class='fullWidth AutoCompleteSubmarca_de_medio_de_transporte form-control select2-dropdown' data-val="true" id="Detalle_Aseguramiento_Medios_de_TransporteSubmarca" name="Detalle_Aseguramiento_Medios_de_TransporteSubmarca">
-                                        <option value="@Model.Submarca">@(Model.SubmarcaDescripcion??Model.SubmarcaDescripcion)</option>
-                                    </select>
+                                    <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteSubmarca" name="Detalle_Aseguramiento_Medios_de_TransporteSubmarca" type="text" value="@Model.Submarca">
                                 </div>
                             </div>
 <div class="form-group" id="divModelo">
@@ -325,27 +317,6 @@
                                     <input class="form-control" id="Detalle_Aseguramiento_Medios_de_TransporteObservaciones" name="Detalle_Aseguramiento_Medios_de_TransporteObservaciones" type="text" value="@Model.Observaciones">
                                 </div>
                             </div>
-<div class="form-group" id="divDetencion">
-	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Detencion</label>
-	<div class="col-sm-8" data-field-id="Detencion" data-attribute="267682" data-field-name="@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Detencion">
-		<select class="form-control" data-val="true" data-val-number="The field Detención must be a number." data-val-required="The Detención field is required." id="Detalle_Aseguramiento_Medios_de_TransporteDetencion" name="Detalle_Aseguramiento_Medios_de_TransporteDetencion">
-			<option value=""></option>
-			@if (varDetencion_Detencion != null){ 
-				foreach (var itemDetencion in varDetencion_Detencion)
-				{
-					if (itemDetencion.Value == Convert.ToString(Model.Detencion))
-					{
-						<option value="@itemDetencion.Value" selected>@itemDetencion.Text</option>
-					}
-					else
-					{
-						<option value="@itemDetencion.Value">@itemDetencion.Text</option>
-					}
-				}
-			}
-		</select>
-	</div>
-</div>
 
 								</div>	
 							</div>
@@ -476,39 +447,6 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Marca");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
-       var AutoCompleteSubmarcaData =[];
-       $(".AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Submarca").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Detalle_Aseguramiento_Medios_de_Transporte/GetDetalle_Aseguramiento_Medios_de_Transporte_Submarca_Submarca_de_medio_de_transporte")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Submarca_Submarca_de_medio_de_transporteData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteDetalle_Aseguramiento_Medios_de_Transporte_Submarca");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();

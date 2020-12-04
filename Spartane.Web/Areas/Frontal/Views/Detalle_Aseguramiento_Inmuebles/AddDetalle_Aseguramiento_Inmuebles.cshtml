@@ -11,12 +11,6 @@
     List<SelectListItem> varTipo_de_Zona_Zona = null;
     if (ViewBag.Tipo_de_Zonas_Zona != null)
     { varTipo_de_Zona_Zona = (List<SelectListItem>)ViewBag.Tipo_de_Zonas_Zona; }
-    List<SelectListItem> varTipo_de_Inmueble_Tipo = null;
-    if (ViewBag.Tipo_de_Inmuebles_Tipo != null)
-    { varTipo_de_Inmueble_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Inmuebles_Tipo; }
-    List<SelectListItem> varTerreno_de_Inmuebles_Terreno = null;
-    if (ViewBag.Terreno_de_Inmuebless_Terreno != null)
-    { varTerreno_de_Inmuebles_Terreno = (List<SelectListItem>)ViewBag.Terreno_de_Inmuebless_Terreno; }
  List<SelectListItem> varEstado_Estado = null;
     if (ViewBag.Estados_Estado != null)
     { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
@@ -170,47 +164,11 @@
 	</div>
 </div>
 <div class="form-group" id="divTipo">
-	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_InmueblesResources.Tipo</label>
-	<div class="col-sm-8" data-field-id="Tipo" data-attribute="267550" data-field-name="@Resources.Detalle_Aseguramiento_InmueblesResources.Tipo">
-		<select class="form-control" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Detalle_Aseguramiento_InmueblesTipo" name="Detalle_Aseguramiento_InmueblesTipo">
-			<option value=""></option>
-			@if (varTipo_de_Inmueble_Tipo != null){ 
-				foreach (var itemTipo in varTipo_de_Inmueble_Tipo)
-				{
-					if (itemTipo.Value == Convert.ToString(Model.Tipo))
-					{
-						<option value="@itemTipo.Value" selected>@itemTipo.Text</option>
-					}
-					else
-					{
-						<option value="@itemTipo.Value">@itemTipo.Text</option>
-					}
-				}
-			}
-		</select>
-	</div>
-</div>
-<div class="form-group" id="divTerreno">
-	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_InmueblesResources.Terreno</label>
-	<div class="col-sm-8" data-field-id="Terreno" data-attribute="267551" data-field-name="@Resources.Detalle_Aseguramiento_InmueblesResources.Terreno">
-		<select class="form-control" data-val="true" data-val-number="The field Terreno must be a number." data-val-required="The Terreno field is required." id="Detalle_Aseguramiento_InmueblesTerreno" name="Detalle_Aseguramiento_InmueblesTerreno">
-			<option value=""></option>
-			@if (varTerreno_de_Inmuebles_Terreno != null){ 
-				foreach (var itemTerreno in varTerreno_de_Inmuebles_Terreno)
-				{
-					if (itemTerreno.Value == Convert.ToString(Model.Terreno))
-					{
-						<option value="@itemTerreno.Value" selected>@itemTerreno.Text</option>
-					}
-					else
-					{
-						<option value="@itemTerreno.Value">@itemTerreno.Text</option>
-					}
-				}
-			}
-		</select>
-	</div>
-</div>
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_InmueblesResources.Tipo</label>
+                                <div class="col-sm-8" data-field-id="Tipo" data-attribute="267550" data-field-name="@Resources.Detalle_Aseguramiento_InmueblesResources.Tipo">
+                                    <input class="form-control" id="Detalle_Aseguramiento_InmueblesTipo" name="Detalle_Aseguramiento_InmueblesTipo" type="text" value="@Model.Tipo">
+                                </div>
+                            </div>
 <div class="form-group" id="divEspecifique_Otro">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_InmueblesResources.Especifique_Otro</label>
                                 <div class="col-sm-8" data-field-id="Especifique_Otro" data-attribute="267552" data-field-name="@Resources.Detalle_Aseguramiento_InmueblesResources.Especifique_Otro">

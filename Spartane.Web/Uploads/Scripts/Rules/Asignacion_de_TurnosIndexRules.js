@@ -21,11 +21,10 @@ if(operation == 'List'){
 //BusinessRuleId:1516, Attribute:3, Operation:Object, Event:None
 if(operation == 'List'){
 if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('5', '5') || EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4')) {
- MROrder=ReplaceQuery("Asignacion_de_Turnos.Urgencia DESC");} else {}
+ MROrder=ReplaceQuery("Asignacion_de_Turnos.ESTATUS_DE_TURNO ASC,URGENCIA DESC");} else {}
 
 
 }
-
 
 //NEWBUSINESSRULE_BEFORECREATIONLIST//
 });

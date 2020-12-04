@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Aseguramientos;
 using Spartane.Core.Domain.Tipo_de_Zona;
-using Spartane.Core.Domain.Tipo_de_Inmueble;
-using Spartane.Core.Domain.Terreno_de_Inmuebles;
 using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
 
@@ -24,8 +22,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Inmuebles
         public int Clave { get; set; }
         public int? Aseguramiento { get; set; }
         public short? Zona { get; set; }
-        public short? Tipo { get; set; }
-        public short? Terreno { get; set; }
+        public string Tipo { get; set; }
         public string Especifique_Otro { get; set; }
         public string Calle { get; set; }
         public string Exterior { get; set; }
@@ -43,10 +40,6 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Inmuebles
         public virtual Spartane.Core.Domain.Aseguramientos.Aseguramientos Aseguramiento_Aseguramientos { get; set; }
         [ForeignKey("Zona")]
         public virtual Spartane.Core.Domain.Tipo_de_Zona.Tipo_de_Zona Zona_Tipo_de_Zona { get; set; }
-        [ForeignKey("Tipo")]
-        public virtual Spartane.Core.Domain.Tipo_de_Inmueble.Tipo_de_Inmueble Tipo_Tipo_de_Inmueble { get; set; }
-        [ForeignKey("Terreno")]
-        public virtual Spartane.Core.Domain.Terreno_de_Inmuebles.Terreno_de_Inmuebles Terreno_Terreno_de_Inmuebles { get; set; }
         [ForeignKey("Estado")]
         public virtual Spartane.Core.Domain.Estado.Estado Estado_Estado { get; set; }
         [ForeignKey("Municipio")]
@@ -59,8 +52,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Inmuebles
                 public int Clave { get; set; }
         public int? Aseguramiento { get; set; }
         public short? Zona { get; set; }
-        public short? Tipo { get; set; }
-        public short? Terreno { get; set; }
+        public string Tipo { get; set; }
         public string Especifique_Otro { get; set; }
         public string Calle { get; set; }
         public string Exterior { get; set; }
@@ -78,10 +70,6 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Inmuebles
         public virtual Spartane.Core.Domain.Aseguramientos.Aseguramientos Aseguramiento_Aseguramientos { get; set; }
         [ForeignKey("Zona")]
         public virtual Spartane.Core.Domain.Tipo_de_Zona.Tipo_de_Zona Zona_Tipo_de_Zona { get; set; }
-        [ForeignKey("Tipo")]
-        public virtual Spartane.Core.Domain.Tipo_de_Inmueble.Tipo_de_Inmueble Tipo_Tipo_de_Inmueble { get; set; }
-        [ForeignKey("Terreno")]
-        public virtual Spartane.Core.Domain.Terreno_de_Inmuebles.Terreno_de_Inmuebles Terreno_Terreno_de_Inmuebles { get; set; }
         [ForeignKey("Estado")]
         public virtual Spartane.Core.Domain.Estado.Estado Estado_Estado { get; set; }
         [ForeignKey("Municipio")]

@@ -206,16 +206,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Detencion</summary>
-        public static string Detencion
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_Aseguramiento_Medios_de_Transporte.GetResource("Detencion", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDetalle_Aseguramiento_Medios_de_Transporte.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

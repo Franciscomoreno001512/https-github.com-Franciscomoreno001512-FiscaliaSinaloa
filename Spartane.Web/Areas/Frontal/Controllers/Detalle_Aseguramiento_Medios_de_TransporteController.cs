@@ -4,12 +4,10 @@ using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_Medios_de_Transporte;
 using Spartane.Core.Domain.Tipo_de_medios_de_transporte;
 using Spartane.Core.Domain.Marca_de_Medio_de_transporte;
-using Spartane.Core.Domain.Submarca_de_medio_de_transporte;
 using Spartane.Core.Domain.Modelo_de_medio_de_transporte;
 using Spartane.Core.Domain.Color_de_medio_de_trasporte;
 using Spartane.Core.Domain.Uso_del_medio_de_transporte;
 using Spartane.Core.Domain.Procedencia_del_medio_de_transporte;
-using Spartane.Core.Domain.Detencion;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -22,12 +20,10 @@ using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Medios_de_Transporte;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_medios_de_transporte;
 using Spartane.Web.Areas.WebApiConsumer.Marca_de_Medio_de_transporte;
-using Spartane.Web.Areas.WebApiConsumer.Submarca_de_medio_de_transporte;
 using Spartane.Web.Areas.WebApiConsumer.Modelo_de_medio_de_transporte;
 using Spartane.Web.Areas.WebApiConsumer.Color_de_medio_de_trasporte;
 using Spartane.Web.Areas.WebApiConsumer.Uso_del_medio_de_transporte;
 using Spartane.Web.Areas.WebApiConsumer.Procedencia_del_medio_de_transporte;
-using Spartane.Web.Areas.WebApiConsumer.Detencion;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -56,12 +52,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_Aseguramiento_Medios_de_TransporteApiConsumer _IDetalle_Aseguramiento_Medios_de_TransporteApiConsumer;
         private ITipo_de_medios_de_transporteApiConsumer _ITipo_de_medios_de_transporteApiConsumer;
         private IMarca_de_Medio_de_transporteApiConsumer _IMarca_de_Medio_de_transporteApiConsumer;
-        private ISubmarca_de_medio_de_transporteApiConsumer _ISubmarca_de_medio_de_transporteApiConsumer;
         private IModelo_de_medio_de_transporteApiConsumer _IModelo_de_medio_de_transporteApiConsumer;
         private IColor_de_medio_de_trasporteApiConsumer _IColor_de_medio_de_trasporteApiConsumer;
         private IUso_del_medio_de_transporteApiConsumer _IUso_del_medio_de_transporteApiConsumer;
         private IProcedencia_del_medio_de_transporteApiConsumer _IProcedencia_del_medio_de_transporteApiConsumer;
-        private IDetencionApiConsumer _IDetencionApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -75,7 +69,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_Medios_de_TransporteController(IDetalle_Aseguramiento_Medios_de_TransporteService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_Medios_de_TransporteApiConsumer Detalle_Aseguramiento_Medios_de_TransporteApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_medios_de_transporteApiConsumer Tipo_de_medios_de_transporteApiConsumer , IMarca_de_Medio_de_transporteApiConsumer Marca_de_Medio_de_transporteApiConsumer , ISubmarca_de_medio_de_transporteApiConsumer Submarca_de_medio_de_transporteApiConsumer , IModelo_de_medio_de_transporteApiConsumer Modelo_de_medio_de_transporteApiConsumer , IColor_de_medio_de_trasporteApiConsumer Color_de_medio_de_trasporteApiConsumer , IUso_del_medio_de_transporteApiConsumer Uso_del_medio_de_transporteApiConsumer , IProcedencia_del_medio_de_transporteApiConsumer Procedencia_del_medio_de_transporteApiConsumer , IDetencionApiConsumer DetencionApiConsumer )
+        public Detalle_Aseguramiento_Medios_de_TransporteController(IDetalle_Aseguramiento_Medios_de_TransporteService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_Medios_de_TransporteApiConsumer Detalle_Aseguramiento_Medios_de_TransporteApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_medios_de_transporteApiConsumer Tipo_de_medios_de_transporteApiConsumer , IMarca_de_Medio_de_transporteApiConsumer Marca_de_Medio_de_transporteApiConsumer , IModelo_de_medio_de_transporteApiConsumer Modelo_de_medio_de_transporteApiConsumer , IColor_de_medio_de_trasporteApiConsumer Color_de_medio_de_trasporteApiConsumer , IUso_del_medio_de_transporteApiConsumer Uso_del_medio_de_transporteApiConsumer , IProcedencia_del_medio_de_transporteApiConsumer Procedencia_del_medio_de_transporteApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -87,12 +81,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
             this._ITipo_de_medios_de_transporteApiConsumer = Tipo_de_medios_de_transporteApiConsumer;
             this._IMarca_de_Medio_de_transporteApiConsumer = Marca_de_Medio_de_transporteApiConsumer;
-            this._ISubmarca_de_medio_de_transporteApiConsumer = Submarca_de_medio_de_transporteApiConsumer;
             this._IModelo_de_medio_de_transporteApiConsumer = Modelo_de_medio_de_transporteApiConsumer;
             this._IColor_de_medio_de_trasporteApiConsumer = Color_de_medio_de_trasporteApiConsumer;
             this._IUso_del_medio_de_transporteApiConsumer = Uso_del_medio_de_transporteApiConsumer;
             this._IProcedencia_del_medio_de_transporteApiConsumer = Procedencia_del_medio_de_transporteApiConsumer;
-            this._IDetencionApiConsumer = DetencionApiConsumer;
 
         }
 
@@ -147,7 +139,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Marca = Detalle_Aseguramiento_Medios_de_TransporteData.Marca
                     ,MarcaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Medios_de_TransporteData.Marca), "Marca_de_Medio_de_transporte") ??  (string)Detalle_Aseguramiento_Medios_de_TransporteData.Marca_Marca_de_Medio_de_transporte.Descripcion
                     ,Submarca = Detalle_Aseguramiento_Medios_de_TransporteData.Submarca
-                    ,SubmarcaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Medios_de_TransporteData.Submarca), "Submarca_de_medio_de_transporte") ??  (string)Detalle_Aseguramiento_Medios_de_TransporteData.Submarca_Submarca_de_medio_de_transporte.Descripcion
                     ,Modelo = Detalle_Aseguramiento_Medios_de_TransporteData.Modelo
                     ,ModeloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Medios_de_TransporteData.Modelo), "Modelo_de_medio_de_transporte") ??  (string)Detalle_Aseguramiento_Medios_de_TransporteData.Modelo_Modelo_de_medio_de_transporte.Descripcion
                     ,Placas = Detalle_Aseguramiento_Medios_de_TransporteData.Placas
@@ -165,8 +156,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Origen = Detalle_Aseguramiento_Medios_de_TransporteData.Origen
                     ,Destino = Detalle_Aseguramiento_Medios_de_TransporteData.Destino
                     ,Observaciones = Detalle_Aseguramiento_Medios_de_TransporteData.Observaciones
-                    ,Detencion = Detalle_Aseguramiento_Medios_de_TransporteData.Detencion
-                    ,DetencionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Medios_de_TransporteData.Detencion), "Detencion") ??  (string)Detalle_Aseguramiento_Medios_de_TransporteData.Detencion_Detencion.Descripcion
 
                 };
 
@@ -201,13 +190,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Procedencia_del_medio_de_transportes_Procedencia = Procedencia_del_medio_de_transportes_Procedencia.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Procedencia_del_medio_de_transporte", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IDetencionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Detencions_Detencion = _IDetencionApiConsumer.SelAll(true);
-            if (Detencions_Detencion != null && Detencions_Detencion.Resource != null)
-                ViewBag.Detencions_Detencion = Detencions_Detencion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detencion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -248,7 +230,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Marca = Detalle_Aseguramiento_Medios_de_TransporteData.Marca
                     ,MarcaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Medios_de_TransporteData.Marca), "Marca_de_Medio_de_transporte") ??  (string)Detalle_Aseguramiento_Medios_de_TransporteData.Marca_Marca_de_Medio_de_transporte.Descripcion
                     ,Submarca = Detalle_Aseguramiento_Medios_de_TransporteData.Submarca
-                    ,SubmarcaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Medios_de_TransporteData.Submarca), "Submarca_de_medio_de_transporte") ??  (string)Detalle_Aseguramiento_Medios_de_TransporteData.Submarca_Submarca_de_medio_de_transporte.Descripcion
                     ,Modelo = Detalle_Aseguramiento_Medios_de_TransporteData.Modelo
                     ,ModeloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Medios_de_TransporteData.Modelo), "Modelo_de_medio_de_transporte") ??  (string)Detalle_Aseguramiento_Medios_de_TransporteData.Modelo_Modelo_de_medio_de_transporte.Descripcion
                     ,Placas = Detalle_Aseguramiento_Medios_de_TransporteData.Placas
@@ -266,8 +247,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Origen = Detalle_Aseguramiento_Medios_de_TransporteData.Origen
                     ,Destino = Detalle_Aseguramiento_Medios_de_TransporteData.Destino
                     ,Observaciones = Detalle_Aseguramiento_Medios_de_TransporteData.Observaciones
-                    ,Detencion = Detalle_Aseguramiento_Medios_de_TransporteData.Detencion
-                    ,DetencionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Medios_de_TransporteData.Detencion), "Detencion") ??  (string)Detalle_Aseguramiento_Medios_de_TransporteData.Detencion_Detencion.Descripcion
 
 					};
 				}
@@ -303,13 +282,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Procedencia_del_medio_de_transportes_Procedencia = Procedencia_del_medio_de_transportes_Procedencia.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Procedencia_del_medio_de_transporte", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IDetencionApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Detencions_Detencion = _IDetencionApiConsumer.SelAll(true);
-            if (Detencions_Detencion != null && Detencions_Detencion.Resource != null)
-                ViewBag.Detencions_Detencion = Detencions_Detencion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detencion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -365,27 +337,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Marca_de_Medio_de_transporte", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-		[HttpGet]
-        public ActionResult GetSubmarca_de_medio_de_transporteAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ISubmarca_de_medio_de_transporteApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ISubmarca_de_medio_de_transporteApiConsumer.SelAll(false).Resource;
-				
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Submarca_de_medio_de_transporte", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -478,27 +429,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        [HttpGet]
-        public ActionResult GetDetencionAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IDetencionApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IDetencionApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detencion", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
 
 
 
@@ -523,7 +453,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_medios_de_transporte.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_medios_de_transporte.Descripcion
 			,Especifique = m.Especifique
                         ,MarcaDescripcion = CultureHelper.GetTraduction(m.Marca_Marca_de_Medio_de_transporte.Clave.ToString(), "Marca_de_Medio_de_transporte") ?? (string)m.Marca_Marca_de_Medio_de_transporte.Descripcion
-                        ,SubmarcaDescripcion = CultureHelper.GetTraduction(m.Submarca_Submarca_de_medio_de_transporte.Clave.ToString(), "Submarca_de_medio_de_transporte") ?? (string)m.Submarca_Submarca_de_medio_de_transporte.Descripcion
+			,Submarca = m.Submarca
                         ,ModeloDescripcion = CultureHelper.GetTraduction(m.Modelo_Modelo_de_medio_de_transporte.Clave.ToString(), "Modelo_de_medio_de_transporte") ?? (string)m.Modelo_Modelo_de_medio_de_transporte.Descripcion
 			,Placas = m.Placas
                         ,ColorDescripcion = CultureHelper.GetTraduction(m.Color_Color_de_medio_de_trasporte.Clave.ToString(), "Descripcion") ?? (string)m.Color_Color_de_medio_de_trasporte.Descripcion
@@ -537,7 +467,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Origen = m.Origen
 			,Destino = m.Destino
 			,Observaciones = m.Observaciones
-                        ,DetencionDescripcion = CultureHelper.GetTraduction(m.Detencion_Detencion.Clave.ToString(), "Descripcion") ?? (string)m.Detencion_Detencion.Descripcion
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -566,33 +495,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.Descripcion =trans ??item.Descripcion;
                 }
                 return Json(result.Marca_de_Medio_de_transportes.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public JsonResult GetDetalle_Aseguramiento_Medios_de_Transporte_Submarca_Submarca_de_medio_de_transporte(string query, string where)
-        {
-            try
-            {
-                if (String.IsNullOrEmpty(where))
-                    where = "";
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ISubmarca_de_medio_de_transporteApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-				var elWhere = " (cast(Submarca_de_medio_de_transporte.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Submarca_de_medio_de_transporte.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _ISubmarca_de_medio_de_transporteApiConsumer.ListaSelAll(1, 20,elWhere , " Submarca_de_medio_de_transporte.Descripcion ASC ").Resource;
-               
-                foreach (var item in result.Submarca_de_medio_de_transportes)
-                {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Submarca_de_medio_de_transporte", "Descripcion");
-                    item.Descripcion =trans ??item.Descripcion;
-                }
-                return Json(result.Submarca_de_medio_de_transportes.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -700,7 +602,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Origen = varDetalle_Aseguramiento_Medios_de_Transporte.Origen
                         ,Destino = varDetalle_Aseguramiento_Medios_de_Transporte.Destino
                         ,Observaciones = varDetalle_Aseguramiento_Medios_de_Transporte.Observaciones
-                        ,Detencion = varDetalle_Aseguramiento_Medios_de_Transporte.Detencion
 
                     };
 
@@ -931,7 +832,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ,TipoDescripcion = (string)m.Tipo_Tipo_de_medios_de_transporte.Descripcion
                 ,Especifique = m.Especifique
                 ,MarcaDescripcion = (string)m.Marca_Marca_de_Medio_de_transporte.Descripcion
-                ,SubmarcaDescripcion = (string)m.Submarca_Submarca_de_medio_de_transporte.Descripcion
+                ,Submarca = m.Submarca
                 ,ModeloDescripcion = (string)m.Modelo_Modelo_de_medio_de_transporte.Descripcion
                 ,Placas = m.Placas
                 ,ColorDescripcion = (string)m.Color_Color_de_medio_de_trasporte.Descripcion
@@ -945,7 +846,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ,Origen = m.Origen
                 ,Destino = m.Destino
                 ,Observaciones = m.Observaciones
-                ,DetencionDescripcion = (string)m.Detencion_Detencion.Descripcion
 
             }).ToList();
 
@@ -995,7 +895,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ,TipoDescripcion = (string)m.Tipo_Tipo_de_medios_de_transporte.Descripcion
                 ,Especifique = m.Especifique
                 ,MarcaDescripcion = (string)m.Marca_Marca_de_Medio_de_transporte.Descripcion
-                ,SubmarcaDescripcion = (string)m.Submarca_Submarca_de_medio_de_transporte.Descripcion
+                ,Submarca = m.Submarca
                 ,ModeloDescripcion = (string)m.Modelo_Modelo_de_medio_de_transporte.Descripcion
                 ,Placas = m.Placas
                 ,ColorDescripcion = (string)m.Color_Color_de_medio_de_trasporte.Descripcion
@@ -1009,7 +909,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ,Origen = m.Origen
                 ,Destino = m.Destino
                 ,Observaciones = m.Observaciones
-                ,DetencionDescripcion = (string)m.Detencion_Detencion.Descripcion
 
             }).ToList();
 

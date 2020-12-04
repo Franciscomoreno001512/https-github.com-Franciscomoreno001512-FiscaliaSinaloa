@@ -2,7 +2,6 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_Documentos;
-using Spartane.Core.Domain.Tipo_de_Documento;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -13,7 +12,6 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Documentos;
-using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Documento;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -40,7 +38,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_DocumentosService service = null;
         private IDetalle_Aseguramiento_DocumentosApiConsumer _IDetalle_Aseguramiento_DocumentosApiConsumer;
-        private ITipo_de_DocumentoApiConsumer _ITipo_de_DocumentoApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -54,7 +51,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_DocumentosController(IDetalle_Aseguramiento_DocumentosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_DocumentosApiConsumer Detalle_Aseguramiento_DocumentosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_DocumentoApiConsumer Tipo_de_DocumentoApiConsumer )
+        public Detalle_Aseguramiento_DocumentosController(IDetalle_Aseguramiento_DocumentosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_DocumentosApiConsumer Detalle_Aseguramiento_DocumentosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -64,7 +61,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
-            this._ITipo_de_DocumentoApiConsumer = Tipo_de_DocumentoApiConsumer;
 
         }
 
@@ -114,7 +110,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = (int)Detalle_Aseguramiento_DocumentosData.Clave
                     ,Tipo = Detalle_Aseguramiento_DocumentosData.Tipo
-                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_DocumentosData.Tipo), "Tipo_de_Documento") ??  (string)Detalle_Aseguramiento_DocumentosData.Tipo_Tipo_de_Documento.Descripcion
                     ,Cantidad = Detalle_Aseguramiento_DocumentosData.Cantidad
                     ,Observaciones = Detalle_Aseguramiento_DocumentosData.Observaciones
                     ,Descipcion_de_Documento = Detalle_Aseguramiento_DocumentosData.Descipcion_de_Documento
@@ -125,13 +120,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_DocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Documentos_Tipo = _ITipo_de_DocumentoApiConsumer.SelAll(true);
-            if (Tipo_de_Documentos_Tipo != null && Tipo_de_Documentos_Tipo.Resource != null)
-                ViewBag.Tipo_de_Documentos_Tipo = Tipo_de_Documentos_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
 
 
             ViewBag.Consult = consult == 1;
@@ -166,7 +154,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Detalle_Aseguramiento_DocumentosData.Clave 
 	                    ,Tipo = Detalle_Aseguramiento_DocumentosData.Tipo
-                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_DocumentosData.Tipo), "Tipo_de_Documento") ??  (string)Detalle_Aseguramiento_DocumentosData.Tipo_Tipo_de_Documento.Descripcion
                     ,Cantidad = Detalle_Aseguramiento_DocumentosData.Cantidad
                     ,Observaciones = Detalle_Aseguramiento_DocumentosData.Observaciones
                     ,Descipcion_de_Documento = Detalle_Aseguramiento_DocumentosData.Descipcion_de_Documento
@@ -178,13 +165,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_DocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Documentos_Tipo = _ITipo_de_DocumentoApiConsumer.SelAll(true);
-            if (Tipo_de_Documentos_Tipo != null && Tipo_de_Documentos_Tipo.Resource != null)
-                ViewBag.Tipo_de_Documentos_Tipo = Tipo_de_Documentos_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
 
 
             return PartialView("AddDetalle_Aseguramiento_Documentos", varDetalle_Aseguramiento_Documentos);
@@ -205,27 +185,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
-        [HttpGet]
-        public ActionResult GetTipo_de_DocumentoAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ITipo_de_DocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ITipo_de_DocumentoApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Documento", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
 
 
 
@@ -247,7 +206,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_Aseguramiento_Documentoss.Select(m => new Detalle_Aseguramiento_DocumentosGridModel
                     {
                     Clave = m.Clave
-                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Documento.Descripcion
+			,Tipo = m.Tipo
 			,Cantidad = m.Cantidad
 			,Observaciones = m.Observaciones
 			,Descipcion_de_Documento = m.Descipcion_de_Documento
@@ -546,7 +505,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Documentoss.Select(m => new Detalle_Aseguramiento_DocumentosGridModel
             {
                 Clave = m.Clave
-                ,TipoDescripcion = (string)m.Tipo_Tipo_de_Documento.Descripcion
+                ,Tipo = m.Tipo
                 ,Cantidad = m.Cantidad
                 ,Observaciones = m.Observaciones
                 ,Descipcion_de_Documento = m.Descipcion_de_Documento
@@ -596,7 +555,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Documentoss.Select(m => new Detalle_Aseguramiento_DocumentosGridModel
             {
                 Clave = m.Clave
-                ,TipoDescripcion = (string)m.Tipo_Tipo_de_Documento.Descripcion
+                ,Tipo = m.Tipo
                 ,Cantidad = m.Cantidad
                 ,Observaciones = m.Observaciones
                 ,Descipcion_de_Documento = m.Descipcion_de_Documento

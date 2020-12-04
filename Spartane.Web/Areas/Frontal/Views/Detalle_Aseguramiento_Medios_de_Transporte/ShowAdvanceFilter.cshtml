@@ -9,9 +9,6 @@
  List<SelectListItem> varMarca_de_Medio_de_transporte_Marca = null;
     if (ViewBag.Marca_de_Medio_de_transportes_Marca != null)
     { varMarca_de_Medio_de_transporte_Marca = (List<SelectListItem>)ViewBag.Marca_de_Medio_de_transportes_Marca; }
- List<SelectListItem> varSubmarca_de_medio_de_transporte_Submarca = null;
-    if (ViewBag.Submarca_de_medio_de_transportes_Submarca != null)
-    { varSubmarca_de_medio_de_transporte_Submarca = (List<SelectListItem>)ViewBag.Submarca_de_medio_de_transportes_Submarca; }
  List<SelectListItem> varModelo_de_medio_de_transporte_Modelo = null;
     if (ViewBag.Modelo_de_medio_de_transportes_Modelo != null)
     { varModelo_de_medio_de_transporte_Modelo = (List<SelectListItem>)ViewBag.Modelo_de_medio_de_transportes_Modelo; }
@@ -24,9 +21,6 @@
     List<SelectListItem> varProcedencia_del_medio_de_transporte_Procedencia = null;
     if (ViewBag.Procedencia_del_medio_de_transportes_Procedencia != null)
     { varProcedencia_del_medio_de_transporte_Procedencia = (List<SelectListItem>)ViewBag.Procedencia_del_medio_de_transportes_Procedencia; }
-    List<SelectListItem> varDetencion_Detencion = null;
-    if (ViewBag.Detencions_Detencion != null)
-    { varDetencion_Detencion = (List<SelectListItem>)ViewBag.Detencions_Detencion; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -107,9 +101,14 @@
  List<SelectListItem> varMarca_de_Medio_de_transporte_Marca = null;
     if (ViewBag.Marca_de_Medio_de_transportes_Marca != null)
     { varMarca_de_Medio_de_transporte_Marca = (List<SelectListItem>)ViewBag.Marca_de_Medio_de_transportes_Marca; }
- List<SelectListItem> varSubmarca_de_medio_de_transporte_Submarca = null;
-    if (ViewBag.Submarca_de_medio_de_transportes_Submarca != null)
-    { varSubmarca_de_medio_de_transporte_Submarca = (List<SelectListItem>)ViewBag.Submarca_de_medio_de_transportes_Submarca; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Submarca</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.SubmarcaFilter, filters, new { @class = "form-control", @id = "ddlSubmarcaFilter" })
+                    @Html.TextBoxFor(m => m.Submarca, new { @class = "form-control", @type = "text", @id = "txtSubmarca" })
+                </div>
  List<SelectListItem> varModelo_de_medio_de_transporte_Modelo = null;
     if (ViewBag.Modelo_de_medio_de_transportes_Modelo != null)
     { varModelo_de_medio_de_transporte_Modelo = (List<SelectListItem>)ViewBag.Modelo_de_medio_de_transportes_Modelo; }
@@ -251,27 +250,6 @@
                     @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
                     @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
                 </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Detencion</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.DetencionFilter, filters, new { @class = "form-control", @id = "ddlDetencionFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceDetencion, new { @class = "form-control", @type = "text", @id = "txtAdvanceDetencion" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varDetencion_Detencion!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceDetencionMultiple, varDetencion_Detencion,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceDetencion"
-                        });
-                    }
-                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_Aseguramiento_Medios_de_Transporte/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -324,20 +302,10 @@
                 advanceSearch.MarcaSearchType = 2;
             }
         }
-        advanceSearch.SubmarcaSearchType = 0;
-        if ($('#ddlAdvanceSubmarca').val().length > 0 || $("#txtAdvanceSubmarca").val() == "") {
-
-
-            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
-                advanceSearch.SubmarcaName = $("#txtAdvanceSubmarca").val();
-                advanceSearch.SubmarcaNameSearchType = $("#ddlAdvanceSubmarca").val();
-                advanceSearch.SubmarcaSearchType = 1;
-            }
-            else {
-
-                advanceSearch.SubmarcaToSearch = $("#ddlAdvanceSubmarca").val();
-                advanceSearch.SubmarcaSearchType = 2;
-            }
+        if ($("#txtAdvanceSubmarca").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteSubmarca = $("#txtAdvanceSubmarca").val();
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteSubmarcaSearchType = $("#ddlAdvanceSubmarcaFilter").val();
         }
         advanceSearch.ModeloSearchType = 0;
         if ($('#ddlAdvanceModelo').val().length > 0 || $("#txtAdvanceModelo").val() == "") {
@@ -444,21 +412,6 @@
             advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteObservaciones = $("#txtAdvanceObservaciones").val();
             advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
         }
-        advanceSearch.DetencionSearchType = 0;
-        if ($('#ddlAdvanceDetencion').val().length > 0 || $("#txtAdvanceDetencion").val() == "") {
-
-
-            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
-                advanceSearch.DetencionName = $("#txtAdvanceDetencion").val();
-                advanceSearch.DetencionNameSearchType = $("#ddlAdvanceDetencion").val();
-                advanceSearch.DetencionSearchType = 1;
-            }
-            else {
-
-                advanceSearch.DetencionToSearch = $("#ddlAdvanceDetencion").val();
-                advanceSearch.DetencionSearchType = 2;
-            }
-        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblDetalle_Aseguramiento_Medios_de_Transporte').DataTable().draw();
@@ -495,15 +448,6 @@
             isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
             $("#txtAdvanceMarca").val('');
         });
-        $("#txtAdvanceSubmarca").keypress(function () {
-            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
-            $("#ddlAdvanceSubmarca").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceSubmarca").change(function () {
-            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
-            $("#txtAdvanceSubmarca").val('');
-        });
         $("#txtAdvanceModelo").keypress(function () {
             isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
             $("#ddlAdvanceModelo").val('').trigger("chosen:updated");
@@ -539,15 +483,6 @@
         $("#ddlAdvanceProcedencia").change(function () {
             isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
             $("#txtAdvanceProcedencia").val('');
-        });
-        $("#txtAdvanceDetencion").keypress(function () {
-            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
-            $("#ddlAdvanceDetencion").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceDetencion").change(function () {
-            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
-            $("#txtAdvanceDetencion").val('');
         });
 
     });

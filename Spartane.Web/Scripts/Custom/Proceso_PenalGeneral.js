@@ -1754,7 +1754,7 @@ function GetAutoCompleteProceso_Penal_Imputado_Detalle_de_ImputadoData(data) {
     for (var i = 0; i < data.length; i++) {
         AutoCompleteImputadoData.push({
             id: data[i].Clave,
-            text: data[i].Nombre_Completo_del_Tutor
+            text: data[i].Nombre_Completo_Detenido
         });
     }
     return AutoCompleteImputadoData;

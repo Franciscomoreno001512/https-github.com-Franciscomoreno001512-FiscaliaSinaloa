@@ -22,7 +22,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Matricula { get; set; }
         public string Serie { get; set; }
         public string Inventario { get; set; }
-        public short? Clasificacion { get; set; }
+        public int? Clasificacion { get; set; }
         public string ClasificacionDescripcion { get; set; }
         [Range(0, 9999999999)]
         public int? Cantidad { get; set; }
@@ -45,7 +45,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Matricula { get; set; }
         public string Serie { get; set; }
         public string Inventario { get; set; }
-        public short? Clasificacion { get; set; }
+        public int? Clasificacion { get; set; }
         public string ClasificacionDescripcion { get; set; }
         [Range(0, 9999999999)]
         public int? Cantidad { get; set; }

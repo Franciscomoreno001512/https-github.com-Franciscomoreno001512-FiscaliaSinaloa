@@ -56,16 +56,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Terreno</summary>
-        public static string Terreno
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_Aseguramiento_Inmuebles.GetResource("Terreno", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Especifique_Otro</summary>
         public static string Especifique_Otro
         {

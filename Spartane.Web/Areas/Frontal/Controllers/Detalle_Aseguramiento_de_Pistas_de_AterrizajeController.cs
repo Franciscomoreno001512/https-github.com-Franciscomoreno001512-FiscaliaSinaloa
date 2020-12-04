@@ -2,8 +2,6 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_de_Pistas_de_Aterrizaje;
-using Spartane.Core.Domain.Tipo_de_Pista_de_Aterrizaje;
-using Spartane.Core.Domain.Tipo_de_Suelo;
 using Spartane.Core.Domain.Tipo_de_Orientacion;
 using Spartane.Core.Domain.Tipo_de_Orientacion;
 
@@ -16,8 +14,6 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_de_Pistas_de_Aterrizaje;
-using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Pista_de_Aterrizaje;
-using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Suelo;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Orientacion;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Orientacion;
 
@@ -46,8 +42,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_de_Pistas_de_AterrizajeService service = null;
         private IDetalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer _IDetalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer;
-        private ITipo_de_Pista_de_AterrizajeApiConsumer _ITipo_de_Pista_de_AterrizajeApiConsumer;
-        private ITipo_de_SueloApiConsumer _ITipo_de_SueloApiConsumer;
         private ITipo_de_OrientacionApiConsumer _ITipo_de_OrientacionApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
@@ -62,7 +56,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_de_Pistas_de_AterrizajeController(IDetalle_Aseguramiento_de_Pistas_de_AterrizajeService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer Detalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_Pista_de_AterrizajeApiConsumer Tipo_de_Pista_de_AterrizajeApiConsumer , ITipo_de_SueloApiConsumer Tipo_de_SueloApiConsumer , ITipo_de_OrientacionApiConsumer Tipo_de_OrientacionApiConsumer )
+        public Detalle_Aseguramiento_de_Pistas_de_AterrizajeController(IDetalle_Aseguramiento_de_Pistas_de_AterrizajeService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer Detalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_OrientacionApiConsumer Tipo_de_OrientacionApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -72,8 +66,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
-            this._ITipo_de_Pista_de_AterrizajeApiConsumer = Tipo_de_Pista_de_AterrizajeApiConsumer;
-            this._ITipo_de_SueloApiConsumer = Tipo_de_SueloApiConsumer;
             this._ITipo_de_OrientacionApiConsumer = Tipo_de_OrientacionApiConsumer;
             this._ITipo_de_OrientacionApiConsumer = Tipo_de_OrientacionApiConsumer;
 
@@ -125,9 +117,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = (int)Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Clave
                     ,Tipo = Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Tipo
-                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Tipo), "Tipo_de_Pista_de_Aterrizaje") ??  (string)Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Tipo_Tipo_de_Pista_de_Aterrizaje.Descripcion
                     ,Suelo = Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Suelo
-                    ,SueloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Suelo), "Tipo_de_Suelo") ??  (string)Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Suelo_Tipo_de_Suelo.Descripcion
                     ,Descripcion = Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Descripcion
                     ,Localizacion_1 = Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Localizacion_1
                     ,Localizacion_2 = Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Localizacion_2
@@ -146,20 +136,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_Pista_de_AterrizajeApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Pista_de_Aterrizajes_Tipo = _ITipo_de_Pista_de_AterrizajeApiConsumer.SelAll(true);
-            if (Tipo_de_Pista_de_Aterrizajes_Tipo != null && Tipo_de_Pista_de_Aterrizajes_Tipo.Resource != null)
-                ViewBag.Tipo_de_Pista_de_Aterrizajes_Tipo = Tipo_de_Pista_de_Aterrizajes_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Pista_de_Aterrizaje", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ITipo_de_SueloApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Suelos_Suelo = _ITipo_de_SueloApiConsumer.SelAll(true);
-            if (Tipo_de_Suelos_Suelo != null && Tipo_de_Suelos_Suelo.Resource != null)
-                ViewBag.Tipo_de_Suelos_Suelo = Tipo_de_Suelos_Suelo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Suelo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _ITipo_de_OrientacionApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Orientacions_Orientacion_de = _ITipo_de_OrientacionApiConsumer.SelAll(true);
             if (Tipo_de_Orientacions_Orientacion_de != null && Tipo_de_Orientacions_Orientacion_de.Resource != null)
@@ -208,9 +184,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Clave 
 	                    ,Tipo = Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Tipo
-                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Tipo), "Tipo_de_Pista_de_Aterrizaje") ??  (string)Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Tipo_Tipo_de_Pista_de_Aterrizaje.Descripcion
                     ,Suelo = Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Suelo
-                    ,SueloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Suelo), "Tipo_de_Suelo") ??  (string)Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Suelo_Tipo_de_Suelo.Descripcion
                     ,Descripcion = Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Descripcion
                     ,Localizacion_1 = Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Localizacion_1
                     ,Localizacion_2 = Detalle_Aseguramiento_de_Pistas_de_AterrizajeData.Localizacion_2
@@ -230,20 +204,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _ITipo_de_Pista_de_AterrizajeApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Pista_de_Aterrizajes_Tipo = _ITipo_de_Pista_de_AterrizajeApiConsumer.SelAll(true);
-            if (Tipo_de_Pista_de_Aterrizajes_Tipo != null && Tipo_de_Pista_de_Aterrizajes_Tipo.Resource != null)
-                ViewBag.Tipo_de_Pista_de_Aterrizajes_Tipo = Tipo_de_Pista_de_Aterrizajes_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Pista_de_Aterrizaje", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ITipo_de_SueloApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Suelos_Suelo = _ITipo_de_SueloApiConsumer.SelAll(true);
-            if (Tipo_de_Suelos_Suelo != null && Tipo_de_Suelos_Suelo.Resource != null)
-                ViewBag.Tipo_de_Suelos_Suelo = Tipo_de_Suelos_Suelo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Suelo", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _ITipo_de_OrientacionApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Orientacions_Orientacion_de = _ITipo_de_OrientacionApiConsumer.SelAll(true);
             if (Tipo_de_Orientacions_Orientacion_de != null && Tipo_de_Orientacions_Orientacion_de.Resource != null)
@@ -278,48 +238,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
-        [HttpGet]
-        public ActionResult GetTipo_de_Pista_de_AterrizajeAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ITipo_de_Pista_de_AterrizajeApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ITipo_de_Pista_de_AterrizajeApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Pista_de_Aterrizaje", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public ActionResult GetTipo_de_SueloAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ITipo_de_SueloApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ITipo_de_SueloApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Suelo", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
         [HttpGet]
         public ActionResult GetTipo_de_OrientacionAll()
         {
@@ -362,8 +280,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_Aseguramiento_de_Pistas_de_Aterrizajes.Select(m => new Detalle_Aseguramiento_de_Pistas_de_AterrizajeGridModel
                     {
                     Clave = m.Clave
-                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Pista_de_Aterrizaje.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Pista_de_Aterrizaje.Descripcion
-                        ,SueloDescripcion = CultureHelper.GetTraduction(m.Suelo_Tipo_de_Suelo.Clave.ToString(), "Descripcion") ?? (string)m.Suelo_Tipo_de_Suelo.Descripcion
+			,Tipo = m.Tipo
+			,Suelo = m.Suelo
 			,Descripcion = m.Descripcion
 			,Localizacion_1 = m.Localizacion_1
 			,Localizacion_2 = m.Localizacion_2
@@ -675,8 +593,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_de_Pistas_de_Aterrizajes.Select(m => new Detalle_Aseguramiento_de_Pistas_de_AterrizajeGridModel
             {
                 Clave = m.Clave
-                ,TipoDescripcion = (string)m.Tipo_Tipo_de_Pista_de_Aterrizaje.Descripcion
-                ,SueloDescripcion = (string)m.Suelo_Tipo_de_Suelo.Descripcion
+                ,Tipo = m.Tipo
+                ,Suelo = m.Suelo
                 ,Descripcion = m.Descripcion
                 ,Localizacion_1 = m.Localizacion_1
                 ,Localizacion_2 = m.Localizacion_2
@@ -732,8 +650,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_de_Pistas_de_Aterrizajes.Select(m => new Detalle_Aseguramiento_de_Pistas_de_AterrizajeGridModel
             {
                 Clave = m.Clave
-                ,TipoDescripcion = (string)m.Tipo_Tipo_de_Pista_de_Aterrizaje.Descripcion
-                ,SueloDescripcion = (string)m.Suelo_Tipo_de_Suelo.Descripcion
+                ,Tipo = m.Tipo
+                ,Suelo = m.Suelo
                 ,Descripcion = m.Descripcion
                 ,Localizacion_1 = m.Localizacion_1
                 ,Localizacion_2 = m.Localizacion_2
