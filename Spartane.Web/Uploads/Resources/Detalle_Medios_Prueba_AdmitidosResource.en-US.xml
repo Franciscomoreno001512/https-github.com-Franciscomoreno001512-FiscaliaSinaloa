@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Medios_Prueba_Admitidos" value="Detalle Medios Prueba Admitidos"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Origen" value="Origen"></resource>
+  <resource culture="en-US" name="Medio_de_Prueba_Presentado" value="Medio de Prueba Presentado"></resource>
+  <resource culture="en-US" name="Admitido" value="Admitido"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

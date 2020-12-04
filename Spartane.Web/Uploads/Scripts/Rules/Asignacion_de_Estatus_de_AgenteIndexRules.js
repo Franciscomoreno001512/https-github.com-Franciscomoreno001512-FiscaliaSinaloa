@@ -7,6 +7,8 @@ $(document).ready(function () {
 
 
 
+
+
 //BusinessRuleId:2718, Attribute:3, Operation:Object, Event:None
 if(operation == 'List'){
  MRWhere=ReplaceQuery("Asignacion_de_Estatus_de_Agente.Unidad=(select unidad from Spartan_USer where Id_User=GLOBAL[USERID])");
@@ -19,5 +21,7 @@ if(operation == 'List'){
 
 function EjecutarValidacionesDespuesDeCrearLista()
 {
+
+
 //NEWBUSINESSRULE_AFTERCREATIONLIST//
 }
