@@ -3,8 +3,6 @@ using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_Inmuebles;
 using Spartane.Core.Domain.Tipo_de_Zona;
-using Spartane.Core.Domain.Tipo_de_Inmueble;
-using Spartane.Core.Domain.Terreno_de_Inmuebles;
 using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
 
@@ -18,8 +16,6 @@ using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Inmuebles;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Zona;
-using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Inmueble;
-using Spartane.Web.Areas.WebApiConsumer.Terreno_de_Inmuebles;
 using Spartane.Web.Areas.WebApiConsumer.Estado;
 using Spartane.Web.Areas.WebApiConsumer.Municipio;
 
@@ -49,8 +45,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_Aseguramiento_InmueblesService service = null;
         private IDetalle_Aseguramiento_InmueblesApiConsumer _IDetalle_Aseguramiento_InmueblesApiConsumer;
         private ITipo_de_ZonaApiConsumer _ITipo_de_ZonaApiConsumer;
-        private ITipo_de_InmuebleApiConsumer _ITipo_de_InmuebleApiConsumer;
-        private ITerreno_de_InmueblesApiConsumer _ITerreno_de_InmueblesApiConsumer;
         private IEstadoApiConsumer _IEstadoApiConsumer;
         private IMunicipioApiConsumer _IMunicipioApiConsumer;
 
@@ -66,7 +60,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_InmueblesController(IDetalle_Aseguramiento_InmueblesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_InmueblesApiConsumer Detalle_Aseguramiento_InmueblesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_ZonaApiConsumer Tipo_de_ZonaApiConsumer , ITipo_de_InmuebleApiConsumer Tipo_de_InmuebleApiConsumer , ITerreno_de_InmueblesApiConsumer Terreno_de_InmueblesApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer )
+        public Detalle_Aseguramiento_InmueblesController(IDetalle_Aseguramiento_InmueblesService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_InmueblesApiConsumer Detalle_Aseguramiento_InmueblesApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_ZonaApiConsumer Tipo_de_ZonaApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -77,8 +71,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
             this._ITipo_de_ZonaApiConsumer = Tipo_de_ZonaApiConsumer;
-            this._ITipo_de_InmuebleApiConsumer = Tipo_de_InmuebleApiConsumer;
-            this._ITerreno_de_InmueblesApiConsumer = Terreno_de_InmueblesApiConsumer;
             this._IEstadoApiConsumer = EstadoApiConsumer;
             this._IMunicipioApiConsumer = MunicipioApiConsumer;
 
@@ -132,9 +124,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Zona = Detalle_Aseguramiento_InmueblesData.Zona
                     ,ZonaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_InmueblesData.Zona), "Tipo_de_Zona") ??  (string)Detalle_Aseguramiento_InmueblesData.Zona_Tipo_de_Zona.Descripcion
                     ,Tipo = Detalle_Aseguramiento_InmueblesData.Tipo
-                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_InmueblesData.Tipo), "Tipo_de_Inmueble") ??  (string)Detalle_Aseguramiento_InmueblesData.Tipo_Tipo_de_Inmueble.Descripcion
-                    ,Terreno = Detalle_Aseguramiento_InmueblesData.Terreno
-                    ,TerrenoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_InmueblesData.Terreno), "Terreno_de_Inmuebles") ??  (string)Detalle_Aseguramiento_InmueblesData.Terreno_Terreno_de_Inmuebles.Descripcion
                     ,Especifique_Otro = Detalle_Aseguramiento_InmueblesData.Especifique_Otro
                     ,Calle = Detalle_Aseguramiento_InmueblesData.Calle
                     ,Exterior = Detalle_Aseguramiento_InmueblesData.Exterior
@@ -162,20 +151,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Zonas_Zona = Tipo_de_Zonas_Zona.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Zona", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ITipo_de_InmuebleApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Inmuebles_Tipo = _ITipo_de_InmuebleApiConsumer.SelAll(true);
-            if (Tipo_de_Inmuebles_Tipo != null && Tipo_de_Inmuebles_Tipo.Resource != null)
-                ViewBag.Tipo_de_Inmuebles_Tipo = Tipo_de_Inmuebles_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Inmueble", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ITerreno_de_InmueblesApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Terreno_de_Inmuebless_Terreno = _ITerreno_de_InmueblesApiConsumer.SelAll(true);
-            if (Terreno_de_Inmuebless_Terreno != null && Terreno_de_Inmuebless_Terreno.Resource != null)
-                ViewBag.Terreno_de_Inmuebless_Terreno = Terreno_de_Inmuebless_Terreno.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Terreno_de_Inmuebles", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -213,9 +188,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 	                    ,Zona = Detalle_Aseguramiento_InmueblesData.Zona
                     ,ZonaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_InmueblesData.Zona), "Tipo_de_Zona") ??  (string)Detalle_Aseguramiento_InmueblesData.Zona_Tipo_de_Zona.Descripcion
                     ,Tipo = Detalle_Aseguramiento_InmueblesData.Tipo
-                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_InmueblesData.Tipo), "Tipo_de_Inmueble") ??  (string)Detalle_Aseguramiento_InmueblesData.Tipo_Tipo_de_Inmueble.Descripcion
-                    ,Terreno = Detalle_Aseguramiento_InmueblesData.Terreno
-                    ,TerrenoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_InmueblesData.Terreno), "Terreno_de_Inmuebles") ??  (string)Detalle_Aseguramiento_InmueblesData.Terreno_Terreno_de_Inmuebles.Descripcion
                     ,Especifique_Otro = Detalle_Aseguramiento_InmueblesData.Especifique_Otro
                     ,Calle = Detalle_Aseguramiento_InmueblesData.Calle
                     ,Exterior = Detalle_Aseguramiento_InmueblesData.Exterior
@@ -244,20 +216,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Tipo_de_Zonas_Zona = Tipo_de_Zonas_Zona.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Zona", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ITipo_de_InmuebleApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Tipo_de_Inmuebles_Tipo = _ITipo_de_InmuebleApiConsumer.SelAll(true);
-            if (Tipo_de_Inmuebles_Tipo != null && Tipo_de_Inmuebles_Tipo.Resource != null)
-                ViewBag.Tipo_de_Inmuebles_Tipo = Tipo_de_Inmuebles_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Inmueble", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ITerreno_de_InmueblesApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Terreno_de_Inmuebless_Terreno = _ITerreno_de_InmueblesApiConsumer.SelAll(true);
-            if (Terreno_de_Inmuebless_Terreno != null && Terreno_de_Inmuebless_Terreno.Resource != null)
-                ViewBag.Terreno_de_Inmuebless_Terreno = Terreno_de_Inmuebless_Terreno.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Terreno_de_Inmuebles", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -292,48 +250,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Zona", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public ActionResult GetTipo_de_InmuebleAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ITipo_de_InmuebleApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ITipo_de_InmuebleApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Inmueble", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.Clave)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
-        public ActionResult GetTerreno_de_InmueblesAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ITerreno_de_InmueblesApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ITerreno_de_InmueblesApiConsumer.SelAll(false).Resource;
-                
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Terreno_de_Inmuebles", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -406,8 +322,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
                         ,ZonaDescripcion = CultureHelper.GetTraduction(m.Zona_Tipo_de_Zona.Clave.ToString(), "Descripcion") ?? (string)m.Zona_Tipo_de_Zona.Descripcion
-                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Inmueble.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Inmueble.Descripcion
-                        ,TerrenoDescripcion = CultureHelper.GetTraduction(m.Terreno_Terreno_de_Inmuebles.Clave.ToString(), "Descripcion") ?? (string)m.Terreno_Terreno_de_Inmuebles.Descripcion
+			,Tipo = m.Tipo
 			,Especifique_Otro = m.Especifique_Otro
 			,Calle = m.Calle
 			,Exterior = m.Exterior
@@ -540,7 +455,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         Clave = varDetalle_Aseguramiento_Inmuebles.Clave
                         ,Zona = varDetalle_Aseguramiento_Inmuebles.Zona
                         ,Tipo = varDetalle_Aseguramiento_Inmuebles.Tipo
-                        ,Terreno = varDetalle_Aseguramiento_Inmuebles.Terreno
                         ,Especifique_Otro = varDetalle_Aseguramiento_Inmuebles.Especifique_Otro
                         ,Calle = varDetalle_Aseguramiento_Inmuebles.Calle
                         ,Exterior = varDetalle_Aseguramiento_Inmuebles.Exterior
@@ -781,8 +695,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                 ,ZonaDescripcion = (string)m.Zona_Tipo_de_Zona.Descripcion
-                ,TipoDescripcion = (string)m.Tipo_Tipo_de_Inmueble.Descripcion
-                ,TerrenoDescripcion = (string)m.Terreno_Terreno_de_Inmuebles.Descripcion
+                ,Tipo = m.Tipo
                 ,Especifique_Otro = m.Especifique_Otro
                 ,Calle = m.Calle
                 ,Exterior = m.Exterior
@@ -842,8 +755,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                 ,ZonaDescripcion = (string)m.Zona_Tipo_de_Zona.Descripcion
-                ,TipoDescripcion = (string)m.Tipo_Tipo_de_Inmueble.Descripcion
-                ,TerrenoDescripcion = (string)m.Terreno_Terreno_de_Inmuebles.Descripcion
+                ,Tipo = m.Tipo
                 ,Especifique_Otro = m.Especifique_Otro
                 ,Calle = m.Calle
                 ,Exterior = m.Exterior

@@ -4,7 +4,6 @@
   <resource culture="en-US" name="Clave" value="Clave"></resource>
   <resource culture="en-US" name="Zona" value="Zona"></resource>
   <resource culture="en-US" name="Tipo" value="Tipo"></resource>
-  <resource culture="en-US" name="Terreno" value="Terreno"></resource>
   <resource culture="en-US" name="Especifique_Otro" value="Especifique Otro"></resource>
   <resource culture="en-US" name="Calle" value="Calle"></resource>
   <resource culture="en-US" name="Exterior" value="No. Ext"></resource>

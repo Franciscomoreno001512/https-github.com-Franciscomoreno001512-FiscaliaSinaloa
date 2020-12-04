@@ -19,12 +19,8 @@ namespace Spartane.Web.SqlModelMapper
                 case "Zona[Descripcion]":
                 case "ZonaDescripcion":
                     return "Tipo_de_Zona.Descripcion";
-                case "Tipo[Descripcion]":
-                case "TipoDescripcion":
-                    return "Tipo_de_Inmueble.Descripcion";
-                case "Terreno[Descripcion]":
-                case "TerrenoDescripcion":
-                    return "Terreno_de_Inmuebles.Descripcion";
+                case "Tipo":
+                    return "Detalle_Aseguramiento_Inmuebles.Tipo";
                 case "Especifique_Otro":
                     return "Detalle_Aseguramiento_Inmuebles.Especifique_Otro";
                 case "Calle":

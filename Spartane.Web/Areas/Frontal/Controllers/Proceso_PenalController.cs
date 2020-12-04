@@ -345,7 +345,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Usuario_que_Registra = Proceso_PenalData.Usuario_que_Registra
                     ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Usuario_que_Registra), "Spartan_User") ??  (string)Proceso_PenalData.Usuario_que_Registra_Spartan_User.Name
                     ,Imputado = Proceso_PenalData.Imputado
-                    ,ImputadoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Imputado), "Detalle_de_Imputado") ??  (string)Proceso_PenalData.Imputado_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                    ,ImputadoNombre_Completo_Detenido = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Imputado), "Detalle_de_Imputado") ??  (string)Proceso_PenalData.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                     ,Reclasificacion_Juridica = Proceso_PenalData.Reclasificacion_Juridica
                     ,Reclasificacion_JuridicaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Reclasificacion_Juridica), "A_Tiempo") ??  (string)Proceso_PenalData.Reclasificacion_Juridica_A_Tiempo.Descripcion
                     ,Plazo_Constitucional = Proceso_PenalData.Plazo_Constitucional
@@ -591,7 +591,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Usuario_que_Registra = Proceso_PenalData.Usuario_que_Registra
                     ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Usuario_que_Registra), "Spartan_User") ??  (string)Proceso_PenalData.Usuario_que_Registra_Spartan_User.Name
                     ,Imputado = Proceso_PenalData.Imputado
-                    ,ImputadoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Imputado), "Detalle_de_Imputado") ??  (string)Proceso_PenalData.Imputado_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                    ,ImputadoNombre_Completo_Detenido = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Imputado), "Detalle_de_Imputado") ??  (string)Proceso_PenalData.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                     ,Reclasificacion_Juridica = Proceso_PenalData.Reclasificacion_Juridica
                     ,Reclasificacion_JuridicaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Reclasificacion_Juridica), "A_Tiempo") ??  (string)Proceso_PenalData.Reclasificacion_Juridica_A_Tiempo.Descripcion
                     ,Plazo_Constitucional = Proceso_PenalData.Plazo_Constitucional
@@ -826,9 +826,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 _IDetalle_de_ImputadoApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IDetalle_de_ImputadoApiConsumer.SelAll(false).Resource;
 				
-                return Json(result.OrderBy(m => m.Nombre_Completo_del_Tutor).Select(m => new SelectListItem
+                return Json(result.OrderBy(m => m.Nombre_Completo_Detenido).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Imputado", "Nombre_Completo_del_Tutor")?? m.Nombre_Completo_del_Tutor,
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Detalle_de_Imputado", "Nombre_Completo_Detenido")?? m.Nombre_Completo_Detenido,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -1343,7 +1343,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Registro = m.Hora_de_Registro
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
-                        ,ImputadoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                        ,ImputadoNombre_Completo_Detenido = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                         ,Reclasificacion_JuridicaDescripcion = CultureHelper.GetTraduction(m.Reclasificacion_Juridica_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Reclasificacion_Juridica_A_Tiempo.Descripcion
                         ,Plazo_ConstitucionalDescripcion = CultureHelper.GetTraduction(m.Plazo_Constitucional_Plazo_Constitucional.Clave.ToString(), "Descripcion") ?? (string)m.Plazo_Constitucional_Plazo_Constitucional.Descripcion
                         ,VinculacionDescripcion = CultureHelper.GetTraduction(m.Vinculacion_Vinculacion_a_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Vinculacion_Vinculacion_a_Proceso.Descripcion
@@ -1497,7 +1497,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Registro = m.Hora_de_Registro
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
-                        ,ImputadoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                        ,ImputadoNombre_Completo_Detenido = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                         ,Reclasificacion_JuridicaDescripcion = CultureHelper.GetTraduction(m.Reclasificacion_Juridica_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Reclasificacion_Juridica_A_Tiempo.Descripcion
                         ,Plazo_ConstitucionalDescripcion = CultureHelper.GetTraduction(m.Plazo_Constitucional_Plazo_Constitucional.Clave.ToString(), "Descripcion") ?? (string)m.Plazo_Constitucional_Plazo_Constitucional.Descripcion
                         ,VinculacionDescripcion = CultureHelper.GetTraduction(m.Vinculacion_Vinculacion_a_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Vinculacion_Vinculacion_a_Proceso.Descripcion
@@ -1580,14 +1580,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDetalle_de_ImputadoApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Detalle_de_Imputado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Imputado.Nombre_Completo_del_Tutor as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				var elWhere = " (cast(Detalle_de_Imputado.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Detalle_de_Imputado.Nombre_Completo_Detenido as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
 				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IDetalle_de_ImputadoApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Imputado.Nombre_Completo_del_Tutor ASC ").Resource;
+				var result = _IDetalle_de_ImputadoApiConsumer.ListaSelAll(1, 20,elWhere , " Detalle_de_Imputado.Nombre_Completo_Detenido ASC ").Resource;
                
                 foreach (var item in result.Detalle_de_Imputados)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Imputado", "Nombre_Completo_del_Tutor");
-                    item.Nombre_Completo_del_Tutor =trans ??item.Nombre_Completo_del_Tutor;
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Detalle_de_Imputado", "Nombre_Completo_Detenido");
+                    item.Nombre_Completo_Detenido =trans ??item.Nombre_Completo_Detenido;
                 }
                 return Json(result.Detalle_de_Imputados.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -1734,19 +1734,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 switch (filter.ImputadoFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Detalle_de_Imputado.Nombre_Completo_del_Tutor LIKE '" + filter.AdvanceImputado + "%'";
+                        where += " AND Detalle_de_Imputado.Nombre_Completo_Detenido LIKE '" + filter.AdvanceImputado + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Detalle_de_Imputado.Nombre_Completo_del_Tutor LIKE '%" + filter.AdvanceImputado + "'";
+                        where += " AND Detalle_de_Imputado.Nombre_Completo_Detenido LIKE '%" + filter.AdvanceImputado + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Detalle_de_Imputado.Nombre_Completo_del_Tutor = '" + filter.AdvanceImputado + "'";
+                        where += " AND Detalle_de_Imputado.Nombre_Completo_Detenido = '" + filter.AdvanceImputado + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Detalle_de_Imputado.Nombre_Completo_del_Tutor LIKE '%" + filter.AdvanceImputado + "%'";
+                        where += " AND Detalle_de_Imputado.Nombre_Completo_Detenido LIKE '%" + filter.AdvanceImputado + "%'";
                         break;
                 }
             }
@@ -4320,7 +4320,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Registro = m.Hora_de_Registro
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
-                        ,ImputadoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                        ,ImputadoNombre_Completo_Detenido = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                         ,Reclasificacion_JuridicaDescripcion = CultureHelper.GetTraduction(m.Reclasificacion_Juridica_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Reclasificacion_Juridica_A_Tiempo.Descripcion
                         ,Plazo_ConstitucionalDescripcion = CultureHelper.GetTraduction(m.Plazo_Constitucional_Plazo_Constitucional.Clave.ToString(), "Descripcion") ?? (string)m.Plazo_Constitucional_Plazo_Constitucional.Descripcion
                         ,VinculacionDescripcion = CultureHelper.GetTraduction(m.Vinculacion_Vinculacion_a_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Vinculacion_Vinculacion_a_Proceso.Descripcion
@@ -4433,7 +4433,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fecha_de_Registro = (m.Fecha_de_Registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_Registro = m.Hora_de_Registro
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
-                        ,ImputadoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                        ,ImputadoNombre_Completo_Detenido = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                         ,Reclasificacion_JuridicaDescripcion = CultureHelper.GetTraduction(m.Reclasificacion_Juridica_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Reclasificacion_Juridica_A_Tiempo.Descripcion
                         ,Plazo_ConstitucionalDescripcion = CultureHelper.GetTraduction(m.Plazo_Constitucional_Plazo_Constitucional.Clave.ToString(), "Descripcion") ?? (string)m.Plazo_Constitucional_Plazo_Constitucional.Descripcion
                         ,VinculacionDescripcion = CultureHelper.GetTraduction(m.Vinculacion_Vinculacion_a_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Vinculacion_Vinculacion_a_Proceso.Descripcion
@@ -4568,7 +4568,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_Registra = m.Usuario_que_Registra
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Name") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
                         ,Imputado = m.Imputado
-                        ,ImputadoNombre_Completo_del_Tutor = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_del_Tutor
+                        ,ImputadoNombre_Completo_Detenido = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                         ,Reclasificacion_Juridica = m.Reclasificacion_Juridica
                         ,Reclasificacion_JuridicaDescripcion = CultureHelper.GetTraduction(m.Reclasificacion_Juridica_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Reclasificacion_Juridica_A_Tiempo.Descripcion
                         ,Plazo_Constitucional = m.Plazo_Constitucional
