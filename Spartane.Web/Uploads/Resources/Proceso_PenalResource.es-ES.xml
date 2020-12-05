@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Proceso_Penal" value="Proceso Penal"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="es-es" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="es-es" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="es-es" name="Imputado" value="Imputado"></resource>
+  <resource culture="es-es" name="Reclasificacion_Juridica" value="¿Reclasificación Jurídica?"></resource>
+  <resource culture="es-es" name="Delitos" value="Delitos"></resource>
+  <resource culture="es-es" name="Plazo_Constitucional" value="Plazo Constitucional"></resource>
+  <resource culture="es-es" name="Vinculacion" value="Vinculación"></resource>
+  <resource culture="es-es" name="Resultado_No_Vinculacion" value="Resultado"></resource>
+  <resource culture="es-es" name="Resultado_Vinculacion" value="Resultado"></resource>
+  <resource culture="es-es" name="plazo_investigacion_complementaria" value="Plazo de Investigación Complementaria (meses)"></resource>
+  <resource culture="es-es" name="fecha_investigacion_complementaria" value="Fecha"></resource>
+  <resource culture="es-es" name="hora_investigacion_complementaria" value="Hora"></resource>
+  <resource culture="es-es" name="Medidas_Cautelares" value="Medidas Cautelares"></resource>
+  <resource culture="es-es" name="Nombre_del_Juez_de_Control" value="Nombre del Juez de Control"></resource>
+  <resource culture="es-es" name="Fecha_de_Entrega_de_Escrito_de_Acusacion" value="Fecha de Entrega de Escrito de Acusación"></resource>
+  <resource culture="es-es" name="Hora_de_Entrega_de_Escrito_de_Acusacion" value="Hora de Entrega de Escrito de Acusación"></resource>
+  <resource culture="es-es" name="Fecha_de_Audiencia_Intermedia" value="Fecha de Audiencia Intermedia"></resource>
+  <resource culture="es-es" name="Hora_de_Audiencia_Intermedia" value="Hora de Audiencia Intermedia"></resource>
+  <resource culture="es-es" name="Medios_de_Prueba_del_Imputado" value="Medios de Prueba del Imputado"></resource>
+  <resource culture="es-es" name="Acusador_Coadyudante" value="Acusador Coadyudante"></resource>
+  <resource culture="es-es" name="Medios_de_Prueba_de_la_Victima" value="Medios de Prueba de la Víctima"></resource>
+  <resource culture="es-es" name="cumplio_descubrimiento_probatorio" value="¿Se cumplió con el descubrimiento probartorio por parte del MP?"></resource>
+  <resource culture="es-es" name="Fecha" value="Fecha"></resource>
+  <resource culture="es-es" name="Hora" value="Hora"></resource>
+  <resource culture="es-es" name="Medios_de_Prueba_Admitidos" value="Medios de Prueba Admitidos"></resource>
+  <resource culture="es-es" name="Acuerdos_Probatorios" value="¿Acuerdos Probatorios?"></resource>
+  <resource culture="es-es" name="acuerdos_probatorios_cuales_fueron" value="¿Cuáles fueron? (hechos no controvertidos por las partes)"></resource>
+  <resource culture="es-es" name="Resultado" value="Resultado"></resource>
+  <resource culture="es-es" name="Tribunal_de_Enjuiciamiento" value="Tribunal de Enjuiciamiento"></resource>
+  <resource culture="es-es" name="Nombre_del_Juez" value="Nombre del Juez"></resource>
+  <resource culture="es-es" name="Juez_Colegiado" value="Juez Colegiado"></resource>
+  <resource culture="es-es" name="Juez_Relator" value="Juez Relator"></resource>
+  <resource culture="es-es" name="Juez_Vocal" value="Juez Vocal"></resource>
+  <resource culture="es-es" name="Fecha_de_Audiencia_de_Juicio" value="Fecha de Audiencia de Juicio"></resource>
+  <resource culture="es-es" name="Hora_de_Audiencia_de_Juicio" value="Hora de Audiencia de Juicio"></resource>
+  <resource culture="es-es" name="Fallo_del_Tribunal" value="Fallo del Tribunal"></resource>
+  <resource culture="es-es" name="pruebas_a_desahogar" value="Pruebas a desahogar para la reparación del daño y cuantía de pena"></resource>
+  <resource culture="es-es" name="Resolucion" value="Resolución"></resource>
+  <resource culture="es-es" name="Plazo_meses" value="Plazo (meses)"></resource>
+  <resource culture="es-es" name="Condiciones" value="Condiciones"></resource>
+  <resource culture="es-es" name="Tipo_de_Sentencia" value="Tipo de Sentencia"></resource>
+  <resource culture="es-es" name="cuantia_de_pena_anios" value="Cuantía de Pena - Años"></resource>
+  <resource culture="es-es" name="cuantia_de_pena_meses" value="Cuantía de Pena - Meses"></resource>
+  <resource culture="es-es" name="Monto_de_la_Reparacion_del_Dano" value="Monto de la Reparación del Daño"></resource>
+
+<resource culture="es-es" name="TabFase_Complementaria" value="Fase Complementaria"></resource>
+<resource culture="es-es" name="TabFase_Escrita" value="Fase Escrita"></resource>
+<resource culture="es-es" name="TabAudiencia_Intermedia" value="Audiencia Intermedia"></resource>
+<resource culture="es-es" name="TabJuicio_Oral" value="Juicio Oral"></resource>
+<resource culture="es-es" name="TabResolucion" value="Resolución"></resource>
+
+</resources>

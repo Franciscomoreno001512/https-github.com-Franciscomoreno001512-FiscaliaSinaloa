@@ -17,9 +17,9 @@
     List<SelectListItem> varCalibre_de_Arma_Calibre = null;
     if (ViewBag.Calibre_de_Armas_Calibre != null)
     { varCalibre_de_Arma_Calibre = (List<SelectListItem>)ViewBag.Calibre_de_Armas_Calibre; }
-    List<SelectListItem> varClasificacion_de_Artefacto_y_Explosivo_Clasificacion = null;
-    if (ViewBag.Clasificacion_de_Artefacto_y_Explosivos_Clasificacion != null)
-    { varClasificacion_de_Artefacto_y_Explosivo_Clasificacion = (List<SelectListItem>)ViewBag.Clasificacion_de_Artefacto_y_Explosivos_Clasificacion; }
+    List<SelectListItem> varTipo_Clasificacion_Clasificacion = null;
+    if (ViewBag.Tipo_Clasificacions_Clasificacion != null)
+    { varTipo_Clasificacion_Clasificacion = (List<SelectListItem>)ViewBag.Tipo_Clasificacions_Clasificacion; }
 
 
     Permission permission = ViewBag.Permission;
@@ -237,8 +237,8 @@
 	<div class="col-sm-8" data-field-id="Clasificacion" data-attribute="267538" data-field-name="@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Clasificacion">
 		<select class="form-control" data-val="true" data-val-number="The field Clasificación must be a number." data-val-required="The Clasificación field is required." id="Detalle_Aseguramiento_Armas_InvolucradasClasificacion" name="Detalle_Aseguramiento_Armas_InvolucradasClasificacion">
 			<option value=""></option>
-			@if (varClasificacion_de_Artefacto_y_Explosivo_Clasificacion != null){ 
-				foreach (var itemClasificacion in varClasificacion_de_Artefacto_y_Explosivo_Clasificacion)
+			@if (varTipo_Clasificacion_Clasificacion != null){ 
+				foreach (var itemClasificacion in varTipo_Clasificacion_Clasificacion)
 				{
 					if (itemClasificacion.Value == Convert.ToString(Model.Clasificacion))
 					{

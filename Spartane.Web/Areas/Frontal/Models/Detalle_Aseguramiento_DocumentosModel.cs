@@ -12,8 +12,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
-        public int? Tipo { get; set; }
-        public string TipoDescripcion { get; set; }
+        public string Tipo { get; set; }
         [Range(0.00, 999999.99)]
         public decimal? Cantidad { get; set; }
         public string Observaciones { get; set; }
@@ -25,8 +24,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
-        public int? Tipo { get; set; }
-        public string TipoDescripcion { get; set; }
+        public string Tipo { get; set; }
         [Range(0.00, 999999.99)]
         public decimal? Cantidad { get; set; }
         public string Observaciones { get; set; }

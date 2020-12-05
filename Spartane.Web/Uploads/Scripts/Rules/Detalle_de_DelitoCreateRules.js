@@ -787,12 +787,40 @@ function EjecutarValidacionesAlEliminarMRAgravantes_del_Delito(nameOfTable, rowI
 }
 function EjecutarValidacionesNewRowMRAgravantes_del_Delito(nameOfTable, rowIndex){
     var result = true;
-    //NEWBUSINESSRULE_NEWROWMR_Agravantes_del_Delito//
+    //BusinessRuleId:2742, Attribute:265776, Operation:Object, Event:NEWROWMR
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Agravante' + rowIndex));
+
+}
+//BusinessRuleId:2742, Attribute:265776, Operation:Object, Event:NEWROWMR
+
+//BusinessRuleId:2742, Attribute:265776, Operation:Object, Event:NEWROWMR
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Agravante' + rowIndex));
+
+}
+//BusinessRuleId:2742, Attribute:265776, Operation:Object, Event:NEWROWMR
+
+//NEWBUSINESSRULE_NEWROWMR_Agravantes_del_Delito//
     return result;
 }
 function EjecutarValidacionesEditRowMRAgravantes_del_Delito(nameOfTable, rowIndex){
     var result = true;
-    //NEWBUSINESSRULE_EDITROWMR_Agravantes_del_Delito//
+    //BusinessRuleId:2742, Attribute:265776, Operation:Object, Event:EDITROWMR
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Agravante' + rowIndex));
+
+}
+//BusinessRuleId:2742, Attribute:265776, Operation:Object, Event:EDITROWMR
+
+//BusinessRuleId:2742, Attribute:265776, Operation:Object, Event:EDITROWMR
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Agravante' + rowIndex));
+
+}
+//BusinessRuleId:2742, Attribute:265776, Operation:Object, Event:EDITROWMR
+
+//NEWBUSINESSRULE_EDITROWMR_Agravantes_del_Delito//
     return result;
 }
 function EjecutarValidacionesAntesDeGuardarMRCircunstancias_del_Delito(nameOfTable, rowIndex){
@@ -810,12 +838,40 @@ function EjecutarValidacionesAlEliminarMRCircunstancias_del_Delito(nameOfTable, 
 }
 function EjecutarValidacionesNewRowMRCircunstancias_del_Delito(nameOfTable, rowIndex){
     var result = true;
-    //NEWBUSINESSRULE_NEWROWMR_Circunstancias_del_Delito//
+    //BusinessRuleId:2744, Attribute:265777, Operation:Object, Event:NEWROWMR
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Lugar' + rowIndex));
+
+}
+//BusinessRuleId:2744, Attribute:265777, Operation:Object, Event:NEWROWMR
+
+//BusinessRuleId:2744, Attribute:265777, Operation:Object, Event:NEWROWMR
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Lugar' + rowIndex));
+
+}
+//BusinessRuleId:2744, Attribute:265777, Operation:Object, Event:NEWROWMR
+
+//NEWBUSINESSRULE_NEWROWMR_Circunstancias_del_Delito//
     return result;
 }
 function EjecutarValidacionesEditRowMRCircunstancias_del_Delito(nameOfTable, rowIndex){
     var result = true;
-    //NEWBUSINESSRULE_EDITROWMR_Circunstancias_del_Delito//
+    //BusinessRuleId:2744, Attribute:265777, Operation:Object, Event:EDITROWMR
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Lugar' + rowIndex));
+
+}
+//BusinessRuleId:2744, Attribute:265777, Operation:Object, Event:EDITROWMR
+
+//BusinessRuleId:2744, Attribute:265777, Operation:Object, Event:EDITROWMR
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Lugar' + rowIndex));
+
+}
+//BusinessRuleId:2744, Attribute:265777, Operation:Object, Event:EDITROWMR
+
+//NEWBUSINESSRULE_EDITROWMR_Circunstancias_del_Delito//
     return result;
 }
 

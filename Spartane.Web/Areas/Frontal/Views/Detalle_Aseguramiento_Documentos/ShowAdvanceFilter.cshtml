@@ -3,9 +3,6 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_DocumentosAdvanceSearchModel
 @{
-    List<SelectListItem> varTipo_de_Documento_Tipo = null;
-    if (ViewBag.Tipo_de_Documentos_Tipo != null)
-    { varTipo_de_Documento_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Documentos_Tipo; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -60,20 +57,7 @@
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.TipoFilter, filters, new { @class = "form-control", @id = "ddlTipoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceTipo, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varTipo_de_Documento_Tipo!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceTipoMultiple, varTipo_de_Documento_Tipo,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceTipo"
-                        });
-                    }
+                    @Html.TextBoxFor(m => m.Tipo, new { @class = "form-control", @type = "text", @id = "txtTipo" })
                 </div>
                 <div class="MarginBottom ">
                     <h3>@Resources.Detalle_Aseguramiento_DocumentosResources.Cantidad</h3>
@@ -119,20 +103,10 @@
             advanceSearch.Detalle_Aseguramiento_DocumentosClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Detalle_Aseguramiento_DocumentosClaveTo = $("#txtAdvanceToClave").val();
         }
-        advanceSearch.TipoSearchType = 0;
-        if ($('#ddlAdvanceTipo').val().length > 0 || $("#txtAdvanceTipo").val() == "") {
-
-
-            if (isDetalle_Aseguramiento_DocumentosTextSearch) {
-                advanceSearch.TipoName = $("#txtAdvanceTipo").val();
-                advanceSearch.TipoNameSearchType = $("#ddlAdvanceTipo").val();
-                advanceSearch.TipoSearchType = 1;
-            }
-            else {
-
-                advanceSearch.TipoToSearch = $("#ddlAdvanceTipo").val();
-                advanceSearch.TipoSearchType = 2;
-            }
+        if ($("#txtAdvanceTipo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_DocumentosTipo = $("#txtAdvanceTipo").val();
+            advanceSearch.Detalle_Aseguramiento_DocumentosTipoSearchType = $("#ddlAdvanceTipoFilter").val();
         }
         if ($("#txtAdvanceFromCantidad").val() != "" || $("#txtAdvanceToCantidad").val() != "") {
             hasParameter = true;
@@ -167,15 +141,6 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
-        $("#txtAdvanceTipo").keypress(function () {
-            isDetalle_Aseguramiento_DocumentosTextSearch = true;
-            $("#ddlAdvanceTipo").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceTipo").change(function () {
-            isDetalle_Aseguramiento_DocumentosTextSearch = false;
-            $("#txtAdvanceTipo").val('');
-        });
 
     });
 </script>

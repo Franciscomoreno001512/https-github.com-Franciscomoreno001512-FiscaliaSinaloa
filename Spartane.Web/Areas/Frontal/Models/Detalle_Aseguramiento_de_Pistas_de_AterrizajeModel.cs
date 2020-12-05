@@ -12,10 +12,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
-        public short? Tipo { get; set; }
-        public string TipoDescripcion { get; set; }
-        public int? Suelo { get; set; }
-        public string SueloDescripcion { get; set; }
+        public string Tipo { get; set; }
+        public string Suelo { get; set; }
         public string Descripcion { get; set; }
         public string Localizacion_1 { get; set; }
         public string Localizacion_2 { get; set; }
@@ -36,10 +34,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
-        public short? Tipo { get; set; }
-        public string TipoDescripcion { get; set; }
-        public int? Suelo { get; set; }
-        public string SueloDescripcion { get; set; }
+        public string Tipo { get; set; }
+        public string Suelo { get; set; }
         public string Descripcion { get; set; }
         public string Localizacion_1 { get; set; }
         public string Localizacion_2 { get; set; }

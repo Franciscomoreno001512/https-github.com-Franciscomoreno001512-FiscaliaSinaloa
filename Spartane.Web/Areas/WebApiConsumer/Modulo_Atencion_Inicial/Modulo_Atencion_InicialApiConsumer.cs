@@ -521,6 +521,21 @@ public ApiResponse<int> Update_Campos_Ocultos(Modulo_Atencion_Inicial_Campos_Ocu
             }
         }
 
+        public ApiResponse<int> Update_Actualiza_Turno_Finalizar(Modulo_Atencion_Inicial_Datos_del_Caso entity)
+        {
+            try
+            {
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Estatus_de_Turno",
+                      Method.PUT, ApiHeader, entity);
+
+                return new ApiResponse<int>(true, result);
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<int>(false, -1);
+            }
+        }
+
 
     }
 }

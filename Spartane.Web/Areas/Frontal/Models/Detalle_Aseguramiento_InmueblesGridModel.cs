@@ -11,10 +11,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int Clave { get; set; }
         public short? Zona { get; set; }
         public string ZonaDescripcion { get; set; }
-        public short? Tipo { get; set; }
-        public string TipoDescripcion { get; set; }
-        public short? Terreno { get; set; }
-        public string TerrenoDescripcion { get; set; }
+        public string Tipo { get; set; }
         public string Especifique_Otro { get; set; }
         public string Calle { get; set; }
         public string Exterior { get; set; }

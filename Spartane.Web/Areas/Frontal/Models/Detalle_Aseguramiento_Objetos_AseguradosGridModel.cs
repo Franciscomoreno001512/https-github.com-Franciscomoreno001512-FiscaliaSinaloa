@@ -10,10 +10,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public int Clave { get; set; }
         public string Numero { get; set; }
-        public short? Tipo { get; set; }
-        public string TipoDescripcion { get; set; }
-        public short? Marca { get; set; }
-        public string MarcaDescripcion { get; set; }
+        public string Tipo { get; set; }
+        public string Marca { get; set; }
         public string Serie { get; set; }
         public string IMEI { get; set; }
         

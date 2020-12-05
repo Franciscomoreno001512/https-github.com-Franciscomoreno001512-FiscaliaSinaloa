@@ -34,7 +34,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public short? Tipo { get; set; }
         public string Especifique { get; set; }
         public short? Marca { get; set; }
-        public short? Submarca { get; set; }
+        public string Submarca { get; set; }
         public short? Modelo { get; set; }
         public string Placas { get; set; }
         public short? Color { get; set; }
@@ -48,7 +48,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Origen { get; set; }
         public string Destino { get; set; }
         public string Observaciones { get; set; }
-        public short? Detencion { get; set; }
 
         public bool Removed { set; get; }
     }
@@ -74,7 +73,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Matricula { get; set; }
         public string Serie { get; set; }
         public string Inventario { get; set; }
-        public short? Clasificacion { get; set; }
+        public int? Clasificacion { get; set; }
         public int? Cantidad { get; set; }
         public string Lugar_de_Hallazgo { get; set; }
         public string Observaciones { get; set; }
@@ -85,8 +84,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_Artefactos_y_ExplosivosGridModelPost
     {
         public int Clave { get; set; }
-        public int? Clasificacion { get; set; }
-        public int? Tipo { get; set; }
+        public short? Clasificacion { get; set; }
         public decimal? Cantidad { get; set; }
         public string Lugar_de_Hallazgo { get; set; }
         public string Observaciones { get; set; }
@@ -109,8 +107,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public int Clave { get; set; }
         public string Numero { get; set; }
-        public short? Tipo { get; set; }
-        public short? Marca { get; set; }
+        public string Tipo { get; set; }
+        public string Marca { get; set; }
         public string Serie { get; set; }
         public string IMEI { get; set; }
 
@@ -120,7 +118,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_DocumentosGridModelPost
     {
         public int Clave { get; set; }
-        public int? Tipo { get; set; }
+        public string Tipo { get; set; }
         public decimal? Cantidad { get; set; }
         public string Observaciones { get; set; }
         public string Descipcion_de_Documento { get; set; }
@@ -142,9 +140,9 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_Otros_AseguramientosGridModelPost
     {
         public int Clave { get; set; }
-        public short? Tipo { get; set; }
-        public short? Marca { get; set; }
-        public short? Modelo { get; set; }
+        public string Tipo { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
         public string Inventario { get; set; }
         public string Serie { get; set; }
         public short? Unidad_de_Medida { get; set; }
@@ -182,8 +180,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public int Clave { get; set; }
         public short? Zona { get; set; }
-        public short? Tipo { get; set; }
-        public short? Terreno { get; set; }
+        public string Tipo { get; set; }
         public string Especifique_Otro { get; set; }
         public string Calle { get; set; }
         public string Exterior { get; set; }
@@ -222,8 +219,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_de_Pistas_de_AterrizajeGridModelPost
     {
         public int Clave { get; set; }
-        public short? Tipo { get; set; }
-        public int? Suelo { get; set; }
+        public string Tipo { get; set; }
+        public string Suelo { get; set; }
         public string Descripcion { get; set; }
         public string Localizacion_1 { get; set; }
         public string Localizacion_2 { get; set; }

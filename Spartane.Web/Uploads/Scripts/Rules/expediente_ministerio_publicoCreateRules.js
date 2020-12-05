@@ -54,14 +54,7 @@ if( GetValueByControlType($('#' + nameOfTable + 'acepta_acuerdo' + rowIndex),nam
 
 
 
-//BusinessRuleId:2612, Attribute:267131, Operation:Field, Event:None
-$("form#Createexpediente_ministerio_publico").on('change', '#usuario_que_canaliza', function () {
-	nameOfTable='';
-	rowIndex='';
-if( GetValueByControlType($('#' + nameOfTable + 'canalizar_a' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') ) {} else { AsignarValor($('#' + nameOfTable + 'Fecha_de_Canalizacion' + rowIndex),EvaluaQuery("select ''", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Hora_de_Canalizacion' + rowIndex),EvaluaQuery("select ''", rowIndex, nameOfTable)); var valor = $('#' + nameOfTable + 'usuario_que_canaliza' + rowIndex).val();   $('#' + nameOfTable + 'usuario_que_canaliza' + rowIndex).empty();         if(!$('#' + nameOfTable + 'usuario_que_canaliza' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'usuario_que_canaliza' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT Id_User, Name FROM Spartan_User where Id_User=0", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'usuario_que_canaliza' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT Id_User, Name FROM Spartan_User where Id_User=0", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'usuario_que_canaliza' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'usuario_que_canaliza' + rowIndex).val(valor).trigger('change');}
-});
 
-//BusinessRuleId:2612, Attribute:267131, Operation:Field, Event:None
 
 
 

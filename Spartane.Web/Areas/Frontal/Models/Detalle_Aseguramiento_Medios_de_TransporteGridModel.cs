@@ -14,8 +14,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Especifique { get; set; }
         public short? Marca { get; set; }
         public string MarcaDescripcion { get; set; }
-        public short? Submarca { get; set; }
-        public string SubmarcaDescripcion { get; set; }
+        public string Submarca { get; set; }
         public short? Modelo { get; set; }
         public string ModeloDescripcion { get; set; }
         public string Placas { get; set; }
@@ -33,8 +32,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Origen { get; set; }
         public string Destino { get; set; }
         public string Observaciones { get; set; }
-        public short? Detencion { get; set; }
-        public string DetencionDescripcion { get; set; }
         
     }
 }

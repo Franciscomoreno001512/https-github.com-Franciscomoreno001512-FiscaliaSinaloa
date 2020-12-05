@@ -19,7 +19,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Matricula { get; set; }
         public string Serie { get; set; }
         public string Inventario { get; set; }
-        public short? Clasificacion { get; set; }
+        public int? Clasificacion { get; set; }
         public string ClasificacionDescripcion { get; set; }
         public int? Cantidad { get; set; }
         public string Lugar_de_Hallazgo { get; set; }
