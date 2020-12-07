@@ -536,7 +536,6 @@ public ApiResponse<int> Update_Campos_Ocultos(Modulo_Atencion_Inicial_Campos_Ocu
             }
         }
 
-
     }
 }
 

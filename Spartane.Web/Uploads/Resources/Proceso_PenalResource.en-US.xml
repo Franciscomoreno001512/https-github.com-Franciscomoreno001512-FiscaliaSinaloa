@@ -14,6 +14,7 @@
   <resource culture="en-US" name="Resultado_No_Vinculacion" value="Resultado"></resource>
   <resource culture="en-US" name="Resultado_Vinculacion" value="Resultado"></resource>
   <resource culture="en-US" name="plazo_investigacion_complementaria" value="Plazo de Investigación Complementaria (meses)"></resource>
+  <resource culture="en-US" name="Resultado_de_Investigacion_Complementari" value="Resultado de Investigación Complementaria"></resource>
   <resource culture="en-US" name="fecha_investigacion_complementaria" value="Fecha"></resource>
   <resource culture="en-US" name="hora_investigacion_complementaria" value="Hora"></resource>
   <resource culture="en-US" name="Medidas_Cautelares" value="Medidas Cautelares"></resource>
@@ -48,11 +49,13 @@
   <resource culture="en-US" name="cuantia_de_pena_anios" value="Cuantía de Pena - Años"></resource>
   <resource culture="en-US" name="cuantia_de_pena_meses" value="Cuantía de Pena - Meses"></resource>
   <resource culture="en-US" name="Monto_de_la_Reparacion_del_Dano" value="Monto de la Reparación del Daño"></resource>
+  <resource culture="en-US" name="prueba" value="prueba"></resource>
 
 <resource culture="en-US" name="TabFase_Complementaria" value="Fase Complementaria"></resource>
 <resource culture="en-US" name="TabFase_Escrita" value="Fase Escrita"></resource>
 <resource culture="en-US" name="TabAudiencia_Intermedia" value="Audiencia Intermedia"></resource>
 <resource culture="en-US" name="TabJuicio_Oral" value="Juicio Oral"></resource>
 <resource culture="en-US" name="TabResolucion" value="Resolución"></resource>
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 
 </resources>

@@ -63,6 +63,7 @@
   <resource culture="es-es" name="Bajo_el_Efecto_de_una_Droga" value="Bajo el Efecto de una Droga"></resource>
   <resource culture="es-es" name="Nombre_de_Droga" value="Nombre de Droga"></resource>
   <resource culture="es-es" name="Inimputable" value="Inimputable"></resource>
+  <resource culture="es-es" name="Gravidez" value="Gravidez"></resource>
   <resource culture="es-es" name="Tipo_de_Inimputabilidad" value="Tipo de Inimputabilidad"></resource>
   <resource culture="es-es" name="Especifique" value="Especifique"></resource>
   <resource culture="es-es" name="Adicciones_Probable_Responsable" value="Adicciones Probable Responsable"></resource>
@@ -89,7 +90,7 @@
   <resource culture="es-es" name="Forma_Cara" value="Forma Cara"></resource>
   <resource culture="es-es" name="Cejas" value="Tipo de Cejas"></resource>
   <resource culture="es-es" name="Tamano_de_Cejas" value="Tamaño de Cejas"></resource>
-  <resource culture="es-es" name="Largo_de_Cabello" value="Forma de Cabello"></resource>
+  <resource culture="es-es" name="Largo_de_Cabello" value="Largo de Cabello"></resource>
   <resource culture="es-es" name="Cantidad_Cabello" value="Cantidad Cabello"></resource>
   <resource culture="es-es" name="Implantacion_Cabello" value="Implantación Cabello"></resource>
   <resource culture="es-es" name="Complexion" value="Complexión"></resource>

@@ -224,6 +224,34 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divcod_pais">
+                                <label class="col-sm-2 control-label">@Resources.MunicipioResources.cod_pais</label>
+                                <div class="col-sm-8" data-field-id="cod_pais" data-attribute="267977" data-field-name="@Resources.MunicipioResources.cod_pais">
+                                    <input class="form-control inputNumber Datos_Generales" id="cod_pais" name="cod_pais" type="text" value="@Model.cod_pais">
+                                    @*<span class="field-validation-valid" data-valmsg-for="cod_pais" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divcod_zona">
+                                <label class="col-sm-2 control-label">@Resources.MunicipioResources.cod_zona</label>
+                                <div class="col-sm-8" data-field-id="cod_zona" data-attribute="267978" data-field-name="@Resources.MunicipioResources.cod_zona">
+                                    <input class="form-control Datos_Generales" id="cod_zona" name="cod_zona" type="text" value="@Model.cod_zona">
+                                    @*<span class="field-validation-valid" data-valmsg-for="cod_zona" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divMuniNSJP">
+                                <label class="col-sm-2 control-label">@Resources.MunicipioResources.MuniNSJP</label>
+                                <div class="col-sm-8" data-field-id="MuniNSJP" data-attribute="267979" data-field-name="@Resources.MunicipioResources.MuniNSJP">
+                                    <input class="form-control Datos_Generales" id="MuniNSJP" name="MuniNSJP" type="text" value="@Model.MuniNSJP">
+                                    @*<span class="field-validation-valid" data-valmsg-for="MuniNSJP" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divcod_zona_nsjp">
+                                <label class="col-sm-2 control-label">@Resources.MunicipioResources.cod_zona_nsjp</label>
+                                <div class="col-sm-8" data-field-id="cod_zona_nsjp" data-attribute="267980" data-field-name="@Resources.MunicipioResources.cod_zona_nsjp">
+                                    <input class="form-control inputNumber Datos_Generales" id="cod_zona_nsjp" name="cod_zona_nsjp" type="text" value="@Model.cod_zona_nsjp">
+                                    @*<span class="field-validation-valid" data-valmsg-for="cod_zona_nsjp" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -358,24 +386,9 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('44955');
+		    
 		   
-		   
-			
-             @if(ViewBag.IsNew)
-            { 
-                <text>$('input:checkbox').prop('checked', false);</text>
-            }
-			else
-            {
-                <text>
-				if (Tab_Datos_Generales)
-					Fill_Datos_Generales();
-
-
-                </text>
-             }
-             EjecutarValidacionesAlComienzo();
-             
+            
 
             initiateUIControls();
 			$('a').tooltip();
@@ -425,6 +438,21 @@
         });
 
 
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
         });
 
 
@@ -702,6 +730,10 @@
                     }, 3000);
                     $('#Vigencia').val(result.data.Vigencia);
                     $('#Observaciones').val(result.data.Observaciones);
+                    $('#cod_pais').val(result.data.cod_pais);
+                    $('#cod_zona').val(result.data.cod_zona);
+                    $('#MuniNSJP').val(result.data.MuniNSJP);
+                    $('#cod_zona_nsjp').val(result.data.cod_zona_nsjp);
 
                 },
                 error: function (result) {
@@ -718,6 +750,10 @@
                 data.append('Estado', $('#Estado').val());
                 data.append('Vigencia', $('#Vigencia').val());
                 data.append('Observaciones', $('#Observaciones').val());
+                data.append('cod_pais', $('#cod_pais').val());
+                data.append('cod_zona', $('#cod_zona').val());
+                data.append('MuniNSJP', $('#MuniNSJP').val());
+                data.append('cod_zona_nsjp', $('#cod_zona_nsjp').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Municipio/Post_Datos_Generales")',

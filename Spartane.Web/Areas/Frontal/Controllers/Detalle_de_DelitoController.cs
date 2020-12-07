@@ -552,27 +552,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Delitos_Violencia_Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ITitulo_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Titulo_del_Delitos_Tipo_de_Delito = _ITitulo_del_DelitoApiConsumer.SelAll(true);
-            if (Titulo_del_Delitos_Tipo_de_Delito != null && Titulo_del_Delitos_Tipo_de_Delito.Resource != null)
-                ViewBag.Titulo_del_Delitos_Tipo_de_Delito = Titulo_del_Delitos_Tipo_de_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Titulo_del_Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IGrupo_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Grupo_del_Delitos_Grupo_Delito = _IGrupo_del_DelitoApiConsumer.SelAll(true);
-            if (Grupo_del_Delitos_Grupo_Delito != null && Grupo_del_Delitos_Grupo_Delito.Resource != null)
-                ViewBag.Grupo_del_Delitos_Grupo_Delito = Grupo_del_Delitos_Grupo_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_del_Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IDelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Delitos_Delito = _IDelitoApiConsumer.SelAll(true);
-            if (Delitos_Delito != null && Delitos_Delito.Resource != null)
-                ViewBag.Delitos_Delito = Delitos_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _ICircunstancia_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Circunstancia_del_Delitos_Circunstancia_Delito = _ICircunstancia_del_DelitoApiConsumer.SelAll(true);
             if (Circunstancia_del_Delitos_Circunstancia_Delito != null && Circunstancia_del_Delitos_Circunstancia_Delito.Resource != null)
@@ -1027,27 +1006,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Delitos_Violencia_Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ITitulo_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Titulo_del_Delitos_Tipo_de_Delito = _ITitulo_del_DelitoApiConsumer.SelAll(true);
-            if (Titulo_del_Delitos_Tipo_de_Delito != null && Titulo_del_Delitos_Tipo_de_Delito.Resource != null)
-                ViewBag.Titulo_del_Delitos_Tipo_de_Delito = Titulo_del_Delitos_Tipo_de_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Titulo_del_Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IGrupo_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Grupo_del_Delitos_Grupo_Delito = _IGrupo_del_DelitoApiConsumer.SelAll(true);
-            if (Grupo_del_Delitos_Grupo_Delito != null && Grupo_del_Delitos_Grupo_Delito.Resource != null)
-                ViewBag.Grupo_del_Delitos_Grupo_Delito = Grupo_del_Delitos_Grupo_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_del_Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IDelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Delitos_Delito = _IDelitoApiConsumer.SelAll(true);
-            if (Delitos_Delito != null && Delitos_Delito.Resource != null)
-                ViewBag.Delitos_Delito = Delitos_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _ICircunstancia_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Circunstancia_del_Delitos_Circunstancia_Delito = _ICircunstancia_del_DelitoApiConsumer.SelAll(true);
             if (Circunstancia_del_Delitos_Circunstancia_Delito != null && Circunstancia_del_Delitos_Circunstancia_Delito.Resource != null)
@@ -1362,7 +1320,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        [HttpGet]
+		[HttpGet]
         public ActionResult GetTitulo_del_DelitoAll()
         {
             try
@@ -1371,7 +1329,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ITitulo_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ITitulo_del_DelitoApiConsumer.SelAll(false).Resource;
-                
+				
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Titulo_del_Delito", "Descripcion")?? m.Descripcion,
@@ -1383,7 +1341,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        [HttpGet]
+		[HttpGet]
         public ActionResult GetGrupo_del_DelitoAll()
         {
             try
@@ -1392,7 +1350,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IGrupo_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IGrupo_del_DelitoApiConsumer.SelAll(false).Resource;
-                
+				
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_del_Delito", "Descripcion")?? m.Descripcion,
@@ -1404,7 +1362,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        [HttpGet]
+		[HttpGet]
         public ActionResult GetDelitoAll()
         {
             try
@@ -1413,7 +1371,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IDelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IDelitoApiConsumer.SelAll(false).Resource;
-                
+				
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Delito", "Descripcion")?? m.Descripcion,
@@ -2144,27 +2102,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Delitos_Violencia_Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ITitulo_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Titulo_del_Delitos_Tipo_de_Delito = _ITitulo_del_DelitoApiConsumer.SelAll(true);
-            if (Titulo_del_Delitos_Tipo_de_Delito != null && Titulo_del_Delitos_Tipo_de_Delito.Resource != null)
-                ViewBag.Titulo_del_Delitos_Tipo_de_Delito = Titulo_del_Delitos_Tipo_de_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Titulo_del_Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IGrupo_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Grupo_del_Delitos_Grupo_Delito = _IGrupo_del_DelitoApiConsumer.SelAll(true);
-            if (Grupo_del_Delitos_Grupo_Delito != null && Grupo_del_Delitos_Grupo_Delito.Resource != null)
-                ViewBag.Grupo_del_Delitos_Grupo_Delito = Grupo_del_Delitos_Grupo_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_del_Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IDelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Delitos_Delito = _IDelitoApiConsumer.SelAll(true);
-            if (Delitos_Delito != null && Delitos_Delito.Resource != null)
-                ViewBag.Delitos_Delito = Delitos_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
             _ICircunstancia_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Circunstancia_del_Delitos_Circunstancia_Delito = _ICircunstancia_del_DelitoApiConsumer.SelAll(true);
             if (Circunstancia_del_Delitos_Circunstancia_Delito != null && Circunstancia_del_Delitos_Circunstancia_Delito.Resource != null)
@@ -2399,27 +2336,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Delitos_Violencia_Generos_Delito_Violencia_Genero = Delitos_Violencia_Generos_Delito_Violencia_Genero.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Delitos_Violencia_Genero", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ITitulo_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Titulo_del_Delitos_Tipo_de_Delito = _ITitulo_del_DelitoApiConsumer.SelAll(true);
-            if (Titulo_del_Delitos_Tipo_de_Delito != null && Titulo_del_Delitos_Tipo_de_Delito.Resource != null)
-                ViewBag.Titulo_del_Delitos_Tipo_de_Delito = Titulo_del_Delitos_Tipo_de_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Titulo_del_Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IGrupo_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Grupo_del_Delitos_Grupo_Delito = _IGrupo_del_DelitoApiConsumer.SelAll(true);
-            if (Grupo_del_Delitos_Grupo_Delito != null && Grupo_del_Delitos_Grupo_Delito.Resource != null)
-                ViewBag.Grupo_del_Delitos_Grupo_Delito = Grupo_del_Delitos_Grupo_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Grupo_del_Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _IDelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Delitos_Delito = _IDelitoApiConsumer.SelAll(true);
-            if (Delitos_Delito != null && Delitos_Delito.Resource != null)
-                ViewBag.Delitos_Delito = Delitos_Delito.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Delito", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICircunstancia_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Circunstancia_del_Delitos_Circunstancia_Delito = _ICircunstancia_del_DelitoApiConsumer.SelAll(true);
@@ -2678,9 +2594,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_del_Delito = m.Hora_del_Delito
 			,Violencia_de_Genero = m.Violencia_de_Genero
                         ,Delito_Violencia_GeneroDescripcion = CultureHelper.GetTraduction(m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Descripcion
-                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
-                        ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
-                        ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Delito.Descripcion
+                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
+                        ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
+                        ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
                         ,Circunstancia_DelitoDescripcion = CultureHelper.GetTraduction(m.Circunstancia_Delito_Circunstancia_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Circunstancia_Delito_Circunstancia_del_Delito.Descripcion
 			,Articulado_de_Delito = m.Articulado_de_Delito
 			,Delito_Principal = m.Delito_Principal
@@ -2900,9 +2816,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_del_Delito = m.Hora_del_Delito
 			,Violencia_de_Genero = m.Violencia_de_Genero
                         ,Delito_Violencia_GeneroDescripcion = CultureHelper.GetTraduction(m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Descripcion
-                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
-                        ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
-                        ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Delito.Descripcion
+                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
+                        ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
+                        ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
                         ,Circunstancia_DelitoDescripcion = CultureHelper.GetTraduction(m.Circunstancia_Delito_Circunstancia_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Circunstancia_Delito_Circunstancia_del_Delito.Descripcion
 			,Articulado_de_Delito = m.Articulado_de_Delito
 			,Delito_Principal = m.Delito_Principal
@@ -3056,6 +2972,87 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     item.nic =trans ??item.nic;
                 }
                 return Json(result.expediente_ministerio_publicos.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Delito_Tipo_de_Delito_Titulo_del_Delito(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITitulo_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Titulo_del_Delito.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Titulo_del_Delito.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ITitulo_del_DelitoApiConsumer.ListaSelAll(1, 20,elWhere , " Titulo_del_Delito.Descripcion ASC ").Resource;
+               
+                foreach (var item in result.Titulo_del_Delitos)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Titulo_del_Delito", "Descripcion");
+                    item.Descripcion =trans ??item.Descripcion;
+                }
+                return Json(result.Titulo_del_Delitos.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Delito_Grupo_Delito_Grupo_del_Delito(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IGrupo_del_DelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Grupo_del_Delito.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Grupo_del_Delito.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IGrupo_del_DelitoApiConsumer.ListaSelAll(1, 20,elWhere , " Grupo_del_Delito.Descripcion ASC ").Resource;
+               
+                foreach (var item in result.Grupo_del_Delitos)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Grupo_del_Delito", "Descripcion");
+                    item.Descripcion =trans ??item.Descripcion;
+                }
+                return Json(result.Grupo_del_Delitos.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDetalle_de_Delito_Delito_Delito(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDelitoApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Delito.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Delito.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IDelitoApiConsumer.ListaSelAll(1, 20,elWhere , " Delito.Descripcion ASC ").Resource;
+               
+                foreach (var item in result.Delitos)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Delito", "Descripcion");
+                    item.Descripcion =trans ??item.Descripcion;
+                }
+                return Json(result.Delitos.ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -6652,9 +6649,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_del_Delito = m.Hora_del_Delito
 			,Violencia_de_Genero = m.Violencia_de_Genero
                         ,Delito_Violencia_GeneroDescripcion = CultureHelper.GetTraduction(m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Descripcion
-                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
-                        ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
-                        ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Delito.Descripcion
+                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
+                        ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
+                        ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
                         ,Circunstancia_DelitoDescripcion = CultureHelper.GetTraduction(m.Circunstancia_Delito_Circunstancia_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Circunstancia_Delito_Circunstancia_del_Delito.Descripcion
 			,Articulado_de_Delito = m.Articulado_de_Delito
 			,Delito_Principal = m.Delito_Principal
@@ -6833,9 +6830,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_del_Delito = m.Hora_del_Delito
 			,Violencia_de_Genero = m.Violencia_de_Genero
                         ,Delito_Violencia_GeneroDescripcion = CultureHelper.GetTraduction(m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Descripcion
-                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
-                        ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
-                        ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Delito.Descripcion
+                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
+                        ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
+                        ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
                         ,Circunstancia_DelitoDescripcion = CultureHelper.GetTraduction(m.Circunstancia_Delito_Circunstancia_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Circunstancia_Delito_Circunstancia_del_Delito.Descripcion
 			,Articulado_de_Delito = m.Articulado_de_Delito
 			,Delito_Principal = m.Delito_Principal
@@ -7056,11 +7053,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Delito_Violencia_Genero = m.Delito_Violencia_Genero
                         ,Delito_Violencia_GeneroDescripcion = CultureHelper.GetTraduction(m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Violencia_Genero_Delitos_Violencia_Genero.Descripcion
                         ,Tipo_de_Delito = m.Tipo_de_Delito
-                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
+                        ,Tipo_de_DelitoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Delito_Titulo_del_Delito.Clave.ToString(), "Titulo_del_Delito") ?? (string)m.Tipo_de_Delito_Titulo_del_Delito.Descripcion
                         ,Grupo_Delito = m.Grupo_Delito
-                        ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
+                        ,Grupo_DelitoDescripcion = CultureHelper.GetTraduction(m.Grupo_Delito_Grupo_del_Delito.Clave.ToString(), "Grupo_del_Delito") ?? (string)m.Grupo_Delito_Grupo_del_Delito.Descripcion
                         ,Delito = m.Delito
-                        ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Delito_Delito.Descripcion
+                        ,DelitoDescripcion = CultureHelper.GetTraduction(m.Delito_Delito.Clave.ToString(), "Delito") ?? (string)m.Delito_Delito.Descripcion
                         ,Circunstancia_Delito = m.Circunstancia_Delito
                         ,Circunstancia_DelitoDescripcion = CultureHelper.GetTraduction(m.Circunstancia_Delito_Circunstancia_del_Delito.Clave.ToString(), "Descripcion") ?? (string)m.Circunstancia_Delito_Circunstancia_del_Delito.Descripcion
 			,Articulado_de_Delito = m.Articulado_de_Delito

@@ -199,6 +199,30 @@
                                     <th>@Resources.ComparecienteResources.Clave</th>
                                     <th>@Resources.ComparecienteResources.Nombre_Completo</th>
                                     <th>@Resources.ComparecienteResources.Registro_de_Atencion_Inicial</th>
+                                    <th>@Resources.ComparecienteResources.AVPR_NAVPR</th>
+                                    <th>@Resources.ComparecienteResources.AVPR_APBIS</th>
+                                    <th>@Resources.ComparecienteResources.AVPR_CVEMU</th>
+                                    <th>@Resources.ComparecienteResources.AVPR_CVEAG</th>
+                                    <th>@Resources.ComparecienteResources.OFEN_CONOF</th>
+                                    <th>@Resources.ComparecienteResources.OFEN_OPATE</th>
+                                    <th>@Resources.ComparecienteResources.OFEN_OMATE</th>
+                                    <th>@Resources.ComparecienteResources.OFEN_ONOMB</th>
+                                    <th>@Resources.ComparecienteResources.OFEN_INSTI</th>
+                                    <th>@Resources.ComparecienteResources.OFEN_ESTAD</th>
+                                    <th>@Resources.ComparecienteResources.OFEN_EDAD</th>
+                                    <th>@Resources.ComparecienteResources.OFEN_OCUPA</th>
+                                    <th>@Resources.ComparecienteResources.FECHAREGIS</th>
+                                    <th>@Resources.ComparecienteResources.USUARIO</th>
+                                    <th>@Resources.ComparecienteResources.HORAREGIST</th>
+                                    <th>@Resources.ComparecienteResources.fuente</th>
+                                    <th>@Resources.ComparecienteResources.fecenvio</th>
+                                    <th>@Resources.ComparecienteResources.OFEN_PROBABLE</th>
+                                    <th>@Resources.ComparecienteResources.OFEN_RSOMENOR</th>
+                                    <th>@Resources.ComparecienteResources.REPR_Sexo</th>
+                                    <th>@Resources.ComparecienteResources.REPR_NACIONALIDAD</th>
+                                    <th>@Resources.ComparecienteResources.REPR_ESCOLARIDAD</th>
+                                    <th>@Resources.ComparecienteResources.TIPO_EDAD</th>
+                                    <th>@Resources.ComparecienteResources.IdEstadoInstitucion</th>
 
                                 </tr>
                             </thead>
@@ -207,6 +231,30 @@
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
 
                                 </tr>
@@ -326,11 +374,59 @@
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombre_Completo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Registro_de_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var AVPR_NAVPR =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var AVPR_APBIS =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var AVPR_CVEMU =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var AVPR_CVEAG =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_CONOF =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_OPATE =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_OMATE =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_ONOMB =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_INSTI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_ESTAD =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_EDAD =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_OCUPA =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var FECHAREGIS = $($('table td .filterData.form-control:input')[counter++]).val();
+        var USUARIO =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var HORAREGIST =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var fuente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var fecenvio = $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_PROBABLE =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_RSOMENOR =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var REPR_Sexo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var REPR_NACIONALIDAD =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var REPR_ESCOLARIDAD =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var TIPO_EDAD =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var IdEstadoInstitucion =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
         + "&Nombre_Completo=" + Nombre_Completo
         + "&Registro_de_Atencion_Inicial=" + Registro_de_Atencion_Inicial
+        + "&AVPR_NAVPR=" + AVPR_NAVPR
+        + "&AVPR_APBIS=" + AVPR_APBIS
+        + "&AVPR_CVEMU=" + AVPR_CVEMU
+        + "&AVPR_CVEAG=" + AVPR_CVEAG
+        + "&OFEN_CONOF=" + OFEN_CONOF
+        + "&OFEN_OPATE=" + OFEN_OPATE
+        + "&OFEN_OMATE=" + OFEN_OMATE
+        + "&OFEN_ONOMB=" + OFEN_ONOMB
+        + "&OFEN_INSTI=" + OFEN_INSTI
+        + "&OFEN_ESTAD=" + OFEN_ESTAD
+        + "&OFEN_EDAD=" + OFEN_EDAD
+        + "&OFEN_OCUPA=" + OFEN_OCUPA
+        + "&FECHAREGIS=" + FECHAREGIS
+        + "&USUARIO=" + USUARIO
+        + "&HORAREGIST=" + HORAREGIST
+        + "&fuente=" + fuente
+        + "&fecenvio=" + fecenvio
+        + "&OFEN_PROBABLE=" + OFEN_PROBABLE
+        + "&OFEN_RSOMENOR=" + OFEN_RSOMENOR
+        + "&REPR_Sexo=" + REPR_Sexo
+        + "&REPR_NACIONALIDAD=" + REPR_NACIONALIDAD
+        + "&REPR_ESCOLARIDAD=" + REPR_ESCOLARIDAD
+        + "&TIPO_EDAD=" + TIPO_EDAD
+        + "&IdEstadoInstitucion=" + IdEstadoInstitucion
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Compareciente/Export?format=")" + format
@@ -347,11 +443,59 @@
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombre_Completo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Registro_de_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var AVPR_NAVPR =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var AVPR_APBIS =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var AVPR_CVEMU =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var AVPR_CVEAG =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_CONOF =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_OPATE =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_OMATE =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_ONOMB =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_INSTI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_ESTAD =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_EDAD =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_OCUPA =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var FECHAREGIS = $($('table td .filterData.form-control:input')[counter++]).val();
+        var USUARIO =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var HORAREGIST =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var fuente =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var fecenvio = $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_PROBABLE =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var OFEN_RSOMENOR =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var REPR_Sexo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var REPR_NACIONALIDAD =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var REPR_ESCOLARIDAD =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var TIPO_EDAD =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var IdEstadoInstitucion =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
         + "&Nombre_Completo=" + Nombre_Completo
         + "&Registro_de_Atencion_Inicial=" + Registro_de_Atencion_Inicial
+        + "&AVPR_NAVPR=" + AVPR_NAVPR
+        + "&AVPR_APBIS=" + AVPR_APBIS
+        + "&AVPR_CVEMU=" + AVPR_CVEMU
+        + "&AVPR_CVEAG=" + AVPR_CVEAG
+        + "&OFEN_CONOF=" + OFEN_CONOF
+        + "&OFEN_OPATE=" + OFEN_OPATE
+        + "&OFEN_OMATE=" + OFEN_OMATE
+        + "&OFEN_ONOMB=" + OFEN_ONOMB
+        + "&OFEN_INSTI=" + OFEN_INSTI
+        + "&OFEN_ESTAD=" + OFEN_ESTAD
+        + "&OFEN_EDAD=" + OFEN_EDAD
+        + "&OFEN_OCUPA=" + OFEN_OCUPA
+        + "&FECHAREGIS=" + FECHAREGIS
+        + "&USUARIO=" + USUARIO
+        + "&HORAREGIST=" + HORAREGIST
+        + "&fuente=" + fuente
+        + "&fecenvio=" + fecenvio
+        + "&OFEN_PROBABLE=" + OFEN_PROBABLE
+        + "&OFEN_RSOMENOR=" + OFEN_RSOMENOR
+        + "&REPR_Sexo=" + REPR_Sexo
+        + "&REPR_NACIONALIDAD=" + REPR_NACIONALIDAD
+        + "&REPR_ESCOLARIDAD=" + REPR_ESCOLARIDAD
+        + "&TIPO_EDAD=" + TIPO_EDAD
+        + "&IdEstadoInstitucion=" + IdEstadoInstitucion
 ;
 
     }
@@ -532,11 +676,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -602,6 +746,30 @@
                 { "data": "Clave", "orderable": true, "name": "Clave" }
                 ,{ "data": "Nombre_Completo", "orderable": true, "name": "Nombre_Completo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Registro_de_Atencion_Inicial","className": "dt-right", "orderable": true, "name": "Registro_de_Atencion_Inicial" }
+                ,{ "data": "AVPR_NAVPR", "orderable": true, "name": "AVPR_NAVPR", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "AVPR_APBIS", "orderable": true, "name": "AVPR_APBIS", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "AVPR_CVEMU", "orderable": true, "name": "AVPR_CVEMU", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "AVPR_CVEAG", "orderable": true, "name": "AVPR_CVEAG", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "OFEN_CONOF", "orderable": true, "name": "OFEN_CONOF", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "OFEN_OPATE", "orderable": true, "name": "OFEN_OPATE", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "OFEN_OMATE", "orderable": true, "name": "OFEN_OMATE", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "OFEN_ONOMB", "orderable": true, "name": "OFEN_ONOMB", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "OFEN_INSTI", "orderable": true, "name": "OFEN_INSTI", "className": "dt-right", render: $.fn.dataTable.render.number(',', '.', 2, '$') }
+                ,{ "data": "OFEN_ESTAD", "orderable": true, "name": "OFEN_ESTAD", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "OFEN_EDAD", "orderable": true, "name": "OFEN_EDAD", "className": "dt-right", render: $.fn.dataTable.render.number(',', '.', 2, '$') }
+                ,{ "data": "OFEN_OCUPA", "orderable": true, "name": "OFEN_OCUPA", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "FECHAREGIS", "orderable": true, "searchable": true, "type": "date", "name": "FECHAREGIS" }
+                ,{ "data": "USUARIO", "orderable": true, "name": "USUARIO", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "HORAREGIST", "orderable": true, "name": "HORAREGIST", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "fuente","className": "dt-right", "orderable": true, "name": "fuente" }
+                ,{ "data": "fecenvio", "orderable": true, "searchable": true, "type": "date", "name": "fecenvio" }
+                ,{ "data": "OFEN_PROBABLE","className": "dt-right", "orderable": true, "name": "OFEN_PROBABLE" }
+                ,{ "data": "OFEN_RSOMENOR", "orderable": true, "name": "OFEN_RSOMENOR", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "REPR_Sexo", "orderable": true, "name": "REPR_Sexo", "className": "dt-right", render: $.fn.dataTable.render.number(',', '.', 2, '$') }
+                ,{ "data": "REPR_NACIONALIDAD","className": "dt-right", "orderable": true, "name": "REPR_NACIONALIDAD" }
+                ,{ "data": "REPR_ESCOLARIDAD","className": "dt-right", "orderable": true, "name": "REPR_ESCOLARIDAD" }
+                ,{ "data": "TIPO_EDAD","className": "dt-right", "orderable": true, "name": "TIPO_EDAD" }
+                ,{ "data": "IdEstadoInstitucion","className": "dt-right", "orderable": true, "name": "IdEstadoInstitucion" }
 
             ],
 			"colReorder": true,

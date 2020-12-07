@@ -35,6 +35,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters ObservacionesFilter { set; get; }
         public string Observaciones { set; get; }
 
+        public Filters VigenciaxFilter { set; get; }
+        public string Vigenciax { set; get; }
+
 
     }
 }

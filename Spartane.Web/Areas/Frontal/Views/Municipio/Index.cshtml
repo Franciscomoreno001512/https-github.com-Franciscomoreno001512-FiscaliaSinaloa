@@ -204,6 +204,10 @@
                                     <th>@Resources.MunicipioResources.Estado</th>
                                     <th>@Resources.MunicipioResources.Vigencia</th>
                                     <th>@Resources.MunicipioResources.Observaciones</th>
+                                    <th>@Resources.MunicipioResources.cod_pais</th>
+                                    <th>@Resources.MunicipioResources.cod_zona</th>
+                                    <th>@Resources.MunicipioResources.MuniNSJP</th>
+                                    <th>@Resources.MunicipioResources.cod_zona_nsjp</th>
 
                                 </tr>
                             </thead>
@@ -216,6 +220,10 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
 
                                 </tr>
                             </tfoot>
@@ -337,6 +345,10 @@
         var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Vigencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_pais =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_zona =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var MuniNSJP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_zona_nsjp =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -345,6 +357,10 @@
         + "&Estado=" + Estado
         + "&Vigencia=" + Vigencia
         + "&Observaciones=" + Observaciones
+        + "&cod_pais=" + cod_pais
+        + "&cod_zona=" + cod_zona
+        + "&MuniNSJP=" + MuniNSJP
+        + "&cod_zona_nsjp=" + cod_zona_nsjp
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Municipio/Export?format=")" + format
@@ -364,6 +380,10 @@
         var Estado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Vigencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_pais =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_zona =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var MuniNSJP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_zona_nsjp =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -372,6 +392,10 @@
         + "&Estado=" + Estado
         + "&Vigencia=" + Vigencia
         + "&Observaciones=" + Observaciones
+        + "&cod_pais=" + cod_pais
+        + "&cod_zona=" + cod_zona
+        + "&MuniNSJP=" + MuniNSJP
+        + "&cod_zona_nsjp=" + cod_zona_nsjp
 ;
 
     }
@@ -552,11 +576,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -625,6 +649,10 @@
                 ,{ "data": "EstadoNombre", "orderable": true, "name": "EstadoNombre"}
                 ,{ "data": "VigenciaAbreviacion", "orderable": true, "name": "VigenciaAbreviacion" }
                 ,{ "data": "Observaciones", "orderable": true, "name": "Observaciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "cod_pais","className": "dt-right", "orderable": true, "name": "cod_pais" }
+                ,{ "data": "cod_zona", "orderable": true, "name": "cod_zona", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "MuniNSJP", "orderable": true, "name": "MuniNSJP", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "cod_zona_nsjp","className": "dt-right", "orderable": true, "name": "cod_zona_nsjp" }
 
             ],
 			"colReorder": true,

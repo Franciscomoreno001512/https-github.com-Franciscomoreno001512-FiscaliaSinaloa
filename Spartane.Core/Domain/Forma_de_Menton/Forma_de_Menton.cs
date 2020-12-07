@@ -20,6 +20,7 @@ namespace Spartane.Core.Domain.Forma_de_Menton
         public string Descripcion { get; set; }
         public int? Vigencia { get; set; }
         public string Observaciones { get; set; }
+        public int? LLAVE { get; set; }
 
         [ForeignKey("Vigencia")]
         public virtual Spartane.Core.Domain.Vigencia.Vigencia Vigencia_Vigencia { get; set; }
@@ -32,6 +33,7 @@ namespace Spartane.Core.Domain.Forma_de_Menton
         public string Descripcion { get; set; }
         public int? Vigencia { get; set; }
         public string Observaciones { get; set; }
+        public int? LLAVE { get; set; }
 
 		        [ForeignKey("Vigencia")]
         public virtual Spartane.Core.Domain.Vigencia.Vigencia Vigencia_Vigencia { get; set; }

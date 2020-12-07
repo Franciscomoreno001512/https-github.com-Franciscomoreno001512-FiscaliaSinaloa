@@ -592,6 +592,39 @@ function GetAutoCompleteDetalle_de_Delito_Expediente_MP_expediente_ministerio_pu
     }
     return AutoCompleteExpediente_MPData;
 }
+var AutoCompleteTipo_de_DelitoData = [];
+function GetAutoCompleteDetalle_de_Delito_Tipo_de_Delito_Titulo_del_DelitoData(data) {
+	AutoCompleteTipo_de_DelitoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteTipo_de_DelitoData.push({
+            id: data[i].Clave,
+            text: data[i].Descripcion
+        });
+    }
+    return AutoCompleteTipo_de_DelitoData;
+}
+var AutoCompleteGrupo_DelitoData = [];
+function GetAutoCompleteDetalle_de_Delito_Grupo_Delito_Grupo_del_DelitoData(data) {
+	AutoCompleteGrupo_DelitoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteGrupo_DelitoData.push({
+            id: data[i].Clave,
+            text: data[i].Descripcion
+        });
+    }
+    return AutoCompleteGrupo_DelitoData;
+}
+var AutoCompleteDelitoData = [];
+function GetAutoCompleteDetalle_de_Delito_Delito_DelitoData(data) {
+	AutoCompleteDelitoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteDelitoData.push({
+            id: data[i].Clave,
+            text: data[i].Descripcion
+        });
+    }
+    return AutoCompleteDelitoData;
+}
 //Grid GetAutocomplete
 
 //Grid GetAutocomplete
@@ -760,6 +793,15 @@ function ClearControls() {
     $('#Expediente_MP').empty();
     $("#Expediente_MP").append('<option value=""></option>');
     $('#Expediente_MP').val('0').trigger('change');
+    $('#Tipo_de_Delito').empty();
+    $("#Tipo_de_Delito").append('<option value=""></option>');
+    $('#Tipo_de_Delito').val('0').trigger('change');
+    $('#Grupo_Delito').empty();
+    $("#Grupo_Delito").append('<option value=""></option>');
+    $('#Grupo_Delito').val('0').trigger('change');
+    $('#Delito').empty();
+    $("#Delito").append('<option value=""></option>');
+    $('#Delito').val('0').trigger('change');
                 Agravantes_del_DelitoClearGridData();
                 Circunstancias_del_DelitoClearGridData();
     $('#Estado_del_Delito').empty();
@@ -942,6 +984,15 @@ $(document).ready(function () {
     $('#Expediente_MP').empty();
     $("#Expediente_MP").append('<option value=""></option>');
     $('#Expediente_MP').val('0').trigger('change');
+    $('#Tipo_de_Delito').empty();
+    $("#Tipo_de_Delito").append('<option value=""></option>');
+    $('#Tipo_de_Delito').val('0').trigger('change');
+    $('#Grupo_Delito').empty();
+    $("#Grupo_Delito").append('<option value=""></option>');
+    $('#Grupo_Delito').val('0').trigger('change');
+    $('#Delito').empty();
+    $("#Delito").append('<option value=""></option>');
+    $('#Delito').val('0').trigger('change');
                 Agravantes_del_DelitoClearGridData();
                 Circunstancias_del_DelitoClearGridData();
     $('#Estado_del_Delito').empty();

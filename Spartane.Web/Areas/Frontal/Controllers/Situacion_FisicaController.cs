@@ -155,6 +155,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Situacion_FisicaData.Clave 
 	                    ,Descripcion = Situacion_FisicaData.Descripcion
+                    ,Justicia = Situacion_FisicaData.Justicia
 
 					};
 				}
@@ -228,6 +229,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Situacion_FisicaData.Clave 
 	                    ,Descripcion = Situacion_FisicaData.Descripcion
+                    ,Justicia = Situacion_FisicaData.Justicia
 
 					};
 				}
@@ -339,6 +341,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Justicia = m.Justicia
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -454,6 +457,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Justicia = m.Justicia
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -500,6 +504,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         where += " AND Situacion_Fisica.Descripcion LIKE '%" + filter.Descripcion + "%'";
                         break;
                 }
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromJusticia) || !string.IsNullOrEmpty(filter.ToJusticia))
+            {
+                if (!string.IsNullOrEmpty(filter.FromJusticia))
+                    where += " AND Situacion_Fisica.Justicia >= " + filter.FromJusticia;
+                if (!string.IsNullOrEmpty(filter.ToJusticia))
+                    where += " AND Situacion_Fisica.Justicia <= " + filter.ToJusticia;
             }
 
 
@@ -558,6 +570,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varSituacion_Fisica.Clave
                         ,Descripcion = varSituacion_Fisica.Descripcion
+                        ,Justicia = varSituacion_Fisica.Justicia
 
                     };
 
@@ -946,6 +959,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Justicia = m.Justicia
 
             }).ToList();
 
@@ -1020,6 +1034,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Justicia = m.Justicia
 
             }).ToList();
 
@@ -1060,6 +1075,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varSituacion_Fisica.Clave
                                             ,Descripcion = varSituacion_Fisica.Descripcion
+                        ,Justicia = varSituacion_Fisica.Justicia
                     
                 };
 
@@ -1089,6 +1105,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,Justicia = m.Justicia
 
                     
                 };

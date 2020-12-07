@@ -59,6 +59,22 @@
                     @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
                     @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.GeneroResources.sexo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.sexoFilter, filters, new { @class = "form-control", @id = "ddlsexoFilter" })
+                    @Html.TextBoxFor(m => m.sexo, new { @class = "form-control", @type = "text", @id = "txtsexo" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.GeneroResources.Inicial</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.InicialFilter, filters, new { @class = "form-control", @id = "ddlInicialFilter" })
+                    @Html.TextBoxFor(m => m.Inicial, new { @class = "form-control", @type = "text", @id = "txtInicial" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Genero/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -80,6 +96,16 @@
             hasParameter = true;
             advanceSearch.GeneroDescripcion = $("#txtAdvanceDescripcion").val();
             advanceSearch.GeneroDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
+        }
+        if ($("#txtAdvancesexo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Generosexo = $("#txtAdvancesexo").val();
+            advanceSearch.GenerosexoSearchType = $("#ddlAdvancesexoFilter").val();
+        }
+        if ($("#txtAdvanceInicial").val() != "") {
+            hasParameter = true;
+            advanceSearch.GeneroInicial = $("#txtAdvanceInicial").val();
+            advanceSearch.GeneroInicialSearchType = $("#ddlAdvanceInicialFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

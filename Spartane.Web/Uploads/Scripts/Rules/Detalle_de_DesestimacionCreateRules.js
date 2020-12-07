@@ -3,6 +3,26 @@ var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
+
+
+//BusinessRuleId:2818, Attribute:264916, Operation:Field, Event:None
+$("form#CreateDetalle_de_Desestimacion").on('change', '#Causal_de_Interrupcion', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Causal_de_Interrupcion' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { DisabledControl($("#" + nameOfTable + "Causa_de_Interrupcion" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Causa_de_Interrupcion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Datos_Insuficientes" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Datos_Insuficientes' + rowIndex));}DisabledControl($("#" + nameOfTable + "Actualizacion_de_Sobreseimiento" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Actualizacion_de_Sobreseimiento' + rowIndex));}} else {}
+});
+
+//BusinessRuleId:2818, Attribute:264916, Operation:Field, Event:None
+
+//BusinessRuleId:2817, Attribute:264916, Operation:Field, Event:None
+$("form#CreateDetalle_de_Desestimacion").on('change', '#Causal_de_Interrupcion', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Causal_de_Interrupcion' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { DisabledControl($("#" + nameOfTable + "Causa_de_Interrupcion" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Causa_de_Interrupcion' + rowIndex));}DisabledControl($("#" + nameOfTable + "Datos_Insuficientes" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Datos_Insuficientes' + rowIndex));}DisabledControl($("#" + nameOfTable + "Actualizacion_de_Sobreseimiento" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Actualizacion_de_Sobreseimiento' + rowIndex));} AsignarValor($('#' + nameOfTable + 'Causa_de_Interrupcion' + rowIndex),' ');AsignarValor($('#' + nameOfTable + 'Datos_Insuficientes' + rowIndex),' ');AsignarValor($('#' + nameOfTable + 'Actualizacion_de_Sobreseimiento' + rowIndex),' ');} else {}
+});
+
+//BusinessRuleId:2817, Attribute:264916, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {

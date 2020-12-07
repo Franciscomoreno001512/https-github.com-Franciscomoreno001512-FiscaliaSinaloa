@@ -59,6 +59,17 @@
                     @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
                     @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
                 </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Situacion_FisicaResources.Justicia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromJusticia, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromJusticia" })
+                    @Html.ValidationMessageFor(m => m.FromJusticia)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToJusticia, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToJusticia", @data_min = "txtAdvanceFromJusticia" })
+                    @Html.ValidationMessageFor(m => m.ToJusticia)
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Situacion_Fisica/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -80,6 +91,11 @@
             hasParameter = true;
             advanceSearch.Situacion_FisicaDescripcion = $("#txtAdvanceDescripcion").val();
             advanceSearch.Situacion_FisicaDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
+        }
+        if ($("#txtAdvanceFromJusticia").val() != "" || $("#txtAdvanceToJusticia").val() != "") {
+            hasParameter = true;
+            advanceSearch.Situacion_FisicaJusticiaFrom = $("#txtAdvanceFromJusticia").val();
+            advanceSearch.Situacion_FisicaJusticiaTo = $("#txtAdvanceToJusticia").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

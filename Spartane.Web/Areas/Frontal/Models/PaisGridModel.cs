@@ -13,6 +13,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Vigencia { get; set; }
         public string VigenciaAbreviacion { get; set; }
         public string Observaciones { get; set; }
+        public string Nacionalidad { get; set; }
+        public string Abrevia { get; set; }
         
     }
 }

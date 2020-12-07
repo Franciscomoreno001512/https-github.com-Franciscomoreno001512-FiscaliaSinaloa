@@ -71,6 +71,7 @@ using Spartane.Core.Domain.Complexion;
 using Spartane.Core.Domain.Color_Piel;
 using Spartane.Core.Domain.Frente;
 using Spartane.Core.Domain.Largo_de_Cabello;
+using Spartane.Core.Domain.Forma_Cabello;
 using Spartane.Core.Domain.Color_de_Cabello;
 using Spartane.Core.Domain.Calvicie;
 using Spartane.Core.Domain.Color_Ojos;
@@ -175,6 +176,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public int? Tipo_de_Inimputabilidad { get; set; }
         public string Especifique { get; set; }
         public bool? Se_Informaron_sobre_sus_Derechos { get; set; }
+        public bool? Gravidez { get; set; }
         public int? Discapacidad_Mental { get; set; }
         public int? Discapacidad_Fisica { get; set; }
         public int? Discapacidad_Sensorial { get; set; }
@@ -255,6 +257,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public int? Color_Piel { get; set; }
         public int? Frente { get; set; }
         public int? Largo_de_Cabello { get; set; }
+        public int? Forma_de_Cabello { get; set; }
         public int? Color_Cabello { get; set; }
         public int? Calvicie { get; set; }
         public int? Color_Ojos { get; set; }
@@ -419,6 +422,8 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Frente.Frente Frente_Frente { get; set; }
         [ForeignKey("Largo_de_Cabello")]
         public virtual Spartane.Core.Domain.Largo_de_Cabello.Largo_de_Cabello Largo_de_Cabello_Largo_de_Cabello { get; set; }
+        [ForeignKey("Forma_de_Cabello")]
+        public virtual Spartane.Core.Domain.Forma_Cabello.Forma_Cabello Forma_de_Cabello_Forma_Cabello { get; set; }
         [ForeignKey("Color_Cabello")]
         public virtual Spartane.Core.Domain.Color_de_Cabello.Color_de_Cabello Color_Cabello_Color_de_Cabello { get; set; }
         [ForeignKey("Calvicie")]
@@ -540,6 +545,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public int? Tipo_de_Inimputabilidad { get; set; }
         public string Especifique { get; set; }
         public bool? Se_Informaron_sobre_sus_Derechos { get; set; }
+        public bool? Gravidez { get; set; }
         public int? Discapacidad_Mental { get; set; }
         public int? Discapacidad_Fisica { get; set; }
         public int? Discapacidad_Sensorial { get; set; }
@@ -766,6 +772,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public int? Color_Piel { get; set; }
         public int? Frente { get; set; }
         public int? Largo_de_Cabello { get; set; }
+        public int? Forma_de_Cabello { get; set; }
         public int? Color_Cabello { get; set; }
         public int? Calvicie { get; set; }
         public int? Color_Ojos { get; set; }
@@ -808,6 +815,8 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Frente.Frente Frente_Frente { get; set; }
         [ForeignKey("Largo_de_Cabello")]
         public virtual Spartane.Core.Domain.Largo_de_Cabello.Largo_de_Cabello Largo_de_Cabello_Largo_de_Cabello { get; set; }
+        [ForeignKey("Forma_de_Cabello")]
+        public virtual Spartane.Core.Domain.Forma_Cabello.Forma_Cabello Forma_de_Cabello_Forma_Cabello { get; set; }
         [ForeignKey("Color_Cabello")]
         public virtual Spartane.Core.Domain.Color_de_Cabello.Color_de_Cabello Color_Cabello_Color_de_Cabello { get; set; }
         [ForeignKey("Calvicie")]

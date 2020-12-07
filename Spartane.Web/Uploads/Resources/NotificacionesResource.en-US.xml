@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Notificaciones" value="Notificaciones"></resource>
+  <resource culture="en-US" name="Folio" value="Folio"></resource>
+  <resource culture="en-US" name="Fecha" value="Fecha"></resource>
+  <resource culture="en-US" name="Hora" value="Hora"></resource>
+  <resource culture="en-US" name="Titulo" value="Titulo"></resource>
+  <resource culture="en-US" name="Notificacion" value="Notificación"></resource>
+  <resource culture="en-US" name="Destinatario" value="Destinatario"></resource>
+  <resource culture="en-US" name="Enviado" value="Enviado"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

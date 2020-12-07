@@ -207,6 +207,13 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divVigenciax">
+                                <label class="col-sm-2 control-label">@Resources.OcupacionResources.Vigenciax</label>
+                                <div class="col-sm-8" data-field-id="Vigenciax" data-attribute="268080" data-field-name="@Resources.OcupacionResources.Vigenciax">
+                                    <input class="form-control Datos_Generales" id="Vigenciax" name="Vigenciax" type="text" value="@Model.Vigenciax">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Vigenciax" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -341,24 +348,9 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('44951');
+		    
 		   
-		   
-			
-             @if(ViewBag.IsNew)
-            { 
-                <text>$('input:checkbox').prop('checked', false);</text>
-            }
-			else
-            {
-                <text>
-				if (Tab_Datos_Generales)
-					Fill_Datos_Generales();
-
-
-                </text>
-             }
-             EjecutarValidacionesAlComienzo();
-             
+            
 
             initiateUIControls();
 			$('a').tooltip();
@@ -375,6 +367,21 @@
 			
 			
 
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
         });
 
 
@@ -643,6 +650,7 @@
                     $('#Justicia').val(result.data.Justicia);
                     $('#Vigencia').val(result.data.Vigencia);
                     $('#Observaciones').val(result.data.Observaciones);
+                    $('#Vigenciax').val(result.data.Vigenciax);
 
                 },
                 error: function (result) {
@@ -658,6 +666,7 @@
                 data.append('Justicia', $('#Justicia').val());
                 data.append('Vigencia', $('#Vigencia').val());
                 data.append('Observaciones', $('#Observaciones').val());
+                data.append('Vigenciax', $('#Vigenciax').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Ocupacion/Post_Datos_Generales")',

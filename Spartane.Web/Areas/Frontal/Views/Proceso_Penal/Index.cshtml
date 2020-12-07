@@ -10,6 +10,7 @@
 @using Spartane.Core.Domain.Continuacion_de_Proceso;
 @using Spartane.Core.Domain.Auto_de_Vinculacion_a_Proceso;
 @using Spartane.Core.Domain.Plazo_de_Investigacion_Complementaria;
+@using Spartane.Core.Domain.Resultado_de_Investigacion_Complementaria;
 @using Spartane.Core.Domain.A_Tiempo;
 @using Spartane.Core.Domain.A_Tiempo;
 @using Spartane.Core.Domain.A_Tiempo;
@@ -225,6 +226,7 @@
                                     <th>@Resources.Proceso_PenalResources.Resultado_No_Vinculacion</th>
                                     <th>@Resources.Proceso_PenalResources.Resultado_Vinculacion</th>
                                     <th>@Resources.Proceso_PenalResources.plazo_investigacion_complementaria</th>
+                                    <th>@Resources.Proceso_PenalResources.Resultado_de_Investigacion_Complementari</th>
                                     <th>@Resources.Proceso_PenalResources.fecha_investigacion_complementaria</th>
                                     <th>@Resources.Proceso_PenalResources.hora_investigacion_complementaria</th>
                                     <th>@Resources.Proceso_PenalResources.Nombre_del_Juez_de_Control</th>
@@ -254,6 +256,7 @@
                                     <th>@Resources.Proceso_PenalResources.cuantia_de_pena_anios</th>
                                     <th>@Resources.Proceso_PenalResources.cuantia_de_pena_meses</th>
                                     <th>@Resources.Proceso_PenalResources.Monto_de_la_Reparacion_del_Dano</th>
+                                    <th>@Resources.Proceso_PenalResources.prueba</th>
 
                                 </tr>
                             </thead>
@@ -272,6 +275,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -301,6 +305,7 @@
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
 
                                 </tr>
                             </tfoot>
@@ -428,6 +433,7 @@
         var Resultado_No_Vinculacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Resultado_Vinculacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var plazo_investigacion_complementaria =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resultado_de_Investigacion_Complementari =  $($('table td .filterData.form-control:input')[counter++]).val();
         var fecha_investigacion_complementaria =  $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_investigacion_complementaria = $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombre_del_Juez_de_Control =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -457,6 +463,7 @@
         var cuantia_de_pena_anios =  $($('table td .filterData.form-control:input')[counter++]).val();
         var cuantia_de_pena_meses =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Monto_de_la_Reparacion_del_Dano =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var prueba =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Folio=" + Folio 
@@ -471,6 +478,7 @@
         + "&Resultado_No_Vinculacion=" + Resultado_No_Vinculacion
         + "&Resultado_Vinculacion=" + Resultado_Vinculacion
         + "&plazo_investigacion_complementaria=" + plazo_investigacion_complementaria
+        + "&Resultado_de_Investigacion_Complementari=" + Resultado_de_Investigacion_Complementari
         + "&fecha_investigacion_complementaria=" + fecha_investigacion_complementaria
         + "&hora_investigacion_complementaria=" + hora_investigacion_complementaria
         + "&Nombre_del_Juez_de_Control=" + Nombre_del_Juez_de_Control
@@ -500,6 +508,7 @@
         + "&cuantia_de_pena_anios=" + cuantia_de_pena_anios
         + "&cuantia_de_pena_meses=" + cuantia_de_pena_meses
         + "&Monto_de_la_Reparacion_del_Dano=" + Monto_de_la_Reparacion_del_Dano
+        + "&prueba=" + prueba
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Proceso_Penal/Export?format=")" + format
@@ -525,6 +534,7 @@
         var Resultado_No_Vinculacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Resultado_Vinculacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var plazo_investigacion_complementaria =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resultado_de_Investigacion_Complementari =  $($('table td .filterData.form-control:input')[counter++]).val();
         var fecha_investigacion_complementaria =  $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_investigacion_complementaria = $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombre_del_Juez_de_Control =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -554,6 +564,7 @@
         var cuantia_de_pena_anios =  $($('table td .filterData.form-control:input')[counter++]).val();
         var cuantia_de_pena_meses =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Monto_de_la_Reparacion_del_Dano =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var prueba =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Folio=" + Folio 
@@ -568,6 +579,7 @@
         + "&Resultado_No_Vinculacion=" + Resultado_No_Vinculacion
         + "&Resultado_Vinculacion=" + Resultado_Vinculacion
         + "&plazo_investigacion_complementaria=" + plazo_investigacion_complementaria
+        + "&Resultado_de_Investigacion_Complementari=" + Resultado_de_Investigacion_Complementari
         + "&fecha_investigacion_complementaria=" + fecha_investigacion_complementaria
         + "&hora_investigacion_complementaria=" + hora_investigacion_complementaria
         + "&Nombre_del_Juez_de_Control=" + Nombre_del_Juez_de_Control
@@ -597,6 +609,7 @@
         + "&cuantia_de_pena_anios=" + cuantia_de_pena_anios
         + "&cuantia_de_pena_meses=" + cuantia_de_pena_meses
         + "&Monto_de_la_Reparacion_del_Dano=" + Monto_de_la_Reparacion_del_Dano
+        + "&prueba=" + prueba
 ;
 
     }
@@ -777,11 +790,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -856,6 +869,7 @@
                 ,{ "data": "Resultado_No_VinculacionDescripcion", "orderable": true, "name": "Resultado_No_VinculacionDescripcion" }
                 ,{ "data": "Resultado_VinculacionDescripcion", "orderable": true, "name": "Resultado_VinculacionDescripcion" }
                 ,{ "data": "plazo_investigacion_complementariaDescripcion", "orderable": true, "name": "plazo_investigacion_complementariaDescripcion" }
+                ,{ "data": "Resultado_de_Investigacion_ComplementariDescripcion", "orderable": true, "name": "Resultado_de_Investigacion_ComplementariDescripcion" }
                 ,{ "data": "fecha_investigacion_complementaria","className": "dt-right", "orderable": true, "name": "fecha_investigacion_complementaria" }
                 ,{ "data": "hora_investigacion_complementaria", "orderable": true, "name": "hora_investigacion_complementaria" }
                 ,{ "data": "Nombre_del_Juez_de_Control", "orderable": true, "name": "Nombre_del_Juez_de_Control", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
@@ -885,6 +899,7 @@
                 ,{ "data": "cuantia_de_pena_anios","className": "dt-right", "orderable": true, "name": "cuantia_de_pena_anios" }
                 ,{ "data": "cuantia_de_pena_meses","className": "dt-right", "orderable": true, "name": "cuantia_de_pena_meses" }
                 ,{ "data": "Monto_de_la_Reparacion_del_Dano", "orderable": true, "name": "Monto_de_la_Reparacion_del_Dano", "className": "dt-right", render: $.fn.dataTable.render.number(',', '.', 2, '$') }
+                ,{ "data": "prueba", "orderable": true, "name": "prueba", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
 
             ],
 			"colReorder": true,

@@ -161,6 +161,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_de_Imputado.Nombre_de_Droga";
                 case "Inimputable":
                     return "Detalle_de_Imputado.Inimputable";
+                case "Gravidez":
+                    return "Detalle_de_Imputado.Gravidez";
                 case "Tipo_de_Inimputabilidad[Descripcion]":
                 case "Tipo_de_InimputabilidadDescripcion":
                     return "Tipo_de_Inimputabilidad.Descripcion";
@@ -471,6 +473,10 @@ namespace Spartane.Web.SqlModelMapper
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
             if (columnName == "Inimputable")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Gravidez")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }

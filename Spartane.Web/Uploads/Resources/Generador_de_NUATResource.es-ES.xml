@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Generador_de_NUAT" value="Generador de NUAT"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Fecha_de_Generador_de_NUAT" value="Fecha_de_Generador_de_NUAT"></resource>
+  <resource culture="es-es" name="Anio_de_Generador_de_NUAT" value="Anio_de_Generador_de_NUAT"></resource>
+  <resource culture="es-es" name="Tipo_de_Denuncia" value="Tipo_de_Denuncia"></resource>
+  <resource culture="es-es" name="Region" value="Region"></resource>
+  <resource culture="es-es" name="Consecutivo" value="Consecutivo"></resource>
+  <resource culture="es-es" name="NUAT_Ultimo_Generado" value="NUAT_Ultimo_Generado"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

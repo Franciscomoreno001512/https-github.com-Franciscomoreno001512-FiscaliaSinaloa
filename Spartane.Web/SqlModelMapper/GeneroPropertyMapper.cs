@@ -18,6 +18,10 @@ namespace Spartane.Web.SqlModelMapper
                     return "Genero.Clave";
                 case "Descripcion":
                     return "Genero.Descripcion";
+                case "sexo":
+                    return "Genero.sexo";
+                case "Inicial":
+                    return "Genero.Inicial";
 
                 default:
                     return propertyName;

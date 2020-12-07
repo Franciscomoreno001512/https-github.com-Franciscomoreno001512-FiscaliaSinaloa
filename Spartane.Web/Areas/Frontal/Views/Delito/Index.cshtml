@@ -208,6 +208,16 @@
                                     <th>@Resources.DelitoResources.Tentativa</th>
                                     <th>@Resources.DelitoResources.Activo</th>
                                     <th>@Resources.DelitoResources.Robo_de_Vehiculo</th>
+                                    <th>@Resources.DelitoResources.delitox</th>
+                                    <th>@Resources.DelitoResources.ARTICULO</th>
+                                    <th>@Resources.DelitoResources.DETALLE</th>
+                                    <th>@Resources.DelitoResources.TIPO_AGENCIA</th>
+                                    <th>@Resources.DelitoResources.ESTADISTICO_SSP</th>
+                                    <th>@Resources.DelitoResources.VAL_VEHICULO</th>
+                                    <th>@Resources.DelitoResources.TIPO_DELITO</th>
+                                    <th>@Resources.DelitoResources.circunstancia_clasif</th>
+                                    <th>@Resources.DelitoResources.PRINCIPAL</th>
+                                    <th>@Resources.DelitoResources.orden</th>
 
                                 </tr>
                             </thead>
@@ -224,6 +234,16 @@
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
 
                                 </tr>
                             </tfoot>
@@ -349,6 +369,16 @@
         var Tentativa = $($('table td .filterData.form-control:input')[counter++]).val();
         var Activo = $($('table td .filterData.form-control:input')[counter++]).val();
         var Robo_de_Vehiculo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var delitox =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ARTICULO =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var DETALLE =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var TIPO_AGENCIA =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ESTADISTICO_SSP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var VAL_VEHICULO =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var TIPO_DELITO =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var circunstancia_clasif =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var PRINCIPAL =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var orden =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -361,6 +391,16 @@
         + "&Tentativa=" + Tentativa
         + "&Activo=" + Activo
         + "&Robo_de_Vehiculo=" + Robo_de_Vehiculo
+        + "&delitox=" + delitox
+        + "&ARTICULO=" + ARTICULO
+        + "&DETALLE=" + DETALLE
+        + "&TIPO_AGENCIA=" + TIPO_AGENCIA
+        + "&ESTADISTICO_SSP=" + ESTADISTICO_SSP
+        + "&VAL_VEHICULO=" + VAL_VEHICULO
+        + "&TIPO_DELITO=" + TIPO_DELITO
+        + "&circunstancia_clasif=" + circunstancia_clasif
+        + "&PRINCIPAL=" + PRINCIPAL
+        + "&orden=" + orden
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Delito/Export?format=")" + format
@@ -384,6 +424,16 @@
         var Tentativa = $($('table td .filterData.form-control:input')[counter++]).val();
         var Activo = $($('table td .filterData.form-control:input')[counter++]).val();
         var Robo_de_Vehiculo = $($('table td .filterData.form-control:input')[counter++]).val();
+        var delitox =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ARTICULO =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var DETALLE =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var TIPO_AGENCIA =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ESTADISTICO_SSP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var VAL_VEHICULO =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var TIPO_DELITO =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var circunstancia_clasif =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var PRINCIPAL =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var orden =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -396,6 +446,16 @@
         + "&Tentativa=" + Tentativa
         + "&Activo=" + Activo
         + "&Robo_de_Vehiculo=" + Robo_de_Vehiculo
+        + "&delitox=" + delitox
+        + "&ARTICULO=" + ARTICULO
+        + "&DETALLE=" + DETALLE
+        + "&TIPO_AGENCIA=" + TIPO_AGENCIA
+        + "&ESTADISTICO_SSP=" + ESTADISTICO_SSP
+        + "&VAL_VEHICULO=" + VAL_VEHICULO
+        + "&TIPO_DELITO=" + TIPO_DELITO
+        + "&circunstancia_clasif=" + circunstancia_clasif
+        + "&PRINCIPAL=" + PRINCIPAL
+        + "&orden=" + orden
 ;
 
     }
@@ -576,11 +636,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -653,6 +713,16 @@
                 ,{ "data": "Tentativa", "orderable": true, "name": "Tentativa","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Activo", "orderable": true, "name": "Activo","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Robo_de_Vehiculo", "orderable": true, "name": "Robo_de_Vehiculo","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "delitox","className": "dt-right", "orderable": true, "name": "delitox" }
+                ,{ "data": "ARTICULO", "orderable": true, "name": "ARTICULO", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "DETALLE", "orderable": true, "name": "DETALLE", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "TIPO_AGENCIA","className": "dt-right", "orderable": true, "name": "TIPO_AGENCIA" }
+                ,{ "data": "ESTADISTICO_SSP", "orderable": true, "name": "ESTADISTICO_SSP", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "VAL_VEHICULO", "orderable": true, "name": "VAL_VEHICULO", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "TIPO_DELITO", "orderable": true, "name": "TIPO_DELITO", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "circunstancia_clasif","className": "dt-right", "orderable": true, "name": "circunstancia_clasif" }
+                ,{ "data": "PRINCIPAL","className": "dt-right", "orderable": true, "name": "PRINCIPAL" }
+                ,{ "data": "orden","className": "dt-right", "orderable": true, "name": "orden" }
 
             ],
 			"colReorder": true,

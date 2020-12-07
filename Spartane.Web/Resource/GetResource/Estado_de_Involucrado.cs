@@ -66,6 +66,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Justicia</summary>
+        public static string Justicia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderEstado_de_Involucrado.GetResource("Justicia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderEstado_de_Involucrado.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

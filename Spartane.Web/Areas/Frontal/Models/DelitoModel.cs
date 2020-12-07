@@ -23,6 +23,21 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool Tentativa { get; set; }
         public bool Activo { get; set; }
         public bool Robo_de_Vehiculo { get; set; }
+        [Range(0, 9999999999)]
+        public int? delitox { get; set; }
+        public string ARTICULO { get; set; }
+        public string DETALLE { get; set; }
+        [Range(0, 9999999999)]
+        public int? TIPO_AGENCIA { get; set; }
+        public string ESTADISTICO_SSP { get; set; }
+        public string VAL_VEHICULO { get; set; }
+        public string TIPO_DELITO { get; set; }
+        [Range(0, 9999999999)]
+        public int? circunstancia_clasif { get; set; }
+        [Range(0, 9999999999)]
+        public int? PRINCIPAL { get; set; }
+        [Range(0, 9999999999)]
+        public int? orden { get; set; }
 
     }
 	
@@ -41,6 +56,21 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool? Tentativa { get; set; }
         public bool? Activo { get; set; }
         public bool? Robo_de_Vehiculo { get; set; }
+        [Range(0, 9999999999)]
+        public int? delitox { get; set; }
+        public string ARTICULO { get; set; }
+        public string DETALLE { get; set; }
+        [Range(0, 9999999999)]
+        public int? TIPO_AGENCIA { get; set; }
+        public string ESTADISTICO_SSP { get; set; }
+        public string VAL_VEHICULO { get; set; }
+        public string TIPO_DELITO { get; set; }
+        [Range(0, 9999999999)]
+        public int? circunstancia_clasif { get; set; }
+        [Range(0, 9999999999)]
+        public int? PRINCIPAL { get; set; }
+        [Range(0, 9999999999)]
+        public int? orden { get; set; }
 
     }
 

@@ -47,6 +47,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "plazo_investigacion_complementaria[Descripcion]":
                 case "plazo_investigacion_complementariaDescripcion":
                     return "Plazo_de_Investigacion_Complementaria.Descripcion";
+                case "Resultado_de_Investigacion_Complementari[Descripcion]":
+                case "Resultado_de_Investigacion_ComplementariDescripcion":
+                    return "Resultado_de_Investigacion_Complementaria.Descripcion";
                 case "fecha_investigacion_complementaria":
                     return "Proceso_Penal.fecha_investigacion_complementaria";
                 case "hora_investigacion_complementaria":
@@ -113,6 +116,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Proceso_Penal.cuantia_de_pena_meses";
                 case "Monto_de_la_Reparacion_del_Dano":
                     return "Proceso_Penal.Monto_de_la_Reparacion_del_Dano";
+                case "prueba":
+                    return "Proceso_Penal.prueba";
 
                 default:
                     return propertyName;

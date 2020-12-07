@@ -15,6 +15,13 @@ if( TryParseInt('17', '17')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, n
 }
 //BusinessRuleId:2628, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2862, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( TryParseInt('17', '17')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nameOfTable) ) { $('#divcod_pais').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'cod_pais' + rowIndex));$('#divcod_edo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'cod_edo' + rowIndex));$('#divcod_agencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'cod_agencia' + rowIndex));$('#divFTIPO').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'FTIPO' + rowIndex));$('#divfcreada').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'fcreada' + rowIndex));$('#divfbaja').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'fbaja' + rowIndex));$('#divULTAVREGIS').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'ULTAVREGIS' + rowIndex));$('#divFUBICACION').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'FUBICACION' + rowIndex));$('#divvr_agen').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'vr_agen' + rowIndex));$('#divEspecial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Especial' + rowIndex));$('#divAgenAV').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'AgenAV' + rowIndex));$('#divAgenUni_NSJP').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'AgenUni_NSJP' + rowIndex));$('#divNomenclatura').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Nomenclatura' + rowIndex));$('#divAlcance').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Alcance' + rowIndex));$('#divReceptorDeclinaciones').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'ReceptorDeclinaciones' + rowIndex));$('#divEspecialidad').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Especialidad' + rowIndex));} else {}
+
+}
+//BusinessRuleId:2862, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

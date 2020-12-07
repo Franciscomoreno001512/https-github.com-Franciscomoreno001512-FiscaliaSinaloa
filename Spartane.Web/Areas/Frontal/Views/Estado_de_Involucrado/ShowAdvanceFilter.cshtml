@@ -91,6 +91,17 @@
                     @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
                     @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
                 </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Estado_de_InvolucradoResources.Justicia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromJusticia, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromJusticia" })
+                    @Html.ValidationMessageFor(m => m.FromJusticia)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToJusticia, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToJusticia", @data_min = "txtAdvanceFromJusticia" })
+                    @Html.ValidationMessageFor(m => m.ToJusticia)
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Estado_de_Involucrado/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -132,6 +143,11 @@
             hasParameter = true;
             advanceSearch.Estado_de_InvolucradoObservaciones = $("#txtAdvanceObservaciones").val();
             advanceSearch.Estado_de_InvolucradoObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+        if ($("#txtAdvanceFromJusticia").val() != "" || $("#txtAdvanceToJusticia").val() != "") {
+            hasParameter = true;
+            advanceSearch.Estado_de_InvolucradoJusticiaFrom = $("#txtAdvanceFromJusticia").val();
+            advanceSearch.Estado_de_InvolucradoJusticiaTo = $("#txtAdvanceToJusticia").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

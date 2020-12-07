@@ -706,6 +706,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Gravidez</summary>
+        public static string Gravidez
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Gravidez", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Adicciones_de_Involucrado</summary>
         public static string Adicciones_de_Involucrado
         {
@@ -1553,6 +1563,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_de_Datos_Generales.GetResource("Largo_de_Cabello", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Forma_de_Cabello</summary>
+        public static string Forma_de_Cabello
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Forma_de_Cabello", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

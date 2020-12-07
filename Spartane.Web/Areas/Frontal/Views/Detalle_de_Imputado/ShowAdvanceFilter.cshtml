@@ -2834,6 +2834,10 @@
             hasParameter = true;
             advanceSearch.Detalle_de_ImputadoInimputable = $("#ddlAdvanceInimputable").val();
         }
+        if ($("#ddlAdvanceGravidez").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_ImputadoGravidez = $("#ddlAdvanceGravidez").val();
+        }
         advanceSearch.Tipo_de_InimputabilidadSearchType = 0;
         if ($('#ddlAdvanceTipo_de_Inimputabilidad').val().length > 0 || $("#txtAdvanceTipo_de_Inimputabilidad").val() == "") {
 
