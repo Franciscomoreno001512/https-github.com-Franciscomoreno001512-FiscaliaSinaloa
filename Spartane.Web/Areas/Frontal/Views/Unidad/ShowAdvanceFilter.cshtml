@@ -9,6 +9,9 @@
     List<SelectListItem> varRegion_Clave_de_Region = null;
     if (ViewBag.Regions_Clave_de_Region != null)
     { varRegion_Clave_de_Region = (List<SelectListItem>)ViewBag.Regions_Clave_de_Region; }
+    List<SelectListItem> varEspecialidad_MP_Especialidad = null;
+    if (ViewBag.Especialidad_MPs_Especialidad != null)
+    { varEspecialidad_MP_Especialidad = (List<SelectListItem>)ViewBag.Especialidad_MPs_Especialidad; }
     List<SelectListItem> varVigencia_Vigencia = null;
     if (ViewBag.Vigencias_Vigencia != null)
     { varVigencia_Vigencia = (List<SelectListItem>)ViewBag.Vigencias_Vigencia; }
@@ -144,6 +147,27 @@
                     @Html.TextBoxFor(m => m.Descripcion_Corta, new { @class = "form-control", @type = "text", @id = "txtDescripcion_Corta" })
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.UnidadResources.Especialidad</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.EspecialidadFilter, filters, new { @class = "form-control", @id = "ddlEspecialidadFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEspecialidad, new { @class = "form-control", @type = "text", @id = "txtAdvanceEspecialidad" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEspecialidad_MP_Especialidad!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEspecialidadMultiple, varEspecialidad_MP_Especialidad,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEspecialidad"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.UnidadResources.Vigencia</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -215,6 +239,147 @@
                         });
                     }
                 </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.UnidadResources.cod_pais</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromcod_pais, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromcod_pais" })
+                    @Html.ValidationMessageFor(m => m.Fromcod_pais)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Tocod_pais, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTocod_pais", @data_min = "txtAdvanceFromcod_pais" })
+                    @Html.ValidationMessageFor(m => m.Tocod_pais)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.UnidadResources.cod_edo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromcod_edo, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromcod_edo" })
+                    @Html.ValidationMessageFor(m => m.Fromcod_edo)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Tocod_edo, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTocod_edo", @data_min = "txtAdvanceFromcod_edo" })
+                    @Html.ValidationMessageFor(m => m.Tocod_edo)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.UnidadResources.cod_agencia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromcod_agencia, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromcod_agencia" })
+                    @Html.ValidationMessageFor(m => m.Fromcod_agencia)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Tocod_agencia, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTocod_agencia", @data_min = "txtAdvanceFromcod_agencia" })
+                    @Html.ValidationMessageFor(m => m.Tocod_agencia)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.UnidadResources.FTIPO</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.FTIPOFilter, filters, new { @class = "form-control", @id = "ddlFTIPOFilter" })
+                    @Html.TextBoxFor(m => m.FTIPO, new { @class = "form-control", @type = "text", @id = "txtFTIPO" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.UnidadResources.fcreada</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromfcreada" name="Fromfcreada" type="text" value="@Model.Fromfcreada" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceTofcreada" name="Tofcreada" type="text" value="@Model.Tofcreada" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.UnidadResources.fbaja</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromfbaja" name="Fromfbaja" type="text" value="@Model.Fromfbaja" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceTofbaja" name="Tofbaja" type="text" value="@Model.Tofbaja" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.UnidadResources.FUBICACION</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.FUBICACIONFilter, filters, new { @class = "form-control", @id = "ddlFUBICACIONFilter" })
+                    @Html.TextBoxFor(m => m.FUBICACION, new { @class = "form-control", @type = "text", @id = "txtFUBICACION" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.UnidadResources.vr_agen</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromvr_agen, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromvr_agen" })
+                    @Html.ValidationMessageFor(m => m.Fromvr_agen)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Tovr_agen, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTovr_agen", @data_min = "txtAdvanceFromvr_agen" })
+                    @Html.ValidationMessageFor(m => m.Tovr_agen)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.UnidadResources.Especial</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.EspecialFilter, filters, new { @class = "form-control", @id = "ddlEspecialFilter" })
+                    @Html.TextBoxFor(m => m.Especial, new { @class = "form-control", @type = "text", @id = "txtEspecial" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.UnidadResources.AgenAV</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromAgenAV, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromAgenAV" })
+                    @Html.ValidationMessageFor(m => m.FromAgenAV)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToAgenAV, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToAgenAV", @data_min = "txtAdvanceFromAgenAV" })
+                    @Html.ValidationMessageFor(m => m.ToAgenAV)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.UnidadResources.AgenUni_NSJP</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AgenUni_NSJPFilter, filters, new { @class = "form-control", @id = "ddlAgenUni_NSJPFilter" })
+                    @Html.TextBoxFor(m => m.AgenUni_NSJP, new { @class = "form-control", @type = "text", @id = "txtAgenUni_NSJP" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.UnidadResources.Nomenclatura</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.NomenclaturaFilter, filters, new { @class = "form-control", @id = "ddlNomenclaturaFilter" })
+                    @Html.TextBoxFor(m => m.Nomenclatura, new { @class = "form-control", @type = "text", @id = "txtNomenclatura" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.UnidadResources.Alcance</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AlcanceFilter, filters, new { @class = "form-control", @id = "ddlAlcanceFilter" })
+                    @Html.TextBoxFor(m => m.Alcance, new { @class = "form-control", @type = "text", @id = "txtAlcance" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Unidad/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -282,6 +447,21 @@
             advanceSearch.UnidadDescripcion_Corta = $("#txtAdvanceDescripcion_Corta").val();
             advanceSearch.UnidadDescripcion_CortaSearchType = $("#ddlAdvanceDescripcion_CortaFilter").val();
         }
+        advanceSearch.EspecialidadSearchType = 0;
+        if ($('#ddlAdvanceEspecialidad').val().length > 0 || $("#txtAdvanceEspecialidad").val() == "") {
+
+
+            if (isUnidadTextSearch) {
+                advanceSearch.EspecialidadName = $("#txtAdvanceEspecialidad").val();
+                advanceSearch.EspecialidadNameSearchType = $("#ddlAdvanceEspecialidad").val();
+                advanceSearch.EspecialidadSearchType = 1;
+            }
+            else {
+
+                advanceSearch.EspecialidadToSearch = $("#ddlAdvanceEspecialidad").val();
+                advanceSearch.EspecialidadSearchType = 2;
+            }
+        }
         advanceSearch.VigenciaSearchType = 0;
         if ($('#ddlAdvanceVigencia').val().length > 0 || $("#txtAdvanceVigencia").val() == "") {
 
@@ -342,6 +522,80 @@
                 advanceSearch.Tipo_de_Asignacion_de_MPSearchType = 2;
             }
         }
+        if ($("#txtAdvanceFromcod_pais").val() != "" || $("#txtAdvanceTocod_pais").val() != "") {
+            hasParameter = true;
+            advanceSearch.Unidadcod_paisFrom = $("#txtAdvanceFromcod_pais").val();
+            advanceSearch.Unidadcod_paisTo = $("#txtAdvanceTocod_pais").val();
+        }
+        if ($("#txtAdvanceFromcod_edo").val() != "" || $("#txtAdvanceTocod_edo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Unidadcod_edoFrom = $("#txtAdvanceFromcod_edo").val();
+            advanceSearch.Unidadcod_edoTo = $("#txtAdvanceTocod_edo").val();
+        }
+        if ($("#txtAdvanceFromcod_agencia").val() != "" || $("#txtAdvanceTocod_agencia").val() != "") {
+            hasParameter = true;
+            advanceSearch.Unidadcod_agenciaFrom = $("#txtAdvanceFromcod_agencia").val();
+            advanceSearch.Unidadcod_agenciaTo = $("#txtAdvanceTocod_agencia").val();
+        }
+        if ($("#txtAdvanceFTIPO").val() != "") {
+            hasParameter = true;
+            advanceSearch.UnidadFTIPO = $("#txtAdvanceFTIPO").val();
+            advanceSearch.UnidadFTIPOSearchType = $("#ddlAdvanceFTIPOFilter").val();
+        }
+        if ($("#txtAdvanceFromfcreada").val() != "" || $("#txtAdvanceTofcreada").val() != "") {
+            hasParameter = true;
+            advanceSearch.UnidadfcreadaFrom = $("#txtAdvanceFromfcreada").val();
+            advanceSearch.UnidadfcreadaTo = $("#txtAdvanceTofcreada").val();
+        }
+        if ($("#txtAdvanceFromfbaja").val() != "" || $("#txtAdvanceTofbaja").val() != "") {
+            hasParameter = true;
+            advanceSearch.UnidadfbajaFrom = $("#txtAdvanceFromfbaja").val();
+            advanceSearch.UnidadfbajaTo = $("#txtAdvanceTofbaja").val();
+        }
+        if ($("#txtAdvanceFromULTAVREGIS").val() != "" || $("#txtAdvanceToULTAVREGIS").val() != "") {
+            hasParameter = true;
+            advanceSearch.UnidadULTAVREGISFrom = $("#txtAdvanceFromULTAVREGIS").val();
+            advanceSearch.UnidadULTAVREGISTo = $("#txtAdvanceToULTAVREGIS").val();
+        }
+        if ($("#txtAdvanceFUBICACION").val() != "") {
+            hasParameter = true;
+            advanceSearch.UnidadFUBICACION = $("#txtAdvanceFUBICACION").val();
+            advanceSearch.UnidadFUBICACIONSearchType = $("#ddlAdvanceFUBICACIONFilter").val();
+        }
+        if ($("#txtAdvanceFromvr_agen").val() != "" || $("#txtAdvanceTovr_agen").val() != "") {
+            hasParameter = true;
+            advanceSearch.Unidadvr_agenFrom = $("#txtAdvanceFromvr_agen").val();
+            advanceSearch.Unidadvr_agenTo = $("#txtAdvanceTovr_agen").val();
+        }
+        if ($("#txtAdvanceEspecial").val() != "") {
+            hasParameter = true;
+            advanceSearch.UnidadEspecial = $("#txtAdvanceEspecial").val();
+            advanceSearch.UnidadEspecialSearchType = $("#ddlAdvanceEspecialFilter").val();
+        }
+        if ($("#txtAdvanceFromAgenAV").val() != "" || $("#txtAdvanceToAgenAV").val() != "") {
+            hasParameter = true;
+            advanceSearch.UnidadAgenAVFrom = $("#txtAdvanceFromAgenAV").val();
+            advanceSearch.UnidadAgenAVTo = $("#txtAdvanceToAgenAV").val();
+        }
+        if ($("#txtAdvanceAgenUni_NSJP").val() != "") {
+            hasParameter = true;
+            advanceSearch.UnidadAgenUni_NSJP = $("#txtAdvanceAgenUni_NSJP").val();
+            advanceSearch.UnidadAgenUni_NSJPSearchType = $("#ddlAdvanceAgenUni_NSJPFilter").val();
+        }
+        if ($("#txtAdvanceNomenclatura").val() != "") {
+            hasParameter = true;
+            advanceSearch.UnidadNomenclatura = $("#txtAdvanceNomenclatura").val();
+            advanceSearch.UnidadNomenclaturaSearchType = $("#ddlAdvanceNomenclaturaFilter").val();
+        }
+        if ($("#txtAdvanceAlcance").val() != "") {
+            hasParameter = true;
+            advanceSearch.UnidadAlcance = $("#txtAdvanceAlcance").val();
+            advanceSearch.UnidadAlcanceSearchType = $("#ddlAdvanceAlcanceFilter").val();
+        }
+        if ($("#ddlAdvanceReceptorDeclinaciones").val() != "") {
+            hasParameter = true;
+            advanceSearch.UnidadReceptorDeclinaciones = $("#ddlAdvanceReceptorDeclinaciones").val();
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblUnidad').DataTable().draw();
@@ -377,6 +631,15 @@
         $("#ddlAdvanceClave_de_Region").change(function () {
             isUnidadTextSearch = false;
             $("#txtAdvanceClave_de_Region").val('');
+        });
+        $("#txtAdvanceEspecialidad").keypress(function () {
+            isUnidadTextSearch = true;
+            $("#ddlAdvanceEspecialidad").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEspecialidad").change(function () {
+            isUnidadTextSearch = false;
+            $("#txtAdvanceEspecialidad").val('');
         });
         $("#txtAdvanceVigencia").keypress(function () {
             isUnidadTextSearch = true;

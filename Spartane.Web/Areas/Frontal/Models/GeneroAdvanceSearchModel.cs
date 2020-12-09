@@ -22,6 +22,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters DescripcionFilter { set; get; }
         public string Descripcion { set; get; }
 
+        public Filters sexoFilter { set; get; }
+        public string sexo { set; get; }
+
+        public Filters InicialFilter { set; get; }
+        public string Inicial { set; get; }
+
 
     }
 }

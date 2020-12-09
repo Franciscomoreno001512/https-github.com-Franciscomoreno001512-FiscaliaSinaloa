@@ -37,6 +37,21 @@ $( "#Celular" ).blur(function() {
             } 
         });
 
+//Validar Correo
+$('#Correo_Electronico').change(function(){ 
+    let email = $('#Correo_Electronico').val(); 
+    let exp = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/); 
+    if (exp.test(email) == false){ 
+        $('#Correo_Electronico').attr("placeholder", "Correo electrónico no válido.").val("").focus().blur(); 
+    } 
+});
+$('#Correo_Electronico_del_Tutor').change(function(){ 
+    let email = $('#Correo_Electronico_del_Tutor').val(); 
+    let exp = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/); 
+    if (exp.test(email) == false){ 
+        $('#Correo_Electronico_del_Tutor').attr("placeholder", "Correo electrónico no válido.").val("").focus().blur(); 
+    } 
+});
 
 //BusinessRuleId:580, Attribute:263903, Operation:Field, Event:None
 $("form#CreateDetalle_de_Persona_Moral").on('change', '#Pais', function () {

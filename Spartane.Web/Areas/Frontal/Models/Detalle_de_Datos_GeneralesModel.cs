@@ -114,6 +114,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Tipo_de_InimputabilidadDescripcion { get; set; }
         public string Especifique { get; set; }
         public bool Se_Informaron_sobre_sus_Derechos { get; set; }
+        public bool Gravidez { get; set; }
         public int? Discapacidad_Mental { get; set; }
         public string Discapacidad_MentalDescripcion { get; set; }
         public int? Discapacidad_Fisica { get; set; }
@@ -235,6 +236,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string FrenteDescripcion { get; set; }
         public int? Largo_de_Cabello { get; set; }
         public string Largo_de_CabelloDescripcion { get; set; }
+        public int? Forma_de_Cabello { get; set; }
+        public string Forma_de_CabelloDescripcion { get; set; }
         public int? Color_Cabello { get; set; }
         public string Color_CabelloDescripcion { get; set; }
         public int? Calvicie { get; set; }
@@ -395,6 +398,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Tipo_de_InimputabilidadDescripcion { get; set; }
         public string Especifique { get; set; }
         public bool? Se_Informaron_sobre_sus_Derechos { get; set; }
+        public bool? Gravidez { get; set; }
         public int? Discapacidad_Mental { get; set; }
         public string Discapacidad_MentalDescripcion { get; set; }
         public int? Discapacidad_Fisica { get; set; }
@@ -544,6 +548,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string FrenteDescripcion { get; set; }
         public int? Largo_de_Cabello { get; set; }
         public string Largo_de_CabelloDescripcion { get; set; }
+        public int? Forma_de_Cabello { get; set; }
+        public string Forma_de_CabelloDescripcion { get; set; }
         public int? Color_Cabello { get; set; }
         public string Color_CabelloDescripcion { get; set; }
         public int? Calvicie { get; set; }

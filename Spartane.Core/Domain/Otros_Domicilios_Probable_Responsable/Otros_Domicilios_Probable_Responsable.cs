@@ -31,6 +31,10 @@ namespace Spartane.Core.Domain.Otros_Domicilios_Probable_Responsable
         public string Entre_Calle { get; set; }
         public string Y_Calle { get; set; }
         public string Numero_Exterior { get; set; }
+        public string Numero_Interior { get; set; }
+        public string Coordenada_X { get; set; }
+        public string Coordenada_Y { get; set; }
+        public string Observaciones { get; set; }
 
         [ForeignKey("Probable_Responsable")]
         public virtual Spartane.Core.Domain.Detalle_de_Imputado.Detalle_de_Imputado Probable_Responsable_Detalle_de_Imputado { get; set; }
@@ -58,6 +62,10 @@ namespace Spartane.Core.Domain.Otros_Domicilios_Probable_Responsable
         public string Entre_Calle { get; set; }
         public string Y_Calle { get; set; }
         public string Numero_Exterior { get; set; }
+        public string Numero_Interior { get; set; }
+        public string Coordenada_X { get; set; }
+        public string Coordenada_Y { get; set; }
+        public string Observaciones { get; set; }
 
 		        [ForeignKey("Probable_Responsable")]
         public virtual Spartane.Core.Domain.Detalle_de_Imputado.Detalle_de_Imputado Probable_Responsable_Detalle_de_Imputado { get; set; }

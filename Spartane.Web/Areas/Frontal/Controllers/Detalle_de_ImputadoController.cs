@@ -73,6 +73,10 @@ using Spartane.Core.Domain.Colonia;
 
 
 
+
+
+
+
 using Spartane.Core.Domain.Otros_Nombres;
 
 
@@ -697,6 +701,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Bajo_el_Efecto_de_una_Droga = Detalle_de_ImputadoData.Bajo_el_Efecto_de_una_Droga.GetValueOrDefault()
                     ,Nombre_de_Droga = Detalle_de_ImputadoData.Nombre_de_Droga
                     ,Inimputable = Detalle_de_ImputadoData.Inimputable.GetValueOrDefault()
+                    ,Gravidez = Detalle_de_ImputadoData.Gravidez.GetValueOrDefault()
                     ,Tipo_de_Inimputabilidad = Detalle_de_ImputadoData.Tipo_de_Inimputabilidad
                     ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ImputadoData.Tipo_de_Inimputabilidad), "Tipo_de_Inimputabilidad") ??  (string)Detalle_de_ImputadoData.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
                     ,Especifique = Detalle_de_ImputadoData.Especifique
@@ -1455,6 +1460,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Bajo_el_Efecto_de_una_Droga = Detalle_de_ImputadoData.Bajo_el_Efecto_de_una_Droga.GetValueOrDefault()
                     ,Nombre_de_Droga = Detalle_de_ImputadoData.Nombre_de_Droga
                     ,Inimputable = Detalle_de_ImputadoData.Inimputable.GetValueOrDefault()
+                    ,Gravidez = Detalle_de_ImputadoData.Gravidez.GetValueOrDefault()
                     ,Tipo_de_Inimputabilidad = Detalle_de_ImputadoData.Tipo_de_Inimputabilidad
                     ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_de_ImputadoData.Tipo_de_Inimputabilidad), "Tipo_de_Inimputabilidad") ??  (string)Detalle_de_ImputadoData.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
                     ,Especifique = Detalle_de_ImputadoData.Especifique
@@ -4263,6 +4269,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Bajo_el_Efecto_de_una_Droga = m.Bajo_el_Efecto_de_una_Droga
 			,Nombre_de_Droga = m.Nombre_de_Droga
 			,Inimputable = m.Inimputable
+			,Gravidez = m.Gravidez
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique
                         ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Mental_Discapacidades_Mentales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
@@ -4538,6 +4545,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Bajo_el_Efecto_de_una_Droga = m.Bajo_el_Efecto_de_una_Droga
 			,Nombre_de_Droga = m.Nombre_de_Droga
 			,Inimputable = m.Inimputable
+			,Gravidez = m.Gravidez
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique
                         ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Mental_Discapacidades_Mentales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
@@ -6652,6 +6660,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             if (filter.Inimputable != RadioOptions.NoApply)
                 where += " AND Detalle_de_Imputado.Inimputable = " + Convert.ToInt32(filter.Inimputable);
+
+            if (filter.Gravidez != RadioOptions.NoApply)
+                where += " AND Detalle_de_Imputado.Gravidez = " + Convert.ToInt32(filter.Gravidez);
 
             if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_Inimputabilidad))
             {
@@ -9575,6 +9586,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Entre_Calle = m.Entre_Calle
 			,Y_Calle = m.Y_Calle
 			,Numero_Exterior = m.Numero_Exterior
+			,Numero_Interior = m.Numero_Interior
+			,Coordenada_X = m.Coordenada_X
+			,Coordenada_Y = m.Coordenada_Y
+			,Observaciones = m.Observaciones
 
                 }).ToList(),
                 recordsTotal = result.RowCount,
@@ -9620,6 +9635,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Entre_Calle = m.Entre_Calle
 			,Y_Calle = m.Y_Calle
 			,Numero_Exterior = m.Numero_Exterior
+			,Numero_Interior = m.Numero_Interior
+			,Coordenada_X = m.Coordenada_X
+			,Coordenada_Y = m.Coordenada_Y
+			,Observaciones = m.Observaciones
 
 
                     }).ToList();
@@ -9960,6 +9979,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Bajo_el_Efecto_de_una_Droga = varDetalle_de_Imputado.Bajo_el_Efecto_de_una_Droga
                         ,Nombre_de_Droga = varDetalle_de_Imputado.Nombre_de_Droga
                         ,Inimputable = varDetalle_de_Imputado.Inimputable
+                        ,Gravidez = varDetalle_de_Imputado.Gravidez
                         ,Tipo_de_Inimputabilidad = varDetalle_de_Imputado.Tipo_de_Inimputabilidad
                         ,Especifique = varDetalle_de_Imputado.Especifique
                         ,Discapacidad_Mental = varDetalle_de_Imputado.Discapacidad_Mental
@@ -10864,6 +10884,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
+
+
+
                         //Removal Request
                         if (Otros_Domicilios_Probable_ResponsableItem.Removed)
                         {
@@ -10886,6 +10910,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                             ,Entre_Calle = Otros_Domicilios_Probable_ResponsableItem.Entre_Calle
                             ,Y_Calle = Otros_Domicilios_Probable_ResponsableItem.Y_Calle
                             ,Numero_Exterior = Otros_Domicilios_Probable_ResponsableItem.Numero_Exterior
+                            ,Numero_Interior = Otros_Domicilios_Probable_ResponsableItem.Numero_Interior
+                            ,Coordenada_X = Otros_Domicilios_Probable_ResponsableItem.Coordenada_X
+                            ,Coordenada_Y = Otros_Domicilios_Probable_ResponsableItem.Coordenada_Y
+                            ,Observaciones = Otros_Domicilios_Probable_ResponsableItem.Observaciones
 
                         };
 
@@ -10965,6 +10993,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+
+
+
+
 
 
 
@@ -11568,6 +11600,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Bajo_el_Efecto_de_una_Droga = m.Bajo_el_Efecto_de_una_Droga
 			,Nombre_de_Droga = m.Nombre_de_Droga
 			,Inimputable = m.Inimputable
+			,Gravidez = m.Gravidez
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique
                         ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Mental_Discapacidades_Mentales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
@@ -11802,6 +11835,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Bajo_el_Efecto_de_una_Droga = m.Bajo_el_Efecto_de_una_Droga
 			,Nombre_de_Droga = m.Nombre_de_Droga
 			,Inimputable = m.Inimputable
+			,Gravidez = m.Gravidez
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique
                         ,Discapacidad_MentalDescripcion = CultureHelper.GetTraduction(m.Discapacidad_Mental_Discapacidades_Mentales.Clave.ToString(), "Descripcion") ?? (string)m.Discapacidad_Mental_Discapacidades_Mentales.Descripcion
@@ -12002,6 +12036,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Bajo_el_Efecto_de_una_Droga = varDetalle_de_Imputado.Bajo_el_Efecto_de_una_Droga
                         ,Nombre_de_Droga = varDetalle_de_Imputado.Nombre_de_Droga
                         ,Inimputable = varDetalle_de_Imputado.Inimputable
+                        ,Gravidez = varDetalle_de_Imputado.Gravidez
                         ,Tipo_de_Inimputabilidad = varDetalle_de_Imputado.Tipo_de_Inimputabilidad
                         ,Especifique = varDetalle_de_Imputado.Especifique
                         ,Discapacidad_Mental = varDetalle_de_Imputado.Discapacidad_Mental
@@ -12135,6 +12170,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Bajo_el_Efecto_de_una_Droga = m.Bajo_el_Efecto_de_una_Droga
 			,Nombre_de_Droga = m.Nombre_de_Droga
 			,Inimputable = m.Inimputable
+			,Gravidez = m.Gravidez
                         ,Tipo_de_Inimputabilidad = m.Tipo_de_Inimputabilidad
                         ,Tipo_de_InimputabilidadDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Inimputabilidad_Tipo_de_Inimputabilidad.Descripcion
 			,Especifique = m.Especifique

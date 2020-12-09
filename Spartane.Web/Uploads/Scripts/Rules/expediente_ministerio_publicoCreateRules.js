@@ -119,22 +119,28 @@ if( GetValueByControlType($('#' + nameOfTable + 'tipo_de_cierre' + rowIndex),nam
 
 //BusinessRuleId:2607, Attribute:267145, Operation:Field, Event:None
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //BusinessRuleId:2606, Attribute:267132, Operation:Field, Event:None
 $("form#Createexpediente_ministerio_publico").on('change', '#canalizar_a', function () {
 	nameOfTable='';
 	rowIndex='';
-if( GetValueByControlType($('#' + nameOfTable + 'canalizar_a' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') ) { AsignarValor($('#' + nameOfTable + 'Fecha_de_Canalizacion' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 105)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Hora_de_Canalizacion' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 108)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'usuario_que_canaliza' + rowIndex),EvaluaQuery("SELECT  Name FROM Spartan_User where Id_User=GLOBAL[USERID]", rowIndex, nameOfTable));} else { AsignarValor($('#' + nameOfTable + 'Fecha_de_Canalizacion' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Hora_de_Canalizacion' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'usuario_que_canaliza' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Fecha_de_Canalizacion' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Hora_de_Canalizacion' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));}
+if( GetValueByControlType($('#' + nameOfTable + 'canalizar_a' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') ) { AsignarValor($('#' + nameOfTable + 'Fecha_de_Canalizacion' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 105)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Hora_de_Canalizacion' + rowIndex),EvaluaQuery("select convert(nvarchar(11), getdate(), 108)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'usuario_que_canaliza' + rowIndex),EvaluaQuery("SELECT  Name FROM Spartan_User where Id_User=GLOBAL[USERID]", rowIndex, nameOfTable));} else { AsignarValor($('#' + nameOfTable + 'Fecha_de_Canalizacion' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));AsignarValor($('#' + nameOfTable + 'Hora_de_Canalizacion' + rowIndex),EvaluaQuery(" select ''", rowIndex, nameOfTable));}
 });
 
 //BusinessRuleId:2606, Attribute:267132, Operation:Field, Event:None
-
-
-
-
-
-
-
-
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -298,12 +304,457 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2638, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+
+
 //BusinessRuleId:2599, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  $("a[href='#tabDatos_del_Acuerdo']").css('display', 'none'); $("a[href='#tabResolucion_o_Dictaminacion']").css('display', 'none'); $("a[href='#tabCanalizar']").css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'canalizar_a' + rowIndex));
 
 }
 //BusinessRuleId:2599, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//BusinessRuleId:2849, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '1'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2849, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2849, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '1'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2849, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2849, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '1'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2849, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2850, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '2'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2850, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2850, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '2'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2850, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2850, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '2'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2850, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2852, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '3'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2852, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2852, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '3'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2852, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2852, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '3'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2852, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2854, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '4'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2854, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2854, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '4'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2854, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2854, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '4'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2854, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2856, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '5'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2856, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2856, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '5'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2856, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2856, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '5'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2856, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2858, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '6'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2858, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2858, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '6'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2858, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2858, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '6'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2858, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2860, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '7'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2860, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2860, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '7'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2860, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2860, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("Select 'GLOBAL[Phase]'",rowIndex, nameOfTable)==EvaluaQuery("Select '7'",rowIndex, nameOfTable) ) {} else {}
+
+}
+//BusinessRuleId:2860, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

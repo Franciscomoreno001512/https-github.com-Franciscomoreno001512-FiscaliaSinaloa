@@ -20,6 +20,8 @@ namespace Spartane.Core.Domain.Tipo_de_Denuncia
         public string Descripcion { get; set; }
         public int? Vigencia { get; set; }
         public string Observaciones { get; set; }
+        public string Tipo { get; set; }
+        public string Abreviacion { get; set; }
 
         [ForeignKey("Vigencia")]
         public virtual Spartane.Core.Domain.Vigencia.Vigencia Vigencia_Vigencia { get; set; }
@@ -32,6 +34,8 @@ namespace Spartane.Core.Domain.Tipo_de_Denuncia
         public string Descripcion { get; set; }
         public int? Vigencia { get; set; }
         public string Observaciones { get; set; }
+        public string Tipo { get; set; }
+        public string Abreviacion { get; set; }
 
 		        [ForeignKey("Vigencia")]
         public virtual Spartane.Core.Domain.Vigencia.Vigencia Vigencia_Vigencia { get; set; }

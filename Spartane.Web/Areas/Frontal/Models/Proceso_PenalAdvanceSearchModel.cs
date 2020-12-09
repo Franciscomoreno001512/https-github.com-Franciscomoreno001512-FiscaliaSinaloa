@@ -64,6 +64,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Advanceplazo_investigacion_complementaria { set; get; }
         public int[] Advanceplazo_investigacion_complementariaMultiple { set; get; }
 
+        public Filters Resultado_de_Investigacion_ComplementariFilter { set; get; }
+        public string AdvanceResultado_de_Investigacion_Complementari { set; get; }
+        public int[] AdvanceResultado_de_Investigacion_ComplementariMultiple { set; get; }
+
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
         public string Fromfecha_investigacion_complementaria { set; get; }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -185,6 +189,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
         [IsNumberAfterAttribute("FromMonto_de_la_Reparacion_del_Dano", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string ToMonto_de_la_Reparacion_del_Dano { set; get; }
+
+        public Filters pruebaFilter { set; get; }
+        public string prueba { set; get; }
 
 
     }

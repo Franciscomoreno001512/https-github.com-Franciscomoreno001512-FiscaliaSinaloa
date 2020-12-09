@@ -69,6 +69,7 @@
 @using Spartane.Core.Domain.Color_Piel;
 @using Spartane.Core.Domain.Frente;
 @using Spartane.Core.Domain.Largo_de_Cabello;
+@using Spartane.Core.Domain.Forma_Cabello;
 @using Spartane.Core.Domain.Color_de_Cabello;
 @using Spartane.Core.Domain.Calvicie;
 @using Spartane.Core.Domain.Color_Ojos;
@@ -355,6 +356,7 @@
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Tipo_de_Inimputabilidad</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Especifique</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Se_Informaron_sobre_sus_Derechos</th>
+                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Gravidez</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Discapacidad_Mental</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Discapacidad_Fisica</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Discapacidad_Sensorial</th>
@@ -435,6 +437,7 @@
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Color_Piel</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Frente</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Largo_de_Cabello</th>
+                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Forma_de_Cabello</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Color_Cabello</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Calvicie</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Color_Ojos</th>
@@ -534,6 +537,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -600,6 +604,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -822,6 +827,7 @@
         var Tipo_de_Inimputabilidad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Especifique =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Se_Informaron_sobre_sus_Derechos = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Gravidez = $($('table td .filterData.form-control:input')[counter++]).val();
         var Discapacidad_Mental =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Discapacidad_Fisica =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Discapacidad_Sensorial =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -902,6 +908,7 @@
         var Color_Piel =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Frente =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Largo_de_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_de_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Color_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Calvicie =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Color_Ojos =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -997,6 +1004,7 @@
         + "&Tipo_de_Inimputabilidad=" + Tipo_de_Inimputabilidad
         + "&Especifique=" + Especifique
         + "&Se_Informaron_sobre_sus_Derechos=" + Se_Informaron_sobre_sus_Derechos
+        + "&Gravidez=" + Gravidez
         + "&Discapacidad_Mental=" + Discapacidad_Mental
         + "&Discapacidad_Fisica=" + Discapacidad_Fisica
         + "&Discapacidad_Sensorial=" + Discapacidad_Sensorial
@@ -1077,6 +1085,7 @@
         + "&Color_Piel=" + Color_Piel
         + "&Frente=" + Frente
         + "&Largo_de_Cabello=" + Largo_de_Cabello
+        + "&Forma_de_Cabello=" + Forma_de_Cabello
         + "&Color_Cabello=" + Color_Cabello
         + "&Calvicie=" + Calvicie
         + "&Color_Ojos=" + Color_Ojos
@@ -1183,6 +1192,7 @@
         var Tipo_de_Inimputabilidad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Especifique =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Se_Informaron_sobre_sus_Derechos = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Gravidez = $($('table td .filterData.form-control:input')[counter++]).val();
         var Discapacidad_Mental =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Discapacidad_Fisica =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Discapacidad_Sensorial =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -1263,6 +1273,7 @@
         var Color_Piel =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Frente =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Largo_de_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_de_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Color_Cabello =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Calvicie =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Color_Ojos =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -1358,6 +1369,7 @@
         + "&Tipo_de_Inimputabilidad=" + Tipo_de_Inimputabilidad
         + "&Especifique=" + Especifique
         + "&Se_Informaron_sobre_sus_Derechos=" + Se_Informaron_sobre_sus_Derechos
+        + "&Gravidez=" + Gravidez
         + "&Discapacidad_Mental=" + Discapacidad_Mental
         + "&Discapacidad_Fisica=" + Discapacidad_Fisica
         + "&Discapacidad_Sensorial=" + Discapacidad_Sensorial
@@ -1438,6 +1450,7 @@
         + "&Color_Piel=" + Color_Piel
         + "&Frente=" + Frente
         + "&Largo_de_Cabello=" + Largo_de_Cabello
+        + "&Forma_de_Cabello=" + Forma_de_Cabello
         + "&Color_Cabello=" + Color_Cabello
         + "&Calvicie=" + Calvicie
         + "&Color_Ojos=" + Color_Ojos
@@ -1643,11 +1656,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -1778,6 +1791,7 @@
                 ,{ "data": "Tipo_de_InimputabilidadDescripcion", "orderable": true, "name": "Tipo_de_InimputabilidadDescripcion" }
                 ,{ "data": "Especifique", "orderable": true, "name": "Especifique", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Se_Informaron_sobre_sus_Derechos", "orderable": true, "name": "Se_Informaron_sobre_sus_Derechos","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Gravidez", "orderable": true, "name": "Gravidez","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Discapacidad_MentalDescripcion", "orderable": true, "name": "Discapacidad_MentalDescripcion" }
                 ,{ "data": "Discapacidad_FisicaDescripcion", "orderable": true, "name": "Discapacidad_FisicaDescripcion" }
                 ,{ "data": "Discapacidad_SensorialDescripcion", "orderable": true, "name": "Discapacidad_SensorialDescripcion" }
@@ -1858,6 +1872,7 @@
                 ,{ "data": "Color_PielDescrpicion", "orderable": true, "name": "Color_PielDescrpicion" }
                 ,{ "data": "FrenteDescripcion", "orderable": true, "name": "FrenteDescripcion" }
                 ,{ "data": "Largo_de_CabelloDescripcion", "orderable": true, "name": "Largo_de_CabelloDescripcion" }
+                ,{ "data": "Forma_de_CabelloDescripcion", "orderable": true, "name": "Forma_de_CabelloDescripcion" }
                 ,{ "data": "Color_CabelloDescripcion", "orderable": true, "name": "Color_CabelloDescripcion" }
                 ,{ "data": "CalvicieDescripcion", "orderable": true, "name": "CalvicieDescripcion" }
                 ,{ "data": "Color_OjosDescripcion", "orderable": true, "name": "Color_OjosDescripcion" }

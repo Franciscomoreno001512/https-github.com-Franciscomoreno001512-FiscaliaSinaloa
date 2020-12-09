@@ -52,6 +52,9 @@
     List<SelectListItem> varPlazo_de_Investigacion_Complementaria_plazo_investigacion_complementaria = null;
     if (ViewBag.Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria != null)
     { varPlazo_de_Investigacion_Complementaria_plazo_investigacion_complementaria = (List<SelectListItem>)ViewBag.Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria; }
+    List<SelectListItem> varResultado_de_Investigacion_Complementaria_Resultado_de_Investigacion_Complementari = null;
+    if (ViewBag.Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari != null)
+    { varResultado_de_Investigacion_Complementaria_Resultado_de_Investigacion_Complementari = (List<SelectListItem>)ViewBag.Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari; }
     List<SelectListItem> varA_Tiempo_Acusador_Coadyudante = null;
     if (ViewBag.A_Tiempos_Acusador_Coadyudante != null)
     { varA_Tiempo_Acusador_Coadyudante = (List<SelectListItem>)ViewBag.A_Tiempos_Acusador_Coadyudante; }
@@ -229,6 +232,7 @@
 <li class=""><a data-toggle="tab" href="#tabAudiencia_Intermedia"> @Resources.Proceso_PenalResources.TabAudiencia_Intermedia</a></li>
 <li class=""><a data-toggle="tab" href="#tabJuicio_Oral"> @Resources.Proceso_PenalResources.TabJuicio_Oral</a></li>
 <li class=""><a data-toggle="tab" href="#tabResolucion"> @Resources.Proceso_PenalResources.TabResolucion</a></li>
+<li class=""><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Proceso_PenalResources.TabDatos_Generales</a></li>
 
                         	</ul>
 	                	<div class="tab-content">
@@ -541,6 +545,34 @@
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Plazo_de_Investigacion_Complementaria', 'plazo_investigacion_complementaria');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divResultado_de_Investigacion_Complementari">
+                                <label class="col-sm-2 control-label">@Resources.Proceso_PenalResources.Resultado_de_Investigacion_Complementari</label>
+                                <div class="col-sm-8" data-field-id="Resultado_de_Investigacion_Complementari" data-attribute="267867" data-field-name="@Resources.Proceso_PenalResources.Resultado_de_Investigacion_Complementari">
+                                    <select class="form-control Fase_Complementaria" data-val="true" data-val-number="The field Resultado de Investigación Complementaria must be a number." data-val-required="The Resultado de Investigación Complementaria field is required." id="Resultado_de_Investigacion_Complementari" name="Resultado_de_Investigacion_Complementari">
+                                        <option value=""></option>
+                                        @if (varResultado_de_Investigacion_Complementaria_Resultado_de_Investigacion_Complementari != null){ 
+                                            foreach (var itemResultado_de_Investigacion_Complementari in varResultado_de_Investigacion_Complementaria_Resultado_de_Investigacion_Complementari)
+                                            {
+                                                if (itemResultado_de_Investigacion_Complementari.Value == Convert.ToString(Model.Resultado_de_Investigacion_Complementari))
+                                                {
+                                                    <option value="@itemResultado_de_Investigacion_Complementari.Value" selected>@itemResultado_de_Investigacion_Complementari.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemResultado_de_Investigacion_Complementari.Value">@itemResultado_de_Investigacion_Complementari.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Resultado_de_Investigacion_Complementari" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267867).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Resultado_de_Investigacion_Complementaria', 'Resultado_de_Investigacion_Complementari');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -1268,6 +1300,19 @@
                             </div>
                                 </div>
 
+
+                            <div id="tabDatos_Generales" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divprueba">
+                                <label class="col-sm-2 control-label">@Resources.Proceso_PenalResources.prueba</label>
+                                <div class="col-sm-8" data-field-id="prueba" data-attribute="267858" data-field-name="@Resources.Proceso_PenalResources.prueba">
+                                    <input class="form-control Datos_Generales" id="prueba" name="prueba" type="text" value="@Model.prueba">
+                                    @*<span class="field-validation-valid" data-valmsg-for="prueba" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
 				</div>	
                     <br />
                             <div class="form-actions fluid">
@@ -1403,6 +1448,8 @@
 		var Tab_Juicio_Oral = true;
 
 		var Tab_Resolucion = true;
+
+		var Tab_Datos_Generales = true;
 
 
         $(document).ready(function () {
@@ -1589,6 +1636,9 @@
 
 				if (Tab_Resolucion)
 					Fill_Resolucion();
+
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
 
 
                 </text>
@@ -3440,6 +3490,10 @@
 				return false;
 			}						
 
+			if (Tab_Datos_Generales && !checkClientValidate('Proceso_PenalCreateForm', 'Datos_Generales')) {
+				return false;
+			}						
+
 
 			
 			if (isNew == "True")
@@ -3462,6 +3516,9 @@
 
 			if (Tab_Resolucion)
 				Save_Resolucion(id);
+
+			if (Tab_Datos_Generales)
+				Save_Datos_Generales(id);
 
 
 			showNotification("@Resources.Resources.SaveSuccess", "success");
@@ -3659,6 +3716,7 @@
                     $('#Resultado_No_Vinculacion').val(result.data.Resultado_No_Vinculacion);
                     $('#Resultado_Vinculacion').val(result.data.Resultado_Vinculacion);
                     $('#plazo_investigacion_complementaria').val(result.data.plazo_investigacion_complementaria);
+                    $('#Resultado_de_Investigacion_Complementari').val(result.data.Resultado_de_Investigacion_Complementari);
                     $('#fecha_investigacion_complementaria').val(result.data.fecha_investigacion_complementaria);
                     $('#hora_investigacion_complementaria').val(result.data.hora_investigacion_complementaria);
                     Detalle_Medidas_Cautelares_Proceso_PenalDataDataTable = result.Medidas_Cautelares;
@@ -3687,6 +3745,7 @@
                 data.append('Resultado_No_Vinculacion', $('#Resultado_No_Vinculacion').val());
                 data.append('Resultado_Vinculacion', $('#Resultado_Vinculacion').val());
                 data.append('plazo_investigacion_complementaria', $('#plazo_investigacion_complementaria').val());
+                data.append('Resultado_de_Investigacion_Complementari', $('#Resultado_de_Investigacion_Complementari').val());
                 data.append('fecha_investigacion_complementaria', $('#fecha_investigacion_complementaria').val());
                 data.append('hora_investigacion_complementaria', $('#hora_investigacion_complementaria').val());
 
@@ -3961,6 +4020,52 @@
 				},
 				error: function (result) {
 					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Resolucion");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Datos_Generales()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Proceso_Penal/Get_Datos_Generales")?Id=" + $("#ReferenceFolio").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Folio').val(result.data.Folio);
+                    $('#prueba').val(result.data.prueba);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_Generales(newId) {
+			var data = new FormData();
+			data.append('Folio', newId);
+			                data.append('prueba', $('#prueba').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Proceso_Penal/Post_Datos_Generales")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
 				},
 				cache: false
 			});

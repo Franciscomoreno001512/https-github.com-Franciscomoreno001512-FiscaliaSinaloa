@@ -17,6 +17,7 @@ namespace Spartane.Core.Domain.Situacion_Fisica
     {
         public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public int? Justicia { get; set; }
 
 
     }
@@ -25,6 +26,7 @@ namespace Spartane.Core.Domain.Situacion_Fisica
     {
                 public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public int? Justicia { get; set; }
 
 		
     }

@@ -646,6 +646,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Gravidez</summary>
+        public static string Gravidez
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Imputado.GetResource("Gravidez", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Tipo_de_Inimputabilidad</summary>
         public static string Tipo_de_Inimputabilidad
         {

@@ -32,6 +32,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Resultado_VinculacionDescripcion { get; set; }
         public int? plazo_investigacion_complementaria { get; set; }
         public string plazo_investigacion_complementariaDescripcion { get; set; }
+        public int? Resultado_de_Investigacion_Complementari { get; set; }
+        public string Resultado_de_Investigacion_ComplementariDescripcion { get; set; }
         [Range(0, 9999999999)]
         public int? fecha_investigacion_complementaria { get; set; }
         public string hora_investigacion_complementaria { get; set; }
@@ -74,6 +76,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public short? cuantia_de_pena_meses { get; set; }
         [Range(0.00, 999999.99)]
         public decimal? Monto_de_la_Reparacion_del_Dano { get; set; }
+        public string prueba { get; set; }
 
     }
 	
@@ -101,6 +104,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Resultado_VinculacionDescripcion { get; set; }
         public int? plazo_investigacion_complementaria { get; set; }
         public string plazo_investigacion_complementariaDescripcion { get; set; }
+        public int? Resultado_de_Investigacion_Complementari { get; set; }
+        public string Resultado_de_Investigacion_ComplementariDescripcion { get; set; }
         [Range(0, 9999999999)]
         public int? fecha_investigacion_complementaria { get; set; }
         public string hora_investigacion_complementaria { get; set; }
@@ -171,6 +176,14 @@ namespace Spartane.Web.Areas.Frontal.Models
         public short? cuantia_de_pena_meses { get; set; }
         [Range(0.00, 999999.99)]
         public decimal? Monto_de_la_Reparacion_del_Dano { get; set; }
+
+    }
+
+	public class Proceso_Penal_Datos_GeneralesModel
+    {
+        [Required]
+        public int Folio { get; set; }
+        public string prueba { get; set; }
 
     }
 

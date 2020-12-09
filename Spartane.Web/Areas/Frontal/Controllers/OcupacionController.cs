@@ -163,6 +163,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = OcupacionData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(OcupacionData.Vigencia), "Vigencia") ??  (string)OcupacionData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = OcupacionData.Observaciones
+                    ,Vigenciax = OcupacionData.Vigenciax
 
 					};
 				}
@@ -247,6 +248,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = OcupacionData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(OcupacionData.Vigencia), "Vigencia") ??  (string)OcupacionData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = OcupacionData.Observaciones
+                    ,Vigenciax = OcupacionData.Vigenciax
 
 					};
 				}
@@ -403,6 +405,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Justicia = m.Justicia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Vigenciax = m.Vigenciax
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -521,6 +524,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Justicia = m.Justicia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Vigenciax = m.Vigenciax
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -627,6 +631,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.Vigenciax))
+            {
+                switch (filter.VigenciaxFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Ocupacion.Vigenciax LIKE '" + filter.Vigenciax + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Ocupacion.Vigenciax LIKE '%" + filter.Vigenciax + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Ocupacion.Vigenciax = '" + filter.Vigenciax + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Ocupacion.Vigenciax LIKE '%" + filter.Vigenciax + "%'";
+                        break;
+                }
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -686,6 +712,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Justicia = varOcupacion.Justicia
                         ,Vigencia = varOcupacion.Vigencia
                         ,Observaciones = varOcupacion.Observaciones
+                        ,Vigenciax = varOcupacion.Vigenciax
 
                     };
 
@@ -1077,6 +1104,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Justicia = m.Justicia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Vigenciax = m.Vigenciax
 
             }).ToList();
 
@@ -1154,6 +1182,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Justicia = m.Justicia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Vigenciax = m.Vigenciax
 
             }).ToList();
 
@@ -1197,6 +1226,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Justicia = varOcupacion.Justicia
                         ,Vigencia = varOcupacion.Vigencia
                         ,Observaciones = varOcupacion.Observaciones
+                        ,Vigenciax = varOcupacion.Vigenciax
                     
                 };
 
@@ -1230,6 +1260,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Vigencia = m.Vigencia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Vigenciax = m.Vigenciax
 
                     
                 };

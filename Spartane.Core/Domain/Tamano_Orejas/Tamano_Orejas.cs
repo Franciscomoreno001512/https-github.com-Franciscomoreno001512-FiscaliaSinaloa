@@ -17,6 +17,7 @@ namespace Spartane.Core.Domain.Tamano_Orejas
     {
         public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public int? LLAVE { get; set; }
 
 
     }
@@ -25,6 +26,7 @@ namespace Spartane.Core.Domain.Tamano_Orejas
     {
                 public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public int? LLAVE { get; set; }
 
 		
     }

@@ -162,6 +162,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = Tamano_de_CejasData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(Tamano_de_CejasData.Vigencia), "Vigencia") ??  (string)Tamano_de_CejasData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = Tamano_de_CejasData.Observaciones
+                    ,LLAVE = Tamano_de_CejasData.LLAVE
 
 					};
 				}
@@ -245,6 +246,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = Tamano_de_CejasData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(Tamano_de_CejasData.Vigencia), "Vigencia") ??  (string)Tamano_de_CejasData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = Tamano_de_CejasData.Observaciones
+                    ,LLAVE = Tamano_de_CejasData.LLAVE
 
 					};
 				}
@@ -400,6 +402,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,LLAVE = m.LLAVE
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -517,6 +520,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,LLAVE = m.LLAVE
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -615,6 +619,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.FromLLAVE) || !string.IsNullOrEmpty(filter.ToLLAVE))
+            {
+                if (!string.IsNullOrEmpty(filter.FromLLAVE))
+                    where += " AND Tamano_de_Cejas.LLAVE >= " + filter.FromLLAVE;
+                if (!string.IsNullOrEmpty(filter.ToLLAVE))
+                    where += " AND Tamano_de_Cejas.LLAVE <= " + filter.ToLLAVE;
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -673,6 +685,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Descripcion = varTamano_de_Cejas.Descripcion
                         ,Vigencia = varTamano_de_Cejas.Vigencia
                         ,Observaciones = varTamano_de_Cejas.Observaciones
+                        ,LLAVE = varTamano_de_Cejas.LLAVE
 
                     };
 
@@ -1063,6 +1076,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,LLAVE = m.LLAVE
 
             }).ToList();
 
@@ -1139,6 +1153,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,LLAVE = m.LLAVE
 
             }).ToList();
 
@@ -1181,6 +1196,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                                             ,Descripcion = varTamano_de_Cejas.Descripcion
                         ,Vigencia = varTamano_de_Cejas.Vigencia
                         ,Observaciones = varTamano_de_Cejas.Observaciones
+                        ,LLAVE = varTamano_de_Cejas.LLAVE
                     
                 };
 
@@ -1213,6 +1229,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Vigencia = m.Vigencia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,LLAVE = m.LLAVE
 
                     
                 };

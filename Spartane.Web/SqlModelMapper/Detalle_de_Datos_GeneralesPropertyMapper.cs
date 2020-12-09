@@ -181,6 +181,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_de_Datos_Generales.Especifique";
                 case "Se_Informaron_sobre_sus_Derechos":
                     return "Detalle_de_Datos_Generales.Se_Informaron_sobre_sus_Derechos";
+                case "Gravidez":
+                    return "Detalle_de_Datos_Generales.Gravidez";
                 case "Discapacidad_Mental[Descripcion]":
                 case "Discapacidad_MentalDescripcion":
                     return "Discapacidades_Mentales.Descripcion";
@@ -378,6 +380,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Largo_de_Cabello[Descripcion]":
                 case "Largo_de_CabelloDescripcion":
                     return "Largo_de_Cabello.Descripcion";
+                case "Forma_de_Cabello[Descripcion]":
+                case "Forma_de_CabelloDescripcion":
+                    return "Forma_Cabello.Descripcion";
                 case "Color_Cabello[Descripcion]":
                 case "Color_CabelloDescripcion":
                     return "Color_de_Cabello.Descripcion";
@@ -512,6 +517,10 @@ namespace Spartane.Web.SqlModelMapper
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
             if (columnName == "Se_Informaron_sobre_sus_Derechos")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Gravidez")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }

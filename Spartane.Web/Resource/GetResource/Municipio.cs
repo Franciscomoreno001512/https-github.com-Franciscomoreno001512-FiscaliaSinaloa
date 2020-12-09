@@ -86,6 +86,46 @@ namespace Resources
             }
         }
 
+        /// <summary>cod_pais</summary>
+        public static string cod_pais
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderMunicipio.GetResource("cod_pais", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>cod_zona</summary>
+        public static string cod_zona
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderMunicipio.GetResource("cod_zona", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>MuniNSJP</summary>
+        public static string MuniNSJP
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderMunicipio.GetResource("MuniNSJP", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>cod_zona_nsjp</summary>
+        public static string cod_zona_nsjp
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderMunicipio.GetResource("cod_zona_nsjp", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderMunicipio.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

@@ -426,6 +426,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Unidad_canaliza</summary>
+        public static string Unidad_canaliza
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderModulo_Atencion_Inicial.GetResource("Unidad_canaliza", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Enviar_a_MP</summary>
         public static string Enviar_a_MP
         {

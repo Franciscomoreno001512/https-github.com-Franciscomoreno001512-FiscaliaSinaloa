@@ -36,6 +36,26 @@ namespace Spartane.Web.SqlModelMapper
                     return "Delito.Activo";
                 case "Robo_de_Vehiculo":
                     return "Delito.Robo_de_Vehiculo";
+                case "delitox":
+                    return "Delito.delitox";
+                case "ARTICULO":
+                    return "Delito.ARTICULO";
+                case "DETALLE":
+                    return "Delito.DETALLE";
+                case "TIPO_AGENCIA":
+                    return "Delito.TIPO_AGENCIA";
+                case "ESTADISTICO_SSP":
+                    return "Delito.ESTADISTICO_SSP";
+                case "VAL_VEHICULO":
+                    return "Delito.VAL_VEHICULO";
+                case "TIPO_DELITO":
+                    return "Delito.TIPO_DELITO";
+                case "circunstancia_clasif":
+                    return "Delito.circunstancia_clasif";
+                case "PRINCIPAL":
+                    return "Delito.PRINCIPAL";
+                case "orden":
+                    return "Delito.orden";
 
                 default:
                     return propertyName;

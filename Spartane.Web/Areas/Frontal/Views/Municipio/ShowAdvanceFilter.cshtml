@@ -105,6 +105,44 @@
                     @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
                     @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
                 </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.MunicipioResources.cod_pais</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromcod_pais, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromcod_pais" })
+                    @Html.ValidationMessageFor(m => m.Fromcod_pais)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Tocod_pais, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTocod_pais", @data_min = "txtAdvanceFromcod_pais" })
+                    @Html.ValidationMessageFor(m => m.Tocod_pais)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.MunicipioResources.cod_zona</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.cod_zonaFilter, filters, new { @class = "form-control", @id = "ddlcod_zonaFilter" })
+                    @Html.TextBoxFor(m => m.cod_zona, new { @class = "form-control", @type = "text", @id = "txtcod_zona" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.MunicipioResources.MuniNSJP</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.MuniNSJPFilter, filters, new { @class = "form-control", @id = "ddlMuniNSJPFilter" })
+                    @Html.TextBoxFor(m => m.MuniNSJP, new { @class = "form-control", @type = "text", @id = "txtMuniNSJP" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.MunicipioResources.cod_zona_nsjp</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromcod_zona_nsjp, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromcod_zona_nsjp" })
+                    @Html.ValidationMessageFor(m => m.Fromcod_zona_nsjp)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Tocod_zona_nsjp, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTocod_zona_nsjp", @data_min = "txtAdvanceFromcod_zona_nsjp" })
+                    @Html.ValidationMessageFor(m => m.Tocod_zona_nsjp)
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Municipio/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -166,6 +204,26 @@
             hasParameter = true;
             advanceSearch.MunicipioObservaciones = $("#txtAdvanceObservaciones").val();
             advanceSearch.MunicipioObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+        if ($("#txtAdvanceFromcod_pais").val() != "" || $("#txtAdvanceTocod_pais").val() != "") {
+            hasParameter = true;
+            advanceSearch.Municipiocod_paisFrom = $("#txtAdvanceFromcod_pais").val();
+            advanceSearch.Municipiocod_paisTo = $("#txtAdvanceTocod_pais").val();
+        }
+        if ($("#txtAdvancecod_zona").val() != "") {
+            hasParameter = true;
+            advanceSearch.Municipiocod_zona = $("#txtAdvancecod_zona").val();
+            advanceSearch.Municipiocod_zonaSearchType = $("#ddlAdvancecod_zonaFilter").val();
+        }
+        if ($("#txtAdvanceMuniNSJP").val() != "") {
+            hasParameter = true;
+            advanceSearch.MunicipioMuniNSJP = $("#txtAdvanceMuniNSJP").val();
+            advanceSearch.MunicipioMuniNSJPSearchType = $("#ddlAdvanceMuniNSJPFilter").val();
+        }
+        if ($("#txtAdvanceFromcod_zona_nsjp").val() != "" || $("#txtAdvanceTocod_zona_nsjp").val() != "") {
+            hasParameter = true;
+            advanceSearch.Municipiocod_zona_nsjpFrom = $("#txtAdvanceFromcod_zona_nsjp").val();
+            advanceSearch.Municipiocod_zona_nsjpTo = $("#txtAdvanceTocod_zona_nsjp").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

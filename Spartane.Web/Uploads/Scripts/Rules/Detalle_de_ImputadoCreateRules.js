@@ -12,12 +12,28 @@ $( "#RFC" ).blur(function() {
           var validRfc=new RegExp(valid); 
           var matchArray=v.match(validRfc); 
           if (matchArray==null || v.length>13) { 
-              $('#' + nameOfTable + 'RFC' + rowIndex).attr("placeholder", "El formato del RFC es incorrecto.").val("").focus().blur(); 
+              //$('#' + nameOfTable + 'RFC' + rowIndex).attr("placeholder", "El formato del RFC es incorrecto.").val("").focus().blur(); 
               return false; 
           } 
       } 
   });
   
+//Validar correo electrónico
+$('#Correo_Electronico').change(function(){ 
+    let email = $('#Correo_Electronico').val(); 
+    let exp = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/); 
+    if (exp.test(email) == false){ 
+        $('#Correo_Electronico').attr("placeholder", "Correo electrónico no válido.").val("").focus().blur(); 
+    } 
+});
+$('#Correo_Electronico_del_Tutor').change(function(){ 
+    let email = $('#Correo_Electronico_del_Tutor').val(); 
+    let exp = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/); 
+    if (exp.test(email) == false){ 
+        $('#Correo_Electronico_del_Tutor').attr("placeholder", "Correo electrónico no válido.").val("").focus().blur(); 
+    } 
+});
+
 //Validar CURP
 $( "#CURP" ).blur(function() { 
       var v = $('#' + nameOfTable + 'CURP' + rowIndex).val(); 
@@ -26,7 +42,7 @@ $( "#CURP" ).blur(function() {
 		validado = v.toUpperCase().match(valid);
 			
 		if (!validado) { //Coincide con el formato general?
-			$('#' + nameOfTable + 'CURP' + rowIndex).attr("placeholder", "El formato del CURP es incorrecto.").val("").focus().blur(); 
+			//$('#' + nameOfTable + 'CURP' + rowIndex).attr("placeholder", "El formato del CURP es incorrecto.").val("").focus().blur(); 
             return false; 
 		}				
       } 
@@ -51,7 +67,7 @@ $( "#Numero_de_Identificacion" ).blur(function() {
 			validado = NumeroVal.toUpperCase().match(valid);
 			
 			if (!validado) { //Coincide con el formato general?
-				$('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex).attr("placeholder", "El formato del CURP es incorrecto.").val("").focus().blur(); 
+				//$('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex).attr("placeholder", "El formato del CURP es incorrecto.").val("").focus().blur(); 
 				return false; 
 			}		
 		}
@@ -725,6 +741,56 @@ if( GetValueByControlType($('#' + nameOfTable + 'Quien_Resulte_Responsable' + ro
 function EjecutarValidacionesAntesDeGuardar(){
 	var result = true;
 
+//Validar RFC
+  var v = $('#' + nameOfTable + 'RFC' + rowIndex).val(); 
+  if (v != ""){ 
+	  var valid = '^(([A-Z]|[a-z]){4})([0-9]{6})((([A-Z]|[a-z]|[0-9]){3}))'; 
+	  var validRfc=new RegExp(valid); 
+	  var matchArray=v.match(validRfc); 
+	  if (matchArray==null || v.length>13) { 
+		  alert("El formato del RFC es incorrecto.");
+		  $('#' + nameOfTable + 'RFC' + rowIndex).attr("placeholder", "El formato del RFC es incorrecto.").focus(); 
+		  return false; 
+	  } 
+  } 
+  
+//Validar CURP
+  var v = $('#' + nameOfTable + 'CURP' + rowIndex).val(); 
+  if (v != ""){
+	var valid = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
+	validado = v.toUpperCase().match(valid);
+		
+	if (!validado) { //Coincide con el formato general?
+		alert("El formato del CURP es incorrecto.");
+		$('#' + nameOfTable + 'CURP' + rowIndex).attr("placeholder", "El formato del CURP es incorrecto.").focus(); 
+		return false; 
+	}				
+  } 
+  
+//Validar dependiendo del tipo de identificacion seleccionada.
+  var tipoVal = $('#' + nameOfTable + 'Tipo_de_Identificacion' + rowIndex).val();
+  var NumeroVal = $('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex).val();
+  var valid="";
+  
+  if (tipoVal != "" && NumeroVal != ""){	
+	if(tipoVal == 1) //IFE
+	{
+		
+		
+	}
+	
+	if(tipoVal == 6) //CURP
+	{
+		valid = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
+		validado = NumeroVal.toUpperCase().match(valid);
+		
+		if (!validado) { //Coincide con el formato general?
+			alert("El formato del CURP es incorrecto.");
+			$('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex).attr("placeholder", "El formato del CURP es incorrecto.").focus(); 
+			return false; 
+		}		
+	}
+}
 
 
 
@@ -811,14 +877,16 @@ function EjecutarValidacionesNewRowMRAdicciones_Probable_Responsable(nameOfTable
     //BusinessRuleId:2733, Attribute:265809, Operation:Object, Event:NEWROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2733, Attribute:265809, Operation:Object, Event:NEWROWMR
 
 //BusinessRuleId:2733, Attribute:265809, Operation:Object, Event:NEWROWMR
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2733, Attribute:265809, Operation:Object, Event:NEWROWMR
 
@@ -830,14 +898,16 @@ function EjecutarValidacionesEditRowMRAdicciones_Probable_Responsable(nameOfTabl
     //BusinessRuleId:2733, Attribute:265809, Operation:Object, Event:EDITROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2733, Attribute:265809, Operation:Object, Event:EDITROWMR
 
 //BusinessRuleId:2733, Attribute:265809, Operation:Object, Event:EDITROWMR
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2733, Attribute:265809, Operation:Object, Event:EDITROWMR
 
@@ -866,14 +936,16 @@ function EjecutarValidacionesNewRowMRLugares_Frecuentes_Probable_Responsable(nam
 //BusinessRuleId:2734, Attribute:265810, Operation:Object, Event:NEWROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Lugar' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2734, Attribute:265810, Operation:Object, Event:NEWROWMR
 
 //BusinessRuleId:2734, Attribute:265810, Operation:Object, Event:NEWROWMR
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Lugar' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2734, Attribute:265810, Operation:Object, Event:NEWROWMR
 
@@ -889,14 +961,16 @@ function EjecutarValidacionesEditRowMRLugares_Frecuentes_Probable_Responsable(na
 //BusinessRuleId:2734, Attribute:265810, Operation:Object, Event:EDITROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Lugar' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2734, Attribute:265810, Operation:Object, Event:EDITROWMR
 
 //BusinessRuleId:2734, Attribute:265810, Operation:Object, Event:EDITROWMR
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Lugar' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2734, Attribute:265810, Operation:Object, Event:EDITROWMR
 
@@ -921,14 +995,16 @@ function EjecutarValidacionesNewRowMRDatos_Personales_Adicionales_Probable_Respo
     //BusinessRuleId:2735, Attribute:265811, Operation:Object, Event:NEWROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Correo_Electronico' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Telefonico' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Redes_Sociales' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2735, Attribute:265811, Operation:Object, Event:NEWROWMR
 
 //BusinessRuleId:2735, Attribute:265811, Operation:Object, Event:NEWROWMR
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Correo_Electronico' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Telefonico' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Redes_Sociales' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2735, Attribute:265811, Operation:Object, Event:NEWROWMR
 
@@ -940,14 +1016,16 @@ function EjecutarValidacionesEditRowMRDatos_Personales_Adicionales_Probable_Resp
     //BusinessRuleId:2735, Attribute:265811, Operation:Object, Event:EDITROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Correo_Electronico' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Telefonico' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Redes_Sociales' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2735, Attribute:265811, Operation:Object, Event:EDITROWMR
 
 //BusinessRuleId:2735, Attribute:265811, Operation:Object, Event:EDITROWMR
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Correo_Electronico' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Telefonico' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Redes_Sociales' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2735, Attribute:265811, Operation:Object, Event:EDITROWMR
 
@@ -972,14 +1050,16 @@ function EjecutarValidacionesNewRowMROtras_Identificaciones_Probable_Responsable
     //BusinessRuleId:2736, Attribute:265812, Operation:Object, Event:NEWROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_identificacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2736, Attribute:265812, Operation:Object, Event:NEWROWMR
 
 //BusinessRuleId:2736, Attribute:265812, Operation:Object, Event:NEWROWMR
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_identificacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2736, Attribute:265812, Operation:Object, Event:NEWROWMR
 
@@ -991,14 +1071,16 @@ function EjecutarValidacionesEditRowMROtras_Identificaciones_Probable_Responsabl
     //BusinessRuleId:2736, Attribute:265812, Operation:Object, Event:EDITROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_identificacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2736, Attribute:265812, Operation:Object, Event:EDITROWMR
 
 //BusinessRuleId:2736, Attribute:265812, Operation:Object, Event:EDITROWMR
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_identificacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2736, Attribute:265812, Operation:Object, Event:EDITROWMR
 
@@ -1023,14 +1105,16 @@ function EjecutarValidacionesNewRowMROtros_Domicilios_Probable_Responsable(nameO
     //BusinessRuleId:2737, Attribute:265889, Operation:Object, Event:NEWROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Estado' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Y_Calle' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2737, Attribute:265889, Operation:Object, Event:NEWROWMR
 
 //BusinessRuleId:2737, Attribute:265889, Operation:Object, Event:NEWROWMR
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Estado' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Y_Calle' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2737, Attribute:265889, Operation:Object, Event:NEWROWMR
 
@@ -1042,14 +1126,16 @@ function EjecutarValidacionesEditRowMROtros_Domicilios_Probable_Responsable(name
     //BusinessRuleId:2737, Attribute:265889, Operation:Object, Event:EDITROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Estado' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Y_Calle' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2737, Attribute:265889, Operation:Object, Event:EDITROWMR
 
 //BusinessRuleId:2737, Attribute:265889, Operation:Object, Event:EDITROWMR
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Estado' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Y_Calle' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2737, Attribute:265889, Operation:Object, Event:EDITROWMR
 
@@ -1074,14 +1160,16 @@ function EjecutarValidacionesNewRowMROtros_Nombres(nameOfTable, rowIndex){
     //BusinessRuleId:2739, Attribute:265817, Operation:Object, Event:NEWROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2739, Attribute:265817, Operation:Object, Event:NEWROWMR
 
 //BusinessRuleId:2739, Attribute:265817, Operation:Object, Event:NEWROWMR
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2739, Attribute:265817, Operation:Object, Event:NEWROWMR
 
@@ -1093,14 +1181,16 @@ function EjecutarValidacionesEditRowMROtros_Nombres(nameOfTable, rowIndex){
     //BusinessRuleId:2739, Attribute:265817, Operation:Object, Event:EDITROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2739, Attribute:265817, Operation:Object, Event:EDITROWMR
 
 //BusinessRuleId:2739, Attribute:265817, Operation:Object, Event:EDITROWMR
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2739, Attribute:265817, Operation:Object, Event:EDITROWMR
 
@@ -1130,14 +1220,16 @@ function EjecutarValidacionesNewRowMRLugar_de_Detencion(nameOfTable, rowIndex){
 //BusinessRuleId:2732, Attribute:265786, Operation:Object, Event:NEWROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Detencion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_de_Detencion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Corporacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Suspension_Condicional' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Suspension_Condicional' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2732, Attribute:265786, Operation:Object, Event:NEWROWMR
 
 //BusinessRuleId:2732, Attribute:265786, Operation:Object, Event:NEWROWMR
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Detencion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_de_Detencion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Corporacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Suspension_Condicional' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Suspension_Condicional' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2732, Attribute:265786, Operation:Object, Event:NEWROWMR
 
@@ -1150,14 +1242,16 @@ function EjecutarValidacionesEditRowMRLugar_de_Detencion(nameOfTable, rowIndex){
 //BusinessRuleId:2732, Attribute:265786, Operation:Object, Event:EDITROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Detencion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_de_Detencion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Corporacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Suspension_Condicional' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Suspension_Condicional' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2732, Attribute:265786, Operation:Object, Event:EDITROWMR
 
 //BusinessRuleId:2732, Attribute:265786, Operation:Object, Event:EDITROWMR
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Detencion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_de_Detencion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Corporacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Suspension_Condicional' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Suspension_Condicional' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2732, Attribute:265786, Operation:Object, Event:EDITROWMR
 

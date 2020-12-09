@@ -1,0 +1,362 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Generador_de_NUATAdvanceSearchModel
+@{
+ List<SelectListItem> varTipo_de_Denuncia_Tipo_de_Denuncia = null;
+    if (ViewBag.Tipo_de_Denuncias_Tipo_de_Denuncia != null)
+    { varTipo_de_Denuncia_Tipo_de_Denuncia = (List<SelectListItem>)ViewBag.Tipo_de_Denuncias_Tipo_de_Denuncia; }
+    List<SelectListItem> varRegion_Region = null;
+    if (ViewBag.Regions_Region != null)
+    { varRegion_Region = (List<SelectListItem>)ViewBag.Regions_Region; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Generador_de_NUAT", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Generador_de_NUATResources.Folio</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromFolio, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromFolio" })
+                    @Html.ValidationMessageFor(m => m.FromFolio)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToFolio, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToFolio", @data_min = "txtAdvanceFromFolio" })
+                    @Html.ValidationMessageFor(m => m.ToFolio)
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Generador_de_NUATResources.Fecha_de_Generador_de_NUAT</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Generador_de_NUAT" name="FromFecha_de_Generador_de_NUAT" type="text" value="@Model.FromFecha_de_Generador_de_NUAT" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Generador_de_NUAT" name="ToFecha_de_Generador_de_NUAT" type="text" value="@Model.ToFecha_de_Generador_de_NUAT" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Generador_de_NUATResources.Anio_de_Generador_de_NUAT</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromAnio_de_Generador_de_NUAT, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromAnio_de_Generador_de_NUAT" })
+                    @Html.ValidationMessageFor(m => m.FromAnio_de_Generador_de_NUAT)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToAnio_de_Generador_de_NUAT, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToAnio_de_Generador_de_NUAT", @data_min = "txtAdvanceFromAnio_de_Generador_de_NUAT" })
+                    @Html.ValidationMessageFor(m => m.ToAnio_de_Generador_de_NUAT)
+                </div>
+ List<SelectListItem> varTipo_de_Denuncia_Tipo_de_Denuncia = null;
+    if (ViewBag.Tipo_de_Denuncias_Tipo_de_Denuncia != null)
+    { varTipo_de_Denuncia_Tipo_de_Denuncia = (List<SelectListItem>)ViewBag.Tipo_de_Denuncias_Tipo_de_Denuncia; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Generador_de_NUATResources.Region</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.RegionFilter, filters, new { @class = "form-control", @id = "ddlRegionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceRegion, new { @class = "form-control", @type = "text", @id = "txtAdvanceRegion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varRegion_Region!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceRegionMultiple, varRegion_Region,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceRegion"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Generador_de_NUATResources.Consecutivo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromConsecutivo, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromConsecutivo" })
+                    @Html.ValidationMessageFor(m => m.FromConsecutivo)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToConsecutivo, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToConsecutivo", @data_min = "txtAdvanceFromConsecutivo" })
+                    @Html.ValidationMessageFor(m => m.ToConsecutivo)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Generador_de_NUATResources.NUAT_Ultimo_Generado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.NUAT_Ultimo_GeneradoFilter, filters, new { @class = "form-control", @id = "ddlNUAT_Ultimo_GeneradoFilter" })
+                    @Html.TextBoxFor(m => m.NUAT_Ultimo_Generado, new { @class = "form-control", @type = "text", @id = "txtNUAT_Ultimo_Generado" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Generador_de_NUAT/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromFolio").val() != "" || $("#txtAdvanceToFolio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Generador_de_NUATFolioFrom = $("#txtAdvanceFromFolio").val();
+            advanceSearch.Generador_de_NUATFolioTo = $("#txtAdvanceToFolio").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Generador_de_NUAT").val() != "" || $("#txtAdvanceToFecha_de_Generador_de_NUAT").val() != "") {
+            hasParameter = true;
+            advanceSearch.Generador_de_NUATFecha_de_Generador_de_NUATFrom = $("#txtAdvanceFromFecha_de_Generador_de_NUAT").val();
+            advanceSearch.Generador_de_NUATFecha_de_Generador_de_NUATTo = $("#txtAdvanceToFecha_de_Generador_de_NUAT").val();
+        }
+        if ($("#txtAdvanceFromAnio_de_Generador_de_NUAT").val() != "" || $("#txtAdvanceToAnio_de_Generador_de_NUAT").val() != "") {
+            hasParameter = true;
+            advanceSearch.Generador_de_NUATAnio_de_Generador_de_NUATFrom = $("#txtAdvanceFromAnio_de_Generador_de_NUAT").val();
+            advanceSearch.Generador_de_NUATAnio_de_Generador_de_NUATTo = $("#txtAdvanceToAnio_de_Generador_de_NUAT").val();
+        }
+        advanceSearch.Tipo_de_DenunciaSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Denuncia').val().length > 0 || $("#txtAdvanceTipo_de_Denuncia").val() == "") {
+
+
+            if (isGenerador_de_NUATTextSearch) {
+                advanceSearch.Tipo_de_DenunciaName = $("#txtAdvanceTipo_de_Denuncia").val();
+                advanceSearch.Tipo_de_DenunciaNameSearchType = $("#ddlAdvanceTipo_de_Denuncia").val();
+                advanceSearch.Tipo_de_DenunciaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_DenunciaToSearch = $("#ddlAdvanceTipo_de_Denuncia").val();
+                advanceSearch.Tipo_de_DenunciaSearchType = 2;
+            }
+        }
+        advanceSearch.RegionSearchType = 0;
+        if ($('#ddlAdvanceRegion').val().length > 0 || $("#txtAdvanceRegion").val() == "") {
+
+
+            if (isGenerador_de_NUATTextSearch) {
+                advanceSearch.RegionName = $("#txtAdvanceRegion").val();
+                advanceSearch.RegionNameSearchType = $("#ddlAdvanceRegion").val();
+                advanceSearch.RegionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.RegionToSearch = $("#ddlAdvanceRegion").val();
+                advanceSearch.RegionSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromConsecutivo").val() != "" || $("#txtAdvanceToConsecutivo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Generador_de_NUATConsecutivoFrom = $("#txtAdvanceFromConsecutivo").val();
+            advanceSearch.Generador_de_NUATConsecutivoTo = $("#txtAdvanceToConsecutivo").val();
+        }
+        if ($("#txtAdvanceNUAT_Ultimo_Generado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Generador_de_NUATNUAT_Ultimo_Generado = $("#txtAdvanceNUAT_Ultimo_Generado").val();
+            advanceSearch.Generador_de_NUATNUAT_Ultimo_GeneradoSearchType = $("#ddlAdvanceNUAT_Ultimo_GeneradoFilter").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblGenerador_de_NUAT').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isGenerador_de_NUATTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceTipo_de_Denuncia").keypress(function () {
+            isGenerador_de_NUATTextSearch = true;
+            $("#ddlAdvanceTipo_de_Denuncia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Denuncia").change(function () {
+            isGenerador_de_NUATTextSearch = false;
+            $("#txtAdvanceTipo_de_Denuncia").val('');
+        });
+        $("#txtAdvanceRegion").keypress(function () {
+            isGenerador_de_NUATTextSearch = true;
+            $("#ddlAdvanceRegion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceRegion").change(function () {
+            isGenerador_de_NUATTextSearch = false;
+            $("#txtAdvanceRegion").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

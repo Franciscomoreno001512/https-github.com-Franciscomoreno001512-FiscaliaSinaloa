@@ -41,6 +41,7 @@
   <resource culture="en-US" name="Autoriza_Traductor" value="Autoriza o no Autoriza Servicio"></resource>
   <resource culture="en-US" name="Finalizar_Servicios_de_Apoyo" value="Finalizar Servicios de Apoyo"></resource>
   <resource culture="en-US" name="Estatus2" value="Canalizar a"></resource>
+  <resource culture="en-US" name="Unidad_canaliza" value="Unidad"></resource>
   <resource culture="en-US" name="Enviar_a_MP" value="Enviar a MP"></resource>
   <resource culture="en-US" name="Correccion_de_Estatus" value="Corrección de Estatus"></resource>
   <resource culture="en-US" name="Historial_de_Canalizaciones" value="Historial de Canalizaciones"></resource>

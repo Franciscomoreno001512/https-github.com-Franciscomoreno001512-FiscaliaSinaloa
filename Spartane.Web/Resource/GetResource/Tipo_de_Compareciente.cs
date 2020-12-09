@@ -46,6 +46,16 @@ namespace Resources
             }
         }
 
+        /// <summary>TP_DescripcionCorta</summary>
+        public static string TP_DescripcionCorta
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderTipo_de_Compareciente.GetResource("TP_DescripcionCorta", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderTipo_de_Compareciente.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

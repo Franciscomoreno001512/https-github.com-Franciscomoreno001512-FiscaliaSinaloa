@@ -201,6 +201,7 @@
                                     <th>@Resources.Tamano_de_NarizResources.Descripcion</th>
                                     <th>@Resources.Tamano_de_NarizResources.Vigencia</th>
                                     <th>@Resources.Tamano_de_NarizResources.Observaciones</th>
+                                    <th>@Resources.Tamano_de_NarizResources.LLAVE</th>
 
                                 </tr>
                             </thead>
@@ -211,6 +212,7 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
 
                                 </tr>
                             </tfoot>
@@ -330,12 +332,14 @@
         var Descripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Vigencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var LLAVE =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
         + "&Descripcion=" + Descripcion
         + "&Vigencia=" + Vigencia
         + "&Observaciones=" + Observaciones
+        + "&LLAVE=" + LLAVE
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Tamano_de_Nariz/Export?format=")" + format
@@ -353,12 +357,14 @@
         var Descripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Vigencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var LLAVE =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
         + "&Descripcion=" + Descripcion
         + "&Vigencia=" + Vigencia
         + "&Observaciones=" + Observaciones
+        + "&LLAVE=" + LLAVE
 ;
 
     }
@@ -539,11 +545,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -610,6 +616,7 @@
                 ,{ "data": "Descripcion", "orderable": true, "name": "Descripcion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "VigenciaAbreviacion", "orderable": true, "name": "VigenciaAbreviacion" }
                 ,{ "data": "Observaciones", "orderable": true, "name": "Observaciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "LLAVE","className": "dt-right", "orderable": true, "name": "LLAVE" }
 
             ],
 			"colReorder": true,

@@ -11,6 +11,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public UnidadAdvanceSearchModel()
         {
+            ReceptorDeclinaciones = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -42,6 +43,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Descripcion_CortaFilter { set; get; }
         public string Descripcion_Corta { set; get; }
 
+        public Filters EspecialidadFilter { set; get; }
+        public string AdvanceEspecialidad { set; get; }
+        public int[] AdvanceEspecialidadMultiple { set; get; }
+
         public Filters VigenciaFilter { set; get; }
         public string AdvanceVigencia { set; get; }
         public int[] AdvanceVigenciaMultiple { set; get; }
@@ -65,6 +70,74 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Tipo_de_Asignacion_de_MPFilter { set; get; }
         public string AdvanceTipo_de_Asignacion_de_MP { set; get; }
         public int[] AdvanceTipo_de_Asignacion_de_MPMultiple { set; get; }
+
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string Fromcod_pais { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("Fromcod_pais", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string Tocod_pais { set; get; }
+
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string Fromcod_edo { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("Fromcod_edo", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string Tocod_edo { set; get; }
+
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string Fromcod_agencia { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("Fromcod_agencia", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string Tocod_agencia { set; get; }
+
+        public Filters FTIPOFilter { set; get; }
+        public string FTIPO { set; get; }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string Fromfcreada { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("Fromfcreada", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string Tofcreada { set; get; }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string Fromfbaja { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("Fromfbaja", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string Tofbaja { set; get; }
+
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string FromULTAVREGIS { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("FromULTAVREGIS", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToULTAVREGIS { set; get; }
+
+        public Filters FUBICACIONFilter { set; get; }
+        public string FUBICACION { set; get; }
+
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string Fromvr_agen { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("Fromvr_agen", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string Tovr_agen { set; get; }
+
+        public Filters EspecialFilter { set; get; }
+        public string Especial { set; get; }
+
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string FromAgenAV { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("FromAgenAV", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToAgenAV { set; get; }
+
+        public Filters AgenUni_NSJPFilter { set; get; }
+        public string AgenUni_NSJP { set; get; }
+
+        public Filters NomenclaturaFilter { set; get; }
+        public string Nomenclatura { set; get; }
+
+        public Filters AlcanceFilter { set; get; }
+        public string Alcance { set; get; }
+
+        public RadioOptions ReceptorDeclinaciones { set; get; }
 
 
     }

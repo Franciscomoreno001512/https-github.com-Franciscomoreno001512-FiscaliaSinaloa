@@ -8,12 +8,28 @@
   <resource culture="en-US" name="Abreviacion" value="Abreviación"></resource>
   <resource culture="en-US" name="Descripcion" value="Descripción"></resource>
   <resource culture="en-US" name="Descripcion_Corta" value="Descripción Corta"></resource>
+  <resource culture="en-US" name="Especialidad" value="Especialidad"></resource>
   <resource culture="en-US" name="Vigencia" value="Vigencia"></resource>
   <resource culture="en-US" name="Direccion" value="Dirección"></resource>
   <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
   <resource culture="en-US" name="Supervisor" value="Supervisor"></resource>
   <resource culture="en-US" name="Consecutivo_CDI" value="Consecutivo CDI"></resource>
   <resource culture="en-US" name="Tipo_de_Asignacion_de_MP" value="Tipo de Asignación de MP"></resource>
+  <resource culture="en-US" name="cod_pais" value="cod_pais"></resource>
+  <resource culture="en-US" name="cod_edo" value="cod_edo"></resource>
+  <resource culture="en-US" name="cod_agencia" value="cod_agencia"></resource>
+  <resource culture="en-US" name="FTIPO" value="FTIPO"></resource>
+  <resource culture="en-US" name="fcreada" value="fcreada"></resource>
+  <resource culture="en-US" name="fbaja" value="fbaja"></resource>
+  <resource culture="en-US" name="ULTAVREGIS" value="ULTAVREGIS"></resource>
+  <resource culture="en-US" name="FUBICACION" value="FUBICACION"></resource>
+  <resource culture="en-US" name="vr_agen" value="vr_agen"></resource>
+  <resource culture="en-US" name="Especial" value="Especial"></resource>
+  <resource culture="en-US" name="AgenAV" value="AgenAV"></resource>
+  <resource culture="en-US" name="AgenUni_NSJP" value="AgenUni_NSJP"></resource>
+  <resource culture="en-US" name="Nomenclatura" value="Nomenclatura"></resource>
+  <resource culture="en-US" name="Alcance" value="Alcance"></resource>
+  <resource culture="en-US" name="ReceptorDeclinaciones" value="ReceptorDeclinaciones"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

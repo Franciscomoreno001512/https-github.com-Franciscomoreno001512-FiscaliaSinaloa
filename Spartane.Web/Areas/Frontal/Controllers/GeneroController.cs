@@ -155,6 +155,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = GeneroData.Clave 
 	                    ,Descripcion = GeneroData.Descripcion
+                    ,sexo = GeneroData.sexo
+                    ,Inicial = GeneroData.Inicial
 
 					};
 				}
@@ -228,6 +230,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = GeneroData.Clave 
 	                    ,Descripcion = GeneroData.Descripcion
+                    ,sexo = GeneroData.sexo
+                    ,Inicial = GeneroData.Inicial
 
 					};
 				}
@@ -339,6 +343,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,sexo = m.sexo
+			,Inicial = m.Inicial
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -454,6 +460,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,sexo = m.sexo
+			,Inicial = m.Inicial
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -498,6 +506,50 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
                     case Models.Filters.Contains:
                         where += " AND Genero.Descripcion LIKE '%" + filter.Descripcion + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.sexo))
+            {
+                switch (filter.sexoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Genero.sexo LIKE '" + filter.sexo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Genero.sexo LIKE '%" + filter.sexo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Genero.sexo = '" + filter.sexo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Genero.sexo LIKE '%" + filter.sexo + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Inicial))
+            {
+                switch (filter.InicialFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Genero.Inicial LIKE '" + filter.Inicial + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Genero.Inicial LIKE '%" + filter.Inicial + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Genero.Inicial = '" + filter.Inicial + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Genero.Inicial LIKE '%" + filter.Inicial + "%'";
                         break;
                 }
             }
@@ -558,6 +610,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varGenero.Clave
                         ,Descripcion = varGenero.Descripcion
+                        ,sexo = varGenero.sexo
+                        ,Inicial = varGenero.Inicial
 
                     };
 
@@ -946,6 +1000,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,sexo = m.sexo
+			,Inicial = m.Inicial
 
             }).ToList();
 
@@ -1020,6 +1076,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,sexo = m.sexo
+			,Inicial = m.Inicial
 
             }).ToList();
 
@@ -1060,6 +1118,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varGenero.Clave
                                             ,Descripcion = varGenero.Descripcion
+                        ,sexo = varGenero.sexo
+                        ,Inicial = varGenero.Inicial
                     
                 };
 
@@ -1089,6 +1149,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,sexo = m.sexo
+			,Inicial = m.Inicial
 
                     
                 };

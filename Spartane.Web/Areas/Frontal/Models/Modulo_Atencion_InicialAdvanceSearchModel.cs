@@ -172,6 +172,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceEstatus2 { set; get; }
         public int[] AdvanceEstatus2Multiple { set; get; }
 
+        public Filters Unidad_canalizaFilter { set; get; }
+        public string AdvanceUnidad_canaliza { set; get; }
+        public int[] AdvanceUnidad_canalizaMultiple { set; get; }
+
         public RadioOptions Enviar_a_MP { set; get; }
 
         public RadioOptions Correccion_de_Estatus { set; get; }

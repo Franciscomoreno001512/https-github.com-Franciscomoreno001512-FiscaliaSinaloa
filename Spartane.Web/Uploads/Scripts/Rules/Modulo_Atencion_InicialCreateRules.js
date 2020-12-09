@@ -283,6 +283,15 @@ if( GetValueByControlType($('#' + nameOfTable + 'Estatus2' + rowIndex),nameOfTab
 
 //BusinessRuleId:2533, Attribute:262816, Operation:Field, Event:None
 
+//BusinessRuleId:2868, Attribute:262816, Operation:Field, Event:None
+$("form#CreateModulo_Atencion_Inicial").on('change', '#Estatus2', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Estatus2' + rowIndex),nameOfTable,rowIndex)==TryParseInt('6', '6') ) { $('#divUnidad_canaliza').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Unidad_canaliza' + rowIndex));} else { $('#divUnidad_canaliza').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Unidad_canaliza' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Unidad_canaliza' + rowIndex));}
+});
+
+//BusinessRuleId:2868, Attribute:262816, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
@@ -1892,6 +1901,53 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:1309, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+
+
+
+
+
+
+
+
+
+
+//BusinessRuleId:2867, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Unidad_canaliza' + rowIndex));
+
+}
+//BusinessRuleId:2867, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2867, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Unidad_canaliza' + rowIndex));
+
+}
+//BusinessRuleId:2867, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2867, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Unidad_canaliza' + rowIndex));
+
+}
+//BusinessRuleId:2867, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2869, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Estatus2' + rowIndex),nameOfTable,rowIndex)==TryParseInt('6', '6') ) { $('#divUnidad_canaliza').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Unidad_canaliza' + rowIndex));} else { $('#divUnidad_canaliza').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Unidad_canaliza' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Unidad_canaliza' + rowIndex));}
+
+}
+//BusinessRuleId:2869, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2869, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( GetValueByControlType($('#' + nameOfTable + 'Estatus2' + rowIndex),nameOfTable,rowIndex)==TryParseInt('6', '6') ) { $('#divUnidad_canaliza').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Unidad_canaliza' + rowIndex));} else { $('#divUnidad_canaliza').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Unidad_canaliza' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Unidad_canaliza' + rowIndex));}
+
+}
+//BusinessRuleId:2869, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -1950,13 +2006,7 @@ if( EvaluaQuery("SELECT LEN(REPLACE(REPLACE('FLDGC[Detalle de Delito.Delito Prin
 
 
 
-//BusinessRuleId:1993, Attribute:2, Operation:Object, Event:BEFORESAVING
-if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'Folio' + rowIndex),EvaluaQuery("exec uspGeneraFolio FLD[Tipo_de_Denuncia], FLD[Unidad]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'NUAT' + rowIndex),EvaluaQuery("exec uspGeneraNUAT FLD[Tipo_de_Denuncia], FLD[Region]	", rowIndex, nameOfTable));
 
-
-}
-//BusinessRuleId:1993, Attribute:2, Operation:Object, Event:BEFORESAVING
 
 //NEWBUSINESSRULE_BEFORESAVING//
     return result;
@@ -2567,6 +2617,13 @@ if(operation == 'Update'){
 
 }
 //BusinessRuleId:2499, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:1993, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Folio' + rowIndex),EvaluaQuery("exec uspGeneraFolio GLOBAL[KeyValueInserted],FLD[Tipo_de_Denuncia], FLD[Unidad]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'NUAT' + rowIndex),EvaluaQuery("exec uspGeneraNUAT GLOBAL[KeyValueInserted],FLD[Tipo_de_Denuncia], FLD[Region]	", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:1993, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

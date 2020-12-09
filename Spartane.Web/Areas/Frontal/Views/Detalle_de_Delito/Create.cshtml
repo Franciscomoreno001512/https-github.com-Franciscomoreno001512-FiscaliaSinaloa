@@ -31,13 +31,13 @@
     List<SelectListItem> varDelitos_Violencia_Genero_Delito_Violencia_Genero = null;
     if (ViewBag.Delitos_Violencia_Generos_Delito_Violencia_Genero != null)
     { varDelitos_Violencia_Genero_Delito_Violencia_Genero = (List<SelectListItem>)ViewBag.Delitos_Violencia_Generos_Delito_Violencia_Genero; }
-    List<SelectListItem> varTitulo_del_Delito_Tipo_de_Delito = null;
+ List<SelectListItem> varTitulo_del_Delito_Tipo_de_Delito = null;
     if (ViewBag.Titulo_del_Delitos_Tipo_de_Delito != null)
     { varTitulo_del_Delito_Tipo_de_Delito = (List<SelectListItem>)ViewBag.Titulo_del_Delitos_Tipo_de_Delito; }
-    List<SelectListItem> varGrupo_del_Delito_Grupo_Delito = null;
+ List<SelectListItem> varGrupo_del_Delito_Grupo_Delito = null;
     if (ViewBag.Grupo_del_Delitos_Grupo_Delito != null)
     { varGrupo_del_Delito_Grupo_Delito = (List<SelectListItem>)ViewBag.Grupo_del_Delitos_Grupo_Delito; }
-    List<SelectListItem> varDelito_Delito = null;
+ List<SelectListItem> varDelito_Delito = null;
     if (ViewBag.Delitos_Delito != null)
     { varDelito_Delito = (List<SelectListItem>)ViewBag.Delitos_Delito; }
     List<SelectListItem> varCircunstancia_del_Delito_Circunstancia_Delito = null;
@@ -444,84 +444,42 @@
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divTipo_de_Delito">
+				<div class="form-group" id="divTipo_de_Delito">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_DelitoResources.Tipo_de_Delito</label>
                                 <div class="col-sm-8" data-field-id="Tipo_de_Delito" data-attribute="263445" data-field-name="@Resources.Detalle_de_DelitoResources.Tipo_de_Delito">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Delito must be a number." data-val-required="The Tipo de Delito field is required." id="Tipo_de_Delito" name="Tipo_de_Delito">
-                                        <option value=""></option>
-                                        @if (varTitulo_del_Delito_Tipo_de_Delito != null){ 
-                                            foreach (var itemTipo_de_Delito in varTitulo_del_Delito_Tipo_de_Delito)
-                                            {
-                                                if (itemTipo_de_Delito.Value == Convert.ToString(Model.Tipo_de_Delito))
-                                                {
-                                                    <option value="@itemTipo_de_Delito.Value" selected>@itemTipo_de_Delito.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemTipo_de_Delito.Value">@itemTipo_de_Delito.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Delito_Tipo_de_Delito form-control select2-dropdown Datos_Generales' data-val="true" id="Tipo_de_Delito" name="Tipo_de_Delito">
+                                        <option value="@Model.Tipo_de_Delito">@(Model.Tipo_de_DelitoDescripcion??Model.Tipo_de_DelitoDescripcion)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Delito" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263445).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263445).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Titulo_del_Delito', 'Tipo_de_Delito');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divGrupo_Delito">
+				<div class="form-group" id="divGrupo_Delito">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_DelitoResources.Grupo_Delito</label>
                                 <div class="col-sm-8" data-field-id="Grupo_Delito" data-attribute="263446" data-field-name="@Resources.Detalle_de_DelitoResources.Grupo_Delito">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Grupo Delito must be a number." data-val-required="The Grupo Delito field is required." id="Grupo_Delito" name="Grupo_Delito">
-                                        <option value=""></option>
-                                        @if (varGrupo_del_Delito_Grupo_Delito != null){ 
-                                            foreach (var itemGrupo_Delito in varGrupo_del_Delito_Grupo_Delito)
-                                            {
-                                                if (itemGrupo_Delito.Value == Convert.ToString(Model.Grupo_Delito))
-                                                {
-                                                    <option value="@itemGrupo_Delito.Value" selected>@itemGrupo_Delito.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemGrupo_Delito.Value">@itemGrupo_Delito.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Delito_Grupo_Delito form-control select2-dropdown Datos_Generales' data-val="true" id="Grupo_Delito" name="Grupo_Delito">
+                                        <option value="@Model.Grupo_Delito">@(Model.Grupo_DelitoDescripcion??Model.Grupo_DelitoDescripcion)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Grupo_Delito" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263446).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263446).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Grupo_del_Delito', 'Grupo_Delito');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divDelito">
+				<div class="form-group" id="divDelito">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_DelitoResources.Delito</label>
                                 <div class="col-sm-8" data-field-id="Delito" data-attribute="263447" data-field-name="@Resources.Detalle_de_DelitoResources.Delito">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Delito must be a number." data-val-required="The Delito field is required." id="Delito" name="Delito">
-                                        <option value=""></option>
-                                        @if (varDelito_Delito != null){ 
-                                            foreach (var itemDelito in varDelito_Delito)
-                                            {
-                                                if (itemDelito.Value == Convert.ToString(Model.Delito))
-                                                {
-                                                    <option value="@itemDelito.Value" selected>@itemDelito.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemDelito.Value">@itemDelito.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Delito_Delito form-control select2-dropdown Datos_Generales' data-val="true" id="Delito" name="Delito">
+                                        <option value="@Model.Delito">@(Model.DelitoDescripcion??Model.DelitoDescripcion)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Delito" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263447).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 263447).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Delito', 'Delito');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -2303,6 +2261,105 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
+       var AutoCompleteTipo_de_DelitoData =[];
+       $(".AutoCompleteDetalle_de_Delito_Tipo_de_Delito").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Delito/GetDetalle_de_Delito_Tipo_de_Delito_Titulo_del_Delito")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Delito_Tipo_de_Delito_Titulo_del_DelitoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Delito_Tipo_de_Delito");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteGrupo_DelitoData =[];
+       $(".AutoCompleteDetalle_de_Delito_Grupo_Delito").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Delito/GetDetalle_de_Delito_Grupo_Delito_Grupo_del_Delito")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Delito_Grupo_Delito_Grupo_del_DelitoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Delito_Grupo_Delito");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteDelitoData =[];
+       $(".AutoCompleteDetalle_de_Delito_Delito").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Delito/GetDetalle_de_Delito_Delito_Delito")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Delito_Delito_DelitoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Delito_Delito");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
        var AutoCompleteEstado_del_DelitoData =[];
        $(".AutoCompleteDetalle_de_Delito_Estado_del_Delito").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -3566,9 +3623,33 @@
                     $('#Hora_del_Delito').val(result.data.Hora_del_Delito);
                     $('#Violencia_de_Genero').prop('checked', result.data.Violencia_de_Genero);
                     $('#Delito_Violencia_Genero').val(result.data.Delito_Violencia_Genero);
-                    $('#Tipo_de_Delito').val(result.data.Tipo_de_Delito);
-                    $('#Grupo_Delito').val(result.data.Grupo_Delito);
-                    $('#Delito').val(result.data.Delito);
+                    var control = $('#Tipo_de_Delito');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Tipo_de_Delito).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Tipo_de_Delito).trigger('change');
+                    }, 3000);
+                    var control = $('#Grupo_Delito');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Grupo_Delito).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Grupo_Delito).trigger('change');
+                    }, 3000);
+                    var control = $('#Delito');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Delito).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Delito).trigger('change');
+                    }, 3000);
                     Agravantes_del_DelitoDataDataTable = result.Agravantes_y_o_Calificactivas;
                     showAgravantes_del_DelitoGrid(result.Agravantes_y_o_Calificactivas);
                     $('#Agravantes_del_DelitoGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });

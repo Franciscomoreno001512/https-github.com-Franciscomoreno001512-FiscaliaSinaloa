@@ -91,6 +91,22 @@
                     @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
                     @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Tipo_de_DenunciaResources.Tipo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.TipoFilter, filters, new { @class = "form-control", @id = "ddlTipoFilter" })
+                    @Html.TextBoxFor(m => m.Tipo, new { @class = "form-control", @type = "text", @id = "txtTipo" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Tipo_de_DenunciaResources.Abreviacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AbreviacionFilter, filters, new { @class = "form-control", @id = "ddlAbreviacionFilter" })
+                    @Html.TextBoxFor(m => m.Abreviacion, new { @class = "form-control", @type = "text", @id = "txtAbreviacion" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Tipo_de_Denuncia/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -132,6 +148,16 @@
             hasParameter = true;
             advanceSearch.Tipo_de_DenunciaObservaciones = $("#txtAdvanceObservaciones").val();
             advanceSearch.Tipo_de_DenunciaObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+        if ($("#txtAdvanceTipo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Tipo_de_DenunciaTipo = $("#txtAdvanceTipo").val();
+            advanceSearch.Tipo_de_DenunciaTipoSearchType = $("#ddlAdvanceTipoFilter").val();
+        }
+        if ($("#txtAdvanceAbreviacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Tipo_de_DenunciaAbreviacion = $("#txtAdvanceAbreviacion").val();
+            advanceSearch.Tipo_de_DenunciaAbreviacionSearchType = $("#ddlAdvanceAbreviacionFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
