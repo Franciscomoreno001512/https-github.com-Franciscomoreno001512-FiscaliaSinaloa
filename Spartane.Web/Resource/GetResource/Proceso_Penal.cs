@@ -156,6 +156,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Resultado_de_Investigacion_Complementari</summary>
+        public static string Resultado_de_Investigacion_Complementari
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderProceso_Penal.GetResource("Resultado_de_Investigacion_Complementari", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>fecha_investigacion_complementaria</summary>
         public static string fecha_investigacion_complementaria
         {
@@ -496,12 +506,23 @@ namespace Resources
             }
         }
 
+        /// <summary>prueba</summary>
+        public static string prueba
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderProceso_Penal.GetResource("prueba", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Fase Complementaria</summary>	public static string TabFase_Complementaria 	{		get		{			SetPath();  			return resourceProviderProceso_Penal.GetResource("TabFase_Complementaria", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Fase Escrita</summary>	public static string TabFase_Escrita 	{		get		{			SetPath();  			return resourceProviderProceso_Penal.GetResource("TabFase_Escrita", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Audiencia Intermedia</summary>	public static string TabAudiencia_Intermedia 	{		get		{			SetPath();  			return resourceProviderProceso_Penal.GetResource("TabAudiencia_Intermedia", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Juicio Oral</summary>	public static string TabJuicio_Oral 	{		get		{			SetPath();  			return resourceProviderProceso_Penal.GetResource("TabJuicio_Oral", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Resolución</summary>	public static string TabResolucion 	{		get		{			SetPath();  			return resourceProviderProceso_Penal.GetResource("TabResolucion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderProceso_Penal.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 
     }
 }

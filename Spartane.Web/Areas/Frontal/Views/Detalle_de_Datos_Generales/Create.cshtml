@@ -224,6 +224,9 @@
     List<SelectListItem> varLargo_de_Cabello_Largo_de_Cabello = null;
     if (ViewBag.Largo_de_Cabellos_Largo_de_Cabello != null)
     { varLargo_de_Cabello_Largo_de_Cabello = (List<SelectListItem>)ViewBag.Largo_de_Cabellos_Largo_de_Cabello; }
+    List<SelectListItem> varForma_Cabello_Forma_de_Cabello = null;
+    if (ViewBag.Forma_Cabellos_Forma_de_Cabello != null)
+    { varForma_Cabello_Forma_de_Cabello = (List<SelectListItem>)ViewBag.Forma_Cabellos_Forma_de_Cabello; }
     List<SelectListItem> varColor_de_Cabello_Color_Cabello = null;
     if (ViewBag.Color_de_Cabellos_Color_Cabello != null)
     { varColor_de_Cabello_Color_Cabello = (List<SelectListItem>)ViewBag.Color_de_Cabellos_Color_Cabello; }
@@ -1424,6 +1427,12 @@
                                     @Html.CheckBoxFor(m => m.Se_Informaron_sobre_sus_Derechos, new { @class = "i-checks Datos_Generales" })
                                 </div>
                             </div>
+                            <div class="form-group" id="divGravidez">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Gravidez</label>
+                                <div class="col-sm-8" data-field-id="Gravidez" data-attribute="268122" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Gravidez">
+                                    @Html.CheckBoxFor(m => m.Gravidez, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
                             <div id="divAdicciones_de_Involucrado">
                             <div class="ibox-title">
                                 <h5>@Resources.Detalle_de_Datos_GeneralesResources.Adicciones_de_Involucrado</h5>
@@ -1853,6 +1862,30 @@
                                                                 <i class="fa fa-cogs fa-spin"></i>
                                                             </a>
                                                         </button>@Resources.Otros_Domicilios_InvolucradoResources.Numero_Exterior</span></th>
+                                                <th class="Numero_InteriorHeader"><span>
+<button type="button" data-attribute="268113" data-field-id="Otros_Domicilios_InvolucradoNumero_Interior" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Numero_Interior" data-toggle="modal" data-target="#Detalle_de_Datos_GeneralesBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_Domicilios_InvolucradoResources.Numero_Interior">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Otros_Domicilios_InvolucradoResources.Numero_Interior</span></th>
+                                                <th class="Coordenada_XHeader"><span>
+<button type="button" data-attribute="268114" data-field-id="Otros_Domicilios_InvolucradoCoordenada_X" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Coordenada_X" data-toggle="modal" data-target="#Detalle_de_Datos_GeneralesBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_Domicilios_InvolucradoResources.Coordenada_X">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Otros_Domicilios_InvolucradoResources.Coordenada_X</span></th>
+                                                <th class="Coordenada_YHeader"><span>
+<button type="button" data-attribute="268115" data-field-id="Otros_Domicilios_InvolucradoCoordenada_Y" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Coordenada_Y" data-toggle="modal" data-target="#Detalle_de_Datos_GeneralesBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_Domicilios_InvolucradoResources.Coordenada_Y">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Otros_Domicilios_InvolucradoResources.Coordenada_Y</span></th>
+                                                <th class="ObservacionesHeader"><span>
+<button type="button" data-attribute="268116" data-field-id="Otros_Domicilios_InvolucradoObservaciones" data-field-name="@Resources.Otros_Domicilios_InvolucradoResources.Observaciones" data-toggle="modal" data-target="#Detalle_de_Datos_GeneralesBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_Domicilios_InvolucradoResources.Observaciones">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Otros_Domicilios_InvolucradoResources.Observaciones</span></th>
 
                                             </tr>
                                         </thead>
@@ -2966,6 +2999,34 @@
                                 </div>
                                 }
                             </div>
+                            <div class="form-group" id="divForma_de_Cabello">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Forma_de_Cabello</label>
+                                <div class="col-sm-8" data-field-id="Forma_de_Cabello" data-attribute="268103" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Forma_de_Cabello">
+                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Forma de Cabello must be a number." data-val-required="The Forma de Cabello field is required." id="Forma_de_Cabello" name="Forma_de_Cabello">
+                                        <option value=""></option>
+                                        @if (varForma_Cabello_Forma_de_Cabello != null){ 
+                                            foreach (var itemForma_de_Cabello in varForma_Cabello_Forma_de_Cabello)
+                                            {
+                                                if (itemForma_de_Cabello.Value == Convert.ToString(Model.Forma_de_Cabello))
+                                                {
+                                                    <option value="@itemForma_de_Cabello.Value" selected>@itemForma_de_Cabello.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemForma_de_Cabello.Value">@itemForma_de_Cabello.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Forma_de_Cabello" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268103).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Forma_Cabello', 'Forma_de_Cabello');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
                             <div class="form-group" id="divColor_Cabello">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Color_Cabello</label>
                                 <div class="col-sm-8" data-field-id="Color_Cabello" data-attribute="266548" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Color_Cabello">
@@ -3818,6 +3879,10 @@
            
               showOtras_Identificaciones_InvolucradoGrid(null);
               
+
+
+
+
 
 
 
@@ -5816,6 +5881,10 @@
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Entre_Calle)).addClass('Entre_Calle').attr('id', nameOfTable + 'Entre_Calle' + rowIndex).attr('data-field', 'Entre_Calle');
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Y_Calle)).addClass('Y_Calle').attr('id', nameOfTable + 'Y_Calle' + rowIndex).attr('data-field', 'Y_Calle');
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Numero_Exterior)).addClass('Numero_Exterior').attr('id', nameOfTable + 'Numero_Exterior' + rowIndex).attr('data-field', 'Numero_Exterior');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Numero_Interior)).addClass('Numero_Interior').attr('id', nameOfTable + 'Numero_Interior' + rowIndex).attr('data-field', 'Numero_Interior');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Coordenada_X)).addClass('Coordenada_X').attr('id', nameOfTable + 'Coordenada_X' + rowIndex).attr('data-field', 'Coordenada_X');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Coordenada_Y)).addClass('Coordenada_Y').attr('id', nameOfTable + 'Coordenada_Y' + rowIndex).attr('data-field', 'Coordenada_Y');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Observaciones)).addClass('Observaciones').attr('id', nameOfTable + 'Observaciones' + rowIndex).attr('data-field', 'Observaciones');
 
             return columnData;
         }
@@ -5986,6 +6055,22 @@
                 $('<td id="'+nameOfTable+'Numero_Exterior'+rowIndex+'">').text(data.Numero_Exterior).appendTo(row);
             else 
                 $('<td style="display:none;" id="'+nameOfTable+'Numero_Exterior'+rowIndex+'">').text(data.Numero_Exterior).appendTo(row);
+            if ($('.Numero_Interior' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Numero_Interior'+rowIndex+'">').text(data.Numero_Interior).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Numero_Interior'+rowIndex+'">').text(data.Numero_Interior).appendTo(row);
+            if ($('.Coordenada_X' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Coordenada_X'+rowIndex+'">').text(data.Coordenada_X).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Coordenada_X'+rowIndex+'">').text(data.Coordenada_X).appendTo(row);
+            if ($('.Coordenada_Y' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Coordenada_Y'+rowIndex+'">').text(data.Coordenada_Y).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Coordenada_Y'+rowIndex+'">').text(data.Coordenada_Y).appendTo(row);
+            if ($('.Observaciones' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Observaciones'+rowIndex+'">').text(data.Observaciones).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Observaciones'+rowIndex+'">').text(data.Observaciones).appendTo(row);
 
         }
 
@@ -6011,6 +6096,10 @@
                     { "data": "Entre_Calle", "orderable": false },
                     { "data": "Y_Calle", "orderable": false },
                     { "data": "Numero_Exterior", "orderable": false },
+                    { "data": "Numero_Interior", "orderable": false },
+                    { "data": "Coordenada_X", "orderable": false },
+                    { "data": "Coordenada_Y", "orderable": false },
+                    { "data": "Observaciones", "orderable": false },
 
                 ],
                 "order": [[0, "asc"]],
@@ -6111,6 +6200,10 @@
                 }
             });
         }
+
+
+
+
 
 
 
@@ -6342,6 +6435,10 @@
             $('.select2-search__field').val(' ');
             $('.select2-search__field').keyup();
         });
+
+
+
+
 
 
 
@@ -6784,6 +6881,7 @@
                     $('#Tipo_de_Inimputabilidad').val(result.data.Tipo_de_Inimputabilidad);
                     $('#Especifique').val(result.data.Especifique);
                     $('#Se_Informaron_sobre_sus_Derechos').prop('checked', result.data.Se_Informaron_sobre_sus_Derechos);
+                    $('#Gravidez').prop('checked', result.data.Gravidez);
                     Adicciones_de_InvolucradoDataDataTable = result.Adicciones_de_Involucrado;
                     showAdicciones_de_InvolucradoGrid(result.Adicciones_de_Involucrado);
                     $('#Adicciones_de_InvolucradoGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
@@ -6886,6 +6984,7 @@
                 data.append('Tipo_de_Inimputabilidad', $('#Tipo_de_Inimputabilidad').val());
                 data.append('Especifique', $('#Especifique').val());
                 data.append('Se_Informaron_sobre_sus_Derechos', $('#Se_Informaron_sobre_sus_Derechos').prop('checked'));
+                data.append('Gravidez', $('#Gravidez').prop('checked'));
                 data.append('Discapacidad_Mental', $('#Discapacidad_Mental').val());
                 data.append('Discapacidad_Fisica', $('#Discapacidad_Fisica').val());
                 data.append('Discapacidad_Sensorial', $('#Discapacidad_Sensorial').val());
@@ -7288,6 +7387,7 @@
                     $('#Color_Piel').val(result.data.Color_Piel);
                     $('#Frente').val(result.data.Frente);
                     $('#Largo_de_Cabello').val(result.data.Largo_de_Cabello);
+                    $('#Forma_de_Cabello').val(result.data.Forma_de_Cabello);
                     $('#Color_Cabello').val(result.data.Color_Cabello);
                     $('#Calvicie').val(result.data.Calvicie);
                     $('#Color_Ojos').val(result.data.Color_Ojos);
@@ -7333,6 +7433,7 @@
                 data.append('Color_Piel', $('#Color_Piel').val());
                 data.append('Frente', $('#Frente').val());
                 data.append('Largo_de_Cabello', $('#Largo_de_Cabello').val());
+                data.append('Forma_de_Cabello', $('#Forma_de_Cabello').val());
                 data.append('Color_Cabello', $('#Color_Cabello').val());
                 data.append('Calvicie', $('#Calvicie').val());
                 data.append('Color_Ojos', $('#Color_Ojos').val());

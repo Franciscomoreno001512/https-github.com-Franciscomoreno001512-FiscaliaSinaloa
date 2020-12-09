@@ -8,6 +8,12 @@
 @{
 
 /*
+    string fcreada = "";
+    if (Model.fcreada == "")
+    { Model.fcreada = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string fbaja = "";
+    if (Model.fbaja == "")
+    { Model.fbaja = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
 */
     List<SelectListItem> varMunicipio_Clave_de_Municipio = null;
@@ -16,6 +22,9 @@
     List<SelectListItem> varRegion_Clave_de_Region = null;
     if (ViewBag.Regions_Clave_de_Region != null)
     { varRegion_Clave_de_Region = (List<SelectListItem>)ViewBag.Regions_Clave_de_Region; }
+    List<SelectListItem> varEspecialidad_MP_Especialidad = null;
+    if (ViewBag.Especialidad_MPs_Especialidad != null)
+    { varEspecialidad_MP_Especialidad = (List<SelectListItem>)ViewBag.Especialidad_MPs_Especialidad; }
     List<SelectListItem> varVigencia_Vigencia = null;
     if (ViewBag.Vigencias_Vigencia != null)
     { varVigencia_Vigencia = (List<SelectListItem>)ViewBag.Vigencias_Vigencia; }
@@ -254,6 +263,34 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Descripcion_Corta" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divEspecialidad">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.Especialidad</label>
+                                <div class="col-sm-8" data-field-id="Especialidad" data-attribute="268102" data-field-name="@Resources.UnidadResources.Especialidad">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Especialidad must be a number." data-val-required="The Especialidad field is required." id="Especialidad" name="Especialidad">
+                                        <option value=""></option>
+                                        @if (varEspecialidad_MP_Especialidad != null){ 
+                                            foreach (var itemEspecialidad in varEspecialidad_MP_Especialidad)
+                                            {
+                                                if (itemEspecialidad.Value == Convert.ToString(Model.Especialidad))
+                                                {
+                                                    <option value="@itemEspecialidad.Value" selected>@itemEspecialidad.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemEspecialidad.Value">@itemEspecialidad.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Especialidad" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268102).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Especialidad_MP', 'Especialidad');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
                             <div class="form-group" id="divVigencia">
                                 <label class="col-sm-2 control-label">@Resources.UnidadResources.Vigencia</label>
                                 <div class="col-sm-8" data-field-id="Vigencia" data-attribute="266328" data-field-name="@Resources.UnidadResources.Vigencia">
@@ -344,6 +381,127 @@
                                     <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Asignacion_de_MP', 'Tipo_de_Asignacion_de_MP');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
+                            </div>
+                            <div class="form-group" id="divcod_pais">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.cod_pais</label>
+                                <div class="col-sm-8" data-field-id="cod_pais" data-attribute="267898" data-field-name="@Resources.UnidadResources.cod_pais">
+                                    <input class="form-control inputNumber Datos_Generales" id="cod_pais" name="cod_pais" type="text" value="@Model.cod_pais">
+                                    @*<span class="field-validation-valid" data-valmsg-for="cod_pais" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divcod_edo">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.cod_edo</label>
+                                <div class="col-sm-8" data-field-id="cod_edo" data-attribute="267899" data-field-name="@Resources.UnidadResources.cod_edo">
+                                    <input class="form-control inputNumber Datos_Generales" id="cod_edo" name="cod_edo" type="text" value="@Model.cod_edo">
+                                    @*<span class="field-validation-valid" data-valmsg-for="cod_edo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divcod_agencia">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.cod_agencia</label>
+                                <div class="col-sm-8" data-field-id="cod_agencia" data-attribute="267900" data-field-name="@Resources.UnidadResources.cod_agencia">
+                                    <input class="form-control inputNumber Datos_Generales" id="cod_agencia" name="cod_agencia" type="text" value="@Model.cod_agencia">
+                                    @*<span class="field-validation-valid" data-valmsg-for="cod_agencia" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFTIPO">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.FTIPO</label>
+                                <div class="col-sm-8" data-field-id="FTIPO" data-attribute="267901" data-field-name="@Resources.UnidadResources.FTIPO">
+                                    <input class="form-control Datos_Generales" id="FTIPO" name="FTIPO" type="text" value="@Model.FTIPO">
+                                    @*<span class="field-validation-valid" data-valmsg-for="FTIPO" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divfcreada">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.fcreada</label>
+                                <div class="col-sm-8" data-field-id="fcreada" data-attribute="267902" data-field-name="@Resources.UnidadResources.fcreada">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="fcreada"  name="fcreada" type="text" value="@Model.fcreada">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divfbaja">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.fbaja</label>
+                                <div class="col-sm-8" data-field-id="fbaja" data-attribute="267903" data-field-name="@Resources.UnidadResources.fbaja">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="fbaja"  name="fbaja" type="text" value="@Model.fbaja">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="form-group" id="divULTAVREGIS">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.ULTAVREGIS</label>
+								<div class="col-sm-8">
+									<div class="input-group m-b" data-field-id="ULTAVREGIS" data-attribute="267917" data-field-name="@Resources.UnidadResources.ULTAVREGIS">
+										<span class="input-group-addon">$</span>
+										@if(Model.ULTAVREGIS.HasValue)
+						{
+						<input class="form-control col-md-12 inputNumber inputMoney Datos_Generales" id="ULTAVREGIS" name="ULTAVREGIS" type="text" min="0.00" max="999999.99" value="@Model.ULTAVREGIS.Value.ToString("N", CultureInfo.InvariantCulture)">
+						}
+						else
+						{
+						<input class="form-control col-md-12 inputNumber inputMoney Datos_Generales" id="ULTAVREGIS" name="ULTAVREGIS" type="text" min="0.00" max="999999.99" value="">
+						}  
+									</div>
+								</div>
+                            </div>
+                            <div class="form-group" id="divFUBICACION">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.FUBICACION</label>
+                                <div class="col-sm-8" data-field-id="FUBICACION" data-attribute="267918" data-field-name="@Resources.UnidadResources.FUBICACION">
+                                    <input class="form-control Datos_Generales" id="FUBICACION" name="FUBICACION" type="text" value="@Model.FUBICACION">
+                                    @*<span class="field-validation-valid" data-valmsg-for="FUBICACION" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divvr_agen">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.vr_agen</label>
+                                <div class="col-sm-8" data-field-id="vr_agen" data-attribute="267919" data-field-name="@Resources.UnidadResources.vr_agen">
+                                    <input class="form-control inputNumber Datos_Generales" id="vr_agen" name="vr_agen" type="text" value="@Model.vr_agen">
+                                    @*<span class="field-validation-valid" data-valmsg-for="vr_agen" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divEspecial">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.Especial</label>
+                                <div class="col-sm-8" data-field-id="Especial" data-attribute="267920" data-field-name="@Resources.UnidadResources.Especial">
+                                    <input class="form-control Datos_Generales" id="Especial" name="Especial" type="text" value="@Model.Especial">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Especial" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divAgenAV">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.AgenAV</label>
+                                <div class="col-sm-8" data-field-id="AgenAV" data-attribute="267921" data-field-name="@Resources.UnidadResources.AgenAV">
+                                    <input class="form-control inputNumber Datos_Generales" id="AgenAV" name="AgenAV" type="text" value="@Model.AgenAV">
+                                    @*<span class="field-validation-valid" data-valmsg-for="AgenAV" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divAgenUni_NSJP">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.AgenUni_NSJP</label>
+                                <div class="col-sm-8" data-field-id="AgenUni_NSJP" data-attribute="267922" data-field-name="@Resources.UnidadResources.AgenUni_NSJP">
+                                    <input class="form-control Datos_Generales" id="AgenUni_NSJP" name="AgenUni_NSJP" type="text" value="@Model.AgenUni_NSJP">
+                                    @*<span class="field-validation-valid" data-valmsg-for="AgenUni_NSJP" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNomenclatura">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.Nomenclatura</label>
+                                <div class="col-sm-8" data-field-id="Nomenclatura" data-attribute="267923" data-field-name="@Resources.UnidadResources.Nomenclatura">
+                                    <input class="form-control Datos_Generales" id="Nomenclatura" name="Nomenclatura" type="text" value="@Model.Nomenclatura">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Nomenclatura" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divAlcance">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.Alcance</label>
+                                <div class="col-sm-8" data-field-id="Alcance" data-attribute="267924" data-field-name="@Resources.UnidadResources.Alcance">
+                                    <input class="form-control Datos_Generales" id="Alcance" name="Alcance" type="text" value="@Model.Alcance">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Alcance" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divReceptorDeclinaciones">
+                                <label class="col-sm-2 control-label">@Resources.UnidadResources.ReceptorDeclinaciones</label>
+                                <div class="col-sm-8" data-field-id="ReceptorDeclinaciones" data-attribute="267925" data-field-name="@Resources.UnidadResources.ReceptorDeclinaciones">
+                                    @Html.CheckBoxFor(m => m.ReceptorDeclinaciones, new { @class = "i-checks Datos_Generales" })
+                                </div>
                             </div>
                             </div>
                                 </div>
@@ -481,7 +639,23 @@
             $('#ObjectId').val('45256');
 		    
 		   
-            
+                        $('#fcreada').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#fbaja').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+
 
             initiateUIControls();
 			$('a').tooltip();
@@ -816,6 +990,7 @@
                     $('#Abreviacion').val(result.data.Abreviacion);
                     $('#Descripcion').val(result.data.Descripcion);
                     $('#Descripcion_Corta').val(result.data.Descripcion_Corta);
+                    $('#Especialidad').val(result.data.Especialidad);
                     $('#Vigencia').val(result.data.Vigencia);
                     $('#Direccion').val(result.data.Direccion);
                     $('#Observaciones').val(result.data.Observaciones);
@@ -830,6 +1005,21 @@
                     }, 3000);
                     $('#Consecutivo_CDI').val(result.data.Consecutivo_CDI);
                     $('#Tipo_de_Asignacion_de_MP').val(result.data.Tipo_de_Asignacion_de_MP);
+                    $('#cod_pais').val(result.data.cod_pais);
+                    $('#cod_edo').val(result.data.cod_edo);
+                    $('#cod_agencia').val(result.data.cod_agencia);
+                    $('#FTIPO').val(result.data.FTIPO);
+                    $('#fcreada').val(result.data.fcreada);
+                    $('#fbaja').val(result.data.fbaja);
+                    $('#ULTAVREGIS').val(result.data.ULTAVREGIS);
+                    $('#FUBICACION').val(result.data.FUBICACION);
+                    $('#vr_agen').val(result.data.vr_agen);
+                    $('#Especial').val(result.data.Especial);
+                    $('#AgenAV').val(result.data.AgenAV);
+                    $('#AgenUni_NSJP').val(result.data.AgenUni_NSJP);
+                    $('#Nomenclatura').val(result.data.Nomenclatura);
+                    $('#Alcance').val(result.data.Alcance);
+                    $('#ReceptorDeclinaciones').prop('checked', result.data.ReceptorDeclinaciones);
 
                 },
                 error: function (result) {
@@ -847,12 +1037,29 @@
                 data.append('Abreviacion', $('#Abreviacion').val());
                 data.append('Descripcion', $('#Descripcion').val());
                 data.append('Descripcion_Corta', $('#Descripcion_Corta').val());
+                data.append('Especialidad', $('#Especialidad').val());
                 data.append('Vigencia', $('#Vigencia').val());
                 data.append('Direccion', $('#Direccion').val());
                 data.append('Observaciones', $('#Observaciones').val());
                 data.append('Supervisor', $('#Supervisor').val());
                 data.append('Consecutivo_CDI', $('#Consecutivo_CDI').val());
                 data.append('Tipo_de_Asignacion_de_MP', $('#Tipo_de_Asignacion_de_MP').val());
+                data.append('cod_pais', $('#cod_pais').val());
+                data.append('cod_edo', $('#cod_edo').val());
+                data.append('cod_agencia', $('#cod_agencia').val());
+                data.append('FTIPO', $('#FTIPO').val());
+                data.append('fcreada', $('#fcreada').val());
+                data.append('fbaja', $('#fbaja').val());
+ 
+               data.append('ULTAVREGIS', Number($('#ULTAVREGIS').val().replace(/[^0-9.-]+/g, "")));
+                data.append('FUBICACION', $('#FUBICACION').val());
+                data.append('vr_agen', $('#vr_agen').val());
+                data.append('Especial', $('#Especial').val());
+                data.append('AgenAV', $('#AgenAV').val());
+                data.append('AgenUni_NSJP', $('#AgenUni_NSJP').val());
+                data.append('Nomenclatura', $('#Nomenclatura').val());
+                data.append('Alcance', $('#Alcance').val());
+                data.append('ReceptorDeclinaciones', $('#ReceptorDeclinaciones').prop('checked'));
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Unidad/Post_Datos_Generales")',

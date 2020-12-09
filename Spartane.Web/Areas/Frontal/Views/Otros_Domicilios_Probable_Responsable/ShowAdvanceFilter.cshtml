@@ -118,6 +118,38 @@
                     @Html.DropDownListFor(m => m.Numero_ExteriorFilter, filters, new { @class = "form-control", @id = "ddlNumero_ExteriorFilter" })
                     @Html.TextBoxFor(m => m.Numero_Exterior, new { @class = "form-control", @type = "text", @id = "txtNumero_Exterior" })
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Otros_Domicilios_Probable_ResponsableResources.Numero_Interior</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_InteriorFilter, filters, new { @class = "form-control", @id = "ddlNumero_InteriorFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Interior, new { @class = "form-control", @type = "text", @id = "txtNumero_Interior" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Otros_Domicilios_Probable_ResponsableResources.Coordenada_X</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Coordenada_XFilter, filters, new { @class = "form-control", @id = "ddlCoordenada_XFilter" })
+                    @Html.TextBoxFor(m => m.Coordenada_X, new { @class = "form-control", @type = "text", @id = "txtCoordenada_X" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Otros_Domicilios_Probable_ResponsableResources.Coordenada_Y</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Coordenada_YFilter, filters, new { @class = "form-control", @id = "ddlCoordenada_YFilter" })
+                    @Html.TextBoxFor(m => m.Coordenada_Y, new { @class = "form-control", @type = "text", @id = "txtCoordenada_Y" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Otros_Domicilios_Probable_ResponsableResources.Observaciones</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Otros_Domicilios_Probable_Responsable/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -219,6 +251,26 @@
             hasParameter = true;
             advanceSearch.Otros_Domicilios_Probable_ResponsableNumero_Exterior = $("#txtAdvanceNumero_Exterior").val();
             advanceSearch.Otros_Domicilios_Probable_ResponsableNumero_ExteriorSearchType = $("#ddlAdvanceNumero_ExteriorFilter").val();
+        }
+        if ($("#txtAdvanceNumero_Interior").val() != "") {
+            hasParameter = true;
+            advanceSearch.Otros_Domicilios_Probable_ResponsableNumero_Interior = $("#txtAdvanceNumero_Interior").val();
+            advanceSearch.Otros_Domicilios_Probable_ResponsableNumero_InteriorSearchType = $("#ddlAdvanceNumero_InteriorFilter").val();
+        }
+        if ($("#txtAdvanceCoordenada_X").val() != "") {
+            hasParameter = true;
+            advanceSearch.Otros_Domicilios_Probable_ResponsableCoordenada_X = $("#txtAdvanceCoordenada_X").val();
+            advanceSearch.Otros_Domicilios_Probable_ResponsableCoordenada_XSearchType = $("#ddlAdvanceCoordenada_XFilter").val();
+        }
+        if ($("#txtAdvanceCoordenada_Y").val() != "") {
+            hasParameter = true;
+            advanceSearch.Otros_Domicilios_Probable_ResponsableCoordenada_Y = $("#txtAdvanceCoordenada_Y").val();
+            advanceSearch.Otros_Domicilios_Probable_ResponsableCoordenada_YSearchType = $("#ddlAdvanceCoordenada_YFilter").val();
+        }
+        if ($("#txtAdvanceObservaciones").val() != "") {
+            hasParameter = true;
+            advanceSearch.Otros_Domicilios_Probable_ResponsableObservaciones = $("#txtAdvanceObservaciones").val();
+            advanceSearch.Otros_Domicilios_Probable_ResponsableObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

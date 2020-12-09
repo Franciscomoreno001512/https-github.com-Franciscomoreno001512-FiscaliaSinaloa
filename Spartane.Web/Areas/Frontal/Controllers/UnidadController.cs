@@ -4,6 +4,7 @@ using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Unidad;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Region;
+using Spartane.Core.Domain.Especialidad_MP;
 using Spartane.Core.Domain.Vigencia;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Tipo_de_Asignacion_de_MP;
@@ -19,6 +20,7 @@ using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Unidad;
 using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Region;
+using Spartane.Web.Areas.WebApiConsumer.Especialidad_MP;
 using Spartane.Web.Areas.WebApiConsumer.Vigencia;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Asignacion_de_MP;
@@ -60,6 +62,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IUnidadApiConsumer _IUnidadApiConsumer;
         private IMunicipioApiConsumer _IMunicipioApiConsumer;
         private IRegionApiConsumer _IRegionApiConsumer;
+        private IEspecialidad_MPApiConsumer _IEspecialidad_MPApiConsumer;
         private IVigenciaApiConsumer _IVigenciaApiConsumer;
         private ISpartan_UserApiConsumer _ISpartan_UserApiConsumer;
         private ITipo_de_Asignacion_de_MPApiConsumer _ITipo_de_Asignacion_de_MPApiConsumer;
@@ -80,7 +83,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public UnidadController(IUnidadService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IUnidadApiConsumer UnidadApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IRegionApiConsumer RegionApiConsumer , IVigenciaApiConsumer VigenciaApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_Asignacion_de_MPApiConsumer Tipo_de_Asignacion_de_MPApiConsumer )
+        public UnidadController(IUnidadService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IUnidadApiConsumer UnidadApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IRegionApiConsumer RegionApiConsumer , IEspecialidad_MPApiConsumer Especialidad_MPApiConsumer , IVigenciaApiConsumer VigenciaApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_Asignacion_de_MPApiConsumer Tipo_de_Asignacion_de_MPApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -96,6 +99,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._IMunicipioApiConsumer = MunicipioApiConsumer;
             this._IRegionApiConsumer = RegionApiConsumer;
+            this._IEspecialidad_MPApiConsumer = Especialidad_MPApiConsumer;
             this._IVigenciaApiConsumer = VigenciaApiConsumer;
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._ITipo_de_Asignacion_de_MPApiConsumer = Tipo_de_Asignacion_de_MPApiConsumer;
@@ -182,6 +186,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Abreviacion = UnidadData.Abreviacion
                     ,Descripcion = UnidadData.Descripcion
                     ,Descripcion_Corta = UnidadData.Descripcion_Corta
+                    ,Especialidad = UnidadData.Especialidad
+                    ,EspecialidadDescripcion = CultureHelper.GetTraduction(Convert.ToString(UnidadData.Especialidad), "Especialidad_MP") ??  (string)UnidadData.Especialidad_Especialidad_MP.Descripcion
                     ,Vigencia = UnidadData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(UnidadData.Vigencia), "Vigencia") ??  (string)UnidadData.Vigencia_Vigencia.Abreviacion
                     ,Direccion = UnidadData.Direccion
@@ -191,6 +197,21 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Consecutivo_CDI = UnidadData.Consecutivo_CDI
                     ,Tipo_de_Asignacion_de_MP = UnidadData.Tipo_de_Asignacion_de_MP
                     ,Tipo_de_Asignacion_de_MPDescripcion = CultureHelper.GetTraduction(Convert.ToString(UnidadData.Tipo_de_Asignacion_de_MP), "Tipo_de_Asignacion_de_MP") ??  (string)UnidadData.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Descripcion
+                    ,cod_pais = UnidadData.cod_pais
+                    ,cod_edo = UnidadData.cod_edo
+                    ,cod_agencia = UnidadData.cod_agencia
+                    ,FTIPO = UnidadData.FTIPO
+                    ,fcreada = (UnidadData.fcreada == null ? string.Empty : Convert.ToDateTime(UnidadData.fcreada).ToString(ConfigurationProperty.DateFormat))
+                    ,fbaja = (UnidadData.fbaja == null ? string.Empty : Convert.ToDateTime(UnidadData.fbaja).ToString(ConfigurationProperty.DateFormat))
+                    ,ULTAVREGIS = UnidadData.ULTAVREGIS
+                    ,FUBICACION = UnidadData.FUBICACION
+                    ,vr_agen = UnidadData.vr_agen
+                    ,Especial = UnidadData.Especial
+                    ,AgenAV = UnidadData.AgenAV
+                    ,AgenUni_NSJP = UnidadData.AgenUni_NSJP
+                    ,Nomenclatura = UnidadData.Nomenclatura
+                    ,Alcance = UnidadData.Alcance
+                    ,ReceptorDeclinaciones = UnidadData.ReceptorDeclinaciones.GetValueOrDefault()
 
 					};
 				}
@@ -214,6 +235,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Regions_Clave_de_Region = Regions_Clave_de_Region.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Region", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IEspecialidad_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Especialidad_MPs_Especialidad = _IEspecialidad_MPApiConsumer.SelAll(true);
+            if (Especialidad_MPs_Especialidad != null && Especialidad_MPs_Especialidad.Resource != null)
+                ViewBag.Especialidad_MPs_Especialidad = Especialidad_MPs_Especialidad.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Especialidad_MP", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IVigenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Vigencias_Vigencia = _IVigenciaApiConsumer.SelAll(true);
@@ -299,6 +327,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Abreviacion = UnidadData.Abreviacion
                     ,Descripcion = UnidadData.Descripcion
                     ,Descripcion_Corta = UnidadData.Descripcion_Corta
+                    ,Especialidad = UnidadData.Especialidad
+                    ,EspecialidadDescripcion = CultureHelper.GetTraduction(Convert.ToString(UnidadData.Especialidad), "Especialidad_MP") ??  (string)UnidadData.Especialidad_Especialidad_MP.Descripcion
                     ,Vigencia = UnidadData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(UnidadData.Vigencia), "Vigencia") ??  (string)UnidadData.Vigencia_Vigencia.Abreviacion
                     ,Direccion = UnidadData.Direccion
@@ -308,6 +338,21 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Consecutivo_CDI = UnidadData.Consecutivo_CDI
                     ,Tipo_de_Asignacion_de_MP = UnidadData.Tipo_de_Asignacion_de_MP
                     ,Tipo_de_Asignacion_de_MPDescripcion = CultureHelper.GetTraduction(Convert.ToString(UnidadData.Tipo_de_Asignacion_de_MP), "Tipo_de_Asignacion_de_MP") ??  (string)UnidadData.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Descripcion
+                    ,cod_pais = UnidadData.cod_pais
+                    ,cod_edo = UnidadData.cod_edo
+                    ,cod_agencia = UnidadData.cod_agencia
+                    ,FTIPO = UnidadData.FTIPO
+                    ,fcreada = (UnidadData.fcreada == null ? string.Empty : Convert.ToDateTime(UnidadData.fcreada).ToString(ConfigurationProperty.DateFormat))
+                    ,fbaja = (UnidadData.fbaja == null ? string.Empty : Convert.ToDateTime(UnidadData.fbaja).ToString(ConfigurationProperty.DateFormat))
+                    ,ULTAVREGIS = UnidadData.ULTAVREGIS
+                    ,FUBICACION = UnidadData.FUBICACION
+                    ,vr_agen = UnidadData.vr_agen
+                    ,Especial = UnidadData.Especial
+                    ,AgenAV = UnidadData.AgenAV
+                    ,AgenUni_NSJP = UnidadData.AgenUni_NSJP
+                    ,Nomenclatura = UnidadData.Nomenclatura
+                    ,Alcance = UnidadData.Alcance
+                    ,ReceptorDeclinaciones = UnidadData.ReceptorDeclinaciones.GetValueOrDefault()
 
 					};
 				}
@@ -329,6 +374,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Regions_Clave_de_Region = Regions_Clave_de_Region.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Region", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IEspecialidad_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Especialidad_MPs_Especialidad = _IEspecialidad_MPApiConsumer.SelAll(true);
+            if (Especialidad_MPs_Especialidad != null && Especialidad_MPs_Especialidad.Resource != null)
+                ViewBag.Especialidad_MPs_Especialidad = Especialidad_MPs_Especialidad.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Especialidad_MP", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IVigenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Vigencias_Vigencia = _IVigenciaApiConsumer.SelAll(true);
@@ -398,6 +450,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Region", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetEspecialidad_MPAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IEspecialidad_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IEspecialidad_MPApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Especialidad_MP", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -516,6 +589,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Region", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IEspecialidad_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Especialidad_MPs_Especialidad = _IEspecialidad_MPApiConsumer.SelAll(true);
+            if (Especialidad_MPs_Especialidad != null && Especialidad_MPs_Especialidad.Resource != null)
+                ViewBag.Especialidad_MPs_Especialidad = Especialidad_MPs_Especialidad.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Especialidad_MP", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IVigenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Vigencias_Vigencia = _IVigenciaApiConsumer.SelAll(true);
             if (Vigencias_Vigencia != null && Vigencias_Vigencia.Resource != null)
@@ -554,6 +634,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Regions_Clave_de_Region = Regions_Clave_de_Region.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Region", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IEspecialidad_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Especialidad_MPs_Especialidad = _IEspecialidad_MPApiConsumer.SelAll(true);
+            if (Especialidad_MPs_Especialidad != null && Especialidad_MPs_Especialidad.Resource != null)
+                ViewBag.Especialidad_MPs_Especialidad = Especialidad_MPs_Especialidad.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Especialidad_MP", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IVigenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Vigencias_Vigencia = _IVigenciaApiConsumer.SelAll(true);
@@ -613,12 +700,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Abreviacion = m.Abreviacion
 			,Descripcion = m.Descripcion
 			,Descripcion_Corta = m.Descripcion_Corta
+                        ,EspecialidadDescripcion = CultureHelper.GetTraduction(m.Especialidad_Especialidad_MP.Clave.ToString(), "Descripcion") ?? (string)m.Especialidad_Especialidad_MP.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Direccion = m.Direccion
 			,Observaciones = m.Observaciones
                         ,SupervisorName = CultureHelper.GetTraduction(m.Supervisor_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Supervisor_Spartan_User.Name
 			,Consecutivo_CDI = m.Consecutivo_CDI
                         ,Tipo_de_Asignacion_de_MPDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Descripcion
+			,cod_pais = m.cod_pais
+			,cod_edo = m.cod_edo
+			,cod_agencia = m.cod_agencia
+			,FTIPO = m.FTIPO
+                        ,fcreada = (m.fcreada == null ? string.Empty : Convert.ToDateTime(m.fcreada).ToString(ConfigurationProperty.DateFormat))
+                        ,fbaja = (m.fbaja == null ? string.Empty : Convert.ToDateTime(m.fbaja).ToString(ConfigurationProperty.DateFormat))
+			,ULTAVREGIS = m.ULTAVREGIS
+			,FUBICACION = m.FUBICACION
+			,vr_agen = m.vr_agen
+			,Especial = m.Especial
+			,AgenAV = m.AgenAV
+			,AgenUni_NSJP = m.AgenUni_NSJP
+			,Nomenclatura = m.Nomenclatura
+			,Alcance = m.Alcance
+			,ReceptorDeclinaciones = m.ReceptorDeclinaciones
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -739,12 +842,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Abreviacion = m.Abreviacion
 			,Descripcion = m.Descripcion
 			,Descripcion_Corta = m.Descripcion_Corta
+                        ,EspecialidadDescripcion = CultureHelper.GetTraduction(m.Especialidad_Especialidad_MP.Clave.ToString(), "Descripcion") ?? (string)m.Especialidad_Especialidad_MP.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Direccion = m.Direccion
 			,Observaciones = m.Observaciones
                         ,SupervisorName = CultureHelper.GetTraduction(m.Supervisor_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Supervisor_Spartan_User.Name
 			,Consecutivo_CDI = m.Consecutivo_CDI
                         ,Tipo_de_Asignacion_de_MPDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Descripcion
+			,cod_pais = m.cod_pais
+			,cod_edo = m.cod_edo
+			,cod_agencia = m.cod_agencia
+			,FTIPO = m.FTIPO
+                        ,fcreada = (m.fcreada == null ? string.Empty : Convert.ToDateTime(m.fcreada).ToString(ConfigurationProperty.DateFormat))
+                        ,fbaja = (m.fbaja == null ? string.Empty : Convert.ToDateTime(m.fbaja).ToString(ConfigurationProperty.DateFormat))
+			,ULTAVREGIS = m.ULTAVREGIS
+			,FUBICACION = m.FUBICACION
+			,vr_agen = m.vr_agen
+			,Especial = m.Especial
+			,AgenAV = m.AgenAV
+			,AgenUni_NSJP = m.AgenUni_NSJP
+			,Nomenclatura = m.Nomenclatura
+			,Alcance = m.Alcance
+			,ReceptorDeclinaciones = m.ReceptorDeclinaciones
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -928,6 +1047,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.AdvanceEspecialidad))
+            {
+                switch (filter.EspecialidadFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Especialidad_MP.Descripcion LIKE '" + filter.AdvanceEspecialidad + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Especialidad_MP.Descripcion LIKE '%" + filter.AdvanceEspecialidad + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Especialidad_MP.Descripcion = '" + filter.AdvanceEspecialidad + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Especialidad_MP.Descripcion LIKE '%" + filter.AdvanceEspecialidad + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceEspecialidadMultiple != null && filter.AdvanceEspecialidadMultiple.Count() > 0)
+            {
+                var EspecialidadIds = string.Join(",", filter.AdvanceEspecialidadMultiple);
+
+                where += " AND Unidad.Especialidad In (" + EspecialidadIds + ")";
+            }
+
             if (!string.IsNullOrEmpty(filter.AdvanceVigencia))
             {
                 switch (filter.VigenciaFilter)
@@ -1064,6 +1211,215 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Unidad.Tipo_de_Asignacion_de_MP In (" + Tipo_de_Asignacion_de_MPIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.Fromcod_pais) || !string.IsNullOrEmpty(filter.Tocod_pais))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromcod_pais))
+                    where += " AND Unidad.cod_pais >= " + filter.Fromcod_pais;
+                if (!string.IsNullOrEmpty(filter.Tocod_pais))
+                    where += " AND Unidad.cod_pais <= " + filter.Tocod_pais;
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromcod_edo) || !string.IsNullOrEmpty(filter.Tocod_edo))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromcod_edo))
+                    where += " AND Unidad.cod_edo >= " + filter.Fromcod_edo;
+                if (!string.IsNullOrEmpty(filter.Tocod_edo))
+                    where += " AND Unidad.cod_edo <= " + filter.Tocod_edo;
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromcod_agencia) || !string.IsNullOrEmpty(filter.Tocod_agencia))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromcod_agencia))
+                    where += " AND Unidad.cod_agencia >= " + filter.Fromcod_agencia;
+                if (!string.IsNullOrEmpty(filter.Tocod_agencia))
+                    where += " AND Unidad.cod_agencia <= " + filter.Tocod_agencia;
+            }
+
+            if (!string.IsNullOrEmpty(filter.FTIPO))
+            {
+                switch (filter.FTIPOFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Unidad.FTIPO LIKE '" + filter.FTIPO + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Unidad.FTIPO LIKE '%" + filter.FTIPO + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Unidad.FTIPO = '" + filter.FTIPO + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Unidad.FTIPO LIKE '%" + filter.FTIPO + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromfcreada) || !string.IsNullOrEmpty(filter.Tofcreada))
+            {
+                var fcreadaFrom = DateTime.ParseExact(filter.Fromfcreada, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var fcreadaTo = DateTime.ParseExact(filter.Tofcreada, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.Fromfcreada))
+                    where += " AND Unidad.fcreada >= '" + fcreadaFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.Tofcreada))
+                    where += " AND Unidad.fcreada <= '" + fcreadaTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromfbaja) || !string.IsNullOrEmpty(filter.Tofbaja))
+            {
+                var fbajaFrom = DateTime.ParseExact(filter.Fromfbaja, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var fbajaTo = DateTime.ParseExact(filter.Tofbaja, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.Fromfbaja))
+                    where += " AND Unidad.fbaja >= '" + fbajaFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.Tofbaja))
+                    where += " AND Unidad.fbaja <= '" + fbajaTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromULTAVREGIS) || !string.IsNullOrEmpty(filter.ToULTAVREGIS))
+            {
+                if (!string.IsNullOrEmpty(filter.FromULTAVREGIS))
+                    where += " AND Unidad.ULTAVREGIS >= " + filter.FromULTAVREGIS;
+                if (!string.IsNullOrEmpty(filter.ToULTAVREGIS))
+                    where += " AND Unidad.ULTAVREGIS <= " + filter.ToULTAVREGIS;
+            }
+
+            if (!string.IsNullOrEmpty(filter.FUBICACION))
+            {
+                switch (filter.FUBICACIONFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Unidad.FUBICACION LIKE '" + filter.FUBICACION + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Unidad.FUBICACION LIKE '%" + filter.FUBICACION + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Unidad.FUBICACION = '" + filter.FUBICACION + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Unidad.FUBICACION LIKE '%" + filter.FUBICACION + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromvr_agen) || !string.IsNullOrEmpty(filter.Tovr_agen))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromvr_agen))
+                    where += " AND Unidad.vr_agen >= " + filter.Fromvr_agen;
+                if (!string.IsNullOrEmpty(filter.Tovr_agen))
+                    where += " AND Unidad.vr_agen <= " + filter.Tovr_agen;
+            }
+
+            if (!string.IsNullOrEmpty(filter.Especial))
+            {
+                switch (filter.EspecialFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Unidad.Especial LIKE '" + filter.Especial + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Unidad.Especial LIKE '%" + filter.Especial + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Unidad.Especial = '" + filter.Especial + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Unidad.Especial LIKE '%" + filter.Especial + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromAgenAV) || !string.IsNullOrEmpty(filter.ToAgenAV))
+            {
+                if (!string.IsNullOrEmpty(filter.FromAgenAV))
+                    where += " AND Unidad.AgenAV >= " + filter.FromAgenAV;
+                if (!string.IsNullOrEmpty(filter.ToAgenAV))
+                    where += " AND Unidad.AgenAV <= " + filter.ToAgenAV;
+            }
+
+            if (!string.IsNullOrEmpty(filter.AgenUni_NSJP))
+            {
+                switch (filter.AgenUni_NSJPFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Unidad.AgenUni_NSJP LIKE '" + filter.AgenUni_NSJP + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Unidad.AgenUni_NSJP LIKE '%" + filter.AgenUni_NSJP + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Unidad.AgenUni_NSJP = '" + filter.AgenUni_NSJP + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Unidad.AgenUni_NSJP LIKE '%" + filter.AgenUni_NSJP + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Nomenclatura))
+            {
+                switch (filter.NomenclaturaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Unidad.Nomenclatura LIKE '" + filter.Nomenclatura + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Unidad.Nomenclatura LIKE '%" + filter.Nomenclatura + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Unidad.Nomenclatura = '" + filter.Nomenclatura + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Unidad.Nomenclatura LIKE '%" + filter.Nomenclatura + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Alcance))
+            {
+                switch (filter.AlcanceFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Unidad.Alcance LIKE '" + filter.Alcance + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Unidad.Alcance LIKE '%" + filter.Alcance + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Unidad.Alcance = '" + filter.Alcance + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Unidad.Alcance LIKE '%" + filter.Alcance + "%'";
+                        break;
+                }
+            }
+
+            if (filter.ReceptorDeclinaciones != RadioOptions.NoApply)
+                where += " AND Unidad.ReceptorDeclinaciones = " + Convert.ToInt32(filter.ReceptorDeclinaciones);
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -1125,12 +1481,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Abreviacion = varUnidad.Abreviacion
                         ,Descripcion = varUnidad.Descripcion
                         ,Descripcion_Corta = varUnidad.Descripcion_Corta
+                        ,Especialidad = varUnidad.Especialidad
                         ,Vigencia = varUnidad.Vigencia
                         ,Direccion = varUnidad.Direccion
                         ,Observaciones = varUnidad.Observaciones
                         ,Supervisor = varUnidad.Supervisor
                         ,Consecutivo_CDI = varUnidad.Consecutivo_CDI
                         ,Tipo_de_Asignacion_de_MP = varUnidad.Tipo_de_Asignacion_de_MP
+                        ,cod_pais = varUnidad.cod_pais
+                        ,cod_edo = varUnidad.cod_edo
+                        ,cod_agencia = varUnidad.cod_agencia
+                        ,FTIPO = varUnidad.FTIPO
+                        ,fcreada = (!String.IsNullOrEmpty(varUnidad.fcreada)) ? DateTime.ParseExact(varUnidad.fcreada, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,fbaja = (!String.IsNullOrEmpty(varUnidad.fbaja)) ? DateTime.ParseExact(varUnidad.fbaja, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,ULTAVREGIS = varUnidad.ULTAVREGIS
+                        ,FUBICACION = varUnidad.FUBICACION
+                        ,vr_agen = varUnidad.vr_agen
+                        ,Especial = varUnidad.Especial
+                        ,AgenAV = varUnidad.AgenAV
+                        ,AgenUni_NSJP = varUnidad.AgenUni_NSJP
+                        ,Nomenclatura = varUnidad.Nomenclatura
+                        ,Alcance = varUnidad.Alcance
+                        ,ReceptorDeclinaciones = varUnidad.ReceptorDeclinaciones
 
                     };
 
@@ -1524,12 +1896,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Abreviacion = m.Abreviacion
 			,Descripcion = m.Descripcion
 			,Descripcion_Corta = m.Descripcion_Corta
+                        ,EspecialidadDescripcion = CultureHelper.GetTraduction(m.Especialidad_Especialidad_MP.Clave.ToString(), "Descripcion") ?? (string)m.Especialidad_Especialidad_MP.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Direccion = m.Direccion
 			,Observaciones = m.Observaciones
                         ,SupervisorName = CultureHelper.GetTraduction(m.Supervisor_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Supervisor_Spartan_User.Name
 			,Consecutivo_CDI = m.Consecutivo_CDI
                         ,Tipo_de_Asignacion_de_MPDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Descripcion
+			,cod_pais = m.cod_pais
+			,cod_edo = m.cod_edo
+			,cod_agencia = m.cod_agencia
+			,FTIPO = m.FTIPO
+                        ,fcreada = (m.fcreada == null ? string.Empty : Convert.ToDateTime(m.fcreada).ToString(ConfigurationProperty.DateFormat))
+                        ,fbaja = (m.fbaja == null ? string.Empty : Convert.ToDateTime(m.fbaja).ToString(ConfigurationProperty.DateFormat))
+			,ULTAVREGIS = m.ULTAVREGIS
+			,FUBICACION = m.FUBICACION
+			,vr_agen = m.vr_agen
+			,Especial = m.Especial
+			,AgenAV = m.AgenAV
+			,AgenUni_NSJP = m.AgenUni_NSJP
+			,Nomenclatura = m.Nomenclatura
+			,Alcance = m.Alcance
+			,ReceptorDeclinaciones = m.ReceptorDeclinaciones
 
             }).ToList();
 
@@ -1609,12 +1997,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Abreviacion = m.Abreviacion
 			,Descripcion = m.Descripcion
 			,Descripcion_Corta = m.Descripcion_Corta
+                        ,EspecialidadDescripcion = CultureHelper.GetTraduction(m.Especialidad_Especialidad_MP.Clave.ToString(), "Descripcion") ?? (string)m.Especialidad_Especialidad_MP.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Direccion = m.Direccion
 			,Observaciones = m.Observaciones
                         ,SupervisorName = CultureHelper.GetTraduction(m.Supervisor_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Supervisor_Spartan_User.Name
 			,Consecutivo_CDI = m.Consecutivo_CDI
                         ,Tipo_de_Asignacion_de_MPDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Descripcion
+			,cod_pais = m.cod_pais
+			,cod_edo = m.cod_edo
+			,cod_agencia = m.cod_agencia
+			,FTIPO = m.FTIPO
+                        ,fcreada = (m.fcreada == null ? string.Empty : Convert.ToDateTime(m.fcreada).ToString(ConfigurationProperty.DateFormat))
+                        ,fbaja = (m.fbaja == null ? string.Empty : Convert.ToDateTime(m.fbaja).ToString(ConfigurationProperty.DateFormat))
+			,ULTAVREGIS = m.ULTAVREGIS
+			,FUBICACION = m.FUBICACION
+			,vr_agen = m.vr_agen
+			,Especial = m.Especial
+			,AgenAV = m.AgenAV
+			,AgenUni_NSJP = m.AgenUni_NSJP
+			,Nomenclatura = m.Nomenclatura
+			,Alcance = m.Alcance
+			,ReceptorDeclinaciones = m.ReceptorDeclinaciones
 
             }).ToList();
 
@@ -1660,12 +2064,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Abreviacion = varUnidad.Abreviacion
                         ,Descripcion = varUnidad.Descripcion
                         ,Descripcion_Corta = varUnidad.Descripcion_Corta
+                        ,Especialidad = varUnidad.Especialidad
                         ,Vigencia = varUnidad.Vigencia
                         ,Direccion = varUnidad.Direccion
                         ,Observaciones = varUnidad.Observaciones
                         ,Supervisor = varUnidad.Supervisor
                         ,Consecutivo_CDI = varUnidad.Consecutivo_CDI
                         ,Tipo_de_Asignacion_de_MP = varUnidad.Tipo_de_Asignacion_de_MP
+                        ,cod_pais = varUnidad.cod_pais
+                        ,cod_edo = varUnidad.cod_edo
+                        ,cod_agencia = varUnidad.cod_agencia
+                        ,FTIPO = varUnidad.FTIPO
+                        ,fcreada = (!String.IsNullOrEmpty(varUnidad.fcreada)) ? DateTime.ParseExact(varUnidad.fcreada, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,fbaja = (!String.IsNullOrEmpty(varUnidad.fbaja)) ? DateTime.ParseExact(varUnidad.fbaja, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,ULTAVREGIS = varUnidad.ULTAVREGIS
+                        ,FUBICACION = varUnidad.FUBICACION
+                        ,vr_agen = varUnidad.vr_agen
+                        ,Especial = varUnidad.Especial
+                        ,AgenAV = varUnidad.AgenAV
+                        ,AgenUni_NSJP = varUnidad.AgenUni_NSJP
+                        ,Nomenclatura = varUnidad.Nomenclatura
+                        ,Alcance = varUnidad.Alcance
+                        ,ReceptorDeclinaciones = varUnidad.ReceptorDeclinaciones
                     
                 };
 
@@ -1702,6 +2122,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Abreviacion = m.Abreviacion
 			,Descripcion = m.Descripcion
 			,Descripcion_Corta = m.Descripcion_Corta
+                        ,Especialidad = m.Especialidad
+                        ,EspecialidadDescripcion = CultureHelper.GetTraduction(m.Especialidad_Especialidad_MP.Clave.ToString(), "Descripcion") ?? (string)m.Especialidad_Especialidad_MP.Descripcion
                         ,Vigencia = m.Vigencia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Direccion = m.Direccion
@@ -1711,6 +2133,21 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Consecutivo_CDI = m.Consecutivo_CDI
                         ,Tipo_de_Asignacion_de_MP = m.Tipo_de_Asignacion_de_MP
                         ,Tipo_de_Asignacion_de_MPDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Asignacion_de_MP_Tipo_de_Asignacion_de_MP.Descripcion
+			,cod_pais = m.cod_pais
+			,cod_edo = m.cod_edo
+			,cod_agencia = m.cod_agencia
+			,FTIPO = m.FTIPO
+                        ,fcreada = (m.fcreada == null ? string.Empty : Convert.ToDateTime(m.fcreada).ToString(ConfigurationProperty.DateFormat))
+                        ,fbaja = (m.fbaja == null ? string.Empty : Convert.ToDateTime(m.fbaja).ToString(ConfigurationProperty.DateFormat))
+			,ULTAVREGIS = m.ULTAVREGIS
+			,FUBICACION = m.FUBICACION
+			,vr_agen = m.vr_agen
+			,Especial = m.Especial
+			,AgenAV = m.AgenAV
+			,AgenUni_NSJP = m.AgenUni_NSJP
+			,Nomenclatura = m.Nomenclatura
+			,Alcance = m.Alcance
+			,ReceptorDeclinaciones = m.ReceptorDeclinaciones
 
                     
                 };

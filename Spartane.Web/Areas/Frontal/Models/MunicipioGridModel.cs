@@ -16,6 +16,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Vigencia { get; set; }
         public string VigenciaAbreviacion { get; set; }
         public string Observaciones { get; set; }
+        public int? cod_pais { get; set; }
+        public string cod_zona { get; set; }
+        public string MuniNSJP { get; set; }
+        public int? cod_zona_nsjp { get; set; }
         
     }
 }

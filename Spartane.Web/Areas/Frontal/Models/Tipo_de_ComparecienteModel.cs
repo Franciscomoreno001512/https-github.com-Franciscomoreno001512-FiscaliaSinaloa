@@ -13,6 +13,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         [Required]
         public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public string TP_DescripcionCorta { get; set; }
 
     }
 	
@@ -21,6 +22,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         [Required]
         public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public string TP_DescripcionCorta { get; set; }
 
     }
 

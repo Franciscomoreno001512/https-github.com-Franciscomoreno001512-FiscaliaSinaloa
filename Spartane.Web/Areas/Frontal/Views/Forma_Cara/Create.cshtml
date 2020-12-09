@@ -162,6 +162,13 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divLLAVE">
+                                <label class="col-sm-2 control-label">@Resources.Forma_CaraResources.LLAVE</label>
+                                <div class="col-sm-8" data-field-id="LLAVE" data-attribute="267859" data-field-name="@Resources.Forma_CaraResources.LLAVE">
+                                    <input class="form-control inputNumber Datos_Generales" id="LLAVE" name="LLAVE" type="text" value="@Model.LLAVE">
+                                    @*<span class="field-validation-valid" data-valmsg-for="LLAVE" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -296,24 +303,9 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('45050');
+		    
 		   
-		   
-			
-             @if(ViewBag.IsNew)
-            { 
-                <text>$('input:checkbox').prop('checked', false);</text>
-            }
-			else
-            {
-                <text>
-				if (Tab_Datos_Generales)
-					Fill_Datos_Generales();
-
-
-                </text>
-             }
-             EjecutarValidacionesAlComienzo();
-             
+            
 
             initiateUIControls();
 			$('a').tooltip();
@@ -330,6 +322,21 @@
 			
 			
 
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
         });
 
 
@@ -595,6 +602,7 @@
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Descripcion').val(result.data.Descripcion);
+                    $('#LLAVE').val(result.data.LLAVE);
 
                 },
                 error: function (result) {
@@ -607,6 +615,7 @@
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Descripcion', $('#Descripcion').val());
+                data.append('LLAVE', $('#LLAVE').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Forma_Cara/Post_Datos_Generales")',

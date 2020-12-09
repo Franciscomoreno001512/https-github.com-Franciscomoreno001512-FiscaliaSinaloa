@@ -30,6 +30,9 @@ namespace Spartane.Web.SqlModelMapper
                     return "Unidad.Descripcion";
                 case "Descripcion_Corta":
                     return "Unidad.Descripcion_Corta";
+                case "Especialidad[Descripcion]":
+                case "EspecialidadDescripcion":
+                    return "Especialidad_MP.Descripcion";
                 case "Vigencia[Abreviacion]":
                 case "VigenciaAbreviacion":
                     return "Vigencia.Abreviacion";
@@ -45,6 +48,36 @@ namespace Spartane.Web.SqlModelMapper
                 case "Tipo_de_Asignacion_de_MP[Descripcion]":
                 case "Tipo_de_Asignacion_de_MPDescripcion":
                     return "Tipo_de_Asignacion_de_MP.Descripcion";
+                case "cod_pais":
+                    return "Unidad.cod_pais";
+                case "cod_edo":
+                    return "Unidad.cod_edo";
+                case "cod_agencia":
+                    return "Unidad.cod_agencia";
+                case "FTIPO":
+                    return "Unidad.FTIPO";
+                case "fcreada":
+                    return "Unidad.fcreada";
+                case "fbaja":
+                    return "Unidad.fbaja";
+                case "ULTAVREGIS":
+                    return "Unidad.ULTAVREGIS";
+                case "FUBICACION":
+                    return "Unidad.FUBICACION";
+                case "vr_agen":
+                    return "Unidad.vr_agen";
+                case "Especial":
+                    return "Unidad.Especial";
+                case "AgenAV":
+                    return "Unidad.AgenAV";
+                case "AgenUni_NSJP":
+                    return "Unidad.AgenUni_NSJP";
+                case "Nomenclatura":
+                    return "Unidad.Nomenclatura";
+                case "Alcance":
+                    return "Unidad.Alcance";
+                case "ReceptorDeclinaciones":
+                    return "Unidad.ReceptorDeclinaciones";
 
                 default:
                     return propertyName;
@@ -62,6 +95,32 @@ namespace Spartane.Web.SqlModelMapper
 
         public string GetOperatorString(object value, string columnName)
         {
+            if (columnName == "fcreada")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            if (columnName == "fbaja")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            if (columnName == "ReceptorDeclinaciones")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
 
 
             var operatorCondition = GetOperationType(columnName);

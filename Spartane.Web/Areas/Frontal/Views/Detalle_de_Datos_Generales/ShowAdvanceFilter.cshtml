@@ -207,6 +207,9 @@
     List<SelectListItem> varLargo_de_Cabello_Largo_de_Cabello = null;
     if (ViewBag.Largo_de_Cabellos_Largo_de_Cabello != null)
     { varLargo_de_Cabello_Largo_de_Cabello = (List<SelectListItem>)ViewBag.Largo_de_Cabellos_Largo_de_Cabello; }
+    List<SelectListItem> varForma_Cabello_Forma_de_Cabello = null;
+    if (ViewBag.Forma_Cabellos_Forma_de_Cabello != null)
+    { varForma_Cabello_Forma_de_Cabello = (List<SelectListItem>)ViewBag.Forma_Cabellos_Forma_de_Cabello; }
     List<SelectListItem> varColor_de_Cabello_Color_Cabello = null;
     if (ViewBag.Color_de_Cabellos_Color_Cabello != null)
     { varColor_de_Cabello_Color_Cabello = (List<SelectListItem>)ViewBag.Color_de_Cabellos_Color_Cabello; }
@@ -1977,6 +1980,27 @@
                     }
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_GeneralesResources.Forma_de_Cabello</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Forma_de_CabelloFilter, filters, new { @class = "form-control", @id = "ddlForma_de_CabelloFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceForma_de_Cabello, new { @class = "form-control", @type = "text", @id = "txtAdvanceForma_de_Cabello" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varForma_Cabello_Forma_de_Cabello!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceForma_de_CabelloMultiple, varForma_Cabello_Forma_de_Cabello,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceForma_de_Cabello"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_Datos_GeneralesResources.Color_Cabello</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -3128,6 +3152,10 @@
             hasParameter = true;
             advanceSearch.Detalle_de_Datos_GeneralesSe_Informaron_sobre_sus_Derechos = $("#ddlAdvanceSe_Informaron_sobre_sus_Derechos").val();
         }
+        if ($("#ddlAdvanceGravidez").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_GeneralesGravidez = $("#ddlAdvanceGravidez").val();
+        }
         advanceSearch.Discapacidad_MentalSearchType = 0;
         if ($('#ddlAdvanceDiscapacidad_Mental').val().length > 0 || $("#txtAdvanceDiscapacidad_Mental").val() == "") {
 
@@ -3895,6 +3923,21 @@
 
                 advanceSearch.Largo_de_CabelloToSearch = $("#ddlAdvanceLargo_de_Cabello").val();
                 advanceSearch.Largo_de_CabelloSearchType = 2;
+            }
+        }
+        advanceSearch.Forma_de_CabelloSearchType = 0;
+        if ($('#ddlAdvanceForma_de_Cabello').val().length > 0 || $("#txtAdvanceForma_de_Cabello").val() == "") {
+
+
+            if (isDetalle_de_Datos_GeneralesTextSearch) {
+                advanceSearch.Forma_de_CabelloName = $("#txtAdvanceForma_de_Cabello").val();
+                advanceSearch.Forma_de_CabelloNameSearchType = $("#ddlAdvanceForma_de_Cabello").val();
+                advanceSearch.Forma_de_CabelloSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Forma_de_CabelloToSearch = $("#ddlAdvanceForma_de_Cabello").val();
+                advanceSearch.Forma_de_CabelloSearchType = 2;
             }
         }
         advanceSearch.Color_CabelloSearchType = 0;
@@ -4896,6 +4939,15 @@
         $("#ddlAdvanceLargo_de_Cabello").change(function () {
             isDetalle_de_Datos_GeneralesTextSearch = false;
             $("#txtAdvanceLargo_de_Cabello").val('');
+        });
+        $("#txtAdvanceForma_de_Cabello").keypress(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = true;
+            $("#ddlAdvanceForma_de_Cabello").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceForma_de_Cabello").change(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = false;
+            $("#txtAdvanceForma_de_Cabello").val('');
         });
         $("#txtAdvanceColor_Cabello").keypress(function () {
             isDetalle_de_Datos_GeneralesTextSearch = true;

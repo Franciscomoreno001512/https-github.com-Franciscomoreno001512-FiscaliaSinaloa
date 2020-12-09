@@ -61,6 +61,7 @@ namespace Spartane.Web.Areas.WebApiConsumer.Modulo_Atencion_Inicial
 		ApiResponse<int> Update_Actualiza_Turno_Finalizar(Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial_Datos_del_Caso entity);
 
 
-	}
+
+    }
 }
 

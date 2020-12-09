@@ -8,6 +8,12 @@
   <resource culture="en-US" name="Zona" value="Zona"></resource>
   <resource culture="en-US" name="Vigente" value="Vigencia"></resource>
   <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="en-US" name="cod_pais" value="cod_pais"></resource>
+  <resource culture="en-US" name="cod_edo" value="cod_edo"></resource>
+  <resource culture="en-US" name="loc_justicia" value="loc_justicia"></resource>
+  <resource culture="en-US" name="pob_justicia" value="pob_justicia"></resource>
+  <resource culture="en-US" name="sector" value="sector"></resource>
+  <resource culture="en-US" name="estatus" value="estatus"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

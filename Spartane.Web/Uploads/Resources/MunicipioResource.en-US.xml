@@ -7,6 +7,10 @@
   <resource culture="en-US" name="Estado" value="Estado"></resource>
   <resource culture="en-US" name="Vigencia" value="Vigencia"></resource>
   <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="en-US" name="cod_pais" value="cod_pais"></resource>
+  <resource culture="en-US" name="cod_zona" value="cod_zona"></resource>
+  <resource culture="en-US" name="MuniNSJP" value="MuniNSJP"></resource>
+  <resource culture="en-US" name="cod_zona_nsjp" value="cod_zona_nsjp"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

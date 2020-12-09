@@ -29,6 +29,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters ObservacionesFilter { set; get; }
         public string Observaciones { set; get; }
 
+        public Filters NacionalidadFilter { set; get; }
+        public string Nacionalidad { set; get; }
+
+        public Filters AbreviaFilter { set; get; }
+        public string Abrevia { set; get; }
+
 
     }
 }

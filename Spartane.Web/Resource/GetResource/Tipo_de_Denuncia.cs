@@ -66,6 +66,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Tipo</summary>
+        public static string Tipo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderTipo_de_Denuncia.GetResource("Tipo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Abreviacion</summary>
+        public static string Abreviacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderTipo_de_Denuncia.GetResource("Abreviacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderTipo_de_Denuncia.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

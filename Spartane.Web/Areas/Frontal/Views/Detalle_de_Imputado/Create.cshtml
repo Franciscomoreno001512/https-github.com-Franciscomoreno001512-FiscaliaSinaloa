@@ -1318,6 +1318,12 @@
                                     @Html.CheckBoxFor(m => m.Inimputable, new { @class = "i-checks Datos_Generales" })
                                 </div>
                             </div>
+                            <div class="form-group" id="divGravidez">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_ImputadoResources.Gravidez</label>
+                                <div class="col-sm-8" data-field-id="Gravidez" data-attribute="268123" data-field-name="@Resources.Detalle_de_ImputadoResources.Gravidez">
+                                    @Html.CheckBoxFor(m => m.Gravidez, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
                             <div class="form-group" id="divTipo_de_Inimputabilidad">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_ImputadoResources.Tipo_de_Inimputabilidad</label>
                                 <div class="col-sm-8" data-field-id="Tipo_de_Inimputabilidad" data-attribute="263212" data-field-name="@Resources.Detalle_de_ImputadoResources.Tipo_de_Inimputabilidad">
@@ -1782,6 +1788,30 @@
                                                                 <i class="fa fa-cogs fa-spin"></i>
                                                             </a>
                                                         </button>@Resources.Otros_Domicilios_Probable_ResponsableResources.Numero_Exterior</span></th>
+                                                <th class="Numero_InteriorHeader"><span>
+<button type="button" data-attribute="268117" data-field-id="Otros_Domicilios_Probable_ResponsableNumero_Interior" data-field-name="@Resources.Otros_Domicilios_Probable_ResponsableResources.Numero_Interior" data-toggle="modal" data-target="#Detalle_de_ImputadoBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_Domicilios_Probable_ResponsableResources.Numero_Interior">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Otros_Domicilios_Probable_ResponsableResources.Numero_Interior</span></th>
+                                                <th class="Coordenada_XHeader"><span>
+<button type="button" data-attribute="268118" data-field-id="Otros_Domicilios_Probable_ResponsableCoordenada_X" data-field-name="@Resources.Otros_Domicilios_Probable_ResponsableResources.Coordenada_X" data-toggle="modal" data-target="#Detalle_de_ImputadoBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_Domicilios_Probable_ResponsableResources.Coordenada_X">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Otros_Domicilios_Probable_ResponsableResources.Coordenada_X</span></th>
+                                                <th class="Coordenada_YHeader"><span>
+<button type="button" data-attribute="268119" data-field-id="Otros_Domicilios_Probable_ResponsableCoordenada_Y" data-field-name="@Resources.Otros_Domicilios_Probable_ResponsableResources.Coordenada_Y" data-toggle="modal" data-target="#Detalle_de_ImputadoBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_Domicilios_Probable_ResponsableResources.Coordenada_Y">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Otros_Domicilios_Probable_ResponsableResources.Coordenada_Y</span></th>
+                                                <th class="ObservacionesHeader"><span>
+<button type="button" data-attribute="268120" data-field-id="Otros_Domicilios_Probable_ResponsableObservaciones" data-field-name="@Resources.Otros_Domicilios_Probable_ResponsableResources.Observaciones" data-toggle="modal" data-target="#Detalle_de_ImputadoBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Otros_Domicilios_Probable_ResponsableResources.Observaciones">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Otros_Domicilios_Probable_ResponsableResources.Observaciones</span></th>
 
                                             </tr>
                                         </thead>
@@ -2077,7 +2107,7 @@
                             <div class="form-group" id="divLargo_de_Cabello">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_de_ImputadoResources.Largo_de_Cabello</label>
                                 <div class="col-sm-8" data-field-id="Largo_de_Cabello" data-attribute="265824" data-field-name="@Resources.Detalle_de_ImputadoResources.Largo_de_Cabello">
-                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Forma de Cabello must be a number." data-val-required="The Forma de Cabello field is required." id="Largo_de_Cabello" name="Largo_de_Cabello">
+                                    <select class="form-control Datos_de_Media_Filiacion" data-val="true" data-val-number="The field Largo de Cabello must be a number." data-val-required="The Largo de Cabello field is required." id="Largo_de_Cabello" name="Largo_de_Cabello">
                                         <option value=""></option>
                                         @if (varLargo_de_Cabello_Largo_de_Cabello != null){ 
                                             foreach (var itemLargo_de_Cabello in varLargo_de_Cabello_Largo_de_Cabello)
@@ -3664,6 +3694,10 @@
            
               showOtras_Identificaciones_Probable_ResponsableGrid(null);
               
+
+
+
+
 
 
 
@@ -5957,6 +5991,10 @@
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Entre_Calle)).addClass('Entre_Calle').attr('id', nameOfTable + 'Entre_Calle' + rowIndex).attr('data-field', 'Entre_Calle');
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Y_Calle)).addClass('Y_Calle').attr('id', nameOfTable + 'Y_Calle' + rowIndex).attr('data-field', 'Y_Calle');
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Numero_Exterior)).addClass('Numero_Exterior').attr('id', nameOfTable + 'Numero_Exterior' + rowIndex).attr('data-field', 'Numero_Exterior');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Numero_Interior)).addClass('Numero_Interior').attr('id', nameOfTable + 'Numero_Interior' + rowIndex).attr('data-field', 'Numero_Interior');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Coordenada_X)).addClass('Coordenada_X').attr('id', nameOfTable + 'Coordenada_X' + rowIndex).attr('data-field', 'Coordenada_X');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Coordenada_Y)).addClass('Coordenada_Y').attr('id', nameOfTable + 'Coordenada_Y' + rowIndex).attr('data-field', 'Coordenada_Y');
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Observaciones)).addClass('Observaciones').attr('id', nameOfTable + 'Observaciones' + rowIndex).attr('data-field', 'Observaciones');
 
             return columnData;
         }
@@ -6127,6 +6165,22 @@
                 $('<td id="'+nameOfTable+'Numero_Exterior'+rowIndex+'">').text(data.Numero_Exterior).appendTo(row);
             else 
                 $('<td style="display:none;" id="'+nameOfTable+'Numero_Exterior'+rowIndex+'">').text(data.Numero_Exterior).appendTo(row);
+            if ($('.Numero_Interior' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Numero_Interior'+rowIndex+'">').text(data.Numero_Interior).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Numero_Interior'+rowIndex+'">').text(data.Numero_Interior).appendTo(row);
+            if ($('.Coordenada_X' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Coordenada_X'+rowIndex+'">').text(data.Coordenada_X).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Coordenada_X'+rowIndex+'">').text(data.Coordenada_X).appendTo(row);
+            if ($('.Coordenada_Y' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Coordenada_Y'+rowIndex+'">').text(data.Coordenada_Y).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Coordenada_Y'+rowIndex+'">').text(data.Coordenada_Y).appendTo(row);
+            if ($('.Observaciones' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Observaciones'+rowIndex+'">').text(data.Observaciones).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Observaciones'+rowIndex+'">').text(data.Observaciones).appendTo(row);
 
         }
 
@@ -6152,6 +6206,10 @@
                     { "data": "Entre_Calle", "orderable": false },
                     { "data": "Y_Calle", "orderable": false },
                     { "data": "Numero_Exterior", "orderable": false },
+                    { "data": "Numero_Interior", "orderable": false },
+                    { "data": "Coordenada_X", "orderable": false },
+                    { "data": "Coordenada_Y", "orderable": false },
+                    { "data": "Observaciones", "orderable": false },
 
                 ],
                 "order": [[0, "asc"]],
@@ -6252,6 +6310,10 @@
                 }
             });
         }
+
+
+
+
 
 
 
@@ -6793,6 +6855,10 @@
 
 
 
+
+
+
+
         }
 
     </script>
@@ -7210,6 +7276,7 @@
                     $('#Bajo_el_Efecto_de_una_Droga').prop('checked', result.data.Bajo_el_Efecto_de_una_Droga);
                     $('#Nombre_de_Droga').val(result.data.Nombre_de_Droga);
                     $('#Inimputable').prop('checked', result.data.Inimputable);
+                    $('#Gravidez').prop('checked', result.data.Gravidez);
                     $('#Tipo_de_Inimputabilidad').val(result.data.Tipo_de_Inimputabilidad);
                     $('#Especifique').val(result.data.Especifique);
                     Adicciones_Probable_ResponsableDataDataTable = result.Adicciones_Probable_Responsable;
@@ -7311,6 +7378,7 @@
                 data.append('Bajo_el_Efecto_de_una_Droga', $('#Bajo_el_Efecto_de_una_Droga').prop('checked'));
                 data.append('Nombre_de_Droga', $('#Nombre_de_Droga').val());
                 data.append('Inimputable', $('#Inimputable').prop('checked'));
+                data.append('Gravidez', $('#Gravidez').prop('checked'));
                 data.append('Tipo_de_Inimputabilidad', $('#Tipo_de_Inimputabilidad').val());
                 data.append('Especifique', $('#Especifique').val());
                 data.append('Discapacidad_Mental', $('#Discapacidad_Mental').val());

@@ -170,6 +170,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigente = ColoniaData.Vigente
                     ,VigenteAbreviacion = CultureHelper.GetTraduction(Convert.ToString(ColoniaData.Vigente), "Vigencia") ??  (string)ColoniaData.Vigente_Vigencia.Abreviacion
                     ,Observaciones = ColoniaData.Observaciones
+                    ,cod_pais = ColoniaData.cod_pais
+                    ,cod_edo = ColoniaData.cod_edo
+                    ,loc_justicia = ColoniaData.loc_justicia
+                    ,pob_justicia = ColoniaData.pob_justicia
+                    ,sector = ColoniaData.sector
+                    ,estatus = ColoniaData.estatus
 
 					};
 				}
@@ -257,6 +263,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigente = ColoniaData.Vigente
                     ,VigenteAbreviacion = CultureHelper.GetTraduction(Convert.ToString(ColoniaData.Vigente), "Vigencia") ??  (string)ColoniaData.Vigente_Vigencia.Abreviacion
                     ,Observaciones = ColoniaData.Observaciones
+                    ,cod_pais = ColoniaData.cod_pais
+                    ,cod_edo = ColoniaData.cod_edo
+                    ,loc_justicia = ColoniaData.loc_justicia
+                    ,pob_justicia = ColoniaData.pob_justicia
+                    ,sector = ColoniaData.sector
+                    ,estatus = ColoniaData.estatus
 
 					};
 				}
@@ -436,6 +448,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Zona = m.Zona
                         ,VigenteAbreviacion = CultureHelper.GetTraduction(m.Vigente_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigente_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,cod_pais = m.cod_pais
+			,cod_edo = m.cod_edo
+			,loc_justicia = m.loc_justicia
+			,pob_justicia = m.pob_justicia
+			,sector = m.sector
+			,estatus = m.estatus
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -556,6 +574,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Zona = m.Zona
                         ,VigenteAbreviacion = CultureHelper.GetTraduction(m.Vigente_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigente_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,cod_pais = m.cod_pais
+			,cod_edo = m.cod_edo
+			,loc_justicia = m.loc_justicia
+			,pob_justicia = m.pob_justicia
+			,sector = m.sector
+			,estatus = m.estatus
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -739,6 +763,68 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.Fromcod_pais) || !string.IsNullOrEmpty(filter.Tocod_pais))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromcod_pais))
+                    where += " AND Colonia.cod_pais >= " + filter.Fromcod_pais;
+                if (!string.IsNullOrEmpty(filter.Tocod_pais))
+                    where += " AND Colonia.cod_pais <= " + filter.Tocod_pais;
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromcod_edo) || !string.IsNullOrEmpty(filter.Tocod_edo))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromcod_edo))
+                    where += " AND Colonia.cod_edo >= " + filter.Fromcod_edo;
+                if (!string.IsNullOrEmpty(filter.Tocod_edo))
+                    where += " AND Colonia.cod_edo <= " + filter.Tocod_edo;
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromloc_justicia) || !string.IsNullOrEmpty(filter.Toloc_justicia))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromloc_justicia))
+                    where += " AND Colonia.loc_justicia >= " + filter.Fromloc_justicia;
+                if (!string.IsNullOrEmpty(filter.Toloc_justicia))
+                    where += " AND Colonia.loc_justicia <= " + filter.Toloc_justicia;
+            }
+
+            if (!string.IsNullOrEmpty(filter.Frompob_justicia) || !string.IsNullOrEmpty(filter.Topob_justicia))
+            {
+                if (!string.IsNullOrEmpty(filter.Frompob_justicia))
+                    where += " AND Colonia.pob_justicia >= " + filter.Frompob_justicia;
+                if (!string.IsNullOrEmpty(filter.Topob_justicia))
+                    where += " AND Colonia.pob_justicia <= " + filter.Topob_justicia;
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromsector) || !string.IsNullOrEmpty(filter.Tosector))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromsector))
+                    where += " AND Colonia.sector >= " + filter.Fromsector;
+                if (!string.IsNullOrEmpty(filter.Tosector))
+                    where += " AND Colonia.sector <= " + filter.Tosector;
+            }
+
+            if (!string.IsNullOrEmpty(filter.estatus))
+            {
+                switch (filter.estatusFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Colonia.estatus LIKE '" + filter.estatus + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Colonia.estatus LIKE '%" + filter.estatus + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Colonia.estatus = '" + filter.estatus + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Colonia.estatus LIKE '%" + filter.estatus + "%'";
+                        break;
+                }
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -800,6 +886,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Zona = varColonia.Zona
                         ,Vigente = varColonia.Vigente
                         ,Observaciones = varColonia.Observaciones
+                        ,cod_pais = varColonia.cod_pais
+                        ,cod_edo = varColonia.cod_edo
+                        ,loc_justicia = varColonia.loc_justicia
+                        ,pob_justicia = varColonia.pob_justicia
+                        ,sector = varColonia.sector
+                        ,estatus = varColonia.estatus
 
                     };
 
@@ -1193,6 +1285,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Zona = m.Zona
                         ,VigenteAbreviacion = CultureHelper.GetTraduction(m.Vigente_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigente_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,cod_pais = m.cod_pais
+			,cod_edo = m.cod_edo
+			,loc_justicia = m.loc_justicia
+			,pob_justicia = m.pob_justicia
+			,sector = m.sector
+			,estatus = m.estatus
 
             }).ToList();
 
@@ -1272,6 +1370,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Zona = m.Zona
                         ,VigenteAbreviacion = CultureHelper.GetTraduction(m.Vigente_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigente_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,cod_pais = m.cod_pais
+			,cod_edo = m.cod_edo
+			,loc_justicia = m.loc_justicia
+			,pob_justicia = m.pob_justicia
+			,sector = m.sector
+			,estatus = m.estatus
 
             }).ToList();
 
@@ -1317,6 +1421,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Zona = varColonia.Zona
                         ,Vigente = varColonia.Vigente
                         ,Observaciones = varColonia.Observaciones
+                        ,cod_pais = varColonia.cod_pais
+                        ,cod_edo = varColonia.cod_edo
+                        ,loc_justicia = varColonia.loc_justicia
+                        ,pob_justicia = varColonia.pob_justicia
+                        ,sector = varColonia.sector
+                        ,estatus = varColonia.estatus
                     
                 };
 
@@ -1353,6 +1463,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Vigente = m.Vigente
                         ,VigenteAbreviacion = CultureHelper.GetTraduction(m.Vigente_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigente_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,cod_pais = m.cod_pais
+			,cod_edo = m.cod_edo
+			,loc_justicia = m.loc_justicia
+			,pob_justicia = m.pob_justicia
+			,sector = m.sector
+			,estatus = m.estatus
 
                     
                 };

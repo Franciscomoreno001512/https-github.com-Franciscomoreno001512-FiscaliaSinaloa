@@ -85,6 +85,9 @@
     List<SelectListItem> varEstatus_Orientador_Estatus2 = null;
     if (ViewBag.Estatus_Orientadors_Estatus2 != null)
     { varEstatus_Orientador_Estatus2 = (List<SelectListItem>)ViewBag.Estatus_Orientadors_Estatus2; }
+    List<SelectListItem> varUnidad_Unidad_canaliza = null;
+    if (ViewBag.Unidads_Unidad_canaliza != null)
+    { varUnidad_Unidad_canaliza = (List<SelectListItem>)ViewBag.Unidads_Unidad_canaliza; }
     List<SelectListItem> varPrioridad_del_Hecho_Prioridad_del_Hecho = null;
     if (ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho != null)
     { varPrioridad_del_Hecho_Prioridad_del_Hecho = (List<SelectListItem>)ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho; }
@@ -948,6 +951,34 @@
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Estatus_Orientador', 'Estatus2');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divUnidad_canaliza">
+                                <label class="col-sm-2 control-label">@Resources.Modulo_Atencion_InicialResources.Unidad_canaliza</label>
+                                <div class="col-sm-8" data-field-id="Unidad_canaliza" data-attribute="268121" data-field-name="@Resources.Modulo_Atencion_InicialResources.Unidad_canaliza">
+                                    <select class="form-control Canalizar" data-val="true" data-val-number="The field Unidad must be a number." data-val-required="The Unidad field is required." id="Unidad_canaliza" name="Unidad_canaliza">
+                                        <option value=""></option>
+                                        @if (varUnidad_Unidad_canaliza != null){ 
+                                            foreach (var itemUnidad_canaliza in varUnidad_Unidad_canaliza)
+                                            {
+                                                if (itemUnidad_canaliza.Value == Convert.ToString(Model.Unidad_canaliza))
+                                                {
+                                                    <option value="@itemUnidad_canaliza.Value" selected>@itemUnidad_canaliza.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemUnidad_canaliza.Value">@itemUnidad_canaliza.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Unidad_canaliza" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268121).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Unidad', 'Unidad_canaliza');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -1823,42 +1854,41 @@
 
 				</div>	
                     <br />
-                    <div class="form-actions fluid">
-                        <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
-                        <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
-                        <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
-                        @if (!ViewBag.Consult)
-                        {
-                            <input type="button" value="@Resources.Resources.Guardar" id="Modulo_Atencion_InicialGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Modulo_Atencion_InicialCreateForm');" />
-                            <button onclick="Modulo_Atencion_InicialGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Modulo_Atencion_InicialBusinessRule-form">
-                                <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
-                                    <i class="fa fa-cogs fa-spin"></i>
-                                </a>
-                            </button>
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+                                <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Modulo_Atencion_InicialGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Modulo_Atencion_InicialCreateForm');"  />
+									<button onclick="Modulo_Atencion_InicialGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Modulo_Atencion_InicialBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
 
-                            <input type="button" value="@Resources.Resources.GuardarNuevo" id="Modulo_Atencion_InicialGuardarYNuevo" onclick="return checkClientValidate('Modulo_Atencion_InicialCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew" />
-                            <input type="button" value="@Resources.Resources.GuardarCopia" id="Modulo_Atencion_InicialGuardarYCopia" onclick="return checkClientValidate('Modulo_Atencion_InicialCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy" />
-                            if (permission.Configure)
-                            {
-                                <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
-                            }
-                        }
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Modulo_Atencion_InicialGuardarYNuevo" onclick="return checkClientValidate('Modulo_Atencion_InicialCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Modulo_Atencion_InicialGuardarYCopia" onclick="return checkClientValidate('Modulo_Atencion_InicialCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
 
-                        <input type="hidden" id="hdnConfigureType" />
-                        <input type="hidden" id="hdnModulo_Atencion_InicialBusinessRuleFieldId" />
-                        <input type="hidden" id="hdnModulo_Atencion_InicialBusinessRuleFieldName" />
-                        <input type="hidden" id="hdnModulo_Atencion_InicialBusinessRuleAttribute" />
-                        <input type="button" value="@Resources.Resources.Finish" id="Modulo_Atencion_InicialFinalizar" name="Modulo_Atencion_InicialFinalizar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: finalizar" tabindex="17" />
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnModulo_Atencion_InicialBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnModulo_Atencion_InicialBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnModulo_Atencion_InicialBusinessRuleAttribute" />
+                                <input type="button" value="@Resources.Resources.Finish" id="Modulo_Atencion_InicialFinalizar" name="Modulo_Atencion_InicialFinalizar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: finalizar" tabindex="17" />
 
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Modulo_Atencion_InicialCancelar" name="Modulo_Atencion_InicialCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
 
-                        <input type="button" value="@Resources.Resources.Cancelar" id="Modulo_Atencion_InicialCancelar" name="Modulo_Atencion_InicialCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
-
-                        <button onclick="Modulo_Atencion_InicialGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Modulo_Atencion_InicialBusinessRule-form">
-                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
-                                <i class="fa fa-cogs fa-spin"></i>
-                            </a>
-                        </button>
-                    </div>
+                                <button onclick="Modulo_Atencion_InicialGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Modulo_Atencion_InicialBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
 						</div>
 					</div>
                 }
@@ -3669,7 +3699,7 @@
 
     </script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
 
    function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
@@ -3691,7 +3721,7 @@
 				return;
 			}
 		}
-
+			
 			var url = '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/GetCatalogAll")';
 			url = url.replace(/Catalog/g, catalog);
 
@@ -3707,81 +3737,81 @@
 					showNotification("@Resources.Resources.ErrorContactingServer", "error");
 				}
 			});
-
+		
     }
 
 
         function SendModulo_Atencion_InicialData(callBack) {
-
-
-		 var arr = [];
-		 $("form#CreateModulo_Atencion_Inicial").find(':input').each(function( index ) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateModulo_Atencion_Inicial").find(':input').each(function( index ) {		 
 			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
-			{
-				arr.push($(this).attr('id'));
-				$(this).prop('disabled', false);
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
 			}
 	    });
-
+		
              var formData = new FormData($("form#CreateModulo_Atencion_Inicial")[0]);
 			$.each( arr, function( key, value ) {
 			  $('#' +value).prop('disabled', true);
 			});
 			var id = $("#ReferenceClave").val();
             var isNew = $('#hdnIsNew').val();
-
+           
 			if (Tab_Datos_del_Caso && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Datos_del_Caso')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Informacion_de_Turno && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Informacion_de_Turno')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Servicios_de_Apoyo && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Servicios_de_Apoyo')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Canalizar && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Canalizar')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Datos_Generales && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Datos_Generales')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Datos_de_los_Hechos_en_MPO && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Datos_de_los_Hechos_en_MPO')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Datos_del_Acuerdo && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Datos_del_Acuerdo')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Bitacora_de_Coincidencias && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Bitacora_de_Coincidencias')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Cierre && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Cierre')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Historial_de_movimientos && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Historial_de_movimientos')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Campos_Ocultos && !checkClientValidate('Modulo_Atencion_InicialCreateForm', 'Campos_Ocultos')) {
 				return false;
-			}
+			}						
 
 
-
+			
 			if (isNew == "True")
             {
                 id = CreateID();
             }
-
-
+			
+			
 			if (Tab_Datos_del_Caso)
 				Save_Datos_del_Caso(id);
 
@@ -3843,7 +3873,7 @@
 			});
 			return newId;
 		}
-
+		
 		function OpenRules()
 		{
 			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
@@ -3872,7 +3902,7 @@
         Configure: '@permission.Configure' == 'True',
     };
 
-
+    
     //MR-var statusItems;
     //MR-var stateItems;
     //MR-var cityItems = [];
@@ -3893,7 +3923,7 @@
         else
 			location.href = "@Url.Content("~/Frontal/Modulo_Atencion_Inicial/")";
     }
-
+	
 	function ReadScriptSettings(callback)
     {
         $.post("@Url.Content("~/Frontal/Modulo_Atencion_Inicial/ReadScriptSettings")", function (data) {
@@ -3910,7 +3940,7 @@
             //$('#hdnConfigureType').val("0");
         }, "json");
     }
-
+	
         function SaveElementAttributes() {
             if ($('#hdnConfigureType').val() == "1") {
                 $.post("@Url.Content("~/Frontal/Modulo_Atencion_Inicial/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
@@ -3964,13 +3994,13 @@
 			$('#Attribute').val(attribute);
                         Modulo_Atencion_InicialGetBusinessRule();
 		});
-		//Initialize HTML Editors
+		//Initialize HTML Editors            
   var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
   var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
   var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
   var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
-
-
+		
+		
 		function Fill_Datos_del_Caso()
         {
             $.ajax({
@@ -4024,7 +4054,7 @@
                 }
             });
         }
-
+		
 		function Save_Datos_del_Caso(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -4063,7 +4093,7 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_del_Caso");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -4101,7 +4131,7 @@
                 }
             });
         }
-
+		
 		function Save_Informacion_de_Turno(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -4131,7 +4161,7 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Informacion_de_Turno");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -4162,7 +4192,7 @@
                 }
             });
         }
-
+		
 		function Save_Servicios_de_Apoyo(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -4185,7 +4215,7 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Servicios_de_Apoyo");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -4205,6 +4235,7 @@
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Estatus2').val(result.data.Estatus2);
+                    $('#Unidad_canaliza').val(result.data.Unidad_canaliza);
                     $('#Enviar_a_MP').prop('checked', result.data.Enviar_a_MP);
                     $('#Correccion_de_Estatus').prop('checked', result.data.Correccion_de_Estatus);
                     Detalle_de_Canalizar_EstatusDataDataTable = result.Historial_de_Canalizaciones;
@@ -4218,11 +4249,12 @@
                 }
             });
         }
-
+		
 		function Save_Canalizar(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Estatus2', $('#Estatus2').val());
+                data.append('Unidad_canaliza', $('#Unidad_canaliza').val());
                 data.append('Enviar_a_MP', $('#Enviar_a_MP').prop('checked'));
                 data.append('Correccion_de_Estatus', $('#Correccion_de_Estatus').prop('checked'));
 
@@ -4268,7 +4300,7 @@
                 }
             });
         }
-
+		
 		function Save_Datos_Generales(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -4288,7 +4320,7 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -4384,7 +4416,7 @@
                 }
             });
         }
-
+		
 		function Save_Datos_de_los_Hechos_en_MPO(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -4424,7 +4456,7 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_de_los_Hechos_en_MPO");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -4464,7 +4496,7 @@
                 }
             });
         }
-
+		
 		function Save_Datos_del_Acuerdo(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -4473,7 +4505,7 @@
                 data.append('Fecha_de_Cumplimiento_del_Acuerdo', $('#Fecha_de_Cumplimiento_del_Acuerdo').val());
                 data.append('Hora_de_Cumplimiento_del_Acuerdo', $('#Hora_de_Cumplimiento_del_Acuerdo').val());
                 data.append('Domicilio_para_el_Cumplimiento', $('#Domicilio_para_el_Cumplimiento').val());
-
+ 
                data.append('Monto_de_Reparacion_de_Danos', Number($('#Monto_de_Reparacion_de_Danos').val().replace(/[^0-9.-]+/g, "")));
                 data.append('Parcialidades', $('#Parcialidades').val());
                 data.append('Periodicidad', $('#Periodicidad').val());
@@ -4524,11 +4556,11 @@
                 }
             });
         }
-
+		
 		function Save_Bitacora_de_Coincidencias(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
-
+			
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Post_Bitacora_de_Coincidencias")',
 				type: 'POST',
@@ -4572,7 +4604,7 @@
                 }
             });
         }
-
+		
 		function Save_Cierre(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -4593,7 +4625,7 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Cierre");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -4623,11 +4655,11 @@
                 }
             });
         }
-
+		
 		function Save_Historial_de_movimientos(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
-
+			
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Post_Historial_de_movimientos")',
 				type: 'POST',
@@ -4695,7 +4727,7 @@
                 }
             });
         }
-
+		
 		function Save_Campos_Ocultos(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -4724,7 +4756,7 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Campos_Ocultos");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -4734,36 +4766,37 @@
 			});
 		}
 
-
-        function Post_Estatus_de_Turno()
+         function Post_Estatus_de_Turno()
         {
-                var data = new FormData();
+            var data = new FormData();
                 data.append('Folio', $('#Turno_Asignado').val());
 
-			    $.ajax({
-				    url: '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Post_Estatus_de_Turno")',
-				    type: 'POST',
-				    data: data,
-				    async: false,
-				    dataType: "json",
-				    contentType: false,
-				    processData: false,
-                    success: function (result) {
-                        console.log(result);
-					    if (result < 0) {
-                            showNotification("@Resources.Resources.ErrorSave", "Error al actualizar Asignacion_de_Turnos");
-					    } else {
-                            showNotification("Turno Finalizado Correctamente", "success");
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Modulo_Atencion_Inicial/Post_Estatus_de_Turno")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+                success: function (result) {
+                    console.log(result);
+					if (result < 0) {
+                        showNotification("@Resources.Resources.ErrorSave", "Error al actualizar Asignacion_de_Turnos");
+					} else {
+                        showNotification("Turno Finalizado Correctamente", "success");
+                        Actualizacion_de_TurnoBackToGrid();
 
-					    }
-				    },
-				    error: function (result) {
-                        showNotification("@Resources.Resources.ErrorContactingServer", "Error al actualizar Asignacion_de_Turnos");
-				    },
-				    cache: false
-		    });
-
+					}
+				},
+				error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "Error al actualizar Asignacion_de_Turnos");
+				},
+				cache: false
+		});
+		
         }
+
 
     </script>
 }
@@ -4773,3 +4806,4 @@
     <input type="hidden" id="Attribute" name="Attribute" value="" />
     <input type="hidden" id="Screen" name="Screen" value="" />
      <input type="hidden" id="Modulo_Atencion_Inicial_cmbLabelSelect" name="Modulo_Atencion_Inicial_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+

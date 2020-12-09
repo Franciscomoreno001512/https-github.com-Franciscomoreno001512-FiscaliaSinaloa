@@ -24,6 +24,12 @@ namespace Spartane.Core.Domain.Colonia
         public string Zona { get; set; }
         public int? Vigente { get; set; }
         public string Observaciones { get; set; }
+        public int? cod_pais { get; set; }
+        public int? cod_edo { get; set; }
+        public int? loc_justicia { get; set; }
+        public int? pob_justicia { get; set; }
+        public int? sector { get; set; }
+        public string estatus { get; set; }
 
         [ForeignKey("Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Municipio { get; set; }
@@ -41,6 +47,12 @@ namespace Spartane.Core.Domain.Colonia
         public string Zona { get; set; }
         public int? Vigente { get; set; }
         public string Observaciones { get; set; }
+        public int? cod_pais { get; set; }
+        public int? cod_edo { get; set; }
+        public int? loc_justicia { get; set; }
+        public int? pob_justicia { get; set; }
+        public int? sector { get; set; }
+        public string estatus { get; set; }
 
 		        [ForeignKey("Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Municipio { get; set; }

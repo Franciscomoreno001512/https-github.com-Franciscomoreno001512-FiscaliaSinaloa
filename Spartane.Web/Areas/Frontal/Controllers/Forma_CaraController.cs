@@ -155,6 +155,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Forma_CaraData.Clave 
 	                    ,Descripcion = Forma_CaraData.Descripcion
+                    ,LLAVE = Forma_CaraData.LLAVE
 
 					};
 				}
@@ -228,6 +229,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = Forma_CaraData.Clave 
 	                    ,Descripcion = Forma_CaraData.Descripcion
+                    ,LLAVE = Forma_CaraData.LLAVE
 
 					};
 				}
@@ -339,6 +341,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,LLAVE = m.LLAVE
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -454,6 +457,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,LLAVE = m.LLAVE
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -500,6 +504,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         where += " AND Forma_Cara.Descripcion LIKE '%" + filter.Descripcion + "%'";
                         break;
                 }
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromLLAVE) || !string.IsNullOrEmpty(filter.ToLLAVE))
+            {
+                if (!string.IsNullOrEmpty(filter.FromLLAVE))
+                    where += " AND Forma_Cara.LLAVE >= " + filter.FromLLAVE;
+                if (!string.IsNullOrEmpty(filter.ToLLAVE))
+                    where += " AND Forma_Cara.LLAVE <= " + filter.ToLLAVE;
             }
 
 
@@ -558,6 +570,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varForma_Cara.Clave
                         ,Descripcion = varForma_Cara.Descripcion
+                        ,LLAVE = varForma_Cara.LLAVE
 
                     };
 
@@ -946,6 +959,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,LLAVE = m.LLAVE
 
             }).ToList();
 
@@ -1020,6 +1034,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,LLAVE = m.LLAVE
 
             }).ToList();
 
@@ -1060,6 +1075,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varForma_Cara.Clave
                                             ,Descripcion = varForma_Cara.Descripcion
+                        ,LLAVE = varForma_Cara.LLAVE
                     
                 };
 
@@ -1089,6 +1105,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+			,LLAVE = m.LLAVE
 
                     
                 };

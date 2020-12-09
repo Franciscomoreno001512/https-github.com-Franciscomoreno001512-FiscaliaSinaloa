@@ -21,6 +21,7 @@ using Spartane.Core.Domain.Motivo_Finalizacion_Turno;
 using Spartane.Core.Domain.Dialecto;
 using Spartane.Core.Domain.Idioma;
 using Spartane.Core.Domain.Estatus_Orientador;
+using Spartane.Core.Domain.Unidad;
 using Spartane.Core.Domain.Prioridad_del_Hecho;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Pais;
@@ -87,6 +88,7 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public bool? Autoriza_Traductor { get; set; }
         public bool? Finalizar_Servicios_de_Apoyo { get; set; }
         public int? Estatus2 { get; set; }
+        public int? Unidad_canaliza { get; set; }
         public bool? Enviar_a_MP { get; set; }
         public bool? Correccion_de_Estatus { get; set; }
         public bool? Requiere_Servicios_de_Apoyo { get; set; }
@@ -174,6 +176,8 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public virtual Spartane.Core.Domain.Idioma.Idioma Idioma_Idioma { get; set; }
         [ForeignKey("Estatus2")]
         public virtual Spartane.Core.Domain.Estatus_Orientador.Estatus_Orientador Estatus2_Estatus_Orientador { get; set; }
+        [ForeignKey("Unidad_canaliza")]
+        public virtual Spartane.Core.Domain.Unidad.Unidad Unidad_canaliza_Unidad { get; set; }
         [ForeignKey("Prioridad_del_Hecho")]
         public virtual Spartane.Core.Domain.Prioridad_del_Hecho.Prioridad_del_Hecho Prioridad_del_Hecho_Prioridad_del_Hecho { get; set; }
         [ForeignKey("Orientador")]
@@ -302,11 +306,14 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
     {
                 public int Clave { get; set; }
         public int? Estatus2 { get; set; }
+        public int? Unidad_canaliza { get; set; }
         public bool? Enviar_a_MP { get; set; }
         public bool? Correccion_de_Estatus { get; set; }
 
 		        [ForeignKey("Estatus2")]
         public virtual Spartane.Core.Domain.Estatus_Orientador.Estatus_Orientador Estatus2_Estatus_Orientador { get; set; }
+        [ForeignKey("Unidad_canaliza")]
+        public virtual Spartane.Core.Domain.Unidad.Unidad Unidad_canaliza_Unidad { get; set; }
 
     }
 

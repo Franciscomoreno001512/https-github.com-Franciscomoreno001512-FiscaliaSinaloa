@@ -12,6 +12,7 @@ using Spartane.Core.Domain.Vinculacion_a_Proceso;
 using Spartane.Core.Domain.Continuacion_de_Proceso;
 using Spartane.Core.Domain.Auto_de_Vinculacion_a_Proceso;
 using Spartane.Core.Domain.Plazo_de_Investigacion_Complementaria;
+using Spartane.Core.Domain.Resultado_de_Investigacion_Complementaria;
 using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.A_Tiempo;
@@ -44,6 +45,7 @@ namespace Spartane.Core.Domain.Proceso_Penal
         public int? Resultado_No_Vinculacion { get; set; }
         public int? Resultado_Vinculacion { get; set; }
         public int? plazo_investigacion_complementaria { get; set; }
+        public int? Resultado_de_Investigacion_Complementari { get; set; }
         public int? fecha_investigacion_complementaria { get; set; }
         public string hora_investigacion_complementaria { get; set; }
         public string Nombre_del_Juez_de_Control { get; set; }
@@ -73,6 +75,7 @@ namespace Spartane.Core.Domain.Proceso_Penal
         public short? cuantia_de_pena_anios { get; set; }
         public short? cuantia_de_pena_meses { get; set; }
         public decimal? Monto_de_la_Reparacion_del_Dano { get; set; }
+        public string prueba { get; set; }
 
         [ForeignKey("Expediente_MP")]
         public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
@@ -92,6 +95,8 @@ namespace Spartane.Core.Domain.Proceso_Penal
         public virtual Spartane.Core.Domain.Auto_de_Vinculacion_a_Proceso.Auto_de_Vinculacion_a_Proceso Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso { get; set; }
         [ForeignKey("plazo_investigacion_complementaria")]
         public virtual Spartane.Core.Domain.Plazo_de_Investigacion_Complementaria.Plazo_de_Investigacion_Complementaria plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria { get; set; }
+        [ForeignKey("Resultado_de_Investigacion_Complementari")]
+        public virtual Spartane.Core.Domain.Resultado_de_Investigacion_Complementaria.Resultado_de_Investigacion_Complementaria Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria { get; set; }
         [ForeignKey("Acusador_Coadyudante")]
         public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Acusador_Coadyudante_A_Tiempo { get; set; }
         [ForeignKey("cumplio_descubrimiento_probatorio")]
@@ -125,6 +130,7 @@ namespace Spartane.Core.Domain.Proceso_Penal
         public int? Resultado_No_Vinculacion { get; set; }
         public int? Resultado_Vinculacion { get; set; }
         public int? plazo_investigacion_complementaria { get; set; }
+        public int? Resultado_de_Investigacion_Complementari { get; set; }
         public int? fecha_investigacion_complementaria { get; set; }
         public string hora_investigacion_complementaria { get; set; }
 
@@ -146,6 +152,8 @@ namespace Spartane.Core.Domain.Proceso_Penal
         public virtual Spartane.Core.Domain.Auto_de_Vinculacion_a_Proceso.Auto_de_Vinculacion_a_Proceso Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso { get; set; }
         [ForeignKey("plazo_investigacion_complementaria")]
         public virtual Spartane.Core.Domain.Plazo_de_Investigacion_Complementaria.Plazo_de_Investigacion_Complementaria plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria { get; set; }
+        [ForeignKey("Resultado_de_Investigacion_Complementari")]
+        public virtual Spartane.Core.Domain.Resultado_de_Investigacion_Complementaria.Resultado_de_Investigacion_Complementaria Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria { get; set; }
 
     }
 
@@ -218,6 +226,14 @@ namespace Spartane.Core.Domain.Proceso_Penal
         [ForeignKey("Tipo_de_Sentencia")]
         public virtual Spartane.Core.Domain.Sentencia.Sentencia Tipo_de_Sentencia_Sentencia { get; set; }
 
+    }
+
+	public class Proceso_Penal_Datos_Generales
+    {
+                public int Folio { get; set; }
+        public string prueba { get; set; }
+
+		
     }
 
 

@@ -491,21 +491,64 @@ if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt(
 }
 //BusinessRuleId:1513, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:1510, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+//BusinessRuleId:2794, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'Numero_de_Turno' + rowIndex),EvaluaQuery("exec uspGeneraTurnoAutomatico", rowIndex, nameOfTable));
+ $('#divNumero_de_Turno').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Turno' + rowIndex));
 
 }
-//BusinessRuleId:1510, Attribute:0, Operation:Object, Event:SCREENOPENING
+//BusinessRuleId:2794, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2794, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divNumero_de_Turno').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Turno' + rowIndex));
+
+}
+//BusinessRuleId:2794, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2794, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $('#divNumero_de_Turno').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Turno' + rowIndex));
+
+}
+//BusinessRuleId:2794, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2809, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Materno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Identificacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex));
+
+}
+//BusinessRuleId:2809, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2809, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Apellido_Materno' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Identificacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex));
+
+}
+//BusinessRuleId:2809, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
 	var result = true;
+
+
 //NEWBUSINESSRULE_BEFORESAVING//
     return result;
 }
 function EjecutarValidacionesDespuesDeGuardar(){
+
+
+
+
+//BusinessRuleId:2793, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Numero_de_Turno' + rowIndex),EvaluaQuery(" exec uspGeneraTurnoAutomatico GLOBAL[KeyValueInserted]", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:2793, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

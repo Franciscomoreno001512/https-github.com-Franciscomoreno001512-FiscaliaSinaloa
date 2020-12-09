@@ -18,6 +18,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Forma_Cara.Clave";
                 case "Descripcion":
                     return "Forma_Cara.Descripcion";
+                case "LLAVE":
+                    return "Forma_Cara.LLAVE";
 
                 default:
                     return propertyName;

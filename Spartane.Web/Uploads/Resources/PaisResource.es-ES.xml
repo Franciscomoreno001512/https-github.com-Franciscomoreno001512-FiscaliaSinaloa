@@ -5,6 +5,8 @@
   <resource culture="es-es" name="Nombre" value="Nombre"></resource>
   <resource culture="es-es" name="Vigencia" value="Vigencia"></resource>
   <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="es-es" name="Nacionalidad" value="Nacionalidad"></resource>
+  <resource culture="es-es" name="Abrevia" value="Abrevia"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

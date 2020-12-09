@@ -20,6 +20,7 @@ using Spartane.Core.Domain.Motivo_Finalizacion_Turno;
 using Spartane.Core.Domain.Dialecto;
 using Spartane.Core.Domain.Idioma;
 using Spartane.Core.Domain.Estatus_Orientador;
+using Spartane.Core.Domain.Unidad;
 using Spartane.Core.Domain.Detalle_de_Canalizar_Estatus;
 
 
@@ -89,6 +90,7 @@ using Spartane.Web.Areas.WebApiConsumer.Motivo_Finalizacion_Turno;
 using Spartane.Web.Areas.WebApiConsumer.Dialecto;
 using Spartane.Web.Areas.WebApiConsumer.Idioma;
 using Spartane.Web.Areas.WebApiConsumer.Estatus_Orientador;
+using Spartane.Web.Areas.WebApiConsumer.Unidad;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Canalizar_Estatus;
 
 
@@ -252,6 +254,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IDialectoApiConsumer = DialectoApiConsumer;
             this._IIdiomaApiConsumer = IdiomaApiConsumer;
             this._IEstatus_OrientadorApiConsumer = Estatus_OrientadorApiConsumer;
+            this._IUnidadApiConsumer = UnidadApiConsumer;
             this._IDetalle_de_Canalizar_EstatusApiConsumer = Detalle_de_Canalizar_EstatusApiConsumer;
 
 
@@ -426,6 +429,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Finalizar_Servicios_de_Apoyo = Modulo_Atencion_InicialData.Finalizar_Servicios_de_Apoyo.GetValueOrDefault()
                     ,Estatus2 = Modulo_Atencion_InicialData.Estatus2
                     ,Estatus2Descripcion = CultureHelper.GetTraduction(Convert.ToString(Modulo_Atencion_InicialData.Estatus2), "Estatus_Orientador") ??  (string)Modulo_Atencion_InicialData.Estatus2_Estatus_Orientador.Descripcion
+                    ,Unidad_canaliza = Modulo_Atencion_InicialData.Unidad_canaliza
+                    ,Unidad_canalizaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Modulo_Atencion_InicialData.Unidad_canaliza), "Unidad") ??  (string)Modulo_Atencion_InicialData.Unidad_canaliza_Unidad.Descripcion
                     ,Enviar_a_MP = Modulo_Atencion_InicialData.Enviar_a_MP.GetValueOrDefault()
                     ,Correccion_de_Estatus = Modulo_Atencion_InicialData.Correccion_de_Estatus.GetValueOrDefault()
                     ,Requiere_Servicios_de_Apoyo = Modulo_Atencion_InicialData.Requiere_Servicios_de_Apoyo.GetValueOrDefault()
@@ -611,6 +616,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Estatus_Orientadors_Estatus2 = Estatus_Orientadors_Estatus2.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Orientador", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IUnidadApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Unidads_Unidad_canaliza = _IUnidadApiConsumer.SelAll(true);
+            if (Unidads_Unidad_canaliza != null && Unidads_Unidad_canaliza.Resource != null)
+                ViewBag.Unidads_Unidad_canaliza = Unidads_Unidad_canaliza.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IPrioridad_del_HechoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Prioridad_del_Hechos_Prioridad_del_Hecho = _IPrioridad_del_HechoApiConsumer.SelAll(true);
@@ -781,6 +793,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Finalizar_Servicios_de_Apoyo = Modulo_Atencion_InicialData.Finalizar_Servicios_de_Apoyo.GetValueOrDefault()
                     ,Estatus2 = Modulo_Atencion_InicialData.Estatus2
                     ,Estatus2Descripcion = CultureHelper.GetTraduction(Convert.ToString(Modulo_Atencion_InicialData.Estatus2), "Estatus_Orientador") ??  (string)Modulo_Atencion_InicialData.Estatus2_Estatus_Orientador.Descripcion
+                    ,Unidad_canaliza = Modulo_Atencion_InicialData.Unidad_canaliza
+                    ,Unidad_canalizaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Modulo_Atencion_InicialData.Unidad_canaliza), "Unidad") ??  (string)Modulo_Atencion_InicialData.Unidad_canaliza_Unidad.Descripcion
                     ,Enviar_a_MP = Modulo_Atencion_InicialData.Enviar_a_MP.GetValueOrDefault()
                     ,Correccion_de_Estatus = Modulo_Atencion_InicialData.Correccion_de_Estatus.GetValueOrDefault()
                     ,Requiere_Servicios_de_Apoyo = Modulo_Atencion_InicialData.Requiere_Servicios_de_Apoyo.GetValueOrDefault()
@@ -964,6 +978,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Estatus_Orientadors_Estatus2 = Estatus_Orientadors_Estatus2.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Orientador", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IUnidadApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Unidads_Unidad_canaliza = _IUnidadApiConsumer.SelAll(true);
+            if (Unidads_Unidad_canaliza != null && Unidads_Unidad_canaliza.Resource != null)
+                ViewBag.Unidads_Unidad_canaliza = Unidads_Unidad_canaliza.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IPrioridad_del_HechoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Prioridad_del_Hechos_Prioridad_del_Hecho = _IPrioridad_del_HechoApiConsumer.SelAll(true);
@@ -1718,6 +1739,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Orientador", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IUnidadApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Unidads_Unidad_canaliza = _IUnidadApiConsumer.SelAll(true);
+            if (Unidads_Unidad_canaliza != null && Unidads_Unidad_canaliza.Resource != null)
+                ViewBag.Unidads_Unidad_canaliza = Unidads_Unidad_canaliza.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IPrioridad_del_HechoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Prioridad_del_Hechos_Prioridad_del_Hecho = _IPrioridad_del_HechoApiConsumer.SelAll(true);
             if (Prioridad_del_Hechos_Prioridad_del_Hecho != null && Prioridad_del_Hechos_Prioridad_del_Hecho.Resource != null)
@@ -1883,6 +1911,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Orientador", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IUnidadApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Unidads_Unidad_canaliza = _IUnidadApiConsumer.SelAll(true);
+            if (Unidads_Unidad_canaliza != null && Unidads_Unidad_canaliza.Resource != null)
+                ViewBag.Unidads_Unidad_canaliza = Unidads_Unidad_canaliza.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Unidad", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IPrioridad_del_HechoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Prioridad_del_Hechos_Prioridad_del_Hecho = _IPrioridad_del_HechoApiConsumer.SelAll(true);
             if (Prioridad_del_Hechos_Prioridad_del_Hecho != null && Prioridad_del_Hechos_Prioridad_del_Hecho.Resource != null)
@@ -2002,6 +2037,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Autoriza_Traductor = m.Autoriza_Traductor
 			,Finalizar_Servicios_de_Apoyo = m.Finalizar_Servicios_de_Apoyo
                         ,Estatus2Descripcion = CultureHelper.GetTraduction(m.Estatus2_Estatus_Orientador.Clave.ToString(), "Descripcion") ?? (string)m.Estatus2_Estatus_Orientador.Descripcion
+                        ,Unidad_canalizaDescripcion = CultureHelper.GetTraduction(m.Unidad_canaliza_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_canaliza_Unidad.Descripcion
 			,Enviar_a_MP = m.Enviar_a_MP
 			,Correccion_de_Estatus = m.Correccion_de_Estatus
 			,Requiere_Servicios_de_Apoyo = m.Requiere_Servicios_de_Apoyo
@@ -2205,6 +2241,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Autoriza_Traductor = m.Autoriza_Traductor
 			,Finalizar_Servicios_de_Apoyo = m.Finalizar_Servicios_de_Apoyo
                         ,Estatus2Descripcion = CultureHelper.GetTraduction(m.Estatus2_Estatus_Orientador.Clave.ToString(), "Descripcion") ?? (string)m.Estatus2_Estatus_Orientador.Descripcion
+                        ,Unidad_canalizaDescripcion = CultureHelper.GetTraduction(m.Unidad_canaliza_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_canaliza_Unidad.Descripcion
 			,Enviar_a_MP = m.Enviar_a_MP
 			,Correccion_de_Estatus = m.Correccion_de_Estatus
 			,Requiere_Servicios_de_Apoyo = m.Requiere_Servicios_de_Apoyo
@@ -3392,6 +3429,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Estatus2Ids = string.Join(",", filter.AdvanceEstatus2Multiple);
 
                 where += " AND Modulo_Atencion_Inicial.Estatus2 In (" + Estatus2Ids + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceUnidad_canaliza))
+            {
+                switch (filter.Unidad_canalizaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Unidad.Descripcion LIKE '" + filter.AdvanceUnidad_canaliza + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Unidad.Descripcion LIKE '%" + filter.AdvanceUnidad_canaliza + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Unidad.Descripcion = '" + filter.AdvanceUnidad_canaliza + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Unidad.Descripcion LIKE '%" + filter.AdvanceUnidad_canaliza + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceUnidad_canalizaMultiple != null && filter.AdvanceUnidad_canalizaMultiple.Count() > 0)
+            {
+                var Unidad_canalizaIds = string.Join(",", filter.AdvanceUnidad_canalizaMultiple);
+
+                where += " AND Modulo_Atencion_Inicial.Unidad_canaliza In (" + Unidad_canalizaIds + ")";
             }
 
             if (filter.Enviar_a_MP != RadioOptions.NoApply)
@@ -4822,6 +4887,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Autoriza_Traductor = varModulo_Atencion_Inicial.Autoriza_Traductor
                         ,Finalizar_Servicios_de_Apoyo = varModulo_Atencion_Inicial.Finalizar_Servicios_de_Apoyo
                         ,Estatus2 = varModulo_Atencion_Inicial.Estatus2
+                        ,Unidad_canaliza = varModulo_Atencion_Inicial.Unidad_canaliza
                         ,Enviar_a_MP = varModulo_Atencion_Inicial.Enviar_a_MP
                         ,Correccion_de_Estatus = varModulo_Atencion_Inicial.Correccion_de_Estatus
                         ,Requiere_Servicios_de_Apoyo = varModulo_Atencion_Inicial.Requiere_Servicios_de_Apoyo
@@ -5863,6 +5929,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Autoriza_Traductor = m.Autoriza_Traductor
 			,Finalizar_Servicios_de_Apoyo = m.Finalizar_Servicios_de_Apoyo
                         ,Estatus2Descripcion = CultureHelper.GetTraduction(m.Estatus2_Estatus_Orientador.Clave.ToString(), "Descripcion") ?? (string)m.Estatus2_Estatus_Orientador.Descripcion
+                        ,Unidad_canalizaDescripcion = CultureHelper.GetTraduction(m.Unidad_canaliza_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_canaliza_Unidad.Descripcion
 			,Enviar_a_MP = m.Enviar_a_MP
 			,Correccion_de_Estatus = m.Correccion_de_Estatus
 			,Requiere_Servicios_de_Apoyo = m.Requiere_Servicios_de_Apoyo
@@ -6025,6 +6092,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Autoriza_Traductor = m.Autoriza_Traductor
 			,Finalizar_Servicios_de_Apoyo = m.Finalizar_Servicios_de_Apoyo
                         ,Estatus2Descripcion = CultureHelper.GetTraduction(m.Estatus2_Estatus_Orientador.Clave.ToString(), "Descripcion") ?? (string)m.Estatus2_Estatus_Orientador.Descripcion
+                        ,Unidad_canalizaDescripcion = CultureHelper.GetTraduction(m.Unidad_canaliza_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_canaliza_Unidad.Descripcion
 			,Enviar_a_MP = m.Enviar_a_MP
 			,Correccion_de_Estatus = m.Correccion_de_Estatus
 			,Requiere_Servicios_de_Apoyo = m.Requiere_Servicios_de_Apoyo
@@ -6406,6 +6474,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varModulo_Atencion_Inicial.Clave
                                             ,Estatus2 = varModulo_Atencion_Inicial.Estatus2
+                        ,Unidad_canaliza = varModulo_Atencion_Inicial.Unidad_canaliza
                         ,Enviar_a_MP = varModulo_Atencion_Inicial.Enviar_a_MP
                         ,Correccion_de_Estatus = varModulo_Atencion_Inicial.Correccion_de_Estatus
                     
@@ -6446,6 +6515,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
                         ,Estatus2 = m.Estatus2
                         ,Estatus2Descripcion = CultureHelper.GetTraduction(m.Estatus2_Estatus_Orientador.Clave.ToString(), "Descripcion") ?? (string)m.Estatus2_Estatus_Orientador.Descripcion
+                        ,Unidad_canaliza = m.Unidad_canaliza
+                        ,Unidad_canalizaDescripcion = CultureHelper.GetTraduction(m.Unidad_canaliza_Unidad.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_canaliza_Unidad.Descripcion
 			,Enviar_a_MP = m.Enviar_a_MP
 			,Correccion_de_Estatus = m.Correccion_de_Estatus
 
@@ -7063,6 +7134,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+
 
     }
 }

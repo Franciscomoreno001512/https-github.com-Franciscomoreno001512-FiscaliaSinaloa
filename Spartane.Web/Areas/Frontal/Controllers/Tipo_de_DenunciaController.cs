@@ -162,6 +162,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = Tipo_de_DenunciaData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(Tipo_de_DenunciaData.Vigencia), "Vigencia") ??  (string)Tipo_de_DenunciaData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = Tipo_de_DenunciaData.Observaciones
+                    ,Tipo = Tipo_de_DenunciaData.Tipo
+                    ,Abreviacion = Tipo_de_DenunciaData.Abreviacion
 
 					};
 				}
@@ -245,6 +247,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = Tipo_de_DenunciaData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(Tipo_de_DenunciaData.Vigencia), "Vigencia") ??  (string)Tipo_de_DenunciaData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = Tipo_de_DenunciaData.Observaciones
+                    ,Tipo = Tipo_de_DenunciaData.Tipo
+                    ,Abreviacion = Tipo_de_DenunciaData.Abreviacion
 
 					};
 				}
@@ -400,6 +404,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Tipo = m.Tipo
+			,Abreviacion = m.Abreviacion
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -517,6 +523,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Tipo = m.Tipo
+			,Abreviacion = m.Abreviacion
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -615,6 +623,50 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.Tipo))
+            {
+                switch (filter.TipoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Tipo_de_Denuncia.Tipo LIKE '" + filter.Tipo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Tipo_de_Denuncia.Tipo LIKE '%" + filter.Tipo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Tipo_de_Denuncia.Tipo = '" + filter.Tipo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Tipo_de_Denuncia.Tipo LIKE '%" + filter.Tipo + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Abreviacion))
+            {
+                switch (filter.AbreviacionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Tipo_de_Denuncia.Abreviacion LIKE '" + filter.Abreviacion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Tipo_de_Denuncia.Abreviacion LIKE '%" + filter.Abreviacion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Tipo_de_Denuncia.Abreviacion = '" + filter.Abreviacion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Tipo_de_Denuncia.Abreviacion LIKE '%" + filter.Abreviacion + "%'";
+                        break;
+                }
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -673,6 +725,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Descripcion = varTipo_de_Denuncia.Descripcion
                         ,Vigencia = varTipo_de_Denuncia.Vigencia
                         ,Observaciones = varTipo_de_Denuncia.Observaciones
+                        ,Tipo = varTipo_de_Denuncia.Tipo
+                        ,Abreviacion = varTipo_de_Denuncia.Abreviacion
 
                     };
 
@@ -1063,6 +1117,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Tipo = m.Tipo
+			,Abreviacion = m.Abreviacion
 
             }).ToList();
 
@@ -1139,6 +1195,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Tipo = m.Tipo
+			,Abreviacion = m.Abreviacion
 
             }).ToList();
 
@@ -1181,6 +1239,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                                             ,Descripcion = varTipo_de_Denuncia.Descripcion
                         ,Vigencia = varTipo_de_Denuncia.Vigencia
                         ,Observaciones = varTipo_de_Denuncia.Observaciones
+                        ,Tipo = varTipo_de_Denuncia.Tipo
+                        ,Abreviacion = varTipo_de_Denuncia.Abreviacion
                     
                 };
 
@@ -1213,6 +1273,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Vigencia = m.Vigencia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Tipo = m.Tipo
+			,Abreviacion = m.Abreviacion
 
                     
                 };

@@ -18,6 +18,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Tipo_de_Compareciente.Clave";
                 case "Descripcion":
                     return "Tipo_de_Compareciente.Descripcion";
+                case "TP_DescripcionCorta":
+                    return "Tipo_de_Compareciente.TP_DescripcionCorta";
 
                 default:
                     return propertyName;

@@ -116,6 +116,69 @@
                     @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
                     @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
                 </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ColoniaResources.cod_pais</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromcod_pais, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromcod_pais" })
+                    @Html.ValidationMessageFor(m => m.Fromcod_pais)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Tocod_pais, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTocod_pais", @data_min = "txtAdvanceFromcod_pais" })
+                    @Html.ValidationMessageFor(m => m.Tocod_pais)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ColoniaResources.cod_edo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromcod_edo, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromcod_edo" })
+                    @Html.ValidationMessageFor(m => m.Fromcod_edo)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Tocod_edo, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTocod_edo", @data_min = "txtAdvanceFromcod_edo" })
+                    @Html.ValidationMessageFor(m => m.Tocod_edo)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ColoniaResources.loc_justicia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromloc_justicia, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromloc_justicia" })
+                    @Html.ValidationMessageFor(m => m.Fromloc_justicia)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Toloc_justicia, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToloc_justicia", @data_min = "txtAdvanceFromloc_justicia" })
+                    @Html.ValidationMessageFor(m => m.Toloc_justicia)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ColoniaResources.pob_justicia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Frompob_justicia, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFrompob_justicia" })
+                    @Html.ValidationMessageFor(m => m.Frompob_justicia)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Topob_justicia, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTopob_justicia", @data_min = "txtAdvanceFrompob_justicia" })
+                    @Html.ValidationMessageFor(m => m.Topob_justicia)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ColoniaResources.sector</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromsector, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromsector" })
+                    @Html.ValidationMessageFor(m => m.Fromsector)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Tosector, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTosector", @data_min = "txtAdvanceFromsector" })
+                    @Html.ValidationMessageFor(m => m.Tosector)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ColoniaResources.estatus</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.estatusFilter, filters, new { @class = "form-control", @id = "ddlestatusFilter" })
+                    @Html.TextBoxFor(m => m.estatus, new { @class = "form-control", @type = "text", @id = "txtestatus" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Colonia/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -182,6 +245,36 @@
             hasParameter = true;
             advanceSearch.ColoniaObservaciones = $("#txtAdvanceObservaciones").val();
             advanceSearch.ColoniaObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+        if ($("#txtAdvanceFromcod_pais").val() != "" || $("#txtAdvanceTocod_pais").val() != "") {
+            hasParameter = true;
+            advanceSearch.Coloniacod_paisFrom = $("#txtAdvanceFromcod_pais").val();
+            advanceSearch.Coloniacod_paisTo = $("#txtAdvanceTocod_pais").val();
+        }
+        if ($("#txtAdvanceFromcod_edo").val() != "" || $("#txtAdvanceTocod_edo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Coloniacod_edoFrom = $("#txtAdvanceFromcod_edo").val();
+            advanceSearch.Coloniacod_edoTo = $("#txtAdvanceTocod_edo").val();
+        }
+        if ($("#txtAdvanceFromloc_justicia").val() != "" || $("#txtAdvanceToloc_justicia").val() != "") {
+            hasParameter = true;
+            advanceSearch.Colonialoc_justiciaFrom = $("#txtAdvanceFromloc_justicia").val();
+            advanceSearch.Colonialoc_justiciaTo = $("#txtAdvanceToloc_justicia").val();
+        }
+        if ($("#txtAdvanceFrompob_justicia").val() != "" || $("#txtAdvanceTopob_justicia").val() != "") {
+            hasParameter = true;
+            advanceSearch.Coloniapob_justiciaFrom = $("#txtAdvanceFrompob_justicia").val();
+            advanceSearch.Coloniapob_justiciaTo = $("#txtAdvanceTopob_justicia").val();
+        }
+        if ($("#txtAdvanceFromsector").val() != "" || $("#txtAdvanceTosector").val() != "") {
+            hasParameter = true;
+            advanceSearch.ColoniasectorFrom = $("#txtAdvanceFromsector").val();
+            advanceSearch.ColoniasectorTo = $("#txtAdvanceTosector").val();
+        }
+        if ($("#txtAdvanceestatus").val() != "") {
+            hasParameter = true;
+            advanceSearch.Coloniaestatus = $("#txtAdvanceestatus").val();
+            advanceSearch.ColoniaestatusSearchType = $("#ddlAdvanceestatusFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

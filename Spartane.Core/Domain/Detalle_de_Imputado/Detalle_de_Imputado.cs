@@ -159,6 +159,7 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public bool? Bajo_el_Efecto_de_una_Droga { get; set; }
         public string Nombre_de_Droga { get; set; }
         public bool? Inimputable { get; set; }
+        public bool? Gravidez { get; set; }
         public int? Tipo_de_Inimputabilidad { get; set; }
         public string Especifique { get; set; }
         public int? Discapacidad_Mental { get; set; }
@@ -494,6 +495,7 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public bool? Bajo_el_Efecto_de_una_Droga { get; set; }
         public string Nombre_de_Droga { get; set; }
         public bool? Inimputable { get; set; }
+        public bool? Gravidez { get; set; }
         public int? Tipo_de_Inimputabilidad { get; set; }
         public string Especifique { get; set; }
         public int? Discapacidad_Mental { get; set; }

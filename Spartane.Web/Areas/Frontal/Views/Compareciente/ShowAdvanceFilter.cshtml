@@ -70,6 +70,214 @@
                     @Html.TextBoxFor(m => m.ToRegistro_de_Atencion_Inicial, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToRegistro_de_Atencion_Inicial", @data_min = "txtAdvanceFromRegistro_de_Atencion_Inicial" })
                     @Html.ValidationMessageFor(m => m.ToRegistro_de_Atencion_Inicial)
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ComparecienteResources.AVPR_NAVPR</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AVPR_NAVPRFilter, filters, new { @class = "form-control", @id = "ddlAVPR_NAVPRFilter" })
+                    @Html.TextBoxFor(m => m.AVPR_NAVPR, new { @class = "form-control", @type = "text", @id = "txtAVPR_NAVPR" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ComparecienteResources.AVPR_APBIS</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AVPR_APBISFilter, filters, new { @class = "form-control", @id = "ddlAVPR_APBISFilter" })
+                    @Html.TextBoxFor(m => m.AVPR_APBIS, new { @class = "form-control", @type = "text", @id = "txtAVPR_APBIS" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ComparecienteResources.AVPR_CVEMU</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AVPR_CVEMUFilter, filters, new { @class = "form-control", @id = "ddlAVPR_CVEMUFilter" })
+                    @Html.TextBoxFor(m => m.AVPR_CVEMU, new { @class = "form-control", @type = "text", @id = "txtAVPR_CVEMU" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ComparecienteResources.AVPR_CVEAG</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.AVPR_CVEAGFilter, filters, new { @class = "form-control", @id = "ddlAVPR_CVEAGFilter" })
+                    @Html.TextBoxFor(m => m.AVPR_CVEAG, new { @class = "form-control", @type = "text", @id = "txtAVPR_CVEAG" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ComparecienteResources.OFEN_CONOF</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.OFEN_CONOFFilter, filters, new { @class = "form-control", @id = "ddlOFEN_CONOFFilter" })
+                    @Html.TextBoxFor(m => m.OFEN_CONOF, new { @class = "form-control", @type = "text", @id = "txtOFEN_CONOF" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ComparecienteResources.OFEN_OPATE</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.OFEN_OPATEFilter, filters, new { @class = "form-control", @id = "ddlOFEN_OPATEFilter" })
+                    @Html.TextBoxFor(m => m.OFEN_OPATE, new { @class = "form-control", @type = "text", @id = "txtOFEN_OPATE" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ComparecienteResources.OFEN_OMATE</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.OFEN_OMATEFilter, filters, new { @class = "form-control", @id = "ddlOFEN_OMATEFilter" })
+                    @Html.TextBoxFor(m => m.OFEN_OMATE, new { @class = "form-control", @type = "text", @id = "txtOFEN_OMATE" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ComparecienteResources.OFEN_ONOMB</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.OFEN_ONOMBFilter, filters, new { @class = "form-control", @id = "ddlOFEN_ONOMBFilter" })
+                    @Html.TextBoxFor(m => m.OFEN_ONOMB, new { @class = "form-control", @type = "text", @id = "txtOFEN_ONOMB" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ComparecienteResources.OFEN_ESTAD</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.OFEN_ESTADFilter, filters, new { @class = "form-control", @id = "ddlOFEN_ESTADFilter" })
+                    @Html.TextBoxFor(m => m.OFEN_ESTAD, new { @class = "form-control", @type = "text", @id = "txtOFEN_ESTAD" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ComparecienteResources.OFEN_OCUPA</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.OFEN_OCUPAFilter, filters, new { @class = "form-control", @id = "ddlOFEN_OCUPAFilter" })
+                    @Html.TextBoxFor(m => m.OFEN_OCUPA, new { @class = "form-control", @type = "text", @id = "txtOFEN_OCUPA" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.ComparecienteResources.FECHAREGIS</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFECHAREGIS" name="FromFECHAREGIS" type="text" value="@Model.FromFECHAREGIS" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFECHAREGIS" name="ToFECHAREGIS" type="text" value="@Model.ToFECHAREGIS" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ComparecienteResources.USUARIO</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.USUARIOFilter, filters, new { @class = "form-control", @id = "ddlUSUARIOFilter" })
+                    @Html.TextBoxFor(m => m.USUARIO, new { @class = "form-control", @type = "text", @id = "txtUSUARIO" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ComparecienteResources.HORAREGIST</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.HORAREGISTFilter, filters, new { @class = "form-control", @id = "ddlHORAREGISTFilter" })
+                    @Html.TextBoxFor(m => m.HORAREGIST, new { @class = "form-control", @type = "text", @id = "txtHORAREGIST" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ComparecienteResources.fuente</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromfuente, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromfuente" })
+                    @Html.ValidationMessageFor(m => m.Fromfuente)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Tofuente, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTofuente", @data_min = "txtAdvanceFromfuente" })
+                    @Html.ValidationMessageFor(m => m.Tofuente)
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.ComparecienteResources.fecenvio</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromfecenvio" name="Fromfecenvio" type="text" value="@Model.Fromfecenvio" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceTofecenvio" name="Tofecenvio" type="text" value="@Model.Tofecenvio" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ComparecienteResources.OFEN_PROBABLE</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromOFEN_PROBABLE, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromOFEN_PROBABLE" })
+                    @Html.ValidationMessageFor(m => m.FromOFEN_PROBABLE)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToOFEN_PROBABLE, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToOFEN_PROBABLE", @data_min = "txtAdvanceFromOFEN_PROBABLE" })
+                    @Html.ValidationMessageFor(m => m.ToOFEN_PROBABLE)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ComparecienteResources.OFEN_RSOMENOR</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.OFEN_RSOMENORFilter, filters, new { @class = "form-control", @id = "ddlOFEN_RSOMENORFilter" })
+                    @Html.TextBoxFor(m => m.OFEN_RSOMENOR, new { @class = "form-control", @type = "text", @id = "txtOFEN_RSOMENOR" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ComparecienteResources.REPR_NACIONALIDAD</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromREPR_NACIONALIDAD, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromREPR_NACIONALIDAD" })
+                    @Html.ValidationMessageFor(m => m.FromREPR_NACIONALIDAD)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToREPR_NACIONALIDAD, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToREPR_NACIONALIDAD", @data_min = "txtAdvanceFromREPR_NACIONALIDAD" })
+                    @Html.ValidationMessageFor(m => m.ToREPR_NACIONALIDAD)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ComparecienteResources.REPR_ESCOLARIDAD</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromREPR_ESCOLARIDAD, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromREPR_ESCOLARIDAD" })
+                    @Html.ValidationMessageFor(m => m.FromREPR_ESCOLARIDAD)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToREPR_ESCOLARIDAD, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToREPR_ESCOLARIDAD", @data_min = "txtAdvanceFromREPR_ESCOLARIDAD" })
+                    @Html.ValidationMessageFor(m => m.ToREPR_ESCOLARIDAD)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ComparecienteResources.TIPO_EDAD</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromTIPO_EDAD, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromTIPO_EDAD" })
+                    @Html.ValidationMessageFor(m => m.FromTIPO_EDAD)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToTIPO_EDAD, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToTIPO_EDAD", @data_min = "txtAdvanceFromTIPO_EDAD" })
+                    @Html.ValidationMessageFor(m => m.ToTIPO_EDAD)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ComparecienteResources.IdEstadoInstitucion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromIdEstadoInstitucion, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromIdEstadoInstitucion" })
+                    @Html.ValidationMessageFor(m => m.FromIdEstadoInstitucion)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToIdEstadoInstitucion, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToIdEstadoInstitucion", @data_min = "txtAdvanceFromIdEstadoInstitucion" })
+                    @Html.ValidationMessageFor(m => m.ToIdEstadoInstitucion)
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Compareciente/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -96,6 +304,126 @@
             hasParameter = true;
             advanceSearch.ComparecienteRegistro_de_Atencion_InicialFrom = $("#txtAdvanceFromRegistro_de_Atencion_Inicial").val();
             advanceSearch.ComparecienteRegistro_de_Atencion_InicialTo = $("#txtAdvanceToRegistro_de_Atencion_Inicial").val();
+        }
+        if ($("#txtAdvanceAVPR_NAVPR").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteAVPR_NAVPR = $("#txtAdvanceAVPR_NAVPR").val();
+            advanceSearch.ComparecienteAVPR_NAVPRSearchType = $("#ddlAdvanceAVPR_NAVPRFilter").val();
+        }
+        if ($("#txtAdvanceAVPR_APBIS").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteAVPR_APBIS = $("#txtAdvanceAVPR_APBIS").val();
+            advanceSearch.ComparecienteAVPR_APBISSearchType = $("#ddlAdvanceAVPR_APBISFilter").val();
+        }
+        if ($("#txtAdvanceAVPR_CVEMU").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteAVPR_CVEMU = $("#txtAdvanceAVPR_CVEMU").val();
+            advanceSearch.ComparecienteAVPR_CVEMUSearchType = $("#ddlAdvanceAVPR_CVEMUFilter").val();
+        }
+        if ($("#txtAdvanceAVPR_CVEAG").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteAVPR_CVEAG = $("#txtAdvanceAVPR_CVEAG").val();
+            advanceSearch.ComparecienteAVPR_CVEAGSearchType = $("#ddlAdvanceAVPR_CVEAGFilter").val();
+        }
+        if ($("#txtAdvanceOFEN_CONOF").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteOFEN_CONOF = $("#txtAdvanceOFEN_CONOF").val();
+            advanceSearch.ComparecienteOFEN_CONOFSearchType = $("#ddlAdvanceOFEN_CONOFFilter").val();
+        }
+        if ($("#txtAdvanceOFEN_OPATE").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteOFEN_OPATE = $("#txtAdvanceOFEN_OPATE").val();
+            advanceSearch.ComparecienteOFEN_OPATESearchType = $("#ddlAdvanceOFEN_OPATEFilter").val();
+        }
+        if ($("#txtAdvanceOFEN_OMATE").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteOFEN_OMATE = $("#txtAdvanceOFEN_OMATE").val();
+            advanceSearch.ComparecienteOFEN_OMATESearchType = $("#ddlAdvanceOFEN_OMATEFilter").val();
+        }
+        if ($("#txtAdvanceOFEN_ONOMB").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteOFEN_ONOMB = $("#txtAdvanceOFEN_ONOMB").val();
+            advanceSearch.ComparecienteOFEN_ONOMBSearchType = $("#ddlAdvanceOFEN_ONOMBFilter").val();
+        }
+        if ($("#txtAdvanceFromOFEN_INSTI").val() != "" || $("#txtAdvanceToOFEN_INSTI").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteOFEN_INSTIFrom = $("#txtAdvanceFromOFEN_INSTI").val();
+            advanceSearch.ComparecienteOFEN_INSTITo = $("#txtAdvanceToOFEN_INSTI").val();
+        }
+        if ($("#txtAdvanceOFEN_ESTAD").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteOFEN_ESTAD = $("#txtAdvanceOFEN_ESTAD").val();
+            advanceSearch.ComparecienteOFEN_ESTADSearchType = $("#ddlAdvanceOFEN_ESTADFilter").val();
+        }
+        if ($("#txtAdvanceFromOFEN_EDAD").val() != "" || $("#txtAdvanceToOFEN_EDAD").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteOFEN_EDADFrom = $("#txtAdvanceFromOFEN_EDAD").val();
+            advanceSearch.ComparecienteOFEN_EDADTo = $("#txtAdvanceToOFEN_EDAD").val();
+        }
+        if ($("#txtAdvanceOFEN_OCUPA").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteOFEN_OCUPA = $("#txtAdvanceOFEN_OCUPA").val();
+            advanceSearch.ComparecienteOFEN_OCUPASearchType = $("#ddlAdvanceOFEN_OCUPAFilter").val();
+        }
+        if ($("#txtAdvanceFromFECHAREGIS").val() != "" || $("#txtAdvanceToFECHAREGIS").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteFECHAREGISFrom = $("#txtAdvanceFromFECHAREGIS").val();
+            advanceSearch.ComparecienteFECHAREGISTo = $("#txtAdvanceToFECHAREGIS").val();
+        }
+        if ($("#txtAdvanceUSUARIO").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteUSUARIO = $("#txtAdvanceUSUARIO").val();
+            advanceSearch.ComparecienteUSUARIOSearchType = $("#ddlAdvanceUSUARIOFilter").val();
+        }
+        if ($("#txtAdvanceHORAREGIST").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteHORAREGIST = $("#txtAdvanceHORAREGIST").val();
+            advanceSearch.ComparecienteHORAREGISTSearchType = $("#ddlAdvanceHORAREGISTFilter").val();
+        }
+        if ($("#txtAdvanceFromfuente").val() != "" || $("#txtAdvanceTofuente").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecientefuenteFrom = $("#txtAdvanceFromfuente").val();
+            advanceSearch.ComparecientefuenteTo = $("#txtAdvanceTofuente").val();
+        }
+        if ($("#txtAdvanceFromfecenvio").val() != "" || $("#txtAdvanceTofecenvio").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecientefecenvioFrom = $("#txtAdvanceFromfecenvio").val();
+            advanceSearch.ComparecientefecenvioTo = $("#txtAdvanceTofecenvio").val();
+        }
+        if ($("#txtAdvanceFromOFEN_PROBABLE").val() != "" || $("#txtAdvanceToOFEN_PROBABLE").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteOFEN_PROBABLEFrom = $("#txtAdvanceFromOFEN_PROBABLE").val();
+            advanceSearch.ComparecienteOFEN_PROBABLETo = $("#txtAdvanceToOFEN_PROBABLE").val();
+        }
+        if ($("#txtAdvanceOFEN_RSOMENOR").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteOFEN_RSOMENOR = $("#txtAdvanceOFEN_RSOMENOR").val();
+            advanceSearch.ComparecienteOFEN_RSOMENORSearchType = $("#ddlAdvanceOFEN_RSOMENORFilter").val();
+        }
+        if ($("#txtAdvanceFromREPR_Sexo").val() != "" || $("#txtAdvanceToREPR_Sexo").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteREPR_SexoFrom = $("#txtAdvanceFromREPR_Sexo").val();
+            advanceSearch.ComparecienteREPR_SexoTo = $("#txtAdvanceToREPR_Sexo").val();
+        }
+        if ($("#txtAdvanceFromREPR_NACIONALIDAD").val() != "" || $("#txtAdvanceToREPR_NACIONALIDAD").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteREPR_NACIONALIDADFrom = $("#txtAdvanceFromREPR_NACIONALIDAD").val();
+            advanceSearch.ComparecienteREPR_NACIONALIDADTo = $("#txtAdvanceToREPR_NACIONALIDAD").val();
+        }
+        if ($("#txtAdvanceFromREPR_ESCOLARIDAD").val() != "" || $("#txtAdvanceToREPR_ESCOLARIDAD").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteREPR_ESCOLARIDADFrom = $("#txtAdvanceFromREPR_ESCOLARIDAD").val();
+            advanceSearch.ComparecienteREPR_ESCOLARIDADTo = $("#txtAdvanceToREPR_ESCOLARIDAD").val();
+        }
+        if ($("#txtAdvanceFromTIPO_EDAD").val() != "" || $("#txtAdvanceToTIPO_EDAD").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteTIPO_EDADFrom = $("#txtAdvanceFromTIPO_EDAD").val();
+            advanceSearch.ComparecienteTIPO_EDADTo = $("#txtAdvanceToTIPO_EDAD").val();
+        }
+        if ($("#txtAdvanceFromIdEstadoInstitucion").val() != "" || $("#txtAdvanceToIdEstadoInstitucion").val() != "") {
+            hasParameter = true;
+            advanceSearch.ComparecienteIdEstadoInstitucionFrom = $("#txtAdvanceFromIdEstadoInstitucion").val();
+            advanceSearch.ComparecienteIdEstadoInstitucionTo = $("#txtAdvanceToIdEstadoInstitucion").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

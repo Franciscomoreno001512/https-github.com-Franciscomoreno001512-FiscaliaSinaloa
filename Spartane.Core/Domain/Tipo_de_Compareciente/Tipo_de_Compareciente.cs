@@ -17,6 +17,7 @@ namespace Spartane.Core.Domain.Tipo_de_Compareciente
     {
         public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public string TP_DescripcionCorta { get; set; }
 
 
     }
@@ -25,6 +26,7 @@ namespace Spartane.Core.Domain.Tipo_de_Compareciente
     {
                 public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public string TP_DescripcionCorta { get; set; }
 
 		
     }

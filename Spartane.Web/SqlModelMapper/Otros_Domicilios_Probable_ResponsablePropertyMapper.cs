@@ -38,6 +38,14 @@ namespace Spartane.Web.SqlModelMapper
                     return "Otros_Domicilios_Probable_Responsable.Y_Calle";
                 case "Numero_Exterior":
                     return "Otros_Domicilios_Probable_Responsable.Numero_Exterior";
+                case "Numero_Interior":
+                    return "Otros_Domicilios_Probable_Responsable.Numero_Interior";
+                case "Coordenada_X":
+                    return "Otros_Domicilios_Probable_Responsable.Coordenada_X";
+                case "Coordenada_Y":
+                    return "Otros_Domicilios_Probable_Responsable.Coordenada_Y";
+                case "Observaciones":
+                    return "Otros_Domicilios_Probable_Responsable.Observaciones";
 
                 default:
                     return propertyName;
