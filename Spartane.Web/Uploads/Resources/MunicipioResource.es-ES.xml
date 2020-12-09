@@ -11,6 +11,7 @@
   <resource culture="es-es" name="cod_zona" value="cod_zona"></resource>
   <resource culture="es-es" name="MuniNSJP" value="MuniNSJP"></resource>
   <resource culture="es-es" name="cod_zona_nsjp" value="cod_zona_nsjp"></resource>
+  <resource culture="es-es" name="cod_mun" value="cod_mun"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

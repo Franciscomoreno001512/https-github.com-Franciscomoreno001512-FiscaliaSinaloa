@@ -273,6 +273,13 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="estatus" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divcod_localidad">
+                                <label class="col-sm-2 control-label">@Resources.ColoniaResources.cod_localidad</label>
+                                <div class="col-sm-8" data-field-id="cod_localidad" data-attribute="268125" data-field-name="@Resources.ColoniaResources.cod_localidad">
+                                    <input class="form-control inputNumber Datos_Generales" id="cod_localidad" name="cod_localidad" type="text" value="@Model.cod_localidad">
+                                    @*<span class="field-validation-valid" data-valmsg-for="cod_localidad" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -758,6 +765,7 @@
                     $('#pob_justicia').val(result.data.pob_justicia);
                     $('#sector').val(result.data.sector);
                     $('#estatus').val(result.data.estatus);
+                    $('#cod_localidad').val(result.data.cod_localidad);
 
                 },
                 error: function (result) {
@@ -781,6 +789,7 @@
                 data.append('pob_justicia', $('#pob_justicia').val());
                 data.append('sector', $('#sector').val());
                 data.append('estatus', $('#estatus').val());
+                data.append('cod_localidad', $('#cod_localidad').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Colonia/Post_Datos_Generales")',

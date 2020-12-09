@@ -1317,6 +1317,8 @@
 <Compile Include="Control_de_Folios_por_Especialidad\Control_de_Folios_por_EspecialidadService.cs" />
 <Compile Include="Notificaciones\INotificacionesService.cs" />
 <Compile Include="Notificaciones\NotificacionesService.cs" />
+<Compile Include="Estatus_Encuesta\IEstatus_EncuestaService.cs" />
+<Compile Include="Estatus_Encuesta\Estatus_EncuestaService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1416,6 +1418,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

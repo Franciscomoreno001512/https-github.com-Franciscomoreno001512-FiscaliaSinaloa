@@ -20,6 +20,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string cod_zona { get; set; }
         public string MuniNSJP { get; set; }
         public int? cod_zona_nsjp { get; set; }
+        public int? cod_mun { get; set; }
         
     }
 }

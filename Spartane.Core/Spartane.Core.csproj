@@ -1426,6 +1426,8 @@
 <Compile Include="Domain\Control_de_Folios_por_Especialidad\Control_de_Folios_por_EspecialidadPagingModel.cs" />
 <Compile Include="Domain\Notificaciones\Notificaciones.cs" />
 <Compile Include="Domain\Notificaciones\NotificacionesPagingModel.cs" />
+<Compile Include="Domain\Estatus_Encuesta\Estatus_Encuesta.cs" />
+<Compile Include="Domain\Estatus_Encuesta\Estatus_EncuestaPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1446,6 +1448,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

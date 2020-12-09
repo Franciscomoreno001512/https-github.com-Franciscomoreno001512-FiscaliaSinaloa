@@ -14,6 +14,7 @@
   <resource culture="en-US" name="pob_justicia" value="pob_justicia"></resource>
   <resource culture="en-US" name="sector" value="sector"></resource>
   <resource culture="en-US" name="estatus" value="estatus"></resource>
+  <resource culture="en-US" name="cod_localidad" value="cod_localidad"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

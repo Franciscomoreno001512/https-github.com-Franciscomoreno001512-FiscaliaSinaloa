@@ -12,29 +12,33 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public string Folio { get; set; }
+        public string Fecha_Enviado { get; set; }
+        public string Hora_Enviado { get; set; }
+        public string Fecha_Respuesta { get; set; }
+        public string Hora_Respuesta { get; set; }
+        public string NUAT { get; set; }
+        public int? Modulo { get; set; }
+        public string ModuloDescripcion { get; set; }
         public int? Numero_de_Preguntas { get; set; }
         public string Numero_de_PreguntasDescripcion { get; set; }
-        public string NUAT { get; set; }
-        public int? Pregunta1 { get; set; }
-        public string Pregunta1Descripcion { get; set; }
-        public int? Pregunta2 { get; set; }
-        public string Pregunta2Descripcion { get; set; }
-        public int? Pregunta3 { get; set; }
-        public string Pregunta3Descripcion { get; set; }
-        public int? Pregunta4 { get; set; }
-        public string Pregunta4Descripcion { get; set; }
-        public int? Pregunta5 { get; set; }
-        public string Pregunta5Descripcion { get; set; }
-        public int? Pregunta6 { get; set; }
-        public string Pregunta6Descripcion { get; set; }
-        public int? Pregunta7 { get; set; }
-        public string Pregunta7Descripcion { get; set; }
-        public int? Pregunta8 { get; set; }
-        public string Pregunta8Descripcion { get; set; }
-        public int? Pregunta9 { get; set; }
-        public string Pregunta9Descripcion { get; set; }
-        public int? Pregunta10 { get; set; }
-        public string Pregunta10Descripcion { get; set; }
+        public string Pregunta1 { get; set; }
+        public int? Respuesta_1 { get; set; }
+        public string Respuesta_1Descripcion { get; set; }
+        public string Pregunta2 { get; set; }
+        public int? Respuesta_2 { get; set; }
+        public string Respuesta_2Descripcion { get; set; }
+        public string Pregunta3 { get; set; }
+        public int? Respuesta_3 { get; set; }
+        public string Respuesta_3Descripcion { get; set; }
+        public string Pregunta4 { get; set; }
+        public int? Respuesta_4 { get; set; }
+        public string Respuesta_4Descripcion { get; set; }
+        public string Pregunta5 { get; set; }
+        public int? Respuesta_5 { get; set; }
+        public string Respuesta_5Descripcion { get; set; }
+        public int? Estatus { get; set; }
+        public string EstatusDescripcion { get; set; }
 
     }
 	
@@ -42,29 +46,33 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public string Folio { get; set; }
+        public string Fecha_Enviado { get; set; }
+        public string Hora_Enviado { get; set; }
+        public string Fecha_Respuesta { get; set; }
+        public string Hora_Respuesta { get; set; }
+        public string NUAT { get; set; }
+        public int? Modulo { get; set; }
+        public string ModuloDescripcion { get; set; }
         public int? Numero_de_Preguntas { get; set; }
         public string Numero_de_PreguntasDescripcion { get; set; }
-        public string NUAT { get; set; }
-        public int? Pregunta1 { get; set; }
-        public string Pregunta1Descripcion { get; set; }
-        public int? Pregunta2 { get; set; }
-        public string Pregunta2Descripcion { get; set; }
-        public int? Pregunta3 { get; set; }
-        public string Pregunta3Descripcion { get; set; }
-        public int? Pregunta4 { get; set; }
-        public string Pregunta4Descripcion { get; set; }
-        public int? Pregunta5 { get; set; }
-        public string Pregunta5Descripcion { get; set; }
-        public int? Pregunta6 { get; set; }
-        public string Pregunta6Descripcion { get; set; }
-        public int? Pregunta7 { get; set; }
-        public string Pregunta7Descripcion { get; set; }
-        public int? Pregunta8 { get; set; }
-        public string Pregunta8Descripcion { get; set; }
-        public int? Pregunta9 { get; set; }
-        public string Pregunta9Descripcion { get; set; }
-        public int? Pregunta10 { get; set; }
-        public string Pregunta10Descripcion { get; set; }
+        public string Pregunta1 { get; set; }
+        public int? Respuesta_1 { get; set; }
+        public string Respuesta_1Descripcion { get; set; }
+        public string Pregunta2 { get; set; }
+        public int? Respuesta_2 { get; set; }
+        public string Respuesta_2Descripcion { get; set; }
+        public string Pregunta3 { get; set; }
+        public int? Respuesta_3 { get; set; }
+        public string Respuesta_3Descripcion { get; set; }
+        public string Pregunta4 { get; set; }
+        public int? Respuesta_4 { get; set; }
+        public string Respuesta_4Descripcion { get; set; }
+        public string Pregunta5 { get; set; }
+        public int? Respuesta_5 { get; set; }
+        public string Respuesta_5Descripcion { get; set; }
+        public int? Estatus { get; set; }
+        public string EstatusDescripcion { get; set; }
 
     }
 

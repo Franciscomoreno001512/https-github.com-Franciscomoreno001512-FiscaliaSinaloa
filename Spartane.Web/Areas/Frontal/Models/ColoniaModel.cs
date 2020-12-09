@@ -32,6 +32,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         [Range(0, 9999999999)]
         public int? sector { get; set; }
         public string estatus { get; set; }
+        [Range(0, 9999999999)]
+        public int? cod_localidad { get; set; }
 
     }
 	
@@ -59,6 +61,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         [Range(0, 9999999999)]
         public int? sector { get; set; }
         public string estatus { get; set; }
+        [Range(0, 9999999999)]
+        public int? cod_localidad { get; set; }
 
     }
 

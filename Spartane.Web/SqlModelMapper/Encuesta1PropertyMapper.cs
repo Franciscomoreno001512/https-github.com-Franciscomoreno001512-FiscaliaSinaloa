@@ -16,41 +16,52 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Encuesta1.Clave";
+                case "Folio":
+                    return "Encuesta1.Folio";
+                case "Fecha_Enviado":
+                    return "Encuesta1.Fecha_Enviado";
+                case "Hora_Enviado":
+                    return "Encuesta1.Hora_Enviado";
+                case "Fecha_Respuesta":
+                    return "Encuesta1.Fecha_Respuesta";
+                case "Hora_Respuesta":
+                    return "Encuesta1.Hora_Respuesta";
+                case "NUAT":
+                    return "Encuesta1.NUAT";
+                case "Modulo[Descripcion]":
+                case "ModuloDescripcion":
+                    return "Estatus.Descripcion";
                 case "Numero_de_Preguntas[Descripcion]":
                 case "Numero_de_PreguntasDescripcion":
                     return "Catalogo_Numero_de_Preguntas.Descripcion";
-                case "NUAT":
-                    return "Encuesta1.NUAT";
-                case "Pregunta1[Descripcion]":
-                case "Pregunta1Descripcion":
+                case "Pregunta1":
+                    return "Encuesta1.Pregunta1";
+                case "Respuesta_1[Descripcion]":
+                case "Respuesta_1Descripcion":
                     return "Catalogo_Respuesta.Descripcion";
-                case "Pregunta2[Descripcion]":
-                case "Pregunta2Descripcion":
+                case "Pregunta2":
+                    return "Encuesta1.Pregunta2";
+                case "Respuesta_2[Descripcion]":
+                case "Respuesta_2Descripcion":
                     return "Catalogo_Respuesta.Descripcion";
-                case "Pregunta3[Descripcion]":
-                case "Pregunta3Descripcion":
+                case "Pregunta3":
+                    return "Encuesta1.Pregunta3";
+                case "Respuesta_3[Descripcion]":
+                case "Respuesta_3Descripcion":
                     return "Catalogo_Respuesta.Descripcion";
-                case "Pregunta4[Descripcion]":
-                case "Pregunta4Descripcion":
+                case "Pregunta4":
+                    return "Encuesta1.Pregunta4";
+                case "Respuesta_4[Descripcion]":
+                case "Respuesta_4Descripcion":
                     return "Catalogo_Respuesta.Descripcion";
-                case "Pregunta5[Descripcion]":
-                case "Pregunta5Descripcion":
+                case "Pregunta5":
+                    return "Encuesta1.Pregunta5";
+                case "Respuesta_5[Descripcion]":
+                case "Respuesta_5Descripcion":
                     return "Catalogo_Respuesta.Descripcion";
-                case "Pregunta6[Descripcion]":
-                case "Pregunta6Descripcion":
-                    return "Catalogo_Respuesta.Descripcion";
-                case "Pregunta7[Descripcion]":
-                case "Pregunta7Descripcion":
-                    return "Catalogo_Respuesta.Descripcion";
-                case "Pregunta8[Descripcion]":
-                case "Pregunta8Descripcion":
-                    return "Catalogo_Respuesta.Descripcion";
-                case "Pregunta9[Descripcion]":
-                case "Pregunta9Descripcion":
-                    return "Catalogo_Respuesta.Descripcion";
-                case "Pregunta10[Descripcion]":
-                case "Pregunta10Descripcion":
-                    return "Catalogo_Respuesta.Descripcion";
+                case "Estatus[Descripcion]":
+                case "EstatusDescripcion":
+                    return "Estatus_Encuesta.Descripcion";
 
                 default:
                     return propertyName;
@@ -68,6 +79,28 @@ namespace Spartane.Web.SqlModelMapper
 
         public string GetOperatorString(object value, string columnName)
         {
+            if (columnName == "Fecha_Enviado")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            if (columnName == "Fecha_Respuesta")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
 
 
             var operatorCondition = GetOperationType(columnName);

@@ -94,16 +94,6 @@ namespace Spartane.Web.SqlModelMapper
                     return "expediente_ministerio_publico.LongitudH";
                 case "LatitudH":
                     return "expediente_ministerio_publico.LatitudH";
-                case "Fecha_de_Canalizacion":
-                    return "expediente_ministerio_publico.Fecha_de_Canalizacion";
-                case "Hora_de_Canalizacion":
-                    return "expediente_ministerio_publico.Hora_de_Canalizacion";
-                case "usuario_que_canaliza[Name]":
-                case "usuario_que_canalizaName":
-                    return "Spartan_User.Name";
-                case "canalizar_a[Descripcion]":
-                case "canalizar_aDescripcion":
-                    return "Estatus_Orientador.Descripcion";
                 case "tipo_de_acuerdo[Descripcion]":
                 case "tipo_de_acuerdoDescripcion":
                     return "Tipo_de_Acuerdo.Descripcion";
@@ -168,17 +158,6 @@ namespace Spartane.Web.SqlModelMapper
                 }
             }
             if (columnName == "Fecha_del_Hecho")
-            {
-                try
-                {
-                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
-                }
-                catch (Exception ex)
-                {
-
-                }
-            }
-            if (columnName == "Fecha_de_Canalizacion")
             {
                 try
                 {

@@ -126,6 +126,16 @@ namespace Resources
             }
         }
 
+        /// <summary>cod_mun</summary>
+        public static string cod_mun
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderMunicipio.GetResource("cod_mun", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderMunicipio.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

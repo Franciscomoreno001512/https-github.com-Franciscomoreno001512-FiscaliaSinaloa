@@ -179,6 +179,17 @@
                     @Html.DropDownListFor(m => m.estatusFilter, filters, new { @class = "form-control", @id = "ddlestatusFilter" })
                     @Html.TextBoxFor(m => m.estatus, new { @class = "form-control", @type = "text", @id = "txtestatus" })
                 </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.ColoniaResources.cod_localidad</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromcod_localidad, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromcod_localidad" })
+                    @Html.ValidationMessageFor(m => m.Fromcod_localidad)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Tocod_localidad, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTocod_localidad", @data_min = "txtAdvanceFromcod_localidad" })
+                    @Html.ValidationMessageFor(m => m.Tocod_localidad)
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Colonia/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -275,6 +286,11 @@
             hasParameter = true;
             advanceSearch.Coloniaestatus = $("#txtAdvanceestatus").val();
             advanceSearch.ColoniaestatusSearchType = $("#ddlAdvanceestatusFilter").val();
+        }
+        if ($("#txtAdvanceFromcod_localidad").val() != "" || $("#txtAdvanceTocod_localidad").val() != "") {
+            hasParameter = true;
+            advanceSearch.Coloniacod_localidadFrom = $("#txtAdvanceFromcod_localidad").val();
+            advanceSearch.Coloniacod_localidadTo = $("#txtAdvanceTocod_localidad").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

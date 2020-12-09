@@ -1688,6 +1688,9 @@ using Spartane.Web.Areas.WebApiConsumer.Control_de_Folios_por_Especialidad;
 using Spartane.Services.Notificaciones;
 using Spartane.Core.Domain.Notificaciones;
 using Spartane.Web.Areas.WebApiConsumer.Notificaciones;
+using Spartane.Services.Estatus_Encuesta;
+using Spartane.Core.Domain.Estatus_Encuesta;
+using Spartane.Web.Areas.WebApiConsumer.Estatus_Encuesta;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -2936,6 +2939,8 @@ builder.RegisterType<Control_de_Folios_por_EspecialidadService>().As<IControl_de
 builder.RegisterType<Control_de_Folios_por_EspecialidadApiConsumer>().As<IControl_de_Folios_por_EspecialidadApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<NotificacionesService>().As<INotificacionesService>().InstancePerLifetimeScope();
 builder.RegisterType<NotificacionesApiConsumer>().As<INotificacionesApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_EncuestaService>().As<IEstatus_EncuestaService>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_EncuestaApiConsumer>().As<IEstatus_EncuestaApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3116,6 +3121,24 @@ builder.RegisterType<NotificacionesApiConsumer>().As<INotificacionesApiConsumer>
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

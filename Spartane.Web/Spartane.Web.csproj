@@ -13899,6 +13899,26 @@
 <Content Include="Uploads\Scripts\Rules\NotificacionesCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\NotificacionesIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Notificaciones\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Estatus_Encuesta\Estatus_EncuestaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Estatus_Encuesta\IEstatus_EncuestaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_EncuestaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_EncuestaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_EncuestaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Estatus_EncuestaController.cs" />
+<Content Include="Areas\Frontal\Views\Estatus_Encuesta\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Estatus_Encuesta\Create.cshtml" />
+<Compile Include="Resource\GetResource\Estatus_Encuesta.cs" />
+<Content Include="Uploads\Resources\Estatus_EncuestaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Estatus_EncuestaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Estatus_EncuestaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Estatus_Encuesta.js" />
+<Content Include="Scripts\Custom\Estatus_EncuestaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Estatus_Encuesta\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Estatus_EncuestaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_EncuestaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Estatus_EncuestaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Estatus_EncuestaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Estatus_Encuesta\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -14898,6 +14918,26 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

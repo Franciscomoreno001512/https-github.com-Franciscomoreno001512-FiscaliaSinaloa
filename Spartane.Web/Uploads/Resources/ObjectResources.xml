@@ -1134,8 +1134,28 @@
 <Object Id="45582" culture="es-es" value="Control de Folios por Especialidad" />
 <Object Id="45583" culture="en-us" value="Notificaciones" />
 <Object Id="45583" culture="es-es" value="Notificaciones" />
+<Object Id="45596" culture="en-us" value="Estatus Encuesta" />
+<Object Id="45596" culture="es-es" value="Estatus Encuesta" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
