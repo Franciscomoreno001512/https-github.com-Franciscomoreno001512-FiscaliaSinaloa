@@ -1,17 +1,14 @@
 ﻿@using System.Collections.Generic
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Encuesta1;
+@using Spartane.Core.Domain.Modulo_Encuesta;
 @using Spartane.Core.Domain.Catalogo_Numero_de_Preguntas;
 @using Spartane.Core.Domain.Catalogo_Respuesta;
 @using Spartane.Core.Domain.Catalogo_Respuesta;
 @using Spartane.Core.Domain.Catalogo_Respuesta;
 @using Spartane.Core.Domain.Catalogo_Respuesta;
 @using Spartane.Core.Domain.Catalogo_Respuesta;
-@using Spartane.Core.Domain.Catalogo_Respuesta;
-@using Spartane.Core.Domain.Catalogo_Respuesta;
-@using Spartane.Core.Domain.Catalogo_Respuesta;
-@using Spartane.Core.Domain.Catalogo_Respuesta;
-@using Spartane.Core.Domain.Catalogo_Respuesta;
+@using Spartane.Core.Domain.Estatus_Encuesta;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -208,18 +205,25 @@
                                 <tr>
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Encuesta1Resources.Clave</th>
-                                    <th>@Resources.Encuesta1Resources.Numero_de_Preguntas</th>
+                                    <th>@Resources.Encuesta1Resources.Folio</th>
+                                    <th>@Resources.Encuesta1Resources.Fecha_Enviado</th>
+                                    <th>@Resources.Encuesta1Resources.Hora_Enviado</th>
+                                    <th>@Resources.Encuesta1Resources.Fecha_Respuesta</th>
+                                    <th>@Resources.Encuesta1Resources.Hora_Respuesta</th>
                                     <th>@Resources.Encuesta1Resources.NUAT</th>
+                                    <th>@Resources.Encuesta1Resources.Modulo</th>
+                                    <th>@Resources.Encuesta1Resources.Numero_de_Preguntas</th>
                                     <th>@Resources.Encuesta1Resources.Pregunta1</th>
+                                    <th>@Resources.Encuesta1Resources.Respuesta_1</th>
                                     <th>@Resources.Encuesta1Resources.Pregunta2</th>
+                                    <th>@Resources.Encuesta1Resources.Respuesta_2</th>
                                     <th>@Resources.Encuesta1Resources.Pregunta3</th>
+                                    <th>@Resources.Encuesta1Resources.Respuesta_3</th>
                                     <th>@Resources.Encuesta1Resources.Pregunta4</th>
+                                    <th>@Resources.Encuesta1Resources.Respuesta_4</th>
                                     <th>@Resources.Encuesta1Resources.Pregunta5</th>
-                                    <th>@Resources.Encuesta1Resources.Pregunta6</th>
-                                    <th>@Resources.Encuesta1Resources.Pregunta7</th>
-                                    <th>@Resources.Encuesta1Resources.Pregunta8</th>
-                                    <th>@Resources.Encuesta1Resources.Pregunta9</th>
-                                    <th>@Resources.Encuesta1Resources.Pregunta10</th>
+                                    <th>@Resources.Encuesta1Resources.Respuesta_5</th>
+                                    <th>@Resources.Encuesta1Resources.Estatus</th>
 
                                 </tr>
                             </thead>
@@ -227,6 +231,13 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -355,33 +366,47 @@
         var queryString = GetQueryString();
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_de_Preguntas =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_Enviado = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Enviado = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_Respuesta = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Respuesta = $($('table td .filterData.form-control:input')[counter++]).val();
         var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modulo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Preguntas =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta1 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Respuesta_1 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Respuesta_2 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta3 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Respuesta_3 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta4 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Respuesta_4 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta5 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta6 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta7 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta8 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta9 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta10 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Respuesta_5 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
-        + "&Numero_de_Preguntas=" + Numero_de_Preguntas
+        + "&Folio=" + Folio
+        + "&Fecha_Enviado=" + Fecha_Enviado
+        + "&Hora_Enviado=" + Hora_Enviado
+        + "&Fecha_Respuesta=" + Fecha_Respuesta
+        + "&Hora_Respuesta=" + Hora_Respuesta
         + "&NUAT=" + NUAT
+        + "&Modulo=" + Modulo
+        + "&Numero_de_Preguntas=" + Numero_de_Preguntas
         + "&Pregunta1=" + Pregunta1
+        + "&Respuesta_1=" + Respuesta_1
         + "&Pregunta2=" + Pregunta2
+        + "&Respuesta_2=" + Respuesta_2
         + "&Pregunta3=" + Pregunta3
+        + "&Respuesta_3=" + Respuesta_3
         + "&Pregunta4=" + Pregunta4
+        + "&Respuesta_4=" + Respuesta_4
         + "&Pregunta5=" + Pregunta5
-        + "&Pregunta6=" + Pregunta6
-        + "&Pregunta7=" + Pregunta7
-        + "&Pregunta8=" + Pregunta8
-        + "&Pregunta9=" + Pregunta9
-        + "&Pregunta10=" + Pregunta10
+        + "&Respuesta_5=" + Respuesta_5
+        + "&Estatus=" + Estatus
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Encuesta1/Export?format=")" + format
@@ -396,33 +421,47 @@
 	
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_de_Preguntas =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_Enviado = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Enviado = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_Respuesta = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Respuesta = $($('table td .filterData.form-control:input')[counter++]).val();
         var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Modulo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Preguntas =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta1 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Respuesta_1 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta2 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Respuesta_2 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta3 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Respuesta_3 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta4 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Respuesta_4 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta5 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta6 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta7 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta8 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta9 =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Pregunta10 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Respuesta_5 =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
-        + "&Numero_de_Preguntas=" + Numero_de_Preguntas
+        + "&Folio=" + Folio
+        + "&Fecha_Enviado=" + Fecha_Enviado
+        + "&Hora_Enviado=" + Hora_Enviado
+        + "&Fecha_Respuesta=" + Fecha_Respuesta
+        + "&Hora_Respuesta=" + Hora_Respuesta
         + "&NUAT=" + NUAT
+        + "&Modulo=" + Modulo
+        + "&Numero_de_Preguntas=" + Numero_de_Preguntas
         + "&Pregunta1=" + Pregunta1
+        + "&Respuesta_1=" + Respuesta_1
         + "&Pregunta2=" + Pregunta2
+        + "&Respuesta_2=" + Respuesta_2
         + "&Pregunta3=" + Pregunta3
+        + "&Respuesta_3=" + Respuesta_3
         + "&Pregunta4=" + Pregunta4
+        + "&Respuesta_4=" + Respuesta_4
         + "&Pregunta5=" + Pregunta5
-        + "&Pregunta6=" + Pregunta6
-        + "&Pregunta7=" + Pregunta7
-        + "&Pregunta8=" + Pregunta8
-        + "&Pregunta9=" + Pregunta9
-        + "&Pregunta10=" + Pregunta10
+        + "&Respuesta_5=" + Respuesta_5
+        + "&Estatus=" + Estatus
 ;
 
     }
@@ -603,11 +642,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -671,18 +710,25 @@
                     }
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
-                ,{ "data": "Numero_de_PreguntasDescripcion", "orderable": true, "name": "Numero_de_PreguntasDescripcion" }
+                ,{ "data": "Folio", "orderable": true, "name": "Folio", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_Enviado", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_Enviado" }
+                ,{ "data": "Hora_Enviado", "orderable": true, "name": "Hora_Enviado" }
+                ,{ "data": "Fecha_Respuesta", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_Respuesta" }
+                ,{ "data": "Hora_Respuesta", "orderable": true, "name": "Hora_Respuesta" }
                 ,{ "data": "NUAT", "orderable": true, "name": "NUAT", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Pregunta1Descripcion", "orderable": true, "name": "Pregunta1Descripcion" }
-                ,{ "data": "Pregunta2Descripcion", "orderable": true, "name": "Pregunta2Descripcion" }
-                ,{ "data": "Pregunta3Descripcion", "orderable": true, "name": "Pregunta3Descripcion" }
-                ,{ "data": "Pregunta4Descripcion", "orderable": true, "name": "Pregunta4Descripcion" }
-                ,{ "data": "Pregunta5Descripcion", "orderable": true, "name": "Pregunta5Descripcion" }
-                ,{ "data": "Pregunta6Descripcion", "orderable": true, "name": "Pregunta6Descripcion" }
-                ,{ "data": "Pregunta7Descripcion", "orderable": true, "name": "Pregunta7Descripcion" }
-                ,{ "data": "Pregunta8Descripcion", "orderable": true, "name": "Pregunta8Descripcion" }
-                ,{ "data": "Pregunta9Descripcion", "orderable": true, "name": "Pregunta9Descripcion" }
-                ,{ "data": "Pregunta10Descripcion", "orderable": true, "name": "Pregunta10Descripcion" }
+                ,{ "data": "ModuloDescripcion", "orderable": true, "name": "ModuloDescripcion" }
+                ,{ "data": "Numero_de_PreguntasDescripcion", "orderable": true, "name": "Numero_de_PreguntasDescripcion" }
+                ,{ "data": "Pregunta1", "orderable": true, "name": "Pregunta1", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Respuesta_1Descripcion", "orderable": true, "name": "Respuesta_1Descripcion" }
+                ,{ "data": "Pregunta2", "orderable": true, "name": "Pregunta2", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Respuesta_2Descripcion", "orderable": true, "name": "Respuesta_2Descripcion" }
+                ,{ "data": "Pregunta3", "orderable": true, "name": "Pregunta3", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Respuesta_3Descripcion", "orderable": true, "name": "Respuesta_3Descripcion" }
+                ,{ "data": "Pregunta4", "orderable": true, "name": "Pregunta4", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Respuesta_4Descripcion", "orderable": true, "name": "Respuesta_4Descripcion" }
+                ,{ "data": "Pregunta5", "orderable": true, "name": "Pregunta5", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Respuesta_5Descripcion", "orderable": true, "name": "Respuesta_5Descripcion" }
+                ,{ "data": "EstatusDescripcion", "orderable": true, "name": "EstatusDescripcion" }
 
             ],
 			"colReorder": true,

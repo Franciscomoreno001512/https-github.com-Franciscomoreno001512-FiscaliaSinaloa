@@ -14,9 +14,6 @@
     string Fecha_del_Hecho = "";
     if (Model.Fecha_del_Hecho == "")
     { Model.Fecha_del_Hecho = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
-    string Fecha_de_Canalizacion = "";
-    if (Model.Fecha_de_Canalizacion == "")
-    { Model.Fecha_de_Canalizacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
     string fecha_de_inicio_de_acuerdo = "";
     if (Model.fecha_de_inicio_de_acuerdo == "")
     { Model.fecha_de_inicio_de_acuerdo = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
@@ -70,12 +67,6 @@
  List<SelectListItem> varColonia_ColoniaH = null;
     if (ViewBag.Colonias_ColoniaH != null)
     { varColonia_ColoniaH = (List<SelectListItem>)ViewBag.Colonias_ColoniaH; }
- List<SelectListItem> varSpartan_User_usuario_que_canaliza = null;
-    if (ViewBag.Spartan_Users_usuario_que_canaliza != null)
-    { varSpartan_User_usuario_que_canaliza = (List<SelectListItem>)ViewBag.Spartan_Users_usuario_que_canaliza; }
-    List<SelectListItem> varEstatus_Orientador_canalizar_a = null;
-    if (ViewBag.Estatus_Orientadors_canalizar_a != null)
-    { varEstatus_Orientador_canalizar_a = (List<SelectListItem>)ViewBag.Estatus_Orientadors_canalizar_a; }
     List<SelectListItem> varTipo_de_Acuerdo_tipo_de_acuerdo = null;
     if (ViewBag.Tipo_de_Acuerdos_tipo_de_acuerdo != null)
     { varTipo_de_Acuerdo_tipo_de_acuerdo = (List<SelectListItem>)ViewBag.Tipo_de_Acuerdos_tipo_de_acuerdo; }
@@ -221,7 +212,6 @@
                         	<ul class="nav nav-tabs">
 <li class="active"><a data-toggle="tab" href="#tabDatos_del_Caso"> @Resources.expediente_ministerio_publicoResources.TabDatos_del_Caso</a></li>
 <li class=""><a data-toggle="tab" href="#tabHechos"> @Resources.expediente_ministerio_publicoResources.TabHechos</a></li>
-<li class=""><a data-toggle="tab" href="#tabCanalizar"> @Resources.expediente_ministerio_publicoResources.TabCanalizar</a></li>
 <li class=""><a data-toggle="tab" href="#tabDatos_del_Acuerdo"> @Resources.expediente_ministerio_publicoResources.TabDatos_del_Acuerdo</a></li>
 <li class=""><a data-toggle="tab" href="#tabResolucion_o_Dictaminacion"> @Resources.expediente_ministerio_publicoResources.TabResolucion_o_Dictaminacion</a></li>
 
@@ -737,76 +727,6 @@
                                 </div>
 
 
-                            <div id="tabCanalizar" class="tab-pane">
-                                <div class="panel-body">
-                            <div class="form-group" id="divFecha_de_Canalizacion">
-                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.Fecha_de_Canalizacion</label>
-                                <div class="col-sm-8" data-field-id="Fecha_de_Canalizacion" data-attribute="267129" data-field-name="@Resources.expediente_ministerio_publicoResources.Fecha_de_Canalizacion">
-                                    <div class='input-group date' id='datetimepicker1'>
-                                        <input class="form-control col-md-12 Canalizar" id="Fecha_de_Canalizacion"  name="Fecha_de_Canalizacion" type="text" value="@Model.Fecha_de_Canalizacion">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group" id="divHora_de_Canalizacion">
-                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.Hora_de_Canalizacion</label>
-                                <div class="col-sm-8" data-field-id="Hora_de_Canalizacion" data-attribute="267130" data-field-name="@Resources.expediente_ministerio_publicoResources.Hora_de_Canalizacion">
-                                    <div class='input-group date' id='timePicker'>
-                                        <input class="form-control col-md-12 Canalizar" id="Hora_de_Canalizacion"  name="Hora_de_Canalizacion" type="text" data-autoclose="true" value="@Model.Hora_de_Canalizacion">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-time"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-				<div class="form-group" id="divusuario_que_canaliza">
-                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.usuario_que_canaliza</label>
-                                <div class="col-sm-8" data-field-id="usuario_que_canaliza" data-attribute="267131" data-field-name="@Resources.expediente_ministerio_publicoResources.usuario_que_canaliza">
-                                    <select class='fullWidth AutoComplete AutoCompleteexpediente_ministerio_publico_usuario_que_canaliza form-control select2-dropdown Canalizar' data-val="true" id="usuario_que_canaliza" name="usuario_que_canaliza">
-                                        <option value="@Model.usuario_que_canaliza">@(Model.usuario_que_canalizaName??Model.usuario_que_canalizaName)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267131).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'usuario_que_canaliza');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divcanalizar_a">
-                                <label class="col-sm-2 control-label">@Resources.expediente_ministerio_publicoResources.canalizar_a</label>
-                                <div class="col-sm-8" data-field-id="canalizar_a" data-attribute="267132" data-field-name="@Resources.expediente_ministerio_publicoResources.canalizar_a">
-                                    <select class="form-control Canalizar" data-val="true" data-val-number="The field Canalizar a must be a number." data-val-required="The Canalizar a field is required." id="canalizar_a" name="canalizar_a">
-                                        <option value=""></option>
-                                        @if (varEstatus_Orientador_canalizar_a != null){ 
-                                            foreach (var itemcanalizar_a in varEstatus_Orientador_canalizar_a)
-                                            {
-                                                if (itemcanalizar_a.Value == Convert.ToString(Model.canalizar_a))
-                                                {
-                                                    <option value="@itemcanalizar_a.Value" selected>@itemcanalizar_a.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemcanalizar_a.Value">@itemcanalizar_a.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="canalizar_a" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267132).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Estatus_Orientador', 'canalizar_a');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            </div>
-                                </div>
-
-
                             <div id="tabDatos_del_Acuerdo" class="tab-pane">
                                 <div class="panel-body">
                             <div class="form-group" id="divtipo_de_acuerdo">
@@ -1173,8 +1093,6 @@
 
 		var Tab_Hechos = true;
 
-		var Tab_Canalizar = true;
-
 		var Tab_Datos_del_Acuerdo = true;
 
 		var Tab_Resolucion_o_Dictaminacion = true;
@@ -1211,15 +1129,6 @@
                 format: "@ConfigurationProperty.DateFormatDatePicker"
             });
             $('#Hora_Aproximada_del_Hecho').clockpicker();
-            $('#Fecha_de_Canalizacion').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true,
-                format: "@ConfigurationProperty.DateFormatDatePicker"
-            });
-            $('#Hora_de_Canalizacion').clockpicker();
             $('#fecha_de_inicio_de_acuerdo').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -1558,39 +1467,6 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
-       var AutoCompleteusuario_que_canalizaData =[];
-       $(".AutoCompleteexpediente_ministerio_publico_usuario_que_canaliza").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Getexpediente_ministerio_publico_usuario_que_canaliza_Spartan_User")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteexpediente_ministerio_publico_usuario_que_canaliza_Spartan_UserData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteexpediente_ministerio_publico_usuario_que_canaliza");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
        var AutoCompleteUsuario_que_CierraData =[];
        $(".AutoCompleteexpediente_ministerio_publico_Usuario_que_Cierra").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -1638,9 +1514,6 @@
 
 				if (Tab_Hechos)
 					Fill_Hechos();
-
-				if (Tab_Canalizar)
-					Fill_Canalizar();
 
 				if (Tab_Datos_del_Acuerdo)
 					Fill_Datos_del_Acuerdo();
@@ -2085,10 +1958,6 @@
 				return false;
 			}						
 
-			if (Tab_Canalizar && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Canalizar')) {
-				return false;
-			}						
-
 			if (Tab_Datos_del_Acuerdo && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Datos_del_Acuerdo')) {
 				return false;
 			}						
@@ -2110,9 +1979,6 @@
 
 			if (Tab_Hechos)
 				Save_Hechos(id);
-
-			if (Tab_Canalizar)
-				Save_Canalizar(id);
 
 			if (Tab_Datos_del_Acuerdo)
 				Save_Datos_del_Acuerdo(id);
@@ -2505,66 +2371,6 @@
 			});
 		}
 
-		function Fill_Canalizar()
-        {
-            $.ajax({
-                url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Get_Canalizar")?Id=" + $("#Referenceclave").val(),
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                success: function (result) {
-                                        $('#clave').val(result.data.clave);
-                    $('#Fecha_de_Canalizacion').val(result.data.Fecha_de_Canalizacion);
-                    $('#Hora_de_Canalizacion').val(result.data.Hora_de_Canalizacion);
-                    var control = $('#usuario_que_canaliza');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.usuario_que_canaliza).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.usuario_que_canaliza).trigger('change');
-                    }, 3000);
-                    $('#canalizar_a').val(result.data.canalizar_a);
-
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                }
-            });
-        }
-		
-		function Save_Canalizar(newId) {
-			var data = new FormData();
-			data.append('clave', newId);
-			                data.append('Fecha_de_Canalizacion', $('#Fecha_de_Canalizacion').val());
-                data.append('Hora_de_Canalizacion', $('#Hora_de_Canalizacion').val());
-                data.append('usuario_que_canaliza', $('#usuario_que_canaliza').val());
-                data.append('canalizar_a', $('#canalizar_a').val());
-
-			$.ajax({
-				url: '@Url.Content("~/Frontal/expediente_ministerio_publico/Post_Canalizar")',
-				type: 'POST',
-				data: data,
-				async: false,
-				dataType: "json",
-				contentType: false,
-				processData: false,
-				success: function (result) {
-					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Canalizar");
-					} else {
-						newId = result;
-                    
-					}
-				},
-				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Canalizar");
-				},
-				cache: false
-			});
-		}
-
 		function Fill_Datos_del_Acuerdo()
         {
             $.ajax({
@@ -2632,6 +2438,8 @@
 
 		function Fill_Resolucion_o_Dictaminacion()
         {
+		
+		
             $.ajax({
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Get_Resolucion_o_Dictaminacion")?Id=" + $("#Referenceclave").val(),
                 type: 'GET',
@@ -2643,7 +2451,11 @@
                     $('#hora_de_cierre').val(result.data.hora_de_cierre);
                     var control = $('#Usuario_que_Cierra');
                     control.select2('open');
-                    $('.select2-search__field').val(result.data.Usuario_que_Cierra).trigger('keyup');
+					
+					var _iduser = result.data.Usuario_que_Cierra;
+					if(_iduser == null) {_iduser =@Session["USERID"];}
+										
+                    $('.select2-search__field').val(_iduser).trigger('keyup');
                     control.select2('close');
                     setTimeout(function () {
 	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');

@@ -13819,6 +13819,166 @@
 <Content Include="Uploads\Scripts\Detalle_Condiciones_Proceso_Penal.js" />
 <Content Include="Uploads\Scripts\Rules\Detalle_Condiciones_Proceso_PenalIndexRules.js" />
 <Content Include="Uploads\Scripts\Rules\Detalle_Condiciones_Proceso_PenalCreateRules.js" />
+<Compile Include="Areas\WebApiConsumer\Generador_de_NUAT\Generador_de_NUATApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Generador_de_NUAT\IGenerador_de_NUATApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_de_NUATModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_de_NUATGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_de_NUATMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Generador_de_NUATController.cs" />
+<Content Include="Areas\Frontal\Views\Generador_de_NUAT\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Generador_de_NUAT\Create.cshtml" />
+<Compile Include="Resource\GetResource\Generador_de_NUAT.cs" />
+<Content Include="Uploads\Resources\Generador_de_NUATResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Generador_de_NUATPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Generador_de_NUATResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Generador_de_NUAT.js" />
+<Content Include="Scripts\Custom\Generador_de_NUATGeneral.js" />
+<Content Include="Areas\Frontal\Views\Generador_de_NUAT\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Generador_de_NUATAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_de_NUATBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Generador_de_NUATCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Generador_de_NUATIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Generador_de_NUAT\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Generador_de_Folios\Generador_de_FoliosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Generador_de_Folios\IGenerador_de_FoliosApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_de_FoliosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_de_FoliosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_de_FoliosMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Generador_de_FoliosController.cs" />
+<Content Include="Areas\Frontal\Views\Generador_de_Folios\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Generador_de_Folios\Create.cshtml" />
+<Compile Include="Resource\GetResource\Generador_de_Folios.cs" />
+<Content Include="Uploads\Resources\Generador_de_FoliosResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Generador_de_FoliosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Generador_de_FoliosResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Generador_de_Folios.js" />
+<Content Include="Scripts\Custom\Generador_de_FoliosGeneral.js" />
+<Content Include="Areas\Frontal\Views\Generador_de_Folios\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Generador_de_FoliosAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_de_FoliosBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Generador_de_FoliosCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Generador_de_FoliosIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Generador_de_Folios\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Control_de_Folios_por_Especialidad\Control_de_Folios_por_EspecialidadApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Control_de_Folios_por_Especialidad\IControl_de_Folios_por_EspecialidadApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Control_de_Folios_por_EspecialidadModel.cs" />
+<Compile Include="Areas\Frontal\Models\Control_de_Folios_por_EspecialidadGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Control_de_Folios_por_EspecialidadMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Control_de_Folios_por_EspecialidadController.cs" />
+<Content Include="Areas\Frontal\Views\Control_de_Folios_por_Especialidad\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Control_de_Folios_por_Especialidad\Create.cshtml" />
+<Compile Include="Resource\GetResource\Control_de_Folios_por_Especialidad.cs" />
+<Content Include="Uploads\Resources\Control_de_Folios_por_EspecialidadResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Control_de_Folios_por_EspecialidadPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Control_de_Folios_por_EspecialidadResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Control_de_Folios_por_Especialidad.js" />
+<Content Include="Scripts\Custom\Control_de_Folios_por_EspecialidadGeneral.js" />
+<Content Include="Areas\Frontal\Views\Control_de_Folios_por_Especialidad\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Control_de_Folios_por_EspecialidadAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Control_de_Folios_por_EspecialidadBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Control_de_Folios_por_EspecialidadCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Control_de_Folios_por_EspecialidadIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Control_de_Folios_por_Especialidad\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Notificaciones\NotificacionesApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Notificaciones\INotificacionesApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\NotificacionesModel.cs" />
+<Compile Include="Areas\Frontal\Models\NotificacionesGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\NotificacionesMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\NotificacionesController.cs" />
+<Content Include="Areas\Frontal\Views\Notificaciones\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Notificaciones\Create.cshtml" />
+<Compile Include="Resource\GetResource\Notificaciones.cs" />
+<Content Include="Uploads\Resources\NotificacionesResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\NotificacionesPropertyMapper.cs" />
+<Content Include="Uploads\Resources\NotificacionesResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Notificaciones.js" />
+<Content Include="Scripts\Custom\NotificacionesGeneral.js" />
+<Content Include="Areas\Frontal\Views\Notificaciones\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\NotificacionesAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\NotificacionesBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\NotificacionesCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\NotificacionesIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Notificaciones\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Estatus_Encuesta\Estatus_EncuestaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Estatus_Encuesta\IEstatus_EncuestaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_EncuestaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_EncuestaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_EncuestaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Estatus_EncuestaController.cs" />
+<Content Include="Areas\Frontal\Views\Estatus_Encuesta\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Estatus_Encuesta\Create.cshtml" />
+<Compile Include="Resource\GetResource\Estatus_Encuesta.cs" />
+<Content Include="Uploads\Resources\Estatus_EncuestaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Estatus_EncuestaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Estatus_EncuestaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Estatus_Encuesta.js" />
+<Content Include="Scripts\Custom\Estatus_EncuestaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Estatus_Encuesta\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Estatus_EncuestaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_EncuestaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Estatus_EncuestaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Estatus_EncuestaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Estatus_Encuesta\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Judicializacion\Tipo_de_JudicializacionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Judicializacion\ITipo_de_JudicializacionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_JudicializacionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_JudicializacionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_JudicializacionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_JudicializacionController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Judicializacion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Judicializacion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Judicializacion.cs" />
+<Content Include="Uploads\Resources\Tipo_de_JudicializacionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_JudicializacionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_JudicializacionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Judicializacion.js" />
+<Content Include="Scripts\Custom\Tipo_de_JudicializacionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Judicializacion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_JudicializacionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_JudicializacionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_JudicializacionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_JudicializacionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Judicializacion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Modulo_Encuesta\Modulo_EncuestaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Modulo_Encuesta\IModulo_EncuestaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Modulo_EncuestaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modulo_EncuestaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modulo_EncuestaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Modulo_EncuestaController.cs" />
+<Content Include="Areas\Frontal\Views\Modulo_Encuesta\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Modulo_Encuesta\Create.cshtml" />
+<Compile Include="Resource\GetResource\Modulo_Encuesta.cs" />
+<Content Include="Uploads\Resources\Modulo_EncuestaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Modulo_EncuestaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Modulo_EncuestaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Modulo_Encuesta.js" />
+<Content Include="Scripts\Custom\Modulo_EncuestaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Modulo_Encuesta\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Modulo_EncuestaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modulo_EncuestaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Modulo_EncuestaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Modulo_EncuestaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Modulo_Encuesta\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Generador_Folio_Encuesta\Generador_Folio_EncuestaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Generador_Folio_Encuesta\IGenerador_Folio_EncuestaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_Folio_EncuestaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_Folio_EncuestaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_Folio_EncuestaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Generador_Folio_EncuestaController.cs" />
+<Content Include="Areas\Frontal\Views\Generador_Folio_Encuesta\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Generador_Folio_Encuesta\Create.cshtml" />
+<Compile Include="Resource\GetResource\Generador_Folio_Encuesta.cs" />
+<Content Include="Uploads\Resources\Generador_Folio_EncuestaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Generador_Folio_EncuestaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Generador_Folio_EncuestaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Generador_Folio_Encuesta.js" />
+<Content Include="Scripts\Custom\Generador_Folio_EncuestaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Generador_Folio_Encuesta\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Generador_Folio_EncuestaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Generador_Folio_EncuestaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Generador_Folio_EncuestaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Generador_Folio_EncuestaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Generador_Folio_Encuesta\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -14818,6 +14978,166 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

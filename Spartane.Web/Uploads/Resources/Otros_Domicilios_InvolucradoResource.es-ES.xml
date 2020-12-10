@@ -11,6 +11,10 @@
   <resource culture="es-es" name="Entre_Calle" value="Entre Calle"></resource>
   <resource culture="es-es" name="Y_Calle" value="Y Calle"></resource>
   <resource culture="es-es" name="Numero_Exterior" value="Número Exterior"></resource>
+  <resource culture="es-es" name="Numero_Interior" value="Número Interior"></resource>
+  <resource culture="es-es" name="Coordenada_X" value="Coordenada X"></resource>
+  <resource culture="es-es" name="Coordenada_Y" value="Coordenada Y"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

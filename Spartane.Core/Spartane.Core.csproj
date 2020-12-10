@@ -1418,6 +1418,22 @@
 <Compile Include="Domain\Detalle_Medios_Prueba_Admitidos\Detalle_Medios_Prueba_Admitidos.cs" />
 <Compile Include="Domain\Detalle_Condiciones_Proceso_Penal\Detalle_Condiciones_Proceso_PenalPagingModel.cs" />
 <Compile Include="Domain\Detalle_Condiciones_Proceso_Penal\Detalle_Condiciones_Proceso_Penal.cs" />
+<Compile Include="Domain\Generador_de_NUAT\Generador_de_NUAT.cs" />
+<Compile Include="Domain\Generador_de_NUAT\Generador_de_NUATPagingModel.cs" />
+<Compile Include="Domain\Generador_de_Folios\Generador_de_Folios.cs" />
+<Compile Include="Domain\Generador_de_Folios\Generador_de_FoliosPagingModel.cs" />
+<Compile Include="Domain\Control_de_Folios_por_Especialidad\Control_de_Folios_por_Especialidad.cs" />
+<Compile Include="Domain\Control_de_Folios_por_Especialidad\Control_de_Folios_por_EspecialidadPagingModel.cs" />
+<Compile Include="Domain\Notificaciones\Notificaciones.cs" />
+<Compile Include="Domain\Notificaciones\NotificacionesPagingModel.cs" />
+<Compile Include="Domain\Estatus_Encuesta\Estatus_Encuesta.cs" />
+<Compile Include="Domain\Estatus_Encuesta\Estatus_EncuestaPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Judicializacion\Tipo_de_Judicializacion.cs" />
+<Compile Include="Domain\Tipo_de_Judicializacion\Tipo_de_JudicializacionPagingModel.cs" />
+<Compile Include="Domain\Modulo_Encuesta\Modulo_Encuesta.cs" />
+<Compile Include="Domain\Modulo_Encuesta\Modulo_EncuestaPagingModel.cs" />
+<Compile Include="Domain\Generador_Folio_Encuesta\Generador_Folio_Encuesta.cs" />
+<Compile Include="Domain\Generador_Folio_Encuesta\Generador_Folio_EncuestaPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1438,6 +1454,22 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -4,6 +4,30 @@
   <resource culture="en-US" name="Clave" value="Clave"></resource>
   <resource culture="en-US" name="Nombre_Completo" value="Nombre Completo"></resource>
   <resource culture="en-US" name="Registro_de_Atencion_Inicial" value="Registro de Atención Inicial"></resource>
+  <resource culture="en-US" name="AVPR_NAVPR" value="AVPR_NAVPR"></resource>
+  <resource culture="en-US" name="AVPR_APBIS" value="AVPR_APBIS"></resource>
+  <resource culture="en-US" name="AVPR_CVEMU" value="AVPR_CVEMU"></resource>
+  <resource culture="en-US" name="AVPR_CVEAG" value="AVPR_CVEAG"></resource>
+  <resource culture="en-US" name="OFEN_CONOF" value="OFEN_CONOF"></resource>
+  <resource culture="en-US" name="OFEN_OPATE" value="OFEN_OPATE"></resource>
+  <resource culture="en-US" name="OFEN_OMATE" value="OFEN_OMATE"></resource>
+  <resource culture="en-US" name="OFEN_ONOMB" value="OFEN_ONOMB"></resource>
+  <resource culture="en-US" name="OFEN_INSTI" value="OFEN_INSTI"></resource>
+  <resource culture="en-US" name="OFEN_ESTAD" value="OFEN_ESTAD"></resource>
+  <resource culture="en-US" name="OFEN_EDAD" value="OFEN_EDAD"></resource>
+  <resource culture="en-US" name="OFEN_OCUPA" value="OFEN_OCUPA"></resource>
+  <resource culture="en-US" name="FECHAREGIS" value="FECHAREGIS"></resource>
+  <resource culture="en-US" name="USUARIO" value="USUARIO"></resource>
+  <resource culture="en-US" name="HORAREGIST" value="HORAREGIST"></resource>
+  <resource culture="en-US" name="fuente" value="fuente"></resource>
+  <resource culture="en-US" name="fecenvio" value="fecenvio"></resource>
+  <resource culture="en-US" name="OFEN_PROBABLE" value="OFEN_PROBABLE"></resource>
+  <resource culture="en-US" name="OFEN_RSOMENOR" value="OFEN_RSOMENOR"></resource>
+  <resource culture="en-US" name="REPR_Sexo" value="REPR_Sexo"></resource>
+  <resource culture="en-US" name="REPR_NACIONALIDAD" value="REPR_NACIONALIDAD"></resource>
+  <resource culture="en-US" name="REPR_ESCOLARIDAD" value="REPR_ESCOLARIDAD"></resource>
+  <resource culture="en-US" name="TIPO_EDAD" value="TIPO_EDAD"></resource>
+  <resource culture="en-US" name="IdEstadoInstitucion" value="IdEstadoInstitucion"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

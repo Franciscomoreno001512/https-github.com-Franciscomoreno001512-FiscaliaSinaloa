@@ -20,6 +20,7 @@ namespace Spartane.Web.Areas.Frontal.Models
             Incompleto = RadioOptions.NoApply;
             Incapaz = RadioOptions.NoApply;
             Se_Informaron_sobre_sus_Derechos = RadioOptions.NoApply;
+            Gravidez = RadioOptions.NoApply;
             Documento_Extraviado = RadioOptions.NoApply;
             Imagen_Tatuaje = RadioOptions.NoApply;
 
@@ -267,6 +268,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Especifique { set; get; }
 
         public RadioOptions Se_Informaron_sobre_sus_Derechos { set; get; }
+
+        public RadioOptions Gravidez { set; get; }
 
         public Filters Discapacidad_MentalFilter { set; get; }
         public string AdvanceDiscapacidad_Mental { set; get; }
@@ -561,6 +564,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Largo_de_CabelloFilter { set; get; }
         public string AdvanceLargo_de_Cabello { set; get; }
         public int[] AdvanceLargo_de_CabelloMultiple { set; get; }
+
+        public Filters Forma_de_CabelloFilter { set; get; }
+        public string AdvanceForma_de_Cabello { set; get; }
+        public int[] AdvanceForma_de_CabelloMultiple { set; get; }
 
         public Filters Color_CabelloFilter { set; get; }
         public string AdvanceColor_Cabello { set; get; }

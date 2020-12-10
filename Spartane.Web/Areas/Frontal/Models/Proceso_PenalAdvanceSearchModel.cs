@@ -48,6 +48,15 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvancePlazo_Constitucional { set; get; }
         public int[] AdvancePlazo_ConstitucionalMultiple { set; get; }
 
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        public string FromFecha_Continuacion_Audiencia { set; get; }
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("FromFecha_Continuacion_Audiencia", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToFecha_Continuacion_Audiencia { set; get; }
+
+        public string ToHora_Continuacion_Audiencia { set; get; }
+        public string FromHora_Continuacion_Audiencia { set; get; }
+
         public Filters VinculacionFilter { set; get; }
         public string AdvanceVinculacion { set; get; }
         public int[] AdvanceVinculacionMultiple { set; get; }
@@ -60,14 +69,20 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceResultado_Vinculacion { set; get; }
         public int[] AdvanceResultado_VinculacionMultiple { set; get; }
 
-        public Filters plazo_investigacion_complementariaFilter { set; get; }
-        public string Advanceplazo_investigacion_complementaria { set; get; }
-        public int[] Advanceplazo_investigacion_complementariaMultiple { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string Fromplazo_investigacion_complementaria { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("Fromplazo_investigacion_complementaria", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string Toplazo_investigacion_complementaria { set; get; }
 
-        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public Filters Resultado_de_Investigacion_ComplementariFilter { set; get; }
+        public string AdvanceResultado_de_Investigacion_Complementari { set; get; }
+        public int[] AdvanceResultado_de_Investigacion_ComplementariMultiple { set; get; }
+
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
         public string Fromfecha_investigacion_complementaria { set; get; }
-        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
-        [IsNumberAfterAttribute("Fromfecha_investigacion_complementaria", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
+        [IsDateAfter("Fromfecha_investigacion_complementaria", true, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string Tofecha_investigacion_complementaria { set; get; }
 
         public string Tohora_investigacion_complementaria { set; get; }

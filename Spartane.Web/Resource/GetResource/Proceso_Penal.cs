@@ -116,6 +116,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Fecha_Continuacion_Audiencia</summary>
+        public static string Fecha_Continuacion_Audiencia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderProceso_Penal.GetResource("Fecha_Continuacion_Audiencia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_Continuacion_Audiencia</summary>
+        public static string Hora_Continuacion_Audiencia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderProceso_Penal.GetResource("Hora_Continuacion_Audiencia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Vinculacion</summary>
         public static string Vinculacion
         {
@@ -153,6 +173,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderProceso_Penal.GetResource("plazo_investigacion_complementaria", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Resultado_de_Investigacion_Complementari</summary>
+        public static string Resultado_de_Investigacion_Complementari
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderProceso_Penal.GetResource("Resultado_de_Investigacion_Complementari", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

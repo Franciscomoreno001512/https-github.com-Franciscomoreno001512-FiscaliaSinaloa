@@ -9,7 +9,7 @@
 @using Spartane.Core.Domain.Vinculacion_a_Proceso;
 @using Spartane.Core.Domain.Continuacion_de_Proceso;
 @using Spartane.Core.Domain.Auto_de_Vinculacion_a_Proceso;
-@using Spartane.Core.Domain.Plazo_de_Investigacion_Complementaria;
+@using Spartane.Core.Domain.Resultado_de_Investigacion_Complementaria;
 @using Spartane.Core.Domain.A_Tiempo;
 @using Spartane.Core.Domain.A_Tiempo;
 @using Spartane.Core.Domain.A_Tiempo;
@@ -221,10 +221,13 @@
                                     <th>@Resources.Proceso_PenalResources.Imputado</th>
                                     <th>@Resources.Proceso_PenalResources.Reclasificacion_Juridica</th>
                                     <th>@Resources.Proceso_PenalResources.Plazo_Constitucional</th>
+                                    <th>@Resources.Proceso_PenalResources.Fecha_Continuacion_Audiencia</th>
+                                    <th>@Resources.Proceso_PenalResources.Hora_Continuacion_Audiencia</th>
                                     <th>@Resources.Proceso_PenalResources.Vinculacion</th>
                                     <th>@Resources.Proceso_PenalResources.Resultado_No_Vinculacion</th>
                                     <th>@Resources.Proceso_PenalResources.Resultado_Vinculacion</th>
                                     <th>@Resources.Proceso_PenalResources.plazo_investigacion_complementaria</th>
+                                    <th>@Resources.Proceso_PenalResources.Resultado_de_Investigacion_Complementari</th>
                                     <th>@Resources.Proceso_PenalResources.fecha_investigacion_complementaria</th>
                                     <th>@Resources.Proceso_PenalResources.hora_investigacion_complementaria</th>
                                     <th>@Resources.Proceso_PenalResources.Nombre_del_Juez_de_Control</th>
@@ -268,11 +271,14 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
@@ -424,11 +430,14 @@
         var Imputado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Reclasificacion_Juridica =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Plazo_Constitucional =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_Continuacion_Audiencia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Continuacion_Audiencia = $($('table td .filterData.form-control:input')[counter++]).val();
         var Vinculacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Resultado_No_Vinculacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Resultado_Vinculacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var plazo_investigacion_complementaria =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var fecha_investigacion_complementaria =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resultado_de_Investigacion_Complementari =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var fecha_investigacion_complementaria = $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_investigacion_complementaria = $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombre_del_Juez_de_Control =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Entrega_de_Escrito_de_Acusacion = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -467,10 +476,13 @@
         + "&Imputado=" + Imputado
         + "&Reclasificacion_Juridica=" + Reclasificacion_Juridica
         + "&Plazo_Constitucional=" + Plazo_Constitucional
+        + "&Fecha_Continuacion_Audiencia=" + Fecha_Continuacion_Audiencia
+        + "&Hora_Continuacion_Audiencia=" + Hora_Continuacion_Audiencia
         + "&Vinculacion=" + Vinculacion
         + "&Resultado_No_Vinculacion=" + Resultado_No_Vinculacion
         + "&Resultado_Vinculacion=" + Resultado_Vinculacion
         + "&plazo_investigacion_complementaria=" + plazo_investigacion_complementaria
+        + "&Resultado_de_Investigacion_Complementari=" + Resultado_de_Investigacion_Complementari
         + "&fecha_investigacion_complementaria=" + fecha_investigacion_complementaria
         + "&hora_investigacion_complementaria=" + hora_investigacion_complementaria
         + "&Nombre_del_Juez_de_Control=" + Nombre_del_Juez_de_Control
@@ -521,11 +533,14 @@
         var Imputado =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Reclasificacion_Juridica =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Plazo_Constitucional =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_Continuacion_Audiencia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_Continuacion_Audiencia = $($('table td .filterData.form-control:input')[counter++]).val();
         var Vinculacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Resultado_No_Vinculacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Resultado_Vinculacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var plazo_investigacion_complementaria =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var fecha_investigacion_complementaria =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resultado_de_Investigacion_Complementari =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var fecha_investigacion_complementaria = $($('table td .filterData.form-control:input')[counter++]).val();
         var hora_investigacion_complementaria = $($('table td .filterData.form-control:input')[counter++]).val();
         var Nombre_del_Juez_de_Control =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Entrega_de_Escrito_de_Acusacion = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -564,10 +579,13 @@
         + "&Imputado=" + Imputado
         + "&Reclasificacion_Juridica=" + Reclasificacion_Juridica
         + "&Plazo_Constitucional=" + Plazo_Constitucional
+        + "&Fecha_Continuacion_Audiencia=" + Fecha_Continuacion_Audiencia
+        + "&Hora_Continuacion_Audiencia=" + Hora_Continuacion_Audiencia
         + "&Vinculacion=" + Vinculacion
         + "&Resultado_No_Vinculacion=" + Resultado_No_Vinculacion
         + "&Resultado_Vinculacion=" + Resultado_Vinculacion
         + "&plazo_investigacion_complementaria=" + plazo_investigacion_complementaria
+        + "&Resultado_de_Investigacion_Complementari=" + Resultado_de_Investigacion_Complementari
         + "&fecha_investigacion_complementaria=" + fecha_investigacion_complementaria
         + "&hora_investigacion_complementaria=" + hora_investigacion_complementaria
         + "&Nombre_del_Juez_de_Control=" + Nombre_del_Juez_de_Control
@@ -777,11 +795,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -852,11 +870,14 @@
                 ,{ "data": "ImputadoNombre_Completo_Detenido", "orderable": true, "name": "ImputadoNombre_Completo_Detenido"}
                 ,{ "data": "Reclasificacion_JuridicaDescripcion", "orderable": true, "name": "Reclasificacion_JuridicaDescripcion" }
                 ,{ "data": "Plazo_ConstitucionalDescripcion", "orderable": true, "name": "Plazo_ConstitucionalDescripcion" }
+                ,{ "data": "Fecha_Continuacion_Audiencia", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_Continuacion_Audiencia" }
+                ,{ "data": "Hora_Continuacion_Audiencia", "orderable": true, "name": "Hora_Continuacion_Audiencia" }
                 ,{ "data": "VinculacionDescripcion", "orderable": true, "name": "VinculacionDescripcion" }
                 ,{ "data": "Resultado_No_VinculacionDescripcion", "orderable": true, "name": "Resultado_No_VinculacionDescripcion" }
                 ,{ "data": "Resultado_VinculacionDescripcion", "orderable": true, "name": "Resultado_VinculacionDescripcion" }
-                ,{ "data": "plazo_investigacion_complementariaDescripcion", "orderable": true, "name": "plazo_investigacion_complementariaDescripcion" }
-                ,{ "data": "fecha_investigacion_complementaria","className": "dt-right", "orderable": true, "name": "fecha_investigacion_complementaria" }
+                ,{ "data": "plazo_investigacion_complementaria","className": "dt-right", "orderable": true, "name": "plazo_investigacion_complementaria" }
+                ,{ "data": "Resultado_de_Investigacion_ComplementariDescripcion", "orderable": true, "name": "Resultado_de_Investigacion_ComplementariDescripcion" }
+                ,{ "data": "fecha_investigacion_complementaria", "orderable": true, "searchable": true, "type": "date", "name": "fecha_investigacion_complementaria" }
                 ,{ "data": "hora_investigacion_complementaria", "orderable": true, "name": "hora_investigacion_complementaria" }
                 ,{ "data": "Nombre_del_Juez_de_Control", "orderable": true, "name": "Nombre_del_Juez_de_Control", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Fecha_de_Entrega_de_Escrito_de_Acusacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Entrega_de_Escrito_de_Acusacion" }

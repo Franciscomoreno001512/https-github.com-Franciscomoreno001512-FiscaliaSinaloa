@@ -1309,6 +1309,22 @@
 <Compile Include="Detalle_Medios_Prueba_Admitidos\Detalle_Medios_Prueba_AdmitidosService.cs" />
 <Compile Include="Detalle_Condiciones_Proceso_Penal\IDetalle_Condiciones_Proceso_PenalService.cs" />
 <Compile Include="Detalle_Condiciones_Proceso_Penal\Detalle_Condiciones_Proceso_PenalService.cs" />
+<Compile Include="Generador_de_NUAT\IGenerador_de_NUATService.cs" />
+<Compile Include="Generador_de_NUAT\Generador_de_NUATService.cs" />
+<Compile Include="Generador_de_Folios\IGenerador_de_FoliosService.cs" />
+<Compile Include="Generador_de_Folios\Generador_de_FoliosService.cs" />
+<Compile Include="Control_de_Folios_por_Especialidad\IControl_de_Folios_por_EspecialidadService.cs" />
+<Compile Include="Control_de_Folios_por_Especialidad\Control_de_Folios_por_EspecialidadService.cs" />
+<Compile Include="Notificaciones\INotificacionesService.cs" />
+<Compile Include="Notificaciones\NotificacionesService.cs" />
+<Compile Include="Estatus_Encuesta\IEstatus_EncuestaService.cs" />
+<Compile Include="Estatus_Encuesta\Estatus_EncuestaService.cs" />
+<Compile Include="Tipo_de_Judicializacion\ITipo_de_JudicializacionService.cs" />
+<Compile Include="Tipo_de_Judicializacion\Tipo_de_JudicializacionService.cs" />
+<Compile Include="Modulo_Encuesta\IModulo_EncuestaService.cs" />
+<Compile Include="Modulo_Encuesta\Modulo_EncuestaService.cs" />
+<Compile Include="Generador_Folio_Encuesta\IGenerador_Folio_EncuestaService.cs" />
+<Compile Include="Generador_Folio_Encuesta\Generador_Folio_EncuestaService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1408,6 +1424,22 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

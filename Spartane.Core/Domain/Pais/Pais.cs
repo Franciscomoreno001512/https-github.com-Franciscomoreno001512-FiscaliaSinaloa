@@ -20,6 +20,8 @@ namespace Spartane.Core.Domain.Pais
         public string Nombre { get; set; }
         public int? Vigencia { get; set; }
         public string Observaciones { get; set; }
+        public string Nacionalidad { get; set; }
+        public string Abrevia { get; set; }
 
         [ForeignKey("Vigencia")]
         public virtual Spartane.Core.Domain.Vigencia.Vigencia Vigencia_Vigencia { get; set; }
@@ -32,6 +34,8 @@ namespace Spartane.Core.Domain.Pais
         public string Nombre { get; set; }
         public int? Vigencia { get; set; }
         public string Observaciones { get; set; }
+        public string Nacionalidad { get; set; }
+        public string Abrevia { get; set; }
 
 		        [ForeignKey("Vigencia")]
         public virtual Spartane.Core.Domain.Vigencia.Vigencia Vigencia_Vigencia { get; set; }

@@ -251,36 +251,6 @@ public ApiResponse<int> Update_Hechos(expediente_ministerio_publico_Hechos entit
             }
         }
 
-public ApiResponse<int> Update_Canalizar(expediente_ministerio_publico_Canalizar entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Canalizar",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<expediente_ministerio_publico_Canalizar> Get_Canalizar(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Canalizar>(baseApi, ApiControllerUrl + "/Get_Canalizar?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Canalizar>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico_Canalizar>(false, null);
-            }
-        }
-
 public ApiResponse<int> Update_Datos_del_Acuerdo(expediente_ministerio_publico_Datos_del_Acuerdo entity)
         {
             try

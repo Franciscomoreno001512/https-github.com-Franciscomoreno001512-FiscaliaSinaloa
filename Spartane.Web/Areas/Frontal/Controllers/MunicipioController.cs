@@ -169,6 +169,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = MunicipioData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(MunicipioData.Vigencia), "Vigencia") ??  (string)MunicipioData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = MunicipioData.Observaciones
+                    ,cod_pais = MunicipioData.cod_pais
+                    ,cod_zona = MunicipioData.cod_zona
+                    ,MuniNSJP = MunicipioData.MuniNSJP
+                    ,cod_zona_nsjp = MunicipioData.cod_zona_nsjp
+                    ,cod_mun = MunicipioData.cod_mun
 
 					};
 				}
@@ -255,6 +260,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = MunicipioData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(MunicipioData.Vigencia), "Vigencia") ??  (string)MunicipioData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = MunicipioData.Observaciones
+                    ,cod_pais = MunicipioData.cod_pais
+                    ,cod_zona = MunicipioData.cod_zona
+                    ,MuniNSJP = MunicipioData.MuniNSJP
+                    ,cod_zona_nsjp = MunicipioData.cod_zona_nsjp
+                    ,cod_mun = MunicipioData.cod_mun
 
 					};
 				}
@@ -433,6 +443,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,cod_pais = m.cod_pais
+			,cod_zona = m.cod_zona
+			,MuniNSJP = m.MuniNSJP
+			,cod_zona_nsjp = m.cod_zona_nsjp
+			,cod_mun = m.cod_mun
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -552,6 +567,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,cod_pais = m.cod_pais
+			,cod_zona = m.cod_zona
+			,MuniNSJP = m.MuniNSJP
+			,cod_zona_nsjp = m.cod_zona_nsjp
+			,cod_mun = m.cod_mun
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -727,6 +747,74 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.Fromcod_pais) || !string.IsNullOrEmpty(filter.Tocod_pais))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromcod_pais))
+                    where += " AND Municipio.cod_pais >= " + filter.Fromcod_pais;
+                if (!string.IsNullOrEmpty(filter.Tocod_pais))
+                    where += " AND Municipio.cod_pais <= " + filter.Tocod_pais;
+            }
+
+            if (!string.IsNullOrEmpty(filter.cod_zona))
+            {
+                switch (filter.cod_zonaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Municipio.cod_zona LIKE '" + filter.cod_zona + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Municipio.cod_zona LIKE '%" + filter.cod_zona + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Municipio.cod_zona = '" + filter.cod_zona + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Municipio.cod_zona LIKE '%" + filter.cod_zona + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.MuniNSJP))
+            {
+                switch (filter.MuniNSJPFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Municipio.MuniNSJP LIKE '" + filter.MuniNSJP + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Municipio.MuniNSJP LIKE '%" + filter.MuniNSJP + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Municipio.MuniNSJP = '" + filter.MuniNSJP + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Municipio.MuniNSJP LIKE '%" + filter.MuniNSJP + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromcod_zona_nsjp) || !string.IsNullOrEmpty(filter.Tocod_zona_nsjp))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromcod_zona_nsjp))
+                    where += " AND Municipio.cod_zona_nsjp >= " + filter.Fromcod_zona_nsjp;
+                if (!string.IsNullOrEmpty(filter.Tocod_zona_nsjp))
+                    where += " AND Municipio.cod_zona_nsjp <= " + filter.Tocod_zona_nsjp;
+            }
+
+            if (!string.IsNullOrEmpty(filter.Fromcod_mun) || !string.IsNullOrEmpty(filter.Tocod_mun))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromcod_mun))
+                    where += " AND Municipio.cod_mun >= " + filter.Fromcod_mun;
+                if (!string.IsNullOrEmpty(filter.Tocod_mun))
+                    where += " AND Municipio.cod_mun <= " + filter.Tocod_mun;
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -787,6 +875,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Estado = varMunicipio.Estado
                         ,Vigencia = varMunicipio.Vigencia
                         ,Observaciones = varMunicipio.Observaciones
+                        ,cod_pais = varMunicipio.cod_pais
+                        ,cod_zona = varMunicipio.cod_zona
+                        ,MuniNSJP = varMunicipio.MuniNSJP
+                        ,cod_zona_nsjp = varMunicipio.cod_zona_nsjp
+                        ,cod_mun = varMunicipio.cod_mun
 
                     };
 
@@ -1179,6 +1272,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,cod_pais = m.cod_pais
+			,cod_zona = m.cod_zona
+			,MuniNSJP = m.MuniNSJP
+			,cod_zona_nsjp = m.cod_zona_nsjp
+			,cod_mun = m.cod_mun
 
             }).ToList();
 
@@ -1257,6 +1355,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Estado") ?? (string)m.Estado_Estado.Nombre
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,cod_pais = m.cod_pais
+			,cod_zona = m.cod_zona
+			,MuniNSJP = m.MuniNSJP
+			,cod_zona_nsjp = m.cod_zona_nsjp
+			,cod_mun = m.cod_mun
 
             }).ToList();
 
@@ -1301,6 +1404,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Estado = varMunicipio.Estado
                         ,Vigencia = varMunicipio.Vigencia
                         ,Observaciones = varMunicipio.Observaciones
+                        ,cod_pais = varMunicipio.cod_pais
+                        ,cod_zona = varMunicipio.cod_zona
+                        ,MuniNSJP = varMunicipio.MuniNSJP
+                        ,cod_zona_nsjp = varMunicipio.cod_zona_nsjp
+                        ,cod_mun = varMunicipio.cod_mun
                     
                 };
 
@@ -1336,6 +1444,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Vigencia = m.Vigencia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,cod_pais = m.cod_pais
+			,cod_zona = m.cod_zona
+			,MuniNSJP = m.MuniNSJP
+			,cod_zona_nsjp = m.cod_zona_nsjp
+			,cod_mun = m.cod_mun
 
                     
                 };

@@ -59,12 +59,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Y_Calle { get; set; }
         public string LongitudH { get; set; }
         public string LatitudH { get; set; }
-        public string Fecha_de_Canalizacion { get; set; }
-        public string Hora_de_Canalizacion { get; set; }
-        public int? usuario_que_canaliza { get; set; }
-        public string usuario_que_canalizaName { get; set; }
-        public int? canalizar_a { get; set; }
-        public string canalizar_aDescripcion { get; set; }
         public int? tipo_de_acuerdo { get; set; }
         public string tipo_de_acuerdoDescripcion { get; set; }
         public string fecha_de_inicio_de_acuerdo { get; set; }
@@ -148,19 +142,6 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Y_Calle { get; set; }
         public string LongitudH { get; set; }
         public string LatitudH { get; set; }
-
-    }
-
-	public class expediente_ministerio_publico_CanalizarModel
-    {
-        [Required]
-        public int clave { get; set; }
-        public string Fecha_de_Canalizacion { get; set; }
-        public string Hora_de_Canalizacion { get; set; }
-        public int? usuario_que_canaliza { get; set; }
-        public string usuario_que_canalizaName { get; set; }
-        public int? canalizar_a { get; set; }
-        public string canalizar_aDescripcion { get; set; }
 
     }
 

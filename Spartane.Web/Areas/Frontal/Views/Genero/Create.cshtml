@@ -162,6 +162,20 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divsexo">
+                                <label class="col-sm-2 control-label">@Resources.GeneroResources.sexo</label>
+                                <div class="col-sm-8" data-field-id="sexo" data-attribute="267829" data-field-name="@Resources.GeneroResources.sexo">
+                                    <input class="form-control Datos_Generales" id="sexo" name="sexo" type="text" value="@Model.sexo">
+                                    @*<span class="field-validation-valid" data-valmsg-for="sexo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divInicial">
+                                <label class="col-sm-2 control-label">@Resources.GeneroResources.Inicial</label>
+                                <div class="col-sm-8" data-field-id="Inicial" data-attribute="267830" data-field-name="@Resources.GeneroResources.Inicial">
+                                    <input class="form-control Datos_Generales" id="Inicial" name="Inicial" type="text" value="@Model.Inicial">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Inicial" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -595,6 +609,8 @@
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Descripcion').val(result.data.Descripcion);
+                    $('#sexo').val(result.data.sexo);
+                    $('#Inicial').val(result.data.Inicial);
 
                 },
                 error: function (result) {
@@ -607,6 +623,8 @@
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Descripcion', $('#Descripcion').val());
+                data.append('sexo', $('#sexo').val());
+                data.append('Inicial', $('#Inicial').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Genero/Post_Datos_Generales")',

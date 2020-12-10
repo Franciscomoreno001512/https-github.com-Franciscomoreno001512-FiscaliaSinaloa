@@ -69,6 +69,7 @@
   <resource culture="es-es" name="Tipo_de_Inimputabilidad" value="Tipo de Inimputabilidad"></resource>
   <resource culture="es-es" name="Especifique" value="Especifique"></resource>
   <resource culture="es-es" name="Se_Informaron_sobre_sus_Derechos" value="Lectura de Derechos"></resource>
+  <resource culture="es-es" name="Gravidez" value="Gravidez"></resource>
   <resource culture="es-es" name="Adicciones_de_Involucrado" value="Adicciones de Involucrado"></resource>
   <resource culture="es-es" name="Lugares_que_Frecuenta" value="Lugares que Frecuenta"></resource>
   <resource culture="es-es" name="Datos_Personales_Adicionales" value="Datos Personales Adicionales"></resource>
@@ -154,6 +155,7 @@
   <resource culture="es-es" name="Color_Piel" value="Color Piel"></resource>
   <resource culture="es-es" name="Frente" value="Frente"></resource>
   <resource culture="es-es" name="Largo_de_Cabello" value="Largo de Cabello"></resource>
+  <resource culture="es-es" name="Forma_de_Cabello" value="Forma de Cabello"></resource>
   <resource culture="es-es" name="Color_Cabello" value="Color Cabello"></resource>
   <resource culture="es-es" name="Calvicie" value="Calvicie"></resource>
   <resource culture="es-es" name="Color_Ojos" value="Color Ojos"></resource>

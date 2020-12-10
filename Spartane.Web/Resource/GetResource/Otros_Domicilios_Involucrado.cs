@@ -126,6 +126,46 @@ namespace Resources
             }
         }
 
+        /// <summary>Numero_Interior</summary>
+        public static string Numero_Interior
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderOtros_Domicilios_Involucrado.GetResource("Numero_Interior", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Coordenada_X</summary>
+        public static string Coordenada_X
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderOtros_Domicilios_Involucrado.GetResource("Coordenada_X", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Coordenada_Y</summary>
+        public static string Coordenada_Y
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderOtros_Domicilios_Involucrado.GetResource("Coordenada_Y", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Observaciones</summary>
+        public static string Observaciones
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderOtros_Domicilios_Involucrado.GetResource("Observaciones", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderOtros_Domicilios_Involucrado.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

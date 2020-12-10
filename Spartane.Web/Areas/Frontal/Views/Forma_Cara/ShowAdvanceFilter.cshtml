@@ -59,6 +59,17 @@
                     @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
                     @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
                 </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Forma_CaraResources.LLAVE</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromLLAVE, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromLLAVE" })
+                    @Html.ValidationMessageFor(m => m.FromLLAVE)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToLLAVE, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToLLAVE", @data_min = "txtAdvanceFromLLAVE" })
+                    @Html.ValidationMessageFor(m => m.ToLLAVE)
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Forma_Cara/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -80,6 +91,11 @@
             hasParameter = true;
             advanceSearch.Forma_CaraDescripcion = $("#txtAdvanceDescripcion").val();
             advanceSearch.Forma_CaraDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
+        }
+        if ($("#txtAdvanceFromLLAVE").val() != "" || $("#txtAdvanceToLLAVE").val() != "") {
+            hasParameter = true;
+            advanceSearch.Forma_CaraLLAVEFrom = $("#txtAdvanceFromLLAVE").val();
+            advanceSearch.Forma_CaraLLAVETo = $("#txtAdvanceToLLAVE").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

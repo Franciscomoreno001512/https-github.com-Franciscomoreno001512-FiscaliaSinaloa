@@ -19,6 +19,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Usuario_que_Registra { get; set; }
         public string Usuario_que_RegistraName { get; set; }
         public string Nombre_del_Juez_de_Control { get; set; }
+        public int? Tipo { get; set; }
+        public string TipoDescripcion { get; set; }
         public string causa_penal { get; set; }
         public string Fecha_Audiencia_Inicial { get; set; }
         public string Hora_Audiencia_Inicial { get; set; }
@@ -47,6 +49,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Usuario_que_Registra { get; set; }
         public string Usuario_que_RegistraName { get; set; }
         public string Nombre_del_Juez_de_Control { get; set; }
+        public int? Tipo { get; set; }
+        public string TipoDescripcion { get; set; }
         public string causa_penal { get; set; }
         public string Fecha_Audiencia_Inicial { get; set; }
         public string Hora_Audiencia_Inicial { get; set; }

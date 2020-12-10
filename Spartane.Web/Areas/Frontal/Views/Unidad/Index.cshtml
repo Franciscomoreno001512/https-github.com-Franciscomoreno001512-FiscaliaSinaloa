@@ -3,6 +3,7 @@
 @using Spartane.Core.Domain.Unidad;
 @using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Region;
+@using Spartane.Core.Domain.Especialidad_MP;
 @using Spartane.Core.Domain.Vigencia;
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Tipo_de_Asignacion_de_MP;
@@ -208,12 +209,28 @@
                                     <th>@Resources.UnidadResources.Abreviacion</th>
                                     <th>@Resources.UnidadResources.Descripcion</th>
                                     <th>@Resources.UnidadResources.Descripcion_Corta</th>
+                                    <th>@Resources.UnidadResources.Especialidad</th>
                                     <th>@Resources.UnidadResources.Vigencia</th>
                                     <th>@Resources.UnidadResources.Direccion</th>
                                     <th>@Resources.UnidadResources.Observaciones</th>
                                     <th>@Resources.UnidadResources.Supervisor</th>
                                     <th>@Resources.UnidadResources.Consecutivo_CDI</th>
                                     <th>@Resources.UnidadResources.Tipo_de_Asignacion_de_MP</th>
+                                    <th>@Resources.UnidadResources.cod_pais</th>
+                                    <th>@Resources.UnidadResources.cod_edo</th>
+                                    <th>@Resources.UnidadResources.cod_agencia</th>
+                                    <th>@Resources.UnidadResources.FTIPO</th>
+                                    <th>@Resources.UnidadResources.fcreada</th>
+                                    <th>@Resources.UnidadResources.fbaja</th>
+                                    <th>@Resources.UnidadResources.ULTAVREGIS</th>
+                                    <th>@Resources.UnidadResources.FUBICACION</th>
+                                    <th>@Resources.UnidadResources.vr_agen</th>
+                                    <th>@Resources.UnidadResources.Especial</th>
+                                    <th>@Resources.UnidadResources.AgenAV</th>
+                                    <th>@Resources.UnidadResources.AgenUni_NSJP</th>
+                                    <th>@Resources.UnidadResources.Nomenclatura</th>
+                                    <th>@Resources.UnidadResources.Alcance</th>
+                                    <th>@Resources.UnidadResources.ReceptorDeclinaciones</th>
 
                                 </tr>
                             </thead>
@@ -231,8 +248,24 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
 
                                 </tr>
                             </tfoot>
@@ -355,12 +388,28 @@
         var Abreviacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Descripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Descripcion_Corta =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Especialidad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Vigencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Direccion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Supervisor =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Consecutivo_CDI =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Asignacion_de_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_pais =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_edo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_agencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var FTIPO =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var fcreada = $($('table td .filterData.form-control:input')[counter++]).val();
+        var fbaja = $($('table td .filterData.form-control:input')[counter++]).val();
+        var ULTAVREGIS =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var FUBICACION =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var vr_agen =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Especial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var AgenAV =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var AgenUni_NSJP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nomenclatura =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Alcance =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ReceptorDeclinaciones = $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -370,12 +419,28 @@
         + "&Abreviacion=" + Abreviacion
         + "&Descripcion=" + Descripcion
         + "&Descripcion_Corta=" + Descripcion_Corta
+        + "&Especialidad=" + Especialidad
         + "&Vigencia=" + Vigencia
         + "&Direccion=" + Direccion
         + "&Observaciones=" + Observaciones
         + "&Supervisor=" + Supervisor
         + "&Consecutivo_CDI=" + Consecutivo_CDI
         + "&Tipo_de_Asignacion_de_MP=" + Tipo_de_Asignacion_de_MP
+        + "&cod_pais=" + cod_pais
+        + "&cod_edo=" + cod_edo
+        + "&cod_agencia=" + cod_agencia
+        + "&FTIPO=" + FTIPO
+        + "&fcreada=" + fcreada
+        + "&fbaja=" + fbaja
+        + "&ULTAVREGIS=" + ULTAVREGIS
+        + "&FUBICACION=" + FUBICACION
+        + "&vr_agen=" + vr_agen
+        + "&Especial=" + Especial
+        + "&AgenAV=" + AgenAV
+        + "&AgenUni_NSJP=" + AgenUni_NSJP
+        + "&Nomenclatura=" + Nomenclatura
+        + "&Alcance=" + Alcance
+        + "&ReceptorDeclinaciones=" + ReceptorDeclinaciones
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Unidad/Export?format=")" + format
@@ -396,12 +461,28 @@
         var Abreviacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Descripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Descripcion_Corta =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Especialidad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Vigencia =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Direccion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Supervisor =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Consecutivo_CDI =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Asignacion_de_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_pais =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_edo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var cod_agencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var FTIPO =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var fcreada = $($('table td .filterData.form-control:input')[counter++]).val();
+        var fbaja = $($('table td .filterData.form-control:input')[counter++]).val();
+        var ULTAVREGIS =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var FUBICACION =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var vr_agen =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Especial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var AgenAV =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var AgenUni_NSJP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Nomenclatura =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Alcance =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var ReceptorDeclinaciones = $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -411,12 +492,28 @@
         + "&Abreviacion=" + Abreviacion
         + "&Descripcion=" + Descripcion
         + "&Descripcion_Corta=" + Descripcion_Corta
+        + "&Especialidad=" + Especialidad
         + "&Vigencia=" + Vigencia
         + "&Direccion=" + Direccion
         + "&Observaciones=" + Observaciones
         + "&Supervisor=" + Supervisor
         + "&Consecutivo_CDI=" + Consecutivo_CDI
         + "&Tipo_de_Asignacion_de_MP=" + Tipo_de_Asignacion_de_MP
+        + "&cod_pais=" + cod_pais
+        + "&cod_edo=" + cod_edo
+        + "&cod_agencia=" + cod_agencia
+        + "&FTIPO=" + FTIPO
+        + "&fcreada=" + fcreada
+        + "&fbaja=" + fbaja
+        + "&ULTAVREGIS=" + ULTAVREGIS
+        + "&FUBICACION=" + FUBICACION
+        + "&vr_agen=" + vr_agen
+        + "&Especial=" + Especial
+        + "&AgenAV=" + AgenAV
+        + "&AgenUni_NSJP=" + AgenUni_NSJP
+        + "&Nomenclatura=" + Nomenclatura
+        + "&Alcance=" + Alcance
+        + "&ReceptorDeclinaciones=" + ReceptorDeclinaciones
 ;
 
     }
@@ -597,11 +694,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -671,12 +768,28 @@
                 ,{ "data": "Abreviacion", "orderable": true, "name": "Abreviacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Descripcion", "orderable": true, "name": "Descripcion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Descripcion_Corta", "orderable": true, "name": "Descripcion_Corta", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "EspecialidadDescripcion", "orderable": true, "name": "EspecialidadDescripcion" }
                 ,{ "data": "VigenciaAbreviacion", "orderable": true, "name": "VigenciaAbreviacion" }
                 ,{ "data": "Direccion", "orderable": true, "name": "Direccion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Observaciones", "orderable": true, "name": "Observaciones", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "SupervisorName", "orderable": true, "name": "SupervisorName"}
                 ,{ "data": "Consecutivo_CDI","className": "dt-right", "orderable": true, "name": "Consecutivo_CDI" }
                 ,{ "data": "Tipo_de_Asignacion_de_MPDescripcion", "orderable": true, "name": "Tipo_de_Asignacion_de_MPDescripcion" }
+                ,{ "data": "cod_pais","className": "dt-right", "orderable": true, "name": "cod_pais" }
+                ,{ "data": "cod_edo","className": "dt-right", "orderable": true, "name": "cod_edo" }
+                ,{ "data": "cod_agencia","className": "dt-right", "orderable": true, "name": "cod_agencia" }
+                ,{ "data": "FTIPO", "orderable": true, "name": "FTIPO", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "fcreada", "orderable": true, "searchable": true, "type": "date", "name": "fcreada" }
+                ,{ "data": "fbaja", "orderable": true, "searchable": true, "type": "date", "name": "fbaja" }
+                ,{ "data": "ULTAVREGIS", "orderable": true, "name": "ULTAVREGIS", "className": "dt-right", render: $.fn.dataTable.render.number(',', '.', 2, '$') }
+                ,{ "data": "FUBICACION", "orderable": true, "name": "FUBICACION", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "vr_agen","className": "dt-right", "orderable": true, "name": "vr_agen" }
+                ,{ "data": "Especial", "orderable": true, "name": "Especial", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "AgenAV","className": "dt-right", "orderable": true, "name": "AgenAV" }
+                ,{ "data": "AgenUni_NSJP", "orderable": true, "name": "AgenUni_NSJP", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Nomenclatura", "orderable": true, "name": "Nomenclatura", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Alcance", "orderable": true, "name": "Alcance", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "ReceptorDeclinaciones", "orderable": true, "name": "ReceptorDeclinaciones","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
 
             ],
 			"colReorder": true,

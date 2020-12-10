@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.expediente_ministerio_publico;
 using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Tipo_de_Judicializacion;
 using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.Especificacion_Detencion;
 using Spartane.Core.Domain.Control_de_Detencion;
@@ -28,6 +29,7 @@ namespace Spartane.Core.Domain.Audiencia_Inicial
         public string Hora_de_Registro { get; set; }
         public int? Usuario_que_Registra { get; set; }
         public string Nombre_del_Juez_de_Control { get; set; }
+        public int? Tipo { get; set; }
         public string causa_penal { get; set; }
         public DateTime? Fecha_Audiencia_Inicial { get; set; }
         public string Hora_Audiencia_Inicial { get; set; }
@@ -42,6 +44,8 @@ namespace Spartane.Core.Domain.Audiencia_Inicial
         public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
         [ForeignKey("Usuario_que_Registra")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Registra_Spartan_User { get; set; }
+        [ForeignKey("Tipo")]
+        public virtual Spartane.Core.Domain.Tipo_de_Judicializacion.Tipo_de_Judicializacion Tipo_Tipo_de_Judicializacion { get; set; }
         [ForeignKey("Con_Detenido")]
         public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Con_Detenido_A_Tiempo { get; set; }
         [ForeignKey("Especificar_Detencion")]
@@ -63,6 +67,7 @@ namespace Spartane.Core.Domain.Audiencia_Inicial
         public string Hora_de_Registro { get; set; }
         public int? Usuario_que_Registra { get; set; }
         public string Nombre_del_Juez_de_Control { get; set; }
+        public int? Tipo { get; set; }
         public string causa_penal { get; set; }
         public DateTime? Fecha_Audiencia_Inicial { get; set; }
         public string Hora_Audiencia_Inicial { get; set; }
@@ -77,6 +82,8 @@ namespace Spartane.Core.Domain.Audiencia_Inicial
         public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
         [ForeignKey("Usuario_que_Registra")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Usuario_que_Registra_Spartan_User { get; set; }
+        [ForeignKey("Tipo")]
+        public virtual Spartane.Core.Domain.Tipo_de_Judicializacion.Tipo_de_Judicializacion Tipo_Tipo_de_Judicializacion { get; set; }
         [ForeignKey("Con_Detenido")]
         public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Con_Detenido_A_Tiempo { get; set; }
         [ForeignKey("Especificar_Detencion")]

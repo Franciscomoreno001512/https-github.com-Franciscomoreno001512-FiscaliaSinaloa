@@ -137,6 +137,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Entre_Calle = Otros_Domicilios_Probable_ResponsableData.Entre_Calle
                     ,Y_Calle = Otros_Domicilios_Probable_ResponsableData.Y_Calle
                     ,Numero_Exterior = Otros_Domicilios_Probable_ResponsableData.Numero_Exterior
+                    ,Numero_Interior = Otros_Domicilios_Probable_ResponsableData.Numero_Interior
+                    ,Coordenada_X = Otros_Domicilios_Probable_ResponsableData.Coordenada_X
+                    ,Coordenada_Y = Otros_Domicilios_Probable_ResponsableData.Coordenada_Y
+                    ,Observaciones = Otros_Domicilios_Probable_ResponsableData.Observaciones
 
                 };
 
@@ -190,6 +194,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Entre_Calle = Otros_Domicilios_Probable_ResponsableData.Entre_Calle
                     ,Y_Calle = Otros_Domicilios_Probable_ResponsableData.Y_Calle
                     ,Numero_Exterior = Otros_Domicilios_Probable_ResponsableData.Numero_Exterior
+                    ,Numero_Interior = Otros_Domicilios_Probable_ResponsableData.Numero_Interior
+                    ,Coordenada_X = Otros_Domicilios_Probable_ResponsableData.Coordenada_X
+                    ,Coordenada_Y = Otros_Domicilios_Probable_ResponsableData.Coordenada_Y
+                    ,Observaciones = Otros_Domicilios_Probable_ResponsableData.Observaciones
 
 					};
 				}
@@ -311,6 +319,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Entre_Calle = m.Entre_Calle
 			,Y_Calle = m.Y_Calle
 			,Numero_Exterior = m.Numero_Exterior
+			,Numero_Interior = m.Numero_Interior
+			,Coordenada_X = m.Coordenada_X
+			,Coordenada_Y = m.Coordenada_Y
+			,Observaciones = m.Observaciones
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -492,6 +504,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Entre_Calle = varOtros_Domicilios_Probable_Responsable.Entre_Calle
                         ,Y_Calle = varOtros_Domicilios_Probable_Responsable.Y_Calle
                         ,Numero_Exterior = varOtros_Domicilios_Probable_Responsable.Numero_Exterior
+                        ,Numero_Interior = varOtros_Domicilios_Probable_Responsable.Numero_Interior
+                        ,Coordenada_X = varOtros_Domicilios_Probable_Responsable.Coordenada_X
+                        ,Coordenada_Y = varOtros_Domicilios_Probable_Responsable.Coordenada_Y
+                        ,Observaciones = varOtros_Domicilios_Probable_Responsable.Observaciones
 
                     };
 
@@ -728,6 +744,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ,Entre_Calle = m.Entre_Calle
                 ,Y_Calle = m.Y_Calle
                 ,Numero_Exterior = m.Numero_Exterior
+                ,Numero_Interior = m.Numero_Interior
+                ,Coordenada_X = m.Coordenada_X
+                ,Coordenada_Y = m.Coordenada_Y
+                ,Observaciones = m.Observaciones
 
             }).ToList();
 
@@ -783,6 +803,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ,Entre_Calle = m.Entre_Calle
                 ,Y_Calle = m.Y_Calle
                 ,Numero_Exterior = m.Numero_Exterior
+                ,Numero_Interior = m.Numero_Interior
+                ,Coordenada_X = m.Coordenada_X
+                ,Coordenada_Y = m.Coordenada_Y
+                ,Observaciones = m.Observaciones
 
             }).ToList();
 

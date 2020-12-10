@@ -14,7 +14,7 @@
   <resource culture="es-es" name="Tipo_de_Delito" value="Tipo de Delito"></resource>
   <resource culture="es-es" name="Grupo_Delito" value="Grupo Delito"></resource>
   <resource culture="es-es" name="Delito" value="Delito"></resource>
-  <resource culture="es-es" name="Agravantes_y_o_Calificactivas" value="Agravantes y/o Calificactivas"></resource>
+  <resource culture="es-es" name="Agravantes_y_o_Calificactivas" value="Agravantes y/o Calificativas"></resource>
   <resource culture="es-es" name="Circunstancias_Delito" value="Circunstancias Delito"></resource>
   <resource culture="es-es" name="Circunstancia_Delito" value="Circunstancia Delito"></resource>
   <resource culture="es-es" name="Articulado_de_Delito" value="Articulado de Delito"></resource>

@@ -107,6 +107,101 @@
                     @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
                     @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
                 </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.DelitoResources.delitox</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromdelitox, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromdelitox" })
+                    @Html.ValidationMessageFor(m => m.Fromdelitox)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Todelitox, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTodelitox", @data_min = "txtAdvanceFromdelitox" })
+                    @Html.ValidationMessageFor(m => m.Todelitox)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.DelitoResources.ARTICULO</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ARTICULOFilter, filters, new { @class = "form-control", @id = "ddlARTICULOFilter" })
+                    @Html.TextBoxFor(m => m.ARTICULO, new { @class = "form-control", @type = "text", @id = "txtARTICULO" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.DelitoResources.DETALLE</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DETALLEFilter, filters, new { @class = "form-control", @id = "ddlDETALLEFilter" })
+                    @Html.TextBoxFor(m => m.DETALLE, new { @class = "form-control", @type = "text", @id = "txtDETALLE" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.DelitoResources.TIPO_AGENCIA</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromTIPO_AGENCIA, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromTIPO_AGENCIA" })
+                    @Html.ValidationMessageFor(m => m.FromTIPO_AGENCIA)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToTIPO_AGENCIA, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToTIPO_AGENCIA", @data_min = "txtAdvanceFromTIPO_AGENCIA" })
+                    @Html.ValidationMessageFor(m => m.ToTIPO_AGENCIA)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.DelitoResources.ESTADISTICO_SSP</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ESTADISTICO_SSPFilter, filters, new { @class = "form-control", @id = "ddlESTADISTICO_SSPFilter" })
+                    @Html.TextBoxFor(m => m.ESTADISTICO_SSP, new { @class = "form-control", @type = "text", @id = "txtESTADISTICO_SSP" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.DelitoResources.VAL_VEHICULO</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.VAL_VEHICULOFilter, filters, new { @class = "form-control", @id = "ddlVAL_VEHICULOFilter" })
+                    @Html.TextBoxFor(m => m.VAL_VEHICULO, new { @class = "form-control", @type = "text", @id = "txtVAL_VEHICULO" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.DelitoResources.TIPO_DELITO</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.TIPO_DELITOFilter, filters, new { @class = "form-control", @id = "ddlTIPO_DELITOFilter" })
+                    @Html.TextBoxFor(m => m.TIPO_DELITO, new { @class = "form-control", @type = "text", @id = "txtTIPO_DELITO" })
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.DelitoResources.circunstancia_clasif</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromcircunstancia_clasif, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromcircunstancia_clasif" })
+                    @Html.ValidationMessageFor(m => m.Fromcircunstancia_clasif)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Tocircunstancia_clasif, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTocircunstancia_clasif", @data_min = "txtAdvanceFromcircunstancia_clasif" })
+                    @Html.ValidationMessageFor(m => m.Tocircunstancia_clasif)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.DelitoResources.PRINCIPAL</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromPRINCIPAL, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromPRINCIPAL" })
+                    @Html.ValidationMessageFor(m => m.FromPRINCIPAL)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToPRINCIPAL, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToPRINCIPAL", @data_min = "txtAdvanceFromPRINCIPAL" })
+                    @Html.ValidationMessageFor(m => m.ToPRINCIPAL)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.DelitoResources.orden</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromorden, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromorden" })
+                    @Html.ValidationMessageFor(m => m.Fromorden)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Toorden, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToorden", @data_min = "txtAdvanceFromorden" })
+                    @Html.ValidationMessageFor(m => m.Toorden)
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Delito/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -182,6 +277,56 @@
         if ($("#ddlAdvanceRobo_de_Vehiculo").val() != "") {
             hasParameter = true;
             advanceSearch.DelitoRobo_de_Vehiculo = $("#ddlAdvanceRobo_de_Vehiculo").val();
+        }
+        if ($("#txtAdvanceFromdelitox").val() != "" || $("#txtAdvanceTodelitox").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitodelitoxFrom = $("#txtAdvanceFromdelitox").val();
+            advanceSearch.DelitodelitoxTo = $("#txtAdvanceTodelitox").val();
+        }
+        if ($("#txtAdvanceARTICULO").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoARTICULO = $("#txtAdvanceARTICULO").val();
+            advanceSearch.DelitoARTICULOSearchType = $("#ddlAdvanceARTICULOFilter").val();
+        }
+        if ($("#txtAdvanceDETALLE").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoDETALLE = $("#txtAdvanceDETALLE").val();
+            advanceSearch.DelitoDETALLESearchType = $("#ddlAdvanceDETALLEFilter").val();
+        }
+        if ($("#txtAdvanceFromTIPO_AGENCIA").val() != "" || $("#txtAdvanceToTIPO_AGENCIA").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoTIPO_AGENCIAFrom = $("#txtAdvanceFromTIPO_AGENCIA").val();
+            advanceSearch.DelitoTIPO_AGENCIATo = $("#txtAdvanceToTIPO_AGENCIA").val();
+        }
+        if ($("#txtAdvanceESTADISTICO_SSP").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoESTADISTICO_SSP = $("#txtAdvanceESTADISTICO_SSP").val();
+            advanceSearch.DelitoESTADISTICO_SSPSearchType = $("#ddlAdvanceESTADISTICO_SSPFilter").val();
+        }
+        if ($("#txtAdvanceVAL_VEHICULO").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoVAL_VEHICULO = $("#txtAdvanceVAL_VEHICULO").val();
+            advanceSearch.DelitoVAL_VEHICULOSearchType = $("#ddlAdvanceVAL_VEHICULOFilter").val();
+        }
+        if ($("#txtAdvanceTIPO_DELITO").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoTIPO_DELITO = $("#txtAdvanceTIPO_DELITO").val();
+            advanceSearch.DelitoTIPO_DELITOSearchType = $("#ddlAdvanceTIPO_DELITOFilter").val();
+        }
+        if ($("#txtAdvanceFromcircunstancia_clasif").val() != "" || $("#txtAdvanceTocircunstancia_clasif").val() != "") {
+            hasParameter = true;
+            advanceSearch.Delitocircunstancia_clasifFrom = $("#txtAdvanceFromcircunstancia_clasif").val();
+            advanceSearch.Delitocircunstancia_clasifTo = $("#txtAdvanceTocircunstancia_clasif").val();
+        }
+        if ($("#txtAdvanceFromPRINCIPAL").val() != "" || $("#txtAdvanceToPRINCIPAL").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoPRINCIPALFrom = $("#txtAdvanceFromPRINCIPAL").val();
+            advanceSearch.DelitoPRINCIPALTo = $("#txtAdvanceToPRINCIPAL").val();
+        }
+        if ($("#txtAdvanceFromorden").val() != "" || $("#txtAdvanceToorden").val() != "") {
+            hasParameter = true;
+            advanceSearch.DelitoordenFrom = $("#txtAdvanceFromorden").val();
+            advanceSearch.DelitoordenTo = $("#txtAdvanceToorden").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

@@ -162,6 +162,13 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divJusticia">
+                                <label class="col-sm-2 control-label">@Resources.Situacion_FisicaResources.Justicia</label>
+                                <div class="col-sm-8" data-field-id="Justicia" data-attribute="267865" data-field-name="@Resources.Situacion_FisicaResources.Justicia">
+                                    <input class="form-control inputNumber Datos_Generales" id="Justicia" name="Justicia" type="text" value="@Model.Justicia">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Justicia" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -296,24 +303,9 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('45072');
+		    
 		   
-		   
-			
-             @if(ViewBag.IsNew)
-            { 
-                <text>$('input:checkbox').prop('checked', false);</text>
-            }
-			else
-            {
-                <text>
-				if (Tab_Datos_Generales)
-					Fill_Datos_Generales();
-
-
-                </text>
-             }
-             EjecutarValidacionesAlComienzo();
-             
+            
 
             initiateUIControls();
 			$('a').tooltip();
@@ -330,6 +322,21 @@
 			
 			
 
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
         });
 
 
@@ -595,6 +602,7 @@
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Descripcion').val(result.data.Descripcion);
+                    $('#Justicia').val(result.data.Justicia);
 
                 },
                 error: function (result) {
@@ -607,6 +615,7 @@
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Descripcion', $('#Descripcion').val());
+                data.append('Justicia', $('#Justicia').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Situacion_Fisica/Post_Datos_Generales")',

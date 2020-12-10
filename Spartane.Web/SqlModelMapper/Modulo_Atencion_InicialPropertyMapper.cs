@@ -112,6 +112,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Estatus2[Descripcion]":
                 case "Estatus2Descripcion":
                     return "Estatus_Orientador.Descripcion";
+                case "Unidad_canaliza[Descripcion]":
+                case "Unidad_canalizaDescripcion":
+                    return "Unidad.Descripcion";
                 case "Enviar_a_MP":
                     return "Modulo_Atencion_Inicial.Enviar_a_MP";
                 case "Correccion_de_Estatus":

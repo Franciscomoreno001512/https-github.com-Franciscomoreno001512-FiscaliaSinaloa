@@ -21,15 +21,18 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Reclasificacion_JuridicaDescripcion { get; set; }
         public int? Plazo_Constitucional { get; set; }
         public string Plazo_ConstitucionalDescripcion { get; set; }
+        public string Fecha_Continuacion_Audiencia { get; set; }
+        public string Hora_Continuacion_Audiencia { get; set; }
         public int? Vinculacion { get; set; }
         public string VinculacionDescripcion { get; set; }
         public int? Resultado_No_Vinculacion { get; set; }
         public string Resultado_No_VinculacionDescripcion { get; set; }
         public int? Resultado_Vinculacion { get; set; }
         public string Resultado_VinculacionDescripcion { get; set; }
-        public int? plazo_investigacion_complementaria { get; set; }
-        public string plazo_investigacion_complementariaDescripcion { get; set; }
-        public int? fecha_investigacion_complementaria { get; set; }
+        public short? plazo_investigacion_complementaria { get; set; }
+        public int? Resultado_de_Investigacion_Complementari { get; set; }
+        public string Resultado_de_Investigacion_ComplementariDescripcion { get; set; }
+        public string fecha_investigacion_complementaria { get; set; }
         public string hora_investigacion_complementaria { get; set; }
         public string Nombre_del_Juez_de_Control { get; set; }
         public string Fecha_de_Entrega_de_Escrito_de_Acusacion { get; set; }

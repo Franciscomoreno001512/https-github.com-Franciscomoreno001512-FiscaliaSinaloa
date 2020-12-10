@@ -39,6 +39,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters Nombre_del_Juez_de_ControlFilter { set; get; }
         public string Nombre_del_Juez_de_Control { set; get; }
 
+        public Filters TipoFilter { set; get; }
+        public string AdvanceTipo { set; get; }
+        public int[] AdvanceTipoMultiple { set; get; }
+
         public Filters causa_penalFilter { set; get; }
         public string causa_penal { set; get; }
 

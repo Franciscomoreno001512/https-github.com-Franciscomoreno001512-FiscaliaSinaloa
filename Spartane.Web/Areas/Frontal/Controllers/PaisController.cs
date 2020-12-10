@@ -162,6 +162,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = PaisData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(PaisData.Vigencia), "Vigencia") ??  (string)PaisData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = PaisData.Observaciones
+                    ,Nacionalidad = PaisData.Nacionalidad
+                    ,Abrevia = PaisData.Abrevia
 
 					};
 				}
@@ -245,6 +247,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Vigencia = PaisData.Vigencia
                     ,VigenciaAbreviacion = CultureHelper.GetTraduction(Convert.ToString(PaisData.Vigencia), "Vigencia") ??  (string)PaisData.Vigencia_Vigencia.Abreviacion
                     ,Observaciones = PaisData.Observaciones
+                    ,Nacionalidad = PaisData.Nacionalidad
+                    ,Abrevia = PaisData.Abrevia
 
 					};
 				}
@@ -400,6 +404,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Nombre = m.Nombre
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Nacionalidad = m.Nacionalidad
+			,Abrevia = m.Abrevia
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -517,6 +523,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Nombre = m.Nombre
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Nacionalidad = m.Nacionalidad
+			,Abrevia = m.Abrevia
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -615,6 +623,50 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.Nacionalidad))
+            {
+                switch (filter.NacionalidadFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Pais.Nacionalidad LIKE '" + filter.Nacionalidad + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Pais.Nacionalidad LIKE '%" + filter.Nacionalidad + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Pais.Nacionalidad = '" + filter.Nacionalidad + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Pais.Nacionalidad LIKE '%" + filter.Nacionalidad + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.Abrevia))
+            {
+                switch (filter.AbreviaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Pais.Abrevia LIKE '" + filter.Abrevia + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Pais.Abrevia LIKE '%" + filter.Abrevia + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Pais.Abrevia = '" + filter.Abrevia + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Pais.Abrevia LIKE '%" + filter.Abrevia + "%'";
+                        break;
+                }
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -673,6 +725,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Nombre = varPais.Nombre
                         ,Vigencia = varPais.Vigencia
                         ,Observaciones = varPais.Observaciones
+                        ,Nacionalidad = varPais.Nacionalidad
+                        ,Abrevia = varPais.Abrevia
 
                     };
 
@@ -1063,6 +1117,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Nombre = m.Nombre
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Nacionalidad = m.Nacionalidad
+			,Abrevia = m.Abrevia
 
             }).ToList();
 
@@ -1139,6 +1195,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Nombre = m.Nombre
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Nacionalidad = m.Nacionalidad
+			,Abrevia = m.Abrevia
 
             }).ToList();
 
@@ -1181,6 +1239,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                                             ,Nombre = varPais.Nombre
                         ,Vigencia = varPais.Vigencia
                         ,Observaciones = varPais.Observaciones
+                        ,Nacionalidad = varPais.Nacionalidad
+                        ,Abrevia = varPais.Abrevia
                     
                 };
 
@@ -1213,6 +1273,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Vigencia = m.Vigencia
                         ,VigenciaAbreviacion = CultureHelper.GetTraduction(m.Vigencia_Vigencia.Clave.ToString(), "Abreviacion") ?? (string)m.Vigencia_Vigencia.Abreviacion
 			,Observaciones = m.Observaciones
+			,Nacionalidad = m.Nacionalidad
+			,Abrevia = m.Abrevia
 
                     
                 };

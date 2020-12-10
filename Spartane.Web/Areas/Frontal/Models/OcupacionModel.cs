@@ -18,6 +18,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Vigencia { get; set; }
         public string VigenciaAbreviacion { get; set; }
         public string Observaciones { get; set; }
+        public string Vigenciax { get; set; }
 
     }
 	
@@ -31,6 +32,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Vigencia { get; set; }
         public string VigenciaAbreviacion { get; set; }
         public string Observaciones { get; set; }
+        public string Vigenciax { get; set; }
 
     }
 

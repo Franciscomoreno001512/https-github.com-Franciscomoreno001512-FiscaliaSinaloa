@@ -96,6 +96,76 @@ namespace Resources
             }
         }
 
+        /// <summary>cod_pais</summary>
+        public static string cod_pais
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderColonia.GetResource("cod_pais", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>cod_edo</summary>
+        public static string cod_edo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderColonia.GetResource("cod_edo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>loc_justicia</summary>
+        public static string loc_justicia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderColonia.GetResource("loc_justicia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>pob_justicia</summary>
+        public static string pob_justicia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderColonia.GetResource("pob_justicia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>sector</summary>
+        public static string sector
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderColonia.GetResource("sector", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>estatus</summary>
+        public static string estatus
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderColonia.GetResource("estatus", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>cod_localidad</summary>
+        public static string cod_localidad
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderColonia.GetResource("cod_localidad", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderColonia.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

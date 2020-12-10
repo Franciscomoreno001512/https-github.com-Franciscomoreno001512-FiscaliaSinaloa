@@ -6,6 +6,7 @@
   <resource culture="es-es" name="Justicia" value="Justicia"></resource>
   <resource culture="es-es" name="Vigencia" value="Vigencia"></resource>
   <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="es-es" name="Vigenciax" value="Vigenciax"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

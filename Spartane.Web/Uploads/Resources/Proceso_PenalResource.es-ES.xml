@@ -10,10 +10,13 @@
   <resource culture="es-es" name="Reclasificacion_Juridica" value="¿Reclasificación Jurídica?"></resource>
   <resource culture="es-es" name="Delitos" value="Delitos"></resource>
   <resource culture="es-es" name="Plazo_Constitucional" value="Plazo Constitucional"></resource>
+  <resource culture="es-es" name="Fecha_Continuacion_Audiencia" value="Fecha Continuación Audiencia"></resource>
+  <resource culture="es-es" name="Hora_Continuacion_Audiencia" value="Hora Continuación Audiencia"></resource>
   <resource culture="es-es" name="Vinculacion" value="Vinculación"></resource>
   <resource culture="es-es" name="Resultado_No_Vinculacion" value="Resultado"></resource>
   <resource culture="es-es" name="Resultado_Vinculacion" value="Resultado"></resource>
-  <resource culture="es-es" name="plazo_investigacion_complementaria" value="Plazo de Investigación Complementaria (meses)"></resource>
+  <resource culture="es-es" name="plazo_investigacion_complementaria" value="Plazo de Investigación Complementaria (días)"></resource>
+  <resource culture="es-es" name="Resultado_de_Investigacion_Complementari" value="Cierre de Investigación Complementaria"></resource>
   <resource culture="es-es" name="fecha_investigacion_complementaria" value="Fecha"></resource>
   <resource culture="es-es" name="hora_investigacion_complementaria" value="Hora"></resource>
   <resource culture="es-es" name="Medidas_Cautelares" value="Medidas Cautelares"></resource>
@@ -34,7 +37,7 @@
   <resource culture="es-es" name="Resultado" value="Resultado"></resource>
   <resource culture="es-es" name="Tribunal_de_Enjuiciamiento" value="Tribunal de Enjuiciamiento"></resource>
   <resource culture="es-es" name="Nombre_del_Juez" value="Nombre del Juez"></resource>
-  <resource culture="es-es" name="Juez_Colegiado" value="Juez Colegiado"></resource>
+  <resource culture="es-es" name="Juez_Colegiado" value="Juez Presidente"></resource>
   <resource culture="es-es" name="Juez_Relator" value="Juez Relator"></resource>
   <resource culture="es-es" name="Juez_Vocal" value="Juez Vocal"></resource>
   <resource culture="es-es" name="Fecha_de_Audiencia_de_Juicio" value="Fecha de Audiencia de Juicio"></resource>

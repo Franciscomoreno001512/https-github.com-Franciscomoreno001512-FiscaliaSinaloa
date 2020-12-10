@@ -339,6 +339,76 @@
                                     @Html.CheckBoxFor(m => m.Robo_de_Vehiculo, new { @class = "i-checks Datos_Generales" })
                                 </div>
                             </div>
+                            <div class="form-group" id="divdelitox">
+                                <label class="col-sm-2 control-label">@Resources.DelitoResources.delitox</label>
+                                <div class="col-sm-8" data-field-id="delitox" data-attribute="267998" data-field-name="@Resources.DelitoResources.delitox">
+                                    <input class="form-control inputNumber Datos_Generales" id="delitox" name="delitox" type="text" value="@Model.delitox">
+                                    @*<span class="field-validation-valid" data-valmsg-for="delitox" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divARTICULO">
+                                <label class="col-sm-2 control-label">@Resources.DelitoResources.ARTICULO</label>
+                                <div class="col-sm-8" data-field-id="ARTICULO" data-attribute="267999" data-field-name="@Resources.DelitoResources.ARTICULO">
+                                    <input class="form-control Datos_Generales" id="ARTICULO" name="ARTICULO" type="text" value="@Model.ARTICULO">
+                                    @*<span class="field-validation-valid" data-valmsg-for="ARTICULO" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divDETALLE">
+                                <label class="col-sm-2 control-label">@Resources.DelitoResources.DETALLE</label>
+                                <div class="col-sm-8" data-field-id="DETALLE" data-attribute="268000" data-field-name="@Resources.DelitoResources.DETALLE">
+                                    <textarea id="DETALLE" name="DETALLE" class="form-control Datos_Generales" rows="4" cols="50">@Model.DETALLE</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="DETALLE" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divTIPO_AGENCIA">
+                                <label class="col-sm-2 control-label">@Resources.DelitoResources.TIPO_AGENCIA</label>
+                                <div class="col-sm-8" data-field-id="TIPO_AGENCIA" data-attribute="268001" data-field-name="@Resources.DelitoResources.TIPO_AGENCIA">
+                                    <input class="form-control inputNumber Datos_Generales" id="TIPO_AGENCIA" name="TIPO_AGENCIA" type="text" value="@Model.TIPO_AGENCIA">
+                                    @*<span class="field-validation-valid" data-valmsg-for="TIPO_AGENCIA" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divESTADISTICO_SSP">
+                                <label class="col-sm-2 control-label">@Resources.DelitoResources.ESTADISTICO_SSP</label>
+                                <div class="col-sm-8" data-field-id="ESTADISTICO_SSP" data-attribute="268002" data-field-name="@Resources.DelitoResources.ESTADISTICO_SSP">
+                                    <input class="form-control Datos_Generales" id="ESTADISTICO_SSP" name="ESTADISTICO_SSP" type="text" value="@Model.ESTADISTICO_SSP">
+                                    @*<span class="field-validation-valid" data-valmsg-for="ESTADISTICO_SSP" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divVAL_VEHICULO">
+                                <label class="col-sm-2 control-label">@Resources.DelitoResources.VAL_VEHICULO</label>
+                                <div class="col-sm-8" data-field-id="VAL_VEHICULO" data-attribute="268003" data-field-name="@Resources.DelitoResources.VAL_VEHICULO">
+                                    <input class="form-control Datos_Generales" id="VAL_VEHICULO" name="VAL_VEHICULO" type="text" value="@Model.VAL_VEHICULO">
+                                    @*<span class="field-validation-valid" data-valmsg-for="VAL_VEHICULO" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divTIPO_DELITO">
+                                <label class="col-sm-2 control-label">@Resources.DelitoResources.TIPO_DELITO</label>
+                                <div class="col-sm-8" data-field-id="TIPO_DELITO" data-attribute="268004" data-field-name="@Resources.DelitoResources.TIPO_DELITO">
+                                    <input class="form-control Datos_Generales" id="TIPO_DELITO" name="TIPO_DELITO" type="text" value="@Model.TIPO_DELITO">
+                                    @*<span class="field-validation-valid" data-valmsg-for="TIPO_DELITO" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divcircunstancia_clasif">
+                                <label class="col-sm-2 control-label">@Resources.DelitoResources.circunstancia_clasif</label>
+                                <div class="col-sm-8" data-field-id="circunstancia_clasif" data-attribute="268005" data-field-name="@Resources.DelitoResources.circunstancia_clasif">
+                                    <input class="form-control inputNumber Datos_Generales" id="circunstancia_clasif" name="circunstancia_clasif" type="text" value="@Model.circunstancia_clasif">
+                                    @*<span class="field-validation-valid" data-valmsg-for="circunstancia_clasif" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divPRINCIPAL">
+                                <label class="col-sm-2 control-label">@Resources.DelitoResources.PRINCIPAL</label>
+                                <div class="col-sm-8" data-field-id="PRINCIPAL" data-attribute="268006" data-field-name="@Resources.DelitoResources.PRINCIPAL">
+                                    <input class="form-control inputNumber Datos_Generales" id="PRINCIPAL" name="PRINCIPAL" type="text" value="@Model.PRINCIPAL">
+                                    @*<span class="field-validation-valid" data-valmsg-for="PRINCIPAL" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divorden">
+                                <label class="col-sm-2 control-label">@Resources.DelitoResources.orden</label>
+                                <div class="col-sm-8" data-field-id="orden" data-attribute="268007" data-field-name="@Resources.DelitoResources.orden">
+                                    <input class="form-control inputNumber Datos_Generales" id="orden" name="orden" type="text" value="@Model.orden">
+                                    @*<span class="field-validation-valid" data-valmsg-for="orden" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -1123,6 +1193,16 @@
                     $('#Configuracion_de_PlaneacionGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
                     $('#Configuracion_de_PlaneacionGrid .gridDatePicker').attr("readonly", "");
                     $('#Robo_de_Vehiculo').prop('checked', result.data.Robo_de_Vehiculo);
+                    $('#delitox').val(result.data.delitox);
+                    $('#ARTICULO').val(result.data.ARTICULO);
+                    $('#DETALLE').val(result.data.DETALLE);
+                    $('#TIPO_AGENCIA').val(result.data.TIPO_AGENCIA);
+                    $('#ESTADISTICO_SSP').val(result.data.ESTADISTICO_SSP);
+                    $('#VAL_VEHICULO').val(result.data.VAL_VEHICULO);
+                    $('#TIPO_DELITO').val(result.data.TIPO_DELITO);
+                    $('#circunstancia_clasif').val(result.data.circunstancia_clasif);
+                    $('#PRINCIPAL').val(result.data.PRINCIPAL);
+                    $('#orden').val(result.data.orden);
 
                 },
                 error: function (result) {
@@ -1143,6 +1223,16 @@
                 data.append('Tentativa', $('#Tentativa').prop('checked'));
                 data.append('Activo', $('#Activo').prop('checked'));
                 data.append('Robo_de_Vehiculo', $('#Robo_de_Vehiculo').prop('checked'));
+                data.append('delitox', $('#delitox').val());
+                data.append('ARTICULO', $('#ARTICULO').val());
+                data.append('DETALLE', $('#DETALLE').val());
+                data.append('TIPO_AGENCIA', $('#TIPO_AGENCIA').val());
+                data.append('ESTADISTICO_SSP', $('#ESTADISTICO_SSP').val());
+                data.append('VAL_VEHICULO', $('#VAL_VEHICULO').val());
+                data.append('TIPO_DELITO', $('#TIPO_DELITO').val());
+                data.append('circunstancia_clasif', $('#circunstancia_clasif').val());
+                data.append('PRINCIPAL', $('#PRINCIPAL').val());
+                data.append('orden', $('#orden').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Delito/Post_Datos_Generales")',

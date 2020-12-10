@@ -70,6 +70,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public bool Finalizar_Servicios_de_Apoyo { get; set; }
         public int? Estatus2 { get; set; }
         public string Estatus2Descripcion { get; set; }
+        public int? Unidad_canaliza { get; set; }
+        public string Unidad_canalizaDescripcion { get; set; }
         public bool Enviar_a_MP { get; set; }
         public bool Correccion_de_Estatus { get; set; }
         public bool Requiere_Servicios_de_Apoyo { get; set; }
@@ -224,6 +226,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int Clave { get; set; }
         public int? Estatus2 { get; set; }
         public string Estatus2Descripcion { get; set; }
+        public int? Unidad_canaliza { get; set; }
+        public string Unidad_canalizaDescripcion { get; set; }
         public bool? Enviar_a_MP { get; set; }
         public bool? Correccion_de_Estatus { get; set; }
 

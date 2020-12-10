@@ -13,6 +13,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         [Required]
         public int Clave { get; set; }
         public string Descripcion { get; set; }
+        [Range(0, 9999999999)]
+        public int? LLAVE { get; set; }
 
     }
 	
@@ -21,6 +23,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         [Required]
         public int Clave { get; set; }
         public string Descripcion { get; set; }
+        [Range(0, 9999999999)]
+        public int? LLAVE { get; set; }
 
     }
 

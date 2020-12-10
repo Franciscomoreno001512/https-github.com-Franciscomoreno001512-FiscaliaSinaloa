@@ -231,6 +231,55 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divcod_pais">
+                                <label class="col-sm-2 control-label">@Resources.ColoniaResources.cod_pais</label>
+                                <div class="col-sm-8" data-field-id="cod_pais" data-attribute="267823" data-field-name="@Resources.ColoniaResources.cod_pais">
+                                    <input class="form-control inputNumber Datos_Generales" id="cod_pais" name="cod_pais" type="text" value="@Model.cod_pais">
+                                    @*<span class="field-validation-valid" data-valmsg-for="cod_pais" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divcod_edo">
+                                <label class="col-sm-2 control-label">@Resources.ColoniaResources.cod_edo</label>
+                                <div class="col-sm-8" data-field-id="cod_edo" data-attribute="267824" data-field-name="@Resources.ColoniaResources.cod_edo">
+                                    <input class="form-control inputNumber Datos_Generales" id="cod_edo" name="cod_edo" type="text" value="@Model.cod_edo">
+                                    @*<span class="field-validation-valid" data-valmsg-for="cod_edo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divloc_justicia">
+                                <label class="col-sm-2 control-label">@Resources.ColoniaResources.loc_justicia</label>
+                                <div class="col-sm-8" data-field-id="loc_justicia" data-attribute="267825" data-field-name="@Resources.ColoniaResources.loc_justicia">
+                                    <input class="form-control inputNumber Datos_Generales" id="loc_justicia" name="loc_justicia" type="text" value="@Model.loc_justicia">
+                                    @*<span class="field-validation-valid" data-valmsg-for="loc_justicia" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divpob_justicia">
+                                <label class="col-sm-2 control-label">@Resources.ColoniaResources.pob_justicia</label>
+                                <div class="col-sm-8" data-field-id="pob_justicia" data-attribute="267826" data-field-name="@Resources.ColoniaResources.pob_justicia">
+                                    <input class="form-control inputNumber Datos_Generales" id="pob_justicia" name="pob_justicia" type="text" value="@Model.pob_justicia">
+                                    @*<span class="field-validation-valid" data-valmsg-for="pob_justicia" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divsector">
+                                <label class="col-sm-2 control-label">@Resources.ColoniaResources.sector</label>
+                                <div class="col-sm-8" data-field-id="sector" data-attribute="267827" data-field-name="@Resources.ColoniaResources.sector">
+                                    <input class="form-control inputNumber Datos_Generales" id="sector" name="sector" type="text" value="@Model.sector">
+                                    @*<span class="field-validation-valid" data-valmsg-for="sector" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divestatus">
+                                <label class="col-sm-2 control-label">@Resources.ColoniaResources.estatus</label>
+                                <div class="col-sm-8" data-field-id="estatus" data-attribute="267828" data-field-name="@Resources.ColoniaResources.estatus">
+                                    <input class="form-control Datos_Generales" id="estatus" name="estatus" type="text" value="@Model.estatus">
+                                    @*<span class="field-validation-valid" data-valmsg-for="estatus" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divcod_localidad">
+                                <label class="col-sm-2 control-label">@Resources.ColoniaResources.cod_localidad</label>
+                                <div class="col-sm-8" data-field-id="cod_localidad" data-attribute="268125" data-field-name="@Resources.ColoniaResources.cod_localidad">
+                                    <input class="form-control inputNumber Datos_Generales" id="cod_localidad" name="cod_localidad" type="text" value="@Model.cod_localidad">
+                                    @*<span class="field-validation-valid" data-valmsg-for="cod_localidad" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -710,6 +759,13 @@
                     $('#Zona').val(result.data.Zona);
                     $('#Vigente').val(result.data.Vigente);
                     $('#Observaciones').val(result.data.Observaciones);
+                    $('#cod_pais').val(result.data.cod_pais);
+                    $('#cod_edo').val(result.data.cod_edo);
+                    $('#loc_justicia').val(result.data.loc_justicia);
+                    $('#pob_justicia').val(result.data.pob_justicia);
+                    $('#sector').val(result.data.sector);
+                    $('#estatus').val(result.data.estatus);
+                    $('#cod_localidad').val(result.data.cod_localidad);
 
                 },
                 error: function (result) {
@@ -727,6 +783,13 @@
                 data.append('Zona', $('#Zona').val());
                 data.append('Vigente', $('#Vigente').val());
                 data.append('Observaciones', $('#Observaciones').val());
+                data.append('cod_pais', $('#cod_pais').val());
+                data.append('cod_edo', $('#cod_edo').val());
+                data.append('loc_justicia', $('#loc_justicia').val());
+                data.append('pob_justicia', $('#pob_justicia').val());
+                data.append('sector', $('#sector').val());
+                data.append('estatus', $('#estatus').val());
+                data.append('cod_localidad', $('#cod_localidad').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Colonia/Post_Datos_Generales")',

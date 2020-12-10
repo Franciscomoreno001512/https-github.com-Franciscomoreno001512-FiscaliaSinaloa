@@ -30,6 +30,20 @@ namespace Spartane.Web.SqlModelMapper
                     return "Vigencia.Abreviacion";
                 case "Observaciones":
                     return "Colonia.Observaciones";
+                case "cod_pais":
+                    return "Colonia.cod_pais";
+                case "cod_edo":
+                    return "Colonia.cod_edo";
+                case "loc_justicia":
+                    return "Colonia.loc_justicia";
+                case "pob_justicia":
+                    return "Colonia.pob_justicia";
+                case "sector":
+                    return "Colonia.sector";
+                case "estatus":
+                    return "Colonia.estatus";
+                case "cod_localidad":
+                    return "Colonia.cod_localidad";
 
                 default:
                     return propertyName;

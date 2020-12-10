@@ -14,7 +14,7 @@ using Spartane.Core.Domain.Plazo_Constitucional;
 using Spartane.Core.Domain.Vinculacion_a_Proceso;
 using Spartane.Core.Domain.Continuacion_de_Proceso;
 using Spartane.Core.Domain.Auto_de_Vinculacion_a_Proceso;
-using Spartane.Core.Domain.Plazo_de_Investigacion_Complementaria;
+using Spartane.Core.Domain.Resultado_de_Investigacion_Complementaria;
 using Spartane.Core.Domain.Detalle_Medidas_Cautelares_Proceso_Penal;
 
 using Spartane.Core.Domain.Medidas_Cautelares;
@@ -71,7 +71,7 @@ using Spartane.Web.Areas.WebApiConsumer.Plazo_Constitucional;
 using Spartane.Web.Areas.WebApiConsumer.Vinculacion_a_Proceso;
 using Spartane.Web.Areas.WebApiConsumer.Continuacion_de_Proceso;
 using Spartane.Web.Areas.WebApiConsumer.Auto_de_Vinculacion_a_Proceso;
-using Spartane.Web.Areas.WebApiConsumer.Plazo_de_Investigacion_Complementaria;
+using Spartane.Web.Areas.WebApiConsumer.Resultado_de_Investigacion_Complementaria;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Medidas_Cautelares_Proceso_Penal;
 
 using Spartane.Web.Areas.WebApiConsumer.Medidas_Cautelares;
@@ -150,7 +150,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IVinculacion_a_ProcesoApiConsumer _IVinculacion_a_ProcesoApiConsumer;
         private IContinuacion_de_ProcesoApiConsumer _IContinuacion_de_ProcesoApiConsumer;
         private IAuto_de_Vinculacion_a_ProcesoApiConsumer _IAuto_de_Vinculacion_a_ProcesoApiConsumer;
-        private IPlazo_de_Investigacion_ComplementariaApiConsumer _IPlazo_de_Investigacion_ComplementariaApiConsumer;
+        private IResultado_de_Investigacion_ComplementariaApiConsumer _IResultado_de_Investigacion_ComplementariaApiConsumer;
         private IDetalle_Medidas_Cautelares_Proceso_PenalApiConsumer _IDetalle_Medidas_Cautelares_Proceso_PenalApiConsumer;
 
         private IMedidas_CautelaresApiConsumer _IMedidas_CautelaresApiConsumer;
@@ -194,7 +194,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Proceso_PenalController(IProceso_PenalService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IProceso_PenalApiConsumer Proceso_PenalApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IDetalle_Delitos_Proceso_PenalApiConsumer Detalle_Delitos_Proceso_PenalApiConsumer , IDelitoApiConsumer DelitoApiConsumer  , IPlazo_ConstitucionalApiConsumer Plazo_ConstitucionalApiConsumer , IVinculacion_a_ProcesoApiConsumer Vinculacion_a_ProcesoApiConsumer , IContinuacion_de_ProcesoApiConsumer Continuacion_de_ProcesoApiConsumer , IAuto_de_Vinculacion_a_ProcesoApiConsumer Auto_de_Vinculacion_a_ProcesoApiConsumer , IPlazo_de_Investigacion_ComplementariaApiConsumer Plazo_de_Investigacion_ComplementariaApiConsumer , IDetalle_Medidas_Cautelares_Proceso_PenalApiConsumer Detalle_Medidas_Cautelares_Proceso_PenalApiConsumer , IMedidas_CautelaresApiConsumer Medidas_CautelaresApiConsumer  , IDetalle_Medios_Prueba_ImputadoApiConsumer Detalle_Medios_Prueba_ImputadoApiConsumer  , IDetalle_Medios_Prueba_VictimaApiConsumer Detalle_Medios_Prueba_VictimaApiConsumer  , IDetalle_Medios_Prueba_AdmitidosApiConsumer Detalle_Medios_Prueba_AdmitidosApiConsumer  , IResultado_de_Audiencia_IntermediaApiConsumer Resultado_de_Audiencia_IntermediaApiConsumer , ITribunal_de_EnjuiciamientoApiConsumer Tribunal_de_EnjuiciamientoApiConsumer , ISentenciaApiConsumer SentenciaApiConsumer , IResolucionApiConsumer ResolucionApiConsumer , IDetalle_Condiciones_Proceso_PenalApiConsumer Detalle_Condiciones_Proceso_PenalApiConsumer , ICondiciones_en_Suspension_CondicionalApiConsumer Condiciones_en_Suspension_CondicionalApiConsumer  )
+        public Proceso_PenalController(IProceso_PenalService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IProceso_PenalApiConsumer Proceso_PenalApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , IDetalle_Delitos_Proceso_PenalApiConsumer Detalle_Delitos_Proceso_PenalApiConsumer , IDelitoApiConsumer DelitoApiConsumer  , IPlazo_ConstitucionalApiConsumer Plazo_ConstitucionalApiConsumer , IVinculacion_a_ProcesoApiConsumer Vinculacion_a_ProcesoApiConsumer , IContinuacion_de_ProcesoApiConsumer Continuacion_de_ProcesoApiConsumer , IAuto_de_Vinculacion_a_ProcesoApiConsumer Auto_de_Vinculacion_a_ProcesoApiConsumer , IResultado_de_Investigacion_ComplementariaApiConsumer Resultado_de_Investigacion_ComplementariaApiConsumer , IDetalle_Medidas_Cautelares_Proceso_PenalApiConsumer Detalle_Medidas_Cautelares_Proceso_PenalApiConsumer , IMedidas_CautelaresApiConsumer Medidas_CautelaresApiConsumer  , IDetalle_Medios_Prueba_ImputadoApiConsumer Detalle_Medios_Prueba_ImputadoApiConsumer  , IDetalle_Medios_Prueba_VictimaApiConsumer Detalle_Medios_Prueba_VictimaApiConsumer  , IDetalle_Medios_Prueba_AdmitidosApiConsumer Detalle_Medios_Prueba_AdmitidosApiConsumer  , IResultado_de_Audiencia_IntermediaApiConsumer Resultado_de_Audiencia_IntermediaApiConsumer , ITribunal_de_EnjuiciamientoApiConsumer Tribunal_de_EnjuiciamientoApiConsumer , ISentenciaApiConsumer SentenciaApiConsumer , IResolucionApiConsumer ResolucionApiConsumer , IDetalle_Condiciones_Proceso_PenalApiConsumer Detalle_Condiciones_Proceso_PenalApiConsumer , ICondiciones_en_Suspension_CondicionalApiConsumer Condiciones_en_Suspension_CondicionalApiConsumer  )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -220,7 +220,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IVinculacion_a_ProcesoApiConsumer = Vinculacion_a_ProcesoApiConsumer;
             this._IContinuacion_de_ProcesoApiConsumer = Continuacion_de_ProcesoApiConsumer;
             this._IAuto_de_Vinculacion_a_ProcesoApiConsumer = Auto_de_Vinculacion_a_ProcesoApiConsumer;
-            this._IPlazo_de_Investigacion_ComplementariaApiConsumer = Plazo_de_Investigacion_ComplementariaApiConsumer;
+            this._IResultado_de_Investigacion_ComplementariaApiConsumer = Resultado_de_Investigacion_ComplementariaApiConsumer;
             this._IDetalle_Medidas_Cautelares_Proceso_PenalApiConsumer = Detalle_Medidas_Cautelares_Proceso_PenalApiConsumer;
 
             this._IMedidas_CautelaresApiConsumer = Medidas_CautelaresApiConsumer;
@@ -350,6 +350,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Reclasificacion_JuridicaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Reclasificacion_Juridica), "A_Tiempo") ??  (string)Proceso_PenalData.Reclasificacion_Juridica_A_Tiempo.Descripcion
                     ,Plazo_Constitucional = Proceso_PenalData.Plazo_Constitucional
                     ,Plazo_ConstitucionalDescripcion = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Plazo_Constitucional), "Plazo_Constitucional") ??  (string)Proceso_PenalData.Plazo_Constitucional_Plazo_Constitucional.Descripcion
+                    ,Fecha_Continuacion_Audiencia = (Proceso_PenalData.Fecha_Continuacion_Audiencia == null ? string.Empty : Convert.ToDateTime(Proceso_PenalData.Fecha_Continuacion_Audiencia).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_Continuacion_Audiencia = Proceso_PenalData.Hora_Continuacion_Audiencia
                     ,Vinculacion = Proceso_PenalData.Vinculacion
                     ,VinculacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Vinculacion), "Vinculacion_a_Proceso") ??  (string)Proceso_PenalData.Vinculacion_Vinculacion_a_Proceso.Descripcion
                     ,Resultado_No_Vinculacion = Proceso_PenalData.Resultado_No_Vinculacion
@@ -357,8 +359,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Resultado_Vinculacion = Proceso_PenalData.Resultado_Vinculacion
                     ,Resultado_VinculacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Resultado_Vinculacion), "Auto_de_Vinculacion_a_Proceso") ??  (string)Proceso_PenalData.Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso.Descripcion
                     ,plazo_investigacion_complementaria = Proceso_PenalData.plazo_investigacion_complementaria
-                    ,plazo_investigacion_complementariaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.plazo_investigacion_complementaria), "Plazo_de_Investigacion_Complementaria") ??  (string)Proceso_PenalData.plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria.Descripcion
-                    ,fecha_investigacion_complementaria = Proceso_PenalData.fecha_investigacion_complementaria
+                    ,Resultado_de_Investigacion_Complementari = Proceso_PenalData.Resultado_de_Investigacion_Complementari
+                    ,Resultado_de_Investigacion_ComplementariDescripcion = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Resultado_de_Investigacion_Complementari), "Resultado_de_Investigacion_Complementaria") ??  (string)Proceso_PenalData.Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria.Descripcion
+                    ,fecha_investigacion_complementaria = (Proceso_PenalData.fecha_investigacion_complementaria == null ? string.Empty : Convert.ToDateTime(Proceso_PenalData.fecha_investigacion_complementaria).ToString(ConfigurationProperty.DateFormat))
                     ,hora_investigacion_complementaria = Proceso_PenalData.hora_investigacion_complementaria
                     ,Nombre_del_Juez_de_Control = Proceso_PenalData.Nombre_del_Juez_de_Control
                     ,Fecha_de_Entrega_de_Escrito_de_Acusacion = (Proceso_PenalData.Fecha_de_Entrega_de_Escrito_de_Acusacion == null ? string.Empty : Convert.ToDateTime(Proceso_PenalData.Fecha_de_Entrega_de_Escrito_de_Acusacion).ToString(ConfigurationProperty.DateFormat))
@@ -447,12 +450,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Auto_de_Vinculacion_a_Proceso", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _IPlazo_de_Investigacion_ComplementariaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria = _IPlazo_de_Investigacion_ComplementariaApiConsumer.SelAll(true);
-            if (Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria != null && Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria.Resource != null)
-                ViewBag.Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria = Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IResultado_de_Investigacion_ComplementariaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari = _IResultado_de_Investigacion_ComplementariaApiConsumer.SelAll(true);
+            if (Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari != null && Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari.Resource != null)
+                ViewBag.Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari = Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Plazo_de_Investigacion_Complementaria", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Investigacion_Complementaria", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var A_Tiempos_Acusador_Coadyudante = _IA_TiempoApiConsumer.SelAll(true);
@@ -596,6 +599,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Reclasificacion_JuridicaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Reclasificacion_Juridica), "A_Tiempo") ??  (string)Proceso_PenalData.Reclasificacion_Juridica_A_Tiempo.Descripcion
                     ,Plazo_Constitucional = Proceso_PenalData.Plazo_Constitucional
                     ,Plazo_ConstitucionalDescripcion = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Plazo_Constitucional), "Plazo_Constitucional") ??  (string)Proceso_PenalData.Plazo_Constitucional_Plazo_Constitucional.Descripcion
+                    ,Fecha_Continuacion_Audiencia = (Proceso_PenalData.Fecha_Continuacion_Audiencia == null ? string.Empty : Convert.ToDateTime(Proceso_PenalData.Fecha_Continuacion_Audiencia).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_Continuacion_Audiencia = Proceso_PenalData.Hora_Continuacion_Audiencia
                     ,Vinculacion = Proceso_PenalData.Vinculacion
                     ,VinculacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Vinculacion), "Vinculacion_a_Proceso") ??  (string)Proceso_PenalData.Vinculacion_Vinculacion_a_Proceso.Descripcion
                     ,Resultado_No_Vinculacion = Proceso_PenalData.Resultado_No_Vinculacion
@@ -603,8 +608,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Resultado_Vinculacion = Proceso_PenalData.Resultado_Vinculacion
                     ,Resultado_VinculacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Resultado_Vinculacion), "Auto_de_Vinculacion_a_Proceso") ??  (string)Proceso_PenalData.Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso.Descripcion
                     ,plazo_investigacion_complementaria = Proceso_PenalData.plazo_investigacion_complementaria
-                    ,plazo_investigacion_complementariaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.plazo_investigacion_complementaria), "Plazo_de_Investigacion_Complementaria") ??  (string)Proceso_PenalData.plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria.Descripcion
-                    ,fecha_investigacion_complementaria = Proceso_PenalData.fecha_investigacion_complementaria
+                    ,Resultado_de_Investigacion_Complementari = Proceso_PenalData.Resultado_de_Investigacion_Complementari
+                    ,Resultado_de_Investigacion_ComplementariDescripcion = CultureHelper.GetTraduction(Convert.ToString(Proceso_PenalData.Resultado_de_Investigacion_Complementari), "Resultado_de_Investigacion_Complementaria") ??  (string)Proceso_PenalData.Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria.Descripcion
+                    ,fecha_investigacion_complementaria = (Proceso_PenalData.fecha_investigacion_complementaria == null ? string.Empty : Convert.ToDateTime(Proceso_PenalData.fecha_investigacion_complementaria).ToString(ConfigurationProperty.DateFormat))
                     ,hora_investigacion_complementaria = Proceso_PenalData.hora_investigacion_complementaria
                     ,Nombre_del_Juez_de_Control = Proceso_PenalData.Nombre_del_Juez_de_Control
                     ,Fecha_de_Entrega_de_Escrito_de_Acusacion = (Proceso_PenalData.Fecha_de_Entrega_de_Escrito_de_Acusacion == null ? string.Empty : Convert.ToDateTime(Proceso_PenalData.Fecha_de_Entrega_de_Escrito_de_Acusacion).ToString(ConfigurationProperty.DateFormat))
@@ -691,12 +697,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Auto_de_Vinculacion_a_Proceso", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _IPlazo_de_Investigacion_ComplementariaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria = _IPlazo_de_Investigacion_ComplementariaApiConsumer.SelAll(true);
-            if (Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria != null && Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria.Resource != null)
-                ViewBag.Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria = Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IResultado_de_Investigacion_ComplementariaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari = _IResultado_de_Investigacion_ComplementariaApiConsumer.SelAll(true);
+            if (Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari != null && Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari.Resource != null)
+                ViewBag.Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari = Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Plazo_de_Investigacion_Complementaria", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Investigacion_Complementaria", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var A_Tiempos_Acusador_Coadyudante = _IA_TiempoApiConsumer.SelAll(true);
@@ -943,18 +949,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
-        public ActionResult GetPlazo_de_Investigacion_ComplementariaAll()
+        public ActionResult GetResultado_de_Investigacion_ComplementariaAll()
         {
             try
             {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _IPlazo_de_Investigacion_ComplementariaApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IPlazo_de_Investigacion_ComplementariaApiConsumer.SelAll(false).Resource;
+                _IResultado_de_Investigacion_ComplementariaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IResultado_de_Investigacion_ComplementariaApiConsumer.SelAll(false).Resource;
                 
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Plazo_de_Investigacion_Complementaria", "Descripcion")?? m.Descripcion,
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Investigacion_Complementaria", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -1122,12 +1128,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Auto_de_Vinculacion_a_Proceso", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _IPlazo_de_Investigacion_ComplementariaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria = _IPlazo_de_Investigacion_ComplementariaApiConsumer.SelAll(true);
-            if (Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria != null && Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria.Resource != null)
-                ViewBag.Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria = Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IResultado_de_Investigacion_ComplementariaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari = _IResultado_de_Investigacion_ComplementariaApiConsumer.SelAll(true);
+            if (Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari != null && Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari.Resource != null)
+                ViewBag.Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari = Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Plazo_de_Investigacion_Complementaria", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Investigacion_Complementaria", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var A_Tiempos_Acusador_Coadyudante = _IA_TiempoApiConsumer.SelAll(true);
@@ -1238,12 +1244,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Auto_de_Vinculacion_a_Proceso", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _IPlazo_de_Investigacion_ComplementariaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria = _IPlazo_de_Investigacion_ComplementariaApiConsumer.SelAll(true);
-            if (Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria != null && Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria.Resource != null)
-                ViewBag.Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria = Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IResultado_de_Investigacion_ComplementariaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari = _IResultado_de_Investigacion_ComplementariaApiConsumer.SelAll(true);
+            if (Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari != null && Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari.Resource != null)
+                ViewBag.Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari = Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Plazo_de_Investigacion_Complementaria", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resultado_de_Investigacion_Complementaria", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var A_Tiempos_Acusador_Coadyudante = _IA_TiempoApiConsumer.SelAll(true);
@@ -1346,11 +1352,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,ImputadoNombre_Completo_Detenido = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                         ,Reclasificacion_JuridicaDescripcion = CultureHelper.GetTraduction(m.Reclasificacion_Juridica_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Reclasificacion_Juridica_A_Tiempo.Descripcion
                         ,Plazo_ConstitucionalDescripcion = CultureHelper.GetTraduction(m.Plazo_Constitucional_Plazo_Constitucional.Clave.ToString(), "Descripcion") ?? (string)m.Plazo_Constitucional_Plazo_Constitucional.Descripcion
+                        ,Fecha_Continuacion_Audiencia = (m.Fecha_Continuacion_Audiencia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Continuacion_Audiencia).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Continuacion_Audiencia = m.Hora_Continuacion_Audiencia
                         ,VinculacionDescripcion = CultureHelper.GetTraduction(m.Vinculacion_Vinculacion_a_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Vinculacion_Vinculacion_a_Proceso.Descripcion
                         ,Resultado_No_VinculacionDescripcion = CultureHelper.GetTraduction(m.Resultado_No_Vinculacion_Continuacion_de_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_No_Vinculacion_Continuacion_de_Proceso.Descripcion
                         ,Resultado_VinculacionDescripcion = CultureHelper.GetTraduction(m.Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso.Descripcion
-                        ,plazo_investigacion_complementariaDescripcion = CultureHelper.GetTraduction(m.plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria.Clave.ToString(), "Descripcion") ?? (string)m.plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria.Descripcion
-			,fecha_investigacion_complementaria = m.fecha_investigacion_complementaria
+			,plazo_investigacion_complementaria = m.plazo_investigacion_complementaria
+                        ,Resultado_de_Investigacion_ComplementariDescripcion = CultureHelper.GetTraduction(m.Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria.Descripcion
+                        ,fecha_investigacion_complementaria = (m.fecha_investigacion_complementaria == null ? string.Empty : Convert.ToDateTime(m.fecha_investigacion_complementaria).ToString(ConfigurationProperty.DateFormat))
 			,hora_investigacion_complementaria = m.hora_investigacion_complementaria
 			,Nombre_del_Juez_de_Control = m.Nombre_del_Juez_de_Control
                         ,Fecha_de_Entrega_de_Escrito_de_Acusacion = (m.Fecha_de_Entrega_de_Escrito_de_Acusacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Entrega_de_Escrito_de_Acusacion).ToString(ConfigurationProperty.DateFormat))
@@ -1500,11 +1509,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,ImputadoNombre_Completo_Detenido = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                         ,Reclasificacion_JuridicaDescripcion = CultureHelper.GetTraduction(m.Reclasificacion_Juridica_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Reclasificacion_Juridica_A_Tiempo.Descripcion
                         ,Plazo_ConstitucionalDescripcion = CultureHelper.GetTraduction(m.Plazo_Constitucional_Plazo_Constitucional.Clave.ToString(), "Descripcion") ?? (string)m.Plazo_Constitucional_Plazo_Constitucional.Descripcion
+                        ,Fecha_Continuacion_Audiencia = (m.Fecha_Continuacion_Audiencia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Continuacion_Audiencia).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Continuacion_Audiencia = m.Hora_Continuacion_Audiencia
                         ,VinculacionDescripcion = CultureHelper.GetTraduction(m.Vinculacion_Vinculacion_a_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Vinculacion_Vinculacion_a_Proceso.Descripcion
                         ,Resultado_No_VinculacionDescripcion = CultureHelper.GetTraduction(m.Resultado_No_Vinculacion_Continuacion_de_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_No_Vinculacion_Continuacion_de_Proceso.Descripcion
                         ,Resultado_VinculacionDescripcion = CultureHelper.GetTraduction(m.Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso.Descripcion
-                        ,plazo_investigacion_complementariaDescripcion = CultureHelper.GetTraduction(m.plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria.Clave.ToString(), "Descripcion") ?? (string)m.plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria.Descripcion
-			,fecha_investigacion_complementaria = m.fecha_investigacion_complementaria
+			,plazo_investigacion_complementaria = m.plazo_investigacion_complementaria
+                        ,Resultado_de_Investigacion_ComplementariDescripcion = CultureHelper.GetTraduction(m.Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria.Descripcion
+                        ,fecha_investigacion_complementaria = (m.fecha_investigacion_complementaria == null ? string.Empty : Convert.ToDateTime(m.fecha_investigacion_complementaria).ToString(ConfigurationProperty.DateFormat))
 			,hora_investigacion_complementaria = m.hora_investigacion_complementaria
 			,Nombre_del_Juez_de_Control = m.Nombre_del_Juez_de_Control
                         ,Fecha_de_Entrega_de_Escrito_de_Acusacion = (m.Fecha_de_Entrega_de_Escrito_de_Acusacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Entrega_de_Escrito_de_Acusacion).ToString(ConfigurationProperty.DateFormat))
@@ -1813,6 +1825,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Proceso_Penal.Plazo_Constitucional In (" + Plazo_ConstitucionalIds + ")";
             }
 
+            if (!string.IsNullOrEmpty(filter.FromFecha_Continuacion_Audiencia) || !string.IsNullOrEmpty(filter.ToFecha_Continuacion_Audiencia))
+            {
+                var Fecha_Continuacion_AudienciaFrom = DateTime.ParseExact(filter.FromFecha_Continuacion_Audiencia, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var Fecha_Continuacion_AudienciaTo = DateTime.ParseExact(filter.ToFecha_Continuacion_Audiencia, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.FromFecha_Continuacion_Audiencia))
+                    where += " AND Proceso_Penal.Fecha_Continuacion_Audiencia >= '" + Fecha_Continuacion_AudienciaFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFecha_Continuacion_Audiencia))
+                    where += " AND Proceso_Penal.Fecha_Continuacion_Audiencia <= '" + Fecha_Continuacion_AudienciaTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromHora_Continuacion_Audiencia) || !string.IsNullOrEmpty(filter.ToHora_Continuacion_Audiencia))
+            {
+                if (!string.IsNullOrEmpty(filter.FromHora_Continuacion_Audiencia))
+                    where += " AND Convert(TIME,Proceso_Penal.Hora_Continuacion_Audiencia) >='" + filter.FromHora_Continuacion_Audiencia + "'";
+                if (!string.IsNullOrEmpty(filter.ToHora_Continuacion_Audiencia))
+                    where += " AND Convert(TIME,Proceso_Penal.Hora_Continuacion_Audiencia) <='" + filter.ToHora_Continuacion_Audiencia + "'";
+            }
+
             if (!string.IsNullOrEmpty(filter.AdvanceVinculacion))
             {
                 switch (filter.VinculacionFilter)
@@ -1897,40 +1930,53 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Proceso_Penal.Resultado_Vinculacion In (" + Resultado_VinculacionIds + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.Advanceplazo_investigacion_complementaria))
+            if (!string.IsNullOrEmpty(filter.Fromplazo_investigacion_complementaria) || !string.IsNullOrEmpty(filter.Toplazo_investigacion_complementaria))
             {
-                switch (filter.plazo_investigacion_complementariaFilter)
+                if (!string.IsNullOrEmpty(filter.Fromplazo_investigacion_complementaria))
+                    where += " AND Proceso_Penal.plazo_investigacion_complementaria >= " + filter.Fromplazo_investigacion_complementaria;
+                if (!string.IsNullOrEmpty(filter.Toplazo_investigacion_complementaria))
+                    where += " AND Proceso_Penal.plazo_investigacion_complementaria <= " + filter.Toplazo_investigacion_complementaria;
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceResultado_de_Investigacion_Complementari))
+            {
+                switch (filter.Resultado_de_Investigacion_ComplementariFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Plazo_de_Investigacion_Complementaria.Descripcion LIKE '" + filter.Advanceplazo_investigacion_complementaria + "%'";
+                        where += " AND Resultado_de_Investigacion_Complementaria.Descripcion LIKE '" + filter.AdvanceResultado_de_Investigacion_Complementari + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Plazo_de_Investigacion_Complementaria.Descripcion LIKE '%" + filter.Advanceplazo_investigacion_complementaria + "'";
+                        where += " AND Resultado_de_Investigacion_Complementaria.Descripcion LIKE '%" + filter.AdvanceResultado_de_Investigacion_Complementari + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Plazo_de_Investigacion_Complementaria.Descripcion = '" + filter.Advanceplazo_investigacion_complementaria + "'";
+                        where += " AND Resultado_de_Investigacion_Complementaria.Descripcion = '" + filter.AdvanceResultado_de_Investigacion_Complementari + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Plazo_de_Investigacion_Complementaria.Descripcion LIKE '%" + filter.Advanceplazo_investigacion_complementaria + "%'";
+                        where += " AND Resultado_de_Investigacion_Complementaria.Descripcion LIKE '%" + filter.AdvanceResultado_de_Investigacion_Complementari + "%'";
                         break;
                 }
             }
-            else if (filter.Advanceplazo_investigacion_complementariaMultiple != null && filter.Advanceplazo_investigacion_complementariaMultiple.Count() > 0)
+            else if (filter.AdvanceResultado_de_Investigacion_ComplementariMultiple != null && filter.AdvanceResultado_de_Investigacion_ComplementariMultiple.Count() > 0)
             {
-                var plazo_investigacion_complementariaIds = string.Join(",", filter.Advanceplazo_investigacion_complementariaMultiple);
+                var Resultado_de_Investigacion_ComplementariIds = string.Join(",", filter.AdvanceResultado_de_Investigacion_ComplementariMultiple);
 
-                where += " AND Proceso_Penal.plazo_investigacion_complementaria In (" + plazo_investigacion_complementariaIds + ")";
+                where += " AND Proceso_Penal.Resultado_de_Investigacion_Complementari In (" + Resultado_de_Investigacion_ComplementariIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.Fromfecha_investigacion_complementaria) || !string.IsNullOrEmpty(filter.Tofecha_investigacion_complementaria))
             {
+                var fecha_investigacion_complementariaFrom = DateTime.ParseExact(filter.Fromfecha_investigacion_complementaria, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var fecha_investigacion_complementariaTo = DateTime.ParseExact(filter.Tofecha_investigacion_complementaria, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
                 if (!string.IsNullOrEmpty(filter.Fromfecha_investigacion_complementaria))
-                    where += " AND Proceso_Penal.fecha_investigacion_complementaria >= " + filter.Fromfecha_investigacion_complementaria;
+                    where += " AND Proceso_Penal.fecha_investigacion_complementaria >= '" + fecha_investigacion_complementariaFrom.ToString("MM-dd-yyyy") + "'";
                 if (!string.IsNullOrEmpty(filter.Tofecha_investigacion_complementaria))
-                    where += " AND Proceso_Penal.fecha_investigacion_complementaria <= " + filter.Tofecha_investigacion_complementaria;
+                    where += " AND Proceso_Penal.fecha_investigacion_complementaria <= '" + fecha_investigacion_complementariaTo.ToString("MM-dd-yyyy") + "'";
             }
 
             if (!string.IsNullOrEmpty(filter.Fromhora_investigacion_complementaria) || !string.IsNullOrEmpty(filter.Tohora_investigacion_complementaria))
@@ -3073,11 +3119,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Imputado = varProceso_Penal.Imputado
                         ,Reclasificacion_Juridica = varProceso_Penal.Reclasificacion_Juridica
                         ,Plazo_Constitucional = varProceso_Penal.Plazo_Constitucional
+                        ,Fecha_Continuacion_Audiencia = (!String.IsNullOrEmpty(varProceso_Penal.Fecha_Continuacion_Audiencia)) ? DateTime.ParseExact(varProceso_Penal.Fecha_Continuacion_Audiencia, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_Continuacion_Audiencia = varProceso_Penal.Hora_Continuacion_Audiencia
                         ,Vinculacion = varProceso_Penal.Vinculacion
                         ,Resultado_No_Vinculacion = varProceso_Penal.Resultado_No_Vinculacion
                         ,Resultado_Vinculacion = varProceso_Penal.Resultado_Vinculacion
                         ,plazo_investigacion_complementaria = varProceso_Penal.plazo_investigacion_complementaria
-                        ,fecha_investigacion_complementaria = varProceso_Penal.fecha_investigacion_complementaria
+                        ,Resultado_de_Investigacion_Complementari = varProceso_Penal.Resultado_de_Investigacion_Complementari
+                        ,fecha_investigacion_complementaria = (!String.IsNullOrEmpty(varProceso_Penal.fecha_investigacion_complementaria)) ? DateTime.ParseExact(varProceso_Penal.fecha_investigacion_complementaria, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,hora_investigacion_complementaria = varProceso_Penal.hora_investigacion_complementaria
                         ,Nombre_del_Juez_de_Control = varProceso_Penal.Nombre_del_Juez_de_Control
                         ,Fecha_de_Entrega_de_Escrito_de_Acusacion = (!String.IsNullOrEmpty(varProceso_Penal.Fecha_de_Entrega_de_Escrito_de_Acusacion)) ? DateTime.ParseExact(varProceso_Penal.Fecha_de_Entrega_de_Escrito_de_Acusacion, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
@@ -4323,11 +4372,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,ImputadoNombre_Completo_Detenido = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                         ,Reclasificacion_JuridicaDescripcion = CultureHelper.GetTraduction(m.Reclasificacion_Juridica_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Reclasificacion_Juridica_A_Tiempo.Descripcion
                         ,Plazo_ConstitucionalDescripcion = CultureHelper.GetTraduction(m.Plazo_Constitucional_Plazo_Constitucional.Clave.ToString(), "Descripcion") ?? (string)m.Plazo_Constitucional_Plazo_Constitucional.Descripcion
+                        ,Fecha_Continuacion_Audiencia = (m.Fecha_Continuacion_Audiencia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Continuacion_Audiencia).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Continuacion_Audiencia = m.Hora_Continuacion_Audiencia
                         ,VinculacionDescripcion = CultureHelper.GetTraduction(m.Vinculacion_Vinculacion_a_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Vinculacion_Vinculacion_a_Proceso.Descripcion
                         ,Resultado_No_VinculacionDescripcion = CultureHelper.GetTraduction(m.Resultado_No_Vinculacion_Continuacion_de_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_No_Vinculacion_Continuacion_de_Proceso.Descripcion
                         ,Resultado_VinculacionDescripcion = CultureHelper.GetTraduction(m.Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso.Descripcion
-                        ,plazo_investigacion_complementariaDescripcion = CultureHelper.GetTraduction(m.plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria.Clave.ToString(), "Descripcion") ?? (string)m.plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria.Descripcion
-			,fecha_investigacion_complementaria = m.fecha_investigacion_complementaria
+			,plazo_investigacion_complementaria = m.plazo_investigacion_complementaria
+                        ,Resultado_de_Investigacion_ComplementariDescripcion = CultureHelper.GetTraduction(m.Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria.Descripcion
+                        ,fecha_investigacion_complementaria = (m.fecha_investigacion_complementaria == null ? string.Empty : Convert.ToDateTime(m.fecha_investigacion_complementaria).ToString(ConfigurationProperty.DateFormat))
 			,hora_investigacion_complementaria = m.hora_investigacion_complementaria
 			,Nombre_del_Juez_de_Control = m.Nombre_del_Juez_de_Control
                         ,Fecha_de_Entrega_de_Escrito_de_Acusacion = (m.Fecha_de_Entrega_de_Escrito_de_Acusacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Entrega_de_Escrito_de_Acusacion).ToString(ConfigurationProperty.DateFormat))
@@ -4436,11 +4488,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,ImputadoNombre_Completo_Detenido = CultureHelper.GetTraduction(m.Imputado_Detalle_de_Imputado.Clave.ToString(), "Detalle_de_Imputado") ?? (string)m.Imputado_Detalle_de_Imputado.Nombre_Completo_Detenido
                         ,Reclasificacion_JuridicaDescripcion = CultureHelper.GetTraduction(m.Reclasificacion_Juridica_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Reclasificacion_Juridica_A_Tiempo.Descripcion
                         ,Plazo_ConstitucionalDescripcion = CultureHelper.GetTraduction(m.Plazo_Constitucional_Plazo_Constitucional.Clave.ToString(), "Descripcion") ?? (string)m.Plazo_Constitucional_Plazo_Constitucional.Descripcion
+                        ,Fecha_Continuacion_Audiencia = (m.Fecha_Continuacion_Audiencia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Continuacion_Audiencia).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Continuacion_Audiencia = m.Hora_Continuacion_Audiencia
                         ,VinculacionDescripcion = CultureHelper.GetTraduction(m.Vinculacion_Vinculacion_a_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Vinculacion_Vinculacion_a_Proceso.Descripcion
                         ,Resultado_No_VinculacionDescripcion = CultureHelper.GetTraduction(m.Resultado_No_Vinculacion_Continuacion_de_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_No_Vinculacion_Continuacion_de_Proceso.Descripcion
                         ,Resultado_VinculacionDescripcion = CultureHelper.GetTraduction(m.Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso.Descripcion
-                        ,plazo_investigacion_complementariaDescripcion = CultureHelper.GetTraduction(m.plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria.Clave.ToString(), "Descripcion") ?? (string)m.plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria.Descripcion
-			,fecha_investigacion_complementaria = m.fecha_investigacion_complementaria
+			,plazo_investigacion_complementaria = m.plazo_investigacion_complementaria
+                        ,Resultado_de_Investigacion_ComplementariDescripcion = CultureHelper.GetTraduction(m.Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria.Descripcion
+                        ,fecha_investigacion_complementaria = (m.fecha_investigacion_complementaria == null ? string.Empty : Convert.ToDateTime(m.fecha_investigacion_complementaria).ToString(ConfigurationProperty.DateFormat))
 			,hora_investigacion_complementaria = m.hora_investigacion_complementaria
 			,Nombre_del_Juez_de_Control = m.Nombre_del_Juez_de_Control
                         ,Fecha_de_Entrega_de_Escrito_de_Acusacion = (m.Fecha_de_Entrega_de_Escrito_de_Acusacion == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Entrega_de_Escrito_de_Acusacion).ToString(ConfigurationProperty.DateFormat))
@@ -4515,11 +4570,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Imputado = varProceso_Penal.Imputado
                         ,Reclasificacion_Juridica = varProceso_Penal.Reclasificacion_Juridica
                         ,Plazo_Constitucional = varProceso_Penal.Plazo_Constitucional
+                        ,Fecha_Continuacion_Audiencia = (!String.IsNullOrEmpty(varProceso_Penal.Fecha_Continuacion_Audiencia)) ? DateTime.ParseExact(varProceso_Penal.Fecha_Continuacion_Audiencia, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_Continuacion_Audiencia = varProceso_Penal.Hora_Continuacion_Audiencia
                         ,Vinculacion = varProceso_Penal.Vinculacion
                         ,Resultado_No_Vinculacion = varProceso_Penal.Resultado_No_Vinculacion
                         ,Resultado_Vinculacion = varProceso_Penal.Resultado_Vinculacion
                         ,plazo_investigacion_complementaria = varProceso_Penal.plazo_investigacion_complementaria
-                        ,fecha_investigacion_complementaria = varProceso_Penal.fecha_investigacion_complementaria
+                        ,Resultado_de_Investigacion_Complementari = varProceso_Penal.Resultado_de_Investigacion_Complementari
+                        ,fecha_investigacion_complementaria = (!String.IsNullOrEmpty(varProceso_Penal.fecha_investigacion_complementaria)) ? DateTime.ParseExact(varProceso_Penal.fecha_investigacion_complementaria, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,hora_investigacion_complementaria = varProceso_Penal.hora_investigacion_complementaria
                     
                 };
@@ -4573,15 +4631,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Reclasificacion_JuridicaDescripcion = CultureHelper.GetTraduction(m.Reclasificacion_Juridica_A_Tiempo.Clave.ToString(), "Descripcion") ?? (string)m.Reclasificacion_Juridica_A_Tiempo.Descripcion
                         ,Plazo_Constitucional = m.Plazo_Constitucional
                         ,Plazo_ConstitucionalDescripcion = CultureHelper.GetTraduction(m.Plazo_Constitucional_Plazo_Constitucional.Clave.ToString(), "Descripcion") ?? (string)m.Plazo_Constitucional_Plazo_Constitucional.Descripcion
+                        ,Fecha_Continuacion_Audiencia = (m.Fecha_Continuacion_Audiencia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Continuacion_Audiencia).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Continuacion_Audiencia = m.Hora_Continuacion_Audiencia
                         ,Vinculacion = m.Vinculacion
                         ,VinculacionDescripcion = CultureHelper.GetTraduction(m.Vinculacion_Vinculacion_a_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Vinculacion_Vinculacion_a_Proceso.Descripcion
                         ,Resultado_No_Vinculacion = m.Resultado_No_Vinculacion
                         ,Resultado_No_VinculacionDescripcion = CultureHelper.GetTraduction(m.Resultado_No_Vinculacion_Continuacion_de_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_No_Vinculacion_Continuacion_de_Proceso.Descripcion
                         ,Resultado_Vinculacion = m.Resultado_Vinculacion
                         ,Resultado_VinculacionDescripcion = CultureHelper.GetTraduction(m.Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso.Descripcion
-                        ,plazo_investigacion_complementaria = m.plazo_investigacion_complementaria
-                        ,plazo_investigacion_complementariaDescripcion = CultureHelper.GetTraduction(m.plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria.Clave.ToString(), "Descripcion") ?? (string)m.plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria.Descripcion
-			,fecha_investigacion_complementaria = m.fecha_investigacion_complementaria
+			,plazo_investigacion_complementaria = m.plazo_investigacion_complementaria
+                        ,Resultado_de_Investigacion_Complementari = m.Resultado_de_Investigacion_Complementari
+                        ,Resultado_de_Investigacion_ComplementariDescripcion = CultureHelper.GetTraduction(m.Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria.Clave.ToString(), "Descripcion") ?? (string)m.Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria.Descripcion
+                        ,fecha_investigacion_complementaria = (m.fecha_investigacion_complementaria == null ? string.Empty : Convert.ToDateTime(m.fecha_investigacion_complementaria).ToString(ConfigurationProperty.DateFormat))
 			,hora_investigacion_complementaria = m.hora_investigacion_complementaria
 
                     

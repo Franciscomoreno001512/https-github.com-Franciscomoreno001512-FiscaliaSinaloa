@@ -11,7 +11,7 @@ using Spartane.Core.Domain.Plazo_Constitucional;
 using Spartane.Core.Domain.Vinculacion_a_Proceso;
 using Spartane.Core.Domain.Continuacion_de_Proceso;
 using Spartane.Core.Domain.Auto_de_Vinculacion_a_Proceso;
-using Spartane.Core.Domain.Plazo_de_Investigacion_Complementaria;
+using Spartane.Core.Domain.Resultado_de_Investigacion_Complementaria;
 using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.A_Tiempo;
@@ -40,11 +40,14 @@ namespace Spartane.Core.Domain.Proceso_Penal
         public int? Imputado { get; set; }
         public short? Reclasificacion_Juridica { get; set; }
         public int? Plazo_Constitucional { get; set; }
+        public DateTime? Fecha_Continuacion_Audiencia { get; set; }
+        public string Hora_Continuacion_Audiencia { get; set; }
         public int? Vinculacion { get; set; }
         public int? Resultado_No_Vinculacion { get; set; }
         public int? Resultado_Vinculacion { get; set; }
-        public int? plazo_investigacion_complementaria { get; set; }
-        public int? fecha_investigacion_complementaria { get; set; }
+        public short? plazo_investigacion_complementaria { get; set; }
+        public int? Resultado_de_Investigacion_Complementari { get; set; }
+        public DateTime? fecha_investigacion_complementaria { get; set; }
         public string hora_investigacion_complementaria { get; set; }
         public string Nombre_del_Juez_de_Control { get; set; }
         public DateTime? Fecha_de_Entrega_de_Escrito_de_Acusacion { get; set; }
@@ -90,8 +93,8 @@ namespace Spartane.Core.Domain.Proceso_Penal
         public virtual Spartane.Core.Domain.Continuacion_de_Proceso.Continuacion_de_Proceso Resultado_No_Vinculacion_Continuacion_de_Proceso { get; set; }
         [ForeignKey("Resultado_Vinculacion")]
         public virtual Spartane.Core.Domain.Auto_de_Vinculacion_a_Proceso.Auto_de_Vinculacion_a_Proceso Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso { get; set; }
-        [ForeignKey("plazo_investigacion_complementaria")]
-        public virtual Spartane.Core.Domain.Plazo_de_Investigacion_Complementaria.Plazo_de_Investigacion_Complementaria plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria { get; set; }
+        [ForeignKey("Resultado_de_Investigacion_Complementari")]
+        public virtual Spartane.Core.Domain.Resultado_de_Investigacion_Complementaria.Resultado_de_Investigacion_Complementaria Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria { get; set; }
         [ForeignKey("Acusador_Coadyudante")]
         public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Acusador_Coadyudante_A_Tiempo { get; set; }
         [ForeignKey("cumplio_descubrimiento_probatorio")]
@@ -121,11 +124,14 @@ namespace Spartane.Core.Domain.Proceso_Penal
         public int? Imputado { get; set; }
         public short? Reclasificacion_Juridica { get; set; }
         public int? Plazo_Constitucional { get; set; }
+        public DateTime? Fecha_Continuacion_Audiencia { get; set; }
+        public string Hora_Continuacion_Audiencia { get; set; }
         public int? Vinculacion { get; set; }
         public int? Resultado_No_Vinculacion { get; set; }
         public int? Resultado_Vinculacion { get; set; }
-        public int? plazo_investigacion_complementaria { get; set; }
-        public int? fecha_investigacion_complementaria { get; set; }
+        public short? plazo_investigacion_complementaria { get; set; }
+        public int? Resultado_de_Investigacion_Complementari { get; set; }
+        public DateTime? fecha_investigacion_complementaria { get; set; }
         public string hora_investigacion_complementaria { get; set; }
 
 		        [ForeignKey("Expediente_MP")]
@@ -144,8 +150,8 @@ namespace Spartane.Core.Domain.Proceso_Penal
         public virtual Spartane.Core.Domain.Continuacion_de_Proceso.Continuacion_de_Proceso Resultado_No_Vinculacion_Continuacion_de_Proceso { get; set; }
         [ForeignKey("Resultado_Vinculacion")]
         public virtual Spartane.Core.Domain.Auto_de_Vinculacion_a_Proceso.Auto_de_Vinculacion_a_Proceso Resultado_Vinculacion_Auto_de_Vinculacion_a_Proceso { get; set; }
-        [ForeignKey("plazo_investigacion_complementaria")]
-        public virtual Spartane.Core.Domain.Plazo_de_Investigacion_Complementaria.Plazo_de_Investigacion_Complementaria plazo_investigacion_complementaria_Plazo_de_Investigacion_Complementaria { get; set; }
+        [ForeignKey("Resultado_de_Investigacion_Complementari")]
+        public virtual Spartane.Core.Domain.Resultado_de_Investigacion_Complementaria.Resultado_de_Investigacion_Complementaria Resultado_de_Investigacion_Complementari_Resultado_de_Investigacion_Complementaria { get; set; }
 
     }
 
