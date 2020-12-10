@@ -30,7 +30,7 @@ namespace Spartane.Web.SqlModelMapper
                     return "Encuesta1.NUAT";
                 case "Modulo[Descripcion]":
                 case "ModuloDescripcion":
-                    return "Estatus.Descripcion";
+                    return "Modulo_Encuesta.Descripcion";
                 case "Numero_de_Preguntas[Descripcion]":
                 case "Numero_de_PreguntasDescripcion":
                     return "Catalogo_Numero_de_Preguntas.Descripcion";

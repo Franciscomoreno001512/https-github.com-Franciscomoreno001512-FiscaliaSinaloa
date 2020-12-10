@@ -2438,6 +2438,8 @@
 
 		function Fill_Resolucion_o_Dictaminacion()
         {
+		
+		
             $.ajax({
                 url: "@Url.Content("~/Frontal/expediente_ministerio_publico/Get_Resolucion_o_Dictaminacion")?Id=" + $("#Referenceclave").val(),
                 type: 'GET',
@@ -2449,7 +2451,11 @@
                     $('#hora_de_cierre').val(result.data.hora_de_cierre);
                     var control = $('#Usuario_que_Cierra');
                     control.select2('open');
-                    $('.select2-search__field').val(result.data.Usuario_que_Cierra).trigger('keyup');
+					
+					var _iduser = result.data.Usuario_que_Cierra;
+					if(_iduser == null) {_iduser =@Session["USERID"];}
+										
+                    $('.select2-search__field').val(_iduser).trigger('keyup');
                     control.select2('close');
                     setTimeout(function () {
 	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');

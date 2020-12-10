@@ -28,6 +28,9 @@ namespace Spartane.Web.SqlModelMapper
                     return "Spartan_User.Name";
                 case "Nombre_del_Juez_de_Control":
                     return "Audiencia_Inicial.Nombre_del_Juez_de_Control";
+                case "Tipo[Descripcion]":
+                case "TipoDescripcion":
+                    return "Tipo_de_Judicializacion.Descripcion";
                 case "causa_penal":
                     return "Audiencia_Inicial.causa_penal";
                 case "Fecha_Audiencia_Inicial":

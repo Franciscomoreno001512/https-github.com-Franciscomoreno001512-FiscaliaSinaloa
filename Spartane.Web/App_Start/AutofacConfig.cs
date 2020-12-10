@@ -1691,6 +1691,15 @@ using Spartane.Web.Areas.WebApiConsumer.Notificaciones;
 using Spartane.Services.Estatus_Encuesta;
 using Spartane.Core.Domain.Estatus_Encuesta;
 using Spartane.Web.Areas.WebApiConsumer.Estatus_Encuesta;
+using Spartane.Services.Tipo_de_Judicializacion;
+using Spartane.Core.Domain.Tipo_de_Judicializacion;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Judicializacion;
+using Spartane.Services.Modulo_Encuesta;
+using Spartane.Core.Domain.Modulo_Encuesta;
+using Spartane.Web.Areas.WebApiConsumer.Modulo_Encuesta;
+using Spartane.Services.Generador_Folio_Encuesta;
+using Spartane.Core.Domain.Generador_Folio_Encuesta;
+using Spartane.Web.Areas.WebApiConsumer.Generador_Folio_Encuesta;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -2941,6 +2950,12 @@ builder.RegisterType<NotificacionesService>().As<INotificacionesService>().Insta
 builder.RegisterType<NotificacionesApiConsumer>().As<INotificacionesApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Estatus_EncuestaService>().As<IEstatus_EncuestaService>().InstancePerLifetimeScope();
 builder.RegisterType<Estatus_EncuestaApiConsumer>().As<IEstatus_EncuestaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_JudicializacionService>().As<ITipo_de_JudicializacionService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_JudicializacionApiConsumer>().As<ITipo_de_JudicializacionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Modulo_EncuestaService>().As<IModulo_EncuestaService>().InstancePerLifetimeScope();
+builder.RegisterType<Modulo_EncuestaApiConsumer>().As<IModulo_EncuestaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Generador_Folio_EncuestaService>().As<IGenerador_Folio_EncuestaService>().InstancePerLifetimeScope();
+builder.RegisterType<Generador_Folio_EncuestaApiConsumer>().As<IGenerador_Folio_EncuestaApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3121,6 +3136,34 @@ builder.RegisterType<Estatus_EncuestaApiConsumer>().As<IEstatus_EncuestaApiConsu
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -9,6 +9,9 @@
  List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
     if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
     { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
+    List<SelectListItem> varTipo_de_Judicializacion_Tipo = null;
+    if (ViewBag.Tipo_de_Judicializacions_Tipo != null)
+    { varTipo_de_Judicializacion_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Judicializacions_Tipo; }
     List<SelectListItem> varA_Tiempo_Con_Detenido = null;
     if (ViewBag.A_Tiempos_Con_Detenido != null)
     { varA_Tiempo_Con_Detenido = (List<SelectListItem>)ViewBag.A_Tiempos_Con_Detenido; }
@@ -123,6 +126,27 @@
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.Nombre_del_Juez_de_ControlFilter, filters, new { @class = "form-control", @id = "ddlNombre_del_Juez_de_ControlFilter" })
                     @Html.TextBoxFor(m => m.Nombre_del_Juez_de_Control, new { @class = "form-control", @type = "text", @id = "txtNombre_del_Juez_de_Control" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Audiencia_InicialResources.Tipo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.TipoFilter, filters, new { @class = "form-control", @id = "ddlTipoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Judicializacion_Tipo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipoMultiple, varTipo_de_Judicializacion_Tipo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo"
+                        });
+                    }
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Audiencia_InicialResources.causa_penal</h3>
@@ -345,6 +369,21 @@
             advanceSearch.Audiencia_InicialNombre_del_Juez_de_Control = $("#txtAdvanceNombre_del_Juez_de_Control").val();
             advanceSearch.Audiencia_InicialNombre_del_Juez_de_ControlSearchType = $("#ddlAdvanceNombre_del_Juez_de_ControlFilter").val();
         }
+        advanceSearch.TipoSearchType = 0;
+        if ($('#ddlAdvanceTipo').val().length > 0 || $("#txtAdvanceTipo").val() == "") {
+
+
+            if (isAudiencia_InicialTextSearch) {
+                advanceSearch.TipoName = $("#txtAdvanceTipo").val();
+                advanceSearch.TipoNameSearchType = $("#ddlAdvanceTipo").val();
+                advanceSearch.TipoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.TipoToSearch = $("#ddlAdvanceTipo").val();
+                advanceSearch.TipoSearchType = 2;
+            }
+        }
         if ($("#txtAdvancecausa_penal").val() != "") {
             hasParameter = true;
             advanceSearch.Audiencia_Inicialcausa_penal = $("#txtAdvancecausa_penal").val();
@@ -475,6 +514,15 @@
         $("#ddlAdvanceUsuario_que_Registra").change(function () {
             isAudiencia_InicialTextSearch = false;
             $("#txtAdvanceUsuario_que_Registra").val('');
+        });
+        $("#txtAdvanceTipo").keypress(function () {
+            isAudiencia_InicialTextSearch = true;
+            $("#ddlAdvanceTipo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo").change(function () {
+            isAudiencia_InicialTextSearch = false;
+            $("#txtAdvanceTipo").val('');
         });
         $("#txtAdvanceCon_Detenido").keypress(function () {
             isAudiencia_InicialTextSearch = true;

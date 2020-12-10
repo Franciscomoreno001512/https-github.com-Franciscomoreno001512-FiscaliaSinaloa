@@ -181,7 +181,7 @@ function EjecutarValidacionesNewRowMRDetalle_Aseguramiento_Medios_de_Transporte(
 
 
 
-
+debugger;
 //BusinessRuleId:2877, Attribute:267649, Operation:Object, Event:NEWROWMR
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Especifique' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Marca' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Submarca' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Modelo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Placas' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Color' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_de_Motor' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Serie' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Uso' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cap__De_Pasajeros' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Procedencia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Empresa' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Capacidad_de_Carga' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Origen' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Destino' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex));
@@ -255,7 +255,7 @@ function EjecutarValidacionesEditRowMRDetalle_Aseguramiento_Medios_de_Transporte
 
 
 
-
+debugger;
 
 //BusinessRuleId:2877, Attribute:267649, Operation:Object, Event:EDITROWMR
 if(operation == 'New'){

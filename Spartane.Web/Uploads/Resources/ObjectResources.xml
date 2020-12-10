@@ -1136,8 +1136,42 @@
 <Object Id="45583" culture="es-es" value="Notificaciones" />
 <Object Id="45596" culture="en-us" value="Estatus Encuesta" />
 <Object Id="45596" culture="es-es" value="Estatus Encuesta" />
+<Object Id="45606" culture="en-us" value="Tipo de Judicialización" />
+<Object Id="45606" culture="es-es" value="Tipo de Judicialización" />
+<Object Id="45607" culture="en-us" value="Módulo Encuesta" />
+<Object Id="45607" culture="es-es" value="Módulo Encuesta" />
+<Object Id="45608" culture="en-us" value="Generador_Folio_Encuesta" />
+<Object Id="45608" culture="es-es" value="Generador_Folio_Encuesta" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -16,9 +16,9 @@
     { Model.Fecha_Respuesta = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
 */
-    List<SelectListItem> varEstatus_Modulo = null;
-    if (ViewBag.Estatuss_Modulo != null)
-    { varEstatus_Modulo = (List<SelectListItem>)ViewBag.Estatuss_Modulo; }
+    List<SelectListItem> varModulo_Encuesta_Modulo = null;
+    if (ViewBag.Modulo_Encuestas_Modulo != null)
+    { varModulo_Encuesta_Modulo = (List<SelectListItem>)ViewBag.Modulo_Encuestas_Modulo; }
     List<SelectListItem> varCatalogo_Numero_de_Preguntas_Numero_de_Preguntas = null;
     if (ViewBag.Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null)
     { varCatalogo_Numero_de_Preguntas_Numero_de_Preguntas = (List<SelectListItem>)ViewBag.Catalogo_Numero_de_Preguntass_Numero_de_Preguntas; }
@@ -248,8 +248,8 @@
                                 <div class="col-sm-8" data-field-id="Modulo" data-attribute="268245" data-field-name="@Resources.Encuesta1Resources.Modulo">
                                     <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Módulo must be a number." data-val-required="The Módulo field is required." id="Modulo" name="Modulo">
                                         <option value=""></option>
-                                        @if (varEstatus_Modulo != null){ 
-                                            foreach (var itemModulo in varEstatus_Modulo)
+                                        @if (varModulo_Encuesta_Modulo != null){ 
+                                            foreach (var itemModulo in varModulo_Encuesta_Modulo)
                                             {
                                                 if (itemModulo.Value == Convert.ToString(Model.Modulo))
                                                 {
@@ -267,7 +267,7 @@
 								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268245).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Estatus', 'Modulo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Modulo_Encuesta', 'Modulo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>

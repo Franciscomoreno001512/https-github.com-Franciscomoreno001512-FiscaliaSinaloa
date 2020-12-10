@@ -41,9 +41,6 @@ namespace Spartane.Web.Areas.WebApiConsumer.Proceso_Penal
 		ApiResponse<int> Update_Resolucion(Spartane.Core.Domain.Proceso_Penal.Proceso_Penal_Resolucion entity);
 		ApiResponse<Spartane.Core.Domain.Proceso_Penal.Proceso_Penal_Resolucion> Get_Resolucion(string Key);
 
-		ApiResponse<int> Update_Datos_Generales(Spartane.Core.Domain.Proceso_Penal.Proceso_Penal_Datos_Generales entity);
-		ApiResponse<Spartane.Core.Domain.Proceso_Penal.Proceso_Penal_Datos_Generales> Get_Datos_Generales(string Key);
-
 
     }
 }

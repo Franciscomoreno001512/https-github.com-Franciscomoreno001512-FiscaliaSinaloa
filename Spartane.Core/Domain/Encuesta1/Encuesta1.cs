@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Spartane.Core.Domain.Estatus;
+using Spartane.Core.Domain.Modulo_Encuesta;
 using Spartane.Core.Domain.Catalogo_Numero_de_Preguntas;
 using Spartane.Core.Domain.Catalogo_Respuesta;
 using Spartane.Core.Domain.Catalogo_Respuesta;
@@ -45,7 +45,7 @@ namespace Spartane.Core.Domain.Encuesta1
         public int? Estatus { get; set; }
 
         [ForeignKey("Modulo")]
-        public virtual Spartane.Core.Domain.Estatus.Estatus Modulo_Estatus { get; set; }
+        public virtual Spartane.Core.Domain.Modulo_Encuesta.Modulo_Encuesta Modulo_Modulo_Encuesta { get; set; }
         [ForeignKey("Numero_de_Preguntas")]
         public virtual Spartane.Core.Domain.Catalogo_Numero_de_Preguntas.Catalogo_Numero_de_Preguntas Numero_de_Preguntas_Catalogo_Numero_de_Preguntas { get; set; }
         [ForeignKey("Respuesta_1")]
@@ -87,7 +87,7 @@ namespace Spartane.Core.Domain.Encuesta1
         public int? Estatus { get; set; }
 
 		        [ForeignKey("Modulo")]
-        public virtual Spartane.Core.Domain.Estatus.Estatus Modulo_Estatus { get; set; }
+        public virtual Spartane.Core.Domain.Modulo_Encuesta.Modulo_Encuesta Modulo_Modulo_Encuesta { get; set; }
         [ForeignKey("Numero_de_Preguntas")]
         public virtual Spartane.Core.Domain.Catalogo_Numero_de_Preguntas.Catalogo_Numero_de_Preguntas Numero_de_Preguntas_Catalogo_Numero_de_Preguntas { get; set; }
         [ForeignKey("Respuesta_1")]
