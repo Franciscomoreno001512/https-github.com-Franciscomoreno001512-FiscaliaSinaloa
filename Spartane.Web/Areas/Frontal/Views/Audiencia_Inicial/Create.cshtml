@@ -22,6 +22,9 @@
  List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
     if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
     { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
+    List<SelectListItem> varTipo_de_Judicializacion_Tipo = null;
+    if (ViewBag.Tipo_de_Judicializacions_Tipo != null)
+    { varTipo_de_Judicializacion_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Judicializacions_Tipo; }
     List<SelectListItem> varA_Tiempo_Con_Detenido = null;
     if (ViewBag.A_Tiempos_Con_Detenido != null)
     { varA_Tiempo_Con_Detenido = (List<SelectListItem>)ViewBag.A_Tiempos_Con_Detenido; }
@@ -243,6 +246,34 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Nombre_del_Juez_de_Control" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divTipo">
+                                <label class="col-sm-2 control-label">@Resources.Audiencia_InicialResources.Tipo</label>
+                                <div class="col-sm-8" data-field-id="Tipo" data-attribute="268314" data-field-name="@Resources.Audiencia_InicialResources.Tipo">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Tipo" name="Tipo">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Judicializacion_Tipo != null){ 
+                                            foreach (var itemTipo in varTipo_de_Judicializacion_Tipo)
+                                            {
+                                                if (itemTipo.Value == Convert.ToString(Model.Tipo))
+                                                {
+                                                    <option value="@itemTipo.Value" selected>@itemTipo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo.Value">@itemTipo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268314).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Judicializacion', 'Tipo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
                             <div class="form-group" id="divcausa_penal">
                                 <label class="col-sm-2 control-label">@Resources.Audiencia_InicialResources.causa_penal</label>
                                 <div class="col-sm-8" data-field-id="causa_penal" data-attribute="267742" data-field-name="@Resources.Audiencia_InicialResources.causa_penal">
@@ -365,7 +396,7 @@
                             <div class="form-group" id="divEspecificar_Detencion">
                                 <label class="col-sm-2 control-label">@Resources.Audiencia_InicialResources.Especificar_Detencion</label>
                                 <div class="col-sm-8" data-field-id="Especificar_Detencion" data-attribute="267764" data-field-name="@Resources.Audiencia_InicialResources.Especificar_Detencion">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Especifique must be a number." data-val-required="The Especifique field is required." id="Especificar_Detencion" name="Especificar_Detencion">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Supuesto de la Detención must be a number." data-val-required="The Supuesto de la Detención field is required." id="Especificar_Detencion" name="Especificar_Detencion">
                                         <option value=""></option>
                                         @if (varEspecificacion_Detencion_Especificar_Detencion != null){ 
                                             foreach (var itemEspecificar_Detencion in varEspecificacion_Detencion_Especificar_Detencion)
@@ -421,7 +452,7 @@
                             <div class="form-group" id="divEspecificar_Control_Detencion">
                                 <label class="col-sm-2 control-label">@Resources.Audiencia_InicialResources.Especificar_Control_Detencion</label>
                                 <div class="col-sm-8" data-field-id="Especificar_Control_Detencion" data-attribute="267766" data-field-name="@Resources.Audiencia_InicialResources.Especificar_Control_Detencion">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Especifique must be a number." data-val-required="The Especifique field is required." id="Especificar_Control_Detencion" name="Especificar_Control_Detencion">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Supuesto de la Detención must be a number." data-val-required="The Supuesto de la Detención field is required." id="Especificar_Control_Detencion" name="Especificar_Control_Detencion">
                                         <option value=""></option>
                                         @if (varContinuacion_de_Proceso_Especificar_Control_Detencion != null){ 
                                             foreach (var itemEspecificar_Control_Detencion in varContinuacion_de_Proceso_Especificar_Control_Detencion)
@@ -1391,6 +1422,7 @@
 	                    control.val(result.data.Usuario_que_Registra).trigger('change');
                     }, 3000);
                     $('#Nombre_del_Juez_de_Control').val(result.data.Nombre_del_Juez_de_Control);
+                    $('#Tipo').val(result.data.Tipo);
                     $('#causa_penal').val(result.data.causa_penal);
                     $('#Fecha_Audiencia_Inicial').val(result.data.Fecha_Audiencia_Inicial);
                     $('#Hora_Audiencia_Inicial').val(result.data.Hora_Audiencia_Inicial);
@@ -1420,6 +1452,7 @@
                 data.append('Hora_de_Registro', $('#Hora_de_Registro').val());
                 data.append('Usuario_que_Registra', $('#Usuario_que_Registra').val());
                 data.append('Nombre_del_Juez_de_Control', $('#Nombre_del_Juez_de_Control').val());
+                data.append('Tipo', $('#Tipo').val());
                 data.append('causa_penal', $('#causa_penal').val());
                 data.append('Fecha_Audiencia_Inicial', $('#Fecha_Audiencia_Inicial').val());
                 data.append('Hora_Audiencia_Inicial', $('#Hora_Audiencia_Inicial').val());

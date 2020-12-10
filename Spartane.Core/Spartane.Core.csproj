@@ -1426,6 +1426,14 @@
 <Compile Include="Domain\Control_de_Folios_por_Especialidad\Control_de_Folios_por_EspecialidadPagingModel.cs" />
 <Compile Include="Domain\Notificaciones\Notificaciones.cs" />
 <Compile Include="Domain\Notificaciones\NotificacionesPagingModel.cs" />
+<Compile Include="Domain\Estatus_Encuesta\Estatus_Encuesta.cs" />
+<Compile Include="Domain\Estatus_Encuesta\Estatus_EncuestaPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Judicializacion\Tipo_de_Judicializacion.cs" />
+<Compile Include="Domain\Tipo_de_Judicializacion\Tipo_de_JudicializacionPagingModel.cs" />
+<Compile Include="Domain\Modulo_Encuesta\Modulo_Encuesta.cs" />
+<Compile Include="Domain\Modulo_Encuesta\Modulo_EncuestaPagingModel.cs" />
+<Compile Include="Domain\Generador_Folio_Encuesta\Generador_Folio_Encuesta.cs" />
+<Compile Include="Domain\Generador_Folio_Encuesta\Generador_Folio_EncuestaPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1446,6 +1454,14 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
 
 
 

@@ -27,9 +27,6 @@
     List<SelectListItem> varAuto_de_Vinculacion_a_Proceso_Resultado_Vinculacion = null;
     if (ViewBag.Auto_de_Vinculacion_a_Procesos_Resultado_Vinculacion != null)
     { varAuto_de_Vinculacion_a_Proceso_Resultado_Vinculacion = (List<SelectListItem>)ViewBag.Auto_de_Vinculacion_a_Procesos_Resultado_Vinculacion; }
-    List<SelectListItem> varPlazo_de_Investigacion_Complementaria_plazo_investigacion_complementaria = null;
-    if (ViewBag.Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria != null)
-    { varPlazo_de_Investigacion_Complementaria_plazo_investigacion_complementaria = (List<SelectListItem>)ViewBag.Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria; }
     List<SelectListItem> varResultado_de_Investigacion_Complementaria_Resultado_de_Investigacion_Complementari = null;
     if (ViewBag.Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari != null)
     { varResultado_de_Investigacion_Complementaria_Resultado_de_Investigacion_Complementari = (List<SelectListItem>)ViewBag.Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari; }
@@ -212,6 +209,44 @@
                         });
                     }
                 </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Proceso_PenalResources.Fecha_Continuacion_Audiencia</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_Continuacion_Audiencia" name="FromFecha_Continuacion_Audiencia" type="text" value="@Model.FromFecha_Continuacion_Audiencia" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_Continuacion_Audiencia" name="ToFecha_Continuacion_Audiencia" type="text" value="@Model.ToFecha_Continuacion_Audiencia" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Proceso_PenalResources.Hora_Continuacion_Audiencia</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_Continuacion_Audiencia" name="FromHora_Continuacion_Audiencia" type="text" value="@Model.FromHora_Continuacion_Audiencia" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_Continuacion_Audiencia" name="ToHora_Continuacion_Audiencia" type="text" value="@Model.ToHora_Continuacion_Audiencia" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Proceso_PenalResources.Vinculacion</h3>
                 </div>
@@ -275,26 +310,16 @@
                         });
                     }
                 </div>
-                <div class="MarginBottom">
+                <div class="MarginBottom ">
                     <h3>@Resources.Proceso_PenalResources.plazo_investigacion_complementaria</h3>
                 </div>
                 <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.plazo_investigacion_complementariaFilter, filters, new { @class = "form-control", @id = "ddlplazo_investigacion_complementariaFilter" })
-                    @Html.TextBoxFor(m => m.Advanceplazo_investigacion_complementaria, new { @class = "form-control", @type = "text", @id = "txtAdvanceplazo_investigacion_complementaria" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varPlazo_de_Investigacion_Complementaria_plazo_investigacion_complementaria!=null)
-                    {
-                        @Html.ListBoxFor(m => m.Advanceplazo_investigacion_complementariaMultiple, varPlazo_de_Investigacion_Complementaria_plazo_investigacion_complementaria,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceplazo_investigacion_complementaria"
-                        });
-                    }
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromplazo_investigacion_complementaria, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromplazo_investigacion_complementaria" })
+                    @Html.ValidationMessageFor(m => m.Fromplazo_investigacion_complementaria)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Toplazo_investigacion_complementaria, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToplazo_investigacion_complementaria", @data_min = "txtAdvanceFromplazo_investigacion_complementaria" })
+                    @Html.ValidationMessageFor(m => m.Toplazo_investigacion_complementaria)
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Proceso_PenalResources.Resultado_de_Investigacion_Complementari</h3>
@@ -317,17 +342,25 @@
                         });
                     }
                 </div>
-                <div class="MarginBottom ">
-                    <h3>@Resources.Proceso_PenalResources.fecha_investigacion_complementaria</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.From:</label>
-                    @Html.TextBoxFor(m => m.Fromfecha_investigacion_complementaria, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromfecha_investigacion_complementaria" })
-                    @Html.ValidationMessageFor(m => m.Fromfecha_investigacion_complementaria)
-                    <label class="">@Resources.Resources.To: </label>
-                    @Html.TextBoxFor(m => m.Tofecha_investigacion_complementaria, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTofecha_investigacion_complementaria", @data_min = "txtAdvanceFromfecha_investigacion_complementaria" })
-                    @Html.ValidationMessageFor(m => m.Tofecha_investigacion_complementaria)
-                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Proceso_PenalResources.fecha_investigacion_complementaria</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromfecha_investigacion_complementaria" name="Fromfecha_investigacion_complementaria" type="text" value="@Model.Fromfecha_investigacion_complementaria" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceTofecha_investigacion_complementaria" name="Tofecha_investigacion_complementaria" type="text" value="@Model.Tofecha_investigacion_complementaria" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
         <div class="MarginBottom ">
             <h3>@Resources.Proceso_PenalResources.hora_investigacion_complementaria</h3>
         </div>
@@ -756,14 +789,6 @@
                     @Html.TextBoxFor(m => m.Tocuantia_de_pena_meses, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTocuantia_de_pena_meses", @data_min = "txtAdvanceFromcuantia_de_pena_meses" })
                     @Html.ValidationMessageFor(m => m.Tocuantia_de_pena_meses)
                 </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Proceso_PenalResources.prueba</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.pruebaFilter, filters, new { @class = "form-control", @id = "ddlpruebaFilter" })
-                    @Html.TextBoxFor(m => m.prueba, new { @class = "form-control", @type = "text", @id = "txtprueba" })
-                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Proceso_Penal/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -866,6 +891,16 @@
                 advanceSearch.Plazo_ConstitucionalSearchType = 2;
             }
         }
+        if ($("#txtAdvanceFromFecha_Continuacion_Audiencia").val() != "" || $("#txtAdvanceToFecha_Continuacion_Audiencia").val() != "") {
+            hasParameter = true;
+            advanceSearch.Proceso_PenalFecha_Continuacion_AudienciaFrom = $("#txtAdvanceFromFecha_Continuacion_Audiencia").val();
+            advanceSearch.Proceso_PenalFecha_Continuacion_AudienciaTo = $("#txtAdvanceToFecha_Continuacion_Audiencia").val();
+        }
+        if ($("#txtAdvanceHora_Continuacion_Audiencia").val() != "") {
+            hasParameter = true;
+            advanceSearch.Proceso_PenalHora_Continuacion_Audiencia = $("#txtAdvanceHora_Continuacion_Audiencia").val();
+            advanceSearch.Proceso_PenalHora_Continuacion_AudienciaSearchType = $("#ddlAdvanceHora_Continuacion_AudienciaFilter").val();
+        }
         advanceSearch.VinculacionSearchType = 0;
         if ($('#ddlAdvanceVinculacion').val().length > 0 || $("#txtAdvanceVinculacion").val() == "") {
 
@@ -911,20 +946,10 @@
                 advanceSearch.Resultado_VinculacionSearchType = 2;
             }
         }
-        advanceSearch.plazo_investigacion_complementariaSearchType = 0;
-        if ($('#ddlAdvanceplazo_investigacion_complementaria').val().length > 0 || $("#txtAdvanceplazo_investigacion_complementaria").val() == "") {
-
-
-            if (isProceso_PenalTextSearch) {
-                advanceSearch.plazo_investigacion_complementariaName = $("#txtAdvanceplazo_investigacion_complementaria").val();
-                advanceSearch.plazo_investigacion_complementariaNameSearchType = $("#ddlAdvanceplazo_investigacion_complementaria").val();
-                advanceSearch.plazo_investigacion_complementariaSearchType = 1;
-            }
-            else {
-
-                advanceSearch.plazo_investigacion_complementariaToSearch = $("#ddlAdvanceplazo_investigacion_complementaria").val();
-                advanceSearch.plazo_investigacion_complementariaSearchType = 2;
-            }
+        if ($("#txtAdvanceFromplazo_investigacion_complementaria").val() != "" || $("#txtAdvanceToplazo_investigacion_complementaria").val() != "") {
+            hasParameter = true;
+            advanceSearch.Proceso_Penalplazo_investigacion_complementariaFrom = $("#txtAdvanceFromplazo_investigacion_complementaria").val();
+            advanceSearch.Proceso_Penalplazo_investigacion_complementariaTo = $("#txtAdvanceToplazo_investigacion_complementaria").val();
         }
         advanceSearch.Resultado_de_Investigacion_ComplementariSearchType = 0;
         if ($('#ddlAdvanceResultado_de_Investigacion_Complementari').val().length > 0 || $("#txtAdvanceResultado_de_Investigacion_Complementari").val() == "") {
@@ -1166,11 +1191,6 @@
             advanceSearch.Proceso_PenalMonto_de_la_Reparacion_del_DanoFrom = $("#txtAdvanceFromMonto_de_la_Reparacion_del_Dano").val();
             advanceSearch.Proceso_PenalMonto_de_la_Reparacion_del_DanoTo = $("#txtAdvanceToMonto_de_la_Reparacion_del_Dano").val();
         }
-        if ($("#txtAdvanceprueba").val() != "") {
-            hasParameter = true;
-            advanceSearch.Proceso_Penalprueba = $("#txtAdvanceprueba").val();
-            advanceSearch.Proceso_PenalpruebaSearchType = $("#ddlAdvancepruebaFilter").val();
-        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblProceso_Penal').DataTable().draw();
@@ -1260,15 +1280,6 @@
         $("#ddlAdvanceResultado_Vinculacion").change(function () {
             isProceso_PenalTextSearch = false;
             $("#txtAdvanceResultado_Vinculacion").val('');
-        });
-        $("#txtAdvanceplazo_investigacion_complementaria").keypress(function () {
-            isProceso_PenalTextSearch = true;
-            $("#ddlAdvanceplazo_investigacion_complementaria").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceplazo_investigacion_complementaria").change(function () {
-            isProceso_PenalTextSearch = false;
-            $("#txtAdvanceplazo_investigacion_complementaria").val('');
         });
         $("#txtAdvanceResultado_de_Investigacion_Complementari").keypress(function () {
             isProceso_PenalTextSearch = true;

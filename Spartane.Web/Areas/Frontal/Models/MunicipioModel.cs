@@ -25,6 +25,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string MuniNSJP { get; set; }
         [Range(0, 9999999999)]
         public int? cod_zona_nsjp { get; set; }
+        [Range(0, 9999999999)]
+        public int? cod_mun { get; set; }
 
     }
 	
@@ -45,6 +47,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string MuniNSJP { get; set; }
         [Range(0, 9999999999)]
         public int? cod_zona_nsjp { get; set; }
+        [Range(0, 9999999999)]
+        public int? cod_mun { get; set; }
 
     }
 

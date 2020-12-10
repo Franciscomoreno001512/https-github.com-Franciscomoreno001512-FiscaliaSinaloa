@@ -23,6 +23,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? pob_justicia { get; set; }
         public int? sector { get; set; }
         public string estatus { get; set; }
+        public int? cod_localidad { get; set; }
         
     }
 }

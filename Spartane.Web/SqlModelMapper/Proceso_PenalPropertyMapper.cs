@@ -35,6 +35,10 @@ namespace Spartane.Web.SqlModelMapper
                 case "Plazo_Constitucional[Descripcion]":
                 case "Plazo_ConstitucionalDescripcion":
                     return "Plazo_Constitucional.Descripcion";
+                case "Fecha_Continuacion_Audiencia":
+                    return "Proceso_Penal.Fecha_Continuacion_Audiencia";
+                case "Hora_Continuacion_Audiencia":
+                    return "Proceso_Penal.Hora_Continuacion_Audiencia";
                 case "Vinculacion[Descripcion]":
                 case "VinculacionDescripcion":
                     return "Vinculacion_a_Proceso.Descripcion";
@@ -44,9 +48,8 @@ namespace Spartane.Web.SqlModelMapper
                 case "Resultado_Vinculacion[Descripcion]":
                 case "Resultado_VinculacionDescripcion":
                     return "Auto_de_Vinculacion_a_Proceso.Descripcion";
-                case "plazo_investigacion_complementaria[Descripcion]":
-                case "plazo_investigacion_complementariaDescripcion":
-                    return "Plazo_de_Investigacion_Complementaria.Descripcion";
+                case "plazo_investigacion_complementaria":
+                    return "Proceso_Penal.plazo_investigacion_complementaria";
                 case "Resultado_de_Investigacion_Complementari[Descripcion]":
                 case "Resultado_de_Investigacion_ComplementariDescripcion":
                     return "Resultado_de_Investigacion_Complementaria.Descripcion";
@@ -116,8 +119,6 @@ namespace Spartane.Web.SqlModelMapper
                     return "Proceso_Penal.cuantia_de_pena_meses";
                 case "Monto_de_la_Reparacion_del_Dano":
                     return "Proceso_Penal.Monto_de_la_Reparacion_del_Dano";
-                case "prueba":
-                    return "Proceso_Penal.prueba";
 
                 default:
                     return propertyName;
@@ -136,6 +137,28 @@ namespace Spartane.Web.SqlModelMapper
         public string GetOperatorString(object value, string columnName)
         {
             if (columnName == "Fecha_de_Registro")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            if (columnName == "Fecha_Continuacion_Audiencia")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            if (columnName == "fecha_investigacion_complementaria")
             {
                 try
                 {

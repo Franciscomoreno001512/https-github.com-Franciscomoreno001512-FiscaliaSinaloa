@@ -429,17 +429,6 @@ function GetAutoCompleteexpediente_ministerio_publico_ColoniaH_ColoniaData(data)
     }
     return AutoCompleteColoniaHData;
 }
-var AutoCompleteusuario_que_canalizaData = [];
-function GetAutoCompleteexpediente_ministerio_publico_usuario_que_canaliza_Spartan_UserData(data) {
-	AutoCompleteusuario_que_canalizaData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteusuario_que_canalizaData.push({
-            id: data[i].Id_User,
-            text: data[i].Name
-        });
-    }
-    return AutoCompleteusuario_que_canalizaData;
-}
 var AutoCompleteUsuario_que_CierraData = [];
 function GetAutoCompleteexpediente_ministerio_publico_Usuario_que_Cierra_Spartan_UserData(data) {
 	AutoCompleteUsuario_que_CierraData = [];
@@ -516,9 +505,6 @@ function ClearControls() {
     $('#ColoniaH').empty();
     $("#ColoniaH").append('<option value=""></option>');
     $('#ColoniaH').val('0').trigger('change');
-    $('#usuario_que_canaliza').empty();
-    $("#usuario_que_canaliza").append('<option value=""></option>');
-    $('#usuario_que_canaliza').val('0').trigger('change');
     $('#Usuario_que_Cierra').empty();
     $("#Usuario_que_Cierra").append('<option value=""></option>');
     $('#Usuario_que_Cierra').val('0').trigger('change');
@@ -685,9 +671,6 @@ $(document).ready(function () {
     $('#ColoniaH').empty();
     $("#ColoniaH").append('<option value=""></option>');
     $('#ColoniaH').val('0').trigger('change');
-    $('#usuario_que_canaliza').empty();
-    $("#usuario_que_canaliza").append('<option value=""></option>');
-    $('#usuario_que_canaliza').val('0').trigger('change');
     $('#Usuario_que_Cierra').empty();
     $("#Usuario_que_Cierra").append('<option value=""></option>');
     $('#Usuario_que_Cierra').val('0').trigger('change');

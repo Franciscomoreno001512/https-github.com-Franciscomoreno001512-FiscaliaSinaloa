@@ -252,6 +252,13 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="cod_zona_nsjp" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divcod_mun">
+                                <label class="col-sm-2 control-label">@Resources.MunicipioResources.cod_mun</label>
+                                <div class="col-sm-8" data-field-id="cod_mun" data-attribute="268129" data-field-name="@Resources.MunicipioResources.cod_mun">
+                                    <input class="form-control inputNumber Datos_Generales" id="cod_mun" name="cod_mun" type="text" value="@Model.cod_mun">
+                                    @*<span class="field-validation-valid" data-valmsg-for="cod_mun" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -734,6 +741,7 @@
                     $('#cod_zona').val(result.data.cod_zona);
                     $('#MuniNSJP').val(result.data.MuniNSJP);
                     $('#cod_zona_nsjp').val(result.data.cod_zona_nsjp);
+                    $('#cod_mun').val(result.data.cod_mun);
 
                 },
                 error: function (result) {
@@ -754,6 +762,7 @@
                 data.append('cod_zona', $('#cod_zona').val());
                 data.append('MuniNSJP', $('#MuniNSJP').val());
                 data.append('cod_zona_nsjp', $('#cod_zona_nsjp').val());
+                data.append('cod_mun', $('#cod_mun').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Municipio/Post_Datos_Generales")',

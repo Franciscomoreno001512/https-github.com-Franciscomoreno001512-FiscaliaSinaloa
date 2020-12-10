@@ -341,36 +341,6 @@ public ApiResponse<int> Update_Resolucion(Proceso_Penal_Resolucion entity)
             }
         }
 
-public ApiResponse<int> Update_Datos_Generales(Proceso_Penal_Datos_Generales entity)
-        {
-            try
-            {
-                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Datos_Generales",
-                      Method.PUT, ApiHeader, entity);
-
-                return new ApiResponse<int>(true, result);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<int>(false, -1 );
-            }
-        }
-
-        public ApiResponse<Proceso_Penal_Datos_Generales> Get_Datos_Generales(string Key)
-        {
-            try
-            {
-                var varRecords = RestApiHelper.InvokeApi<Spartane.Core.Domain.Proceso_Penal.Proceso_Penal_Datos_Generales>(baseApi, ApiControllerUrl + "/Get_Datos_Generales?id=" + Key,
-                      Method.GET, ApiHeader);
-
-                return new ApiResponse<Core.Domain.Proceso_Penal.Proceso_Penal_Datos_Generales>(true, varRecords);
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse<Core.Domain.Proceso_Penal.Proceso_Penal_Datos_Generales>(false, null);
-            }
-        }
-
 
     }
 }

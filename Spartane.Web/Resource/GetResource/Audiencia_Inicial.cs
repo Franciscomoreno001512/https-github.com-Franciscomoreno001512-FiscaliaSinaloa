@@ -86,6 +86,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Tipo</summary>
+        public static string Tipo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderAudiencia_Inicial.GetResource("Tipo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>causa_penal</summary>
         public static string causa_penal
         {

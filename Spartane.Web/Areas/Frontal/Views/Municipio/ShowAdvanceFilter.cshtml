@@ -143,6 +143,17 @@
                     @Html.TextBoxFor(m => m.Tocod_zona_nsjp, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTocod_zona_nsjp", @data_min = "txtAdvanceFromcod_zona_nsjp" })
                     @Html.ValidationMessageFor(m => m.Tocod_zona_nsjp)
                 </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.MunicipioResources.cod_mun</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.Fromcod_mun, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromcod_mun" })
+                    @Html.ValidationMessageFor(m => m.Fromcod_mun)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.Tocod_mun, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceTocod_mun", @data_min = "txtAdvanceFromcod_mun" })
+                    @Html.ValidationMessageFor(m => m.Tocod_mun)
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Municipio/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -224,6 +235,11 @@
             hasParameter = true;
             advanceSearch.Municipiocod_zona_nsjpFrom = $("#txtAdvanceFromcod_zona_nsjp").val();
             advanceSearch.Municipiocod_zona_nsjpTo = $("#txtAdvanceTocod_zona_nsjp").val();
+        }
+        if ($("#txtAdvanceFromcod_mun").val() != "" || $("#txtAdvanceTocod_mun").val() != "") {
+            hasParameter = true;
+            advanceSearch.Municipiocod_munFrom = $("#txtAdvanceFromcod_mun").val();
+            advanceSearch.Municipiocod_munTo = $("#txtAdvanceTocod_mun").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

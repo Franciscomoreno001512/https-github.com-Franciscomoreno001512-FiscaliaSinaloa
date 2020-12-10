@@ -45,12 +45,6 @@
  List<SelectListItem> varColonia_ColoniaH = null;
     if (ViewBag.Colonias_ColoniaH != null)
     { varColonia_ColoniaH = (List<SelectListItem>)ViewBag.Colonias_ColoniaH; }
- List<SelectListItem> varSpartan_User_usuario_que_canaliza = null;
-    if (ViewBag.Spartan_Users_usuario_que_canaliza != null)
-    { varSpartan_User_usuario_que_canaliza = (List<SelectListItem>)ViewBag.Spartan_Users_usuario_que_canaliza; }
-    List<SelectListItem> varEstatus_Orientador_canalizar_a = null;
-    if (ViewBag.Estatus_Orientadors_canalizar_a != null)
-    { varEstatus_Orientador_canalizar_a = (List<SelectListItem>)ViewBag.Estatus_Orientadors_canalizar_a; }
     List<SelectListItem> varTipo_de_Acuerdo_tipo_de_acuerdo = null;
     if (ViewBag.Tipo_de_Acuerdos_tipo_de_acuerdo != null)
     { varTipo_de_Acuerdo_tipo_de_acuerdo = (List<SelectListItem>)ViewBag.Tipo_de_Acuerdos_tipo_de_acuerdo; }
@@ -458,68 +452,6 @@
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.LatitudHFilter, filters, new { @class = "form-control", @id = "ddlLatitudHFilter" })
                     @Html.TextBoxFor(m => m.LatitudH, new { @class = "form-control", @type = "text", @id = "txtLatitudH" })
-                </div>
-        <div class="MarginBottom ">
-            <h3>@Resources.expediente_ministerio_publicoResources.Fecha_de_Canalizacion</h3>
-        </div>
-        <div class="MarginBottom form-inline">
-            <label class="">@Resources.Resources.From:</label>
-            <div class="input-group date">
-                <input class="form-control" id="txtAdvanceFromFecha_de_Canalizacion" name="FromFecha_de_Canalizacion" type="text" value="@Model.FromFecha_de_Canalizacion" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-            <label class="">@Resources.Resources.To: </label>
-            <div class="input-group date">
-                <input class="form-control" id="txtAdvanceToFecha_de_Canalizacion" name="ToFecha_de_Canalizacion" type="text" value="@Model.ToFecha_de_Canalizacion" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-        <div class="MarginBottom ">
-            <h3>@Resources.expediente_ministerio_publicoResources.Hora_de_Canalizacion</h3>
-        </div>
-        <div class="MarginBottom form-inline">
-            <label class="">@Resources.Resources.From:</label>
-            <div class="input-group clock" data-autoclose="true">
-                <input class="form-control" id="txtAdvanceFromHora_de_Canalizacion" name="FromHora_de_Canalizacion" type="text" value="@Model.FromHora_de_Canalizacion" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-time"></span>
-                </span>
-            </div>
-            <label class="">@Resources.Resources.To: </label>
-            <div class="input-group clock" data-autoclose="true">
-                <input class="form-control" id="txtAdvanceToHora_de_Canalizacion" name="ToHora_de_Canalizacion" type="text" value="@Model.ToHora_de_Canalizacion" />
-                <span class="form-inline input-group-addon">
-                    <span class="glyphicon glyphicon-time"></span>
-                </span>
-            </div>
-        </div>
- List<SelectListItem> varSpartan_User_usuario_que_canaliza = null;
-    if (ViewBag.Spartan_Users_usuario_que_canaliza != null)
-    { varSpartan_User_usuario_que_canaliza = (List<SelectListItem>)ViewBag.Spartan_Users_usuario_que_canaliza; }
-                <div class="MarginBottom">
-                    <h3>@Resources.expediente_ministerio_publicoResources.canalizar_a</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.canalizar_aFilter, filters, new { @class = "form-control", @id = "ddlcanalizar_aFilter" })
-                    @Html.TextBoxFor(m => m.Advancecanalizar_a, new { @class = "form-control", @type = "text", @id = "txtAdvancecanalizar_a" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varEstatus_Orientador_canalizar_a!=null)
-                    {
-                        @Html.ListBoxFor(m => m.Advancecanalizar_aMultiple, varEstatus_Orientador_canalizar_a,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvancecanalizar_a"
-                        });
-                    }
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.expediente_ministerio_publicoResources.tipo_de_acuerdo</h3>
@@ -1055,46 +987,6 @@
             advanceSearch.expediente_ministerio_publicoLatitudH = $("#txtAdvanceLatitudH").val();
             advanceSearch.expediente_ministerio_publicoLatitudHSearchType = $("#ddlAdvanceLatitudHFilter").val();
         }
-        if ($("#txtAdvanceFromFecha_de_Canalizacion").val() != "" || $("#txtAdvanceToFecha_de_Canalizacion").val() != "") {
-            hasParameter = true;
-            advanceSearch.expediente_ministerio_publicoFecha_de_CanalizacionFrom = $("#txtAdvanceFromFecha_de_Canalizacion").val();
-            advanceSearch.expediente_ministerio_publicoFecha_de_CanalizacionTo = $("#txtAdvanceToFecha_de_Canalizacion").val();
-        }
-        if ($("#txtAdvanceHora_de_Canalizacion").val() != "") {
-            hasParameter = true;
-            advanceSearch.expediente_ministerio_publicoHora_de_Canalizacion = $("#txtAdvanceHora_de_Canalizacion").val();
-            advanceSearch.expediente_ministerio_publicoHora_de_CanalizacionSearchType = $("#ddlAdvanceHora_de_CanalizacionFilter").val();
-        }
-        advanceSearch.usuario_que_canalizaSearchType = 0;
-        if ($('#ddlAdvanceusuario_que_canaliza').val().length > 0 || $("#txtAdvanceusuario_que_canaliza").val() == "") {
-
-
-            if (isexpediente_ministerio_publicoTextSearch) {
-                advanceSearch.usuario_que_canalizaName = $("#txtAdvanceusuario_que_canaliza").val();
-                advanceSearch.usuario_que_canalizaNameSearchType = $("#ddlAdvanceusuario_que_canaliza").val();
-                advanceSearch.usuario_que_canalizaSearchType = 1;
-            }
-            else {
-
-                advanceSearch.usuario_que_canalizaToSearch = $("#ddlAdvanceusuario_que_canaliza").val();
-                advanceSearch.usuario_que_canalizaSearchType = 2;
-            }
-        }
-        advanceSearch.canalizar_aSearchType = 0;
-        if ($('#ddlAdvancecanalizar_a').val().length > 0 || $("#txtAdvancecanalizar_a").val() == "") {
-
-
-            if (isexpediente_ministerio_publicoTextSearch) {
-                advanceSearch.canalizar_aName = $("#txtAdvancecanalizar_a").val();
-                advanceSearch.canalizar_aNameSearchType = $("#ddlAdvancecanalizar_a").val();
-                advanceSearch.canalizar_aSearchType = 1;
-            }
-            else {
-
-                advanceSearch.canalizar_aToSearch = $("#ddlAdvancecanalizar_a").val();
-                advanceSearch.canalizar_aSearchType = 2;
-            }
-        }
         advanceSearch.tipo_de_acuerdoSearchType = 0;
         if ($('#ddlAdvancetipo_de_acuerdo').val().length > 0 || $("#txtAdvancetipo_de_acuerdo").val() == "") {
 
@@ -1363,24 +1255,6 @@
         $("#ddlAdvanceColoniaH").change(function () {
             isexpediente_ministerio_publicoTextSearch = false;
             $("#txtAdvanceColoniaH").val('');
-        });
-        $("#txtAdvanceusuario_que_canaliza").keypress(function () {
-            isexpediente_ministerio_publicoTextSearch = true;
-            $("#ddlAdvanceusuario_que_canaliza").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceusuario_que_canaliza").change(function () {
-            isexpediente_ministerio_publicoTextSearch = false;
-            $("#txtAdvanceusuario_que_canaliza").val('');
-        });
-        $("#txtAdvancecanalizar_a").keypress(function () {
-            isexpediente_ministerio_publicoTextSearch = true;
-            $("#ddlAdvancecanalizar_a").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvancecanalizar_a").change(function () {
-            isexpediente_ministerio_publicoTextSearch = false;
-            $("#txtAdvancecanalizar_a").val('');
         });
         $("#txtAdvancetipo_de_acuerdo").keypress(function () {
             isexpediente_ministerio_publicoTextSearch = true;

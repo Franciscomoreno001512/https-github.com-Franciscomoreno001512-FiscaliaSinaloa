@@ -1317,6 +1317,14 @@
 <Compile Include="Control_de_Folios_por_Especialidad\Control_de_Folios_por_EspecialidadService.cs" />
 <Compile Include="Notificaciones\INotificacionesService.cs" />
 <Compile Include="Notificaciones\NotificacionesService.cs" />
+<Compile Include="Estatus_Encuesta\IEstatus_EncuestaService.cs" />
+<Compile Include="Estatus_Encuesta\Estatus_EncuestaService.cs" />
+<Compile Include="Tipo_de_Judicializacion\ITipo_de_JudicializacionService.cs" />
+<Compile Include="Tipo_de_Judicializacion\Tipo_de_JudicializacionService.cs" />
+<Compile Include="Modulo_Encuesta\IModulo_EncuestaService.cs" />
+<Compile Include="Modulo_Encuesta\Modulo_EncuestaService.cs" />
+<Compile Include="Generador_Folio_Encuesta\IGenerador_Folio_EncuestaService.cs" />
+<Compile Include="Generador_Folio_Encuesta\Generador_Folio_EncuestaService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1416,6 +1424,14 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
 
 
 
