@@ -155,8 +155,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_Otros_AseguramientosGridModelPost
     {
         public int Clave { get; set; }
-        public int? Tipo { get; set; }
         public int? Motivo_de_Registro { get; set; }
+        public int? Tipo { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public string Inventario { get; set; }

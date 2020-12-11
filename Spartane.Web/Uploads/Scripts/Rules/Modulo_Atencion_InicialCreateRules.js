@@ -1998,6 +1998,33 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2629, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+
+
+
+
+//BusinessRuleId:2907, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia_hechos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Documento_Extraviado_hechos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Documento_Extraviado' + rowIndex));
+
+}
+//BusinessRuleId:2907, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2907, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia_hechos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Documento_Extraviado_hechos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Documento_Extraviado' + rowIndex));
+
+}
+//BusinessRuleId:2907, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2907, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia_hechos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Documento_Extraviado_hechos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Documento_Extraviado' + rowIndex));
+
+}
+//BusinessRuleId:2907, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

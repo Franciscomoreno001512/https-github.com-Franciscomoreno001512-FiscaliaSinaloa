@@ -8,12 +8,12 @@
 @{
 
 
-    List<SelectListItem> varTipo_de_Equipo_Tactico_Tipo = null;
-    if (ViewBag.Tipo_de_Equipo_Tacticos_Tipo != null)
-    { varTipo_de_Equipo_Tactico_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Equipo_Tacticos_Tipo; }
     List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
     if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
     { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
+    List<SelectListItem> varTipo_de_Equipo_Tactico_Tipo = null;
+    if (ViewBag.Tipo_de_Equipo_Tacticos_Tipo != null)
+    { varTipo_de_Equipo_Tactico_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Equipo_Tacticos_Tipo; }
     List<SelectListItem> varUnidad_de_Medida_de_Equipo_Tactico_Unidad_de_Medida = null;
     if (ViewBag.Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida != null)
     { varUnidad_de_Medida_de_Equipo_Tactico_Unidad_de_Medida = (List<SelectListItem>)ViewBag.Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida; }
@@ -142,27 +142,6 @@
                                     <label class="form-control" for="Detalle_Aseguramiento_Otros_AseguramientosClave" id="Detalle_Aseguramiento_Otros_AseguramientosClave">@Model.Clave</label>
                                 </div>
                             </div>
-<div class="form-group" id="divTipo">
-	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Tipo</label>
-	<div class="col-sm-8" data-field-id="Tipo" data-attribute="267589" data-field-name="@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Tipo">
-		<select class="form-control" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Detalle_Aseguramiento_Otros_AseguramientosTipo" name="Detalle_Aseguramiento_Otros_AseguramientosTipo">
-			<option value=""></option>
-			@if (varTipo_de_Equipo_Tactico_Tipo != null){ 
-				foreach (var itemTipo in varTipo_de_Equipo_Tactico_Tipo)
-				{
-					if (itemTipo.Value == Convert.ToString(Model.Tipo))
-					{
-						<option value="@itemTipo.Value" selected>@itemTipo.Text</option>
-					}
-					else
-					{
-						<option value="@itemTipo.Value">@itemTipo.Text</option>
-					}
-				}
-			}
-		</select>
-	</div>
-</div>
 <div class="form-group" id="divMotivo_de_Registro">
 	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Motivo_de_Registro</label>
 	<div class="col-sm-8" data-field-id="Motivo_de_Registro" data-attribute="268343" data-field-name="@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Motivo_de_Registro">
@@ -178,6 +157,27 @@
 					else
 					{
 						<option value="@itemMotivo_de_Registro.Value">@itemMotivo_de_Registro.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divTipo">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Tipo</label>
+	<div class="col-sm-8" data-field-id="Tipo" data-attribute="267589" data-field-name="@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Tipo">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Detalle_Aseguramiento_Otros_AseguramientosTipo" name="Detalle_Aseguramiento_Otros_AseguramientosTipo">
+			<option value=""></option>
+			@if (varTipo_de_Equipo_Tactico_Tipo != null){ 
+				foreach (var itemTipo in varTipo_de_Equipo_Tactico_Tipo)
+				{
+					if (itemTipo.Value == Convert.ToString(Model.Tipo))
+					{
+						<option value="@itemTipo.Value" selected>@itemTipo.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo.Value">@itemTipo.Text</option>
 					}
 				}
 			}

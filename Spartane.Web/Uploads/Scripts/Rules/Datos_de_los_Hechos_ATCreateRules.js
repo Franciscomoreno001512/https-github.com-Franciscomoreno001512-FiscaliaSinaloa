@@ -14,6 +14,22 @@ function EjecutarValidacionesAntesDeGuardar(){
     return result;
 }
 function EjecutarValidacionesDespuesDeGuardar(){
+//BusinessRuleId:2916, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery(" EXEC UspUpdDatosHechosAtencionInicial GLOBAL[KeyValueInserted]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2916, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+
+
+//BusinessRuleId:2918, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+ EvaluaQuery(" UspUpdDatosHechosAtencionInicial FLDD[lblClave]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2918, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

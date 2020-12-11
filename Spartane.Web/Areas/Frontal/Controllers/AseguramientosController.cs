@@ -98,8 +98,8 @@ using Spartane.Core.Domain.Tipo_de_Dinero;
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_Otros_Aseguramientos;
 
-using Spartane.Core.Domain.Tipo_de_Equipo_Tactico;
 using Spartane.Core.Domain.Motivo_de_Registro;
+using Spartane.Core.Domain.Tipo_de_Equipo_Tactico;
 
 
 
@@ -256,8 +256,8 @@ using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Dinero;
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Otros_Aseguramientos;
 
-using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Equipo_Tactico;
 using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Equipo_Tactico;
 using Spartane.Web.Areas.WebApiConsumer.Unidad_de_Medida_de_Equipo_Tactico;
 
 
@@ -539,8 +539,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             this._IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer = Detalle_Aseguramiento_Otros_AseguramientosApiConsumer;
 
-            this._ITipo_de_Equipo_TacticoApiConsumer = Tipo_de_Equipo_TacticoApiConsumer;
             this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
+            this._ITipo_de_Equipo_TacticoApiConsumer = Tipo_de_Equipo_TacticoApiConsumer;
             this._IUnidad_de_Medida_de_Equipo_TacticoApiConsumer = Unidad_de_Medida_de_Equipo_TacticoApiConsumer;
 
 
@@ -2214,10 +2214,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
-                        ,Tipo = m.Tipo
-                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Equipo_Tactico.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Equipo_Tactico.Descripcion
                         ,Motivo_de_Registro = m.Motivo_de_Registro
                         ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Equipo_Tactico.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Equipo_Tactico.Descripcion
 			,Marca = m.Marca
 			,Modelo = m.Modelo
 			,Inventario = m.Inventario
@@ -2258,10 +2258,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
-                        ,Tipo = m.Tipo
-                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Equipo_Tactico.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Equipo_Tactico.Descripcion
                         ,Motivo_de_Registro = m.Motivo_de_Registro
                         ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Equipo_Tactico.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Equipo_Tactico.Descripcion
 			,Marca = m.Marca
 			,Modelo = m.Modelo
 			,Inventario = m.Inventario
@@ -5001,8 +5001,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_Otros_AseguramientosItem.Clave
-                            ,Tipo = (Convert.ToInt32(Detalle_Aseguramiento_Otros_AseguramientosItem.Tipo) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Otros_AseguramientosItem.Tipo))
                             ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_Otros_AseguramientosItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Otros_AseguramientosItem.Motivo_de_Registro))
+                            ,Tipo = (Convert.ToInt32(Detalle_Aseguramiento_Otros_AseguramientosItem.Tipo) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Otros_AseguramientosItem.Tipo))
                             ,Marca = Detalle_Aseguramiento_Otros_AseguramientosItem.Marca
                             ,Modelo = Detalle_Aseguramiento_Otros_AseguramientosItem.Modelo
                             ,Inventario = Detalle_Aseguramiento_Otros_AseguramientosItem.Inventario
@@ -5030,27 +5030,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
         [HttpGet]
-        public ActionResult GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _ITipo_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _ITipo_de_Equipo_TacticoApiConsumer.SelAll(false).Resource;
-                foreach (var item in result)
-                {
-				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Tipo_de_Equipo_Tactico", "Descripcion");
-                  item.Descripcion= trans??item.Descripcion;
-                }
-                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
-        [HttpGet]
         public ActionResult GetDetalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroAll()
         {
             try
@@ -5062,6 +5041,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 foreach (var item in result)
                 {
 				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_Equipo_TacticoApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Tipo_de_Equipo_Tactico", "Descripcion");
                   item.Descripcion= trans??item.Descripcion;
                 }
                 return Json(result.ToArray(), JsonRequestBehavior.AllowGet);

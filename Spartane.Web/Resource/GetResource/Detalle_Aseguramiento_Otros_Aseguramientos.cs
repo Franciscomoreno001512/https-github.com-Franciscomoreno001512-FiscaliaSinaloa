@@ -36,16 +36,6 @@ namespace Resources
             }
         }
 
-        /// <summary>Tipo</summary>
-        public static string Tipo
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_Aseguramiento_Otros_Aseguramientos.GetResource("Tipo", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
         /// <summary>Motivo_de_Registro</summary>
         public static string Motivo_de_Registro
         {
@@ -53,6 +43,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_Aseguramiento_Otros_Aseguramientos.GetResource("Motivo_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Tipo</summary>
+        public static string Tipo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_Otros_Aseguramientos.GetResource("Tipo", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

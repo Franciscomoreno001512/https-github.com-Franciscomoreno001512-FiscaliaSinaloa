@@ -1100,18 +1100,18 @@
                                                 <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
 
 
-                                                <th class="TipoHeader"><span>
-<button type="button" data-attribute="267589" data-field-id="Detalle_Aseguramiento_Otros_AseguramientosTipo" data-field-name="@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Tipo" data-toggle="modal" data-target="#AseguramientosBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
-                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Tipo">
-                                                                <i class="fa fa-cogs fa-spin"></i>
-                                                            </a>
-                                                        </button>@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Tipo</span></th>
                                                 <th class="Motivo_de_RegistroHeader"><span>
 <button type="button" data-attribute="268343" data-field-id="Detalle_Aseguramiento_Otros_AseguramientosMotivo_de_Registro" data-field-name="@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Motivo_de_Registro" data-toggle="modal" data-target="#AseguramientosBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
                                                             <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Motivo_de_Registro">
                                                                 <i class="fa fa-cogs fa-spin"></i>
                                                             </a>
                                                         </button>@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Motivo_de_Registro</span></th>
+                                                <th class="TipoHeader"><span>
+<button type="button" data-attribute="267589" data-field-id="Detalle_Aseguramiento_Otros_AseguramientosTipo" data-field-name="@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Tipo" data-toggle="modal" data-target="#AseguramientosBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Tipo">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Tipo</span></th>
                                                 <th class="MarcaHeader"><span>
 <button type="button" data-attribute="267590" data-field-id="Detalle_Aseguramiento_Otros_AseguramientosMarca" data-field-name="@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Marca" data-toggle="modal" data-target="#AseguramientosBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
                                                             <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Marca">
@@ -1987,8 +1987,8 @@
            
               showDetalle_Aseguramiento_MonedaGrid(null);
               
-            GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItem();
             GetDetalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroItem();
+            GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItem();
 
 
 
@@ -5271,8 +5271,8 @@
             var counter = 0;
             var inputData = "<input type='text' class='fullWidth form-control' />";
 
-           columnData[counter++] = $($(GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropDown()).val(data.Tipo)).addClass('Tipo inputNumber').attr('id', nameOfTable + 'Tipo' + rowIndex).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Tipo_de_Equipo_Tactico','Tipo', 267589)));
            columnData[counter++] = $($(GetDetalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroDropDown()).val(data.Motivo_de_Registro)).addClass('Motivo_de_Registro inputNumber').attr('id', nameOfTable + 'Motivo_de_Registro' + rowIndex).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Motivo_de_Registro','Motivo_de_Registro', 268343)));
+           columnData[counter++] = $($(GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropDown()).val(data.Tipo)).addClass('Tipo inputNumber').attr('id', nameOfTable + 'Tipo' + rowIndex).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Tipo_de_Equipo_Tactico','Tipo', 267589)));
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Marca)).addClass('Marca').attr('id', nameOfTable + 'Marca' + rowIndex).attr('data-field', 'Marca');
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Modelo)).addClass('Modelo').attr('id', nameOfTable + 'Modelo' + rowIndex).attr('data-field', 'Modelo');
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Inventario)).addClass('Inventario').attr('id', nameOfTable + 'Inventario' + rowIndex).attr('data-field', 'Inventario');
@@ -5402,14 +5402,14 @@
 			if ($('.Action' + 'Header').css('display') != 'none')
 				actionCol.appendTo(row);
 
-            if ($('.Tipo' + 'Header').css('display') != 'none')
-                $('<td id="'+nameOfTable+'Tipo'+rowIndex+'">').text(GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoName(data.Tipo)).appendTo(row);
-	    else 
-		$('<td style="display:none;" id="'+nameOfTable+'Tipo'+rowIndex+'">').text(GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoName(data.Tipo)).appendTo(row);
             if ($('.Motivo_de_Registro' + 'Header').css('display') != 'none')
                 $('<td id="'+nameOfTable+'Motivo_de_Registro'+rowIndex+'">').text(GetDetalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroName(data.Motivo_de_Registro)).appendTo(row);
 	    else 
 		$('<td style="display:none;" id="'+nameOfTable+'Motivo_de_Registro'+rowIndex+'">').text(GetDetalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroName(data.Motivo_de_Registro)).appendTo(row);
+            if ($('.Tipo' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Tipo'+rowIndex+'">').text(GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoName(data.Tipo)).appendTo(row);
+	    else 
+		$('<td style="display:none;" id="'+nameOfTable+'Tipo'+rowIndex+'">').text(GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoName(data.Tipo)).appendTo(row);
             if ($('.Marca' + 'Header').css('display') != 'none')
                 $('<td id="'+nameOfTable+'Marca'+rowIndex+'">').text(data.Marca).appendTo(row);
             else 
@@ -5454,8 +5454,8 @@
                 "columns": [
                     { "data": null, 'visible': true, "orderable": false },
 
-                    { "data": "Tipo", "orderable": false },
                     { "data": "Motivo_de_Registro", "orderable": false },
+                    { "data": "Tipo", "orderable": false },
                     { "data": "Marca", "orderable": false },
                     { "data": "Modelo", "orderable": false },
                     { "data": "Inventario", "orderable": false },
@@ -5491,24 +5491,6 @@
         }
 
 
-    var Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems;
-        function GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItem() {
-            Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems = null;
-            var ajaxUrl = "@Url.Content("~/Frontal/Aseguramientos/GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoAll")";
-            $.ajax({
-                url: ajaxUrl,
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                global: false,
-                success: function (result) {
-                    Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems = result;
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                }
-            });
-        }
     var Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroItems;
         function GetDetalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroItem() {
             Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroItems = null;
@@ -5521,6 +5503,24 @@
                 global: false,
                 success: function (result) {
                     Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroItems = result;
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+    var Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems;
+        function GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItem() {
+            Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems = null;
+            var ajaxUrl = "@Url.Content("~/Frontal/Aseguramientos/GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoAll")";
+            $.ajax({
+                url: ajaxUrl,
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                global: false,
+                success: function (result) {
+                    Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems = result;
                 },
                 error: function (result) {
                     showNotification("@Resources.Resources.ErrorContactingServer", "error");

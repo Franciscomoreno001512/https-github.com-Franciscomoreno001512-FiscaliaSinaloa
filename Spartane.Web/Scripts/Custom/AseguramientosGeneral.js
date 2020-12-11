@@ -2985,27 +2985,6 @@ function Detalle_Aseguramiento_MonedaRemoveAddRow(rowIndex) {
 //Begin Declarations for Foreigns fields for Detalle_Aseguramiento_Otros_Aseguramientos MultiRow
 var Detalle_Aseguramiento_Otros_AseguramientoscountRowsChecked = 0;
 
-function GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoName(Id) {
-    for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems.length; i++) {
-        if (Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems[i].Clave == Id) {
-            return Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems[i].Descripcion;
-        }
-    }
-    return "";
-}
-
-function GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropDown() {
-    var Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Otros_Aseguramientos_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropdown);
-    if(Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems != null)
-    {
-       for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems.length; i++) {
-           $('<option />', { value: Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems[i].Clave, text:    Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropdown);
-       }
-    }
-    return Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropdown;
-}
 function GetDetalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroName(Id) {
     for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroItems.length; i++) {
         if (Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroItems[i].Clave == Id) {
@@ -3026,6 +3005,27 @@ function GetDetalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroDropDow
        }
     }
     return Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroDropdown;
+}
+function GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoName(Id) {
+    for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems.length; i++) {
+        if (Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems[i].Clave == Id) {
+            return Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems[i].Descripcion;
+        }
+    }
+    return "";
+}
+
+function GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropDown() {
+    var Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Aseguramiento_Otros_Aseguramientos_cmbLabelSelect").val();
+
+    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropdown);
+    if(Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems != null)
+    {
+       for (var i = 0; i < Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems.length; i++) {
+           $('<option />', { value: Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems[i].Clave, text:    Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoItems[i].Descripcion }).appendTo(Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropdown);
+       }
+    }
+    return Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropdown;
 }
 
 
@@ -3060,8 +3060,8 @@ function GetInsertDetalle_Aseguramiento_Otros_AseguramientosRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[0] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Tipo_de_Equipo_Tactico', 'Tipo', 267589)));
-    columnData[1] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Motivo_de_Registro', 'Motivo_de_Registro', 268343)));
+    columnData[0] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_Registro Motivo_de_Registro').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_Registro_' + index).attr('data-field', 'Motivo_de_Registro').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Motivo_de_Registro', 'Motivo_de_Registro', 268343)));
+    columnData[1] = $(GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoDropDown()).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Tipo Tipo').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Tipo_' + index).attr('data-field', 'Tipo').after($.parseHTML(addNew('Detalle_Aseguramiento_Otros_Aseguramientos', 'Tipo_de_Equipo_Tactico', 'Tipo', 267589)));
     columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Marca Marca').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Marca_' + index).attr('data-field', 'Marca');
     columnData[3] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Modelo Modelo').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Modelo_' + index).attr('data-field', 'Modelo');
     columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Aseguramiento_Otros_Aseguramientos_Inventario Inventario').attr('id', 'Detalle_Aseguramiento_Otros_Aseguramientos_Inventario_' + index).attr('data-field', 'Inventario');
@@ -3086,8 +3086,8 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Aseguramiento_Otros_Aseguramient
         Clave: prevData.Clave,
         IsInsertRow: false
 
-        ,Tipo:  data.childNodes[counter++].childNodes[0].value
         ,Motivo_de_Registro:  data.childNodes[counter++].childNodes[0].value
+        ,Tipo:  data.childNodes[counter++].childNodes[0].value
         ,Marca:  data.childNodes[counter++].childNodes[0].value
         ,Modelo:  data.childNodes[counter++].childNodes[0].value
         ,Inventario:  data.childNodes[counter++].childNodes[0].value
@@ -3130,8 +3130,8 @@ function GetDetalle_Aseguramiento_Otros_AseguramientosFromDataTable() {
             Detalle_Aseguramiento_Otros_AseguramientosData.push({
                 Clave: gridData[i].Clave
 
-                ,Tipo: gridData[i].Tipo
                 ,Motivo_de_Registro: gridData[i].Motivo_de_Registro
+                ,Tipo: gridData[i].Tipo
                 ,Marca: gridData[i].Marca
                 ,Modelo: gridData[i].Modelo
                 ,Inventario: gridData[i].Inventario
@@ -3149,8 +3149,8 @@ function GetDetalle_Aseguramiento_Otros_AseguramientosFromDataTable() {
             Detalle_Aseguramiento_Otros_AseguramientosData.push({
                 Clave: removedDetalle_Aseguramiento_Otros_AseguramientosData[i].Clave
 
-                ,Tipo: removedDetalle_Aseguramiento_Otros_AseguramientosData[i].Tipo
                 ,Motivo_de_Registro: removedDetalle_Aseguramiento_Otros_AseguramientosData[i].Motivo_de_Registro
+                ,Tipo: removedDetalle_Aseguramiento_Otros_AseguramientosData[i].Tipo
                 ,Marca: removedDetalle_Aseguramiento_Otros_AseguramientosData[i].Marca
                 ,Modelo: removedDetalle_Aseguramiento_Otros_AseguramientosData[i].Modelo
                 ,Inventario: removedDetalle_Aseguramiento_Otros_AseguramientosData[i].Inventario
@@ -3221,8 +3221,8 @@ function Detalle_Aseguramiento_Otros_AseguramientosEditRowPopup(rowIndex, curren
     var prevData = Detalle_Aseguramiento_Otros_AseguramientosTable.fnGetData(rowIndexTable);
     GetAddDetalle_Aseguramiento_Otros_AseguramientosPopup(rowIndex, 1, prevData.Clave);
 
-    $('#Detalle_Aseguramiento_Otros_AseguramientosTipo').val(prevData.Tipo);
     $('#Detalle_Aseguramiento_Otros_AseguramientosMotivo_de_Registro').val(prevData.Motivo_de_Registro);
+    $('#Detalle_Aseguramiento_Otros_AseguramientosTipo').val(prevData.Tipo);
     $('#Detalle_Aseguramiento_Otros_AseguramientosMarca').val(prevData.Marca);
     $('#Detalle_Aseguramiento_Otros_AseguramientosModelo').val(prevData.Modelo);
     $('#Detalle_Aseguramiento_Otros_AseguramientosInventario').val(prevData.Inventario);
@@ -3254,8 +3254,8 @@ function Detalle_Aseguramiento_Otros_AseguramientosAddInsertRow() {
         Clave: null,
         IsInsertRow: true
 
-        ,Tipo: ""
         ,Motivo_de_Registro: ""
+        ,Tipo: ""
         ,Marca: ""
         ,Modelo: ""
         ,Inventario: ""
@@ -3294,8 +3294,8 @@ function GetDetalle_Aseguramiento_Otros_Aseguramientos() {
     for (var i = 0; i < Detalle_Aseguramiento_Otros_AseguramientosData.length; i++) {
         form_data.append('[' + i + '].Clave', Detalle_Aseguramiento_Otros_AseguramientosData[i].Clave);
 
-        form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_Otros_AseguramientosData[i].Tipo);
         form_data.append('[' + i + '].Motivo_de_Registro', Detalle_Aseguramiento_Otros_AseguramientosData[i].Motivo_de_Registro);
+        form_data.append('[' + i + '].Tipo', Detalle_Aseguramiento_Otros_AseguramientosData[i].Tipo);
         form_data.append('[' + i + '].Marca', Detalle_Aseguramiento_Otros_AseguramientosData[i].Marca);
         form_data.append('[' + i + '].Modelo', Detalle_Aseguramiento_Otros_AseguramientosData[i].Modelo);
         form_data.append('[' + i + '].Inventario', Detalle_Aseguramiento_Otros_AseguramientosData[i].Inventario);
@@ -3316,8 +3316,8 @@ function Detalle_Aseguramiento_Otros_AseguramientosInsertRowFromPopup(rowIndex) 
         Clave: prevData.Clave,
         IsInsertRow: false
 
-        ,Tipo: $('#Detalle_Aseguramiento_Otros_AseguramientosTipo').val()
         ,Motivo_de_Registro: $('#Detalle_Aseguramiento_Otros_AseguramientosMotivo_de_Registro').val()
+        ,Tipo: $('#Detalle_Aseguramiento_Otros_AseguramientosTipo').val()
         ,Marca: $('#Detalle_Aseguramiento_Otros_AseguramientosMarca').val()
         ,Modelo: $('#Detalle_Aseguramiento_Otros_AseguramientosModelo').val()
         ,Inventario: $('#Detalle_Aseguramiento_Otros_AseguramientosInventario').val()

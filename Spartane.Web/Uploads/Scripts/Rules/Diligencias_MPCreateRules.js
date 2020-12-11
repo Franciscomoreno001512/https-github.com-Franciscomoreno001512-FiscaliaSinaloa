@@ -78,6 +78,8 @@ if( EvaluaQuery("select Persona_Desaparecida from Detalle_de_Datos_Generales"
 
 //BusinessRuleId:2897, Attribute:267315, Operation:Field, Event:None
 
+
+
 //BusinessRuleId:2564, Attribute:267313, Operation:Field, Event:None
 $("form#CreateDiligencias_MP").on('change', '#Documento', function () {
 	nameOfTable='';
@@ -254,6 +256,10 @@ if(operation == 'Update'){
 
 }
 //BusinessRuleId:2560, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
 
 
 
