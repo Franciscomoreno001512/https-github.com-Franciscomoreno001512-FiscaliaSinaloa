@@ -1434,6 +1434,20 @@
 <Compile Include="Domain\Modulo_Encuesta\Modulo_EncuestaPagingModel.cs" />
 <Compile Include="Domain\Generador_Folio_Encuesta\Generador_Folio_Encuesta.cs" />
 <Compile Include="Domain\Generador_Folio_Encuesta\Generador_Folio_EncuestaPagingModel.cs" />
+<Compile Include="Domain\Motivo_de_Registro\Motivo_de_Registro.cs" />
+<Compile Include="Domain\Motivo_de_Registro\Motivo_de_RegistroPagingModel.cs" />
+<Compile Include="Domain\Compania_de_Seguros\Compania_de_Seguros.cs" />
+<Compile Include="Domain\Compania_de_Seguros\Compania_de_SegurosPagingModel.cs" />
+<Compile Include="Domain\Ubicacion_de_Medio_de_Transporte\Ubicacion_de_Medio_de_Transporte.cs" />
+<Compile Include="Domain\Ubicacion_de_Medio_de_Transporte\Ubicacion_de_Medio_de_TransportePagingModel.cs" />
+<Compile Include="Domain\Pension\Pension.cs" />
+<Compile Include="Domain\Pension\PensionPagingModel.cs" />
+<Compile Include="Domain\Modo_de_Asegurado_de_Drogas\Modo_de_Asegurado_de_Drogas.cs" />
+<Compile Include="Domain\Modo_de_Asegurado_de_Drogas\Modo_de_Asegurado_de_DrogasPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Documentos\Tipo_de_Documentos.cs" />
+<Compile Include="Domain\Tipo_de_Documentos\Tipo_de_DocumentosPagingModel.cs" />
+<Compile Include="Domain\Datos_de_los_Hechos_AT\Datos_de_los_Hechos_AT.cs" />
+<Compile Include="Domain\Datos_de_los_Hechos_AT\Datos_de_los_Hechos_ATPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1454,6 +1468,20 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -3,6 +3,9 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_Medios_de_TransporteAdvanceSearchModel
 @{
+    List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
+    if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
+    { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
     List<SelectListItem> varTipo_de_medios_de_transporte_Tipo = null;
     if (ViewBag.Tipo_de_medios_de_transportes_Tipo != null)
     { varTipo_de_medios_de_transporte_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_medios_de_transportes_Tipo; }
@@ -12,15 +15,24 @@
  List<SelectListItem> varModelo_de_medio_de_transporte_Modelo = null;
     if (ViewBag.Modelo_de_medio_de_transportes_Modelo != null)
     { varModelo_de_medio_de_transporte_Modelo = (List<SelectListItem>)ViewBag.Modelo_de_medio_de_transportes_Modelo; }
-    List<SelectListItem> varColor_de_medio_de_trasporte_Color = null;
-    if (ViewBag.Color_de_medio_de_trasportes_Color != null)
-    { varColor_de_medio_de_trasporte_Color = (List<SelectListItem>)ViewBag.Color_de_medio_de_trasportes_Color; }
     List<SelectListItem> varUso_del_medio_de_transporte_Uso = null;
     if (ViewBag.Uso_del_medio_de_transportes_Uso != null)
     { varUso_del_medio_de_transporte_Uso = (List<SelectListItem>)ViewBag.Uso_del_medio_de_transportes_Uso; }
     List<SelectListItem> varProcedencia_del_medio_de_transporte_Procedencia = null;
     if (ViewBag.Procedencia_del_medio_de_transportes_Procedencia != null)
     { varProcedencia_del_medio_de_transporte_Procedencia = (List<SelectListItem>)ViewBag.Procedencia_del_medio_de_transportes_Procedencia; }
+    List<SelectListItem> varA_Tiempo_Seguro = null;
+    if (ViewBag.A_Tiempos_Seguro != null)
+    { varA_Tiempo_Seguro = (List<SelectListItem>)ViewBag.A_Tiempos_Seguro; }
+    List<SelectListItem> varCompania_de_Seguros_Compania_de_Seguros = null;
+    if (ViewBag.Compania_de_Seguross_Compania_de_Seguros != null)
+    { varCompania_de_Seguros_Compania_de_Seguros = (List<SelectListItem>)ViewBag.Compania_de_Seguross_Compania_de_Seguros; }
+    List<SelectListItem> varUbicacion_de_Medio_de_Transporte_Ubicacion = null;
+    if (ViewBag.Ubicacion_de_Medio_de_Transportes_Ubicacion != null)
+    { varUbicacion_de_Medio_de_Transporte_Ubicacion = (List<SelectListItem>)ViewBag.Ubicacion_de_Medio_de_Transportes_Ubicacion; }
+    List<SelectListItem> varPension_Pension = null;
+    if (ViewBag.Pensions_Pension != null)
+    { varPension_Pension = (List<SelectListItem>)ViewBag.Pensions_Pension; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -70,6 +82,27 @@
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Motivo_de_Registro</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Motivo_de_RegistroFilter, filters, new { @class = "form-control", @id = "ddlMotivo_de_RegistroFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMotivo_de_Registro, new { @class = "form-control", @type = "text", @id = "txtAdvanceMotivo_de_Registro" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMotivo_de_Registro_Motivo_de_Registro!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMotivo_de_RegistroMultiple, varMotivo_de_Registro_Motivo_de_Registro,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMotivo_de_Registro"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Tipo</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -89,14 +122,6 @@
                             @id = "ddlAdvanceTipo"
                         });
                     }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Especifique</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.EspecifiqueFilter, filters, new { @class = "form-control", @id = "ddlEspecifiqueFilter" })
-                    @Html.TextBoxFor(m => m.Especifique, new { @class = "form-control", @type = "text", @id = "txtEspecifique" })
                 </div>
  List<SelectListItem> varMarca_de_Medio_de_transporte_Marca = null;
     if (ViewBag.Marca_de_Medio_de_transportes_Marca != null)
@@ -126,20 +151,7 @@
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.ColorFilter, filters, new { @class = "form-control", @id = "ddlColorFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceColor, new { @class = "form-control", @type = "text", @id = "txtAdvanceColor" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varColor_de_medio_de_trasporte_Color!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceColorMultiple, varColor_de_medio_de_trasporte_Color,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceColor"
-                        });
-                    }
+                    @Html.TextBoxFor(m => m.Color, new { @class = "form-control", @type = "text", @id = "txtColor" })
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Numero_de_Motor</h3>
@@ -211,6 +223,48 @@
                     }
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Seguro</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.SeguroFilter, filters, new { @class = "form-control", @id = "ddlSeguroFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceSeguro, new { @class = "form-control", @type = "text", @id = "txtAdvanceSeguro" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varA_Tiempo_Seguro!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceSeguroMultiple, varA_Tiempo_Seguro,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceSeguro"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Compania_de_Seguros</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Compania_de_SegurosFilter, filters, new { @class = "form-control", @id = "ddlCompania_de_SegurosFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceCompania_de_Seguros, new { @class = "form-control", @type = "text", @id = "txtAdvanceCompania_de_Seguros" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varCompania_de_Seguros_Compania_de_Seguros!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceCompania_de_SegurosMultiple, varCompania_de_Seguros_Compania_de_Seguros,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceCompania_de_Seguros"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Empresa</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -243,6 +297,56 @@
                     @Html.TextBoxFor(m => m.Destino, new { @class = "form-control", @type = "text", @id = "txtDestino" })
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Ubicacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.UbicacionFilter, filters, new { @class = "form-control", @id = "ddlUbicacionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceUbicacion, new { @class = "form-control", @type = "text", @id = "txtAdvanceUbicacion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varUbicacion_de_Medio_de_Transporte_Ubicacion!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceUbicacionMultiple, varUbicacion_de_Medio_de_Transporte_Ubicacion,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceUbicacion"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Pension</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.PensionFilter, filters, new { @class = "form-control", @id = "ddlPensionFilter" })
+                    @Html.TextBoxFor(m => m.AdvancePension, new { @class = "form-control", @type = "text", @id = "txtAdvancePension" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varPension_Pension!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvancePensionMultiple, varPension_Pension,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancePension"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Domicilio_Resguardo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Domicilio_ResguardoFilter, filters, new { @class = "form-control", @id = "ddlDomicilio_ResguardoFilter" })
+                    @Html.TextBoxFor(m => m.Domicilio_Resguardo, new { @class = "form-control", @type = "text", @id = "txtDomicilio_Resguardo" })
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_Medios_de_TransporteResources.Observaciones</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -267,6 +371,21 @@
             advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteClaveTo = $("#txtAdvanceToClave").val();
         }
+        advanceSearch.Motivo_de_RegistroSearchType = 0;
+        if ($('#ddlAdvanceMotivo_de_Registro').val().length > 0 || $("#txtAdvanceMotivo_de_Registro").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
+                advanceSearch.Motivo_de_RegistroName = $("#txtAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroNameSearchType = $("#ddlAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Motivo_de_RegistroToSearch = $("#ddlAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroSearchType = 2;
+            }
+        }
         advanceSearch.TipoSearchType = 0;
         if ($('#ddlAdvanceTipo').val().length > 0 || $("#txtAdvanceTipo").val() == "") {
 
@@ -281,11 +400,6 @@
                 advanceSearch.TipoToSearch = $("#ddlAdvanceTipo").val();
                 advanceSearch.TipoSearchType = 2;
             }
-        }
-        if ($("#txtAdvanceEspecifique").val() != "") {
-            hasParameter = true;
-            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteEspecifique = $("#txtAdvanceEspecifique").val();
-            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteEspecifiqueSearchType = $("#ddlAdvanceEspecifiqueFilter").val();
         }
         advanceSearch.MarcaSearchType = 0;
         if ($('#ddlAdvanceMarca').val().length > 0 || $("#txtAdvanceMarca").val() == "") {
@@ -327,20 +441,10 @@
             advanceSearch.Detalle_Aseguramiento_Medios_de_TransportePlacas = $("#txtAdvancePlacas").val();
             advanceSearch.Detalle_Aseguramiento_Medios_de_TransportePlacasSearchType = $("#ddlAdvancePlacasFilter").val();
         }
-        advanceSearch.ColorSearchType = 0;
-        if ($('#ddlAdvanceColor').val().length > 0 || $("#txtAdvanceColor").val() == "") {
-
-
-            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
-                advanceSearch.ColorName = $("#txtAdvanceColor").val();
-                advanceSearch.ColorNameSearchType = $("#ddlAdvanceColor").val();
-                advanceSearch.ColorSearchType = 1;
-            }
-            else {
-
-                advanceSearch.ColorToSearch = $("#ddlAdvanceColor").val();
-                advanceSearch.ColorSearchType = 2;
-            }
+        if ($("#txtAdvanceColor").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteColor = $("#txtAdvanceColor").val();
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteColorSearchType = $("#ddlAdvanceColorFilter").val();
         }
         if ($("#txtAdvanceNumero_de_Motor").val() != "") {
             hasParameter = true;
@@ -387,6 +491,36 @@
                 advanceSearch.ProcedenciaSearchType = 2;
             }
         }
+        advanceSearch.SeguroSearchType = 0;
+        if ($('#ddlAdvanceSeguro').val().length > 0 || $("#txtAdvanceSeguro").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
+                advanceSearch.SeguroName = $("#txtAdvanceSeguro").val();
+                advanceSearch.SeguroNameSearchType = $("#ddlAdvanceSeguro").val();
+                advanceSearch.SeguroSearchType = 1;
+            }
+            else {
+
+                advanceSearch.SeguroToSearch = $("#ddlAdvanceSeguro").val();
+                advanceSearch.SeguroSearchType = 2;
+            }
+        }
+        advanceSearch.Compania_de_SegurosSearchType = 0;
+        if ($('#ddlAdvanceCompania_de_Seguros').val().length > 0 || $("#txtAdvanceCompania_de_Seguros").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
+                advanceSearch.Compania_de_SegurosName = $("#txtAdvanceCompania_de_Seguros").val();
+                advanceSearch.Compania_de_SegurosNameSearchType = $("#ddlAdvanceCompania_de_Seguros").val();
+                advanceSearch.Compania_de_SegurosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Compania_de_SegurosToSearch = $("#ddlAdvanceCompania_de_Seguros").val();
+                advanceSearch.Compania_de_SegurosSearchType = 2;
+            }
+        }
         if ($("#txtAdvanceEmpresa").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteEmpresa = $("#txtAdvanceEmpresa").val();
@@ -406,6 +540,41 @@
             hasParameter = true;
             advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteDestino = $("#txtAdvanceDestino").val();
             advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteDestinoSearchType = $("#ddlAdvanceDestinoFilter").val();
+        }
+        advanceSearch.UbicacionSearchType = 0;
+        if ($('#ddlAdvanceUbicacion').val().length > 0 || $("#txtAdvanceUbicacion").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
+                advanceSearch.UbicacionName = $("#txtAdvanceUbicacion").val();
+                advanceSearch.UbicacionNameSearchType = $("#ddlAdvanceUbicacion").val();
+                advanceSearch.UbicacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.UbicacionToSearch = $("#ddlAdvanceUbicacion").val();
+                advanceSearch.UbicacionSearchType = 2;
+            }
+        }
+        advanceSearch.PensionSearchType = 0;
+        if ($('#ddlAdvancePension').val().length > 0 || $("#txtAdvancePension").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Medios_de_TransporteTextSearch) {
+                advanceSearch.PensionName = $("#txtAdvancePension").val();
+                advanceSearch.PensionNameSearchType = $("#ddlAdvancePension").val();
+                advanceSearch.PensionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.PensionToSearch = $("#ddlAdvancePension").val();
+                advanceSearch.PensionSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceDomicilio_Resguardo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteDomicilio_Resguardo = $("#txtAdvanceDomicilio_Resguardo").val();
+            advanceSearch.Detalle_Aseguramiento_Medios_de_TransporteDomicilio_ResguardoSearchType = $("#ddlAdvanceDomicilio_ResguardoFilter").val();
         }
         if ($("#txtAdvanceObservaciones").val() != "") {
             hasParameter = true;
@@ -430,6 +599,15 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceMotivo_de_Registro").keypress(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
+            $("#ddlAdvanceMotivo_de_Registro").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMotivo_de_Registro").change(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
+            $("#txtAdvanceMotivo_de_Registro").val('');
+        });
         $("#txtAdvanceTipo").keypress(function () {
             isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
             $("#ddlAdvanceTipo").val('').trigger("chosen:updated");
@@ -457,15 +635,6 @@
             isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
             $("#txtAdvanceModelo").val('');
         });
-        $("#txtAdvanceColor").keypress(function () {
-            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
-            $("#ddlAdvanceColor").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceColor").change(function () {
-            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
-            $("#txtAdvanceColor").val('');
-        });
         $("#txtAdvanceUso").keypress(function () {
             isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
             $("#ddlAdvanceUso").val('').trigger("chosen:updated");
@@ -483,6 +652,42 @@
         $("#ddlAdvanceProcedencia").change(function () {
             isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
             $("#txtAdvanceProcedencia").val('');
+        });
+        $("#txtAdvanceSeguro").keypress(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
+            $("#ddlAdvanceSeguro").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceSeguro").change(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
+            $("#txtAdvanceSeguro").val('');
+        });
+        $("#txtAdvanceCompania_de_Seguros").keypress(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
+            $("#ddlAdvanceCompania_de_Seguros").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceCompania_de_Seguros").change(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
+            $("#txtAdvanceCompania_de_Seguros").val('');
+        });
+        $("#txtAdvanceUbicacion").keypress(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
+            $("#ddlAdvanceUbicacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceUbicacion").change(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
+            $("#txtAdvanceUbicacion").val('');
+        });
+        $("#txtAdvancePension").keypress(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = true;
+            $("#ddlAdvancePension").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePension").change(function () {
+            isDetalle_Aseguramiento_Medios_de_TransporteTextSearch = false;
+            $("#txtAdvancePension").val('');
         });
 
     });

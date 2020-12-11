@@ -14,6 +14,12 @@ $("a[href='#tabAsignar_Dueno']").css('display', 'block');} else { $("a[href='#ta
 
 //BusinessRuleId:233, Attribute:263456, Operation:Field, Event:None
 
+//CONVERTIR A MAYUSCULAS AL BLUR
+$('input[type="text"],textarea').blur(function() {
+	this.value = this.value.toUpperCase();
+	});
+//END CONVERTIR A MAYUSCULAS AL BLUR
+
 //BusinessRuleId:632, Attribute:0, Operation:Field, Event:None
 if( EvaluaQuery("declare @accidente int"
 +" declare @clave int "

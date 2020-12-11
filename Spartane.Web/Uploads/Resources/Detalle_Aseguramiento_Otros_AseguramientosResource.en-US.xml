@@ -3,6 +3,7 @@
   <resource culture="en-us" name="Detalle_Aseguramiento_Otros_Aseguramientos" value="Detalle Aseguramiento Otros Aseguramientos"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
   <resource culture="en-US" name="Tipo" value="Tipo"></resource>
+  <resource culture="en-US" name="Motivo_de_Registro" value="Motivo de Registro"></resource>
   <resource culture="en-US" name="Marca" value="Marca"></resource>
   <resource culture="en-US" name="Modelo" value="Modelo"></resource>
   <resource culture="en-US" name="Inventario" value="Inventario"></resource>

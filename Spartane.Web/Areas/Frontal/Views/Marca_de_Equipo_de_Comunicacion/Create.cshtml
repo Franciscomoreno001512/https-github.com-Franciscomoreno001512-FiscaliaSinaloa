@@ -10,6 +10,9 @@
 /*
 
 */
+    List<SelectListItem> varTipo_de_Equipo_de_Comunicacion_Tipo_de_Equipo = null;
+    if (ViewBag.Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo != null)
+    { varTipo_de_Equipo_de_Comunicacion_Tipo_de_Equipo = (List<SelectListItem>)ViewBag.Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo; }
 
 
     Permission permission = ViewBag.Permission;
@@ -161,6 +164,34 @@
                                     <input class="form-control Datos_Generales" id="Descripcion" name="Descripcion" type="text" value="@Model.Descripcion">
                                     @*<span class="field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>*@
                                 </div>
+                            </div>
+                            <div class="form-group" id="divTipo_de_Equipo">
+                                <label class="col-sm-2 control-label">@Resources.Marca_de_Equipo_de_ComunicacionResources.Tipo_de_Equipo</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Equipo" data-attribute="268364" data-field-name="@Resources.Marca_de_Equipo_de_ComunicacionResources.Tipo_de_Equipo">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Equipo must be a number." data-val-required="The Tipo de Equipo field is required." id="Tipo_de_Equipo" name="Tipo_de_Equipo">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Equipo_de_Comunicacion_Tipo_de_Equipo != null){ 
+                                            foreach (var itemTipo_de_Equipo in varTipo_de_Equipo_de_Comunicacion_Tipo_de_Equipo)
+                                            {
+                                                if (itemTipo_de_Equipo.Value == Convert.ToString(Model.Tipo_de_Equipo))
+                                                {
+                                                    <option value="@itemTipo_de_Equipo.Value" selected>@itemTipo_de_Equipo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Equipo.Value">@itemTipo_de_Equipo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Equipo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268364).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Equipo_de_Comunicacion', 'Tipo_de_Equipo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
                             </div>
                             </div>
                                 </div>
@@ -595,6 +626,7 @@
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Descripcion').val(result.data.Descripcion);
+                    $('#Tipo_de_Equipo').val(result.data.Tipo_de_Equipo);
 
                 },
                 error: function (result) {
@@ -607,6 +639,7 @@
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Descripcion', $('#Descripcion').val());
+                data.append('Tipo_de_Equipo', $('#Tipo_de_Equipo').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Marca_de_Equipo_de_Comunicacion/Post_Datos_Generales")',

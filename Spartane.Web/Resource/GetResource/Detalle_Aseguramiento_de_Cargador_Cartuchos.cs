@@ -36,6 +36,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Calibre</summary>
+        public static string Calibre
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_de_Cargador_Cartuchos.GetResource("Calibre", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Motivo_de_Registro</summary>
+        public static string Motivo_de_Registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_de_Cargador_Cartuchos.GetResource("Motivo_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>cartuchos_municiones</summary>
         public static string cartuchos_municiones
         {

@@ -2,6 +2,8 @@
 <resources>
   <resource culture="es-es" name="Detalle_Aseguramiento_de_Cargador_Cartuchos" value="Detalle Aseguramiento de Cargador Cartuchos"></resource>
   <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Calibre" value="Calibre"></resource>
+  <resource culture="es-es" name="Motivo_de_Registro" value="Motivo de Registro"></resource>
   <resource culture="es-es" name="cartuchos_municiones" value="No. de Cartuchos/Municiones"></resource>
   <resource culture="es-es" name="Cartuchos_Habiles" value="Cartuchos Hábiles"></resource>
   <resource culture="es-es" name="Cartuchos_Percutidos" value="Cartuchos Percutidos"></resource>

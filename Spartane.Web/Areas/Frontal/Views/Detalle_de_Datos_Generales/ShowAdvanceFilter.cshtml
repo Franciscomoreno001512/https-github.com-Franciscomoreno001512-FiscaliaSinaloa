@@ -12,6 +12,9 @@
     List<SelectListItem> varTipo_de_Compareciente_Tipo_de_Compareciente = null;
     if (ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente != null)
     { varTipo_de_Compareciente_Tipo_de_Compareciente = (List<SelectListItem>)ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente; }
+    List<SelectListItem> varA_Tiempo_Con_Vida = null;
+    if (ViewBag.A_Tiempos_Con_Vida != null)
+    { varA_Tiempo_Con_Vida = (List<SelectListItem>)ViewBag.A_Tiempos_Con_Vida; }
     List<SelectListItem> varGenero_Sexo = null;
     if (ViewBag.Generos_Sexo != null)
     { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
@@ -351,6 +354,46 @@
                             @data_placeholder = "",
                             @style = "width: 350px;",
                             @id = "ddlAdvanceTipo_de_Compareciente"
+                        });
+                    }
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Detalle_de_Datos_GeneralesResources.Fecha_de_Aparicion</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Aparicion" name="FromFecha_de_Aparicion" type="text" value="@Model.FromFecha_de_Aparicion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Aparicion" name="ToFecha_de_Aparicion" type="text" value="@Model.ToFecha_de_Aparicion" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_Datos_GeneralesResources.Con_Vida</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Con_VidaFilter, filters, new { @class = "form-control", @id = "ddlCon_VidaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceCon_Vida, new { @class = "form-control", @type = "text", @id = "txtAdvanceCon_Vida" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varA_Tiempo_Con_Vida!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceCon_VidaMultiple, varA_Tiempo_Con_Vida,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceCon_Vida"
                         });
                     }
                 </div>
@@ -2569,6 +2612,34 @@
                 advanceSearch.Tipo_de_ComparecienteSearchType = 2;
             }
         }
+        if ($("#ddlAdvancePersona_Desaparecida").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_GeneralesPersona_Desaparecida = $("#ddlAdvancePersona_Desaparecida").val();
+        }
+        if ($("#ddlAdvancePersona_Aparecio").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_GeneralesPersona_Aparecio = $("#ddlAdvancePersona_Aparecio").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Aparicion").val() != "" || $("#txtAdvanceToFecha_de_Aparicion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_Datos_GeneralesFecha_de_AparicionFrom = $("#txtAdvanceFromFecha_de_Aparicion").val();
+            advanceSearch.Detalle_de_Datos_GeneralesFecha_de_AparicionTo = $("#txtAdvanceToFecha_de_Aparicion").val();
+        }
+        advanceSearch.Con_VidaSearchType = 0;
+        if ($('#ddlAdvanceCon_Vida').val().length > 0 || $("#txtAdvanceCon_Vida").val() == "") {
+
+
+            if (isDetalle_de_Datos_GeneralesTextSearch) {
+                advanceSearch.Con_VidaName = $("#txtAdvanceCon_Vida").val();
+                advanceSearch.Con_VidaNameSearchType = $("#ddlAdvanceCon_Vida").val();
+                advanceSearch.Con_VidaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Con_VidaToSearch = $("#ddlAdvanceCon_Vida").val();
+                advanceSearch.Con_VidaSearchType = 2;
+            }
+        }
         if ($("#ddlAdvancePersona_Moral").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_Datos_GeneralesPersona_Moral = $("#ddlAdvancePersona_Moral").val();
@@ -4354,6 +4425,15 @@
         $("#ddlAdvanceTipo_de_Compareciente").change(function () {
             isDetalle_de_Datos_GeneralesTextSearch = false;
             $("#txtAdvanceTipo_de_Compareciente").val('');
+        });
+        $("#txtAdvanceCon_Vida").keypress(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = true;
+            $("#ddlAdvanceCon_Vida").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceCon_Vida").change(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = false;
+            $("#txtAdvanceCon_Vida").val('');
         });
         $("#txtAdvanceSexo").keypress(function () {
             isDetalle_de_Datos_GeneralesTextSearch = true;

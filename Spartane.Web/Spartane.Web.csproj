@@ -13979,6 +13979,146 @@
 <Content Include="Uploads\Scripts\Rules\Generador_Folio_EncuestaCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Generador_Folio_EncuestaIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Generador_Folio_Encuesta\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Motivo_de_Registro\Motivo_de_RegistroApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Motivo_de_Registro\IMotivo_de_RegistroApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Motivo_de_RegistroModel.cs" />
+<Compile Include="Areas\Frontal\Models\Motivo_de_RegistroGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Motivo_de_RegistroMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Motivo_de_RegistroController.cs" />
+<Content Include="Areas\Frontal\Views\Motivo_de_Registro\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Motivo_de_Registro\Create.cshtml" />
+<Compile Include="Resource\GetResource\Motivo_de_Registro.cs" />
+<Content Include="Uploads\Resources\Motivo_de_RegistroResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Motivo_de_RegistroPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Motivo_de_RegistroResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Motivo_de_Registro.js" />
+<Content Include="Scripts\Custom\Motivo_de_RegistroGeneral.js" />
+<Content Include="Areas\Frontal\Views\Motivo_de_Registro\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Motivo_de_RegistroAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Motivo_de_RegistroBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Motivo_de_RegistroCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Motivo_de_RegistroIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Motivo_de_Registro\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Compania_de_Seguros\Compania_de_SegurosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Compania_de_Seguros\ICompania_de_SegurosApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Compania_de_SegurosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Compania_de_SegurosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Compania_de_SegurosMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Compania_de_SegurosController.cs" />
+<Content Include="Areas\Frontal\Views\Compania_de_Seguros\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Compania_de_Seguros\Create.cshtml" />
+<Compile Include="Resource\GetResource\Compania_de_Seguros.cs" />
+<Content Include="Uploads\Resources\Compania_de_SegurosResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Compania_de_SegurosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Compania_de_SegurosResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Compania_de_Seguros.js" />
+<Content Include="Scripts\Custom\Compania_de_SegurosGeneral.js" />
+<Content Include="Areas\Frontal\Views\Compania_de_Seguros\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Compania_de_SegurosAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Compania_de_SegurosBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Compania_de_SegurosCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Compania_de_SegurosIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Compania_de_Seguros\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Ubicacion_de_Medio_de_Transporte\Ubicacion_de_Medio_de_TransporteApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Ubicacion_de_Medio_de_Transporte\IUbicacion_de_Medio_de_TransporteApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Ubicacion_de_Medio_de_TransporteModel.cs" />
+<Compile Include="Areas\Frontal\Models\Ubicacion_de_Medio_de_TransporteGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Ubicacion_de_Medio_de_TransporteMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Ubicacion_de_Medio_de_TransporteController.cs" />
+<Content Include="Areas\Frontal\Views\Ubicacion_de_Medio_de_Transporte\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Ubicacion_de_Medio_de_Transporte\Create.cshtml" />
+<Compile Include="Resource\GetResource\Ubicacion_de_Medio_de_Transporte.cs" />
+<Content Include="Uploads\Resources\Ubicacion_de_Medio_de_TransporteResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Ubicacion_de_Medio_de_TransportePropertyMapper.cs" />
+<Content Include="Uploads\Resources\Ubicacion_de_Medio_de_TransporteResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Ubicacion_de_Medio_de_Transporte.js" />
+<Content Include="Scripts\Custom\Ubicacion_de_Medio_de_TransporteGeneral.js" />
+<Content Include="Areas\Frontal\Views\Ubicacion_de_Medio_de_Transporte\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Ubicacion_de_Medio_de_TransporteAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Ubicacion_de_Medio_de_TransporteBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Ubicacion_de_Medio_de_TransporteCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Ubicacion_de_Medio_de_TransporteIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Ubicacion_de_Medio_de_Transporte\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Pension\PensionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Pension\IPensionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\PensionModel.cs" />
+<Compile Include="Areas\Frontal\Models\PensionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\PensionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\PensionController.cs" />
+<Content Include="Areas\Frontal\Views\Pension\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Pension\Create.cshtml" />
+<Compile Include="Resource\GetResource\Pension.cs" />
+<Content Include="Uploads\Resources\PensionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\PensionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\PensionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Pension.js" />
+<Content Include="Scripts\Custom\PensionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Pension\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\PensionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\PensionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\PensionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\PensionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Pension\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Modo_de_Asegurado_de_Drogas\Modo_de_Asegurado_de_DrogasApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Modo_de_Asegurado_de_Drogas\IModo_de_Asegurado_de_DrogasApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Modo_de_Asegurado_de_DrogasModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modo_de_Asegurado_de_DrogasGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modo_de_Asegurado_de_DrogasMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Modo_de_Asegurado_de_DrogasController.cs" />
+<Content Include="Areas\Frontal\Views\Modo_de_Asegurado_de_Drogas\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Modo_de_Asegurado_de_Drogas\Create.cshtml" />
+<Compile Include="Resource\GetResource\Modo_de_Asegurado_de_Drogas.cs" />
+<Content Include="Uploads\Resources\Modo_de_Asegurado_de_DrogasResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Modo_de_Asegurado_de_DrogasPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Modo_de_Asegurado_de_DrogasResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Modo_de_Asegurado_de_Drogas.js" />
+<Content Include="Scripts\Custom\Modo_de_Asegurado_de_DrogasGeneral.js" />
+<Content Include="Areas\Frontal\Views\Modo_de_Asegurado_de_Drogas\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Modo_de_Asegurado_de_DrogasAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modo_de_Asegurado_de_DrogasBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Modo_de_Asegurado_de_DrogasCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Modo_de_Asegurado_de_DrogasIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Modo_de_Asegurado_de_Drogas\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Documentos\Tipo_de_DocumentosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Documentos\ITipo_de_DocumentosApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DocumentosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DocumentosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DocumentosMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_DocumentosController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Documentos\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Documentos\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Documentos.cs" />
+<Content Include="Uploads\Resources\Tipo_de_DocumentosResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_DocumentosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_DocumentosResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Documentos.js" />
+<Content Include="Scripts\Custom\Tipo_de_DocumentosGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Documentos\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DocumentosAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DocumentosBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_DocumentosCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_DocumentosIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Documentos\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Datos_de_los_Hechos_AT\Datos_de_los_Hechos_ATApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Datos_de_los_Hechos_AT\IDatos_de_los_Hechos_ATApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Datos_de_los_Hechos_ATModel.cs" />
+<Compile Include="Areas\Frontal\Models\Datos_de_los_Hechos_ATGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Datos_de_los_Hechos_ATMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Datos_de_los_Hechos_ATController.cs" />
+<Content Include="Areas\Frontal\Views\Datos_de_los_Hechos_AT\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Datos_de_los_Hechos_AT\Create.cshtml" />
+<Compile Include="Resource\GetResource\Datos_de_los_Hechos_AT.cs" />
+<Content Include="Uploads\Resources\Datos_de_los_Hechos_ATResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Datos_de_los_Hechos_ATPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Datos_de_los_Hechos_ATResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Datos_de_los_Hechos_AT.js" />
+<Content Include="Scripts\Custom\Datos_de_los_Hechos_ATGeneral.js" />
+<Content Include="Areas\Frontal\Views\Datos_de_los_Hechos_AT\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Datos_de_los_Hechos_ATAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Datos_de_los_Hechos_ATBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Datos_de_los_Hechos_ATCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Datos_de_los_Hechos_ATIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Datos_de_los_Hechos_AT\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -14978,6 +15118,146 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -61,6 +61,9 @@
                 @Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Tipo
             </td>
             <td class="column1">
+                @Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Motivo_de_Registro
+            </td>
+            <td class="column1">
                 @Resources.Detalle_Aseguramiento_Otros_AseguramientosResources.Marca
             </td>
             <td class="column1">
@@ -96,7 +99,10 @@
                         @item.Clave
                     </td>
                     <td>
-                        @item.Tipo
+                        @item.TipoDescripcion
+                    </td>
+                    <td>
+                        @item.Motivo_de_RegistroDescripcion
                     </td>
                     <td>
                         @item.Marca

@@ -1,0 +1,242 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Datos_de_los_Hechos_ATGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Modulo_Atencion_Inicial
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Titulo_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Narrativa_Breve_de_los_Hechos
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Prioridad_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Fecha_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Hora_Aproximada_del_Hecho
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Pais
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Estado
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Poblacion
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Colonia
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Codigo_Postal
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Calle
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Entre_Calle
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Y_Calle
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Numero_Exterior
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Numero_Interior
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Referencia
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Latitud
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Longitud
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Documento_Extraviado
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Tipo_de_Documento_Extraviado
+            </td>
+            <td class="column1">
+                @Resources.Datos_de_los_Hechos_ATResources.Tipo_de_Lugar_del_Hecho
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Modulo_Atencion_InicialNUAT
+                    </td>
+                    <td>
+                        @item.Titulo_del_Hecho
+                    </td>
+                    <td>
+                        @item.Narrativa_Breve_de_los_Hechos
+                    </td>
+                    <td>
+                        @item.Prioridad_del_HechoDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_del_Hecho
+                    </td>
+                    <td>
+                        @item.Hora_Aproximada_del_Hecho
+                    </td>
+                    <td>
+                        @item.PaisNombre
+                    </td>
+                    <td>
+                        @item.EstadoNombre
+                    </td>
+                    <td>
+                        @item.MunicipioNombre
+                    </td>
+                    <td>
+                        @item.PoblacionNombre
+                    </td>
+                    <td>
+                        @item.ColoniaNombre
+                    </td>
+                    <td>
+                        @item.Codigo_Postal
+                    </td>
+                    <td>
+                        @item.Calle
+                    </td>
+                    <td>
+                        @item.Entre_Calle
+                    </td>
+                    <td>
+                        @item.Y_Calle
+                    </td>
+                    <td>
+                        @item.Numero_Exterior
+                    </td>
+                    <td>
+                        @item.Numero_Interior
+                    </td>
+                    <td>
+                        @item.Referencia
+                    </td>
+                    <td>
+                        @item.Latitud
+                    </td>
+                    <td>
+                        @item.Longitud
+                    </td>
+                    <td>
+                        @item.Documento_Extraviado
+                    </td>
+                    <td>
+                        @item.Tipo_de_Documento_ExtraviadoDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_Lugar_del_HechoDescripcion
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

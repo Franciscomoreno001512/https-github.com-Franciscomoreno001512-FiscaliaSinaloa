@@ -16,11 +16,12 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Detalle_Aseguramiento_Medios_de_Transporte.Clave";
+                case "Motivo_de_Registro[Descripcion]":
+                case "Motivo_de_RegistroDescripcion":
+                    return "Motivo_de_Registro.Descripcion";
                 case "Tipo[Descripcion]":
                 case "TipoDescripcion":
                     return "Tipo_de_medios_de_transporte.Descripcion";
-                case "Especifique":
-                    return "Detalle_Aseguramiento_Medios_de_Transporte.Especifique";
                 case "Marca[Descripcion]":
                 case "MarcaDescripcion":
                     return "Marca_de_Medio_de_transporte.Descripcion";
@@ -31,9 +32,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Modelo_de_medio_de_transporte.Descripcion";
                 case "Placas":
                     return "Detalle_Aseguramiento_Medios_de_Transporte.Placas";
-                case "Color[Descripcion]":
-                case "ColorDescripcion":
-                    return "Color_de_medio_de_trasporte.Descripcion";
+                case "Color":
+                    return "Detalle_Aseguramiento_Medios_de_Transporte.Color";
                 case "Numero_de_Motor":
                     return "Detalle_Aseguramiento_Medios_de_Transporte.Numero_de_Motor";
                 case "Serie":
@@ -46,6 +46,12 @@ namespace Spartane.Web.SqlModelMapper
                 case "Procedencia[Descripcion]":
                 case "ProcedenciaDescripcion":
                     return "Procedencia_del_medio_de_transporte.Descripcion";
+                case "Seguro[Descripcion]":
+                case "SeguroDescripcion":
+                    return "A_Tiempo.Descripcion";
+                case "Compania_de_Seguros[Descripcion]":
+                case "Compania_de_SegurosDescripcion":
+                    return "Compania_de_Seguros.Descripcion";
                 case "Empresa":
                     return "Detalle_Aseguramiento_Medios_de_Transporte.Empresa";
                 case "Capacidad_de_Carga":
@@ -54,6 +60,14 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_Aseguramiento_Medios_de_Transporte.Origen";
                 case "Destino":
                     return "Detalle_Aseguramiento_Medios_de_Transporte.Destino";
+                case "Ubicacion[Descripcion]":
+                case "UbicacionDescripcion":
+                    return "Ubicacion_de_Medio_de_Transporte.Descripcion";
+                case "Pension[Descripcion]":
+                case "PensionDescripcion":
+                    return "Pension.Descripcion";
+                case "Domicilio_Resguardo":
+                    return "Detalle_Aseguramiento_Medios_de_Transporte.Domicilio_Resguardo";
                 case "Observaciones":
                     return "Detalle_Aseguramiento_Medios_de_Transporte.Observaciones";
 

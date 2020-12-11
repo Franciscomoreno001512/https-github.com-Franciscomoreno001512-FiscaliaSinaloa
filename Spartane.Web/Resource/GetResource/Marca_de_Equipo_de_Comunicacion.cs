@@ -46,6 +46,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Tipo_de_Equipo</summary>
+        public static string Tipo_de_Equipo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderMarca_de_Equipo_de_Comunicacion.GetResource("Tipo_de_Equipo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderMarca_de_Equipo_de_Comunicacion.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

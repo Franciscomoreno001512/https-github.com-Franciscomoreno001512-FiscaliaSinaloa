@@ -9,6 +9,9 @@
     Spartane_File attachedFileImagen_Tatuaje = (Spartane_File)ViewBag.Imagen_TatuajeSpartane_File;
 
 /*
+    string Fecha_de_Aparicion = "";
+    if (Model.Fecha_de_Aparicion == "")
+    { Model.Fecha_de_Aparicion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
     string Fecha_de_Nacimiento = "";
     if (Model.Fecha_de_Nacimiento == "")
     { Model.Fecha_de_Nacimiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
@@ -29,6 +32,9 @@
     List<SelectListItem> varTipo_de_Compareciente_Tipo_de_Compareciente = null;
     if (ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente != null)
     { varTipo_de_Compareciente_Tipo_de_Compareciente = (List<SelectListItem>)ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente; }
+    List<SelectListItem> varA_Tiempo_Con_Vida = null;
+    if (ViewBag.A_Tiempos_Con_Vida != null)
+    { varA_Tiempo_Con_Vida = (List<SelectListItem>)ViewBag.A_Tiempos_Con_Vida; }
     List<SelectListItem> varGenero_Sexo = null;
     if (ViewBag.Generos_Sexo != null)
     { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
@@ -531,6 +537,57 @@
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Compareciente', 'Tipo_de_Compareciente');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divPersona_Desaparecida">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Persona_Desaparecida</label>
+                                <div class="col-sm-8" data-field-id="Persona_Desaparecida" data-attribute="268328" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Persona_Desaparecida">
+                                    @Html.CheckBoxFor(m => m.Persona_Desaparecida, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divPersona_Aparecio">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Persona_Aparecio</label>
+                                <div class="col-sm-8" data-field-id="Persona_Aparecio" data-attribute="268329" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Persona_Aparecio">
+                                    @Html.CheckBoxFor(m => m.Persona_Aparecio, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFecha_de_Aparicion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Fecha_de_Aparicion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Aparicion" data-attribute="268330" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Fecha_de_Aparicion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_de_Aparicion"  name="Fecha_de_Aparicion" type="text" value="@Model.Fecha_de_Aparicion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCon_Vida">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_Datos_GeneralesResources.Con_Vida</label>
+                                <div class="col-sm-8" data-field-id="Con_Vida" data-attribute="268331" data-field-name="@Resources.Detalle_de_Datos_GeneralesResources.Con_Vida">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Con Vida must be a number." data-val-required="The Con Vida field is required." id="Con_Vida" name="Con_Vida">
+                                        <option value=""></option>
+                                        @if (varA_Tiempo_Con_Vida != null){ 
+                                            foreach (var itemCon_Vida in varA_Tiempo_Con_Vida)
+                                            {
+                                                if (itemCon_Vida.Value == Convert.ToString(Model.Con_Vida))
+                                                {
+                                                    <option value="@itemCon_Vida.Value" selected>@itemCon_Vida.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemCon_Vida.Value">@itemCon_Vida.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Con_Vida" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268331).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('A_Tiempo', 'Con_Vida');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -3896,7 +3953,15 @@
               showOtros_Domicilios_InvolucradoGrid(null);
 
 		   
-                        $('#Fecha_de_Nacimiento').datepicker({
+                        $('#Fecha_de_Aparicion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Fecha_de_Nacimiento').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
                 forceParse: false,
@@ -6747,6 +6812,10 @@
                     $('#Datos_Confidenciales').prop('checked', result.data.Datos_Confidenciales);
                     $('#Se_Informo_sobre_el_Procedimiento').prop('checked', result.data.Se_Informo_sobre_el_Procedimiento);
                     $('#Tipo_de_Compareciente').val(result.data.Tipo_de_Compareciente);
+                    $('#Persona_Desaparecida').prop('checked', result.data.Persona_Desaparecida);
+                    $('#Persona_Aparecio').prop('checked', result.data.Persona_Aparecio);
+                    $('#Fecha_de_Aparicion').val(result.data.Fecha_de_Aparicion);
+                    $('#Con_Vida').val(result.data.Con_Vida);
                     $('#Persona_Moral').prop('checked', result.data.Persona_Moral);
                     $('#Q_Q_R_O_').prop('checked', result.data.Q_Q_R_O_);
                     $('#Es_victima').prop('checked', result.data.Es_victima);
@@ -6922,6 +6991,10 @@
                 data.append('Datos_Confidenciales', $('#Datos_Confidenciales').prop('checked'));
                 data.append('Se_Informo_sobre_el_Procedimiento', $('#Se_Informo_sobre_el_Procedimiento').prop('checked'));
                 data.append('Tipo_de_Compareciente', $('#Tipo_de_Compareciente').val());
+                data.append('Persona_Desaparecida', $('#Persona_Desaparecida').prop('checked'));
+                data.append('Persona_Aparecio', $('#Persona_Aparecio').prop('checked'));
+                data.append('Fecha_de_Aparicion', $('#Fecha_de_Aparicion').val());
+                data.append('Con_Vida', $('#Con_Vida').val());
                 data.append('Persona_Moral', $('#Persona_Moral').prop('checked'));
                 data.append('Q_Q_R_O_', $('#Q_Q_R_O_').prop('checked'));
                 data.append('Es_victima', $('#Es_victima').prop('checked'));

@@ -81,6 +81,9 @@
  List<SelectListItem> varColonia_Colonia_de_los_Hechos = null;
     if (ViewBag.Colonias_Colonia_de_los_Hechos != null)
     { varColonia_Colonia_de_los_Hechos = (List<SelectListItem>)ViewBag.Colonias_Colonia_de_los_Hechos; }
+    List<SelectListItem> varDocumento_Extraviado_Tipo_de_Documento_Extraviado = null;
+    if (ViewBag.Documento_Extraviados_Tipo_de_Documento_Extraviado != null)
+    { varDocumento_Extraviado_Tipo_de_Documento_Extraviado = (List<SelectListItem>)ViewBag.Documento_Extraviados_Tipo_de_Documento_Extraviado; }
     List<SelectListItem> varLugar_Tipo_Tipo_de_Lugar_del_Hecho = null;
     if (ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho != null)
     { varLugar_Tipo_Tipo_de_Lugar_del_Hecho = (List<SelectListItem>)ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho; }
@@ -841,6 +844,14 @@
                     @Html.TextBoxFor(m => m.Numero_Interior_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtNumero_Interior_de_los_Hechos" })
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Modulo_Atencion_InicialResources.Referencia_hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Referencia_hechosFilter, filters, new { @class = "form-control", @id = "ddlReferencia_hechosFilter" })
+                    @Html.TextBoxFor(m => m.Referencia_hechos, new { @class = "form-control", @type = "text", @id = "txtReferencia_hechos" })
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Modulo_Atencion_InicialResources.Latitud</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -855,6 +866,27 @@
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.LongitudFilter, filters, new { @class = "form-control", @id = "ddlLongitudFilter" })
                     @Html.TextBoxFor(m => m.Longitud, new { @class = "form-control", @type = "text", @id = "txtLongitud" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Modulo_Atencion_InicialResources.Tipo_de_Documento_Extraviado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_Documento_ExtraviadoFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_Documento_ExtraviadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Documento_Extraviado, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Documento_Extraviado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varDocumento_Extraviado_Tipo_de_Documento_Extraviado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_Documento_ExtraviadoMultiple, varDocumento_Extraviado_Tipo_de_Documento_Extraviado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Documento_Extraviado"
+                        });
+                    }
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Modulo_Atencion_InicialResources.Tipo_de_Lugar_del_Hecho</h3>
@@ -1738,6 +1770,11 @@
             advanceSearch.Modulo_Atencion_InicialNumero_Interior_de_los_Hechos = $("#txtAdvanceNumero_Interior_de_los_Hechos").val();
             advanceSearch.Modulo_Atencion_InicialNumero_Interior_de_los_HechosSearchType = $("#ddlAdvanceNumero_Interior_de_los_HechosFilter").val();
         }
+        if ($("#txtAdvanceReferencia_hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Modulo_Atencion_InicialReferencia_hechos = $("#txtAdvanceReferencia_hechos").val();
+            advanceSearch.Modulo_Atencion_InicialReferencia_hechosSearchType = $("#ddlAdvanceReferencia_hechosFilter").val();
+        }
         if ($("#txtAdvanceLatitud").val() != "") {
             hasParameter = true;
             advanceSearch.Modulo_Atencion_InicialLatitud = $("#txtAdvanceLatitud").val();
@@ -1747,6 +1784,25 @@
             hasParameter = true;
             advanceSearch.Modulo_Atencion_InicialLongitud = $("#txtAdvanceLongitud").val();
             advanceSearch.Modulo_Atencion_InicialLongitudSearchType = $("#ddlAdvanceLongitudFilter").val();
+        }
+        if ($("#ddlAdvanceDocumento_Extraviado_hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Modulo_Atencion_InicialDocumento_Extraviado_hechos = $("#ddlAdvanceDocumento_Extraviado_hechos").val();
+        }
+        advanceSearch.Tipo_de_Documento_ExtraviadoSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Documento_Extraviado').val().length > 0 || $("#txtAdvanceTipo_de_Documento_Extraviado").val() == "") {
+
+
+            if (isModulo_Atencion_InicialTextSearch) {
+                advanceSearch.Tipo_de_Documento_ExtraviadoName = $("#txtAdvanceTipo_de_Documento_Extraviado").val();
+                advanceSearch.Tipo_de_Documento_ExtraviadoNameSearchType = $("#ddlAdvanceTipo_de_Documento_Extraviado").val();
+                advanceSearch.Tipo_de_Documento_ExtraviadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_Documento_ExtraviadoToSearch = $("#ddlAdvanceTipo_de_Documento_Extraviado").val();
+                advanceSearch.Tipo_de_Documento_ExtraviadoSearchType = 2;
+            }
         }
         advanceSearch.Tipo_de_Lugar_del_HechoSearchType = 0;
         if ($('#ddlAdvanceTipo_de_Lugar_del_Hecho').val().length > 0 || $("#txtAdvanceTipo_de_Lugar_del_Hecho").val() == "") {
@@ -2202,6 +2258,15 @@
         $("#ddlAdvanceColonia_de_los_Hechos").change(function () {
             isModulo_Atencion_InicialTextSearch = false;
             $("#txtAdvanceColonia_de_los_Hechos").val('');
+        });
+        $("#txtAdvanceTipo_de_Documento_Extraviado").keypress(function () {
+            isModulo_Atencion_InicialTextSearch = true;
+            $("#ddlAdvanceTipo_de_Documento_Extraviado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Documento_Extraviado").change(function () {
+            isModulo_Atencion_InicialTextSearch = false;
+            $("#txtAdvanceTipo_de_Documento_Extraviado").val('');
         });
         $("#txtAdvanceTipo_de_Lugar_del_Hecho").keypress(function () {
             isModulo_Atencion_InicialTextSearch = true;

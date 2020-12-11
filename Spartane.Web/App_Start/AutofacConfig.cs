@@ -1700,6 +1700,27 @@ using Spartane.Web.Areas.WebApiConsumer.Modulo_Encuesta;
 using Spartane.Services.Generador_Folio_Encuesta;
 using Spartane.Core.Domain.Generador_Folio_Encuesta;
 using Spartane.Web.Areas.WebApiConsumer.Generador_Folio_Encuesta;
+using Spartane.Services.Motivo_de_Registro;
+using Spartane.Core.Domain.Motivo_de_Registro;
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
+using Spartane.Services.Compania_de_Seguros;
+using Spartane.Core.Domain.Compania_de_Seguros;
+using Spartane.Web.Areas.WebApiConsumer.Compania_de_Seguros;
+using Spartane.Services.Ubicacion_de_Medio_de_Transporte;
+using Spartane.Core.Domain.Ubicacion_de_Medio_de_Transporte;
+using Spartane.Web.Areas.WebApiConsumer.Ubicacion_de_Medio_de_Transporte;
+using Spartane.Services.Pension;
+using Spartane.Core.Domain.Pension;
+using Spartane.Web.Areas.WebApiConsumer.Pension;
+using Spartane.Services.Modo_de_Asegurado_de_Drogas;
+using Spartane.Core.Domain.Modo_de_Asegurado_de_Drogas;
+using Spartane.Web.Areas.WebApiConsumer.Modo_de_Asegurado_de_Drogas;
+using Spartane.Services.Tipo_de_Documentos;
+using Spartane.Core.Domain.Tipo_de_Documentos;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Documentos;
+using Spartane.Services.Datos_de_los_Hechos_AT;
+using Spartane.Core.Domain.Datos_de_los_Hechos_AT;
+using Spartane.Web.Areas.WebApiConsumer.Datos_de_los_Hechos_AT;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -2956,6 +2977,20 @@ builder.RegisterType<Modulo_EncuestaService>().As<IModulo_EncuestaService>().Ins
 builder.RegisterType<Modulo_EncuestaApiConsumer>().As<IModulo_EncuestaApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Generador_Folio_EncuestaService>().As<IGenerador_Folio_EncuestaService>().InstancePerLifetimeScope();
 builder.RegisterType<Generador_Folio_EncuestaApiConsumer>().As<IGenerador_Folio_EncuestaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Motivo_de_RegistroService>().As<IMotivo_de_RegistroService>().InstancePerLifetimeScope();
+builder.RegisterType<Motivo_de_RegistroApiConsumer>().As<IMotivo_de_RegistroApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Compania_de_SegurosService>().As<ICompania_de_SegurosService>().InstancePerLifetimeScope();
+builder.RegisterType<Compania_de_SegurosApiConsumer>().As<ICompania_de_SegurosApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Ubicacion_de_Medio_de_TransporteService>().As<IUbicacion_de_Medio_de_TransporteService>().InstancePerLifetimeScope();
+builder.RegisterType<Ubicacion_de_Medio_de_TransporteApiConsumer>().As<IUbicacion_de_Medio_de_TransporteApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<PensionService>().As<IPensionService>().InstancePerLifetimeScope();
+builder.RegisterType<PensionApiConsumer>().As<IPensionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Modo_de_Asegurado_de_DrogasService>().As<IModo_de_Asegurado_de_DrogasService>().InstancePerLifetimeScope();
+builder.RegisterType<Modo_de_Asegurado_de_DrogasApiConsumer>().As<IModo_de_Asegurado_de_DrogasApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_DocumentosService>().As<ITipo_de_DocumentosService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_DocumentosApiConsumer>().As<ITipo_de_DocumentosApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Datos_de_los_Hechos_ATService>().As<IDatos_de_los_Hechos_ATService>().InstancePerLifetimeScope();
+builder.RegisterType<Datos_de_los_Hechos_ATApiConsumer>().As<IDatos_de_los_Hechos_ATApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3136,6 +3171,218 @@ builder.RegisterType<Generador_Folio_EncuestaApiConsumer>().As<IGenerador_Folio_
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

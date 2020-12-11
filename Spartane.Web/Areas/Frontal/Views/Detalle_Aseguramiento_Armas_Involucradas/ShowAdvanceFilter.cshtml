@@ -3,6 +3,9 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_Armas_InvolucradasAdvanceSearchModel
 @{
+    List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
+    if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
+    { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
     List<SelectListItem> varTipo_de_Arma_Tipo = null;
     if (ViewBag.Tipo_de_Armas_Tipo != null)
     { varTipo_de_Arma_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Armas_Tipo; }
@@ -62,6 +65,27 @@
                     <label class="">@Resources.Resources.To: </label>
                     @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
                     @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Motivo_de_Registro</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Motivo_de_RegistroFilter, filters, new { @class = "form-control", @id = "ddlMotivo_de_RegistroFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMotivo_de_Registro, new { @class = "form-control", @type = "text", @id = "txtAdvanceMotivo_de_Registro" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMotivo_de_Registro_Motivo_de_Registro!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMotivo_de_RegistroMultiple, varMotivo_de_Registro_Motivo_de_Registro,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMotivo_de_Registro"
+                        });
+                    }
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Tipo</h3>
@@ -179,17 +203,6 @@
                         });
                     }
                 </div>
-                <div class="MarginBottom ">
-                    <h3>@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Cantidad</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.From:</label>
-                    @Html.TextBoxFor(m => m.FromCantidad, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromCantidad" })
-                    @Html.ValidationMessageFor(m => m.FromCantidad)
-                    <label class="">@Resources.Resources.To: </label>
-                    @Html.TextBoxFor(m => m.ToCantidad, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToCantidad", @data_min = "txtAdvanceFromCantidad" })
-                    @Html.ValidationMessageFor(m => m.ToCantidad)
-                </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_Armas_InvolucradasResources.Lugar_de_Hallazgo</h3>
                 </div>
@@ -222,6 +235,21 @@
             hasParameter = true;
             advanceSearch.Detalle_Aseguramiento_Armas_InvolucradasClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Detalle_Aseguramiento_Armas_InvolucradasClaveTo = $("#txtAdvanceToClave").val();
+        }
+        advanceSearch.Motivo_de_RegistroSearchType = 0;
+        if ($('#ddlAdvanceMotivo_de_Registro').val().length > 0 || $("#txtAdvanceMotivo_de_Registro").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_Armas_InvolucradasTextSearch) {
+                advanceSearch.Motivo_de_RegistroName = $("#txtAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroNameSearchType = $("#ddlAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Motivo_de_RegistroToSearch = $("#ddlAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroSearchType = 2;
+            }
         }
         advanceSearch.TipoSearchType = 0;
         if ($('#ddlAdvanceTipo').val().length > 0 || $("#txtAdvanceTipo").val() == "") {
@@ -283,6 +311,10 @@
             advanceSearch.Detalle_Aseguramiento_Armas_InvolucradasSerie = $("#txtAdvanceSerie").val();
             advanceSearch.Detalle_Aseguramiento_Armas_InvolucradasSerieSearchType = $("#ddlAdvanceSerieFilter").val();
         }
+        if ($("#ddlAdvanceArma_Oficial").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Aseguramiento_Armas_InvolucradasArma_Oficial = $("#ddlAdvanceArma_Oficial").val();
+        }
         if ($("#txtAdvanceInventario").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_Aseguramiento_Armas_InvolucradasInventario = $("#txtAdvanceInventario").val();
@@ -303,10 +335,10 @@
                 advanceSearch.ClasificacionSearchType = 2;
             }
         }
-        if ($("#txtAdvanceFromCantidad").val() != "" || $("#txtAdvanceToCantidad").val() != "") {
+        if ($("#txtAdvanceFromValor_Estimado").val() != "" || $("#txtAdvanceToValor_Estimado").val() != "") {
             hasParameter = true;
-            advanceSearch.Detalle_Aseguramiento_Armas_InvolucradasCantidadFrom = $("#txtAdvanceFromCantidad").val();
-            advanceSearch.Detalle_Aseguramiento_Armas_InvolucradasCantidadTo = $("#txtAdvanceToCantidad").val();
+            advanceSearch.Detalle_Aseguramiento_Armas_InvolucradasValor_EstimadoFrom = $("#txtAdvanceFromValor_Estimado").val();
+            advanceSearch.Detalle_Aseguramiento_Armas_InvolucradasValor_EstimadoTo = $("#txtAdvanceToValor_Estimado").val();
         }
         if ($("#txtAdvanceLugar_de_Hallazgo").val() != "") {
             hasParameter = true;
@@ -336,6 +368,15 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceMotivo_de_Registro").keypress(function () {
+            isDetalle_Aseguramiento_Armas_InvolucradasTextSearch = true;
+            $("#ddlAdvanceMotivo_de_Registro").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMotivo_de_Registro").change(function () {
+            isDetalle_Aseguramiento_Armas_InvolucradasTextSearch = false;
+            $("#txtAdvanceMotivo_de_Registro").val('');
+        });
         $("#txtAdvanceTipo").keypress(function () {
             isDetalle_Aseguramiento_Armas_InvolucradasTextSearch = true;
             $("#ddlAdvanceTipo").val('').trigger("chosen:updated");

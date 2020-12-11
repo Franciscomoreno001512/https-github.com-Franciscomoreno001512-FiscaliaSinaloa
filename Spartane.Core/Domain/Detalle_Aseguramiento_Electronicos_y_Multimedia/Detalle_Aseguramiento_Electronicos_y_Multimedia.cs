@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Aseguramientos;
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Aparato_Electronicos_y_Multimedia;
 using Spartane.Core.Domain.Documentos_Multimedia;
 
@@ -20,6 +21,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Electronicos_y_Multimedia
     {
         public int Clave { get; set; }
         public int? Aseguramiento { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public short? Aparatos { get; set; }
         public short? Documentos_Multimedia { get; set; }
         public string Descripcion { get; set; }
@@ -28,6 +30,8 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Electronicos_y_Multimedia
 
         [ForeignKey("Aseguramiento")]
         public virtual Spartane.Core.Domain.Aseguramientos.Aseguramientos Aseguramiento_Aseguramientos { get; set; }
+        [ForeignKey("Motivo_de_Registro")]
+        public virtual Spartane.Core.Domain.Motivo_de_Registro.Motivo_de_Registro Motivo_de_Registro_Motivo_de_Registro { get; set; }
         [ForeignKey("Aparatos")]
         public virtual Spartane.Core.Domain.Aparato_Electronicos_y_Multimedia.Aparato_Electronicos_y_Multimedia Aparatos_Aparato_Electronicos_y_Multimedia { get; set; }
         [ForeignKey("Documentos_Multimedia")]
@@ -39,6 +43,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Electronicos_y_Multimedia
     {
                 public int Clave { get; set; }
         public int? Aseguramiento { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public short? Aparatos { get; set; }
         public short? Documentos_Multimedia { get; set; }
         public string Descripcion { get; set; }
@@ -47,6 +52,8 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Electronicos_y_Multimedia
 
 		        [ForeignKey("Aseguramiento")]
         public virtual Spartane.Core.Domain.Aseguramientos.Aseguramientos Aseguramiento_Aseguramientos { get; set; }
+        [ForeignKey("Motivo_de_Registro")]
+        public virtual Spartane.Core.Domain.Motivo_de_Registro.Motivo_de_Registro Motivo_de_Registro_Motivo_de_Registro { get; set; }
         [ForeignKey("Aparatos")]
         public virtual Spartane.Core.Domain.Aparato_Electronicos_y_Multimedia.Aparato_Electronicos_y_Multimedia Aparatos_Aparato_Electronicos_y_Multimedia { get; set; }
         [ForeignKey("Documentos_Multimedia")]

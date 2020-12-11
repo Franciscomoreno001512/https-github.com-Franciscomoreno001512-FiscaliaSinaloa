@@ -86,6 +86,46 @@ namespace Resources
             }
         }
 
+        /// <summary>Persona_Desaparecida</summary>
+        public static string Persona_Desaparecida
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Persona_Desaparecida", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Persona_Aparecio</summary>
+        public static string Persona_Aparecio
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Persona_Aparecio", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Fecha_de_Aparicion</summary>
+        public static string Fecha_de_Aparicion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Fecha_de_Aparicion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Con_Vida</summary>
+        public static string Con_Vida
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Con_Vida", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Persona_Moral</summary>
         public static string Persona_Moral
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Spartane.Core.Domain.Tipo_de_Equipo_de_Comunicacion;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,7 +18,10 @@ namespace Spartane.Core.Domain.Marca_de_Equipo_de_Comunicacion
     {
         public short Clave { get; set; }
         public string Descripcion { get; set; }
+        public short? Tipo_de_Equipo { get; set; }
 
+        [ForeignKey("Tipo_de_Equipo")]
+        public virtual Spartane.Core.Domain.Tipo_de_Equipo_de_Comunicacion.Tipo_de_Equipo_de_Comunicacion Tipo_de_Equipo_Tipo_de_Equipo_de_Comunicacion { get; set; }
 
     }
 	
@@ -25,8 +29,11 @@ namespace Spartane.Core.Domain.Marca_de_Equipo_de_Comunicacion
     {
                 public short Clave { get; set; }
         public string Descripcion { get; set; }
+        public short? Tipo_de_Equipo { get; set; }
 
-		
+		        [ForeignKey("Tipo_de_Equipo")]
+        public virtual Spartane.Core.Domain.Tipo_de_Equipo_de_Comunicacion.Tipo_de_Equipo_de_Comunicacion Tipo_de_Equipo_Tipo_de_Equipo_de_Comunicacion { get; set; }
+
     }
 
 

@@ -29,6 +29,7 @@ using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
+using Spartane.Core.Domain.Documento_Extraviado;
 using Spartane.Core.Domain.Lugar_Tipo;
 using Spartane.Core.Domain.Zona;
 using Spartane.Core.Domain.Tipo_de_Acuerdo;
@@ -110,8 +111,11 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public string Y_Calle { get; set; }
         public string Numero_Exrterior_de_los_Hechos { get; set; }
         public string Numero_Interior_de_los_Hechos { get; set; }
+        public string Referencia_hechos { get; set; }
         public string Latitud { get; set; }
         public string Longitud { get; set; }
+        public bool? Documento_Extraviado_hechos { get; set; }
+        public int? Tipo_de_Documento_Extraviado { get; set; }
         public int? Tipo_de_Lugar_del_Hecho { get; set; }
         public int? Zona_de_los_Hechos { get; set; }
         public string Turno { get; set; }
@@ -192,6 +196,8 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_Colonia { get; set; }
         [ForeignKey("Colonia_de_los_Hechos")]
         public virtual Spartane.Core.Domain.Colonia.Colonia Colonia_de_los_Hechos_Colonia { get; set; }
+        [ForeignKey("Tipo_de_Documento_Extraviado")]
+        public virtual Spartane.Core.Domain.Documento_Extraviado.Documento_Extraviado Tipo_de_Documento_Extraviado_Documento_Extraviado { get; set; }
         [ForeignKey("Tipo_de_Lugar_del_Hecho")]
         public virtual Spartane.Core.Domain.Lugar_Tipo.Lugar_Tipo Tipo_de_Lugar_del_Hecho_Lugar_Tipo { get; set; }
         [ForeignKey("Zona_de_los_Hechos")]
@@ -346,8 +352,11 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public string Y_Calle { get; set; }
         public string Numero_Exrterior_de_los_Hechos { get; set; }
         public string Numero_Interior_de_los_Hechos { get; set; }
+        public string Referencia_hechos { get; set; }
         public string Latitud { get; set; }
         public string Longitud { get; set; }
+        public bool? Documento_Extraviado_hechos { get; set; }
+        public int? Tipo_de_Documento_Extraviado { get; set; }
         public int? Tipo_de_Lugar_del_Hecho { get; set; }
         public int? Zona_de_los_Hechos { get; set; }
         public string Turno { get; set; }
@@ -366,6 +375,8 @@ namespace Spartane.Core.Domain.Modulo_Atencion_Inicial
         public virtual Spartane.Core.Domain.Colonia.Colonia Poblacion_Colonia { get; set; }
         [ForeignKey("Colonia_de_los_Hechos")]
         public virtual Spartane.Core.Domain.Colonia.Colonia Colonia_de_los_Hechos_Colonia { get; set; }
+        [ForeignKey("Tipo_de_Documento_Extraviado")]
+        public virtual Spartane.Core.Domain.Documento_Extraviado.Documento_Extraviado Tipo_de_Documento_Extraviado_Documento_Extraviado { get; set; }
         [ForeignKey("Tipo_de_Lugar_del_Hecho")]
         public virtual Spartane.Core.Domain.Lugar_Tipo.Lugar_Tipo Tipo_de_Lugar_del_Hecho_Lugar_Tipo { get; set; }
         [ForeignKey("Zona_de_los_Hechos")]

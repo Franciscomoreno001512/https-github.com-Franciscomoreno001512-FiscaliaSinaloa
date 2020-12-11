@@ -6,14 +6,7 @@ $("#Diligencias_MPGuardarYNuevo , #Diligencias_MPGuardarYCopia").hide()
 $(document).ready(function () {
 
 
-//BusinessRuleId:2564, Attribute:267313, Operation:Field, Event:None
-$("form#CreateDiligencias_MP").on('change', '#Documento', function () {
-	nameOfTable='';
-	rowIndex='';
-if( EvaluaQuery("select Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divInvolucrado').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));} else { $('#divInvolucrado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));}
-});
-
-//BusinessRuleId:2564, Attribute:267313, Operation:Field, Event:None
+
 
 
 
@@ -59,6 +52,41 @@ if( EvaluaQuery("select Solicitar_Numero_de_Oficio from Documento where clave = 
 
 //BusinessRuleId:2569, Attribute:267313, Operation:Field, Event:None
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//BusinessRuleId:2897, Attribute:267315, Operation:Field, Event:None
+$("form#CreateDiligencias_MP").on('change', '#Involucrado', function () {
+	nameOfTable='';
+	rowIndex='';
+if( EvaluaQuery("select Persona_Desaparecida from Detalle_de_Datos_Generales"
++" where Tipo_de_Compareciente = 2 AND persona_aparecio = 0 and clave = FLD[Involucrado]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { alert(DecodifyText('La persona seleccionada se encuentra desaparecida, favor de registrar la aparición de la persona', rowIndex, nameOfTable));} else {}
+});
+
+//BusinessRuleId:2897, Attribute:267315, Operation:Field, Event:None
+
+//BusinessRuleId:2564, Attribute:267313, Operation:Field, Event:None
+$("form#CreateDiligencias_MP").on('change', '#Documento', function () {
+	nameOfTable='';
+	rowIndex='';
+if( EvaluaQuery("select Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divInvolucrado').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));} else { $('#divInvolucrado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));}
+});
+
+//BusinessRuleId:2564, Attribute:267313, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
@@ -102,19 +130,9 @@ if(operation == 'New'){
 
 
 
-//BusinessRuleId:2573, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( EvaluaQuery("select Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divInvolucrado').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));} else { $('#divInvolucrado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));}
-
-}
-//BusinessRuleId:2573, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2573, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( EvaluaQuery("select Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divInvolucrado').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));} else { $('#divInvolucrado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));}
-
-}
-//BusinessRuleId:2573, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
 
 //BusinessRuleId:2574, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
@@ -236,6 +254,44 @@ if(operation == 'Update'){
 
 }
 //BusinessRuleId:2560, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//BusinessRuleId:2573, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("select Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divInvolucrado').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));} else { $('#divInvolucrado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));}
+
+}
+//BusinessRuleId:2573, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2573, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("select Solicitante from Documento where clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { $('#divInvolucrado').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));} else { $('#divInvolucrado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Involucrado' + rowIndex));}
+
+}
+//BusinessRuleId:2573, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

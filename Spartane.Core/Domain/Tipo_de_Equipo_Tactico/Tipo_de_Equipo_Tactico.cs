@@ -15,7 +15,7 @@ namespace Spartane.Core.Domain.Tipo_de_Equipo_Tactico
     /// </summary>
     public class Tipo_de_Equipo_Tactico: BaseEntity
     {
-        public short Clave { get; set; }
+        public int Clave { get; set; }
         public string Descripcion { get; set; }
 
 
@@ -23,7 +23,7 @@ namespace Spartane.Core.Domain.Tipo_de_Equipo_Tactico
 	
 	public class Tipo_de_Equipo_Tactico_Datos_Generales
     {
-                public short Clave { get; set; }
+                public int Clave { get; set; }
         public string Descripcion { get; set; }
 
 		

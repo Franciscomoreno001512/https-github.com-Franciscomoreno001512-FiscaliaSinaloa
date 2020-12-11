@@ -8,17 +8,54 @@ $('#AseguramientosGuardarYCopia').hide();
 $(document).ready(function () {
 
 
-//BusinessRuleId:2715, Attribute:267566, Operation:Field, Event:None
-$("#Detalle_Aseguramiento_Medios_de_TransporteGrid").on('change', '.Tipo', function () {
+
+
+//BusinessRuleId:2903, Attribute:268362, Operation:Field, Event:None
+$("#Detalle_Aseguramiento_Armas_InvolucradasGrid").on('change', '.Arma_Oficial', function () {
 	nameOfTable = $(this).parent().parent().parent().parent()[0].id.replace('Grid', '') + '_';
 	rowIndex = '_' + $(this).parent().parent()[0].className.replace(' odd', '').replace(' even', '').replace(nameOfTable, '');
-if( GetValueByControlType($('#' + nameOfTable + 'Tipo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { DisabledControl($("#" + nameOfTable + "Especifique" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Especifique' + rowIndex));}} else { DisabledControl($("#" + nameOfTable + "Especifique" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Especifique' + rowIndex));}}
+if( GetValueByControlType($('#' + nameOfTable + 'Arma_Oficial' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { DisabledControl($("#" + nameOfTable + "Inventario" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Inventario' + rowIndex));}} else { DisabledControl($("#" + nameOfTable + "Inventario" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Inventario' + rowIndex));}}
 	nameOfTable='';
 	rowIndex='';
 });
+$("form#CreateDetalle_Aseguramiento_Armas_Involucradas").on('change', '#Detalle_Aseguramiento_Armas_InvolucradasArma_Oficial', function () {
+	nameOfTable='Detalle_Aseguramiento_Armas_Involucradas';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Arma_Oficial' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { DisabledControl($("#" + nameOfTable + "Inventario" + rowIndex), ("false" == "true"));if ('false'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Inventario' + rowIndex));}} else { DisabledControl($("#" + nameOfTable + "Inventario" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Inventario' + rowIndex));}}
+});
+//BusinessRuleId:2903, Attribute:268362, Operation:Field, Event:None
 
 
-//BusinessRuleId:2715, Attribute:267566, Operation:Field, Event:None
+
+//BusinessRuleId:2905, Attribute:267558, Operation:Field, Event:None
+$("#Detalle_Aseguramiento_InmueblesGrid").on('change', '.Municipio', function () {
+	nameOfTable = $(this).parent().parent().parent().parent()[0].id.replace('Grid', '') + '_';
+	rowIndex = '_' + $(this).parent().parent()[0].className.replace(' odd', '').replace(' even', '').replace(nameOfTable, '');
+ var valor = $('#' + nameOfTable + 'Colonia' + rowIndex).val();   $('#' + nameOfTable + 'Colonia' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Colonia' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave,Nombre from Colonia where Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave,Nombre from Colonia where Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Colonia' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Colonia' + rowIndex).val(valor).trigger('change');
+	nameOfTable='';
+	rowIndex='';
+});
+$("form#CreateDetalle_Aseguramiento_Inmuebles").on('change', '#Detalle_Aseguramiento_InmueblesMunicipio', function () {
+	nameOfTable='Detalle_Aseguramiento_Inmuebles';
+	rowIndex='';
+ var valor = $('#' + nameOfTable + 'Colonia' + rowIndex).val();   $('#' + nameOfTable + 'Colonia' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Colonia' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave,Nombre from Colonia where Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave,Nombre from Colonia where Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Colonia' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Colonia' + rowIndex).val(valor).trigger('change');
+});
+//BusinessRuleId:2905, Attribute:267558, Operation:Field, Event:None
+
+//BusinessRuleId:2904, Attribute:267557, Operation:Field, Event:None
+$("#Detalle_Aseguramiento_InmueblesGrid").on('change', '.Estado', function () {
+	nameOfTable = $(this).parent().parent().parent().parent()[0].id.replace('Grid', '') + '_';
+	rowIndex = '_' + $(this).parent().parent()[0].className.replace(' odd', '').replace(' even', '').replace(nameOfTable, '');
+ var valor = $('#' + nameOfTable + 'Municipio' + rowIndex).val();   $('#' + nameOfTable + 'Municipio' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Municipio' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Municipio' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave,Nombre from Municipio where Estado = FLD[Estado]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Municipio' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave,Nombre from Municipio where Estado = FLD[Estado]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Municipio' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Municipio' + rowIndex).val(valor).trigger('change');
+	nameOfTable='';
+	rowIndex='';
+});
+$("form#CreateDetalle_Aseguramiento_Inmuebles").on('change', '#Detalle_Aseguramiento_InmueblesEstado', function () {
+	nameOfTable='Detalle_Aseguramiento_Inmuebles';
+	rowIndex='';
+ var valor = $('#' + nameOfTable + 'Municipio' + rowIndex).val();   $('#' + nameOfTable + 'Municipio' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Municipio' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Municipio' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave,Nombre from Municipio where Estado = FLD[Estado]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Municipio' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave,Nombre from Municipio where Estado = FLD[Estado]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Municipio' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Municipio' + rowIndex).val(valor).trigger('change');
+});
+//BusinessRuleId:2904, Attribute:267557, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -470,19 +507,21 @@ function EjecutarValidacionesAlEliminarMRDetalle_Aseguramiento_de_Cargador_Cartu
 }
 function EjecutarValidacionesNewRowMRDetalle_Aseguramiento_de_Cargador_Cartuchos(nameOfTable, rowIndex){
     var result = true;
-    //BusinessRuleId:2656, Attribute:267652, Operation:Object, Event:NEWROWMR
+    
+
+
+
+//BusinessRuleId:2656, Attribute:267652, Operation:Object, Event:NEWROWMR
 if(operation == 'New'){
- SetNotRequiredToControl( $('#' + nameOfTable + 'cartuchos_municiones' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Habiles' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Percutidos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'cargadores' + rowIndex));
-
-
+ SetNotRequiredToControl( $('#' + nameOfTable + 'cartuchos_municiones' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Habiles' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Percutidos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'cargadores' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Calibre' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Calibre' + rowIndex));
+
 }
 //BusinessRuleId:2656, Attribute:267652, Operation:Object, Event:NEWROWMR
 
 //BusinessRuleId:2656, Attribute:267652, Operation:Object, Event:NEWROWMR
 if(operation == 'Update'){
- SetNotRequiredToControl( $('#' + nameOfTable + 'cartuchos_municiones' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Habiles' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Percutidos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'cargadores' + rowIndex));
-
-
+ SetNotRequiredToControl( $('#' + nameOfTable + 'cartuchos_municiones' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Habiles' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Percutidos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'cargadores' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Calibre' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Calibre' + rowIndex));
+
 }
 //BusinessRuleId:2656, Attribute:267652, Operation:Object, Event:NEWROWMR
 
@@ -491,19 +530,21 @@ if(operation == 'Update'){
 }
 function EjecutarValidacionesEditRowMRDetalle_Aseguramiento_de_Cargador_Cartuchos(nameOfTable, rowIndex){
     var result = true;
-    //BusinessRuleId:2656, Attribute:267652, Operation:Object, Event:EDITROWMR
+    
+
+
+
+//BusinessRuleId:2656, Attribute:267652, Operation:Object, Event:EDITROWMR
 if(operation == 'New'){
- SetNotRequiredToControl( $('#' + nameOfTable + 'cartuchos_municiones' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Habiles' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Percutidos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'cargadores' + rowIndex));
-
-
+ SetNotRequiredToControl( $('#' + nameOfTable + 'cartuchos_municiones' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Habiles' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Percutidos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'cargadores' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Calibre' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Calibre' + rowIndex));
+
 }
 //BusinessRuleId:2656, Attribute:267652, Operation:Object, Event:EDITROWMR
 
 //BusinessRuleId:2656, Attribute:267652, Operation:Object, Event:EDITROWMR
 if(operation == 'Update'){
- SetNotRequiredToControl( $('#' + nameOfTable + 'cartuchos_municiones' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Habiles' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Percutidos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'cargadores' + rowIndex));
-
-
+ SetNotRequiredToControl( $('#' + nameOfTable + 'cartuchos_municiones' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Habiles' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cartuchos_Percutidos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'cargadores' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Calibre' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Calibre' + rowIndex));
+
 }
 //BusinessRuleId:2656, Attribute:267652, Operation:Object, Event:EDITROWMR
 
@@ -1185,19 +1226,21 @@ function EjecutarValidacionesNewRowMRDetalle_Aseguramiento_de_Pistas_de_Aterriza
 
 
 
+
+
+
+
 //BusinessRuleId:2765, Attribute:267662, Operation:Object, Event:NEWROWMR
 if(operation == 'New'){
- SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Suelo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_1' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_2' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Orientacion_de' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Largo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Ancho' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
-
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Suelo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_1' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_2' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Orientacion_de' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Largo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Ancho' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Orientacion' + rowIndex));
+
 }
 //BusinessRuleId:2765, Attribute:267662, Operation:Object, Event:NEWROWMR
 
 //BusinessRuleId:2765, Attribute:267662, Operation:Object, Event:NEWROWMR
 if(operation == 'Update'){
- SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Suelo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_1' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_2' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Orientacion_de' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Largo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Ancho' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
-
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Suelo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_1' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_2' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Orientacion_de' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Largo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Ancho' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Orientacion' + rowIndex));
+
 }
 //BusinessRuleId:2765, Attribute:267662, Operation:Object, Event:NEWROWMR
 
@@ -1226,19 +1269,21 @@ function EjecutarValidacionesEditRowMRDetalle_Aseguramiento_de_Pistas_de_Aterriz
 
 
 
+
+
+
+
 //BusinessRuleId:2765, Attribute:267662, Operation:Object, Event:EDITROWMR
 if(operation == 'New'){
- SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Suelo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_1' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_2' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Orientacion_de' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Largo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Ancho' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
-
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Suelo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_1' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_2' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Orientacion_de' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Largo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Ancho' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Orientacion' + rowIndex));
+
 }
 //BusinessRuleId:2765, Attribute:267662, Operation:Object, Event:EDITROWMR
 
 //BusinessRuleId:2765, Attribute:267662, Operation:Object, Event:EDITROWMR
 if(operation == 'Update'){
- SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Suelo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_1' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_2' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Orientacion_de' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Largo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Ancho' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));
-
-
+ SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Suelo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_1' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Localizacion_2' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Orientacion_de' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Largo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Ancho' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Descripcion' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Orientacion' + rowIndex));
+
 }
 //BusinessRuleId:2765, Attribute:267662, Operation:Object, Event:EDITROWMR
 

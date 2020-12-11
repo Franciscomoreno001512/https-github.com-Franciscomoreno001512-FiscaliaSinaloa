@@ -3,6 +3,12 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_de_Cargador_CartuchosAdvanceSearchModel
 @{
+    List<SelectListItem> varCalibre_de_Arma_Calibre = null;
+    if (ViewBag.Calibre_de_Armas_Calibre != null)
+    { varCalibre_de_Arma_Calibre = (List<SelectListItem>)ViewBag.Calibre_de_Armas_Calibre; }
+    List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
+    if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
+    { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -50,6 +56,48 @@
                     <label class="">@Resources.Resources.To: </label>
                     @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
                     @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_de_Cargador_CartuchosResources.Calibre</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.CalibreFilter, filters, new { @class = "form-control", @id = "ddlCalibreFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceCalibre, new { @class = "form-control", @type = "text", @id = "txtAdvanceCalibre" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varCalibre_de_Arma_Calibre!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceCalibreMultiple, varCalibre_de_Arma_Calibre,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceCalibre"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_de_Cargador_CartuchosResources.Motivo_de_Registro</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Motivo_de_RegistroFilter, filters, new { @class = "form-control", @id = "ddlMotivo_de_RegistroFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMotivo_de_Registro, new { @class = "form-control", @type = "text", @id = "txtAdvanceMotivo_de_Registro" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMotivo_de_Registro_Motivo_de_Registro!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMotivo_de_RegistroMultiple, varMotivo_de_Registro_Motivo_de_Registro,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMotivo_de_Registro"
+                        });
+                    }
                 </div>
                 <div class="MarginBottom ">
                     <h3>@Resources.Detalle_Aseguramiento_de_Cargador_CartuchosResources.cartuchos_municiones</h3>
@@ -109,6 +157,36 @@
             advanceSearch.Detalle_Aseguramiento_de_Cargador_CartuchosClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Detalle_Aseguramiento_de_Cargador_CartuchosClaveTo = $("#txtAdvanceToClave").val();
         }
+        advanceSearch.CalibreSearchType = 0;
+        if ($('#ddlAdvanceCalibre').val().length > 0 || $("#txtAdvanceCalibre").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_de_Cargador_CartuchosTextSearch) {
+                advanceSearch.CalibreName = $("#txtAdvanceCalibre").val();
+                advanceSearch.CalibreNameSearchType = $("#ddlAdvanceCalibre").val();
+                advanceSearch.CalibreSearchType = 1;
+            }
+            else {
+
+                advanceSearch.CalibreToSearch = $("#ddlAdvanceCalibre").val();
+                advanceSearch.CalibreSearchType = 2;
+            }
+        }
+        advanceSearch.Motivo_de_RegistroSearchType = 0;
+        if ($('#ddlAdvanceMotivo_de_Registro').val().length > 0 || $("#txtAdvanceMotivo_de_Registro").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_de_Cargador_CartuchosTextSearch) {
+                advanceSearch.Motivo_de_RegistroName = $("#txtAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroNameSearchType = $("#ddlAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Motivo_de_RegistroToSearch = $("#ddlAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroSearchType = 2;
+            }
+        }
         if ($("#txtAdvanceFromcartuchos_municiones").val() != "" || $("#txtAdvanceTocartuchos_municiones").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_Aseguramiento_de_Cargador_Cartuchoscartuchos_municionesFrom = $("#txtAdvanceFromcartuchos_municiones").val();
@@ -147,6 +225,24 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceCalibre").keypress(function () {
+            isDetalle_Aseguramiento_de_Cargador_CartuchosTextSearch = true;
+            $("#ddlAdvanceCalibre").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceCalibre").change(function () {
+            isDetalle_Aseguramiento_de_Cargador_CartuchosTextSearch = false;
+            $("#txtAdvanceCalibre").val('');
+        });
+        $("#txtAdvanceMotivo_de_Registro").keypress(function () {
+            isDetalle_Aseguramiento_de_Cargador_CartuchosTextSearch = true;
+            $("#ddlAdvanceMotivo_de_Registro").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMotivo_de_Registro").change(function () {
+            isDetalle_Aseguramiento_de_Cargador_CartuchosTextSearch = false;
+            $("#txtAdvanceMotivo_de_Registro").val('');
+        });
 
     });
 </script>

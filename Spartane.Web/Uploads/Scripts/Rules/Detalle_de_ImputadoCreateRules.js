@@ -3,6 +3,12 @@ var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
+//CONVERTIR A MAYUSCULAS AL BLUR
+$('input[type="text"],textarea').blur(function() {
+	this.value = this.value.toUpperCase();
+	});
+//END CONVERTIR A MAYUSCULAS AL BLUR 
+
 
 //Validar RFC
 $( "#RFC" ).blur(function() { 

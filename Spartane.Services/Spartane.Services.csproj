@@ -1325,6 +1325,20 @@
 <Compile Include="Modulo_Encuesta\Modulo_EncuestaService.cs" />
 <Compile Include="Generador_Folio_Encuesta\IGenerador_Folio_EncuestaService.cs" />
 <Compile Include="Generador_Folio_Encuesta\Generador_Folio_EncuestaService.cs" />
+<Compile Include="Motivo_de_Registro\IMotivo_de_RegistroService.cs" />
+<Compile Include="Motivo_de_Registro\Motivo_de_RegistroService.cs" />
+<Compile Include="Compania_de_Seguros\ICompania_de_SegurosService.cs" />
+<Compile Include="Compania_de_Seguros\Compania_de_SegurosService.cs" />
+<Compile Include="Ubicacion_de_Medio_de_Transporte\IUbicacion_de_Medio_de_TransporteService.cs" />
+<Compile Include="Ubicacion_de_Medio_de_Transporte\Ubicacion_de_Medio_de_TransporteService.cs" />
+<Compile Include="Pension\IPensionService.cs" />
+<Compile Include="Pension\PensionService.cs" />
+<Compile Include="Modo_de_Asegurado_de_Drogas\IModo_de_Asegurado_de_DrogasService.cs" />
+<Compile Include="Modo_de_Asegurado_de_Drogas\Modo_de_Asegurado_de_DrogasService.cs" />
+<Compile Include="Tipo_de_Documentos\ITipo_de_DocumentosService.cs" />
+<Compile Include="Tipo_de_Documentos\Tipo_de_DocumentosService.cs" />
+<Compile Include="Datos_de_los_Hechos_AT\IDatos_de_los_Hechos_ATService.cs" />
+<Compile Include="Datos_de_los_Hechos_AT\Datos_de_los_Hechos_ATService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1424,6 +1438,20 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
