@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Judicializacion" value="Judicialización"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="es-es" name="Resolucion" value="Resolución"></resource>
+  <resource culture="es-es" name="Tipo" value="Tipo"></resource>
+  <resource culture="es-es" name="causa_o_cuadernillo" value="No. Causa Penal o Cuadernillo"></resource>
+  <resource culture="es-es" name="Fase_Actual" value="Fase Actual"></resource>
+  <resource culture="es-es" name="Vinculacion" value="Vinculación"></resource>
+  <resource culture="es-es" name="Fecha_Actos" value="Fecha de Fase"></resource>
+  <resource culture="es-es" name="Hora_Actos" value="Hora de Fase"></resource>
+  <resource culture="es-es" name="Observaciones_Actos" value="Observaciones"></resource>
+  <resource culture="es-es" name="Fecha_Genericos" value="Fecha de Fase"></resource>
+  <resource culture="es-es" name="Hora_Genericos" value="Hora de Fase"></resource>
+  <resource culture="es-es" name="Observaciones_Genericos" value="Observaciones"></resource>
+  <resource culture="es-es" name="Fecha_Fase_Inicial" value="Fecha de Fase"></resource>
+  <resource culture="es-es" name="Hora_Fase_Inicial" value="Hora de Fase"></resource>
+  <resource culture="es-es" name="Observaciones_Fase_Inicial" value="Observaciones"></resource>
+  <resource culture="es-es" name="Fecha_Fase_Intermedia" value="Fecha de Fase"></resource>
+  <resource culture="es-es" name="Hora_Fase_Intermedia" value="Hora de Fase"></resource>
+  <resource culture="es-es" name="Observaciones_Fase_Intermedia" value="Observaciones"></resource>
+  <resource culture="es-es" name="Fecha_de_Audiencia_de_Juicio" value="Fecha de Audiencia de Juicio"></resource>
+  <resource culture="es-es" name="Hora_de_Audiencia_de_Juicio" value="Hora de Audiencia de Juicio"></resource>
+  <resource culture="es-es" name="Tribunal_de_Enjuiciamiento" value="Tribunal de Enjuiciamiento"></resource>
+  <resource culture="es-es" name="Nombre_del_Juez" value="Nombre del Juez"></resource>
+  <resource culture="es-es" name="Juez_Presidente" value="Juez Presidente"></resource>
+  <resource culture="es-es" name="Juez_Relator" value="Juez Relator"></resource>
+  <resource culture="es-es" name="Juez_Vocal" value="Juez Vocal"></resource>
+  <resource culture="es-es" name="medios_desahogo" value="Medios de Prueba a desahogar en el juicio"></resource>
+  <resource culture="es-es" name="Tipo_de_Sentencia" value="Tipo de Sentencia"></resource>
+  <resource culture="es-es" name="Cuantia_de_Pena_Anos" value="Cuantía de Pena (Años)"></resource>
+  <resource culture="es-es" name="Cuantia_de_Pena_Meses" value="Cuantía de Pena (Meses)"></resource>
+  <resource culture="es-es" name="Monto_de_Reparacion_del_Dano" value="Monto de Reparación del Daño"></resource>
+  <resource culture="es-es" name="Observaciones_Fase_Juicio_Oral" value="Observaciones"></resource>
+  <resource culture="es-es" name="Fecha_Fase_Salidas_Alternas" value="Fecha de Fase"></resource>
+  <resource culture="es-es" name="Hora_Fase_Salidas_Alternas" value="Hora de Fase"></resource>
+  <resource culture="es-es" name="Observaciones_Fase_Salidas_Alternas" value="Observaciones"></resource>
+  <resource culture="es-es" name="Fecha_Fase_Sobreseimientos" value="Fecha de Fase"></resource>
+  <resource culture="es-es" name="Hora_Fase_Sobreseimientos" value="Hora de Fase"></resource>
+  <resource culture="es-es" name="Observaciones_Fase_Sobreseimientos" value="Observaciones"></resource>
+  <resource culture="es-es" name="Observaciones" value="Movimientos"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="es-es" name="TabActos_de_Investigacion" value="Actos de Investigación"></resource>
+<resource culture="es-es" name="TabGenericos" value="Genéricos"></resource>
+<resource culture="es-es" name="TabFase_Inicial" value="Fase Inicial"></resource>
+<resource culture="es-es" name="TabFase_Intermedia" value="Fase Intermedia"></resource>
+<resource culture="es-es" name="TabFase_Juicio_Oral" value="Fase Juicio Oral"></resource>
+<resource culture="es-es" name="TabSalidas_Alternas" value="Salidas Alternas"></resource>
+<resource culture="es-es" name="TabSobreseimientos" value="Sobreseimientos"></resource>
+<resource culture="es-es" name="TabMovimientos" value="Movimientos"></resource>
+
+</resources>

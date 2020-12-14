@@ -699,6 +699,27 @@ if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTabl
 }
 //BusinessRuleId:2626, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2944, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divExpediente_MASC').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MASC' + rowIndex));
+
+}
+//BusinessRuleId:2944, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2944, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divExpediente_MASC').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MASC' + rowIndex));
+
+}
+//BusinessRuleId:2944, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2944, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $('#divExpediente_MASC').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MASC' + rowIndex));
+
+}
+//BusinessRuleId:2944, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

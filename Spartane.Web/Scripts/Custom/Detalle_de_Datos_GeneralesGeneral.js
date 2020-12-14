@@ -1669,6 +1669,17 @@ function GetAutoCompleteDetalle_de_Datos_Generales_Expediente_MP_expediente_mini
     }
     return AutoCompleteExpediente_MPData;
 }
+var AutoCompleteExpediente_MASCData = [];
+function GetAutoCompleteDetalle_de_Datos_Generales_Expediente_MASC_SolicitudData(data) {
+	AutoCompleteExpediente_MASCData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_MASCData.push({
+            id: data[i].Clave,
+            text: data[i].Numero_de_Folio
+        });
+    }
+    return AutoCompleteExpediente_MASCData;
+}
 var AutoCompleteNacionalidadData = [];
 function GetAutoCompleteDetalle_de_Datos_Generales_Nacionalidad_NacionalidadData(data) {
 	AutoCompleteNacionalidadData = [];
@@ -1986,6 +1997,9 @@ function ClearControls() {
     $('#Expediente_MP').empty();
     $("#Expediente_MP").append('<option value=""></option>');
     $('#Expediente_MP').val('0').trigger('change');
+    $('#Expediente_MASC').empty();
+    $("#Expediente_MASC").append('<option value=""></option>');
+    $('#Expediente_MASC').val('0').trigger('change');
     $('#Nacionalidad').empty();
     $("#Nacionalidad").append('<option value=""></option>');
     $('#Nacionalidad').val('0').trigger('change');
@@ -2216,6 +2230,9 @@ $(document).ready(function () {
     $('#Expediente_MP').empty();
     $("#Expediente_MP").append('<option value=""></option>');
     $('#Expediente_MP').val('0').trigger('change');
+    $('#Expediente_MASC').empty();
+    $("#Expediente_MASC").append('<option value=""></option>');
+    $('#Expediente_MASC').val('0').trigger('change');
     $('#Nacionalidad').empty();
     $("#Nacionalidad").append('<option value=""></option>');
     $('#Nacionalidad').val('0').trigger('change');

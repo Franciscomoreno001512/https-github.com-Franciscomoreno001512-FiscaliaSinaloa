@@ -14119,6 +14119,394 @@
 <Content Include="Uploads\Scripts\Rules\Datos_de_los_Hechos_ATCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Datos_de_los_Hechos_ATIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Datos_de_los_Hechos_AT\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Resumen_Denuncia\Detalle_Resumen_DenunciaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Resumen_Denuncia\IDetalle_Resumen_DenunciaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Resumen_DenunciaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Resumen_DenunciaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Resumen_DenunciaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Resumen_DenunciaController.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Resumen_Denuncia\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Resumen_Denuncia\Create.cshtml" />
+<Compile Include="Resource\GetResource\Detalle_Resumen_Denuncia.cs" />
+<Content Include="Uploads\Resources\Detalle_Resumen_DenunciaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Detalle_Resumen_DenunciaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Resumen_DenunciaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Detalle_Resumen_Denuncia.js" />
+<Content Include="Scripts\Custom\Detalle_Resumen_DenunciaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Detalle_Resumen_Denuncia\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Detalle_Resumen_DenunciaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Resumen_DenunciaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Resumen_DenunciaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Resumen_DenunciaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Detalle_Resumen_Denuncia\_Print.cshtml" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Medidas_ProteccionController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Medidas_ProteccionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Medidas_ProteccionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Medidas_ProteccionMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Medidas_Proteccion\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Medidas_Proteccion\AddDetalle_Medidas_Proteccion.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Medidas_Proteccion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Medidas_Proteccion\Detalle_Medidas_ProteccionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Medidas_Proteccion\IDetalle_Medidas_ProteccionApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Medidas_Proteccion.cs" />
+<Content Include="Scripts\Custom\Detalle_Medidas_ProteccionGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Medidas_ProteccionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Medidas_ProteccionResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Medidas_ProteccionResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Medidas_Proteccion.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Medidas_ProteccionIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Medidas_ProteccionCreateRules.js" />
+<Compile Include="Areas\WebApiConsumer\Medida_de_Proteccion\Medida_de_ProteccionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Medida_de_Proteccion\IMedida_de_ProteccionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Medida_de_ProteccionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Medida_de_ProteccionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Medida_de_ProteccionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Medida_de_ProteccionController.cs" />
+<Content Include="Areas\Frontal\Views\Medida_de_Proteccion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Medida_de_Proteccion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Medida_de_Proteccion.cs" />
+<Content Include="Uploads\Resources\Medida_de_ProteccionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Medida_de_ProteccionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Medida_de_ProteccionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Medida_de_Proteccion.js" />
+<Content Include="Scripts\Custom\Medida_de_ProteccionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Medida_de_Proteccion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Medida_de_ProteccionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Medida_de_ProteccionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Medida_de_ProteccionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Medida_de_ProteccionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Medida_de_Proteccion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Medidas_de_Proteccion\Medidas_de_ProteccionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Medidas_de_Proteccion\IMedidas_de_ProteccionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Medidas_de_ProteccionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Medidas_de_ProteccionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Medidas_de_ProteccionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Medidas_de_ProteccionController.cs" />
+<Content Include="Areas\Frontal\Views\Medidas_de_Proteccion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Medidas_de_Proteccion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Medidas_de_Proteccion.cs" />
+<Content Include="Uploads\Resources\Medidas_de_ProteccionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Medidas_de_ProteccionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Medidas_de_ProteccionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Medidas_de_Proteccion.js" />
+<Content Include="Scripts\Custom\Medidas_de_ProteccionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Medidas_de_Proteccion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Medidas_de_ProteccionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Medidas_de_ProteccionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Medidas_de_ProteccionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Medidas_de_ProteccionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Medidas_de_Proteccion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\SubTipo_de_Medida_de_Proteccion\SubTipo_de_Medida_de_ProteccionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\SubTipo_de_Medida_de_Proteccion\ISubTipo_de_Medida_de_ProteccionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\SubTipo_de_Medida_de_ProteccionModel.cs" />
+<Compile Include="Areas\Frontal\Models\SubTipo_de_Medida_de_ProteccionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\SubTipo_de_Medida_de_ProteccionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\SubTipo_de_Medida_de_ProteccionController.cs" />
+<Content Include="Areas\Frontal\Views\SubTipo_de_Medida_de_Proteccion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\SubTipo_de_Medida_de_Proteccion\Create.cshtml" />
+<Compile Include="Resource\GetResource\SubTipo_de_Medida_de_Proteccion.cs" />
+<Content Include="Uploads\Resources\SubTipo_de_Medida_de_ProteccionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\SubTipo_de_Medida_de_ProteccionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\SubTipo_de_Medida_de_ProteccionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\SubTipo_de_Medida_de_Proteccion.js" />
+<Content Include="Scripts\Custom\SubTipo_de_Medida_de_ProteccionGeneral.js" />
+<Content Include="Areas\Frontal\Views\SubTipo_de_Medida_de_Proteccion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\SubTipo_de_Medida_de_ProteccionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\SubTipo_de_Medida_de_ProteccionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\SubTipo_de_Medida_de_ProteccionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\SubTipo_de_Medida_de_ProteccionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\SubTipo_de_Medida_de_Proteccion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Medida_de_Proteccion\Tipo_de_Medida_de_ProteccionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Medida_de_Proteccion\ITipo_de_Medida_de_ProteccionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Medida_de_ProteccionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Medida_de_ProteccionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Medida_de_ProteccionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_Medida_de_ProteccionController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Medida_de_Proteccion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Medida_de_Proteccion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Medida_de_Proteccion.cs" />
+<Content Include="Uploads\Resources\Tipo_de_Medida_de_ProteccionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_Medida_de_ProteccionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_Medida_de_ProteccionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Medida_de_Proteccion.js" />
+<Content Include="Scripts\Custom\Tipo_de_Medida_de_ProteccionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Medida_de_Proteccion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Medida_de_ProteccionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_Medida_de_ProteccionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_Medida_de_ProteccionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_Medida_de_ProteccionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Medida_de_Proteccion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Ano\AnoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Ano\IAnoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\AnoModel.cs" />
+<Compile Include="Areas\Frontal\Models\AnoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\AnoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\AnoController.cs" />
+<Content Include="Areas\Frontal\Views\Ano\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Ano\Create.cshtml" />
+<Compile Include="Resource\GetResource\Ano.cs" />
+<Content Include="Uploads\Resources\AnoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\AnoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\AnoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Ano.js" />
+<Content Include="Scripts\Custom\AnoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Ano\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\AnoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\AnoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\AnoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\AnoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Ano\_Print.cshtml" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Vinculacion_ResolucionController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Vinculacion_ResolucionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Vinculacion_ResolucionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Vinculacion_ResolucionMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Vinculacion_Resolucion\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Vinculacion_Resolucion\AddDetalle_Vinculacion_Resolucion.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Vinculacion_Resolucion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Vinculacion_Resolucion\Detalle_Vinculacion_ResolucionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Vinculacion_Resolucion\IDetalle_Vinculacion_ResolucionApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Vinculacion_Resolucion.cs" />
+<Content Include="Scripts\Custom\Detalle_Vinculacion_ResolucionGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Vinculacion_ResolucionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Vinculacion_ResolucionResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Vinculacion_ResolucionResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Vinculacion_Resolucion.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Vinculacion_ResolucionIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Vinculacion_ResolucionCreateRules.js" />
+<Compile Include="Areas\WebApiConsumer\Juzgado\JuzgadoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Juzgado\IJuzgadoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\JuzgadoModel.cs" />
+<Compile Include="Areas\Frontal\Models\JuzgadoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\JuzgadoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\JuzgadoController.cs" />
+<Content Include="Areas\Frontal\Views\Juzgado\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Juzgado\Create.cshtml" />
+<Compile Include="Resource\GetResource\Juzgado.cs" />
+<Content Include="Uploads\Resources\JuzgadoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\JuzgadoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\JuzgadoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Juzgado.js" />
+<Content Include="Scripts\Custom\JuzgadoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Juzgado\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\JuzgadoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\JuzgadoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\JuzgadoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\JuzgadoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Juzgado\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Resolucion_MP\Resolucion_MPApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Resolucion_MP\IResolucion_MPApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Resolucion_MPModel.cs" />
+<Compile Include="Areas\Frontal\Models\Resolucion_MPGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Resolucion_MPMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Resolucion_MPController.cs" />
+<Content Include="Areas\Frontal\Views\Resolucion_MP\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Resolucion_MP\Create.cshtml" />
+<Compile Include="Resource\GetResource\Resolucion_MP.cs" />
+<Content Include="Uploads\Resources\Resolucion_MPResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Resolucion_MPPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Resolucion_MPResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Resolucion_MP.js" />
+<Content Include="Scripts\Custom\Resolucion_MPGeneral.js" />
+<Content Include="Areas\Frontal\Views\Resolucion_MP\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Resolucion_MPAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Resolucion_MPBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Resolucion_MPCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Resolucion_MPIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Resolucion_MP\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Estatus_de_Resolucion\Estatus_de_ResolucionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Estatus_de_Resolucion\IEstatus_de_ResolucionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_ResolucionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_ResolucionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_ResolucionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Estatus_de_ResolucionController.cs" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Resolucion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Resolucion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Estatus_de_Resolucion.cs" />
+<Content Include="Uploads\Resources\Estatus_de_ResolucionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Estatus_de_ResolucionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Estatus_de_ResolucionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Estatus_de_Resolucion.js" />
+<Content Include="Scripts\Custom\Estatus_de_ResolucionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Resolucion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_ResolucionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_ResolucionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Estatus_de_ResolucionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Estatus_de_ResolucionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Resolucion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Configurador_de_Movimientos\Configurador_de_MovimientosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Configurador_de_Movimientos\IConfigurador_de_MovimientosApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Configurador_de_MovimientosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Configurador_de_MovimientosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Configurador_de_MovimientosMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Configurador_de_MovimientosController.cs" />
+<Content Include="Areas\Frontal\Views\Configurador_de_Movimientos\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Configurador_de_Movimientos\Create.cshtml" />
+<Compile Include="Resource\GetResource\Configurador_de_Movimientos.cs" />
+<Content Include="Uploads\Resources\Configurador_de_MovimientosResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Configurador_de_MovimientosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Configurador_de_MovimientosResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Configurador_de_Movimientos.js" />
+<Content Include="Scripts\Custom\Configurador_de_MovimientosGeneral.js" />
+<Content Include="Areas\Frontal\Views\Configurador_de_Movimientos\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Configurador_de_MovimientosAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Configurador_de_MovimientosBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Configurador_de_MovimientosCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Configurador_de_MovimientosIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Configurador_de_Movimientos\_Print.cshtml" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Datos_Adicionales_MovimientoController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Datos_Adicionales_MovimientoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Datos_Adicionales_MovimientoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Datos_Adicionales_MovimientoMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Datos_Adicionales_Movimiento\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Datos_Adicionales_Movimiento\AddDetalle_Datos_Adicionales_Movimiento.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Datos_Adicionales_Movimiento\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Datos_Adicionales_Movimiento\Detalle_Datos_Adicionales_MovimientoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Datos_Adicionales_Movimiento\IDetalle_Datos_Adicionales_MovimientoApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Datos_Adicionales_Movimiento.cs" />
+<Content Include="Scripts\Custom\Detalle_Datos_Adicionales_MovimientoGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Datos_Adicionales_MovimientoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Datos_Adicionales_MovimientoResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Datos_Adicionales_MovimientoResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Datos_Adicionales_Movimiento.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Datos_Adicionales_MovimientoIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Datos_Adicionales_MovimientoCreateRules.js" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_Vinculacion_JudicializacionController.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Vinculacion_JudicializacionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Vinculacion_JudicializacionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_Vinculacion_JudicializacionMainModel.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_Vinculacion_Judicializacion\_Print.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Vinculacion_Judicializacion\AddDetalle_Vinculacion_Judicializacion.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_Vinculacion_Judicializacion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Vinculacion_Judicializacion\Detalle_Vinculacion_JudicializacionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_Vinculacion_Judicializacion\IDetalle_Vinculacion_JudicializacionApiConsumer.cs" />
+<Compile Include="Resource\GetResource\Detalle_Vinculacion_Judicializacion.cs" />
+<Content Include="Scripts\Custom\Detalle_Vinculacion_JudicializacionGeneral.js" />
+<Compile Include="SqlModelMapper\Detalle_Vinculacion_JudicializacionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_Vinculacion_JudicializacionResource.en-US.xml" />
+<Content Include="Uploads\Resources\Detalle_Vinculacion_JudicializacionResource.es-ES.xml" />
+<Content Include="Uploads\Scripts\Detalle_Vinculacion_Judicializacion.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Vinculacion_JudicializacionIndexRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_Vinculacion_JudicializacionCreateRules.js" />
+<Compile Include="Areas\WebApiConsumer\Fase_de_Judicializacion\Fase_de_JudicializacionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Fase_de_Judicializacion\IFase_de_JudicializacionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Fase_de_JudicializacionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Fase_de_JudicializacionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Fase_de_JudicializacionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Fase_de_JudicializacionController.cs" />
+<Content Include="Areas\Frontal\Views\Fase_de_Judicializacion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Fase_de_Judicializacion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Fase_de_Judicializacion.cs" />
+<Content Include="Uploads\Resources\Fase_de_JudicializacionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Fase_de_JudicializacionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Fase_de_JudicializacionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Fase_de_Judicializacion.js" />
+<Content Include="Scripts\Custom\Fase_de_JudicializacionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Fase_de_Judicializacion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Fase_de_JudicializacionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Fase_de_JudicializacionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Fase_de_JudicializacionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Fase_de_JudicializacionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Fase_de_Judicializacion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Judicializacion\JudicializacionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Judicializacion\IJudicializacionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\JudicializacionModel.cs" />
+<Compile Include="Areas\Frontal\Models\JudicializacionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\JudicializacionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\JudicializacionController.cs" />
+<Content Include="Areas\Frontal\Views\Judicializacion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Judicializacion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Judicializacion.cs" />
+<Content Include="Uploads\Resources\JudicializacionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\JudicializacionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\JudicializacionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Judicializacion.js" />
+<Content Include="Scripts\Custom\JudicializacionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Judicializacion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\JudicializacionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\JudicializacionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\JudicializacionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\JudicializacionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Judicializacion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Registro_de_Movimiento\Registro_de_MovimientoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Registro_de_Movimiento\IRegistro_de_MovimientoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Registro_de_MovimientoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Registro_de_MovimientoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Registro_de_MovimientoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Registro_de_MovimientoController.cs" />
+<Content Include="Areas\Frontal\Views\Registro_de_Movimiento\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Registro_de_Movimiento\Create.cshtml" />
+<Compile Include="Resource\GetResource\Registro_de_Movimiento.cs" />
+<Content Include="Uploads\Resources\Registro_de_MovimientoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Registro_de_MovimientoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Registro_de_MovimientoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Registro_de_Movimiento.js" />
+<Content Include="Scripts\Custom\Registro_de_MovimientoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Registro_de_Movimiento\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Registro_de_MovimientoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Registro_de_MovimientoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Registro_de_MovimientoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Registro_de_MovimientoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Registro_de_Movimiento\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Relaciones_para_Movimientos\Relaciones_para_MovimientosApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Relaciones_para_Movimientos\IRelaciones_para_MovimientosApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Relaciones_para_MovimientosModel.cs" />
+<Compile Include="Areas\Frontal\Models\Relaciones_para_MovimientosGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Relaciones_para_MovimientosMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Relaciones_para_MovimientosController.cs" />
+<Content Include="Areas\Frontal\Views\Relaciones_para_Movimientos\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Relaciones_para_Movimientos\Create.cshtml" />
+<Compile Include="Resource\GetResource\Relaciones_para_Movimientos.cs" />
+<Content Include="Uploads\Resources\Relaciones_para_MovimientosResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Relaciones_para_MovimientosPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Relaciones_para_MovimientosResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Relaciones_para_Movimientos.js" />
+<Content Include="Scripts\Custom\Relaciones_para_MovimientosGeneral.js" />
+<Content Include="Areas\Frontal\Views\Relaciones_para_Movimientos\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Relaciones_para_MovimientosAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Relaciones_para_MovimientosBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Relaciones_para_MovimientosCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Relaciones_para_MovimientosIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Relaciones_para_Movimientos\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Dato\Tipo_de_DatoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Dato\ITipo_de_DatoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DatoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DatoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DatoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_DatoController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Dato\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Dato\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Dato.cs" />
+<Content Include="Uploads\Resources\Tipo_de_DatoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_DatoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_DatoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Dato.js" />
+<Content Include="Scripts\Custom\Tipo_de_DatoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Dato\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DatoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_DatoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_DatoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_DatoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Dato\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Resolucion\Tipo_de_ResolucionApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Resolucion\ITipo_de_ResolucionApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ResolucionModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ResolucionGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ResolucionMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_ResolucionController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Resolucion\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Resolucion\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Resolucion.cs" />
+<Content Include="Uploads\Resources\Tipo_de_ResolucionResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_ResolucionPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_ResolucionResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Resolucion.js" />
+<Content Include="Scripts\Custom\Tipo_de_ResolucionGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Resolucion\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ResolucionAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_ResolucionBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_ResolucionCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_ResolucionIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Resolucion\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -15118,6 +15506,394 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

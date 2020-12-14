@@ -19,6 +19,12 @@ namespace Spartane.Web.SqlModelMapper
                 case "Modulo_Atencion_Inicial[NUAT]":
                 case "Modulo_Atencion_InicialNUAT":
                     return "Modulo_Atencion_Inicial.NUAT";
+                case "Expediente_MP[nic]":
+                case "Expediente_MPnic":
+                    return "expediente_ministerio_publico.nic";
+                case "Expediente_MASC[Numero_de_Folio]":
+                case "Expediente_MASCNumero_de_Folio":
+                    return "Solicitud.Numero_de_Folio";
                 case "Titulo_del_Hecho":
                     return "Datos_de_los_Hechos_AT.Titulo_del_Hecho";
                 case "Narrativa_Breve_de_los_Hechos":

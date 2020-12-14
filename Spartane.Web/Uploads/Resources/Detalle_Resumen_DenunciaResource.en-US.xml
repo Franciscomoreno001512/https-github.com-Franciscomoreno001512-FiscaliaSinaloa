@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Resumen_Denuncia" value="Detalle Resumen Denuncia"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Modulo_Atencion_Inicial" value="Modulo Atención Inicial"></resource>
+  <resource culture="en-US" name="Ofendido" value="Ofendido"></resource>
+  <resource culture="en-US" name="Delito" value="Delito"></resource>
+  <resource culture="en-US" name="Victima" value="Victima"></resource>
+  <resource culture="en-US" name="Relacion" value="Relación"></resource>
+  <resource culture="en-US" name="Generado" value="Generado"></resource>
+  <resource culture="en-US" name="Fecha_de_registro" value="Fecha de registro"></resource>
+  <resource culture="en-US" name="Hora_de_registro" value="Hora de registro"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

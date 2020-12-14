@@ -10,6 +10,12 @@
 /*
 
 */
+    List<SelectListItem> varTipo_de_Resolucion_Tipo = null;
+    if (ViewBag.Tipo_de_Resolucions_Tipo != null)
+    { varTipo_de_Resolucion_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Resolucions_Tipo; }
+    List<SelectListItem> varResolucion_Resolucion_Padre_para_Autorizacion = null;
+    if (ViewBag.Resolucions_Resolucion_Padre_para_Autorizacion != null)
+    { varResolucion_Resolucion_Padre_para_Autorizacion = (List<SelectListItem>)ViewBag.Resolucions_Resolucion_Padre_para_Autorizacion; }
 
 
     Permission permission = ViewBag.Permission;
@@ -160,6 +166,68 @@
                                 <div class="col-sm-8" data-field-id="Descripcion" data-attribute="267702" data-field-name="@Resources.ResolucionResources.Descripcion">
                                     <input class="form-control Datos_Generales" id="Descripcion" name="Descripcion" type="text" value="@Model.Descripcion">
                                     @*<span class="field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divTipo">
+                                <label class="col-sm-2 control-label">@Resources.ResolucionResources.Tipo</label>
+                                <div class="col-sm-8" data-field-id="Tipo" data-attribute="268593" data-field-name="@Resources.ResolucionResources.Tipo">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Tipo" name="Tipo">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Resolucion_Tipo != null){ 
+                                            foreach (var itemTipo in varTipo_de_Resolucion_Tipo)
+                                            {
+                                                if (itemTipo.Value == Convert.ToString(Model.Tipo))
+                                                {
+                                                    <option value="@itemTipo.Value" selected>@itemTipo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo.Value">@itemTipo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268593).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Resolucion', 'Tipo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divResolucion_Padre_para_Autorizacion">
+                                <label class="col-sm-2 control-label">@Resources.ResolucionResources.Resolucion_Padre_para_Autorizacion</label>
+                                <div class="col-sm-8" data-field-id="Resolucion_Padre_para_Autorizacion" data-attribute="268594" data-field-name="@Resources.ResolucionResources.Resolucion_Padre_para_Autorizacion">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Resolución Padre para Autorización must be a number." data-val-required="The Resolución Padre para Autorización field is required." id="Resolucion_Padre_para_Autorizacion" name="Resolucion_Padre_para_Autorizacion">
+                                        <option value=""></option>
+                                        @if (varResolucion_Resolucion_Padre_para_Autorizacion != null){ 
+                                            foreach (var itemResolucion_Padre_para_Autorizacion in varResolucion_Resolucion_Padre_para_Autorizacion)
+                                            {
+                                                if (itemResolucion_Padre_para_Autorizacion.Value == Convert.ToString(Model.Resolucion_Padre_para_Autorizacion))
+                                                {
+                                                    <option value="@itemResolucion_Padre_para_Autorizacion.Value" selected>@itemResolucion_Padre_para_Autorizacion.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemResolucion_Padre_para_Autorizacion.Value">@itemResolucion_Padre_para_Autorizacion.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Resolucion_Padre_para_Autorizacion" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268594).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Resolucion', 'Resolucion_Padre_para_Autorizacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divGenerar_Judicializacion">
+                                <label class="col-sm-2 control-label">@Resources.ResolucionResources.Generar_Judicializacion</label>
+                                <div class="col-sm-8" data-field-id="Generar_Judicializacion" data-attribute="268595" data-field-name="@Resources.ResolucionResources.Generar_Judicializacion">
+                                    @Html.CheckBoxFor(m => m.Generar_Judicializacion, new { @class = "i-checks Datos_Generales" })
                                 </div>
                             </div>
                             </div>
@@ -595,6 +663,9 @@
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Descripcion').val(result.data.Descripcion);
+                    $('#Tipo').val(result.data.Tipo);
+                    $('#Resolucion_Padre_para_Autorizacion').val(result.data.Resolucion_Padre_para_Autorizacion);
+                    $('#Generar_Judicializacion').prop('checked', result.data.Generar_Judicializacion);
 
                 },
                 error: function (result) {
@@ -607,6 +678,9 @@
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Descripcion', $('#Descripcion').val());
+                data.append('Tipo', $('#Tipo').val());
+                data.append('Resolucion_Padre_para_Autorizacion', $('#Resolucion_Padre_para_Autorizacion').val());
+                data.append('Generar_Judicializacion', $('#Generar_Judicializacion').prop('checked'));
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Resolucion/Post_Datos_Generales")',

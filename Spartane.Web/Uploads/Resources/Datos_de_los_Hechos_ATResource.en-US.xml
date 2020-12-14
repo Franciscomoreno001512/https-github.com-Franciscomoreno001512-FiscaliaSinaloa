@@ -3,6 +3,8 @@
   <resource culture="en-us" name="Datos_de_los_Hechos_AT" value="Datos de los Hechos AT"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
   <resource culture="en-US" name="Modulo_Atencion_Inicial" value="Modulo Atención Inicial"></resource>
+  <resource culture="en-US" name="Expediente_MP" value="Expediente_MP"></resource>
+  <resource culture="en-US" name="Expediente_MASC" value="Expediente_MASC"></resource>
   <resource culture="en-US" name="Titulo_del_Hecho" value="Titulo del Hecho"></resource>
   <resource culture="en-US" name="Narrativa_Breve_de_los_Hechos" value="Narrativa Breve de los Hechos"></resource>
   <resource culture="en-US" name="Prioridad_del_Hecho" value="Prioridad del Hecho"></resource>

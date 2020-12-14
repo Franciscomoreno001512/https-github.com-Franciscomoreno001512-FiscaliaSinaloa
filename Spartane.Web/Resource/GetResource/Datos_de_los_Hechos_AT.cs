@@ -46,6 +46,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Expediente_MP</summary>
+        public static string Expediente_MP
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDatos_de_los_Hechos_AT.GetResource("Expediente_MP", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Expediente_MASC</summary>
+        public static string Expediente_MASC
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDatos_de_los_Hechos_AT.GetResource("Expediente_MASC", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Titulo_del_Hecho</summary>
         public static string Titulo_del_Hecho
         {

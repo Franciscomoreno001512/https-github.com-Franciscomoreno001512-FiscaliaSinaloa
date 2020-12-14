@@ -2,6 +2,8 @@
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Datos_de_los_Hechos_AT;
 @using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+@using Spartane.Core.Domain.expediente_ministerio_publico;
+@using Spartane.Core.Domain.Solicitud;
 @using Spartane.Core.Domain.Prioridad_del_Hecho;
 @using Spartane.Core.Domain.Pais;
 @using Spartane.Core.Domain.Estado;
@@ -207,6 +209,8 @@
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Datos_de_los_Hechos_ATResources.Clave</th>
                                     <th>@Resources.Datos_de_los_Hechos_ATResources.Modulo_Atencion_Inicial</th>
+                                    <th>@Resources.Datos_de_los_Hechos_ATResources.Expediente_MP</th>
+                                    <th>@Resources.Datos_de_los_Hechos_ATResources.Expediente_MASC</th>
                                     <th>@Resources.Datos_de_los_Hechos_ATResources.Titulo_del_Hecho</th>
                                     <th>@Resources.Datos_de_los_Hechos_ATResources.Narrativa_Breve_de_los_Hechos</th>
                                     <th>@Resources.Datos_de_los_Hechos_ATResources.Prioridad_del_Hecho</th>
@@ -236,6 +240,8 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -376,6 +382,8 @@
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Modulo_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_MASC =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Narrativa_Breve_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Prioridad_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -402,6 +410,8 @@
 
         var queryString = "&Clave=" + Clave 
         + "&Modulo_Atencion_Inicial=" + Modulo_Atencion_Inicial
+        + "&Expediente_MP=" + Expediente_MP
+        + "&Expediente_MASC=" + Expediente_MASC
         + "&Titulo_del_Hecho=" + Titulo_del_Hecho
         + "&Narrativa_Breve_de_los_Hechos=" + Narrativa_Breve_de_los_Hechos
         + "&Prioridad_del_Hecho=" + Prioridad_del_Hecho
@@ -439,6 +449,8 @@
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Modulo_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_MASC =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Narrativa_Breve_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Prioridad_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -465,6 +477,8 @@
 
         return "&Clave=" + Clave 
         + "&Modulo_Atencion_Inicial=" + Modulo_Atencion_Inicial
+        + "&Expediente_MP=" + Expediente_MP
+        + "&Expediente_MASC=" + Expediente_MASC
         + "&Titulo_del_Hecho=" + Titulo_del_Hecho
         + "&Narrativa_Breve_de_los_Hechos=" + Narrativa_Breve_de_los_Hechos
         + "&Prioridad_del_Hecho=" + Prioridad_del_Hecho
@@ -667,11 +681,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -736,16 +750,18 @@
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
                 ,{ "data": "Modulo_Atencion_InicialNUAT", "orderable": true, "name": "Modulo_Atencion_InicialNUAT" }
+                ,{ "data": "Expediente_MPnic", "orderable": true, "name": "Expediente_MPnic"}
+                ,{ "data": "Expediente_MASCNumero_de_Folio", "orderable": true, "name": "Expediente_MASCNumero_de_Folio"}
                 ,{ "data": "Titulo_del_Hecho", "orderable": true, "name": "Titulo_del_Hecho", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Narrativa_Breve_de_los_Hechos", "orderable": true, "name": "Narrativa_Breve_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Prioridad_del_HechoDescripcion", "orderable": true, "name": "Prioridad_del_HechoDescripcion" }
                 ,{ "data": "Fecha_del_Hecho", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_del_Hecho" }
                 ,{ "data": "Hora_Aproximada_del_Hecho", "orderable": true, "name": "Hora_Aproximada_del_Hecho" }
-                ,{ "data": "PaisNombre", "orderable": true, "name": "PaisNombre" }
-                ,{ "data": "EstadoNombre", "orderable": true, "name": "EstadoNombre" }
-                ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre" }
-                ,{ "data": "PoblacionNombre", "orderable": true, "name": "PoblacionNombre" }
-                ,{ "data": "ColoniaNombre", "orderable": true, "name": "ColoniaNombre" }
+                ,{ "data": "PaisNombre", "orderable": true, "name": "PaisNombre"}
+                ,{ "data": "EstadoNombre", "orderable": true, "name": "EstadoNombre"}
+                ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}
+                ,{ "data": "PoblacionNombre", "orderable": true, "name": "PoblacionNombre"}
+                ,{ "data": "ColoniaNombre", "orderable": true, "name": "ColoniaNombre"}
                 ,{ "data": "Codigo_Postal","className": "dt-right", "orderable": true, "name": "Codigo_Postal" }
                 ,{ "data": "Calle", "orderable": true, "name": "Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Entre_Calle", "orderable": true, "name": "Entre_Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }

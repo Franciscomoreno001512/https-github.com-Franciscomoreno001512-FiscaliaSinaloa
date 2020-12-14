@@ -6,22 +6,28 @@
     List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    if (ViewBag.Solicituds_Expediente_MASC != null)
+    { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
     List<SelectListItem> varPrioridad_del_Hecho_Prioridad_del_Hecho = null;
     if (ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho != null)
     { varPrioridad_del_Hecho_Prioridad_del_Hecho = (List<SelectListItem>)ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho; }
-    List<SelectListItem> varPais_Pais = null;
+ List<SelectListItem> varPais_Pais = null;
     if (ViewBag.Paiss_Pais != null)
     { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
-    List<SelectListItem> varEstado_Estado = null;
+ List<SelectListItem> varEstado_Estado = null;
     if (ViewBag.Estados_Estado != null)
     { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
-    List<SelectListItem> varMunicipio_Municipio = null;
+ List<SelectListItem> varMunicipio_Municipio = null;
     if (ViewBag.Municipios_Municipio != null)
     { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
-    List<SelectListItem> varColonia_Poblacion = null;
+ List<SelectListItem> varColonia_Poblacion = null;
     if (ViewBag.Colonias_Poblacion != null)
     { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
-    List<SelectListItem> varColonia_Colonia = null;
+ List<SelectListItem> varColonia_Colonia = null;
     if (ViewBag.Colonias_Colonia != null)
     { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
     List<SelectListItem> varDocumento_Extraviado_Tipo_de_Documento_Extraviado = null;
@@ -99,6 +105,12 @@
                         });
                     }
                 </div>
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    if (ViewBag.Solicituds_Expediente_MASC != null)
+    { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
                 <div class="MarginBottom">
                     <h3>@Resources.Datos_de_los_Hechos_ATResources.Titulo_del_Hecho</h3>
                 </div>
@@ -174,111 +186,21 @@
                 </span>
             </div>
         </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Pais</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.PaisFilter, filters, new { @class = "form-control", @id = "ddlPaisFilter" })
-                    @Html.TextBoxFor(m => m.AdvancePais, new { @class = "form-control", @type = "text", @id = "txtAdvancePais" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varPais_Pais!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvancePaisMultiple, varPais_Pais,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvancePais"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Estado</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.EstadoFilter, filters, new { @class = "form-control", @id = "ddlEstadoFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceEstado, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstado" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varEstado_Estado!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceEstadoMultiple, varEstado_Estado,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceEstado"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Municipio</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.MunicipioFilter, filters, new { @class = "form-control", @id = "ddlMunicipioFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceMunicipio, new { @class = "form-control", @type = "text", @id = "txtAdvanceMunicipio" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varMunicipio_Municipio!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceMunicipioMultiple, varMunicipio_Municipio,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceMunicipio"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Poblacion</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.PoblacionFilter, filters, new { @class = "form-control", @id = "ddlPoblacionFilter" })
-                    @Html.TextBoxFor(m => m.AdvancePoblacion, new { @class = "form-control", @type = "text", @id = "txtAdvancePoblacion" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varColonia_Poblacion!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvancePoblacionMultiple, varColonia_Poblacion,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvancePoblacion"
-                        });
-                    }
-                </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Colonia</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.ColoniaFilter, filters, new { @class = "form-control", @id = "ddlColoniaFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceColonia, new { @class = "form-control", @type = "text", @id = "txtAdvanceColonia" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varColonia_Colonia!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceColoniaMultiple, varColonia_Colonia,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceColonia"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+ List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+ List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varColonia_Poblacion = null;
+    if (ViewBag.Colonias_Poblacion != null)
+    { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
+ List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
                 <div class="MarginBottom ">
                     <h3>@Resources.Datos_de_los_Hechos_ATResources.Codigo_Postal</h3>
                 </div>
@@ -426,6 +348,36 @@
 
                 advanceSearch.Modulo_Atencion_InicialToSearch = $("#ddlAdvanceModulo_Atencion_Inicial").val();
                 advanceSearch.Modulo_Atencion_InicialSearchType = 2;
+            }
+        }
+        advanceSearch.Expediente_MPSearchType = 0;
+        if ($('#ddlAdvanceExpediente_MP').val().length > 0 || $("#txtAdvanceExpediente_MP").val() == "") {
+
+
+            if (isDatos_de_los_Hechos_ATTextSearch) {
+                advanceSearch.Expediente_MPName = $("#txtAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPNameSearchType = $("#ddlAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Expediente_MPToSearch = $("#ddlAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPSearchType = 2;
+            }
+        }
+        advanceSearch.Expediente_MASCSearchType = 0;
+        if ($('#ddlAdvanceExpediente_MASC').val().length > 0 || $("#txtAdvanceExpediente_MASC").val() == "") {
+
+
+            if (isDatos_de_los_Hechos_ATTextSearch) {
+                advanceSearch.Expediente_MASCName = $("#txtAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCNameSearchType = $("#ddlAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Expediente_MASCToSearch = $("#ddlAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCSearchType = 2;
             }
         }
         if ($("#txtAdvanceTitulo_del_Hecho").val() != "") {
@@ -643,6 +595,24 @@
         $("#ddlAdvanceModulo_Atencion_Inicial").change(function () {
             isDatos_de_los_Hechos_ATTextSearch = false;
             $("#txtAdvanceModulo_Atencion_Inicial").val('');
+        });
+        $("#txtAdvanceExpediente_MP").keypress(function () {
+            isDatos_de_los_Hechos_ATTextSearch = true;
+            $("#ddlAdvanceExpediente_MP").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceExpediente_MP").change(function () {
+            isDatos_de_los_Hechos_ATTextSearch = false;
+            $("#txtAdvanceExpediente_MP").val('');
+        });
+        $("#txtAdvanceExpediente_MASC").keypress(function () {
+            isDatos_de_los_Hechos_ATTextSearch = true;
+            $("#ddlAdvanceExpediente_MASC").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceExpediente_MASC").change(function () {
+            isDatos_de_los_Hechos_ATTextSearch = false;
+            $("#txtAdvanceExpediente_MASC").val('');
         });
         $("#txtAdvancePrioridad_del_Hecho").keypress(function () {
             isDatos_de_los_Hechos_ATTextSearch = true;

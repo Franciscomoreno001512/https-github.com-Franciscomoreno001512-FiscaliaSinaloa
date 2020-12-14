@@ -18,6 +18,14 @@ namespace Spartane.Web.SqlModelMapper
                     return "Resolucion.Clave";
                 case "Descripcion":
                     return "Resolucion.Descripcion";
+                case "Tipo[Descripcion]":
+                case "TipoDescripcion":
+                    return "Tipo_de_Resolucion.Descripcion";
+                case "Resolucion_Padre_para_Autorizacion[Descripcion]":
+                case "Resolucion_Padre_para_AutorizacionDescripcion":
+                    return "Resolucion.Descripcion";
+                case "Generar_Judicializacion":
+                    return "Resolucion.Generar_Judicializacion";
 
                 default:
                     return propertyName;
@@ -35,6 +43,10 @@ namespace Spartane.Web.SqlModelMapper
 
         public string GetOperatorString(object value, string columnName)
         {
+            if (columnName == "Generar_Judicializacion")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
 
 
             var operatorCondition = GetOperationType(columnName);

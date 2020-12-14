@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_Medidas_Proteccion" value="Detalle Medidas Protección"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Seleccionar" value="Seleccionar"></resource>
+  <resource culture="es-es" name="Medida" value="Medida"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

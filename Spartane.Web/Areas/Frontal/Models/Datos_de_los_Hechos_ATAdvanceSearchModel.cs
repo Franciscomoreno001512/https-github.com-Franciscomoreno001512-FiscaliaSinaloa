@@ -24,6 +24,14 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceModulo_Atencion_Inicial { set; get; }
         public int[] AdvanceModulo_Atencion_InicialMultiple { set; get; }
 
+        public Filters Expediente_MPFilter { set; get; }
+        public string AdvanceExpediente_MP { set; get; }
+        public int[] AdvanceExpediente_MPMultiple { set; get; }
+
+        public Filters Expediente_MASCFilter { set; get; }
+        public string AdvanceExpediente_MASC { set; get; }
+        public int[] AdvanceExpediente_MASCMultiple { set; get; }
+
         public Filters Titulo_del_HechoFilter { set; get; }
         public string Titulo_del_Hecho { set; get; }
 

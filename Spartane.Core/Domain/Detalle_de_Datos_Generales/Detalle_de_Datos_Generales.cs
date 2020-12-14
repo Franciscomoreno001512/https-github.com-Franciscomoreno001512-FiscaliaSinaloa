@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
 using Spartane.Core.Domain.expediente_ministerio_publico;
+using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Tipo_de_Compareciente;
 using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.Genero;
@@ -112,6 +113,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
         public int? Expediente_MP { get; set; }
+        public int? Expediente_MASC { get; set; }
         public bool? Datos_Confidenciales { get; set; }
         public bool? Se_Informo_sobre_el_Procedimiento { get; set; }
         public int? Tipo_de_Compareciente { get; set; }
@@ -295,6 +297,8 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
         [ForeignKey("Expediente_MP")]
         public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
+        [ForeignKey("Expediente_MASC")]
+        public virtual Spartane.Core.Domain.Solicitud.Solicitud Expediente_MASC_Solicitud { get; set; }
         [ForeignKey("Tipo_de_Compareciente")]
         public virtual Spartane.Core.Domain.Tipo_de_Compareciente.Tipo_de_Compareciente Tipo_de_Compareciente_Tipo_de_Compareciente { get; set; }
         [ForeignKey("Con_Vida")]
@@ -487,6 +491,7 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
                 public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
         public int? Expediente_MP { get; set; }
+        public int? Expediente_MASC { get; set; }
         public bool? Datos_Confidenciales { get; set; }
         public bool? Se_Informo_sobre_el_Procedimiento { get; set; }
         public int? Tipo_de_Compareciente { get; set; }
@@ -566,6 +571,8 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
         [ForeignKey("Expediente_MP")]
         public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
+        [ForeignKey("Expediente_MASC")]
+        public virtual Spartane.Core.Domain.Solicitud.Solicitud Expediente_MASC_Solicitud { get; set; }
         [ForeignKey("Tipo_de_Compareciente")]
         public virtual Spartane.Core.Domain.Tipo_de_Compareciente.Tipo_de_Compareciente Tipo_de_Compareciente_Tipo_de_Compareciente { get; set; }
         [ForeignKey("Con_Vida")]

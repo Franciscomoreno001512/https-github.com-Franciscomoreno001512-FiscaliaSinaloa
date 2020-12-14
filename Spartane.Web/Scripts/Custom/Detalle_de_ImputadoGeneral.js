@@ -2272,6 +2272,17 @@ function GetAutoCompleteDetalle_de_Imputado_Expediente_MP_expediente_ministerio_
     }
     return AutoCompleteExpediente_MPData;
 }
+var AutoCompleteExpediente_MASCData = [];
+function GetAutoCompleteDetalle_de_Imputado_Expediente_MASC_SolicitudData(data) {
+	AutoCompleteExpediente_MASCData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_MASCData.push({
+            id: data[i].Clave,
+            text: data[i].Numero_de_Folio
+        });
+    }
+    return AutoCompleteExpediente_MASCData;
+}
 //Grid GetAutocomplete
 var AutoCompleteMunicipio_de_DetencionData = [];
 function GetAutoCompleteLugar_de_Detencion_Municipio_de_Detencion_MunicipioData(data) {
@@ -2593,6 +2604,9 @@ function ClearControls() {
     $('#Expediente_MP').empty();
     $("#Expediente_MP").append('<option value=""></option>');
     $('#Expediente_MP').val('0').trigger('change');
+    $('#Expediente_MASC').empty();
+    $("#Expediente_MASC").append('<option value=""></option>');
+    $('#Expediente_MASC').val('0').trigger('change');
                 Lugar_de_DetencionClearGridData();
     $('#Pais_de_Origen').empty();
     $("#Pais_de_Origen").append('<option value=""></option>');
@@ -2834,6 +2848,9 @@ $(document).ready(function () {
     $('#Expediente_MP').empty();
     $("#Expediente_MP").append('<option value=""></option>');
     $('#Expediente_MP').val('0').trigger('change');
+    $('#Expediente_MASC').empty();
+    $("#Expediente_MASC").append('<option value=""></option>');
+    $('#Expediente_MASC').val('0').trigger('change');
                 Lugar_de_DetencionClearGridData();
     $('#Pais_de_Origen').empty();
     $("#Pais_de_Origen").append('<option value=""></option>');

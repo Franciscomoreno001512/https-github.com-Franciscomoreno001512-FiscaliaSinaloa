@@ -3,6 +3,7 @@
 @using Spartane.Core.Domain.Detalle_de_Datos_Generales;
 @using Spartane.Core.Domain.Modulo_Atencion_Inicial;
 @using Spartane.Core.Domain.expediente_ministerio_publico;
+@using Spartane.Core.Domain.Solicitud;
 @using Spartane.Core.Domain.Tipo_de_Compareciente;
 @using Spartane.Core.Domain.A_Tiempo;
 @using Spartane.Core.Domain.Genero;
@@ -292,6 +293,7 @@
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Clave</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Modulo_Atencion_Inicial</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Expediente_MP</th>
+                                    <th>@Resources.Detalle_de_Datos_GeneralesResources.Expediente_MASC</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Datos_Confidenciales</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Se_Informo_sobre_el_Procedimiento</th>
                                     <th>@Resources.Detalle_de_Datos_GeneralesResources.Tipo_de_Compareciente</th>
@@ -475,6 +477,7 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
@@ -771,6 +774,7 @@
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Modulo_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Expediente_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_MASC =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Datos_Confidenciales = $($('table td .filterData.form-control:input')[counter++]).val();
         var Se_Informo_sobre_el_Procedimiento = $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Compareciente =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -952,6 +956,7 @@
         var queryString = "&Clave=" + Clave 
         + "&Modulo_Atencion_Inicial=" + Modulo_Atencion_Inicial
         + "&Expediente_MP=" + Expediente_MP
+        + "&Expediente_MASC=" + Expediente_MASC
         + "&Datos_Confidenciales=" + Datos_Confidenciales
         + "&Se_Informo_sobre_el_Procedimiento=" + Se_Informo_sobre_el_Procedimiento
         + "&Tipo_de_Compareciente=" + Tipo_de_Compareciente
@@ -1144,6 +1149,7 @@
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Modulo_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Expediente_MP =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_MASC =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Datos_Confidenciales = $($('table td .filterData.form-control:input')[counter++]).val();
         var Se_Informo_sobre_el_Procedimiento = $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Compareciente =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -1325,6 +1331,7 @@
         return "&Clave=" + Clave 
         + "&Modulo_Atencion_Inicial=" + Modulo_Atencion_Inicial
         + "&Expediente_MP=" + Expediente_MP
+        + "&Expediente_MASC=" + Expediente_MASC
         + "&Datos_Confidenciales=" + Datos_Confidenciales
         + "&Se_Informo_sobre_el_Procedimiento=" + Se_Informo_sobre_el_Procedimiento
         + "&Tipo_de_Compareciente=" + Tipo_de_Compareciente
@@ -1681,11 +1688,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -1751,6 +1758,7 @@
                 { "data": "Clave", "orderable": true, "name": "Clave" }
                 ,{ "data": "Modulo_Atencion_InicialNUAT", "orderable": true, "name": "Modulo_Atencion_InicialNUAT"}
                 ,{ "data": "Expediente_MPnic", "orderable": true, "name": "Expediente_MPnic"}
+                ,{ "data": "Expediente_MASCNumero_de_Folio", "orderable": true, "name": "Expediente_MASCNumero_de_Folio"}
                 ,{ "data": "Datos_Confidenciales", "orderable": true, "name": "Datos_Confidenciales","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Se_Informo_sobre_el_Procedimiento", "orderable": true, "name": "Se_Informo_sobre_el_Procedimiento","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Tipo_de_ComparecienteDescripcion", "orderable": true, "name": "Tipo_de_ComparecienteDescripcion" }

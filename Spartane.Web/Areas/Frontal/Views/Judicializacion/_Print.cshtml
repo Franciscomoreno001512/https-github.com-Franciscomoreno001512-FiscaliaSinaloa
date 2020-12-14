@@ -1,0 +1,326 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.JudicializacionGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.JudicializacionResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.JudicializacionResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Expediente_MP
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Resolucion
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Tipo
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.causa_o_cuadernillo
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Fase_Actual
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Fecha_Actos
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Hora_Actos
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Observaciones_Actos
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Fecha_Genericos
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Hora_Genericos
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Observaciones_Genericos
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Fecha_Fase_Inicial
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Hora_Fase_Inicial
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Observaciones_Fase_Inicial
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Fecha_Fase_Intermedia
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Hora_Fase_Intermedia
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Observaciones_Fase_Intermedia
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Fecha_de_Audiencia_de_Juicio
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Hora_de_Audiencia_de_Juicio
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Tribunal_de_Enjuiciamiento
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Nombre_del_Juez
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Juez_Presidente
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Juez_Relator
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Juez_Vocal
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.medios_desahogo
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Tipo_de_Sentencia
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Cuantia_de_Pena_Anos
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Cuantia_de_Pena_Meses
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Monto_de_Reparacion_del_Dano
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Observaciones_Fase_Juicio_Oral
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Fecha_Fase_Salidas_Alternas
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Hora_Fase_Salidas_Alternas
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Observaciones_Fase_Salidas_Alternas
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Fecha_Fase_Sobreseimientos
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Hora_Fase_Sobreseimientos
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Observaciones_Fase_Sobreseimientos
+            </td>
+            <td class="column1">
+                @Resources.JudicializacionResources.Observaciones
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Expediente_MP
+                    </td>
+                    <td>
+                        @item.Resolucion
+                    </td>
+                    <td>
+                        @item.TipoDescripcion
+                    </td>
+                    <td>
+                        @item.causa_o_cuadernillo
+                    </td>
+                    <td>
+                        @item.Fase_ActualDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_Actos
+                    </td>
+                    <td>
+                        @item.Hora_Actos
+                    </td>
+                    <td>
+                        @item.Observaciones_Actos
+                    </td>
+                    <td>
+                        @item.Fecha_Genericos
+                    </td>
+                    <td>
+                        @item.Hora_Genericos
+                    </td>
+                    <td>
+                        @item.Observaciones_Genericos
+                    </td>
+                    <td>
+                        @item.Fecha_Fase_Inicial
+                    </td>
+                    <td>
+                        @item.Hora_Fase_Inicial
+                    </td>
+                    <td>
+                        @item.Observaciones_Fase_Inicial
+                    </td>
+                    <td>
+                        @item.Fecha_Fase_Intermedia
+                    </td>
+                    <td>
+                        @item.Hora_Fase_Intermedia
+                    </td>
+                    <td>
+                        @item.Observaciones_Fase_Intermedia
+                    </td>
+                    <td>
+                        @item.Fecha_de_Audiencia_de_Juicio
+                    </td>
+                    <td>
+                        @item.Hora_de_Audiencia_de_Juicio
+                    </td>
+                    <td>
+                        @item.Tribunal_de_EnjuiciamientoDescripcion
+                    </td>
+                    <td>
+                        @item.Nombre_del_Juez
+                    </td>
+                    <td>
+                        @item.Juez_Presidente
+                    </td>
+                    <td>
+                        @item.Juez_Relator
+                    </td>
+                    <td>
+                        @item.Juez_Vocal
+                    </td>
+                    <td>
+                        @item.medios_desahogo
+                    </td>
+                    <td>
+                        @item.Tipo_de_SentenciaDescripcion
+                    </td>
+                    <td>
+                        @item.Cuantia_de_Pena_Anos
+                    </td>
+                    <td>
+                        @item.Cuantia_de_Pena_Meses
+                    </td>
+                    <td>
+                        @item.Monto_de_Reparacion_del_Dano
+                    </td>
+                    <td>
+                        @item.Observaciones_Fase_Juicio_Oral
+                    </td>
+                    <td>
+                        @item.Fecha_Fase_Salidas_Alternas
+                    </td>
+                    <td>
+                        @item.Hora_Fase_Salidas_Alternas
+                    </td>
+                    <td>
+                        @item.Observaciones_Fase_Salidas_Alternas
+                    </td>
+                    <td>
+                        @item.Fecha_Fase_Sobreseimientos
+                    </td>
+                    <td>
+                        @item.Hora_Fase_Sobreseimientos
+                    </td>
+                    <td>
+                        @item.Observaciones_Fase_Sobreseimientos
+                    </td>
+                    <td>
+                        @item.Observaciones
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

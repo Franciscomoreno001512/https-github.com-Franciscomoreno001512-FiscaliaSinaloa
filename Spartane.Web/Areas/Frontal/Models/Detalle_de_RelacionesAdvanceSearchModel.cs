@@ -47,6 +47,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceParentesco { set; get; }
         public int[] AdvanceParentescoMultiple { set; get; }
 
+        public Filters DescripcionFilter { set; get; }
+        public string Descripcion { set; get; }
+
 
     }
 }

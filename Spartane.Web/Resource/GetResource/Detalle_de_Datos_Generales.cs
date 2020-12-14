@@ -56,6 +56,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Expediente_MASC</summary>
+        public static string Expediente_MASC
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Datos_Generales.GetResource("Expediente_MASC", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Datos_Confidenciales</summary>
         public static string Datos_Confidenciales
         {

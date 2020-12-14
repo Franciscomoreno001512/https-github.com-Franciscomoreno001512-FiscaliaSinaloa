@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+using Spartane.Core.Domain.expediente_ministerio_publico;
+using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Prioridad_del_Hecho;
 using Spartane.Core.Domain.Pais;
 using Spartane.Core.Domain.Estado;
@@ -26,6 +28,8 @@ namespace Spartane.Core.Domain.Datos_de_los_Hechos_AT
     {
         public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
+        public int? Expediente_MP { get; set; }
+        public int? Expediente_MASC { get; set; }
         public string Titulo_del_Hecho { get; set; }
         public string Narrativa_Breve_de_los_Hechos { get; set; }
         public int? Prioridad_del_Hecho { get; set; }
@@ -51,6 +55,10 @@ namespace Spartane.Core.Domain.Datos_de_los_Hechos_AT
 
         [ForeignKey("Modulo_Atencion_Inicial")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
+        [ForeignKey("Expediente_MP")]
+        public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
+        [ForeignKey("Expediente_MASC")]
+        public virtual Spartane.Core.Domain.Solicitud.Solicitud Expediente_MASC_Solicitud { get; set; }
         [ForeignKey("Prioridad_del_Hecho")]
         public virtual Spartane.Core.Domain.Prioridad_del_Hecho.Prioridad_del_Hecho Prioridad_del_Hecho_Prioridad_del_Hecho { get; set; }
         [ForeignKey("Pais")]
@@ -74,6 +82,8 @@ namespace Spartane.Core.Domain.Datos_de_los_Hechos_AT
     {
                 public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
+        public int? Expediente_MP { get; set; }
+        public int? Expediente_MASC { get; set; }
         public string Titulo_del_Hecho { get; set; }
         public string Narrativa_Breve_de_los_Hechos { get; set; }
         public int? Prioridad_del_Hecho { get; set; }
@@ -99,6 +109,10 @@ namespace Spartane.Core.Domain.Datos_de_los_Hechos_AT
 
 		        [ForeignKey("Modulo_Atencion_Inicial")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
+        [ForeignKey("Expediente_MP")]
+        public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
+        [ForeignKey("Expediente_MASC")]
+        public virtual Spartane.Core.Domain.Solicitud.Solicitud Expediente_MASC_Solicitud { get; set; }
         [ForeignKey("Prioridad_del_Hecho")]
         public virtual Spartane.Core.Domain.Prioridad_del_Hecho.Prioridad_del_Hecho Prioridad_del_Hecho_Prioridad_del_Hecho { get; set; }
         [ForeignKey("Pais")]

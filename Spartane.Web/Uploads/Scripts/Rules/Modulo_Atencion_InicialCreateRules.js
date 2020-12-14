@@ -2698,13 +2698,7 @@ if(operation == 'Update'){
 }
 //BusinessRuleId:2499, Attribute:2, Operation:Object, Event:AFTERSAVING
 
-//BusinessRuleId:1993, Attribute:2, Operation:Object, Event:AFTERSAVING
-if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'Folio' + rowIndex),EvaluaQuery("exec uspGeneraFolio GLOBAL[KeyValueInserted],FLD[Tipo_de_Denuncia], FLD[Unidad]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'NUAT' + rowIndex),EvaluaQuery("exec uspGeneraNUAT GLOBAL[KeyValueInserted],FLD[Tipo_de_Denuncia], FLD[Region]	", rowIndex, nameOfTable));
 
-
-}
-//BusinessRuleId:1993, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 
 
@@ -2738,6 +2732,28 @@ if(operation == 'Update'){
 
 }
 //BusinessRuleId:2894, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:2927, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery("EXEC UspInsDatosHechos_desde_AtencionInicial GLOBAL[KeyValueInserted]", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2927, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:1993, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Folio' + rowIndex),EvaluaQuery("exec uspGeneraFolio GLOBAL[KeyValueInserted],FLD[Tipo_de_Denuncia], FLD[Unidad]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'NUAT' + rowIndex),EvaluaQuery("exec uspGeneraNUAT GLOBAL[KeyValueInserted],FLD[Tipo_de_Denuncia], FLD[Region]	", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:1993, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:2938, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery(" EXEC UspInsDatosResumenDenuncia_desde_AtencionInicial GLOBAL[KeyValueInserted]"
++" ", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2938, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

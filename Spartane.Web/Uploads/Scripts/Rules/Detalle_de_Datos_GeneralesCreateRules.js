@@ -229,27 +229,11 @@ if( $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).val()==TryParseInt
 
 //BusinessRuleId:1917, Attribute:263830, Operation:Field, Event:None
 
-//BusinessRuleId:1919, Attribute:263830, Operation:Field, Event:None
-$("form#CreateDetalle_de_Datos_Generales").on('change', '#Tipo_de_Compareciente', function () {
-	nameOfTable='';
-	rowIndex='';
-if( $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).val()==TryParseInt('1', '1') ) { $('#divOcupacion').css('display', 'block');$('#divEstado_de_Involucrado').css('display', 'block'); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'block'); $('#divMunicipio_Corporacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_Corporacion' + rowIndex));$('#divCorporacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Corporacion' + rowIndex));} else {}
-});
-
-
-//BusinessRuleId:1919, Attribute:263830, Operation:Field, Event:None
 
 
 
-//BusinessRuleId:1920, Attribute:263830, Operation:Field, Event:None
-$("form#CreateDetalle_de_Datos_Generales").on('change', '#Tipo_de_Compareciente', function () {
-	nameOfTable='';
-	rowIndex='';
-if( $('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex).val()==TryParseInt('1', '1') ) { $('#divEs_victima').css('display', 'block'); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'block');} else { $('#divEs_victima').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Es_victima' + rowIndex)); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'none');}
-});
 
 
-//BusinessRuleId:1920, Attribute:263830, Operation:Field, Event:None
 
 //BusinessRuleId:1918, Attribute:263830, Operation:Field, Event:None
 $("form#CreateDetalle_de_Datos_Generales").on('change', '#Tipo_de_Compareciente', function () {
@@ -533,6 +517,35 @@ if( GetValueByControlType($('#' + nameOfTable + 'Persona_Desaparecida' + rowInde
 });
 
 //BusinessRuleId:2890, Attribute:268328, Operation:Field, Event:None
+
+//BusinessRuleId:1920, Attribute:263830, Operation:Field, Event:None
+$("form#CreateDetalle_de_Datos_Generales").on('change', '#Tipo_de_Compareciente', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divEs_victima').css('display', 'block');} else { $('#divEs_victima').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Es_victima' + rowIndex)); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'none');}
+});
+
+//BusinessRuleId:1920, Attribute:263830, Operation:Field, Event:None
+
+//BusinessRuleId:1919, Attribute:263830, Operation:Field, Event:None
+$("form#CreateDetalle_de_Datos_Generales").on('change', '#Tipo_de_Compareciente', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divOcupacion').css('display', 'block');$('#divEstado_de_Involucrado').css('display', 'block'); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'block'); $('#divMunicipio_Corporacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_Corporacion' + rowIndex));$('#divCorporacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Corporacion' + rowIndex));} else {}
+});
+
+//BusinessRuleId:1919, Attribute:263830, Operation:Field, Event:None
+
+
+
+//BusinessRuleId:2935, Attribute:263830, Operation:Field, Event:None
+$("form#CreateDetalle_de_Datos_Generales").on('change', '#Tipo_de_Compareciente', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $("a[href='#tabDatos_de_los_Hechos']").css('display', 'none');} else {}
+});
+
+//BusinessRuleId:2935, Attribute:263830, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -1196,21 +1209,9 @@ if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowInd
 }
 //BusinessRuleId:2178, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2179, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divEs_victima').css('display', 'block'); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'block');} else { $('#divEs_victima').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Es_victima' + rowIndex)); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'none');}
 
 
-}
-//BusinessRuleId:2179, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2179, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
-if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divEs_victima').css('display', 'block'); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'block');} else { $('#divEs_victima').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Es_victima' + rowIndex)); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'none');}
-
-
-}
-//BusinessRuleId:2179, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 
 
@@ -1548,6 +1549,62 @@ if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowInd
 
 }
 //BusinessRuleId:2902, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2179, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divEs_victima').css('display', 'block'); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'block');} else { $('#divEs_victima').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Es_victima' + rowIndex));}
+
+}
+//BusinessRuleId:2179, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2179, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divEs_victima').css('display', 'block'); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'block');} else { $('#divEs_victima').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Es_victima' + rowIndex));}
+
+}
+//BusinessRuleId:2179, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2942, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divExpediente_MASC').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MASC' + rowIndex));
+
+}
+//BusinessRuleId:2942, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2942, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divExpediente_MASC').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MASC' + rowIndex));
+
+}
+//BusinessRuleId:2942, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2942, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $('#divExpediente_MASC').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MASC' + rowIndex));
+
+}
+//BusinessRuleId:2942, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2986, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $("a[href='#tabDatos_de_los_Hechos']").css('display', 'none');
+
+}
+//BusinessRuleId:2986, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2986, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $("a[href='#tabDatos_de_los_Hechos']").css('display', 'none');
+
+}
+//BusinessRuleId:2986, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2986, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $("a[href='#tabDatos_de_los_Hechos']").css('display', 'none');
+
+}
+//BusinessRuleId:2986, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

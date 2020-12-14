@@ -9,6 +9,9 @@
  List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
     { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    if (ViewBag.Solicituds_Expediente_MASC != null)
+    { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
     List<SelectListItem> varTipo_de_Compareciente_Tipo_de_Compareciente = null;
     if (ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente != null)
     { varTipo_de_Compareciente_Tipo_de_Compareciente = (List<SelectListItem>)ViewBag.Tipo_de_Comparecientes_Tipo_de_Compareciente; }
@@ -336,6 +339,9 @@
  List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
     { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    if (ViewBag.Solicituds_Expediente_MASC != null)
+    { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_Datos_GeneralesResources.Tipo_de_Compareciente</h3>
                 </div>
@@ -2589,6 +2595,21 @@
                 advanceSearch.Expediente_MPSearchType = 2;
             }
         }
+        advanceSearch.Expediente_MASCSearchType = 0;
+        if ($('#ddlAdvanceExpediente_MASC').val().length > 0 || $("#txtAdvanceExpediente_MASC").val() == "") {
+
+
+            if (isDetalle_de_Datos_GeneralesTextSearch) {
+                advanceSearch.Expediente_MASCName = $("#txtAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCNameSearchType = $("#ddlAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Expediente_MASCToSearch = $("#ddlAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCSearchType = 2;
+            }
+        }
         if ($("#ddlAdvanceDatos_Confidenciales").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_Datos_GeneralesDatos_Confidenciales = $("#ddlAdvanceDatos_Confidenciales").val();
@@ -4416,6 +4437,15 @@
         $("#ddlAdvanceExpediente_MP").change(function () {
             isDetalle_de_Datos_GeneralesTextSearch = false;
             $("#txtAdvanceExpediente_MP").val('');
+        });
+        $("#txtAdvanceExpediente_MASC").keypress(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = true;
+            $("#ddlAdvanceExpediente_MASC").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceExpediente_MASC").change(function () {
+            isDetalle_de_Datos_GeneralesTextSearch = false;
+            $("#txtAdvanceExpediente_MASC").val('');
         });
         $("#txtAdvanceTipo_de_Compareciente").keypress(function () {
             isDetalle_de_Datos_GeneralesTextSearch = true;

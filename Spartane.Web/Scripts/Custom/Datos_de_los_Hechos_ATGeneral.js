@@ -6,6 +6,83 @@ $(function () {
 
 });
 
+var AutoCompleteExpediente_MPData = [];
+function GetAutoCompleteDatos_de_los_Hechos_AT_Expediente_MP_expediente_ministerio_publicoData(data) {
+	AutoCompleteExpediente_MPData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_MPData.push({
+            id: data[i].clave,
+            text: data[i].nic
+        });
+    }
+    return AutoCompleteExpediente_MPData;
+}
+var AutoCompleteExpediente_MASCData = [];
+function GetAutoCompleteDatos_de_los_Hechos_AT_Expediente_MASC_SolicitudData(data) {
+	AutoCompleteExpediente_MASCData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_MASCData.push({
+            id: data[i].Clave,
+            text: data[i].Numero_de_Folio
+        });
+    }
+    return AutoCompleteExpediente_MASCData;
+}
+var AutoCompletePaisData = [];
+function GetAutoCompleteDatos_de_los_Hechos_AT_Pais_PaisData(data) {
+	AutoCompletePaisData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompletePaisData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompletePaisData;
+}
+var AutoCompleteEstadoData = [];
+function GetAutoCompleteDatos_de_los_Hechos_AT_Estado_EstadoData(data) {
+	AutoCompleteEstadoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteEstadoData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteEstadoData;
+}
+var AutoCompleteMunicipioData = [];
+function GetAutoCompleteDatos_de_los_Hechos_AT_Municipio_MunicipioData(data) {
+	AutoCompleteMunicipioData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteMunicipioData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteMunicipioData;
+}
+var AutoCompletePoblacionData = [];
+function GetAutoCompleteDatos_de_los_Hechos_AT_Poblacion_ColoniaData(data) {
+	AutoCompletePoblacionData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompletePoblacionData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompletePoblacionData;
+}
+var AutoCompleteColoniaData = [];
+function GetAutoCompleteDatos_de_los_Hechos_AT_Colonia_ColoniaData(data) {
+	AutoCompleteColoniaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteColoniaData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteColoniaData;
+}
 
 
 function getDropdown(elementKey) {
@@ -43,6 +120,27 @@ function ClearControls() {
     $('#CreateDatos_de_los_Hechos_AT')[0].reset();
     ClearFormControls();
     $("#ClaveId").val("0");
+    $('#Expediente_MP').empty();
+    $("#Expediente_MP").append('<option value=""></option>');
+    $('#Expediente_MP').val('0').trigger('change');
+    $('#Expediente_MASC').empty();
+    $("#Expediente_MASC").append('<option value=""></option>');
+    $('#Expediente_MASC').val('0').trigger('change');
+    $('#Pais').empty();
+    $("#Pais").append('<option value=""></option>');
+    $('#Pais').val('0').trigger('change');
+    $('#Estado').empty();
+    $("#Estado").append('<option value=""></option>');
+    $('#Estado').val('0').trigger('change');
+    $('#Municipio').empty();
+    $("#Municipio").append('<option value=""></option>');
+    $('#Municipio').val('0').trigger('change');
+    $('#Poblacion').empty();
+    $("#Poblacion").append('<option value=""></option>');
+    $('#Poblacion').val('0').trigger('change');
+    $('#Colonia').empty();
+    $("#Colonia").append('<option value=""></option>');
+    $('#Colonia').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -172,7 +270,28 @@ $(document).ready(function () {
 			if (CheckValidation())
 				SendDatos_de_los_Hechos_ATData(function (currentId) {
 					$("#ClaveId").val("0");
-	
+	    $('#Expediente_MP').empty();
+    $("#Expediente_MP").append('<option value=""></option>');
+    $('#Expediente_MP').val('0').trigger('change');
+    $('#Expediente_MASC').empty();
+    $("#Expediente_MASC").append('<option value=""></option>');
+    $('#Expediente_MASC').val('0').trigger('change');
+    $('#Pais').empty();
+    $("#Pais").append('<option value=""></option>');
+    $('#Pais').val('0').trigger('change');
+    $('#Estado').empty();
+    $("#Estado").append('<option value=""></option>');
+    $('#Estado').val('0').trigger('change');
+    $('#Municipio').empty();
+    $("#Municipio").append('<option value=""></option>');
+    $('#Municipio').val('0').trigger('change');
+    $('#Poblacion').empty();
+    $("#Poblacion").append('<option value=""></option>');
+    $('#Poblacion').val('0').trigger('change');
+    $('#Colonia').empty();
+    $("#Colonia").append('<option value=""></option>');
+    $('#Colonia').val('0').trigger('change');
+
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);
 	

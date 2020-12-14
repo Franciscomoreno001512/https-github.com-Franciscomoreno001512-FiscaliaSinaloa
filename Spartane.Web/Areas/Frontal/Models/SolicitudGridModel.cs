@@ -18,8 +18,11 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Remitente { get; set; }
         public int? NUAT { get; set; }
         public string NUATNUAT { get; set; }
-        public int? Unidad { get; set; }
-        public string UnidadDescripcion { get; set; }
+        public string NUAT_Codigo { get; set; }
+        public int? Expediente_MPI { get; set; }
+        public string Expediente_MPInic { get; set; }
+        public int? Expediente_CausaPenal { get; set; }
+        public string Expediente_CausaPenalObservaciones { get; set; }
         public int? Municipio { get; set; }
         public string MunicipioNombre { get; set; }
         public int? Region { get; set; }
@@ -36,8 +39,9 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Agente_del_Ministerio_Publico_OrientadorName { get; set; }
         public int? Agente_del_Ministerio_Publico_Invest { get; set; }
         public string Agente_del_Ministerio_Publico_InvestName { get; set; }
-        public int? Juez_de_Control { get; set; }
-        public string Juez_de_ControlName { get; set; }
+        public string Juez_de_Control { get; set; }
+        public int? Unidad { get; set; }
+        public string UnidadDescripcion { get; set; }
         public string Titulo_del_Hecho { get; set; }
         public string Fecha_del_Hecho { get; set; }
         public string Narrativa_Breve_de_los_Hechos { get; set; }

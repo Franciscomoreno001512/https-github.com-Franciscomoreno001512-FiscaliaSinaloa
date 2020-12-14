@@ -30,6 +30,7 @@ namespace Spartane.Core.Domain.Detalle_de_Relaciones
         public int? Delito { get; set; }
         public int? Es_Familiar { get; set; }
         public int? Parentesco { get; set; }
+        public string Descripcion { get; set; }
 
         [ForeignKey("Modulo_Atencion_Inicial")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
@@ -58,6 +59,7 @@ namespace Spartane.Core.Domain.Detalle_de_Relaciones
         public int? Delito { get; set; }
         public int? Es_Familiar { get; set; }
         public int? Parentesco { get; set; }
+        public string Descripcion { get; set; }
 
 		        [ForeignKey("Modulo_Atencion_Inicial")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }

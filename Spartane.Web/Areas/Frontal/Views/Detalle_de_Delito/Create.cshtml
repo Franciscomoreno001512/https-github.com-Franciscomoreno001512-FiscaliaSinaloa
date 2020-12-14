@@ -25,6 +25,9 @@
  List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
     { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    if (ViewBag.Solicituds_Expediente_MASC != null)
+    { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
     List<SelectListItem> varFormato_de_Denuncia_Tipo_de_Denuncia = null;
     if (ViewBag.Formato_de_Denuncias_Tipo_de_Denuncia != null)
     { varFormato_de_Denuncia_Tipo_de_Denuncia = (List<SelectListItem>)ViewBag.Formato_de_Denuncias_Tipo_de_Denuncia; }
@@ -357,6 +360,20 @@
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('expediente_ministerio_publico', 'Expediente_MP');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divExpediente_MASC">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_de_DelitoResources.Expediente_MASC</label>
+                                <div class="col-sm-8" data-field-id="Expediente_MASC" data-attribute="268449" data-field-name="@Resources.Detalle_de_DelitoResources.Expediente_MASC">
+                                    <select class='fullWidth AutoComplete AutoCompleteDetalle_de_Delito_Expediente_MASC form-control select2-dropdown Datos_Generales' data-val="true" id="Expediente_MASC" name="Expediente_MASC">
+                                        <option value="@Model.Expediente_MASC">@(Model.Expediente_MASCNumero_de_Folio??Model.Expediente_MASCNumero_de_Folio)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268449).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud', 'Expediente_MASC');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -2261,6 +2278,39 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
+       var AutoCompleteExpediente_MASCData =[];
+       $(".AutoCompleteDetalle_de_Delito_Expediente_MASC").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_de_Delito/GetDetalle_de_Delito_Expediente_MASC_Solicitud")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_de_Delito_Expediente_MASC_SolicitudData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_de_Delito_Expediente_MASC");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
        var AutoCompleteTipo_de_DelitoData =[];
        $(".AutoCompleteDetalle_de_Delito_Tipo_de_Delito").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -3618,6 +3668,15 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.Expediente_MP).trigger('change');
                     }, 3000);
+                    var control = $('#Expediente_MASC');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Expediente_MASC).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Expediente_MASC).trigger('change');
+                    }, 3000);
                     $('#Tipo_de_Denuncia').val(result.data.Tipo_de_Denuncia);
                     $('#Fecha_del_Delito').val(result.data.Fecha_del_Delito);
                     $('#Hora_del_Delito').val(result.data.Hora_del_Delito);
@@ -3724,6 +3783,7 @@
                 data.append('Robo_de_Vehiculo', $('#Robo_de_Vehiculo').prop('checked'));
                 data.append('Expediente_Inicial', $('#Expediente_Inicial').val());
                 data.append('Expediente_MP', $('#Expediente_MP').val());
+                data.append('Expediente_MASC', $('#Expediente_MASC').val());
                 data.append('Tipo_de_Denuncia', $('#Tipo_de_Denuncia').val());
                 data.append('Fecha_del_Delito', $('#Fecha_del_Delito').val());
                 data.append('Hora_del_Delito', $('#Hora_del_Delito').val());

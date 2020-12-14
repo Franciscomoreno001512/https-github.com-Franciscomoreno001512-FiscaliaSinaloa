@@ -878,6 +878,27 @@ if( TryParseInt('9', '9')==EvaluaQuery("SELECT GLOBAL[USERROLEID]",rowIndex, nam
 }
 //BusinessRuleId:2917, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2937, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $("a[href='#tabHechos']").css('display', 'none');
+
+}
+//BusinessRuleId:2937, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2937, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $("a[href='#tabHechos']").css('display', 'none');
+
+}
+//BusinessRuleId:2937, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2937, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $("a[href='#tabHechos']").css('display', 'none');
+
+}
+//BusinessRuleId:2937, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
