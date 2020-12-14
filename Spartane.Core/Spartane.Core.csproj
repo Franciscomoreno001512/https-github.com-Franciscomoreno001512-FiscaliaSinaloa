@@ -1434,6 +1434,60 @@
 <Compile Include="Domain\Modulo_Encuesta\Modulo_EncuestaPagingModel.cs" />
 <Compile Include="Domain\Generador_Folio_Encuesta\Generador_Folio_Encuesta.cs" />
 <Compile Include="Domain\Generador_Folio_Encuesta\Generador_Folio_EncuestaPagingModel.cs" />
+<Compile Include="Domain\Motivo_de_Registro\Motivo_de_Registro.cs" />
+<Compile Include="Domain\Motivo_de_Registro\Motivo_de_RegistroPagingModel.cs" />
+<Compile Include="Domain\Compania_de_Seguros\Compania_de_Seguros.cs" />
+<Compile Include="Domain\Compania_de_Seguros\Compania_de_SegurosPagingModel.cs" />
+<Compile Include="Domain\Ubicacion_de_Medio_de_Transporte\Ubicacion_de_Medio_de_Transporte.cs" />
+<Compile Include="Domain\Ubicacion_de_Medio_de_Transporte\Ubicacion_de_Medio_de_TransportePagingModel.cs" />
+<Compile Include="Domain\Pension\Pension.cs" />
+<Compile Include="Domain\Pension\PensionPagingModel.cs" />
+<Compile Include="Domain\Modo_de_Asegurado_de_Drogas\Modo_de_Asegurado_de_Drogas.cs" />
+<Compile Include="Domain\Modo_de_Asegurado_de_Drogas\Modo_de_Asegurado_de_DrogasPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Documentos\Tipo_de_Documentos.cs" />
+<Compile Include="Domain\Tipo_de_Documentos\Tipo_de_DocumentosPagingModel.cs" />
+<Compile Include="Domain\Datos_de_los_Hechos_AT\Datos_de_los_Hechos_AT.cs" />
+<Compile Include="Domain\Datos_de_los_Hechos_AT\Datos_de_los_Hechos_ATPagingModel.cs" />
+<Compile Include="Domain\Detalle_Resumen_Denuncia\Detalle_Resumen_Denuncia.cs" />
+<Compile Include="Domain\Detalle_Resumen_Denuncia\Detalle_Resumen_DenunciaPagingModel.cs" />
+<Compile Include="Domain\Detalle_Medidas_Proteccion\Detalle_Medidas_ProteccionPagingModel.cs" />
+<Compile Include="Domain\Detalle_Medidas_Proteccion\Detalle_Medidas_Proteccion.cs" />
+<Compile Include="Domain\Medida_de_Proteccion\Medida_de_Proteccion.cs" />
+<Compile Include="Domain\Medida_de_Proteccion\Medida_de_ProteccionPagingModel.cs" />
+<Compile Include="Domain\Medidas_de_Proteccion\Medidas_de_Proteccion.cs" />
+<Compile Include="Domain\Medidas_de_Proteccion\Medidas_de_ProteccionPagingModel.cs" />
+<Compile Include="Domain\SubTipo_de_Medida_de_Proteccion\SubTipo_de_Medida_de_Proteccion.cs" />
+<Compile Include="Domain\SubTipo_de_Medida_de_Proteccion\SubTipo_de_Medida_de_ProteccionPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Medida_de_Proteccion\Tipo_de_Medida_de_Proteccion.cs" />
+<Compile Include="Domain\Tipo_de_Medida_de_Proteccion\Tipo_de_Medida_de_ProteccionPagingModel.cs" />
+<Compile Include="Domain\Ano\Ano.cs" />
+<Compile Include="Domain\Ano\AnoPagingModel.cs" />
+<Compile Include="Domain\Detalle_Vinculacion_Resolucion\Detalle_Vinculacion_ResolucionPagingModel.cs" />
+<Compile Include="Domain\Detalle_Vinculacion_Resolucion\Detalle_Vinculacion_Resolucion.cs" />
+<Compile Include="Domain\Juzgado\Juzgado.cs" />
+<Compile Include="Domain\Juzgado\JuzgadoPagingModel.cs" />
+<Compile Include="Domain\Resolucion_MP\Resolucion_MP.cs" />
+<Compile Include="Domain\Resolucion_MP\Resolucion_MPPagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Resolucion\Estatus_de_Resolucion.cs" />
+<Compile Include="Domain\Estatus_de_Resolucion\Estatus_de_ResolucionPagingModel.cs" />
+<Compile Include="Domain\Configurador_de_Movimientos\Configurador_de_Movimientos.cs" />
+<Compile Include="Domain\Configurador_de_Movimientos\Configurador_de_MovimientosPagingModel.cs" />
+<Compile Include="Domain\Detalle_Datos_Adicionales_Movimiento\Detalle_Datos_Adicionales_MovimientoPagingModel.cs" />
+<Compile Include="Domain\Detalle_Datos_Adicionales_Movimiento\Detalle_Datos_Adicionales_Movimiento.cs" />
+<Compile Include="Domain\Detalle_Vinculacion_Judicializacion\Detalle_Vinculacion_JudicializacionPagingModel.cs" />
+<Compile Include="Domain\Detalle_Vinculacion_Judicializacion\Detalle_Vinculacion_Judicializacion.cs" />
+<Compile Include="Domain\Fase_de_Judicializacion\Fase_de_Judicializacion.cs" />
+<Compile Include="Domain\Fase_de_Judicializacion\Fase_de_JudicializacionPagingModel.cs" />
+<Compile Include="Domain\Judicializacion\Judicializacion.cs" />
+<Compile Include="Domain\Judicializacion\JudicializacionPagingModel.cs" />
+<Compile Include="Domain\Registro_de_Movimiento\Registro_de_Movimiento.cs" />
+<Compile Include="Domain\Registro_de_Movimiento\Registro_de_MovimientoPagingModel.cs" />
+<Compile Include="Domain\Relaciones_para_Movimientos\Relaciones_para_Movimientos.cs" />
+<Compile Include="Domain\Relaciones_para_Movimientos\Relaciones_para_MovimientosPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Dato\Tipo_de_Dato.cs" />
+<Compile Include="Domain\Tipo_de_Dato\Tipo_de_DatoPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Resolucion\Tipo_de_Resolucion.cs" />
+<Compile Include="Domain\Tipo_de_Resolucion\Tipo_de_ResolucionPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1454,6 +1508,60 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

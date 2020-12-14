@@ -14,6 +14,12 @@ $("a[href='#tabAsignar_Dueno']").css('display', 'block');} else { $("a[href='#ta
 
 //BusinessRuleId:233, Attribute:263456, Operation:Field, Event:None
 
+//CONVERTIR A MAYUSCULAS AL BLUR
+$('input[type="text"],textarea').blur(function() {
+	this.value = this.value.toUpperCase();
+	});
+//END CONVERTIR A MAYUSCULAS AL BLUR
+
 //BusinessRuleId:632, Attribute:0, Operation:Field, Event:None
 if( EvaluaQuery("declare @accidente int"
 +" declare @clave int "
@@ -692,6 +698,27 @@ if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTabl
 
 }
 //BusinessRuleId:2626, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2944, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divExpediente_MASC').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MASC' + rowIndex));
+
+}
+//BusinessRuleId:2944, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2944, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divExpediente_MASC').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MASC' + rowIndex));
+
+}
+//BusinessRuleId:2944, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2944, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $('#divExpediente_MASC').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MASC' + rowIndex));
+
+}
+//BusinessRuleId:2944, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Registro_de_Movimiento" value="Registro de Movimiento"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Judicializacion" value="Judicialización"></resource>
+  <resource culture="en-US" name="Fase" value="Fase"></resource>
+  <resource culture="en-US" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="en-US" name="Movimiento_Realizado" value="Movimiento Realizado"></resource>
+  <resource culture="en-US" name="Fecha_de_Movimiento" value="Fecha de Movimiento"></resource>
+  <resource culture="en-US" name="Hora_de_Movimiento" value="Hora de Movimiento"></resource>
+  <resource culture="en-US" name="Informacion" value="Información"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

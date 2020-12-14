@@ -36,6 +36,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Motivo_de_Registro</summary>
+        public static string Motivo_de_Registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_Objetos_Asegurados.GetResource("Motivo_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Numero</summary>
         public static string Numero
         {

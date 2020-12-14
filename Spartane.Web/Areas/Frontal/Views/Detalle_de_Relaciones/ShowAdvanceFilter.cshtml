@@ -147,6 +147,14 @@
                         });
                     }
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_de_RelacionesResources.Descripcion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
+                    @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_de_Relaciones/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -268,6 +276,11 @@
                 advanceSearch.ParentescoToSearch = $("#ddlAdvanceParentesco").val();
                 advanceSearch.ParentescoSearchType = 2;
             }
+        }
+        if ($("#txtAdvanceDescripcion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_de_RelacionesDescripcion = $("#txtAdvanceDescripcion").val();
+            advanceSearch.Detalle_de_RelacionesDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

@@ -1,0 +1,429 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_Vinculacion_JudicializacionModel
+@{
+
+
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle Vinculacion Judicialización
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_Vinculacion_JudicializacionRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_Vinculacion_JudicializacionPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle Vinculacion Judicialización
+								<button onclick="Detalle_Vinculacion_JudicializacionGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_Vinculacion_JudicializacionBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_Vinculacion_JudicializacionResources.Detalle_Vinculacion_Judicializacion</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_Vinculacion_JudicializacionDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_Vinculacion_JudicializacionPropertyBusinessModal" id="Detalle_Vinculacion_JudicializacionPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_Vinculacion_JudicializacionBusinessRule-form" onclick="Detalle_Vinculacion_JudicializacionGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Vinculacion_JudicializacionPropertyModal" id="Detalle_Vinculacion_JudicializacionPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Vinculacion_JudicializacionBusinessRuleModal" id="Detalle_Vinculacion_JudicializacionBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Vinculacion_JudicializacionAddBusinessRuleModal" id="Detalle_Vinculacion_JudicializacionAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_Vinculacion_Judicializacion", FormMethod.Post, new { id = "CreateDetalle_Vinculacion_Judicializacion", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_Vinculacion_JudicializacionCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Vinculacion_JudicializacionResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="268547" data-field-name="@Resources.Detalle_Vinculacion_JudicializacionResources.Clave">
+                                    <label class="form-control" for="Detalle_Vinculacion_JudicializacionClave" id="Detalle_Vinculacion_JudicializacionClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divRelacion">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Vinculacion_JudicializacionResources.Relacion</label>
+                                <div class="col-sm-8" data-field-id="Relacion" data-attribute="268549" data-field-name="@Resources.Detalle_Vinculacion_JudicializacionResources.Relacion">
+                                    <input class="form-control" id="Detalle_Vinculacion_JudicializacionRelacion" name="Detalle_Vinculacion_JudicializacionRelacion" type="text" value="@Model.Relacion">
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_Vinculacion_JudicializacionConfigureSave" name="Detalle_Vinculacion_JudicializacionConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_Vinculacion_JudicializacionConfigureType" />
+												<input type="hidden" id="hdnDetalle_Vinculacion_JudicializacionBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_Vinculacion_JudicializacionBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_Vinculacion_JudicializacionBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_Vinculacion_JudicializacionGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_Vinculacion_JudicializacionBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_Vinculacion_Judicializacion.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_Vinculacion_JudicializacionGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_Vinculacion_JudicializacionCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/JudicializacionCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_Vinculacion_JudicializacionRowElement = "Detalle_Vinculacion_JudicializacionPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_Vinculacion_JudicializacionRowElement + "')){ Detalle_Vinculacion_JudicializacionInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_Vinculacion_JudicializacionData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_Vinculacion_Judicializacion").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_Vinculacion_Judicializacion")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_Vinculacion_JudicializacionCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_Vinculacion_Judicializacion/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_Vinculacion_JudicializacionPropertyBag", "Detalle_Vinculacion_Judicializacion")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_Vinculacion_JudicializacionGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleFieldName').val(), ObjectId: '45638', Attribute: $('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleAttribute').val(), Screen: 'Detalle_Vinculacion_Judicializacion' }, function (data) {
+                $(".Detalle_Vinculacion_JudicializacionBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_Vinculacion_JudicializacionGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleFieldName').val(), ObjectId: '45638', Attribute: $('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleAttribute').val(), Screen: 'Detalle_Vinculacion_Judicializacion' }, function (data) {
+                $(".Detalle_Vinculacion_JudicializacionAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleFieldName').val(), ObjectId: '45638', Attribute: $('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleAttribute').val(), Screen: 'Detalle_Vinculacion_Judicializacion' }, function (data) {
+				$(".Detalle_Vinculacion_JudicializacionBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_Vinculacion_Judicializacion/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_Vinculacion_Judicializacion/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_Vinculacion_Judicializacion/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_Vinculacion_JudicializacionConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_Vinculacion_JudicializacionConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_Vinculacion_Judicializacion/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_Vinculacion_JudicializacionConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_Vinculacion_Judicializacion/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_Vinculacion_Judicializacion' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_Vinculacion_Judicializacion' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_Vinculacion_JudicializacionConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_Vinculacion_JudicializacionConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_Vinculacion_Judicializacion').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_Vinculacion_JudicializacionBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

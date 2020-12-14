@@ -592,6 +592,17 @@ function GetAutoCompleteDetalle_de_Delito_Expediente_MP_expediente_ministerio_pu
     }
     return AutoCompleteExpediente_MPData;
 }
+var AutoCompleteExpediente_MASCData = [];
+function GetAutoCompleteDetalle_de_Delito_Expediente_MASC_SolicitudData(data) {
+	AutoCompleteExpediente_MASCData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_MASCData.push({
+            id: data[i].Clave,
+            text: data[i].Numero_de_Folio
+        });
+    }
+    return AutoCompleteExpediente_MASCData;
+}
 var AutoCompleteTipo_de_DelitoData = [];
 function GetAutoCompleteDetalle_de_Delito_Tipo_de_Delito_Titulo_del_DelitoData(data) {
 	AutoCompleteTipo_de_DelitoData = [];
@@ -793,6 +804,9 @@ function ClearControls() {
     $('#Expediente_MP').empty();
     $("#Expediente_MP").append('<option value=""></option>');
     $('#Expediente_MP').val('0').trigger('change');
+    $('#Expediente_MASC').empty();
+    $("#Expediente_MASC").append('<option value=""></option>');
+    $('#Expediente_MASC').val('0').trigger('change');
     $('#Tipo_de_Delito').empty();
     $("#Tipo_de_Delito").append('<option value=""></option>');
     $('#Tipo_de_Delito').val('0').trigger('change');
@@ -984,6 +998,9 @@ $(document).ready(function () {
     $('#Expediente_MP').empty();
     $("#Expediente_MP").append('<option value=""></option>');
     $('#Expediente_MP').val('0').trigger('change');
+    $('#Expediente_MASC').empty();
+    $("#Expediente_MASC").append('<option value=""></option>');
+    $('#Expediente_MASC').val('0').trigger('change');
     $('#Tipo_de_Delito').empty();
     $("#Tipo_de_Delito").append('<option value=""></option>');
     $('#Tipo_de_Delito').val('0').trigger('change');

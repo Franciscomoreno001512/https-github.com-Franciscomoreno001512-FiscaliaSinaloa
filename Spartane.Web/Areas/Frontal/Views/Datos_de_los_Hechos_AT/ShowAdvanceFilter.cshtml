@@ -1,0 +1,815 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Datos_de_los_Hechos_ATAdvanceSearchModel
+@{
+    List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
+    if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
+    { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    if (ViewBag.Solicituds_Expediente_MASC != null)
+    { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
+    List<SelectListItem> varPrioridad_del_Hecho_Prioridad_del_Hecho = null;
+    if (ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho != null)
+    { varPrioridad_del_Hecho_Prioridad_del_Hecho = (List<SelectListItem>)ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho; }
+ List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+ List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+ List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varColonia_Poblacion = null;
+    if (ViewBag.Colonias_Poblacion != null)
+    { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
+ List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+    List<SelectListItem> varDocumento_Extraviado_Tipo_de_Documento_Extraviado = null;
+    if (ViewBag.Documento_Extraviados_Tipo_de_Documento_Extraviado != null)
+    { varDocumento_Extraviado_Tipo_de_Documento_Extraviado = (List<SelectListItem>)ViewBag.Documento_Extraviados_Tipo_de_Documento_Extraviado; }
+    List<SelectListItem> varLugar_Tipo_Tipo_de_Lugar_del_Hecho = null;
+    if (ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho != null)
+    { varLugar_Tipo_Tipo_de_Lugar_del_Hecho = (List<SelectListItem>)ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Datos_de_los_Hechos_AT", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Modulo_Atencion_Inicial</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Modulo_Atencion_InicialFilter, filters, new { @class = "form-control", @id = "ddlModulo_Atencion_InicialFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceModulo_Atencion_Inicial, new { @class = "form-control", @type = "text", @id = "txtAdvanceModulo_Atencion_Inicial" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varModulo_Atencion_Inicial_Modulo_Atencion_Inicial!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceModulo_Atencion_InicialMultiple, varModulo_Atencion_Inicial_Modulo_Atencion_Inicial,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceModulo_Atencion_Inicial"
+                        });
+                    }
+                </div>
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    if (ViewBag.Solicituds_Expediente_MASC != null)
+    { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Titulo_del_Hecho</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Titulo_del_HechoFilter, filters, new { @class = "form-control", @id = "ddlTitulo_del_HechoFilter" })
+                    @Html.TextBoxFor(m => m.Titulo_del_Hecho, new { @class = "form-control", @type = "text", @id = "txtTitulo_del_Hecho" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Narrativa_Breve_de_los_Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Narrativa_Breve_de_los_HechosFilter, filters, new { @class = "form-control", @id = "ddlNarrativa_Breve_de_los_HechosFilter" })
+                    @Html.TextBoxFor(m => m.Narrativa_Breve_de_los_Hechos, new { @class = "form-control", @type = "text", @id = "txtNarrativa_Breve_de_los_Hechos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Prioridad_del_Hecho</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Prioridad_del_HechoFilter, filters, new { @class = "form-control", @id = "ddlPrioridad_del_HechoFilter" })
+                    @Html.TextBoxFor(m => m.AdvancePrioridad_del_Hecho, new { @class = "form-control", @type = "text", @id = "txtAdvancePrioridad_del_Hecho" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varPrioridad_del_Hecho_Prioridad_del_Hecho!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvancePrioridad_del_HechoMultiple, varPrioridad_del_Hecho_Prioridad_del_Hecho,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvancePrioridad_del_Hecho"
+                        });
+                    }
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Datos_de_los_Hechos_ATResources.Fecha_del_Hecho</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_del_Hecho" name="FromFecha_del_Hecho" type="text" value="@Model.FromFecha_del_Hecho" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_del_Hecho" name="ToFecha_del_Hecho" type="text" value="@Model.ToFecha_del_Hecho" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.Datos_de_los_Hechos_ATResources.Hora_Aproximada_del_Hecho</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_Aproximada_del_Hecho" name="FromHora_Aproximada_del_Hecho" type="text" value="@Model.FromHora_Aproximada_del_Hecho" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_Aproximada_del_Hecho" name="ToHora_Aproximada_del_Hecho" type="text" value="@Model.ToHora_Aproximada_del_Hecho" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+ List<SelectListItem> varPais_Pais = null;
+    if (ViewBag.Paiss_Pais != null)
+    { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
+ List<SelectListItem> varEstado_Estado = null;
+    if (ViewBag.Estados_Estado != null)
+    { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
+ List<SelectListItem> varMunicipio_Municipio = null;
+    if (ViewBag.Municipios_Municipio != null)
+    { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varColonia_Poblacion = null;
+    if (ViewBag.Colonias_Poblacion != null)
+    { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
+ List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
+                <div class="MarginBottom ">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Codigo_Postal</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromCodigo_Postal, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromCodigo_Postal" })
+                    @Html.ValidationMessageFor(m => m.FromCodigo_Postal)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToCodigo_Postal, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToCodigo_Postal", @data_min = "txtAdvanceFromCodigo_Postal" })
+                    @Html.ValidationMessageFor(m => m.ToCodigo_Postal)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Calle</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.CalleFilter, filters, new { @class = "form-control", @id = "ddlCalleFilter" })
+                    @Html.TextBoxFor(m => m.Calle, new { @class = "form-control", @type = "text", @id = "txtCalle" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Entre_Calle</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Entre_CalleFilter, filters, new { @class = "form-control", @id = "ddlEntre_CalleFilter" })
+                    @Html.TextBoxFor(m => m.Entre_Calle, new { @class = "form-control", @type = "text", @id = "txtEntre_Calle" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Y_Calle</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Y_CalleFilter, filters, new { @class = "form-control", @id = "ddlY_CalleFilter" })
+                    @Html.TextBoxFor(m => m.Y_Calle, new { @class = "form-control", @type = "text", @id = "txtY_Calle" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Numero_Exterior</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_ExteriorFilter, filters, new { @class = "form-control", @id = "ddlNumero_ExteriorFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Exterior, new { @class = "form-control", @type = "text", @id = "txtNumero_Exterior" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Numero_Interior</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Numero_InteriorFilter, filters, new { @class = "form-control", @id = "ddlNumero_InteriorFilter" })
+                    @Html.TextBoxFor(m => m.Numero_Interior, new { @class = "form-control", @type = "text", @id = "txtNumero_Interior" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Referencia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ReferenciaFilter, filters, new { @class = "form-control", @id = "ddlReferenciaFilter" })
+                    @Html.TextBoxFor(m => m.Referencia, new { @class = "form-control", @type = "text", @id = "txtReferencia" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Latitud</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.LatitudFilter, filters, new { @class = "form-control", @id = "ddlLatitudFilter" })
+                    @Html.TextBoxFor(m => m.Latitud, new { @class = "form-control", @type = "text", @id = "txtLatitud" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Longitud</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.LongitudFilter, filters, new { @class = "form-control", @id = "ddlLongitudFilter" })
+                    @Html.TextBoxFor(m => m.Longitud, new { @class = "form-control", @type = "text", @id = "txtLongitud" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Tipo_de_Documento_Extraviado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_Documento_ExtraviadoFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_Documento_ExtraviadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Documento_Extraviado, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Documento_Extraviado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varDocumento_Extraviado_Tipo_de_Documento_Extraviado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_Documento_ExtraviadoMultiple, varDocumento_Extraviado_Tipo_de_Documento_Extraviado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Documento_Extraviado"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Datos_de_los_Hechos_ATResources.Tipo_de_Lugar_del_Hecho</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_Lugar_del_HechoFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_Lugar_del_HechoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Lugar_del_Hecho, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Lugar_del_Hecho" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varLugar_Tipo_Tipo_de_Lugar_del_Hecho!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_Lugar_del_HechoMultiple, varLugar_Tipo_Tipo_de_Lugar_del_Hecho,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Lugar_del_Hecho"
+                        });
+                    }
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Datos_de_los_Hechos_AT/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.Datos_de_los_Hechos_ATClaveTo = $("#txtAdvanceToClave").val();
+        }
+        advanceSearch.Modulo_Atencion_InicialSearchType = 0;
+        if ($('#ddlAdvanceModulo_Atencion_Inicial').val().length > 0 || $("#txtAdvanceModulo_Atencion_Inicial").val() == "") {
+
+
+            if (isDatos_de_los_Hechos_ATTextSearch) {
+                advanceSearch.Modulo_Atencion_InicialName = $("#txtAdvanceModulo_Atencion_Inicial").val();
+                advanceSearch.Modulo_Atencion_InicialNameSearchType = $("#ddlAdvanceModulo_Atencion_Inicial").val();
+                advanceSearch.Modulo_Atencion_InicialSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Modulo_Atencion_InicialToSearch = $("#ddlAdvanceModulo_Atencion_Inicial").val();
+                advanceSearch.Modulo_Atencion_InicialSearchType = 2;
+            }
+        }
+        advanceSearch.Expediente_MPSearchType = 0;
+        if ($('#ddlAdvanceExpediente_MP').val().length > 0 || $("#txtAdvanceExpediente_MP").val() == "") {
+
+
+            if (isDatos_de_los_Hechos_ATTextSearch) {
+                advanceSearch.Expediente_MPName = $("#txtAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPNameSearchType = $("#ddlAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Expediente_MPToSearch = $("#ddlAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPSearchType = 2;
+            }
+        }
+        advanceSearch.Expediente_MASCSearchType = 0;
+        if ($('#ddlAdvanceExpediente_MASC').val().length > 0 || $("#txtAdvanceExpediente_MASC").val() == "") {
+
+
+            if (isDatos_de_los_Hechos_ATTextSearch) {
+                advanceSearch.Expediente_MASCName = $("#txtAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCNameSearchType = $("#ddlAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Expediente_MASCToSearch = $("#ddlAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceTitulo_del_Hecho").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATTitulo_del_Hecho = $("#txtAdvanceTitulo_del_Hecho").val();
+            advanceSearch.Datos_de_los_Hechos_ATTitulo_del_HechoSearchType = $("#ddlAdvanceTitulo_del_HechoFilter").val();
+        }
+        if ($("#txtAdvanceNarrativa_Breve_de_los_Hechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATNarrativa_Breve_de_los_Hechos = $("#txtAdvanceNarrativa_Breve_de_los_Hechos").val();
+            advanceSearch.Datos_de_los_Hechos_ATNarrativa_Breve_de_los_HechosSearchType = $("#ddlAdvanceNarrativa_Breve_de_los_HechosFilter").val();
+        }
+        advanceSearch.Prioridad_del_HechoSearchType = 0;
+        if ($('#ddlAdvancePrioridad_del_Hecho').val().length > 0 || $("#txtAdvancePrioridad_del_Hecho").val() == "") {
+
+
+            if (isDatos_de_los_Hechos_ATTextSearch) {
+                advanceSearch.Prioridad_del_HechoName = $("#txtAdvancePrioridad_del_Hecho").val();
+                advanceSearch.Prioridad_del_HechoNameSearchType = $("#ddlAdvancePrioridad_del_Hecho").val();
+                advanceSearch.Prioridad_del_HechoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Prioridad_del_HechoToSearch = $("#ddlAdvancePrioridad_del_Hecho").val();
+                advanceSearch.Prioridad_del_HechoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromFecha_del_Hecho").val() != "" || $("#txtAdvanceToFecha_del_Hecho").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATFecha_del_HechoFrom = $("#txtAdvanceFromFecha_del_Hecho").val();
+            advanceSearch.Datos_de_los_Hechos_ATFecha_del_HechoTo = $("#txtAdvanceToFecha_del_Hecho").val();
+        }
+        if ($("#txtAdvanceHora_Aproximada_del_Hecho").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATHora_Aproximada_del_Hecho = $("#txtAdvanceHora_Aproximada_del_Hecho").val();
+            advanceSearch.Datos_de_los_Hechos_ATHora_Aproximada_del_HechoSearchType = $("#ddlAdvanceHora_Aproximada_del_HechoFilter").val();
+        }
+        advanceSearch.PaisSearchType = 0;
+        if ($('#ddlAdvancePais').val().length > 0 || $("#txtAdvancePais").val() == "") {
+
+
+            if (isDatos_de_los_Hechos_ATTextSearch) {
+                advanceSearch.PaisName = $("#txtAdvancePais").val();
+                advanceSearch.PaisNameSearchType = $("#ddlAdvancePais").val();
+                advanceSearch.PaisSearchType = 1;
+            }
+            else {
+
+                advanceSearch.PaisToSearch = $("#ddlAdvancePais").val();
+                advanceSearch.PaisSearchType = 2;
+            }
+        }
+        advanceSearch.EstadoSearchType = 0;
+        if ($('#ddlAdvanceEstado').val().length > 0 || $("#txtAdvanceEstado").val() == "") {
+
+
+            if (isDatos_de_los_Hechos_ATTextSearch) {
+                advanceSearch.EstadoName = $("#txtAdvanceEstado").val();
+                advanceSearch.EstadoNameSearchType = $("#ddlAdvanceEstado").val();
+                advanceSearch.EstadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.EstadoToSearch = $("#ddlAdvanceEstado").val();
+                advanceSearch.EstadoSearchType = 2;
+            }
+        }
+        advanceSearch.MunicipioSearchType = 0;
+        if ($('#ddlAdvanceMunicipio').val().length > 0 || $("#txtAdvanceMunicipio").val() == "") {
+
+
+            if (isDatos_de_los_Hechos_ATTextSearch) {
+                advanceSearch.MunicipioName = $("#txtAdvanceMunicipio").val();
+                advanceSearch.MunicipioNameSearchType = $("#ddlAdvanceMunicipio").val();
+                advanceSearch.MunicipioSearchType = 1;
+            }
+            else {
+
+                advanceSearch.MunicipioToSearch = $("#ddlAdvanceMunicipio").val();
+                advanceSearch.MunicipioSearchType = 2;
+            }
+        }
+        advanceSearch.PoblacionSearchType = 0;
+        if ($('#ddlAdvancePoblacion').val().length > 0 || $("#txtAdvancePoblacion").val() == "") {
+
+
+            if (isDatos_de_los_Hechos_ATTextSearch) {
+                advanceSearch.PoblacionName = $("#txtAdvancePoblacion").val();
+                advanceSearch.PoblacionNameSearchType = $("#ddlAdvancePoblacion").val();
+                advanceSearch.PoblacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.PoblacionToSearch = $("#ddlAdvancePoblacion").val();
+                advanceSearch.PoblacionSearchType = 2;
+            }
+        }
+        advanceSearch.ColoniaSearchType = 0;
+        if ($('#ddlAdvanceColonia').val().length > 0 || $("#txtAdvanceColonia").val() == "") {
+
+
+            if (isDatos_de_los_Hechos_ATTextSearch) {
+                advanceSearch.ColoniaName = $("#txtAdvanceColonia").val();
+                advanceSearch.ColoniaNameSearchType = $("#ddlAdvanceColonia").val();
+                advanceSearch.ColoniaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ColoniaToSearch = $("#ddlAdvanceColonia").val();
+                advanceSearch.ColoniaSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromCodigo_Postal").val() != "" || $("#txtAdvanceToCodigo_Postal").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATCodigo_PostalFrom = $("#txtAdvanceFromCodigo_Postal").val();
+            advanceSearch.Datos_de_los_Hechos_ATCodigo_PostalTo = $("#txtAdvanceToCodigo_Postal").val();
+        }
+        if ($("#txtAdvanceCalle").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATCalle = $("#txtAdvanceCalle").val();
+            advanceSearch.Datos_de_los_Hechos_ATCalleSearchType = $("#ddlAdvanceCalleFilter").val();
+        }
+        if ($("#txtAdvanceEntre_Calle").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATEntre_Calle = $("#txtAdvanceEntre_Calle").val();
+            advanceSearch.Datos_de_los_Hechos_ATEntre_CalleSearchType = $("#ddlAdvanceEntre_CalleFilter").val();
+        }
+        if ($("#txtAdvanceY_Calle").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATY_Calle = $("#txtAdvanceY_Calle").val();
+            advanceSearch.Datos_de_los_Hechos_ATY_CalleSearchType = $("#ddlAdvanceY_CalleFilter").val();
+        }
+        if ($("#txtAdvanceNumero_Exterior").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATNumero_Exterior = $("#txtAdvanceNumero_Exterior").val();
+            advanceSearch.Datos_de_los_Hechos_ATNumero_ExteriorSearchType = $("#ddlAdvanceNumero_ExteriorFilter").val();
+        }
+        if ($("#txtAdvanceNumero_Interior").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATNumero_Interior = $("#txtAdvanceNumero_Interior").val();
+            advanceSearch.Datos_de_los_Hechos_ATNumero_InteriorSearchType = $("#ddlAdvanceNumero_InteriorFilter").val();
+        }
+        if ($("#txtAdvanceReferencia").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATReferencia = $("#txtAdvanceReferencia").val();
+            advanceSearch.Datos_de_los_Hechos_ATReferenciaSearchType = $("#ddlAdvanceReferenciaFilter").val();
+        }
+        if ($("#txtAdvanceLatitud").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATLatitud = $("#txtAdvanceLatitud").val();
+            advanceSearch.Datos_de_los_Hechos_ATLatitudSearchType = $("#ddlAdvanceLatitudFilter").val();
+        }
+        if ($("#txtAdvanceLongitud").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATLongitud = $("#txtAdvanceLongitud").val();
+            advanceSearch.Datos_de_los_Hechos_ATLongitudSearchType = $("#ddlAdvanceLongitudFilter").val();
+        }
+        if ($("#ddlAdvanceDocumento_Extraviado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Datos_de_los_Hechos_ATDocumento_Extraviado = $("#ddlAdvanceDocumento_Extraviado").val();
+        }
+        advanceSearch.Tipo_de_Documento_ExtraviadoSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Documento_Extraviado').val().length > 0 || $("#txtAdvanceTipo_de_Documento_Extraviado").val() == "") {
+
+
+            if (isDatos_de_los_Hechos_ATTextSearch) {
+                advanceSearch.Tipo_de_Documento_ExtraviadoName = $("#txtAdvanceTipo_de_Documento_Extraviado").val();
+                advanceSearch.Tipo_de_Documento_ExtraviadoNameSearchType = $("#ddlAdvanceTipo_de_Documento_Extraviado").val();
+                advanceSearch.Tipo_de_Documento_ExtraviadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_Documento_ExtraviadoToSearch = $("#ddlAdvanceTipo_de_Documento_Extraviado").val();
+                advanceSearch.Tipo_de_Documento_ExtraviadoSearchType = 2;
+            }
+        }
+        advanceSearch.Tipo_de_Lugar_del_HechoSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Lugar_del_Hecho').val().length > 0 || $("#txtAdvanceTipo_de_Lugar_del_Hecho").val() == "") {
+
+
+            if (isDatos_de_los_Hechos_ATTextSearch) {
+                advanceSearch.Tipo_de_Lugar_del_HechoName = $("#txtAdvanceTipo_de_Lugar_del_Hecho").val();
+                advanceSearch.Tipo_de_Lugar_del_HechoNameSearchType = $("#ddlAdvanceTipo_de_Lugar_del_Hecho").val();
+                advanceSearch.Tipo_de_Lugar_del_HechoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_Lugar_del_HechoToSearch = $("#ddlAdvanceTipo_de_Lugar_del_Hecho").val();
+                advanceSearch.Tipo_de_Lugar_del_HechoSearchType = 2;
+            }
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblDatos_de_los_Hechos_AT').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isDatos_de_los_Hechos_ATTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceModulo_Atencion_Inicial").keypress(function () {
+            isDatos_de_los_Hechos_ATTextSearch = true;
+            $("#ddlAdvanceModulo_Atencion_Inicial").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceModulo_Atencion_Inicial").change(function () {
+            isDatos_de_los_Hechos_ATTextSearch = false;
+            $("#txtAdvanceModulo_Atencion_Inicial").val('');
+        });
+        $("#txtAdvanceExpediente_MP").keypress(function () {
+            isDatos_de_los_Hechos_ATTextSearch = true;
+            $("#ddlAdvanceExpediente_MP").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceExpediente_MP").change(function () {
+            isDatos_de_los_Hechos_ATTextSearch = false;
+            $("#txtAdvanceExpediente_MP").val('');
+        });
+        $("#txtAdvanceExpediente_MASC").keypress(function () {
+            isDatos_de_los_Hechos_ATTextSearch = true;
+            $("#ddlAdvanceExpediente_MASC").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceExpediente_MASC").change(function () {
+            isDatos_de_los_Hechos_ATTextSearch = false;
+            $("#txtAdvanceExpediente_MASC").val('');
+        });
+        $("#txtAdvancePrioridad_del_Hecho").keypress(function () {
+            isDatos_de_los_Hechos_ATTextSearch = true;
+            $("#ddlAdvancePrioridad_del_Hecho").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePrioridad_del_Hecho").change(function () {
+            isDatos_de_los_Hechos_ATTextSearch = false;
+            $("#txtAdvancePrioridad_del_Hecho").val('');
+        });
+        $("#txtAdvancePais").keypress(function () {
+            isDatos_de_los_Hechos_ATTextSearch = true;
+            $("#ddlAdvancePais").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePais").change(function () {
+            isDatos_de_los_Hechos_ATTextSearch = false;
+            $("#txtAdvancePais").val('');
+        });
+        $("#txtAdvanceEstado").keypress(function () {
+            isDatos_de_los_Hechos_ATTextSearch = true;
+            $("#ddlAdvanceEstado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstado").change(function () {
+            isDatos_de_los_Hechos_ATTextSearch = false;
+            $("#txtAdvanceEstado").val('');
+        });
+        $("#txtAdvanceMunicipio").keypress(function () {
+            isDatos_de_los_Hechos_ATTextSearch = true;
+            $("#ddlAdvanceMunicipio").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMunicipio").change(function () {
+            isDatos_de_los_Hechos_ATTextSearch = false;
+            $("#txtAdvanceMunicipio").val('');
+        });
+        $("#txtAdvancePoblacion").keypress(function () {
+            isDatos_de_los_Hechos_ATTextSearch = true;
+            $("#ddlAdvancePoblacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvancePoblacion").change(function () {
+            isDatos_de_los_Hechos_ATTextSearch = false;
+            $("#txtAdvancePoblacion").val('');
+        });
+        $("#txtAdvanceColonia").keypress(function () {
+            isDatos_de_los_Hechos_ATTextSearch = true;
+            $("#ddlAdvanceColonia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceColonia").change(function () {
+            isDatos_de_los_Hechos_ATTextSearch = false;
+            $("#txtAdvanceColonia").val('');
+        });
+        $("#txtAdvanceTipo_de_Documento_Extraviado").keypress(function () {
+            isDatos_de_los_Hechos_ATTextSearch = true;
+            $("#ddlAdvanceTipo_de_Documento_Extraviado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Documento_Extraviado").change(function () {
+            isDatos_de_los_Hechos_ATTextSearch = false;
+            $("#txtAdvanceTipo_de_Documento_Extraviado").val('');
+        });
+        $("#txtAdvanceTipo_de_Lugar_del_Hecho").keypress(function () {
+            isDatos_de_los_Hechos_ATTextSearch = true;
+            $("#ddlAdvanceTipo_de_Lugar_del_Hecho").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Lugar_del_Hecho").change(function () {
+            isDatos_de_los_Hechos_ATTextSearch = false;
+            $("#txtAdvanceTipo_de_Lugar_del_Hecho").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

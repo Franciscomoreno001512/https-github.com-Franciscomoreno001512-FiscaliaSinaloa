@@ -3,6 +3,12 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.ResolucionAdvanceSearchModel
 @{
+    List<SelectListItem> varTipo_de_Resolucion_Tipo = null;
+    if (ViewBag.Tipo_de_Resolucions_Tipo != null)
+    { varTipo_de_Resolucion_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Resolucions_Tipo; }
+    List<SelectListItem> varResolucion_Resolucion_Padre_para_Autorizacion = null;
+    if (ViewBag.Resolucions_Resolucion_Padre_para_Autorizacion != null)
+    { varResolucion_Resolucion_Padre_para_Autorizacion = (List<SelectListItem>)ViewBag.Resolucions_Resolucion_Padre_para_Autorizacion; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -59,6 +65,48 @@
                     @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
                     @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ResolucionResources.Tipo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.TipoFilter, filters, new { @class = "form-control", @id = "ddlTipoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Resolucion_Tipo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipoMultiple, varTipo_de_Resolucion_Tipo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.ResolucionResources.Resolucion_Padre_para_Autorizacion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Resolucion_Padre_para_AutorizacionFilter, filters, new { @class = "form-control", @id = "ddlResolucion_Padre_para_AutorizacionFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceResolucion_Padre_para_Autorizacion, new { @class = "form-control", @type = "text", @id = "txtAdvanceResolucion_Padre_para_Autorizacion" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varResolucion_Resolucion_Padre_para_Autorizacion!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceResolucion_Padre_para_AutorizacionMultiple, varResolucion_Resolucion_Padre_para_Autorizacion,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceResolucion_Padre_para_Autorizacion"
+                        });
+                    }
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Resolucion/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -81,6 +129,40 @@
             advanceSearch.ResolucionDescripcion = $("#txtAdvanceDescripcion").val();
             advanceSearch.ResolucionDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
         }
+        advanceSearch.TipoSearchType = 0;
+        if ($('#ddlAdvanceTipo').val().length > 0 || $("#txtAdvanceTipo").val() == "") {
+
+
+            if (isResolucionTextSearch) {
+                advanceSearch.TipoName = $("#txtAdvanceTipo").val();
+                advanceSearch.TipoNameSearchType = $("#ddlAdvanceTipo").val();
+                advanceSearch.TipoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.TipoToSearch = $("#ddlAdvanceTipo").val();
+                advanceSearch.TipoSearchType = 2;
+            }
+        }
+        advanceSearch.Resolucion_Padre_para_AutorizacionSearchType = 0;
+        if ($('#ddlAdvanceResolucion_Padre_para_Autorizacion').val().length > 0 || $("#txtAdvanceResolucion_Padre_para_Autorizacion").val() == "") {
+
+
+            if (isResolucionTextSearch) {
+                advanceSearch.Resolucion_Padre_para_AutorizacionName = $("#txtAdvanceResolucion_Padre_para_Autorizacion").val();
+                advanceSearch.Resolucion_Padre_para_AutorizacionNameSearchType = $("#ddlAdvanceResolucion_Padre_para_Autorizacion").val();
+                advanceSearch.Resolucion_Padre_para_AutorizacionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Resolucion_Padre_para_AutorizacionToSearch = $("#ddlAdvanceResolucion_Padre_para_Autorizacion").val();
+                advanceSearch.Resolucion_Padre_para_AutorizacionSearchType = 2;
+            }
+        }
+        if ($("#ddlAdvanceGenerar_Judicializacion").val() != "") {
+            hasParameter = true;
+            advanceSearch.ResolucionGenerar_Judicializacion = $("#ddlAdvanceGenerar_Judicializacion").val();
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblResolucion').DataTable().draw();
@@ -99,6 +181,24 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceTipo").keypress(function () {
+            isResolucionTextSearch = true;
+            $("#ddlAdvanceTipo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo").change(function () {
+            isResolucionTextSearch = false;
+            $("#txtAdvanceTipo").val('');
+        });
+        $("#txtAdvanceResolucion_Padre_para_Autorizacion").keypress(function () {
+            isResolucionTextSearch = true;
+            $("#ddlAdvanceResolucion_Padre_para_Autorizacion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceResolucion_Padre_para_Autorizacion").change(function () {
+            isResolucionTextSearch = false;
+            $("#txtAdvanceResolucion_Padre_para_Autorizacion").val('');
+        });
 
     });
 </script>

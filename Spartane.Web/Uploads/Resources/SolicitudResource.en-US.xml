@@ -8,7 +8,9 @@
   <resource culture="en-US" name="Unidad_MASC" value="Unidad MASC"></resource>
   <resource culture="en-US" name="Remitente" value="Remitente"></resource>
   <resource culture="en-US" name="NUAT" value="NUAT"></resource>
-  <resource culture="en-US" name="Unidad" value="Unidad"></resource>
+  <resource culture="en-US" name="NUAT_Codigo" value="NUAT"></resource>
+  <resource culture="en-US" name="Expediente_MPI" value="Expediente MPI"></resource>
+  <resource culture="en-US" name="Expediente_CausaPenal" value="Expediente CausaPenal"></resource>
   <resource culture="en-US" name="Municipio" value="Municipio"></resource>
   <resource culture="en-US" name="Region" value="Región"></resource>
   <resource culture="en-US" name="NUC" value="NUC"></resource>
@@ -21,6 +23,7 @@
   <resource culture="en-US" name="Agente_del_Ministerio_Publico_Orientador" value="Agente del Ministerio Público Orientador"></resource>
   <resource culture="en-US" name="Agente_del_Ministerio_Publico_Invest" value="Agente del Ministerio Público Investigador"></resource>
   <resource culture="en-US" name="Juez_de_Control" value="Juez de Control"></resource>
+  <resource culture="en-US" name="Unidad" value="Unidad que Remite"></resource>
   <resource culture="en-US" name="Titulo_del_Hecho" value="Titulo del Hecho"></resource>
   <resource culture="en-US" name="Fecha_del_Hecho" value="Fecha del Hecho"></resource>
   <resource culture="en-US" name="Narrativa_Breve_de_los_Hechos" value="Narrativa Breve de los Hechos"></resource>

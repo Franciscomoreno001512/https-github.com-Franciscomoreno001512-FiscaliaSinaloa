@@ -6,6 +6,7 @@
   <resource culture="es-es" name="Robo_de_Vehiculo" value="Robo de Vehículo"></resource>
   <resource culture="es-es" name="Expediente_Inicial" value="Expediente Inicial"></resource>
   <resource culture="es-es" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="es-es" name="Expediente_MASC" value="Expediente_MASC "></resource>
   <resource culture="es-es" name="Tipo_de_Denuncia" value="Tipo de Denuncia"></resource>
   <resource culture="es-es" name="Fecha_del_Delito" value="Fecha del Delito"></resource>
   <resource culture="es-es" name="Hora_del_Delito" value="Hora del Delito"></resource>

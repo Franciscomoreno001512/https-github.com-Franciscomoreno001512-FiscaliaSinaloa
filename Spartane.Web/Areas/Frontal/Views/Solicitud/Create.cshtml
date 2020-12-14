@@ -43,9 +43,12 @@
  List<SelectListItem> varModulo_Atencion_Inicial_NUAT = null;
     if (ViewBag.Modulo_Atencion_Inicials_NUAT != null)
     { varModulo_Atencion_Inicial_NUAT = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_NUAT; }
-    List<SelectListItem> varUnidad_Unidad = null;
-    if (ViewBag.Unidads_Unidad != null)
-    { varUnidad_Unidad = (List<SelectListItem>)ViewBag.Unidads_Unidad; }
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MPI = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MPI != null)
+    { varexpediente_ministerio_publico_Expediente_MPI = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MPI; }
+ List<SelectListItem> varResolucion_MP_Expediente_CausaPenal = null;
+    if (ViewBag.Resolucion_MPs_Expediente_CausaPenal != null)
+    { varResolucion_MP_Expediente_CausaPenal = (List<SelectListItem>)ViewBag.Resolucion_MPs_Expediente_CausaPenal; }
  List<SelectListItem> varMunicipio_Municipio = null;
     if (ViewBag.Municipios_Municipio != null)
     { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
@@ -61,9 +64,9 @@
  List<SelectListItem> varSpartan_User_Agente_del_Ministerio_Publico_Invest = null;
     if (ViewBag.Spartan_Users_Agente_del_Ministerio_Publico_Invest != null)
     { varSpartan_User_Agente_del_Ministerio_Publico_Invest = (List<SelectListItem>)ViewBag.Spartan_Users_Agente_del_Ministerio_Publico_Invest; }
- List<SelectListItem> varSpartan_User_Juez_de_Control = null;
-    if (ViewBag.Spartan_Users_Juez_de_Control != null)
-    { varSpartan_User_Juez_de_Control = (List<SelectListItem>)ViewBag.Spartan_Users_Juez_de_Control; }
+    List<SelectListItem> varUnidad_Unidad = null;
+    if (ViewBag.Unidads_Unidad != null)
+    { varUnidad_Unidad = (List<SelectListItem>)ViewBag.Unidads_Unidad; }
     List<SelectListItem> varLugar_Tipo_Tipo_de_Lugar_del_Hecho = null;
     if (ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho != null)
     { varLugar_Tipo_Tipo_de_Lugar_del_Hecho = (List<SelectListItem>)ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho; }
@@ -350,31 +353,38 @@
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divUnidad">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Unidad</label>
-                                <div class="col-sm-8" data-field-id="Unidad" data-attribute="266171" data-field-name="@Resources.SolicitudResources.Unidad">
-                                    <select class="form-control Solicitud" data-val="true" data-val-number="The field Unidad must be a number." data-val-required="The Unidad field is required." id="Unidad" name="Unidad">
-                                        <option value=""></option>
-                                        @if (varUnidad_Unidad != null){ 
-                                            foreach (var itemUnidad in varUnidad_Unidad)
-                                            {
-                                                if (itemUnidad.Value == Convert.ToString(Model.Unidad))
-                                                {
-                                                    <option value="@itemUnidad.Value" selected>@itemUnidad.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemUnidad.Value">@itemUnidad.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Unidad" data-valmsg-replace="true"></span>*@
+                            <div class="form-group" id="divNUAT_Codigo">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.NUAT_Codigo</label>
+                                <div class="col-sm-8" data-field-id="NUAT_Codigo" data-attribute="268588" data-field-name="@Resources.SolicitudResources.NUAT_Codigo">
+                                    <input class="form-control Solicitud" id="NUAT_Codigo" name="NUAT_Codigo" type="text" value="@Model.NUAT_Codigo">
+                                    @*<span class="field-validation-valid" data-valmsg-for="NUAT_Codigo" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266171).New)
+                            </div>
+				<div class="form-group" id="divExpediente_MPI">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Expediente_MPI</label>
+                                <div class="col-sm-8" data-field-id="Expediente_MPI" data-attribute="268589" data-field-name="@Resources.SolicitudResources.Expediente_MPI">
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_Expediente_MPI form-control select2-dropdown Solicitud' data-val="true" id="Expediente_MPI" name="Expediente_MPI">
+                                        <option value="@Model.Expediente_MPI">@(Model.Expediente_MPInic??Model.Expediente_MPInic)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268589).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Unidad', 'Unidad');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                    <a id="Estado_New" onclick="GetCatalogPopup('expediente_ministerio_publico', 'Expediente_MPI');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divExpediente_CausaPenal">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Expediente_CausaPenal</label>
+                                <div class="col-sm-8" data-field-id="Expediente_CausaPenal" data-attribute="268590" data-field-name="@Resources.SolicitudResources.Expediente_CausaPenal">
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_Expediente_CausaPenal form-control select2-dropdown Solicitud' data-val="true" id="Expediente_CausaPenal" name="Expediente_CausaPenal">
+                                        <option value="@Model.Expediente_CausaPenal">@(Model.Expediente_CausaPenalObservaciones??Model.Expediente_CausaPenalObservaciones)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268590).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Resolucion_MP', 'Expediente_CausaPenal');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -532,17 +542,38 @@
                                 </div>
                                 }
                             </div>
-				<div class="form-group" id="divJuez_de_Control">
+                            <div class="form-group" id="divJuez_de_Control">
                                 <label class="col-sm-2 control-label">@Resources.SolicitudResources.Juez_de_Control</label>
                                 <div class="col-sm-8" data-field-id="Juez_de_Control" data-attribute="262988" data-field-name="@Resources.SolicitudResources.Juez_de_Control">
-                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_Juez_de_Control form-control select2-dropdown Control' data-val="true" id="Juez_de_Control" name="Juez_de_Control">
-                                        <option value="@Model.Juez_de_Control">@(Model.Juez_de_ControlName??Model.Juez_de_ControlName)</option>
-                                    </select>
+                                    <input class="form-control Control" id="Juez_de_Control" name="Juez_de_Control" type="text" value="@Model.Juez_de_Control">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Juez_de_Control" data-valmsg-replace="true"></span>*@
                                 </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262988).New)
+                            </div>
+                            <div class="form-group" id="divUnidad">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Unidad</label>
+                                <div class="col-sm-8" data-field-id="Unidad" data-attribute="266171" data-field-name="@Resources.SolicitudResources.Unidad">
+                                    <select class="form-control Control" data-val="true" data-val-number="The field Unidad que Remite must be a number." data-val-required="The Unidad que Remite field is required." id="Unidad" name="Unidad">
+                                        <option value=""></option>
+                                        @if (varUnidad_Unidad != null){ 
+                                            foreach (var itemUnidad in varUnidad_Unidad)
+                                            {
+                                                if (itemUnidad.Value == Convert.ToString(Model.Unidad))
+                                                {
+                                                    <option value="@itemUnidad.Value" selected>@itemUnidad.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemUnidad.Value">@itemUnidad.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Unidad" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266171).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Juez_de_Control');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Unidad', 'Unidad');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -1638,6 +1669,72 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
+       var AutoCompleteExpediente_MPIData =[];
+       $(".AutoCompleteSolicitud_Expediente_MPI").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud/GetSolicitud_Expediente_MPI_expediente_ministerio_publico")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_Expediente_MPI_expediente_ministerio_publicoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_Expediente_MPI");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteExpediente_CausaPenalData =[];
+       $(".AutoCompleteSolicitud_Expediente_CausaPenal").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud/GetSolicitud_Expediente_CausaPenal_Resolucion_MP")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_Expediente_CausaPenal_Resolucion_MPData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_Expediente_CausaPenal");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
        var AutoCompleteMunicipioData =[];
        $(".AutoCompleteSolicitud_Municipio").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -1733,39 +1830,6 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteSolicitud_Agente_del_Ministerio_Publico_Invest");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
-       var AutoCompleteJuez_de_ControlData =[];
-       $(".AutoCompleteSolicitud_Juez_de_Control").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Solicitud/GetSolicitud_Juez_de_Control_Spartan_User")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteSolicitud_Juez_de_Control_Spartan_UserData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteSolicitud_Juez_de_Control");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -3458,7 +3522,25 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.NUAT).trigger('change');
                     }, 3000);
-                    $('#Unidad').val(result.data.Unidad);
+                    $('#NUAT_Codigo').val(result.data.NUAT_Codigo);
+                    var control = $('#Expediente_MPI');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Expediente_MPI).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Expediente_MPI).trigger('change');
+                    }, 3000);
+                    var control = $('#Expediente_CausaPenal');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Expediente_CausaPenal).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Expediente_CausaPenal).trigger('change');
+                    }, 3000);
                     var control = $('#Municipio');
                     control.select2('open');
                     $('.select2-search__field').val(result.data.Municipio).trigger('keyup');
@@ -3493,7 +3575,9 @@
                 data.append('Unidad_MASC', $('#Unidad_MASC').val());
                 data.append('Remitente', $('#Remitente').val());
                 data.append('NUAT', $('#NUAT').val());
-                data.append('Unidad', $('#Unidad').val());
+                data.append('NUAT_Codigo', $('#NUAT_Codigo').val());
+                data.append('Expediente_MPI', $('#Expediente_MPI').val());
+                data.append('Expediente_CausaPenal', $('#Expediente_CausaPenal').val());
                 data.append('Municipio', $('#Municipio').val());
                 data.append('Region', $('#Region').val());
                 data.append('NUC', $('#NUC').val());
@@ -3554,15 +3638,8 @@
 	                    control.select2({ data: data });
 	                    control.val(result.data.Agente_del_Ministerio_Publico_Invest).trigger('change');
                     }, 3000);
-                    var control = $('#Juez_de_Control');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.Juez_de_Control).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Juez_de_Control).trigger('change');
-                    }, 3000);
+                    $('#Juez_de_Control').val(result.data.Juez_de_Control);
+                    $('#Unidad').val(result.data.Unidad);
 
                 },
                 error: function (result) {
@@ -3577,6 +3654,7 @@
 			                data.append('Agente_del_Ministerio_Publico_Orientador', $('#Agente_del_Ministerio_Publico_Orientador').val());
                 data.append('Agente_del_Ministerio_Publico_Invest', $('#Agente_del_Ministerio_Publico_Invest').val());
                 data.append('Juez_de_Control', $('#Juez_de_Control').val());
+                data.append('Unidad', $('#Unidad').val());
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Solicitud/Post_Control")',

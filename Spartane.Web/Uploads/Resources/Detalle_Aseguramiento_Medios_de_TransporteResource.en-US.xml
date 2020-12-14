@@ -2,8 +2,8 @@
 <resources>
   <resource culture="en-us" name="Detalle_Aseguramiento_Medios_de_Transporte" value="Detalle Aseguramiento Medios de Transporte"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Motivo_de_Registro" value="Motivo de Registro"></resource>
   <resource culture="en-US" name="Tipo" value="Tipo"></resource>
-  <resource culture="en-US" name="Especifique" value="Especifique"></resource>
   <resource culture="en-US" name="Marca" value="Marca"></resource>
   <resource culture="en-US" name="Submarca" value="Submarca"></resource>
   <resource culture="en-US" name="Modelo" value="Modelo/Año"></resource>
@@ -14,10 +14,15 @@
   <resource culture="en-US" name="Uso" value="Uso"></resource>
   <resource culture="en-US" name="Cap__De_Pasajeros" value="Cap. De Pasajeros"></resource>
   <resource culture="en-US" name="Procedencia" value="Procedencia"></resource>
+  <resource culture="en-US" name="Seguro" value="¿Cuenta con Seguro?"></resource>
+  <resource culture="en-US" name="Compania_de_Seguros" value="Compañía de Seguros"></resource>
   <resource culture="en-US" name="Empresa" value="Empresa"></resource>
   <resource culture="en-US" name="Capacidad_de_Carga" value="Capacidad de Carga/Tipo de Carga"></resource>
   <resource culture="en-US" name="Origen" value="Origen"></resource>
   <resource culture="en-US" name="Destino" value="Destino"></resource>
+  <resource culture="en-US" name="Ubicacion" value="Ubicación"></resource>
+  <resource culture="en-US" name="Pension" value="Pensión"></resource>
+  <resource culture="en-US" name="Domicilio_Resguardo" value="Domicilio de Resguardo"></resource>
   <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>

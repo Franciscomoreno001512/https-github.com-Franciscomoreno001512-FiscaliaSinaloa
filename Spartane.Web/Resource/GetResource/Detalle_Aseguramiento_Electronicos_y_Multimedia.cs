@@ -36,6 +36,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Motivo_de_Registro</summary>
+        public static string Motivo_de_Registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_Electronicos_y_Multimedia.GetResource("Motivo_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Aparatos</summary>
         public static string Aparatos
         {

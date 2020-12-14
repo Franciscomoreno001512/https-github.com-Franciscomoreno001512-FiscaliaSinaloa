@@ -3,6 +3,9 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Marca_de_Equipo_de_ComunicacionAdvanceSearchModel
 @{
+    List<SelectListItem> varTipo_de_Equipo_de_Comunicacion_Tipo_de_Equipo = null;
+    if (ViewBag.Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo != null)
+    { varTipo_de_Equipo_de_Comunicacion_Tipo_de_Equipo = (List<SelectListItem>)ViewBag.Tipo_de_Equipo_de_Comunicacions_Tipo_de_Equipo; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -59,6 +62,27 @@
                     @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
                     @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Marca_de_Equipo_de_ComunicacionResources.Tipo_de_Equipo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_EquipoFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_EquipoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Equipo, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Equipo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Equipo_de_Comunicacion_Tipo_de_Equipo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_EquipoMultiple, varTipo_de_Equipo_de_Comunicacion_Tipo_de_Equipo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Equipo"
+                        });
+                    }
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Marca_de_Equipo_de_Comunicacion/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -81,6 +105,21 @@
             advanceSearch.Marca_de_Equipo_de_ComunicacionDescripcion = $("#txtAdvanceDescripcion").val();
             advanceSearch.Marca_de_Equipo_de_ComunicacionDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
         }
+        advanceSearch.Tipo_de_EquipoSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Equipo').val().length > 0 || $("#txtAdvanceTipo_de_Equipo").val() == "") {
+
+
+            if (isMarca_de_Equipo_de_ComunicacionTextSearch) {
+                advanceSearch.Tipo_de_EquipoName = $("#txtAdvanceTipo_de_Equipo").val();
+                advanceSearch.Tipo_de_EquipoNameSearchType = $("#ddlAdvanceTipo_de_Equipo").val();
+                advanceSearch.Tipo_de_EquipoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_EquipoToSearch = $("#ddlAdvanceTipo_de_Equipo").val();
+                advanceSearch.Tipo_de_EquipoSearchType = 2;
+            }
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblMarca_de_Equipo_de_Comunicacion').DataTable().draw();
@@ -99,6 +138,15 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceTipo_de_Equipo").keypress(function () {
+            isMarca_de_Equipo_de_ComunicacionTextSearch = true;
+            $("#ddlAdvanceTipo_de_Equipo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Equipo").change(function () {
+            isMarca_de_Equipo_de_ComunicacionTextSearch = false;
+            $("#txtAdvanceTipo_de_Equipo").val('');
+        });
 
     });
 </script>

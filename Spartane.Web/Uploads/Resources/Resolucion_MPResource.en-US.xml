@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Resolucion_MP" value="Resolución MP"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="en-US" name="Fecha_de_Resolucion" value="Fecha de Resolución"></resource>
+  <resource culture="en-US" name="Persona_que_Resuelve" value="Persona que Resuelve"></resource>
+  <resource culture="en-US" name="Estatus" value="Estatus"></resource>
+  <resource culture="en-US" name="Resolucion" value="Resolución"></resource>
+  <resource culture="en-US" name="Vinculacion" value="Vinculación"></resource>
+  <resource culture="en-US" name="Juzgado" value="Juzgado"></resource>
+  <resource culture="en-US" name="Tipo" value="Tipo"></resource>
+  <resource culture="en-US" name="No__De_Causa_o_Cuadernillo" value="No. De Causa o Cuadernillo"></resource>
+  <resource culture="en-US" name="Ano_de_Causa_o_Cuadernillo" value="Año de Causa o Cuadernillo"></resource>
+  <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="en-US" name="Fecha_de_Validacion" value="Fecha de Validación"></resource>
+  <resource culture="en-US" name="Hora_de_Validacion" value="Hora de Validación"></resource>
+  <resource culture="en-US" name="Dictaminador" value="Dictaminador "></resource>
+  <resource culture="en-US" name="Resultado_de_Validacion" value="Resultado de Validación"></resource>
+  <resource culture="en-US" name="Observaciones_Dictaminador" value="Observaciones Dictaminador"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="en-US" name="TabValidacion" value="Validación"></resource>
+
+</resources>

@@ -2,6 +2,8 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_Otros_Aseguramientos;
+using Spartane.Core.Domain.Motivo_de_Registro;
+using Spartane.Core.Domain.Tipo_de_Equipo_Tactico;
 using Spartane.Core.Domain.Unidad_de_Medida_de_Equipo_Tactico;
 
 using Spartane.Core.Enums;
@@ -13,6 +15,8 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Otros_Aseguramientos;
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Equipo_Tactico;
 using Spartane.Web.Areas.WebApiConsumer.Unidad_de_Medida_de_Equipo_Tactico;
 
 using Spartane.Web.AuthFilters;
@@ -40,6 +44,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_Otros_AseguramientosService service = null;
         private IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer _IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer;
+        private IMotivo_de_RegistroApiConsumer _IMotivo_de_RegistroApiConsumer;
+        private ITipo_de_Equipo_TacticoApiConsumer _ITipo_de_Equipo_TacticoApiConsumer;
         private IUnidad_de_Medida_de_Equipo_TacticoApiConsumer _IUnidad_de_Medida_de_Equipo_TacticoApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
@@ -54,7 +60,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_Otros_AseguramientosController(IDetalle_Aseguramiento_Otros_AseguramientosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer Detalle_Aseguramiento_Otros_AseguramientosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IUnidad_de_Medida_de_Equipo_TacticoApiConsumer Unidad_de_Medida_de_Equipo_TacticoApiConsumer )
+        public Detalle_Aseguramiento_Otros_AseguramientosController(IDetalle_Aseguramiento_Otros_AseguramientosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer Detalle_Aseguramiento_Otros_AseguramientosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IMotivo_de_RegistroApiConsumer Motivo_de_RegistroApiConsumer , ITipo_de_Equipo_TacticoApiConsumer Tipo_de_Equipo_TacticoApiConsumer , IUnidad_de_Medida_de_Equipo_TacticoApiConsumer Unidad_de_Medida_de_Equipo_TacticoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -64,6 +70,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
+            this._ITipo_de_Equipo_TacticoApiConsumer = Tipo_de_Equipo_TacticoApiConsumer;
             this._IUnidad_de_Medida_de_Equipo_TacticoApiConsumer = Unidad_de_Medida_de_Equipo_TacticoApiConsumer;
 
         }
@@ -113,7 +121,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 varDetalle_Aseguramiento_Otros_Aseguramientos = new Detalle_Aseguramiento_Otros_AseguramientosModel
                 {
                     Clave = (int)Detalle_Aseguramiento_Otros_AseguramientosData.Clave
+                    ,Motivo_de_Registro = Detalle_Aseguramiento_Otros_AseguramientosData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Otros_AseguramientosData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_Otros_AseguramientosData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                     ,Tipo = Detalle_Aseguramiento_Otros_AseguramientosData.Tipo
+                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Otros_AseguramientosData.Tipo), "Tipo_de_Equipo_Tactico") ??  (string)Detalle_Aseguramiento_Otros_AseguramientosData.Tipo_Tipo_de_Equipo_Tactico.Descripcion
                     ,Marca = Detalle_Aseguramiento_Otros_AseguramientosData.Marca
                     ,Modelo = Detalle_Aseguramiento_Otros_AseguramientosData.Modelo
                     ,Inventario = Detalle_Aseguramiento_Otros_AseguramientosData.Inventario
@@ -129,6 +140,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Equipo_Tacticos_Tipo = _ITipo_de_Equipo_TacticoApiConsumer.SelAll(true);
+            if (Tipo_de_Equipo_Tacticos_Tipo != null && Tipo_de_Equipo_Tacticos_Tipo.Resource != null)
+                ViewBag.Tipo_de_Equipo_Tacticos_Tipo = Tipo_de_Equipo_Tacticos_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Equipo_Tactico", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IUnidad_de_Medida_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida = _IUnidad_de_Medida_de_Equipo_TacticoApiConsumer.SelAll(true);
             if (Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida != null && Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida.Resource != null)
@@ -169,7 +194,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varDetalle_Aseguramiento_Otros_Aseguramientos= new Detalle_Aseguramiento_Otros_AseguramientosModel
 					{
 						Clave  = Detalle_Aseguramiento_Otros_AseguramientosData.Clave 
-	                    ,Tipo = Detalle_Aseguramiento_Otros_AseguramientosData.Tipo
+	                    ,Motivo_de_Registro = Detalle_Aseguramiento_Otros_AseguramientosData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Otros_AseguramientosData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_Otros_AseguramientosData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                    ,Tipo = Detalle_Aseguramiento_Otros_AseguramientosData.Tipo
+                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Otros_AseguramientosData.Tipo), "Tipo_de_Equipo_Tactico") ??  (string)Detalle_Aseguramiento_Otros_AseguramientosData.Tipo_Tipo_de_Equipo_Tactico.Descripcion
                     ,Marca = Detalle_Aseguramiento_Otros_AseguramientosData.Marca
                     ,Modelo = Detalle_Aseguramiento_Otros_AseguramientosData.Modelo
                     ,Inventario = Detalle_Aseguramiento_Otros_AseguramientosData.Inventario
@@ -186,6 +214,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _ITipo_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Equipo_Tacticos_Tipo = _ITipo_de_Equipo_TacticoApiConsumer.SelAll(true);
+            if (Tipo_de_Equipo_Tacticos_Tipo != null && Tipo_de_Equipo_Tacticos_Tipo.Resource != null)
+                ViewBag.Tipo_de_Equipo_Tacticos_Tipo = Tipo_de_Equipo_Tacticos_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Equipo_Tactico", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IUnidad_de_Medida_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida = _IUnidad_de_Medida_de_Equipo_TacticoApiConsumer.SelAll(true);
             if (Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida != null && Unidad_de_Medida_de_Equipo_Tacticos_Unidad_de_Medida.Resource != null)
@@ -213,6 +255,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetMotivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetTipo_de_Equipo_TacticoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_Equipo_TacticoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Equipo_Tactico", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetUnidad_de_Medida_de_Equipo_TacticoAll()
         {
@@ -255,7 +339,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_Aseguramiento_Otros_Aseguramientoss.Select(m => new Detalle_Aseguramiento_Otros_AseguramientosGridModel
                     {
                     Clave = m.Clave
-			,Tipo = m.Tipo
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Equipo_Tactico.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Equipo_Tactico.Descripcion
 			,Marca = m.Marca
 			,Modelo = m.Modelo
 			,Inventario = m.Inventario
@@ -327,6 +412,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Detalle_Aseguramiento_Otros_AseguramientosInfo = new Detalle_Aseguramiento_Otros_Aseguramientos
                     {
                         Clave = varDetalle_Aseguramiento_Otros_Aseguramientos.Clave
+                        ,Motivo_de_Registro = varDetalle_Aseguramiento_Otros_Aseguramientos.Motivo_de_Registro
                         ,Tipo = varDetalle_Aseguramiento_Otros_Aseguramientos.Tipo
                         ,Marca = varDetalle_Aseguramiento_Otros_Aseguramientos.Marca
                         ,Modelo = varDetalle_Aseguramiento_Otros_Aseguramientos.Modelo
@@ -562,7 +648,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Otros_Aseguramientoss.Select(m => new Detalle_Aseguramiento_Otros_AseguramientosGridModel
             {
                 Clave = m.Clave
-                ,Tipo = m.Tipo
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                ,TipoDescripcion = (string)m.Tipo_Tipo_de_Equipo_Tactico.Descripcion
                 ,Marca = m.Marca
                 ,Modelo = m.Modelo
                 ,Inventario = m.Inventario
@@ -616,7 +703,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Otros_Aseguramientoss.Select(m => new Detalle_Aseguramiento_Otros_AseguramientosGridModel
             {
                 Clave = m.Clave
-                ,Tipo = m.Tipo
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                ,TipoDescripcion = (string)m.Tipo_Tipo_de_Equipo_Tactico.Descripcion
                 ,Marca = m.Marca
                 ,Modelo = m.Modelo
                 ,Inventario = m.Inventario

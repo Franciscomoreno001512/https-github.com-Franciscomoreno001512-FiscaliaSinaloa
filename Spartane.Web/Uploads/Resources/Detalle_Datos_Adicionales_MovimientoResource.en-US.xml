@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Datos_Adicionales_Movimiento" value="Detalle Datos Adicionales Movimiento"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Dato" value="Dato"></resource>
+  <resource culture="en-US" name="Tipo_de_Dato" value="Tipo de Dato"></resource>
+  <resource culture="en-US" name="Relacion" value="Relación"></resource>
+  <resource culture="en-US" name="Obligatorio" value="Obligatorio"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -3,9 +3,15 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Detalle_Aseguramiento_de_Drogas_InvolucradasAdvanceSearchModel
 @{
+    List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
+    if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
+    { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
     List<SelectListItem> varTipo_de_Droga_Tipo = null;
     if (ViewBag.Tipo_de_Drogas_Tipo != null)
     { varTipo_de_Droga_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Drogas_Tipo; }
+    List<SelectListItem> varModo_de_Asegurado_de_Drogas_Modo_de_Asegurado = null;
+    if (ViewBag.Modo_de_Asegurado_de_Drogass_Modo_de_Asegurado != null)
+    { varModo_de_Asegurado_de_Drogas_Modo_de_Asegurado = (List<SelectListItem>)ViewBag.Modo_de_Asegurado_de_Drogass_Modo_de_Asegurado; }
     List<SelectListItem> varUnidad_de_medida_de_tipo_de_droga_Unidad_de_Medida = null;
     if (ViewBag.Unidad_de_medida_de_tipo_de_drogas_Unidad_de_Medida != null)
     { varUnidad_de_medida_de_tipo_de_droga_Unidad_de_Medida = (List<SelectListItem>)ViewBag.Unidad_de_medida_de_tipo_de_drogas_Unidad_de_Medida; }
@@ -58,6 +64,27 @@
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
                 <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_de_Drogas_InvolucradasResources.Motivo_de_Registro</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Motivo_de_RegistroFilter, filters, new { @class = "form-control", @id = "ddlMotivo_de_RegistroFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceMotivo_de_Registro, new { @class = "form-control", @type = "text", @id = "txtAdvanceMotivo_de_Registro" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varMotivo_de_Registro_Motivo_de_Registro!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceMotivo_de_RegistroMultiple, varMotivo_de_Registro_Motivo_de_Registro,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceMotivo_de_Registro"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
                     <h3>@Resources.Detalle_Aseguramiento_de_Drogas_InvolucradasResources.Tipo</h3>
                 </div>
                 <div class="MarginBottom form-inline">
@@ -75,6 +102,27 @@
                             @data_placeholder = "",
                             @style = "width: 350px;",
                             @id = "ddlAdvanceTipo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Aseguramiento_de_Drogas_InvolucradasResources.Modo_de_Asegurado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Modo_de_AseguradoFilter, filters, new { @class = "form-control", @id = "ddlModo_de_AseguradoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceModo_de_Asegurado, new { @class = "form-control", @type = "text", @id = "txtAdvanceModo_de_Asegurado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varModo_de_Asegurado_de_Drogas_Modo_de_Asegurado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceModo_de_AseguradoMultiple, varModo_de_Asegurado_de_Drogas_Modo_de_Asegurado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceModo_de_Asegurado"
                         });
                     }
                 </div>
@@ -135,6 +183,21 @@
             advanceSearch.Detalle_Aseguramiento_de_Drogas_InvolucradasClaveFrom = $("#txtAdvanceFromClave").val();
             advanceSearch.Detalle_Aseguramiento_de_Drogas_InvolucradasClaveTo = $("#txtAdvanceToClave").val();
         }
+        advanceSearch.Motivo_de_RegistroSearchType = 0;
+        if ($('#ddlAdvanceMotivo_de_Registro').val().length > 0 || $("#txtAdvanceMotivo_de_Registro").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_de_Drogas_InvolucradasTextSearch) {
+                advanceSearch.Motivo_de_RegistroName = $("#txtAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroNameSearchType = $("#ddlAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Motivo_de_RegistroToSearch = $("#ddlAdvanceMotivo_de_Registro").val();
+                advanceSearch.Motivo_de_RegistroSearchType = 2;
+            }
+        }
         advanceSearch.TipoSearchType = 0;
         if ($('#ddlAdvanceTipo').val().length > 0 || $("#txtAdvanceTipo").val() == "") {
 
@@ -148,6 +211,21 @@
 
                 advanceSearch.TipoToSearch = $("#ddlAdvanceTipo").val();
                 advanceSearch.TipoSearchType = 2;
+            }
+        }
+        advanceSearch.Modo_de_AseguradoSearchType = 0;
+        if ($('#ddlAdvanceModo_de_Asegurado').val().length > 0 || $("#txtAdvanceModo_de_Asegurado").val() == "") {
+
+
+            if (isDetalle_Aseguramiento_de_Drogas_InvolucradasTextSearch) {
+                advanceSearch.Modo_de_AseguradoName = $("#txtAdvanceModo_de_Asegurado").val();
+                advanceSearch.Modo_de_AseguradoNameSearchType = $("#ddlAdvanceModo_de_Asegurado").val();
+                advanceSearch.Modo_de_AseguradoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Modo_de_AseguradoToSearch = $("#ddlAdvanceModo_de_Asegurado").val();
+                advanceSearch.Modo_de_AseguradoSearchType = 2;
             }
         }
         advanceSearch.Unidad_de_MedidaSearchType = 0;
@@ -193,6 +271,15 @@
 			autoclose: true,
 			format: "@ConfigurationProperty.DateFormatDatePicker"
 		});
+        $("#txtAdvanceMotivo_de_Registro").keypress(function () {
+            isDetalle_Aseguramiento_de_Drogas_InvolucradasTextSearch = true;
+            $("#ddlAdvanceMotivo_de_Registro").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceMotivo_de_Registro").change(function () {
+            isDetalle_Aseguramiento_de_Drogas_InvolucradasTextSearch = false;
+            $("#txtAdvanceMotivo_de_Registro").val('');
+        });
         $("#txtAdvanceTipo").keypress(function () {
             isDetalle_Aseguramiento_de_Drogas_InvolucradasTextSearch = true;
             $("#ddlAdvanceTipo").val('').trigger("chosen:updated");
@@ -201,6 +288,15 @@
         $("#ddlAdvanceTipo").change(function () {
             isDetalle_Aseguramiento_de_Drogas_InvolucradasTextSearch = false;
             $("#txtAdvanceTipo").val('');
+        });
+        $("#txtAdvanceModo_de_Asegurado").keypress(function () {
+            isDetalle_Aseguramiento_de_Drogas_InvolucradasTextSearch = true;
+            $("#ddlAdvanceModo_de_Asegurado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceModo_de_Asegurado").change(function () {
+            isDetalle_Aseguramiento_de_Drogas_InvolucradasTextSearch = false;
+            $("#txtAdvanceModo_de_Asegurado").val('');
         });
         $("#txtAdvanceUnidad_de_Medida").keypress(function () {
             isDetalle_Aseguramiento_de_Drogas_InvolucradasTextSearch = true;

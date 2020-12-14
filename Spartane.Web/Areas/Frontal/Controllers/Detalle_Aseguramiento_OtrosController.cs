@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_Otros;
+using Spartane.Core.Domain.Motivo_de_Registro;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -12,6 +13,7 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Otros;
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -38,6 +40,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_OtrosService service = null;
         private IDetalle_Aseguramiento_OtrosApiConsumer _IDetalle_Aseguramiento_OtrosApiConsumer;
+        private IMotivo_de_RegistroApiConsumer _IMotivo_de_RegistroApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -51,7 +54,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_OtrosController(IDetalle_Aseguramiento_OtrosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_OtrosApiConsumer Detalle_Aseguramiento_OtrosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer )
+        public Detalle_Aseguramiento_OtrosController(IDetalle_Aseguramiento_OtrosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_OtrosApiConsumer Detalle_Aseguramiento_OtrosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IMotivo_de_RegistroApiConsumer Motivo_de_RegistroApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -61,6 +64,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
 
         }
 
@@ -109,6 +113,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 varDetalle_Aseguramiento_Otros = new Detalle_Aseguramiento_OtrosModel
                 {
                     Clave = (int)Detalle_Aseguramiento_OtrosData.Clave
+                    ,Motivo_de_Registro = Detalle_Aseguramiento_OtrosData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_OtrosData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_OtrosData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                     ,Tipo = Detalle_Aseguramiento_OtrosData.Tipo
                     ,Unidad_de_medida = Detalle_Aseguramiento_OtrosData.Unidad_de_medida
                     ,Cantidad = Detalle_Aseguramiento_OtrosData.Cantidad
@@ -120,6 +126,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             ViewBag.Consult = consult == 1;
@@ -153,7 +166,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varDetalle_Aseguramiento_Otros= new Detalle_Aseguramiento_OtrosModel
 					{
 						Clave  = Detalle_Aseguramiento_OtrosData.Clave 
-	                    ,Tipo = Detalle_Aseguramiento_OtrosData.Tipo
+	                    ,Motivo_de_Registro = Detalle_Aseguramiento_OtrosData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_OtrosData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_OtrosData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                    ,Tipo = Detalle_Aseguramiento_OtrosData.Tipo
                     ,Unidad_de_medida = Detalle_Aseguramiento_OtrosData.Unidad_de_medida
                     ,Cantidad = Detalle_Aseguramiento_OtrosData.Cantidad
                     ,Descripcion = Detalle_Aseguramiento_OtrosData.Descripcion
@@ -165,6 +180,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             return PartialView("AddDetalle_Aseguramiento_Otros", varDetalle_Aseguramiento_Otros);
@@ -185,6 +207,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetMotivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -206,6 +249,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_Aseguramiento_Otross.Select(m => new Detalle_Aseguramiento_OtrosGridModel
                     {
                     Clave = m.Clave
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
 			,Tipo = m.Tipo
 			,Unidad_de_medida = m.Unidad_de_medida
 			,Cantidad = m.Cantidad
@@ -274,6 +318,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Detalle_Aseguramiento_OtrosInfo = new Detalle_Aseguramiento_Otros
                     {
                         Clave = varDetalle_Aseguramiento_Otros.Clave
+                        ,Motivo_de_Registro = varDetalle_Aseguramiento_Otros.Motivo_de_Registro
                         ,Tipo = varDetalle_Aseguramiento_Otros.Tipo
                         ,Unidad_de_medida = varDetalle_Aseguramiento_Otros.Unidad_de_medida
                         ,Cantidad = varDetalle_Aseguramiento_Otros.Cantidad
@@ -505,6 +550,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Otross.Select(m => new Detalle_Aseguramiento_OtrosGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,Tipo = m.Tipo
                 ,Unidad_de_medida = m.Unidad_de_medida
                 ,Cantidad = m.Cantidad
@@ -555,6 +601,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Otross.Select(m => new Detalle_Aseguramiento_OtrosGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,Tipo = m.Tipo
                 ,Unidad_de_medida = m.Unidad_de_medida
                 ,Cantidad = m.Cantidad

@@ -35,6 +35,7 @@ using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Colonia;
 using Spartane.Core.Domain.Colonia;
+using Spartane.Core.Domain.Documento_Extraviado;
 using Spartane.Core.Domain.Lugar_Tipo;
 using Spartane.Core.Domain.Zona;
 using Spartane.Core.Domain.Tipo_de_Acuerdo;
@@ -105,6 +106,7 @@ using Spartane.Web.Areas.WebApiConsumer.Estado;
 using Spartane.Web.Areas.WebApiConsumer.Municipio;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
 using Spartane.Web.Areas.WebApiConsumer.Colonia;
+using Spartane.Web.Areas.WebApiConsumer.Documento_Extraviado;
 using Spartane.Web.Areas.WebApiConsumer.Lugar_Tipo;
 using Spartane.Web.Areas.WebApiConsumer.Zona;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Acuerdo;
@@ -188,6 +190,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IPaisApiConsumer _IPaisApiConsumer;
         private IEstadoApiConsumer _IEstadoApiConsumer;
         private IColoniaApiConsumer _IColoniaApiConsumer;
+        private IDocumento_ExtraviadoApiConsumer _IDocumento_ExtraviadoApiConsumer;
         private ILugar_TipoApiConsumer _ILugar_TipoApiConsumer;
         private IZonaApiConsumer _IZonaApiConsumer;
         private ITipo_de_AcuerdoApiConsumer _ITipo_de_AcuerdoApiConsumer;
@@ -222,7 +225,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Modulo_Atencion_InicialController(IModulo_Atencion_InicialService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IAsignacion_de_TurnosApiConsumer Asignacion_de_TurnosApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IUnidadApiConsumer UnidadApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IRegionApiConsumer RegionApiConsumer , ITipo_de_DenunciaApiConsumer Tipo_de_DenunciaApiConsumer , IEstatusApiConsumer EstatusApiConsumer , IDelegacionApiConsumer DelegacionApiConsumer , IAgenciaApiConsumer AgenciaApiConsumer , IJefes_de_Usuarios_del_SistemaApiConsumer Jefes_de_Usuarios_del_SistemaApiConsumer , IGeneroApiConsumer GeneroApiConsumer , ITipo_de_AtencionApiConsumer Tipo_de_AtencionApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , ITipo_de_UrgenciaApiConsumer Tipo_de_UrgenciaApiConsumer , IMotivo_Finalizacion_TurnoApiConsumer Motivo_Finalizacion_TurnoApiConsumer , IDialectoApiConsumer DialectoApiConsumer , IIdiomaApiConsumer IdiomaApiConsumer , IEstatus_OrientadorApiConsumer Estatus_OrientadorApiConsumer , IDetalle_de_Canalizar_EstatusApiConsumer Detalle_de_Canalizar_EstatusApiConsumer  , IPrioridad_del_HechoApiConsumer Prioridad_del_HechoApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IZonaApiConsumer ZonaApiConsumer , ITipo_de_AcuerdoApiConsumer Tipo_de_AcuerdoApiConsumer , IPeriodicidadApiConsumer PeriodicidadApiConsumer , IDetalle_de_Documentos_de_MPOApiConsumer Detalle_de_Documentos_de_MPOApiConsumer  , IDetalle_de_coincidencias_aApiConsumer Detalle_de_coincidencias_aApiConsumer  , IDetalle_Historico_MPOApiConsumer Detalle_Historico_MPOApiConsumer  )
+        public Modulo_Atencion_InicialController(IModulo_Atencion_InicialService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IAsignacion_de_TurnosApiConsumer Asignacion_de_TurnosApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IUnidadApiConsumer UnidadApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IRegionApiConsumer RegionApiConsumer , ITipo_de_DenunciaApiConsumer Tipo_de_DenunciaApiConsumer , IEstatusApiConsumer EstatusApiConsumer , IDelegacionApiConsumer DelegacionApiConsumer , IAgenciaApiConsumer AgenciaApiConsumer , IJefes_de_Usuarios_del_SistemaApiConsumer Jefes_de_Usuarios_del_SistemaApiConsumer , IGeneroApiConsumer GeneroApiConsumer , ITipo_de_AtencionApiConsumer Tipo_de_AtencionApiConsumer , ITipo_de_IdentificacionApiConsumer Tipo_de_IdentificacionApiConsumer , ITipo_de_UrgenciaApiConsumer Tipo_de_UrgenciaApiConsumer , IMotivo_Finalizacion_TurnoApiConsumer Motivo_Finalizacion_TurnoApiConsumer , IDialectoApiConsumer DialectoApiConsumer , IIdiomaApiConsumer IdiomaApiConsumer , IEstatus_OrientadorApiConsumer Estatus_OrientadorApiConsumer , IDetalle_de_Canalizar_EstatusApiConsumer Detalle_de_Canalizar_EstatusApiConsumer  , IPrioridad_del_HechoApiConsumer Prioridad_del_HechoApiConsumer , IPaisApiConsumer PaisApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IColoniaApiConsumer ColoniaApiConsumer , IDocumento_ExtraviadoApiConsumer Documento_ExtraviadoApiConsumer , ILugar_TipoApiConsumer Lugar_TipoApiConsumer , IZonaApiConsumer ZonaApiConsumer , ITipo_de_AcuerdoApiConsumer Tipo_de_AcuerdoApiConsumer , IPeriodicidadApiConsumer PeriodicidadApiConsumer , IDetalle_de_Documentos_de_MPOApiConsumer Detalle_de_Documentos_de_MPOApiConsumer  , IDetalle_de_coincidencias_aApiConsumer Detalle_de_coincidencias_aApiConsumer  , IDetalle_Historico_MPOApiConsumer Detalle_Historico_MPOApiConsumer  )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -269,6 +272,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IMunicipioApiConsumer = MunicipioApiConsumer;
             this._IColoniaApiConsumer = ColoniaApiConsumer;
             this._IColoniaApiConsumer = ColoniaApiConsumer;
+            this._IDocumento_ExtraviadoApiConsumer = Documento_ExtraviadoApiConsumer;
             this._ILugar_TipoApiConsumer = Lugar_TipoApiConsumer;
             this._IZonaApiConsumer = ZonaApiConsumer;
             this._ITipo_de_AcuerdoApiConsumer = Tipo_de_AcuerdoApiConsumer;
@@ -459,8 +463,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Y_Calle = Modulo_Atencion_InicialData.Y_Calle
                     ,Numero_Exrterior_de_los_Hechos = Modulo_Atencion_InicialData.Numero_Exrterior_de_los_Hechos
                     ,Numero_Interior_de_los_Hechos = Modulo_Atencion_InicialData.Numero_Interior_de_los_Hechos
+                    ,Referencia_hechos = Modulo_Atencion_InicialData.Referencia_hechos
                     ,Latitud = Modulo_Atencion_InicialData.Latitud
                     ,Longitud = Modulo_Atencion_InicialData.Longitud
+                    ,Documento_Extraviado_hechos = Modulo_Atencion_InicialData.Documento_Extraviado_hechos.GetValueOrDefault()
+                    ,Tipo_de_Documento_Extraviado = Modulo_Atencion_InicialData.Tipo_de_Documento_Extraviado
+                    ,Tipo_de_Documento_ExtraviadoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Modulo_Atencion_InicialData.Tipo_de_Documento_Extraviado), "Documento_Extraviado") ??  (string)Modulo_Atencion_InicialData.Tipo_de_Documento_Extraviado_Documento_Extraviado.Descripcion
                     ,Tipo_de_Lugar_del_Hecho = Modulo_Atencion_InicialData.Tipo_de_Lugar_del_Hecho
                     ,Tipo_de_Lugar_del_HechoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Modulo_Atencion_InicialData.Tipo_de_Lugar_del_Hecho), "Lugar_Tipo") ??  (string)Modulo_Atencion_InicialData.Tipo_de_Lugar_del_Hecho_Lugar_Tipo.Descripcion
                     ,Zona_de_los_Hechos = Modulo_Atencion_InicialData.Zona_de_los_Hechos
@@ -630,6 +638,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho = Prioridad_del_Hechos_Prioridad_del_Hecho.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Prioridad_del_Hecho", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IDocumento_ExtraviadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Documento_Extraviados_Tipo_de_Documento_Extraviado = _IDocumento_ExtraviadoApiConsumer.SelAll(true);
+            if (Documento_Extraviados_Tipo_de_Documento_Extraviado != null && Documento_Extraviados_Tipo_de_Documento_Extraviado.Resource != null)
+                ViewBag.Documento_Extraviados_Tipo_de_Documento_Extraviado = Documento_Extraviados_Tipo_de_Documento_Extraviado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Documento_Extraviado", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ILugar_TipoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Lugar_Tipos_Tipo_de_Lugar_del_Hecho = _ILugar_TipoApiConsumer.SelAll(true);
@@ -823,8 +838,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Y_Calle = Modulo_Atencion_InicialData.Y_Calle
                     ,Numero_Exrterior_de_los_Hechos = Modulo_Atencion_InicialData.Numero_Exrterior_de_los_Hechos
                     ,Numero_Interior_de_los_Hechos = Modulo_Atencion_InicialData.Numero_Interior_de_los_Hechos
+                    ,Referencia_hechos = Modulo_Atencion_InicialData.Referencia_hechos
                     ,Latitud = Modulo_Atencion_InicialData.Latitud
                     ,Longitud = Modulo_Atencion_InicialData.Longitud
+                    ,Documento_Extraviado_hechos = Modulo_Atencion_InicialData.Documento_Extraviado_hechos.GetValueOrDefault()
+                    ,Tipo_de_Documento_Extraviado = Modulo_Atencion_InicialData.Tipo_de_Documento_Extraviado
+                    ,Tipo_de_Documento_ExtraviadoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Modulo_Atencion_InicialData.Tipo_de_Documento_Extraviado), "Documento_Extraviado") ??  (string)Modulo_Atencion_InicialData.Tipo_de_Documento_Extraviado_Documento_Extraviado.Descripcion
                     ,Tipo_de_Lugar_del_Hecho = Modulo_Atencion_InicialData.Tipo_de_Lugar_del_Hecho
                     ,Tipo_de_Lugar_del_HechoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Modulo_Atencion_InicialData.Tipo_de_Lugar_del_Hecho), "Lugar_Tipo") ??  (string)Modulo_Atencion_InicialData.Tipo_de_Lugar_del_Hecho_Lugar_Tipo.Descripcion
                     ,Zona_de_los_Hechos = Modulo_Atencion_InicialData.Zona_de_los_Hechos
@@ -992,6 +1011,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho = Prioridad_del_Hechos_Prioridad_del_Hecho.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Prioridad_del_Hecho", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IDocumento_ExtraviadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Documento_Extraviados_Tipo_de_Documento_Extraviado = _IDocumento_ExtraviadoApiConsumer.SelAll(true);
+            if (Documento_Extraviados_Tipo_de_Documento_Extraviado != null && Documento_Extraviados_Tipo_de_Documento_Extraviado.Resource != null)
+                ViewBag.Documento_Extraviados_Tipo_de_Documento_Extraviado = Documento_Extraviados_Tipo_de_Documento_Extraviado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Documento_Extraviado", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ILugar_TipoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Lugar_Tipos_Tipo_de_Lugar_del_Hecho = _ILugar_TipoApiConsumer.SelAll(true);
@@ -1511,6 +1537,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
         [HttpGet]
+        public ActionResult GetDocumento_ExtraviadoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDocumento_ExtraviadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IDocumento_ExtraviadoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Documento_Extraviado", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
         public ActionResult GetLugar_TipoAll()
         {
             try
@@ -1753,6 +1800,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Prioridad_del_Hecho", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IDocumento_ExtraviadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Documento_Extraviados_Tipo_de_Documento_Extraviado = _IDocumento_ExtraviadoApiConsumer.SelAll(true);
+            if (Documento_Extraviados_Tipo_de_Documento_Extraviado != null && Documento_Extraviados_Tipo_de_Documento_Extraviado.Resource != null)
+                ViewBag.Documento_Extraviados_Tipo_de_Documento_Extraviado = Documento_Extraviados_Tipo_de_Documento_Extraviado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Documento_Extraviado", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ILugar_TipoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Lugar_Tipos_Tipo_de_Lugar_del_Hecho = _ILugar_TipoApiConsumer.SelAll(true);
             if (Lugar_Tipos_Tipo_de_Lugar_del_Hecho != null && Lugar_Tipos_Tipo_de_Lugar_del_Hecho.Resource != null)
@@ -1925,6 +1979,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Prioridad_del_Hecho", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IDocumento_ExtraviadoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Documento_Extraviados_Tipo_de_Documento_Extraviado = _IDocumento_ExtraviadoApiConsumer.SelAll(true);
+            if (Documento_Extraviados_Tipo_de_Documento_Extraviado != null && Documento_Extraviados_Tipo_de_Documento_Extraviado.Resource != null)
+                ViewBag.Documento_Extraviados_Tipo_de_Documento_Extraviado = Documento_Extraviados_Tipo_de_Documento_Extraviado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Documento_Extraviado", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ILugar_TipoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Lugar_Tipos_Tipo_de_Lugar_del_Hecho = _ILugar_TipoApiConsumer.SelAll(true);
             if (Lugar_Tipos_Tipo_de_Lugar_del_Hecho != null && Lugar_Tipos_Tipo_de_Lugar_del_Hecho.Resource != null)
@@ -2059,8 +2120,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Y_Calle = m.Y_Calle
 			,Numero_Exrterior_de_los_Hechos = m.Numero_Exrterior_de_los_Hechos
 			,Numero_Interior_de_los_Hechos = m.Numero_Interior_de_los_Hechos
+			,Referencia_hechos = m.Referencia_hechos
 			,Latitud = m.Latitud
 			,Longitud = m.Longitud
+			,Documento_Extraviado_hechos = m.Documento_Extraviado_hechos
+                        ,Tipo_de_Documento_ExtraviadoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Extraviado_Documento_Extraviado.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Extraviado_Documento_Extraviado.Descripcion
                         ,Tipo_de_Lugar_del_HechoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Lugar_del_Hecho_Lugar_Tipo.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Lugar_del_Hecho_Lugar_Tipo.Descripcion
                         ,Zona_de_los_HechosDescripcion = CultureHelper.GetTraduction(m.Zona_de_los_Hechos_Zona.Clave.ToString(), "Descripcion") ?? (string)m.Zona_de_los_Hechos_Zona.Descripcion
 			,Turno = m.Turno
@@ -2263,8 +2327,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Y_Calle = m.Y_Calle
 			,Numero_Exrterior_de_los_Hechos = m.Numero_Exrterior_de_los_Hechos
 			,Numero_Interior_de_los_Hechos = m.Numero_Interior_de_los_Hechos
+			,Referencia_hechos = m.Referencia_hechos
 			,Latitud = m.Latitud
 			,Longitud = m.Longitud
+			,Documento_Extraviado_hechos = m.Documento_Extraviado_hechos
+                        ,Tipo_de_Documento_ExtraviadoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Extraviado_Documento_Extraviado.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Extraviado_Documento_Extraviado.Descripcion
                         ,Tipo_de_Lugar_del_HechoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Lugar_del_Hecho_Lugar_Tipo.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Lugar_del_Hecho_Lugar_Tipo.Descripcion
                         ,Zona_de_los_HechosDescripcion = CultureHelper.GetTraduction(m.Zona_de_los_Hechos_Zona.Clave.ToString(), "Descripcion") ?? (string)m.Zona_de_los_Hechos_Zona.Descripcion
 			,Turno = m.Turno
@@ -3850,6 +3917,28 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.Referencia_hechos))
+            {
+                switch (filter.Referencia_hechosFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Modulo_Atencion_Inicial.Referencia_hechos LIKE '" + filter.Referencia_hechos + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Modulo_Atencion_Inicial.Referencia_hechos LIKE '%" + filter.Referencia_hechos + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Modulo_Atencion_Inicial.Referencia_hechos = '" + filter.Referencia_hechos + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Modulo_Atencion_Inicial.Referencia_hechos LIKE '%" + filter.Referencia_hechos + "%'";
+                        break;
+                }
+            }
+
             if (!string.IsNullOrEmpty(filter.Latitud))
             {
                 switch (filter.LatitudFilter)
@@ -3892,6 +3981,37 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         where += " AND Modulo_Atencion_Inicial.Longitud LIKE '%" + filter.Longitud + "%'";
                         break;
                 }
+            }
+
+            if (filter.Documento_Extraviado_hechos != RadioOptions.NoApply)
+                where += " AND Modulo_Atencion_Inicial.Documento_Extraviado_hechos = " + Convert.ToInt32(filter.Documento_Extraviado_hechos);
+
+            if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_Documento_Extraviado))
+            {
+                switch (filter.Tipo_de_Documento_ExtraviadoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Documento_Extraviado.Descripcion LIKE '" + filter.AdvanceTipo_de_Documento_Extraviado + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Documento_Extraviado.Descripcion LIKE '%" + filter.AdvanceTipo_de_Documento_Extraviado + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Documento_Extraviado.Descripcion = '" + filter.AdvanceTipo_de_Documento_Extraviado + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Documento_Extraviado.Descripcion LIKE '%" + filter.AdvanceTipo_de_Documento_Extraviado + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceTipo_de_Documento_ExtraviadoMultiple != null && filter.AdvanceTipo_de_Documento_ExtraviadoMultiple.Count() > 0)
+            {
+                var Tipo_de_Documento_ExtraviadoIds = string.Join(",", filter.AdvanceTipo_de_Documento_ExtraviadoMultiple);
+
+                where += " AND Modulo_Atencion_Inicial.Tipo_de_Documento_Extraviado In (" + Tipo_de_Documento_ExtraviadoIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.AdvanceTipo_de_Lugar_del_Hecho))
@@ -4909,8 +5029,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Y_Calle = varModulo_Atencion_Inicial.Y_Calle
                         ,Numero_Exrterior_de_los_Hechos = varModulo_Atencion_Inicial.Numero_Exrterior_de_los_Hechos
                         ,Numero_Interior_de_los_Hechos = varModulo_Atencion_Inicial.Numero_Interior_de_los_Hechos
+                        ,Referencia_hechos = varModulo_Atencion_Inicial.Referencia_hechos
                         ,Latitud = varModulo_Atencion_Inicial.Latitud
                         ,Longitud = varModulo_Atencion_Inicial.Longitud
+                        ,Documento_Extraviado_hechos = varModulo_Atencion_Inicial.Documento_Extraviado_hechos
+                        ,Tipo_de_Documento_Extraviado = varModulo_Atencion_Inicial.Tipo_de_Documento_Extraviado
                         ,Tipo_de_Lugar_del_Hecho = varModulo_Atencion_Inicial.Tipo_de_Lugar_del_Hecho
                         ,Zona_de_los_Hechos = varModulo_Atencion_Inicial.Zona_de_los_Hechos
                         ,Turno = varModulo_Atencion_Inicial.Turno
@@ -5951,8 +6074,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Y_Calle = m.Y_Calle
 			,Numero_Exrterior_de_los_Hechos = m.Numero_Exrterior_de_los_Hechos
 			,Numero_Interior_de_los_Hechos = m.Numero_Interior_de_los_Hechos
+			,Referencia_hechos = m.Referencia_hechos
 			,Latitud = m.Latitud
 			,Longitud = m.Longitud
+			,Documento_Extraviado_hechos = m.Documento_Extraviado_hechos
+                        ,Tipo_de_Documento_ExtraviadoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Extraviado_Documento_Extraviado.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Extraviado_Documento_Extraviado.Descripcion
                         ,Tipo_de_Lugar_del_HechoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Lugar_del_Hecho_Lugar_Tipo.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Lugar_del_Hecho_Lugar_Tipo.Descripcion
                         ,Zona_de_los_HechosDescripcion = CultureHelper.GetTraduction(m.Zona_de_los_Hechos_Zona.Clave.ToString(), "Descripcion") ?? (string)m.Zona_de_los_Hechos_Zona.Descripcion
 			,Turno = m.Turno
@@ -6114,8 +6240,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Y_Calle = m.Y_Calle
 			,Numero_Exrterior_de_los_Hechos = m.Numero_Exrterior_de_los_Hechos
 			,Numero_Interior_de_los_Hechos = m.Numero_Interior_de_los_Hechos
+			,Referencia_hechos = m.Referencia_hechos
 			,Latitud = m.Latitud
 			,Longitud = m.Longitud
+			,Documento_Extraviado_hechos = m.Documento_Extraviado_hechos
+                        ,Tipo_de_Documento_ExtraviadoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Extraviado_Documento_Extraviado.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Extraviado_Documento_Extraviado.Descripcion
                         ,Tipo_de_Lugar_del_HechoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Lugar_del_Hecho_Lugar_Tipo.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Lugar_del_Hecho_Lugar_Tipo.Descripcion
                         ,Zona_de_los_HechosDescripcion = CultureHelper.GetTraduction(m.Zona_de_los_Hechos_Zona.Clave.ToString(), "Descripcion") ?? (string)m.Zona_de_los_Hechos_Zona.Descripcion
 			,Turno = m.Turno
@@ -6636,8 +6765,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Y_Calle = varModulo_Atencion_Inicial.Y_Calle
                         ,Numero_Exrterior_de_los_Hechos = varModulo_Atencion_Inicial.Numero_Exrterior_de_los_Hechos
                         ,Numero_Interior_de_los_Hechos = varModulo_Atencion_Inicial.Numero_Interior_de_los_Hechos
+                        ,Referencia_hechos = varModulo_Atencion_Inicial.Referencia_hechos
                         ,Latitud = varModulo_Atencion_Inicial.Latitud
                         ,Longitud = varModulo_Atencion_Inicial.Longitud
+                        ,Documento_Extraviado_hechos = varModulo_Atencion_Inicial.Documento_Extraviado_hechos
+                        ,Tipo_de_Documento_Extraviado = varModulo_Atencion_Inicial.Tipo_de_Documento_Extraviado
                         ,Tipo_de_Lugar_del_Hecho = varModulo_Atencion_Inicial.Tipo_de_Lugar_del_Hecho
                         ,Zona_de_los_Hechos = varModulo_Atencion_Inicial.Zona_de_los_Hechos
                         ,Turno = varModulo_Atencion_Inicial.Turno
@@ -6701,8 +6833,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Y_Calle = m.Y_Calle
 			,Numero_Exrterior_de_los_Hechos = m.Numero_Exrterior_de_los_Hechos
 			,Numero_Interior_de_los_Hechos = m.Numero_Interior_de_los_Hechos
+			,Referencia_hechos = m.Referencia_hechos
 			,Latitud = m.Latitud
 			,Longitud = m.Longitud
+			,Documento_Extraviado_hechos = m.Documento_Extraviado_hechos
+                        ,Tipo_de_Documento_Extraviado = m.Tipo_de_Documento_Extraviado
+                        ,Tipo_de_Documento_ExtraviadoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Documento_Extraviado_Documento_Extraviado.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Documento_Extraviado_Documento_Extraviado.Descripcion
                         ,Tipo_de_Lugar_del_Hecho = m.Tipo_de_Lugar_del_Hecho
                         ,Tipo_de_Lugar_del_HechoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Lugar_del_Hecho_Lugar_Tipo.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Lugar_del_Hecho_Lugar_Tipo.Descripcion
                         ,Zona_de_los_Hechos = m.Zona_de_los_Hechos
@@ -7106,33 +7242,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(resultData, JsonRequestBehavior.AllowGet);
             }
             return Json(null, JsonRequestBehavior.AllowGet);            
-        }
-
-
-        [HttpPost]
-        public ActionResult Post_Estatus_de_Turno(Modulo_Atencion_Inicial_Datos_del_Caso varModulo_Atencion_Inicial)
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IModulo_Atencion_InicialApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-                var result = "";
-                var Modulo_Atencion_Inicial_Historial_de_movimientosInfo = new Modulo_Atencion_Inicial_Datos_del_Caso
-                {
-                    Folio = varModulo_Atencion_Inicial.Folio
-
-                };
-
-                result = _IModulo_Atencion_InicialApiConsumer.Update_Actualiza_Turno_Finalizar(Modulo_Atencion_Inicial_Historial_de_movimientosInfo).Resource.ToString();
-                Session["KeyValueInserted"] = result;
-                return Json(result, JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
         }
 
 

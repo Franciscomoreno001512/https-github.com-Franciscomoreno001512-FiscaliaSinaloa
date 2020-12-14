@@ -18,6 +18,9 @@ namespace Spartane.Web.SqlModelMapper
                     return "Marca_de_Equipo_de_Comunicacion.Clave";
                 case "Descripcion":
                     return "Marca_de_Equipo_de_Comunicacion.Descripcion";
+                case "Tipo_de_Equipo[Descripcion]":
+                case "Tipo_de_EquipoDescripcion":
+                    return "Tipo_de_Equipo_de_Comunicacion.Descripcion";
 
                 default:
                     return propertyName;

@@ -8,15 +8,24 @@
 @{
 
 
+    List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
+    if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
+    { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
     List<SelectListItem> varTipo_de_Zona_Zona = null;
     if (ViewBag.Tipo_de_Zonas_Zona != null)
     { varTipo_de_Zona_Zona = (List<SelectListItem>)ViewBag.Tipo_de_Zonas_Zona; }
+    List<SelectListItem> varTipo_de_Inmueble_Tipo = null;
+    if (ViewBag.Tipo_de_Inmuebles_Tipo != null)
+    { varTipo_de_Inmueble_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Inmuebles_Tipo; }
  List<SelectListItem> varEstado_Estado = null;
     if (ViewBag.Estados_Estado != null)
     { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
  List<SelectListItem> varMunicipio_Municipio = null;
     if (ViewBag.Municipios_Municipio != null)
     { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
+ List<SelectListItem> varColonia_Colonia = null;
+    if (ViewBag.Colonias_Colonia != null)
+    { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
 
 
     Permission permission = ViewBag.Permission;
@@ -142,6 +151,27 @@
                                     <label class="form-control" for="Detalle_Aseguramiento_InmueblesClave" id="Detalle_Aseguramiento_InmueblesClave">@Model.Clave</label>
                                 </div>
                             </div>
+<div class="form-group" id="divMotivo_de_Registro">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_InmueblesResources.Motivo_de_Registro</label>
+	<div class="col-sm-8" data-field-id="Motivo_de_Registro" data-attribute="268352" data-field-name="@Resources.Detalle_Aseguramiento_InmueblesResources.Motivo_de_Registro">
+		<select class="form-control" data-val="true" data-val-number="The field Motivo de Registro must be a number." data-val-required="The Motivo de Registro field is required." id="Detalle_Aseguramiento_InmueblesMotivo_de_Registro" name="Detalle_Aseguramiento_InmueblesMotivo_de_Registro">
+			<option value=""></option>
+			@if (varMotivo_de_Registro_Motivo_de_Registro != null){ 
+				foreach (var itemMotivo_de_Registro in varMotivo_de_Registro_Motivo_de_Registro)
+				{
+					if (itemMotivo_de_Registro.Value == Convert.ToString(Model.Motivo_de_Registro))
+					{
+						<option value="@itemMotivo_de_Registro.Value" selected>@itemMotivo_de_Registro.Text</option>
+					}
+					else
+					{
+						<option value="@itemMotivo_de_Registro.Value">@itemMotivo_de_Registro.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
 <div class="form-group" id="divZona">
 	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_InmueblesResources.Zona</label>
 	<div class="col-sm-8" data-field-id="Zona" data-attribute="267549" data-field-name="@Resources.Detalle_Aseguramiento_InmueblesResources.Zona">
@@ -164,17 +194,26 @@
 	</div>
 </div>
 <div class="form-group" id="divTipo">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_InmueblesResources.Tipo</label>
-                                <div class="col-sm-8" data-field-id="Tipo" data-attribute="267550" data-field-name="@Resources.Detalle_Aseguramiento_InmueblesResources.Tipo">
-                                    <input class="form-control" id="Detalle_Aseguramiento_InmueblesTipo" name="Detalle_Aseguramiento_InmueblesTipo" type="text" value="@Model.Tipo">
-                                </div>
-                            </div>
-<div class="form-group" id="divEspecifique_Otro">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_InmueblesResources.Especifique_Otro</label>
-                                <div class="col-sm-8" data-field-id="Especifique_Otro" data-attribute="267552" data-field-name="@Resources.Detalle_Aseguramiento_InmueblesResources.Especifique_Otro">
-                                    <input class="form-control" id="Detalle_Aseguramiento_InmueblesEspecifique_Otro" name="Detalle_Aseguramiento_InmueblesEspecifique_Otro" type="text" value="@Model.Especifique_Otro">
-                                </div>
-                            </div>
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_InmueblesResources.Tipo</label>
+	<div class="col-sm-8" data-field-id="Tipo" data-attribute="267550" data-field-name="@Resources.Detalle_Aseguramiento_InmueblesResources.Tipo">
+		<select class="form-control" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Detalle_Aseguramiento_InmueblesTipo" name="Detalle_Aseguramiento_InmueblesTipo">
+			<option value=""></option>
+			@if (varTipo_de_Inmueble_Tipo != null){ 
+				foreach (var itemTipo in varTipo_de_Inmueble_Tipo)
+				{
+					if (itemTipo.Value == Convert.ToString(Model.Tipo))
+					{
+						<option value="@itemTipo.Value" selected>@itemTipo.Text</option>
+					}
+					else
+					{
+						<option value="@itemTipo.Value">@itemTipo.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
 <div class="form-group" id="divCalle">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_InmueblesResources.Calle</label>
                                 <div class="col-sm-8" data-field-id="Calle" data-attribute="267553" data-field-name="@Resources.Detalle_Aseguramiento_InmueblesResources.Calle">
@@ -218,7 +257,9 @@
 <div class="form-group" id="divColonia">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_InmueblesResources.Colonia</label>
                                 <div class="col-sm-8" data-field-id="Colonia" data-attribute="267559" data-field-name="@Resources.Detalle_Aseguramiento_InmueblesResources.Colonia">
-                                    <input class="form-control" id="Detalle_Aseguramiento_InmueblesColonia" name="Detalle_Aseguramiento_InmueblesColonia" type="text" value="@Model.Colonia">
+                                    <select class='fullWidth AutoCompleteColonia form-control select2-dropdown' data-val="true" id="Detalle_Aseguramiento_InmueblesColonia" name="Detalle_Aseguramiento_InmueblesColonia">
+                                        <option value="@Model.Colonia">@(Model.ColoniaNombre??Model.ColoniaNombre)</option>
+                                    </select>
                                 </div>
                             </div>
 <div class="form-group" id="divRegistro_Publico_Propiedad">
@@ -408,6 +449,39 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDetalle_Aseguramiento_Inmuebles_Municipio");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteColoniaData =[];
+       $(".AutoCompleteDetalle_Aseguramiento_Inmuebles_Colonia").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_Aseguramiento_Inmuebles/GetDetalle_Aseguramiento_Inmuebles_Colonia_Colonia")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Aseguramiento_Inmuebles_Colonia_ColoniaData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Aseguramiento_Inmuebles_Colonia");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();

@@ -1,0 +1,123 @@
+﻿using Resources.Abstract;
+using Resources.Concrete;
+using System;
+using System.Globalization;
+using System.Configuration;
+using System.IO;
+
+namespace Resources
+{
+    public partial class Detalle_Resumen_DenunciaResources
+    {
+        //private static IResourceProvider resourceProviderDetalle_Resumen_Denuncia = new XmlResourceProvider(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Uploads\Resources\Detalle_Resumen_DenunciaResource." + CultureInfo.CurrentUICulture.Name + ".xml"));
+        private static IResourceProvider resourceProviderDetalle_Resumen_Denuncia = new XmlResourceProvider(Path.Combine(ConfigurationManager.AppSettings["BaseDirectoyPhysical"].ToString(), @"Uploads\Resources\Detalle_Resumen_DenunciaResource." + CultureInfo.CurrentUICulture.Name + ".xml"));
+        
+        public static void SetPath()
+        {
+            resourceProviderDetalle_Resumen_Denuncia = new XmlResourceProvider(Path.Combine(ConfigurationManager.AppSettings["BaseDirectoyPhysical"].ToString(), @"Uploads\Resources\Detalle_Resumen_DenunciaResource." + CultureInfo.CurrentUICulture.Name + ".xml"));
+        }
+        /// <summary>Detalle_Resumen_Denuncia</summary>
+        public static string Detalle_Resumen_Denuncia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Detalle_Resumen_Denuncia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Clave</summary>
+        public static string Clave
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Clave", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Modulo_Atencion_Inicial</summary>
+        public static string Modulo_Atencion_Inicial
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Modulo_Atencion_Inicial", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Ofendido</summary>
+        public static string Ofendido
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Ofendido", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Delito</summary>
+        public static string Delito
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Delito", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Victima</summary>
+        public static string Victima
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Victima", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Relacion</summary>
+        public static string Relacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Relacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Generado</summary>
+        public static string Generado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Generado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Fecha_de_registro</summary>
+        public static string Fecha_de_registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Fecha_de_registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_de_registro</summary>
+        public static string Hora_de_registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Hora_de_registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+
+	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDetalle_Resumen_Denuncia.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+
+    }
+}

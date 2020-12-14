@@ -11,7 +11,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Tipo_de_Equipo_TacticoModel
     {
         [Required]
-        public short Clave { get; set; }
+        public int Clave { get; set; }
         public string Descripcion { get; set; }
 
     }
@@ -19,7 +19,7 @@ namespace Spartane.Web.Areas.Frontal.Models
 	public class Tipo_de_Equipo_Tactico_Datos_GeneralesModel
     {
         [Required]
-        public short Clave { get; set; }
+        public int Clave { get; set; }
         public string Descripcion { get; set; }
 
     }

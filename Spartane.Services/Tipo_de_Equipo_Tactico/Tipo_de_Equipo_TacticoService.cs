@@ -80,27 +80,27 @@ namespace Spartane.Services.Tipo_de_Equipo_Tactico
             return this._Tipo_de_Equipo_TacticoRepository.Table.ToList();
         }
 
-        public Spartane.Core.Domain.Tipo_de_Equipo_Tactico.Tipo_de_Equipo_Tactico GetByKey(short Key, bool ConRelaciones)
+        public Spartane.Core.Domain.Tipo_de_Equipo_Tactico.Tipo_de_Equipo_Tactico GetByKey(int Key, bool ConRelaciones)
         {
             Spartane.Core.Domain.Tipo_de_Equipo_Tactico.Tipo_de_Equipo_Tactico result=null;
             return result;
         }
 
-        public bool Delete(short Key, Spartane.Core.Domain.User.GlobalData Tipo_de_Equipo_TacticoInformation, Core.Domain.Data.DataLayerFieldsBitacora DataReference)
+        public bool Delete(int Key, Spartane.Core.Domain.User.GlobalData Tipo_de_Equipo_TacticoInformation, Core.Domain.Data.DataLayerFieldsBitacora DataReference)
         {
             var rta = true;
             return rta;
         }
 
-        public short Insert(Spartane.Core.Domain.Tipo_de_Equipo_Tactico.Tipo_de_Equipo_Tactico entity, Spartane.Core.Domain.User.GlobalData Tipo_de_Equipo_TacticoInformation, Core.Domain.Data.DataLayerFieldsBitacora DataReference)
+        public int Insert(Spartane.Core.Domain.Tipo_de_Equipo_Tactico.Tipo_de_Equipo_Tactico entity, Spartane.Core.Domain.User.GlobalData Tipo_de_Equipo_TacticoInformation, Core.Domain.Data.DataLayerFieldsBitacora DataReference)
         {
-            short rta = Convert.ToInt16("0");
+            int rta = Convert.ToInt32("0");
             return rta;
         }
 
-        public short Update(Spartane.Core.Domain.Tipo_de_Equipo_Tactico.Tipo_de_Equipo_Tactico entity, Spartane.Core.Domain.User.GlobalData Tipo_de_Equipo_TacticoInformation, Core.Domain.Data.DataLayerFieldsBitacora DataReference)
+        public int Update(Spartane.Core.Domain.Tipo_de_Equipo_Tactico.Tipo_de_Equipo_Tactico entity, Spartane.Core.Domain.User.GlobalData Tipo_de_Equipo_TacticoInformation, Core.Domain.Data.DataLayerFieldsBitacora DataReference)
         {
-            short rta = Convert.ToInt16("0");
+            int rta = Convert.ToInt32("0");
             return rta;
         }
         #endregion

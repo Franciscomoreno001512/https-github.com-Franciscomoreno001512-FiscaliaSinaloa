@@ -36,6 +36,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Motivo_de_Registro</summary>
+        public static string Motivo_de_Registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_Armas_Involucradas.GetResource("Motivo_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Tipo</summary>
         public static string Tipo
         {
@@ -96,6 +106,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Arma_Oficial</summary>
+        public static string Arma_Oficial
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_Armas_Involucradas.GetResource("Arma_Oficial", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Inventario</summary>
         public static string Inventario
         {
@@ -116,13 +136,13 @@ namespace Resources
             }
         }
 
-        /// <summary>Cantidad</summary>
-        public static string Cantidad
+        /// <summary>Valor_Estimado</summary>
+        public static string Valor_Estimado
         {
             get
             {
                 SetPath();
-                return resourceProviderDetalle_Aseguramiento_Armas_Involucradas.GetResource("Cantidad", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderDetalle_Aseguramiento_Armas_Involucradas.GetResource("Valor_Estimado", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

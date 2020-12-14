@@ -16,16 +16,18 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Detalle_Aseguramiento_de_Pistas_de_Aterrizaje.Clave";
-                case "Tipo":
-                    return "Detalle_Aseguramiento_de_Pistas_de_Aterrizaje.Tipo";
+                case "Motivo_de_Registro[Descripcion]":
+                case "Motivo_de_RegistroDescripcion":
+                    return "Motivo_de_Registro.Descripcion";
+                case "Tipo[Descripcion]":
+                case "TipoDescripcion":
+                    return "Tipo_de_Pista_de_Aterrizaje.Descripcion";
                 case "Suelo":
                     return "Detalle_Aseguramiento_de_Pistas_de_Aterrizaje.Suelo";
                 case "Descripcion":
                     return "Detalle_Aseguramiento_de_Pistas_de_Aterrizaje.Descripcion";
                 case "Localizacion_1":
                     return "Detalle_Aseguramiento_de_Pistas_de_Aterrizaje.Localizacion_1";
-                case "Localizacion_2":
-                    return "Detalle_Aseguramiento_de_Pistas_de_Aterrizaje.Localizacion_2";
                 case "Latitud":
                     return "Detalle_Aseguramiento_de_Pistas_de_Aterrizaje.Latitud";
                 case "Longitud":

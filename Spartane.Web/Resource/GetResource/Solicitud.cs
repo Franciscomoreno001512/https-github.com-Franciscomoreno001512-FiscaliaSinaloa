@@ -96,13 +96,33 @@ namespace Resources
             }
         }
 
-        /// <summary>Unidad</summary>
-        public static string Unidad
+        /// <summary>NUAT_Codigo</summary>
+        public static string NUAT_Codigo
         {
             get
             {
                 SetPath();
-                return resourceProviderSolicitud.GetResource("Unidad", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderSolicitud.GetResource("NUAT_Codigo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Expediente_MPI</summary>
+        public static string Expediente_MPI
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Expediente_MPI", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Expediente_CausaPenal</summary>
+        public static string Expediente_CausaPenal
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Expediente_CausaPenal", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -223,6 +243,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderSolicitud.GetResource("Juez_de_Control", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Unidad</summary>
+        public static string Unidad
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Unidad", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

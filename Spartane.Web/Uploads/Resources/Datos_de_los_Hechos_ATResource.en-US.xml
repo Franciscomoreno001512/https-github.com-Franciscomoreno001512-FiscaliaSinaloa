@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Datos_de_los_Hechos_AT" value="Datos de los Hechos AT"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Modulo_Atencion_Inicial" value="Modulo Atención Inicial"></resource>
+  <resource culture="en-US" name="Expediente_MP" value="Expediente_MP"></resource>
+  <resource culture="en-US" name="Expediente_MASC" value="Expediente_MASC"></resource>
+  <resource culture="en-US" name="Titulo_del_Hecho" value="Titulo del Hecho"></resource>
+  <resource culture="en-US" name="Narrativa_Breve_de_los_Hechos" value="Narrativa Breve de los Hechos"></resource>
+  <resource culture="en-US" name="Prioridad_del_Hecho" value="Prioridad del Hecho"></resource>
+  <resource culture="en-US" name="Fecha_del_Hecho" value="Fecha del Hecho"></resource>
+  <resource culture="en-US" name="Hora_Aproximada_del_Hecho" value="Hora Aproximada del Hecho"></resource>
+  <resource culture="en-US" name="Pais" value="País"></resource>
+  <resource culture="en-US" name="Estado" value="Estado"></resource>
+  <resource culture="en-US" name="Municipio" value="Municipio"></resource>
+  <resource culture="en-US" name="Poblacion" value="Población"></resource>
+  <resource culture="en-US" name="Colonia" value="Colonia"></resource>
+  <resource culture="en-US" name="Codigo_Postal" value="Código Postal"></resource>
+  <resource culture="en-US" name="Calle" value="Calle"></resource>
+  <resource culture="en-US" name="Entre_Calle" value="Entre Calle"></resource>
+  <resource culture="en-US" name="Y_Calle" value="Y Calle"></resource>
+  <resource culture="en-US" name="Numero_Exterior" value="Número Exterior"></resource>
+  <resource culture="en-US" name="Numero_Interior" value="Número Interior"></resource>
+  <resource culture="en-US" name="Referencia" value="Referencia"></resource>
+  <resource culture="en-US" name="Latitud" value="Latitud"></resource>
+  <resource culture="en-US" name="Longitud" value="Longitud"></resource>
+  <resource culture="en-US" name="Documento_Extraviado" value="Documento Extraviado"></resource>
+  <resource culture="en-US" name="Tipo_de_Documento_Extraviado" value="Tipo de Documento Extraviado"></resource>
+  <resource culture="en-US" name="Tipo_de_Lugar_del_Hecho" value="Tipo de Lugar del Hecho"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

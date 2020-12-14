@@ -12,9 +12,12 @@
  List<SelectListItem> varModulo_Atencion_Inicial_NUAT = null;
     if (ViewBag.Modulo_Atencion_Inicials_NUAT != null)
     { varModulo_Atencion_Inicial_NUAT = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_NUAT; }
-    List<SelectListItem> varUnidad_Unidad = null;
-    if (ViewBag.Unidads_Unidad != null)
-    { varUnidad_Unidad = (List<SelectListItem>)ViewBag.Unidads_Unidad; }
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MPI = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MPI != null)
+    { varexpediente_ministerio_publico_Expediente_MPI = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MPI; }
+ List<SelectListItem> varResolucion_MP_Expediente_CausaPenal = null;
+    if (ViewBag.Resolucion_MPs_Expediente_CausaPenal != null)
+    { varResolucion_MP_Expediente_CausaPenal = (List<SelectListItem>)ViewBag.Resolucion_MPs_Expediente_CausaPenal; }
  List<SelectListItem> varMunicipio_Municipio = null;
     if (ViewBag.Municipios_Municipio != null)
     { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
@@ -30,9 +33,9 @@
  List<SelectListItem> varSpartan_User_Agente_del_Ministerio_Publico_Invest = null;
     if (ViewBag.Spartan_Users_Agente_del_Ministerio_Publico_Invest != null)
     { varSpartan_User_Agente_del_Ministerio_Publico_Invest = (List<SelectListItem>)ViewBag.Spartan_Users_Agente_del_Ministerio_Publico_Invest; }
- List<SelectListItem> varSpartan_User_Juez_de_Control = null;
-    if (ViewBag.Spartan_Users_Juez_de_Control != null)
-    { varSpartan_User_Juez_de_Control = (List<SelectListItem>)ViewBag.Spartan_Users_Juez_de_Control; }
+    List<SelectListItem> varUnidad_Unidad = null;
+    if (ViewBag.Unidads_Unidad != null)
+    { varUnidad_Unidad = (List<SelectListItem>)ViewBag.Unidads_Unidad; }
     List<SelectListItem> varLugar_Tipo_Tipo_de_Lugar_del_Hecho = null;
     if (ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho != null)
     { varLugar_Tipo_Tipo_de_Lugar_del_Hecho = (List<SelectListItem>)ViewBag.Lugar_Tipos_Tipo_de_Lugar_del_Hecho; }
@@ -186,26 +189,19 @@
     if (ViewBag.Modulo_Atencion_Inicials_NUAT != null)
     { varModulo_Atencion_Inicial_NUAT = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_NUAT; }
                 <div class="MarginBottom">
-                    <h3>@Resources.SolicitudResources.Unidad</h3>
+                    <h3>@Resources.SolicitudResources.NUAT_Codigo</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.UnidadFilter, filters, new { @class = "form-control", @id = "ddlUnidadFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceUnidad, new { @class = "form-control", @type = "text", @id = "txtAdvanceUnidad" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varUnidad_Unidad!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceUnidadMultiple, varUnidad_Unidad,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceUnidad"
-                        });
-                    }
+                    @Html.DropDownListFor(m => m.NUAT_CodigoFilter, filters, new { @class = "form-control", @id = "ddlNUAT_CodigoFilter" })
+                    @Html.TextBoxFor(m => m.NUAT_Codigo, new { @class = "form-control", @type = "text", @id = "txtNUAT_Codigo" })
                 </div>
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MPI = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MPI != null)
+    { varexpediente_ministerio_publico_Expediente_MPI = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MPI; }
+ List<SelectListItem> varResolucion_MP_Expediente_CausaPenal = null;
+    if (ViewBag.Resolucion_MPs_Expediente_CausaPenal != null)
+    { varResolucion_MP_Expediente_CausaPenal = (List<SelectListItem>)ViewBag.Resolucion_MPs_Expediente_CausaPenal; }
  List<SelectListItem> varMunicipio_Municipio = null;
     if (ViewBag.Municipios_Municipio != null)
     { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
@@ -327,9 +323,35 @@
  List<SelectListItem> varSpartan_User_Agente_del_Ministerio_Publico_Invest = null;
     if (ViewBag.Spartan_Users_Agente_del_Ministerio_Publico_Invest != null)
     { varSpartan_User_Agente_del_Ministerio_Publico_Invest = (List<SelectListItem>)ViewBag.Spartan_Users_Agente_del_Ministerio_Publico_Invest; }
- List<SelectListItem> varSpartan_User_Juez_de_Control = null;
-    if (ViewBag.Spartan_Users_Juez_de_Control != null)
-    { varSpartan_User_Juez_de_Control = (List<SelectListItem>)ViewBag.Spartan_Users_Juez_de_Control; }
+                <div class="MarginBottom">
+                    <h3>@Resources.SolicitudResources.Juez_de_Control</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Juez_de_ControlFilter, filters, new { @class = "form-control", @id = "ddlJuez_de_ControlFilter" })
+                    @Html.TextBoxFor(m => m.Juez_de_Control, new { @class = "form-control", @type = "text", @id = "txtJuez_de_Control" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.SolicitudResources.Unidad</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.UnidadFilter, filters, new { @class = "form-control", @id = "ddlUnidadFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceUnidad, new { @class = "form-control", @type = "text", @id = "txtAdvanceUnidad" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varUnidad_Unidad!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceUnidadMultiple, varUnidad_Unidad,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceUnidad"
+                        });
+                    }
+                </div>
                 <div class="MarginBottom">
                     <h3>@Resources.SolicitudResources.Titulo_del_Hecho</h3>
                 </div>
@@ -872,19 +894,39 @@
                 advanceSearch.NUATSearchType = 2;
             }
         }
-        advanceSearch.UnidadSearchType = 0;
-        if ($('#ddlAdvanceUnidad').val().length > 0 || $("#txtAdvanceUnidad").val() == "") {
+        if ($("#txtAdvanceNUAT_Codigo").val() != "") {
+            hasParameter = true;
+            advanceSearch.SolicitudNUAT_Codigo = $("#txtAdvanceNUAT_Codigo").val();
+            advanceSearch.SolicitudNUAT_CodigoSearchType = $("#ddlAdvanceNUAT_CodigoFilter").val();
+        }
+        advanceSearch.Expediente_MPISearchType = 0;
+        if ($('#ddlAdvanceExpediente_MPI').val().length > 0 || $("#txtAdvanceExpediente_MPI").val() == "") {
 
 
             if (isSolicitudTextSearch) {
-                advanceSearch.UnidadName = $("#txtAdvanceUnidad").val();
-                advanceSearch.UnidadNameSearchType = $("#ddlAdvanceUnidad").val();
-                advanceSearch.UnidadSearchType = 1;
+                advanceSearch.Expediente_MPIName = $("#txtAdvanceExpediente_MPI").val();
+                advanceSearch.Expediente_MPINameSearchType = $("#ddlAdvanceExpediente_MPI").val();
+                advanceSearch.Expediente_MPISearchType = 1;
             }
             else {
 
-                advanceSearch.UnidadToSearch = $("#ddlAdvanceUnidad").val();
-                advanceSearch.UnidadSearchType = 2;
+                advanceSearch.Expediente_MPIToSearch = $("#ddlAdvanceExpediente_MPI").val();
+                advanceSearch.Expediente_MPISearchType = 2;
+            }
+        }
+        advanceSearch.Expediente_CausaPenalSearchType = 0;
+        if ($('#ddlAdvanceExpediente_CausaPenal').val().length > 0 || $("#txtAdvanceExpediente_CausaPenal").val() == "") {
+
+
+            if (isSolicitudTextSearch) {
+                advanceSearch.Expediente_CausaPenalName = $("#txtAdvanceExpediente_CausaPenal").val();
+                advanceSearch.Expediente_CausaPenalNameSearchType = $("#ddlAdvanceExpediente_CausaPenal").val();
+                advanceSearch.Expediente_CausaPenalSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Expediente_CausaPenalToSearch = $("#ddlAdvanceExpediente_CausaPenal").val();
+                advanceSearch.Expediente_CausaPenalSearchType = 2;
             }
         }
         advanceSearch.MunicipioSearchType = 0;
@@ -992,19 +1034,24 @@
                 advanceSearch.Agente_del_Ministerio_Publico_InvestSearchType = 2;
             }
         }
-        advanceSearch.Juez_de_ControlSearchType = 0;
-        if ($('#ddlAdvanceJuez_de_Control').val().length > 0 || $("#txtAdvanceJuez_de_Control").val() == "") {
+        if ($("#txtAdvanceJuez_de_Control").val() != "") {
+            hasParameter = true;
+            advanceSearch.SolicitudJuez_de_Control = $("#txtAdvanceJuez_de_Control").val();
+            advanceSearch.SolicitudJuez_de_ControlSearchType = $("#ddlAdvanceJuez_de_ControlFilter").val();
+        }
+        advanceSearch.UnidadSearchType = 0;
+        if ($('#ddlAdvanceUnidad').val().length > 0 || $("#txtAdvanceUnidad").val() == "") {
 
 
             if (isSolicitudTextSearch) {
-                advanceSearch.Juez_de_ControlName = $("#txtAdvanceJuez_de_Control").val();
-                advanceSearch.Juez_de_ControlNameSearchType = $("#ddlAdvanceJuez_de_Control").val();
-                advanceSearch.Juez_de_ControlSearchType = 1;
+                advanceSearch.UnidadName = $("#txtAdvanceUnidad").val();
+                advanceSearch.UnidadNameSearchType = $("#ddlAdvanceUnidad").val();
+                advanceSearch.UnidadSearchType = 1;
             }
             else {
 
-                advanceSearch.Juez_de_ControlToSearch = $("#ddlAdvanceJuez_de_Control").val();
-                advanceSearch.Juez_de_ControlSearchType = 2;
+                advanceSearch.UnidadToSearch = $("#ddlAdvanceUnidad").val();
+                advanceSearch.UnidadSearchType = 2;
             }
         }
         if ($("#txtAdvanceTitulo_del_Hecho").val() != "") {
@@ -1385,14 +1432,23 @@
             isSolicitudTextSearch = false;
             $("#txtAdvanceNUAT").val('');
         });
-        $("#txtAdvanceUnidad").keypress(function () {
+        $("#txtAdvanceExpediente_MPI").keypress(function () {
             isSolicitudTextSearch = true;
-            $("#ddlAdvanceUnidad").val('').trigger("chosen:updated");
+            $("#ddlAdvanceExpediente_MPI").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvanceUnidad").change(function () {
+        $("#ddlAdvanceExpediente_MPI").change(function () {
             isSolicitudTextSearch = false;
-            $("#txtAdvanceUnidad").val('');
+            $("#txtAdvanceExpediente_MPI").val('');
+        });
+        $("#txtAdvanceExpediente_CausaPenal").keypress(function () {
+            isSolicitudTextSearch = true;
+            $("#ddlAdvanceExpediente_CausaPenal").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceExpediente_CausaPenal").change(function () {
+            isSolicitudTextSearch = false;
+            $("#txtAdvanceExpediente_CausaPenal").val('');
         });
         $("#txtAdvanceMunicipio").keypress(function () {
             isSolicitudTextSearch = true;
@@ -1439,14 +1495,14 @@
             isSolicitudTextSearch = false;
             $("#txtAdvanceAgente_del_Ministerio_Publico_Invest").val('');
         });
-        $("#txtAdvanceJuez_de_Control").keypress(function () {
+        $("#txtAdvanceUnidad").keypress(function () {
             isSolicitudTextSearch = true;
-            $("#ddlAdvanceJuez_de_Control").val('').trigger("chosen:updated");
+            $("#ddlAdvanceUnidad").val('').trigger("chosen:updated");
         });
 
-        $("#ddlAdvanceJuez_de_Control").change(function () {
+        $("#ddlAdvanceUnidad").change(function () {
             isSolicitudTextSearch = false;
-            $("#txtAdvanceJuez_de_Control").val('');
+            $("#txtAdvanceUnidad").val('');
         });
         $("#txtAdvanceTipo_de_Lugar_del_Hecho").keypress(function () {
             isSolicitudTextSearch = true;

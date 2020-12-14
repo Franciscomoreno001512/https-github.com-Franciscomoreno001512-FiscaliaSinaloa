@@ -28,6 +28,17 @@ function GetAutoCompleteDetalle_Aseguramiento_Inmuebles_Municipio_MunicipioData(
     }
     return AutoCompleteMunicipioData;
 }
+var AutoCompleteColoniaData = [];
+function GetAutoCompleteDetalle_Aseguramiento_Inmuebles_Colonia_ColoniaData(data) {
+	AutoCompleteColoniaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteColoniaData.push({
+            id: data[i].Clave,
+            text: data[i].Nombre
+        });
+    }
+    return AutoCompleteColoniaData;
+}
 
 
 function getDropdown(elementKey) {
@@ -71,6 +82,9 @@ function ClearControls() {
     $('#Municipio').empty();
     $("#Municipio").append('<option value=""></option>');
     $('#Municipio').val('0').trigger('change');
+    $('#Colonia').empty();
+    $("#Colonia").append('<option value=""></option>');
+    $('#Colonia').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -206,6 +220,9 @@ $(document).ready(function () {
     $('#Municipio').empty();
     $("#Municipio").append('<option value=""></option>');
     $('#Municipio').val('0').trigger('change');
+    $('#Colonia').empty();
+    $("#Colonia").append('<option value=""></option>');
+    $('#Colonia').val('0').trigger('change');
 
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);
