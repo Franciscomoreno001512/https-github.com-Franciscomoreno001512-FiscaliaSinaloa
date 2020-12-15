@@ -79,6 +79,12 @@
                 @Resources.Proceso_PenalResources.Plazo_Constitucional
             </td>
             <td class="column1">
+                @Resources.Proceso_PenalResources.Fecha_Continuacion_Audiencia
+            </td>
+            <td class="column1">
+                @Resources.Proceso_PenalResources.Hora_Continuacion_Audiencia
+            </td>
+            <td class="column1">
                 @Resources.Proceso_PenalResources.Vinculacion
             </td>
             <td class="column1">
@@ -180,9 +186,6 @@
             <td class="column1">
                 @Resources.Proceso_PenalResources.Monto_de_la_Reparacion_del_Dano
             </td>
-            <td class="column1">
-                @Resources.Proceso_PenalResources.prueba
-            </td>
 
         </tr>
     </thead>
@@ -219,6 +222,12 @@
                         @item.Plazo_ConstitucionalDescripcion
                     </td>
                     <td>
+                        @item.Fecha_Continuacion_Audiencia
+                    </td>
+                    <td>
+                        @item.Hora_Continuacion_Audiencia
+                    </td>
+                    <td>
                         @item.VinculacionDescripcion
                     </td>
                     <td>
@@ -228,7 +237,7 @@
                         @item.Resultado_VinculacionDescripcion
                     </td>
                     <td>
-                        @item.plazo_investigacion_complementariaDescripcion
+                        @item.plazo_investigacion_complementaria
                     </td>
                     <td>
                         @item.Resultado_de_Investigacion_ComplementariDescripcion
@@ -319,9 +328,6 @@
                     </td>
                     <td>
                         @item.Monto_de_la_Reparacion_del_Dano
-                    </td>
-                    <td>
-                        @item.prueba
                     </td>
 
                 </tr>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Aseguramientos;
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Tipo_de_Plantio;
 using Spartane.Core.Domain.Metodo_de_Destruccion;
 
@@ -20,6 +21,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_de_Plantios
     {
         public int Clave { get; set; }
         public int? Aseguramiento { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public short? Tipo { get; set; }
         public int? No__de_Plantios { get; set; }
         public decimal? Kilogramos { get; set; }
@@ -35,6 +37,8 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_de_Plantios
 
         [ForeignKey("Aseguramiento")]
         public virtual Spartane.Core.Domain.Aseguramientos.Aseguramientos Aseguramiento_Aseguramientos { get; set; }
+        [ForeignKey("Motivo_de_Registro")]
+        public virtual Spartane.Core.Domain.Motivo_de_Registro.Motivo_de_Registro Motivo_de_Registro_Motivo_de_Registro { get; set; }
         [ForeignKey("Tipo")]
         public virtual Spartane.Core.Domain.Tipo_de_Plantio.Tipo_de_Plantio Tipo_Tipo_de_Plantio { get; set; }
         [ForeignKey("Metodo_de_Destruccion")]
@@ -46,6 +50,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_de_Plantios
     {
                 public int Clave { get; set; }
         public int? Aseguramiento { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public short? Tipo { get; set; }
         public int? No__de_Plantios { get; set; }
         public decimal? Kilogramos { get; set; }
@@ -61,6 +66,8 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_de_Plantios
 
 		        [ForeignKey("Aseguramiento")]
         public virtual Spartane.Core.Domain.Aseguramientos.Aseguramientos Aseguramiento_Aseguramientos { get; set; }
+        [ForeignKey("Motivo_de_Registro")]
+        public virtual Spartane.Core.Domain.Motivo_de_Registro.Motivo_de_Registro Motivo_de_Registro_Motivo_de_Registro { get; set; }
         [ForeignKey("Tipo")]
         public virtual Spartane.Core.Domain.Tipo_de_Plantio.Tipo_de_Plantio Tipo_Tipo_de_Plantio { get; set; }
         [ForeignKey("Metodo_de_Destruccion")]

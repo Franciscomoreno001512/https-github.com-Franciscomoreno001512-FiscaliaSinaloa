@@ -381,6 +381,78 @@
 
         var queryString = GetQueryString();
 
+var Folio = "";
+        var Fecha_de_Turno = "";
+        var Hora_de_Turno = "";
+        var Numero_de_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Unidad_de_Atencion = "";
+        var Recepcion = "";
+        var Nombres = "";
+        var Apellido_Paterno = "";
+        var Apellido_Materno = "";
+        var Nombre_Completo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Sexo = "";
+        var Edad = "";
+        var Tipo_de_Atencion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Identificacion = "";
+        var Numero_de_Identificacion = "";
+        var Urgencia = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Urgencia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Orientador = "";
+        var Estatus_de_Turno = "";
+        var Modulo = "";
+        var Motivo_Finalizacion_Turno = "";
+        var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Asignacion = "";
+        var Hora_de_Asignacion = "";
+        var Fecha_de_Finalizacion = "";
+        var Hora_de_Finalizacion = "";
+
+
+        var queryString = "&Folio=" + Folio 
+        + "&Fecha_de_Turno=" + Fecha_de_Turno
+        + "&Hora_de_Turno=" + Hora_de_Turno
+        + "&Numero_de_Turno=" + Numero_de_Turno
+        + "&Unidad_de_Atencion=" + Unidad_de_Atencion
+        + "&Recepcion=" + Recepcion
+        + "&Nombres=" + Nombres
+        + "&Apellido_Paterno=" + Apellido_Paterno
+        + "&Apellido_Materno=" + Apellido_Materno
+        + "&Nombre_Completo=" + Nombre_Completo
+        + "&Sexo=" + Sexo
+        + "&Edad=" + Edad
+        + "&Tipo_de_Atencion=" + Tipo_de_Atencion
+        + "&Tipo_de_Identificacion=" + Tipo_de_Identificacion
+        + "&Numero_de_Identificacion=" + Numero_de_Identificacion
+        + "&Urgencia=" + Urgencia
+        + "&Tipo_de_Urgencia=" + Tipo_de_Urgencia
+        + "&Orientador=" + Orientador
+        + "&Estatus_de_Turno=" + Estatus_de_Turno
+        + "&Modulo=" + Modulo
+        + "&Motivo_Finalizacion_Turno=" + Motivo_Finalizacion_Turno
+        + "&Observaciones=" + Observaciones
+        + "&Fecha_de_Asignacion=" + Fecha_de_Asignacion
+        + "&Hora_de_Asignacion=" + Hora_de_Asignacion
+        + "&Fecha_de_Finalizacion=" + Fecha_de_Finalizacion
+        + "&Hora_de_Finalizacion=" + Hora_de_Finalizacion
+ + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
+
+        var url = "@Url.Content("~/Frontal/Asignacion_de_Turnos/Export?format=")" + format
+            + "&pageIndex=" + ($('#exportModal :radio:checked').val() == "0" ? 1 : currentFilter.page + 1)
+            + "&pageSize=" + ($('#exportModal :radio:checked').val() == "0" ? 0 : currentFilter.length)
+		    + "&where=" + where + "&order=" + order + 
+			+ "&columnsVisible=" + table.columns().visible().join(",") + queryString;
+        window.open(url, '_blank');
+    };
+
+       function Export(format) {
+	 var counter = 1;
+        currentFilter = table.page.info();
+		 var where= MRWhere;
+		var order = MROrder;
+
+        var queryString = GetQueryString();
+
         var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Turno = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Turno = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -448,33 +520,40 @@
     function GetQueryString() {
 	
 	 var counter = 0;
-        var Folio =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Turno = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Turno = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Folio =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Turno = "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Turno = "";//$($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Unidad_de_Atencion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Recepcion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Nombres =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Apellido_Paterno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Apellido_Materno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Unidad_de_Atencion =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Recepcion =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Nombres =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Paterno =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Apellido_Materno =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
         var Nombre_Completo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Sexo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Edad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Sexo =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Edad =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Atencion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Numero_de_Identificacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Identificacion =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Numero_de_Identificacion =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
         var Urgencia = $($('table td .filterData.form-control:input')[counter++]).val();
         var Tipo_de_Urgencia =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Orientador =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Estatus_de_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Modulo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Motivo_Finalizacion_Turno =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Orientador =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Estatus_de_Turno =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Modulo =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_Finalizacion_Turno =  "";//$($('table td .filterData.form-control:input')[counter++]).val();
         var Observaciones =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Asignacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Finalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Finalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Asignacion = "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Asignacion = "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Finalizacion = "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Finalizacion = "";//$($('table td .filterData.form-control:input')[counter++]).val();
+        var filtro_urgencia = $('.checkbox:checkbox:checked').val();
+        if (filtro_urgencia == "on")
+		{
+		Urgencia = ""
+		}else{
+				Urgencia = "0"
 
+		}
 
         return "&Folio=" + Folio 
         + "&Fecha_de_Turno=" + Fecha_de_Turno

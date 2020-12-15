@@ -16,6 +16,9 @@ namespace Spartane.Web.SqlModelMapper
             {
                 case "Clave":
                     return "Encuesta.Clave";
+                case "Modulo[Descripcion]":
+                case "ModuloDescripcion":
+                    return "Estatus.Descripcion";
                 case "Numero_de_Preguntas[Descripcion]":
                 case "Numero_de_PreguntasDescripcion":
                     return "Catalogo_Numero_de_Preguntas.Descripcion";
@@ -29,16 +32,6 @@ namespace Spartane.Web.SqlModelMapper
                     return "Encuesta.Pregunta_4";
                 case "Pregunta_5":
                     return "Encuesta.Pregunta_5";
-                case "Pregunta_6":
-                    return "Encuesta.Pregunta_6";
-                case "Pregunta_7":
-                    return "Encuesta.Pregunta_7";
-                case "Pregunta_8":
-                    return "Encuesta.Pregunta_8";
-                case "Pregunta_9":
-                    return "Encuesta.Pregunta_9";
-                case "Pregunta_10":
-                    return "Encuesta.Pregunta_10";
 
                 default:
                     return propertyName;

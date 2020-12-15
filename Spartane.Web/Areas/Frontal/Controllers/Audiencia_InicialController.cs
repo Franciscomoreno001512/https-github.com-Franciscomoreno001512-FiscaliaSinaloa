@@ -4,6 +4,7 @@ using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Audiencia_Inicial;
 using Spartane.Core.Domain.expediente_ministerio_publico;
 using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Tipo_de_Judicializacion;
 using Spartane.Core.Domain.Detalle_Relaciones_Audiencia_Inicial;
 
 using Spartane.Core.Domain.Detalle_de_Imputado;
@@ -26,6 +27,7 @@ using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Audiencia_Inicial;
 using Spartane.Web.Areas.WebApiConsumer.expediente_ministerio_publico;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Judicializacion;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Relaciones_Audiencia_Inicial;
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Imputado;
@@ -74,6 +76,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IAudiencia_InicialApiConsumer _IAudiencia_InicialApiConsumer;
         private Iexpediente_ministerio_publicoApiConsumer _Iexpediente_ministerio_publicoApiConsumer;
         private ISpartan_UserApiConsumer _ISpartan_UserApiConsumer;
+        private ITipo_de_JudicializacionApiConsumer _ITipo_de_JudicializacionApiConsumer;
         private IDetalle_Relaciones_Audiencia_InicialApiConsumer _IDetalle_Relaciones_Audiencia_InicialApiConsumer;
 
         private IDetalle_de_ImputadoApiConsumer _IDetalle_de_ImputadoApiConsumer;
@@ -101,7 +104,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Audiencia_InicialController(IAudiencia_InicialService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IAudiencia_InicialApiConsumer Audiencia_InicialApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IDetalle_Relaciones_Audiencia_InicialApiConsumer Detalle_Relaciones_Audiencia_InicialApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer , IDelitoApiConsumer DelitoApiConsumer  , IA_TiempoApiConsumer A_TiempoApiConsumer , IEspecificacion_DetencionApiConsumer Especificacion_DetencionApiConsumer , IControl_de_DetencionApiConsumer Control_de_DetencionApiConsumer , IContinuacion_de_ProcesoApiConsumer Continuacion_de_ProcesoApiConsumer , IFormulacion_de_ImputacionApiConsumer Formulacion_de_ImputacionApiConsumer )
+        public Audiencia_InicialController(IAudiencia_InicialService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IAudiencia_InicialApiConsumer Audiencia_InicialApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , ITipo_de_JudicializacionApiConsumer Tipo_de_JudicializacionApiConsumer , IDetalle_Relaciones_Audiencia_InicialApiConsumer Detalle_Relaciones_Audiencia_InicialApiConsumer , IDetalle_de_ImputadoApiConsumer Detalle_de_ImputadoApiConsumer , IDelitoApiConsumer DelitoApiConsumer  , IA_TiempoApiConsumer A_TiempoApiConsumer , IEspecificacion_DetencionApiConsumer Especificacion_DetencionApiConsumer , IControl_de_DetencionApiConsumer Control_de_DetencionApiConsumer , IContinuacion_de_ProcesoApiConsumer Continuacion_de_ProcesoApiConsumer , IFormulacion_de_ImputacionApiConsumer Formulacion_de_ImputacionApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -117,6 +120,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._Iexpediente_ministerio_publicoApiConsumer = expediente_ministerio_publicoApiConsumer;
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
+            this._ITipo_de_JudicializacionApiConsumer = Tipo_de_JudicializacionApiConsumer;
             this._IDetalle_Relaciones_Audiencia_InicialApiConsumer = Detalle_Relaciones_Audiencia_InicialApiConsumer;
 
             this._IDetalle_de_ImputadoApiConsumer = Detalle_de_ImputadoApiConsumer;
@@ -211,6 +215,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Usuario_que_Registra = Audiencia_InicialData.Usuario_que_Registra
                     ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Audiencia_InicialData.Usuario_que_Registra), "Spartan_User") ??  (string)Audiencia_InicialData.Usuario_que_Registra_Spartan_User.Name
                     ,Nombre_del_Juez_de_Control = Audiencia_InicialData.Nombre_del_Juez_de_Control
+                    ,Tipo = Audiencia_InicialData.Tipo
+                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Audiencia_InicialData.Tipo), "Tipo_de_Judicializacion") ??  (string)Audiencia_InicialData.Tipo_Tipo_de_Judicializacion.Descripcion
                     ,causa_penal = Audiencia_InicialData.causa_penal
                     ,Fecha_Audiencia_Inicial = (Audiencia_InicialData.Fecha_Audiencia_Inicial == null ? string.Empty : Convert.ToDateTime(Audiencia_InicialData.Fecha_Audiencia_Inicial).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_Audiencia_Inicial = Audiencia_InicialData.Hora_Audiencia_Inicial
@@ -235,6 +241,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ITipo_de_JudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Judicializacions_Tipo = _ITipo_de_JudicializacionApiConsumer.SelAll(true);
+            if (Tipo_de_Judicializacions_Tipo != null && Tipo_de_Judicializacions_Tipo.Resource != null)
+                ViewBag.Tipo_de_Judicializacions_Tipo = Tipo_de_Judicializacions_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Judicializacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var A_Tiempos_Con_Detenido = _IA_TiempoApiConsumer.SelAll(true);
             if (A_Tiempos_Con_Detenido != null && A_Tiempos_Con_Detenido.Resource != null)
@@ -341,6 +354,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Usuario_que_Registra = Audiencia_InicialData.Usuario_que_Registra
                     ,Usuario_que_RegistraName = CultureHelper.GetTraduction(Convert.ToString(Audiencia_InicialData.Usuario_que_Registra), "Spartan_User") ??  (string)Audiencia_InicialData.Usuario_que_Registra_Spartan_User.Name
                     ,Nombre_del_Juez_de_Control = Audiencia_InicialData.Nombre_del_Juez_de_Control
+                    ,Tipo = Audiencia_InicialData.Tipo
+                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Audiencia_InicialData.Tipo), "Tipo_de_Judicializacion") ??  (string)Audiencia_InicialData.Tipo_Tipo_de_Judicializacion.Descripcion
                     ,causa_penal = Audiencia_InicialData.causa_penal
                     ,Fecha_Audiencia_Inicial = (Audiencia_InicialData.Fecha_Audiencia_Inicial == null ? string.Empty : Convert.ToDateTime(Audiencia_InicialData.Fecha_Audiencia_Inicial).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_Audiencia_Inicial = Audiencia_InicialData.Hora_Audiencia_Inicial
@@ -363,6 +378,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ITipo_de_JudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Judicializacions_Tipo = _ITipo_de_JudicializacionApiConsumer.SelAll(true);
+            if (Tipo_de_Judicializacions_Tipo != null && Tipo_de_Judicializacions_Tipo.Resource != null)
+                ViewBag.Tipo_de_Judicializacions_Tipo = Tipo_de_Judicializacions_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Judicializacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var A_Tiempos_Con_Detenido = _IA_TiempoApiConsumer.SelAll(true);
             if (A_Tiempos_Con_Detenido != null && A_Tiempos_Con_Detenido.Resource != null)
@@ -453,6 +475,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name")?? m.Name,
                     Value = Convert.ToString(m.Id_User)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetTipo_de_JudicializacionAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_JudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_JudicializacionApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Judicializacion", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
@@ -598,6 +641,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ITipo_de_JudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Judicializacions_Tipo = _ITipo_de_JudicializacionApiConsumer.SelAll(true);
+            if (Tipo_de_Judicializacions_Tipo != null && Tipo_de_Judicializacions_Tipo.Resource != null)
+                ViewBag.Tipo_de_Judicializacions_Tipo = Tipo_de_Judicializacions_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Judicializacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var A_Tiempos_Con_Detenido = _IA_TiempoApiConsumer.SelAll(true);
             if (A_Tiempos_Con_Detenido != null && A_Tiempos_Con_Detenido.Resource != null)
@@ -644,6 +694,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ITipo_de_JudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Judicializacions_Tipo = _ITipo_de_JudicializacionApiConsumer.SelAll(true);
+            if (Tipo_de_Judicializacions_Tipo != null && Tipo_de_Judicializacions_Tipo.Resource != null)
+                ViewBag.Tipo_de_Judicializacions_Tipo = Tipo_de_Judicializacions_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Judicializacion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var A_Tiempos_Con_Detenido = _IA_TiempoApiConsumer.SelAll(true);
             if (A_Tiempos_Con_Detenido != null && A_Tiempos_Con_Detenido.Resource != null)
@@ -722,6 +779,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Registro = m.Hora_de_Registro
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Nombre_del_Juez_de_Control = m.Nombre_del_Juez_de_Control
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
 			,causa_penal = m.causa_penal
                         ,Fecha_Audiencia_Inicial = (m.Fecha_Audiencia_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Audiencia_Inicial).ToString(ConfigurationProperty.DateFormat))
 			,Hora_Audiencia_Inicial = m.Hora_Audiencia_Inicial
@@ -850,6 +908,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Registro = m.Hora_de_Registro
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Nombre_del_Juez_de_Control = m.Nombre_del_Juez_de_Control
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
 			,causa_penal = m.causa_penal
                         ,Fecha_Audiencia_Inicial = (m.Fecha_Audiencia_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Audiencia_Inicial).ToString(ConfigurationProperty.DateFormat))
 			,Hora_Audiencia_Inicial = m.Hora_Audiencia_Inicial
@@ -1092,6 +1151,34 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         where += " AND Audiencia_Inicial.Nombre_del_Juez_de_Control LIKE '%" + filter.Nombre_del_Juez_de_Control + "%'";
                         break;
                 }
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceTipo))
+            {
+                switch (filter.TipoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Tipo_de_Judicializacion.Descripcion LIKE '" + filter.AdvanceTipo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Tipo_de_Judicializacion.Descripcion LIKE '%" + filter.AdvanceTipo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Tipo_de_Judicializacion.Descripcion = '" + filter.AdvanceTipo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Tipo_de_Judicializacion.Descripcion LIKE '%" + filter.AdvanceTipo + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceTipoMultiple != null && filter.AdvanceTipoMultiple.Count() > 0)
+            {
+                var TipoIds = string.Join(",", filter.AdvanceTipoMultiple);
+
+                where += " AND Audiencia_Inicial.Tipo In (" + TipoIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.causa_penal))
@@ -1458,6 +1545,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Hora_de_Registro = varAudiencia_Inicial.Hora_de_Registro
                         ,Usuario_que_Registra = varAudiencia_Inicial.Usuario_que_Registra
                         ,Nombre_del_Juez_de_Control = varAudiencia_Inicial.Nombre_del_Juez_de_Control
+                        ,Tipo = varAudiencia_Inicial.Tipo
                         ,causa_penal = varAudiencia_Inicial.causa_penal
                         ,Fecha_Audiencia_Inicial = (!String.IsNullOrEmpty(varAudiencia_Inicial.Fecha_Audiencia_Inicial)) ? DateTime.ParseExact(varAudiencia_Inicial.Fecha_Audiencia_Inicial, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_Audiencia_Inicial = varAudiencia_Inicial.Hora_Audiencia_Inicial
@@ -1969,7 +2057,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
+			string[] arrayColumnsVisible = null;
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -2019,6 +2107,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Registro = m.Hora_de_Registro
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Nombre_del_Juez_de_Control = m.Nombre_del_Juez_de_Control
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
 			,causa_penal = m.causa_penal
                         ,Fecha_Audiencia_Inicial = (m.Fecha_Audiencia_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Audiencia_Inicial).ToString(ConfigurationProperty.DateFormat))
 			,Hora_Audiencia_Inicial = m.Hora_Audiencia_Inicial
@@ -2106,6 +2195,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hora_de_Registro = m.Hora_de_Registro
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Nombre_del_Juez_de_Control = m.Nombre_del_Juez_de_Control
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
 			,causa_penal = m.causa_penal
                         ,Fecha_Audiencia_Inicial = (m.Fecha_Audiencia_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Audiencia_Inicial).ToString(ConfigurationProperty.DateFormat))
 			,Hora_Audiencia_Inicial = m.Hora_Audiencia_Inicial
@@ -2159,6 +2249,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Hora_de_Registro = varAudiencia_Inicial.Hora_de_Registro
                         ,Usuario_que_Registra = varAudiencia_Inicial.Usuario_que_Registra
                         ,Nombre_del_Juez_de_Control = varAudiencia_Inicial.Nombre_del_Juez_de_Control
+                        ,Tipo = varAudiencia_Inicial.Tipo
                         ,causa_penal = varAudiencia_Inicial.causa_penal
                         ,Fecha_Audiencia_Inicial = (!String.IsNullOrEmpty(varAudiencia_Inicial.Fecha_Audiencia_Inicial)) ? DateTime.ParseExact(varAudiencia_Inicial.Fecha_Audiencia_Inicial, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_Audiencia_Inicial = varAudiencia_Inicial.Hora_Audiencia_Inicial
@@ -2205,6 +2296,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Usuario_que_Registra = m.Usuario_que_Registra
                         ,Usuario_que_RegistraName = CultureHelper.GetTraduction(m.Usuario_que_Registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_Registra_Spartan_User.Name
 			,Nombre_del_Juez_de_Control = m.Nombre_del_Juez_de_Control
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
 			,causa_penal = m.causa_penal
                         ,Fecha_Audiencia_Inicial = (m.Fecha_Audiencia_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Audiencia_Inicial).ToString(ConfigurationProperty.DateFormat))
 			,Hora_Audiencia_Inicial = m.Hora_Audiencia_Inicial

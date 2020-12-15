@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_de_Plantios;
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Tipo_de_Plantio;
 using Spartane.Core.Domain.Metodo_de_Destruccion;
 
@@ -14,6 +15,7 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_de_Plantios;
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Plantio;
 using Spartane.Web.Areas.WebApiConsumer.Metodo_de_Destruccion;
 
@@ -42,6 +44,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_de_PlantiosService service = null;
         private IDetalle_Aseguramiento_de_PlantiosApiConsumer _IDetalle_Aseguramiento_de_PlantiosApiConsumer;
+        private IMotivo_de_RegistroApiConsumer _IMotivo_de_RegistroApiConsumer;
         private ITipo_de_PlantioApiConsumer _ITipo_de_PlantioApiConsumer;
         private IMetodo_de_DestruccionApiConsumer _IMetodo_de_DestruccionApiConsumer;
 
@@ -57,7 +60,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_de_PlantiosController(IDetalle_Aseguramiento_de_PlantiosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_de_PlantiosApiConsumer Detalle_Aseguramiento_de_PlantiosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_PlantioApiConsumer Tipo_de_PlantioApiConsumer , IMetodo_de_DestruccionApiConsumer Metodo_de_DestruccionApiConsumer )
+        public Detalle_Aseguramiento_de_PlantiosController(IDetalle_Aseguramiento_de_PlantiosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_de_PlantiosApiConsumer Detalle_Aseguramiento_de_PlantiosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IMotivo_de_RegistroApiConsumer Motivo_de_RegistroApiConsumer , ITipo_de_PlantioApiConsumer Tipo_de_PlantioApiConsumer , IMetodo_de_DestruccionApiConsumer Metodo_de_DestruccionApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -67,6 +70,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._ITipo_de_PlantioApiConsumer = Tipo_de_PlantioApiConsumer;
             this._IMetodo_de_DestruccionApiConsumer = Metodo_de_DestruccionApiConsumer;
 
@@ -117,6 +121,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 varDetalle_Aseguramiento_de_Plantios = new Detalle_Aseguramiento_de_PlantiosModel
                 {
                     Clave = (int)Detalle_Aseguramiento_de_PlantiosData.Clave
+                    ,Motivo_de_Registro = Detalle_Aseguramiento_de_PlantiosData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_PlantiosData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_de_PlantiosData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                     ,Tipo = Detalle_Aseguramiento_de_PlantiosData.Tipo
                     ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_PlantiosData.Tipo), "Tipo_de_Plantio") ??  (string)Detalle_Aseguramiento_de_PlantiosData.Tipo_Tipo_de_Plantio.Descripcion
                     ,No__de_Plantios = Detalle_Aseguramiento_de_PlantiosData.No__de_Plantios
@@ -138,6 +144,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ITipo_de_PlantioApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Plantios_Tipo = _ITipo_de_PlantioApiConsumer.SelAll(true);
             if (Tipo_de_Plantios_Tipo != null && Tipo_de_Plantios_Tipo.Resource != null)
@@ -185,7 +198,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varDetalle_Aseguramiento_de_Plantios= new Detalle_Aseguramiento_de_PlantiosModel
 					{
 						Clave  = Detalle_Aseguramiento_de_PlantiosData.Clave 
-	                    ,Tipo = Detalle_Aseguramiento_de_PlantiosData.Tipo
+	                    ,Motivo_de_Registro = Detalle_Aseguramiento_de_PlantiosData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_PlantiosData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_de_PlantiosData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                    ,Tipo = Detalle_Aseguramiento_de_PlantiosData.Tipo
                     ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_PlantiosData.Tipo), "Tipo_de_Plantio") ??  (string)Detalle_Aseguramiento_de_PlantiosData.Tipo_Tipo_de_Plantio.Descripcion
                     ,No__de_Plantios = Detalle_Aseguramiento_de_PlantiosData.No__de_Plantios
                     ,Kilogramos = Detalle_Aseguramiento_de_PlantiosData.Kilogramos
@@ -207,6 +222,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ITipo_de_PlantioApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Plantios_Tipo = _ITipo_de_PlantioApiConsumer.SelAll(true);
             if (Tipo_de_Plantios_Tipo != null && Tipo_de_Plantios_Tipo.Resource != null)
@@ -241,6 +263,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetMotivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetTipo_de_PlantioAll()
         {
@@ -304,6 +347,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_Aseguramiento_de_Plantioss.Select(m => new Detalle_Aseguramiento_de_PlantiosGridModel
                     {
                     Clave = m.Clave
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Plantio.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Plantio.Descripcion
 			,No__de_Plantios = m.No__de_Plantios
 			,Kilogramos = m.Kilogramos
@@ -380,6 +424,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Detalle_Aseguramiento_de_PlantiosInfo = new Detalle_Aseguramiento_de_Plantios
                     {
                         Clave = varDetalle_Aseguramiento_de_Plantios.Clave
+                        ,Motivo_de_Registro = varDetalle_Aseguramiento_de_Plantios.Motivo_de_Registro
                         ,Tipo = varDetalle_Aseguramiento_de_Plantios.Tipo
                         ,No__de_Plantios = varDetalle_Aseguramiento_de_Plantios.No__de_Plantios
                         ,Kilogramos = varDetalle_Aseguramiento_de_Plantios.Kilogramos
@@ -619,6 +664,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_de_Plantioss.Select(m => new Detalle_Aseguramiento_de_PlantiosGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,TipoDescripcion = (string)m.Tipo_Tipo_de_Plantio.Descripcion
                 ,No__de_Plantios = m.No__de_Plantios
                 ,Kilogramos = m.Kilogramos
@@ -677,6 +723,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_de_Plantioss.Select(m => new Detalle_Aseguramiento_de_PlantiosGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,TipoDescripcion = (string)m.Tipo_Tipo_de_Plantio.Descripcion
                 ,No__de_Plantios = m.No__de_Plantios
                 ,Kilogramos = m.Kilogramos

@@ -30,6 +30,7 @@ namespace Spartane.Core.Domain.Colonia
         public int? pob_justicia { get; set; }
         public int? sector { get; set; }
         public string estatus { get; set; }
+        public int? cod_localidad { get; set; }
 
         [ForeignKey("Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Municipio { get; set; }
@@ -53,6 +54,7 @@ namespace Spartane.Core.Domain.Colonia
         public int? pob_justicia { get; set; }
         public int? sector { get; set; }
         public string estatus { get; set; }
+        public int? cod_localidad { get; set; }
 
 		        [ForeignKey("Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Municipio { get; set; }

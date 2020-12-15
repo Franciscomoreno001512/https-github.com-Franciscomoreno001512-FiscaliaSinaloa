@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
 using Spartane.Core.Domain.expediente_ministerio_publico;
+using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Estado_Civil;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
@@ -102,6 +103,7 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public bool? Persona_Moral { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
         public int? Expediente_MP { get; set; }
+        public int? Expediente_MASC { get; set; }
         public bool? Quien_Resulte_Responsable { get; set; }
         public bool? Se_Presenta_con_Detenido { get; set; }
         public string Folio_Registro_Nacional_de_Detenciones { get; set; }
@@ -267,6 +269,8 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
         [ForeignKey("Expediente_MP")]
         public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
+        [ForeignKey("Expediente_MASC")]
+        public virtual Spartane.Core.Domain.Solicitud.Solicitud Expediente_MASC_Solicitud { get; set; }
         [ForeignKey("Sexo")]
         public virtual Spartane.Core.Domain.Genero.Genero Sexo_Genero { get; set; }
         [ForeignKey("Estado_Civil")]
@@ -438,6 +442,7 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public bool? Persona_Moral { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
         public int? Expediente_MP { get; set; }
+        public int? Expediente_MASC { get; set; }
         public bool? Quien_Resulte_Responsable { get; set; }
         public bool? Se_Presenta_con_Detenido { get; set; }
         public string Folio_Registro_Nacional_de_Detenciones { get; set; }
@@ -507,6 +512,8 @@ namespace Spartane.Core.Domain.Detalle_de_Imputado
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
         [ForeignKey("Expediente_MP")]
         public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
+        [ForeignKey("Expediente_MASC")]
+        public virtual Spartane.Core.Domain.Solicitud.Solicitud Expediente_MASC_Solicitud { get; set; }
         [ForeignKey("Sexo")]
         public virtual Spartane.Core.Domain.Genero.Genero Sexo_Genero { get; set; }
         [ForeignKey("Estado_Civil")]

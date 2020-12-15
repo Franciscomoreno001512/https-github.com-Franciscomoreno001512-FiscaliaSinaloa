@@ -211,6 +211,7 @@
                                     <th>@Resources.Detalle_de_RelacionesResources.Delito</th>
                                     <th>@Resources.Detalle_de_RelacionesResources.Es_Familiar</th>
                                     <th>@Resources.Detalle_de_RelacionesResources.Parentesco</th>
+                                    <th>@Resources.Detalle_de_RelacionesResources.Descripcion</th>
 
                                 </tr>
                             </thead>
@@ -218,6 +219,7 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -348,6 +350,7 @@
         var Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Es_Familiar =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Parentesco =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Descripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -358,6 +361,7 @@
         + "&Delito=" + Delito
         + "&Es_Familiar=" + Es_Familiar
         + "&Parentesco=" + Parentesco
+        + "&Descripcion=" + Descripcion
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Detalle_de_Relaciones/Export?format=")" + format
@@ -379,6 +383,7 @@
         var Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Es_Familiar =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Parentesco =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Descripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -389,6 +394,7 @@
         + "&Delito=" + Delito
         + "&Es_Familiar=" + Es_Familiar
         + "&Parentesco=" + Parentesco
+        + "&Descripcion=" + Descripcion
 ;
 
     }
@@ -569,11 +575,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -639,11 +645,12 @@
                 { "data": "Clave", "orderable": true, "name": "Clave" }
                 ,{ "data": "Modulo_Atencion_InicialNUAT", "orderable": true, "name": "Modulo_Atencion_InicialNUAT"}
                 ,{ "data": "Expediente_MPnic", "orderable": true, "name": "Expediente_MPnic"}
-                ,{ "data": "InvolucradoNombre_Completo", "orderable": true, "name": "InvolucradoNombre_Completo"}
-                ,{ "data": "Probable_ResponsableNombre_Completo_del_Tutor", "orderable": true, "name": "Probable_ResponsableNombre_Completo_del_Tutor"}
+                ,{ "data": "InvolucradoNombre_Completo2", "orderable": true, "name": "InvolucradoNombre_Completo2"}
+                ,{ "data": "Probable_ResponsableNombre_Completo_Detenido", "orderable": true, "name": "Probable_ResponsableNombre_Completo_Detenido"}
                 ,{ "data": "DelitoDescripcion", "orderable": true, "name": "DelitoDescripcion" }
                 ,{ "data": "Es_FamiliarDescripcion", "orderable": true, "name": "Es_FamiliarDescripcion" }
                 ,{ "data": "ParentescoDescripcion", "orderable": true, "name": "ParentescoDescripcion" }
+                ,{ "data": "Descripcion", "orderable": true, "name": "Descripcion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
 
             ],
 			"colReorder": true,

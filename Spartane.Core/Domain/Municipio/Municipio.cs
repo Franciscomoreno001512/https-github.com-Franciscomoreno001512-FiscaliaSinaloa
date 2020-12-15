@@ -27,6 +27,7 @@ namespace Spartane.Core.Domain.Municipio
         public string cod_zona { get; set; }
         public string MuniNSJP { get; set; }
         public int? cod_zona_nsjp { get; set; }
+        public int? cod_mun { get; set; }
 
         [ForeignKey("Estado")]
         public virtual Spartane.Core.Domain.Estado.Estado Estado_Estado { get; set; }
@@ -47,6 +48,7 @@ namespace Spartane.Core.Domain.Municipio
         public string cod_zona { get; set; }
         public string MuniNSJP { get; set; }
         public int? cod_zona_nsjp { get; set; }
+        public int? cod_mun { get; set; }
 
 		        [ForeignKey("Estado")]
         public virtual Spartane.Core.Domain.Estado.Estado Estado_Estado { get; set; }

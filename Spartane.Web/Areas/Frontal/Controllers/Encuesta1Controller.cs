@@ -2,17 +2,14 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Encuesta1;
+using Spartane.Core.Domain.Modulo_Encuesta;
 using Spartane.Core.Domain.Catalogo_Numero_de_Preguntas;
 using Spartane.Core.Domain.Catalogo_Respuesta;
 using Spartane.Core.Domain.Catalogo_Respuesta;
 using Spartane.Core.Domain.Catalogo_Respuesta;
 using Spartane.Core.Domain.Catalogo_Respuesta;
 using Spartane.Core.Domain.Catalogo_Respuesta;
-using Spartane.Core.Domain.Catalogo_Respuesta;
-using Spartane.Core.Domain.Catalogo_Respuesta;
-using Spartane.Core.Domain.Catalogo_Respuesta;
-using Spartane.Core.Domain.Catalogo_Respuesta;
-using Spartane.Core.Domain.Catalogo_Respuesta;
+using Spartane.Core.Domain.Estatus_Encuesta;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -23,17 +20,14 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Encuesta1;
+using Spartane.Web.Areas.WebApiConsumer.Modulo_Encuesta;
 using Spartane.Web.Areas.WebApiConsumer.Catalogo_Numero_de_Preguntas;
 using Spartane.Web.Areas.WebApiConsumer.Catalogo_Respuesta;
 using Spartane.Web.Areas.WebApiConsumer.Catalogo_Respuesta;
 using Spartane.Web.Areas.WebApiConsumer.Catalogo_Respuesta;
 using Spartane.Web.Areas.WebApiConsumer.Catalogo_Respuesta;
 using Spartane.Web.Areas.WebApiConsumer.Catalogo_Respuesta;
-using Spartane.Web.Areas.WebApiConsumer.Catalogo_Respuesta;
-using Spartane.Web.Areas.WebApiConsumer.Catalogo_Respuesta;
-using Spartane.Web.Areas.WebApiConsumer.Catalogo_Respuesta;
-using Spartane.Web.Areas.WebApiConsumer.Catalogo_Respuesta;
-using Spartane.Web.Areas.WebApiConsumer.Catalogo_Respuesta;
+using Spartane.Web.Areas.WebApiConsumer.Estatus_Encuesta;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -70,8 +64,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IEncuesta1Service service = null;
         private IEncuesta1ApiConsumer _IEncuesta1ApiConsumer;
+        private IModulo_EncuestaApiConsumer _IModulo_EncuestaApiConsumer;
         private ICatalogo_Numero_de_PreguntasApiConsumer _ICatalogo_Numero_de_PreguntasApiConsumer;
         private ICatalogo_RespuestaApiConsumer _ICatalogo_RespuestaApiConsumer;
+        private IEstatus_EncuestaApiConsumer _IEstatus_EncuestaApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -89,7 +85,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Encuesta1Controller(IEncuesta1Service service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IEncuesta1ApiConsumer Encuesta1ApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ICatalogo_Numero_de_PreguntasApiConsumer Catalogo_Numero_de_PreguntasApiConsumer , ICatalogo_RespuestaApiConsumer Catalogo_RespuestaApiConsumer )
+        public Encuesta1Controller(IEncuesta1Service service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IEncuesta1ApiConsumer Encuesta1ApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_EncuestaApiConsumer Modulo_EncuestaApiConsumer , ICatalogo_Numero_de_PreguntasApiConsumer Catalogo_Numero_de_PreguntasApiConsumer , ICatalogo_RespuestaApiConsumer Catalogo_RespuestaApiConsumer , IEstatus_EncuestaApiConsumer Estatus_EncuestaApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -103,17 +99,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_Format_PermissionsApiConsumer = Spartan_Format_PermissionsApiConsumer;
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
+            this._IModulo_EncuestaApiConsumer = Modulo_EncuestaApiConsumer;
             this._ICatalogo_Numero_de_PreguntasApiConsumer = Catalogo_Numero_de_PreguntasApiConsumer;
             this._ICatalogo_RespuestaApiConsumer = Catalogo_RespuestaApiConsumer;
             this._ICatalogo_RespuestaApiConsumer = Catalogo_RespuestaApiConsumer;
             this._ICatalogo_RespuestaApiConsumer = Catalogo_RespuestaApiConsumer;
             this._ICatalogo_RespuestaApiConsumer = Catalogo_RespuestaApiConsumer;
             this._ICatalogo_RespuestaApiConsumer = Catalogo_RespuestaApiConsumer;
-            this._ICatalogo_RespuestaApiConsumer = Catalogo_RespuestaApiConsumer;
-            this._ICatalogo_RespuestaApiConsumer = Catalogo_RespuestaApiConsumer;
-            this._ICatalogo_RespuestaApiConsumer = Catalogo_RespuestaApiConsumer;
-            this._ICatalogo_RespuestaApiConsumer = Catalogo_RespuestaApiConsumer;
-            this._ICatalogo_RespuestaApiConsumer = Catalogo_RespuestaApiConsumer;
+            this._IEstatus_EncuestaApiConsumer = Estatus_EncuestaApiConsumer;
 
         }
 
@@ -189,29 +182,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varEncuesta1= new Encuesta1Model
 					{
 						Clave  = Encuesta1Data.Clave 
-	                    ,Numero_de_Preguntas = Encuesta1Data.Numero_de_Preguntas
-                    ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Numero_de_Preguntas), "Catalogo_Numero_de_Preguntas") ??  (string)Encuesta1Data.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
+	                    ,Folio = Encuesta1Data.Folio
+                    ,Fecha_Enviado = (Encuesta1Data.Fecha_Enviado == null ? string.Empty : Convert.ToDateTime(Encuesta1Data.Fecha_Enviado).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_Enviado = Encuesta1Data.Hora_Enviado
+                    ,Fecha_Respuesta = (Encuesta1Data.Fecha_Respuesta == null ? string.Empty : Convert.ToDateTime(Encuesta1Data.Fecha_Respuesta).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_Respuesta = Encuesta1Data.Hora_Respuesta
                     ,NUAT = Encuesta1Data.NUAT
+                    ,Modulo = Encuesta1Data.Modulo
+                    ,ModuloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Modulo), "Modulo_Encuesta") ??  (string)Encuesta1Data.Modulo_Modulo_Encuesta.Descripcion
+                    ,Numero_de_Preguntas = Encuesta1Data.Numero_de_Preguntas
+                    ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Numero_de_Preguntas), "Catalogo_Numero_de_Preguntas") ??  (string)Encuesta1Data.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
                     ,Pregunta1 = Encuesta1Data.Pregunta1
-                    ,Pregunta1Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta1), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta1_Catalogo_Respuesta.Descripcion
+                    ,Respuesta_1 = Encuesta1Data.Respuesta_1
+                    ,Respuesta_1Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Respuesta_1), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Respuesta_1_Catalogo_Respuesta.Descripcion
                     ,Pregunta2 = Encuesta1Data.Pregunta2
-                    ,Pregunta2Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta2), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta2_Catalogo_Respuesta.Descripcion
+                    ,Respuesta_2 = Encuesta1Data.Respuesta_2
+                    ,Respuesta_2Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Respuesta_2), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Respuesta_2_Catalogo_Respuesta.Descripcion
                     ,Pregunta3 = Encuesta1Data.Pregunta3
-                    ,Pregunta3Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta3), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta3_Catalogo_Respuesta.Descripcion
+                    ,Respuesta_3 = Encuesta1Data.Respuesta_3
+                    ,Respuesta_3Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Respuesta_3), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Respuesta_3_Catalogo_Respuesta.Descripcion
                     ,Pregunta4 = Encuesta1Data.Pregunta4
-                    ,Pregunta4Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta4), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta4_Catalogo_Respuesta.Descripcion
+                    ,Respuesta_4 = Encuesta1Data.Respuesta_4
+                    ,Respuesta_4Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Respuesta_4), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Respuesta_4_Catalogo_Respuesta.Descripcion
                     ,Pregunta5 = Encuesta1Data.Pregunta5
-                    ,Pregunta5Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta5), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta5_Catalogo_Respuesta.Descripcion
-                    ,Pregunta6 = Encuesta1Data.Pregunta6
-                    ,Pregunta6Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta6), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta6_Catalogo_Respuesta.Descripcion
-                    ,Pregunta7 = Encuesta1Data.Pregunta7
-                    ,Pregunta7Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta7), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta7_Catalogo_Respuesta.Descripcion
-                    ,Pregunta8 = Encuesta1Data.Pregunta8
-                    ,Pregunta8Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta8), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta8_Catalogo_Respuesta.Descripcion
-                    ,Pregunta9 = Encuesta1Data.Pregunta9
-                    ,Pregunta9Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta9), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta9_Catalogo_Respuesta.Descripcion
-                    ,Pregunta10 = Encuesta1Data.Pregunta10
-                    ,Pregunta10Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta10), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta10_Catalogo_Respuesta.Descripcion
+                    ,Respuesta_5 = Encuesta1Data.Respuesta_5
+                    ,Respuesta_5Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Respuesta_5), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Respuesta_5_Catalogo_Respuesta.Descripcion
+                    ,Estatus = Encuesta1Data.Estatus
+                    ,EstatusDescripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Estatus), "Estatus_Encuesta") ??  (string)Encuesta1Data.Estatus_Estatus_Encuesta.Descripcion
 
 					};
 				}
@@ -222,6 +219,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Modulo_Encuestas_Modulo = _IModulo_EncuestaApiConsumer.SelAll(true);
+            if (Modulo_Encuestas_Modulo != null && Modulo_Encuestas_Modulo.Resource != null)
+                ViewBag.Modulo_Encuestas_Modulo = Modulo_Encuestas_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ICatalogo_Numero_de_PreguntasApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Catalogo_Numero_de_Preguntass_Numero_de_Preguntas = _ICatalogo_Numero_de_PreguntasApiConsumer.SelAll(true);
             if (Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null && Catalogo_Numero_de_Preguntass_Numero_de_Preguntas.Resource != null)
@@ -230,74 +234,46 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Numero_de_Preguntas", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta1 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta1 != null && Catalogo_Respuestas_Pregunta1.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta1 = Catalogo_Respuestas_Pregunta1.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_1 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_1 != null && Catalogo_Respuestas_Respuesta_1.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_1 = Catalogo_Respuestas_Respuesta_1.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta2 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta2 != null && Catalogo_Respuestas_Pregunta2.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta2 = Catalogo_Respuestas_Pregunta2.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_2 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_2 != null && Catalogo_Respuestas_Respuesta_2.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_2 = Catalogo_Respuestas_Respuesta_2.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta3 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta3 != null && Catalogo_Respuestas_Pregunta3.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta3 = Catalogo_Respuestas_Pregunta3.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_3 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_3 != null && Catalogo_Respuestas_Respuesta_3.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_3 = Catalogo_Respuestas_Respuesta_3.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta4 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta4 != null && Catalogo_Respuestas_Pregunta4.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta4 = Catalogo_Respuestas_Pregunta4.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_4 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_4 != null && Catalogo_Respuestas_Respuesta_4.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_4 = Catalogo_Respuestas_Respuesta_4.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta5 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta5 != null && Catalogo_Respuestas_Pregunta5.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta5 = Catalogo_Respuestas_Pregunta5.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_5 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_5 != null && Catalogo_Respuestas_Respuesta_5.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_5 = Catalogo_Respuestas_Respuesta_5.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta6 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta6 != null && Catalogo_Respuestas_Pregunta6.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta6 = Catalogo_Respuestas_Pregunta6.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IEstatus_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estatus_Encuestas_Estatus = _IEstatus_EncuestaApiConsumer.SelAll(true);
+            if (Estatus_Encuestas_Estatus != null && Estatus_Encuestas_Estatus.Resource != null)
+                ViewBag.Estatus_Encuestas_Estatus = Estatus_Encuestas_Estatus.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta7 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta7 != null && Catalogo_Respuestas_Pregunta7.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta7 = Catalogo_Respuestas_Pregunta7.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta8 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta8 != null && Catalogo_Respuestas_Pregunta8.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta8 = Catalogo_Respuestas_Pregunta8.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta9 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta9 != null && Catalogo_Respuestas_Pregunta9.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta9 = Catalogo_Respuestas_Pregunta9.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta10 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta10 != null && Catalogo_Respuestas_Pregunta10.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta10 = Catalogo_Respuestas_Pregunta10.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -361,29 +337,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varEncuesta1= new Encuesta1Model
 					{
 						Clave  = Encuesta1Data.Clave 
-	                    ,Numero_de_Preguntas = Encuesta1Data.Numero_de_Preguntas
-                    ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Numero_de_Preguntas), "Catalogo_Numero_de_Preguntas") ??  (string)Encuesta1Data.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
+	                    ,Folio = Encuesta1Data.Folio
+                    ,Fecha_Enviado = (Encuesta1Data.Fecha_Enviado == null ? string.Empty : Convert.ToDateTime(Encuesta1Data.Fecha_Enviado).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_Enviado = Encuesta1Data.Hora_Enviado
+                    ,Fecha_Respuesta = (Encuesta1Data.Fecha_Respuesta == null ? string.Empty : Convert.ToDateTime(Encuesta1Data.Fecha_Respuesta).ToString(ConfigurationProperty.DateFormat))
+                    ,Hora_Respuesta = Encuesta1Data.Hora_Respuesta
                     ,NUAT = Encuesta1Data.NUAT
+                    ,Modulo = Encuesta1Data.Modulo
+                    ,ModuloDescripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Modulo), "Modulo_Encuesta") ??  (string)Encuesta1Data.Modulo_Modulo_Encuesta.Descripcion
+                    ,Numero_de_Preguntas = Encuesta1Data.Numero_de_Preguntas
+                    ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Numero_de_Preguntas), "Catalogo_Numero_de_Preguntas") ??  (string)Encuesta1Data.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
                     ,Pregunta1 = Encuesta1Data.Pregunta1
-                    ,Pregunta1Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta1), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta1_Catalogo_Respuesta.Descripcion
+                    ,Respuesta_1 = Encuesta1Data.Respuesta_1
+                    ,Respuesta_1Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Respuesta_1), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Respuesta_1_Catalogo_Respuesta.Descripcion
                     ,Pregunta2 = Encuesta1Data.Pregunta2
-                    ,Pregunta2Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta2), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta2_Catalogo_Respuesta.Descripcion
+                    ,Respuesta_2 = Encuesta1Data.Respuesta_2
+                    ,Respuesta_2Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Respuesta_2), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Respuesta_2_Catalogo_Respuesta.Descripcion
                     ,Pregunta3 = Encuesta1Data.Pregunta3
-                    ,Pregunta3Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta3), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta3_Catalogo_Respuesta.Descripcion
+                    ,Respuesta_3 = Encuesta1Data.Respuesta_3
+                    ,Respuesta_3Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Respuesta_3), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Respuesta_3_Catalogo_Respuesta.Descripcion
                     ,Pregunta4 = Encuesta1Data.Pregunta4
-                    ,Pregunta4Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta4), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta4_Catalogo_Respuesta.Descripcion
+                    ,Respuesta_4 = Encuesta1Data.Respuesta_4
+                    ,Respuesta_4Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Respuesta_4), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Respuesta_4_Catalogo_Respuesta.Descripcion
                     ,Pregunta5 = Encuesta1Data.Pregunta5
-                    ,Pregunta5Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta5), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta5_Catalogo_Respuesta.Descripcion
-                    ,Pregunta6 = Encuesta1Data.Pregunta6
-                    ,Pregunta6Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta6), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta6_Catalogo_Respuesta.Descripcion
-                    ,Pregunta7 = Encuesta1Data.Pregunta7
-                    ,Pregunta7Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta7), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta7_Catalogo_Respuesta.Descripcion
-                    ,Pregunta8 = Encuesta1Data.Pregunta8
-                    ,Pregunta8Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta8), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta8_Catalogo_Respuesta.Descripcion
-                    ,Pregunta9 = Encuesta1Data.Pregunta9
-                    ,Pregunta9Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta9), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta9_Catalogo_Respuesta.Descripcion
-                    ,Pregunta10 = Encuesta1Data.Pregunta10
-                    ,Pregunta10Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Pregunta10), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Pregunta10_Catalogo_Respuesta.Descripcion
+                    ,Respuesta_5 = Encuesta1Data.Respuesta_5
+                    ,Respuesta_5Descripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Respuesta_5), "Catalogo_Respuesta") ??  (string)Encuesta1Data.Respuesta_5_Catalogo_Respuesta.Descripcion
+                    ,Estatus = Encuesta1Data.Estatus
+                    ,EstatusDescripcion = CultureHelper.GetTraduction(Convert.ToString(Encuesta1Data.Estatus), "Estatus_Encuesta") ??  (string)Encuesta1Data.Estatus_Estatus_Encuesta.Descripcion
 
 					};
 				}
@@ -392,6 +372,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Modulo_Encuestas_Modulo = _IModulo_EncuestaApiConsumer.SelAll(true);
+            if (Modulo_Encuestas_Modulo != null && Modulo_Encuestas_Modulo.Resource != null)
+                ViewBag.Modulo_Encuestas_Modulo = Modulo_Encuestas_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ICatalogo_Numero_de_PreguntasApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Catalogo_Numero_de_Preguntass_Numero_de_Preguntas = _ICatalogo_Numero_de_PreguntasApiConsumer.SelAll(true);
             if (Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null && Catalogo_Numero_de_Preguntass_Numero_de_Preguntas.Resource != null)
@@ -400,74 +387,46 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Numero_de_Preguntas", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta1 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta1 != null && Catalogo_Respuestas_Pregunta1.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta1 = Catalogo_Respuestas_Pregunta1.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_1 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_1 != null && Catalogo_Respuestas_Respuesta_1.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_1 = Catalogo_Respuestas_Respuesta_1.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta2 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta2 != null && Catalogo_Respuestas_Pregunta2.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta2 = Catalogo_Respuestas_Pregunta2.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_2 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_2 != null && Catalogo_Respuestas_Respuesta_2.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_2 = Catalogo_Respuestas_Respuesta_2.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta3 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta3 != null && Catalogo_Respuestas_Pregunta3.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta3 = Catalogo_Respuestas_Pregunta3.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_3 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_3 != null && Catalogo_Respuestas_Respuesta_3.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_3 = Catalogo_Respuestas_Respuesta_3.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta4 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta4 != null && Catalogo_Respuestas_Pregunta4.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta4 = Catalogo_Respuestas_Pregunta4.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_4 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_4 != null && Catalogo_Respuestas_Respuesta_4.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_4 = Catalogo_Respuestas_Respuesta_4.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta5 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta5 != null && Catalogo_Respuestas_Pregunta5.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta5 = Catalogo_Respuestas_Pregunta5.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_5 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_5 != null && Catalogo_Respuestas_Respuesta_5.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_5 = Catalogo_Respuestas_Respuesta_5.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta6 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta6 != null && Catalogo_Respuestas_Pregunta6.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta6 = Catalogo_Respuestas_Pregunta6.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IEstatus_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estatus_Encuestas_Estatus = _IEstatus_EncuestaApiConsumer.SelAll(true);
+            if (Estatus_Encuestas_Estatus != null && Estatus_Encuestas_Estatus.Resource != null)
+                ViewBag.Estatus_Encuestas_Estatus = Estatus_Encuestas_Estatus.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta7 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta7 != null && Catalogo_Respuestas_Pregunta7.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta7 = Catalogo_Respuestas_Pregunta7.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta8 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta8 != null && Catalogo_Respuestas_Pregunta8.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta8 = Catalogo_Respuestas_Pregunta8.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta9 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta9 != null && Catalogo_Respuestas_Pregunta9.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta9 = Catalogo_Respuestas_Pregunta9.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta10 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta10 != null && Catalogo_Respuestas_Pregunta10.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta10 = Catalogo_Respuestas_Pregunta10.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -489,6 +448,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetModulo_EncuestaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IModulo_EncuestaApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetCatalogo_Numero_de_PreguntasAll()
         {
@@ -531,6 +511,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpGet]
+        public ActionResult GetEstatus_EncuestaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IEstatus_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IEstatus_EncuestaApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Encuesta", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -564,6 +565,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Modulo_Encuestas_Modulo = _IModulo_EncuestaApiConsumer.SelAll(true);
+            if (Modulo_Encuestas_Modulo != null && Modulo_Encuestas_Modulo.Resource != null)
+                ViewBag.Modulo_Encuestas_Modulo = Modulo_Encuestas_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ICatalogo_Numero_de_PreguntasApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Catalogo_Numero_de_Preguntass_Numero_de_Preguntas = _ICatalogo_Numero_de_PreguntasApiConsumer.SelAll(true);
             if (Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null && Catalogo_Numero_de_Preguntass_Numero_de_Preguntas.Resource != null)
@@ -572,74 +580,46 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Numero_de_Preguntas", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta1 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta1 != null && Catalogo_Respuestas_Pregunta1.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta1 = Catalogo_Respuestas_Pregunta1.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_1 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_1 != null && Catalogo_Respuestas_Respuesta_1.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_1 = Catalogo_Respuestas_Respuesta_1.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta2 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta2 != null && Catalogo_Respuestas_Pregunta2.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta2 = Catalogo_Respuestas_Pregunta2.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_2 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_2 != null && Catalogo_Respuestas_Respuesta_2.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_2 = Catalogo_Respuestas_Respuesta_2.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta3 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta3 != null && Catalogo_Respuestas_Pregunta3.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta3 = Catalogo_Respuestas_Pregunta3.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_3 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_3 != null && Catalogo_Respuestas_Respuesta_3.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_3 = Catalogo_Respuestas_Respuesta_3.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta4 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta4 != null && Catalogo_Respuestas_Pregunta4.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta4 = Catalogo_Respuestas_Pregunta4.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_4 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_4 != null && Catalogo_Respuestas_Respuesta_4.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_4 = Catalogo_Respuestas_Respuesta_4.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta5 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta5 != null && Catalogo_Respuestas_Pregunta5.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta5 = Catalogo_Respuestas_Pregunta5.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_5 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_5 != null && Catalogo_Respuestas_Respuesta_5.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_5 = Catalogo_Respuestas_Respuesta_5.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta6 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta6 != null && Catalogo_Respuestas_Pregunta6.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta6 = Catalogo_Respuestas_Pregunta6.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IEstatus_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estatus_Encuestas_Estatus = _IEstatus_EncuestaApiConsumer.SelAll(true);
+            if (Estatus_Encuestas_Estatus != null && Estatus_Encuestas_Estatus.Resource != null)
+                ViewBag.Estatus_Encuestas_Estatus = Estatus_Encuestas_Estatus.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta7 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta7 != null && Catalogo_Respuestas_Pregunta7.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta7 = Catalogo_Respuestas_Pregunta7.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta8 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta8 != null && Catalogo_Respuestas_Pregunta8.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta8 = Catalogo_Respuestas_Pregunta8.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta9 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta9 != null && Catalogo_Respuestas_Pregunta9.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta9 = Catalogo_Respuestas_Pregunta9.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta10 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta10 != null && Catalogo_Respuestas_Pregunta10.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta10 = Catalogo_Respuestas_Pregunta10.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -652,6 +632,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Modulo_Encuestas_Modulo = _IModulo_EncuestaApiConsumer.SelAll(true);
+            if (Modulo_Encuestas_Modulo != null && Modulo_Encuestas_Modulo.Resource != null)
+                ViewBag.Modulo_Encuestas_Modulo = Modulo_Encuestas_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ICatalogo_Numero_de_PreguntasApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Catalogo_Numero_de_Preguntass_Numero_de_Preguntas = _ICatalogo_Numero_de_PreguntasApiConsumer.SelAll(true);
             if (Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null && Catalogo_Numero_de_Preguntass_Numero_de_Preguntas.Resource != null)
@@ -660,74 +647,46 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Numero_de_Preguntas", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta1 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta1 != null && Catalogo_Respuestas_Pregunta1.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta1 = Catalogo_Respuestas_Pregunta1.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_1 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_1 != null && Catalogo_Respuestas_Respuesta_1.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_1 = Catalogo_Respuestas_Respuesta_1.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta2 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta2 != null && Catalogo_Respuestas_Pregunta2.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta2 = Catalogo_Respuestas_Pregunta2.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_2 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_2 != null && Catalogo_Respuestas_Respuesta_2.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_2 = Catalogo_Respuestas_Respuesta_2.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta3 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta3 != null && Catalogo_Respuestas_Pregunta3.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta3 = Catalogo_Respuestas_Pregunta3.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_3 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_3 != null && Catalogo_Respuestas_Respuesta_3.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_3 = Catalogo_Respuestas_Respuesta_3.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta4 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta4 != null && Catalogo_Respuestas_Pregunta4.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta4 = Catalogo_Respuestas_Pregunta4.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_4 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_4 != null && Catalogo_Respuestas_Respuesta_4.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_4 = Catalogo_Respuestas_Respuesta_4.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta5 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta5 != null && Catalogo_Respuestas_Pregunta5.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta5 = Catalogo_Respuestas_Pregunta5.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            var Catalogo_Respuestas_Respuesta_5 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
+            if (Catalogo_Respuestas_Respuesta_5 != null && Catalogo_Respuestas_Respuesta_5.Resource != null)
+                ViewBag.Catalogo_Respuestas_Respuesta_5 = Catalogo_Respuestas_Respuesta_5.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta6 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta6 != null && Catalogo_Respuestas_Pregunta6.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta6 = Catalogo_Respuestas_Pregunta6.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IEstatus_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Estatus_Encuestas_Estatus = _IEstatus_EncuestaApiConsumer.SelAll(true);
+            if (Estatus_Encuestas_Estatus != null && Estatus_Encuestas_Estatus.Resource != null)
+                ViewBag.Estatus_Encuestas_Estatus = Estatus_Encuestas_Estatus.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta7 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta7 != null && Catalogo_Respuestas_Pregunta7.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta7 = Catalogo_Respuestas_Pregunta7.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta8 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta8 != null && Catalogo_Respuestas_Pregunta8.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta8 = Catalogo_Respuestas_Pregunta8.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta9 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta9 != null && Catalogo_Respuestas_Pregunta9.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta9 = Catalogo_Respuestas_Pregunta9.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
-                }).ToList();
-            _ICatalogo_RespuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Catalogo_Respuestas_Pregunta10 = _ICatalogo_RespuestaApiConsumer.SelAll(true);
-            if (Catalogo_Respuestas_Pregunta10 != null && Catalogo_Respuestas_Pregunta10.Resource != null)
-                ViewBag.Catalogo_Respuestas_Pregunta10 = Catalogo_Respuestas_Pregunta10.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Catalogo_Respuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -767,18 +726,25 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Encuesta1s.Select(m => new Encuesta1GridModel
                     {
                     Clave = m.Clave
-                        ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
+			,Folio = m.Folio
+                        ,Fecha_Enviado = (m.Fecha_Enviado == null ? string.Empty : Convert.ToDateTime(m.Fecha_Enviado).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Enviado = m.Hora_Enviado
+                        ,Fecha_Respuesta = (m.Fecha_Respuesta == null ? string.Empty : Convert.ToDateTime(m.Fecha_Respuesta).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Respuesta = m.Hora_Respuesta
 			,NUAT = m.NUAT
-                        ,Pregunta1Descripcion = CultureHelper.GetTraduction(m.Pregunta1_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta1_Catalogo_Respuesta.Descripcion
-                        ,Pregunta2Descripcion = CultureHelper.GetTraduction(m.Pregunta2_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta2_Catalogo_Respuesta.Descripcion
-                        ,Pregunta3Descripcion = CultureHelper.GetTraduction(m.Pregunta3_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta3_Catalogo_Respuesta.Descripcion
-                        ,Pregunta4Descripcion = CultureHelper.GetTraduction(m.Pregunta4_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta4_Catalogo_Respuesta.Descripcion
-                        ,Pregunta5Descripcion = CultureHelper.GetTraduction(m.Pregunta5_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta5_Catalogo_Respuesta.Descripcion
-                        ,Pregunta6Descripcion = CultureHelper.GetTraduction(m.Pregunta6_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta6_Catalogo_Respuesta.Descripcion
-                        ,Pregunta7Descripcion = CultureHelper.GetTraduction(m.Pregunta7_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta7_Catalogo_Respuesta.Descripcion
-                        ,Pregunta8Descripcion = CultureHelper.GetTraduction(m.Pregunta8_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta8_Catalogo_Respuesta.Descripcion
-                        ,Pregunta9Descripcion = CultureHelper.GetTraduction(m.Pregunta9_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta9_Catalogo_Respuesta.Descripcion
-                        ,Pregunta10Descripcion = CultureHelper.GetTraduction(m.Pregunta10_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta10_Catalogo_Respuesta.Descripcion
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
+                        ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
+			,Pregunta1 = m.Pregunta1
+                        ,Respuesta_1Descripcion = CultureHelper.GetTraduction(m.Respuesta_1_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_1_Catalogo_Respuesta.Descripcion
+			,Pregunta2 = m.Pregunta2
+                        ,Respuesta_2Descripcion = CultureHelper.GetTraduction(m.Respuesta_2_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_2_Catalogo_Respuesta.Descripcion
+			,Pregunta3 = m.Pregunta3
+                        ,Respuesta_3Descripcion = CultureHelper.GetTraduction(m.Respuesta_3_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_3_Catalogo_Respuesta.Descripcion
+			,Pregunta4 = m.Pregunta4
+                        ,Respuesta_4Descripcion = CultureHelper.GetTraduction(m.Respuesta_4_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_4_Catalogo_Respuesta.Descripcion
+			,Pregunta5 = m.Pregunta5
+                        ,Respuesta_5Descripcion = CultureHelper.GetTraduction(m.Respuesta_5_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_5_Catalogo_Respuesta.Descripcion
+                        ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Encuesta.Descripcion
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -893,18 +859,25 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 aaData = result.Encuesta1s.Select(m => new Encuesta1GridModel
             {
                     Clave = m.Clave
-                        ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
+			,Folio = m.Folio
+                        ,Fecha_Enviado = (m.Fecha_Enviado == null ? string.Empty : Convert.ToDateTime(m.Fecha_Enviado).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Enviado = m.Hora_Enviado
+                        ,Fecha_Respuesta = (m.Fecha_Respuesta == null ? string.Empty : Convert.ToDateTime(m.Fecha_Respuesta).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Respuesta = m.Hora_Respuesta
 			,NUAT = m.NUAT
-                        ,Pregunta1Descripcion = CultureHelper.GetTraduction(m.Pregunta1_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta1_Catalogo_Respuesta.Descripcion
-                        ,Pregunta2Descripcion = CultureHelper.GetTraduction(m.Pregunta2_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta2_Catalogo_Respuesta.Descripcion
-                        ,Pregunta3Descripcion = CultureHelper.GetTraduction(m.Pregunta3_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta3_Catalogo_Respuesta.Descripcion
-                        ,Pregunta4Descripcion = CultureHelper.GetTraduction(m.Pregunta4_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta4_Catalogo_Respuesta.Descripcion
-                        ,Pregunta5Descripcion = CultureHelper.GetTraduction(m.Pregunta5_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta5_Catalogo_Respuesta.Descripcion
-                        ,Pregunta6Descripcion = CultureHelper.GetTraduction(m.Pregunta6_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta6_Catalogo_Respuesta.Descripcion
-                        ,Pregunta7Descripcion = CultureHelper.GetTraduction(m.Pregunta7_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta7_Catalogo_Respuesta.Descripcion
-                        ,Pregunta8Descripcion = CultureHelper.GetTraduction(m.Pregunta8_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta8_Catalogo_Respuesta.Descripcion
-                        ,Pregunta9Descripcion = CultureHelper.GetTraduction(m.Pregunta9_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta9_Catalogo_Respuesta.Descripcion
-                        ,Pregunta10Descripcion = CultureHelper.GetTraduction(m.Pregunta10_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta10_Catalogo_Respuesta.Descripcion
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
+                        ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
+			,Pregunta1 = m.Pregunta1
+                        ,Respuesta_1Descripcion = CultureHelper.GetTraduction(m.Respuesta_1_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_1_Catalogo_Respuesta.Descripcion
+			,Pregunta2 = m.Pregunta2
+                        ,Respuesta_2Descripcion = CultureHelper.GetTraduction(m.Respuesta_2_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_2_Catalogo_Respuesta.Descripcion
+			,Pregunta3 = m.Pregunta3
+                        ,Respuesta_3Descripcion = CultureHelper.GetTraduction(m.Respuesta_3_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_3_Catalogo_Respuesta.Descripcion
+			,Pregunta4 = m.Pregunta4
+                        ,Respuesta_4Descripcion = CultureHelper.GetTraduction(m.Respuesta_4_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_4_Catalogo_Respuesta.Descripcion
+			,Pregunta5 = m.Pregunta5
+                        ,Respuesta_5Descripcion = CultureHelper.GetTraduction(m.Respuesta_5_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_5_Catalogo_Respuesta.Descripcion
+                        ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Encuesta.Descripcion
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -929,6 +902,120 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += " AND Encuesta1.Clave >= " + filter.FromClave;
                 if (!string.IsNullOrEmpty(filter.ToClave))
                     where += " AND Encuesta1.Clave <= " + filter.ToClave;
+            }
+
+            if (!string.IsNullOrEmpty(filter.Folio))
+            {
+                switch (filter.FolioFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Encuesta1.Folio LIKE '" + filter.Folio + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Encuesta1.Folio LIKE '%" + filter.Folio + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Encuesta1.Folio = '" + filter.Folio + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Encuesta1.Folio LIKE '%" + filter.Folio + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromFecha_Enviado) || !string.IsNullOrEmpty(filter.ToFecha_Enviado))
+            {
+                var Fecha_EnviadoFrom = DateTime.ParseExact(filter.FromFecha_Enviado, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var Fecha_EnviadoTo = DateTime.ParseExact(filter.ToFecha_Enviado, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.FromFecha_Enviado))
+                    where += " AND Encuesta1.Fecha_Enviado >= '" + Fecha_EnviadoFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFecha_Enviado))
+                    where += " AND Encuesta1.Fecha_Enviado <= '" + Fecha_EnviadoTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromHora_Enviado) || !string.IsNullOrEmpty(filter.ToHora_Enviado))
+            {
+                if (!string.IsNullOrEmpty(filter.FromHora_Enviado))
+                    where += " AND Convert(TIME,Encuesta1.Hora_Enviado) >='" + filter.FromHora_Enviado + "'";
+                if (!string.IsNullOrEmpty(filter.ToHora_Enviado))
+                    where += " AND Convert(TIME,Encuesta1.Hora_Enviado) <='" + filter.ToHora_Enviado + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromFecha_Respuesta) || !string.IsNullOrEmpty(filter.ToFecha_Respuesta))
+            {
+                var Fecha_RespuestaFrom = DateTime.ParseExact(filter.FromFecha_Respuesta, ConfigurationProperty.DateFormat,
+                    CultureInfo.InvariantCulture as IFormatProvider);
+                var Fecha_RespuestaTo = DateTime.ParseExact(filter.ToFecha_Respuesta, ConfigurationProperty.DateFormat,
+                  CultureInfo.InvariantCulture as IFormatProvider);
+
+                if (!string.IsNullOrEmpty(filter.FromFecha_Respuesta))
+                    where += " AND Encuesta1.Fecha_Respuesta >= '" + Fecha_RespuestaFrom.ToString("MM-dd-yyyy") + "'";
+                if (!string.IsNullOrEmpty(filter.ToFecha_Respuesta))
+                    where += " AND Encuesta1.Fecha_Respuesta <= '" + Fecha_RespuestaTo.ToString("MM-dd-yyyy") + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromHora_Respuesta) || !string.IsNullOrEmpty(filter.ToHora_Respuesta))
+            {
+                if (!string.IsNullOrEmpty(filter.FromHora_Respuesta))
+                    where += " AND Convert(TIME,Encuesta1.Hora_Respuesta) >='" + filter.FromHora_Respuesta + "'";
+                if (!string.IsNullOrEmpty(filter.ToHora_Respuesta))
+                    where += " AND Convert(TIME,Encuesta1.Hora_Respuesta) <='" + filter.ToHora_Respuesta + "'";
+            }
+
+            if (!string.IsNullOrEmpty(filter.NUAT))
+            {
+                switch (filter.NUATFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Encuesta1.NUAT LIKE '" + filter.NUAT + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Encuesta1.NUAT LIKE '%" + filter.NUAT + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Encuesta1.NUAT = '" + filter.NUAT + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Encuesta1.NUAT LIKE '%" + filter.NUAT + "%'";
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceModulo))
+            {
+                switch (filter.ModuloFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Modulo_Encuesta.Descripcion LIKE '" + filter.AdvanceModulo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Modulo_Encuesta.Descripcion LIKE '%" + filter.AdvanceModulo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Modulo_Encuesta.Descripcion = '" + filter.AdvanceModulo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Modulo_Encuesta.Descripcion LIKE '%" + filter.AdvanceModulo + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceModuloMultiple != null && filter.AdvanceModuloMultiple.Count() > 0)
+            {
+                var ModuloIds = string.Join(",", filter.AdvanceModuloMultiple);
+
+                where += " AND Encuesta1.Modulo In (" + ModuloIds + ")";
             }
 
             if (!string.IsNullOrEmpty(filter.AdvanceNumero_de_Preguntas))
@@ -959,306 +1046,282 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Encuesta1.Numero_de_Preguntas In (" + Numero_de_PreguntasIds + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.NUAT))
-            {
-                switch (filter.NUATFilter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Encuesta1.NUAT LIKE '" + filter.NUAT + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Encuesta1.NUAT LIKE '%" + filter.NUAT + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Encuesta1.NUAT = '" + filter.NUAT + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Encuesta1.NUAT LIKE '%" + filter.NUAT + "%'";
-                        break;
-                }
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvancePregunta1))
+            if (!string.IsNullOrEmpty(filter.Pregunta1))
             {
                 switch (filter.Pregunta1Filter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvancePregunta1 + "%'";
+                        where += " AND Encuesta1.Pregunta1 LIKE '" + filter.Pregunta1 + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta1 + "'";
+                        where += " AND Encuesta1.Pregunta1 LIKE '%" + filter.Pregunta1 + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvancePregunta1 + "'";
+                        where += " AND Encuesta1.Pregunta1 = '" + filter.Pregunta1 + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta1 + "%'";
+                        where += " AND Encuesta1.Pregunta1 LIKE '%" + filter.Pregunta1 + "%'";
                         break;
                 }
             }
-            else if (filter.AdvancePregunta1Multiple != null && filter.AdvancePregunta1Multiple.Count() > 0)
-            {
-                var Pregunta1Ids = string.Join(",", filter.AdvancePregunta1Multiple);
 
-                where += " AND Encuesta1.Pregunta1 In (" + Pregunta1Ids + ")";
+            if (!string.IsNullOrEmpty(filter.AdvanceRespuesta_1))
+            {
+                switch (filter.Respuesta_1Filter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvanceRespuesta_1 + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvanceRespuesta_1 + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvanceRespuesta_1 + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvanceRespuesta_1 + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceRespuesta_1Multiple != null && filter.AdvanceRespuesta_1Multiple.Count() > 0)
+            {
+                var Respuesta_1Ids = string.Join(",", filter.AdvanceRespuesta_1Multiple);
+
+                where += " AND Encuesta1.Respuesta_1 In (" + Respuesta_1Ids + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvancePregunta2))
+            if (!string.IsNullOrEmpty(filter.Pregunta2))
             {
                 switch (filter.Pregunta2Filter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvancePregunta2 + "%'";
+                        where += " AND Encuesta1.Pregunta2 LIKE '" + filter.Pregunta2 + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta2 + "'";
+                        where += " AND Encuesta1.Pregunta2 LIKE '%" + filter.Pregunta2 + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvancePregunta2 + "'";
+                        where += " AND Encuesta1.Pregunta2 = '" + filter.Pregunta2 + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta2 + "%'";
+                        where += " AND Encuesta1.Pregunta2 LIKE '%" + filter.Pregunta2 + "%'";
                         break;
                 }
             }
-            else if (filter.AdvancePregunta2Multiple != null && filter.AdvancePregunta2Multiple.Count() > 0)
-            {
-                var Pregunta2Ids = string.Join(",", filter.AdvancePregunta2Multiple);
 
-                where += " AND Encuesta1.Pregunta2 In (" + Pregunta2Ids + ")";
+            if (!string.IsNullOrEmpty(filter.AdvanceRespuesta_2))
+            {
+                switch (filter.Respuesta_2Filter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvanceRespuesta_2 + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvanceRespuesta_2 + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvanceRespuesta_2 + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvanceRespuesta_2 + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceRespuesta_2Multiple != null && filter.AdvanceRespuesta_2Multiple.Count() > 0)
+            {
+                var Respuesta_2Ids = string.Join(",", filter.AdvanceRespuesta_2Multiple);
+
+                where += " AND Encuesta1.Respuesta_2 In (" + Respuesta_2Ids + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvancePregunta3))
+            if (!string.IsNullOrEmpty(filter.Pregunta3))
             {
                 switch (filter.Pregunta3Filter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvancePregunta3 + "%'";
+                        where += " AND Encuesta1.Pregunta3 LIKE '" + filter.Pregunta3 + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta3 + "'";
+                        where += " AND Encuesta1.Pregunta3 LIKE '%" + filter.Pregunta3 + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvancePregunta3 + "'";
+                        where += " AND Encuesta1.Pregunta3 = '" + filter.Pregunta3 + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta3 + "%'";
+                        where += " AND Encuesta1.Pregunta3 LIKE '%" + filter.Pregunta3 + "%'";
                         break;
                 }
             }
-            else if (filter.AdvancePregunta3Multiple != null && filter.AdvancePregunta3Multiple.Count() > 0)
-            {
-                var Pregunta3Ids = string.Join(",", filter.AdvancePregunta3Multiple);
 
-                where += " AND Encuesta1.Pregunta3 In (" + Pregunta3Ids + ")";
+            if (!string.IsNullOrEmpty(filter.AdvanceRespuesta_3))
+            {
+                switch (filter.Respuesta_3Filter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvanceRespuesta_3 + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvanceRespuesta_3 + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvanceRespuesta_3 + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvanceRespuesta_3 + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceRespuesta_3Multiple != null && filter.AdvanceRespuesta_3Multiple.Count() > 0)
+            {
+                var Respuesta_3Ids = string.Join(",", filter.AdvanceRespuesta_3Multiple);
+
+                where += " AND Encuesta1.Respuesta_3 In (" + Respuesta_3Ids + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvancePregunta4))
+            if (!string.IsNullOrEmpty(filter.Pregunta4))
             {
                 switch (filter.Pregunta4Filter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvancePregunta4 + "%'";
+                        where += " AND Encuesta1.Pregunta4 LIKE '" + filter.Pregunta4 + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta4 + "'";
+                        where += " AND Encuesta1.Pregunta4 LIKE '%" + filter.Pregunta4 + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvancePregunta4 + "'";
+                        where += " AND Encuesta1.Pregunta4 = '" + filter.Pregunta4 + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta4 + "%'";
+                        where += " AND Encuesta1.Pregunta4 LIKE '%" + filter.Pregunta4 + "%'";
                         break;
                 }
             }
-            else if (filter.AdvancePregunta4Multiple != null && filter.AdvancePregunta4Multiple.Count() > 0)
-            {
-                var Pregunta4Ids = string.Join(",", filter.AdvancePregunta4Multiple);
 
-                where += " AND Encuesta1.Pregunta4 In (" + Pregunta4Ids + ")";
+            if (!string.IsNullOrEmpty(filter.AdvanceRespuesta_4))
+            {
+                switch (filter.Respuesta_4Filter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvanceRespuesta_4 + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvanceRespuesta_4 + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvanceRespuesta_4 + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvanceRespuesta_4 + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceRespuesta_4Multiple != null && filter.AdvanceRespuesta_4Multiple.Count() > 0)
+            {
+                var Respuesta_4Ids = string.Join(",", filter.AdvanceRespuesta_4Multiple);
+
+                where += " AND Encuesta1.Respuesta_4 In (" + Respuesta_4Ids + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvancePregunta5))
+            if (!string.IsNullOrEmpty(filter.Pregunta5))
             {
                 switch (filter.Pregunta5Filter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvancePregunta5 + "%'";
+                        where += " AND Encuesta1.Pregunta5 LIKE '" + filter.Pregunta5 + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta5 + "'";
+                        where += " AND Encuesta1.Pregunta5 LIKE '%" + filter.Pregunta5 + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvancePregunta5 + "'";
+                        where += " AND Encuesta1.Pregunta5 = '" + filter.Pregunta5 + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta5 + "%'";
+                        where += " AND Encuesta1.Pregunta5 LIKE '%" + filter.Pregunta5 + "%'";
                         break;
                 }
             }
-            else if (filter.AdvancePregunta5Multiple != null && filter.AdvancePregunta5Multiple.Count() > 0)
-            {
-                var Pregunta5Ids = string.Join(",", filter.AdvancePregunta5Multiple);
 
-                where += " AND Encuesta1.Pregunta5 In (" + Pregunta5Ids + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvancePregunta6))
+            if (!string.IsNullOrEmpty(filter.AdvanceRespuesta_5))
             {
-                switch (filter.Pregunta6Filter)
+                switch (filter.Respuesta_5Filter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvancePregunta6 + "%'";
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvanceRespuesta_5 + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta6 + "'";
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvanceRespuesta_5 + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvancePregunta6 + "'";
+                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvanceRespuesta_5 + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta6 + "%'";
+                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvanceRespuesta_5 + "%'";
                         break;
                 }
             }
-            else if (filter.AdvancePregunta6Multiple != null && filter.AdvancePregunta6Multiple.Count() > 0)
+            else if (filter.AdvanceRespuesta_5Multiple != null && filter.AdvanceRespuesta_5Multiple.Count() > 0)
             {
-                var Pregunta6Ids = string.Join(",", filter.AdvancePregunta6Multiple);
+                var Respuesta_5Ids = string.Join(",", filter.AdvanceRespuesta_5Multiple);
 
-                where += " AND Encuesta1.Pregunta6 In (" + Pregunta6Ids + ")";
+                where += " AND Encuesta1.Respuesta_5 In (" + Respuesta_5Ids + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.AdvancePregunta7))
+            if (!string.IsNullOrEmpty(filter.AdvanceEstatus))
             {
-                switch (filter.Pregunta7Filter)
+                switch (filter.EstatusFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvancePregunta7 + "%'";
+                        where += " AND Estatus_Encuesta.Descripcion LIKE '" + filter.AdvanceEstatus + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta7 + "'";
+                        where += " AND Estatus_Encuesta.Descripcion LIKE '%" + filter.AdvanceEstatus + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvancePregunta7 + "'";
+                        where += " AND Estatus_Encuesta.Descripcion = '" + filter.AdvanceEstatus + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta7 + "%'";
+                        where += " AND Estatus_Encuesta.Descripcion LIKE '%" + filter.AdvanceEstatus + "%'";
                         break;
                 }
             }
-            else if (filter.AdvancePregunta7Multiple != null && filter.AdvancePregunta7Multiple.Count() > 0)
+            else if (filter.AdvanceEstatusMultiple != null && filter.AdvanceEstatusMultiple.Count() > 0)
             {
-                var Pregunta7Ids = string.Join(",", filter.AdvancePregunta7Multiple);
+                var EstatusIds = string.Join(",", filter.AdvanceEstatusMultiple);
 
-                where += " AND Encuesta1.Pregunta7 In (" + Pregunta7Ids + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvancePregunta8))
-            {
-                switch (filter.Pregunta8Filter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvancePregunta8 + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta8 + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvancePregunta8 + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta8 + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvancePregunta8Multiple != null && filter.AdvancePregunta8Multiple.Count() > 0)
-            {
-                var Pregunta8Ids = string.Join(",", filter.AdvancePregunta8Multiple);
-
-                where += " AND Encuesta1.Pregunta8 In (" + Pregunta8Ids + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvancePregunta9))
-            {
-                switch (filter.Pregunta9Filter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvancePregunta9 + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta9 + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvancePregunta9 + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta9 + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvancePregunta9Multiple != null && filter.AdvancePregunta9Multiple.Count() > 0)
-            {
-                var Pregunta9Ids = string.Join(",", filter.AdvancePregunta9Multiple);
-
-                where += " AND Encuesta1.Pregunta9 In (" + Pregunta9Ids + ")";
-            }
-
-            if (!string.IsNullOrEmpty(filter.AdvancePregunta10))
-            {
-                switch (filter.Pregunta10Filter)
-                {
-                    case Models.Filters.BeginWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '" + filter.AdvancePregunta10 + "%'";
-                        break;
-
-                    case Models.Filters.EndWith:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta10 + "'";
-                        break;
-
-                    case Models.Filters.Exact:
-                        where += " AND Catalogo_Respuesta.Descripcion = '" + filter.AdvancePregunta10 + "'";
-                        break;
-
-                    case Models.Filters.Contains:
-                        where += " AND Catalogo_Respuesta.Descripcion LIKE '%" + filter.AdvancePregunta10 + "%'";
-                        break;
-                }
-            }
-            else if (filter.AdvancePregunta10Multiple != null && filter.AdvancePregunta10Multiple.Count() > 0)
-            {
-                var Pregunta10Ids = string.Join(",", filter.AdvancePregunta10Multiple);
-
-                where += " AND Encuesta1.Pregunta10 In (" + Pregunta10Ids + ")";
+                where += " AND Encuesta1.Estatus In (" + EstatusIds + ")";
             }
 
 
@@ -1316,18 +1379,25 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Encuesta1Info = new Encuesta1
                     {
                         Clave = varEncuesta1.Clave
-                        ,Numero_de_Preguntas = varEncuesta1.Numero_de_Preguntas
+                        ,Folio = varEncuesta1.Folio
+                        ,Fecha_Enviado = (!String.IsNullOrEmpty(varEncuesta1.Fecha_Enviado)) ? DateTime.ParseExact(varEncuesta1.Fecha_Enviado, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_Enviado = varEncuesta1.Hora_Enviado
+                        ,Fecha_Respuesta = (!String.IsNullOrEmpty(varEncuesta1.Fecha_Respuesta)) ? DateTime.ParseExact(varEncuesta1.Fecha_Respuesta, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_Respuesta = varEncuesta1.Hora_Respuesta
                         ,NUAT = varEncuesta1.NUAT
+                        ,Modulo = varEncuesta1.Modulo
+                        ,Numero_de_Preguntas = varEncuesta1.Numero_de_Preguntas
                         ,Pregunta1 = varEncuesta1.Pregunta1
+                        ,Respuesta_1 = varEncuesta1.Respuesta_1
                         ,Pregunta2 = varEncuesta1.Pregunta2
+                        ,Respuesta_2 = varEncuesta1.Respuesta_2
                         ,Pregunta3 = varEncuesta1.Pregunta3
+                        ,Respuesta_3 = varEncuesta1.Respuesta_3
                         ,Pregunta4 = varEncuesta1.Pregunta4
+                        ,Respuesta_4 = varEncuesta1.Respuesta_4
                         ,Pregunta5 = varEncuesta1.Pregunta5
-                        ,Pregunta6 = varEncuesta1.Pregunta6
-                        ,Pregunta7 = varEncuesta1.Pregunta7
-                        ,Pregunta8 = varEncuesta1.Pregunta8
-                        ,Pregunta9 = varEncuesta1.Pregunta9
-                        ,Pregunta10 = varEncuesta1.Pregunta10
+                        ,Respuesta_5 = varEncuesta1.Respuesta_5
+                        ,Estatus = varEncuesta1.Estatus
 
                     };
 
@@ -1670,7 +1740,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
+			string[] arrayColumnsVisible = null;
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -1715,18 +1785,25 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Encuesta1s.Select(m => new Encuesta1GridModel
             {
                 Clave = m.Clave
-                        ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
+			,Folio = m.Folio
+                        ,Fecha_Enviado = (m.Fecha_Enviado == null ? string.Empty : Convert.ToDateTime(m.Fecha_Enviado).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Enviado = m.Hora_Enviado
+                        ,Fecha_Respuesta = (m.Fecha_Respuesta == null ? string.Empty : Convert.ToDateTime(m.Fecha_Respuesta).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Respuesta = m.Hora_Respuesta
 			,NUAT = m.NUAT
-                        ,Pregunta1Descripcion = CultureHelper.GetTraduction(m.Pregunta1_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta1_Catalogo_Respuesta.Descripcion
-                        ,Pregunta2Descripcion = CultureHelper.GetTraduction(m.Pregunta2_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta2_Catalogo_Respuesta.Descripcion
-                        ,Pregunta3Descripcion = CultureHelper.GetTraduction(m.Pregunta3_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta3_Catalogo_Respuesta.Descripcion
-                        ,Pregunta4Descripcion = CultureHelper.GetTraduction(m.Pregunta4_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta4_Catalogo_Respuesta.Descripcion
-                        ,Pregunta5Descripcion = CultureHelper.GetTraduction(m.Pregunta5_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta5_Catalogo_Respuesta.Descripcion
-                        ,Pregunta6Descripcion = CultureHelper.GetTraduction(m.Pregunta6_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta6_Catalogo_Respuesta.Descripcion
-                        ,Pregunta7Descripcion = CultureHelper.GetTraduction(m.Pregunta7_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta7_Catalogo_Respuesta.Descripcion
-                        ,Pregunta8Descripcion = CultureHelper.GetTraduction(m.Pregunta8_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta8_Catalogo_Respuesta.Descripcion
-                        ,Pregunta9Descripcion = CultureHelper.GetTraduction(m.Pregunta9_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta9_Catalogo_Respuesta.Descripcion
-                        ,Pregunta10Descripcion = CultureHelper.GetTraduction(m.Pregunta10_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta10_Catalogo_Respuesta.Descripcion
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
+                        ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
+			,Pregunta1 = m.Pregunta1
+                        ,Respuesta_1Descripcion = CultureHelper.GetTraduction(m.Respuesta_1_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_1_Catalogo_Respuesta.Descripcion
+			,Pregunta2 = m.Pregunta2
+                        ,Respuesta_2Descripcion = CultureHelper.GetTraduction(m.Respuesta_2_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_2_Catalogo_Respuesta.Descripcion
+			,Pregunta3 = m.Pregunta3
+                        ,Respuesta_3Descripcion = CultureHelper.GetTraduction(m.Respuesta_3_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_3_Catalogo_Respuesta.Descripcion
+			,Pregunta4 = m.Pregunta4
+                        ,Respuesta_4Descripcion = CultureHelper.GetTraduction(m.Respuesta_4_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_4_Catalogo_Respuesta.Descripcion
+			,Pregunta5 = m.Pregunta5
+                        ,Respuesta_5Descripcion = CultureHelper.GetTraduction(m.Respuesta_5_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_5_Catalogo_Respuesta.Descripcion
+                        ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Encuesta.Descripcion
 
             }).ToList();
 
@@ -1800,18 +1877,25 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Encuesta1s.Select(m => new Encuesta1GridModel
             {
                 Clave = m.Clave
-                        ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
+			,Folio = m.Folio
+                        ,Fecha_Enviado = (m.Fecha_Enviado == null ? string.Empty : Convert.ToDateTime(m.Fecha_Enviado).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Enviado = m.Hora_Enviado
+                        ,Fecha_Respuesta = (m.Fecha_Respuesta == null ? string.Empty : Convert.ToDateTime(m.Fecha_Respuesta).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Respuesta = m.Hora_Respuesta
 			,NUAT = m.NUAT
-                        ,Pregunta1Descripcion = CultureHelper.GetTraduction(m.Pregunta1_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta1_Catalogo_Respuesta.Descripcion
-                        ,Pregunta2Descripcion = CultureHelper.GetTraduction(m.Pregunta2_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta2_Catalogo_Respuesta.Descripcion
-                        ,Pregunta3Descripcion = CultureHelper.GetTraduction(m.Pregunta3_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta3_Catalogo_Respuesta.Descripcion
-                        ,Pregunta4Descripcion = CultureHelper.GetTraduction(m.Pregunta4_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta4_Catalogo_Respuesta.Descripcion
-                        ,Pregunta5Descripcion = CultureHelper.GetTraduction(m.Pregunta5_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta5_Catalogo_Respuesta.Descripcion
-                        ,Pregunta6Descripcion = CultureHelper.GetTraduction(m.Pregunta6_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta6_Catalogo_Respuesta.Descripcion
-                        ,Pregunta7Descripcion = CultureHelper.GetTraduction(m.Pregunta7_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta7_Catalogo_Respuesta.Descripcion
-                        ,Pregunta8Descripcion = CultureHelper.GetTraduction(m.Pregunta8_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta8_Catalogo_Respuesta.Descripcion
-                        ,Pregunta9Descripcion = CultureHelper.GetTraduction(m.Pregunta9_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta9_Catalogo_Respuesta.Descripcion
-                        ,Pregunta10Descripcion = CultureHelper.GetTraduction(m.Pregunta10_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta10_Catalogo_Respuesta.Descripcion
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
+                        ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
+			,Pregunta1 = m.Pregunta1
+                        ,Respuesta_1Descripcion = CultureHelper.GetTraduction(m.Respuesta_1_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_1_Catalogo_Respuesta.Descripcion
+			,Pregunta2 = m.Pregunta2
+                        ,Respuesta_2Descripcion = CultureHelper.GetTraduction(m.Respuesta_2_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_2_Catalogo_Respuesta.Descripcion
+			,Pregunta3 = m.Pregunta3
+                        ,Respuesta_3Descripcion = CultureHelper.GetTraduction(m.Respuesta_3_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_3_Catalogo_Respuesta.Descripcion
+			,Pregunta4 = m.Pregunta4
+                        ,Respuesta_4Descripcion = CultureHelper.GetTraduction(m.Respuesta_4_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_4_Catalogo_Respuesta.Descripcion
+			,Pregunta5 = m.Pregunta5
+                        ,Respuesta_5Descripcion = CultureHelper.GetTraduction(m.Respuesta_5_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_5_Catalogo_Respuesta.Descripcion
+                        ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Encuesta.Descripcion
 
             }).ToList();
 
@@ -1851,18 +1935,25 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var Encuesta1_Datos_GeneralesInfo = new Encuesta1_Datos_Generales
                 {
                     Clave = varEncuesta1.Clave
-                                            ,Numero_de_Preguntas = varEncuesta1.Numero_de_Preguntas
+                                            ,Folio = varEncuesta1.Folio
+                        ,Fecha_Enviado = (!String.IsNullOrEmpty(varEncuesta1.Fecha_Enviado)) ? DateTime.ParseExact(varEncuesta1.Fecha_Enviado, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_Enviado = varEncuesta1.Hora_Enviado
+                        ,Fecha_Respuesta = (!String.IsNullOrEmpty(varEncuesta1.Fecha_Respuesta)) ? DateTime.ParseExact(varEncuesta1.Fecha_Respuesta, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        ,Hora_Respuesta = varEncuesta1.Hora_Respuesta
                         ,NUAT = varEncuesta1.NUAT
+                        ,Modulo = varEncuesta1.Modulo
+                        ,Numero_de_Preguntas = varEncuesta1.Numero_de_Preguntas
                         ,Pregunta1 = varEncuesta1.Pregunta1
+                        ,Respuesta_1 = varEncuesta1.Respuesta_1
                         ,Pregunta2 = varEncuesta1.Pregunta2
+                        ,Respuesta_2 = varEncuesta1.Respuesta_2
                         ,Pregunta3 = varEncuesta1.Pregunta3
+                        ,Respuesta_3 = varEncuesta1.Respuesta_3
                         ,Pregunta4 = varEncuesta1.Pregunta4
+                        ,Respuesta_4 = varEncuesta1.Respuesta_4
                         ,Pregunta5 = varEncuesta1.Pregunta5
-                        ,Pregunta6 = varEncuesta1.Pregunta6
-                        ,Pregunta7 = varEncuesta1.Pregunta7
-                        ,Pregunta8 = varEncuesta1.Pregunta8
-                        ,Pregunta9 = varEncuesta1.Pregunta9
-                        ,Pregunta10 = varEncuesta1.Pregunta10
+                        ,Respuesta_5 = varEncuesta1.Respuesta_5
+                        ,Estatus = varEncuesta1.Estatus
                     
                 };
 
@@ -1891,29 +1982,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 var result = new Encuesta1_Datos_GeneralesModel
                 {
                     Clave = m.Clave
+			,Folio = m.Folio
+                        ,Fecha_Enviado = (m.Fecha_Enviado == null ? string.Empty : Convert.ToDateTime(m.Fecha_Enviado).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Enviado = m.Hora_Enviado
+                        ,Fecha_Respuesta = (m.Fecha_Respuesta == null ? string.Empty : Convert.ToDateTime(m.Fecha_Respuesta).ToString(ConfigurationProperty.DateFormat))
+			,Hora_Respuesta = m.Hora_Respuesta
+			,NUAT = m.NUAT
+                        ,Modulo = m.Modulo
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
                         ,Numero_de_Preguntas = m.Numero_de_Preguntas
                         ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
-			,NUAT = m.NUAT
-                        ,Pregunta1 = m.Pregunta1
-                        ,Pregunta1Descripcion = CultureHelper.GetTraduction(m.Pregunta1_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta1_Catalogo_Respuesta.Descripcion
-                        ,Pregunta2 = m.Pregunta2
-                        ,Pregunta2Descripcion = CultureHelper.GetTraduction(m.Pregunta2_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta2_Catalogo_Respuesta.Descripcion
-                        ,Pregunta3 = m.Pregunta3
-                        ,Pregunta3Descripcion = CultureHelper.GetTraduction(m.Pregunta3_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta3_Catalogo_Respuesta.Descripcion
-                        ,Pregunta4 = m.Pregunta4
-                        ,Pregunta4Descripcion = CultureHelper.GetTraduction(m.Pregunta4_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta4_Catalogo_Respuesta.Descripcion
-                        ,Pregunta5 = m.Pregunta5
-                        ,Pregunta5Descripcion = CultureHelper.GetTraduction(m.Pregunta5_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta5_Catalogo_Respuesta.Descripcion
-                        ,Pregunta6 = m.Pregunta6
-                        ,Pregunta6Descripcion = CultureHelper.GetTraduction(m.Pregunta6_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta6_Catalogo_Respuesta.Descripcion
-                        ,Pregunta7 = m.Pregunta7
-                        ,Pregunta7Descripcion = CultureHelper.GetTraduction(m.Pregunta7_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta7_Catalogo_Respuesta.Descripcion
-                        ,Pregunta8 = m.Pregunta8
-                        ,Pregunta8Descripcion = CultureHelper.GetTraduction(m.Pregunta8_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta8_Catalogo_Respuesta.Descripcion
-                        ,Pregunta9 = m.Pregunta9
-                        ,Pregunta9Descripcion = CultureHelper.GetTraduction(m.Pregunta9_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta9_Catalogo_Respuesta.Descripcion
-                        ,Pregunta10 = m.Pregunta10
-                        ,Pregunta10Descripcion = CultureHelper.GetTraduction(m.Pregunta10_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Pregunta10_Catalogo_Respuesta.Descripcion
+			,Pregunta1 = m.Pregunta1
+                        ,Respuesta_1 = m.Respuesta_1
+                        ,Respuesta_1Descripcion = CultureHelper.GetTraduction(m.Respuesta_1_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_1_Catalogo_Respuesta.Descripcion
+			,Pregunta2 = m.Pregunta2
+                        ,Respuesta_2 = m.Respuesta_2
+                        ,Respuesta_2Descripcion = CultureHelper.GetTraduction(m.Respuesta_2_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_2_Catalogo_Respuesta.Descripcion
+			,Pregunta3 = m.Pregunta3
+                        ,Respuesta_3 = m.Respuesta_3
+                        ,Respuesta_3Descripcion = CultureHelper.GetTraduction(m.Respuesta_3_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_3_Catalogo_Respuesta.Descripcion
+			,Pregunta4 = m.Pregunta4
+                        ,Respuesta_4 = m.Respuesta_4
+                        ,Respuesta_4Descripcion = CultureHelper.GetTraduction(m.Respuesta_4_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_4_Catalogo_Respuesta.Descripcion
+			,Pregunta5 = m.Pregunta5
+                        ,Respuesta_5 = m.Respuesta_5
+                        ,Respuesta_5Descripcion = CultureHelper.GetTraduction(m.Respuesta_5_Catalogo_Respuesta.Clave.ToString(), "Descripcion") ?? (string)m.Respuesta_5_Catalogo_Respuesta.Descripcion
+                        ,Estatus = m.Estatus
+                        ,EstatusDescripcion = CultureHelper.GetTraduction(m.Estatus_Estatus_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Estatus_Estatus_Encuesta.Descripcion
 
                     
                 };

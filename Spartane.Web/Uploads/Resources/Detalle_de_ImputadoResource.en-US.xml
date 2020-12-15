@@ -5,6 +5,7 @@
   <resource culture="en-US" name="Persona_Moral" value="Persona Moral"></resource>
   <resource culture="en-US" name="Modulo_Atencion_Inicial" value="Módulo Atención Inicial"></resource>
   <resource culture="en-US" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="en-US" name="Expediente_MASC" value="Expediente_MASC "></resource>
   <resource culture="en-US" name="Quien_Resulte_Responsable" value="Quien Resulte Responsable"></resource>
   <resource culture="en-US" name="Se_Presenta_con_Detenido" value="Se Presenta con Detenido"></resource>
   <resource culture="en-US" name="Folio_Registro_Nacional_de_Detenciones" value="Folio Registro Nacional de Detenciones"></resource>

@@ -2,17 +2,19 @@
 <resources>
   <resource culture="en-us" name="Detalle_Aseguramiento_Armas_Involucradas" value="Detalle Aseguramiento Armas Involucradas"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Motivo_de_Registro" value="Motivo de Registro"></resource>
   <resource culture="en-US" name="Tipo" value="Tipo"></resource>
   <resource culture="en-US" name="Descripcion_del_Arma" value="Descripción del Arma"></resource>
   <resource culture="en-US" name="Marca" value="Marca"></resource>
   <resource culture="en-US" name="Calibre" value="Calibre"></resource>
   <resource culture="en-US" name="Matricula" value="Matrícula"></resource>
   <resource culture="en-US" name="Serie" value="Serie"></resource>
+  <resource culture="en-US" name="Arma_Oficial" value="Arma Oficial"></resource>
   <resource culture="en-US" name="Inventario" value="Inventario"></resource>
   <resource culture="en-US" name="Clasificacion" value="Clasificación"></resource>
-  <resource culture="en-US" name="Cantidad" value="Cantidad"></resource>
+  <resource culture="en-US" name="Valor_Estimado" value="Valor Estimado"></resource>
   <resource culture="en-US" name="Lugar_de_Hallazgo" value="Lugar de Hallazgo"></resource>
-  <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="en-US" name="Observaciones" value="Particularidades"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

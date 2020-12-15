@@ -1051,6 +1051,28 @@ function GetAutoCompleteSolicitud_NUAT_Modulo_Atencion_InicialData(data) {
     }
     return AutoCompleteNUATData;
 }
+var AutoCompleteExpediente_MPIData = [];
+function GetAutoCompleteSolicitud_Expediente_MPI_expediente_ministerio_publicoData(data) {
+	AutoCompleteExpediente_MPIData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_MPIData.push({
+            id: data[i].clave,
+            text: data[i].nic
+        });
+    }
+    return AutoCompleteExpediente_MPIData;
+}
+var AutoCompleteExpediente_CausaPenalData = [];
+function GetAutoCompleteSolicitud_Expediente_CausaPenal_Resolucion_MPData(data) {
+	AutoCompleteExpediente_CausaPenalData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteExpediente_CausaPenalData.push({
+            id: data[i].Clave,
+            text: data[i].Observaciones
+        });
+    }
+    return AutoCompleteExpediente_CausaPenalData;
+}
 var AutoCompleteMunicipioData = [];
 function GetAutoCompleteSolicitud_Municipio_MunicipioData(data) {
 	AutoCompleteMunicipioData = [];
@@ -1083,17 +1105,6 @@ function GetAutoCompleteSolicitud_Agente_del_Ministerio_Publico_Invest_Spartan_U
         });
     }
     return AutoCompleteAgente_del_Ministerio_Publico_InvestData;
-}
-var AutoCompleteJuez_de_ControlData = [];
-function GetAutoCompleteSolicitud_Juez_de_Control_Spartan_UserData(data) {
-	AutoCompleteJuez_de_ControlData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteJuez_de_ControlData.push({
-            id: data[i].Id_User,
-            text: data[i].Name
-        });
-    }
-    return AutoCompleteJuez_de_ControlData;
 }
 var AutoCompletePaisHData = [];
 function GetAutoCompleteSolicitud_PaisH_PaisData(data) {
@@ -1254,6 +1265,12 @@ function ClearControls() {
     $('#NUAT').empty();
     $("#NUAT").append('<option value=""></option>');
     $('#NUAT').val('0').trigger('change');
+    $('#Expediente_MPI').empty();
+    $("#Expediente_MPI").append('<option value=""></option>');
+    $('#Expediente_MPI').val('0').trigger('change');
+    $('#Expediente_CausaPenal').empty();
+    $("#Expediente_CausaPenal").append('<option value=""></option>');
+    $('#Expediente_CausaPenal').val('0').trigger('change');
     $('#Municipio').empty();
     $("#Municipio").append('<option value=""></option>');
     $('#Municipio').val('0').trigger('change');
@@ -1263,9 +1280,6 @@ function ClearControls() {
     $('#Agente_del_Ministerio_Publico_Invest').empty();
     $("#Agente_del_Ministerio_Publico_Invest").append('<option value=""></option>');
     $('#Agente_del_Ministerio_Publico_Invest').val('0').trigger('change');
-    $('#Juez_de_Control').empty();
-    $("#Juez_de_Control").append('<option value=""></option>');
-    $('#Juez_de_Control').val('0').trigger('change');
     $('#PaisH').empty();
     $("#PaisH").append('<option value=""></option>');
     $('#PaisH').val('0').trigger('change');
@@ -1443,6 +1457,12 @@ $(document).ready(function () {
     $('#NUAT').empty();
     $("#NUAT").append('<option value=""></option>');
     $('#NUAT').val('0').trigger('change');
+    $('#Expediente_MPI').empty();
+    $("#Expediente_MPI").append('<option value=""></option>');
+    $('#Expediente_MPI').val('0').trigger('change');
+    $('#Expediente_CausaPenal').empty();
+    $("#Expediente_CausaPenal").append('<option value=""></option>');
+    $('#Expediente_CausaPenal').val('0').trigger('change');
     $('#Municipio').empty();
     $("#Municipio").append('<option value=""></option>');
     $('#Municipio').val('0').trigger('change');
@@ -1452,9 +1472,6 @@ $(document).ready(function () {
     $('#Agente_del_Ministerio_Publico_Invest').empty();
     $("#Agente_del_Ministerio_Publico_Invest").append('<option value=""></option>');
     $('#Agente_del_Ministerio_Publico_Invest').val('0').trigger('change');
-    $('#Juez_de_Control').empty();
-    $("#Juez_de_Control").append('<option value=""></option>');
-    $('#Juez_de_Control').val('0').trigger('change');
     $('#PaisH').empty();
     $("#PaisH").append('<option value=""></option>');
     $('#PaisH').val('0').trigger('change');

@@ -782,8 +782,9 @@
     }
 
 
-        function SendDiligencias_MPData(callBack) {
-			
+        function SendDiligencias_MPData(callBack,isCallFromEditarDoc) {
+
+           
 					
 		 var arr = []; 
 		 $("form#CreateDiligencias_MP").find(':input').each(function( index ) {		 
@@ -805,7 +806,12 @@
 				return false;
 			}						
 
-
+            if (isCallFromEditarDoc != true) {
+                if ($("#Archivo").val() == "" || $("#Archivo").val() == "0") {
+                    alert("Para poder guardar, debe de generar el documento")
+                    return false;
+                }
+            }
 			
 			if (isNew == "True")
             {
@@ -1148,7 +1154,7 @@
                     $("#ReferenceClave").val(idvalor);
                     OpenPrintFormats(idvalor, @Spartane.Web.SessionHelper.Role, "", false, "45018", formaid);
 
-                }, false)) {
+                }, true)) {
 
                 }
             }

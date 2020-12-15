@@ -38,6 +38,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceExpediente_MP { set; get; }
         public int[] AdvanceExpediente_MPMultiple { set; get; }
 
+        public Filters Expediente_MASCFilter { set; get; }
+        public string AdvanceExpediente_MASC { set; get; }
+        public int[] AdvanceExpediente_MASCMultiple { set; get; }
+
         public RadioOptions Quien_Resulte_Responsable { set; get; }
 
         public RadioOptions Se_Presenta_con_Detenido { set; get; }

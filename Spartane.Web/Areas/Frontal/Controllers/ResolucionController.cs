@@ -2,6 +2,8 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Resolucion;
+using Spartane.Core.Domain.Tipo_de_Resolucion;
+using Spartane.Core.Domain.Resolucion;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -11,6 +13,8 @@ using Spartane.Web.Areas.Frontal.Models;
 using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
+using Spartane.Web.Areas.WebApiConsumer.Resolucion;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Resolucion;
 using Spartane.Web.Areas.WebApiConsumer.Resolucion;
 
 using Spartane.Web.AuthFilters;
@@ -48,6 +52,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IResolucionService service = null;
         private IResolucionApiConsumer _IResolucionApiConsumer;
+        private ITipo_de_ResolucionApiConsumer _ITipo_de_ResolucionApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -65,7 +70,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public ResolucionController(IResolucionService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IResolucionApiConsumer ResolucionApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer )
+        public ResolucionController(IResolucionService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IResolucionApiConsumer ResolucionApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , ITipo_de_ResolucionApiConsumer Tipo_de_ResolucionApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -79,6 +84,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_Format_PermissionsApiConsumer = Spartan_Format_PermissionsApiConsumer;
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
+            this._ITipo_de_ResolucionApiConsumer = Tipo_de_ResolucionApiConsumer;
+            this._IResolucionApiConsumer = ResolucionApiConsumer;
 
         }
 
@@ -155,6 +162,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = ResolucionData.Clave 
 	                    ,Descripcion = ResolucionData.Descripcion
+                    ,Tipo = ResolucionData.Tipo
+                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(ResolucionData.Tipo), "Tipo_de_Resolucion") ??  (string)ResolucionData.Tipo_Tipo_de_Resolucion.Descripcion
+                    ,Resolucion_Padre_para_Autorizacion = ResolucionData.Resolucion_Padre_para_Autorizacion
+                    ,Resolucion_Padre_para_AutorizacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(ResolucionData.Resolucion_Padre_para_Autorizacion), "Resolucion") ??  (string)ResolucionData.Resolucion_Padre_para_Autorizacion_Resolucion.Descripcion
+                    ,Generar_Judicializacion = ResolucionData.Generar_Judicializacion.GetValueOrDefault()
 
 					};
 				}
@@ -165,6 +177,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ITipo_de_ResolucionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Resolucions_Tipo = _ITipo_de_ResolucionApiConsumer.SelAll(true);
+            if (Tipo_de_Resolucions_Tipo != null && Tipo_de_Resolucions_Tipo.Resource != null)
+                ViewBag.Tipo_de_Resolucions_Tipo = Tipo_de_Resolucions_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Resolucion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IResolucionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resolucions_Resolucion_Padre_para_Autorizacion = _IResolucionApiConsumer.SelAll(true);
+            if (Resolucions_Resolucion_Padre_para_Autorizacion != null && Resolucions_Resolucion_Padre_para_Autorizacion.Resource != null)
+                ViewBag.Resolucions_Resolucion_Padre_para_Autorizacion = Resolucions_Resolucion_Padre_para_Autorizacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resolucion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             ViewBag.Consult = consult == 1;
@@ -228,6 +254,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = ResolucionData.Clave 
 	                    ,Descripcion = ResolucionData.Descripcion
+                    ,Tipo = ResolucionData.Tipo
+                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(ResolucionData.Tipo), "Tipo_de_Resolucion") ??  (string)ResolucionData.Tipo_Tipo_de_Resolucion.Descripcion
+                    ,Resolucion_Padre_para_Autorizacion = ResolucionData.Resolucion_Padre_para_Autorizacion
+                    ,Resolucion_Padre_para_AutorizacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(ResolucionData.Resolucion_Padre_para_Autorizacion), "Resolucion") ??  (string)ResolucionData.Resolucion_Padre_para_Autorizacion_Resolucion.Descripcion
+                    ,Generar_Judicializacion = ResolucionData.Generar_Judicializacion.GetValueOrDefault()
 
 					};
 				}
@@ -236,6 +267,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ITipo_de_ResolucionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Resolucions_Tipo = _ITipo_de_ResolucionApiConsumer.SelAll(true);
+            if (Tipo_de_Resolucions_Tipo != null && Tipo_de_Resolucions_Tipo.Resource != null)
+                ViewBag.Tipo_de_Resolucions_Tipo = Tipo_de_Resolucions_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Resolucion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IResolucionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resolucions_Resolucion_Padre_para_Autorizacion = _IResolucionApiConsumer.SelAll(true);
+            if (Resolucions_Resolucion_Padre_para_Autorizacion != null && Resolucions_Resolucion_Padre_para_Autorizacion.Resource != null)
+                ViewBag.Resolucions_Resolucion_Padre_para_Autorizacion = Resolucions_Resolucion_Padre_para_Autorizacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resolucion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             return PartialView("AddResolucion", varResolucion);
@@ -256,6 +301,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetTipo_de_ResolucionAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_ResolucionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_ResolucionApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Resolucion", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetResolucionAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IResolucionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IResolucionApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resolucion", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -289,6 +376,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ITipo_de_ResolucionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Resolucions_Tipo = _ITipo_de_ResolucionApiConsumer.SelAll(true);
+            if (Tipo_de_Resolucions_Tipo != null && Tipo_de_Resolucions_Tipo.Resource != null)
+                ViewBag.Tipo_de_Resolucions_Tipo = Tipo_de_Resolucions_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Resolucion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IResolucionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resolucions_Resolucion_Padre_para_Autorizacion = _IResolucionApiConsumer.SelAll(true);
+            if (Resolucions_Resolucion_Padre_para_Autorizacion != null && Resolucions_Resolucion_Padre_para_Autorizacion.Resource != null)
+                ViewBag.Resolucions_Resolucion_Padre_para_Autorizacion = Resolucions_Resolucion_Padre_para_Autorizacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resolucion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             return View(model);  
@@ -300,6 +401,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ITipo_de_ResolucionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Tipo_de_Resolucions_Tipo = _ITipo_de_ResolucionApiConsumer.SelAll(true);
+            if (Tipo_de_Resolucions_Tipo != null && Tipo_de_Resolucions_Tipo.Resource != null)
+                ViewBag.Tipo_de_Resolucions_Tipo = Tipo_de_Resolucions_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Resolucion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IResolucionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Resolucions_Resolucion_Padre_para_Autorizacion = _IResolucionApiConsumer.SelAll(true);
+            if (Resolucions_Resolucion_Padre_para_Autorizacion != null && Resolucions_Resolucion_Padre_para_Autorizacion.Resource != null)
+                ViewBag.Resolucions_Resolucion_Padre_para_Autorizacion = Resolucions_Resolucion_Padre_para_Autorizacion.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resolucion", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             var previousFiltersObj = new ResolucionAdvanceSearchModel();
@@ -339,6 +454,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Resolucion.Descripcion
+                        ,Resolucion_Padre_para_AutorizacionDescripcion = CultureHelper.GetTraduction(m.Resolucion_Padre_para_Autorizacion_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Resolucion_Padre_para_Autorizacion_Resolucion.Descripcion
+			,Generar_Judicializacion = m.Generar_Judicializacion
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -454,6 +572,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Resolucion.Descripcion
+                        ,Resolucion_Padre_para_AutorizacionDescripcion = CultureHelper.GetTraduction(m.Resolucion_Padre_para_Autorizacion_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Resolucion_Padre_para_Autorizacion_Resolucion.Descripcion
+			,Generar_Judicializacion = m.Generar_Judicializacion
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -501,6 +622,65 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         break;
                 }
             }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceTipo))
+            {
+                switch (filter.TipoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Tipo_de_Resolucion.Descripcion LIKE '" + filter.AdvanceTipo + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Tipo_de_Resolucion.Descripcion LIKE '%" + filter.AdvanceTipo + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Tipo_de_Resolucion.Descripcion = '" + filter.AdvanceTipo + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Tipo_de_Resolucion.Descripcion LIKE '%" + filter.AdvanceTipo + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceTipoMultiple != null && filter.AdvanceTipoMultiple.Count() > 0)
+            {
+                var TipoIds = string.Join(",", filter.AdvanceTipoMultiple);
+
+                where += " AND Resolucion.Tipo In (" + TipoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceResolucion_Padre_para_Autorizacion))
+            {
+                switch (filter.Resolucion_Padre_para_AutorizacionFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Resolucion.Descripcion LIKE '" + filter.AdvanceResolucion_Padre_para_Autorizacion + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Resolucion.Descripcion LIKE '%" + filter.AdvanceResolucion_Padre_para_Autorizacion + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Resolucion.Descripcion = '" + filter.AdvanceResolucion_Padre_para_Autorizacion + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Resolucion.Descripcion LIKE '%" + filter.AdvanceResolucion_Padre_para_Autorizacion + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceResolucion_Padre_para_AutorizacionMultiple != null && filter.AdvanceResolucion_Padre_para_AutorizacionMultiple.Count() > 0)
+            {
+                var Resolucion_Padre_para_AutorizacionIds = string.Join(",", filter.AdvanceResolucion_Padre_para_AutorizacionMultiple);
+
+                where += " AND Resolucion.Resolucion_Padre_para_Autorizacion In (" + Resolucion_Padre_para_AutorizacionIds + ")";
+            }
+
+            if (filter.Generar_Judicializacion != RadioOptions.NoApply)
+                where += " AND Resolucion.Generar_Judicializacion = " + Convert.ToInt32(filter.Generar_Judicializacion);
 
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
@@ -558,6 +738,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varResolucion.Clave
                         ,Descripcion = varResolucion.Descripcion
+                        ,Tipo = varResolucion.Tipo
+                        ,Resolucion_Padre_para_Autorizacion = varResolucion.Resolucion_Padre_para_Autorizacion
+                        ,Generar_Judicializacion = varResolucion.Generar_Judicializacion
 
                     };
 
@@ -946,6 +1129,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Resolucion.Descripcion
+                        ,Resolucion_Padre_para_AutorizacionDescripcion = CultureHelper.GetTraduction(m.Resolucion_Padre_para_Autorizacion_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Resolucion_Padre_para_Autorizacion_Resolucion.Descripcion
+			,Generar_Judicializacion = m.Generar_Judicializacion
 
             }).ToList();
 
@@ -1020,6 +1206,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
 			,Descripcion = m.Descripcion
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Resolucion.Descripcion
+                        ,Resolucion_Padre_para_AutorizacionDescripcion = CultureHelper.GetTraduction(m.Resolucion_Padre_para_Autorizacion_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Resolucion_Padre_para_Autorizacion_Resolucion.Descripcion
+			,Generar_Judicializacion = m.Generar_Judicializacion
 
             }).ToList();
 
@@ -1060,6 +1249,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varResolucion.Clave
                                             ,Descripcion = varResolucion.Descripcion
+                        ,Tipo = varResolucion.Tipo
+                        ,Resolucion_Padre_para_Autorizacion = varResolucion.Resolucion_Padre_para_Autorizacion
+                        ,Generar_Judicializacion = varResolucion.Generar_Judicializacion
                     
                 };
 
@@ -1089,6 +1281,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 			,Descripcion = m.Descripcion
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Resolucion.Descripcion
+                        ,Resolucion_Padre_para_Autorizacion = m.Resolucion_Padre_para_Autorizacion
+                        ,Resolucion_Padre_para_AutorizacionDescripcion = CultureHelper.GetTraduction(m.Resolucion_Padre_para_Autorizacion_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Resolucion_Padre_para_Autorizacion_Resolucion.Descripcion
+			,Generar_Judicializacion = m.Generar_Judicializacion
 
                     
                 };

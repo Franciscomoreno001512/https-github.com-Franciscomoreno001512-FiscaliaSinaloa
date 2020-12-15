@@ -2,7 +2,9 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_de_Drogas_Involucradas;
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Tipo_de_Droga;
+using Spartane.Core.Domain.Modo_de_Asegurado_de_Drogas;
 using Spartane.Core.Domain.Unidad_de_medida_de_tipo_de_droga;
 
 using Spartane.Core.Enums;
@@ -14,7 +16,9 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_de_Drogas_Involucradas;
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Droga;
+using Spartane.Web.Areas.WebApiConsumer.Modo_de_Asegurado_de_Drogas;
 using Spartane.Web.Areas.WebApiConsumer.Unidad_de_medida_de_tipo_de_droga;
 
 using Spartane.Web.AuthFilters;
@@ -42,7 +46,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_de_Drogas_InvolucradasService service = null;
         private IDetalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer _IDetalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer;
+        private IMotivo_de_RegistroApiConsumer _IMotivo_de_RegistroApiConsumer;
         private ITipo_de_DrogaApiConsumer _ITipo_de_DrogaApiConsumer;
+        private IModo_de_Asegurado_de_DrogasApiConsumer _IModo_de_Asegurado_de_DrogasApiConsumer;
         private IUnidad_de_medida_de_tipo_de_drogaApiConsumer _IUnidad_de_medida_de_tipo_de_drogaApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
@@ -57,7 +63,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_de_Drogas_InvolucradasController(IDetalle_Aseguramiento_de_Drogas_InvolucradasService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer Detalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_DrogaApiConsumer Tipo_de_DrogaApiConsumer , IUnidad_de_medida_de_tipo_de_drogaApiConsumer Unidad_de_medida_de_tipo_de_drogaApiConsumer )
+        public Detalle_Aseguramiento_de_Drogas_InvolucradasController(IDetalle_Aseguramiento_de_Drogas_InvolucradasService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer Detalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IMotivo_de_RegistroApiConsumer Motivo_de_RegistroApiConsumer , ITipo_de_DrogaApiConsumer Tipo_de_DrogaApiConsumer , IModo_de_Asegurado_de_DrogasApiConsumer Modo_de_Asegurado_de_DrogasApiConsumer , IUnidad_de_medida_de_tipo_de_drogaApiConsumer Unidad_de_medida_de_tipo_de_drogaApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -67,7 +73,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._ITipo_de_DrogaApiConsumer = Tipo_de_DrogaApiConsumer;
+            this._IModo_de_Asegurado_de_DrogasApiConsumer = Modo_de_Asegurado_de_DrogasApiConsumer;
             this._IUnidad_de_medida_de_tipo_de_drogaApiConsumer = Unidad_de_medida_de_tipo_de_drogaApiConsumer;
 
         }
@@ -117,8 +125,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 varDetalle_Aseguramiento_de_Drogas_Involucradas = new Detalle_Aseguramiento_de_Drogas_InvolucradasModel
                 {
                     Clave = (int)Detalle_Aseguramiento_de_Drogas_InvolucradasData.Clave
+                    ,Motivo_de_Registro = Detalle_Aseguramiento_de_Drogas_InvolucradasData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Drogas_InvolucradasData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_de_Drogas_InvolucradasData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                     ,Tipo = Detalle_Aseguramiento_de_Drogas_InvolucradasData.Tipo
                     ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Drogas_InvolucradasData.Tipo), "Tipo_de_Droga") ??  (string)Detalle_Aseguramiento_de_Drogas_InvolucradasData.Tipo_Tipo_de_Droga.Descripcion
+                    ,Modo_de_Asegurado = Detalle_Aseguramiento_de_Drogas_InvolucradasData.Modo_de_Asegurado
+                    ,Modo_de_AseguradoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Drogas_InvolucradasData.Modo_de_Asegurado), "Modo_de_Asegurado_de_Drogas") ??  (string)Detalle_Aseguramiento_de_Drogas_InvolucradasData.Modo_de_Asegurado_Modo_de_Asegurado_de_Drogas.Descripcion
                     ,Unidad_de_Medida = Detalle_Aseguramiento_de_Drogas_InvolucradasData.Unidad_de_Medida
                     ,Unidad_de_MedidaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Drogas_InvolucradasData.Unidad_de_Medida), "Unidad_de_medida_de_tipo_de_droga") ??  (string)Detalle_Aseguramiento_de_Drogas_InvolucradasData.Unidad_de_Medida_Unidad_de_medida_de_tipo_de_droga.Descripcion
                     ,Cantidad = Detalle_Aseguramiento_de_Drogas_InvolucradasData.Cantidad
@@ -130,12 +142,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ITipo_de_DrogaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Drogas_Tipo = _ITipo_de_DrogaApiConsumer.SelAll(true);
             if (Tipo_de_Drogas_Tipo != null && Tipo_de_Drogas_Tipo.Resource != null)
                 ViewBag.Tipo_de_Drogas_Tipo = Tipo_de_Drogas_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Droga", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IModo_de_Asegurado_de_DrogasApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Modo_de_Asegurado_de_Drogass_Modo_de_Asegurado = _IModo_de_Asegurado_de_DrogasApiConsumer.SelAll(true);
+            if (Modo_de_Asegurado_de_Drogass_Modo_de_Asegurado != null && Modo_de_Asegurado_de_Drogass_Modo_de_Asegurado.Resource != null)
+                ViewBag.Modo_de_Asegurado_de_Drogass_Modo_de_Asegurado = Modo_de_Asegurado_de_Drogass_Modo_de_Asegurado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modo_de_Asegurado_de_Drogas", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IUnidad_de_medida_de_tipo_de_drogaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Unidad_de_medida_de_tipo_de_drogas_Unidad_de_Medida = _IUnidad_de_medida_de_tipo_de_drogaApiConsumer.SelAll(true);
@@ -177,8 +203,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varDetalle_Aseguramiento_de_Drogas_Involucradas= new Detalle_Aseguramiento_de_Drogas_InvolucradasModel
 					{
 						Clave  = Detalle_Aseguramiento_de_Drogas_InvolucradasData.Clave 
-	                    ,Tipo = Detalle_Aseguramiento_de_Drogas_InvolucradasData.Tipo
+	                    ,Motivo_de_Registro = Detalle_Aseguramiento_de_Drogas_InvolucradasData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Drogas_InvolucradasData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_de_Drogas_InvolucradasData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                    ,Tipo = Detalle_Aseguramiento_de_Drogas_InvolucradasData.Tipo
                     ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Drogas_InvolucradasData.Tipo), "Tipo_de_Droga") ??  (string)Detalle_Aseguramiento_de_Drogas_InvolucradasData.Tipo_Tipo_de_Droga.Descripcion
+                    ,Modo_de_Asegurado = Detalle_Aseguramiento_de_Drogas_InvolucradasData.Modo_de_Asegurado
+                    ,Modo_de_AseguradoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Drogas_InvolucradasData.Modo_de_Asegurado), "Modo_de_Asegurado_de_Drogas") ??  (string)Detalle_Aseguramiento_de_Drogas_InvolucradasData.Modo_de_Asegurado_Modo_de_Asegurado_de_Drogas.Descripcion
                     ,Unidad_de_Medida = Detalle_Aseguramiento_de_Drogas_InvolucradasData.Unidad_de_Medida
                     ,Unidad_de_MedidaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Drogas_InvolucradasData.Unidad_de_Medida), "Unidad_de_medida_de_tipo_de_droga") ??  (string)Detalle_Aseguramiento_de_Drogas_InvolucradasData.Unidad_de_Medida_Unidad_de_medida_de_tipo_de_droga.Descripcion
                     ,Cantidad = Detalle_Aseguramiento_de_Drogas_InvolucradasData.Cantidad
@@ -191,12 +221,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ITipo_de_DrogaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Drogas_Tipo = _ITipo_de_DrogaApiConsumer.SelAll(true);
             if (Tipo_de_Drogas_Tipo != null && Tipo_de_Drogas_Tipo.Resource != null)
                 ViewBag.Tipo_de_Drogas_Tipo = Tipo_de_Drogas_Tipo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Droga", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IModo_de_Asegurado_de_DrogasApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Modo_de_Asegurado_de_Drogass_Modo_de_Asegurado = _IModo_de_Asegurado_de_DrogasApiConsumer.SelAll(true);
+            if (Modo_de_Asegurado_de_Drogass_Modo_de_Asegurado != null && Modo_de_Asegurado_de_Drogass_Modo_de_Asegurado.Resource != null)
+                ViewBag.Modo_de_Asegurado_de_Drogass_Modo_de_Asegurado = Modo_de_Asegurado_de_Drogass_Modo_de_Asegurado.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modo_de_Asegurado_de_Drogas", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _IUnidad_de_medida_de_tipo_de_drogaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Unidad_de_medida_de_tipo_de_drogas_Unidad_de_Medida = _IUnidad_de_medida_de_tipo_de_drogaApiConsumer.SelAll(true);
@@ -226,6 +270,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
         [HttpGet]
+        public ActionResult GetMotivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
         public ActionResult GetTipo_de_DrogaAll()
         {
             try
@@ -238,6 +303,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Droga", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetModo_de_Asegurado_de_DrogasAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IModo_de_Asegurado_de_DrogasApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IModo_de_Asegurado_de_DrogasApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modo_de_Asegurado_de_Drogas", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -288,7 +374,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_Aseguramiento_de_Drogas_Involucradass.Select(m => new Detalle_Aseguramiento_de_Drogas_InvolucradasGridModel
                     {
                     Clave = m.Clave
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Droga.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Droga.Descripcion
+                        ,Modo_de_AseguradoDescripcion = CultureHelper.GetTraduction(m.Modo_de_Asegurado_Modo_de_Asegurado_de_Drogas.Clave.ToString(), "Descripcion") ?? (string)m.Modo_de_Asegurado_Modo_de_Asegurado_de_Drogas.Descripcion
                         ,Unidad_de_MedidaDescripcion = CultureHelper.GetTraduction(m.Unidad_de_Medida_Unidad_de_medida_de_tipo_de_droga.Clave.ToString(), "Descripcion") ?? (string)m.Unidad_de_Medida_Unidad_de_medida_de_tipo_de_droga.Descripcion
 			,Cantidad = m.Cantidad
 			,Observaciones = m.Observaciones
@@ -356,7 +444,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Detalle_Aseguramiento_de_Drogas_InvolucradasInfo = new Detalle_Aseguramiento_de_Drogas_Involucradas
                     {
                         Clave = varDetalle_Aseguramiento_de_Drogas_Involucradas.Clave
+                        ,Motivo_de_Registro = varDetalle_Aseguramiento_de_Drogas_Involucradas.Motivo_de_Registro
                         ,Tipo = varDetalle_Aseguramiento_de_Drogas_Involucradas.Tipo
+                        ,Modo_de_Asegurado = varDetalle_Aseguramiento_de_Drogas_Involucradas.Modo_de_Asegurado
                         ,Unidad_de_Medida = varDetalle_Aseguramiento_de_Drogas_Involucradas.Unidad_de_Medida
                         ,Cantidad = varDetalle_Aseguramiento_de_Drogas_Involucradas.Cantidad
                         ,Observaciones = varDetalle_Aseguramiento_de_Drogas_Involucradas.Observaciones
@@ -587,7 +677,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_de_Drogas_Involucradass.Select(m => new Detalle_Aseguramiento_de_Drogas_InvolucradasGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,TipoDescripcion = (string)m.Tipo_Tipo_de_Droga.Descripcion
+                ,Modo_de_AseguradoDescripcion = (string)m.Modo_de_Asegurado_Modo_de_Asegurado_de_Drogas.Descripcion
                 ,Unidad_de_MedidaDescripcion = (string)m.Unidad_de_Medida_Unidad_de_medida_de_tipo_de_droga.Descripcion
                 ,Cantidad = m.Cantidad
                 ,Observaciones = m.Observaciones
@@ -637,7 +729,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_de_Drogas_Involucradass.Select(m => new Detalle_Aseguramiento_de_Drogas_InvolucradasGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,TipoDescripcion = (string)m.Tipo_Tipo_de_Droga.Descripcion
+                ,Modo_de_AseguradoDescripcion = (string)m.Modo_de_Asegurado_Modo_de_Asegurado_de_Drogas.Descripcion
                 ,Unidad_de_MedidaDescripcion = (string)m.Unidad_de_Medida_Unidad_de_medida_de_tipo_de_droga.Descripcion
                 ,Cantidad = m.Cantidad
                 ,Observaciones = m.Observaciones

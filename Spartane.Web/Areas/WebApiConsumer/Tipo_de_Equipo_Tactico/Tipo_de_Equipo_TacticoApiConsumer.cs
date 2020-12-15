@@ -58,7 +58,7 @@ namespace Spartane.Web.Areas.WebApiConsumer.Tipo_de_Equipo_Tactico
             }
         }
 
-        public ApiResponse<Core.Domain.Tipo_de_Equipo_Tactico.Tipo_de_Equipo_Tactico> GetByKey(short Key, bool ConRelaciones)
+        public ApiResponse<Core.Domain.Tipo_de_Equipo_Tactico.Tipo_de_Equipo_Tactico> GetByKey(int Key, bool ConRelaciones)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace Spartane.Web.Areas.WebApiConsumer.Tipo_de_Equipo_Tactico
             }
         }
 
-        public ApiResponse<Tipo_de_Equipo_TacticoPagingModel> GetByKeyComplete(short Key)
+        public ApiResponse<Tipo_de_Equipo_TacticoPagingModel> GetByKeyComplete(int Key)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace Spartane.Web.Areas.WebApiConsumer.Tipo_de_Equipo_Tactico
             }
         }
 
-        public ApiResponse<bool> Delete(short Key, Core.Domain.User.GlobalData Tipo_de_Equipo_TacticoInformation, DataLayerFieldsBitacora DataReference)
+        public ApiResponse<bool> Delete(int Key, Core.Domain.User.GlobalData Tipo_de_Equipo_TacticoInformation, DataLayerFieldsBitacora DataReference)
         {
             try
             {
@@ -106,33 +106,33 @@ namespace Spartane.Web.Areas.WebApiConsumer.Tipo_de_Equipo_Tactico
             }
         }
 
-        public ApiResponse<short> Insert(Core.Domain.Tipo_de_Equipo_Tactico.Tipo_de_Equipo_Tactico entity, Core.Domain.User.GlobalData Tipo_de_Equipo_TacticoInformation, DataLayerFieldsBitacora DataReference)
+        public ApiResponse<int> Insert(Core.Domain.Tipo_de_Equipo_Tactico.Tipo_de_Equipo_Tactico entity, Core.Domain.User.GlobalData Tipo_de_Equipo_TacticoInformation, DataLayerFieldsBitacora DataReference)
         {
             try
             {
-                var result = RestApiHelper.InvokeApi<short>(baseApi, ApiControllerUrl + "/Post",
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Post",
                       Method.POST, ApiHeader, entity);
 
-                return new ApiResponse<short>(true, result);
+                return new ApiResponse<int>(true, result);
             }
             catch (Exception ex)
             {
-                return new ApiResponse<short>(false, -1 );
+                return new ApiResponse<int>(false, -1 );
             }
         }
 
-        public ApiResponse<short> Update(Core.Domain.Tipo_de_Equipo_Tactico.Tipo_de_Equipo_Tactico entity, Core.Domain.User.GlobalData Tipo_de_Equipo_TacticoInformation, DataLayerFieldsBitacora DataReference)
+        public ApiResponse<int> Update(Core.Domain.Tipo_de_Equipo_Tactico.Tipo_de_Equipo_Tactico entity, Core.Domain.User.GlobalData Tipo_de_Equipo_TacticoInformation, DataLayerFieldsBitacora DataReference)
         {
             try
             {
-                var result = RestApiHelper.InvokeApi<short>(baseApi, ApiControllerUrl + "/Put?Id=" + entity.Clave,
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put?Id=" + entity.Clave,
                       Method.PUT, ApiHeader, entity);
 
-                return new ApiResponse<short>(true, result);
+                return new ApiResponse<int>(true, result);
             }
             catch (Exception ex)
             {
-                return new ApiResponse<short>(false, -1 );
+                return new ApiResponse<int>(false, -1 );
             }
         }
 
@@ -176,33 +176,33 @@ namespace Spartane.Web.Areas.WebApiConsumer.Tipo_de_Equipo_Tactico
             throw new NotImplementedException();
         }
 		
-		public ApiResponse<short> GenerateID()
+		public ApiResponse<int> GenerateID()
         {
             try
             {
-                var result = RestApiHelper.InvokeApi<short>(baseApi, ApiControllerUrl + "/Tipo_de_Equipo_TacticoGenerateID",
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Tipo_de_Equipo_TacticoGenerateID",
                       Method.GET, ApiHeader);
 
-                return new ApiResponse<short>(true, result);
+                return new ApiResponse<int>(true, result);
             }
             catch (Exception ex)
             {
-                return new ApiResponse<short>(false, -1 );
+                return new ApiResponse<int>(false, -1 );
             }
         }
 		
-public ApiResponse<short> Update_Datos_Generales(Tipo_de_Equipo_Tactico_Datos_Generales entity)
+public ApiResponse<int> Update_Datos_Generales(Tipo_de_Equipo_Tactico_Datos_Generales entity)
         {
             try
             {
-                var result = RestApiHelper.InvokeApi<short>(baseApi, ApiControllerUrl + "/Put_Datos_Generales",
+                var result = RestApiHelper.InvokeApi<int>(baseApi, ApiControllerUrl + "/Put_Datos_Generales",
                       Method.PUT, ApiHeader, entity);
 
-                return new ApiResponse<short>(true, result);
+                return new ApiResponse<int>(true, result);
             }
             catch (Exception ex)
             {
-                return new ApiResponse<short>(false, -1 );
+                return new ApiResponse<int>(false, -1 );
             }
         }
 

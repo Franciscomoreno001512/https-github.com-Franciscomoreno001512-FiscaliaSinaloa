@@ -54,6 +54,13 @@ if( GetValueByControlType($('#' + nameOfTable + 'Control_de_Detencion' + rowInde
 }
 //BusinessRuleId:2757, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2876, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divEspecificar_Control_Detencion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Especificar_Control_Detencion' + rowIndex));
+
+}
+//BusinessRuleId:2876, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

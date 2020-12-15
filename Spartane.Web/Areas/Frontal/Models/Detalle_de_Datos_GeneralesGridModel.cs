@@ -13,10 +13,17 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Modulo_Atencion_InicialNUAT { get; set; }
         public int? Expediente_MP { get; set; }
         public string Expediente_MPnic { get; set; }
+        public int? Expediente_MASC { get; set; }
+        public string Expediente_MASCNumero_de_Folio { get; set; }
         public bool? Datos_Confidenciales { get; set; }
         public bool? Se_Informo_sobre_el_Procedimiento { get; set; }
         public int? Tipo_de_Compareciente { get; set; }
         public string Tipo_de_ComparecienteDescripcion { get; set; }
+        public bool? Persona_Desaparecida { get; set; }
+        public bool? Persona_Aparecio { get; set; }
+        public string Fecha_de_Aparicion { get; set; }
+        public short? Con_Vida { get; set; }
+        public string Con_VidaDescripcion { get; set; }
         public bool? Persona_Moral { get; set; }
         public bool? Q_Q_R_O_ { get; set; }
         public bool? Es_victima { get; set; }

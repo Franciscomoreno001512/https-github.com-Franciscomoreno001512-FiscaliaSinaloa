@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Relaciones_para_Movimientos" value="Relaciones para Movimientos"></resource>
+  <resource culture="en-US" name="ObjectId" value="ObjectId"></resource>
+  <resource culture="en-US" name="Descripcion" value="Descripción"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

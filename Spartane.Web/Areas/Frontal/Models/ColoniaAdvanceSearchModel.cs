@@ -75,6 +75,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters estatusFilter { set; get; }
         public string estatus { set; get; }
 
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string Fromcod_localidad { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("Fromcod_localidad", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string Tocod_localidad { set; get; }
+
 
     }
 }

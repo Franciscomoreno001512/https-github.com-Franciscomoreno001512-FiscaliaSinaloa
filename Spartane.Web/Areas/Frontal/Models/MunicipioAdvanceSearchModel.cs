@@ -54,6 +54,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         [IsNumberAfterAttribute("Fromcod_zona_nsjp", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
         public string Tocod_zona_nsjp { set; get; }
 
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string Fromcod_mun { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("Fromcod_mun", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string Tocod_mun { set; get; }
+
 
     }
 }

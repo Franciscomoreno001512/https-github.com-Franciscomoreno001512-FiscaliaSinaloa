@@ -1317,6 +1317,68 @@
 <Compile Include="Control_de_Folios_por_Especialidad\Control_de_Folios_por_EspecialidadService.cs" />
 <Compile Include="Notificaciones\INotificacionesService.cs" />
 <Compile Include="Notificaciones\NotificacionesService.cs" />
+<Compile Include="Estatus_Encuesta\IEstatus_EncuestaService.cs" />
+<Compile Include="Estatus_Encuesta\Estatus_EncuestaService.cs" />
+<Compile Include="Tipo_de_Judicializacion\ITipo_de_JudicializacionService.cs" />
+<Compile Include="Tipo_de_Judicializacion\Tipo_de_JudicializacionService.cs" />
+<Compile Include="Modulo_Encuesta\IModulo_EncuestaService.cs" />
+<Compile Include="Modulo_Encuesta\Modulo_EncuestaService.cs" />
+<Compile Include="Generador_Folio_Encuesta\IGenerador_Folio_EncuestaService.cs" />
+<Compile Include="Generador_Folio_Encuesta\Generador_Folio_EncuestaService.cs" />
+<Compile Include="Motivo_de_Registro\IMotivo_de_RegistroService.cs" />
+<Compile Include="Motivo_de_Registro\Motivo_de_RegistroService.cs" />
+<Compile Include="Compania_de_Seguros\ICompania_de_SegurosService.cs" />
+<Compile Include="Compania_de_Seguros\Compania_de_SegurosService.cs" />
+<Compile Include="Ubicacion_de_Medio_de_Transporte\IUbicacion_de_Medio_de_TransporteService.cs" />
+<Compile Include="Ubicacion_de_Medio_de_Transporte\Ubicacion_de_Medio_de_TransporteService.cs" />
+<Compile Include="Pension\IPensionService.cs" />
+<Compile Include="Pension\PensionService.cs" />
+<Compile Include="Modo_de_Asegurado_de_Drogas\IModo_de_Asegurado_de_DrogasService.cs" />
+<Compile Include="Modo_de_Asegurado_de_Drogas\Modo_de_Asegurado_de_DrogasService.cs" />
+<Compile Include="Tipo_de_Documentos\ITipo_de_DocumentosService.cs" />
+<Compile Include="Tipo_de_Documentos\Tipo_de_DocumentosService.cs" />
+<Compile Include="Datos_de_los_Hechos_AT\IDatos_de_los_Hechos_ATService.cs" />
+<Compile Include="Datos_de_los_Hechos_AT\Datos_de_los_Hechos_ATService.cs" />
+<Compile Include="Detalle_Resumen_Denuncia\IDetalle_Resumen_DenunciaService.cs" />
+<Compile Include="Detalle_Resumen_Denuncia\Detalle_Resumen_DenunciaService.cs" />
+<Compile Include="Detalle_Medidas_Proteccion\IDetalle_Medidas_ProteccionService.cs" />
+<Compile Include="Detalle_Medidas_Proteccion\Detalle_Medidas_ProteccionService.cs" />
+<Compile Include="Medida_de_Proteccion\IMedida_de_ProteccionService.cs" />
+<Compile Include="Medida_de_Proteccion\Medida_de_ProteccionService.cs" />
+<Compile Include="Medidas_de_Proteccion\IMedidas_de_ProteccionService.cs" />
+<Compile Include="Medidas_de_Proteccion\Medidas_de_ProteccionService.cs" />
+<Compile Include="SubTipo_de_Medida_de_Proteccion\ISubTipo_de_Medida_de_ProteccionService.cs" />
+<Compile Include="SubTipo_de_Medida_de_Proteccion\SubTipo_de_Medida_de_ProteccionService.cs" />
+<Compile Include="Tipo_de_Medida_de_Proteccion\ITipo_de_Medida_de_ProteccionService.cs" />
+<Compile Include="Tipo_de_Medida_de_Proteccion\Tipo_de_Medida_de_ProteccionService.cs" />
+<Compile Include="Ano\IAnoService.cs" />
+<Compile Include="Ano\AnoService.cs" />
+<Compile Include="Detalle_Vinculacion_Resolucion\IDetalle_Vinculacion_ResolucionService.cs" />
+<Compile Include="Detalle_Vinculacion_Resolucion\Detalle_Vinculacion_ResolucionService.cs" />
+<Compile Include="Juzgado\IJuzgadoService.cs" />
+<Compile Include="Juzgado\JuzgadoService.cs" />
+<Compile Include="Resolucion_MP\IResolucion_MPService.cs" />
+<Compile Include="Resolucion_MP\Resolucion_MPService.cs" />
+<Compile Include="Estatus_de_Resolucion\IEstatus_de_ResolucionService.cs" />
+<Compile Include="Estatus_de_Resolucion\Estatus_de_ResolucionService.cs" />
+<Compile Include="Configurador_de_Movimientos\IConfigurador_de_MovimientosService.cs" />
+<Compile Include="Configurador_de_Movimientos\Configurador_de_MovimientosService.cs" />
+<Compile Include="Detalle_Datos_Adicionales_Movimiento\IDetalle_Datos_Adicionales_MovimientoService.cs" />
+<Compile Include="Detalle_Datos_Adicionales_Movimiento\Detalle_Datos_Adicionales_MovimientoService.cs" />
+<Compile Include="Detalle_Vinculacion_Judicializacion\IDetalle_Vinculacion_JudicializacionService.cs" />
+<Compile Include="Detalle_Vinculacion_Judicializacion\Detalle_Vinculacion_JudicializacionService.cs" />
+<Compile Include="Fase_de_Judicializacion\IFase_de_JudicializacionService.cs" />
+<Compile Include="Fase_de_Judicializacion\Fase_de_JudicializacionService.cs" />
+<Compile Include="Judicializacion\IJudicializacionService.cs" />
+<Compile Include="Judicializacion\JudicializacionService.cs" />
+<Compile Include="Registro_de_Movimiento\IRegistro_de_MovimientoService.cs" />
+<Compile Include="Registro_de_Movimiento\Registro_de_MovimientoService.cs" />
+<Compile Include="Relaciones_para_Movimientos\IRelaciones_para_MovimientosService.cs" />
+<Compile Include="Relaciones_para_Movimientos\Relaciones_para_MovimientosService.cs" />
+<Compile Include="Tipo_de_Dato\ITipo_de_DatoService.cs" />
+<Compile Include="Tipo_de_Dato\Tipo_de_DatoService.cs" />
+<Compile Include="Tipo_de_Resolucion\ITipo_de_ResolucionService.cs" />
+<Compile Include="Tipo_de_Resolucion\Tipo_de_ResolucionService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1416,6 +1478,68 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

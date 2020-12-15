@@ -36,6 +36,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Municipio.MuniNSJP";
                 case "cod_zona_nsjp":
                     return "Municipio.cod_zona_nsjp";
+                case "cod_mun":
+                    return "Municipio.cod_mun";
 
                 default:
                     return propertyName;

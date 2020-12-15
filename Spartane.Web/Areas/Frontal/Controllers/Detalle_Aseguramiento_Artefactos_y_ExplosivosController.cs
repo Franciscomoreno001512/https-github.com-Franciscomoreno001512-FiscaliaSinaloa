@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_Artefactos_y_Explosivos;
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Clasificacion_de_Artefacto_y_Explosivo;
 
 using Spartane.Core.Enums;
@@ -13,6 +14,7 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Artefactos_y_Explosivos;
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Clasificacion_de_Artefacto_y_Explosivo;
 
 using Spartane.Web.AuthFilters;
@@ -40,6 +42,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_Artefactos_y_ExplosivosService service = null;
         private IDetalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer _IDetalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer;
+        private IMotivo_de_RegistroApiConsumer _IMotivo_de_RegistroApiConsumer;
         private IClasificacion_de_Artefacto_y_ExplosivoApiConsumer _IClasificacion_de_Artefacto_y_ExplosivoApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
@@ -54,7 +57,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_Artefactos_y_ExplosivosController(IDetalle_Aseguramiento_Artefactos_y_ExplosivosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer Detalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IClasificacion_de_Artefacto_y_ExplosivoApiConsumer Clasificacion_de_Artefacto_y_ExplosivoApiConsumer )
+        public Detalle_Aseguramiento_Artefactos_y_ExplosivosController(IDetalle_Aseguramiento_Artefactos_y_ExplosivosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer Detalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IMotivo_de_RegistroApiConsumer Motivo_de_RegistroApiConsumer , IClasificacion_de_Artefacto_y_ExplosivoApiConsumer Clasificacion_de_Artefacto_y_ExplosivoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -64,6 +67,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._IClasificacion_de_Artefacto_y_ExplosivoApiConsumer = Clasificacion_de_Artefacto_y_ExplosivoApiConsumer;
 
         }
@@ -113,6 +117,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 varDetalle_Aseguramiento_Artefactos_y_Explosivos = new Detalle_Aseguramiento_Artefactos_y_ExplosivosModel
                 {
                     Clave = (int)Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Clave
+                    ,Motivo_de_Registro = Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                     ,Clasificacion = Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Clasificacion
                     ,ClasificacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Clasificacion), "Clasificacion_de_Artefacto_y_Explosivo") ??  (string)Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Clasificacion_Clasificacion_de_Artefacto_y_Explosivo.Descripcion
                     ,Cantidad = Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Cantidad
@@ -125,6 +131,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IClasificacion_de_Artefacto_y_ExplosivoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Clasificacion_de_Artefacto_y_Explosivos_Clasificacion = _IClasificacion_de_Artefacto_y_ExplosivoApiConsumer.SelAll(true);
             if (Clasificacion_de_Artefacto_y_Explosivos_Clasificacion != null && Clasificacion_de_Artefacto_y_Explosivos_Clasificacion.Resource != null)
@@ -165,7 +178,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varDetalle_Aseguramiento_Artefactos_y_Explosivos= new Detalle_Aseguramiento_Artefactos_y_ExplosivosModel
 					{
 						Clave  = Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Clave 
-	                    ,Clasificacion = Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Clasificacion
+	                    ,Motivo_de_Registro = Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                    ,Clasificacion = Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Clasificacion
                     ,ClasificacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Clasificacion), "Clasificacion_de_Artefacto_y_Explosivo") ??  (string)Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Clasificacion_Clasificacion_de_Artefacto_y_Explosivo.Descripcion
                     ,Cantidad = Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Cantidad
                     ,Lugar_de_Hallazgo = Detalle_Aseguramiento_Artefactos_y_ExplosivosData.Lugar_de_Hallazgo
@@ -178,6 +193,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IClasificacion_de_Artefacto_y_ExplosivoApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Clasificacion_de_Artefacto_y_Explosivos_Clasificacion = _IClasificacion_de_Artefacto_y_ExplosivoApiConsumer.SelAll(true);
             if (Clasificacion_de_Artefacto_y_Explosivos_Clasificacion != null && Clasificacion_de_Artefacto_y_Explosivos_Clasificacion.Resource != null)
@@ -205,6 +227,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetMotivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetClasificacion_de_Artefacto_y_ExplosivoAll()
         {
@@ -247,6 +290,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_Aseguramiento_Artefactos_y_Explosivoss.Select(m => new Detalle_Aseguramiento_Artefactos_y_ExplosivosGridModel
                     {
                     Clave = m.Clave
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,ClasificacionDescripcion = CultureHelper.GetTraduction(m.Clasificacion_Clasificacion_de_Artefacto_y_Explosivo.Clave.ToString(), "Descripcion") ?? (string)m.Clasificacion_Clasificacion_de_Artefacto_y_Explosivo.Descripcion
 			,Cantidad = m.Cantidad
 			,Lugar_de_Hallazgo = m.Lugar_de_Hallazgo
@@ -315,6 +359,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Detalle_Aseguramiento_Artefactos_y_ExplosivosInfo = new Detalle_Aseguramiento_Artefactos_y_Explosivos
                     {
                         Clave = varDetalle_Aseguramiento_Artefactos_y_Explosivos.Clave
+                        ,Motivo_de_Registro = varDetalle_Aseguramiento_Artefactos_y_Explosivos.Motivo_de_Registro
                         ,Clasificacion = varDetalle_Aseguramiento_Artefactos_y_Explosivos.Clasificacion
                         ,Cantidad = varDetalle_Aseguramiento_Artefactos_y_Explosivos.Cantidad
                         ,Lugar_de_Hallazgo = varDetalle_Aseguramiento_Artefactos_y_Explosivos.Lugar_de_Hallazgo
@@ -546,6 +591,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Artefactos_y_Explosivoss.Select(m => new Detalle_Aseguramiento_Artefactos_y_ExplosivosGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,ClasificacionDescripcion = (string)m.Clasificacion_Clasificacion_de_Artefacto_y_Explosivo.Descripcion
                 ,Cantidad = m.Cantidad
                 ,Lugar_de_Hallazgo = m.Lugar_de_Hallazgo
@@ -596,6 +642,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Artefactos_y_Explosivoss.Select(m => new Detalle_Aseguramiento_Artefactos_y_ExplosivosGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,ClasificacionDescripcion = (string)m.Clasificacion_Clasificacion_de_Artefacto_y_Explosivo.Descripcion
                 ,Cantidad = m.Cantidad
                 ,Lugar_de_Hallazgo = m.Lugar_de_Hallazgo

@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Unidad;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
-using Spartane.Core.Domain.Unidad;
+using Spartane.Core.Domain.expediente_ministerio_publico;
+using Spartane.Core.Domain.Resolucion_MP;
 using Spartane.Core.Domain.Municipio;
 using Spartane.Core.Domain.Region;
 using Spartane.Core.Domain.Estatus_Solicitud;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Spartan_User;
-using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Unidad;
 using Spartane.Core.Domain.Lugar_Tipo;
 using Spartane.Core.Domain.Pais;
 using Spartane.Core.Domain.Estado;
@@ -46,7 +47,9 @@ namespace Spartane.Core.Domain.Solicitud
         public int? Unidad_MASC { get; set; }
         public string Remitente { get; set; }
         public int? NUAT { get; set; }
-        public int? Unidad { get; set; }
+        public string NUAT_Codigo { get; set; }
+        public int? Expediente_MPI { get; set; }
+        public int? Expediente_CausaPenal { get; set; }
         public int? Municipio { get; set; }
         public int? Region { get; set; }
         public string NUC { get; set; }
@@ -58,7 +61,8 @@ namespace Spartane.Core.Domain.Solicitud
         public DateTime? Fecha_en_que_llega_a_Especialista { get; set; }
         public int? Agente_del_Ministerio_Publico_Orientador { get; set; }
         public int? Agente_del_Ministerio_Publico_Invest { get; set; }
-        public int? Juez_de_Control { get; set; }
+        public string Juez_de_Control { get; set; }
+        public int? Unidad { get; set; }
         public string Titulo_del_Hecho { get; set; }
         public DateTime? Fecha_del_Hecho { get; set; }
         public string Narrativa_Breve_de_los_Hechos { get; set; }
@@ -105,8 +109,10 @@ namespace Spartane.Core.Domain.Solicitud
         public virtual Spartane.Core.Domain.Unidad.Unidad Unidad_MASC_Unidad { get; set; }
         [ForeignKey("NUAT")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial NUAT_Modulo_Atencion_Inicial { get; set; }
-        [ForeignKey("Unidad")]
-        public virtual Spartane.Core.Domain.Unidad.Unidad Unidad_Unidad { get; set; }
+        [ForeignKey("Expediente_MPI")]
+        public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MPI_expediente_ministerio_publico { get; set; }
+        [ForeignKey("Expediente_CausaPenal")]
+        public virtual Spartane.Core.Domain.Resolucion_MP.Resolucion_MP Expediente_CausaPenal_Resolucion_MP { get; set; }
         [ForeignKey("Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Municipio { get; set; }
         [ForeignKey("Region")]
@@ -117,8 +123,8 @@ namespace Spartane.Core.Domain.Solicitud
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Agente_del_Ministerio_Publico_Orientador_Spartan_User { get; set; }
         [ForeignKey("Agente_del_Ministerio_Publico_Invest")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Agente_del_Ministerio_Publico_Invest_Spartan_User { get; set; }
-        [ForeignKey("Juez_de_Control")]
-        public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Juez_de_Control_Spartan_User { get; set; }
+        [ForeignKey("Unidad")]
+        public virtual Spartane.Core.Domain.Unidad.Unidad Unidad_Unidad { get; set; }
         [ForeignKey("Tipo_de_Lugar_del_Hecho")]
         public virtual Spartane.Core.Domain.Lugar_Tipo.Lugar_Tipo Tipo_de_Lugar_del_Hecho_Lugar_Tipo { get; set; }
         [ForeignKey("PaisH")]
@@ -159,7 +165,9 @@ namespace Spartane.Core.Domain.Solicitud
         public int? Unidad_MASC { get; set; }
         public string Remitente { get; set; }
         public int? NUAT { get; set; }
-        public int? Unidad { get; set; }
+        public string NUAT_Codigo { get; set; }
+        public int? Expediente_MPI { get; set; }
+        public int? Expediente_CausaPenal { get; set; }
         public int? Municipio { get; set; }
         public int? Region { get; set; }
         public string NUC { get; set; }
@@ -176,8 +184,10 @@ namespace Spartane.Core.Domain.Solicitud
         public virtual Spartane.Core.Domain.Unidad.Unidad Unidad_MASC_Unidad { get; set; }
         [ForeignKey("NUAT")]
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial NUAT_Modulo_Atencion_Inicial { get; set; }
-        [ForeignKey("Unidad")]
-        public virtual Spartane.Core.Domain.Unidad.Unidad Unidad_Unidad { get; set; }
+        [ForeignKey("Expediente_MPI")]
+        public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MPI_expediente_ministerio_publico { get; set; }
+        [ForeignKey("Expediente_CausaPenal")]
+        public virtual Spartane.Core.Domain.Resolucion_MP.Resolucion_MP Expediente_CausaPenal_Resolucion_MP { get; set; }
         [ForeignKey("Municipio")]
         public virtual Spartane.Core.Domain.Municipio.Municipio Municipio_Municipio { get; set; }
         [ForeignKey("Region")]
@@ -192,14 +202,15 @@ namespace Spartane.Core.Domain.Solicitud
                 public int Clave { get; set; }
         public int? Agente_del_Ministerio_Publico_Orientador { get; set; }
         public int? Agente_del_Ministerio_Publico_Invest { get; set; }
-        public int? Juez_de_Control { get; set; }
+        public string Juez_de_Control { get; set; }
+        public int? Unidad { get; set; }
 
 		        [ForeignKey("Agente_del_Ministerio_Publico_Orientador")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Agente_del_Ministerio_Publico_Orientador_Spartan_User { get; set; }
         [ForeignKey("Agente_del_Ministerio_Publico_Invest")]
         public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Agente_del_Ministerio_Publico_Invest_Spartan_User { get; set; }
-        [ForeignKey("Juez_de_Control")]
-        public virtual Spartane.Core.Domain.Spartan_User.Spartan_User Juez_de_Control_Spartan_User { get; set; }
+        [ForeignKey("Unidad")]
+        public virtual Spartane.Core.Domain.Unidad.Unidad Unidad_Unidad { get; set; }
 
     }
 

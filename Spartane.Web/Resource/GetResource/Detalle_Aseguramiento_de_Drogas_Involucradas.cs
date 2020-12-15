@@ -36,6 +36,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Motivo_de_Registro</summary>
+        public static string Motivo_de_Registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_de_Drogas_Involucradas.GetResource("Motivo_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Tipo</summary>
         public static string Tipo
         {
@@ -43,6 +53,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_Aseguramiento_de_Drogas_Involucradas.GetResource("Tipo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Modo_de_Asegurado</summary>
+        public static string Modo_de_Asegurado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_de_Drogas_Involucradas.GetResource("Modo_de_Asegurado", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

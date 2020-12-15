@@ -8,6 +8,12 @@
 @{
 
 
+    List<SelectListItem> varCalibre_de_Arma_Calibre = null;
+    if (ViewBag.Calibre_de_Armas_Calibre != null)
+    { varCalibre_de_Arma_Calibre = (List<SelectListItem>)ViewBag.Calibre_de_Armas_Calibre; }
+    List<SelectListItem> varMotivo_de_Registro_Motivo_de_Registro = null;
+    if (ViewBag.Motivo_de_Registros_Motivo_de_Registro != null)
+    { varMotivo_de_Registro_Motivo_de_Registro = (List<SelectListItem>)ViewBag.Motivo_de_Registros_Motivo_de_Registro; }
 
 
     Permission permission = ViewBag.Permission;
@@ -133,6 +139,48 @@
                                     <label class="form-control" for="Detalle_Aseguramiento_de_Cargador_CartuchosClave" id="Detalle_Aseguramiento_de_Cargador_CartuchosClave">@Model.Clave</label>
                                 </div>
                             </div>
+<div class="form-group" id="divCalibre">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_de_Cargador_CartuchosResources.Calibre</label>
+	<div class="col-sm-8" data-field-id="Calibre" data-attribute="268366" data-field-name="@Resources.Detalle_Aseguramiento_de_Cargador_CartuchosResources.Calibre">
+		<select class="form-control" data-val="true" data-val-number="The field Calibre must be a number." data-val-required="The Calibre field is required." id="Detalle_Aseguramiento_de_Cargador_CartuchosCalibre" name="Detalle_Aseguramiento_de_Cargador_CartuchosCalibre">
+			<option value=""></option>
+			@if (varCalibre_de_Arma_Calibre != null){ 
+				foreach (var itemCalibre in varCalibre_de_Arma_Calibre)
+				{
+					if (itemCalibre.Value == Convert.ToString(Model.Calibre))
+					{
+						<option value="@itemCalibre.Value" selected>@itemCalibre.Text</option>
+					}
+					else
+					{
+						<option value="@itemCalibre.Value">@itemCalibre.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
+<div class="form-group" id="divMotivo_de_Registro">
+	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_de_Cargador_CartuchosResources.Motivo_de_Registro</label>
+	<div class="col-sm-8" data-field-id="Motivo_de_Registro" data-attribute="268337" data-field-name="@Resources.Detalle_Aseguramiento_de_Cargador_CartuchosResources.Motivo_de_Registro">
+		<select class="form-control" data-val="true" data-val-number="The field Motivo de Registro must be a number." data-val-required="The Motivo de Registro field is required." id="Detalle_Aseguramiento_de_Cargador_CartuchosMotivo_de_Registro" name="Detalle_Aseguramiento_de_Cargador_CartuchosMotivo_de_Registro">
+			<option value=""></option>
+			@if (varMotivo_de_Registro_Motivo_de_Registro != null){ 
+				foreach (var itemMotivo_de_Registro in varMotivo_de_Registro_Motivo_de_Registro)
+				{
+					if (itemMotivo_de_Registro.Value == Convert.ToString(Model.Motivo_de_Registro))
+					{
+						<option value="@itemMotivo_de_Registro.Value" selected>@itemMotivo_de_Registro.Text</option>
+					}
+					else
+					{
+						<option value="@itemMotivo_de_Registro.Value">@itemMotivo_de_Registro.Text</option>
+					}
+				}
+			}
+		</select>
+	</div>
+</div>
 <div class="form-group" id="divcartuchos_municiones">
 	<label class="col-sm-2 control-label">@Resources.Detalle_Aseguramiento_de_Cargador_CartuchosResources.cartuchos_municiones</label>
 	<div class="col-sm-8" data-field-id="cartuchos_municiones" data-attribute="267606" data-field-name="@Resources.Detalle_Aseguramiento_de_Cargador_CartuchosResources.cartuchos_municiones">

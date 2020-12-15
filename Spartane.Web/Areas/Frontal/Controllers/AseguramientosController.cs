@@ -6,37 +6,46 @@ using Spartane.Core.Domain.expediente_ministerio_publico;
 using Spartane.Core.Domain.Spartan_User;
 using Spartane.Core.Domain.Detalle_Aseguramiento_Medios_de_Transporte;
 
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Tipo_de_medios_de_transporte;
-
 using Spartane.Core.Domain.Marca_de_Medio_de_transporte;
 
 using Spartane.Core.Domain.Modelo_de_medio_de_transporte;
 
-using Spartane.Core.Domain.Color_de_medio_de_trasporte;
+
 
 
 using Spartane.Core.Domain.Uso_del_medio_de_transporte;
 
 using Spartane.Core.Domain.Procedencia_del_medio_de_transporte;
+using Spartane.Core.Domain.A_Tiempo;
+using Spartane.Core.Domain.Compania_de_Seguros;
 
 
 
+
+using Spartane.Core.Domain.Ubicacion_de_Medio_de_Transporte;
+using Spartane.Core.Domain.Pension;
 
 
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_de_Drogas_Involucradas;
 
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Tipo_de_Droga;
+using Spartane.Core.Domain.Modo_de_Asegurado_de_Drogas;
 using Spartane.Core.Domain.Unidad_de_medida_de_tipo_de_droga;
 
 
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_Armas_Involucradas;
 
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Tipo_de_Arma;
 
 using Spartane.Core.Domain.Marca_de_Arma;
 using Spartane.Core.Domain.Calibre_de_Arma;
+
 
 
 
@@ -47,6 +56,7 @@ using Spartane.Core.Domain.Tipo_Clasificacion;
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_Artefactos_y_Explosivos;
 
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Clasificacion_de_Artefacto_y_Explosivo;
 
 
@@ -54,6 +64,8 @@ using Spartane.Core.Domain.Clasificacion_de_Artefacto_y_Explosivo;
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_de_Cargador_Cartuchos;
 
+using Spartane.Core.Domain.Calibre_de_Arma;
+using Spartane.Core.Domain.Motivo_de_Registro;
 
 
 
@@ -61,21 +73,24 @@ using Spartane.Core.Domain.Detalle_Aseguramiento_de_Cargador_Cartuchos;
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_Objetos_Asegurados;
 
+using Spartane.Core.Domain.Motivo_de_Registro;
 
-
-
+using Spartane.Core.Domain.Tipo_de_Equipo_de_Comunicacion;
+using Spartane.Core.Domain.Marca_de_Equipo_de_Comunicacion;
 
 
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_Documentos;
 
-
+using Spartane.Core.Domain.Motivo_de_Registro;
+using Spartane.Core.Domain.Tipo_de_Documentos;
 
 
 
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_Moneda;
 
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Tipo_de_Moneda;
 
 
@@ -83,7 +98,8 @@ using Spartane.Core.Domain.Tipo_de_Dinero;
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_Otros_Aseguramientos;
 
-
+using Spartane.Core.Domain.Motivo_de_Registro;
+using Spartane.Core.Domain.Tipo_de_Equipo_Tactico;
 
 
 
@@ -94,6 +110,7 @@ using Spartane.Core.Domain.Unidad_de_Medida_de_Equipo_Tactico;
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_Electronicos_y_Multimedia;
 
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Aparato_Electronicos_y_Multimedia;
 using Spartane.Core.Domain.Documentos_Multimedia;
 
@@ -102,6 +119,7 @@ using Spartane.Core.Domain.Documentos_Multimedia;
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_Pirateria;
 
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Tipo_de_Pirateria;
 
 
@@ -110,16 +128,16 @@ using Spartane.Core.Domain.Unidad_de_Medida_de_pirateria;
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_Inmuebles;
 
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Tipo_de_Zona;
-
-
+using Spartane.Core.Domain.Tipo_de_Inmueble;
 
 
 
 
 using Spartane.Core.Domain.Estado;
 using Spartane.Core.Domain.Municipio;
-
+using Spartane.Core.Domain.Colonia;
 
 
 
@@ -127,6 +145,7 @@ using Spartane.Core.Domain.Municipio;
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_de_Plantios;
 
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Tipo_de_Plantio;
 
 
@@ -142,8 +161,8 @@ using Spartane.Core.Domain.Metodo_de_Destruccion;
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_de_Pistas_de_Aterrizaje;
 
-
-
+using Spartane.Core.Domain.Motivo_de_Registro;
+using Spartane.Core.Domain.Tipo_de_Pista_de_Aterrizaje;
 
 
 
@@ -156,6 +175,7 @@ using Spartane.Core.Domain.Tipo_de_Orientacion;
 
 using Spartane.Core.Domain.Detalle_Aseguramiento_Otros;
 
+using Spartane.Core.Domain.Motivo_de_Registro;
 
 
 
@@ -175,72 +195,98 @@ using Spartane.Web.Areas.WebApiConsumer.expediente_ministerio_publico;
 using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Medios_de_Transporte;
 
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_medios_de_transporte;
 using Spartane.Web.Areas.WebApiConsumer.Marca_de_Medio_de_transporte;
 using Spartane.Web.Areas.WebApiConsumer.Modelo_de_medio_de_transporte;
-using Spartane.Web.Areas.WebApiConsumer.Color_de_medio_de_trasporte;
 using Spartane.Web.Areas.WebApiConsumer.Uso_del_medio_de_transporte;
 using Spartane.Web.Areas.WebApiConsumer.Procedencia_del_medio_de_transporte;
+using Spartane.Web.Areas.WebApiConsumer.A_Tiempo;
+using Spartane.Web.Areas.WebApiConsumer.Compania_de_Seguros;
+using Spartane.Web.Areas.WebApiConsumer.Ubicacion_de_Medio_de_Transporte;
+using Spartane.Web.Areas.WebApiConsumer.Pension;
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_de_Drogas_Involucradas;
 
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Droga;
+using Spartane.Web.Areas.WebApiConsumer.Modo_de_Asegurado_de_Drogas;
 using Spartane.Web.Areas.WebApiConsumer.Unidad_de_medida_de_tipo_de_droga;
 
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Armas_Involucradas;
 
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Arma;
 using Spartane.Web.Areas.WebApiConsumer.Marca_de_Arma;
 using Spartane.Web.Areas.WebApiConsumer.Calibre_de_Arma;
+
 using Spartane.Web.Areas.WebApiConsumer.Tipo_Clasificacion;
+
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Artefactos_y_Explosivos;
 
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Clasificacion_de_Artefacto_y_Explosivo;
 
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_de_Cargador_Cartuchos;
 
+using Spartane.Web.Areas.WebApiConsumer.Calibre_de_Arma;
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Objetos_Asegurados;
 
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Equipo_de_Comunicacion;
+using Spartane.Web.Areas.WebApiConsumer.Marca_de_Equipo_de_Comunicacion;
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Documentos;
 
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Documentos;
 
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Moneda;
 
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Moneda;
 
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Dinero;
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Otros_Aseguramientos;
 
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Equipo_Tactico;
 using Spartane.Web.Areas.WebApiConsumer.Unidad_de_Medida_de_Equipo_Tactico;
 
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Electronicos_y_Multimedia;
 
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Aparato_Electronicos_y_Multimedia;
 using Spartane.Web.Areas.WebApiConsumer.Documentos_Multimedia;
 
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Pirateria;
 
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Pirateria;
 
 using Spartane.Web.Areas.WebApiConsumer.Unidad_de_Medida_de_pirateria;
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Inmuebles;
 
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Zona;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Inmueble;
 using Spartane.Web.Areas.WebApiConsumer.Estado;
 using Spartane.Web.Areas.WebApiConsumer.Municipio;
+using Spartane.Web.Areas.WebApiConsumer.Colonia;
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_de_Plantios;
 
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Plantio;
 
 using Spartane.Web.Areas.WebApiConsumer.Metodo_de_Destruccion;
@@ -249,6 +295,8 @@ using Spartane.Web.Areas.WebApiConsumer.Metodo_de_Destruccion;
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_de_Pistas_de_Aterrizaje;
 
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Pista_de_Aterrizaje;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Orientacion;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Orientacion;
 
@@ -256,6 +304,7 @@ using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Orientacion;
 
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Otros;
 
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 
 
 
@@ -298,16 +347,21 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ISpartan_UserApiConsumer _ISpartan_UserApiConsumer;
         private IDetalle_Aseguramiento_Medios_de_TransporteApiConsumer _IDetalle_Aseguramiento_Medios_de_TransporteApiConsumer;
 
+        private IMotivo_de_RegistroApiConsumer _IMotivo_de_RegistroApiConsumer;
         private ITipo_de_medios_de_transporteApiConsumer _ITipo_de_medios_de_transporteApiConsumer;
         private IMarca_de_Medio_de_transporteApiConsumer _IMarca_de_Medio_de_transporteApiConsumer;
         private IModelo_de_medio_de_transporteApiConsumer _IModelo_de_medio_de_transporteApiConsumer;
-        private IColor_de_medio_de_trasporteApiConsumer _IColor_de_medio_de_trasporteApiConsumer;
         private IUso_del_medio_de_transporteApiConsumer _IUso_del_medio_de_transporteApiConsumer;
         private IProcedencia_del_medio_de_transporteApiConsumer _IProcedencia_del_medio_de_transporteApiConsumer;
+        private IA_TiempoApiConsumer _IA_TiempoApiConsumer;
+        private ICompania_de_SegurosApiConsumer _ICompania_de_SegurosApiConsumer;
+        private IUbicacion_de_Medio_de_TransporteApiConsumer _IUbicacion_de_Medio_de_TransporteApiConsumer;
+        private IPensionApiConsumer _IPensionApiConsumer;
 
         private IDetalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer _IDetalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer;
 
         private ITipo_de_DrogaApiConsumer _ITipo_de_DrogaApiConsumer;
+        private IModo_de_Asegurado_de_DrogasApiConsumer _IModo_de_Asegurado_de_DrogasApiConsumer;
         private IUnidad_de_medida_de_tipo_de_drogaApiConsumer _IUnidad_de_medida_de_tipo_de_drogaApiConsumer;
 
 
@@ -316,7 +370,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ITipo_de_ArmaApiConsumer _ITipo_de_ArmaApiConsumer;
         private IMarca_de_ArmaApiConsumer _IMarca_de_ArmaApiConsumer;
         private ICalibre_de_ArmaApiConsumer _ICalibre_de_ArmaApiConsumer;
+
         private ITipo_ClasificacionApiConsumer _ITipo_ClasificacionApiConsumer;
+
 
         private IDetalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer _IDetalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer;
 
@@ -328,9 +384,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_Objetos_AseguradosApiConsumer _IDetalle_Aseguramiento_Objetos_AseguradosApiConsumer;
 
+        private ITipo_de_Equipo_de_ComunicacionApiConsumer _ITipo_de_Equipo_de_ComunicacionApiConsumer;
+        private IMarca_de_Equipo_de_ComunicacionApiConsumer _IMarca_de_Equipo_de_ComunicacionApiConsumer;
 
         private IDetalle_Aseguramiento_DocumentosApiConsumer _IDetalle_Aseguramiento_DocumentosApiConsumer;
 
+        private ITipo_de_DocumentosApiConsumer _ITipo_de_DocumentosApiConsumer;
 
 
         private IDetalle_Aseguramiento_MonedaApiConsumer _IDetalle_Aseguramiento_MonedaApiConsumer;
@@ -341,6 +400,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer _IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer;
 
+        private ITipo_de_Equipo_TacticoApiConsumer _ITipo_de_Equipo_TacticoApiConsumer;
         private IUnidad_de_Medida_de_Equipo_TacticoApiConsumer _IUnidad_de_Medida_de_Equipo_TacticoApiConsumer;
 
 
@@ -359,8 +419,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_Aseguramiento_InmueblesApiConsumer _IDetalle_Aseguramiento_InmueblesApiConsumer;
 
         private ITipo_de_ZonaApiConsumer _ITipo_de_ZonaApiConsumer;
+        private ITipo_de_InmuebleApiConsumer _ITipo_de_InmuebleApiConsumer;
         private IEstadoApiConsumer _IEstadoApiConsumer;
         private IMunicipioApiConsumer _IMunicipioApiConsumer;
+        private IColoniaApiConsumer _IColoniaApiConsumer;
 
         private IDetalle_Aseguramiento_de_PlantiosApiConsumer _IDetalle_Aseguramiento_de_PlantiosApiConsumer;
 
@@ -372,6 +434,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer _IDetalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer;
 
+        private ITipo_de_Pista_de_AterrizajeApiConsumer _ITipo_de_Pista_de_AterrizajeApiConsumer;
         private ITipo_de_OrientacionApiConsumer _ITipo_de_OrientacionApiConsumer;
 
 
@@ -397,7 +460,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public AseguramientosController(IAseguramientosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IAseguramientosApiConsumer AseguramientosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IDetalle_Aseguramiento_Medios_de_TransporteApiConsumer Detalle_Aseguramiento_Medios_de_TransporteApiConsumer , ITipo_de_medios_de_transporteApiConsumer Tipo_de_medios_de_transporteApiConsumer , IMarca_de_Medio_de_transporteApiConsumer Marca_de_Medio_de_transporteApiConsumer , IModelo_de_medio_de_transporteApiConsumer Modelo_de_medio_de_transporteApiConsumer , IColor_de_medio_de_trasporteApiConsumer Color_de_medio_de_trasporteApiConsumer , IUso_del_medio_de_transporteApiConsumer Uso_del_medio_de_transporteApiConsumer , IProcedencia_del_medio_de_transporteApiConsumer Procedencia_del_medio_de_transporteApiConsumer  , IDetalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer Detalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer , ITipo_de_DrogaApiConsumer Tipo_de_DrogaApiConsumer , IUnidad_de_medida_de_tipo_de_drogaApiConsumer Unidad_de_medida_de_tipo_de_drogaApiConsumer  , IDetalle_Aseguramiento_Armas_InvolucradasApiConsumer Detalle_Aseguramiento_Armas_InvolucradasApiConsumer , ITipo_de_ArmaApiConsumer Tipo_de_ArmaApiConsumer , IMarca_de_ArmaApiConsumer Marca_de_ArmaApiConsumer , ICalibre_de_ArmaApiConsumer Calibre_de_ArmaApiConsumer , ITipo_ClasificacionApiConsumer Tipo_ClasificacionApiConsumer  , IDetalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer Detalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer , IClasificacion_de_Artefacto_y_ExplosivoApiConsumer Clasificacion_de_Artefacto_y_ExplosivoApiConsumer  , IDetalle_Aseguramiento_de_Cargador_CartuchosApiConsumer Detalle_Aseguramiento_de_Cargador_CartuchosApiConsumer  , IDetalle_Aseguramiento_Objetos_AseguradosApiConsumer Detalle_Aseguramiento_Objetos_AseguradosApiConsumer  , IDetalle_Aseguramiento_DocumentosApiConsumer Detalle_Aseguramiento_DocumentosApiConsumer  , IDetalle_Aseguramiento_MonedaApiConsumer Detalle_Aseguramiento_MonedaApiConsumer , ITipo_de_MonedaApiConsumer Tipo_de_MonedaApiConsumer , ITipo_de_DineroApiConsumer Tipo_de_DineroApiConsumer  , IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer Detalle_Aseguramiento_Otros_AseguramientosApiConsumer , IUnidad_de_Medida_de_Equipo_TacticoApiConsumer Unidad_de_Medida_de_Equipo_TacticoApiConsumer  , IDetalle_Aseguramiento_Electronicos_y_MultimediaApiConsumer Detalle_Aseguramiento_Electronicos_y_MultimediaApiConsumer , IAparato_Electronicos_y_MultimediaApiConsumer Aparato_Electronicos_y_MultimediaApiConsumer , IDocumentos_MultimediaApiConsumer Documentos_MultimediaApiConsumer  , IDetalle_Aseguramiento_PirateriaApiConsumer Detalle_Aseguramiento_PirateriaApiConsumer , ITipo_de_PirateriaApiConsumer Tipo_de_PirateriaApiConsumer , IUnidad_de_Medida_de_pirateriaApiConsumer Unidad_de_Medida_de_pirateriaApiConsumer  , IDetalle_Aseguramiento_InmueblesApiConsumer Detalle_Aseguramiento_InmueblesApiConsumer , ITipo_de_ZonaApiConsumer Tipo_de_ZonaApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer  , IDetalle_Aseguramiento_de_PlantiosApiConsumer Detalle_Aseguramiento_de_PlantiosApiConsumer , ITipo_de_PlantioApiConsumer Tipo_de_PlantioApiConsumer , IMetodo_de_DestruccionApiConsumer Metodo_de_DestruccionApiConsumer  , IDetalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer Detalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer , ITipo_de_OrientacionApiConsumer Tipo_de_OrientacionApiConsumer  , IDetalle_Aseguramiento_OtrosApiConsumer Detalle_Aseguramiento_OtrosApiConsumer  )
+        public AseguramientosController(IAseguramientosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IAseguramientosApiConsumer AseguramientosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IDetalle_Aseguramiento_Medios_de_TransporteApiConsumer Detalle_Aseguramiento_Medios_de_TransporteApiConsumer , IMotivo_de_RegistroApiConsumer Motivo_de_RegistroApiConsumer , ITipo_de_medios_de_transporteApiConsumer Tipo_de_medios_de_transporteApiConsumer , IMarca_de_Medio_de_transporteApiConsumer Marca_de_Medio_de_transporteApiConsumer , IModelo_de_medio_de_transporteApiConsumer Modelo_de_medio_de_transporteApiConsumer , IUso_del_medio_de_transporteApiConsumer Uso_del_medio_de_transporteApiConsumer , IProcedencia_del_medio_de_transporteApiConsumer Procedencia_del_medio_de_transporteApiConsumer , IA_TiempoApiConsumer A_TiempoApiConsumer , ICompania_de_SegurosApiConsumer Compania_de_SegurosApiConsumer , IUbicacion_de_Medio_de_TransporteApiConsumer Ubicacion_de_Medio_de_TransporteApiConsumer , IPensionApiConsumer PensionApiConsumer  , IDetalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer Detalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer , ITipo_de_DrogaApiConsumer Tipo_de_DrogaApiConsumer , IModo_de_Asegurado_de_DrogasApiConsumer Modo_de_Asegurado_de_DrogasApiConsumer , IUnidad_de_medida_de_tipo_de_drogaApiConsumer Unidad_de_medida_de_tipo_de_drogaApiConsumer  , IDetalle_Aseguramiento_Armas_InvolucradasApiConsumer Detalle_Aseguramiento_Armas_InvolucradasApiConsumer , ITipo_de_ArmaApiConsumer Tipo_de_ArmaApiConsumer , IMarca_de_ArmaApiConsumer Marca_de_ArmaApiConsumer , ICalibre_de_ArmaApiConsumer Calibre_de_ArmaApiConsumer , ITipo_ClasificacionApiConsumer Tipo_ClasificacionApiConsumer  , IDetalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer Detalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer , IClasificacion_de_Artefacto_y_ExplosivoApiConsumer Clasificacion_de_Artefacto_y_ExplosivoApiConsumer  , IDetalle_Aseguramiento_de_Cargador_CartuchosApiConsumer Detalle_Aseguramiento_de_Cargador_CartuchosApiConsumer  , IDetalle_Aseguramiento_Objetos_AseguradosApiConsumer Detalle_Aseguramiento_Objetos_AseguradosApiConsumer , ITipo_de_Equipo_de_ComunicacionApiConsumer Tipo_de_Equipo_de_ComunicacionApiConsumer , IMarca_de_Equipo_de_ComunicacionApiConsumer Marca_de_Equipo_de_ComunicacionApiConsumer  , IDetalle_Aseguramiento_DocumentosApiConsumer Detalle_Aseguramiento_DocumentosApiConsumer , ITipo_de_DocumentosApiConsumer Tipo_de_DocumentosApiConsumer  , IDetalle_Aseguramiento_MonedaApiConsumer Detalle_Aseguramiento_MonedaApiConsumer , ITipo_de_MonedaApiConsumer Tipo_de_MonedaApiConsumer , ITipo_de_DineroApiConsumer Tipo_de_DineroApiConsumer  , IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer Detalle_Aseguramiento_Otros_AseguramientosApiConsumer , ITipo_de_Equipo_TacticoApiConsumer Tipo_de_Equipo_TacticoApiConsumer , IUnidad_de_Medida_de_Equipo_TacticoApiConsumer Unidad_de_Medida_de_Equipo_TacticoApiConsumer  , IDetalle_Aseguramiento_Electronicos_y_MultimediaApiConsumer Detalle_Aseguramiento_Electronicos_y_MultimediaApiConsumer , IAparato_Electronicos_y_MultimediaApiConsumer Aparato_Electronicos_y_MultimediaApiConsumer , IDocumentos_MultimediaApiConsumer Documentos_MultimediaApiConsumer  , IDetalle_Aseguramiento_PirateriaApiConsumer Detalle_Aseguramiento_PirateriaApiConsumer , ITipo_de_PirateriaApiConsumer Tipo_de_PirateriaApiConsumer , IUnidad_de_Medida_de_pirateriaApiConsumer Unidad_de_Medida_de_pirateriaApiConsumer  , IDetalle_Aseguramiento_InmueblesApiConsumer Detalle_Aseguramiento_InmueblesApiConsumer , ITipo_de_ZonaApiConsumer Tipo_de_ZonaApiConsumer , ITipo_de_InmuebleApiConsumer Tipo_de_InmuebleApiConsumer , IEstadoApiConsumer EstadoApiConsumer , IMunicipioApiConsumer MunicipioApiConsumer , IColoniaApiConsumer ColoniaApiConsumer  , IDetalle_Aseguramiento_de_PlantiosApiConsumer Detalle_Aseguramiento_de_PlantiosApiConsumer , ITipo_de_PlantioApiConsumer Tipo_de_PlantioApiConsumer , IMetodo_de_DestruccionApiConsumer Metodo_de_DestruccionApiConsumer  , IDetalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer Detalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer , ITipo_de_Pista_de_AterrizajeApiConsumer Tipo_de_Pista_de_AterrizajeApiConsumer , ITipo_de_OrientacionApiConsumer Tipo_de_OrientacionApiConsumer  , IDetalle_Aseguramiento_OtrosApiConsumer Detalle_Aseguramiento_OtrosApiConsumer  )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -415,72 +478,98 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
             this._IDetalle_Aseguramiento_Medios_de_TransporteApiConsumer = Detalle_Aseguramiento_Medios_de_TransporteApiConsumer;
 
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._ITipo_de_medios_de_transporteApiConsumer = Tipo_de_medios_de_transporteApiConsumer;
             this._IMarca_de_Medio_de_transporteApiConsumer = Marca_de_Medio_de_transporteApiConsumer;
             this._IModelo_de_medio_de_transporteApiConsumer = Modelo_de_medio_de_transporteApiConsumer;
-            this._IColor_de_medio_de_trasporteApiConsumer = Color_de_medio_de_trasporteApiConsumer;
             this._IUso_del_medio_de_transporteApiConsumer = Uso_del_medio_de_transporteApiConsumer;
             this._IProcedencia_del_medio_de_transporteApiConsumer = Procedencia_del_medio_de_transporteApiConsumer;
+            this._IA_TiempoApiConsumer = A_TiempoApiConsumer;
+            this._ICompania_de_SegurosApiConsumer = Compania_de_SegurosApiConsumer;
+            this._IUbicacion_de_Medio_de_TransporteApiConsumer = Ubicacion_de_Medio_de_TransporteApiConsumer;
+            this._IPensionApiConsumer = PensionApiConsumer;
 
             this._IDetalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer = Detalle_Aseguramiento_de_Drogas_InvolucradasApiConsumer;
 
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._ITipo_de_DrogaApiConsumer = Tipo_de_DrogaApiConsumer;
+            this._IModo_de_Asegurado_de_DrogasApiConsumer = Modo_de_Asegurado_de_DrogasApiConsumer;
             this._IUnidad_de_medida_de_tipo_de_drogaApiConsumer = Unidad_de_medida_de_tipo_de_drogaApiConsumer;
 
 
             this._IDetalle_Aseguramiento_Armas_InvolucradasApiConsumer = Detalle_Aseguramiento_Armas_InvolucradasApiConsumer;
 
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._ITipo_de_ArmaApiConsumer = Tipo_de_ArmaApiConsumer;
             this._IMarca_de_ArmaApiConsumer = Marca_de_ArmaApiConsumer;
             this._ICalibre_de_ArmaApiConsumer = Calibre_de_ArmaApiConsumer;
+
             this._ITipo_ClasificacionApiConsumer = Tipo_ClasificacionApiConsumer;
+
 
             this._IDetalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer = Detalle_Aseguramiento_Artefactos_y_ExplosivosApiConsumer;
 
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._IClasificacion_de_Artefacto_y_ExplosivoApiConsumer = Clasificacion_de_Artefacto_y_ExplosivoApiConsumer;
 
 
             this._IDetalle_Aseguramiento_de_Cargador_CartuchosApiConsumer = Detalle_Aseguramiento_de_Cargador_CartuchosApiConsumer;
 
+            this._ICalibre_de_ArmaApiConsumer = Calibre_de_ArmaApiConsumer;
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
 
             this._IDetalle_Aseguramiento_Objetos_AseguradosApiConsumer = Detalle_Aseguramiento_Objetos_AseguradosApiConsumer;
 
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
+            this._ITipo_de_Equipo_de_ComunicacionApiConsumer = Tipo_de_Equipo_de_ComunicacionApiConsumer;
+            this._IMarca_de_Equipo_de_ComunicacionApiConsumer = Marca_de_Equipo_de_ComunicacionApiConsumer;
 
             this._IDetalle_Aseguramiento_DocumentosApiConsumer = Detalle_Aseguramiento_DocumentosApiConsumer;
 
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
+            this._ITipo_de_DocumentosApiConsumer = Tipo_de_DocumentosApiConsumer;
 
 
             this._IDetalle_Aseguramiento_MonedaApiConsumer = Detalle_Aseguramiento_MonedaApiConsumer;
 
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._ITipo_de_MonedaApiConsumer = Tipo_de_MonedaApiConsumer;
 
             this._ITipo_de_DineroApiConsumer = Tipo_de_DineroApiConsumer;
 
             this._IDetalle_Aseguramiento_Otros_AseguramientosApiConsumer = Detalle_Aseguramiento_Otros_AseguramientosApiConsumer;
 
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
+            this._ITipo_de_Equipo_TacticoApiConsumer = Tipo_de_Equipo_TacticoApiConsumer;
             this._IUnidad_de_Medida_de_Equipo_TacticoApiConsumer = Unidad_de_Medida_de_Equipo_TacticoApiConsumer;
 
 
             this._IDetalle_Aseguramiento_Electronicos_y_MultimediaApiConsumer = Detalle_Aseguramiento_Electronicos_y_MultimediaApiConsumer;
 
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._IAparato_Electronicos_y_MultimediaApiConsumer = Aparato_Electronicos_y_MultimediaApiConsumer;
             this._IDocumentos_MultimediaApiConsumer = Documentos_MultimediaApiConsumer;
 
 
             this._IDetalle_Aseguramiento_PirateriaApiConsumer = Detalle_Aseguramiento_PirateriaApiConsumer;
 
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._ITipo_de_PirateriaApiConsumer = Tipo_de_PirateriaApiConsumer;
 
             this._IUnidad_de_Medida_de_pirateriaApiConsumer = Unidad_de_Medida_de_pirateriaApiConsumer;
 
             this._IDetalle_Aseguramiento_InmueblesApiConsumer = Detalle_Aseguramiento_InmueblesApiConsumer;
 
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._ITipo_de_ZonaApiConsumer = Tipo_de_ZonaApiConsumer;
+            this._ITipo_de_InmuebleApiConsumer = Tipo_de_InmuebleApiConsumer;
             this._IEstadoApiConsumer = EstadoApiConsumer;
             this._IMunicipioApiConsumer = MunicipioApiConsumer;
+            this._IColoniaApiConsumer = ColoniaApiConsumer;
 
             this._IDetalle_Aseguramiento_de_PlantiosApiConsumer = Detalle_Aseguramiento_de_PlantiosApiConsumer;
 
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._ITipo_de_PlantioApiConsumer = Tipo_de_PlantioApiConsumer;
 
             this._IMetodo_de_DestruccionApiConsumer = Metodo_de_DestruccionApiConsumer;
@@ -489,6 +578,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             this._IDetalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer = Detalle_Aseguramiento_de_Pistas_de_AterrizajeApiConsumer;
 
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
+            this._ITipo_de_Pista_de_AterrizajeApiConsumer = Tipo_de_Pista_de_AterrizajeApiConsumer;
             this._ITipo_de_OrientacionApiConsumer = Tipo_de_OrientacionApiConsumer;
             this._ITipo_de_OrientacionApiConsumer = Tipo_de_OrientacionApiConsumer;
 
@@ -496,6 +587,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             this._IDetalle_Aseguramiento_OtrosApiConsumer = Detalle_Aseguramiento_OtrosApiConsumer;
 
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
 
 
 
@@ -1185,6 +1277,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpGet]
+        public JsonResult GetDetalle_Aseguramiento_Inmuebles_Colonia_Colonia(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Colonia.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Colonia.Nombre as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _IColoniaApiConsumer.ListaSelAll(1, 20,elWhere , " Colonia.Nombre ASC ").Resource;
+               
+                foreach (var item in result.Colonias)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Colonia", "Nombre");
+                    item.Nombre =trans ??item.Nombre;
+                }
+                return Json(result.Colonias.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 //Grid GetAutoComplete
 
@@ -1329,17 +1448,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Tipo = m.Tipo
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_medios_de_transporte.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_medios_de_transporte.Descripcion
-			,Especifique = m.Especifique
                         ,Marca = m.Marca
                         ,MarcaDescripcion = CultureHelper.GetTraduction(m.Marca_Marca_de_Medio_de_transporte.Clave.ToString(), "Descripcion") ??(string)m.Marca_Marca_de_Medio_de_transporte.Descripcion
 			,Submarca = m.Submarca
                         ,Modelo = m.Modelo
                         ,ModeloDescripcion = CultureHelper.GetTraduction(m.Modelo_Modelo_de_medio_de_transporte.Clave.ToString(), "Descripcion") ??(string)m.Modelo_Modelo_de_medio_de_transporte.Descripcion
 			,Placas = m.Placas
-                        ,Color = m.Color
-                        ,ColorDescripcion = CultureHelper.GetTraduction(m.Color_Color_de_medio_de_trasporte.Clave.ToString(), "Descripcion") ??(string)m.Color_Color_de_medio_de_trasporte.Descripcion
+			,Color = m.Color
 			,Numero_de_Motor = m.Numero_de_Motor
 			,Serie = m.Serie
                         ,Uso = m.Uso
@@ -1347,10 +1466,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Cap__De_Pasajeros = m.Cap__De_Pasajeros
                         ,Procedencia = m.Procedencia
                         ,ProcedenciaDescripcion = CultureHelper.GetTraduction(m.Procedencia_Procedencia_del_medio_de_transporte.Clave.ToString(), "Descripcion") ??(string)m.Procedencia_Procedencia_del_medio_de_transporte.Descripcion
+                        ,Seguro = m.Seguro
+                        ,SeguroDescripcion = CultureHelper.GetTraduction(m.Seguro_A_Tiempo.Clave.ToString(), "Descripcion") ??(string)m.Seguro_A_Tiempo.Descripcion
+                        ,Compania_de_Seguros = m.Compania_de_Seguros
+                        ,Compania_de_SegurosDescripcion = CultureHelper.GetTraduction(m.Compania_de_Seguros_Compania_de_Seguros.Clave.ToString(), "Descripcion") ??(string)m.Compania_de_Seguros_Compania_de_Seguros.Descripcion
 			,Empresa = m.Empresa
 			,Capacidad_de_Carga = m.Capacidad_de_Carga
 			,Origen = m.Origen
 			,Destino = m.Destino
+                        ,Ubicacion = m.Ubicacion
+                        ,UbicacionDescripcion = CultureHelper.GetTraduction(m.Ubicacion_Ubicacion_de_Medio_de_Transporte.Clave.ToString(), "Descripcion") ??(string)m.Ubicacion_Ubicacion_de_Medio_de_Transporte.Descripcion
+                        ,Pension = m.Pension
+                        ,PensionDescripcion = CultureHelper.GetTraduction(m.Pension_Pension.Clave.ToString(), "Descripcion") ??(string)m.Pension_Pension.Descripcion
+			,Domicilio_Resguardo = m.Domicilio_Resguardo
 			,Observaciones = m.Observaciones
 
                 }).ToList(),
@@ -1384,17 +1512,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Tipo = m.Tipo
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_medios_de_transporte.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_medios_de_transporte.Descripcion
-			,Especifique = m.Especifique
                         ,Marca = m.Marca
                         ,MarcaDescripcion = CultureHelper.GetTraduction(m.Marca_Marca_de_Medio_de_transporte.Clave.ToString(), "Descripcion") ??(string)m.Marca_Marca_de_Medio_de_transporte.Descripcion
 			,Submarca = m.Submarca
                         ,Modelo = m.Modelo
                         ,ModeloDescripcion = CultureHelper.GetTraduction(m.Modelo_Modelo_de_medio_de_transporte.Clave.ToString(), "Descripcion") ??(string)m.Modelo_Modelo_de_medio_de_transporte.Descripcion
 			,Placas = m.Placas
-                        ,Color = m.Color
-                        ,ColorDescripcion = CultureHelper.GetTraduction(m.Color_Color_de_medio_de_trasporte.Clave.ToString(), "Descripcion") ??(string)m.Color_Color_de_medio_de_trasporte.Descripcion
+			,Color = m.Color
 			,Numero_de_Motor = m.Numero_de_Motor
 			,Serie = m.Serie
                         ,Uso = m.Uso
@@ -1402,10 +1530,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Cap__De_Pasajeros = m.Cap__De_Pasajeros
                         ,Procedencia = m.Procedencia
                         ,ProcedenciaDescripcion = CultureHelper.GetTraduction(m.Procedencia_Procedencia_del_medio_de_transporte.Clave.ToString(), "Descripcion") ??(string)m.Procedencia_Procedencia_del_medio_de_transporte.Descripcion
+                        ,Seguro = m.Seguro
+                        ,SeguroDescripcion = CultureHelper.GetTraduction(m.Seguro_A_Tiempo.Clave.ToString(), "Descripcion") ??(string)m.Seguro_A_Tiempo.Descripcion
+                        ,Compania_de_Seguros = m.Compania_de_Seguros
+                        ,Compania_de_SegurosDescripcion = CultureHelper.GetTraduction(m.Compania_de_Seguros_Compania_de_Seguros.Clave.ToString(), "Descripcion") ??(string)m.Compania_de_Seguros_Compania_de_Seguros.Descripcion
 			,Empresa = m.Empresa
 			,Capacidad_de_Carga = m.Capacidad_de_Carga
 			,Origen = m.Origen
 			,Destino = m.Destino
+                        ,Ubicacion = m.Ubicacion
+                        ,UbicacionDescripcion = CultureHelper.GetTraduction(m.Ubicacion_Ubicacion_de_Medio_de_Transporte.Clave.ToString(), "Descripcion") ??(string)m.Ubicacion_Ubicacion_de_Medio_de_Transporte.Descripcion
+                        ,Pension = m.Pension
+                        ,PensionDescripcion = CultureHelper.GetTraduction(m.Pension_Pension.Clave.ToString(), "Descripcion") ??(string)m.Pension_Pension.Descripcion
+			,Domicilio_Resguardo = m.Domicilio_Resguardo
 			,Observaciones = m.Observaciones
 
 
@@ -1446,8 +1583,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Tipo = m.Tipo
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Droga.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Droga.Descripcion
+                        ,Modo_de_Asegurado = m.Modo_de_Asegurado
+                        ,Modo_de_AseguradoDescripcion = CultureHelper.GetTraduction(m.Modo_de_Asegurado_Modo_de_Asegurado_de_Drogas.Clave.ToString(), "Descripcion") ??(string)m.Modo_de_Asegurado_Modo_de_Asegurado_de_Drogas.Descripcion
                         ,Unidad_de_Medida = m.Unidad_de_Medida
                         ,Unidad_de_MedidaDescripcion = CultureHelper.GetTraduction(m.Unidad_de_Medida_Unidad_de_medida_de_tipo_de_droga.Clave.ToString(), "Descripcion") ??(string)m.Unidad_de_Medida_Unidad_de_medida_de_tipo_de_droga.Descripcion
 			,Cantidad = m.Cantidad
@@ -1484,8 +1625,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Tipo = m.Tipo
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Droga.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Droga.Descripcion
+                        ,Modo_de_Asegurado = m.Modo_de_Asegurado
+                        ,Modo_de_AseguradoDescripcion = CultureHelper.GetTraduction(m.Modo_de_Asegurado_Modo_de_Asegurado_de_Drogas.Clave.ToString(), "Descripcion") ??(string)m.Modo_de_Asegurado_Modo_de_Asegurado_de_Drogas.Descripcion
                         ,Unidad_de_Medida = m.Unidad_de_Medida
                         ,Unidad_de_MedidaDescripcion = CultureHelper.GetTraduction(m.Unidad_de_Medida_Unidad_de_medida_de_tipo_de_droga.Clave.ToString(), "Descripcion") ??(string)m.Unidad_de_Medida_Unidad_de_medida_de_tipo_de_droga.Descripcion
 			,Cantidad = m.Cantidad
@@ -1529,6 +1674,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Tipo = m.Tipo
                         ,TipoNombre = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Arma.Clave.ToString(), "Nombre") ??(string)m.Tipo_Tipo_de_Arma.Nombre
 			,Descripcion_del_Arma = m.Descripcion_del_Arma
@@ -1538,10 +1685,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,CalibreDescripcion = CultureHelper.GetTraduction(m.Calibre_Calibre_de_Arma.Clave.ToString(), "Descripcion") ??(string)m.Calibre_Calibre_de_Arma.Descripcion
 			,Matricula = m.Matricula
 			,Serie = m.Serie
+			,Arma_Oficial = m.Arma_Oficial
 			,Inventario = m.Inventario
                         ,Clasificacion = m.Clasificacion
                         ,ClasificacionDescripcion = CultureHelper.GetTraduction(m.Clasificacion_Tipo_Clasificacion.Clave.ToString(), "Descripcion") ??(string)m.Clasificacion_Tipo_Clasificacion.Descripcion
-			,Cantidad = m.Cantidad
+			,Valor_Estimado = m.Valor_Estimado
 			,Lugar_de_Hallazgo = m.Lugar_de_Hallazgo
 			,Observaciones = m.Observaciones
 
@@ -1576,6 +1724,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Tipo = m.Tipo
                         ,TipoNombre = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Arma.Clave.ToString(), "Nombre") ??(string)m.Tipo_Tipo_de_Arma.Nombre
 			,Descripcion_del_Arma = m.Descripcion_del_Arma
@@ -1585,10 +1735,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,CalibreDescripcion = CultureHelper.GetTraduction(m.Calibre_Calibre_de_Arma.Clave.ToString(), "Descripcion") ??(string)m.Calibre_Calibre_de_Arma.Descripcion
 			,Matricula = m.Matricula
 			,Serie = m.Serie
+			,Arma_Oficial = m.Arma_Oficial
 			,Inventario = m.Inventario
                         ,Clasificacion = m.Clasificacion
                         ,ClasificacionDescripcion = CultureHelper.GetTraduction(m.Clasificacion_Tipo_Clasificacion.Clave.ToString(), "Descripcion") ??(string)m.Clasificacion_Tipo_Clasificacion.Descripcion
-			,Cantidad = m.Cantidad
+			,Valor_Estimado = m.Valor_Estimado
 			,Lugar_de_Hallazgo = m.Lugar_de_Hallazgo
 			,Observaciones = m.Observaciones
 
@@ -1630,6 +1781,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Clasificacion = m.Clasificacion
                         ,ClasificacionDescripcion = CultureHelper.GetTraduction(m.Clasificacion_Clasificacion_de_Artefacto_y_Explosivo.Clave.ToString(), "Descripcion") ??(string)m.Clasificacion_Clasificacion_de_Artefacto_y_Explosivo.Descripcion
 			,Cantidad = m.Cantidad
@@ -1667,6 +1820,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Clasificacion = m.Clasificacion
                         ,ClasificacionDescripcion = CultureHelper.GetTraduction(m.Clasificacion_Clasificacion_de_Artefacto_y_Explosivo.Clave.ToString(), "Descripcion") ??(string)m.Clasificacion_Clasificacion_de_Artefacto_y_Explosivo.Descripcion
 			,Cantidad = m.Cantidad
@@ -1711,6 +1866,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
+                        ,Calibre = m.Calibre
+                        ,CalibreDescripcion = CultureHelper.GetTraduction(m.Calibre_Calibre_de_Arma.Clave.ToString(), "Descripcion") ??(string)m.Calibre_Calibre_de_Arma.Descripcion
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
 			,cartuchos_municiones = m.cartuchos_municiones
 			,Cartuchos_Habiles = m.Cartuchos_Habiles
 			,Cartuchos_Percutidos = m.Cartuchos_Percutidos
@@ -1747,6 +1906,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
+                        ,Calibre = m.Calibre
+                        ,CalibreDescripcion = CultureHelper.GetTraduction(m.Calibre_Calibre_de_Arma.Clave.ToString(), "Descripcion") ??(string)m.Calibre_Calibre_de_Arma.Descripcion
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
 			,cartuchos_municiones = m.cartuchos_municiones
 			,Cartuchos_Habiles = m.Cartuchos_Habiles
 			,Cartuchos_Percutidos = m.Cartuchos_Percutidos
@@ -1790,9 +1953,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
 			,Numero = m.Numero
-			,Tipo = m.Tipo
-			,Marca = m.Marca
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Equipo_de_Comunicacion.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
+                        ,Marca = m.Marca
+                        ,MarcaDescripcion = CultureHelper.GetTraduction(m.Marca_Marca_de_Equipo_de_Comunicacion.Clave.ToString(), "Descripcion") ??(string)m.Marca_Marca_de_Equipo_de_Comunicacion.Descripcion
 			,Serie = m.Serie
 			,IMEI = m.IMEI
 
@@ -1827,9 +1994,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
 			,Numero = m.Numero
-			,Tipo = m.Tipo
-			,Marca = m.Marca
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Equipo_de_Comunicacion.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Equipo_de_Comunicacion.Descripcion
+                        ,Marca = m.Marca
+                        ,MarcaDescripcion = CultureHelper.GetTraduction(m.Marca_Marca_de_Equipo_de_Comunicacion.Clave.ToString(), "Descripcion") ??(string)m.Marca_Marca_de_Equipo_de_Comunicacion.Descripcion
 			,Serie = m.Serie
 			,IMEI = m.IMEI
 
@@ -1871,7 +2042,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
-			,Tipo = m.Tipo
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Documentos.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Documentos.Descripcion
 			,Cantidad = m.Cantidad
 			,Observaciones = m.Observaciones
 			,Descipcion_de_Documento = m.Descipcion_de_Documento
@@ -1907,7 +2081,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
-			,Tipo = m.Tipo
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Documentos.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Documentos.Descripcion
 			,Cantidad = m.Cantidad
 			,Observaciones = m.Observaciones
 			,Descipcion_de_Documento = m.Descipcion_de_Documento
@@ -1950,6 +2127,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Tipo = m.Tipo
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Moneda.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Moneda.Descripcion
 			,Cantidad = m.Cantidad
@@ -1988,6 +2167,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Tipo = m.Tipo
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Moneda.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Moneda.Descripcion
 			,Cantidad = m.Cantidad
@@ -2033,7 +2214,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
-			,Tipo = m.Tipo
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Equipo_Tactico.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Equipo_Tactico.Descripcion
 			,Marca = m.Marca
 			,Modelo = m.Modelo
 			,Inventario = m.Inventario
@@ -2074,7 +2258,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
-			,Tipo = m.Tipo
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Equipo_Tactico.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Equipo_Tactico.Descripcion
 			,Marca = m.Marca
 			,Modelo = m.Modelo
 			,Inventario = m.Inventario
@@ -2122,6 +2309,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Aparatos = m.Aparatos
                         ,AparatosDescripcion = CultureHelper.GetTraduction(m.Aparatos_Aparato_Electronicos_y_Multimedia.Clave.ToString(), "Descripcion") ??(string)m.Aparatos_Aparato_Electronicos_y_Multimedia.Descripcion
                         ,Documentos_Multimedia = m.Documentos_Multimedia
@@ -2161,6 +2350,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Aparatos = m.Aparatos
                         ,AparatosDescripcion = CultureHelper.GetTraduction(m.Aparatos_Aparato_Electronicos_y_Multimedia.Clave.ToString(), "Descripcion") ??(string)m.Aparatos_Aparato_Electronicos_y_Multimedia.Descripcion
                         ,Documentos_Multimedia = m.Documentos_Multimedia
@@ -2207,6 +2398,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Tipo = m.Tipo
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Pirateria.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Pirateria.Descripcion
 			,Descripcion = m.Descripcion
@@ -2246,6 +2439,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Tipo = m.Tipo
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Pirateria.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Pirateria.Descripcion
 			,Descripcion = m.Descripcion
@@ -2292,10 +2487,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Zona = m.Zona
                         ,ZonaDescripcion = CultureHelper.GetTraduction(m.Zona_Tipo_de_Zona.Clave.ToString(), "Descripcion") ??(string)m.Zona_Tipo_de_Zona.Descripcion
-			,Tipo = m.Tipo
-			,Especifique_Otro = m.Especifique_Otro
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Inmueble.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Inmueble.Descripcion
 			,Calle = m.Calle
 			,Exterior = m.Exterior
 			,Interior = m.Interior
@@ -2304,7 +2501,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Nombre") ??(string)m.Estado_Estado.Nombre
                         ,Municipio = m.Municipio
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Nombre") ??(string)m.Municipio_Municipio.Nombre
-			,Colonia = m.Colonia
+                        ,Colonia = m.Colonia
+                        ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Nombre") ??(string)m.Colonia_Colonia.Nombre
 			,Registro_Publico_Propiedad = m.Registro_Publico_Propiedad
 			,Entrecalles = m.Entrecalles
 			,Propietario = m.Propietario
@@ -2341,10 +2539,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Zona = m.Zona
                         ,ZonaDescripcion = CultureHelper.GetTraduction(m.Zona_Tipo_de_Zona.Clave.ToString(), "Descripcion") ??(string)m.Zona_Tipo_de_Zona.Descripcion
-			,Tipo = m.Tipo
-			,Especifique_Otro = m.Especifique_Otro
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Inmueble.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Inmueble.Descripcion
 			,Calle = m.Calle
 			,Exterior = m.Exterior
 			,Interior = m.Interior
@@ -2353,7 +2553,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,EstadoNombre = CultureHelper.GetTraduction(m.Estado_Estado.Clave.ToString(), "Nombre") ??(string)m.Estado_Estado.Nombre
                         ,Municipio = m.Municipio
                         ,MunicipioNombre = CultureHelper.GetTraduction(m.Municipio_Municipio.Clave.ToString(), "Nombre") ??(string)m.Municipio_Municipio.Nombre
-			,Colonia = m.Colonia
+                        ,Colonia = m.Colonia
+                        ,ColoniaNombre = CultureHelper.GetTraduction(m.Colonia_Colonia.Clave.ToString(), "Nombre") ??(string)m.Colonia_Colonia.Nombre
 			,Registro_Publico_Propiedad = m.Registro_Publico_Propiedad
 			,Entrecalles = m.Entrecalles
 			,Propietario = m.Propietario
@@ -2397,6 +2598,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Tipo = m.Tipo
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Plantio.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Plantio.Descripcion
 			,No__de_Plantios = m.No__de_Plantios
@@ -2443,6 +2646,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,Tipo = m.Tipo
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Plantio.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Plantio.Descripcion
 			,No__de_Plantios = m.No__de_Plantios
@@ -2496,11 +2701,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
-			,Tipo = m.Tipo
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Pista_de_Aterrizaje.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Pista_de_Aterrizaje.Descripcion
 			,Suelo = m.Suelo
 			,Descripcion = m.Descripcion
 			,Localizacion_1 = m.Localizacion_1
-			,Localizacion_2 = m.Localizacion_2
 			,Latitud = m.Latitud
 			,Longitud = m.Longitud
                         ,Orientacion_de = m.Orientacion_de
@@ -2541,11 +2748,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
-			,Tipo = m.Tipo
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                        ,Tipo = m.Tipo
+                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Pista_de_Aterrizaje.Clave.ToString(), "Descripcion") ??(string)m.Tipo_Tipo_de_Pista_de_Aterrizaje.Descripcion
 			,Suelo = m.Suelo
 			,Descripcion = m.Descripcion
 			,Localizacion_1 = m.Localizacion_1
-			,Localizacion_2 = m.Localizacion_2
 			,Latitud = m.Latitud
 			,Longitud = m.Longitud
                         ,Orientacion_de = m.Orientacion_de
@@ -2593,6 +2802,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
 			,Tipo = m.Tipo
 			,Unidad_de_medida = m.Unidad_de_medida
 			,Cantidad = m.Cantidad
@@ -2629,6 +2840,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = m.Clave
 
+                        ,Motivo_de_Registro = m.Motivo_de_Registro
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ??(string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
 			,Tipo = m.Tipo
 			,Unidad_de_medida = m.Unidad_de_medida
 			,Cantidad = m.Cantidad
@@ -3097,6 +3310,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
+
+
+
+
                         //Removal Request
                         if (Detalle_Aseguramiento_Medios_de_TransporteItem.Removed)
                         {
@@ -3110,22 +3328,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_Medios_de_TransporteItem.Clave
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_Medios_de_TransporteItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Medios_de_TransporteItem.Motivo_de_Registro))
                             ,Tipo = (Convert.ToInt16(Detalle_Aseguramiento_Medios_de_TransporteItem.Tipo) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_Medios_de_TransporteItem.Tipo))
-                            ,Especifique = Detalle_Aseguramiento_Medios_de_TransporteItem.Especifique
                             ,Marca = (Convert.ToInt16(Detalle_Aseguramiento_Medios_de_TransporteItem.Marca) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_Medios_de_TransporteItem.Marca))
                             ,Submarca = Detalle_Aseguramiento_Medios_de_TransporteItem.Submarca
                             ,Modelo = (Convert.ToInt16(Detalle_Aseguramiento_Medios_de_TransporteItem.Modelo) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_Medios_de_TransporteItem.Modelo))
                             ,Placas = Detalle_Aseguramiento_Medios_de_TransporteItem.Placas
-                            ,Color = (Convert.ToInt16(Detalle_Aseguramiento_Medios_de_TransporteItem.Color) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_Medios_de_TransporteItem.Color))
+                            ,Color = Detalle_Aseguramiento_Medios_de_TransporteItem.Color
                             ,Numero_de_Motor = Detalle_Aseguramiento_Medios_de_TransporteItem.Numero_de_Motor
                             ,Serie = Detalle_Aseguramiento_Medios_de_TransporteItem.Serie
                             ,Uso = (Convert.ToInt16(Detalle_Aseguramiento_Medios_de_TransporteItem.Uso) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_Medios_de_TransporteItem.Uso))
                             ,Cap__De_Pasajeros = Detalle_Aseguramiento_Medios_de_TransporteItem.Cap__De_Pasajeros
                             ,Procedencia = (Convert.ToInt16(Detalle_Aseguramiento_Medios_de_TransporteItem.Procedencia) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_Medios_de_TransporteItem.Procedencia))
+                            ,Seguro = (Convert.ToInt16(Detalle_Aseguramiento_Medios_de_TransporteItem.Seguro) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_Medios_de_TransporteItem.Seguro))
+                            ,Compania_de_Seguros = (Convert.ToInt32(Detalle_Aseguramiento_Medios_de_TransporteItem.Compania_de_Seguros) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Medios_de_TransporteItem.Compania_de_Seguros))
                             ,Empresa = Detalle_Aseguramiento_Medios_de_TransporteItem.Empresa
                             ,Capacidad_de_Carga = Detalle_Aseguramiento_Medios_de_TransporteItem.Capacidad_de_Carga
                             ,Origen = Detalle_Aseguramiento_Medios_de_TransporteItem.Origen
                             ,Destino = Detalle_Aseguramiento_Medios_de_TransporteItem.Destino
+                            ,Ubicacion = (Convert.ToInt32(Detalle_Aseguramiento_Medios_de_TransporteItem.Ubicacion) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Medios_de_TransporteItem.Ubicacion))
+                            ,Pension = (Convert.ToInt32(Detalle_Aseguramiento_Medios_de_TransporteItem.Pension) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Medios_de_TransporteItem.Pension))
+                            ,Domicilio_Resguardo = Detalle_Aseguramiento_Medios_de_TransporteItem.Domicilio_Resguardo
                             ,Observaciones = Detalle_Aseguramiento_Medios_de_TransporteItem.Observaciones
 
                         };
@@ -3147,6 +3370,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
         [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Medios_de_Transporte_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
         public ActionResult GetDetalle_Aseguramiento_Medios_de_Transporte_Tipo_de_medios_de_transporteAll()
         {
             try
@@ -3167,7 +3411,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-
         [HttpGet]
         public ActionResult GetDetalle_Aseguramiento_Medios_de_Transporte_Marca_de_Medio_de_transporteAll()
         {
@@ -3210,27 +3453,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 
-        [HttpGet]
-        public ActionResult GetDetalle_Aseguramiento_Medios_de_Transporte_Color_de_medio_de_trasporteAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IColor_de_medio_de_trasporteApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IColor_de_medio_de_trasporteApiConsumer.SelAll(false).Resource;
-                foreach (var item in result)
-                {
-				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Color_de_medio_de_trasporte", "Descripcion");
-                  item.Descripcion= trans??item.Descripcion;
-                }
-                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
+
 
 
         [HttpGet]
@@ -3276,9 +3499,94 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Medios_de_Transporte_A_TiempoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IA_TiempoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IA_TiempoApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "A_Tiempo", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Medios_de_Transporte_Compania_de_SegurosAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ICompania_de_SegurosApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ICompania_de_SegurosApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Compania_de_Seguros", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
+
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Medios_de_Transporte_Ubicacion_de_Medio_de_TransporteAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IUbicacion_de_Medio_de_TransporteApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IUbicacion_de_Medio_de_TransporteApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Ubicacion_de_Medio_de_Transporte", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Medios_de_Transporte_PensionAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IPensionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IPensionApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Pension", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -3361,6 +3669,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
+
                         //Removal Request
                         if (Detalle_Aseguramiento_de_Drogas_InvolucradasItem.Removed)
                         {
@@ -3374,7 +3684,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_de_Drogas_InvolucradasItem.Clave
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_de_Drogas_InvolucradasItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_de_Drogas_InvolucradasItem.Motivo_de_Registro))
                             ,Tipo = (Convert.ToInt16(Detalle_Aseguramiento_de_Drogas_InvolucradasItem.Tipo) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_de_Drogas_InvolucradasItem.Tipo))
+                            ,Modo_de_Asegurado = (Convert.ToInt32(Detalle_Aseguramiento_de_Drogas_InvolucradasItem.Modo_de_Asegurado) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_de_Drogas_InvolucradasItem.Modo_de_Asegurado))
                             ,Unidad_de_Medida = (Convert.ToInt16(Detalle_Aseguramiento_de_Drogas_InvolucradasItem.Unidad_de_Medida) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_de_Drogas_InvolucradasItem.Unidad_de_Medida))
                             ,Cantidad = Detalle_Aseguramiento_de_Drogas_InvolucradasItem.Cantidad
                             ,Observaciones = Detalle_Aseguramiento_de_Drogas_InvolucradasItem.Observaciones
@@ -3398,6 +3710,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
         [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_de_Drogas_Involucradas_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
         public ActionResult GetDetalle_Aseguramiento_de_Drogas_Involucradas_Tipo_de_DrogaAll()
         {
             try
@@ -3409,6 +3742,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 foreach (var item in result)
                 {
 				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Tipo_de_Droga", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_de_Drogas_Involucradas_Modo_de_Asegurado_de_DrogasAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IModo_de_Asegurado_de_DrogasApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IModo_de_Asegurado_de_DrogasApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Modo_de_Asegurado_de_Drogas", "Descripcion");
                   item.Descripcion= trans??item.Descripcion;
                 }
                 return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
@@ -3528,6 +3882,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
+
                         //Removal Request
                         if (Detalle_Aseguramiento_Armas_InvolucradasItem.Removed)
                         {
@@ -3541,15 +3897,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_Armas_InvolucradasItem.Clave
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_Armas_InvolucradasItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Armas_InvolucradasItem.Motivo_de_Registro))
                             ,Tipo = (Convert.ToInt32(Detalle_Aseguramiento_Armas_InvolucradasItem.Tipo) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Armas_InvolucradasItem.Tipo))
                             ,Descripcion_del_Arma = Detalle_Aseguramiento_Armas_InvolucradasItem.Descripcion_del_Arma
                             ,Marca = (Convert.ToInt32(Detalle_Aseguramiento_Armas_InvolucradasItem.Marca) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Armas_InvolucradasItem.Marca))
                             ,Calibre = (Convert.ToInt16(Detalle_Aseguramiento_Armas_InvolucradasItem.Calibre) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_Armas_InvolucradasItem.Calibre))
                             ,Matricula = Detalle_Aseguramiento_Armas_InvolucradasItem.Matricula
                             ,Serie = Detalle_Aseguramiento_Armas_InvolucradasItem.Serie
+                            ,Arma_Oficial = Detalle_Aseguramiento_Armas_InvolucradasItem.Arma_Oficial
                             ,Inventario = Detalle_Aseguramiento_Armas_InvolucradasItem.Inventario
                             ,Clasificacion = (Convert.ToInt32(Detalle_Aseguramiento_Armas_InvolucradasItem.Clasificacion) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Armas_InvolucradasItem.Clasificacion))
-                            ,Cantidad = Detalle_Aseguramiento_Armas_InvolucradasItem.Cantidad
+                            ,Valor_Estimado = Detalle_Aseguramiento_Armas_InvolucradasItem.Valor_Estimado
                             ,Lugar_de_Hallazgo = Detalle_Aseguramiento_Armas_InvolucradasItem.Lugar_de_Hallazgo
                             ,Observaciones = Detalle_Aseguramiento_Armas_InvolucradasItem.Observaciones
 
@@ -3571,6 +3929,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Armas_Involucradas_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetDetalle_Aseguramiento_Armas_Involucradas_Tipo_de_ArmaAll()
         {
@@ -3635,6 +4014,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+
 
 
 
@@ -3742,6 +4122,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
                         //Removal Request
                         if (Detalle_Aseguramiento_Artefactos_y_ExplosivosItem.Removed)
                         {
@@ -3755,6 +4136,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_Artefactos_y_ExplosivosItem.Clave
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_Artefactos_y_ExplosivosItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Artefactos_y_ExplosivosItem.Motivo_de_Registro))
                             ,Clasificacion = (Convert.ToInt16(Detalle_Aseguramiento_Artefactos_y_ExplosivosItem.Clasificacion) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_Artefactos_y_ExplosivosItem.Clasificacion))
                             ,Cantidad = Detalle_Aseguramiento_Artefactos_y_ExplosivosItem.Cantidad
                             ,Lugar_de_Hallazgo = Detalle_Aseguramiento_Artefactos_y_ExplosivosItem.Lugar_de_Hallazgo
@@ -3778,6 +4160,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetDetalle_Aseguramiento_Artefactos_y_Explosivos_Clasificacion_de_Artefacto_y_ExplosivoAll()
         {
@@ -3882,6 +4285,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
+
                         //Removal Request
                         if (Detalle_Aseguramiento_de_Cargador_CartuchosItem.Removed)
                         {
@@ -3895,6 +4300,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_de_Cargador_CartuchosItem.Clave
+                            ,Calibre = (Convert.ToInt16(Detalle_Aseguramiento_de_Cargador_CartuchosItem.Calibre) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_de_Cargador_CartuchosItem.Calibre))
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_de_Cargador_CartuchosItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_de_Cargador_CartuchosItem.Motivo_de_Registro))
                             ,cartuchos_municiones = Detalle_Aseguramiento_de_Cargador_CartuchosItem.cartuchos_municiones
                             ,Cartuchos_Habiles = Detalle_Aseguramiento_de_Cargador_CartuchosItem.Cartuchos_Habiles
                             ,Cartuchos_Percutidos = Detalle_Aseguramiento_de_Cargador_CartuchosItem.Cartuchos_Percutidos
@@ -3918,6 +4325,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_de_Cargador_Cartuchos_Calibre_de_ArmaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ICalibre_de_ArmaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ICalibre_de_ArmaApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Calibre_de_Arma", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_de_Cargador_Cartuchos_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -4003,6 +4452,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
                         //Removal Request
                         if (Detalle_Aseguramiento_Objetos_AseguradosItem.Removed)
                         {
@@ -4016,9 +4466,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_Objetos_AseguradosItem.Clave
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_Objetos_AseguradosItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Objetos_AseguradosItem.Motivo_de_Registro))
                             ,Numero = Detalle_Aseguramiento_Objetos_AseguradosItem.Numero
-                            ,Tipo = Detalle_Aseguramiento_Objetos_AseguradosItem.Tipo
-                            ,Marca = Detalle_Aseguramiento_Objetos_AseguradosItem.Marca
+                            ,Tipo = (Convert.ToInt16(Detalle_Aseguramiento_Objetos_AseguradosItem.Tipo) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_Objetos_AseguradosItem.Tipo))
+                            ,Marca = (Convert.ToInt16(Detalle_Aseguramiento_Objetos_AseguradosItem.Marca) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_Objetos_AseguradosItem.Marca))
                             ,Serie = Detalle_Aseguramiento_Objetos_AseguradosItem.Serie
                             ,IMEI = Detalle_Aseguramiento_Objetos_AseguradosItem.IMEI
 
@@ -4040,9 +4491,70 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Objetos_Asegurados_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
-
-
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Objetos_Asegurados_Tipo_de_Equipo_de_ComunicacionAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_Equipo_de_ComunicacionApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Tipo_de_Equipo_de_Comunicacion", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Objetos_Asegurados_Marca_de_Equipo_de_ComunicacionAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMarca_de_Equipo_de_ComunicacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMarca_de_Equipo_de_ComunicacionApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Marca_de_Equipo_de_Comunicacion", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -4125,6 +4637,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
                         //Removal Request
                         if (Detalle_Aseguramiento_DocumentosItem.Removed)
                         {
@@ -4138,7 +4651,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_DocumentosItem.Clave
-                            ,Tipo = Detalle_Aseguramiento_DocumentosItem.Tipo
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_DocumentosItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_DocumentosItem.Motivo_de_Registro))
+                            ,Tipo = (Convert.ToInt32(Detalle_Aseguramiento_DocumentosItem.Tipo) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_DocumentosItem.Tipo))
                             ,Cantidad = Detalle_Aseguramiento_DocumentosItem.Cantidad
                             ,Observaciones = Detalle_Aseguramiento_DocumentosItem.Observaciones
                             ,Descipcion_de_Documento = Detalle_Aseguramiento_DocumentosItem.Descipcion_de_Documento
@@ -4161,7 +4675,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
-
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Documentos_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Documentos_Tipo_de_DocumentosAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_DocumentosApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_DocumentosApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Tipo_de_Documentos", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -4245,6 +4800,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
                         //Removal Request
                         if (Detalle_Aseguramiento_MonedaItem.Removed)
                         {
@@ -4258,6 +4814,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_MonedaItem.Clave
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_MonedaItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_MonedaItem.Motivo_de_Registro))
                             ,Tipo = (Convert.ToInt16(Detalle_Aseguramiento_MonedaItem.Tipo) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_MonedaItem.Tipo))
                             ,Cantidad = Detalle_Aseguramiento_MonedaItem.Cantidad
                             ,Observaciones = Detalle_Aseguramiento_MonedaItem.Observaciones
@@ -4281,6 +4838,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Moneda_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetDetalle_Aseguramiento_Moneda_Tipo_de_MonedaAll()
         {
@@ -4409,6 +4987,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
                         //Removal Request
                         if (Detalle_Aseguramiento_Otros_AseguramientosItem.Removed)
                         {
@@ -4422,7 +5001,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_Otros_AseguramientosItem.Clave
-                            ,Tipo = Detalle_Aseguramiento_Otros_AseguramientosItem.Tipo
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_Otros_AseguramientosItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Otros_AseguramientosItem.Motivo_de_Registro))
+                            ,Tipo = (Convert.ToInt32(Detalle_Aseguramiento_Otros_AseguramientosItem.Tipo) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Otros_AseguramientosItem.Tipo))
                             ,Marca = Detalle_Aseguramiento_Otros_AseguramientosItem.Marca
                             ,Modelo = Detalle_Aseguramiento_Otros_AseguramientosItem.Modelo
                             ,Inventario = Detalle_Aseguramiento_Otros_AseguramientosItem.Inventario
@@ -4449,7 +5029,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
-
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Otros_Aseguramientos_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Otros_Aseguramientos_Tipo_de_Equipo_TacticoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_Equipo_TacticoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_Equipo_TacticoApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Tipo_de_Equipo_Tactico", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -4558,6 +5179,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
                         //Removal Request
                         if (Detalle_Aseguramiento_Electronicos_y_MultimediaItem.Removed)
                         {
@@ -4571,6 +5193,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_Electronicos_y_MultimediaItem.Clave
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_Electronicos_y_MultimediaItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_Electronicos_y_MultimediaItem.Motivo_de_Registro))
                             ,Aparatos = (Convert.ToInt16(Detalle_Aseguramiento_Electronicos_y_MultimediaItem.Aparatos) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_Electronicos_y_MultimediaItem.Aparatos))
                             ,Documentos_Multimedia = (Convert.ToInt16(Detalle_Aseguramiento_Electronicos_y_MultimediaItem.Documentos_Multimedia) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_Electronicos_y_MultimediaItem.Documentos_Multimedia))
                             ,Descripcion = Detalle_Aseguramiento_Electronicos_y_MultimediaItem.Descripcion
@@ -4595,6 +5218,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Electronicos_y_Multimedia_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetDetalle_Aseguramiento_Electronicos_y_Multimedia_Aparato_Electronicos_y_MultimediaAll()
         {
@@ -4721,6 +5365,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
                         //Removal Request
                         if (Detalle_Aseguramiento_PirateriaItem.Removed)
                         {
@@ -4734,6 +5379,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_PirateriaItem.Clave
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_PirateriaItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_PirateriaItem.Motivo_de_Registro))
                             ,Tipo = (Convert.ToInt16(Detalle_Aseguramiento_PirateriaItem.Tipo) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_PirateriaItem.Tipo))
                             ,Descripcion = Detalle_Aseguramiento_PirateriaItem.Descripcion
                             ,Cantidad = Detalle_Aseguramiento_PirateriaItem.Cantidad
@@ -4758,6 +5404,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Pirateria_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetDetalle_Aseguramiento_Pirateria_Tipo_de_PirateriaAll()
         {
@@ -4906,16 +5573,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_InmueblesItem.Clave
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_InmueblesItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_InmueblesItem.Motivo_de_Registro))
                             ,Zona = (Convert.ToInt16(Detalle_Aseguramiento_InmueblesItem.Zona) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_InmueblesItem.Zona))
-                            ,Tipo = Detalle_Aseguramiento_InmueblesItem.Tipo
-                            ,Especifique_Otro = Detalle_Aseguramiento_InmueblesItem.Especifique_Otro
+                            ,Tipo = (Convert.ToInt16(Detalle_Aseguramiento_InmueblesItem.Tipo) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_InmueblesItem.Tipo))
                             ,Calle = Detalle_Aseguramiento_InmueblesItem.Calle
                             ,Exterior = Detalle_Aseguramiento_InmueblesItem.Exterior
                             ,Interior = Detalle_Aseguramiento_InmueblesItem.Interior
                             ,C_P = Detalle_Aseguramiento_InmueblesItem.C_P
                             ,Estado = (Convert.ToInt32(Detalle_Aseguramiento_InmueblesItem.Estado) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_InmueblesItem.Estado))
                             ,Municipio = (Convert.ToInt32(Detalle_Aseguramiento_InmueblesItem.Municipio) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_InmueblesItem.Municipio))
-                            ,Colonia = Detalle_Aseguramiento_InmueblesItem.Colonia
+                            ,Colonia = (Convert.ToInt32(Detalle_Aseguramiento_InmueblesItem.Colonia) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_InmueblesItem.Colonia))
                             ,Registro_Publico_Propiedad = Detalle_Aseguramiento_InmueblesItem.Registro_Publico_Propiedad
                             ,Entrecalles = Detalle_Aseguramiento_InmueblesItem.Entrecalles
                             ,Propietario = Detalle_Aseguramiento_InmueblesItem.Propietario
@@ -4940,6 +5607,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
         [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Inmuebles_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
         public ActionResult GetDetalle_Aseguramiento_Inmuebles_Tipo_de_ZonaAll()
         {
             try
@@ -4960,8 +5648,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-
-
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Inmuebles_Tipo_de_InmuebleAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_InmuebleApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_InmuebleApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Tipo_de_Inmueble", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -5006,7 +5713,26 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Inmuebles_ColoniaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IColoniaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IColoniaApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+                    item.Nombre= CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Colonia", "Nombre");
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -5099,6 +5825,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
                         //Removal Request
                         if (Detalle_Aseguramiento_de_PlantiosItem.Removed)
                         {
@@ -5112,6 +5839,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_de_PlantiosItem.Clave
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_de_PlantiosItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_de_PlantiosItem.Motivo_de_Registro))
                             ,Tipo = (Convert.ToInt16(Detalle_Aseguramiento_de_PlantiosItem.Tipo) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_de_PlantiosItem.Tipo))
                             ,No__de_Plantios = Detalle_Aseguramiento_de_PlantiosItem.No__de_Plantios
                             ,Kilogramos = Detalle_Aseguramiento_de_PlantiosItem.Kilogramos
@@ -5143,6 +5871,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_de_Plantios_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetDetalle_Aseguramiento_de_Plantios_Tipo_de_PlantioAll()
         {
@@ -5295,11 +6044,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_de_Pistas_de_AterrizajeItem.Clave
-                            ,Tipo = Detalle_Aseguramiento_de_Pistas_de_AterrizajeItem.Tipo
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_de_Pistas_de_AterrizajeItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_de_Pistas_de_AterrizajeItem.Motivo_de_Registro))
+                            ,Tipo = (Convert.ToInt16(Detalle_Aseguramiento_de_Pistas_de_AterrizajeItem.Tipo) == 0 ? (Int16?)null : Convert.ToInt16(Detalle_Aseguramiento_de_Pistas_de_AterrizajeItem.Tipo))
                             ,Suelo = Detalle_Aseguramiento_de_Pistas_de_AterrizajeItem.Suelo
                             ,Descripcion = Detalle_Aseguramiento_de_Pistas_de_AterrizajeItem.Descripcion
                             ,Localizacion_1 = Detalle_Aseguramiento_de_Pistas_de_AterrizajeItem.Localizacion_1
-                            ,Localizacion_2 = Detalle_Aseguramiento_de_Pistas_de_AterrizajeItem.Localizacion_2
                             ,Latitud = Detalle_Aseguramiento_de_Pistas_de_AterrizajeItem.Latitud
                             ,Longitud = Detalle_Aseguramiento_de_Pistas_de_AterrizajeItem.Longitud
                             ,Orientacion_de = (Convert.ToInt32(Detalle_Aseguramiento_de_Pistas_de_AterrizajeItem.Orientacion_de) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_de_Pistas_de_AterrizajeItem.Orientacion_de))
@@ -5325,8 +6074,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
-
-
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_de_Pistas_de_Aterrizaje_Tipo_de_Pista_de_AterrizajeAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ITipo_de_Pista_de_AterrizajeApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ITipo_de_Pista_de_AterrizajeApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Tipo_de_Pista_de_Aterrizaje", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -5435,6 +6224,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 
+
                         //Removal Request
                         if (Detalle_Aseguramiento_OtrosItem.Removed)
                         {
@@ -5448,6 +6238,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             Aseguramiento = MasterId
                             ,Clave = Detalle_Aseguramiento_OtrosItem.Clave
+                            ,Motivo_de_Registro = (Convert.ToInt32(Detalle_Aseguramiento_OtrosItem.Motivo_de_Registro) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Aseguramiento_OtrosItem.Motivo_de_Registro))
                             ,Tipo = Detalle_Aseguramiento_OtrosItem.Tipo
                             ,Unidad_de_medida = Detalle_Aseguramiento_OtrosItem.Unidad_de_medida
                             ,Cantidad = Detalle_Aseguramiento_OtrosItem.Cantidad
@@ -5471,6 +6262,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult GetDetalle_Aseguramiento_Otros_Motivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                foreach (var item in result)
+                {
+				  var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Motivo_de_Registro", "Descripcion");
+                  item.Descripcion= trans??item.Descripcion;
+                }
+                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 

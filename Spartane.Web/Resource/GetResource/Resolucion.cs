@@ -46,6 +46,36 @@ namespace Resources
             }
         }
 
+        /// <summary>Tipo</summary>
+        public static string Tipo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("Tipo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Resolucion_Padre_para_Autorizacion</summary>
+        public static string Resolucion_Padre_para_Autorizacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("Resolucion_Padre_para_Autorizacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Generar_Judicializacion</summary>
+        public static string Generar_Judicializacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderResolucion.GetResource("Generar_Judicializacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderResolucion.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

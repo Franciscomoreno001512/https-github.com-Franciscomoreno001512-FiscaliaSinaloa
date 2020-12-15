@@ -96,8 +96,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Y_Calle { get; set; }
         public string Numero_Exrterior_de_los_Hechos { get; set; }
         public string Numero_Interior_de_los_Hechos { get; set; }
+        public string Referencia_hechos { get; set; }
         public string Latitud { get; set; }
         public string Longitud { get; set; }
+        public bool? Documento_Extraviado_hechos { get; set; }
+        public int? Tipo_de_Documento_Extraviado { get; set; }
+        public string Tipo_de_Documento_ExtraviadoDescripcion { get; set; }
         public int? Tipo_de_Lugar_del_Hecho { get; set; }
         public string Tipo_de_Lugar_del_HechoDescripcion { get; set; }
         public int? Zona_de_los_Hechos { get; set; }

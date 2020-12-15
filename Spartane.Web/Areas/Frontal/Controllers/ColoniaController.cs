@@ -176,6 +176,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,pob_justicia = ColoniaData.pob_justicia
                     ,sector = ColoniaData.sector
                     ,estatus = ColoniaData.estatus
+                    ,cod_localidad = ColoniaData.cod_localidad
 
 					};
 				}
@@ -269,6 +270,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,pob_justicia = ColoniaData.pob_justicia
                     ,sector = ColoniaData.sector
                     ,estatus = ColoniaData.estatus
+                    ,cod_localidad = ColoniaData.cod_localidad
 
 					};
 				}
@@ -454,6 +456,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,pob_justicia = m.pob_justicia
 			,sector = m.sector
 			,estatus = m.estatus
+			,cod_localidad = m.cod_localidad
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -580,6 +583,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,pob_justicia = m.pob_justicia
 			,sector = m.sector
 			,estatus = m.estatus
+			,cod_localidad = m.cod_localidad
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -825,6 +829,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.Fromcod_localidad) || !string.IsNullOrEmpty(filter.Tocod_localidad))
+            {
+                if (!string.IsNullOrEmpty(filter.Fromcod_localidad))
+                    where += " AND Colonia.cod_localidad >= " + filter.Fromcod_localidad;
+                if (!string.IsNullOrEmpty(filter.Tocod_localidad))
+                    where += " AND Colonia.cod_localidad <= " + filter.Tocod_localidad;
+            }
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -892,6 +904,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,pob_justicia = varColonia.pob_justicia
                         ,sector = varColonia.sector
                         ,estatus = varColonia.estatus
+                        ,cod_localidad = varColonia.cod_localidad
 
                     };
 
@@ -1234,7 +1247,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
+			string[] arrayColumnsVisible = null;
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -1291,6 +1304,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,pob_justicia = m.pob_justicia
 			,sector = m.sector
 			,estatus = m.estatus
+			,cod_localidad = m.cod_localidad
 
             }).ToList();
 
@@ -1376,6 +1390,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,pob_justicia = m.pob_justicia
 			,sector = m.sector
 			,estatus = m.estatus
+			,cod_localidad = m.cod_localidad
 
             }).ToList();
 
@@ -1427,6 +1442,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,pob_justicia = varColonia.pob_justicia
                         ,sector = varColonia.sector
                         ,estatus = varColonia.estatus
+                        ,cod_localidad = varColonia.cod_localidad
                     
                 };
 
@@ -1469,6 +1485,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,pob_justicia = m.pob_justicia
 			,sector = m.sector
 			,estatus = m.estatus
+			,cod_localidad = m.cod_localidad
 
                     
                 };

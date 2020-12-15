@@ -15,8 +15,6 @@
 @using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Colonia;
 @using Spartane.Core.Domain.Colonia;
-@using Spartane.Core.Domain.Spartan_User;
-@using Spartane.Core.Domain.Estatus_Orientador;
 @using Spartane.Core.Domain.Tipo_de_Acuerdo;
 @using Spartane.Core.Domain.Periodicidad;
 @using Spartane.Core.Domain.A_Tiempo;
@@ -250,10 +248,6 @@
                                     <th>@Resources.expediente_ministerio_publicoResources.Y_Calle</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.LongitudH</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.LatitudH</th>
-                                    <th>@Resources.expediente_ministerio_publicoResources.Fecha_de_Canalizacion</th>
-                                    <th>@Resources.expediente_ministerio_publicoResources.Hora_de_Canalizacion</th>
-                                    <th>@Resources.expediente_ministerio_publicoResources.usuario_que_canaliza</th>
-                                    <th>@Resources.expediente_ministerio_publicoResources.canalizar_a</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.tipo_de_acuerdo</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.fecha_de_inicio_de_acuerdo</th>
                                     <th>@Resources.expediente_ministerio_publicoResources.fecha_de_cumplimiento</th>
@@ -306,10 +300,6 @@
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -475,10 +465,6 @@
         var Y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LongitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LatitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Canalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Canalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var usuario_que_canaliza =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var canalizar_a =  $($('table td .filterData.form-control:input')[counter++]).val();
         var tipo_de_acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var fecha_de_inicio_de_acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
         var fecha_de_cumplimiento = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -529,10 +515,6 @@
         + "&Y_Calle=" + Y_Calle
         + "&LongitudH=" + LongitudH
         + "&LatitudH=" + LatitudH
-        + "&Fecha_de_Canalizacion=" + Fecha_de_Canalizacion
-        + "&Hora_de_Canalizacion=" + Hora_de_Canalizacion
-        + "&usuario_que_canaliza=" + usuario_que_canaliza
-        + "&canalizar_a=" + canalizar_a
         + "&tipo_de_acuerdo=" + tipo_de_acuerdo
         + "&fecha_de_inicio_de_acuerdo=" + fecha_de_inicio_de_acuerdo
         + "&fecha_de_cumplimiento=" + fecha_de_cumplimiento
@@ -594,10 +576,6 @@
         var Y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LongitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LatitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Canalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Canalizacion = $($('table td .filterData.form-control:input')[counter++]).val();
-        var usuario_que_canaliza =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var canalizar_a =  $($('table td .filterData.form-control:input')[counter++]).val();
         var tipo_de_acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var fecha_de_inicio_de_acuerdo = $($('table td .filterData.form-control:input')[counter++]).val();
         var fecha_de_cumplimiento = $($('table td .filterData.form-control:input')[counter++]).val();
@@ -648,10 +626,6 @@
         + "&Y_Calle=" + Y_Calle
         + "&LongitudH=" + LongitudH
         + "&LatitudH=" + LatitudH
-        + "&Fecha_de_Canalizacion=" + Fecha_de_Canalizacion
-        + "&Hora_de_Canalizacion=" + Hora_de_Canalizacion
-        + "&usuario_que_canaliza=" + usuario_que_canaliza
-        + "&canalizar_a=" + canalizar_a
         + "&tipo_de_acuerdo=" + tipo_de_acuerdo
         + "&fecha_de_inicio_de_acuerdo=" + fecha_de_inicio_de_acuerdo
         + "&fecha_de_cumplimiento=" + fecha_de_cumplimiento
@@ -847,11 +821,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -947,10 +921,6 @@
                 ,{ "data": "Y_Calle", "orderable": true, "name": "Y_Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "LongitudH", "orderable": true, "name": "LongitudH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "LatitudH", "orderable": true, "name": "LatitudH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Fecha_de_Canalizacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Canalizacion" }
-                ,{ "data": "Hora_de_Canalizacion", "orderable": true, "name": "Hora_de_Canalizacion" }
-                ,{ "data": "usuario_que_canalizaName", "orderable": true, "name": "usuario_que_canalizaName"}
-                ,{ "data": "canalizar_aDescripcion", "orderable": true, "name": "canalizar_aDescripcion" }
                 ,{ "data": "tipo_de_acuerdoDescripcion", "orderable": true, "name": "tipo_de_acuerdoDescripcion" }
                 ,{ "data": "fecha_de_inicio_de_acuerdo", "orderable": true, "searchable": true, "type": "date", "name": "fecha_de_inicio_de_acuerdo" }
                 ,{ "data": "fecha_de_cumplimiento", "orderable": true, "searchable": true, "type": "date", "name": "fecha_de_cumplimiento" }

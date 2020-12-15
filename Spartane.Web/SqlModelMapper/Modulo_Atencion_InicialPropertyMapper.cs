@@ -164,10 +164,17 @@ namespace Spartane.Web.SqlModelMapper
                     return "Modulo_Atencion_Inicial.Numero_Exrterior_de_los_Hechos";
                 case "Numero_Interior_de_los_Hechos":
                     return "Modulo_Atencion_Inicial.Numero_Interior_de_los_Hechos";
+                case "Referencia_hechos":
+                    return "Modulo_Atencion_Inicial.Referencia_hechos";
                 case "Latitud":
                     return "Modulo_Atencion_Inicial.Latitud";
                 case "Longitud":
                     return "Modulo_Atencion_Inicial.Longitud";
+                case "Documento_Extraviado_hechos":
+                    return "Modulo_Atencion_Inicial.Documento_Extraviado_hechos";
+                case "Tipo_de_Documento_Extraviado[Descripcion]":
+                case "Tipo_de_Documento_ExtraviadoDescripcion":
+                    return "Documento_Extraviado.Descripcion";
                 case "Tipo_de_Lugar_del_Hecho[Descripcion]":
                 case "Tipo_de_Lugar_del_HechoDescripcion":
                     return "Lugar_Tipo.Descripcion";
@@ -321,6 +328,10 @@ namespace Spartane.Web.SqlModelMapper
                 {
 
                 }
+            }
+            if (columnName == "Documento_Extraviado_hechos")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
             if (columnName == "Fecha_de_Inicio_de_Acuerdo")
             {

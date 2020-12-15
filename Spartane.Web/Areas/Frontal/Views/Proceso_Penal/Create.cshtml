@@ -11,6 +11,12 @@
     string Fecha_de_Registro = "";
     if (Model.Fecha_de_Registro == "")
     { Model.Fecha_de_Registro = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_Continuacion_Audiencia = "";
+    if (Model.Fecha_Continuacion_Audiencia == "")
+    { Model.Fecha_Continuacion_Audiencia = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string fecha_investigacion_complementaria = "";
+    if (Model.fecha_investigacion_complementaria == "")
+    { Model.fecha_investigacion_complementaria = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
     string Fecha_de_Entrega_de_Escrito_de_Acusacion = "";
     if (Model.Fecha_de_Entrega_de_Escrito_de_Acusacion == "")
     { Model.Fecha_de_Entrega_de_Escrito_de_Acusacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
@@ -49,9 +55,6 @@
     List<SelectListItem> varAuto_de_Vinculacion_a_Proceso_Resultado_Vinculacion = null;
     if (ViewBag.Auto_de_Vinculacion_a_Procesos_Resultado_Vinculacion != null)
     { varAuto_de_Vinculacion_a_Proceso_Resultado_Vinculacion = (List<SelectListItem>)ViewBag.Auto_de_Vinculacion_a_Procesos_Resultado_Vinculacion; }
-    List<SelectListItem> varPlazo_de_Investigacion_Complementaria_plazo_investigacion_complementaria = null;
-    if (ViewBag.Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria != null)
-    { varPlazo_de_Investigacion_Complementaria_plazo_investigacion_complementaria = (List<SelectListItem>)ViewBag.Plazo_de_Investigacion_Complementarias_plazo_investigacion_complementaria; }
     List<SelectListItem> varResultado_de_Investigacion_Complementaria_Resultado_de_Investigacion_Complementari = null;
     if (ViewBag.Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari != null)
     { varResultado_de_Investigacion_Complementaria_Resultado_de_Investigacion_Complementari = (List<SelectListItem>)ViewBag.Resultado_de_Investigacion_Complementarias_Resultado_de_Investigacion_Complementari; }
@@ -232,7 +235,6 @@
 <li class=""><a data-toggle="tab" href="#tabAudiencia_Intermedia"> @Resources.Proceso_PenalResources.TabAudiencia_Intermedia</a></li>
 <li class=""><a data-toggle="tab" href="#tabJuicio_Oral"> @Resources.Proceso_PenalResources.TabJuicio_Oral</a></li>
 <li class=""><a data-toggle="tab" href="#tabResolucion"> @Resources.Proceso_PenalResources.TabResolucion</a></li>
-<li class=""><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Proceso_PenalResources.TabDatos_Generales</a></li>
 
                         	</ul>
 	                	<div class="tab-content">
@@ -436,6 +438,28 @@
                                 </div>
                                 }
                             </div>
+                            <div class="form-group" id="divFecha_Continuacion_Audiencia">
+                                <label class="col-sm-2 control-label">@Resources.Proceso_PenalResources.Fecha_Continuacion_Audiencia</label>
+                                <div class="col-sm-8" data-field-id="Fecha_Continuacion_Audiencia" data-attribute="268315" data-field-name="@Resources.Proceso_PenalResources.Fecha_Continuacion_Audiencia">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Fase_Complementaria" id="Fecha_Continuacion_Audiencia"  name="Fecha_Continuacion_Audiencia" type="text" value="@Model.Fecha_Continuacion_Audiencia">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_Continuacion_Audiencia">
+                                <label class="col-sm-2 control-label">@Resources.Proceso_PenalResources.Hora_Continuacion_Audiencia</label>
+                                <div class="col-sm-8" data-field-id="Hora_Continuacion_Audiencia" data-attribute="268316" data-field-name="@Resources.Proceso_PenalResources.Hora_Continuacion_Audiencia">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Fase_Complementaria" id="Hora_Continuacion_Audiencia"  name="Hora_Continuacion_Audiencia" type="text" data-autoclose="true" value="@Model.Hora_Continuacion_Audiencia">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group" id="divVinculacion">
                                 <label class="col-sm-2 control-label">@Resources.Proceso_PenalResources.Vinculacion</label>
                                 <div class="col-sm-8" data-field-id="Vinculacion" data-attribute="267775" data-field-name="@Resources.Proceso_PenalResources.Vinculacion">
@@ -523,35 +547,14 @@
                             <div class="form-group" id="divplazo_investigacion_complementaria">
                                 <label class="col-sm-2 control-label">@Resources.Proceso_PenalResources.plazo_investigacion_complementaria</label>
                                 <div class="col-sm-8" data-field-id="plazo_investigacion_complementaria" data-attribute="267778" data-field-name="@Resources.Proceso_PenalResources.plazo_investigacion_complementaria">
-                                    <select class="form-control Fase_Complementaria" data-val="true" data-val-number="The field Plazo de Investigación Complementaria (meses) must be a number." data-val-required="The Plazo de Investigación Complementaria (meses) field is required." id="plazo_investigacion_complementaria" name="plazo_investigacion_complementaria">
-                                        <option value=""></option>
-                                        @if (varPlazo_de_Investigacion_Complementaria_plazo_investigacion_complementaria != null){ 
-                                            foreach (var itemplazo_investigacion_complementaria in varPlazo_de_Investigacion_Complementaria_plazo_investigacion_complementaria)
-                                            {
-                                                if (itemplazo_investigacion_complementaria.Value == Convert.ToString(Model.plazo_investigacion_complementaria))
-                                                {
-                                                    <option value="@itemplazo_investigacion_complementaria.Value" selected>@itemplazo_investigacion_complementaria.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemplazo_investigacion_complementaria.Value">@itemplazo_investigacion_complementaria.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
+                                    <input class="form-control inputNumber Fase_Complementaria" id="plazo_investigacion_complementaria" name="plazo_investigacion_complementaria" type="text" value="@Model.plazo_investigacion_complementaria">
                                     @*<span class="field-validation-valid" data-valmsg-for="plazo_investigacion_complementaria" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 267778).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Plazo_de_Investigacion_Complementaria', 'plazo_investigacion_complementaria');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
                             </div>
                             <div class="form-group" id="divResultado_de_Investigacion_Complementari">
                                 <label class="col-sm-2 control-label">@Resources.Proceso_PenalResources.Resultado_de_Investigacion_Complementari</label>
                                 <div class="col-sm-8" data-field-id="Resultado_de_Investigacion_Complementari" data-attribute="267867" data-field-name="@Resources.Proceso_PenalResources.Resultado_de_Investigacion_Complementari">
-                                    <select class="form-control Fase_Complementaria" data-val="true" data-val-number="The field Resultado de Investigación Complementaria must be a number." data-val-required="The Resultado de Investigación Complementaria field is required." id="Resultado_de_Investigacion_Complementari" name="Resultado_de_Investigacion_Complementari">
+                                    <select class="form-control Fase_Complementaria" data-val="true" data-val-number="The field Cierre de Investigación Complementaria must be a number." data-val-required="The Cierre de Investigación Complementaria field is required." id="Resultado_de_Investigacion_Complementari" name="Resultado_de_Investigacion_Complementari">
                                         <option value=""></option>
                                         @if (varResultado_de_Investigacion_Complementaria_Resultado_de_Investigacion_Complementari != null){ 
                                             foreach (var itemResultado_de_Investigacion_Complementari in varResultado_de_Investigacion_Complementaria_Resultado_de_Investigacion_Complementari)
@@ -579,8 +582,12 @@
                             <div class="form-group" id="divfecha_investigacion_complementaria">
                                 <label class="col-sm-2 control-label">@Resources.Proceso_PenalResources.fecha_investigacion_complementaria</label>
                                 <div class="col-sm-8" data-field-id="fecha_investigacion_complementaria" data-attribute="267780" data-field-name="@Resources.Proceso_PenalResources.fecha_investigacion_complementaria">
-                                    <input class="form-control inputNumber Fase_Complementaria" id="fecha_investigacion_complementaria" name="fecha_investigacion_complementaria" type="text" value="@Model.fecha_investigacion_complementaria">
-                                    @*<span class="field-validation-valid" data-valmsg-for="fecha_investigacion_complementaria" data-valmsg-replace="true"></span>*@
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Fase_Complementaria" id="fecha_investigacion_complementaria"  name="fecha_investigacion_complementaria" type="text" value="@Model.fecha_investigacion_complementaria">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group" id="divhora_investigacion_complementaria">
@@ -1300,19 +1307,6 @@
                             </div>
                                 </div>
 
-
-                            <div id="tabDatos_Generales" class="tab-pane">
-                                <div class="panel-body">
-                            <div class="form-group" id="divprueba">
-                                <label class="col-sm-2 control-label">@Resources.Proceso_PenalResources.prueba</label>
-                                <div class="col-sm-8" data-field-id="prueba" data-attribute="267858" data-field-name="@Resources.Proceso_PenalResources.prueba">
-                                    <input class="form-control Datos_Generales" id="prueba" name="prueba" type="text" value="@Model.prueba">
-                                    @*<span class="field-validation-valid" data-valmsg-for="prueba" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            </div>
-                                </div>
-
 				</div>	
                     <br />
                             <div class="form-actions fluid">
@@ -1449,8 +1443,6 @@
 
 		var Tab_Resolucion = true;
 
-		var Tab_Datos_Generales = true;
-
 
         $(document).ready(function () {
             $('#ObjectId').val('45558');
@@ -1495,6 +1487,23 @@
                 format: "@ConfigurationProperty.DateFormatDatePicker"
             });
             $('#Hora_de_Registro').clockpicker();
+            $('#Fecha_Continuacion_Audiencia').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_Continuacion_Audiencia').clockpicker();
+            $('#fecha_investigacion_complementaria').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
             $('#hora_investigacion_complementaria').clockpicker();
             $('#Fecha_de_Entrega_de_Escrito_de_Acusacion').datepicker({
                 todayBtn: "linked",
@@ -1636,9 +1645,6 @@
 
 				if (Tab_Resolucion)
 					Fill_Resolucion();
-
-				if (Tab_Datos_Generales)
-					Fill_Datos_Generales();
 
 
                 </text>
@@ -3490,10 +3496,6 @@
 				return false;
 			}						
 
-			if (Tab_Datos_Generales && !checkClientValidate('Proceso_PenalCreateForm', 'Datos_Generales')) {
-				return false;
-			}						
-
 
 			
 			if (isNew == "True")
@@ -3516,9 +3518,6 @@
 
 			if (Tab_Resolucion)
 				Save_Resolucion(id);
-
-			if (Tab_Datos_Generales)
-				Save_Datos_Generales(id);
 
 
 			showNotification("@Resources.Resources.SaveSuccess", "success");
@@ -3712,6 +3711,8 @@
                     $('#Detalle_Delitos_Proceso_PenalGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
                     $('#Detalle_Delitos_Proceso_PenalGrid .gridDatePicker').attr("readonly", "");
                     $('#Plazo_Constitucional').val(result.data.Plazo_Constitucional);
+                    $('#Fecha_Continuacion_Audiencia').val(result.data.Fecha_Continuacion_Audiencia);
+                    $('#Hora_Continuacion_Audiencia').val(result.data.Hora_Continuacion_Audiencia);
                     $('#Vinculacion').val(result.data.Vinculacion);
                     $('#Resultado_No_Vinculacion').val(result.data.Resultado_No_Vinculacion);
                     $('#Resultado_Vinculacion').val(result.data.Resultado_Vinculacion);
@@ -3741,6 +3742,8 @@
                 data.append('Imputado', $('#Imputado').val());
                 data.append('Reclasificacion_Juridica', $('#Reclasificacion_Juridica').val());
                 data.append('Plazo_Constitucional', $('#Plazo_Constitucional').val());
+                data.append('Fecha_Continuacion_Audiencia', $('#Fecha_Continuacion_Audiencia').val());
+                data.append('Hora_Continuacion_Audiencia', $('#Hora_Continuacion_Audiencia').val());
                 data.append('Vinculacion', $('#Vinculacion').val());
                 data.append('Resultado_No_Vinculacion', $('#Resultado_No_Vinculacion').val());
                 data.append('Resultado_Vinculacion', $('#Resultado_Vinculacion').val());
@@ -4020,52 +4023,6 @@
 				},
 				error: function (result) {
 					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Resolucion");
-				},
-				cache: false
-			});
-		}
-
-		function Fill_Datos_Generales()
-        {
-            $.ajax({
-                url: "@Url.Content("~/Frontal/Proceso_Penal/Get_Datos_Generales")?Id=" + $("#ReferenceFolio").val(),
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                success: function (result) {
-                                        $('#Folio').val(result.data.Folio);
-                    $('#prueba').val(result.data.prueba);
-
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                }
-            });
-        }
-		
-		function Save_Datos_Generales(newId) {
-			var data = new FormData();
-			data.append('Folio', newId);
-			                data.append('prueba', $('#prueba').val());
-
-			$.ajax({
-				url: '@Url.Content("~/Frontal/Proceso_Penal/Post_Datos_Generales")',
-				type: 'POST',
-				data: data,
-				async: false,
-				dataType: "json",
-				contentType: false,
-				processData: false,
-				success: function (result) {
-					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
-					} else {
-						newId = result;
-                    
-					}
-				},
-				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
 				},
 				cache: false
 			});
