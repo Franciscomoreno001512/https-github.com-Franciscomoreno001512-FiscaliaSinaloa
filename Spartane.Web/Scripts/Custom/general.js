@@ -1560,3 +1560,30 @@ function GetAllTableSQL( query) {
     return res;
 }
 $(".glyphicon-new-window").parent().hide();
+
+function CambiarAConsulta() {
+    debugger;
+    let controlsArray = ["input", "textarea", "select"]
+    var countControlsArray = 0;
+    var countdivsForms = 0;
+    var role = EvaluaQuery("SELECT GLOBAL[USERROLEID]", "", "");
+    //107	Dictaminador
+    if (role == "107") { return }
+    //Oculta los botones de guardar.
+    $('.form-actions [value="Guardar"]').addClass("hidden");
+    $('.form-actions [value="Guardar y Copia"]').addClass("hidden");
+    $('.form-actions [value="Guardar y Nuevo"]').addClass("hidden");
+    //Oculta botón de "Añadir una nueva fila" de los MR.
+    $("[data-original-title='Añadir una nueva fila']:not([data-toggle=modal])").addClass("hidden");
+    //Deshabilita los controles.
+    while (countControlsArray < controlsArray.length) {
+        var divsForms = $('.form-group ' + controlsArray[countControlsArray]);
+        countdivsForms = 0;
+        while (countdivsForms < divsForms.length) {
+            var namecontrol = divsForms[countdivsForms].name;
+            DisabledControl($('#' + namecontrol), true);
+            countdivsForms = countdivsForms + 1;
+        }
+        countControlsArray = countControlsArray + 1;
+    }
+}
