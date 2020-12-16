@@ -45,9 +45,16 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceNUAT { set; get; }
         public int[] AdvanceNUATMultiple { set; get; }
 
-        public Filters UnidadFilter { set; get; }
-        public string AdvanceUnidad { set; get; }
-        public int[] AdvanceUnidadMultiple { set; get; }
+        public Filters NUAT_CodigoFilter { set; get; }
+        public string NUAT_Codigo { set; get; }
+
+        public Filters Expediente_MPIFilter { set; get; }
+        public string AdvanceExpediente_MPI { set; get; }
+        public int[] AdvanceExpediente_MPIMultiple { set; get; }
+
+        public Filters Expediente_CausaPenalFilter { set; get; }
+        public string AdvanceExpediente_CausaPenal { set; get; }
+        public int[] AdvanceExpediente_CausaPenalMultiple { set; get; }
 
         public Filters MunicipioFilter { set; get; }
         public string AdvanceMunicipio { set; get; }
@@ -94,8 +101,11 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int[] AdvanceAgente_del_Ministerio_Publico_InvestMultiple { set; get; }
 
         public Filters Juez_de_ControlFilter { set; get; }
-        public string AdvanceJuez_de_Control { set; get; }
-        public int[] AdvanceJuez_de_ControlMultiple { set; get; }
+        public string Juez_de_Control { set; get; }
+
+        public Filters UnidadFilter { set; get; }
+        public string AdvanceUnidad { set; get; }
+        public int[] AdvanceUnidadMultiple { set; get; }
 
         public Filters Titulo_del_HechoFilter { set; get; }
         public string Titulo_del_Hecho { set; get; }

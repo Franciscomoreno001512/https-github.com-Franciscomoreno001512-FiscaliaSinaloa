@@ -282,5 +282,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 
+        [System.Web.Http.HttpGet]
+        [System.Web.Mvc.AllowAnonymous]
+        public JsonResult CreateSessionVars(int fase, int judicializacion)
+        {
+            Session["GLOBAL_FASE"] = fase;
+            Session["GLOBAL_JUDICIALIZACION"] = judicializacion;
+            return Json("OK", JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

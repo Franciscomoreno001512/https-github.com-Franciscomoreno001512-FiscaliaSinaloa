@@ -2,7 +2,9 @@
 <resources>
   <resource culture="en-us" name="Detalle_Aseguramiento_de_Drogas_Involucradas" value="Detalle Aseguramiento de Drogas Involucradas"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Motivo_de_Registro" value="Motivo de Registro"></resource>
   <resource culture="en-US" name="Tipo" value="Tipo"></resource>
+  <resource culture="en-US" name="Modo_de_Asegurado" value="Modo de Asegurado"></resource>
   <resource culture="en-US" name="Unidad_de_Medida" value="Unidad de Medida"></resource>
   <resource culture="en-US" name="Cantidad" value="Cantidad"></resource>
   <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>

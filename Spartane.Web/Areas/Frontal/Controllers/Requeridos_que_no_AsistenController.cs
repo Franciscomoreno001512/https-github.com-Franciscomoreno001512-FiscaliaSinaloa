@@ -927,7 +927,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
+			string[] arrayColumnsVisible = null;
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())

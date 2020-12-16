@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
 using Spartane.Core.Domain.expediente_ministerio_publico;
+using Spartane.Core.Domain.Solicitud;
 using Spartane.Core.Domain.Tipo_de_Compareciente;
+using Spartane.Core.Domain.A_Tiempo;
 using Spartane.Core.Domain.Genero;
 using Spartane.Core.Domain.Estado_Civil;
 using Spartane.Core.Domain.Tipo_de_Identificacion;
@@ -111,9 +113,14 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
         public int? Expediente_MP { get; set; }
+        public int? Expediente_MASC { get; set; }
         public bool? Datos_Confidenciales { get; set; }
         public bool? Se_Informo_sobre_el_Procedimiento { get; set; }
         public int? Tipo_de_Compareciente { get; set; }
+        public bool? Persona_Desaparecida { get; set; }
+        public bool? Persona_Aparecio { get; set; }
+        public DateTime? Fecha_de_Aparicion { get; set; }
+        public short? Con_Vida { get; set; }
         public bool? Persona_Moral { get; set; }
         public bool? Q_Q_R_O_ { get; set; }
         public bool? Es_victima { get; set; }
@@ -290,8 +297,12 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
         [ForeignKey("Expediente_MP")]
         public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
+        [ForeignKey("Expediente_MASC")]
+        public virtual Spartane.Core.Domain.Solicitud.Solicitud Expediente_MASC_Solicitud { get; set; }
         [ForeignKey("Tipo_de_Compareciente")]
         public virtual Spartane.Core.Domain.Tipo_de_Compareciente.Tipo_de_Compareciente Tipo_de_Compareciente_Tipo_de_Compareciente { get; set; }
+        [ForeignKey("Con_Vida")]
+        public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Con_Vida_A_Tiempo { get; set; }
         [ForeignKey("Sexo")]
         public virtual Spartane.Core.Domain.Genero.Genero Sexo_Genero { get; set; }
         [ForeignKey("Estado_Civil")]
@@ -480,9 +491,14 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
                 public int Clave { get; set; }
         public int? Modulo_Atencion_Inicial { get; set; }
         public int? Expediente_MP { get; set; }
+        public int? Expediente_MASC { get; set; }
         public bool? Datos_Confidenciales { get; set; }
         public bool? Se_Informo_sobre_el_Procedimiento { get; set; }
         public int? Tipo_de_Compareciente { get; set; }
+        public bool? Persona_Desaparecida { get; set; }
+        public bool? Persona_Aparecio { get; set; }
+        public DateTime? Fecha_de_Aparicion { get; set; }
+        public short? Con_Vida { get; set; }
         public bool? Persona_Moral { get; set; }
         public bool? Q_Q_R_O_ { get; set; }
         public bool? Es_victima { get; set; }
@@ -555,8 +571,12 @@ namespace Spartane.Core.Domain.Detalle_de_Datos_Generales
         public virtual Spartane.Core.Domain.Modulo_Atencion_Inicial.Modulo_Atencion_Inicial Modulo_Atencion_Inicial_Modulo_Atencion_Inicial { get; set; }
         [ForeignKey("Expediente_MP")]
         public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
+        [ForeignKey("Expediente_MASC")]
+        public virtual Spartane.Core.Domain.Solicitud.Solicitud Expediente_MASC_Solicitud { get; set; }
         [ForeignKey("Tipo_de_Compareciente")]
         public virtual Spartane.Core.Domain.Tipo_de_Compareciente.Tipo_de_Compareciente Tipo_de_Compareciente_Tipo_de_Compareciente { get; set; }
+        [ForeignKey("Con_Vida")]
+        public virtual Spartane.Core.Domain.A_Tiempo.A_Tiempo Con_Vida_A_Tiempo { get; set; }
         [ForeignKey("Sexo")]
         public virtual Spartane.Core.Domain.Genero.Genero Sexo_Genero { get; set; }
         [ForeignKey("Estado_Civil")]

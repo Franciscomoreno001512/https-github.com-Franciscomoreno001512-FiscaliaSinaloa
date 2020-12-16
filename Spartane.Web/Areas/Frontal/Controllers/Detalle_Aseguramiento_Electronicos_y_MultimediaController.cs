@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_Electronicos_y_Multimedia;
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Aparato_Electronicos_y_Multimedia;
 using Spartane.Core.Domain.Documentos_Multimedia;
 
@@ -14,6 +15,7 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Electronicos_y_Multimedia;
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Aparato_Electronicos_y_Multimedia;
 using Spartane.Web.Areas.WebApiConsumer.Documentos_Multimedia;
 
@@ -42,6 +44,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_Electronicos_y_MultimediaService service = null;
         private IDetalle_Aseguramiento_Electronicos_y_MultimediaApiConsumer _IDetalle_Aseguramiento_Electronicos_y_MultimediaApiConsumer;
+        private IMotivo_de_RegistroApiConsumer _IMotivo_de_RegistroApiConsumer;
         private IAparato_Electronicos_y_MultimediaApiConsumer _IAparato_Electronicos_y_MultimediaApiConsumer;
         private IDocumentos_MultimediaApiConsumer _IDocumentos_MultimediaApiConsumer;
 
@@ -57,7 +60,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_Electronicos_y_MultimediaController(IDetalle_Aseguramiento_Electronicos_y_MultimediaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_Electronicos_y_MultimediaApiConsumer Detalle_Aseguramiento_Electronicos_y_MultimediaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IAparato_Electronicos_y_MultimediaApiConsumer Aparato_Electronicos_y_MultimediaApiConsumer , IDocumentos_MultimediaApiConsumer Documentos_MultimediaApiConsumer )
+        public Detalle_Aseguramiento_Electronicos_y_MultimediaController(IDetalle_Aseguramiento_Electronicos_y_MultimediaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_Electronicos_y_MultimediaApiConsumer Detalle_Aseguramiento_Electronicos_y_MultimediaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IMotivo_de_RegistroApiConsumer Motivo_de_RegistroApiConsumer , IAparato_Electronicos_y_MultimediaApiConsumer Aparato_Electronicos_y_MultimediaApiConsumer , IDocumentos_MultimediaApiConsumer Documentos_MultimediaApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -67,6 +70,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._IAparato_Electronicos_y_MultimediaApiConsumer = Aparato_Electronicos_y_MultimediaApiConsumer;
             this._IDocumentos_MultimediaApiConsumer = Documentos_MultimediaApiConsumer;
 
@@ -117,6 +121,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 varDetalle_Aseguramiento_Electronicos_y_Multimedia = new Detalle_Aseguramiento_Electronicos_y_MultimediaModel
                 {
                     Clave = (int)Detalle_Aseguramiento_Electronicos_y_MultimediaData.Clave
+                    ,Motivo_de_Registro = Detalle_Aseguramiento_Electronicos_y_MultimediaData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Electronicos_y_MultimediaData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_Electronicos_y_MultimediaData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                     ,Aparatos = Detalle_Aseguramiento_Electronicos_y_MultimediaData.Aparatos
                     ,AparatosDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Electronicos_y_MultimediaData.Aparatos), "Aparato_Electronicos_y_Multimedia") ??  (string)Detalle_Aseguramiento_Electronicos_y_MultimediaData.Aparatos_Aparato_Electronicos_y_Multimedia.Descripcion
                     ,Documentos_Multimedia = Detalle_Aseguramiento_Electronicos_y_MultimediaData.Documentos_Multimedia
@@ -131,6 +137,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IAparato_Electronicos_y_MultimediaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Aparato_Electronicos_y_Multimedias_Aparatos = _IAparato_Electronicos_y_MultimediaApiConsumer.SelAll(true);
             if (Aparato_Electronicos_y_Multimedias_Aparatos != null && Aparato_Electronicos_y_Multimedias_Aparatos.Resource != null)
@@ -178,7 +191,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varDetalle_Aseguramiento_Electronicos_y_Multimedia= new Detalle_Aseguramiento_Electronicos_y_MultimediaModel
 					{
 						Clave  = Detalle_Aseguramiento_Electronicos_y_MultimediaData.Clave 
-	                    ,Aparatos = Detalle_Aseguramiento_Electronicos_y_MultimediaData.Aparatos
+	                    ,Motivo_de_Registro = Detalle_Aseguramiento_Electronicos_y_MultimediaData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Electronicos_y_MultimediaData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_Electronicos_y_MultimediaData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                    ,Aparatos = Detalle_Aseguramiento_Electronicos_y_MultimediaData.Aparatos
                     ,AparatosDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Electronicos_y_MultimediaData.Aparatos), "Aparato_Electronicos_y_Multimedia") ??  (string)Detalle_Aseguramiento_Electronicos_y_MultimediaData.Aparatos_Aparato_Electronicos_y_Multimedia.Descripcion
                     ,Documentos_Multimedia = Detalle_Aseguramiento_Electronicos_y_MultimediaData.Documentos_Multimedia
                     ,Documentos_MultimediaDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_Electronicos_y_MultimediaData.Documentos_Multimedia), "Documentos_Multimedia") ??  (string)Detalle_Aseguramiento_Electronicos_y_MultimediaData.Documentos_Multimedia_Documentos_Multimedia.Descripcion
@@ -193,6 +208,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _IAparato_Electronicos_y_MultimediaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Aparato_Electronicos_y_Multimedias_Aparatos = _IAparato_Electronicos_y_MultimediaApiConsumer.SelAll(true);
             if (Aparato_Electronicos_y_Multimedias_Aparatos != null && Aparato_Electronicos_y_Multimedias_Aparatos.Resource != null)
@@ -227,6 +249,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetMotivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetAparato_Electronicos_y_MultimediaAll()
         {
@@ -290,6 +333,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_Aseguramiento_Electronicos_y_Multimedias.Select(m => new Detalle_Aseguramiento_Electronicos_y_MultimediaGridModel
                     {
                     Clave = m.Clave
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,AparatosDescripcion = CultureHelper.GetTraduction(m.Aparatos_Aparato_Electronicos_y_Multimedia.Clave.ToString(), "Descripcion") ?? (string)m.Aparatos_Aparato_Electronicos_y_Multimedia.Descripcion
                         ,Documentos_MultimediaDescripcion = CultureHelper.GetTraduction(m.Documentos_Multimedia_Documentos_Multimedia.Clave.ToString(), "Descripcion") ?? (string)m.Documentos_Multimedia_Documentos_Multimedia.Descripcion
 			,Descripcion = m.Descripcion
@@ -359,6 +403,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Detalle_Aseguramiento_Electronicos_y_MultimediaInfo = new Detalle_Aseguramiento_Electronicos_y_Multimedia
                     {
                         Clave = varDetalle_Aseguramiento_Electronicos_y_Multimedia.Clave
+                        ,Motivo_de_Registro = varDetalle_Aseguramiento_Electronicos_y_Multimedia.Motivo_de_Registro
                         ,Aparatos = varDetalle_Aseguramiento_Electronicos_y_Multimedia.Aparatos
                         ,Documentos_Multimedia = varDetalle_Aseguramiento_Electronicos_y_Multimedia.Documentos_Multimedia
                         ,Descripcion = varDetalle_Aseguramiento_Electronicos_y_Multimedia.Descripcion
@@ -591,6 +636,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Electronicos_y_Multimedias.Select(m => new Detalle_Aseguramiento_Electronicos_y_MultimediaGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,AparatosDescripcion = (string)m.Aparatos_Aparato_Electronicos_y_Multimedia.Descripcion
                 ,Documentos_MultimediaDescripcion = (string)m.Documentos_Multimedia_Documentos_Multimedia.Descripcion
                 ,Descripcion = m.Descripcion
@@ -642,6 +688,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Electronicos_y_Multimedias.Select(m => new Detalle_Aseguramiento_Electronicos_y_MultimediaGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,AparatosDescripcion = (string)m.Aparatos_Aparato_Electronicos_y_Multimedia.Descripcion
                 ,Documentos_MultimediaDescripcion = (string)m.Documentos_Multimedia_Documentos_Multimedia.Descripcion
                 ,Descripcion = m.Descripcion

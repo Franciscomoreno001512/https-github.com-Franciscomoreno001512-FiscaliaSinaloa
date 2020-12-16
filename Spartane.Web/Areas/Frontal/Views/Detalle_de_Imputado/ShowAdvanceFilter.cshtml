@@ -9,6 +9,9 @@
  List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
     { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    if (ViewBag.Solicituds_Expediente_MASC != null)
+    { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
     List<SelectListItem> varGenero_Sexo = null;
     if (ViewBag.Generos_Sexo != null)
     { varGenero_Sexo = (List<SelectListItem>)ViewBag.Generos_Sexo; }
@@ -303,6 +306,9 @@
  List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
     { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    if (ViewBag.Solicituds_Expediente_MASC != null)
+    { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_de_ImputadoResources.Folio_Registro_Nacional_de_Detenciones</h3>
                 </div>
@@ -2325,6 +2331,21 @@
                 advanceSearch.Expediente_MPSearchType = 2;
             }
         }
+        advanceSearch.Expediente_MASCSearchType = 0;
+        if ($('#ddlAdvanceExpediente_MASC').val().length > 0 || $("#txtAdvanceExpediente_MASC").val() == "") {
+
+
+            if (isDetalle_de_ImputadoTextSearch) {
+                advanceSearch.Expediente_MASCName = $("#txtAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCNameSearchType = $("#ddlAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Expediente_MASCToSearch = $("#ddlAdvanceExpediente_MASC").val();
+                advanceSearch.Expediente_MASCSearchType = 2;
+            }
+        }
         if ($("#ddlAdvanceQuien_Resulte_Responsable").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_de_ImputadoQuien_Resulte_Responsable = $("#ddlAdvanceQuien_Resulte_Responsable").val();
@@ -3958,6 +3979,15 @@
         $("#ddlAdvanceExpediente_MP").change(function () {
             isDetalle_de_ImputadoTextSearch = false;
             $("#txtAdvanceExpediente_MP").val('');
+        });
+        $("#txtAdvanceExpediente_MASC").keypress(function () {
+            isDetalle_de_ImputadoTextSearch = true;
+            $("#ddlAdvanceExpediente_MASC").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceExpediente_MASC").change(function () {
+            isDetalle_de_ImputadoTextSearch = false;
+            $("#txtAdvanceExpediente_MASC").val('');
         });
         $("#txtAdvanceSexo").keypress(function () {
             isDetalle_de_ImputadoTextSearch = true;

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_Vinculacion_Resolucion" value="Detalle Vinculación Resolución"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Seleccionar" value="Seleccionar"></resource>
+  <resource culture="en-US" name="Relacion" value="Relación"></resource>
+  <resource culture="en-US" name="idRelacion" value="idRelacion "></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

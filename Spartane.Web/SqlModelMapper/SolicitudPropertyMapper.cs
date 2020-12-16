@@ -31,9 +31,14 @@ namespace Spartane.Web.SqlModelMapper
                 case "NUAT[NUAT]":
                 case "NUATNUAT":
                     return "Modulo_Atencion_Inicial.NUAT";
-                case "Unidad[Descripcion]":
-                case "UnidadDescripcion":
-                    return "Unidad.Descripcion";
+                case "NUAT_Codigo":
+                    return "Solicitud.NUAT_Codigo";
+                case "Expediente_MPI[nic]":
+                case "Expediente_MPInic":
+                    return "expediente_ministerio_publico.nic";
+                case "Expediente_CausaPenal[Observaciones]":
+                case "Expediente_CausaPenalObservaciones":
+                    return "Resolucion_MP.Observaciones";
                 case "Municipio[Nombre]":
                 case "MunicipioNombre":
                     return "Municipio.Nombre";
@@ -61,9 +66,11 @@ namespace Spartane.Web.SqlModelMapper
                 case "Agente_del_Ministerio_Publico_Invest[Name]":
                 case "Agente_del_Ministerio_Publico_InvestName":
                     return "Spartan_User.Name";
-                case "Juez_de_Control[Name]":
-                case "Juez_de_ControlName":
-                    return "Spartan_User.Name";
+                case "Juez_de_Control":
+                    return "Solicitud.Juez_de_Control";
+                case "Unidad[Descripcion]":
+                case "UnidadDescripcion":
+                    return "Unidad.Descripcion";
                 case "Titulo_del_Hecho":
                     return "Solicitud.Titulo_del_Hecho";
                 case "Fecha_del_Hecho":

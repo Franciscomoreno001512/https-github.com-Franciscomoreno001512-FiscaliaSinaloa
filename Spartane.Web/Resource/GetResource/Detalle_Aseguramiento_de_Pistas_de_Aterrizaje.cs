@@ -36,6 +36,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Motivo_de_Registro</summary>
+        public static string Motivo_de_Registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_de_Pistas_de_Aterrizaje.GetResource("Motivo_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Tipo</summary>
         public static string Tipo
         {
@@ -73,16 +83,6 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_Aseguramiento_de_Pistas_de_Aterrizaje.GetResource("Localizacion_1", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Localizacion_2</summary>
-        public static string Localizacion_2
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_Aseguramiento_de_Pistas_de_Aterrizaje.GetResource("Localizacion_2", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

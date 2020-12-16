@@ -2,6 +2,7 @@
 <resources>
   <resource culture="es-es" name="Detalle_Aseguramiento_de_Plantios" value="Detalle Aseguramiento de Plantios"></resource>
   <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Motivo_de_Registro" value="Motivo de Registro"></resource>
   <resource culture="es-es" name="Tipo" value="Tipo"></resource>
   <resource culture="es-es" name="No__de_Plantios" value="No. de Plantíos"></resource>
   <resource culture="es-es" name="Kilogramos" value="Kilogramos"></resource>

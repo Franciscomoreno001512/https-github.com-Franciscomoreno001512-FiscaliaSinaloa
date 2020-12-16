@@ -22,6 +22,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Expediente_MP[nic]":
                 case "Expediente_MPnic":
                     return "expediente_ministerio_publico.nic";
+                case "Expediente_MASC[Numero_de_Folio]":
+                case "Expediente_MASCNumero_de_Folio":
+                    return "Solicitud.Numero_de_Folio";
                 case "Datos_Confidenciales":
                     return "Detalle_de_Datos_Generales.Datos_Confidenciales";
                 case "Se_Informo_sobre_el_Procedimiento":
@@ -29,6 +32,15 @@ namespace Spartane.Web.SqlModelMapper
                 case "Tipo_de_Compareciente[Descripcion]":
                 case "Tipo_de_ComparecienteDescripcion":
                     return "Tipo_de_Compareciente.Descripcion";
+                case "Persona_Desaparecida":
+                    return "Detalle_de_Datos_Generales.Persona_Desaparecida";
+                case "Persona_Aparecio":
+                    return "Detalle_de_Datos_Generales.Persona_Aparecio";
+                case "Fecha_de_Aparicion":
+                    return "Detalle_de_Datos_Generales.Fecha_de_Aparicion";
+                case "Con_Vida[Descripcion]":
+                case "Con_VidaDescripcion":
+                    return "A_Tiempo.Descripcion";
                 case "Persona_Moral":
                     return "Detalle_de_Datos_Generales.Persona_Moral";
                 case "Q_Q_R_O_":
@@ -480,6 +492,25 @@ namespace Spartane.Web.SqlModelMapper
             if (columnName == "Se_Informo_sobre_el_Procedimiento")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Persona_Desaparecida")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Persona_Aparecio")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Fecha_de_Aparicion")
+            {
+                try
+                {
+                    value = Convert.ToDateTime(value).ToString("yyyy-MM-dd");
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
             if (columnName == "Persona_Moral")
             {

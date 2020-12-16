@@ -36,6 +36,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Motivo_de_Registro</summary>
+        public static string Motivo_de_Registro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_Medios_de_Transporte.GetResource("Motivo_de_Registro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Tipo</summary>
         public static string Tipo
         {
@@ -43,16 +53,6 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_Aseguramiento_Medios_de_Transporte.GetResource("Tipo", CultureInfo.CurrentUICulture.Name) as String;
-            }
-        }
-
-        /// <summary>Especifique</summary>
-        public static string Especifique
-        {
-            get
-            {
-                SetPath();
-                return resourceProviderDetalle_Aseguramiento_Medios_de_Transporte.GetResource("Especifique", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -156,6 +156,26 @@ namespace Resources
             }
         }
 
+        /// <summary>Seguro</summary>
+        public static string Seguro
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_Medios_de_Transporte.GetResource("Seguro", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Compania_de_Seguros</summary>
+        public static string Compania_de_Seguros
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_Medios_de_Transporte.GetResource("Compania_de_Seguros", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Empresa</summary>
         public static string Empresa
         {
@@ -193,6 +213,36 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_Aseguramiento_Medios_de_Transporte.GetResource("Destino", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Ubicacion</summary>
+        public static string Ubicacion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_Medios_de_Transporte.GetResource("Ubicacion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Pension</summary>
+        public static string Pension
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_Medios_de_Transporte.GetResource("Pension", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Domicilio_Resguardo</summary>
+        public static string Domicilio_Resguardo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Aseguramiento_Medios_de_Transporte.GetResource("Domicilio_Resguardo", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

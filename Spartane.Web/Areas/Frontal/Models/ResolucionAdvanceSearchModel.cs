@@ -11,6 +11,7 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         public ResolucionAdvanceSearchModel()
         {
+            Generar_Judicializacion = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -21,6 +22,16 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public Filters DescripcionFilter { set; get; }
         public string Descripcion { set; get; }
+
+        public Filters TipoFilter { set; get; }
+        public string AdvanceTipo { set; get; }
+        public int[] AdvanceTipoMultiple { set; get; }
+
+        public Filters Resolucion_Padre_para_AutorizacionFilter { set; get; }
+        public string AdvanceResolucion_Padre_para_Autorizacion { set; get; }
+        public int[] AdvanceResolucion_Padre_para_AutorizacionMultiple { set; get; }
+
+        public RadioOptions Generar_Judicializacion { set; get; }
 
 
     }

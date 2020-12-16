@@ -34,7 +34,7 @@ function GetAutoCompleteDetalle_de_Relaciones_Involucrado_Detalle_de_Datos_Gener
     for (var i = 0; i < data.length; i++) {
         AutoCompleteInvolucradoData.push({
             id: data[i].Clave,
-            text: data[i].Nombre_Completo
+            text: data[i].Nombre_Completo2
         });
     }
     return AutoCompleteInvolucradoData;
@@ -45,7 +45,7 @@ function GetAutoCompleteDetalle_de_Relaciones_Probable_Responsable_Detalle_de_Im
     for (var i = 0; i < data.length; i++) {
         AutoCompleteProbable_ResponsableData.push({
             id: data[i].Clave,
-            text: data[i].Nombre_Completo_del_Tutor
+            text: data[i].Nombre_Completo_Detenido
         });
     }
     return AutoCompleteProbable_ResponsableData;

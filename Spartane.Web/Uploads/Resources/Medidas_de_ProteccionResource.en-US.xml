@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Medidas_de_Proteccion" value="Medidas de Protección"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Expediente_AT" value="Expediente AT"></resource>
+  <resource culture="en-US" name="Expediente_MASC" value="Expediente MASC"></resource>
+  <resource culture="en-US" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="en-US" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="en-US" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="en-US" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="en-US" name="Orden_de_Proteccion" value="Orden de Protección"></resource>
+  <resource culture="en-US" name="Tipo_de_Medida" value="Tipo de Medida"></resource>
+  <resource culture="en-US" name="Medidas" value="Medidas"></resource>
+  <resource culture="en-US" name="Sub_Tipo" value="Sub Tipo"></resource>
+  <resource culture="en-US" name="Fecha_de_Inicio" value="Fecha de Inicio"></resource>
+  <resource culture="en-US" name="Hora_de_Inicio" value="Hora de Inicio"></resource>
+  <resource culture="en-US" name="Fecha_de_Conclusion" value="Fecha de Conclusión"></resource>
+  <resource culture="en-US" name="Hora_de_Conclusion" value="Hora de Conclusión"></resource>
+  <resource culture="en-US" name="Duracion_en_Dias" value="Duración en Días"></resource>
+  <resource culture="en-US" name="Aplicar_a" value="Aplicar a"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -9,6 +9,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class Detalle_Aseguramiento_OtrosGridModel
     {
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
         public string Tipo { get; set; }
         public string Unidad_de_medida { get; set; }
         public decimal? Cantidad { get; set; }

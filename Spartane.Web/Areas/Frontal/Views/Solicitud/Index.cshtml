@@ -4,13 +4,14 @@
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Unidad;
 @using Spartane.Core.Domain.Modulo_Atencion_Inicial;
-@using Spartane.Core.Domain.Unidad;
+@using Spartane.Core.Domain.expediente_ministerio_publico;
+@using Spartane.Core.Domain.Resolucion_MP;
 @using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Region;
 @using Spartane.Core.Domain.Estatus_Solicitud;
 @using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Spartan_User;
-@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Unidad;
 @using Spartane.Core.Domain.Lugar_Tipo;
 @using Spartane.Core.Domain.Pais;
 @using Spartane.Core.Domain.Estado;
@@ -227,7 +228,9 @@
                                     <th>@Resources.SolicitudResources.Unidad_MASC</th>
                                     <th>@Resources.SolicitudResources.Remitente</th>
                                     <th>@Resources.SolicitudResources.NUAT</th>
-                                    <th>@Resources.SolicitudResources.Unidad</th>
+                                    <th>@Resources.SolicitudResources.NUAT_Codigo</th>
+                                    <th>@Resources.SolicitudResources.Expediente_MPI</th>
+                                    <th>@Resources.SolicitudResources.Expediente_CausaPenal</th>
                                     <th>@Resources.SolicitudResources.Municipio</th>
                                     <th>@Resources.SolicitudResources.Region</th>
                                     <th>@Resources.SolicitudResources.NUC</th>
@@ -240,6 +243,7 @@
                                     <th>@Resources.SolicitudResources.Agente_del_Ministerio_Publico_Orientador</th>
                                     <th>@Resources.SolicitudResources.Agente_del_Ministerio_Publico_Invest</th>
                                     <th>@Resources.SolicitudResources.Juez_de_Control</th>
+                                    <th>@Resources.SolicitudResources.Unidad</th>
                                     <th>@Resources.SolicitudResources.Titulo_del_Hecho</th>
                                     <th>@Resources.SolicitudResources.Fecha_del_Hecho</th>
                                     <th>@Resources.SolicitudResources.Narrativa_Breve_de_los_Hechos</th>
@@ -300,8 +304,11 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -466,7 +473,9 @@
         var Unidad_MASC =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Remitente =  $($('table td .filterData.form-control:input')[counter++]).val();
         var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Unidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NUAT_Codigo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_CausaPenal =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
         var NUC =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -479,6 +488,7 @@
         var Agente_del_Ministerio_Publico_Orientador =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Agente_del_Ministerio_Publico_Invest =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Juez_de_Control =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Unidad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
         var Narrativa_Breve_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -527,7 +537,9 @@
         + "&Unidad_MASC=" + Unidad_MASC
         + "&Remitente=" + Remitente
         + "&NUAT=" + NUAT
-        + "&Unidad=" + Unidad
+        + "&NUAT_Codigo=" + NUAT_Codigo
+        + "&Expediente_MPI=" + Expediente_MPI
+        + "&Expediente_CausaPenal=" + Expediente_CausaPenal
         + "&Municipio=" + Municipio
         + "&Region=" + Region
         + "&NUC=" + NUC
@@ -540,6 +552,7 @@
         + "&Agente_del_Ministerio_Publico_Orientador=" + Agente_del_Ministerio_Publico_Orientador
         + "&Agente_del_Ministerio_Publico_Invest=" + Agente_del_Ministerio_Publico_Invest
         + "&Juez_de_Control=" + Juez_de_Control
+        + "&Unidad=" + Unidad
         + "&Titulo_del_Hecho=" + Titulo_del_Hecho
         + "&Fecha_del_Hecho=" + Fecha_del_Hecho
         + "&Narrativa_Breve_de_los_Hechos=" + Narrativa_Breve_de_los_Hechos
@@ -599,7 +612,9 @@
         var Unidad_MASC =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Remitente =  $($('table td .filterData.form-control:input')[counter++]).val();
         var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Unidad =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var NUAT_Codigo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_MPI =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Expediente_CausaPenal =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Municipio =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Region =  $($('table td .filterData.form-control:input')[counter++]).val();
         var NUC =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -612,6 +627,7 @@
         var Agente_del_Ministerio_Publico_Orientador =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Agente_del_Ministerio_Publico_Invest =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Juez_de_Control =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Unidad =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Titulo_del_Hecho =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_del_Hecho = $($('table td .filterData.form-control:input')[counter++]).val();
         var Narrativa_Breve_de_los_Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -660,7 +676,9 @@
         + "&Unidad_MASC=" + Unidad_MASC
         + "&Remitente=" + Remitente
         + "&NUAT=" + NUAT
-        + "&Unidad=" + Unidad
+        + "&NUAT_Codigo=" + NUAT_Codigo
+        + "&Expediente_MPI=" + Expediente_MPI
+        + "&Expediente_CausaPenal=" + Expediente_CausaPenal
         + "&Municipio=" + Municipio
         + "&Region=" + Region
         + "&NUC=" + NUC
@@ -673,6 +691,7 @@
         + "&Agente_del_Ministerio_Publico_Orientador=" + Agente_del_Ministerio_Publico_Orientador
         + "&Agente_del_Ministerio_Publico_Invest=" + Agente_del_Ministerio_Publico_Invest
         + "&Juez_de_Control=" + Juez_de_Control
+        + "&Unidad=" + Unidad
         + "&Titulo_del_Hecho=" + Titulo_del_Hecho
         + "&Fecha_del_Hecho=" + Fecha_del_Hecho
         + "&Narrativa_Breve_de_los_Hechos=" + Narrativa_Breve_de_los_Hechos
@@ -892,11 +911,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -966,7 +985,9 @@
                 ,{ "data": "Unidad_MASCDescripcion", "orderable": true, "name": "Unidad_MASCDescripcion" }
                 ,{ "data": "Remitente", "orderable": true, "name": "Remitente", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "NUATNUAT", "orderable": true, "name": "NUATNUAT"}
-                ,{ "data": "UnidadDescripcion", "orderable": true, "name": "UnidadDescripcion" }
+                ,{ "data": "NUAT_Codigo", "orderable": true, "name": "NUAT_Codigo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Expediente_MPInic", "orderable": true, "name": "Expediente_MPInic"}
+                ,{ "data": "Expediente_CausaPenalObservaciones", "orderable": true, "name": "Expediente_CausaPenalObservaciones"}
                 ,{ "data": "MunicipioNombre", "orderable": true, "name": "MunicipioNombre"}
                 ,{ "data": "RegionDescripcion", "orderable": true, "name": "RegionDescripcion" }
                 ,{ "data": "NUC", "orderable": true, "name": "NUC", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
@@ -978,7 +999,8 @@
                 ,{ "data": "Fecha_en_que_llega_a_Especialista", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_en_que_llega_a_Especialista" }
                 ,{ "data": "Agente_del_Ministerio_Publico_OrientadorName", "orderable": true, "name": "Agente_del_Ministerio_Publico_OrientadorName"}
                 ,{ "data": "Agente_del_Ministerio_Publico_InvestName", "orderable": true, "name": "Agente_del_Ministerio_Publico_InvestName"}
-                ,{ "data": "Juez_de_ControlName", "orderable": true, "name": "Juez_de_ControlName"}
+                ,{ "data": "Juez_de_Control", "orderable": true, "name": "Juez_de_Control", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "UnidadDescripcion", "orderable": true, "name": "UnidadDescripcion" }
                 ,{ "data": "Titulo_del_Hecho", "orderable": true, "name": "Titulo_del_Hecho", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Fecha_del_Hecho", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_del_Hecho" }
                 ,{ "data": "Narrativa_Breve_de_los_Hechos", "orderable": true, "name": "Narrativa_Breve_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }

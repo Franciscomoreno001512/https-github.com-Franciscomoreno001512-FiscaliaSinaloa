@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Aseguramientos;
+using Spartane.Core.Domain.Motivo_de_Registro;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,6 +19,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Otros
     {
         public int Clave { get; set; }
         public int? Aseguramiento { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public string Tipo { get; set; }
         public string Unidad_de_medida { get; set; }
         public decimal? Cantidad { get; set; }
@@ -25,6 +27,8 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Otros
 
         [ForeignKey("Aseguramiento")]
         public virtual Spartane.Core.Domain.Aseguramientos.Aseguramientos Aseguramiento_Aseguramientos { get; set; }
+        [ForeignKey("Motivo_de_Registro")]
+        public virtual Spartane.Core.Domain.Motivo_de_Registro.Motivo_de_Registro Motivo_de_Registro_Motivo_de_Registro { get; set; }
 
     }
 	
@@ -32,6 +36,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Otros
     {
                 public int Clave { get; set; }
         public int? Aseguramiento { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public string Tipo { get; set; }
         public string Unidad_de_medida { get; set; }
         public decimal? Cantidad { get; set; }
@@ -39,6 +44,8 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Otros
 
 		        [ForeignKey("Aseguramiento")]
         public virtual Spartane.Core.Domain.Aseguramientos.Aseguramientos Aseguramiento_Aseguramientos { get; set; }
+        [ForeignKey("Motivo_de_Registro")]
+        public virtual Spartane.Core.Domain.Motivo_de_Registro.Motivo_de_Registro Motivo_de_Registro_Motivo_de_Registro { get; set; }
 
     }
 

@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_Pirateria;
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Tipo_de_Pirateria;
 using Spartane.Core.Domain.Unidad_de_Medida_de_pirateria;
 
@@ -14,6 +15,7 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Pirateria;
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Pirateria;
 using Spartane.Web.Areas.WebApiConsumer.Unidad_de_Medida_de_pirateria;
 
@@ -42,6 +44,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_PirateriaService service = null;
         private IDetalle_Aseguramiento_PirateriaApiConsumer _IDetalle_Aseguramiento_PirateriaApiConsumer;
+        private IMotivo_de_RegistroApiConsumer _IMotivo_de_RegistroApiConsumer;
         private ITipo_de_PirateriaApiConsumer _ITipo_de_PirateriaApiConsumer;
         private IUnidad_de_Medida_de_pirateriaApiConsumer _IUnidad_de_Medida_de_pirateriaApiConsumer;
 
@@ -57,7 +60,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_PirateriaController(IDetalle_Aseguramiento_PirateriaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_PirateriaApiConsumer Detalle_Aseguramiento_PirateriaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_PirateriaApiConsumer Tipo_de_PirateriaApiConsumer , IUnidad_de_Medida_de_pirateriaApiConsumer Unidad_de_Medida_de_pirateriaApiConsumer )
+        public Detalle_Aseguramiento_PirateriaController(IDetalle_Aseguramiento_PirateriaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_PirateriaApiConsumer Detalle_Aseguramiento_PirateriaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IMotivo_de_RegistroApiConsumer Motivo_de_RegistroApiConsumer , ITipo_de_PirateriaApiConsumer Tipo_de_PirateriaApiConsumer , IUnidad_de_Medida_de_pirateriaApiConsumer Unidad_de_Medida_de_pirateriaApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -67,6 +70,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._ITipo_de_PirateriaApiConsumer = Tipo_de_PirateriaApiConsumer;
             this._IUnidad_de_Medida_de_pirateriaApiConsumer = Unidad_de_Medida_de_pirateriaApiConsumer;
 
@@ -117,6 +121,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 varDetalle_Aseguramiento_Pirateria = new Detalle_Aseguramiento_PirateriaModel
                 {
                     Clave = (int)Detalle_Aseguramiento_PirateriaData.Clave
+                    ,Motivo_de_Registro = Detalle_Aseguramiento_PirateriaData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_PirateriaData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_PirateriaData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                     ,Tipo = Detalle_Aseguramiento_PirateriaData.Tipo
                     ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_PirateriaData.Tipo), "Tipo_de_Pirateria") ??  (string)Detalle_Aseguramiento_PirateriaData.Tipo_Tipo_de_Pirateria.Descripcion
                     ,Descripcion = Detalle_Aseguramiento_PirateriaData.Descripcion
@@ -131,6 +137,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ITipo_de_PirateriaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Piraterias_Tipo = _ITipo_de_PirateriaApiConsumer.SelAll(true);
             if (Tipo_de_Piraterias_Tipo != null && Tipo_de_Piraterias_Tipo.Resource != null)
@@ -178,7 +191,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varDetalle_Aseguramiento_Pirateria= new Detalle_Aseguramiento_PirateriaModel
 					{
 						Clave  = Detalle_Aseguramiento_PirateriaData.Clave 
-	                    ,Tipo = Detalle_Aseguramiento_PirateriaData.Tipo
+	                    ,Motivo_de_Registro = Detalle_Aseguramiento_PirateriaData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_PirateriaData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_PirateriaData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                    ,Tipo = Detalle_Aseguramiento_PirateriaData.Tipo
                     ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_PirateriaData.Tipo), "Tipo_de_Pirateria") ??  (string)Detalle_Aseguramiento_PirateriaData.Tipo_Tipo_de_Pirateria.Descripcion
                     ,Descripcion = Detalle_Aseguramiento_PirateriaData.Descripcion
                     ,Cantidad = Detalle_Aseguramiento_PirateriaData.Cantidad
@@ -193,6 +208,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ITipo_de_PirateriaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Piraterias_Tipo = _ITipo_de_PirateriaApiConsumer.SelAll(true);
             if (Tipo_de_Piraterias_Tipo != null && Tipo_de_Piraterias_Tipo.Resource != null)
@@ -227,6 +249,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetMotivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetTipo_de_PirateriaAll()
         {
@@ -290,6 +333,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_Aseguramiento_Piraterias.Select(m => new Detalle_Aseguramiento_PirateriaGridModel
                     {
                     Clave = m.Clave
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Pirateria.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Pirateria.Descripcion
 			,Descripcion = m.Descripcion
 			,Cantidad = m.Cantidad
@@ -359,6 +403,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Detalle_Aseguramiento_PirateriaInfo = new Detalle_Aseguramiento_Pirateria
                     {
                         Clave = varDetalle_Aseguramiento_Pirateria.Clave
+                        ,Motivo_de_Registro = varDetalle_Aseguramiento_Pirateria.Motivo_de_Registro
                         ,Tipo = varDetalle_Aseguramiento_Pirateria.Tipo
                         ,Descripcion = varDetalle_Aseguramiento_Pirateria.Descripcion
                         ,Cantidad = varDetalle_Aseguramiento_Pirateria.Cantidad
@@ -591,6 +636,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Piraterias.Select(m => new Detalle_Aseguramiento_PirateriaGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,TipoDescripcion = (string)m.Tipo_Tipo_de_Pirateria.Descripcion
                 ,Descripcion = m.Descripcion
                 ,Cantidad = m.Cantidad
@@ -642,6 +688,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Piraterias.Select(m => new Detalle_Aseguramiento_PirateriaGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,TipoDescripcion = (string)m.Tipo_Tipo_de_Pirateria.Descripcion
                 ,Descripcion = m.Descripcion
                 ,Cantidad = m.Cantidad

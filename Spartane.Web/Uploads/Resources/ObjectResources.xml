@@ -1142,8 +1142,432 @@
 <Object Id="45607" culture="es-es" value="Módulo Encuesta" />
 <Object Id="45608" culture="en-us" value="Generador_Folio_Encuesta" />
 <Object Id="45608" culture="es-es" value="Generador_Folio_Encuesta" />
+<Object Id="45609" culture="en-us" value="Motivo de Registro" />
+<Object Id="45609" culture="es-es" value="Motivo de Registro" />
+<Object Id="45610" culture="en-us" value="Compañía de Seguros" />
+<Object Id="45610" culture="es-es" value="Compañía de Seguros" />
+<Object Id="45611" culture="en-us" value="Ubicación de Medio de Transporte" />
+<Object Id="45611" culture="es-es" value="Ubicación de Medio de Transporte" />
+<Object Id="45612" culture="en-us" value="Pensión" />
+<Object Id="45612" culture="es-es" value="Pensión" />
+<Object Id="45613" culture="en-us" value="Modo de Asegurado de Drogas" />
+<Object Id="45613" culture="es-es" value="Modo de Asegurado de Drogas" />
+<Object Id="45617" culture="en-us" value="Tipo de Documentos" />
+<Object Id="45617" culture="es-es" value="Tipo de Documentos" />
+<Object Id="45619" culture="en-us" value="Datos de los Hechos AT" />
+<Object Id="45619" culture="es-es" value="Datos de los Hechos AT" />
+<Object Id="45620" culture="en-us" value="Detalle Resumen Denuncia" />
+<Object Id="45620" culture="es-es" value="Detalle Resumen Denuncia" />
+<Object Id="45625" culture="en-us" value="Detalle Medidas Protección" />
+<Object Id="45625" culture="es-es" value="Detalle Medidas Protección" />
+<Object Id="45623" culture="en-us" value="Medida de Protección" />
+<Object Id="45623" culture="es-es" value="Medida de Protección" />
+<Object Id="45624" culture="en-us" value="Medidas de Protección" />
+<Object Id="45624" culture="es-es" value="Medidas de Protección" />
+<Object Id="45621" culture="en-us" value="SubTipo de Medida de Protección" />
+<Object Id="45621" culture="es-es" value="SubTipo de Medida de Protección" />
+<Object Id="45622" culture="en-us" value="Tipo de Medida de Protección" />
+<Object Id="45622" culture="es-es" value="Tipo de Medida de Protección" />
+<Object Id="45626" culture="en-us" value="Año" />
+<Object Id="45626" culture="es-es" value="Año" />
+<Object Id="45629" culture="en-us" value="Detalle Vinculación Resolución" />
+<Object Id="45629" culture="es-es" value="Detalle Vinculación Resolución" />
+<Object Id="45627" culture="en-us" value="Juzgado" />
+<Object Id="45627" culture="es-es" value="Juzgado" />
+<Object Id="45628" culture="en-us" value="Resolución MP" />
+<Object Id="45628" culture="es-es" value="Resolución MP" />
+<Object Id="45630" culture="en-us" value="Estatus de Resolución" />
+<Object Id="45630" culture="es-es" value="Estatus de Resolución" />
+<Object Id="45634" culture="en-us" value="Configurador de Movimientos" />
+<Object Id="45634" culture="es-es" value="Configurador de Movimientos" />
+<Object Id="45635" culture="en-us" value="Detalle Datos Adicionales Movimiento" />
+<Object Id="45635" culture="es-es" value="Detalle Datos Adicionales Movimiento" />
+<Object Id="45638" culture="en-us" value="Detalle Vinculacion Judicialización" />
+<Object Id="45638" culture="es-es" value="Detalle Vinculacion Judicialización" />
+<Object Id="45631" culture="en-us" value="Fase de Judicialización" />
+<Object Id="45631" culture="es-es" value="Fase de Judicialización" />
+<Object Id="45637" culture="en-us" value="Judicialización" />
+<Object Id="45637" culture="es-es" value="Judicialización" />
+<Object Id="45636" culture="en-us" value="Registro de Movimiento" />
+<Object Id="45636" culture="es-es" value="Registro de Movimiento" />
+<Object Id="45632" culture="en-us" value="Relaciones para Movimientos" />
+<Object Id="45632" culture="es-es" value="Relaciones para Movimientos" />
+<Object Id="45633" culture="en-us" value="Tipo de Dato" />
+<Object Id="45633" culture="es-es" value="Tipo de Dato" />
+<Object Id="45639" culture="en-us" value="Tipo de Resolución" />
+<Object Id="45639" culture="es-es" value="Tipo de Resolución" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

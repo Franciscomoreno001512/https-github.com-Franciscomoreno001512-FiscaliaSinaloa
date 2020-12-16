@@ -12,6 +12,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
         public short? Aparatos { get; set; }
         public string AparatosDescripcion { get; set; }
         public short? Documentos_Multimedia { get; set; }
@@ -27,6 +29,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     {
         [Required]
         public int Clave { get; set; }
+        public int? Motivo_de_Registro { get; set; }
+        public string Motivo_de_RegistroDescripcion { get; set; }
         public short? Aparatos { get; set; }
         public string AparatosDescripcion { get; set; }
         public short? Documentos_Multimedia { get; set; }

@@ -2,6 +2,8 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_de_Cargador_Cartuchos;
+using Spartane.Core.Domain.Calibre_de_Arma;
+using Spartane.Core.Domain.Motivo_de_Registro;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -12,6 +14,8 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_de_Cargador_Cartuchos;
+using Spartane.Web.Areas.WebApiConsumer.Calibre_de_Arma;
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -38,6 +42,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_de_Cargador_CartuchosService service = null;
         private IDetalle_Aseguramiento_de_Cargador_CartuchosApiConsumer _IDetalle_Aseguramiento_de_Cargador_CartuchosApiConsumer;
+        private ICalibre_de_ArmaApiConsumer _ICalibre_de_ArmaApiConsumer;
+        private IMotivo_de_RegistroApiConsumer _IMotivo_de_RegistroApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -51,7 +57,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_de_Cargador_CartuchosController(IDetalle_Aseguramiento_de_Cargador_CartuchosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_de_Cargador_CartuchosApiConsumer Detalle_Aseguramiento_de_Cargador_CartuchosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer )
+        public Detalle_Aseguramiento_de_Cargador_CartuchosController(IDetalle_Aseguramiento_de_Cargador_CartuchosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_de_Cargador_CartuchosApiConsumer Detalle_Aseguramiento_de_Cargador_CartuchosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ICalibre_de_ArmaApiConsumer Calibre_de_ArmaApiConsumer , IMotivo_de_RegistroApiConsumer Motivo_de_RegistroApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -61,6 +67,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
+            this._ICalibre_de_ArmaApiConsumer = Calibre_de_ArmaApiConsumer;
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
 
         }
 
@@ -109,6 +117,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 varDetalle_Aseguramiento_de_Cargador_Cartuchos = new Detalle_Aseguramiento_de_Cargador_CartuchosModel
                 {
                     Clave = (int)Detalle_Aseguramiento_de_Cargador_CartuchosData.Clave
+                    ,Calibre = Detalle_Aseguramiento_de_Cargador_CartuchosData.Calibre
+                    ,CalibreDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Cargador_CartuchosData.Calibre), "Calibre_de_Arma") ??  (string)Detalle_Aseguramiento_de_Cargador_CartuchosData.Calibre_Calibre_de_Arma.Descripcion
+                    ,Motivo_de_Registro = Detalle_Aseguramiento_de_Cargador_CartuchosData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Cargador_CartuchosData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_de_Cargador_CartuchosData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                     ,cartuchos_municiones = Detalle_Aseguramiento_de_Cargador_CartuchosData.cartuchos_municiones
                     ,Cartuchos_Habiles = Detalle_Aseguramiento_de_Cargador_CartuchosData.Cartuchos_Habiles
                     ,Cartuchos_Percutidos = Detalle_Aseguramiento_de_Cargador_CartuchosData.Cartuchos_Percutidos
@@ -120,6 +132,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ICalibre_de_ArmaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Calibre_de_Armas_Calibre = _ICalibre_de_ArmaApiConsumer.SelAll(true);
+            if (Calibre_de_Armas_Calibre != null && Calibre_de_Armas_Calibre.Resource != null)
+                ViewBag.Calibre_de_Armas_Calibre = Calibre_de_Armas_Calibre.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Calibre_de_Arma", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             ViewBag.Consult = consult == 1;
@@ -153,7 +179,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varDetalle_Aseguramiento_de_Cargador_Cartuchos= new Detalle_Aseguramiento_de_Cargador_CartuchosModel
 					{
 						Clave  = Detalle_Aseguramiento_de_Cargador_CartuchosData.Clave 
-	                    ,cartuchos_municiones = Detalle_Aseguramiento_de_Cargador_CartuchosData.cartuchos_municiones
+	                    ,Calibre = Detalle_Aseguramiento_de_Cargador_CartuchosData.Calibre
+                    ,CalibreDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Cargador_CartuchosData.Calibre), "Calibre_de_Arma") ??  (string)Detalle_Aseguramiento_de_Cargador_CartuchosData.Calibre_Calibre_de_Arma.Descripcion
+                    ,Motivo_de_Registro = Detalle_Aseguramiento_de_Cargador_CartuchosData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_de_Cargador_CartuchosData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_de_Cargador_CartuchosData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                    ,cartuchos_municiones = Detalle_Aseguramiento_de_Cargador_CartuchosData.cartuchos_municiones
                     ,Cartuchos_Habiles = Detalle_Aseguramiento_de_Cargador_CartuchosData.Cartuchos_Habiles
                     ,Cartuchos_Percutidos = Detalle_Aseguramiento_de_Cargador_CartuchosData.Cartuchos_Percutidos
                     ,cargadores = Detalle_Aseguramiento_de_Cargador_CartuchosData.cargadores
@@ -165,6 +195,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _ICalibre_de_ArmaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Calibre_de_Armas_Calibre = _ICalibre_de_ArmaApiConsumer.SelAll(true);
+            if (Calibre_de_Armas_Calibre != null && Calibre_de_Armas_Calibre.Resource != null)
+                ViewBag.Calibre_de_Armas_Calibre = Calibre_de_Armas_Calibre.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Calibre_de_Arma", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             return PartialView("AddDetalle_Aseguramiento_de_Cargador_Cartuchos", varDetalle_Aseguramiento_de_Cargador_Cartuchos);
@@ -185,6 +229,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetCalibre_de_ArmaAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ICalibre_de_ArmaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ICalibre_de_ArmaApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Calibre_de_Arma", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetMotivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -206,6 +292,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_Aseguramiento_de_Cargador_Cartuchoss.Select(m => new Detalle_Aseguramiento_de_Cargador_CartuchosGridModel
                     {
                     Clave = m.Clave
+                        ,CalibreDescripcion = CultureHelper.GetTraduction(m.Calibre_Calibre_de_Arma.Clave.ToString(), "Descripcion") ?? (string)m.Calibre_Calibre_de_Arma.Descripcion
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
 			,cartuchos_municiones = m.cartuchos_municiones
 			,Cartuchos_Habiles = m.Cartuchos_Habiles
 			,Cartuchos_Percutidos = m.Cartuchos_Percutidos
@@ -274,6 +362,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Detalle_Aseguramiento_de_Cargador_CartuchosInfo = new Detalle_Aseguramiento_de_Cargador_Cartuchos
                     {
                         Clave = varDetalle_Aseguramiento_de_Cargador_Cartuchos.Clave
+                        ,Calibre = varDetalle_Aseguramiento_de_Cargador_Cartuchos.Calibre
+                        ,Motivo_de_Registro = varDetalle_Aseguramiento_de_Cargador_Cartuchos.Motivo_de_Registro
                         ,cartuchos_municiones = varDetalle_Aseguramiento_de_Cargador_Cartuchos.cartuchos_municiones
                         ,Cartuchos_Habiles = varDetalle_Aseguramiento_de_Cargador_Cartuchos.Cartuchos_Habiles
                         ,Cartuchos_Percutidos = varDetalle_Aseguramiento_de_Cargador_Cartuchos.Cartuchos_Percutidos
@@ -505,6 +595,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_de_Cargador_Cartuchoss.Select(m => new Detalle_Aseguramiento_de_Cargador_CartuchosGridModel
             {
                 Clave = m.Clave
+                ,CalibreDescripcion = (string)m.Calibre_Calibre_de_Arma.Descripcion
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,cartuchos_municiones = m.cartuchos_municiones
                 ,Cartuchos_Habiles = m.Cartuchos_Habiles
                 ,Cartuchos_Percutidos = m.Cartuchos_Percutidos
@@ -555,6 +647,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_de_Cargador_Cartuchoss.Select(m => new Detalle_Aseguramiento_de_Cargador_CartuchosGridModel
             {
                 Clave = m.Clave
+                ,CalibreDescripcion = (string)m.Calibre_Calibre_de_Arma.Descripcion
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,cartuchos_municiones = m.cartuchos_municiones
                 ,Cartuchos_Habiles = m.Cartuchos_Habiles
                 ,Cartuchos_Percutidos = m.Cartuchos_Percutidos

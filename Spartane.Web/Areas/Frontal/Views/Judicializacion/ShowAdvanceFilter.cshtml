@@ -1,0 +1,1022 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.JudicializacionAdvanceSearchModel
+@{
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varResolucion_MP_Resolucion = null;
+    if (ViewBag.Resolucion_MPs_Resolucion != null)
+    { varResolucion_MP_Resolucion = (List<SelectListItem>)ViewBag.Resolucion_MPs_Resolucion; }
+    List<SelectListItem> varTipo_de_Judicializacion_Tipo = null;
+    if (ViewBag.Tipo_de_Judicializacions_Tipo != null)
+    { varTipo_de_Judicializacion_Tipo = (List<SelectListItem>)ViewBag.Tipo_de_Judicializacions_Tipo; }
+    List<SelectListItem> varFase_de_Judicializacion_Fase_Actual = null;
+    if (ViewBag.Fase_de_Judicializacions_Fase_Actual != null)
+    { varFase_de_Judicializacion_Fase_Actual = (List<SelectListItem>)ViewBag.Fase_de_Judicializacions_Fase_Actual; }
+    List<SelectListItem> varTribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento = null;
+    if (ViewBag.Tribunal_de_Enjuiciamientos_Tribunal_de_Enjuiciamiento != null)
+    { varTribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento = (List<SelectListItem>)ViewBag.Tribunal_de_Enjuiciamientos_Tribunal_de_Enjuiciamiento; }
+    List<SelectListItem> varSentencia_Tipo_de_Sentencia = null;
+    if (ViewBag.Sentencias_Tipo_de_Sentencia != null)
+    { varSentencia_Tipo_de_Sentencia = (List<SelectListItem>)ViewBag.Sentencias_Tipo_de_Sentencia; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Judicializacion", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.JudicializacionResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
+    { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
+ List<SelectListItem> varResolucion_MP_Resolucion = null;
+    if (ViewBag.Resolucion_MPs_Resolucion != null)
+    { varResolucion_MP_Resolucion = (List<SelectListItem>)ViewBag.Resolucion_MPs_Resolucion; }
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Tipo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.TipoFilter, filters, new { @class = "form-control", @id = "ddlTipoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTipo_de_Judicializacion_Tipo!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipoMultiple, varTipo_de_Judicializacion_Tipo,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.causa_o_cuadernillo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.causa_o_cuadernilloFilter, filters, new { @class = "form-control", @id = "ddlcausa_o_cuadernilloFilter" })
+                    @Html.TextBoxFor(m => m.causa_o_cuadernillo, new { @class = "form-control", @type = "text", @id = "txtcausa_o_cuadernillo" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Fase_Actual</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Fase_ActualFilter, filters, new { @class = "form-control", @id = "ddlFase_ActualFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceFase_Actual, new { @class = "form-control", @type = "text", @id = "txtAdvanceFase_Actual" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varFase_de_Judicializacion_Fase_Actual!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceFase_ActualMultiple, varFase_de_Judicializacion_Fase_Actual,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceFase_Actual"
+                        });
+                    }
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.JudicializacionResources.Fecha_Actos</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_Actos" name="FromFecha_Actos" type="text" value="@Model.FromFecha_Actos" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_Actos" name="ToFecha_Actos" type="text" value="@Model.ToFecha_Actos" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.JudicializacionResources.Hora_Actos</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_Actos" name="FromHora_Actos" type="text" value="@Model.FromHora_Actos" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_Actos" name="ToHora_Actos" type="text" value="@Model.ToHora_Actos" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Observaciones_Actos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Observaciones_ActosFilter, filters, new { @class = "form-control", @id = "ddlObservaciones_ActosFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones_Actos, new { @class = "form-control", @type = "text", @id = "txtObservaciones_Actos" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.JudicializacionResources.Fecha_Genericos</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_Genericos" name="FromFecha_Genericos" type="text" value="@Model.FromFecha_Genericos" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_Genericos" name="ToFecha_Genericos" type="text" value="@Model.ToFecha_Genericos" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.JudicializacionResources.Hora_Genericos</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_Genericos" name="FromHora_Genericos" type="text" value="@Model.FromHora_Genericos" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_Genericos" name="ToHora_Genericos" type="text" value="@Model.ToHora_Genericos" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Observaciones_Genericos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Observaciones_GenericosFilter, filters, new { @class = "form-control", @id = "ddlObservaciones_GenericosFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones_Genericos, new { @class = "form-control", @type = "text", @id = "txtObservaciones_Genericos" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.JudicializacionResources.Fecha_Fase_Inicial</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_Fase_Inicial" name="FromFecha_Fase_Inicial" type="text" value="@Model.FromFecha_Fase_Inicial" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_Fase_Inicial" name="ToFecha_Fase_Inicial" type="text" value="@Model.ToFecha_Fase_Inicial" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.JudicializacionResources.Hora_Fase_Inicial</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_Fase_Inicial" name="FromHora_Fase_Inicial" type="text" value="@Model.FromHora_Fase_Inicial" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_Fase_Inicial" name="ToHora_Fase_Inicial" type="text" value="@Model.ToHora_Fase_Inicial" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Observaciones_Fase_Inicial</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Observaciones_Fase_InicialFilter, filters, new { @class = "form-control", @id = "ddlObservaciones_Fase_InicialFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones_Fase_Inicial, new { @class = "form-control", @type = "text", @id = "txtObservaciones_Fase_Inicial" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.JudicializacionResources.Fecha_Fase_Intermedia</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_Fase_Intermedia" name="FromFecha_Fase_Intermedia" type="text" value="@Model.FromFecha_Fase_Intermedia" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_Fase_Intermedia" name="ToFecha_Fase_Intermedia" type="text" value="@Model.ToFecha_Fase_Intermedia" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.JudicializacionResources.Hora_Fase_Intermedia</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_Fase_Intermedia" name="FromHora_Fase_Intermedia" type="text" value="@Model.FromHora_Fase_Intermedia" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_Fase_Intermedia" name="ToHora_Fase_Intermedia" type="text" value="@Model.ToHora_Fase_Intermedia" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Observaciones_Fase_Intermedia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Observaciones_Fase_IntermediaFilter, filters, new { @class = "form-control", @id = "ddlObservaciones_Fase_IntermediaFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones_Fase_Intermedia, new { @class = "form-control", @type = "text", @id = "txtObservaciones_Fase_Intermedia" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.JudicializacionResources.Fecha_de_Audiencia_de_Juicio</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_de_Audiencia_de_Juicio" name="FromFecha_de_Audiencia_de_Juicio" type="text" value="@Model.FromFecha_de_Audiencia_de_Juicio" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_de_Audiencia_de_Juicio" name="ToFecha_de_Audiencia_de_Juicio" type="text" value="@Model.ToFecha_de_Audiencia_de_Juicio" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.JudicializacionResources.Hora_de_Audiencia_de_Juicio</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_de_Audiencia_de_Juicio" name="FromHora_de_Audiencia_de_Juicio" type="text" value="@Model.FromHora_de_Audiencia_de_Juicio" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_de_Audiencia_de_Juicio" name="ToHora_de_Audiencia_de_Juicio" type="text" value="@Model.ToHora_de_Audiencia_de_Juicio" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Tribunal_de_Enjuiciamiento</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tribunal_de_EnjuiciamientoFilter, filters, new { @class = "form-control", @id = "ddlTribunal_de_EnjuiciamientoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTribunal_de_Enjuiciamiento, new { @class = "form-control", @type = "text", @id = "txtAdvanceTribunal_de_Enjuiciamiento" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varTribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTribunal_de_EnjuiciamientoMultiple, varTribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTribunal_de_Enjuiciamiento"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Nombre_del_Juez</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Nombre_del_JuezFilter, filters, new { @class = "form-control", @id = "ddlNombre_del_JuezFilter" })
+                    @Html.TextBoxFor(m => m.Nombre_del_Juez, new { @class = "form-control", @type = "text", @id = "txtNombre_del_Juez" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Juez_Presidente</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Juez_PresidenteFilter, filters, new { @class = "form-control", @id = "ddlJuez_PresidenteFilter" })
+                    @Html.TextBoxFor(m => m.Juez_Presidente, new { @class = "form-control", @type = "text", @id = "txtJuez_Presidente" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Juez_Relator</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Juez_RelatorFilter, filters, new { @class = "form-control", @id = "ddlJuez_RelatorFilter" })
+                    @Html.TextBoxFor(m => m.Juez_Relator, new { @class = "form-control", @type = "text", @id = "txtJuez_Relator" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Juez_Vocal</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Juez_VocalFilter, filters, new { @class = "form-control", @id = "ddlJuez_VocalFilter" })
+                    @Html.TextBoxFor(m => m.Juez_Vocal, new { @class = "form-control", @type = "text", @id = "txtJuez_Vocal" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.medios_desahogo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.medios_desahogoFilter, filters, new { @class = "form-control", @id = "ddlmedios_desahogoFilter" })
+                    @Html.TextBoxFor(m => m.medios_desahogo, new { @class = "form-control", @type = "text", @id = "txtmedios_desahogo" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Tipo_de_Sentencia</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Tipo_de_SentenciaFilter, filters, new { @class = "form-control", @id = "ddlTipo_de_SentenciaFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceTipo_de_Sentencia, new { @class = "form-control", @type = "text", @id = "txtAdvanceTipo_de_Sentencia" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varSentencia_Tipo_de_Sentencia!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceTipo_de_SentenciaMultiple, varSentencia_Tipo_de_Sentencia,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceTipo_de_Sentencia"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.JudicializacionResources.Cuantia_de_Pena_Anos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromCuantia_de_Pena_Anos, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromCuantia_de_Pena_Anos" })
+                    @Html.ValidationMessageFor(m => m.FromCuantia_de_Pena_Anos)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToCuantia_de_Pena_Anos, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToCuantia_de_Pena_Anos", @data_min = "txtAdvanceFromCuantia_de_Pena_Anos" })
+                    @Html.ValidationMessageFor(m => m.ToCuantia_de_Pena_Anos)
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.JudicializacionResources.Cuantia_de_Pena_Meses</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromCuantia_de_Pena_Meses, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromCuantia_de_Pena_Meses" })
+                    @Html.ValidationMessageFor(m => m.FromCuantia_de_Pena_Meses)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToCuantia_de_Pena_Meses, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToCuantia_de_Pena_Meses", @data_min = "txtAdvanceFromCuantia_de_Pena_Meses" })
+                    @Html.ValidationMessageFor(m => m.ToCuantia_de_Pena_Meses)
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Observaciones_Fase_Juicio_Oral</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Observaciones_Fase_Juicio_OralFilter, filters, new { @class = "form-control", @id = "ddlObservaciones_Fase_Juicio_OralFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones_Fase_Juicio_Oral, new { @class = "form-control", @type = "text", @id = "txtObservaciones_Fase_Juicio_Oral" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.JudicializacionResources.Fecha_Fase_Salidas_Alternas</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_Fase_Salidas_Alternas" name="FromFecha_Fase_Salidas_Alternas" type="text" value="@Model.FromFecha_Fase_Salidas_Alternas" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_Fase_Salidas_Alternas" name="ToFecha_Fase_Salidas_Alternas" type="text" value="@Model.ToFecha_Fase_Salidas_Alternas" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.JudicializacionResources.Hora_Fase_Salidas_Alternas</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_Fase_Salidas_Alternas" name="FromHora_Fase_Salidas_Alternas" type="text" value="@Model.FromHora_Fase_Salidas_Alternas" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_Fase_Salidas_Alternas" name="ToHora_Fase_Salidas_Alternas" type="text" value="@Model.ToHora_Fase_Salidas_Alternas" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Observaciones_Fase_Salidas_Alternas</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Observaciones_Fase_Salidas_AlternasFilter, filters, new { @class = "form-control", @id = "ddlObservaciones_Fase_Salidas_AlternasFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones_Fase_Salidas_Alternas, new { @class = "form-control", @type = "text", @id = "txtObservaciones_Fase_Salidas_Alternas" })
+                </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.JudicializacionResources.Fecha_Fase_Sobreseimientos</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceFromFecha_Fase_Sobreseimientos" name="FromFecha_Fase_Sobreseimientos" type="text" value="@Model.FromFecha_Fase_Sobreseimientos" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group date">
+                <input class="form-control" id="txtAdvanceToFecha_Fase_Sobreseimientos" name="ToFecha_Fase_Sobreseimientos" type="text" value="@Model.ToFecha_Fase_Sobreseimientos" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="MarginBottom ">
+            <h3>@Resources.JudicializacionResources.Hora_Fase_Sobreseimientos</h3>
+        </div>
+        <div class="MarginBottom form-inline">
+            <label class="">@Resources.Resources.From:</label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceFromHora_Fase_Sobreseimientos" name="FromHora_Fase_Sobreseimientos" type="text" value="@Model.FromHora_Fase_Sobreseimientos" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+            <label class="">@Resources.Resources.To: </label>
+            <div class="input-group clock" data-autoclose="true">
+                <input class="form-control" id="txtAdvanceToHora_Fase_Sobreseimientos" name="ToHora_Fase_Sobreseimientos" type="text" value="@Model.ToHora_Fase_Sobreseimientos" />
+                <span class="form-inline input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
+            </div>
+        </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Observaciones_Fase_Sobreseimientos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Observaciones_Fase_SobreseimientosFilter, filters, new { @class = "form-control", @id = "ddlObservaciones_Fase_SobreseimientosFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones_Fase_Sobreseimientos, new { @class = "form-control", @type = "text", @id = "txtObservaciones_Fase_Sobreseimientos" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.JudicializacionResources.Observaciones</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.ObservacionesFilter, filters, new { @class = "form-control", @id = "ddlObservacionesFilter" })
+                    @Html.TextBoxFor(m => m.Observaciones, new { @class = "form-control", @type = "text", @id = "txtObservaciones" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Judicializacion/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.JudicializacionClaveTo = $("#txtAdvanceToClave").val();
+        }
+        advanceSearch.Expediente_MPSearchType = 0;
+        if ($('#ddlAdvanceExpediente_MP').val().length > 0 || $("#txtAdvanceExpediente_MP").val() == "") {
+
+
+            if (isJudicializacionTextSearch) {
+                advanceSearch.Expediente_MPName = $("#txtAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPNameSearchType = $("#ddlAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Expediente_MPToSearch = $("#ddlAdvanceExpediente_MP").val();
+                advanceSearch.Expediente_MPSearchType = 2;
+            }
+        }
+        advanceSearch.ResolucionSearchType = 0;
+        if ($('#ddlAdvanceResolucion').val().length > 0 || $("#txtAdvanceResolucion").val() == "") {
+
+
+            if (isJudicializacionTextSearch) {
+                advanceSearch.ResolucionName = $("#txtAdvanceResolucion").val();
+                advanceSearch.ResolucionNameSearchType = $("#ddlAdvanceResolucion").val();
+                advanceSearch.ResolucionSearchType = 1;
+            }
+            else {
+
+                advanceSearch.ResolucionToSearch = $("#ddlAdvanceResolucion").val();
+                advanceSearch.ResolucionSearchType = 2;
+            }
+        }
+        advanceSearch.TipoSearchType = 0;
+        if ($('#ddlAdvanceTipo').val().length > 0 || $("#txtAdvanceTipo").val() == "") {
+
+
+            if (isJudicializacionTextSearch) {
+                advanceSearch.TipoName = $("#txtAdvanceTipo").val();
+                advanceSearch.TipoNameSearchType = $("#ddlAdvanceTipo").val();
+                advanceSearch.TipoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.TipoToSearch = $("#ddlAdvanceTipo").val();
+                advanceSearch.TipoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvancecausa_o_cuadernillo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Judicializacioncausa_o_cuadernillo = $("#txtAdvancecausa_o_cuadernillo").val();
+            advanceSearch.Judicializacioncausa_o_cuadernilloSearchType = $("#ddlAdvancecausa_o_cuadernilloFilter").val();
+        }
+        advanceSearch.Fase_ActualSearchType = 0;
+        if ($('#ddlAdvanceFase_Actual').val().length > 0 || $("#txtAdvanceFase_Actual").val() == "") {
+
+
+            if (isJudicializacionTextSearch) {
+                advanceSearch.Fase_ActualName = $("#txtAdvanceFase_Actual").val();
+                advanceSearch.Fase_ActualNameSearchType = $("#ddlAdvanceFase_Actual").val();
+                advanceSearch.Fase_ActualSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Fase_ActualToSearch = $("#ddlAdvanceFase_Actual").val();
+                advanceSearch.Fase_ActualSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromFecha_Actos").val() != "" || $("#txtAdvanceToFecha_Actos").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionFecha_ActosFrom = $("#txtAdvanceFromFecha_Actos").val();
+            advanceSearch.JudicializacionFecha_ActosTo = $("#txtAdvanceToFecha_Actos").val();
+        }
+        if ($("#txtAdvanceHora_Actos").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionHora_Actos = $("#txtAdvanceHora_Actos").val();
+            advanceSearch.JudicializacionHora_ActosSearchType = $("#ddlAdvanceHora_ActosFilter").val();
+        }
+        if ($("#txtAdvanceObservaciones_Actos").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionObservaciones_Actos = $("#txtAdvanceObservaciones_Actos").val();
+            advanceSearch.JudicializacionObservaciones_ActosSearchType = $("#ddlAdvanceObservaciones_ActosFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_Genericos").val() != "" || $("#txtAdvanceToFecha_Genericos").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionFecha_GenericosFrom = $("#txtAdvanceFromFecha_Genericos").val();
+            advanceSearch.JudicializacionFecha_GenericosTo = $("#txtAdvanceToFecha_Genericos").val();
+        }
+        if ($("#txtAdvanceHora_Genericos").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionHora_Genericos = $("#txtAdvanceHora_Genericos").val();
+            advanceSearch.JudicializacionHora_GenericosSearchType = $("#ddlAdvanceHora_GenericosFilter").val();
+        }
+        if ($("#txtAdvanceObservaciones_Genericos").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionObservaciones_Genericos = $("#txtAdvanceObservaciones_Genericos").val();
+            advanceSearch.JudicializacionObservaciones_GenericosSearchType = $("#ddlAdvanceObservaciones_GenericosFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_Fase_Inicial").val() != "" || $("#txtAdvanceToFecha_Fase_Inicial").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionFecha_Fase_InicialFrom = $("#txtAdvanceFromFecha_Fase_Inicial").val();
+            advanceSearch.JudicializacionFecha_Fase_InicialTo = $("#txtAdvanceToFecha_Fase_Inicial").val();
+        }
+        if ($("#txtAdvanceHora_Fase_Inicial").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionHora_Fase_Inicial = $("#txtAdvanceHora_Fase_Inicial").val();
+            advanceSearch.JudicializacionHora_Fase_InicialSearchType = $("#ddlAdvanceHora_Fase_InicialFilter").val();
+        }
+        if ($("#txtAdvanceObservaciones_Fase_Inicial").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionObservaciones_Fase_Inicial = $("#txtAdvanceObservaciones_Fase_Inicial").val();
+            advanceSearch.JudicializacionObservaciones_Fase_InicialSearchType = $("#ddlAdvanceObservaciones_Fase_InicialFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_Fase_Intermedia").val() != "" || $("#txtAdvanceToFecha_Fase_Intermedia").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionFecha_Fase_IntermediaFrom = $("#txtAdvanceFromFecha_Fase_Intermedia").val();
+            advanceSearch.JudicializacionFecha_Fase_IntermediaTo = $("#txtAdvanceToFecha_Fase_Intermedia").val();
+        }
+        if ($("#txtAdvanceHora_Fase_Intermedia").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionHora_Fase_Intermedia = $("#txtAdvanceHora_Fase_Intermedia").val();
+            advanceSearch.JudicializacionHora_Fase_IntermediaSearchType = $("#ddlAdvanceHora_Fase_IntermediaFilter").val();
+        }
+        if ($("#txtAdvanceObservaciones_Fase_Intermedia").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionObservaciones_Fase_Intermedia = $("#txtAdvanceObservaciones_Fase_Intermedia").val();
+            advanceSearch.JudicializacionObservaciones_Fase_IntermediaSearchType = $("#ddlAdvanceObservaciones_Fase_IntermediaFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_de_Audiencia_de_Juicio").val() != "" || $("#txtAdvanceToFecha_de_Audiencia_de_Juicio").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionFecha_de_Audiencia_de_JuicioFrom = $("#txtAdvanceFromFecha_de_Audiencia_de_Juicio").val();
+            advanceSearch.JudicializacionFecha_de_Audiencia_de_JuicioTo = $("#txtAdvanceToFecha_de_Audiencia_de_Juicio").val();
+        }
+        if ($("#txtAdvanceHora_de_Audiencia_de_Juicio").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionHora_de_Audiencia_de_Juicio = $("#txtAdvanceHora_de_Audiencia_de_Juicio").val();
+            advanceSearch.JudicializacionHora_de_Audiencia_de_JuicioSearchType = $("#ddlAdvanceHora_de_Audiencia_de_JuicioFilter").val();
+        }
+        advanceSearch.Tribunal_de_EnjuiciamientoSearchType = 0;
+        if ($('#ddlAdvanceTribunal_de_Enjuiciamiento').val().length > 0 || $("#txtAdvanceTribunal_de_Enjuiciamiento").val() == "") {
+
+
+            if (isJudicializacionTextSearch) {
+                advanceSearch.Tribunal_de_EnjuiciamientoName = $("#txtAdvanceTribunal_de_Enjuiciamiento").val();
+                advanceSearch.Tribunal_de_EnjuiciamientoNameSearchType = $("#ddlAdvanceTribunal_de_Enjuiciamiento").val();
+                advanceSearch.Tribunal_de_EnjuiciamientoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tribunal_de_EnjuiciamientoToSearch = $("#ddlAdvanceTribunal_de_Enjuiciamiento").val();
+                advanceSearch.Tribunal_de_EnjuiciamientoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceNombre_del_Juez").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionNombre_del_Juez = $("#txtAdvanceNombre_del_Juez").val();
+            advanceSearch.JudicializacionNombre_del_JuezSearchType = $("#ddlAdvanceNombre_del_JuezFilter").val();
+        }
+        if ($("#txtAdvanceJuez_Presidente").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionJuez_Presidente = $("#txtAdvanceJuez_Presidente").val();
+            advanceSearch.JudicializacionJuez_PresidenteSearchType = $("#ddlAdvanceJuez_PresidenteFilter").val();
+        }
+        if ($("#txtAdvanceJuez_Relator").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionJuez_Relator = $("#txtAdvanceJuez_Relator").val();
+            advanceSearch.JudicializacionJuez_RelatorSearchType = $("#ddlAdvanceJuez_RelatorFilter").val();
+        }
+        if ($("#txtAdvanceJuez_Vocal").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionJuez_Vocal = $("#txtAdvanceJuez_Vocal").val();
+            advanceSearch.JudicializacionJuez_VocalSearchType = $("#ddlAdvanceJuez_VocalFilter").val();
+        }
+        if ($("#txtAdvancemedios_desahogo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Judicializacionmedios_desahogo = $("#txtAdvancemedios_desahogo").val();
+            advanceSearch.Judicializacionmedios_desahogoSearchType = $("#ddlAdvancemedios_desahogoFilter").val();
+        }
+        advanceSearch.Tipo_de_SentenciaSearchType = 0;
+        if ($('#ddlAdvanceTipo_de_Sentencia').val().length > 0 || $("#txtAdvanceTipo_de_Sentencia").val() == "") {
+
+
+            if (isJudicializacionTextSearch) {
+                advanceSearch.Tipo_de_SentenciaName = $("#txtAdvanceTipo_de_Sentencia").val();
+                advanceSearch.Tipo_de_SentenciaNameSearchType = $("#ddlAdvanceTipo_de_Sentencia").val();
+                advanceSearch.Tipo_de_SentenciaSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Tipo_de_SentenciaToSearch = $("#ddlAdvanceTipo_de_Sentencia").val();
+                advanceSearch.Tipo_de_SentenciaSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromCuantia_de_Pena_Anos").val() != "" || $("#txtAdvanceToCuantia_de_Pena_Anos").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionCuantia_de_Pena_AnosFrom = $("#txtAdvanceFromCuantia_de_Pena_Anos").val();
+            advanceSearch.JudicializacionCuantia_de_Pena_AnosTo = $("#txtAdvanceToCuantia_de_Pena_Anos").val();
+        }
+        if ($("#txtAdvanceFromCuantia_de_Pena_Meses").val() != "" || $("#txtAdvanceToCuantia_de_Pena_Meses").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionCuantia_de_Pena_MesesFrom = $("#txtAdvanceFromCuantia_de_Pena_Meses").val();
+            advanceSearch.JudicializacionCuantia_de_Pena_MesesTo = $("#txtAdvanceToCuantia_de_Pena_Meses").val();
+        }
+        if ($("#txtAdvanceFromMonto_de_Reparacion_del_Dano").val() != "" || $("#txtAdvanceToMonto_de_Reparacion_del_Dano").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionMonto_de_Reparacion_del_DanoFrom = $("#txtAdvanceFromMonto_de_Reparacion_del_Dano").val();
+            advanceSearch.JudicializacionMonto_de_Reparacion_del_DanoTo = $("#txtAdvanceToMonto_de_Reparacion_del_Dano").val();
+        }
+        if ($("#txtAdvanceObservaciones_Fase_Juicio_Oral").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionObservaciones_Fase_Juicio_Oral = $("#txtAdvanceObservaciones_Fase_Juicio_Oral").val();
+            advanceSearch.JudicializacionObservaciones_Fase_Juicio_OralSearchType = $("#ddlAdvanceObservaciones_Fase_Juicio_OralFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_Fase_Salidas_Alternas").val() != "" || $("#txtAdvanceToFecha_Fase_Salidas_Alternas").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionFecha_Fase_Salidas_AlternasFrom = $("#txtAdvanceFromFecha_Fase_Salidas_Alternas").val();
+            advanceSearch.JudicializacionFecha_Fase_Salidas_AlternasTo = $("#txtAdvanceToFecha_Fase_Salidas_Alternas").val();
+        }
+        if ($("#txtAdvanceHora_Fase_Salidas_Alternas").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionHora_Fase_Salidas_Alternas = $("#txtAdvanceHora_Fase_Salidas_Alternas").val();
+            advanceSearch.JudicializacionHora_Fase_Salidas_AlternasSearchType = $("#ddlAdvanceHora_Fase_Salidas_AlternasFilter").val();
+        }
+        if ($("#txtAdvanceObservaciones_Fase_Salidas_Alternas").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionObservaciones_Fase_Salidas_Alternas = $("#txtAdvanceObservaciones_Fase_Salidas_Alternas").val();
+            advanceSearch.JudicializacionObservaciones_Fase_Salidas_AlternasSearchType = $("#ddlAdvanceObservaciones_Fase_Salidas_AlternasFilter").val();
+        }
+        if ($("#txtAdvanceFromFecha_Fase_Sobreseimientos").val() != "" || $("#txtAdvanceToFecha_Fase_Sobreseimientos").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionFecha_Fase_SobreseimientosFrom = $("#txtAdvanceFromFecha_Fase_Sobreseimientos").val();
+            advanceSearch.JudicializacionFecha_Fase_SobreseimientosTo = $("#txtAdvanceToFecha_Fase_Sobreseimientos").val();
+        }
+        if ($("#txtAdvanceHora_Fase_Sobreseimientos").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionHora_Fase_Sobreseimientos = $("#txtAdvanceHora_Fase_Sobreseimientos").val();
+            advanceSearch.JudicializacionHora_Fase_SobreseimientosSearchType = $("#ddlAdvanceHora_Fase_SobreseimientosFilter").val();
+        }
+        if ($("#txtAdvanceObservaciones_Fase_Sobreseimientos").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionObservaciones_Fase_Sobreseimientos = $("#txtAdvanceObservaciones_Fase_Sobreseimientos").val();
+            advanceSearch.JudicializacionObservaciones_Fase_SobreseimientosSearchType = $("#ddlAdvanceObservaciones_Fase_SobreseimientosFilter").val();
+        }
+        if ($("#txtAdvanceObservaciones").val() != "") {
+            hasParameter = true;
+            advanceSearch.JudicializacionObservaciones = $("#txtAdvanceObservaciones").val();
+            advanceSearch.JudicializacionObservacionesSearchType = $("#ddlAdvanceObservacionesFilter").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblJudicializacion').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isJudicializacionTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceExpediente_MP").keypress(function () {
+            isJudicializacionTextSearch = true;
+            $("#ddlAdvanceExpediente_MP").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceExpediente_MP").change(function () {
+            isJudicializacionTextSearch = false;
+            $("#txtAdvanceExpediente_MP").val('');
+        });
+        $("#txtAdvanceResolucion").keypress(function () {
+            isJudicializacionTextSearch = true;
+            $("#ddlAdvanceResolucion").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceResolucion").change(function () {
+            isJudicializacionTextSearch = false;
+            $("#txtAdvanceResolucion").val('');
+        });
+        $("#txtAdvanceTipo").keypress(function () {
+            isJudicializacionTextSearch = true;
+            $("#ddlAdvanceTipo").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo").change(function () {
+            isJudicializacionTextSearch = false;
+            $("#txtAdvanceTipo").val('');
+        });
+        $("#txtAdvanceFase_Actual").keypress(function () {
+            isJudicializacionTextSearch = true;
+            $("#ddlAdvanceFase_Actual").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceFase_Actual").change(function () {
+            isJudicializacionTextSearch = false;
+            $("#txtAdvanceFase_Actual").val('');
+        });
+        $("#txtAdvanceTribunal_de_Enjuiciamiento").keypress(function () {
+            isJudicializacionTextSearch = true;
+            $("#ddlAdvanceTribunal_de_Enjuiciamiento").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTribunal_de_Enjuiciamiento").change(function () {
+            isJudicializacionTextSearch = false;
+            $("#txtAdvanceTribunal_de_Enjuiciamiento").val('');
+        });
+        $("#txtAdvanceTipo_de_Sentencia").keypress(function () {
+            isJudicializacionTextSearch = true;
+            $("#ddlAdvanceTipo_de_Sentencia").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceTipo_de_Sentencia").change(function () {
+            isJudicializacionTextSearch = false;
+            $("#txtAdvanceTipo_de_Sentencia").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

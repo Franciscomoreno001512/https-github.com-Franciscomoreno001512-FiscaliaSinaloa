@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Configurador_de_Movimientos" value="Configurador de Movimientos"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Descripcion" value="Descripción"></resource>
+  <resource culture="es-es" name="Fase" value="Fase"></resource>
+  <resource culture="es-es" name="Aplica_para_Adolescentes" value="Aplica para Adolescentes"></resource>
+  <resource culture="es-es" name="Datos_Adicionales" value="Datos Adicionales"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

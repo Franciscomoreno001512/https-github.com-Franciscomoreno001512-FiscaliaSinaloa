@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Aseguramiento_Moneda;
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Tipo_de_Moneda;
 using Spartane.Core.Domain.Tipo_de_Dinero;
 
@@ -14,6 +15,7 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Aseguramiento_Moneda;
+using Spartane.Web.Areas.WebApiConsumer.Motivo_de_Registro;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Moneda;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Dinero;
 
@@ -42,6 +44,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IDetalle_Aseguramiento_MonedaService service = null;
         private IDetalle_Aseguramiento_MonedaApiConsumer _IDetalle_Aseguramiento_MonedaApiConsumer;
+        private IMotivo_de_RegistroApiConsumer _IMotivo_de_RegistroApiConsumer;
         private ITipo_de_MonedaApiConsumer _ITipo_de_MonedaApiConsumer;
         private ITipo_de_DineroApiConsumer _ITipo_de_DineroApiConsumer;
 
@@ -57,7 +60,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Aseguramiento_MonedaController(IDetalle_Aseguramiento_MonedaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_MonedaApiConsumer Detalle_Aseguramiento_MonedaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_MonedaApiConsumer Tipo_de_MonedaApiConsumer , ITipo_de_DineroApiConsumer Tipo_de_DineroApiConsumer )
+        public Detalle_Aseguramiento_MonedaController(IDetalle_Aseguramiento_MonedaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Aseguramiento_MonedaApiConsumer Detalle_Aseguramiento_MonedaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , IMotivo_de_RegistroApiConsumer Motivo_de_RegistroApiConsumer , ITipo_de_MonedaApiConsumer Tipo_de_MonedaApiConsumer , ITipo_de_DineroApiConsumer Tipo_de_DineroApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -67,6 +70,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartane_FileApiConsumer = Spartane_FileApiConsumer;
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
+            this._IMotivo_de_RegistroApiConsumer = Motivo_de_RegistroApiConsumer;
             this._ITipo_de_MonedaApiConsumer = Tipo_de_MonedaApiConsumer;
             this._ITipo_de_DineroApiConsumer = Tipo_de_DineroApiConsumer;
 
@@ -117,6 +121,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 varDetalle_Aseguramiento_Moneda = new Detalle_Aseguramiento_MonedaModel
                 {
                     Clave = (int)Detalle_Aseguramiento_MonedaData.Clave
+                    ,Motivo_de_Registro = Detalle_Aseguramiento_MonedaData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_MonedaData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_MonedaData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                     ,Tipo = Detalle_Aseguramiento_MonedaData.Tipo
                     ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_MonedaData.Tipo), "Tipo_de_Moneda") ??  (string)Detalle_Aseguramiento_MonedaData.Tipo_Tipo_de_Moneda.Descripcion
                     ,Cantidad = Detalle_Aseguramiento_MonedaData.Cantidad
@@ -130,6 +136,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ITipo_de_MonedaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Monedas_Tipo = _ITipo_de_MonedaApiConsumer.SelAll(true);
             if (Tipo_de_Monedas_Tipo != null && Tipo_de_Monedas_Tipo.Resource != null)
@@ -177,7 +190,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					varDetalle_Aseguramiento_Moneda= new Detalle_Aseguramiento_MonedaModel
 					{
 						Clave  = Detalle_Aseguramiento_MonedaData.Clave 
-	                    ,Tipo = Detalle_Aseguramiento_MonedaData.Tipo
+	                    ,Motivo_de_Registro = Detalle_Aseguramiento_MonedaData.Motivo_de_Registro
+                    ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_MonedaData.Motivo_de_Registro), "Motivo_de_Registro") ??  (string)Detalle_Aseguramiento_MonedaData.Motivo_de_Registro_Motivo_de_Registro.Descripcion
+                    ,Tipo = Detalle_Aseguramiento_MonedaData.Tipo
                     ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Aseguramiento_MonedaData.Tipo), "Tipo_de_Moneda") ??  (string)Detalle_Aseguramiento_MonedaData.Tipo_Tipo_de_Moneda.Descripcion
                     ,Cantidad = Detalle_Aseguramiento_MonedaData.Cantidad
                     ,Observaciones = Detalle_Aseguramiento_MonedaData.Observaciones
@@ -191,6 +206,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
+            _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Motivo_de_Registros_Motivo_de_Registro = _IMotivo_de_RegistroApiConsumer.SelAll(true);
+            if (Motivo_de_Registros_Motivo_de_Registro != null && Motivo_de_Registros_Motivo_de_Registro.Resource != null)
+                ViewBag.Motivo_de_Registros_Motivo_de_Registro = Motivo_de_Registros_Motivo_de_Registro.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
             _ITipo_de_MonedaApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Tipo_de_Monedas_Tipo = _ITipo_de_MonedaApiConsumer.SelAll(true);
             if (Tipo_de_Monedas_Tipo != null && Tipo_de_Monedas_Tipo.Resource != null)
@@ -225,6 +247,27 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
+        [HttpGet]
+        public ActionResult GetMotivo_de_RegistroAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IMotivo_de_RegistroApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IMotivo_de_RegistroApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Motivo_de_Registro", "Descripcion")?? m.Descripcion,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
         [HttpGet]
         public ActionResult GetTipo_de_MonedaAll()
         {
@@ -288,6 +331,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Detalle_Aseguramiento_Monedas.Select(m => new Detalle_Aseguramiento_MonedaGridModel
                     {
                     Clave = m.Clave
+                        ,Motivo_de_RegistroDescripcion = CultureHelper.GetTraduction(m.Motivo_de_Registro_Motivo_de_Registro.Clave.ToString(), "Descripcion") ?? (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Moneda.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Moneda.Descripcion
 			,Cantidad = m.Cantidad
 			,Observaciones = m.Observaciones
@@ -356,6 +400,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     var Detalle_Aseguramiento_MonedaInfo = new Detalle_Aseguramiento_Moneda
                     {
                         Clave = varDetalle_Aseguramiento_Moneda.Clave
+                        ,Motivo_de_Registro = varDetalle_Aseguramiento_Moneda.Motivo_de_Registro
                         ,Tipo = varDetalle_Aseguramiento_Moneda.Tipo
                         ,Cantidad = varDetalle_Aseguramiento_Moneda.Cantidad
                         ,Observaciones = varDetalle_Aseguramiento_Moneda.Observaciones
@@ -587,6 +632,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Monedas.Select(m => new Detalle_Aseguramiento_MonedaGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,TipoDescripcion = (string)m.Tipo_Tipo_de_Moneda.Descripcion
                 ,Cantidad = m.Cantidad
                 ,Observaciones = m.Observaciones
@@ -637,6 +683,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Detalle_Aseguramiento_Monedas.Select(m => new Detalle_Aseguramiento_MonedaGridModel
             {
                 Clave = m.Clave
+                ,Motivo_de_RegistroDescripcion = (string)m.Motivo_de_Registro_Motivo_de_Registro.Descripcion
                 ,TipoDescripcion = (string)m.Tipo_Tipo_de_Moneda.Descripcion
                 ,Cantidad = m.Cantidad
                 ,Observaciones = m.Observaciones

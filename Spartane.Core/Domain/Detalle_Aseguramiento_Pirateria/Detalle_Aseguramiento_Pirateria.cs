@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Aseguramientos;
+using Spartane.Core.Domain.Motivo_de_Registro;
 using Spartane.Core.Domain.Tipo_de_Pirateria;
 using Spartane.Core.Domain.Unidad_de_Medida_de_pirateria;
 
@@ -20,6 +21,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Pirateria
     {
         public int Clave { get; set; }
         public int? Aseguramiento { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public short? Tipo { get; set; }
         public string Descripcion { get; set; }
         public decimal? Cantidad { get; set; }
@@ -28,6 +30,8 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Pirateria
 
         [ForeignKey("Aseguramiento")]
         public virtual Spartane.Core.Domain.Aseguramientos.Aseguramientos Aseguramiento_Aseguramientos { get; set; }
+        [ForeignKey("Motivo_de_Registro")]
+        public virtual Spartane.Core.Domain.Motivo_de_Registro.Motivo_de_Registro Motivo_de_Registro_Motivo_de_Registro { get; set; }
         [ForeignKey("Tipo")]
         public virtual Spartane.Core.Domain.Tipo_de_Pirateria.Tipo_de_Pirateria Tipo_Tipo_de_Pirateria { get; set; }
         [ForeignKey("Unidad_de_Medicion")]
@@ -39,6 +43,7 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Pirateria
     {
                 public int Clave { get; set; }
         public int? Aseguramiento { get; set; }
+        public int? Motivo_de_Registro { get; set; }
         public short? Tipo { get; set; }
         public string Descripcion { get; set; }
         public decimal? Cantidad { get; set; }
@@ -47,6 +52,8 @@ namespace Spartane.Core.Domain.Detalle_Aseguramiento_Pirateria
 
 		        [ForeignKey("Aseguramiento")]
         public virtual Spartane.Core.Domain.Aseguramientos.Aseguramientos Aseguramiento_Aseguramientos { get; set; }
+        [ForeignKey("Motivo_de_Registro")]
+        public virtual Spartane.Core.Domain.Motivo_de_Registro.Motivo_de_Registro Motivo_de_Registro_Motivo_de_Registro { get; set; }
         [ForeignKey("Tipo")]
         public virtual Spartane.Core.Domain.Tipo_de_Pirateria.Tipo_de_Pirateria Tipo_Tipo_de_Pirateria { get; set; }
         [ForeignKey("Unidad_de_Medicion")]

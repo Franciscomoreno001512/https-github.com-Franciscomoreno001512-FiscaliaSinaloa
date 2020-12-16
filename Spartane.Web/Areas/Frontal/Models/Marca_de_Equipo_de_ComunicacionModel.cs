@@ -13,6 +13,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         [Required]
         public short Clave { get; set; }
         public string Descripcion { get; set; }
+        public short? Tipo_de_Equipo { get; set; }
+        public string Tipo_de_EquipoDescripcion { get; set; }
 
     }
 	
@@ -21,6 +23,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         [Required]
         public short Clave { get; set; }
         public string Descripcion { get; set; }
+        public short? Tipo_de_Equipo { get; set; }
+        public string Tipo_de_EquipoDescripcion { get; set; }
 
     }
 
