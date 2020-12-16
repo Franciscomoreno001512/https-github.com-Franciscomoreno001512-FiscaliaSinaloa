@@ -406,3 +406,16 @@ var index = $('.idRelacionHeader').index();
     return result;
 }
 
+
+
+
+
+
+
+window.onload = function () {
+    debugger;
+    if (operation == 'Update') {
+
+        CambiarAConsulta();
+    }
+}

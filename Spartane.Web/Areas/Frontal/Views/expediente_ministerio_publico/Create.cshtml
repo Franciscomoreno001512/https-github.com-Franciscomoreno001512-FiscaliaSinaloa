@@ -1889,7 +1889,7 @@
 
     </script>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
 
    function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
@@ -1911,7 +1911,7 @@
 				return;
 			}
 		}
-			
+
 			var url = '@Url.Content("~/Frontal/expediente_ministerio_publico/GetCatalogAll")';
 			url = url.replace(/Catalog/g, catalog);
 
@@ -1927,53 +1927,53 @@
 					showNotification("@Resources.Resources.ErrorContactingServer", "error");
 				}
 			});
-		
+
     }
 
 
         function Sendexpediente_ministerio_publicoData(callBack) {
-			
-					
-		 var arr = []; 
-		 $("form#Createexpediente_ministerio_publico").find(':input').each(function( index ) {		 
+
+
+		 var arr = [];
+		 $("form#Createexpediente_ministerio_publico").find(':input').each(function( index ) {
 			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
-			{		
-				arr.push($(this).attr('id')); 
-				$(this).prop('disabled', false);  	
+			{
+				arr.push($(this).attr('id'));
+				$(this).prop('disabled', false);
 			}
 	    });
-		
+
              var formData = new FormData($("form#Createexpediente_ministerio_publico")[0]);
 			$.each( arr, function( key, value ) {
 			  $('#' +value).prop('disabled', true);
 			});
 			var id = $("#Referenceclave").val();
             var isNew = $('#hdnIsNew').val();
-           
+
 			if (Tab_Datos_del_Caso && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Datos_del_Caso')) {
 				return false;
-			}						
+			}
 
 			if (Tab_Hechos && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Hechos')) {
 				return false;
-			}						
+			}
 
 			if (Tab_Datos_del_Acuerdo && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Datos_del_Acuerdo')) {
 				return false;
-			}						
+			}
 
 			if (Tab_Resolucion_o_Dictaminacion && !checkClientValidate('expediente_ministerio_publicoCreateForm', 'Resolucion_o_Dictaminacion')) {
 				return false;
-			}						
+			}
 
 
-			
+
 			if (isNew == "True")
             {
                 id = CreateID();
             }
-			
-			
+
+
 			if (Tab_Datos_del_Caso)
 				Save_Datos_del_Caso(id);
 
@@ -2014,7 +2014,7 @@
 			});
 			return newId;
 		}
-		
+
 		function OpenRules()
 		{
 			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
@@ -2043,7 +2043,7 @@
         Configure: '@permission.Configure' == 'True',
     };
 
-    
+
     //MR-var statusItems;
     //MR-var stateItems;
     //MR-var cityItems = [];
@@ -2064,7 +2064,7 @@
         else
 			location.href = "@Url.Content("~/Frontal/expediente_ministerio_publico/")";
     }
-	
+
 	function ReadScriptSettings(callback)
     {
         $.post("@Url.Content("~/Frontal/expediente_ministerio_publico/ReadScriptSettings")", function (data) {
@@ -2081,7 +2081,7 @@
             //$('#hdnConfigureType').val("0");
         }, "json");
     }
-	
+
         function SaveElementAttributes() {
             if ($('#hdnConfigureType').val() == "1") {
                 $.post("@Url.Content("~/Frontal/expediente_ministerio_publico/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
@@ -2135,13 +2135,13 @@
 			$('#Attribute').val(attribute);
                         expediente_ministerio_publicoGetBusinessRule();
 		});
-		//Initialize HTML Editors            
+		//Initialize HTML Editors
   var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
   var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
   var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
   var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
-		
-		
+
+
 		function Fill_Datos_del_Caso()
         {
             $.ajax({
@@ -2208,7 +2208,7 @@
                 }
             });
         }
-		
+
 		function Save_Datos_del_Caso(newId) {
 			var data = new FormData();
 			data.append('clave', newId);
@@ -2325,7 +2325,7 @@
                 }
             });
         }
-		
+
 		function Save_Hechos(newId) {
 			var data = new FormData();
 			data.append('clave', newId);
@@ -2361,7 +2361,7 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Hechos");
 					} else {
 						newId = result;
-                    
+
 					}
 				},
 				error: function (result) {
@@ -2397,7 +2397,7 @@
                 }
             });
         }
-		
+
 		function Save_Datos_del_Acuerdo(newId) {
 			var data = new FormData();
 			data.append('clave', newId);
@@ -2406,7 +2406,7 @@
                 data.append('fecha_de_cumplimiento', $('#fecha_de_cumplimiento').val());
                 data.append('hora_de_cumplimiento', $('#hora_de_cumplimiento').val());
                 data.append('domicilio_para_el_cumplimiento', $('#domicilio_para_el_cumplimiento').val());
- 
+
                data.append('monto_de_reparacion_de_danos', Number($('#monto_de_reparacion_de_danos').val().replace(/[^0-9.-]+/g, "")));
                 data.append('parcialidades', $('#parcialidades').val());
                 data.append('periodicidad', $('#periodicidad').val());
@@ -2426,7 +2426,7 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_del_Acuerdo");
 					} else {
 						newId = result;
-                    
+
 					}
 				},
 				error: function (result) {
@@ -2471,7 +2471,7 @@
                 }
             });
         }
-		
+
 		function Save_Resolucion_o_Dictaminacion(newId) {
 			var data = new FormData();
 			data.append('clave', newId);
@@ -2494,7 +2494,7 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Resolucion_o_Dictaminacion");
 					} else {
 						newId = result;
-                    
+
 					}
 				},
 				error: function (result) {
