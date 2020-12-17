@@ -86,7 +86,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IGeneratePDFApiConsumer _IGeneratePDFApiConsumer;
         private ISpartan_FormatApiConsumer _ISpartan_FormatApiConsumer;
         private ISpartan_Format_PermissionsApiConsumer _ISpartan_Format_PermissionsApiConsumer;
-		private ISpartan_Format_RelatedApiConsumer _ISpartan_FormatRelatedApiConsumer;
+        private ISpartan_Format_RelatedApiConsumer _ISpartan_FormatRelatedApiConsumer;
         private ISpartaneQueryApiConsumer _ISpartaneQueryApiConsumer = null;
 
         #endregion "variable declaration"
@@ -94,7 +94,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
 
-        public JudicializacionController(IJudicializacionService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IJudicializacionApiConsumer JudicializacionApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , IResolucion_MPApiConsumer Resolucion_MPApiConsumer , ITipo_de_JudicializacionApiConsumer Tipo_de_JudicializacionApiConsumer , IFase_de_JudicializacionApiConsumer Fase_de_JudicializacionApiConsumer , IDetalle_Vinculacion_JudicializacionApiConsumer Detalle_Vinculacion_JudicializacionApiConsumer  , ITribunal_de_EnjuiciamientoApiConsumer Tribunal_de_EnjuiciamientoApiConsumer , ISentenciaApiConsumer SentenciaApiConsumer, ISpartaneQueryApiConsumer SpartaneQueryApiConsumer)
+        public JudicializacionController(IJudicializacionService service, ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IJudicializacionApiConsumer JudicializacionApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer, Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer, IResolucion_MPApiConsumer Resolucion_MPApiConsumer, ITipo_de_JudicializacionApiConsumer Tipo_de_JudicializacionApiConsumer, IFase_de_JudicializacionApiConsumer Fase_de_JudicializacionApiConsumer, IDetalle_Vinculacion_JudicializacionApiConsumer Detalle_Vinculacion_JudicializacionApiConsumer, ITribunal_de_EnjuiciamientoApiConsumer Tribunal_de_EnjuiciamientoApiConsumer, ISentenciaApiConsumer SentenciaApiConsumer, ISpartaneQueryApiConsumer SpartaneQueryApiConsumer)
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -107,7 +107,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_FormatApiConsumer = Spartan_FormatApiConsumer;
             this._ISpartan_Format_PermissionsApiConsumer = Spartan_Format_PermissionsApiConsumer;
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
-			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
+            this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._Iexpediente_ministerio_publicoApiConsumer = expediente_ministerio_publicoApiConsumer;
             this._IResolucion_MPApiConsumer = Resolucion_MPApiConsumer;
             this._ITipo_de_JudicializacionApiConsumer = Tipo_de_JudicializacionApiConsumer;
@@ -127,14 +127,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         // GET: Frontal/Judicializacion
         [ObjectAuth(ObjectId = (ModuleObjectId)45637, PermissionType = PermissionTypes.Consult)]
-        public ActionResult Index(int ModuleId=0)
+        public ActionResult Index(int ModuleId = 0)
         {
-			if (Session["AdvanceReportFilter"] != null)
+            if (Session["AdvanceReportFilter"] != null)
             {
                 Session["AdvanceReportFilter"] = null;
                 Session["AdvanceSearch"] = null;
             }
-			if (ModuleId == 0)
+            if (ModuleId == 0)
             {
                 ModuleId = Convert.ToInt32(Session["CurrentModuleId"]);
                 if (ModuleId == 0)
@@ -146,104 +146,104 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45637, ModuleId);
             ViewBag.Permission = permission;
             ViewBag.AdvanceSearch = Session["AdvanceSearch"] != null;
-			          
+
             return View();
         }
 
         // GET: Frontal/Judicializacion/Create
-          [ObjectAuth(ObjectId = (ModuleObjectId)45637, PermissionType = PermissionTypes.New,
-            OptionalParameter = "Id", OptionalPermissionType = PermissionTypes.Edit, OptionalPermissionTypeConsult = PermissionTypes.Consult)]
-        public ActionResult Create(int Id = 0,  int consult = 0, int ModuleId=0)
+        [ObjectAuth(ObjectId = (ModuleObjectId)45637, PermissionType = PermissionTypes.New,
+          OptionalParameter = "Id", OptionalPermissionType = PermissionTypes.Edit, OptionalPermissionTypeConsult = PermissionTypes.Consult)]
+        public ActionResult Create(int Id = 0, int consult = 0, int ModuleId = 0)
         {
-                       if(ModuleId == 0)
-                       {
-			    ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
-                       }
-                       else
-                            Session["CurrentModuleId"] = ModuleId;
+            if (ModuleId == 0)
+            {
+                ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
+            }
+            else
+                Session["CurrentModuleId"] = ModuleId;
             var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45637, ModuleId);
-           if ((!permission.New && Id.ToString() == "0") || (!permission.Edit && Id.ToString() != "0" && (!permission.Consult && consult == 1)))
+            if ((!permission.New && Id.ToString() == "0") || (!permission.Edit && Id.ToString() != "0" && (!permission.Consult && consult == 1)))
             {
                 Response.Redirect("~/");
             }
             ViewBag.Permission = permission;
             var varJudicializacion = new JudicializacionModel();
-			varJudicializacion.Clave = Id;
-			
+            varJudicializacion.Clave = Id;
+
             ViewBag.ObjectId = "45637";
-			ViewBag.Operation = "New";
-			
-			ViewBag.IsNew = true;
+            ViewBag.Operation = "New";
+
+            ViewBag.IsNew = true;
 
             var permissionDetalle_Vinculacion_Judicializacion = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45638, ModuleId);
             ViewBag.PermissionDetalle_Vinculacion_Judicializacion = permissionDetalle_Vinculacion_Judicializacion;
 
 
-            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short))&& Id.ToString() != "0"))
+            if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
             {
-				ViewBag.IsNew = false;
-				ViewBag.Operation = "Update";
-				
-				_tokenManager.GenerateToken();
-				_ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
+                ViewBag.IsNew = false;
+                ViewBag.Operation = "Update";
+
+                _tokenManager.GenerateToken();
+                _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var JudicializacionsData = _IJudicializacionApiConsumer.ListaSelAll(0, 1000, "Judicializacion.Clave=" + Id, "").Resource.Judicializacions;
-				
-				if (JudicializacionsData != null && JudicializacionsData.Count > 0)
-                {
-					var JudicializacionData = JudicializacionsData.First();
-					varJudicializacion= new JudicializacionModel
-					{
-						Clave  = JudicializacionData.Clave 
-	                    ,Expediente_MP = JudicializacionData.Expediente_MP
-                    ,Expediente_MPnic = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Expediente_MP), "expediente_ministerio_publico") ??  (string)JudicializacionData.Expediente_MP_expediente_ministerio_publico.nic
-                    ,Resolucion = JudicializacionData.Resolucion
-                    ,ResolucionObservaciones = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Resolucion), "Resolucion_MP") ??  (string)JudicializacionData.Resolucion_Resolucion_MP.Observaciones
-                    ,Tipo = JudicializacionData.Tipo
-                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Tipo), "Tipo_de_Judicializacion") ??  (string)JudicializacionData.Tipo_Tipo_de_Judicializacion.Descripcion
-                    ,causa_o_cuadernillo = JudicializacionData.causa_o_cuadernillo
-                    ,Fase_Actual = JudicializacionData.Fase_Actual
-                    ,Fase_ActualDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Fase_Actual), "Fase_de_Judicializacion") ??  (string)JudicializacionData.Fase_Actual_Fase_de_Judicializacion.Descripcion
-                    ,Fecha_Actos = (JudicializacionData.Fecha_Actos == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Actos).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_Actos = JudicializacionData.Hora_Actos
-                    ,Observaciones_Actos = JudicializacionData.Observaciones_Actos
-                    ,Fecha_Genericos = (JudicializacionData.Fecha_Genericos == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Genericos).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_Genericos = JudicializacionData.Hora_Genericos
-                    ,Observaciones_Genericos = JudicializacionData.Observaciones_Genericos
-                    ,Fecha_Fase_Inicial = (JudicializacionData.Fecha_Fase_Inicial == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Inicial).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_Fase_Inicial = JudicializacionData.Hora_Fase_Inicial
-                    ,Observaciones_Fase_Inicial = JudicializacionData.Observaciones_Fase_Inicial
-                    ,Fecha_Fase_Intermedia = (JudicializacionData.Fecha_Fase_Intermedia == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Intermedia).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_Fase_Intermedia = JudicializacionData.Hora_Fase_Intermedia
-                    ,Observaciones_Fase_Intermedia = JudicializacionData.Observaciones_Fase_Intermedia
-                    ,Fecha_de_Audiencia_de_Juicio = (JudicializacionData.Fecha_de_Audiencia_de_Juicio == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_de_Audiencia_de_Juicio).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_de_Audiencia_de_Juicio = JudicializacionData.Hora_de_Audiencia_de_Juicio
-                    ,Tribunal_de_Enjuiciamiento = JudicializacionData.Tribunal_de_Enjuiciamiento
-                    ,Tribunal_de_EnjuiciamientoDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Tribunal_de_Enjuiciamiento), "Tribunal_de_Enjuiciamiento") ??  (string)JudicializacionData.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Descripcion
-                    ,Nombre_del_Juez = JudicializacionData.Nombre_del_Juez
-                    ,Juez_Presidente = JudicializacionData.Juez_Presidente
-                    ,Juez_Relator = JudicializacionData.Juez_Relator
-                    ,Juez_Vocal = JudicializacionData.Juez_Vocal
-                    ,medios_desahogo = JudicializacionData.medios_desahogo
-                    ,Tipo_de_Sentencia = JudicializacionData.Tipo_de_Sentencia
-                    ,Tipo_de_SentenciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Tipo_de_Sentencia), "Sentencia") ??  (string)JudicializacionData.Tipo_de_Sentencia_Sentencia.Descripcion
-                    ,Cuantia_de_Pena_Anos = JudicializacionData.Cuantia_de_Pena_Anos
-                    ,Cuantia_de_Pena_Meses = JudicializacionData.Cuantia_de_Pena_Meses
-                    ,Monto_de_Reparacion_del_Dano = JudicializacionData.Monto_de_Reparacion_del_Dano
-                    ,Observaciones_Fase_Juicio_Oral = JudicializacionData.Observaciones_Fase_Juicio_Oral
-                    ,Fecha_Fase_Salidas_Alternas = (JudicializacionData.Fecha_Fase_Salidas_Alternas == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Salidas_Alternas).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_Fase_Salidas_Alternas = JudicializacionData.Hora_Fase_Salidas_Alternas
-                    ,Observaciones_Fase_Salidas_Alternas = JudicializacionData.Observaciones_Fase_Salidas_Alternas
-                    ,Fecha_Fase_Sobreseimientos = (JudicializacionData.Fecha_Fase_Sobreseimientos == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Sobreseimientos).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_Fase_Sobreseimientos = JudicializacionData.Hora_Fase_Sobreseimientos
-                    ,Observaciones_Fase_Sobreseimientos = JudicializacionData.Observaciones_Fase_Sobreseimientos
-                    ,Observaciones = JudicializacionData.Observaciones
 
-					};
-				}
-				
-				
-				
+                if (JudicializacionsData != null && JudicializacionsData.Count > 0)
+                {
+                    var JudicializacionData = JudicializacionsData.First();
+                    varJudicializacion = new JudicializacionModel
+                    {
+                        Clave = JudicializacionData.Clave
+                        , Expediente_MP = JudicializacionData.Expediente_MP
+                    , Expediente_MPnic = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Expediente_MP), "expediente_ministerio_publico") ?? (string)JudicializacionData.Expediente_MP_expediente_ministerio_publico.nic
+                    , Resolucion = JudicializacionData.Resolucion
+                    , ResolucionObservaciones = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Resolucion), "Resolucion_MP") ?? (string)JudicializacionData.Resolucion_Resolucion_MP.Observaciones
+                    , Tipo = JudicializacionData.Tipo
+                    , TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Tipo), "Tipo_de_Judicializacion") ?? (string)JudicializacionData.Tipo_Tipo_de_Judicializacion.Descripcion
+                    , causa_o_cuadernillo = JudicializacionData.causa_o_cuadernillo
+                    , Fase_Actual = JudicializacionData.Fase_Actual
+                    , Fase_ActualDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Fase_Actual), "Fase_de_Judicializacion") ?? (string)JudicializacionData.Fase_Actual_Fase_de_Judicializacion.Descripcion
+                    , Fecha_Actos = (JudicializacionData.Fecha_Actos == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Actos).ToString(ConfigurationProperty.DateFormat))
+                    , Hora_Actos = JudicializacionData.Hora_Actos
+                    , Observaciones_Actos = JudicializacionData.Observaciones_Actos
+                    , Fecha_Genericos = (JudicializacionData.Fecha_Genericos == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Genericos).ToString(ConfigurationProperty.DateFormat))
+                    , Hora_Genericos = JudicializacionData.Hora_Genericos
+                    , Observaciones_Genericos = JudicializacionData.Observaciones_Genericos
+                    , Fecha_Fase_Inicial = (JudicializacionData.Fecha_Fase_Inicial == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Inicial).ToString(ConfigurationProperty.DateFormat))
+                    , Hora_Fase_Inicial = JudicializacionData.Hora_Fase_Inicial
+                    , Observaciones_Fase_Inicial = JudicializacionData.Observaciones_Fase_Inicial
+                    , Fecha_Fase_Intermedia = (JudicializacionData.Fecha_Fase_Intermedia == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Intermedia).ToString(ConfigurationProperty.DateFormat))
+                    , Hora_Fase_Intermedia = JudicializacionData.Hora_Fase_Intermedia
+                    , Observaciones_Fase_Intermedia = JudicializacionData.Observaciones_Fase_Intermedia
+                    , Fecha_de_Audiencia_de_Juicio = (JudicializacionData.Fecha_de_Audiencia_de_Juicio == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_de_Audiencia_de_Juicio).ToString(ConfigurationProperty.DateFormat))
+                    , Hora_de_Audiencia_de_Juicio = JudicializacionData.Hora_de_Audiencia_de_Juicio
+                    , Tribunal_de_Enjuiciamiento = JudicializacionData.Tribunal_de_Enjuiciamiento
+                    , Tribunal_de_EnjuiciamientoDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Tribunal_de_Enjuiciamiento), "Tribunal_de_Enjuiciamiento") ?? (string)JudicializacionData.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Descripcion
+                    , Nombre_del_Juez = JudicializacionData.Nombre_del_Juez
+                    , Juez_Presidente = JudicializacionData.Juez_Presidente
+                    , Juez_Relator = JudicializacionData.Juez_Relator
+                    , Juez_Vocal = JudicializacionData.Juez_Vocal
+                    , medios_desahogo = JudicializacionData.medios_desahogo
+                    , Tipo_de_Sentencia = JudicializacionData.Tipo_de_Sentencia
+                    , Tipo_de_SentenciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Tipo_de_Sentencia), "Sentencia") ?? (string)JudicializacionData.Tipo_de_Sentencia_Sentencia.Descripcion
+                    , Cuantia_de_Pena_Anos = JudicializacionData.Cuantia_de_Pena_Anos
+                    , Cuantia_de_Pena_Meses = JudicializacionData.Cuantia_de_Pena_Meses
+                    , Monto_de_Reparacion_del_Dano = JudicializacionData.Monto_de_Reparacion_del_Dano
+                    , Observaciones_Fase_Juicio_Oral = JudicializacionData.Observaciones_Fase_Juicio_Oral
+                    , Fecha_Fase_Salidas_Alternas = (JudicializacionData.Fecha_Fase_Salidas_Alternas == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Salidas_Alternas).ToString(ConfigurationProperty.DateFormat))
+                    , Hora_Fase_Salidas_Alternas = JudicializacionData.Hora_Fase_Salidas_Alternas
+                    , Observaciones_Fase_Salidas_Alternas = JudicializacionData.Observaciones_Fase_Salidas_Alternas
+                    , Fecha_Fase_Sobreseimientos = (JudicializacionData.Fecha_Fase_Sobreseimientos == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Sobreseimientos).ToString(ConfigurationProperty.DateFormat))
+                    , Hora_Fase_Sobreseimientos = JudicializacionData.Hora_Fase_Sobreseimientos
+                    , Observaciones_Fase_Sobreseimientos = JudicializacionData.Observaciones_Fase_Sobreseimientos
+                    , Observaciones = JudicializacionData.Observaciones
+
+                    };
+                }
+
+
+
             }
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
@@ -279,16 +279,16 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
             ViewBag.Consult = consult == 1;
-			if (consult == 1)
+            if (consult == 1)
                 ViewBag.Operation = "Consult";
-				
-			var viewInEframe = false;
-			var isPartial = false;
+
+            var viewInEframe = false;
+            var isPartial = false;
             var isMR = false;
             var nameMR = string.Empty;
             var nameAttribute = string.Empty;
 
-	        if (Request.QueryString["isPartial"]!= null)
+            if (Request.QueryString["isPartial"] != null)
                 isPartial = Convert.ToBoolean(Request.QueryString["isPartial"]);
 
             if (Request.QueryString["isMR"] != null)
@@ -299,33 +299,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             if (Request.QueryString["nameAttribute"] != null)
                 nameAttribute = Request.QueryString["nameAttribute"].ToString();
-				
-			if (Request.QueryString["viewInEframe"] != null)
-                viewInEframe = Convert.ToBoolean(Request.QueryString["viewInEframe"]);	
-				
-			ViewBag.isPartial=isPartial;
-			ViewBag.isMR=isMR;
-			ViewBag.nameMR=nameMR;
-			ViewBag.nameAttribute=nameAttribute;
-			ViewBag.viewInEframe = viewInEframe;
 
-				
+            if (Request.QueryString["viewInEframe"] != null)
+                viewInEframe = Convert.ToBoolean(Request.QueryString["viewInEframe"]);
+
+            ViewBag.isPartial = isPartial;
+            ViewBag.isMR = isMR;
+            ViewBag.nameMR = nameMR;
+            ViewBag.nameAttribute = nameAttribute;
+            ViewBag.viewInEframe = viewInEframe;
+
+
             return View(varJudicializacion);
         }
-		
-	[HttpGet]
+
+        [HttpGet]
         public ActionResult AddJudicializacion(int rowIndex = 0, int functionMode = 0, string id = "0")
         {
-			int ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
+            int ModuleId = (Session["CurrentModuleId"] != null) ? Convert.ToInt32(Session["CurrentModuleId"]) : 0;
             ViewBag.currentRowIndex = rowIndex;
             ViewBag.functionMode = functionMode;
             ViewBag.Consult = false;
             var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45637);
             ViewBag.Permission = permission;
-			if (!_tokenManager.GenerateToken())
+            if (!_tokenManager.GenerateToken())
                 return null;
-           _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-			JudicializacionModel varJudicializacion= new JudicializacionModel();
+            _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+            JudicializacionModel varJudicializacion = new JudicializacionModel();
             var permissionDetalle_Vinculacion_Judicializacion = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, 45638, ModuleId);
             ViewBag.PermissionDetalle_Vinculacion_Judicializacion = permissionDetalle_Vinculacion_Judicializacion;
 
@@ -333,59 +333,59 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (id.ToString() != "0")
             {
                 var JudicializacionsData = _IJudicializacionApiConsumer.ListaSelAll(0, 1000, "Judicializacion.Clave=" + id, "").Resource.Judicializacions;
-				
-				if (JudicializacionsData != null && JudicializacionsData.Count > 0)
-                {
-					var JudicializacionData = JudicializacionsData.First();
-					varJudicializacion= new JudicializacionModel
-					{
-						Clave  = JudicializacionData.Clave 
-	                    ,Expediente_MP = JudicializacionData.Expediente_MP
-                    ,Expediente_MPnic = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Expediente_MP), "expediente_ministerio_publico") ??  (string)JudicializacionData.Expediente_MP_expediente_ministerio_publico.nic
-                    ,Resolucion = JudicializacionData.Resolucion
-                    ,ResolucionObservaciones = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Resolucion), "Resolucion_MP") ??  (string)JudicializacionData.Resolucion_Resolucion_MP.Observaciones
-                    ,Tipo = JudicializacionData.Tipo
-                    ,TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Tipo), "Tipo_de_Judicializacion") ??  (string)JudicializacionData.Tipo_Tipo_de_Judicializacion.Descripcion
-                    ,causa_o_cuadernillo = JudicializacionData.causa_o_cuadernillo
-                    ,Fase_Actual = JudicializacionData.Fase_Actual
-                    ,Fase_ActualDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Fase_Actual), "Fase_de_Judicializacion") ??  (string)JudicializacionData.Fase_Actual_Fase_de_Judicializacion.Descripcion
-                    ,Fecha_Actos = (JudicializacionData.Fecha_Actos == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Actos).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_Actos = JudicializacionData.Hora_Actos
-                    ,Observaciones_Actos = JudicializacionData.Observaciones_Actos
-                    ,Fecha_Genericos = (JudicializacionData.Fecha_Genericos == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Genericos).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_Genericos = JudicializacionData.Hora_Genericos
-                    ,Observaciones_Genericos = JudicializacionData.Observaciones_Genericos
-                    ,Fecha_Fase_Inicial = (JudicializacionData.Fecha_Fase_Inicial == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Inicial).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_Fase_Inicial = JudicializacionData.Hora_Fase_Inicial
-                    ,Observaciones_Fase_Inicial = JudicializacionData.Observaciones_Fase_Inicial
-                    ,Fecha_Fase_Intermedia = (JudicializacionData.Fecha_Fase_Intermedia == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Intermedia).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_Fase_Intermedia = JudicializacionData.Hora_Fase_Intermedia
-                    ,Observaciones_Fase_Intermedia = JudicializacionData.Observaciones_Fase_Intermedia
-                    ,Fecha_de_Audiencia_de_Juicio = (JudicializacionData.Fecha_de_Audiencia_de_Juicio == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_de_Audiencia_de_Juicio).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_de_Audiencia_de_Juicio = JudicializacionData.Hora_de_Audiencia_de_Juicio
-                    ,Tribunal_de_Enjuiciamiento = JudicializacionData.Tribunal_de_Enjuiciamiento
-                    ,Tribunal_de_EnjuiciamientoDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Tribunal_de_Enjuiciamiento), "Tribunal_de_Enjuiciamiento") ??  (string)JudicializacionData.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Descripcion
-                    ,Nombre_del_Juez = JudicializacionData.Nombre_del_Juez
-                    ,Juez_Presidente = JudicializacionData.Juez_Presidente
-                    ,Juez_Relator = JudicializacionData.Juez_Relator
-                    ,Juez_Vocal = JudicializacionData.Juez_Vocal
-                    ,medios_desahogo = JudicializacionData.medios_desahogo
-                    ,Tipo_de_Sentencia = JudicializacionData.Tipo_de_Sentencia
-                    ,Tipo_de_SentenciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Tipo_de_Sentencia), "Sentencia") ??  (string)JudicializacionData.Tipo_de_Sentencia_Sentencia.Descripcion
-                    ,Cuantia_de_Pena_Anos = JudicializacionData.Cuantia_de_Pena_Anos
-                    ,Cuantia_de_Pena_Meses = JudicializacionData.Cuantia_de_Pena_Meses
-                    ,Monto_de_Reparacion_del_Dano = JudicializacionData.Monto_de_Reparacion_del_Dano
-                    ,Observaciones_Fase_Juicio_Oral = JudicializacionData.Observaciones_Fase_Juicio_Oral
-                    ,Fecha_Fase_Salidas_Alternas = (JudicializacionData.Fecha_Fase_Salidas_Alternas == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Salidas_Alternas).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_Fase_Salidas_Alternas = JudicializacionData.Hora_Fase_Salidas_Alternas
-                    ,Observaciones_Fase_Salidas_Alternas = JudicializacionData.Observaciones_Fase_Salidas_Alternas
-                    ,Fecha_Fase_Sobreseimientos = (JudicializacionData.Fecha_Fase_Sobreseimientos == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Sobreseimientos).ToString(ConfigurationProperty.DateFormat))
-                    ,Hora_Fase_Sobreseimientos = JudicializacionData.Hora_Fase_Sobreseimientos
-                    ,Observaciones_Fase_Sobreseimientos = JudicializacionData.Observaciones_Fase_Sobreseimientos
-                    ,Observaciones = JudicializacionData.Observaciones
 
-					};
-				}
+                if (JudicializacionsData != null && JudicializacionsData.Count > 0)
+                {
+                    var JudicializacionData = JudicializacionsData.First();
+                    varJudicializacion = new JudicializacionModel
+                    {
+                        Clave = JudicializacionData.Clave
+                        , Expediente_MP = JudicializacionData.Expediente_MP
+                    , Expediente_MPnic = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Expediente_MP), "expediente_ministerio_publico") ?? (string)JudicializacionData.Expediente_MP_expediente_ministerio_publico.nic
+                    , Resolucion = JudicializacionData.Resolucion
+                    , ResolucionObservaciones = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Resolucion), "Resolucion_MP") ?? (string)JudicializacionData.Resolucion_Resolucion_MP.Observaciones
+                    , Tipo = JudicializacionData.Tipo
+                    , TipoDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Tipo), "Tipo_de_Judicializacion") ?? (string)JudicializacionData.Tipo_Tipo_de_Judicializacion.Descripcion
+                    , causa_o_cuadernillo = JudicializacionData.causa_o_cuadernillo
+                    , Fase_Actual = JudicializacionData.Fase_Actual
+                    , Fase_ActualDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Fase_Actual), "Fase_de_Judicializacion") ?? (string)JudicializacionData.Fase_Actual_Fase_de_Judicializacion.Descripcion
+                    , Fecha_Actos = (JudicializacionData.Fecha_Actos == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Actos).ToString(ConfigurationProperty.DateFormat))
+                    , Hora_Actos = JudicializacionData.Hora_Actos
+                    , Observaciones_Actos = JudicializacionData.Observaciones_Actos
+                    , Fecha_Genericos = (JudicializacionData.Fecha_Genericos == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Genericos).ToString(ConfigurationProperty.DateFormat))
+                    , Hora_Genericos = JudicializacionData.Hora_Genericos
+                    , Observaciones_Genericos = JudicializacionData.Observaciones_Genericos
+                    , Fecha_Fase_Inicial = (JudicializacionData.Fecha_Fase_Inicial == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Inicial).ToString(ConfigurationProperty.DateFormat))
+                    , Hora_Fase_Inicial = JudicializacionData.Hora_Fase_Inicial
+                    , Observaciones_Fase_Inicial = JudicializacionData.Observaciones_Fase_Inicial
+                    , Fecha_Fase_Intermedia = (JudicializacionData.Fecha_Fase_Intermedia == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Intermedia).ToString(ConfigurationProperty.DateFormat))
+                    , Hora_Fase_Intermedia = JudicializacionData.Hora_Fase_Intermedia
+                    , Observaciones_Fase_Intermedia = JudicializacionData.Observaciones_Fase_Intermedia
+                    , Fecha_de_Audiencia_de_Juicio = (JudicializacionData.Fecha_de_Audiencia_de_Juicio == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_de_Audiencia_de_Juicio).ToString(ConfigurationProperty.DateFormat))
+                    , Hora_de_Audiencia_de_Juicio = JudicializacionData.Hora_de_Audiencia_de_Juicio
+                    , Tribunal_de_Enjuiciamiento = JudicializacionData.Tribunal_de_Enjuiciamiento
+                    , Tribunal_de_EnjuiciamientoDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Tribunal_de_Enjuiciamiento), "Tribunal_de_Enjuiciamiento") ?? (string)JudicializacionData.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Descripcion
+                    , Nombre_del_Juez = JudicializacionData.Nombre_del_Juez
+                    , Juez_Presidente = JudicializacionData.Juez_Presidente
+                    , Juez_Relator = JudicializacionData.Juez_Relator
+                    , Juez_Vocal = JudicializacionData.Juez_Vocal
+                    , medios_desahogo = JudicializacionData.medios_desahogo
+                    , Tipo_de_Sentencia = JudicializacionData.Tipo_de_Sentencia
+                    , Tipo_de_SentenciaDescripcion = CultureHelper.GetTraduction(Convert.ToString(JudicializacionData.Tipo_de_Sentencia), "Sentencia") ?? (string)JudicializacionData.Tipo_de_Sentencia_Sentencia.Descripcion
+                    , Cuantia_de_Pena_Anos = JudicializacionData.Cuantia_de_Pena_Anos
+                    , Cuantia_de_Pena_Meses = JudicializacionData.Cuantia_de_Pena_Meses
+                    , Monto_de_Reparacion_del_Dano = JudicializacionData.Monto_de_Reparacion_del_Dano
+                    , Observaciones_Fase_Juicio_Oral = JudicializacionData.Observaciones_Fase_Juicio_Oral
+                    , Fecha_Fase_Salidas_Alternas = (JudicializacionData.Fecha_Fase_Salidas_Alternas == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Salidas_Alternas).ToString(ConfigurationProperty.DateFormat))
+                    , Hora_Fase_Salidas_Alternas = JudicializacionData.Hora_Fase_Salidas_Alternas
+                    , Observaciones_Fase_Salidas_Alternas = JudicializacionData.Observaciones_Fase_Salidas_Alternas
+                    , Fecha_Fase_Sobreseimientos = (JudicializacionData.Fecha_Fase_Sobreseimientos == null ? string.Empty : Convert.ToDateTime(JudicializacionData.Fecha_Fase_Sobreseimientos).ToString(ConfigurationProperty.DateFormat))
+                    , Hora_Fase_Sobreseimientos = JudicializacionData.Hora_Fase_Sobreseimientos
+                    , Observaciones_Fase_Sobreseimientos = JudicializacionData.Observaciones_Fase_Sobreseimientos
+                    , Observaciones = JudicializacionData.Observaciones
+
+                    };
+                }
 
             }
             if (!_tokenManager.GenerateToken())
@@ -439,7 +439,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return File(fileInfo.File, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Description);
         }
 
-		[HttpGet]
+        [HttpGet]
         public ActionResult Getexpediente_ministerio_publicoAll()
         {
             try
@@ -448,10 +448,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _Iexpediente_ministerio_publicoApiConsumer.SelAll(false).Resource;
-				
+
                 return Json(result.OrderBy(m => m.nic).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nic")?? m.nic,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.clave), "expediente_ministerio_publico", "nic") ?? m.nic,
                     Value = Convert.ToString(m.clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -460,7 +460,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-		[HttpGet]
+        [HttpGet]
         public ActionResult GetResolucion_MPAll()
         {
             try
@@ -469,10 +469,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IResolucion_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IResolucion_MPApiConsumer.SelAll(false).Resource;
-				
+
                 return Json(result.OrderBy(m => m.Observaciones).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resolucion_MP", "Observaciones")?? m.Observaciones,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Resolucion_MP", "Observaciones") ?? m.Observaciones,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -490,10 +490,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ITipo_de_JudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ITipo_de_JudicializacionApiConsumer.SelAll(false).Resource;
-                
+
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Judicializacion", "Descripcion")?? m.Descripcion,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tipo_de_Judicializacion", "Descripcion") ?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -511,10 +511,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IFase_de_JudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _IFase_de_JudicializacionApiConsumer.SelAll(false).Resource;
-                
+
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Fase_de_Judicializacion", "Descripcion")?? m.Descripcion,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Fase_de_Judicializacion", "Descripcion") ?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -532,10 +532,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ITribunal_de_EnjuiciamientoApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ITribunal_de_EnjuiciamientoApiConsumer.SelAll(false).Resource;
-                
+
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tribunal_de_Enjuiciamiento", "Descripcion")?? m.Descripcion,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Tribunal_de_Enjuiciamiento", "Descripcion") ?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -553,10 +553,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _ISentenciaApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ISentenciaApiConsumer.SelAll(false).Resource;
-                
+
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Sentencia", "Descripcion")?? m.Descripcion,
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Sentencia", "Descripcion") ?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -581,7 +581,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (ModelState.IsValid)
             {
                 Session["AdvanceSearch"] = model;
-				if (idFilter != -1)
+                if (idFilter != -1)
                 {
                     Session["AdvanceReportFilter"] = GetAdvanceFilter(model);
                     return RedirectToAction("Index", "Report", new { id = idFilter });
@@ -628,7 +628,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }).ToList();
 
 
-            return View(model);  
+            return View(model);
         }
 
         [HttpGet]
@@ -701,51 +701,51 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return Json(new
             {
                 data = result.Judicializacions.Select(m => new JudicializacionGridModel
-                    {
+                {
                     Clave = m.Clave
-                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
-                        ,ResolucionObservaciones = CultureHelper.GetTraduction(m.Resolucion_Resolucion_MP.Clave.ToString(), "Resolucion_MP") ?? (string)m.Resolucion_Resolucion_MP.Observaciones
-                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
-			,causa_o_cuadernillo = m.causa_o_cuadernillo
-                        ,Fase_ActualDescripcion = CultureHelper.GetTraduction(m.Fase_Actual_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Actual_Fase_de_Judicializacion.Descripcion
-                        ,Fecha_Actos = (m.Fecha_Actos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Actos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Actos = m.Hora_Actos
-			,Observaciones_Actos = m.Observaciones_Actos
-                        ,Fecha_Genericos = (m.Fecha_Genericos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Genericos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Genericos = m.Hora_Genericos
-			,Observaciones_Genericos = m.Observaciones_Genericos
-                        ,Fecha_Fase_Inicial = (m.Fecha_Fase_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Inicial).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Inicial = m.Hora_Fase_Inicial
-			,Observaciones_Fase_Inicial = m.Observaciones_Fase_Inicial
-                        ,Fecha_Fase_Intermedia = (m.Fecha_Fase_Intermedia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Intermedia).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Intermedia = m.Hora_Fase_Intermedia
-			,Observaciones_Fase_Intermedia = m.Observaciones_Fase_Intermedia
-                        ,Fecha_de_Audiencia_de_Juicio = (m.Fecha_de_Audiencia_de_Juicio == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Audiencia_de_Juicio).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Audiencia_de_Juicio = m.Hora_de_Audiencia_de_Juicio
-                        ,Tribunal_de_EnjuiciamientoDescripcion = CultureHelper.GetTraduction(m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Clave.ToString(), "Descripcion") ?? (string)m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Descripcion
-			,Nombre_del_Juez = m.Nombre_del_Juez
-			,Juez_Presidente = m.Juez_Presidente
-			,Juez_Relator = m.Juez_Relator
-			,Juez_Vocal = m.Juez_Vocal
-			,medios_desahogo = m.medios_desahogo
-                        ,Tipo_de_SentenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sentencia_Sentencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sentencia_Sentencia.Descripcion
-			,Cuantia_de_Pena_Anos = m.Cuantia_de_Pena_Anos
-			,Cuantia_de_Pena_Meses = m.Cuantia_de_Pena_Meses
-			,Monto_de_Reparacion_del_Dano = m.Monto_de_Reparacion_del_Dano
-			,Observaciones_Fase_Juicio_Oral = m.Observaciones_Fase_Juicio_Oral
-                        ,Fecha_Fase_Salidas_Alternas = (m.Fecha_Fase_Salidas_Alternas == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Salidas_Alternas).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Salidas_Alternas = m.Hora_Fase_Salidas_Alternas
-			,Observaciones_Fase_Salidas_Alternas = m.Observaciones_Fase_Salidas_Alternas
-                        ,Fecha_Fase_Sobreseimientos = (m.Fecha_Fase_Sobreseimientos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Sobreseimientos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Sobreseimientos = m.Hora_Fase_Sobreseimientos
-			,Observaciones_Fase_Sobreseimientos = m.Observaciones_Fase_Sobreseimientos
-			,Observaciones = m.Observaciones
+                        , Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        , ResolucionObservaciones = CultureHelper.GetTraduction(m.Resolucion_Resolucion_MP.Clave.ToString(), "Resolucion_MP") ?? (string)m.Resolucion_Resolucion_MP.Observaciones
+                        , TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
+            , causa_o_cuadernillo = m.causa_o_cuadernillo
+                        , Fase_ActualDescripcion = CultureHelper.GetTraduction(m.Fase_Actual_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Actual_Fase_de_Judicializacion.Descripcion
+                        , Fecha_Actos = (m.Fecha_Actos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Actos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Actos = m.Hora_Actos
+            , Observaciones_Actos = m.Observaciones_Actos
+                        , Fecha_Genericos = (m.Fecha_Genericos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Genericos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Genericos = m.Hora_Genericos
+            , Observaciones_Genericos = m.Observaciones_Genericos
+                        , Fecha_Fase_Inicial = (m.Fecha_Fase_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Inicial).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Inicial = m.Hora_Fase_Inicial
+            , Observaciones_Fase_Inicial = m.Observaciones_Fase_Inicial
+                        , Fecha_Fase_Intermedia = (m.Fecha_Fase_Intermedia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Intermedia).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Intermedia = m.Hora_Fase_Intermedia
+            , Observaciones_Fase_Intermedia = m.Observaciones_Fase_Intermedia
+                        , Fecha_de_Audiencia_de_Juicio = (m.Fecha_de_Audiencia_de_Juicio == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Audiencia_de_Juicio).ToString(ConfigurationProperty.DateFormat))
+            , Hora_de_Audiencia_de_Juicio = m.Hora_de_Audiencia_de_Juicio
+                        , Tribunal_de_EnjuiciamientoDescripcion = CultureHelper.GetTraduction(m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Clave.ToString(), "Descripcion") ?? (string)m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Descripcion
+            , Nombre_del_Juez = m.Nombre_del_Juez
+            , Juez_Presidente = m.Juez_Presidente
+            , Juez_Relator = m.Juez_Relator
+            , Juez_Vocal = m.Juez_Vocal
+            , medios_desahogo = m.medios_desahogo
+                        , Tipo_de_SentenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sentencia_Sentencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sentencia_Sentencia.Descripcion
+            , Cuantia_de_Pena_Anos = m.Cuantia_de_Pena_Anos
+            , Cuantia_de_Pena_Meses = m.Cuantia_de_Pena_Meses
+            , Monto_de_Reparacion_del_Dano = m.Monto_de_Reparacion_del_Dano
+            , Observaciones_Fase_Juicio_Oral = m.Observaciones_Fase_Juicio_Oral
+                        , Fecha_Fase_Salidas_Alternas = (m.Fecha_Fase_Salidas_Alternas == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Salidas_Alternas).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Salidas_Alternas = m.Hora_Fase_Salidas_Alternas
+            , Observaciones_Fase_Salidas_Alternas = m.Observaciones_Fase_Salidas_Alternas
+                        , Fecha_Fase_Sobreseimientos = (m.Fecha_Fase_Sobreseimientos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Sobreseimientos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Sobreseimientos = m.Hora_Fase_Sobreseimientos
+            , Observaciones_Fase_Sobreseimientos = m.Observaciones_Fase_Sobreseimientos
+            , Observaciones = m.Observaciones
 
-                    }).ToList(),
+                }).ToList(),
                 itemsCount = result.RowCount
             }, JsonRequestBehavior.AllowGet);
         }
-		/*
+        /*
 		 [HttpGet]
         public ActionResult GetJudicializacionAll()
         {
@@ -777,7 +777,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         /// <returns>Return List of Judicializacion Entity</returns>
         public ActionResult GetJudicializacionList(UrlParametersModel param)
         {
-			 int sEcho = param.sEcho;
+            int sEcho = param.sEcho;
             int iDisplayStart = param.iDisplayStart;
             int iDisplayLength = param.iDisplayLength;
             string where = param.where;
@@ -806,40 +806,40 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return null;
             _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-          
+
             NameValueCollection filter = HttpUtility.ParseQueryString(param.filters);
 
             var configuration = new GridConfiguration() { OrderByClause = "", WhereClause = "" };
             if (filter != null)
                 configuration = GridQueryHelper.GetDataTableConfigurationNew(param, new JudicializacionPropertyMapper());
-				
-			if (!String.IsNullOrEmpty(where))
+
+            if (!String.IsNullOrEmpty(where))
             {
-                 configuration.WhereClause = configuration.WhereClause == "" ? where : "(" + configuration.WhereClause + " AND " + where + ")";
+                configuration.WhereClause = configuration.WhereClause == "" ? where : "(" + configuration.WhereClause + " AND " + where + ")";
             }
             if (!String.IsNullOrEmpty(order))
             {
                 configuration.OrderByClause = order;
             }
             //Adding Advance Search
-            if (param.AdvanceSearch != null && param.AdvanceSearch == true && Session["AdvanceSearch"] != null)            
+            if (param.AdvanceSearch != null && param.AdvanceSearch == true && Session["AdvanceSearch"] != null)
             {
-				if (Session["AdvanceSearch"].GetType() == typeof(JudicializacionAdvanceSearchModel))
+                if (Session["AdvanceSearch"].GetType() == typeof(JudicializacionAdvanceSearchModel))
                 {
-					var advanceFilter =
+                    var advanceFilter =
                     (JudicializacionAdvanceSearchModel)Session["AdvanceSearch"];
-					configuration.WhereClause = configuration.WhereClause == "" ? GetAdvanceFilter(advanceFilter) : configuration.WhereClause + " AND " + GetAdvanceFilter(advanceFilter);
-				}
-				else
-                {    
-					Session.Remove("AdvanceSearch");
+                    configuration.WhereClause = configuration.WhereClause == "" ? GetAdvanceFilter(advanceFilter) : configuration.WhereClause + " AND " + GetAdvanceFilter(advanceFilter);
+                }
+                else
+                {
+                    Session.Remove("AdvanceSearch");
                 }
             }
 
             JudicializacionPropertyMapper oJudicializacionPropertyMapper = new JudicializacionPropertyMapper();
-			if (String.IsNullOrEmpty(order))
+            if (String.IsNullOrEmpty(order))
             {
-                 if (sortColumn != -1)
+                if (sortColumn != -1)
                     configuration.OrderByClause = oJudicializacionPropertyMapper.GetPropertyName(param.columns[sortColumn].name) + " " + sortDirection;
             }
 
@@ -852,45 +852,45 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return Json(new
             {
                 aaData = result.Judicializacions.Select(m => new JudicializacionGridModel
-            {
+                {
                     Clave = m.Clave
-                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
-                        ,ResolucionObservaciones = CultureHelper.GetTraduction(m.Resolucion_Resolucion_MP.Clave.ToString(), "Resolucion_MP") ?? (string)m.Resolucion_Resolucion_MP.Observaciones
-                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
-			,causa_o_cuadernillo = m.causa_o_cuadernillo
-                        ,Fase_ActualDescripcion = CultureHelper.GetTraduction(m.Fase_Actual_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Actual_Fase_de_Judicializacion.Descripcion
-                        ,Fecha_Actos = (m.Fecha_Actos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Actos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Actos = m.Hora_Actos
-			,Observaciones_Actos = m.Observaciones_Actos
-                        ,Fecha_Genericos = (m.Fecha_Genericos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Genericos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Genericos = m.Hora_Genericos
-			,Observaciones_Genericos = m.Observaciones_Genericos
-                        ,Fecha_Fase_Inicial = (m.Fecha_Fase_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Inicial).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Inicial = m.Hora_Fase_Inicial
-			,Observaciones_Fase_Inicial = m.Observaciones_Fase_Inicial
-                        ,Fecha_Fase_Intermedia = (m.Fecha_Fase_Intermedia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Intermedia).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Intermedia = m.Hora_Fase_Intermedia
-			,Observaciones_Fase_Intermedia = m.Observaciones_Fase_Intermedia
-                        ,Fecha_de_Audiencia_de_Juicio = (m.Fecha_de_Audiencia_de_Juicio == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Audiencia_de_Juicio).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Audiencia_de_Juicio = m.Hora_de_Audiencia_de_Juicio
-                        ,Tribunal_de_EnjuiciamientoDescripcion = CultureHelper.GetTraduction(m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Clave.ToString(), "Descripcion") ?? (string)m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Descripcion
-			,Nombre_del_Juez = m.Nombre_del_Juez
-			,Juez_Presidente = m.Juez_Presidente
-			,Juez_Relator = m.Juez_Relator
-			,Juez_Vocal = m.Juez_Vocal
-			,medios_desahogo = m.medios_desahogo
-                        ,Tipo_de_SentenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sentencia_Sentencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sentencia_Sentencia.Descripcion
-			,Cuantia_de_Pena_Anos = m.Cuantia_de_Pena_Anos
-			,Cuantia_de_Pena_Meses = m.Cuantia_de_Pena_Meses
-			,Monto_de_Reparacion_del_Dano = m.Monto_de_Reparacion_del_Dano
-			,Observaciones_Fase_Juicio_Oral = m.Observaciones_Fase_Juicio_Oral
-                        ,Fecha_Fase_Salidas_Alternas = (m.Fecha_Fase_Salidas_Alternas == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Salidas_Alternas).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Salidas_Alternas = m.Hora_Fase_Salidas_Alternas
-			,Observaciones_Fase_Salidas_Alternas = m.Observaciones_Fase_Salidas_Alternas
-                        ,Fecha_Fase_Sobreseimientos = (m.Fecha_Fase_Sobreseimientos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Sobreseimientos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Sobreseimientos = m.Hora_Fase_Sobreseimientos
-			,Observaciones_Fase_Sobreseimientos = m.Observaciones_Fase_Sobreseimientos
-			,Observaciones = m.Observaciones
+                        , Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        , ResolucionObservaciones = CultureHelper.GetTraduction(m.Resolucion_Resolucion_MP.Clave.ToString(), "Resolucion_MP") ?? (string)m.Resolucion_Resolucion_MP.Observaciones
+                        , TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
+            , causa_o_cuadernillo = m.causa_o_cuadernillo
+                        , Fase_ActualDescripcion = CultureHelper.GetTraduction(m.Fase_Actual_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Actual_Fase_de_Judicializacion.Descripcion
+                        , Fecha_Actos = (m.Fecha_Actos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Actos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Actos = m.Hora_Actos
+            , Observaciones_Actos = m.Observaciones_Actos
+                        , Fecha_Genericos = (m.Fecha_Genericos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Genericos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Genericos = m.Hora_Genericos
+            , Observaciones_Genericos = m.Observaciones_Genericos
+                        , Fecha_Fase_Inicial = (m.Fecha_Fase_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Inicial).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Inicial = m.Hora_Fase_Inicial
+            , Observaciones_Fase_Inicial = m.Observaciones_Fase_Inicial
+                        , Fecha_Fase_Intermedia = (m.Fecha_Fase_Intermedia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Intermedia).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Intermedia = m.Hora_Fase_Intermedia
+            , Observaciones_Fase_Intermedia = m.Observaciones_Fase_Intermedia
+                        , Fecha_de_Audiencia_de_Juicio = (m.Fecha_de_Audiencia_de_Juicio == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Audiencia_de_Juicio).ToString(ConfigurationProperty.DateFormat))
+            , Hora_de_Audiencia_de_Juicio = m.Hora_de_Audiencia_de_Juicio
+                        , Tribunal_de_EnjuiciamientoDescripcion = CultureHelper.GetTraduction(m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Clave.ToString(), "Descripcion") ?? (string)m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Descripcion
+            , Nombre_del_Juez = m.Nombre_del_Juez
+            , Juez_Presidente = m.Juez_Presidente
+            , Juez_Relator = m.Juez_Relator
+            , Juez_Vocal = m.Juez_Vocal
+            , medios_desahogo = m.medios_desahogo
+                        , Tipo_de_SentenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sentencia_Sentencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sentencia_Sentencia.Descripcion
+            , Cuantia_de_Pena_Anos = m.Cuantia_de_Pena_Anos
+            , Cuantia_de_Pena_Meses = m.Cuantia_de_Pena_Meses
+            , Monto_de_Reparacion_del_Dano = m.Monto_de_Reparacion_del_Dano
+            , Observaciones_Fase_Juicio_Oral = m.Observaciones_Fase_Juicio_Oral
+                        , Fecha_Fase_Salidas_Alternas = (m.Fecha_Fase_Salidas_Alternas == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Salidas_Alternas).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Salidas_Alternas = m.Hora_Fase_Salidas_Alternas
+            , Observaciones_Fase_Salidas_Alternas = m.Observaciones_Fase_Salidas_Alternas
+                        , Fecha_Fase_Sobreseimientos = (m.Fecha_Fase_Sobreseimientos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Sobreseimientos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Sobreseimientos = m.Hora_Fase_Sobreseimientos
+            , Observaciones_Fase_Sobreseimientos = m.Observaciones_Fase_Sobreseimientos
+            , Observaciones = m.Observaciones
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -911,14 +911,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _Iexpediente_ministerio_publicoApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(expediente_ministerio_publico.clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(expediente_ministerio_publico.nic as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _Iexpediente_ministerio_publicoApiConsumer.ListaSelAll(1, 20,elWhere , " expediente_ministerio_publico.nic ASC ").Resource;
-               
+                var elWhere = " (cast(expediente_ministerio_publico.clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(expediente_ministerio_publico.nic as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+                elWhere = HttpUtility.UrlEncode(elWhere);
+                var result = _Iexpediente_ministerio_publicoApiConsumer.ListaSelAll(1, 20, elWhere, " expediente_ministerio_publico.nic ASC ").Resource;
+
                 foreach (var item in result.expediente_ministerio_publicos)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.clave), "expediente_ministerio_publico", "nic");
-                    item.nic =trans ??item.nic;
+                    var trans = CultureHelper.GetTraduction(Convert.ToString(item.clave), "expediente_ministerio_publico", "nic");
+                    item.nic = trans ?? item.nic;
                 }
                 return Json(result.expediente_ministerio_publicos.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -938,14 +938,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IResolucion_MPApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-				var elWhere = " (cast(Resolucion_MP.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Resolucion_MP.Observaciones as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IResolucion_MPApiConsumer.ListaSelAll(1, 20,elWhere , " Resolucion_MP.Observaciones ASC ").Resource;
-               
+                var elWhere = " (cast(Resolucion_MP.Clave as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Resolucion_MP.Observaciones as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+                elWhere = HttpUtility.UrlEncode(elWhere);
+                var result = _IResolucion_MPApiConsumer.ListaSelAll(1, 20, elWhere, " Resolucion_MP.Observaciones ASC ").Resource;
+
                 foreach (var item in result.Resolucion_MPs)
                 {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Resolucion_MP", "Observaciones");
-                    item.Observaciones =trans ??item.Observaciones;
+                    var trans = CultureHelper.GetTraduction(Convert.ToString(item.Clave), "Resolucion_MP", "Observaciones");
+                    item.Observaciones = trans ?? item.Observaciones;
                 }
                 return Json(result.Resolucion_MPs.ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -954,7 +954,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-//Grid GetAutoComplete
+        //Grid GetAutoComplete
 
 
 
@@ -1647,11 +1647,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var pageSize = length;
             var pageIndex = start + 1;
             string where = "Detalle_Vinculacion_Judicializacion.Judicializacion=" + RelationId;
-            if("int" == "string")
+            if ("int" == "string")
             {
-	           where = "Detalle_Vinculacion_Judicializacion.Judicializacion='" + RelationId + "'";
+                where = "Detalle_Vinculacion_Judicializacion.Judicializacion='" + RelationId + "'";
             }
-            var result = _IDetalle_Vinculacion_JudicializacionApiConsumer.ListaSelAll(start, pageSize, where,"").Resource;
+            var result = _IDetalle_Vinculacion_JudicializacionApiConsumer.ListaSelAll(start, pageSize, where, "").Resource;
             if (result.Detalle_Vinculacion_Judicializacions == null)
                 result.Detalle_Vinculacion_Judicializacions = new List<Detalle_Vinculacion_Judicializacion>();
 
@@ -1663,7 +1663,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
 
-			,Relacion = m.Relacion
+            , Relacion = m.Relacion
 
                 }).ToList(),
                 recordsTotal = result.RowCount,
@@ -1681,7 +1681,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var pageIndex = start + 1;
             List<Detalle_Vinculacion_JudicializacionGridModel> resultData = new List<Detalle_Vinculacion_JudicializacionGridModel>();
             string where = "Detalle_Vinculacion_Judicializacion.Judicializacion=" + Id;
-            if("int" == "string")
+            if ("int" == "string")
             {
                 where = "Detalle_Vinculacion_Judicializacion.Judicializacion='" + Id + "'";
             }
@@ -1693,13 +1693,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (result.Detalle_Vinculacion_Judicializacions != null)
             {
                 resultData = result.Detalle_Vinculacion_Judicializacions.Select(m => new Detalle_Vinculacion_JudicializacionGridModel
-                    {
-                        Clave = m.Clave
+                {
+                    Clave = m.Clave
 
-			,Relacion = m.Relacion
+            , Relacion = m.Relacion
 
 
-                    }).ToList();
+                }).ToList();
                 RowCount = result.RowCount;
             }
             return resultData;
@@ -1718,15 +1718,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Judicializacion varJudicializacion = null;
                 if (id.ToString() != "0")
                 {
-                        string where = "";
+                    string where = "";
                     _IDetalle_Vinculacion_JudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
                     where = "Detalle_Vinculacion_Judicializacion.Judicializacion=" + id;
-                    if("int" == "string")
+                    if ("int" == "string")
                     {
-	                where = "Detalle_Vinculacion_Judicializacion.Judicializacion='" + id + "'";
+                        where = "Detalle_Vinculacion_Judicializacion.Judicializacion='" + id + "'";
                     }
                     var Detalle_Vinculacion_JudicializacionInfo =
-                        _IDetalle_Vinculacion_JudicializacionApiConsumer.ListaSelAll(1, int.MaxValue, where,"").Resource;
+                        _IDetalle_Vinculacion_JudicializacionApiConsumer.ListaSelAll(1, int.MaxValue, where, "").Resource;
 
                     if (Detalle_Vinculacion_JudicializacionInfo.Detalle_Vinculacion_Judicializacions.Count > 0)
                     {
@@ -1734,7 +1734,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         //Removing associated job history with attachment
                         foreach (var Detalle_Vinculacion_JudicializacionItem in Detalle_Vinculacion_JudicializacionInfo.Detalle_Vinculacion_Judicializacions)
                             resultDetalle_Vinculacion_Judicializacion = resultDetalle_Vinculacion_Judicializacion
-                                              && _IDetalle_Vinculacion_JudicializacionApiConsumer.Delete(Detalle_Vinculacion_JudicializacionItem.Clave, null,null).Resource;
+                                              && _IDetalle_Vinculacion_JudicializacionApiConsumer.Delete(Detalle_Vinculacion_JudicializacionItem.Clave, null, null).Resource;
 
                         if (!resultDetalle_Vinculacion_Judicializacion)
                             return Json(false, JsonRequestBehavior.AllowGet);
@@ -1755,66 +1755,66 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         {
             try
             {
-				//if (ModelState.IsValid)
-				//{
-                    if (!_tokenManager.GenerateToken())
-                        return Json(null, JsonRequestBehavior.AllowGet);
-                    _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
+                //if (ModelState.IsValid)
+                //{
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
 
 
 
-                    
-                    var result = "";
-                    var JudicializacionInfo = new Judicializacion
-                    {
-                        Clave = varJudicializacion.Clave
-                        ,Expediente_MP = varJudicializacion.Expediente_MP
-                        ,Resolucion = varJudicializacion.Resolucion
-                        ,Tipo = varJudicializacion.Tipo
-                        ,causa_o_cuadernillo = varJudicializacion.causa_o_cuadernillo
-                        ,Fase_Actual = varJudicializacion.Fase_Actual
-                        ,Fecha_Actos = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Actos)) ? DateTime.ParseExact(varJudicializacion.Fecha_Actos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_Actos = varJudicializacion.Hora_Actos
-                        ,Observaciones_Actos = varJudicializacion.Observaciones_Actos
-                        ,Fecha_Genericos = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Genericos)) ? DateTime.ParseExact(varJudicializacion.Fecha_Genericos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_Genericos = varJudicializacion.Hora_Genericos
-                        ,Observaciones_Genericos = varJudicializacion.Observaciones_Genericos
-                        ,Fecha_Fase_Inicial = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Inicial)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Inicial, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_Fase_Inicial = varJudicializacion.Hora_Fase_Inicial
-                        ,Observaciones_Fase_Inicial = varJudicializacion.Observaciones_Fase_Inicial
-                        ,Fecha_Fase_Intermedia = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Intermedia)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Intermedia, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_Fase_Intermedia = varJudicializacion.Hora_Fase_Intermedia
-                        ,Observaciones_Fase_Intermedia = varJudicializacion.Observaciones_Fase_Intermedia
-                        ,Fecha_de_Audiencia_de_Juicio = (!String.IsNullOrEmpty(varJudicializacion.Fecha_de_Audiencia_de_Juicio)) ? DateTime.ParseExact(varJudicializacion.Fecha_de_Audiencia_de_Juicio, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_de_Audiencia_de_Juicio = varJudicializacion.Hora_de_Audiencia_de_Juicio
-                        ,Tribunal_de_Enjuiciamiento = varJudicializacion.Tribunal_de_Enjuiciamiento
-                        ,Nombre_del_Juez = varJudicializacion.Nombre_del_Juez
-                        ,Juez_Presidente = varJudicializacion.Juez_Presidente
-                        ,Juez_Relator = varJudicializacion.Juez_Relator
-                        ,Juez_Vocal = varJudicializacion.Juez_Vocal
-                        ,medios_desahogo = varJudicializacion.medios_desahogo
-                        ,Tipo_de_Sentencia = varJudicializacion.Tipo_de_Sentencia
-                        ,Cuantia_de_Pena_Anos = varJudicializacion.Cuantia_de_Pena_Anos
-                        ,Cuantia_de_Pena_Meses = varJudicializacion.Cuantia_de_Pena_Meses
-                        ,Monto_de_Reparacion_del_Dano = varJudicializacion.Monto_de_Reparacion_del_Dano
-                        ,Observaciones_Fase_Juicio_Oral = varJudicializacion.Observaciones_Fase_Juicio_Oral
-                        ,Fecha_Fase_Salidas_Alternas = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Salidas_Alternas)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Salidas_Alternas, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_Fase_Salidas_Alternas = varJudicializacion.Hora_Fase_Salidas_Alternas
-                        ,Observaciones_Fase_Salidas_Alternas = varJudicializacion.Observaciones_Fase_Salidas_Alternas
-                        ,Fecha_Fase_Sobreseimientos = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Sobreseimientos)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Sobreseimientos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_Fase_Sobreseimientos = varJudicializacion.Hora_Fase_Sobreseimientos
-                        ,Observaciones_Fase_Sobreseimientos = varJudicializacion.Observaciones_Fase_Sobreseimientos
-                        ,Observaciones = varJudicializacion.Observaciones
 
-                    };
+                var result = "";
+                var JudicializacionInfo = new Judicializacion
+                {
+                    Clave = varJudicializacion.Clave
+                    , Expediente_MP = varJudicializacion.Expediente_MP
+                    , Resolucion = varJudicializacion.Resolucion
+                    , Tipo = varJudicializacion.Tipo
+                    , causa_o_cuadernillo = varJudicializacion.causa_o_cuadernillo
+                    , Fase_Actual = varJudicializacion.Fase_Actual
+                    , Fecha_Actos = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Actos)) ? DateTime.ParseExact(varJudicializacion.Fecha_Actos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                    , Hora_Actos = varJudicializacion.Hora_Actos
+                    , Observaciones_Actos = varJudicializacion.Observaciones_Actos
+                    , Fecha_Genericos = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Genericos)) ? DateTime.ParseExact(varJudicializacion.Fecha_Genericos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                    , Hora_Genericos = varJudicializacion.Hora_Genericos
+                    , Observaciones_Genericos = varJudicializacion.Observaciones_Genericos
+                    , Fecha_Fase_Inicial = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Inicial)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Inicial, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                    , Hora_Fase_Inicial = varJudicializacion.Hora_Fase_Inicial
+                    , Observaciones_Fase_Inicial = varJudicializacion.Observaciones_Fase_Inicial
+                    , Fecha_Fase_Intermedia = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Intermedia)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Intermedia, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                    , Hora_Fase_Intermedia = varJudicializacion.Hora_Fase_Intermedia
+                    , Observaciones_Fase_Intermedia = varJudicializacion.Observaciones_Fase_Intermedia
+                    , Fecha_de_Audiencia_de_Juicio = (!String.IsNullOrEmpty(varJudicializacion.Fecha_de_Audiencia_de_Juicio)) ? DateTime.ParseExact(varJudicializacion.Fecha_de_Audiencia_de_Juicio, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                    , Hora_de_Audiencia_de_Juicio = varJudicializacion.Hora_de_Audiencia_de_Juicio
+                    , Tribunal_de_Enjuiciamiento = varJudicializacion.Tribunal_de_Enjuiciamiento
+                    , Nombre_del_Juez = varJudicializacion.Nombre_del_Juez
+                    , Juez_Presidente = varJudicializacion.Juez_Presidente
+                    , Juez_Relator = varJudicializacion.Juez_Relator
+                    , Juez_Vocal = varJudicializacion.Juez_Vocal
+                    , medios_desahogo = varJudicializacion.medios_desahogo
+                    , Tipo_de_Sentencia = varJudicializacion.Tipo_de_Sentencia
+                    , Cuantia_de_Pena_Anos = varJudicializacion.Cuantia_de_Pena_Anos
+                    , Cuantia_de_Pena_Meses = varJudicializacion.Cuantia_de_Pena_Meses
+                    , Monto_de_Reparacion_del_Dano = varJudicializacion.Monto_de_Reparacion_del_Dano
+                    , Observaciones_Fase_Juicio_Oral = varJudicializacion.Observaciones_Fase_Juicio_Oral
+                    , Fecha_Fase_Salidas_Alternas = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Salidas_Alternas)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Salidas_Alternas, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                    , Hora_Fase_Salidas_Alternas = varJudicializacion.Hora_Fase_Salidas_Alternas
+                    , Observaciones_Fase_Salidas_Alternas = varJudicializacion.Observaciones_Fase_Salidas_Alternas
+                    , Fecha_Fase_Sobreseimientos = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Sobreseimientos)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Sobreseimientos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                    , Hora_Fase_Sobreseimientos = varJudicializacion.Hora_Fase_Sobreseimientos
+                    , Observaciones_Fase_Sobreseimientos = varJudicializacion.Observaciones_Fase_Sobreseimientos
+                    , Observaciones = varJudicializacion.Observaciones
 
-                    result = !IsNew ?
-                        _IJudicializacionApiConsumer.Update(JudicializacionInfo, null, null).Resource.ToString() :
-                         _IJudicializacionApiConsumer.Insert(JudicializacionInfo, null, null).Resource.ToString();
-					Session["KeyValueInserted"] = result;
-                    return Json(result, JsonRequestBehavior.AllowGet);
-				//}
-				//return Json(false, JsonRequestBehavior.AllowGet);
+                };
+
+                result = !IsNew ?
+                    _IJudicializacionApiConsumer.Update(JudicializacionInfo, null, null).Resource.ToString() :
+                     _IJudicializacionApiConsumer.Insert(JudicializacionInfo, null, null).Resource.ToString();
+                Session["KeyValueInserted"] = result;
+                return Json(result, JsonRequestBehavior.AllowGet);
+                //}
+                //return Json(false, JsonRequestBehavior.AllowGet);
             }
             catch (ServiceException ex)
             {
@@ -1835,7 +1835,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
                 _IDetalle_Vinculacion_JudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
 
-                var Detalle_Vinculacion_JudicializacionData = _IDetalle_Vinculacion_JudicializacionApiConsumer.ListaSelAll(1, int.MaxValue, "Detalle_Vinculacion_Judicializacion.Judicializacion=" + referenceId,"").Resource;
+                var Detalle_Vinculacion_JudicializacionData = _IDetalle_Vinculacion_JudicializacionApiConsumer.ListaSelAll(1, int.MaxValue, "Detalle_Vinculacion_Judicializacion.Judicializacion=" + referenceId, "").Resource;
                 if (Detalle_Vinculacion_JudicializacionData == null || Detalle_Vinculacion_JudicializacionData.Detalle_Vinculacion_Judicializacions.Count == 0)
                     return true;
 
@@ -1859,7 +1859,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     }
                     //Chaning Id Value
                     varDetalle_Vinculacion_Judicializacion.Judicializacion = MasterId;
-                    var insertId = _IDetalle_Vinculacion_JudicializacionApiConsumer.Insert(varDetalle_Vinculacion_Judicializacion,null,null).Resource;
+                    var insertId = _IDetalle_Vinculacion_JudicializacionApiConsumer.Insert(varDetalle_Vinculacion_Judicializacion, null, null).Resource;
                     if (insertId > 0 && modelDataToChange != null)
                         modelDataToChange.Clave = insertId;
 
@@ -1901,23 +1901,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         //Removal Request
                         if (Detalle_Vinculacion_JudicializacionItem.Removed)
                         {
-                            result = result && _IDetalle_Vinculacion_JudicializacionApiConsumer.Delete(Detalle_Vinculacion_JudicializacionItem.Clave, null,null).Resource;
+                            result = result && _IDetalle_Vinculacion_JudicializacionApiConsumer.Delete(Detalle_Vinculacion_JudicializacionItem.Clave, null, null).Resource;
                             continue;
                         }
-						if (referenceId.ToString() != MasterId.ToString())
-							Detalle_Vinculacion_JudicializacionItem.Clave = 0;
+                        if (referenceId.ToString() != MasterId.ToString())
+                            Detalle_Vinculacion_JudicializacionItem.Clave = 0;
 
                         var Detalle_Vinculacion_JudicializacionData = new Detalle_Vinculacion_Judicializacion
                         {
                             Judicializacion = MasterId
-                            ,Clave = Detalle_Vinculacion_JudicializacionItem.Clave
-                            ,Relacion = Detalle_Vinculacion_JudicializacionItem.Relacion
+                            , Clave = Detalle_Vinculacion_JudicializacionItem.Clave
+                            , Relacion = Detalle_Vinculacion_JudicializacionItem.Relacion
 
                         };
 
                         var resultId = Detalle_Vinculacion_JudicializacionItem.Clave > 0
-                           ? _IDetalle_Vinculacion_JudicializacionApiConsumer.Update(Detalle_Vinculacion_JudicializacionData,null,null).Resource
-                           : _IDetalle_Vinculacion_JudicializacionApiConsumer.Insert(Detalle_Vinculacion_JudicializacionData,null,null).Resource;
+                           ? _IDetalle_Vinculacion_JudicializacionApiConsumer.Update(Detalle_Vinculacion_JudicializacionData, null, null).Resource
+                           : _IDetalle_Vinculacion_JudicializacionApiConsumer.Insert(Detalle_Vinculacion_JudicializacionData, null, null).Resource;
 
                         result = result && resultId != -1;
                     }
@@ -1954,23 +1954,23 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     JudicializacionModuleAttributeList.CustomModuleAttributeList[i].HelpText = string.Empty;
                 }
             }
-			if (JudicializacionModuleAttributeList.ChildModuleAttributeList != null)
+            if (JudicializacionModuleAttributeList.ChildModuleAttributeList != null)
             {
-				for (int i = 0; i < JudicializacionModuleAttributeList.ChildModuleAttributeList.Count - 1; i++)
-				{
-					for (int j = 0; j < JudicializacionModuleAttributeList.ChildModuleAttributeList[i].elements.Count; j++)
-					{
-						if (string.IsNullOrEmpty(JudicializacionModuleAttributeList.ChildModuleAttributeList[i].elements[j].DefaultValue))
-						{
-							JudicializacionModuleAttributeList.ChildModuleAttributeList[i].elements[j].DefaultValue = string.Empty;
-						}
-						if (string.IsNullOrEmpty(JudicializacionModuleAttributeList.ChildModuleAttributeList[i].elements[j].HelpText))
-						{
-							JudicializacionModuleAttributeList.ChildModuleAttributeList[i].elements[j].HelpText = string.Empty;
-						}
-					}
-				}
-			}
+                for (int i = 0; i < JudicializacionModuleAttributeList.ChildModuleAttributeList.Count - 1; i++)
+                {
+                    for (int j = 0; j < JudicializacionModuleAttributeList.ChildModuleAttributeList[i].elements.Count; j++)
+                    {
+                        if (string.IsNullOrEmpty(JudicializacionModuleAttributeList.ChildModuleAttributeList[i].elements[j].DefaultValue))
+                        {
+                            JudicializacionModuleAttributeList.ChildModuleAttributeList[i].elements[j].DefaultValue = string.Empty;
+                        }
+                        if (string.IsNullOrEmpty(JudicializacionModuleAttributeList.ChildModuleAttributeList[i].elements[j].HelpText))
+                        {
+                            JudicializacionModuleAttributeList.ChildModuleAttributeList[i].elements[j].HelpText = string.Empty;
+                        }
+                    }
+                }
+            }
             string strJudicializacionScript = string.Empty;
             using (StreamReader r = new StreamReader(Server.MapPath("~/Uploads/Scripts/Judicializacion.js")))
             {
@@ -1989,53 +1989,53 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             // get json string of change job history element attributes
             string childUserChangeJson = jsSerialize.Serialize(JudicializacionModuleAttributeList.ChildModuleAttributeList);
-			int indexOfArrayHistory = 0;
+            int indexOfArrayHistory = 0;
             string splittedStringHistory = "";
             int indexOfMainElementHistory = 0;
             int endIndexOfMainElementHistory = 0;
-			if (JudicializacionModuleAttributeList.ChildModuleAttributeList != null)
+            if (JudicializacionModuleAttributeList.ChildModuleAttributeList != null)
             {
-				indexOfArrayHistory = strJudicializacionScript.IndexOf("});");
-				if(indexOfArrayHistory != -1)
-				{
-					splittedStringHistory = strJudicializacionScript.Substring(indexOfArrayHistory, strJudicializacionScript.Length - indexOfArrayHistory);
-					indexOfMainElementHistory = splittedStringHistory.IndexOf('[');
-					endIndexOfMainElementHistory = splittedStringHistory.IndexOf(']') + 1;
-				}
-			}
-			string finalResponse = strJudicializacionScript.Substring(0, indexOfArray + indexOfMainElement) + userChangeJson + strJudicializacionScript.Substring(endIndexOfMainElement + indexOfArray, strJudicializacionScript.Length - (endIndexOfMainElement + indexOfArray));
-           
-		   var ResponseChild = string.Empty;
+                indexOfArrayHistory = strJudicializacionScript.IndexOf("});");
+                if (indexOfArrayHistory != -1)
+                {
+                    splittedStringHistory = strJudicializacionScript.Substring(indexOfArrayHistory, strJudicializacionScript.Length - indexOfArrayHistory);
+                    indexOfMainElementHistory = splittedStringHistory.IndexOf('[');
+                    endIndexOfMainElementHistory = splittedStringHistory.IndexOf(']') + 1;
+                }
+            }
+            string finalResponse = strJudicializacionScript.Substring(0, indexOfArray + indexOfMainElement) + userChangeJson + strJudicializacionScript.Substring(endIndexOfMainElement + indexOfArray, strJudicializacionScript.Length - (endIndexOfMainElement + indexOfArray));
+
+            var ResponseChild = string.Empty;
             if (JudicializacionModuleAttributeList.ChildModuleAttributeList != null && indexOfArrayHistory != -1)
             {
                 foreach (var item in JudicializacionModuleAttributeList.ChildModuleAttributeList)
                 {
-				if (item!= null && item.elements != null  && item.elements.Count>0)
-                    ResponseChild += "\r\n  \n\r function set" + item.table + "Validation() { " +
-                                    " \r\n var inpuElementChildArray =" + jsSerialize.Serialize(item.elements) + ";" +
-                                    "  \r\n setInputEntityAttributes(inpuElementChildArray, \".\", 0);" +
-                                    "  \r\n setDynamicRenderElement(); \n\r } ";
+                    if (item != null && item.elements != null && item.elements.Count > 0)
+                        ResponseChild += "\r\n  \n\r function set" + item.table + "Validation() { " +
+                                        " \r\n var inpuElementChildArray =" + jsSerialize.Serialize(item.elements) + ";" +
+                                        "  \r\n setInputEntityAttributes(inpuElementChildArray, \".\", 0);" +
+                                        "  \r\n setDynamicRenderElement(); \n\r } ";
 
                 }
             }
-            finalResponse = finalResponse.Substring(0, finalResponse.IndexOf("});") + 4) +  "\n\r";
+            finalResponse = finalResponse.Substring(0, finalResponse.IndexOf("});") + 4) + "\n\r";
             finalResponse += ResponseChild;
-          
+
 
             using (StreamWriter w = new StreamWriter(Server.MapPath("~/Uploads/Scripts/Judicializacion.js")))
             {
                 w.WriteLine(finalResponse);
             }
-            
+
             return Json(true, JsonRequestBehavior.AllowGet);
         }
-        
+
 
         [HttpPost]
         public JsonResult ReadScriptSettings()
         {
             string strCustomScript = string.Empty;
-            
+
             CustomElementAttribute oCustomElementAttribute = new CustomElementAttribute();
 
             if (System.IO.File.Exists(Server.MapPath("~/Uploads/Scripts/Judicializacion.js")))
@@ -2043,13 +2043,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 using (StreamReader r = new StreamReader(Server.MapPath("~/Uploads/Scripts/Judicializacion.js")))
                 {
                     strCustomScript = r.ReadToEnd();
-                
+
                 }
 
                 int indexOfArray = strCustomScript.IndexOf("inpuElementArray");
-                string splittedString = strCustomScript.Substring(indexOfArray, strCustomScript.Length - indexOfArray);                
-                int indexOfMainElement = splittedString.IndexOf('[');                
-                int endIndexOfMainElement = splittedString.IndexOf(']') + 1;                
+                string splittedString = strCustomScript.Substring(indexOfArray, strCustomScript.Length - indexOfArray);
+                int indexOfMainElement = splittedString.IndexOf('[');
+                int endIndexOfMainElement = splittedString.IndexOf(']') + 1;
                 string mainJsonArray = splittedString.Substring(indexOfMainElement, endIndexOfMainElement - indexOfMainElement);
 
                 int indexOfChildArray = strCustomScript.IndexOf("function set");
@@ -2085,7 +2085,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 oCustomElementAttribute.MainElement = string.Empty;
                 oCustomElementAttribute.ChildElement = string.Empty;
-            }        
+            }
             return Json(oCustomElementAttribute, JsonRequestBehavior.AllowGet);
         }
 
@@ -2094,8 +2094,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         {
             return PartialView("JudicializacionPropertyBag", "Judicializacion");
         }
-		
-		public List<Spartan_Business_Rule> GetBusinessRules(int ObjectId, int Attribute)
+
+        public List<Spartan_Business_Rule> GetBusinessRules(int ObjectId, int Attribute)
         {
             if (!_tokenManager.GenerateToken())
                 return null;
@@ -2150,8 +2150,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #endregion "Controller Methods"
 
         #region "Custom methods"
-		
-		[HttpGet]
+
+        [HttpGet]
         public FileStreamResult PrintFormats(int idFormat, string RecordId)
         {
             if (!_tokenManager.GenerateToken())
@@ -2161,7 +2161,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             _ISpartan_FormatRelatedApiConsumer.SetAuthHeader(_tokenManager.Token);
 
             MemoryStream ms = new MemoryStream();
-           
+
             //Buscar los Formatos Relacionados
             var relacionados = _ISpartan_FormatRelatedApiConsumer.ListaSelAll(0, 5000, "Spartan_Format_Related.FormatId = " + idFormat, "").Resource.Spartan_Format_Relateds.OrderBy(r => r.Order).ToList();
             if (relacionados.Count > 0)
@@ -2187,9 +2187,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
             else {
                 var bytePdf = _IGeneratePDFApiConsumer.GeneratePDF(idFormat, RecordId);
-                ms.Write(bytePdf.Resource, 0, bytePdf.Resource.Length);           
+                ms.Write(bytePdf.Resource, 0, bytePdf.Resource.Length);
             }
-                
+
             Response.ContentType = "application/pdf";
             Response.AddHeader("content-disposition", "attachment;filename=Formatos.pdf");
             Response.Buffer = true;
@@ -2200,10 +2200,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             return new FileStreamResult(Response.OutputStream, "application/pdf");
         }
-		
-		
-		
-		[HttpGet]
+
+
+
+        [HttpGet]
         public ActionResult GetFormats(string RecordId)
         {
             if (!_tokenManager.GenerateToken())
@@ -2214,7 +2214,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
             _ISpartan_Format_PermissionsApiConsumer.SetAuthHeader(_tokenManager.Token);
-           _ISpartan_FormatApiConsumer.SetAuthHeader(_tokenManager.Token);
+            _ISpartan_FormatApiConsumer.SetAuthHeader(_tokenManager.Token);
 
             var whereClause = " Spartan_Format_Permissions.Spartan_User_Role = " + SessionHelper.Role + " AND Spartan_Format_Permissions.Permission_Type = 1 AND Apply=1 ";
             var formatsPermisions = _ISpartan_Format_PermissionsApiConsumer.ListaSelAll(0, 500, whereClause, string.Empty).Resource;
@@ -2239,7 +2239,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                             {
                                 formatList.Add(new SelectListItem
                                 {
-                                    Text =  CultureHelper.GetTraductionAdd(format.FormatId.ToString(), "Format", format.Format_Name),
+                                    Text = CultureHelper.GetTraductionAdd(format.FormatId.ToString(), "Format", format.Format_Name),
                                     Value = Convert.ToString(format.FormatId)
                                 });
                             }
@@ -2248,7 +2248,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         {
                             formatList.Add(new SelectListItem
                             {
-                                Text =  CultureHelper.GetTraductionAdd(format.FormatId.ToString(), "Format", format.Format_Name),
+                                Text = CultureHelper.GetTraductionAdd(format.FormatId.ToString(), "Format", format.Format_Name),
                                 Value = Convert.ToString(format.FormatId)
                             });
                         }
@@ -2265,10 +2265,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         {
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
-										  
-			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
 
-			 where = HttpUtility.UrlEncode(where);
+            string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
+
+            where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
                 return;
 
@@ -2278,8 +2278,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var configuration = new GridConfiguration() { OrderByClause = "", WhereClause = "" };
             if (filter != null)
                 configuration = GridQueryHelper.GetDataTableConfiguration(filter, new JudicializacionPropertyMapper());
-			
-			 if (!String.IsNullOrEmpty(where))
+
+            if (!String.IsNullOrEmpty(where))
             {
                 configuration.WhereClause = configuration.WhereClause == "" ? where : "(" + configuration.WhereClause + " AND " + where + ")";
             }
@@ -2294,14 +2294,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     (JudicializacionAdvanceSearchModel)Session["AdvanceSearch"];
                 configuration.WhereClause = configuration.WhereClause == "" ? GetAdvanceFilter(advanceFilter) : configuration.WhereClause + " AND " + GetAdvanceFilter(advanceFilter);
             }
-			string sortDirection = "asc";
+            string sortDirection = "asc";
 
             JudicializacionPropertyMapper oJudicializacionPropertyMapper = new JudicializacionPropertyMapper();
             if (Request.QueryString["sSortDir"] != null)
             {
                 sortDirection = Request.QueryString["sSortDir"];
             }
-            configuration.OrderByClause =  oJudicializacionPropertyMapper.GetPropertyName(iSortCol)  + " " + sortDirection;
+            configuration.OrderByClause = oJudicializacionPropertyMapper.GetPropertyName(iSortCol) + " " + sortDirection;
             pageSize = pageSize == 0 ? int.MaxValue : pageSize;
 
             var result = _IJudicializacionApiConsumer.ListaSelAll((pageIndex * pageSize) - pageSize + 1, pageSize + ((pageIndex * pageSize) - pageSize), configuration.WhereClause, configuration.OrderByClause ?? "").Resource;
@@ -2311,43 +2311,43 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Judicializacions.Select(m => new JudicializacionGridModel
             {
                 Clave = m.Clave
-                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
-                        ,ResolucionObservaciones = CultureHelper.GetTraduction(m.Resolucion_Resolucion_MP.Clave.ToString(), "Resolucion_MP") ?? (string)m.Resolucion_Resolucion_MP.Observaciones
-                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
-			,causa_o_cuadernillo = m.causa_o_cuadernillo
-                        ,Fase_ActualDescripcion = CultureHelper.GetTraduction(m.Fase_Actual_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Actual_Fase_de_Judicializacion.Descripcion
-                        ,Fecha_Actos = (m.Fecha_Actos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Actos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Actos = m.Hora_Actos
-			,Observaciones_Actos = m.Observaciones_Actos
-                        ,Fecha_Genericos = (m.Fecha_Genericos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Genericos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Genericos = m.Hora_Genericos
-			,Observaciones_Genericos = m.Observaciones_Genericos
-                        ,Fecha_Fase_Inicial = (m.Fecha_Fase_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Inicial).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Inicial = m.Hora_Fase_Inicial
-			,Observaciones_Fase_Inicial = m.Observaciones_Fase_Inicial
-                        ,Fecha_Fase_Intermedia = (m.Fecha_Fase_Intermedia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Intermedia).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Intermedia = m.Hora_Fase_Intermedia
-			,Observaciones_Fase_Intermedia = m.Observaciones_Fase_Intermedia
-                        ,Fecha_de_Audiencia_de_Juicio = (m.Fecha_de_Audiencia_de_Juicio == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Audiencia_de_Juicio).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Audiencia_de_Juicio = m.Hora_de_Audiencia_de_Juicio
-                        ,Tribunal_de_EnjuiciamientoDescripcion = CultureHelper.GetTraduction(m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Clave.ToString(), "Descripcion") ?? (string)m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Descripcion
-			,Nombre_del_Juez = m.Nombre_del_Juez
-			,Juez_Presidente = m.Juez_Presidente
-			,Juez_Relator = m.Juez_Relator
-			,Juez_Vocal = m.Juez_Vocal
-			,medios_desahogo = m.medios_desahogo
-                        ,Tipo_de_SentenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sentencia_Sentencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sentencia_Sentencia.Descripcion
-			,Cuantia_de_Pena_Anos = m.Cuantia_de_Pena_Anos
-			,Cuantia_de_Pena_Meses = m.Cuantia_de_Pena_Meses
-			,Monto_de_Reparacion_del_Dano = m.Monto_de_Reparacion_del_Dano
-			,Observaciones_Fase_Juicio_Oral = m.Observaciones_Fase_Juicio_Oral
-                        ,Fecha_Fase_Salidas_Alternas = (m.Fecha_Fase_Salidas_Alternas == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Salidas_Alternas).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Salidas_Alternas = m.Hora_Fase_Salidas_Alternas
-			,Observaciones_Fase_Salidas_Alternas = m.Observaciones_Fase_Salidas_Alternas
-                        ,Fecha_Fase_Sobreseimientos = (m.Fecha_Fase_Sobreseimientos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Sobreseimientos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Sobreseimientos = m.Hora_Fase_Sobreseimientos
-			,Observaciones_Fase_Sobreseimientos = m.Observaciones_Fase_Sobreseimientos
-			,Observaciones = m.Observaciones
+                        , Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        , ResolucionObservaciones = CultureHelper.GetTraduction(m.Resolucion_Resolucion_MP.Clave.ToString(), "Resolucion_MP") ?? (string)m.Resolucion_Resolucion_MP.Observaciones
+                        , TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
+            , causa_o_cuadernillo = m.causa_o_cuadernillo
+                        , Fase_ActualDescripcion = CultureHelper.GetTraduction(m.Fase_Actual_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Actual_Fase_de_Judicializacion.Descripcion
+                        , Fecha_Actos = (m.Fecha_Actos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Actos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Actos = m.Hora_Actos
+            , Observaciones_Actos = m.Observaciones_Actos
+                        , Fecha_Genericos = (m.Fecha_Genericos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Genericos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Genericos = m.Hora_Genericos
+            , Observaciones_Genericos = m.Observaciones_Genericos
+                        , Fecha_Fase_Inicial = (m.Fecha_Fase_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Inicial).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Inicial = m.Hora_Fase_Inicial
+            , Observaciones_Fase_Inicial = m.Observaciones_Fase_Inicial
+                        , Fecha_Fase_Intermedia = (m.Fecha_Fase_Intermedia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Intermedia).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Intermedia = m.Hora_Fase_Intermedia
+            , Observaciones_Fase_Intermedia = m.Observaciones_Fase_Intermedia
+                        , Fecha_de_Audiencia_de_Juicio = (m.Fecha_de_Audiencia_de_Juicio == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Audiencia_de_Juicio).ToString(ConfigurationProperty.DateFormat))
+            , Hora_de_Audiencia_de_Juicio = m.Hora_de_Audiencia_de_Juicio
+                        , Tribunal_de_EnjuiciamientoDescripcion = CultureHelper.GetTraduction(m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Clave.ToString(), "Descripcion") ?? (string)m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Descripcion
+            , Nombre_del_Juez = m.Nombre_del_Juez
+            , Juez_Presidente = m.Juez_Presidente
+            , Juez_Relator = m.Juez_Relator
+            , Juez_Vocal = m.Juez_Vocal
+            , medios_desahogo = m.medios_desahogo
+                        , Tipo_de_SentenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sentencia_Sentencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sentencia_Sentencia.Descripcion
+            , Cuantia_de_Pena_Anos = m.Cuantia_de_Pena_Anos
+            , Cuantia_de_Pena_Meses = m.Cuantia_de_Pena_Meses
+            , Monto_de_Reparacion_del_Dano = m.Monto_de_Reparacion_del_Dano
+            , Observaciones_Fase_Juicio_Oral = m.Observaciones_Fase_Juicio_Oral
+                        , Fecha_Fase_Salidas_Alternas = (m.Fecha_Fase_Salidas_Alternas == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Salidas_Alternas).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Salidas_Alternas = m.Hora_Fase_Salidas_Alternas
+            , Observaciones_Fase_Salidas_Alternas = m.Observaciones_Fase_Salidas_Alternas
+                        , Fecha_Fase_Sobreseimientos = (m.Fecha_Fase_Sobreseimientos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Sobreseimientos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Sobreseimientos = m.Hora_Fase_Sobreseimientos
+            , Observaciones_Fase_Sobreseimientos = m.Observaciones_Fase_Sobreseimientos
+            , Observaciones = m.Observaciones
 
             }).ToList();
 
@@ -2369,13 +2369,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         [HttpGet]
         //[ObjectAuth(ObjectId = ModuleObjectId.EMPLEADOS_OBJECT, PermissionType = PermissionTypes.Export)]
-        public ActionResult Print(string format, int pageIndex, int pageSize, string iSortCol, string sSortDir,string where, string order)
+        public ActionResult Print(string format, int pageIndex, int pageSize, string iSortCol, string sSortDir, string where, string order)
         {
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 
-			where = HttpUtility.UrlEncode(where);
-										   
+            where = HttpUtility.UrlEncode(where);
+
             if (!_tokenManager.GenerateToken())
                 return null;
 
@@ -2386,13 +2386,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var configuration = new GridConfiguration() { OrderByClause = "", WhereClause = "" };
             if (filter != null)
                 configuration = GridQueryHelper.GetDataTableConfiguration(filter, new JudicializacionPropertyMapper());
-				
-				
+
+
             if (!String.IsNullOrEmpty(where))
             {
                 configuration.WhereClause = configuration.WhereClause == "" ? where : "(" + configuration.WhereClause + " AND " + where + ")";
             }
-			if (Session["AdvanceSearch"] != null && pageSize != 0)
+            if (Session["AdvanceSearch"] != null && pageSize != 0)
             {
                 var advanceFilter =
                     (JudicializacionAdvanceSearchModel)Session["AdvanceSearch"];
@@ -2406,9 +2406,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 sortDirection = Request.QueryString["sSortDir"];
             }
-            configuration.OrderByClause =  oJudicializacionPropertyMapper.GetPropertyName(iSortCol)  + " " + sortDirection;
-			
-			if (!String.IsNullOrEmpty(order))
+            configuration.OrderByClause = oJudicializacionPropertyMapper.GetPropertyName(iSortCol) + " " + sortDirection;
+
+            if (!String.IsNullOrEmpty(order))
             {
                 configuration.OrderByClause = order;
             }
@@ -2421,43 +2421,43 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Judicializacions.Select(m => new JudicializacionGridModel
             {
                 Clave = m.Clave
-                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
-                        ,ResolucionObservaciones = CultureHelper.GetTraduction(m.Resolucion_Resolucion_MP.Clave.ToString(), "Resolucion_MP") ?? (string)m.Resolucion_Resolucion_MP.Observaciones
-                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
-			,causa_o_cuadernillo = m.causa_o_cuadernillo
-                        ,Fase_ActualDescripcion = CultureHelper.GetTraduction(m.Fase_Actual_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Actual_Fase_de_Judicializacion.Descripcion
-                        ,Fecha_Actos = (m.Fecha_Actos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Actos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Actos = m.Hora_Actos
-			,Observaciones_Actos = m.Observaciones_Actos
-                        ,Fecha_Genericos = (m.Fecha_Genericos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Genericos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Genericos = m.Hora_Genericos
-			,Observaciones_Genericos = m.Observaciones_Genericos
-                        ,Fecha_Fase_Inicial = (m.Fecha_Fase_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Inicial).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Inicial = m.Hora_Fase_Inicial
-			,Observaciones_Fase_Inicial = m.Observaciones_Fase_Inicial
-                        ,Fecha_Fase_Intermedia = (m.Fecha_Fase_Intermedia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Intermedia).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Intermedia = m.Hora_Fase_Intermedia
-			,Observaciones_Fase_Intermedia = m.Observaciones_Fase_Intermedia
-                        ,Fecha_de_Audiencia_de_Juicio = (m.Fecha_de_Audiencia_de_Juicio == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Audiencia_de_Juicio).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Audiencia_de_Juicio = m.Hora_de_Audiencia_de_Juicio
-                        ,Tribunal_de_EnjuiciamientoDescripcion = CultureHelper.GetTraduction(m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Clave.ToString(), "Descripcion") ?? (string)m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Descripcion
-			,Nombre_del_Juez = m.Nombre_del_Juez
-			,Juez_Presidente = m.Juez_Presidente
-			,Juez_Relator = m.Juez_Relator
-			,Juez_Vocal = m.Juez_Vocal
-			,medios_desahogo = m.medios_desahogo
-                        ,Tipo_de_SentenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sentencia_Sentencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sentencia_Sentencia.Descripcion
-			,Cuantia_de_Pena_Anos = m.Cuantia_de_Pena_Anos
-			,Cuantia_de_Pena_Meses = m.Cuantia_de_Pena_Meses
-			,Monto_de_Reparacion_del_Dano = m.Monto_de_Reparacion_del_Dano
-			,Observaciones_Fase_Juicio_Oral = m.Observaciones_Fase_Juicio_Oral
-                        ,Fecha_Fase_Salidas_Alternas = (m.Fecha_Fase_Salidas_Alternas == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Salidas_Alternas).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Salidas_Alternas = m.Hora_Fase_Salidas_Alternas
-			,Observaciones_Fase_Salidas_Alternas = m.Observaciones_Fase_Salidas_Alternas
-                        ,Fecha_Fase_Sobreseimientos = (m.Fecha_Fase_Sobreseimientos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Sobreseimientos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Sobreseimientos = m.Hora_Fase_Sobreseimientos
-			,Observaciones_Fase_Sobreseimientos = m.Observaciones_Fase_Sobreseimientos
-			,Observaciones = m.Observaciones
+                        , Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        , ResolucionObservaciones = CultureHelper.GetTraduction(m.Resolucion_Resolucion_MP.Clave.ToString(), "Resolucion_MP") ?? (string)m.Resolucion_Resolucion_MP.Observaciones
+                        , TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
+            , causa_o_cuadernillo = m.causa_o_cuadernillo
+                        , Fase_ActualDescripcion = CultureHelper.GetTraduction(m.Fase_Actual_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Actual_Fase_de_Judicializacion.Descripcion
+                        , Fecha_Actos = (m.Fecha_Actos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Actos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Actos = m.Hora_Actos
+            , Observaciones_Actos = m.Observaciones_Actos
+                        , Fecha_Genericos = (m.Fecha_Genericos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Genericos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Genericos = m.Hora_Genericos
+            , Observaciones_Genericos = m.Observaciones_Genericos
+                        , Fecha_Fase_Inicial = (m.Fecha_Fase_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Inicial).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Inicial = m.Hora_Fase_Inicial
+            , Observaciones_Fase_Inicial = m.Observaciones_Fase_Inicial
+                        , Fecha_Fase_Intermedia = (m.Fecha_Fase_Intermedia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Intermedia).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Intermedia = m.Hora_Fase_Intermedia
+            , Observaciones_Fase_Intermedia = m.Observaciones_Fase_Intermedia
+                        , Fecha_de_Audiencia_de_Juicio = (m.Fecha_de_Audiencia_de_Juicio == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Audiencia_de_Juicio).ToString(ConfigurationProperty.DateFormat))
+            , Hora_de_Audiencia_de_Juicio = m.Hora_de_Audiencia_de_Juicio
+                        , Tribunal_de_EnjuiciamientoDescripcion = CultureHelper.GetTraduction(m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Clave.ToString(), "Descripcion") ?? (string)m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Descripcion
+            , Nombre_del_Juez = m.Nombre_del_Juez
+            , Juez_Presidente = m.Juez_Presidente
+            , Juez_Relator = m.Juez_Relator
+            , Juez_Vocal = m.Juez_Vocal
+            , medios_desahogo = m.medios_desahogo
+                        , Tipo_de_SentenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sentencia_Sentencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sentencia_Sentencia.Descripcion
+            , Cuantia_de_Pena_Anos = m.Cuantia_de_Pena_Anos
+            , Cuantia_de_Pena_Meses = m.Cuantia_de_Pena_Meses
+            , Monto_de_Reparacion_del_Dano = m.Monto_de_Reparacion_del_Dano
+            , Observaciones_Fase_Juicio_Oral = m.Observaciones_Fase_Juicio_Oral
+                        , Fecha_Fase_Salidas_Alternas = (m.Fecha_Fase_Salidas_Alternas == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Salidas_Alternas).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Salidas_Alternas = m.Hora_Fase_Salidas_Alternas
+            , Observaciones_Fase_Salidas_Alternas = m.Observaciones_Fase_Salidas_Alternas
+                        , Fecha_Fase_Sobreseimientos = (m.Fecha_Fase_Sobreseimientos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Sobreseimientos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Sobreseimientos = m.Hora_Fase_Sobreseimientos
+            , Observaciones_Fase_Sobreseimientos = m.Observaciones_Fase_Sobreseimientos
+            , Observaciones = m.Observaciones
 
             }).ToList();
 
@@ -2465,8 +2465,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
         #endregion "Custom methods"
-		
-		[HttpGet]
+
+        [HttpGet]
         public JsonResult CreateID()
         {
             try
@@ -2483,8 +2483,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-		
-		[HttpPost]
+
+        [HttpPost]
         public ActionResult Post_Datos_Generales(Judicializacion_Datos_GeneralesModel varJudicializacion)
         {
             try
@@ -2492,17 +2492,17 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-				
+
                 var result = "";
                 var Judicializacion_Datos_GeneralesInfo = new Judicializacion_Datos_Generales
                 {
                     Clave = varJudicializacion.Clave
-                                            ,Expediente_MP = varJudicializacion.Expediente_MP
-                        ,Resolucion = varJudicializacion.Resolucion
-                        ,Tipo = varJudicializacion.Tipo
-                        ,causa_o_cuadernillo = varJudicializacion.causa_o_cuadernillo
-                        ,Fase_Actual = varJudicializacion.Fase_Actual
-                    
+                                            , Expediente_MP = varJudicializacion.Expediente_MP
+                        , Resolucion = varJudicializacion.Resolucion
+                        , Tipo = varJudicializacion.Tipo
+                        , causa_o_cuadernillo = varJudicializacion.causa_o_cuadernillo
+                        , Fase_Actual = varJudicializacion.Fase_Actual
+
                 };
 
                 result = _IJudicializacionApiConsumer.Update_Datos_Generales(Judicializacion_Datos_GeneralesInfo).Resource.ToString();
@@ -2514,48 +2514,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-		
-		[HttpGet]
+
+        [HttpGet]
         public JsonResult Get_Datos_Generales(string Id)
-        {     
+        {
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
-            {                
+            {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var m = _IJudicializacionApiConsumer.Get_Datos_Generales(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_Vinculacion_Judicializacion;
+                int RowCount_Detalle_Vinculacion_Judicializacion;
                 var Detalle_Vinculacion_JudicializacionData = GetDetalle_Vinculacion_JudicializacionData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Vinculacion_Judicializacion);
 
                 var result = new Judicializacion_Datos_GeneralesModel
                 {
                     Clave = m.Clave
-                        ,Expediente_MP = m.Expediente_MP
-                        ,Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
-                        ,Resolucion = m.Resolucion
-                        ,ResolucionObservaciones = CultureHelper.GetTraduction(m.Resolucion_Resolucion_MP.Clave.ToString(), "Resolucion_MP") ?? (string)m.Resolucion_Resolucion_MP.Observaciones
-                        ,Tipo = m.Tipo
-                        ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
-			,causa_o_cuadernillo = m.causa_o_cuadernillo
-                        ,Fase_Actual = m.Fase_Actual
-                        ,Fase_ActualDescripcion = CultureHelper.GetTraduction(m.Fase_Actual_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Actual_Fase_de_Judicializacion.Descripcion
+                        , Expediente_MP = m.Expediente_MP
+                        , Expediente_MPnic = CultureHelper.GetTraduction(m.Expediente_MP_expediente_ministerio_publico.clave.ToString(), "expediente_ministerio_publico") ?? (string)m.Expediente_MP_expediente_ministerio_publico.nic
+                        , Resolucion = m.Resolucion
+                        , ResolucionObservaciones = CultureHelper.GetTraduction(m.Resolucion_Resolucion_MP.Clave.ToString(), "Resolucion_MP") ?? (string)m.Resolucion_Resolucion_MP.Observaciones
+                        , Tipo = m.Tipo
+                        , TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Judicializacion.Descripcion
+            , causa_o_cuadernillo = m.causa_o_cuadernillo
+                        , Fase_Actual = m.Fase_Actual
+                        , Fase_ActualDescripcion = CultureHelper.GetTraduction(m.Fase_Actual_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Actual_Fase_de_Judicializacion.Descripcion
 
-                    
+
                 };
-				var resultData = new
+                var resultData = new
                 {
                     data = result
-                    ,Vinculacion = Detalle_Vinculacion_JudicializacionData
+                    , Vinculacion = Detalle_Vinculacion_JudicializacionData
 
                 };
                 return Json(resultData, JsonRequestBehavior.AllowGet);
             }
-            return Json(null, JsonRequestBehavior.AllowGet);            
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
 
-		[HttpPost]
+        [HttpPost]
         public ActionResult Post_Actos_de_Investigacion(Judicializacion_Actos_de_InvestigacionModel varJudicializacion)
         {
             try
@@ -2563,15 +2563,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-				
+
                 var result = "";
                 var Judicializacion_Actos_de_InvestigacionInfo = new Judicializacion_Actos_de_Investigacion
                 {
                     Clave = varJudicializacion.Clave
-                                            ,Fecha_Actos = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Actos)) ? DateTime.ParseExact(varJudicializacion.Fecha_Actos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_Actos = varJudicializacion.Hora_Actos
-                        ,Observaciones_Actos = varJudicializacion.Observaciones_Actos
-                    
+                                            , Fecha_Actos = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Actos)) ? DateTime.ParseExact(varJudicializacion.Fecha_Actos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        , Hora_Actos = varJudicializacion.Hora_Actos
+                        , Observaciones_Actos = varJudicializacion.Observaciones_Actos
+
                 };
 
                 result = _IJudicializacionApiConsumer.Update_Actos_de_Investigacion(Judicializacion_Actos_de_InvestigacionInfo).Resource.ToString();
@@ -2583,42 +2583,42 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-		
-		[HttpGet]
+
+        [HttpGet]
         public JsonResult Get_Actos_de_Investigacion(string Id)
-        {     
+        {
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
-            {                
+            {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var m = _IJudicializacionApiConsumer.Get_Actos_de_Investigacion(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_Vinculacion_Judicializacion;
+                int RowCount_Detalle_Vinculacion_Judicializacion;
                 var Detalle_Vinculacion_JudicializacionData = GetDetalle_Vinculacion_JudicializacionData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Vinculacion_Judicializacion);
 
                 var result = new Judicializacion_Actos_de_InvestigacionModel
                 {
                     Clave = m.Clave
-                        ,Fecha_Actos = (m.Fecha_Actos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Actos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Actos = m.Hora_Actos
-			,Observaciones_Actos = m.Observaciones_Actos
+                        , Fecha_Actos = (m.Fecha_Actos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Actos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Actos = m.Hora_Actos
+            , Observaciones_Actos = m.Observaciones_Actos
 
-                    
+
                 };
-				var resultData = new
+                var resultData = new
                 {
                     data = result
-                    ,Vinculacion = Detalle_Vinculacion_JudicializacionData
+                    , Vinculacion = Detalle_Vinculacion_JudicializacionData
 
                 };
                 return Json(resultData, JsonRequestBehavior.AllowGet);
             }
-            return Json(null, JsonRequestBehavior.AllowGet);            
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
 
-		[HttpPost]
+        [HttpPost]
         public ActionResult Post_Genericos(Judicializacion_GenericosModel varJudicializacion)
         {
             try
@@ -2626,15 +2626,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-				
+
                 var result = "";
                 var Judicializacion_GenericosInfo = new Judicializacion_Genericos
                 {
                     Clave = varJudicializacion.Clave
-                                            ,Fecha_Genericos = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Genericos)) ? DateTime.ParseExact(varJudicializacion.Fecha_Genericos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_Genericos = varJudicializacion.Hora_Genericos
-                        ,Observaciones_Genericos = varJudicializacion.Observaciones_Genericos
-                    
+                                            , Fecha_Genericos = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Genericos)) ? DateTime.ParseExact(varJudicializacion.Fecha_Genericos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        , Hora_Genericos = varJudicializacion.Hora_Genericos
+                        , Observaciones_Genericos = varJudicializacion.Observaciones_Genericos
+
                 };
 
                 result = _IJudicializacionApiConsumer.Update_Genericos(Judicializacion_GenericosInfo).Resource.ToString();
@@ -2646,42 +2646,42 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-		
-		[HttpGet]
+
+        [HttpGet]
         public JsonResult Get_Genericos(string Id)
-        {     
+        {
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
-            {                
+            {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var m = _IJudicializacionApiConsumer.Get_Genericos(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_Vinculacion_Judicializacion;
+                int RowCount_Detalle_Vinculacion_Judicializacion;
                 var Detalle_Vinculacion_JudicializacionData = GetDetalle_Vinculacion_JudicializacionData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Vinculacion_Judicializacion);
 
                 var result = new Judicializacion_GenericosModel
                 {
                     Clave = m.Clave
-                        ,Fecha_Genericos = (m.Fecha_Genericos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Genericos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Genericos = m.Hora_Genericos
-			,Observaciones_Genericos = m.Observaciones_Genericos
+                        , Fecha_Genericos = (m.Fecha_Genericos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Genericos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Genericos = m.Hora_Genericos
+            , Observaciones_Genericos = m.Observaciones_Genericos
 
-                    
+
                 };
-				var resultData = new
+                var resultData = new
                 {
                     data = result
-                    ,Vinculacion = Detalle_Vinculacion_JudicializacionData
+                    , Vinculacion = Detalle_Vinculacion_JudicializacionData
 
                 };
                 return Json(resultData, JsonRequestBehavior.AllowGet);
             }
-            return Json(null, JsonRequestBehavior.AllowGet);            
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
 
-		[HttpPost]
+        [HttpPost]
         public ActionResult Post_Fase_Inicial(Judicializacion_Fase_InicialModel varJudicializacion)
         {
             try
@@ -2689,15 +2689,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-				
+
                 var result = "";
                 var Judicializacion_Fase_InicialInfo = new Judicializacion_Fase_Inicial
                 {
                     Clave = varJudicializacion.Clave
-                                            ,Fecha_Fase_Inicial = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Inicial)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Inicial, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_Fase_Inicial = varJudicializacion.Hora_Fase_Inicial
-                        ,Observaciones_Fase_Inicial = varJudicializacion.Observaciones_Fase_Inicial
-                    
+                                            , Fecha_Fase_Inicial = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Inicial)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Inicial, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        , Hora_Fase_Inicial = varJudicializacion.Hora_Fase_Inicial
+                        , Observaciones_Fase_Inicial = varJudicializacion.Observaciones_Fase_Inicial
+
                 };
 
                 result = _IJudicializacionApiConsumer.Update_Fase_Inicial(Judicializacion_Fase_InicialInfo).Resource.ToString();
@@ -2709,42 +2709,42 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-		
-		[HttpGet]
+
+        [HttpGet]
         public JsonResult Get_Fase_Inicial(string Id)
-        {     
+        {
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
-            {                
+            {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var m = _IJudicializacionApiConsumer.Get_Fase_Inicial(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_Vinculacion_Judicializacion;
+                int RowCount_Detalle_Vinculacion_Judicializacion;
                 var Detalle_Vinculacion_JudicializacionData = GetDetalle_Vinculacion_JudicializacionData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Vinculacion_Judicializacion);
 
                 var result = new Judicializacion_Fase_InicialModel
                 {
                     Clave = m.Clave
-                        ,Fecha_Fase_Inicial = (m.Fecha_Fase_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Inicial).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Inicial = m.Hora_Fase_Inicial
-			,Observaciones_Fase_Inicial = m.Observaciones_Fase_Inicial
+                        , Fecha_Fase_Inicial = (m.Fecha_Fase_Inicial == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Inicial).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Inicial = m.Hora_Fase_Inicial
+            , Observaciones_Fase_Inicial = m.Observaciones_Fase_Inicial
 
-                    
+
                 };
-				var resultData = new
+                var resultData = new
                 {
                     data = result
-                    ,Vinculacion = Detalle_Vinculacion_JudicializacionData
+                    , Vinculacion = Detalle_Vinculacion_JudicializacionData
 
                 };
                 return Json(resultData, JsonRequestBehavior.AllowGet);
             }
-            return Json(null, JsonRequestBehavior.AllowGet);            
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
 
-		[HttpPost]
+        [HttpPost]
         public ActionResult Post_Fase_Intermedia(Judicializacion_Fase_IntermediaModel varJudicializacion)
         {
             try
@@ -2752,15 +2752,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-				
+
                 var result = "";
                 var Judicializacion_Fase_IntermediaInfo = new Judicializacion_Fase_Intermedia
                 {
                     Clave = varJudicializacion.Clave
-                                            ,Fecha_Fase_Intermedia = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Intermedia)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Intermedia, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_Fase_Intermedia = varJudicializacion.Hora_Fase_Intermedia
-                        ,Observaciones_Fase_Intermedia = varJudicializacion.Observaciones_Fase_Intermedia
-                    
+                                            , Fecha_Fase_Intermedia = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Intermedia)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Intermedia, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        , Hora_Fase_Intermedia = varJudicializacion.Hora_Fase_Intermedia
+                        , Observaciones_Fase_Intermedia = varJudicializacion.Observaciones_Fase_Intermedia
+
                 };
 
                 result = _IJudicializacionApiConsumer.Update_Fase_Intermedia(Judicializacion_Fase_IntermediaInfo).Resource.ToString();
@@ -2772,42 +2772,42 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-		
-		[HttpGet]
+
+        [HttpGet]
         public JsonResult Get_Fase_Intermedia(string Id)
-        {     
+        {
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
-            {                
+            {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var m = _IJudicializacionApiConsumer.Get_Fase_Intermedia(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_Vinculacion_Judicializacion;
+                int RowCount_Detalle_Vinculacion_Judicializacion;
                 var Detalle_Vinculacion_JudicializacionData = GetDetalle_Vinculacion_JudicializacionData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Vinculacion_Judicializacion);
 
                 var result = new Judicializacion_Fase_IntermediaModel
                 {
                     Clave = m.Clave
-                        ,Fecha_Fase_Intermedia = (m.Fecha_Fase_Intermedia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Intermedia).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Intermedia = m.Hora_Fase_Intermedia
-			,Observaciones_Fase_Intermedia = m.Observaciones_Fase_Intermedia
+                        , Fecha_Fase_Intermedia = (m.Fecha_Fase_Intermedia == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Intermedia).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Intermedia = m.Hora_Fase_Intermedia
+            , Observaciones_Fase_Intermedia = m.Observaciones_Fase_Intermedia
 
-                    
+
                 };
-				var resultData = new
+                var resultData = new
                 {
                     data = result
-                    ,Vinculacion = Detalle_Vinculacion_JudicializacionData
+                    , Vinculacion = Detalle_Vinculacion_JudicializacionData
 
                 };
                 return Json(resultData, JsonRequestBehavior.AllowGet);
             }
-            return Json(null, JsonRequestBehavior.AllowGet);            
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
 
-		[HttpPost]
+        [HttpPost]
         public ActionResult Post_Fase_Juicio_Oral(Judicializacion_Fase_Juicio_OralModel varJudicializacion)
         {
             try
@@ -2815,25 +2815,25 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-				
+
                 var result = "";
                 var Judicializacion_Fase_Juicio_OralInfo = new Judicializacion_Fase_Juicio_Oral
                 {
                     Clave = varJudicializacion.Clave
-                                            ,Fecha_de_Audiencia_de_Juicio = (!String.IsNullOrEmpty(varJudicializacion.Fecha_de_Audiencia_de_Juicio)) ? DateTime.ParseExact(varJudicializacion.Fecha_de_Audiencia_de_Juicio, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_de_Audiencia_de_Juicio = varJudicializacion.Hora_de_Audiencia_de_Juicio
-                        ,Tribunal_de_Enjuiciamiento = varJudicializacion.Tribunal_de_Enjuiciamiento
-                        ,Nombre_del_Juez = varJudicializacion.Nombre_del_Juez
-                        ,Juez_Presidente = varJudicializacion.Juez_Presidente
-                        ,Juez_Relator = varJudicializacion.Juez_Relator
-                        ,Juez_Vocal = varJudicializacion.Juez_Vocal
-                        ,medios_desahogo = varJudicializacion.medios_desahogo
-                        ,Tipo_de_Sentencia = varJudicializacion.Tipo_de_Sentencia
-                        ,Cuantia_de_Pena_Anos = varJudicializacion.Cuantia_de_Pena_Anos
-                        ,Cuantia_de_Pena_Meses = varJudicializacion.Cuantia_de_Pena_Meses
-                        ,Monto_de_Reparacion_del_Dano = varJudicializacion.Monto_de_Reparacion_del_Dano
-                        ,Observaciones_Fase_Juicio_Oral = varJudicializacion.Observaciones_Fase_Juicio_Oral
-                    
+                                            , Fecha_de_Audiencia_de_Juicio = (!String.IsNullOrEmpty(varJudicializacion.Fecha_de_Audiencia_de_Juicio)) ? DateTime.ParseExact(varJudicializacion.Fecha_de_Audiencia_de_Juicio, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        , Hora_de_Audiencia_de_Juicio = varJudicializacion.Hora_de_Audiencia_de_Juicio
+                        , Tribunal_de_Enjuiciamiento = varJudicializacion.Tribunal_de_Enjuiciamiento
+                        , Nombre_del_Juez = varJudicializacion.Nombre_del_Juez
+                        , Juez_Presidente = varJudicializacion.Juez_Presidente
+                        , Juez_Relator = varJudicializacion.Juez_Relator
+                        , Juez_Vocal = varJudicializacion.Juez_Vocal
+                        , medios_desahogo = varJudicializacion.medios_desahogo
+                        , Tipo_de_Sentencia = varJudicializacion.Tipo_de_Sentencia
+                        , Cuantia_de_Pena_Anos = varJudicializacion.Cuantia_de_Pena_Anos
+                        , Cuantia_de_Pena_Meses = varJudicializacion.Cuantia_de_Pena_Meses
+                        , Monto_de_Reparacion_del_Dano = varJudicializacion.Monto_de_Reparacion_del_Dano
+                        , Observaciones_Fase_Juicio_Oral = varJudicializacion.Observaciones_Fase_Juicio_Oral
+
                 };
 
                 result = _IJudicializacionApiConsumer.Update_Fase_Juicio_Oral(Judicializacion_Fase_Juicio_OralInfo).Resource.ToString();
@@ -2845,54 +2845,54 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-		
-		[HttpGet]
+
+        [HttpGet]
         public JsonResult Get_Fase_Juicio_Oral(string Id)
-        {     
+        {
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
-            {                
+            {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var m = _IJudicializacionApiConsumer.Get_Fase_Juicio_Oral(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_Vinculacion_Judicializacion;
+                int RowCount_Detalle_Vinculacion_Judicializacion;
                 var Detalle_Vinculacion_JudicializacionData = GetDetalle_Vinculacion_JudicializacionData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Vinculacion_Judicializacion);
 
                 var result = new Judicializacion_Fase_Juicio_OralModel
                 {
                     Clave = m.Clave
-                        ,Fecha_de_Audiencia_de_Juicio = (m.Fecha_de_Audiencia_de_Juicio == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Audiencia_de_Juicio).ToString(ConfigurationProperty.DateFormat))
-			,Hora_de_Audiencia_de_Juicio = m.Hora_de_Audiencia_de_Juicio
-                        ,Tribunal_de_Enjuiciamiento = m.Tribunal_de_Enjuiciamiento
-                        ,Tribunal_de_EnjuiciamientoDescripcion = CultureHelper.GetTraduction(m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Clave.ToString(), "Descripcion") ?? (string)m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Descripcion
-			,Nombre_del_Juez = m.Nombre_del_Juez
-			,Juez_Presidente = m.Juez_Presidente
-			,Juez_Relator = m.Juez_Relator
-			,Juez_Vocal = m.Juez_Vocal
-			,medios_desahogo = m.medios_desahogo
-                        ,Tipo_de_Sentencia = m.Tipo_de_Sentencia
-                        ,Tipo_de_SentenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sentencia_Sentencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sentencia_Sentencia.Descripcion
-			,Cuantia_de_Pena_Anos = m.Cuantia_de_Pena_Anos
-			,Cuantia_de_Pena_Meses = m.Cuantia_de_Pena_Meses
-			,Monto_de_Reparacion_del_Dano = m.Monto_de_Reparacion_del_Dano
-			,Observaciones_Fase_Juicio_Oral = m.Observaciones_Fase_Juicio_Oral
+                        , Fecha_de_Audiencia_de_Juicio = (m.Fecha_de_Audiencia_de_Juicio == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_Audiencia_de_Juicio).ToString(ConfigurationProperty.DateFormat))
+            , Hora_de_Audiencia_de_Juicio = m.Hora_de_Audiencia_de_Juicio
+                        , Tribunal_de_Enjuiciamiento = m.Tribunal_de_Enjuiciamiento
+                        , Tribunal_de_EnjuiciamientoDescripcion = CultureHelper.GetTraduction(m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Clave.ToString(), "Descripcion") ?? (string)m.Tribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento.Descripcion
+            , Nombre_del_Juez = m.Nombre_del_Juez
+            , Juez_Presidente = m.Juez_Presidente
+            , Juez_Relator = m.Juez_Relator
+            , Juez_Vocal = m.Juez_Vocal
+            , medios_desahogo = m.medios_desahogo
+                        , Tipo_de_Sentencia = m.Tipo_de_Sentencia
+                        , Tipo_de_SentenciaDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Sentencia_Sentencia.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Sentencia_Sentencia.Descripcion
+            , Cuantia_de_Pena_Anos = m.Cuantia_de_Pena_Anos
+            , Cuantia_de_Pena_Meses = m.Cuantia_de_Pena_Meses
+            , Monto_de_Reparacion_del_Dano = m.Monto_de_Reparacion_del_Dano
+            , Observaciones_Fase_Juicio_Oral = m.Observaciones_Fase_Juicio_Oral
 
-                    
+
                 };
-				var resultData = new
+                var resultData = new
                 {
                     data = result
-                    ,Vinculacion = Detalle_Vinculacion_JudicializacionData
+                    , Vinculacion = Detalle_Vinculacion_JudicializacionData
 
                 };
                 return Json(resultData, JsonRequestBehavior.AllowGet);
             }
-            return Json(null, JsonRequestBehavior.AllowGet);            
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
 
-		[HttpPost]
+        [HttpPost]
         public ActionResult Post_Salidas_Alternas(Judicializacion_Salidas_AlternasModel varJudicializacion)
         {
             try
@@ -2900,15 +2900,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-				
+
                 var result = "";
                 var Judicializacion_Salidas_AlternasInfo = new Judicializacion_Salidas_Alternas
                 {
                     Clave = varJudicializacion.Clave
-                                            ,Fecha_Fase_Salidas_Alternas = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Salidas_Alternas)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Salidas_Alternas, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_Fase_Salidas_Alternas = varJudicializacion.Hora_Fase_Salidas_Alternas
-                        ,Observaciones_Fase_Salidas_Alternas = varJudicializacion.Observaciones_Fase_Salidas_Alternas
-                    
+                                            , Fecha_Fase_Salidas_Alternas = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Salidas_Alternas)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Salidas_Alternas, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        , Hora_Fase_Salidas_Alternas = varJudicializacion.Hora_Fase_Salidas_Alternas
+                        , Observaciones_Fase_Salidas_Alternas = varJudicializacion.Observaciones_Fase_Salidas_Alternas
+
                 };
 
                 result = _IJudicializacionApiConsumer.Update_Salidas_Alternas(Judicializacion_Salidas_AlternasInfo).Resource.ToString();
@@ -2920,42 +2920,42 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-		
-		[HttpGet]
+
+        [HttpGet]
         public JsonResult Get_Salidas_Alternas(string Id)
-        {     
+        {
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
-            {                
+            {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var m = _IJudicializacionApiConsumer.Get_Salidas_Alternas(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_Vinculacion_Judicializacion;
+                int RowCount_Detalle_Vinculacion_Judicializacion;
                 var Detalle_Vinculacion_JudicializacionData = GetDetalle_Vinculacion_JudicializacionData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Vinculacion_Judicializacion);
 
                 var result = new Judicializacion_Salidas_AlternasModel
                 {
                     Clave = m.Clave
-                        ,Fecha_Fase_Salidas_Alternas = (m.Fecha_Fase_Salidas_Alternas == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Salidas_Alternas).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Salidas_Alternas = m.Hora_Fase_Salidas_Alternas
-			,Observaciones_Fase_Salidas_Alternas = m.Observaciones_Fase_Salidas_Alternas
+                        , Fecha_Fase_Salidas_Alternas = (m.Fecha_Fase_Salidas_Alternas == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Salidas_Alternas).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Salidas_Alternas = m.Hora_Fase_Salidas_Alternas
+            , Observaciones_Fase_Salidas_Alternas = m.Observaciones_Fase_Salidas_Alternas
 
-                    
+
                 };
-				var resultData = new
+                var resultData = new
                 {
                     data = result
-                    ,Vinculacion = Detalle_Vinculacion_JudicializacionData
+                    , Vinculacion = Detalle_Vinculacion_JudicializacionData
 
                 };
                 return Json(resultData, JsonRequestBehavior.AllowGet);
             }
-            return Json(null, JsonRequestBehavior.AllowGet);            
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
 
-		[HttpPost]
+        [HttpPost]
         public ActionResult Post_Sobreseimientos(Judicializacion_SobreseimientosModel varJudicializacion)
         {
             try
@@ -2963,15 +2963,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-				
+
                 var result = "";
                 var Judicializacion_SobreseimientosInfo = new Judicializacion_Sobreseimientos
                 {
                     Clave = varJudicializacion.Clave
-                                            ,Fecha_Fase_Sobreseimientos = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Sobreseimientos)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Sobreseimientos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
-                        ,Hora_Fase_Sobreseimientos = varJudicializacion.Hora_Fase_Sobreseimientos
-                        ,Observaciones_Fase_Sobreseimientos = varJudicializacion.Observaciones_Fase_Sobreseimientos
-                    
+                                            , Fecha_Fase_Sobreseimientos = (!String.IsNullOrEmpty(varJudicializacion.Fecha_Fase_Sobreseimientos)) ? DateTime.ParseExact(varJudicializacion.Fecha_Fase_Sobreseimientos, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
+                        , Hora_Fase_Sobreseimientos = varJudicializacion.Hora_Fase_Sobreseimientos
+                        , Observaciones_Fase_Sobreseimientos = varJudicializacion.Observaciones_Fase_Sobreseimientos
+
                 };
 
                 result = _IJudicializacionApiConsumer.Update_Sobreseimientos(Judicializacion_SobreseimientosInfo).Resource.ToString();
@@ -2983,42 +2983,42 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-		
-		[HttpGet]
+
+        [HttpGet]
         public JsonResult Get_Sobreseimientos(string Id)
-        {     
+        {
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
-            {                
+            {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var m = _IJudicializacionApiConsumer.Get_Sobreseimientos(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_Vinculacion_Judicializacion;
+                int RowCount_Detalle_Vinculacion_Judicializacion;
                 var Detalle_Vinculacion_JudicializacionData = GetDetalle_Vinculacion_JudicializacionData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Vinculacion_Judicializacion);
 
                 var result = new Judicializacion_SobreseimientosModel
                 {
                     Clave = m.Clave
-                        ,Fecha_Fase_Sobreseimientos = (m.Fecha_Fase_Sobreseimientos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Sobreseimientos).ToString(ConfigurationProperty.DateFormat))
-			,Hora_Fase_Sobreseimientos = m.Hora_Fase_Sobreseimientos
-			,Observaciones_Fase_Sobreseimientos = m.Observaciones_Fase_Sobreseimientos
+                        , Fecha_Fase_Sobreseimientos = (m.Fecha_Fase_Sobreseimientos == null ? string.Empty : Convert.ToDateTime(m.Fecha_Fase_Sobreseimientos).ToString(ConfigurationProperty.DateFormat))
+            , Hora_Fase_Sobreseimientos = m.Hora_Fase_Sobreseimientos
+            , Observaciones_Fase_Sobreseimientos = m.Observaciones_Fase_Sobreseimientos
 
-                    
+
                 };
-				var resultData = new
+                var resultData = new
                 {
                     data = result
-                    ,Vinculacion = Detalle_Vinculacion_JudicializacionData
+                    , Vinculacion = Detalle_Vinculacion_JudicializacionData
 
                 };
                 return Json(resultData, JsonRequestBehavior.AllowGet);
             }
-            return Json(null, JsonRequestBehavior.AllowGet);            
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
 
-		[HttpPost]
+        [HttpPost]
         public ActionResult Post_Movimientos(Judicializacion_MovimientosModel varJudicializacion)
         {
             try
@@ -3026,13 +3026,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-				
+
                 var result = "";
                 var Judicializacion_MovimientosInfo = new Judicializacion_Movimientos
                 {
                     Clave = varJudicializacion.Clave
-                                            ,Observaciones = varJudicializacion.Observaciones
-                    
+                                            , Observaciones = varJudicializacion.Observaciones
+
                 };
 
                 result = _IJudicializacionApiConsumer.Update_Movimientos(Judicializacion_MovimientosInfo).Resource.ToString();
@@ -3044,37 +3044,37 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-		
-		[HttpGet]
+
+        [HttpGet]
         public JsonResult Get_Movimientos(string Id)
-        {     
+        {
             if ((Id.GetType() == typeof(string) && Id.ToString() != "") || ((Id.GetType() == typeof(int) || Id.GetType() == typeof(Int16) || Id.GetType() == typeof(Int32) || Id.GetType() == typeof(Int64) || Id.GetType() == typeof(short)) && Id.ToString() != "0"))
-            {                
+            {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
                 _IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var m = _IJudicializacionApiConsumer.Get_Movimientos(Id).Resource;
                 if (m == null)
                     return Json(null, JsonRequestBehavior.AllowGet);
-				                int RowCount_Detalle_Vinculacion_Judicializacion;
+                int RowCount_Detalle_Vinculacion_Judicializacion;
                 var Detalle_Vinculacion_JudicializacionData = GetDetalle_Vinculacion_JudicializacionData(Id.ToString(), 0, Int16.MaxValue, out RowCount_Detalle_Vinculacion_Judicializacion);
 
                 var result = new Judicializacion_MovimientosModel
                 {
                     Clave = m.Clave
-			,Observaciones = m.Observaciones
+            , Observaciones = m.Observaciones
 
-                    
+
                 };
-				var resultData = new
+                var resultData = new
                 {
                     data = result
-                    ,Vinculacion = Detalle_Vinculacion_JudicializacionData
+                    , Vinculacion = Detalle_Vinculacion_JudicializacionData
 
                 };
                 return Json(resultData, JsonRequestBehavior.AllowGet);
             }
-            return Json(null, JsonRequestBehavior.AllowGet);            
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -3088,18 +3088,25 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         public ActionResult GetJudicializacionList2(string query, int Echo)
         {
             int sEcho = Echo;
-  
-            var resultx = ExecuteQueryTable(query);
+
+            var resultx = ExecuteQueryTable(query); 
+            
 
             return Json(new
             {
                 aaData = resultx.Select(m => new modeljudicializacion
                 {
+
                     judicializacion = m.judicializacion,
                     fase = m.fase,
                     usuario_que_registra = m.usuario_que_registra,
                     movimiento_Realizado = m.movimiento_Realizado,
                     fecha_de_movimiento = m.fecha_de_movimiento,
+                    judicializacion= m.judicializacion, 
+                    fase = m.fase,
+                    usuario_que_registra= m.usuario_que_registra,
+                    movimiento_Realizado=m.movimiento_Realizado,
+                    fecha_de_movimiento= m.fecha_de_movimiento,
                     hora_de_movimiento = m.hora_de_movimiento,
                     informacion = m.informacion,
                     registro_de_movimiento_clave = m.registro_de_movimiento_clave
@@ -3117,7 +3124,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         {
             try
             {
-
+                //if (!_tokenManager.GenerateToken())
+                //    return Json(null, JsonRequestBehavior.AllowGet);
+                //_ISpartaneQueryApiConsumer.SetAuthHeader(_tokenManager.Token);
                 var result = _ISpartaneQueryApiConsumer.ExecuteRawQuery(query);
 
                 if (result.Success)
@@ -3139,6 +3148,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 
+
     }
     public class modeljudicializacion
     {
@@ -3153,5 +3163,5 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         public string informacion { get; set; }
 
     }
-}
 
+}
