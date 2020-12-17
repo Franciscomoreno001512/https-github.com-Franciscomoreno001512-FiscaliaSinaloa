@@ -3097,11 +3097,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 aaData = resultx.Select(m => new modeljudicializacion
                 {
 
-                    judicializacion = m.judicializacion,
-                    fase = m.fase,
-                    usuario_que_registra = m.usuario_que_registra,
-                    movimiento_Realizado = m.movimiento_Realizado,
-                    fecha_de_movimiento = m.fecha_de_movimiento,
                     judicializacion= m.judicializacion, 
                     fase = m.fase,
                     usuario_que_registra= m.usuario_que_registra,
