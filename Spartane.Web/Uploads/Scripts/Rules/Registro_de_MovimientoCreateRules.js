@@ -3,6 +3,7 @@ var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
+//NEWBUSINESSRULE_NONE//
 	$("#Registro_de_MovimientoGuardarYNuevo").addClass("hidden");
 	$("#Registro_de_MovimientoGuardarYCopia").addClass("hidden");
 });
@@ -47,7 +48,8 @@ function ObtenControlesDinamicos(mov) {
                     }
                     multi.push("#idcampDinamico_" + i);
                     break;
-            }            
+            }         
+		
             if (listaControlesDinamicos[i].Obligatorio == 1) 
                 dinamicosrequeridos.push("#idcampDinamico_" + i);            
         }
@@ -258,8 +260,7 @@ function GuardarInformacion() {
             }
             htmldinamico += "<br> ";       
         }
-    }
-    debugger;
+    }    
 	htmldinamicoComp = htmldinamico;
     $('#Informacion').val(htmldinamico);
     CKEDITOR.instances['Informacion'].setData(htmlDecode(htmldinamico));    
@@ -272,7 +273,6 @@ function ObtieneValor(valor, lst) {
         }
     }    
 }
-
 
 function GuardaInformacionXCampo(idnew, campo, etiqueta, valor) {    
     var GuardadoCorrecto = ExecuteQueryTabla("exec usp_GuardaDetalle_de_Guardado_de_Movimiento " + idnew + "," + campo + ",'" + etiqueta + "','" + valor + "'");
@@ -300,7 +300,7 @@ function GuardarInformacionCampos(idnew) {
                 case 6:
                     GuardaInformacionXCampo(idnew, listaControlesDinamicos[i].Campo, listaControlesDinamicos[i].Label, $("#idcampDinamico_" + i).prop("checked"));                                 
 					break;
-                case 8:                    
+                case 8:                   
                     var valores = $("#idcampDinamico_" + i).val();
                     for (var l = 0; l < valores.length; l++) {
                         GuardaInformacionXCampo(idnew, listaControlesDinamicos[i].Campo, listaControlesDinamicos[i].Label, valores[l]);  
@@ -312,6 +312,7 @@ function GuardarInformacionCampos(idnew) {
 }
 
 function LlenadoDatosExistentes(idrm) {
+	debugger;
     var campomultianterior = "";
     var lstDatosComboM = [];
     var multi2 = [];
@@ -325,7 +326,7 @@ function LlenadoDatosExistentes(idrm) {
                         case 1:
                         case 2:
                         case 3:
-                        case 4:
+                        case 4:                       
                         case 7:
                             $("#idcampDinamico_" + i).val(listaDatosExistentes[e].Valor);
                             break;
@@ -333,8 +334,8 @@ function LlenadoDatosExistentes(idrm) {
 						   if (listaDatosExistentes[e].Valor == 'true') {
                                 $("#idcampDinamico_" + i).prop("checked", true);
                             }
-                            break;
-                         case 8:
+                            break;							
+                        case 8:
                             if (campomultianterior != listaDatosExistentes[e].Campo) {
                                 lstDatosComboM = [];
                                 campomultianterior = listaDatosExistentes[e].Campo;
@@ -349,17 +350,14 @@ function LlenadoDatosExistentes(idrm) {
         }
 		for (var i = 0; i < multi2.length; i++) {
             $(multi2[i]).trigger('chosen:updated');            
-        }   
+        }       
     }
 }
-
-
 
 function EjecutarValidacionesAlComienzo() {
 //BusinessRuleId:2990, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divJudicializacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Judicializacion' + rowIndex));$('#divFase').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fase' + rowIndex));$('#divUsuario_que_Registra').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_Registra' + rowIndex));$('#divInformacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Informacion' + rowIndex));
-
 }
 //BusinessRuleId:2990, Attribute:0, Operation:Object, Event:SCREENOPENING
 

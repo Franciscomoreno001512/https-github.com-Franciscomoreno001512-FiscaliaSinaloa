@@ -258,6 +258,13 @@ if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTabl
 }
 //BusinessRuleId:2976, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+//BusinessRuleId:3010, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { EvaluaQuery("  exec Insertjudicializacion  GLOBAL[idTablero],GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:3010, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

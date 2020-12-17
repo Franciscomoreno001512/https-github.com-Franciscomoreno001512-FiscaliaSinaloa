@@ -2032,7 +2032,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         [HttpGet]
         public void Export(string format, int pageIndex, int pageSize, string iSortCol, string sSortDir, string where, string order, dynamic columnsVisible)
         {
-            var exportFormatType = null;
+            var exportFormatType = (ExportFormatType)Enum.Parse(
+                                          typeof(ExportFormatType), format, true);
 										  
 			string[] arrayColumnsVisible = null;
 

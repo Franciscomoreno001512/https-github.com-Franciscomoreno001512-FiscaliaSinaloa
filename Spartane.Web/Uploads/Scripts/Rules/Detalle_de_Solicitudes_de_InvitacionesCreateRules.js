@@ -4,7 +4,32 @@ var rowIndex = '';
 var saltarValidacion = false;
 $('#Detalle_de_Solicitudes_de_InvitacionesGuardarYNuevo').hide();
 $('#Detalle_de_Solicitudes_de_InvitacionesGuardarYCopia').hide();
+function IniciaMR()
+{	
+	$('select[name="Detalle_de_Solicitante_en_InvitacionesGrid_length"]').val('-1').trigger('change');
+    $("#Detalle_de_Solicitante_en_InvitacionesGrid_length").css("display", "none");
+	$('select[name="Detalle_de_Requerido_en_InvitacionesGrid_length"]').val('-1').trigger('change');
+    $("#Detalle_de_Requerido_en_Invitaciones_length").css("display", "none");	
+
+	$('.dataTables_length').css("display", "none");
+	$('.dataTables_info').css("display", "none");
+	$('.pagination').css("display", "none");
+	
+	$('th[class="ActionHeader sorting_asc"]').each(function () {
+		$(this).css("width","10%");
+    });	
+}
+
+
 $(document).ready(function () {
+
+
+setTimeout(function () {
+	IniciaMR();
+}, 1000);
+
+
+
 //BusinessRuleId:683, Attribute:263119, Operation:Field, Event:None
 $("#Detalle_de_Solicitudes_de_InvitacionesGrid").on('change', '.Fecha_de_Recepcion', function () {
 	nameOfTable = $(this).parent().parent().parent().parent()[0].id.replace('Grid', '') + '_';

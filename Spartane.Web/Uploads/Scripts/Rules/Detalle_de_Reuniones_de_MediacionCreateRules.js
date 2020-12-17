@@ -4,7 +4,19 @@ var rowIndex = '';
 var saltarValidacion = false;
 $('#Detalle_de_Reuniones_de_MediacionGuardarYNuevo').hide()
 $('#Detalle_de_Reuniones_de_MediacionGuardarYCopia').hide()
+function IniciaMR()
+{
+	$('th[class="ActionHeader sorting_asc"]').each(function () {
+		$(this).css("width","10%");
+    });	
+}
 $(document).ready(function () {
+	
+	
+	
+setTimeout(function () {
+	IniciaMR();
+}, 1000);
 
 
 

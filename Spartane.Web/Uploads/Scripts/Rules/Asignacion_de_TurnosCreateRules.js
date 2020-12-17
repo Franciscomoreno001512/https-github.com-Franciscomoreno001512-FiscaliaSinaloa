@@ -72,11 +72,25 @@ $("form#CreateAsignacion_de_Turnos").on('keyup', '#Apellido_Materno', function (
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //BusinessRuleId:1512, Attribute:265557, Operation:Field, Event:None
 $("form#CreateAsignacion_de_Turnos").on('change', '#Urgencia', function () {
 	nameOfTable='';
 	rowIndex='';
-if( GetValueByControlType($('#' + nameOfTable + 'Urgencia' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divTipo_de_Urgencia').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex));} else { $('#divTipo_de_Urgencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex));}
+if( GetValueByControlType($('#' + nameOfTable + 'Urgencia' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { $('#divTipo_de_Urgencia').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex));} else { $('#divTipo_de_Urgencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex),'0');}
 });
 
 //BusinessRuleId:1512, Attribute:265557, Operation:Field, Event:None
@@ -550,6 +564,22 @@ if(operation == 'Update'){
 function EjecutarValidacionesAntesDeGuardar(){
 	var result = true;
 
+
+//BusinessRuleId:3009, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'New'){
+if( GetValueByControlType($('#' + nameOfTable + 'Urgencia' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') && GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex),nameOfTable,rowIndex)<TryParseInt('1', '1') ) { alert(DecodifyText(' El campo Tipo de Urgencia es Requerido.', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:3009, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:3009, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Urgencia' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') && GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Urgencia' + rowIndex),nameOfTable,rowIndex)<TryParseInt('1', '1') ) { alert(DecodifyText(' El campo Tipo de Urgencia es Requerido.', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:3009, Attribute:2, Operation:Object, Event:BEFORESAVING
 
 //NEWBUSINESSRULE_BEFORESAVING//
     return result;

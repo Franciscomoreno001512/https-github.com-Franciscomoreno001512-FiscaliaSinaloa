@@ -202,6 +202,52 @@ if( TryParseInt(ReplaceGLOBAL('GLOBAL[idtablero]'), ReplaceGLOBAL('GLOBAL[idtabl
 
 //BusinessRuleId:2623, Attribute:263447, Operation:Field, Event:None
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//BusinessRuleId:3006, Attribute:263456, Operation:Field, Event:None
+$("form#CreateDetalle_de_Delito").on('change', '#Robo_de_Vehiculo', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Robo_de_Vehiculo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { var valor = $('#' + nameOfTable + 'Delito' + rowIndex).val();   $('#' + nameOfTable + 'Delito' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Delito' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Delito WHERE Descripcion LIKE '%vehiculo%'", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Delito WHERE Descripcion LIKE '%vehiculo%'", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Delito' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Delito' + rowIndex).val(valor).trigger('change');} else { var valor = $('#' + nameOfTable + 'Delito' + rowIndex).val();   $('#' + nameOfTable + 'Delito' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Delito' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Delito WHERE Clave > 0", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Delito WHERE Clave > 0", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Delito' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Delito' + rowIndex).val(valor).trigger('change');}
+});
+
+//BusinessRuleId:3006, Attribute:263456, Operation:Field, Event:None
+
+//BusinessRuleId:3005, Attribute:263447, Operation:Field, Event:None
+$("form#CreateDetalle_de_Delito").on('change', '#Delito', function () {
+	nameOfTable='';
+	rowIndex='';
+ AsignarValor($('#' + nameOfTable + 'Tipo_de_Delito' + rowIndex),EvaluaQuery("SELECT TD.Descripcion FROM dbo.Delito D"
++" INNER JOIN dbo.Tipo_Delito TD ON TD.Clave = D.TIPO_DELITO"
++" WHERE D.Clave = FLD[Delito]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Grupo_Delito' + rowIndex),EvaluaQuery("SELECT GD.Descripcion FROM dbo.Delito D"
++" INNER JOIN dbo.Grupo_del_Delito GD ON GD.Clave = D.Grupo_del_Delito"
++" WHERE D.Clave = FLD[Delito]", rowIndex, nameOfTable));
+});
+
+//BusinessRuleId:3005, Attribute:263447, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
@@ -731,6 +777,33 @@ if(operation == 'Consult'){
 
 }
 //BusinessRuleId:3003, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ DisabledControl($("#" + nameOfTable + "Tipo_de_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Delito' + rowIndex));}DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
+
+}
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ DisabledControl($("#" + nameOfTable + "Tipo_de_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Delito' + rowIndex));}DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
+
+}
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ DisabledControl($("#" + nameOfTable + "Tipo_de_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Delito' + rowIndex));}DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
+
+}
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

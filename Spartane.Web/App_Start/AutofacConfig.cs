@@ -8682,3 +8682,7 @@ builder.RegisterType<Detalle_de_Guardado_de_MovimientoApiConsumer>().As<IDetalle
 
 
 
+
+
+
+
