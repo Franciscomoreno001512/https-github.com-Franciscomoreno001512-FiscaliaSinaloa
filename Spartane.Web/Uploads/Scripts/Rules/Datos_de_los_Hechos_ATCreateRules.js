@@ -124,6 +124,11 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:2939, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//COD-MANI INI OCULTAR BOTONES
+$('#Datos_de_los_Hechos_ATGuardarYNuevo').css('display', 'none');
+$('#Datos_de_los_Hechos_ATGuardarYCopia').css('display', 'none');
+//COD-MANI END OCULTAR BOTONES
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

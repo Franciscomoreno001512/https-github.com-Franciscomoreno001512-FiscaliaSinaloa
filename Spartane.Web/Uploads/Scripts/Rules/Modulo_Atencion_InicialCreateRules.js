@@ -2025,6 +2025,13 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:2907, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:3011, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( GetValueByControlType($('#' + nameOfTable + 'Region' + rowIndex),nameOfTable,rowIndex)==TryParseInt('null', 'null') ) { AsignarValor($('#' + nameOfTable + 'Region' + rowIndex),EvaluaQuery(" SELECT Region FROM dbo.Spartan_User WHERE Id_User = GLOBAL[USERID]", rowIndex, nameOfTable));} else {}
+
+}
+//BusinessRuleId:3011, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -2754,6 +2761,19 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:2938, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+
+
+//BusinessRuleId:2997, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery(" IF (SELECT Usuario_que_Registra FROM dbo.Modulo_Atencion_Inicial WHERE Clave = GLOBAL[KeyValueInserted]) IS NULL"
++" BEGIN"
++" 	UPDATE Modulo_Atencion_Inicial SET Usuario_que_Registra = GLOBAL[USERID]"
++" 	WHERE Clave = GLOBAL[KeyValueInserted]"
++" END", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2997, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

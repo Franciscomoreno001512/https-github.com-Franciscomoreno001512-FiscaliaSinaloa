@@ -25,25 +25,7 @@ function GetDetalle_Datos_Adicionales_Movimiento_Tipo_de_DatoDropDown() {
     }
     return Detalle_Datos_Adicionales_Movimiento_Tipo_de_DatoDropdown;
 }
-function GetDetalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosName(Id) {
-    for (var i = 0; i < Detalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosItems.length; i++) {
-        if (Detalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosItems[i].ObjectId == Id) {
-            return Detalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosItems[i].Descripcion;
-        }
-    }
-    return "";
-}
 
-function GetDetalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosDropDown() {
-    var Detalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosDropdown = $('<select class="form-control" />');      var labelSelect = $("#Detalle_Datos_Adicionales_Movimiento_cmbLabelSelect").val();
-
-    $('<option />', { value: '', text: labelSelect }).appendTo(Detalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosDropdown);
-
-    for (var i = 0; i < Detalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosItems.length; i++) {
-        $('<option />', { value: Detalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosItems[i].ObjectId, text: Detalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosItems[i].Descripcion }).appendTo(Detalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosDropdown);
-    }
-    return Detalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosDropdown;
-}
 
 
 
@@ -53,7 +35,7 @@ function GetInsertDetalle_Datos_Adicionales_MovimientoRowControls(index) {
 
     columnData[0] = $($.parseHTML(inputData)).addClass('Detalle_Datos_Adicionales_Movimiento_Dato Dato').attr('id', 'Detalle_Datos_Adicionales_Movimiento_Dato_' + index).attr('data-field', 'Dato');
     columnData[1] = $(GetDetalle_Datos_Adicionales_Movimiento_Tipo_de_DatoDropDown()).addClass('Detalle_Datos_Adicionales_Movimiento_Tipo_de_Dato Tipo_de_Dato').attr('id', 'Detalle_Datos_Adicionales_Movimiento_Tipo_de_Dato_' + index).attr('data-field', 'Tipo_de_Dato').after($.parseHTML(addNew('Detalle_Datos_Adicionales_Movimiento', 'Tipo_de_Dato', 'Tipo_de_Dato', 268531)));
-    columnData[2] = $($.parseHTML(GetGridAutoComplete(null,'AutoCompleteDetalle_Datos_Adicionales_Movimiento_Relacion'))).addClass('Detalle_Datos_Adicionales_Movimiento_Relacion Relacion').attr('id', 'Detalle_Datos_Adicionales_Movimiento_Relacion_' + index).attr('data-field', 'Relacion').after($.parseHTML(addNew('Detalle_Datos_Adicionales_Movimiento', 'Relaciones_para_Movimientos', 'Relacion', 268532)));
+    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Datos_Adicionales_Movimiento_Query_para_llenado Query_para_llenado').attr('id', 'Detalle_Datos_Adicionales_Movimiento_Query_para_llenado_' + index).attr('data-field', 'Query_para_llenado');
     columnData[3] = $($.parseHTML(GetGridCheckBox())).addClass('Detalle_Datos_Adicionales_Movimiento_Obligatorio Obligatorio').attr('id', 'Detalle_Datos_Adicionales_Movimiento_Obligatorio_' + index).attr('data-field', 'Obligatorio');
 
 
@@ -74,8 +56,7 @@ if (EjecutarValidacionesAntesDeGuardarMRDetalle_Datos_Adicionales_Movimiento("De
 
         ,Dato:  data.childNodes[counter++].childNodes[0].value
         ,Tipo_de_Dato:  data.childNodes[counter++].childNodes[0].value
-        , RelacionDescripcion:  $(data.childNodes[counter].childNodes[0]).find('option:selected').text() 
-        , Relacion:  data.childNodes[counter++].childNodes[0].value 	
+        ,Query_para_llenado:  data.childNodes[counter++].childNodes[0].value
         ,Obligatorio: $(data.childNodes[counter++].childNodes[2]).is(':checked')
 
     }
@@ -114,7 +95,7 @@ function GetDetalle_Datos_Adicionales_MovimientoFromDataTable() {
 
                 ,Dato: gridData[i].Dato
                 ,Tipo_de_Dato: gridData[i].Tipo_de_Dato
-                ,Relacion: gridData[i].Relacion
+                ,Query_para_llenado: gridData[i].Query_para_llenado
                 ,Obligatorio: gridData[i].Obligatorio
 
                 ,Removed: false
@@ -128,7 +109,7 @@ function GetDetalle_Datos_Adicionales_MovimientoFromDataTable() {
 
                 ,Dato: removedDetalle_Datos_Adicionales_MovimientoData[i].Dato
                 ,Tipo_de_Dato: removedDetalle_Datos_Adicionales_MovimientoData[i].Tipo_de_Dato
-                ,Relacion: removedDetalle_Datos_Adicionales_MovimientoData[i].Relacion
+                ,Query_para_llenado: removedDetalle_Datos_Adicionales_MovimientoData[i].Query_para_llenado
                 ,Obligatorio: removedDetalle_Datos_Adicionales_MovimientoData[i].Obligatorio
 
                 , Removed: true
@@ -195,7 +176,7 @@ function Detalle_Datos_Adicionales_MovimientoEditRowPopup(rowIndex, currentRow) 
 
     $('#Detalle_Datos_Adicionales_MovimientoDato').val(prevData.Dato);
     $('#Detalle_Datos_Adicionales_MovimientoTipo_de_Dato').val(prevData.Tipo_de_Dato);
-    $('#dvDetalle_Datos_Adicionales_MovimientoRelacion').html($($.parseHTML(GetGridAutoComplete(prevData.Relacion.label,'AutoCompleteRelacion'))).addClass('Detalle_Datos_Adicionales_Movimiento_Relacion'));
+    $('#Detalle_Datos_Adicionales_MovimientoQuery_para_llenado').val(prevData.Query_para_llenado);
     $('#Detalle_Datos_Adicionales_MovimientoObligatorio').prop('checked', prevData.Obligatorio);
 
     initiateUIControls();
@@ -218,7 +199,7 @@ function Detalle_Datos_Adicionales_MovimientoAddInsertRow() {
 
         ,Dato: ""
         ,Tipo_de_Dato: ""
-        ,Relacion: ""
+        ,Query_para_llenado: ""
         ,Obligatorio: ""
 
     }
@@ -253,7 +234,7 @@ function GetDetalle_Datos_Adicionales_Movimiento() {
 
         form_data.append('[' + i + '].Dato', Detalle_Datos_Adicionales_MovimientoData[i].Dato);
         form_data.append('[' + i + '].Tipo_de_Dato', Detalle_Datos_Adicionales_MovimientoData[i].Tipo_de_Dato);
-        form_data.append('[' + i + '].Relacion', Detalle_Datos_Adicionales_MovimientoData[i].Relacion);
+        form_data.append('[' + i + '].Query_para_llenado', Detalle_Datos_Adicionales_MovimientoData[i].Query_para_llenado);
         form_data.append('[' + i + '].Obligatorio', Detalle_Datos_Adicionales_MovimientoData[i].Obligatorio);
 
         form_data.append('[' + i + '].Removed', Detalle_Datos_Adicionales_MovimientoData[i].Removed);
@@ -270,7 +251,7 @@ function Detalle_Datos_Adicionales_MovimientoInsertRowFromPopup(rowIndex) {
 
         ,Dato: $('#Detalle_Datos_Adicionales_MovimientoDato').val()
         ,Tipo_de_Dato: $('#Detalle_Datos_Adicionales_MovimientoTipo_de_Dato').val()
-        ,Relacion: $('#Detalle_Datos_Adicionales_MovimientoRelacion').val()
+        ,Query_para_llenado: $('#Detalle_Datos_Adicionales_MovimientoQuery_para_llenado').val()
         ,Obligatorio: $('#Detalle_Datos_Adicionales_MovimientoObligatorio').is(':checked')
 
     }
@@ -338,17 +319,6 @@ $(function () {
 });
 
 //Grid GetAutocomplete
-var AutoCompleteRelacionData = [];
-function GetAutoCompleteDetalle_Datos_Adicionales_Movimiento_Relacion_Relaciones_para_MovimientosData(data) {
-	AutoCompleteRelacionData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteRelacionData.push({
-            id: data[i].ObjectId,
-            text: data[i].Descripcion
-        });
-    }
-    return AutoCompleteRelacionData;
-}
 
 
 

@@ -203,6 +203,12 @@
                                     @Html.CheckBoxFor(m => m.Aplica_para_Adolescentes, new { @class = "i-checks Datos_Generales" })
                                 </div>
                             </div>
+                            <div class="form-group" id="divAplicar_para_Adultos">
+                                <label class="col-sm-2 control-label">@Resources.Configurador_de_MovimientosResources.Aplicar_para_Adultos</label>
+                                <div class="col-sm-8" data-field-id="Aplicar_para_Adultos" data-attribute="268601" data-field-name="@Resources.Configurador_de_MovimientosResources.Aplicar_para_Adultos">
+                                    @Html.CheckBoxFor(m => m.Aplicar_para_Adultos, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
                             <div id="divDatos_Adicionales">
                             <div class="ibox-title">
                                 <h5>@Resources.Configurador_de_MovimientosResources.Datos_Adicionales</h5>
@@ -251,12 +257,12 @@
                                                                 <i class="fa fa-cogs fa-spin"></i>
                                                             </a>
                                                         </button>@Resources.Detalle_Datos_Adicionales_MovimientoResources.Tipo_de_Dato</span></th>
-                                                <th class="RelacionHeader" style="width:250px"><span>
-<button type="button" data-attribute="268532" data-field-id="Detalle_Datos_Adicionales_MovimientoRelacion" data-field-name="@Resources.Detalle_Datos_Adicionales_MovimientoResources.Relacion" data-toggle="modal" data-target="#Configurador_de_MovimientosBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
-                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Datos_Adicionales_MovimientoResources.Relacion">
+                                                <th class="Query_para_llenadoHeader"><span>
+<button type="button" data-attribute="268532" data-field-id="Detalle_Datos_Adicionales_MovimientoQuery_para_llenado" data-field-name="@Resources.Detalle_Datos_Adicionales_MovimientoResources.Query_para_llenado" data-toggle="modal" data-target="#Configurador_de_MovimientosBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Datos_Adicionales_MovimientoResources.Query_para_llenado">
                                                                 <i class="fa fa-cogs fa-spin"></i>
                                                             </a>
-                                                        </button>@Resources.Detalle_Datos_Adicionales_MovimientoResources.Relacion</span></th>
+                                                        </button>@Resources.Detalle_Datos_Adicionales_MovimientoResources.Query_para_llenado</span></th>
                                                 <th class="ObligatorioHeader"><span>
 <button type="button" data-attribute="268533" data-field-id="Detalle_Datos_Adicionales_MovimientoObligatorio" data-field-name="@Resources.Detalle_Datos_Adicionales_MovimientoResources.Obligatorio" data-toggle="modal" data-target="#Configurador_de_MovimientosBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
                                                             <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Datos_Adicionales_MovimientoResources.Obligatorio">
@@ -474,7 +480,7 @@
 
             columnData[counter++] = $($($.parseHTML(inputData)).val(data.Dato)).addClass('Dato').attr('id', nameOfTable + 'Dato' + rowIndex).attr('data-field', 'Dato');
            columnData[counter++] = $($(GetDetalle_Datos_Adicionales_Movimiento_Tipo_de_DatoDropDown()).val(data.Tipo_de_Dato)).addClass('Tipo_de_Dato inputNumber').attr('id', nameOfTable + 'Tipo_de_Dato' + rowIndex).attr('data-field', 'Tipo_de_Dato').after($.parseHTML(addNew('Detalle_Datos_Adicionales_Movimiento', 'Tipo_de_Dato','Tipo_de_Dato', 268531)));
-            columnData[counter++] = $($($.parseHTML(GetGridAutoComplete(data.RelacionDescripcion != undefined ? data.RelacionDescripcion : null, 'AutoComplete' + nameOfTable + 'Relacion', data.Relacion)))).addClass('Relacion').attr('id', nameOfTable + 'Relacion' + rowIndex).attr('data-field', 'Relacion').after($.parseHTML(addNew('Detalle_Datos_Adicionales_Movimiento', 'Relaciones_para_Movimientos','Relacion', 268532)));
+            columnData[counter++] = $($($.parseHTML(inputData)).val(data.Query_para_llenado)).addClass('Query_para_llenado').attr('id', nameOfTable + 'Query_para_llenado' + rowIndex).attr('data-field', 'Query_para_llenado');
               columnData[counter++] = $($($.parseHTML(GetGridCheckBox())).prop('checked', (data.Obligatorio=="true" || data.Obligatorio==true)? 'checked': ''? 'checked': '')).addClass('Obligatorio').attr('id', nameOfTable + 'Obligatorio' + rowIndex).attr('data-field', 'Obligatorio');
 
             return columnData;
@@ -606,13 +612,10 @@
                 $('<td id="'+nameOfTable+'Tipo_de_Dato'+rowIndex+'">').text(GetDetalle_Datos_Adicionales_Movimiento_Tipo_de_DatoName(data.Tipo_de_Dato)).appendTo(row);
 	    else 
 		$('<td style="display:none;" id="'+nameOfTable+'Tipo_de_Dato'+rowIndex+'">').text(GetDetalle_Datos_Adicionales_Movimiento_Tipo_de_DatoName(data.Tipo_de_Dato)).appendTo(row);
-            if ($('.Relacion' + 'Header').css('display') != 'none'){
-                if (data.RelacionDescripcion == undefined){$('<td class="dt-right"  id="'+nameOfTable+'Relacion'+rowIndex+'">').text(data.Relacion).appendTo(row);}else{$('<td>').text(data.RelacionDescripcion).appendTo(row);}
-}
-             else {
-                if (data.RelacionDescripcion == undefined){$('<td style="display:none;" class="dt-right"  id="'+nameOfTable+'Relacion'+rowIndex+'">').text(data.Relacion).appendTo(row);}else{$('<td style:display:none;>').text(data.RelacionDescripcion).appendTo(row);}
-}
-
+            if ($('.Query_para_llenado' + 'Header').css('display') != 'none')
+                $('<td id="'+nameOfTable+'Query_para_llenado'+rowIndex+'">').text(data.Query_para_llenado).appendTo(row);
+            else 
+                $('<td style="display:none;" id="'+nameOfTable+'Query_para_llenado'+rowIndex+'">').text(data.Query_para_llenado).appendTo(row);
             if ($('.Obligatorio' + 'Header').css('display') != 'none')
                 $('<td id="'+nameOfTable+'Obligatorio'+rowIndex+'">').text(data.Obligatorio).appendTo(row);
             else
@@ -635,7 +638,7 @@
 
                     { "data": "Dato", "orderable": false },
                     { "data": "Tipo_de_Dato", "orderable": false },
-                    { "data": "Relacion", "orderable": false },
+                    { "data": "Query_para_llenado", "orderable": false },
                     { "data": "Obligatorio", "orderable": false },
 
                 ],
@@ -684,24 +687,7 @@
                 }
             });
         }
-    var Detalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosItems;
-        function GetDetalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosItem() {
-            Detalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosItems = null;
-            var ajaxUrl = "@Url.Content("~/Frontal/Configurador_de_Movimientos/GetDetalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosAll")";
-            $.ajax({
-                url: ajaxUrl,
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                global: false,
-                success: function (result) {
-                    Detalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosItems = result;
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                }
-            });
-        }
+
 
 
         var Detalle_Datos_Adicionales_MovimientoData = [];
@@ -786,38 +772,7 @@
 
 
 
-        $(".AutoCompleteDetalle_Datos_Adicionales_Movimiento_Relacion").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Configurador_de_Movimientos/GetDetalle_Datos_Adicionales_Movimiento_Relacion_Relaciones_para_Movimientos")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
 
-                    return {
-                        results: GetAutoCompleteDetalle_Datos_Adicionales_Movimiento_Relacion_Relaciones_para_MovimientosData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteDetalle_Datos_Adicionales_Movimiento_Relacion");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val(' ');
-            $('.select2-search__field').keyup();
-        });
 
 
 
@@ -1069,6 +1024,7 @@
                     $('#Descripcion').val(result.data.Descripcion);
                     $('#Fase').val(result.data.Fase);
                     $('#Aplica_para_Adolescentes').prop('checked', result.data.Aplica_para_Adolescentes);
+                    $('#Aplicar_para_Adultos').prop('checked', result.data.Aplicar_para_Adultos);
                     Detalle_Datos_Adicionales_MovimientoDataDataTable = result.Datos_Adicionales;
                     showDetalle_Datos_Adicionales_MovimientoGrid(result.Datos_Adicionales);
                     $('#Detalle_Datos_Adicionales_MovimientoGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
@@ -1087,6 +1043,7 @@
 			                data.append('Descripcion', $('#Descripcion').val());
                 data.append('Fase', $('#Fase').val());
                 data.append('Aplica_para_Adolescentes', $('#Aplica_para_Adolescentes').prop('checked'));
+                data.append('Aplicar_para_Adultos', $('#Aplicar_para_Adultos').prop('checked'));
 
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Configurador_de_Movimientos/Post_Datos_Generales")',

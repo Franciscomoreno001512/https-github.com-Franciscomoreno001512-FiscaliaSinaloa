@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Spartane.Web.Areas.Frontal.Models
 {
@@ -40,6 +41,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Movimiento_RealizadoDescripcion { get; set; }
         public string Fecha_de_Movimiento { get; set; }
         public string Hora_de_Movimiento { get; set; }
+		[AllowHtml]
         public string Informacion { get; set; }
 
     }

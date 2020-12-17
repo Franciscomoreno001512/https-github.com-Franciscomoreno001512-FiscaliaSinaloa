@@ -268,6 +268,7 @@
                                     <textarea id="Informacion" data-type="ckEditor" class="form-control Datos_Generales" name="Informacion">@Html.Raw(Model.Informacion)</textarea>
                                 </div>
                             </div>
+							<div id="compDinamicos"></div>
                             </div>
                                 </div>
 
@@ -398,7 +399,7 @@
         var nameMR = '@ViewBag.nameMR';
 		var nameAttribute = '@ViewBag.nameAttribute';
 		var Tab_Datos_Generales = true;
-
+		var judicializacionSes='0';
 
         $(document).ready(function () {
             $('#ObjectId').val('45636');
@@ -528,7 +529,7 @@
             $('.select2-search__field').keyup();
         });
 
-
+			debugger;
             @if(ViewBag.IsNew)
             { 
                 <text>$('input:checkbox').prop('checked', false);</text>
@@ -543,10 +544,16 @@
                 </text>
             }
             EjecutarValidacionesAlComienzo(); 
-			
+			debugger;
+			if('@ViewBag.IsNew'=='True'){
+				var fase = '@Session["GLOBAL_FASE"]';
+				judicializacionSes = '@Session["GLOBAL_JUDICIALIZACION"]';
+				if(fase != null && judicializacionSes != null){				
+					$("#Fase").val(fase);		
+				}
+			}			
         });
-
-
+		
 
         function initiateUIControls() {
              $('.gridDatePicker').datepicker({
@@ -809,6 +816,7 @@
 		
 		function Fill_Datos_Generales()
         {
+			debugger;
             $.ajax({
                 url: "@Url.Content("~/Frontal/Registro_de_Movimiento/Get_Datos_Generales")?Id=" + $("#ReferenceClave").val(),
                 type: 'GET',
@@ -848,6 +856,7 @@
                     $('#Hora_de_Movimiento').val(result.data.Hora_de_Movimiento);
                     $('#Informacion').val(result.data.Informacion);
                     CKEDITOR.instances['Informacion'].setData(htmlDecode(result.data.Informacion));
+			
 
                 },
                 error: function (result) {
@@ -857,16 +866,24 @@
         }
 		
 		function Save_Datos_Generales(newId) {
-			var data = new FormData();
-			data.append('Clave', newId);
-			                data.append('Judicializacion', $('#Judicializacion').val());
+				debugger;
+				var data = new FormData();
+				data.append('Clave', newId);
+				if('@ViewBag.IsNew'=='True')
+					data.append('Judicializacion', judicializacionSes);
+				else
+					data.append('Judicializacion', $('#Judicializacion').val());
                 data.append('Fase', $('#Fase').val());
                 data.append('Usuario_que_Registra', $('#Usuario_que_Registra').val());
                 data.append('Movimiento_Realizado', $('#Movimiento_Realizado').val());
                 data.append('Fecha_de_Movimiento', $('#Fecha_de_Movimiento').val());
-                data.append('Hora_de_Movimiento', $('#Hora_de_Movimiento').val());
-                data.append('Informacion', $('#Informacion').val());
-
+                data.append('Hora_de_Movimiento', $('#Hora_de_Movimiento').val());					
+				data.append('Informacion', $('#Informacion').val());
+				try{
+					GuardarInformacionCampos(newId);
+				}catch(error){
+					 console.error(error);
+				}
 			$.ajax({
 				url: '@Url.Content("~/Frontal/Registro_de_Movimiento/Post_Datos_Generales")',
 				type: 'POST',

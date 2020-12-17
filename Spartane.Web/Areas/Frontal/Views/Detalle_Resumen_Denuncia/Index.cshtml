@@ -199,11 +199,13 @@
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Detalle_Resumen_DenunciaResources.Clave</th>
                                     <th>@Resources.Detalle_Resumen_DenunciaResources.Modulo_Atencion_Inicial</th>
-                                    <th>@Resources.Detalle_Resumen_DenunciaResources.Ofendido</th>
+                                    <th>@Resources.Detalle_Resumen_DenunciaResources.Probable_Responsable</th>
                                     <th>@Resources.Detalle_Resumen_DenunciaResources.Delito</th>
                                     <th>@Resources.Detalle_Resumen_DenunciaResources.Victima</th>
                                     <th>@Resources.Detalle_Resumen_DenunciaResources.Relacion</th>
+                                    <th>@Resources.Detalle_Resumen_DenunciaResources.Hechos</th>
                                     <th>@Resources.Detalle_Resumen_DenunciaResources.Generado</th>
+                                    <th>@Resources.Detalle_Resumen_DenunciaResources.Archivo_Descargado</th>
                                     <th>@Resources.Detalle_Resumen_DenunciaResources.Fecha_de_registro</th>
                                     <th>@Resources.Detalle_Resumen_DenunciaResources.Hora_de_registro</th>
 
@@ -218,6 +220,8 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
@@ -338,22 +342,26 @@
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Modulo_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Ofendido =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Probable_Responsable =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Victima =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Relacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Generado = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Archivo_Descargado = $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_registro = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_registro = $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
         + "&Modulo_Atencion_Inicial=" + Modulo_Atencion_Inicial
-        + "&Ofendido=" + Ofendido
+        + "&Probable_Responsable=" + Probable_Responsable
         + "&Delito=" + Delito
         + "&Victima=" + Victima
         + "&Relacion=" + Relacion
+        + "&Hechos=" + Hechos
         + "&Generado=" + Generado
+        + "&Archivo_Descargado=" + Archivo_Descargado
         + "&Fecha_de_registro=" + Fecha_de_registro
         + "&Hora_de_registro=" + Hora_de_registro
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
@@ -371,22 +379,26 @@
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Modulo_Atencion_Inicial =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Ofendido =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Probable_Responsable =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Delito =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Victima =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Relacion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hechos =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Generado = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Archivo_Descargado = $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_registro = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_registro = $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
         + "&Modulo_Atencion_Inicial=" + Modulo_Atencion_Inicial
-        + "&Ofendido=" + Ofendido
+        + "&Probable_Responsable=" + Probable_Responsable
         + "&Delito=" + Delito
         + "&Victima=" + Victima
         + "&Relacion=" + Relacion
+        + "&Hechos=" + Hechos
         + "&Generado=" + Generado
+        + "&Archivo_Descargado=" + Archivo_Descargado
         + "&Fecha_de_registro=" + Fecha_de_registro
         + "&Hora_de_registro=" + Hora_de_registro
 ;
@@ -569,11 +581,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -638,11 +650,13 @@
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
                 ,{ "data": "Modulo_Atencion_InicialNUAT", "orderable": true, "name": "Modulo_Atencion_InicialNUAT" }
-                ,{ "data": "Ofendido", "orderable": true, "name": "Ofendido", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Probable_Responsable", "orderable": true, "name": "Probable_Responsable", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Delito", "orderable": true, "name": "Delito", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Victima", "orderable": true, "name": "Victima", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Relacion", "orderable": true, "name": "Relacion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Hechos", "orderable": true, "name": "Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Generado", "orderable": true, "name": "Generado","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Archivo_Descargado", "orderable": true, "name": "Archivo_Descargado","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Fecha_de_registro", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_registro" }
                 ,{ "data": "Hora_de_registro", "orderable": true, "name": "Hora_de_registro" }
 

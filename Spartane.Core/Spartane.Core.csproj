@@ -1488,6 +1488,8 @@
 <Compile Include="Domain\Tipo_de_Dato\Tipo_de_DatoPagingModel.cs" />
 <Compile Include="Domain\Tipo_de_Resolucion\Tipo_de_Resolucion.cs" />
 <Compile Include="Domain\Tipo_de_Resolucion\Tipo_de_ResolucionPagingModel.cs" />
+<Compile Include="Domain\Detalle_de_Guardado_de_Movimiento\Detalle_de_Guardado_de_Movimiento.cs" />
+<Compile Include="Domain\Detalle_de_Guardado_de_Movimiento\Detalle_de_Guardado_de_MovimientoPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1508,6 +1510,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

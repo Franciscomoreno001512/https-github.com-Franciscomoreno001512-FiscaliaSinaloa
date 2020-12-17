@@ -10,7 +10,6 @@ using Spartane.Core.Domain.Detalle_Vinculacion_Judicializacion;
 using Spartane.Web.Areas.WebApiConsumer.SpartaneQuery;
 
 
-
 using Spartane.Core.Domain.Tribunal_de_Enjuiciamiento;
 using Spartane.Core.Domain.Sentencia;
 
@@ -119,6 +118,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ITribunal_de_EnjuiciamientoApiConsumer = Tribunal_de_EnjuiciamientoApiConsumer;
             this._ISentenciaApiConsumer = SentenciaApiConsumer;
             this._ISpartaneQueryApiConsumer = SpartaneQueryApiConsumer;
+
         }
 
         #endregion "Constructor Declaration"
@@ -3088,83 +3088,20 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         public ActionResult GetJudicializacionList2(string query, int Echo)
         {
             int sEcho = Echo;
-            //int iDisplayStart = param.iDisplayStart;
-            //int iDisplayLength = param.iDisplayLength;
-            //string where = param.where;
-            //string order = param.order;
-
-            //where = HttpUtility.UrlEncode(where);
-            //int sortColumn = -1;
-            //string sortDirection = "asc";
-            //if (iDisplayLength == -1)
-            //{
-            //    //length = TOTAL_ROWS;
-            //    iDisplayLength = Int32.MaxValue;
-            //}
-            //// note: we only sort one column at a time
-            //if (param.sortColumn != null)
-            //{
-            //    sortColumn = int.Parse(param.sortColumn);
-            //}
-            //if (param.sortDirection != null)
-            //{
-            //    sortDirection = param.sortDirection;
-            //}
-
-
-            //if (!_tokenManager.GenerateToken())
-            //    return null;
-            //_IJudicializacionApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-
-            //NameValueCollection filter = HttpUtility.ParseQueryString(param.filters);
-
-            //var configuration = new GridConfiguration() { OrderByClause = "", WhereClause = "" };
-            //if (filter != null)
-            //    configuration = GridQueryHelper.GetDataTableConfigurationNew(param, new JudicializacionPropertyMapper());
-
-            //if (!String.IsNullOrEmpty(where))
-            //{
-            //    configuration.WhereClause = configuration.WhereClause == "" ? where : "(" + configuration.WhereClause + " AND " + where + ")";
-            //}
-            //if (!String.IsNullOrEmpty(order))
-            //{
-            //    configuration.OrderByClause = order;
-            //}
-            ////Adding Advance Search
-            //if (param.AdvanceSearch != null && param.AdvanceSearch == true && Session["AdvanceSearch"] != null)
-            //{
-            //    if (Session["AdvanceSearch"].GetType() == typeof(JudicializacionAdvanceSearchModel))
-            //    {
-            //        var advanceFilter =
-            //        (JudicializacionAdvanceSearchModel)Session["AdvanceSearch"];
-            //        configuration.WhereClause = configuration.WhereClause == "" ? GetAdvanceFilter(advanceFilter) : configuration.WhereClause + " AND " + GetAdvanceFilter(advanceFilter);
-            //    }
-            //    else
-            //    {
-            //        Session.Remove("AdvanceSearch");
-            //    }
-            //}
-
-            //JudicializacionPropertyMapper oJudicializacionPropertyMapper = new JudicializacionPropertyMapper();
-            //if (String.IsNullOrEmpty(order))
-            //{
-            //    if (sortColumn != -1)
-            //        configuration.OrderByClause = oJudicializacionPropertyMapper.GetPropertyName(param.columns[sortColumn].name) + " " + sortDirection;
-            //}
-
-            //var pageSize = iDisplayLength;
-            //var pageIndex = (iDisplayStart / iDisplayLength) + 1;
-            //var result = _IJudicializacionApiConsumer.ListaSelAll((pageIndex * pageSize) - pageSize + 1, pageSize + ((pageIndex * pageSize) - pageSize), configuration.WhereClause, configuration.OrderByClause ?? "").Resource;
-            //if (result.Judicializacions == null)
-            //    result.Judicializacions = new List<Judicializacion>();
 
             var resultx = ExecuteQueryTable(query); 
             
+
             return Json(new
             {
                 aaData = resultx.Select(m => new modeljudicializacion
                 {
+
+                    judicializacion = m.judicializacion,
+                    fase = m.fase,
+                    usuario_que_registra = m.usuario_que_registra,
+                    movimiento_Realizado = m.movimiento_Realizado,
+                    fecha_de_movimiento = m.fecha_de_movimiento,
                     judicializacion= m.judicializacion, 
                     fase = m.fase,
                     usuario_que_registra= m.usuario_que_registra,
@@ -3187,7 +3124,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         {
             try
             {
-
                 //if (!_tokenManager.GenerateToken())
                 //    return Json(null, JsonRequestBehavior.AllowGet);
                 //_ISpartaneQueryApiConsumer.SetAuthHeader(_tokenManager.Token);
@@ -3212,9 +3148,10 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             }
         }
 
-    }
 
-    public class modeljudicializacion    {
+    }
+    public class modeljudicializacion
+    {
 
         public string registro_de_movimiento_clave { get; set; }
         public string judicializacion { get; set; }

@@ -202,6 +202,52 @@ if( TryParseInt(ReplaceGLOBAL('GLOBAL[idtablero]'), ReplaceGLOBAL('GLOBAL[idtabl
 
 //BusinessRuleId:2623, Attribute:263447, Operation:Field, Event:None
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//BusinessRuleId:3006, Attribute:263456, Operation:Field, Event:None
+$("form#CreateDetalle_de_Delito").on('change', '#Robo_de_Vehiculo', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Robo_de_Vehiculo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { var valor = $('#' + nameOfTable + 'Delito' + rowIndex).val();   $('#' + nameOfTable + 'Delito' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Delito' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Delito WHERE Descripcion LIKE '%vehiculo%'", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Delito WHERE Descripcion LIKE '%vehiculo%'", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Delito' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Delito' + rowIndex).val(valor).trigger('change');} else { var valor = $('#' + nameOfTable + 'Delito' + rowIndex).val();   $('#' + nameOfTable + 'Delito' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Delito' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Delito WHERE Clave > 0", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Delito' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Delito WHERE Clave > 0", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Delito' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Delito' + rowIndex).val(valor).trigger('change');}
+});
+
+//BusinessRuleId:3006, Attribute:263456, Operation:Field, Event:None
+
+//BusinessRuleId:3005, Attribute:263447, Operation:Field, Event:None
+$("form#CreateDetalle_de_Delito").on('change', '#Delito', function () {
+	nameOfTable='';
+	rowIndex='';
+ AsignarValor($('#' + nameOfTable + 'Tipo_de_Delito' + rowIndex),EvaluaQuery("SELECT TD.Descripcion FROM dbo.Delito D"
++" INNER JOIN dbo.Tipo_Delito TD ON TD.Clave = D.TIPO_DELITO"
++" WHERE D.Clave = FLD[Delito]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Grupo_Delito' + rowIndex),EvaluaQuery("SELECT GD.Descripcion FROM dbo.Delito D"
++" INNER JOIN dbo.Grupo_del_Delito GD ON GD.Clave = D.Grupo_del_Delito"
++" WHERE D.Clave = FLD[Delito]", rowIndex, nameOfTable));
+});
+
+//BusinessRuleId:3005, Attribute:263447, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
@@ -215,29 +261,11 @@ if(operation == 'New'){
 
 
 
-//BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-    if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divMonto').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto' + rowIndex));$('#divArticulado_de_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Articulado_de_Delito' + rowIndex));$('#divExpediente_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_Inicial' + rowIndex)); $("a[href='#tabAsignar_Dueno']").css('display', 'none'); $('#divEstado_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Delito' + rowIndex));$('#divMunicipio_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Delito' + rowIndex));$('#divColonia_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Delito' + rowIndex));$('#divCodigo_Postal').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal' + rowIndex));$('#divCalle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));$('#divEntre_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));$('#divy_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle' + rowIndex));$('#divNumero_Exterior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito' + rowIndex));$('#divNumero_Interior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito' + rowIndex));$('#divReferencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia' + rowIndex));$('#divLatitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));$('#divLongitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex));} else {}
+
     
     
-    }
-    //BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
-    
-    //BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
-    if(operation == 'Update'){
-    if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divMonto').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto' + rowIndex));$('#divArticulado_de_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Articulado_de_Delito' + rowIndex));$('#divExpediente_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_Inicial' + rowIndex)); $("a[href='#tabAsignar_Dueno']").css('display', 'none'); $('#divEstado_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Delito' + rowIndex));$('#divMunicipio_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Delito' + rowIndex));$('#divColonia_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Delito' + rowIndex));$('#divCodigo_Postal').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal' + rowIndex));$('#divCalle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));$('#divEntre_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));$('#divy_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle' + rowIndex));$('#divNumero_Exterior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito' + rowIndex));$('#divNumero_Interior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito' + rowIndex));$('#divReferencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia' + rowIndex));$('#divLatitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));$('#divLongitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex));} else {}
     
     
-    }
-    //BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
-    
-    //BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
-    if(operation == 'Consult'){
-    if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divMonto').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto' + rowIndex));$('#divArticulado_de_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Articulado_de_Delito' + rowIndex));$('#divExpediente_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_Inicial' + rowIndex)); $("a[href='#tabAsignar_Dueno']").css('display', 'none'); $('#divEstado_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Delito' + rowIndex));$('#divMunicipio_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Delito' + rowIndex));$('#divColonia_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Delito' + rowIndex));$('#divCodigo_Postal').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal' + rowIndex));$('#divCalle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));$('#divEntre_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));$('#divy_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle' + rowIndex));$('#divNumero_Exterior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito' + rowIndex));$('#divNumero_Interior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito' + rowIndex));$('#divReferencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia' + rowIndex));$('#divLatitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));$('#divLongitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex));} else {}
-    
-    
-    }
-    //BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 
 
@@ -462,29 +490,11 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:1926, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
-if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divMonto').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto' + rowIndex));$('#divArticulado_de_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Articulado_de_Delito' + rowIndex));$('#divExpediente_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_Inicial' + rowIndex)); $("a[href='#tabAsignar_Dueno']").css('display', 'none'); $('#divEstado_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Delito' + rowIndex));$('#divMunicipio_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Delito' + rowIndex));$('#divColonia_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Delito' + rowIndex));$('#divCodigo_Postal').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal' + rowIndex));$('#divCalle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));$('#divEntre_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));$('#divy_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle' + rowIndex));$('#divNumero_Exterior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito' + rowIndex));$('#divNumero_Interior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito' + rowIndex));$('#divReferencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia' + rowIndex));$('#divLatitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));$('#divLongitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex));} else {}
 
 
-}
-//BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
-if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divMonto').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto' + rowIndex));$('#divArticulado_de_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Articulado_de_Delito' + rowIndex));$('#divExpediente_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_Inicial' + rowIndex)); $("a[href='#tabAsignar_Dueno']").css('display', 'none'); $('#divEstado_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Delito' + rowIndex));$('#divMunicipio_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Delito' + rowIndex));$('#divColonia_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Delito' + rowIndex));$('#divCodigo_Postal').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal' + rowIndex));$('#divCalle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));$('#divEntre_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));$('#divy_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle' + rowIndex));$('#divNumero_Exterior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito' + rowIndex));$('#divNumero_Interior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito' + rowIndex));$('#divReferencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia' + rowIndex));$('#divLatitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));$('#divLongitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex));} else {}
 
 
-}
-//BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
-if( EvaluaQuery("select GLOBAL[USERROLEID]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divMonto').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto' + rowIndex));$('#divArticulado_de_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Articulado_de_Delito' + rowIndex));$('#divExpediente_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_Inicial' + rowIndex)); $("a[href='#tabAsignar_Dueno']").css('display', 'none'); $('#divEstado_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Delito' + rowIndex));$('#divMunicipio_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Delito' + rowIndex));$('#divColonia_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Delito' + rowIndex));$('#divCodigo_Postal').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal' + rowIndex));$('#divCalle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));$('#divEntre_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));$('#divy_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle' + rowIndex));$('#divNumero_Exterior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito' + rowIndex));$('#divNumero_Interior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito' + rowIndex));$('#divReferencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia' + rowIndex));$('#divLatitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));$('#divLongitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex));} else {}
-
-
-}
-//BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:1927, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
@@ -719,6 +729,81 @@ if(operation == 'Consult'){
 
 }
 //BusinessRuleId:2944, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+//BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divMonto').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto' + rowIndex));$('#divArticulado_de_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Articulado_de_Delito' + rowIndex));$('#divExpediente_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_Inicial' + rowIndex)); $("a[href='#tabAsignar_Dueno']").css('display', 'none'); $('#divEstado_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Delito' + rowIndex));$('#divMunicipio_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Delito' + rowIndex));$('#divColonia_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Delito' + rowIndex));$('#divCodigo_Postal').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal' + rowIndex));$('#divCalle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));$('#divEntre_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));$('#divy_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle' + rowIndex));$('#divNumero_Exterior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito' + rowIndex));$('#divNumero_Interior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito' + rowIndex));$('#divReferencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia' + rowIndex));$('#divLatitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));$('#divLongitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Puede_Ser_Canalizado_a_JA' + rowIndex)); $('#divPuede_Ser_Canalizado_a_JA').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Puede_Ser_Canalizado_a_JA' + rowIndex));
+
+}
+//BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divMonto').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto' + rowIndex));$('#divArticulado_de_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Articulado_de_Delito' + rowIndex));$('#divExpediente_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_Inicial' + rowIndex)); $("a[href='#tabAsignar_Dueno']").css('display', 'none'); $('#divEstado_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Delito' + rowIndex));$('#divMunicipio_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Delito' + rowIndex));$('#divColonia_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Delito' + rowIndex));$('#divCodigo_Postal').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal' + rowIndex));$('#divCalle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));$('#divEntre_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));$('#divy_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle' + rowIndex));$('#divNumero_Exterior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito' + rowIndex));$('#divNumero_Interior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito' + rowIndex));$('#divReferencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia' + rowIndex));$('#divLatitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));$('#divLongitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Puede_Ser_Canalizado_a_JA' + rowIndex)); $('#divPuede_Ser_Canalizado_a_JA').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Puede_Ser_Canalizado_a_JA' + rowIndex));
+
+}
+//BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divMonto').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto' + rowIndex));$('#divArticulado_de_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Articulado_de_Delito' + rowIndex));$('#divExpediente_Inicial').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_Inicial' + rowIndex)); $("a[href='#tabAsignar_Dueno']").css('display', 'none'); $('#divEstado_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado_del_Delito' + rowIndex));$('#divMunicipio_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_del_Delito' + rowIndex));$('#divColonia_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia_del_Delito' + rowIndex));$('#divCodigo_Postal').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Codigo_Postal' + rowIndex));$('#divCalle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Calle' + rowIndex));$('#divEntre_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Entre_Calle' + rowIndex));$('#divy_Calle').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'y_Calle' + rowIndex));$('#divNumero_Exterior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Exterior_del_Delito' + rowIndex));$('#divNumero_Interior_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Numero_Interior_del_Delito' + rowIndex));$('#divReferencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Referencia' + rowIndex));$('#divLatitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));$('#divLongitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Puede_Ser_Canalizado_a_JA' + rowIndex)); $('#divPuede_Ser_Canalizado_a_JA').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Puede_Ser_Canalizado_a_JA' + rowIndex));
+
+}
+//BusinessRuleId:1923, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3003, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divFecha_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_del_Delito' + rowIndex));$('#divHora_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_del_Delito' + rowIndex));
+
+}
+//BusinessRuleId:3003, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3003, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divFecha_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_del_Delito' + rowIndex));$('#divHora_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_del_Delito' + rowIndex));
+
+}
+//BusinessRuleId:3003, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3003, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $('#divFecha_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_del_Delito' + rowIndex));$('#divHora_del_Delito').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_del_Delito' + rowIndex));
+
+}
+//BusinessRuleId:3003, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ DisabledControl($("#" + nameOfTable + "Tipo_de_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Delito' + rowIndex));}DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
+
+}
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ DisabledControl($("#" + nameOfTable + "Tipo_de_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Delito' + rowIndex));}DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
+
+}
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ DisabledControl($("#" + nameOfTable + "Tipo_de_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Delito' + rowIndex));}DisabledControl($("#" + nameOfTable + "Grupo_Delito" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Grupo_Delito' + rowIndex));}
+
+}
+//BusinessRuleId:3004, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

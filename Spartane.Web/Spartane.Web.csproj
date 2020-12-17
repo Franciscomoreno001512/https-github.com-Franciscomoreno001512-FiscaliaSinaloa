@@ -14507,6 +14507,26 @@
 <Content Include="Uploads\Scripts\Rules\Tipo_de_ResolucionCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Tipo_de_ResolucionIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Tipo_de_Resolucion\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Detalle_de_Guardado_de_Movimiento\Detalle_de_Guardado_de_MovimientoApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Detalle_de_Guardado_de_Movimiento\IDetalle_de_Guardado_de_MovimientoApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_de_Guardado_de_MovimientoModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_de_Guardado_de_MovimientoGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_de_Guardado_de_MovimientoMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Detalle_de_Guardado_de_MovimientoController.cs" />
+<Content Include="Areas\Frontal\Views\Detalle_de_Guardado_de_Movimiento\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Detalle_de_Guardado_de_Movimiento\Create.cshtml" />
+<Compile Include="Resource\GetResource\Detalle_de_Guardado_de_Movimiento.cs" />
+<Content Include="Uploads\Resources\Detalle_de_Guardado_de_MovimientoResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Detalle_de_Guardado_de_MovimientoPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Detalle_de_Guardado_de_MovimientoResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Detalle_de_Guardado_de_Movimiento.js" />
+<Content Include="Scripts\Custom\Detalle_de_Guardado_de_MovimientoGeneral.js" />
+<Content Include="Areas\Frontal\Views\Detalle_de_Guardado_de_Movimiento\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Detalle_de_Guardado_de_MovimientoAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Detalle_de_Guardado_de_MovimientoBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Detalle_de_Guardado_de_MovimientoCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Detalle_de_Guardado_de_MovimientoIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Detalle_de_Guardado_de_Movimiento\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -15506,6 +15526,26 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

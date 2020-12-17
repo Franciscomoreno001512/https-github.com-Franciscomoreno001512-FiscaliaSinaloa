@@ -12,6 +12,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Detalle_Resumen_DenunciaAdvanceSearchModel()
         {
             Generado = RadioOptions.NoApply;
+            Archivo_Descargado = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -24,8 +25,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceModulo_Atencion_Inicial { set; get; }
         public int[] AdvanceModulo_Atencion_InicialMultiple { set; get; }
 
-        public Filters OfendidoFilter { set; get; }
-        public string Ofendido { set; get; }
+        public Filters Probable_ResponsableFilter { set; get; }
+        public string Probable_Responsable { set; get; }
 
         public Filters DelitoFilter { set; get; }
         public string Delito { set; get; }
@@ -36,7 +37,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters RelacionFilter { set; get; }
         public string Relacion { set; get; }
 
+        public Filters HechosFilter { set; get; }
+        public string Hechos { set; get; }
+
         public RadioOptions Generado { set; get; }
+
+        public RadioOptions Archivo_Descargado { set; get; }
 
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
         public string FromFecha_de_registro { set; get; }

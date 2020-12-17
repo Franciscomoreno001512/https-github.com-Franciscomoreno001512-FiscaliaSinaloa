@@ -46,13 +46,13 @@ namespace Resources
             }
         }
 
-        /// <summary>Ofendido</summary>
-        public static string Ofendido
+        /// <summary>Probable_Responsable</summary>
+        public static string Probable_Responsable
         {
             get
             {
                 SetPath();
-                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Ofendido", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Probable_Responsable", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -86,6 +86,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Hechos</summary>
+        public static string Hechos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Hechos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Generado</summary>
         public static string Generado
         {
@@ -93,6 +103,16 @@ namespace Resources
             {
                 SetPath();
                 return resourceProviderDetalle_Resumen_Denuncia.GetResource("Generado", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Archivo_Descargado</summary>
+        public static string Archivo_Descargado
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Archivo_Descargado", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

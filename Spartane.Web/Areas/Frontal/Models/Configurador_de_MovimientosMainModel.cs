@@ -19,7 +19,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int Clave { get; set; }
         public string Dato { get; set; }
         public int? Tipo_de_Dato { get; set; }
-        public int? Relacion { get; set; }
+        public string Query_para_llenado { get; set; }
         public bool? Obligatorio { get; set; }
 
         public bool Removed { set; get; }

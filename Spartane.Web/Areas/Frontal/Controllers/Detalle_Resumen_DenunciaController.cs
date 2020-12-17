@@ -160,11 +160,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Detalle_Resumen_DenunciaData.Clave 
 	                    ,Modulo_Atencion_Inicial = Detalle_Resumen_DenunciaData.Modulo_Atencion_Inicial
                     ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Modulo_Atencion_Inicial), "Modulo_Atencion_Inicial") ??  (string)Detalle_Resumen_DenunciaData.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-                    ,Ofendido = Detalle_Resumen_DenunciaData.Ofendido
+                    ,Probable_Responsable = Detalle_Resumen_DenunciaData.Probable_Responsable
                     ,Delito = Detalle_Resumen_DenunciaData.Delito
                     ,Victima = Detalle_Resumen_DenunciaData.Victima
                     ,Relacion = Detalle_Resumen_DenunciaData.Relacion
+                    ,Hechos = Detalle_Resumen_DenunciaData.Hechos
                     ,Generado = Detalle_Resumen_DenunciaData.Generado.GetValueOrDefault()
+                    ,Archivo_Descargado = Detalle_Resumen_DenunciaData.Archivo_Descargado.GetValueOrDefault()
                     ,Fecha_de_registro = (Detalle_Resumen_DenunciaData.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(Detalle_Resumen_DenunciaData.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_de_registro = Detalle_Resumen_DenunciaData.Hora_de_registro
 
@@ -248,11 +250,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 						Clave  = Detalle_Resumen_DenunciaData.Clave 
 	                    ,Modulo_Atencion_Inicial = Detalle_Resumen_DenunciaData.Modulo_Atencion_Inicial
                     ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Modulo_Atencion_Inicial), "Modulo_Atencion_Inicial") ??  (string)Detalle_Resumen_DenunciaData.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-                    ,Ofendido = Detalle_Resumen_DenunciaData.Ofendido
+                    ,Probable_Responsable = Detalle_Resumen_DenunciaData.Probable_Responsable
                     ,Delito = Detalle_Resumen_DenunciaData.Delito
                     ,Victima = Detalle_Resumen_DenunciaData.Victima
                     ,Relacion = Detalle_Resumen_DenunciaData.Relacion
+                    ,Hechos = Detalle_Resumen_DenunciaData.Hechos
                     ,Generado = Detalle_Resumen_DenunciaData.Generado.GetValueOrDefault()
+                    ,Archivo_Descargado = Detalle_Resumen_DenunciaData.Archivo_Descargado.GetValueOrDefault()
                     ,Fecha_de_registro = (Detalle_Resumen_DenunciaData.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(Detalle_Resumen_DenunciaData.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_de_registro = Detalle_Resumen_DenunciaData.Hora_de_registro
 
@@ -408,11 +412,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                     Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "NUAT") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-			,Ofendido = m.Ofendido
+			,Probable_Responsable = m.Probable_Responsable
 			,Delito = m.Delito
 			,Victima = m.Victima
 			,Relacion = m.Relacion
+			,Hechos = m.Hechos
 			,Generado = m.Generado
+			,Archivo_Descargado = m.Archivo_Descargado
                         ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_registro = m.Hora_de_registro
 
@@ -530,11 +536,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                     Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "NUAT") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-			,Ofendido = m.Ofendido
+			,Probable_Responsable = m.Probable_Responsable
 			,Delito = m.Delito
 			,Victima = m.Victima
 			,Relacion = m.Relacion
+			,Hechos = m.Hechos
 			,Generado = m.Generado
+			,Archivo_Descargado = m.Archivo_Descargado
                         ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_registro = m.Hora_de_registro
 
@@ -591,24 +599,24 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 where += " AND Detalle_Resumen_Denuncia.Modulo_Atencion_Inicial In (" + Modulo_Atencion_InicialIds + ")";
             }
 
-            if (!string.IsNullOrEmpty(filter.Ofendido))
+            if (!string.IsNullOrEmpty(filter.Probable_Responsable))
             {
-                switch (filter.OfendidoFilter)
+                switch (filter.Probable_ResponsableFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Detalle_Resumen_Denuncia.Ofendido LIKE '" + filter.Ofendido + "%'";
+                        where += " AND Detalle_Resumen_Denuncia.Probable_Responsable LIKE '" + filter.Probable_Responsable + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Detalle_Resumen_Denuncia.Ofendido LIKE '%" + filter.Ofendido + "'";
+                        where += " AND Detalle_Resumen_Denuncia.Probable_Responsable LIKE '%" + filter.Probable_Responsable + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Detalle_Resumen_Denuncia.Ofendido = '" + filter.Ofendido + "'";
+                        where += " AND Detalle_Resumen_Denuncia.Probable_Responsable = '" + filter.Probable_Responsable + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Detalle_Resumen_Denuncia.Ofendido LIKE '%" + filter.Ofendido + "%'";
+                        where += " AND Detalle_Resumen_Denuncia.Probable_Responsable LIKE '%" + filter.Probable_Responsable + "%'";
                         break;
                 }
             }
@@ -679,8 +687,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(filter.Hechos))
+            {
+                switch (filter.HechosFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Detalle_Resumen_Denuncia.Hechos LIKE '" + filter.Hechos + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Detalle_Resumen_Denuncia.Hechos LIKE '%" + filter.Hechos + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Detalle_Resumen_Denuncia.Hechos = '" + filter.Hechos + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Detalle_Resumen_Denuncia.Hechos LIKE '%" + filter.Hechos + "%'";
+                        break;
+                }
+            }
+
             if (filter.Generado != RadioOptions.NoApply)
                 where += " AND Detalle_Resumen_Denuncia.Generado = " + Convert.ToInt32(filter.Generado);
+
+            if (filter.Archivo_Descargado != RadioOptions.NoApply)
+                where += " AND Detalle_Resumen_Denuncia.Archivo_Descargado = " + Convert.ToInt32(filter.Archivo_Descargado);
 
             if (!string.IsNullOrEmpty(filter.FromFecha_de_registro) || !string.IsNullOrEmpty(filter.ToFecha_de_registro))
             {
@@ -759,11 +792,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     {
                         Clave = varDetalle_Resumen_Denuncia.Clave
                         ,Modulo_Atencion_Inicial = varDetalle_Resumen_Denuncia.Modulo_Atencion_Inicial
-                        ,Ofendido = varDetalle_Resumen_Denuncia.Ofendido
+                        ,Probable_Responsable = varDetalle_Resumen_Denuncia.Probable_Responsable
                         ,Delito = varDetalle_Resumen_Denuncia.Delito
                         ,Victima = varDetalle_Resumen_Denuncia.Victima
                         ,Relacion = varDetalle_Resumen_Denuncia.Relacion
+                        ,Hechos = varDetalle_Resumen_Denuncia.Hechos
                         ,Generado = varDetalle_Resumen_Denuncia.Generado
+                        ,Archivo_Descargado = varDetalle_Resumen_Denuncia.Archivo_Descargado
                         ,Fecha_de_registro = (!String.IsNullOrEmpty(varDetalle_Resumen_Denuncia.Fecha_de_registro)) ? DateTime.ParseExact(varDetalle_Resumen_Denuncia.Fecha_de_registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_registro = varDetalle_Resumen_Denuncia.Hora_de_registro
 
@@ -1154,11 +1189,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "NUAT") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-			,Ofendido = m.Ofendido
+			,Probable_Responsable = m.Probable_Responsable
 			,Delito = m.Delito
 			,Victima = m.Victima
 			,Relacion = m.Relacion
+			,Hechos = m.Hechos
 			,Generado = m.Generado
+			,Archivo_Descargado = m.Archivo_Descargado
                         ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_registro = m.Hora_de_registro
 
@@ -1235,11 +1272,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             {
                 Clave = m.Clave
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "NUAT") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-			,Ofendido = m.Ofendido
+			,Probable_Responsable = m.Probable_Responsable
 			,Delito = m.Delito
 			,Victima = m.Victima
 			,Relacion = m.Relacion
+			,Hechos = m.Hechos
 			,Generado = m.Generado
+			,Archivo_Descargado = m.Archivo_Descargado
                         ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_registro = m.Hora_de_registro
 
@@ -1282,11 +1321,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = varDetalle_Resumen_Denuncia.Clave
                                             ,Modulo_Atencion_Inicial = varDetalle_Resumen_Denuncia.Modulo_Atencion_Inicial
-                        ,Ofendido = varDetalle_Resumen_Denuncia.Ofendido
+                        ,Probable_Responsable = varDetalle_Resumen_Denuncia.Probable_Responsable
                         ,Delito = varDetalle_Resumen_Denuncia.Delito
                         ,Victima = varDetalle_Resumen_Denuncia.Victima
                         ,Relacion = varDetalle_Resumen_Denuncia.Relacion
+                        ,Hechos = varDetalle_Resumen_Denuncia.Hechos
                         ,Generado = varDetalle_Resumen_Denuncia.Generado
+                        ,Archivo_Descargado = varDetalle_Resumen_Denuncia.Archivo_Descargado
                         ,Fecha_de_registro = (!String.IsNullOrEmpty(varDetalle_Resumen_Denuncia.Fecha_de_registro)) ? DateTime.ParseExact(varDetalle_Resumen_Denuncia.Fecha_de_registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_registro = varDetalle_Resumen_Denuncia.Hora_de_registro
                     
@@ -1319,11 +1360,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
                         ,Modulo_Atencion_Inicial = m.Modulo_Atencion_Inicial
                         ,Modulo_Atencion_InicialNUAT = CultureHelper.GetTraduction(m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.Clave.ToString(), "NUAT") ?? (string)m.Modulo_Atencion_Inicial_Modulo_Atencion_Inicial.NUAT
-			,Ofendido = m.Ofendido
+			,Probable_Responsable = m.Probable_Responsable
 			,Delito = m.Delito
 			,Victima = m.Victima
 			,Relacion = m.Relacion
+			,Hechos = m.Hechos
 			,Generado = m.Generado
+			,Archivo_Descargado = m.Archivo_Descargado
                         ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_registro = m.Hora_de_registro
 
