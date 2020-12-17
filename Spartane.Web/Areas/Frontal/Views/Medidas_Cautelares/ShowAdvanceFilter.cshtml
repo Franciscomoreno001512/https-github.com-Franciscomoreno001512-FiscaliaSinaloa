@@ -59,6 +59,22 @@
                     @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
                     @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
                 </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Medidas_CautelaresResources.Fraccion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.FraccionFilter, filters, new { @class = "form-control", @id = "ddlFraccionFilter" })
+                    @Html.TextBoxFor(m => m.Fraccion, new { @class = "form-control", @type = "text", @id = "txtFraccion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Medidas_CautelaresResources.Tipo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.TipoFilter, filters, new { @class = "form-control", @id = "ddlTipoFilter" })
+                    @Html.TextBoxFor(m => m.Tipo, new { @class = "form-control", @type = "text", @id = "txtTipo" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Medidas_Cautelares/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -80,6 +96,24 @@
             hasParameter = true;
             advanceSearch.Medidas_CautelaresDescripcion = $("#txtAdvanceDescripcion").val();
             advanceSearch.Medidas_CautelaresDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
+        }
+        if ($("#txtAdvanceFraccion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Medidas_CautelaresFraccion = $("#txtAdvanceFraccion").val();
+            advanceSearch.Medidas_CautelaresFraccionSearchType = $("#ddlAdvanceFraccionFilter").val();
+        }
+        if ($("#ddlAdvanceAplica_para_Adolescentes").val() != "") {
+            hasParameter = true;
+            advanceSearch.Medidas_CautelaresAplica_para_Adolescentes = $("#ddlAdvanceAplica_para_Adolescentes").val();
+        }
+        if ($("#ddlAdvanceAplica_para_Adultos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Medidas_CautelaresAplica_para_Adultos = $("#ddlAdvanceAplica_para_Adultos").val();
+        }
+        if ($("#txtAdvanceTipo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Medidas_CautelaresTipo = $("#txtAdvanceTipo").val();
+            advanceSearch.Medidas_CautelaresTipoSearchType = $("#ddlAdvanceTipoFilter").val();
         }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";

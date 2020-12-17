@@ -17,6 +17,9 @@ namespace Spartane.Core.Domain.Sentencia
     {
         public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public string Descr { get; set; }
+        public short? iddatos { get; set; }
+        public string CveSentencia { get; set; }
 
 
     }
@@ -25,6 +28,9 @@ namespace Spartane.Core.Domain.Sentencia
     {
                 public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public string Descr { get; set; }
+        public short? iddatos { get; set; }
+        public string CveSentencia { get; set; }
 
 		
     }

@@ -18,6 +18,14 @@ namespace Spartane.Web.SqlModelMapper
                     return "Medidas_Cautelares.Clave";
                 case "Descripcion":
                     return "Medidas_Cautelares.Descripcion";
+                case "Fraccion":
+                    return "Medidas_Cautelares.Fraccion";
+                case "Aplica_para_Adolescentes":
+                    return "Medidas_Cautelares.Aplica_para_Adolescentes";
+                case "Aplica_para_Adultos":
+                    return "Medidas_Cautelares.Aplica_para_Adultos";
+                case "Tipo":
+                    return "Medidas_Cautelares.Tipo";
 
                 default:
                     return propertyName;
@@ -35,6 +43,14 @@ namespace Spartane.Web.SqlModelMapper
 
         public string GetOperatorString(object value, string columnName)
         {
+            if (columnName == "Aplica_para_Adolescentes")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Aplica_para_Adultos")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
 
 
             var operatorCondition = GetOperationType(columnName);

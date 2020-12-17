@@ -16,6 +16,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Fase { get; set; }
         public string FaseDescripcion { get; set; }
         public bool Aplica_para_Adolescentes { get; set; }
+        public bool Aplicar_para_Adultos { get; set; }
 
     }
 	
@@ -27,6 +28,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Fase { get; set; }
         public string FaseDescripcion { get; set; }
         public bool? Aplica_para_Adolescentes { get; set; }
+        public bool? Aplicar_para_Adultos { get; set; }
 
     }
 

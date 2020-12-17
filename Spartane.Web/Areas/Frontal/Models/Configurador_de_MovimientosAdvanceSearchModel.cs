@@ -12,6 +12,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Configurador_de_MovimientosAdvanceSearchModel()
         {
             Aplica_para_Adolescentes = RadioOptions.NoApply;
+            Aplicar_para_Adultos = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -28,6 +29,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int[] AdvanceFaseMultiple { set; get; }
 
         public RadioOptions Aplica_para_Adolescentes { set; get; }
+
+        public RadioOptions Aplicar_para_Adultos { set; get; }
 
 
     }

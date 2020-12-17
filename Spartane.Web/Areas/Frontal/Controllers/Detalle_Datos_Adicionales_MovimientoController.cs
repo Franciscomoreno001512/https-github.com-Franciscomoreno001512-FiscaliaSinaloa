@@ -3,7 +3,6 @@ using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Datos_Adicionales_Movimiento;
 using Spartane.Core.Domain.Tipo_de_Dato;
-using Spartane.Core.Domain.Relaciones_para_Movimientos;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -15,7 +14,6 @@ using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Datos_Adicionales_Movimiento;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Dato;
-using Spartane.Web.Areas.WebApiConsumer.Relaciones_para_Movimientos;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -43,7 +41,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_Datos_Adicionales_MovimientoService service = null;
         private IDetalle_Datos_Adicionales_MovimientoApiConsumer _IDetalle_Datos_Adicionales_MovimientoApiConsumer;
         private ITipo_de_DatoApiConsumer _ITipo_de_DatoApiConsumer;
-        private IRelaciones_para_MovimientosApiConsumer _IRelaciones_para_MovimientosApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -57,7 +54,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Datos_Adicionales_MovimientoController(IDetalle_Datos_Adicionales_MovimientoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Datos_Adicionales_MovimientoApiConsumer Detalle_Datos_Adicionales_MovimientoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_DatoApiConsumer Tipo_de_DatoApiConsumer , IRelaciones_para_MovimientosApiConsumer Relaciones_para_MovimientosApiConsumer )
+        public Detalle_Datos_Adicionales_MovimientoController(IDetalle_Datos_Adicionales_MovimientoService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Datos_Adicionales_MovimientoApiConsumer Detalle_Datos_Adicionales_MovimientoApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer , ITipo_de_DatoApiConsumer Tipo_de_DatoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -68,7 +65,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_Business_RuleApiConsumer = Spartan_Business_RuleApiConsumer;
             this._ISpartan_BR_Process_Event_DetailApiConsumer = Spartan_BR_Process_Event_DetailApiConsumer;
             this._ITipo_de_DatoApiConsumer = Tipo_de_DatoApiConsumer;
-            this._IRelaciones_para_MovimientosApiConsumer = Relaciones_para_MovimientosApiConsumer;
 
         }
 
@@ -120,8 +116,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Dato = Detalle_Datos_Adicionales_MovimientoData.Dato
                     ,Tipo_de_Dato = Detalle_Datos_Adicionales_MovimientoData.Tipo_de_Dato
                     ,Tipo_de_DatoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Datos_Adicionales_MovimientoData.Tipo_de_Dato), "Tipo_de_Dato") ??  (string)Detalle_Datos_Adicionales_MovimientoData.Tipo_de_Dato_Tipo_de_Dato.Descripcion
-                    ,Relacion = Detalle_Datos_Adicionales_MovimientoData.Relacion
-                    ,RelacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Datos_Adicionales_MovimientoData.Relacion), "Relaciones_para_Movimientos") ??  (string)Detalle_Datos_Adicionales_MovimientoData.Relacion_Relaciones_para_Movimientos.Descripcion
+                    ,Query_para_llenado = Detalle_Datos_Adicionales_MovimientoData.Query_para_llenado
                     ,Obligatorio = Detalle_Datos_Adicionales_MovimientoData.Obligatorio.GetValueOrDefault()
 
                 };
@@ -173,8 +168,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 	                    ,Dato = Detalle_Datos_Adicionales_MovimientoData.Dato
                     ,Tipo_de_Dato = Detalle_Datos_Adicionales_MovimientoData.Tipo_de_Dato
                     ,Tipo_de_DatoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Datos_Adicionales_MovimientoData.Tipo_de_Dato), "Tipo_de_Dato") ??  (string)Detalle_Datos_Adicionales_MovimientoData.Tipo_de_Dato_Tipo_de_Dato.Descripcion
-                    ,Relacion = Detalle_Datos_Adicionales_MovimientoData.Relacion
-                    ,RelacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Datos_Adicionales_MovimientoData.Relacion), "Relaciones_para_Movimientos") ??  (string)Detalle_Datos_Adicionales_MovimientoData.Relacion_Relaciones_para_Movimientos.Descripcion
+                    ,Query_para_llenado = Detalle_Datos_Adicionales_MovimientoData.Query_para_llenado
                     ,Obligatorio = Detalle_Datos_Adicionales_MovimientoData.Obligatorio.GetValueOrDefault()
 
 					};
@@ -232,27 +226,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-		[HttpGet]
-        public ActionResult GetRelaciones_para_MovimientosAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IRelaciones_para_MovimientosApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IRelaciones_para_MovimientosApiConsumer.SelAll(false).Resource;
-				
-                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
-                {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.ObjectId), "Relaciones_para_Movimientos", "Descripcion")?? m.Descripcion,
-                    Value = Convert.ToString(m.ObjectId)
-                }).ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
 
 
 
@@ -276,7 +249,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     Clave = m.Clave
 			,Dato = m.Dato
                         ,Tipo_de_DatoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Dato_Tipo_de_Dato.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_de_Dato_Tipo_de_Dato.Descripcion
-                        ,RelacionDescripcion = CultureHelper.GetTraduction(m.Relacion_Relaciones_para_Movimientos.ObjectId.ToString(), "Relaciones_para_Movimientos") ?? (string)m.Relacion_Relaciones_para_Movimientos.Descripcion
+			,Query_para_llenado = m.Query_para_llenado
 			,Obligatorio = m.Obligatorio
 
                     }).ToList(),
@@ -285,33 +258,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
-        [HttpGet]
-        public JsonResult GetDetalle_Datos_Adicionales_Movimiento_Relacion_Relaciones_para_Movimientos(string query, string where)
-        {
-            try
-            {
-                if (String.IsNullOrEmpty(where))
-                    where = "";
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IRelaciones_para_MovimientosApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-				var elWhere = " (cast(Relaciones_para_Movimientos.ObjectId as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Relaciones_para_Movimientos.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IRelaciones_para_MovimientosApiConsumer.ListaSelAll(1, 20,elWhere , " Relaciones_para_Movimientos.Descripcion ASC ").Resource;
-               
-                foreach (var item in result.Relaciones_para_Movimientoss)
-                {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.ObjectId), "Relaciones_para_Movimientos", "Descripcion");
-                    item.Descripcion =trans ??item.Descripcion;
-                }
-                return Json(result.Relaciones_para_Movimientoss.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
 
 
 
@@ -371,7 +317,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         Clave = varDetalle_Datos_Adicionales_Movimiento.Clave
                         ,Dato = varDetalle_Datos_Adicionales_Movimiento.Dato
                         ,Tipo_de_Dato = varDetalle_Datos_Adicionales_Movimiento.Tipo_de_Dato
-                        ,Relacion = varDetalle_Datos_Adicionales_Movimiento.Relacion
+                        ,Query_para_llenado = varDetalle_Datos_Adicionales_Movimiento.Query_para_llenado
                         ,Obligatorio = varDetalle_Datos_Adicionales_Movimiento.Obligatorio
 
                     };
@@ -602,7 +548,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Clave = m.Clave
                 ,Dato = m.Dato
                 ,Tipo_de_DatoDescripcion = (string)m.Tipo_de_Dato_Tipo_de_Dato.Descripcion
-                ,RelacionDescripcion = (string)m.Relacion_Relaciones_para_Movimientos.Descripcion
+                ,Query_para_llenado = m.Query_para_llenado
                 ,Obligatorio = m.Obligatorio
 
             }).ToList();
@@ -652,7 +598,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 Clave = m.Clave
                 ,Dato = m.Dato
                 ,Tipo_de_DatoDescripcion = (string)m.Tipo_de_Dato_Tipo_de_Dato.Descripcion
-                ,RelacionDescripcion = (string)m.Relacion_Relaciones_para_Movimientos.Descripcion
+                ,Query_para_llenado = m.Query_para_llenado
                 ,Obligatorio = m.Obligatorio
 
             }).ToList();

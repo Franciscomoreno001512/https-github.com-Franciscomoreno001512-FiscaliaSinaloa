@@ -124,6 +124,10 @@
             hasParameter = true;
             advanceSearch.Configurador_de_MovimientosAplica_para_Adolescentes = $("#ddlAdvanceAplica_para_Adolescentes").val();
         }
+        if ($("#ddlAdvanceAplicar_para_Adultos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Configurador_de_MovimientosAplicar_para_Adultos = $("#ddlAdvanceAplicar_para_Adultos").val();
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblConfigurador_de_Movimientos').DataTable().draw();

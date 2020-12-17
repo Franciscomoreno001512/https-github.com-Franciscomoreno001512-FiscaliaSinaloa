@@ -53,7 +53,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var permission = PermissionHelper.GetRoleObjectPermission(SessionHelper.Role, Convert.ToInt32(management.Object), 1);
             ViewBag.PermissionEdit = permission.Edit;
             Session["Management"] = management;
-            ViewBag.UrlImage = ConfigurationManager.AppSettings["BaseUrl"];
+            ViewBag.UrlImage = ConfigurationManager.AppSettings["urlpublicaimagenes"];
             if (wf != null)
             {
                 _ISpartaneQueryApiConsumer.SetAuthHeader(_tokenManager.Token);
@@ -196,10 +196,15 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var management = (Spartan_Record_Detail_Management)Session["Management"];// _service.GetByKey(ID, false).Resource;
             if (where != "")
             {
-                where = " WHERE " + where;
+                if (management.Search_Result_Query.ToUpper().Contains("WHERE"))
+                    where = " AND " + where;
+                else
+                    where = " WHERE " + where;
             }
-            where = Helper.ReplaceGlobalQuery(where);
+
             string queryResult = management.Search_Result_Query + where;
+            //Aplicar reemplazo de variables de sesión
+            queryResult = Helper.ReplaceGlobalQuery(queryResult);
             var dataTableJson = _ISpartaneQueryApiConsumer.ExecuteRawQuery(HttpUtility.UrlEncode(queryResult)).Resource;
             if (String.IsNullOrEmpty(dataTableJson) || dataTableJson == "[]")
             {
@@ -298,7 +303,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     _ISpartane_FileApiConsumer.SetAuthHeader(_tokenManager.Token);
                     var fileInfo = _ISpartane_FileApiConsumer.GetByKey(item.Icono).Resource;
                     //preparamos la url del archivo fisico
-                    aux.Icon = ConfigurationManager.AppSettings["BaseUrl"] + "/api/Spartan_File/Files/" + item.Icono + "/" + fileInfo.Description;
+                    aux.Icon = ConfigurationManager.AppSettings["urlpublicaimagenes"] + "/api/Spartan_File/Files/" + item.Icono + "/" + fileInfo.Description;
 
                     aux.Details = new ModelResultsFields();
                     string queryDataDetail = item.Query_Data.Replace("@@LLAVE@@", id);

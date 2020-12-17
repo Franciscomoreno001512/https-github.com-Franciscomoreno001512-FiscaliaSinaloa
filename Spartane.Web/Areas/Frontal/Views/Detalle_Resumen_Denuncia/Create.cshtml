@@ -189,11 +189,11 @@
                                 </div>
                                 }
                             </div>
-                            <div class="form-group" id="divOfendido">
-                                <label class="col-sm-2 control-label">@Resources.Detalle_Resumen_DenunciaResources.Ofendido</label>
-                                <div class="col-sm-8" data-field-id="Ofendido" data-attribute="268454" data-field-name="@Resources.Detalle_Resumen_DenunciaResources.Ofendido">
-                                    <textarea id="Ofendido" name="Ofendido" class="form-control Datos_Generales" rows="4" cols="50">@Model.Ofendido</textarea>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Ofendido" data-valmsg-replace="true"></span>*@
+                            <div class="form-group" id="divProbable_Responsable">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Resumen_DenunciaResources.Probable_Responsable</label>
+                                <div class="col-sm-8" data-field-id="Probable_Responsable" data-attribute="268454" data-field-name="@Resources.Detalle_Resumen_DenunciaResources.Probable_Responsable">
+                                    <textarea id="Probable_Responsable" name="Probable_Responsable" class="form-control Datos_Generales" rows="4" cols="50">@Model.Probable_Responsable</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Probable_Responsable" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
                             <div class="form-group" id="divDelito">
@@ -217,10 +217,23 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Relacion" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+                            <div class="form-group" id="divHechos">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Resumen_DenunciaResources.Hechos</label>
+                                <div class="col-sm-8" data-field-id="Hechos" data-attribute="268636" data-field-name="@Resources.Detalle_Resumen_DenunciaResources.Hechos">
+                                    <textarea id="Hechos" name="Hechos" class="form-control Datos_Generales" rows="4" cols="50">@Model.Hechos</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Hechos" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
                             <div class="form-group" id="divGenerado">
                                 <label class="col-sm-2 control-label">@Resources.Detalle_Resumen_DenunciaResources.Generado</label>
                                 <div class="col-sm-8" data-field-id="Generado" data-attribute="268455" data-field-name="@Resources.Detalle_Resumen_DenunciaResources.Generado">
                                     @Html.CheckBoxFor(m => m.Generado, new { @class = "i-checks Datos_Generales" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divArchivo_Descargado">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Resumen_DenunciaResources.Archivo_Descargado</label>
+                                <div class="col-sm-8" data-field-id="Archivo_Descargado" data-attribute="268637" data-field-name="@Resources.Detalle_Resumen_DenunciaResources.Archivo_Descargado">
+                                    @Html.CheckBoxFor(m => m.Archivo_Descargado, new { @class = "i-checks Datos_Generales" })
                                 </div>
                             </div>
                             <div class="form-group" id="divFecha_de_registro">
@@ -687,11 +700,13 @@
                 success: function (result) {
                                         $('#Clave').val(result.data.Clave);
                     $('#Modulo_Atencion_Inicial').val(result.data.Modulo_Atencion_Inicial);
-                    $('#Ofendido').val(result.data.Ofendido);
+                    $('#Probable_Responsable').val(result.data.Probable_Responsable);
                     $('#Delito').val(result.data.Delito);
                     $('#Victima').val(result.data.Victima);
                     $('#Relacion').val(result.data.Relacion);
+                    $('#Hechos').val(result.data.Hechos);
                     $('#Generado').prop('checked', result.data.Generado);
+                    $('#Archivo_Descargado').prop('checked', result.data.Archivo_Descargado);
                     $('#Fecha_de_registro').val(result.data.Fecha_de_registro);
                     $('#Hora_de_registro').val(result.data.Hora_de_registro);
 
@@ -706,11 +721,13 @@
 			var data = new FormData();
 			data.append('Clave', newId);
 			                data.append('Modulo_Atencion_Inicial', $('#Modulo_Atencion_Inicial').val());
-                data.append('Ofendido', $('#Ofendido').val());
+                data.append('Probable_Responsable', $('#Probable_Responsable').val());
                 data.append('Delito', $('#Delito').val());
                 data.append('Victima', $('#Victima').val());
                 data.append('Relacion', $('#Relacion').val());
+                data.append('Hechos', $('#Hechos').val());
                 data.append('Generado', $('#Generado').prop('checked'));
+                data.append('Archivo_Descargado', $('#Archivo_Descargado').prop('checked'));
                 data.append('Fecha_de_registro', $('#Fecha_de_registro').val());
                 data.append('Hora_de_registro', $('#Hora_de_registro').val());
 

@@ -3,6 +3,10 @@
   <resource culture="es-es" name="Medidas_Cautelares" value="Medidas Cautelares"></resource>
   <resource culture="es-es" name="Clave" value="Clave"></resource>
   <resource culture="es-es" name="Descripcion" value="Descripción"></resource>
+  <resource culture="es-es" name="Fraccion" value="Fracción"></resource>
+  <resource culture="es-es" name="Aplica_para_Adolescentes" value="Aplica para Adolescentes"></resource>
+  <resource culture="es-es" name="Aplica_para_Adultos" value="Aplica para Adultos"></resource>
+  <resource culture="es-es" name="Tipo" value="Tipo"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

@@ -19,16 +19,20 @@ namespace Spartane.Web.SqlModelMapper
                 case "Modulo_Atencion_Inicial[NUAT]":
                 case "Modulo_Atencion_InicialNUAT":
                     return "Modulo_Atencion_Inicial.NUAT";
-                case "Ofendido":
-                    return "Detalle_Resumen_Denuncia.Ofendido";
+                case "Probable_Responsable":
+                    return "Detalle_Resumen_Denuncia.Probable_Responsable";
                 case "Delito":
                     return "Detalle_Resumen_Denuncia.Delito";
                 case "Victima":
                     return "Detalle_Resumen_Denuncia.Victima";
                 case "Relacion":
                     return "Detalle_Resumen_Denuncia.Relacion";
+                case "Hechos":
+                    return "Detalle_Resumen_Denuncia.Hechos";
                 case "Generado":
                     return "Detalle_Resumen_Denuncia.Generado";
+                case "Archivo_Descargado":
+                    return "Detalle_Resumen_Denuncia.Archivo_Descargado";
                 case "Fecha_de_registro":
                     return "Detalle_Resumen_Denuncia.Fecha_de_registro";
                 case "Hora_de_registro":
@@ -51,6 +55,10 @@ namespace Spartane.Web.SqlModelMapper
         public string GetOperatorString(object value, string columnName)
         {
             if (columnName == "Generado")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
+            }
+            if (columnName == "Archivo_Descargado")
             {
                 value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }

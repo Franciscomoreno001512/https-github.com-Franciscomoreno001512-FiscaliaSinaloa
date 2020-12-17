@@ -20,6 +20,7 @@ namespace Spartane.Core.Domain.Configurador_de_Movimientos
         public string Descripcion { get; set; }
         public int? Fase { get; set; }
         public bool? Aplica_para_Adolescentes { get; set; }
+        public bool? Aplicar_para_Adultos { get; set; }
 
         [ForeignKey("Fase")]
         public virtual Spartane.Core.Domain.Fase_de_Judicializacion.Fase_de_Judicializacion Fase_Fase_de_Judicializacion { get; set; }
@@ -32,6 +33,7 @@ namespace Spartane.Core.Domain.Configurador_de_Movimientos
         public string Descripcion { get; set; }
         public int? Fase { get; set; }
         public bool? Aplica_para_Adolescentes { get; set; }
+        public bool? Aplicar_para_Adultos { get; set; }
 
 		        [ForeignKey("Fase")]
         public virtual Spartane.Core.Domain.Fase_de_Judicializacion.Fase_de_Judicializacion Fase_Fase_de_Judicializacion { get; set; }
