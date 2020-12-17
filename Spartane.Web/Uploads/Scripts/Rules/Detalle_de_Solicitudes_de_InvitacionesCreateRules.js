@@ -274,6 +274,27 @@ if(operation == 'Update'){
 }
 //BusinessRuleId:2505, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+//BusinessRuleId:2995, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divTipo_de_Participacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Participacion' + rowIndex));
+
+}
+//BusinessRuleId:2995, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2995, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divTipo_de_Participacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Participacion' + rowIndex));
+
+}
+//BusinessRuleId:2995, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2995, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ $('#divTipo_de_Participacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Participacion' + rowIndex));
+
+}
+//BusinessRuleId:2995, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

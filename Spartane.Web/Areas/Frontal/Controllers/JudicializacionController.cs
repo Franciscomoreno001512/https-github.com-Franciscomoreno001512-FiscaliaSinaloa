@@ -7,7 +7,7 @@ using Spartane.Core.Domain.Resolucion_MP;
 using Spartane.Core.Domain.Tipo_de_Judicializacion;
 using Spartane.Core.Domain.Fase_de_Judicializacion;
 using Spartane.Core.Domain.Detalle_Vinculacion_Judicializacion;
-
+using Spartane.Web.Areas.WebApiConsumer.SpartaneQuery;
 
 
 using Spartane.Core.Domain.Tribunal_de_Enjuiciamiento;
@@ -87,13 +87,14 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private ISpartan_FormatApiConsumer _ISpartan_FormatApiConsumer;
         private ISpartan_Format_PermissionsApiConsumer _ISpartan_Format_PermissionsApiConsumer;
 		private ISpartan_Format_RelatedApiConsumer _ISpartan_FormatRelatedApiConsumer;
+        private ISpartaneQueryApiConsumer _ISpartaneQueryApiConsumer = null;
 
         #endregion "variable declaration"
 
         #region "Constructor Declaration"
 
-        
-        public JudicializacionController(IJudicializacionService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IJudicializacionApiConsumer JudicializacionApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , IResolucion_MPApiConsumer Resolucion_MPApiConsumer , ITipo_de_JudicializacionApiConsumer Tipo_de_JudicializacionApiConsumer , IFase_de_JudicializacionApiConsumer Fase_de_JudicializacionApiConsumer , IDetalle_Vinculacion_JudicializacionApiConsumer Detalle_Vinculacion_JudicializacionApiConsumer  , ITribunal_de_EnjuiciamientoApiConsumer Tribunal_de_EnjuiciamientoApiConsumer , ISentenciaApiConsumer SentenciaApiConsumer )
+
+        public JudicializacionController(IJudicializacionService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IJudicializacionApiConsumer JudicializacionApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , Iexpediente_ministerio_publicoApiConsumer expediente_ministerio_publicoApiConsumer , IResolucion_MPApiConsumer Resolucion_MPApiConsumer , ITipo_de_JudicializacionApiConsumer Tipo_de_JudicializacionApiConsumer , IFase_de_JudicializacionApiConsumer Fase_de_JudicializacionApiConsumer , IDetalle_Vinculacion_JudicializacionApiConsumer Detalle_Vinculacion_JudicializacionApiConsumer  , ITribunal_de_EnjuiciamientoApiConsumer Tribunal_de_EnjuiciamientoApiConsumer , ISentenciaApiConsumer SentenciaApiConsumer, ISpartaneQueryApiConsumer SpartaneQueryApiConsumer)
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -116,6 +117,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
             this._ITribunal_de_EnjuiciamientoApiConsumer = Tribunal_de_EnjuiciamientoApiConsumer;
             this._ISentenciaApiConsumer = SentenciaApiConsumer;
+            this._ISpartaneQueryApiConsumer = SpartaneQueryApiConsumer;
 
         }
 
@@ -3075,6 +3077,80 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             return Json(null, JsonRequestBehavior.AllowGet);            
         }
 
+
+        /// <summary>
+        /// Get List of Judicializacion from Web API.
+        /// </summary>
+        /// <param name="draw"></param>
+        /// <param name="start"></param>
+        /// <param name="length"></param>
+        /// <returns>Return List of Judicializacion Entity</returns>
+        public ActionResult GetJudicializacionList2(string query, int Echo)
+        {
+            int sEcho = Echo;
+  
+            var resultx = ExecuteQueryTable(query);
+
+            return Json(new
+            {
+                aaData = resultx.Select(m => new modeljudicializacion
+                {
+                    judicializacion = m.judicializacion,
+                    fase = m.fase,
+                    usuario_que_registra = m.usuario_que_registra,
+                    movimiento_Realizado = m.movimiento_Realizado,
+                    fecha_de_movimiento = m.fecha_de_movimiento,
+                    hora_de_movimiento = m.hora_de_movimiento,
+                    informacion = m.informacion,
+                    registro_de_movimiento_clave = m.registro_de_movimiento_clave
+
+                }).ToList(),
+                iTotalRecords = resultx.Count,
+                iTotalDisplayRecords = resultx.Count,
+                sEcho = sEcho
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        public List<modeljudicializacion> ExecuteQueryTable(string query)
+        {
+            try
+            {
+
+                var result = _ISpartaneQueryApiConsumer.ExecuteRawQuery(query);
+
+                if (result.Success)
+                {
+                    if (result.Resource == null)
+                        result.Resource = "";
+
+                    var model = JsonConvert.DeserializeObject<List<modeljudicializacion>>(result.Resource);
+
+
+                    return model;
+                }
+                else
+                    return new List<modeljudicializacion>();
+            }
+            catch (Exception ex)
+            {
+                return new List<modeljudicializacion>();
+            }
+        }
+
+    }
+    public class modeljudicializacion
+    {
+
+        public string registro_de_movimiento_clave { get; set; }
+        public string judicializacion { get; set; }
+        public string fase { get; set; }
+        public string usuario_que_registra { get; set; }
+        public string movimiento_Realizado { get; set; }
+        public string fecha_de_movimiento { get; set; }
+        public string hora_de_movimiento { get; set; }
+        public string informacion { get; set; }
 
     }
 }

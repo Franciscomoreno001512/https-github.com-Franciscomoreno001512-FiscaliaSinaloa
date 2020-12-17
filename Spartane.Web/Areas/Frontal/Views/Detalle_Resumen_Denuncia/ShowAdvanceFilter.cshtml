@@ -76,12 +76,12 @@
                     }
                 </div>
                 <div class="MarginBottom">
-                    <h3>@Resources.Detalle_Resumen_DenunciaResources.Ofendido</h3>
+                    <h3>@Resources.Detalle_Resumen_DenunciaResources.Probable_Responsable</h3>
                 </div>
                 <div class="MarginBottom form-inline">
                     <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.OfendidoFilter, filters, new { @class = "form-control", @id = "ddlOfendidoFilter" })
-                    @Html.TextBoxFor(m => m.Ofendido, new { @class = "form-control", @type = "text", @id = "txtOfendido" })
+                    @Html.DropDownListFor(m => m.Probable_ResponsableFilter, filters, new { @class = "form-control", @id = "ddlProbable_ResponsableFilter" })
+                    @Html.TextBoxFor(m => m.Probable_Responsable, new { @class = "form-control", @type = "text", @id = "txtProbable_Responsable" })
                 </div>
                 <div class="MarginBottom">
                     <h3>@Resources.Detalle_Resumen_DenunciaResources.Delito</h3>
@@ -106,6 +106,14 @@
                     <label class="">@Resources.Resources.Filter:</label>
                     @Html.DropDownListFor(m => m.RelacionFilter, filters, new { @class = "form-control", @id = "ddlRelacionFilter" })
                     @Html.TextBoxFor(m => m.Relacion, new { @class = "form-control", @type = "text", @id = "txtRelacion" })
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Resumen_DenunciaResources.Hechos</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.HechosFilter, filters, new { @class = "form-control", @id = "ddlHechosFilter" })
+                    @Html.TextBoxFor(m => m.Hechos, new { @class = "form-control", @type = "text", @id = "txtHechos" })
                 </div>
         <div class="MarginBottom ">
             <h3>@Resources.Detalle_Resumen_DenunciaResources.Fecha_de_registro</h3>
@@ -177,10 +185,10 @@
                 advanceSearch.Modulo_Atencion_InicialSearchType = 2;
             }
         }
-        if ($("#txtAdvanceOfendido").val() != "") {
+        if ($("#txtAdvanceProbable_Responsable").val() != "") {
             hasParameter = true;
-            advanceSearch.Detalle_Resumen_DenunciaOfendido = $("#txtAdvanceOfendido").val();
-            advanceSearch.Detalle_Resumen_DenunciaOfendidoSearchType = $("#ddlAdvanceOfendidoFilter").val();
+            advanceSearch.Detalle_Resumen_DenunciaProbable_Responsable = $("#txtAdvanceProbable_Responsable").val();
+            advanceSearch.Detalle_Resumen_DenunciaProbable_ResponsableSearchType = $("#ddlAdvanceProbable_ResponsableFilter").val();
         }
         if ($("#txtAdvanceDelito").val() != "") {
             hasParameter = true;
@@ -197,9 +205,18 @@
             advanceSearch.Detalle_Resumen_DenunciaRelacion = $("#txtAdvanceRelacion").val();
             advanceSearch.Detalle_Resumen_DenunciaRelacionSearchType = $("#ddlAdvanceRelacionFilter").val();
         }
+        if ($("#txtAdvanceHechos").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Resumen_DenunciaHechos = $("#txtAdvanceHechos").val();
+            advanceSearch.Detalle_Resumen_DenunciaHechosSearchType = $("#ddlAdvanceHechosFilter").val();
+        }
         if ($("#ddlAdvanceGenerado").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_Resumen_DenunciaGenerado = $("#ddlAdvanceGenerado").val();
+        }
+        if ($("#ddlAdvanceArchivo_Descargado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Resumen_DenunciaArchivo_Descargado = $("#ddlAdvanceArchivo_Descargado").val();
         }
         if ($("#txtAdvanceFromFecha_de_registro").val() != "" || $("#txtAdvanceToFecha_de_registro").val() != "") {
             hasParameter = true;

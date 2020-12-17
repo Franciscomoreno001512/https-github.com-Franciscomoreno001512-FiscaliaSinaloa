@@ -5,6 +5,7 @@
   <resource culture="es-es" name="Descripcion" value="Descripción"></resource>
   <resource culture="es-es" name="Fase" value="Fase"></resource>
   <resource culture="es-es" name="Aplica_para_Adolescentes" value="Aplica para Adolescentes"></resource>
+  <resource culture="es-es" name="Aplicar_para_Adultos" value="Aplicar para Adultos"></resource>
   <resource culture="es-es" name="Datos_Adicionales" value="Datos Adicionales"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>

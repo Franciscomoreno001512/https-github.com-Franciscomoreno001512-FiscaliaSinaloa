@@ -206,6 +206,13 @@ if(operation == 'Update'){
 }
 //BusinessRuleId:2170, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+//BusinessRuleId:2998, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+if( TryParseInt(ReplaceGLOBAL('GLOBAL[USERROLEID]'), ReplaceGLOBAL('GLOBAL[USERROLEID]'))==TryParseInt('101', '101') ) { EvaluaQuery(" uspAsignarFacilitador GLOBAL[SpartanOperationId],GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:2998, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

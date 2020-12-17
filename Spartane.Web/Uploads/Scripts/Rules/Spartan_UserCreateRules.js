@@ -31,14 +31,14 @@ if(operation == 'New'){
     if( GetValueByControlType($('#' + nameOfTable + 'Role' + rowIndex),nameOfTable,rowIndex)==TryParseInt('4', '4') || 
     GetValueByControlType($('#' + nameOfTable + 'Role' + rowIndex),nameOfTable,rowIndex)==TryParseInt('5', '5') ) 
     {
-EvaluaQuery("EXEC sp_RelacionUnidadUsuario GLOBAL[KeyValueInserted], FLD[Role]", rowIndex, nameOfTable);} 
+EvaluaQuery("EXEC sp_RelacionUnidadUsuario GLOBAL[KeyValueInserted]", rowIndex, nameOfTable);} 
 else {}
     }
     if(operation == 'Update'){
         if( GetValueByControlType($('#' + nameOfTable + 'Role' + rowIndex),nameOfTable,rowIndex)==TryParseInt('4', '4') || 
         GetValueByControlType($('#' + nameOfTable + 'Role' + rowIndex),nameOfTable,rowIndex)==TryParseInt('5', '5') ) 
         {
-    EvaluaQuery("EXEC sp_UpdRelacionUnidadUsuario FLDD[lblId_User], FLD[Role]", rowIndex, nameOfTable);} 
+    EvaluaQuery("EXEC sp_UpdRelacionUnidadUsuario FLDD[lblId_User]", rowIndex, nameOfTable);} 
     else {}
         }
 

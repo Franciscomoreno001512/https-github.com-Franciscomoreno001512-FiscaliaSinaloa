@@ -1379,6 +1379,8 @@
 <Compile Include="Tipo_de_Dato\Tipo_de_DatoService.cs" />
 <Compile Include="Tipo_de_Resolucion\ITipo_de_ResolucionService.cs" />
 <Compile Include="Tipo_de_Resolucion\Tipo_de_ResolucionService.cs" />
+<Compile Include="Detalle_de_Guardado_de_Movimiento\IDetalle_de_Guardado_de_MovimientoService.cs" />
+<Compile Include="Detalle_de_Guardado_de_Movimiento\Detalle_de_Guardado_de_MovimientoService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1478,6 +1480,8 @@
  </Target>
  -->
 </Project>
+
+
 
 
 

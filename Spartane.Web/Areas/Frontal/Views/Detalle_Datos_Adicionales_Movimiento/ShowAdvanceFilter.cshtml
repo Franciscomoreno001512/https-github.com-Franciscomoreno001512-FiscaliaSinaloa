@@ -6,9 +6,6 @@
     List<SelectListItem> varTipo_de_Dato_Tipo_de_Dato = null;
     if (ViewBag.Tipo_de_Datos_Tipo_de_Dato != null)
     { varTipo_de_Dato_Tipo_de_Dato = (List<SelectListItem>)ViewBag.Tipo_de_Datos_Tipo_de_Dato; }
- List<SelectListItem> varRelaciones_para_Movimientos_Relacion = null;
-    if (ViewBag.Relaciones_para_Movimientoss_Relacion != null)
-    { varRelaciones_para_Movimientos_Relacion = (List<SelectListItem>)ViewBag.Relaciones_para_Movimientoss_Relacion; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -86,9 +83,14 @@
                         });
                     }
                 </div>
- List<SelectListItem> varRelaciones_para_Movimientos_Relacion = null;
-    if (ViewBag.Relaciones_para_Movimientoss_Relacion != null)
-    { varRelaciones_para_Movimientos_Relacion = (List<SelectListItem>)ViewBag.Relaciones_para_Movimientoss_Relacion; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Datos_Adicionales_MovimientoResources.Query_para_llenado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Query_para_llenadoFilter, filters, new { @class = "form-control", @id = "ddlQuery_para_llenadoFilter" })
+                    @Html.TextBoxFor(m => m.Query_para_llenado, new { @class = "form-control", @type = "text", @id = "txtQuery_para_llenado" })
+                </div>
 
                 <div class="MarginBottom form-inline">
                     <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Detalle_Datos_Adicionales_Movimiento/")" value=" ">@Resources.Resources.Cancelar</a>
@@ -126,20 +128,10 @@
                 advanceSearch.Tipo_de_DatoSearchType = 2;
             }
         }
-        advanceSearch.RelacionSearchType = 0;
-        if ($('#ddlAdvanceRelacion').val().length > 0 || $("#txtAdvanceRelacion").val() == "") {
-
-
-            if (isDetalle_Datos_Adicionales_MovimientoTextSearch) {
-                advanceSearch.RelacionName = $("#txtAdvanceRelacion").val();
-                advanceSearch.RelacionNameSearchType = $("#ddlAdvanceRelacion").val();
-                advanceSearch.RelacionSearchType = 1;
-            }
-            else {
-
-                advanceSearch.RelacionToSearch = $("#ddlAdvanceRelacion").val();
-                advanceSearch.RelacionSearchType = 2;
-            }
+        if ($("#txtAdvanceQuery_para_llenado").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Datos_Adicionales_MovimientoQuery_para_llenado = $("#txtAdvanceQuery_para_llenado").val();
+            advanceSearch.Detalle_Datos_Adicionales_MovimientoQuery_para_llenadoSearchType = $("#ddlAdvanceQuery_para_llenadoFilter").val();
         }
         if ($("#ddlAdvanceObligatorio").val() != "") {
             hasParameter = true;
@@ -171,15 +163,6 @@
         $("#ddlAdvanceTipo_de_Dato").change(function () {
             isDetalle_Datos_Adicionales_MovimientoTextSearch = false;
             $("#txtAdvanceTipo_de_Dato").val('');
-        });
-        $("#txtAdvanceRelacion").keypress(function () {
-            isDetalle_Datos_Adicionales_MovimientoTextSearch = true;
-            $("#ddlAdvanceRelacion").val('').trigger("chosen:updated");
-        });
-
-        $("#ddlAdvanceRelacion").change(function () {
-            isDetalle_Datos_Adicionales_MovimientoTextSearch = false;
-            $("#txtAdvanceRelacion").val('');
         });
 
     });

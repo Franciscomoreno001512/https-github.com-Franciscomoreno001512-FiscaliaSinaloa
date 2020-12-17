@@ -7,7 +7,7 @@ using Spartane.Core.Domain.Detalle_Datos_Adicionales_Movimiento;
 
 
 using Spartane.Core.Domain.Tipo_de_Dato;
-using Spartane.Core.Domain.Relaciones_para_Movimientos;
+
 
 
 
@@ -24,7 +24,6 @@ using Spartane.Web.Areas.WebApiConsumer.Fase_de_Judicializacion;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Datos_Adicionales_Movimiento;
 
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Dato;
-using Spartane.Web.Areas.WebApiConsumer.Relaciones_para_Movimientos;
 
 
 
@@ -67,7 +66,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_Datos_Adicionales_MovimientoApiConsumer _IDetalle_Datos_Adicionales_MovimientoApiConsumer;
 
         private ITipo_de_DatoApiConsumer _ITipo_de_DatoApiConsumer;
-        private IRelaciones_para_MovimientosApiConsumer _IRelaciones_para_MovimientosApiConsumer;
 
 
 
@@ -87,7 +85,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Configurador_de_MovimientosController(IConfigurador_de_MovimientosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IConfigurador_de_MovimientosApiConsumer Configurador_de_MovimientosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IFase_de_JudicializacionApiConsumer Fase_de_JudicializacionApiConsumer , IDetalle_Datos_Adicionales_MovimientoApiConsumer Detalle_Datos_Adicionales_MovimientoApiConsumer , ITipo_de_DatoApiConsumer Tipo_de_DatoApiConsumer , IRelaciones_para_MovimientosApiConsumer Relaciones_para_MovimientosApiConsumer  )
+        public Configurador_de_MovimientosController(IConfigurador_de_MovimientosService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IConfigurador_de_MovimientosApiConsumer Configurador_de_MovimientosApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IFase_de_JudicializacionApiConsumer Fase_de_JudicializacionApiConsumer , IDetalle_Datos_Adicionales_MovimientoApiConsumer Detalle_Datos_Adicionales_MovimientoApiConsumer , ITipo_de_DatoApiConsumer Tipo_de_DatoApiConsumer  )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -105,7 +103,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IDetalle_Datos_Adicionales_MovimientoApiConsumer = Detalle_Datos_Adicionales_MovimientoApiConsumer;
 
             this._ITipo_de_DatoApiConsumer = Tipo_de_DatoApiConsumer;
-            this._IRelaciones_para_MovimientosApiConsumer = Relaciones_para_MovimientosApiConsumer;
 
 
 
@@ -189,6 +186,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Fase = Configurador_de_MovimientosData.Fase
                     ,FaseDescripcion = CultureHelper.GetTraduction(Convert.ToString(Configurador_de_MovimientosData.Fase), "Fase_de_Judicializacion") ??  (string)Configurador_de_MovimientosData.Fase_Fase_de_Judicializacion.Descripcion
                     ,Aplica_para_Adolescentes = Configurador_de_MovimientosData.Aplica_para_Adolescentes.GetValueOrDefault()
+                    ,Aplicar_para_Adultos = Configurador_de_MovimientosData.Aplicar_para_Adultos.GetValueOrDefault()
 
 					};
 				}
@@ -274,6 +272,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Fase = Configurador_de_MovimientosData.Fase
                     ,FaseDescripcion = CultureHelper.GetTraduction(Convert.ToString(Configurador_de_MovimientosData.Fase), "Fase_de_Judicializacion") ??  (string)Configurador_de_MovimientosData.Fase_Fase_de_Judicializacion.Descripcion
                     ,Aplica_para_Adolescentes = Configurador_de_MovimientosData.Aplica_para_Adolescentes.GetValueOrDefault()
+                    ,Aplicar_para_Adultos = Configurador_de_MovimientosData.Aplicar_para_Adultos.GetValueOrDefault()
 
 					};
 				}
@@ -429,6 +428,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,FaseDescripcion = CultureHelper.GetTraduction(m.Fase_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Fase_de_Judicializacion.Descripcion
 			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
+			,Aplicar_para_Adultos = m.Aplicar_para_Adultos
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -546,6 +546,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,FaseDescripcion = CultureHelper.GetTraduction(m.Fase_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Fase_de_Judicializacion.Descripcion
 			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
+			,Aplicar_para_Adultos = m.Aplicar_para_Adultos
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -556,33 +557,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
 
 //Grid GetAutoComplete
-        [HttpGet]
-        public JsonResult GetDetalle_Datos_Adicionales_Movimiento_Relacion_Relaciones_para_Movimientos(string query, string where)
-        {
-            try
-            {
-                if (String.IsNullOrEmpty(where))
-                    where = "";
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IRelaciones_para_MovimientosApiConsumer.SetAuthHeader(_tokenManager.Token);
-
-				var elWhere = " (cast(Relaciones_para_Movimientos.ObjectId as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Relaciones_para_Movimientos.Descripcion as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
-				elWhere = HttpUtility.UrlEncode(elWhere);
-				var result = _IRelaciones_para_MovimientosApiConsumer.ListaSelAll(1, 20,elWhere , " Relaciones_para_Movimientos.Descripcion ASC ").Resource;
-               
-                foreach (var item in result.Relaciones_para_Movimientoss)
-                {
-                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.ObjectId), "Relaciones_para_Movimientos", "Descripcion");
-                    item.Descripcion =trans ??item.Descripcion;
-                }
-                return Json(result.Relaciones_para_Movimientoss.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
 
 
 
@@ -654,6 +628,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (filter.Aplica_para_Adolescentes != RadioOptions.NoApply)
                 where += " AND Configurador_de_Movimientos.Aplica_para_Adolescentes = " + Convert.ToInt32(filter.Aplica_para_Adolescentes);
 
+            if (filter.Aplicar_para_Adultos != RadioOptions.NoApply)
+                where += " AND Configurador_de_Movimientos.Aplicar_para_Adultos = " + Convert.ToInt32(filter.Aplicar_para_Adultos);
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -700,8 +677,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Dato = m.Dato
                         ,Tipo_de_Dato = m.Tipo_de_Dato
                         ,Tipo_de_DatoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Dato_Tipo_de_Dato.Clave.ToString(), "Descripcion") ??(string)m.Tipo_de_Dato_Tipo_de_Dato.Descripcion
-                        ,Relacion = m.Relacion
-                        ,RelacionDescripcion = CultureHelper.GetTraduction(m.Relacion_Relaciones_para_Movimientos.ObjectId.ToString(), "Descripcion") ??(string)m.Relacion_Relaciones_para_Movimientos.Descripcion
+			,Query_para_llenado = m.Query_para_llenado
 			,Obligatorio = m.Obligatorio
 
                 }).ToList(),
@@ -738,8 +714,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Dato = m.Dato
                         ,Tipo_de_Dato = m.Tipo_de_Dato
                         ,Tipo_de_DatoDescripcion = CultureHelper.GetTraduction(m.Tipo_de_Dato_Tipo_de_Dato.Clave.ToString(), "Descripcion") ??(string)m.Tipo_de_Dato_Tipo_de_Dato.Descripcion
-                        ,Relacion = m.Relacion
-                        ,RelacionDescripcion = CultureHelper.GetTraduction(m.Relacion_Relaciones_para_Movimientos.ObjectId.ToString(), "Descripcion") ??(string)m.Relacion_Relaciones_para_Movimientos.Descripcion
+			,Query_para_llenado = m.Query_para_llenado
 			,Obligatorio = m.Obligatorio
 
 
@@ -815,6 +790,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Descripcion = varConfigurador_de_Movimientos.Descripcion
                         ,Fase = varConfigurador_de_Movimientos.Fase
                         ,Aplica_para_Adolescentes = varConfigurador_de_Movimientos.Aplica_para_Adolescentes
+                        ,Aplicar_para_Adultos = varConfigurador_de_Movimientos.Aplicar_para_Adultos
 
                     };
 
@@ -926,7 +902,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                             ,Clave = Detalle_Datos_Adicionales_MovimientoItem.Clave
                             ,Dato = Detalle_Datos_Adicionales_MovimientoItem.Dato
                             ,Tipo_de_Dato = (Convert.ToInt32(Detalle_Datos_Adicionales_MovimientoItem.Tipo_de_Dato) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Datos_Adicionales_MovimientoItem.Tipo_de_Dato))
-                            ,Relacion = (Convert.ToInt32(Detalle_Datos_Adicionales_MovimientoItem.Relacion) == 0 ? (Int32?)null : Convert.ToInt32(Detalle_Datos_Adicionales_MovimientoItem.Relacion))
+                            ,Query_para_llenado = Detalle_Datos_Adicionales_MovimientoItem.Query_para_llenado
                             ,Obligatorio = Detalle_Datos_Adicionales_MovimientoItem.Obligatorio
 
                         };
@@ -969,26 +945,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-        [HttpGet]
-        public ActionResult GetDetalle_Datos_Adicionales_Movimiento_Relaciones_para_MovimientosAll()
-        {
-            try
-            {
-                if (!_tokenManager.GenerateToken())
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                _IRelaciones_para_MovimientosApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IRelaciones_para_MovimientosApiConsumer.SelAll(false).Resource;
-                foreach (var item in result)
-                {
-                    item.Descripcion= CultureHelper.GetTraduction(Convert.ToString(item.ObjectId), "Relaciones_para_Movimientos", "Descripcion");
-                }
-                return Json(result.ToArray(), JsonRequestBehavior.AllowGet);
-            }
-            catch (ServiceException ex)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
+
 
 
 
@@ -1372,6 +1329,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,FaseDescripcion = CultureHelper.GetTraduction(m.Fase_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Fase_de_Judicializacion.Descripcion
 			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
+			,Aplicar_para_Adultos = m.Aplicar_para_Adultos
 
             }).ToList();
 
@@ -1448,6 +1406,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Descripcion = m.Descripcion
                         ,FaseDescripcion = CultureHelper.GetTraduction(m.Fase_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Fase_de_Judicializacion.Descripcion
 			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
+			,Aplicar_para_Adultos = m.Aplicar_para_Adultos
 
             }).ToList();
 
@@ -1490,6 +1449,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                                             ,Descripcion = varConfigurador_de_Movimientos.Descripcion
                         ,Fase = varConfigurador_de_Movimientos.Fase
                         ,Aplica_para_Adolescentes = varConfigurador_de_Movimientos.Aplica_para_Adolescentes
+                        ,Aplicar_para_Adultos = varConfigurador_de_Movimientos.Aplicar_para_Adultos
                     
                 };
 
@@ -1524,6 +1484,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Fase = m.Fase
                         ,FaseDescripcion = CultureHelper.GetTraduction(m.Fase_Fase_de_Judicializacion.Clave.ToString(), "Descripcion") ?? (string)m.Fase_Fase_de_Judicializacion.Descripcion
 			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
+			,Aplicar_para_Adultos = m.Aplicar_para_Adultos
 
                     
                 };

@@ -1407,7 +1407,7 @@ function ReadSesionVar() {
 
 
     var data = localStorage.getItem('controlDocumentoDynamiSeach');
-    if (data == "false" ) {
+    if (data != "true" ) {
         controlDocumentoDynamiSeach = false; 
         localStorage.setItem('controlDocumentoDynamiSeach', "");
     }

@@ -17,6 +17,10 @@ namespace Spartane.Core.Domain.Medidas_Cautelares
     {
         public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public string Fraccion { get; set; }
+        public bool? Aplica_para_Adolescentes { get; set; }
+        public bool? Aplica_para_Adultos { get; set; }
+        public string Tipo { get; set; }
 
 
     }
@@ -25,6 +29,10 @@ namespace Spartane.Core.Domain.Medidas_Cautelares
     {
                 public int Clave { get; set; }
         public string Descripcion { get; set; }
+        public string Fraccion { get; set; }
+        public bool? Aplica_para_Adolescentes { get; set; }
+        public bool? Aplica_para_Adultos { get; set; }
+        public string Tipo { get; set; }
 
 		
     }

@@ -500,14 +500,7 @@ if( GetValueByControlType($('#' + nameOfTable + 'Persona_Aparecio' + rowIndex),n
 
 
 
-//BusinessRuleId:2895, Attribute:263830, Operation:Field, Event:None
-$("form#CreateDetalle_de_Datos_Generales").on('change', '#Tipo_de_Compareciente', function () {
-	nameOfTable='';
-	rowIndex='';
-if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divPersona_Desaparecida').css('display', 'block');} else { $('#divPersona_Desaparecida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Persona_Desaparecida' + rowIndex)); $('#divPersona_Aparecio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Persona_Aparecio' + rowIndex));$('#divFecha_de_Aparicion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Aparicion' + rowIndex));$('#divCon_Vida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Con_Vida' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Persona_Desaparecida' + rowIndex),'false');AsignarValor($('#' + nameOfTable + 'Persona_Aparecio' + rowIndex),'false');}
-});
-
-//BusinessRuleId:2895, Attribute:263830, Operation:Field, Event:None
+
 
 //BusinessRuleId:2890, Attribute:268328, Operation:Field, Event:None
 $("form#CreateDetalle_de_Datos_Generales").on('change', '#Persona_Desaparecida', function () {
@@ -546,6 +539,17 @@ if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowInd
 });
 
 //BusinessRuleId:2935, Attribute:263830, Operation:Field, Event:None
+
+
+
+//BusinessRuleId:2895, Attribute:263830, Operation:Field, Event:None
+$("form#CreateDetalle_de_Datos_Generales").on('change', '#Tipo_de_Compareciente', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divPersona_Desaparecida').css('display', 'block');} else { $('#divPersona_Desaparecida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Persona_Desaparecida' + rowIndex)); $('#divPersona_Aparecio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Persona_Aparecio' + rowIndex));$('#divFecha_de_Aparicion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Aparicion' + rowIndex));$('#divCon_Vida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Con_Vida' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Persona_Desaparecida' + rowIndex),'false');AsignarValor($('#' + nameOfTable + 'Persona_Aparecio' + rowIndex),'false');}
+});
+
+//BusinessRuleId:2895, Attribute:263830, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });

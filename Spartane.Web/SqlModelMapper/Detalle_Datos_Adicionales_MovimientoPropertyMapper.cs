@@ -21,9 +21,8 @@ namespace Spartane.Web.SqlModelMapper
                 case "Tipo_de_Dato[Descripcion]":
                 case "Tipo_de_DatoDescripcion":
                     return "Tipo_de_Dato.Descripcion";
-                case "Relacion[Descripcion]":
-                case "RelacionDescripcion":
-                    return "Relaciones_para_Movimientos.Descripcion";
+                case "Query_para_llenado":
+                    return "Detalle_Datos_Adicionales_Movimiento.Query_para_llenado";
                 case "Obligatorio":
                     return "Detalle_Datos_Adicionales_Movimiento.Obligatorio";
 

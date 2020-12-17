@@ -4,7 +4,7 @@
   <resource culture="en-US" name="Clave" value="Clave"></resource>
   <resource culture="en-US" name="Dato" value="Dato"></resource>
   <resource culture="en-US" name="Tipo_de_Dato" value="Tipo de Dato"></resource>
-  <resource culture="en-US" name="Relacion" value="Relación"></resource>
+  <resource culture="en-US" name="Query_para_llenado" value="Query para llenado"></resource>
   <resource culture="en-US" name="Obligatorio" value="Obligatorio"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>

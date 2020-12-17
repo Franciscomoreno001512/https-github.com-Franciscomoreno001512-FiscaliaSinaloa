@@ -2755,6 +2755,17 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2938, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+//BusinessRuleId:2997, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ EvaluaQuery(" IF (SELECT Usuario_que_Registra FROM dbo.Modulo_Atencion_Inicial WHERE Clave = GLOBAL[KeyValueInserted]) IS NULL"
++" BEGIN"
++" 	UPDATE Modulo_Atencion_Inicial SET Usuario_que_Registra = GLOBAL[USERID]"
++" 	WHERE Clave = GLOBAL[KeyValueInserted]"
++" END", rowIndex, nameOfTable);
+
+}
+//BusinessRuleId:2997, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

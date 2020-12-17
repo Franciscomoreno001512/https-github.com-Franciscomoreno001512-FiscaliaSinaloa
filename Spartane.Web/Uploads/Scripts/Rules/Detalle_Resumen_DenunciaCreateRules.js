@@ -70,6 +70,13 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:2973, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+//COD-MANI INI OCULTAR BOTONES
+$('#Detalle_Resumen_DenunciaGuardarYNuevo').css('display', 'none');
+$('#Detalle_Resumen_DenunciaGuardarYCopia').css('display', 'none');
+//COD-MANI END OCULTAR BOTONES
+
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

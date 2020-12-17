@@ -3,11 +3,13 @@
   <resource culture="es-es" name="Detalle_Resumen_Denuncia" value="Detalle Resumen Denuncia"></resource>
   <resource culture="es-es" name="Clave" value="Clave"></resource>
   <resource culture="es-es" name="Modulo_Atencion_Inicial" value="Modulo Atención Inicial"></resource>
-  <resource culture="es-es" name="Ofendido" value="Ofendido"></resource>
+  <resource culture="es-es" name="Probable_Responsable" value="Probable Responsable"></resource>
   <resource culture="es-es" name="Delito" value="Delito"></resource>
   <resource culture="es-es" name="Victima" value="Victima"></resource>
   <resource culture="es-es" name="Relacion" value="Relación"></resource>
+  <resource culture="es-es" name="Hechos" value="Hechos"></resource>
   <resource culture="es-es" name="Generado" value="Generado"></resource>
+  <resource culture="es-es" name="Archivo_Descargado" value="Archivo Descargado"></resource>
   <resource culture="es-es" name="Fecha_de_registro" value="Fecha de registro"></resource>
   <resource culture="es-es" name="Hora_de_registro" value="Hora de registro"></resource>
 
