@@ -7,14 +7,7 @@ $('#Detalle_de_documentosGuardarYCopia').hide();
 $(document).ready(function () {
 
 
-//BusinessRuleId:2049, Attribute:266641, Operation:Field, Event:None
-$("form#CreateDetalle_de_documentos").on('change', '#Tipo_de_Documento', function () {
-	nameOfTable='';
-	rowIndex='';
- var valor = $('#' + nameOfTable + 'Documento' + rowIndex).val();   $('#' + nameOfTable + 'Documento' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Documento' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Documento' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave, Descripcion from Documento where Tipo_de_Documento = FLD[Tipo_de_Documento]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Documento' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave, Descripcion from Documento where Tipo_de_Documento = FLD[Tipo_de_Documento]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Documento' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Documento' + rowIndex).val(valor).trigger('change');
-});
 
-//BusinessRuleId:2049, Attribute:266641, Operation:Field, Event:None
 
 //BusinessRuleId:2058, Attribute:263060, Operation:Field, Event:None
 $("form#CreateDetalle_de_documentos").on('change', '#Documento', function () {
@@ -85,6 +78,15 @@ if( EvaluaQuery("select Requerido_o_Solicitante from Documento where clave = FLD
 });
 
 //BusinessRuleId:2448, Attribute:263060, Operation:Field, Event:None
+
+//BusinessRuleId:2049, Attribute:266641, Operation:Field, Event:None
+$("form#CreateDetalle_de_documentos").on('change', '#Tipo_de_Documento', function () {
+	nameOfTable='';
+	rowIndex='';
+ var valor = $('#' + nameOfTable + 'Documento' + rowIndex).val();   $('#' + nameOfTable + 'Documento' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Documento' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Documento' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("exec uspGetDocumentosMASC FLD[Tipo_de_Documento]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Documento' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("exec uspGetDocumentosMASC FLD[Tipo_de_Documento]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Documento' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Documento' + rowIndex).val(valor).trigger('change');
+});
+
+//BusinessRuleId:2049, Attribute:266641, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });

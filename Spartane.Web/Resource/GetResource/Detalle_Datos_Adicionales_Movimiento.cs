@@ -56,13 +56,13 @@ namespace Resources
             }
         }
 
-        /// <summary>Relacion</summary>
-        public static string Relacion
+        /// <summary>Query_para_llenado</summary>
+        public static string Query_para_llenado
         {
             get
             {
                 SetPath();
-                return resourceProviderDetalle_Datos_Adicionales_Movimiento.GetResource("Relacion", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderDetalle_Datos_Adicionales_Movimiento.GetResource("Query_para_llenado", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 

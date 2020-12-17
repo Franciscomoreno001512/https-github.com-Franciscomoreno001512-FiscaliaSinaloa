@@ -3,6 +3,9 @@
   <resource culture="en-us" name="Sentencia" value="Sentencia"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
   <resource culture="en-US" name="Descripcion" value="Descripción"></resource>
+  <resource culture="en-US" name="Descr" value="Descr"></resource>
+  <resource culture="en-US" name="iddatos" value="iddatos"></resource>
+  <resource culture="en-US" name="CveSentencia" value="CveSentencia"></resource>
 
 <resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
 

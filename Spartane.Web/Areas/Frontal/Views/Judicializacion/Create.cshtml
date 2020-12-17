@@ -1,4 +1,4 @@
-﻿@using System
+@using System
 @using System.Collections.Generic
 @using System.Globalization
 @using Spartane.Core.Domain.Permission
@@ -7,34 +7,34 @@
 @model Spartane.Web.Areas.Frontal.Models.JudicializacionModel
 @{
     var advanceSearch = false; // (bool)ViewBag.AdvanceSearch;
-    /*
-        string Fecha_Actos = "";
-        if (Model.Fecha_Actos == "")
-        { Model.Fecha_Actos = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
-        string Fecha_Genericos = "";
-        if (Model.Fecha_Genericos == "")
-        { Model.Fecha_Genericos = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
-        string Fecha_Fase_Inicial = "";
-        if (Model.Fecha_Fase_Inicial == "")
-        { Model.Fecha_Fase_Inicial = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
-        string Fecha_Fase_Intermedia = "";
-        if (Model.Fecha_Fase_Intermedia == "")
-        { Model.Fecha_Fase_Intermedia = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
-        string Fecha_de_Audiencia_de_Juicio = "";
-        if (Model.Fecha_de_Audiencia_de_Juicio == "")
-        { Model.Fecha_de_Audiencia_de_Juicio = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
-        string Fecha_Fase_Salidas_Alternas = "";
-        if (Model.Fecha_Fase_Salidas_Alternas == "")
-        { Model.Fecha_Fase_Salidas_Alternas = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
-        string Fecha_Fase_Sobreseimientos = "";
-        if (Model.Fecha_Fase_Sobreseimientos == "")
-        { Model.Fecha_Fase_Sobreseimientos = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+/*
+    string Fecha_Actos = "";
+    if (Model.Fecha_Actos == "")
+    { Model.Fecha_Actos = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_Genericos = "";
+    if (Model.Fecha_Genericos == "")
+    { Model.Fecha_Genericos = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_Fase_Inicial = "";
+    if (Model.Fecha_Fase_Inicial == "")
+    { Model.Fecha_Fase_Inicial = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_Fase_Intermedia = "";
+    if (Model.Fecha_Fase_Intermedia == "")
+    { Model.Fecha_Fase_Intermedia = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Audiencia_de_Juicio = "";
+    if (Model.Fecha_de_Audiencia_de_Juicio == "")
+    { Model.Fecha_de_Audiencia_de_Juicio = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_Fase_Salidas_Alternas = "";
+    if (Model.Fecha_Fase_Salidas_Alternas == "")
+    { Model.Fecha_Fase_Salidas_Alternas = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_Fase_Sobreseimientos = "";
+    if (Model.Fecha_Fase_Sobreseimientos == "")
+    { Model.Fecha_Fase_Sobreseimientos = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
-    */
-    List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+*/
+ List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
     { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
-    List<SelectListItem> varResolucion_MP_Resolucion = null;
+ List<SelectListItem> varResolucion_MP_Resolucion = null;
     if (ViewBag.Resolucion_MPs_Resolucion != null)
     { varResolucion_MP_Resolucion = (List<SelectListItem>)ViewBag.Resolucion_MPs_Resolucion; }
     List<SelectListItem> varTipo_de_Judicializacion_Tipo = null;
@@ -53,11 +53,11 @@
     Permission permissionDetalle_Vinculacion_Judicializacion = ViewBag.PermissionDetalle_Vinculacion_Judicializacion;
 
     Permission permission = ViewBag.Permission;
-
-    if (ViewBag.IsPartial || ViewBag.viewInEframe)
-    {
-        Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
-    }
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
 }
 
 <style>
@@ -106,16 +106,16 @@
                     <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
                 </li>
                 <li class="active">
-                    @if (Session["PhaseName"] != null)
-                    {
-                        <strong>@Session["PhaseName"].ToString()</strong>
-                    }
-                    else
-                    {
-                        <strong>@Resources.JudicializacionResources.Judicializacion</strong>
-                    }
-
-                </li>
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.JudicializacionResources.Judicializacion</strong>
+                }
+                
+            </li>
                 <li class="active">
                     <strong>@Resources.Resources.Create</strong>
                 </li>
@@ -136,7 +136,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title">
-                                        @Resources.Resources.titleBussinesRules
+                                          @Resources.Resources.titleBussinesRules
                                         <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
                                     </h4>
                                 </div>
@@ -155,591 +155,584 @@
                         </div>
                     </div>
 
-                    <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-                    </div>
-                    <div aria-hidden="true" data-backdrop="static" class="modal fade in JudicializacionBusinessRuleModal" id="JudicializacionBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-                    </div>
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in JudicializacionBusinessRuleModal" id="JudicializacionBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
 
 
                 }
             }
-            <div aria-hidden="true" class="modal fade in AddDetalle_Vinculacion_JudicializacionModal" id="AddDetalle_Vinculacion_Judicializacion-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-            </div>
+                    <div aria-hidden="true" class="modal fade in AddDetalle_Vinculacion_JudicializacionModal" id="AddDetalle_Vinculacion_Judicializacion-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
 
 
         </div>
     </div>
 
-    <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="ibox float-e-margins">
-            <div class="ibox-content">
-                @using (Html.BeginForm("Post", "Judicializacion", FormMethod.Post, new { id = "CreateJudicializacion", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
-                {
-                    <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
-                    <span id="popupNotification"></span>
-                    <div class="container-fluid JudicializacionCreateForm" id="viewmodeledit">
-                        <div class="alert alert-warning" id="controlsRequerid" style="display:none">
-                            <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
-                            <span id="textRequired"></span>
-                        </div>
-                        <div class="tabs-container">
-                            <ul class="nav nav-tabs">
-                                <li class="active" data-fase="0"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.JudicializacionResources.TabDatos_Generales</a></li>
-                                <li class="" data-fase="5"><a data-toggle="tab" href="#tabActos_de_Investigacion"> @Resources.JudicializacionResources.TabActos_de_Investigacion</a></li>
-                                <li class="" data-fase="6"><a data-toggle="tab" href="#tabGenericos"> @Resources.JudicializacionResources.TabGenericos</a></li>
-                                <li class="" data-fase="1"><a data-toggle="tab" href="#tabFase_Inicial"> @Resources.JudicializacionResources.TabFase_Inicial</a></li>
-                                <li class="" data-fase="2"><a data-toggle="tab" href="#tabFase_Intermedia"> @Resources.JudicializacionResources.TabFase_Intermedia</a></li>
-                                <li class="" data-fase="3"><a data-toggle="tab" href="#tabFase_Juicio_Oral"> @Resources.JudicializacionResources.TabFase_Juicio_Oral</a></li>
-                                <li class="" data-fase="7"><a data-toggle="tab" href="#tabSalidas_Alternas"> @Resources.JudicializacionResources.TabSalidas_Alternas</a></li>
-                                <li class="" data-fase="8"><a data-toggle="tab" href="#tabSobreseimientos"> @Resources.JudicializacionResources.TabSobreseimientos</a></li>
-                                <li class="" data-fase="4"><a data-toggle="tab" href="#tabMovimientos"> @Resources.JudicializacionResources.TabMovimientos</a></li>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Judicializacion", FormMethod.Post, new { id = "CreateJudicializacion", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid JudicializacionCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active" data-fase="0"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.JudicializacionResources.TabDatos_Generales</a></li>
+<li class="" data-fase="5"><a data-toggle="tab" href="#tabActos_de_Investigacion"> @Resources.JudicializacionResources.TabActos_de_Investigacion</a></li>
+<li class="" data-fase="6"><a data-toggle="tab" href="#tabGenericos"> @Resources.JudicializacionResources.TabGenericos</a></li>
+<li class="" data-fase="1"><a data-toggle="tab" href="#tabFase_Inicial"> @Resources.JudicializacionResources.TabFase_Inicial</a></li>
+<li class="" data-fase="2"><a data-toggle="tab" href="#tabFase_Intermedia"> @Resources.JudicializacionResources.TabFase_Intermedia</a></li>
+<li class="" data-fase="3"><a data-toggle="tab" href="#tabFase_Juicio_Oral"> @Resources.JudicializacionResources.TabFase_Juicio_Oral</a></li>
+<li class="" data-fase="7"><a data-toggle="tab" href="#tabSalidas_Alternas"> @Resources.JudicializacionResources.TabSalidas_Alternas</a></li>
+<li class="" data-fase="8"><a data-toggle="tab" href="#tabSobreseimientos"> @Resources.JudicializacionResources.TabSobreseimientos</a></li>
+<li class="" data-fase="4"><a data-toggle="tab" href="#tabMovimientos"> @Resources.JudicializacionResources.TabMovimientos</a></li>
 
-                            </ul>
-                            <div class="tab-content">
-                                <div id="tabDatos_Generales" class="tab-pane active">
-                                    <div class="panel-body">
-                                        <div class="form-group" id="divClave">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Clave</label>
-                                            <div class="col-sm-8" data-field-id="Clave" data-attribute="268546" data-field-name="@Resources.JudicializacionResources.Clave">
-                                                <label class="form-control" for="Clave" id="lblClave">
-                                                    @if (Model.Clave == 0)
-                                                    {
-                                                        <text>@Resources.Resources.ClaveDefault</text>
-                                                    }
-                                                    else
-                                                    {
-                                                        <text>@Model.Clave</text>
-                                                    }
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divExpediente_MP">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Expediente_MP</label>
-                                            <div class="col-sm-8" data-field-id="Expediente_MP" data-attribute="268550" data-field-name="@Resources.JudicializacionResources.Expediente_MP">
-                                                <select class='fullWidth AutoComplete AutoCompleteJudicializacion_Expediente_MP form-control select2-dropdown Datos_Generales' data-val="true" id="Expediente_MP" name="Expediente_MP">
-                                                    <option value="@Model.Expediente_MP">@(Model.Expediente_MPnic??Model.Expediente_MPnic)</option>
-                                                </select>
-                                            </div>
-                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268550).New)
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="268546" data-field-name="@Resources.JudicializacionResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+				<div class="form-group" id="divExpediente_MP">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Expediente_MP</label>
+                                <div class="col-sm-8" data-field-id="Expediente_MP" data-attribute="268550" data-field-name="@Resources.JudicializacionResources.Expediente_MP">
+                                    <select class='fullWidth AutoComplete AutoCompleteJudicializacion_Expediente_MP form-control select2-dropdown Datos_Generales' data-val="true" id="Expediente_MP" name="Expediente_MP">
+                                        <option value="@Model.Expediente_MP">@(Model.Expediente_MPnic??Model.Expediente_MPnic)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268550).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('expediente_ministerio_publico', 'Expediente_MP');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divResolucion">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Resolucion</label>
+                                <div class="col-sm-8" data-field-id="Resolucion" data-attribute="268551" data-field-name="@Resources.JudicializacionResources.Resolucion">
+                                    <select class='fullWidth AutoComplete AutoCompleteJudicializacion_Resolucion form-control select2-dropdown Datos_Generales' data-val="true" id="Resolucion" name="Resolucion">
+                                        <option value="@Model.Resolucion">@(Model.ResolucionObservaciones??Model.ResolucionObservaciones)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268551).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Resolucion_MP', 'Resolucion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Tipo</label>
+                                <div class="col-sm-8" data-field-id="Tipo" data-attribute="268552" data-field-name="@Resources.JudicializacionResources.Tipo">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Tipo" name="Tipo">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Judicializacion_Tipo != null){ 
+                                            foreach (var itemTipo in varTipo_de_Judicializacion_Tipo)
                                             {
-                                                <div class="col-sm-1 abm-icons">
-                                                    <a id="Estado_New" onclick="GetCatalogPopup('expediente_ministerio_publico', 'Expediente_MP');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                                </div>
+                                                if (itemTipo.Value == Convert.ToString(Model.Tipo))
+                                                {
+                                                    <option value="@itemTipo.Value" selected>@itemTipo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo.Value">@itemTipo.Text</option>
+                                                }
                                             }
-                                        </div>
-                                        <div class="form-group" id="divResolucion">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Resolucion</label>
-                                            <div class="col-sm-8" data-field-id="Resolucion" data-attribute="268551" data-field-name="@Resources.JudicializacionResources.Resolucion">
-                                                <select class='fullWidth AutoComplete AutoCompleteJudicializacion_Resolucion form-control select2-dropdown Datos_Generales' data-val="true" id="Resolucion" name="Resolucion">
-                                                    <option value="@Model.Resolucion">@(Model.ResolucionObservaciones??Model.ResolucionObservaciones)</option>
-                                                </select>
-                                            </div>
-                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268551).New)
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268552).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Judicializacion', 'Tipo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divcausa_o_cuadernillo">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.causa_o_cuadernillo</label>
+                                <div class="col-sm-8" data-field-id="causa_o_cuadernillo" data-attribute="268553" data-field-name="@Resources.JudicializacionResources.causa_o_cuadernillo">
+                                    <input class="form-control Datos_Generales" id="causa_o_cuadernillo" name="causa_o_cuadernillo" type="text" value="@Model.causa_o_cuadernillo">
+                                    @*<span class="field-validation-valid" data-valmsg-for="causa_o_cuadernillo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFase_Actual">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fase_Actual</label>
+                                <div class="col-sm-8" data-field-id="Fase_Actual" data-attribute="268554" data-field-name="@Resources.JudicializacionResources.Fase_Actual">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Fase Actual must be a number." data-val-required="The Fase Actual field is required." id="Fase_Actual" name="Fase_Actual">
+                                        <option value=""></option>
+                                        @if (varFase_de_Judicializacion_Fase_Actual != null){ 
+                                            foreach (var itemFase_Actual in varFase_de_Judicializacion_Fase_Actual)
                                             {
-                                                <div class="col-sm-1 abm-icons">
-                                                    <a id="Estado_New" onclick="GetCatalogPopup('Resolucion_MP', 'Resolucion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                                </div>
+                                                if (itemFase_Actual.Value == Convert.ToString(Model.Fase_Actual))
+                                                {
+                                                    <option value="@itemFase_Actual.Value" selected>@itemFase_Actual.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemFase_Actual.Value">@itemFase_Actual.Text</option>
+                                                }
                                             }
-                                        </div>
-                                        <div class="form-group" id="divTipo">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Tipo</label>
-                                            <div class="col-sm-8" data-field-id="Tipo" data-attribute="268552" data-field-name="@Resources.JudicializacionResources.Tipo">
-                                                <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo must be a number." data-val-required="The Tipo field is required." id="Tipo" name="Tipo">
-                                                    <option value=""></option>
-                                                    @if (varTipo_de_Judicializacion_Tipo != null)
-                                                    {
-                                                        foreach (var itemTipo in varTipo_de_Judicializacion_Tipo)
-                                                        {
-                                                            if (itemTipo.Value == Convert.ToString(Model.Tipo))
-                                                            {
-                                                                <option value="@itemTipo.Value" selected>@itemTipo.Text</option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value="@itemTipo.Value">@itemTipo.Text</option>
-                                                            }
-                                                        }
-                                                    }
-                                                </select>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Tipo" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268552).New)
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Fase_Actual" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268554).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Fase_de_Judicializacion', 'Fase_Actual');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div id="divVinculacion">
+                            <div class="ibox-title">
+                                <h5>@Resources.JudicializacionResources.Vinculacion</h5>
+                                <div class="ibox-tools">
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="">
+									@if (permissionDetalle_Vinculacion_Judicializacion.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Vinculacion_JudicializacionfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_Vinculacion_JudicializacionAddRow btn btn-primary">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                        </a>
+                                    }
+                                    <button onclick="JudicializacionGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '268555')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#JudicializacionBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>
+									@if (permissionDetalle_Vinculacion_Judicializacion.New && !ViewBag.Consult)
+                                    {
+                                        <a onclick="Detalle_Vinculacion_JudicializacionfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_Vinculacion_Judicializacion-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
+                                            <i class="glyphicon glyphicon-new-window"></i>
+                                        </a>
+                                    }  
+                                </div>
+
+                                <br />
+
+                                <div style='overflow-x: auto;'>
+                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_Vinculacion_JudicializacionGrid">
+                                        <thead>
+                                            <tr>
+                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
+
+
+                                                <th class="RelacionHeader"><span>
+<button type="button" data-attribute="268549" data-field-id="Detalle_Vinculacion_JudicializacionRelacion" data-field-name="@Resources.Detalle_Vinculacion_JudicializacionResources.Relacion" data-toggle="modal" data-target="#JudicializacionBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
+                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Vinculacion_JudicializacionResources.Relacion">
+                                                                <i class="fa fa-cogs fa-spin"></i>
+                                                            </a>
+                                                        </button>@Resources.Detalle_Vinculacion_JudicializacionResources.Relacion</span></th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabActos_de_Investigacion" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divFecha_Actos">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fecha_Actos</label>
+                                <div class="col-sm-8" data-field-id="Fecha_Actos" data-attribute="268556" data-field-name="@Resources.JudicializacionResources.Fecha_Actos">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Actos_de_Investigacion" id="Fecha_Actos"  name="Fecha_Actos" type="text" value="@Model.Fecha_Actos">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_Actos">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Hora_Actos</label>
+                                <div class="col-sm-8" data-field-id="Hora_Actos" data-attribute="268557" data-field-name="@Resources.JudicializacionResources.Hora_Actos">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Actos_de_Investigacion" id="Hora_Actos"  name="Hora_Actos" type="text" data-autoclose="true" value="@Model.Hora_Actos">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divObservaciones_Actos">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones_Actos</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_Actos" data-attribute="268558" data-field-name="@Resources.JudicializacionResources.Observaciones_Actos">
+                                    <textarea id="Observaciones_Actos" name="Observaciones_Actos" class="form-control Actos_de_Investigacion" rows="4" cols="50">@Model.Observaciones_Actos</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Actos" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabGenericos" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divFecha_Genericos">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fecha_Genericos</label>
+                                <div class="col-sm-8" data-field-id="Fecha_Genericos" data-attribute="268559" data-field-name="@Resources.JudicializacionResources.Fecha_Genericos">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Genericos" id="Fecha_Genericos"  name="Fecha_Genericos" type="text" value="@Model.Fecha_Genericos">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_Genericos">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Hora_Genericos</label>
+                                <div class="col-sm-8" data-field-id="Hora_Genericos" data-attribute="268560" data-field-name="@Resources.JudicializacionResources.Hora_Genericos">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Genericos" id="Hora_Genericos"  name="Hora_Genericos" type="text" data-autoclose="true" value="@Model.Hora_Genericos">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divObservaciones_Genericos">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones_Genericos</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_Genericos" data-attribute="268561" data-field-name="@Resources.JudicializacionResources.Observaciones_Genericos">
+                                    <textarea id="Observaciones_Genericos" name="Observaciones_Genericos" class="form-control Genericos" rows="4" cols="50">@Model.Observaciones_Genericos</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Genericos" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabFase_Inicial" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divFecha_Fase_Inicial">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fecha_Fase_Inicial</label>
+                                <div class="col-sm-8" data-field-id="Fecha_Fase_Inicial" data-attribute="268562" data-field-name="@Resources.JudicializacionResources.Fecha_Fase_Inicial">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Fase_Inicial" id="Fecha_Fase_Inicial"  name="Fecha_Fase_Inicial" type="text" value="@Model.Fecha_Fase_Inicial">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_Fase_Inicial">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Hora_Fase_Inicial</label>
+                                <div class="col-sm-8" data-field-id="Hora_Fase_Inicial" data-attribute="268563" data-field-name="@Resources.JudicializacionResources.Hora_Fase_Inicial">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Fase_Inicial" id="Hora_Fase_Inicial"  name="Hora_Fase_Inicial" type="text" data-autoclose="true" value="@Model.Hora_Fase_Inicial">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divObservaciones_Fase_Inicial">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones_Fase_Inicial</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_Fase_Inicial" data-attribute="268564" data-field-name="@Resources.JudicializacionResources.Observaciones_Fase_Inicial">
+                                    <textarea id="Observaciones_Fase_Inicial" name="Observaciones_Fase_Inicial" class="form-control Fase_Inicial" rows="4" cols="50">@Model.Observaciones_Fase_Inicial</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Fase_Inicial" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabFase_Intermedia" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divFecha_Fase_Intermedia">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fecha_Fase_Intermedia</label>
+                                <div class="col-sm-8" data-field-id="Fecha_Fase_Intermedia" data-attribute="268565" data-field-name="@Resources.JudicializacionResources.Fecha_Fase_Intermedia">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Fase_Intermedia" id="Fecha_Fase_Intermedia"  name="Fecha_Fase_Intermedia" type="text" value="@Model.Fecha_Fase_Intermedia">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_Fase_Intermedia">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Hora_Fase_Intermedia</label>
+                                <div class="col-sm-8" data-field-id="Hora_Fase_Intermedia" data-attribute="268566" data-field-name="@Resources.JudicializacionResources.Hora_Fase_Intermedia">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Fase_Intermedia" id="Hora_Fase_Intermedia"  name="Hora_Fase_Intermedia" type="text" data-autoclose="true" value="@Model.Hora_Fase_Intermedia">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divObservaciones_Fase_Intermedia">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones_Fase_Intermedia</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_Fase_Intermedia" data-attribute="268567" data-field-name="@Resources.JudicializacionResources.Observaciones_Fase_Intermedia">
+                                    <textarea id="Observaciones_Fase_Intermedia" name="Observaciones_Fase_Intermedia" class="form-control Fase_Intermedia" rows="4" cols="50">@Model.Observaciones_Fase_Intermedia</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Fase_Intermedia" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabFase_Juicio_Oral" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divFecha_de_Audiencia_de_Juicio">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fecha_de_Audiencia_de_Juicio</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Audiencia_de_Juicio" data-attribute="268568" data-field-name="@Resources.JudicializacionResources.Fecha_de_Audiencia_de_Juicio">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Fase_Juicio_Oral" id="Fecha_de_Audiencia_de_Juicio"  name="Fecha_de_Audiencia_de_Juicio" type="text" value="@Model.Fecha_de_Audiencia_de_Juicio">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Audiencia_de_Juicio">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Hora_de_Audiencia_de_Juicio</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Audiencia_de_Juicio" data-attribute="268569" data-field-name="@Resources.JudicializacionResources.Hora_de_Audiencia_de_Juicio">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Fase_Juicio_Oral" id="Hora_de_Audiencia_de_Juicio"  name="Hora_de_Audiencia_de_Juicio" type="text" data-autoclose="true" value="@Model.Hora_de_Audiencia_de_Juicio">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divTribunal_de_Enjuiciamiento">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Tribunal_de_Enjuiciamiento</label>
+                                <div class="col-sm-8" data-field-id="Tribunal_de_Enjuiciamiento" data-attribute="268570" data-field-name="@Resources.JudicializacionResources.Tribunal_de_Enjuiciamiento">
+                                    <select class="form-control Fase_Juicio_Oral" data-val="true" data-val-number="The field Tribunal de Enjuiciamiento must be a number." data-val-required="The Tribunal de Enjuiciamiento field is required." id="Tribunal_de_Enjuiciamiento" name="Tribunal_de_Enjuiciamiento">
+                                        <option value=""></option>
+                                        @if (varTribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento != null){ 
+                                            foreach (var itemTribunal_de_Enjuiciamiento in varTribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento)
                                             {
-                                                <div class="col-sm-1 abm-icons">
-                                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Judicializacion', 'Tipo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                                </div>
+                                                if (itemTribunal_de_Enjuiciamiento.Value == Convert.ToString(Model.Tribunal_de_Enjuiciamiento))
+                                                {
+                                                    <option value="@itemTribunal_de_Enjuiciamiento.Value" selected>@itemTribunal_de_Enjuiciamiento.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTribunal_de_Enjuiciamiento.Value">@itemTribunal_de_Enjuiciamiento.Text</option>
+                                                }
                                             }
-                                        </div>
-                                        <div class="form-group" id="divcausa_o_cuadernillo">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.causa_o_cuadernillo</label>
-                                            <div class="col-sm-8" data-field-id="causa_o_cuadernillo" data-attribute="268553" data-field-name="@Resources.JudicializacionResources.causa_o_cuadernillo">
-                                                <input class="form-control Datos_Generales" id="causa_o_cuadernillo" name="causa_o_cuadernillo" type="text" value="@Model.causa_o_cuadernillo">
-                                                @*<span class="field-validation-valid" data-valmsg-for="causa_o_cuadernillo" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divFase_Actual">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fase_Actual</label>
-                                            <div class="col-sm-8" data-field-id="Fase_Actual" data-attribute="268554" data-field-name="@Resources.JudicializacionResources.Fase_Actual">
-                                                <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Fase Actual must be a number." data-val-required="The Fase Actual field is required." id="Fase_Actual" name="Fase_Actual">
-                                                    <option value=""></option>
-                                                    @if (varFase_de_Judicializacion_Fase_Actual != null)
-                                                    {
-                                                        foreach (var itemFase_Actual in varFase_de_Judicializacion_Fase_Actual)
-                                                        {
-                                                            if (itemFase_Actual.Value == Convert.ToString(Model.Fase_Actual))
-                                                            {
-                                                                <option value="@itemFase_Actual.Value" selected>@itemFase_Actual.Text</option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value="@itemFase_Actual.Value">@itemFase_Actual.Text</option>
-                                                            }
-                                                        }
-                                                    }
-                                                </select>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Fase_Actual" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268554).New)
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tribunal_de_Enjuiciamiento" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268570).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tribunal_de_Enjuiciamiento', 'Tribunal_de_Enjuiciamiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divNombre_del_Juez">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Nombre_del_Juez</label>
+                                <div class="col-sm-8" data-field-id="Nombre_del_Juez" data-attribute="268571" data-field-name="@Resources.JudicializacionResources.Nombre_del_Juez">
+                                    <input class="form-control Fase_Juicio_Oral" id="Nombre_del_Juez" name="Nombre_del_Juez" type="text" value="@Model.Nombre_del_Juez">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Nombre_del_Juez" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divJuez_Presidente">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Juez_Presidente</label>
+                                <div class="col-sm-8" data-field-id="Juez_Presidente" data-attribute="268572" data-field-name="@Resources.JudicializacionResources.Juez_Presidente">
+                                    <input class="form-control Fase_Juicio_Oral" id="Juez_Presidente" name="Juez_Presidente" type="text" value="@Model.Juez_Presidente">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Juez_Presidente" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divJuez_Relator">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Juez_Relator</label>
+                                <div class="col-sm-8" data-field-id="Juez_Relator" data-attribute="268573" data-field-name="@Resources.JudicializacionResources.Juez_Relator">
+                                    <input class="form-control Fase_Juicio_Oral" id="Juez_Relator" name="Juez_Relator" type="text" value="@Model.Juez_Relator">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Juez_Relator" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divJuez_Vocal">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Juez_Vocal</label>
+                                <div class="col-sm-8" data-field-id="Juez_Vocal" data-attribute="268574" data-field-name="@Resources.JudicializacionResources.Juez_Vocal">
+                                    <input class="form-control Fase_Juicio_Oral" id="Juez_Vocal" name="Juez_Vocal" type="text" value="@Model.Juez_Vocal">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Juez_Vocal" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divmedios_desahogo">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.medios_desahogo</label>
+                                <div class="col-sm-8" data-field-id="medios_desahogo" data-attribute="268575" data-field-name="@Resources.JudicializacionResources.medios_desahogo">
+                                    <textarea id="medios_desahogo" name="medios_desahogo" class="form-control Fase_Juicio_Oral" rows="4" cols="50">@Model.medios_desahogo</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="medios_desahogo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divTipo_de_Sentencia">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Tipo_de_Sentencia</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Sentencia" data-attribute="268576" data-field-name="@Resources.JudicializacionResources.Tipo_de_Sentencia">
+                                    <select class="form-control Fase_Juicio_Oral" data-val="true" data-val-number="The field Tipo de Sentencia must be a number." data-val-required="The Tipo de Sentencia field is required." id="Tipo_de_Sentencia" name="Tipo_de_Sentencia">
+                                        <option value=""></option>
+                                        @if (varSentencia_Tipo_de_Sentencia != null){ 
+                                            foreach (var itemTipo_de_Sentencia in varSentencia_Tipo_de_Sentencia)
                                             {
-                                                <div class="col-sm-1 abm-icons">
-                                                    <a id="Estado_New" onclick="GetCatalogPopup('Fase_de_Judicializacion', 'Fase_Actual');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                                </div>
+                                                if (itemTipo_de_Sentencia.Value == Convert.ToString(Model.Tipo_de_Sentencia))
+                                                {
+                                                    <option value="@itemTipo_de_Sentencia.Value" selected>@itemTipo_de_Sentencia.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Sentencia.Value">@itemTipo_de_Sentencia.Text</option>
+                                                }
                                             }
-                                        </div>
-                                        <div id="divVinculacion">
-                                            <div class="ibox-title">
-                                                <h5>@Resources.JudicializacionResources.Vinculacion</h5>
-                                                <div class="ibox-tools">
-                                                </div>
-                                            </div>
-                                            <div class="ibox-content">
-                                                <div class="">
-                                                    @if (permissionDetalle_Vinculacion_Judicializacion.New && !ViewBag.Consult)
-                                                    {
-                                                        <a onclick="Detalle_Vinculacion_JudicializacionfnClickAddRow();" href="javascript:void(0);" title="@Resources.Resources.AddNewRow" class="Detalle_Vinculacion_JudicializacionAddRow btn btn-primary">
-                                                            <i class="glyphicon glyphicon-plus"></i>
-                                                        </a>
-                                                    }
-                                                    <button onclick="JudicializacionGetBusinessRule('', 'Al Guardar o al Eliminar una Row', '268555')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#JudicializacionBusinessRule-form">
-                                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToCreateGrid">
-                                                            <i class="fa fa-cogs fa-spin"></i>
-                                                        </a>
-                                                    </button>
-                                                    @if (permissionDetalle_Vinculacion_Judicializacion.New && !ViewBag.Consult)
-                                                    {
-                                                        <a onclick="Detalle_Vinculacion_JudicializacionfnOpenAddRowPopUp();" data-toggle="modal" title="@Resources.Resources.AddNewRow" data-target="#AddDetalle_Vinculacion_Judicializacion-form" data-backdrop="static" data-keyboard="false" class="btn_mrpopup btn btn-primary">
-                                                            <i class="glyphicon glyphicon-new-window"></i>
-                                                        </a>
-                                                    }
-                                                </div>
-
-                                                <br />
-
-                                                <div style='overflow-x: auto;'>
-                                                    <table class="table table-striped table-bordered table-hover childValidateTable" id="Detalle_Vinculacion_JudicializacionGrid">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="ActionHeader"><span>@Resources.Resources.Actions</span></th>
-
-
-                                                                <th class="RelacionHeader">
-                                                                    <span>
-                                                                        <button type="button" data-attribute="268549" data-field-id="Detalle_Vinculacion_JudicializacionRelacion" data-field-name="@Resources.Detalle_Vinculacion_JudicializacionResources.Relacion" data-toggle="modal" data-target="#JudicializacionBusinessRule-form" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton btnPopupBusinessRules">
-                                                                            <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleFor@Resources.Detalle_Vinculacion_JudicializacionResources.Relacion">
-                                                                                <i class="fa fa-cogs fa-spin"></i>
-                                                                            </a>
-                                                                        </button>@Resources.Detalle_Vinculacion_JudicializacionResources.Relacion
-                                                                    </span>
-                                                                </th>
-
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Sentencia" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268576).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Sentencia', 'Tipo_de_Sentencia');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divCuantia_de_Pena_Anos">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Cuantia_de_Pena_Anos</label>
+                                <div class="col-sm-8" data-field-id="Cuantia_de_Pena_Anos" data-attribute="268577" data-field-name="@Resources.JudicializacionResources.Cuantia_de_Pena_Anos">
+                                    <input class="form-control inputNumber Fase_Juicio_Oral" id="Cuantia_de_Pena_Anos" name="Cuantia_de_Pena_Anos" type="text" value="@Model.Cuantia_de_Pena_Anos">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Cuantia_de_Pena_Anos" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCuantia_de_Pena_Meses">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Cuantia_de_Pena_Meses</label>
+                                <div class="col-sm-8" data-field-id="Cuantia_de_Pena_Meses" data-attribute="268578" data-field-name="@Resources.JudicializacionResources.Cuantia_de_Pena_Meses">
+                                    <input class="form-control inputNumber Fase_Juicio_Oral" id="Cuantia_de_Pena_Meses" name="Cuantia_de_Pena_Meses" type="text" value="@Model.Cuantia_de_Pena_Meses">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Cuantia_de_Pena_Meses" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                              <div class="form-group" id="divMonto_de_Reparacion_del_Dano">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Monto_de_Reparacion_del_Dano</label>
+								<div class="col-sm-8">
+									<div class="input-group m-b" data-field-id="Monto_de_Reparacion_del_Dano" data-attribute="268579" data-field-name="@Resources.JudicializacionResources.Monto_de_Reparacion_del_Dano">
+										<span class="input-group-addon">$</span>
+										@if(Model.Monto_de_Reparacion_del_Dano.HasValue)
+						{
+						<input class="form-control col-md-12 inputNumber inputMoney Fase_Juicio_Oral" id="Monto_de_Reparacion_del_Dano" name="Monto_de_Reparacion_del_Dano" type="text" min="0.00" max="999999.99" value="@Model.Monto_de_Reparacion_del_Dano.Value.ToString("N", CultureInfo.InvariantCulture)">
+						}
+						else
+						{
+						<input class="form-control col-md-12 inputNumber inputMoney Fase_Juicio_Oral" id="Monto_de_Reparacion_del_Dano" name="Monto_de_Reparacion_del_Dano" type="text" min="0.00" max="999999.99" value="">
+						}  
+									</div>
+								</div>
+                            </div>
+                            <div class="form-group" id="divObservaciones_Fase_Juicio_Oral">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones_Fase_Juicio_Oral</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_Fase_Juicio_Oral" data-attribute="268580" data-field-name="@Resources.JudicializacionResources.Observaciones_Fase_Juicio_Oral">
+                                    <textarea id="Observaciones_Fase_Juicio_Oral" name="Observaciones_Fase_Juicio_Oral" class="form-control Fase_Juicio_Oral" rows="4" cols="50">@Model.Observaciones_Fase_Juicio_Oral</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Fase_Juicio_Oral" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
                                 </div>
 
 
-                                <div id="tabActos_de_Investigacion" class="tab-pane">
-                                    <div class="panel-body">
-                                        <div class="form-group" id="divFecha_Actos">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fecha_Actos</label>
-                                            <div class="col-sm-8" data-field-id="Fecha_Actos" data-attribute="268556" data-field-name="@Resources.JudicializacionResources.Fecha_Actos">
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                    <input class="form-control col-md-12 Actos_de_Investigacion" id="Fecha_Actos" name="Fecha_Actos" type="text" value="@Model.Fecha_Actos">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divHora_Actos">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Hora_Actos</label>
-                                            <div class="col-sm-8" data-field-id="Hora_Actos" data-attribute="268557" data-field-name="@Resources.JudicializacionResources.Hora_Actos">
-                                                <div class='input-group date' id='timePicker'>
-                                                    <input class="form-control col-md-12 Actos_de_Investigacion" id="Hora_Actos" name="Hora_Actos" type="text" data-autoclose="true" value="@Model.Hora_Actos">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-time"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divObservaciones_Actos">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones_Actos</label>
-                                            <div class="col-sm-8" data-field-id="Observaciones_Actos" data-attribute="268558" data-field-name="@Resources.JudicializacionResources.Observaciones_Actos">
-                                                <textarea id="Observaciones_Actos" name="Observaciones_Actos" class="form-control Actos_de_Investigacion" rows="4" cols="50">@Model.Observaciones_Actos</textarea>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Actos" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
+                            <div id="tabSalidas_Alternas" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divFecha_Fase_Salidas_Alternas">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fecha_Fase_Salidas_Alternas</label>
+                                <div class="col-sm-8" data-field-id="Fecha_Fase_Salidas_Alternas" data-attribute="268581" data-field-name="@Resources.JudicializacionResources.Fecha_Fase_Salidas_Alternas">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Salidas_Alternas" id="Fecha_Fase_Salidas_Alternas"  name="Fecha_Fase_Salidas_Alternas" type="text" value="@Model.Fecha_Fase_Salidas_Alternas">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_Fase_Salidas_Alternas">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Hora_Fase_Salidas_Alternas</label>
+                                <div class="col-sm-8" data-field-id="Hora_Fase_Salidas_Alternas" data-attribute="268582" data-field-name="@Resources.JudicializacionResources.Hora_Fase_Salidas_Alternas">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Salidas_Alternas" id="Hora_Fase_Salidas_Alternas"  name="Hora_Fase_Salidas_Alternas" type="text" data-autoclose="true" value="@Model.Hora_Fase_Salidas_Alternas">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divObservaciones_Fase_Salidas_Alternas">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones_Fase_Salidas_Alternas</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_Fase_Salidas_Alternas" data-attribute="268583" data-field-name="@Resources.JudicializacionResources.Observaciones_Fase_Salidas_Alternas">
+                                    <textarea id="Observaciones_Fase_Salidas_Alternas" name="Observaciones_Fase_Salidas_Alternas" class="form-control Salidas_Alternas" rows="4" cols="50">@Model.Observaciones_Fase_Salidas_Alternas</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Fase_Salidas_Alternas" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
                                 </div>
 
 
-                                <div id="tabGenericos" class="tab-pane">
-                                    <div class="panel-body">
-                                        <div class="form-group" id="divFecha_Genericos">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fecha_Genericos</label>
-                                            <div class="col-sm-8" data-field-id="Fecha_Genericos" data-attribute="268559" data-field-name="@Resources.JudicializacionResources.Fecha_Genericos">
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                    <input class="form-control col-md-12 Genericos" id="Fecha_Genericos" name="Fecha_Genericos" type="text" value="@Model.Fecha_Genericos">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divHora_Genericos">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Hora_Genericos</label>
-                                            <div class="col-sm-8" data-field-id="Hora_Genericos" data-attribute="268560" data-field-name="@Resources.JudicializacionResources.Hora_Genericos">
-                                                <div class='input-group date' id='timePicker'>
-                                                    <input class="form-control col-md-12 Genericos" id="Hora_Genericos" name="Hora_Genericos" type="text" data-autoclose="true" value="@Model.Hora_Genericos">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-time"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divObservaciones_Genericos">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones_Genericos</label>
-                                            <div class="col-sm-8" data-field-id="Observaciones_Genericos" data-attribute="268561" data-field-name="@Resources.JudicializacionResources.Observaciones_Genericos">
-                                                <textarea id="Observaciones_Genericos" name="Observaciones_Genericos" class="form-control Genericos" rows="4" cols="50">@Model.Observaciones_Genericos</textarea>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Genericos" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
+                            <div id="tabSobreseimientos" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divFecha_Fase_Sobreseimientos">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fecha_Fase_Sobreseimientos</label>
+                                <div class="col-sm-8" data-field-id="Fecha_Fase_Sobreseimientos" data-attribute="268584" data-field-name="@Resources.JudicializacionResources.Fecha_Fase_Sobreseimientos">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Sobreseimientos" id="Fecha_Fase_Sobreseimientos"  name="Fecha_Fase_Sobreseimientos" type="text" value="@Model.Fecha_Fase_Sobreseimientos">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_Fase_Sobreseimientos">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Hora_Fase_Sobreseimientos</label>
+                                <div class="col-sm-8" data-field-id="Hora_Fase_Sobreseimientos" data-attribute="268585" data-field-name="@Resources.JudicializacionResources.Hora_Fase_Sobreseimientos">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Sobreseimientos" id="Hora_Fase_Sobreseimientos"  name="Hora_Fase_Sobreseimientos" type="text" data-autoclose="true" value="@Model.Hora_Fase_Sobreseimientos">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divObservaciones_Fase_Sobreseimientos">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones_Fase_Sobreseimientos</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_Fase_Sobreseimientos" data-attribute="268586" data-field-name="@Resources.JudicializacionResources.Observaciones_Fase_Sobreseimientos">
+                                    <textarea id="Observaciones_Fase_Sobreseimientos" name="Observaciones_Fase_Sobreseimientos" class="form-control Sobreseimientos" rows="4" cols="50">@Model.Observaciones_Fase_Sobreseimientos</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Fase_Sobreseimientos" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
                                 </div>
 
 
-                                <div id="tabFase_Inicial" class="tab-pane">
-                                    <div class="panel-body">
-                                        <div class="form-group" id="divFecha_Fase_Inicial">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fecha_Fase_Inicial</label>
-                                            <div class="col-sm-8" data-field-id="Fecha_Fase_Inicial" data-attribute="268562" data-field-name="@Resources.JudicializacionResources.Fecha_Fase_Inicial">
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                    <input class="form-control col-md-12 Fase_Inicial" id="Fecha_Fase_Inicial" name="Fecha_Fase_Inicial" type="text" value="@Model.Fecha_Fase_Inicial">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divHora_Fase_Inicial">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Hora_Fase_Inicial</label>
-                                            <div class="col-sm-8" data-field-id="Hora_Fase_Inicial" data-attribute="268563" data-field-name="@Resources.JudicializacionResources.Hora_Fase_Inicial">
-                                                <div class='input-group date' id='timePicker'>
-                                                    <input class="form-control col-md-12 Fase_Inicial" id="Hora_Fase_Inicial" name="Hora_Fase_Inicial" type="text" data-autoclose="true" value="@Model.Hora_Fase_Inicial">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-time"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divObservaciones_Fase_Inicial">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones_Fase_Inicial</label>
-                                            <div class="col-sm-8" data-field-id="Observaciones_Fase_Inicial" data-attribute="268564" data-field-name="@Resources.JudicializacionResources.Observaciones_Fase_Inicial">
-                                                <textarea id="Observaciones_Fase_Inicial" name="Observaciones_Fase_Inicial" class="form-control Fase_Inicial" rows="4" cols="50">@Model.Observaciones_Fase_Inicial</textarea>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Fase_Inicial" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div id="tabMovimientos" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divObservaciones">
+                                <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones</label>
+                                <div class="col-sm-8" data-field-id="Observaciones" data-attribute="268587" data-field-name="@Resources.JudicializacionResources.Observaciones">
+                                    <textarea id="Observaciones" name="Observaciones" class="form-control Movimientos" rows="4" cols="50">@Model.Observaciones</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>*@
                                 </div>
-
-
-                                <div id="tabFase_Intermedia" class="tab-pane">
-                                    <div class="panel-body">
-                                        <div class="form-group" id="divFecha_Fase_Intermedia">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fecha_Fase_Intermedia</label>
-                                            <div class="col-sm-8" data-field-id="Fecha_Fase_Intermedia" data-attribute="268565" data-field-name="@Resources.JudicializacionResources.Fecha_Fase_Intermedia">
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                    <input class="form-control col-md-12 Fase_Intermedia" id="Fecha_Fase_Intermedia" name="Fecha_Fase_Intermedia" type="text" value="@Model.Fecha_Fase_Intermedia">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divHora_Fase_Intermedia">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Hora_Fase_Intermedia</label>
-                                            <div class="col-sm-8" data-field-id="Hora_Fase_Intermedia" data-attribute="268566" data-field-name="@Resources.JudicializacionResources.Hora_Fase_Intermedia">
-                                                <div class='input-group date' id='timePicker'>
-                                                    <input class="form-control col-md-12 Fase_Intermedia" id="Hora_Fase_Intermedia" name="Hora_Fase_Intermedia" type="text" data-autoclose="true" value="@Model.Hora_Fase_Intermedia">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-time"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divObservaciones_Fase_Intermedia">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones_Fase_Intermedia</label>
-                                            <div class="col-sm-8" data-field-id="Observaciones_Fase_Intermedia" data-attribute="268567" data-field-name="@Resources.JudicializacionResources.Observaciones_Fase_Intermedia">
-                                                <textarea id="Observaciones_Fase_Intermedia" name="Observaciones_Fase_Intermedia" class="form-control Fase_Intermedia" rows="4" cols="50">@Model.Observaciones_Fase_Intermedia</textarea>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Fase_Intermedia" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div id="tabFase_Juicio_Oral" class="tab-pane">
-                                    <div class="panel-body">
-                                        <div class="form-group" id="divFecha_de_Audiencia_de_Juicio">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fecha_de_Audiencia_de_Juicio</label>
-                                            <div class="col-sm-8" data-field-id="Fecha_de_Audiencia_de_Juicio" data-attribute="268568" data-field-name="@Resources.JudicializacionResources.Fecha_de_Audiencia_de_Juicio">
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                    <input class="form-control col-md-12 Fase_Juicio_Oral" id="Fecha_de_Audiencia_de_Juicio" name="Fecha_de_Audiencia_de_Juicio" type="text" value="@Model.Fecha_de_Audiencia_de_Juicio">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divHora_de_Audiencia_de_Juicio">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Hora_de_Audiencia_de_Juicio</label>
-                                            <div class="col-sm-8" data-field-id="Hora_de_Audiencia_de_Juicio" data-attribute="268569" data-field-name="@Resources.JudicializacionResources.Hora_de_Audiencia_de_Juicio">
-                                                <div class='input-group date' id='timePicker'>
-                                                    <input class="form-control col-md-12 Fase_Juicio_Oral" id="Hora_de_Audiencia_de_Juicio" name="Hora_de_Audiencia_de_Juicio" type="text" data-autoclose="true" value="@Model.Hora_de_Audiencia_de_Juicio">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-time"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divTribunal_de_Enjuiciamiento">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Tribunal_de_Enjuiciamiento</label>
-                                            <div class="col-sm-8" data-field-id="Tribunal_de_Enjuiciamiento" data-attribute="268570" data-field-name="@Resources.JudicializacionResources.Tribunal_de_Enjuiciamiento">
-                                                <select class="form-control Fase_Juicio_Oral" data-val="true" data-val-number="The field Tribunal de Enjuiciamiento must be a number." data-val-required="The Tribunal de Enjuiciamiento field is required." id="Tribunal_de_Enjuiciamiento" name="Tribunal_de_Enjuiciamiento">
-                                                    <option value=""></option>
-                                                    @if (varTribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento != null)
-                                                    {
-                                                        foreach (var itemTribunal_de_Enjuiciamiento in varTribunal_de_Enjuiciamiento_Tribunal_de_Enjuiciamiento)
-                                                        {
-                                                            if (itemTribunal_de_Enjuiciamiento.Value == Convert.ToString(Model.Tribunal_de_Enjuiciamiento))
-                                                            {
-                                                                <option value="@itemTribunal_de_Enjuiciamiento.Value" selected>@itemTribunal_de_Enjuiciamiento.Text</option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value="@itemTribunal_de_Enjuiciamiento.Value">@itemTribunal_de_Enjuiciamiento.Text</option>
-                                                            }
-                                                        }
-                                                    }
-                                                </select>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Tribunal_de_Enjuiciamiento" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268570).New)
-                                            {
-                                                <div class="col-sm-1 abm-icons">
-                                                    <a id="Estado_New" onclick="GetCatalogPopup('Tribunal_de_Enjuiciamiento', 'Tribunal_de_Enjuiciamiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                                </div>
-                                            }
-                                        </div>
-                                        <div class="form-group" id="divNombre_del_Juez">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Nombre_del_Juez</label>
-                                            <div class="col-sm-8" data-field-id="Nombre_del_Juez" data-attribute="268571" data-field-name="@Resources.JudicializacionResources.Nombre_del_Juez">
-                                                <input class="form-control Fase_Juicio_Oral" id="Nombre_del_Juez" name="Nombre_del_Juez" type="text" value="@Model.Nombre_del_Juez">
-                                                @*<span class="field-validation-valid" data-valmsg-for="Nombre_del_Juez" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divJuez_Presidente">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Juez_Presidente</label>
-                                            <div class="col-sm-8" data-field-id="Juez_Presidente" data-attribute="268572" data-field-name="@Resources.JudicializacionResources.Juez_Presidente">
-                                                <input class="form-control Fase_Juicio_Oral" id="Juez_Presidente" name="Juez_Presidente" type="text" value="@Model.Juez_Presidente">
-                                                @*<span class="field-validation-valid" data-valmsg-for="Juez_Presidente" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divJuez_Relator">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Juez_Relator</label>
-                                            <div class="col-sm-8" data-field-id="Juez_Relator" data-attribute="268573" data-field-name="@Resources.JudicializacionResources.Juez_Relator">
-                                                <input class="form-control Fase_Juicio_Oral" id="Juez_Relator" name="Juez_Relator" type="text" value="@Model.Juez_Relator">
-                                                @*<span class="field-validation-valid" data-valmsg-for="Juez_Relator" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divJuez_Vocal">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Juez_Vocal</label>
-                                            <div class="col-sm-8" data-field-id="Juez_Vocal" data-attribute="268574" data-field-name="@Resources.JudicializacionResources.Juez_Vocal">
-                                                <input class="form-control Fase_Juicio_Oral" id="Juez_Vocal" name="Juez_Vocal" type="text" value="@Model.Juez_Vocal">
-                                                @*<span class="field-validation-valid" data-valmsg-for="Juez_Vocal" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divmedios_desahogo">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.medios_desahogo</label>
-                                            <div class="col-sm-8" data-field-id="medios_desahogo" data-attribute="268575" data-field-name="@Resources.JudicializacionResources.medios_desahogo">
-                                                <textarea id="medios_desahogo" name="medios_desahogo" class="form-control Fase_Juicio_Oral" rows="4" cols="50">@Model.medios_desahogo</textarea>
-                                                @*<span class="field-validation-valid" data-valmsg-for="medios_desahogo" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divTipo_de_Sentencia">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Tipo_de_Sentencia</label>
-                                            <div class="col-sm-8" data-field-id="Tipo_de_Sentencia" data-attribute="268576" data-field-name="@Resources.JudicializacionResources.Tipo_de_Sentencia">
-                                                <select class="form-control Fase_Juicio_Oral" data-val="true" data-val-number="The field Tipo de Sentencia must be a number." data-val-required="The Tipo de Sentencia field is required." id="Tipo_de_Sentencia" name="Tipo_de_Sentencia">
-                                                    <option value=""></option>
-                                                    @if (varSentencia_Tipo_de_Sentencia != null)
-                                                    {
-                                                        foreach (var itemTipo_de_Sentencia in varSentencia_Tipo_de_Sentencia)
-                                                        {
-                                                            if (itemTipo_de_Sentencia.Value == Convert.ToString(Model.Tipo_de_Sentencia))
-                                                            {
-                                                                <option value="@itemTipo_de_Sentencia.Value" selected>@itemTipo_de_Sentencia.Text</option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value="@itemTipo_de_Sentencia.Value">@itemTipo_de_Sentencia.Text</option>
-                                                            }
-                                                        }
-                                                    }
-                                                </select>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Sentencia" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268576).New)
-                                            {
-                                                <div class="col-sm-1 abm-icons">
-                                                    <a id="Estado_New" onclick="GetCatalogPopup('Sentencia', 'Tipo_de_Sentencia');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                                </div>
-                                            }
-                                        </div>
-                                        <div class="form-group" id="divCuantia_de_Pena_Anos">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Cuantia_de_Pena_Anos</label>
-                                            <div class="col-sm-8" data-field-id="Cuantia_de_Pena_Anos" data-attribute="268577" data-field-name="@Resources.JudicializacionResources.Cuantia_de_Pena_Anos">
-                                                <input class="form-control inputNumber Fase_Juicio_Oral" id="Cuantia_de_Pena_Anos" name="Cuantia_de_Pena_Anos" type="text" value="@Model.Cuantia_de_Pena_Anos">
-                                                @*<span class="field-validation-valid" data-valmsg-for="Cuantia_de_Pena_Anos" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divCuantia_de_Pena_Meses">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Cuantia_de_Pena_Meses</label>
-                                            <div class="col-sm-8" data-field-id="Cuantia_de_Pena_Meses" data-attribute="268578" data-field-name="@Resources.JudicializacionResources.Cuantia_de_Pena_Meses">
-                                                <input class="form-control inputNumber Fase_Juicio_Oral" id="Cuantia_de_Pena_Meses" name="Cuantia_de_Pena_Meses" type="text" value="@Model.Cuantia_de_Pena_Meses">
-                                                @*<span class="field-validation-valid" data-valmsg-for="Cuantia_de_Pena_Meses" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divMonto_de_Reparacion_del_Dano">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Monto_de_Reparacion_del_Dano</label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group m-b" data-field-id="Monto_de_Reparacion_del_Dano" data-attribute="268579" data-field-name="@Resources.JudicializacionResources.Monto_de_Reparacion_del_Dano">
-                                                    <span class="input-group-addon">$</span>
-                                                    @if (Model.Monto_de_Reparacion_del_Dano.HasValue)
-                                                    {
-                                                        <input class="form-control col-md-12 inputNumber inputMoney Fase_Juicio_Oral" id="Monto_de_Reparacion_del_Dano" name="Monto_de_Reparacion_del_Dano" type="text" min="0.00" max="999999.99" value="@Model.Monto_de_Reparacion_del_Dano.Value.ToString("N", CultureInfo.InvariantCulture)">
-                                                    }
-                                                    else
-                                                    {
-                                                        <input class="form-control col-md-12 inputNumber inputMoney Fase_Juicio_Oral" id="Monto_de_Reparacion_del_Dano" name="Monto_de_Reparacion_del_Dano" type="text" min="0.00" max="999999.99" value="">
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divObservaciones_Fase_Juicio_Oral">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones_Fase_Juicio_Oral</label>
-                                            <div class="col-sm-8" data-field-id="Observaciones_Fase_Juicio_Oral" data-attribute="268580" data-field-name="@Resources.JudicializacionResources.Observaciones_Fase_Juicio_Oral">
-                                                <textarea id="Observaciones_Fase_Juicio_Oral" name="Observaciones_Fase_Juicio_Oral" class="form-control Fase_Juicio_Oral" rows="4" cols="50">@Model.Observaciones_Fase_Juicio_Oral</textarea>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Fase_Juicio_Oral" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div id="tabSalidas_Alternas" class="tab-pane">
-                                    <div class="panel-body">
-                                        <div class="form-group" id="divFecha_Fase_Salidas_Alternas">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fecha_Fase_Salidas_Alternas</label>
-                                            <div class="col-sm-8" data-field-id="Fecha_Fase_Salidas_Alternas" data-attribute="268581" data-field-name="@Resources.JudicializacionResources.Fecha_Fase_Salidas_Alternas">
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                    <input class="form-control col-md-12 Salidas_Alternas" id="Fecha_Fase_Salidas_Alternas" name="Fecha_Fase_Salidas_Alternas" type="text" value="@Model.Fecha_Fase_Salidas_Alternas">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divHora_Fase_Salidas_Alternas">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Hora_Fase_Salidas_Alternas</label>
-                                            <div class="col-sm-8" data-field-id="Hora_Fase_Salidas_Alternas" data-attribute="268582" data-field-name="@Resources.JudicializacionResources.Hora_Fase_Salidas_Alternas">
-                                                <div class='input-group date' id='timePicker'>
-                                                    <input class="form-control col-md-12 Salidas_Alternas" id="Hora_Fase_Salidas_Alternas" name="Hora_Fase_Salidas_Alternas" type="text" data-autoclose="true" value="@Model.Hora_Fase_Salidas_Alternas">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-time"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divObservaciones_Fase_Salidas_Alternas">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones_Fase_Salidas_Alternas</label>
-                                            <div class="col-sm-8" data-field-id="Observaciones_Fase_Salidas_Alternas" data-attribute="268583" data-field-name="@Resources.JudicializacionResources.Observaciones_Fase_Salidas_Alternas">
-                                                <textarea id="Observaciones_Fase_Salidas_Alternas" name="Observaciones_Fase_Salidas_Alternas" class="form-control Salidas_Alternas" rows="4" cols="50">@Model.Observaciones_Fase_Salidas_Alternas</textarea>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Fase_Salidas_Alternas" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div id="tabSobreseimientos" class="tab-pane">
-                                    <div class="panel-body">
-                                        <div class="form-group" id="divFecha_Fase_Sobreseimientos">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Fecha_Fase_Sobreseimientos</label>
-                                            <div class="col-sm-8" data-field-id="Fecha_Fase_Sobreseimientos" data-attribute="268584" data-field-name="@Resources.JudicializacionResources.Fecha_Fase_Sobreseimientos">
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                    <input class="form-control col-md-12 Sobreseimientos" id="Fecha_Fase_Sobreseimientos" name="Fecha_Fase_Sobreseimientos" type="text" value="@Model.Fecha_Fase_Sobreseimientos">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divHora_Fase_Sobreseimientos">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Hora_Fase_Sobreseimientos</label>
-                                            <div class="col-sm-8" data-field-id="Hora_Fase_Sobreseimientos" data-attribute="268585" data-field-name="@Resources.JudicializacionResources.Hora_Fase_Sobreseimientos">
-                                                <div class='input-group date' id='timePicker'>
-                                                    <input class="form-control col-md-12 Sobreseimientos" id="Hora_Fase_Sobreseimientos" name="Hora_Fase_Sobreseimientos" type="text" data-autoclose="true" value="@Model.Hora_Fase_Sobreseimientos">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-time"></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="divObservaciones_Fase_Sobreseimientos">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones_Fase_Sobreseimientos</label>
-                                            <div class="col-sm-8" data-field-id="Observaciones_Fase_Sobreseimientos" data-attribute="268586" data-field-name="@Resources.JudicializacionResources.Observaciones_Fase_Sobreseimientos">
-                                                <textarea id="Observaciones_Fase_Sobreseimientos" name="Observaciones_Fase_Sobreseimientos" class="form-control Sobreseimientos" rows="4" cols="50">@Model.Observaciones_Fase_Sobreseimientos</textarea>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Fase_Sobreseimientos" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div id="tabMovimientos" class="tab-pane">
-                                    <div class="panel-body">
-                                        <div class="form-group" id="divObservaciones">
-                                            <label class="col-sm-2 control-label">@Resources.JudicializacionResources.Observaciones</label>
-                                            <div class="col-sm-8" data-field-id="Observaciones" data-attribute="268587" data-field-name="@Resources.JudicializacionResources.Observaciones">
-                                                <textarea id="Observaciones" name="Observaciones" class="form-control Movimientos" rows="4" cols="50">@Model.Observaciones</textarea>
-                                                @*<span class="field-validation-valid" data-valmsg-for="Observaciones" data-valmsg-replace="true"></span>*@
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
+                            </div>
                                 </div>
                                 <div class="panel-body" id="GridFaces">
                                     <div id="GridNuevo">
@@ -751,7 +744,7 @@
                                         </div>
                                     </div>
                                     <div class="table-responsive">
-                                        <a onclick="NewMovimiento();" href="#" class="btn btn-primary">
+                                        <a onclick="NewMovimiento();" id="idbtnAddRM" href="#" class="btn btn-primary">
                                             <i class="glyphicon glyphicon-plus"></i>
                                         </a>
                                         <table id="tblJudicializacion" class="table table-striped table-bordered table-hover dataTables-example scroll_content" style="overflow-x:scroll;" cellspacing="0">
@@ -768,36 +761,36 @@
                                                 </tr>
                                             </thead>
                                             @*<tfoot style="display:table-header-group;">
-                                                    <tr>
-                                                        <td></td>
-                                                        <td class="filterColumn" s-spartan="text"></td>
-                                                        <td class="filterColumn" s-spartan="text"></td>
-                                                        <td class="filterColumn" s-spartan="text"></td>
-                                                        <td class="filterColumn" s-spartan="text"></td>
-                                                        <td class="filterColumn" s-spartan="text"></td>
+                <tr>
+                    <td></td>
+                    <td class="filterColumn" s-spartan="text"></td>
+                    <td class="filterColumn" s-spartan="text"></td>
+                    <td class="filterColumn" s-spartan="text"></td>
+                    <td class="filterColumn" s-spartan="text"></td>
+                    <td class="filterColumn" s-spartan="text"></td>
 
-                                                    </tr>
-                                                </tfoot>*@
+                </tr>
+            </tfoot>*@
                                         </table>
                                     </div>
                                 </div>
-                            </div>
-                            <br />
+				</div>	
+                    <br />
                             <div class="form-actions fluid">
                                 <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
                                 <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
                                 <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
                                 @if (!ViewBag.Consult)
                                 {
-                                    <input type="button" value="@Resources.Resources.Guardar" id="JudicializacionGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('JudicializacionCreateForm');" />
-                                    <button onclick="JudicializacionGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#JudicializacionBusinessRule-form">
+                                    <input type="button" value="@Resources.Resources.Guardar" id="JudicializacionGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('JudicializacionCreateForm');"  />
+									<button onclick="JudicializacionGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#JudicializacionBusinessRule-form">
                                         <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
                                             <i class="fa fa-cogs fa-spin"></i>
                                         </a>
-                                    </button>
+                                    </button>                                    
 
-                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="JudicializacionGuardarYNuevo" onclick="return checkClientValidate('JudicializacionCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew" />
-                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="JudicializacionGuardarYCopia" onclick="return checkClientValidate('JudicializacionCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy" />
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="JudicializacionGuardarYNuevo" onclick="return checkClientValidate('JudicializacionCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="JudicializacionGuardarYCopia" onclick="return checkClientValidate('JudicializacionCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
                                     if (permission.Configure)
                                     {
                                         <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
@@ -805,7 +798,7 @@
                                 }
 
                                 <input type="hidden" id="hdnConfigureType" />
-                                <input type="hidden" id="hdnJudicializacionBusinessRuleFieldId" />
+								<input type="hidden" id="hdnJudicializacionBusinessRuleFieldId" />
                                 <input type="hidden" id="hdnJudicializacionBusinessRuleFieldName" />
                                 <input type="hidden" id="hdnJudicializacionBusinessRuleAttribute" />
 
@@ -817,83 +810,77 @@
                                     </a>
                                 </button>
                             </div>
-                        </div>
-                    </div>
+						</div>
+					</div>
                 }
-            </div>
         </div>
     </div>
-    <input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
 
-    @section Styles {
-        <link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
-        @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
-        @Styles.Render("~/plugins/dateRangeStyles")
-        @Styles.Render("~/plugins/dataPickerStyles")
-        @Styles.Render("~/plugins/clockpickerStyles")
-        @Styles.Render("~/plugins/awesomeCheckboxStyles")
-        @Styles.Render("~/plugins/select2Styles")
-        @Styles.Render("~/Content/plugins/chosen/chosenStyles")
-        <style>
-                    .dataTables_filter {
-                        display: none;
-                    }
-
-                    .select2-results {
-                        background-color: #fff;
-                    }
-
-                    .select2-container .select2-dropdown {
-                        height: auto !important;
-                    }
-
-                    div.dataTables_info {
-                        display: inline-block;
-                        float: right;
-                    }
-                    /*i {
-                font-size: 25px !important;
-                display: block;
-                color: #676a6c;
-                margin-left: 6px;
-                margin-right: 6px;
-            }*/
-
-                    .fullWidth {
-                        width: 100%;
-                    }
-        </style>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
     }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
 
-    <script type="text/javascript" src="~/Scripts/Custom/tablePlugin.js"></script>
-    <script type="text/javascript" src="~/Uploads/Scripts/Judicializacion.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-    <script type="text/javascript" src="~/Scripts/Custom/JudicializacionGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-    <script type="text/javascript" src="~/Uploads/Scripts/Rules/JudicializacionCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-    <script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
 
-    @section Scripts {
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Scripts/Custom/tablePlugin.js"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Judicializacion.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/JudicializacionGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/JudicializacionCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
 
 
-        <script type="text/javascript">
-
+    <script type="text/javascript">
+        
 
 
 	function GetTraduction(text) {
          switch (text.toLowerCase()) {
             case 'edit':
-                return "@Resources.Resources.Edit";
+                return "@Resources.Resources.Edit";          
             case 'delete':
-                return "@Resources.Resources.Delete";
+                return "@Resources.Resources.Delete";               
             case 'required':
-                return "@Resources.Resources.Required";
+                return "@Resources.Resources.Required";              
             case 'notrequired':
-                return "@Resources.Resources.NotRequired";
+                return "@Resources.Resources.NotRequired";           
             case 'enabled':
-                return "@Resources.Resources.Enabled";
+                return "@Resources.Resources.Enabled";         
             case 'disabled':
-                return "@Resources.Resources.Disabled";
+                return "@Resources.Resources.Disabled";           
             case 'visible':
-                return "@Resources.Resources.Visible";
+                return "@Resources.Resources.Visible";            
             case 'botvisible':
                 return "@Resources.Resources.InVisible";
             case 'messagednoinvisible':
@@ -903,7 +890,7 @@
             case 'defaultvalue':
                 return "@Resources.Resources.DefaultValue";
             case 'helptext':
-                return "@Resources.Resources.HelpText";
+                return "@Resources.Resources.HelpText";                     
             default:
                 return "";
         }
@@ -935,12 +922,12 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('45637');
+		                  
 
-
-
+           
               showDetalle_Vinculacion_JudicializacionGrid(null);
 
-
+		   
                         $('#Fecha_Actos').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -1009,16 +996,16 @@
             initiateUIControls();
 			$('a').tooltip();
 			$('.loading').css('display', 'none');
-
-			 if (viewInEframe) {
+			
+			 if (viewInEframe) {             
                 $('#JudicializacionGuardarYNuevo').hide();
                 $('#JudicializacionGuardarYCopia').hide();
-                $('#JudicializacionCancelar').hide();
+                $('#JudicializacionCancelar').hide(); 
                 $('#ConfigureSave').hide();
                 $('#JudicializacionGuardar').val('Actualizar Seccion ' + '@Resources.JudicializacionResources.Judicializacion' )
             }
 
-
+			
 			       var AutoCompleteExpediente_MPData =[];
        $(".AutoCompleteJudicializacion_Expediente_MP").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -1030,7 +1017,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term,
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -1039,12 +1026,12 @@
                     return {
                         results: GetAutoCompleteJudicializacion_Expediente_MP_expediente_ministerio_publicoData(data),
                         pagination: {
-                            more: false
+                            more: false 
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; },
+            escapeMarkup: function (markup) { return markup; }, 
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteJudicializacion_Expediente_MP");
@@ -1063,7 +1050,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term,
+                        query: params.term, 
                     };
                 },
                 processResults: function (data, params) {
@@ -1072,12 +1059,12 @@
                     return {
                         results: GetAutoCompleteJudicializacion_Resolucion_Resolucion_MPData(data),
                         pagination: {
-                            more: false
+                            more: false 
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; },
+            escapeMarkup: function (markup) { return markup; }, 
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteJudicializacion_Resolucion");
@@ -1088,7 +1075,7 @@
 
 
             @if(ViewBag.IsNew)
-            {
+            { 
                 <text>$('input:checkbox').prop('checked', false);</text>
             }
 			else
@@ -1124,10 +1111,10 @@
 
                 </text>
             }
-            EjecutarValidacionesAlComienzo();
-
+            EjecutarValidacionesAlComienzo(); 
+			
 			$('#GridFaces').hide();
-
+			
         });
 
         var Detalle_Vinculacion_JudicializacioninsertRowCurrentIndex = -1;
@@ -1196,11 +1183,11 @@
         var removedDetalle_Vinculacion_JudicializacionData = [];
         function Detalle_Vinculacion_JudicializacionDeleteRow(rowIndex, row) {
             var rowIndexTable = Detalle_Vinculacion_JudicializacionTable.fnGetPosition($(row).parent().parent()[0]);
-            var permission = {
+            var permission = {            
                  Delete: '@permissionDetalle_Vinculacion_Judicializacion.Delete' == 'True'
             };
             if (!permission.Delete || isConsultMode)
-                return;
+                return;            
             if (confirm(htmlDecode("@Resources.Resources.DeleteConfirm"))) {
               if (EjecutarValidacionesAlEliminarMRDetalle_Vinculacion_Judicializacion('Detalle_Vinculacion_Judicializacion_', '_' + rowIndex)) {
                 var prevData = Detalle_Vinculacion_JudicializacionTable.fnGetData(rowIndexTable );
@@ -1213,7 +1200,7 @@
         }
 
         function Detalle_Vinculacion_JudicializacionrowCreationGrid(row, data, index) {
-            var permission =  {
+            var permission =  {            
                  Edit: '@permissionDetalle_Vinculacion_Judicializacion.Edit' == 'True',
                  Delete: '@permissionDetalle_Vinculacion_Judicializacion.Delete' == 'True'
             };
@@ -1246,16 +1233,16 @@
 					var idHeader = $(controls[i]).data('field') + 'Header';
 					if($(controls[i]).length > 1){
 						idHeader = $($(controls[i])[1]).data('field') + 'Header';
-					}
+					}					
 
 					var classe = ($('#Detalle_Vinculacion_JudicializacionGrid .' + idHeader).hasClass('dt-right') ? "dt-right" : "") + $('#Detalle_Vinculacion_JudicializacionGrid .' + idHeader ).css('display') == 'none' ? " hide" : "";
-
+				   
 					if ($(controls[i]).next().length > 0) {
 					    var div = $(controls[i]).next();
 					    $('<td class="' + classe + '">').append($(controls[i])).append(div).appendTo(row);
 					}else
 					    $(controls[i]).appendTo($('<td class="' + classe + '">').appendTo(row));
-
+					
                 }
                 $('#Detalle_Vinculacion_JudicializacionGrid .inputMoney').inputmask("currency", { prefix: "$", rightAlign: false });
                 $('#Detalle_Vinculacion_JudicializacionGrid .gridDatePicker').attr("readonly", "");
@@ -1280,7 +1267,7 @@
 
             if ($('.Relacion' + 'Header').css('display') != 'none')
                 $('<td id="'+nameOfTable+'Relacion'+rowIndex+'">').text(data.Relacion).appendTo(row);
-            else
+            else 
                 $('<td style="display:none;" id="'+nameOfTable+'Relacion'+rowIndex+'">').text(data.Relacion).appendTo(row);
 
         }
@@ -1342,7 +1329,7 @@
 
             if (Detalle_Vinculacion_JudicializacionData.length > 0 || $("#ReferenceClave").val() != ClaveId) {
                 if ($("#ReferenceClave").val() != "0" && ClaveId ==null)
-                    ClaveId = $("#ReferenceClave").val();
+                    ClaveId = $("#ReferenceClave").val();                
                 if ($("#ReferenceClave").val() == '')
                     $("#ReferenceClave").val('0');
                 $.ajax({
@@ -1414,9 +1401,9 @@
 
         }
 
-        </script>
+    </script>
 
-        <script type="text/javascript">
+<script type="text/javascript">
 
 
    function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
@@ -1441,7 +1428,7 @@
 				return;
 			}
 		}
-
+			
 			var url = '@Url.Content("~/Frontal/Judicializacion/GetCatalogAll")';
 			url = url.replace(/Catalog/g, catalog);
 debugger;
@@ -1457,73 +1444,73 @@ debugger;
 					showNotification("@Resources.Resources.ErrorContactingServer", "error");
 				}
 			});
-
+		
     }
 
 
         function SendJudicializacionData(callBack) {
-
-
-		 var arr = [];
-		 $("form#CreateJudicializacion").find(':input').each(function( index ) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateJudicializacion").find(':input').each(function( index ) {		 
 			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
-			{
-				arr.push($(this).attr('id'));
-				$(this).prop('disabled', false);
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
 			}
 	    });
-
+		
              var formData = new FormData($("form#CreateJudicializacion")[0]);
 			$.each( arr, function( key, value ) {
 			  $('#' +value).prop('disabled', true);
 			});
 			var id = $("#ReferenceClave").val();
             var isNew = $('#hdnIsNew').val();
-
+           
 			if (Tab_Datos_Generales && !checkClientValidate('JudicializacionCreateForm', 'Datos_Generales')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Actos_de_Investigacion && !checkClientValidate('JudicializacionCreateForm', 'Actos_de_Investigacion')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Genericos && !checkClientValidate('JudicializacionCreateForm', 'Genericos')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Fase_Inicial && !checkClientValidate('JudicializacionCreateForm', 'Fase_Inicial')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Fase_Intermedia && !checkClientValidate('JudicializacionCreateForm', 'Fase_Intermedia')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Fase_Juicio_Oral && !checkClientValidate('JudicializacionCreateForm', 'Fase_Juicio_Oral')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Salidas_Alternas && !checkClientValidate('JudicializacionCreateForm', 'Salidas_Alternas')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Sobreseimientos && !checkClientValidate('JudicializacionCreateForm', 'Sobreseimientos')) {
 				return false;
-			}
+			}						
 
 			if (Tab_Movimientos && !checkClientValidate('JudicializacionCreateForm', 'Movimientos')) {
 				return false;
-			}
+			}						
 
 
-
+			
 			if (isNew == "True")
             {
                 id = CreateID();
             }
-
-
+			
+			
 			if (Tab_Datos_Generales)
 				Save_Datos_Generales(id);
 
@@ -1579,7 +1566,7 @@ debugger;
 			});
 			return newId;
 		}
-
+		
 		function OpenRules()
 		{
 			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
@@ -1608,7 +1595,7 @@ debugger;
         Configure: '@permission.Configure' == 'True',
     };
 
-
+    
     //MR-var statusItems;
     //MR-var stateItems;
     //MR-var cityItems = [];
@@ -1629,7 +1616,7 @@ debugger;
         else
 			location.href = "@Url.Content("~/Frontal/Judicializacion/")";
     }
-
+	
 	function ReadScriptSettings(callback)
     {
         $.post("@Url.Content("~/Frontal/Judicializacion/ReadScriptSettings")", function (data) {
@@ -1646,7 +1633,7 @@ debugger;
             //$('#hdnConfigureType').val("0");
         }, "json");
     }
-
+	
         function SaveElementAttributes() {
             if ($('#hdnConfigureType').val() == "1") {
                 $.post("@Url.Content("~/Frontal/Judicializacion/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
@@ -1700,13 +1687,13 @@ debugger;
 			$('#Attribute').val(attribute);
                         JudicializacionGetBusinessRule();
 		});
-		//Initialize HTML Editors
+		//Initialize HTML Editors            
   var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
   var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
   var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
   var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
-
-
+		
+		
 		function Fill_Datos_Generales()
         {
             $.ajax({
@@ -1748,7 +1735,7 @@ debugger;
                 }
             });
         }
-
+		
 		function Save_Datos_Generales(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -1801,7 +1788,7 @@ debugger;
                 }
             });
         }
-
+		
 		function Save_Actos_de_Investigacion(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -1822,7 +1809,7 @@ debugger;
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Actos_de_Investigacion");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -1851,7 +1838,7 @@ debugger;
                 }
             });
         }
-
+		
 		function Save_Genericos(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -1872,7 +1859,7 @@ debugger;
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Genericos");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -1901,7 +1888,7 @@ debugger;
                 }
             });
         }
-
+		
 		function Save_Fase_Inicial(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -1922,7 +1909,7 @@ debugger;
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Fase_Inicial");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -1951,7 +1938,7 @@ debugger;
                 }
             });
         }
-
+		
 		function Save_Fase_Intermedia(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -1972,7 +1959,7 @@ debugger;
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Fase_Intermedia");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -2011,7 +1998,7 @@ debugger;
                 }
             });
         }
-
+		
 		function Save_Fase_Juicio_Oral(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -2026,7 +2013,7 @@ debugger;
                 data.append('Tipo_de_Sentencia', $('#Tipo_de_Sentencia').val());
                 data.append('Cuantia_de_Pena_Anos', $('#Cuantia_de_Pena_Anos').val());
                 data.append('Cuantia_de_Pena_Meses', $('#Cuantia_de_Pena_Meses').val());
-
+ 
                data.append('Monto_de_Reparacion_del_Dano', Number($('#Monto_de_Reparacion_del_Dano').val().replace(/[^0-9.-]+/g, "")));
                 data.append('Observaciones_Fase_Juicio_Oral', $('#Observaciones_Fase_Juicio_Oral').val());
 
@@ -2043,7 +2030,7 @@ debugger;
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Fase_Juicio_Oral");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -2072,7 +2059,7 @@ debugger;
                 }
             });
         }
-
+		
 		function Save_Salidas_Alternas(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -2093,7 +2080,7 @@ debugger;
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Salidas_Alternas");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -2122,7 +2109,7 @@ debugger;
                 }
             });
         }
-
+		
 		function Save_Sobreseimientos(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -2143,7 +2130,7 @@ debugger;
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Sobreseimientos");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -2170,7 +2157,7 @@ debugger;
                 }
             });
         }
-
+		
 		function Save_Movimientos(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -2189,7 +2176,7 @@ debugger;
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Movimientos");
 					} else {
 						newId = result;
-
+                    
 					}
 				},
 				error: function (result) {
@@ -2302,11 +2289,11 @@ debugger;
                         if (!permission.Edit)
                             edit = '';
 
-
-                        //var del = '<a title="@Resources.Resources.Delete" onclick="DeleteJudicializacion(\'' + data.Clave + '\')" class="editor_remove eliminar-MR"><i class="fa fa-times"></i></a>';
-                        //if (!permission.Delete)
-                           // del = '';
-                        return edit; // + del;
+                        debugger;
+                        var del = '<a title="@Resources.Resources.Delete" onclick="EliminarRegistroMovimiento(\'' + data.registro_de_movimiento_clave + '\')" class="editor_remove eliminar-MR"><i class="fa fa-times"></i></a>';
+                        if (!permission.Delete)
+                            del = '';
+                        return edit + del;
                     }
                 },
                 { "data": "registro_de_movimiento_clave", "orderable": true, "name": "registro_de_movimiento_clave", "sClass": "hidden" },
@@ -2371,12 +2358,16 @@ debugger;
 
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 
-            var target = $(e.target).attr("href")
+            var target = $(e.target).attr("href") 
             var fase = $('.tabs-container').find('.active').data('fase');
             var judicializacion = $("#ReferenceClave").val();
-            _Query = "exec usp_GetRegistro_de_movimiento " + judicializacion + ", " + fase;
+            _Query = "exec usp_GetRegistro_de_movimiento " + judicializacion + ", " + fase; 
 
-            if (fase == 4) { _Query = "exec usp_GetRegistro_de_movimiento " + judicializacion + ",null"; }
+            if (fase == 4) { _Query = "exec usp_GetRegistro_de_movimiento " + judicializacion + ",null"; 
+				$("#idbtnAddRM").addClass("hidden");
+			}else{
+				$("#idbtnAddRM").removeClass("hidden");
+			}
 
             $('#GridFaces').hide();
 
@@ -2415,7 +2406,7 @@ debugger;
         function NewMovimiento() {
 
 
-
+           
 
             var fase = $('.tabs-container').find('.active').data('fase');
             var judicializacion = $("#ReferenceClave").val();
@@ -2428,7 +2419,7 @@ debugger;
 				contentType: false,
 				processData: false,
 				success: function (result) {
-
+				
 				},
 				error: function (result) {
 					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Movimientos");
@@ -2456,14 +2447,27 @@ debugger;
                         catch (e) {
                         }
             },1000)
-        }
-
-        </script>
     }
+    function EliminarRegistroMovimiento(clave) {
+        debugger;
+        var r = confirm("¿Está seguro que desea eliminar  el registro?");
+        if (r == true) {
+            EvaluaQuery("delete from Registro_de_movimiento where clave = " + clave);
+            var fase = $('.tabs-container').find('.active').data('fase');
+            var judicializacion = $("#ReferenceClave").val();
+            var _Querwy = "exec usp_GetRegistro_de_movimiento " + judicializacion + ", " + fase;
+            FillTablaFaces(_Querwy);
+        } else {
+          
+        }
+    }
+
+    </script>
+}
     <input type="hidden" id="FieldId" name="FieldId" value="" />
     <input type="hidden" id="FieldName" name="FieldName" value="" />
     <input type="hidden" id="ObjectId" name="ObjectId" value="" />
     <input type="hidden" id="Attribute" name="Attribute" value="" />
     <input type="hidden" id="Screen" name="Screen" value="" />
-    <input type="hidden" id="Judicializacion_cmbLabelSelect" name="Judicializacion_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+     <input type="hidden" id="Judicializacion_cmbLabelSelect" name="Judicializacion_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
 

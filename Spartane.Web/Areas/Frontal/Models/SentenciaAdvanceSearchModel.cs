@@ -22,6 +22,18 @@ namespace Spartane.Web.Areas.Frontal.Models
         public Filters DescripcionFilter { set; get; }
         public string Descripcion { set; get; }
 
+        public Filters DescrFilter { set; get; }
+        public string Descr { set; get; }
+
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string Fromiddatos { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("Fromiddatos", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string Toiddatos { set; get; }
+
+        public Filters CveSentenciaFilter { set; get; }
+        public string CveSentencia { set; get; }
+
 
     }
 }

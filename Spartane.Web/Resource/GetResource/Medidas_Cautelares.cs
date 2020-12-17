@@ -46,6 +46,46 @@ namespace Resources
             }
         }
 
+        /// <summary>Fraccion</summary>
+        public static string Fraccion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderMedidas_Cautelares.GetResource("Fraccion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Aplica_para_Adolescentes</summary>
+        public static string Aplica_para_Adolescentes
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderMedidas_Cautelares.GetResource("Aplica_para_Adolescentes", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Aplica_para_Adultos</summary>
+        public static string Aplica_para_Adultos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderMedidas_Cautelares.GetResource("Aplica_para_Adultos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Tipo</summary>
+        public static string Tipo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderMedidas_Cautelares.GetResource("Tipo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderMedidas_Cautelares.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

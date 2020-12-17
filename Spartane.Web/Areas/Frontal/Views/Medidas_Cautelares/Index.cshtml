@@ -198,6 +198,10 @@
                                     <th>@Resources.Resources.Actions</th>
                                     <th>@Resources.Medidas_CautelaresResources.Clave</th>
                                     <th>@Resources.Medidas_CautelaresResources.Descripcion</th>
+                                    <th>@Resources.Medidas_CautelaresResources.Fraccion</th>
+                                    <th>@Resources.Medidas_CautelaresResources.Aplica_para_Adolescentes</th>
+                                    <th>@Resources.Medidas_CautelaresResources.Aplica_para_Adultos</th>
+                                    <th>@Resources.Medidas_CautelaresResources.Tipo</th>
 
                                 </tr>
                             </thead>
@@ -205,6 +209,10 @@
                                 <tr>
                                     <td></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
                                 </tr>
@@ -323,10 +331,18 @@
 
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Descripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fraccion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Aplica_para_Adolescentes = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Aplica_para_Adultos = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
         + "&Descripcion=" + Descripcion
+        + "&Fraccion=" + Fraccion
+        + "&Aplica_para_Adolescentes=" + Aplica_para_Adolescentes
+        + "&Aplica_para_Adultos=" + Aplica_para_Adultos
+        + "&Tipo=" + Tipo
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Medidas_Cautelares/Export?format=")" + format
@@ -342,10 +358,18 @@
 	 var counter = 0;
         var Clave =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Descripcion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fraccion =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Aplica_para_Adolescentes = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Aplica_para_Adultos = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
         + "&Descripcion=" + Descripcion
+        + "&Fraccion=" + Fraccion
+        + "&Aplica_para_Adolescentes=" + Aplica_para_Adolescentes
+        + "&Aplica_para_Adultos=" + Aplica_para_Adultos
+        + "&Tipo=" + Tipo
 ;
 
     }
@@ -526,11 +550,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -595,6 +619,10 @@
                 }, 
                 { "data": "Clave", "orderable": true, "name": "Clave" }
                 ,{ "data": "Descripcion", "orderable": true, "name": "Descripcion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fraccion", "orderable": true, "name": "Fraccion", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Aplica_para_Adolescentes", "orderable": true, "name": "Aplica_para_Adolescentes","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Aplica_para_Adultos", "orderable": true, "name": "Aplica_para_Adultos","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Tipo", "orderable": true, "name": "Tipo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
 
             ],
 			"colReorder": true,

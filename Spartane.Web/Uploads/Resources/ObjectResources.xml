@@ -1196,8 +1196,26 @@
 <Object Id="45633" culture="es-es" value="Tipo de Dato" />
 <Object Id="45639" culture="en-us" value="Tipo de Resolución" />
 <Object Id="45639" culture="es-es" value="Tipo de Resolución" />
+<Object Id="45640" culture="en-us" value="Detalle de Guardado de Movimiento" />
+<Object Id="45640" culture="es-es" value="Detalle de Guardado de Movimiento" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

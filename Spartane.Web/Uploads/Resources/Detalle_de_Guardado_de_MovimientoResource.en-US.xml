@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Guardado_de_Movimiento" value="Detalle de Guardado de Movimiento"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Registro_de_Movimiento" value="Registro de Movimiento"></resource>
+  <resource culture="en-US" name="Campo" value="Campo"></resource>
+  <resource culture="en-US" name="Etiqueta" value="Etiqueta"></resource>
+  <resource culture="en-US" name="Valor" value="Valor"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

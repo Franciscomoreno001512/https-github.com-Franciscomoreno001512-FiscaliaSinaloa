@@ -46,6 +46,36 @@ namespace Resources
             }
         }
 
+        /// <summary>Descr</summary>
+        public static string Descr
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSentencia.GetResource("Descr", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>iddatos</summary>
+        public static string iddatos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSentencia.GetResource("iddatos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>CveSentencia</summary>
+        public static string CveSentencia
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSentencia.GetResource("CveSentencia", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderSentencia.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

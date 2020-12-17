@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Configurador_de_Movimientos;
 using Spartane.Core.Domain.Tipo_de_Dato;
-using Spartane.Core.Domain.Relaciones_para_Movimientos;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,15 +21,13 @@ namespace Spartane.Core.Domain.Detalle_Datos_Adicionales_Movimiento
         public int? Movimiento { get; set; }
         public string Dato { get; set; }
         public int? Tipo_de_Dato { get; set; }
-        public int? Relacion { get; set; }
+        public string Query_para_llenado { get; set; }
         public bool? Obligatorio { get; set; }
 
         [ForeignKey("Movimiento")]
         public virtual Spartane.Core.Domain.Configurador_de_Movimientos.Configurador_de_Movimientos Movimiento_Configurador_de_Movimientos { get; set; }
         [ForeignKey("Tipo_de_Dato")]
         public virtual Spartane.Core.Domain.Tipo_de_Dato.Tipo_de_Dato Tipo_de_Dato_Tipo_de_Dato { get; set; }
-        [ForeignKey("Relacion")]
-        public virtual Spartane.Core.Domain.Relaciones_para_Movimientos.Relaciones_para_Movimientos Relacion_Relaciones_para_Movimientos { get; set; }
 
     }
 	
@@ -40,15 +37,13 @@ namespace Spartane.Core.Domain.Detalle_Datos_Adicionales_Movimiento
         public int? Movimiento { get; set; }
         public string Dato { get; set; }
         public int? Tipo_de_Dato { get; set; }
-        public int? Relacion { get; set; }
+        public string Query_para_llenado { get; set; }
         public bool? Obligatorio { get; set; }
 
 		        [ForeignKey("Movimiento")]
         public virtual Spartane.Core.Domain.Configurador_de_Movimientos.Configurador_de_Movimientos Movimiento_Configurador_de_Movimientos { get; set; }
         [ForeignKey("Tipo_de_Dato")]
         public virtual Spartane.Core.Domain.Tipo_de_Dato.Tipo_de_Dato Tipo_de_Dato_Tipo_de_Dato { get; set; }
-        [ForeignKey("Relacion")]
-        public virtual Spartane.Core.Domain.Relaciones_para_Movimientos.Relaciones_para_Movimientos Relacion_Relaciones_para_Movimientos { get; set; }
 
     }
 

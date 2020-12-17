@@ -66,6 +66,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Aplicar_para_Adultos</summary>
+        public static string Aplicar_para_Adultos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderConfigurador_de_Movimientos.GetResource("Aplicar_para_Adultos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Datos_Adicionales</summary>
         public static string Datos_Adicionales
         {

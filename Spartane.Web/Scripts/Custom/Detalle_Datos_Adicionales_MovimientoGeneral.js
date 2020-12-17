@@ -6,17 +6,6 @@ $(function () {
 
 });
 
-var AutoCompleteRelacionData = [];
-function GetAutoCompleteDetalle_Datos_Adicionales_Movimiento_Relacion_Relaciones_para_MovimientosData(data) {
-	AutoCompleteRelacionData = [];
-    for (var i = 0; i < data.length; i++) {
-        AutoCompleteRelacionData.push({
-            id: data[i].ObjectId,
-            text: data[i].Descripcion
-        });
-    }
-    return AutoCompleteRelacionData;
-}
 
 
 function getDropdown(elementKey) {
@@ -54,9 +43,6 @@ function ClearControls() {
     $('#CreateDetalle_Datos_Adicionales_Movimiento')[0].reset();
     ClearFormControls();
     $("#ClaveId").val("0");
-    $('#Relacion').empty();
-    $("#Relacion").append('<option value=""></option>');
-    $('#Relacion').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -186,10 +172,7 @@ $(document).ready(function () {
 			if (CheckValidation())
 				SendDetalle_Datos_Adicionales_MovimientoData(function (currentId) {
 					$("#ClaveId").val("0");
-	    $('#Relacion').empty();
-    $("#Relacion").append('<option value=""></option>');
-    $('#Relacion').val('0').trigger('change');
-
+	
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);
 	

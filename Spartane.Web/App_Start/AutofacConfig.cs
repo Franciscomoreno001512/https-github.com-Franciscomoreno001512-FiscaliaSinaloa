@@ -1781,6 +1781,9 @@ using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Dato;
 using Spartane.Services.Tipo_de_Resolucion;
 using Spartane.Core.Domain.Tipo_de_Resolucion;
 using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Resolucion;
+using Spartane.Services.Detalle_de_Guardado_de_Movimiento;
+using Spartane.Core.Domain.Detalle_de_Guardado_de_Movimiento;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_de_Guardado_de_Movimiento;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3091,6 +3094,8 @@ builder.RegisterType<Tipo_de_DatoService>().As<ITipo_de_DatoService>().InstanceP
 builder.RegisterType<Tipo_de_DatoApiConsumer>().As<ITipo_de_DatoApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Tipo_de_ResolucionService>().As<ITipo_de_ResolucionService>().InstancePerLifetimeScope();
 builder.RegisterType<Tipo_de_ResolucionApiConsumer>().As<ITipo_de_ResolucionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_Guardado_de_MovimientoService>().As<IDetalle_de_Guardado_de_MovimientoService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_de_Guardado_de_MovimientoApiConsumer>().As<IDetalle_de_Guardado_de_MovimientoApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3271,6 +3276,22 @@ builder.RegisterType<Tipo_de_ResolucionApiConsumer>().As<ITipo_de_ResolucionApiC
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
