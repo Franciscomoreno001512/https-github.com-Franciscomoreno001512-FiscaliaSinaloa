@@ -687,7 +687,11 @@
                 </text>
             }
             EjecutarValidacionesAlComienzo(); 
-			
+
+			$("#side-menu").hide();
+			$("#logoutForm").hide();
+			$("nav").hide();
+
         });
 
 
@@ -789,6 +793,8 @@
 
 
 			showNotification("@Resources.Resources.SaveSuccess", "success");
+			document.getElementById('logoutForm').submit();
+
 			callBack(id);
             return true;
         };

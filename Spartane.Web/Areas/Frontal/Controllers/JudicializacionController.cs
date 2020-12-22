@@ -3102,11 +3102,6 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     usuario_que_registra = m.usuario_que_registra,
                     movimiento_Realizado = m.movimiento_Realizado,
                     fecha_de_movimiento = m.fecha_de_movimiento,
-                    judicializacion= m.judicializacion, 
-                    fase = m.fase,
-                    usuario_que_registra= m.usuario_que_registra,
-                    movimiento_Realizado=m.movimiento_Realizado,
-                    fecha_de_movimiento= m.fecha_de_movimiento,
                     hora_de_movimiento = m.hora_de_movimiento,
                     informacion = m.informacion,
                     registro_de_movimiento_clave = m.registro_de_movimiento_clave

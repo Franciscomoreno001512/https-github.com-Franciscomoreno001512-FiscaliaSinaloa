@@ -7,37 +7,37 @@
 @model Spartane.Web.Areas.Frontal.Models.Datos_de_los_Hechos_ATModel
 @{
 
-/*
-    string Fecha_del_Hecho = "";
-    if (Model.Fecha_del_Hecho == "")
-    { Model.Fecha_del_Hecho = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    /*
+        string Fecha_del_Hecho = "";
+        if (Model.Fecha_del_Hecho == "")
+        { Model.Fecha_del_Hecho = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
-*/
+    */
     List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
- List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
+    List<SelectListItem> varexpediente_ministerio_publico_Expediente_MP = null;
     if (ViewBag.expediente_ministerio_publicos_Expediente_MP != null)
     { varexpediente_ministerio_publico_Expediente_MP = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Expediente_MP; }
- List<SelectListItem> varSolicitud_Expediente_MASC = null;
+    List<SelectListItem> varSolicitud_Expediente_MASC = null;
     if (ViewBag.Solicituds_Expediente_MASC != null)
     { varSolicitud_Expediente_MASC = (List<SelectListItem>)ViewBag.Solicituds_Expediente_MASC; }
     List<SelectListItem> varPrioridad_del_Hecho_Prioridad_del_Hecho = null;
     if (ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho != null)
     { varPrioridad_del_Hecho_Prioridad_del_Hecho = (List<SelectListItem>)ViewBag.Prioridad_del_Hechos_Prioridad_del_Hecho; }
- List<SelectListItem> varPais_Pais = null;
+    List<SelectListItem> varPais_Pais = null;
     if (ViewBag.Paiss_Pais != null)
     { varPais_Pais = (List<SelectListItem>)ViewBag.Paiss_Pais; }
- List<SelectListItem> varEstado_Estado = null;
+    List<SelectListItem> varEstado_Estado = null;
     if (ViewBag.Estados_Estado != null)
     { varEstado_Estado = (List<SelectListItem>)ViewBag.Estados_Estado; }
- List<SelectListItem> varMunicipio_Municipio = null;
+    List<SelectListItem> varMunicipio_Municipio = null;
     if (ViewBag.Municipios_Municipio != null)
     { varMunicipio_Municipio = (List<SelectListItem>)ViewBag.Municipios_Municipio; }
- List<SelectListItem> varColonia_Poblacion = null;
+    List<SelectListItem> varColonia_Poblacion = null;
     if (ViewBag.Colonias_Poblacion != null)
     { varColonia_Poblacion = (List<SelectListItem>)ViewBag.Colonias_Poblacion; }
- List<SelectListItem> varColonia_Colonia = null;
+    List<SelectListItem> varColonia_Colonia = null;
     if (ViewBag.Colonias_Colonia != null)
     { varColonia_Colonia = (List<SelectListItem>)ViewBag.Colonias_Colonia; }
     List<SelectListItem> varDocumento_Extraviado_Tipo_de_Documento_Extraviado = null;
@@ -49,11 +49,11 @@
 
 
     Permission permission = ViewBag.Permission;
-	
-	if (ViewBag.IsPartial || ViewBag.viewInEframe)
-   { 
-       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
-   }
+
+    if (ViewBag.IsPartial || ViewBag.viewInEframe)
+    {
+        Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+    }
 }
 <div class="loading style-2"><div class="loading-wheel"></div></div>
 <div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
@@ -575,7 +575,7 @@
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog" data-backdrop="static" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width: 90%;">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -590,19 +590,25 @@
                                 <label>Escriba la dirección</label>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" id="address" name="address" />
+                                <input type="text" style="width:100%" id="address" name="address" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="button" id="BucarDireccion" value="Buscar">
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div>
-                            <div id="gmap" style="height:100%; width:100%;"></div>
+                    <div class="row" style="margin-top:12px;">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <!-- <div id="gmap" style="height:100%; width:100%;"></div> -->
+                                <div id="gmap" style="height: 400px"></div>
+                            </div>
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Asignar Dirección</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
                 </div>
             </div>
 
@@ -1385,15 +1391,26 @@
 		}
 
             $("body").on("click", "#btnOpenMapa", function () {
+
                 $("#modalMapa").click();
 
             });
             $('#myModal').on('shown.bs.modal', function () {
+                var lat = $("#Latitud").val();
+                var long = $("#Longitud").val();
+                if (lat != "" && long != "") {
+                    $("#address").val(lat + "," + long);
+                }
                 CargaGoogleMaps();
             });
 
             $('#myModal').on('hidden.bs.modal', function () {
 
+            });
+            $("body").on("click", "#BucarDireccion", function () {
+               
+                    
+                CargaGoogleMaps();
             });
 
         </script>
@@ -1405,4 +1422,3 @@
     <input type="hidden" id="Screen" name="Screen" value="" />
     <input type="hidden" id="Datos_de_los_Hechos_AT_cmbLabelSelect" name="Datos_de_los_Hechos_AT_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl6FOVgpwFjFmSSdVREMUzCQKSq7JQLdA" type="text/javascript"></script>
-

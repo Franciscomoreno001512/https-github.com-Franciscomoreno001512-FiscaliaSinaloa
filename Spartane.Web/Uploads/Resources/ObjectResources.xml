@@ -1248,8 +1248,58 @@
 <Object Id="45682" culture="es-es" value="Tipo de Cuantia" />
 <Object Id="45691" culture="en-us" value="Resolución MASC" />
 <Object Id="45691" culture="es-es" value="Resolución MASC" />
+<Object Id="45703" culture="en-us" value="Canalización" />
+<Object Id="45703" culture="es-es" value="Canalización" />
+<Object Id="45704" culture="en-us" value="Detalle Diligencias Canalización" />
+<Object Id="45704" culture="es-es" value="Detalle Diligencias Canalización" />
+<Object Id="45705" culture="en-us" value="Detalle Relaciones MASC" />
+<Object Id="45705" culture="es-es" value="Detalle Relaciones MASC" />
+<Object Id="45702" culture="en-us" value="Relaciones MASC" />
+<Object Id="45702" culture="es-es" value="Relaciones MASC" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

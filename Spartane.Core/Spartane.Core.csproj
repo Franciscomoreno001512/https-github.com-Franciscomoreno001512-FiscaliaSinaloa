@@ -1540,6 +1540,14 @@
 <Compile Include="Domain\Tipo_de_Cuantia\Tipo_de_CuantiaPagingModel.cs" />
 <Compile Include="Domain\Resolucion_MASC\Resolucion_MASC.cs" />
 <Compile Include="Domain\Resolucion_MASC\Resolucion_MASCPagingModel.cs" />
+<Compile Include="Domain\Canalizacion\Canalizacion.cs" />
+<Compile Include="Domain\Canalizacion\CanalizacionPagingModel.cs" />
+<Compile Include="Domain\Detalle_Diligencias_Canalizacion\Detalle_Diligencias_CanalizacionPagingModel.cs" />
+<Compile Include="Domain\Detalle_Diligencias_Canalizacion\Detalle_Diligencias_Canalizacion.cs" />
+<Compile Include="Domain\Detalle_Relaciones_MASC\Detalle_Relaciones_MASCPagingModel.cs" />
+<Compile Include="Domain\Detalle_Relaciones_MASC\Detalle_Relaciones_MASC.cs" />
+<Compile Include="Domain\Relaciones_MASC\Relaciones_MASC.cs" />
+<Compile Include="Domain\Relaciones_MASC\Relaciones_MASCPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1560,6 +1568,14 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
 
 
 

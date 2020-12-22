@@ -1,0 +1,555 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Detalle_Relaciones_MASCModel
+@{
+
+
+ List<SelectListItem> varDetalle_de_Imputado_Requerido = null;
+    if (ViewBag.Detalle_de_Imputados_Requerido != null)
+    { varDetalle_de_Imputado_Requerido = (List<SelectListItem>)ViewBag.Detalle_de_Imputados_Requerido; }
+ List<SelectListItem> varDelito_Delito = null;
+    if (ViewBag.Delitos_Delito != null)
+    { varDelito_Delito = (List<SelectListItem>)ViewBag.Delitos_Delito; }
+ List<SelectListItem> varDetalle_de_Datos_Generales_Solicitante = null;
+    if (ViewBag.Detalle_de_Datos_Generaless_Solicitante != null)
+    { varDetalle_de_Datos_Generales_Solicitante = (List<SelectListItem>)ViewBag.Detalle_de_Datos_Generaless_Solicitante; }
+
+
+    Permission permission = ViewBag.Permission;
+}
+<div class="modal-dialog" style="width:95%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Add Detalle Relaciones MASC
+                <button data-dismiss="modal" class="close" type="button" onclick="@(ViewBag.functionMode == 0 ? "Detalle_Relaciones_MASCRemoveAddRow("+ ViewBag.currentRowIndex +")" : "")"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </h4>
+        </div>
+        <div class="modal-body scroll_content">
+            <div class="form-horizontal Detalle_Relaciones_MASCPop_@ViewBag.currentRowIndex">
+				<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+									<div class="col-sm-7">
+										<input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+									</div>
+									<div class="col-sm-2">
+										<a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+									</div>
+									<input type="hidden" id="hdnAttributType" />
+									<input type="hidden" id="hdnAttributElement" />
+									<input type="hidden" id="hdnAttributNumber" />
+									<input type="hidden" id="hdnElementType" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row wrapper border-bottom white-bg page-heading">
+
+					<div class="row">
+						<div class="col-lg-10">
+							<h2>
+								Detalle Relaciones MASC
+								<button onclick="Detalle_Relaciones_MASCGetBusinessRule('', 'Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_Relaciones_MASCBusinessRule-form">
+									<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+										<i class="fa fa-cogs fa-spin"></i>
+									</a>
+								</button>
+							</h2>
+							<ol class="breadcrumb">
+								<li>
+									<a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+								</li>
+								<li class="">
+									<label>@Resources.Detalle_Relaciones_MASCResources.Detalle_Relaciones_MASC</label>
+								</li>
+								<li class="active">
+									<strong>@Resources.Resources.Create</strong>
+								</li>
+							</ol>
+						</div>
+						<div class="col-lg-2">
+
+							@{
+								if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+								{
+									<h2>&nbsp;</h2>
+									<button onclick="Detalle_Relaciones_MASCDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+										<i class="fa fa-cogs fa-spin"></i>
+									</button>
+
+									<div aria-hidden="true" class="modal fade in Detalle_Relaciones_MASCPropertyBusinessModal" id="Detalle_Relaciones_MASCPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title">
+														Property & Business Rules
+														<button class="close" type="button" onclick="$(this).parent().parent().parent().parent().parent().modal('hide');"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+													</h4>
+												</div>
+												<div class="modal-body">
+													<div class="row">
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+														</div>
+														<div class="clearfix col-sm-12">&nbsp;</div>
+														<div class="col-sm-12">
+															<a class="btn btn-primary full-width" data-toggle="modal" data-target="#Detalle_Relaciones_MASCBusinessRule-form" onclick="Detalle_Relaciones_MASCGetBusinessRule()">Business Rule</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									 <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Relaciones_MASCPropertyModal" id="Detalle_Relaciones_MASCPropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+									<div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Relaciones_MASCBusinessRuleModal" id="Detalle_Relaciones_MASCBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+									</div>
+                                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Detalle_Relaciones_MASCAddBusinessRuleModal" id="Detalle_Relaciones_MASCAddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                                    </div>
+
+				
+								}
+							}
+						</div>
+					</div>
+
+				<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+							@using (Html.BeginForm("Post", "Detalle_Relaciones_MASC", FormMethod.Post, new { id = "CreateDetalle_Relaciones_MASC", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+							{
+								<span id="popupNotification"></span>
+								<div class="container-fluid Detalle_Relaciones_MASCCreateForm" id="viewmodeledit">
+							<div class="tabs-container">
+											<ul class="nav nav-tabs">
+				@@groupers@@
+											</ul>
+										<div class="tab-content">
+				<div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Relaciones_MASCResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="269180" data-field-name="@Resources.Detalle_Relaciones_MASCResources.Clave">
+                                    <label class="form-control" for="Detalle_Relaciones_MASCClave" id="Detalle_Relaciones_MASCClave">@Model.Clave</label>
+                                </div>
+                            </div>
+<div class="form-group" id="divRequerido">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Relaciones_MASCResources.Requerido</label>
+                                <div class="col-sm-8" data-field-id="Requerido" data-attribute="269182" data-field-name="@Resources.Detalle_Relaciones_MASCResources.Requerido">
+                                    <select class='fullWidth AutoCompleteDetalle_de_Imputado form-control select2-dropdown' data-val="true" id="Detalle_Relaciones_MASCRequerido" name="Detalle_Relaciones_MASCRequerido">
+                                        <option value="@Model.Requerido">@(Model.RequeridoNombre_Completo_del_Tutor??Model.RequeridoNombre_Completo_del_Tutor)</option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="form-group" id="divDelito">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Relaciones_MASCResources.Delito</label>
+                                <div class="col-sm-8" data-field-id="Delito" data-attribute="269183" data-field-name="@Resources.Detalle_Relaciones_MASCResources.Delito">
+                                    <select class='fullWidth AutoCompleteDelito form-control select2-dropdown' data-val="true" id="Detalle_Relaciones_MASCDelito" name="Detalle_Relaciones_MASCDelito">
+                                        <option value="@Model.Delito">@(Model.DelitoDescripcion??Model.DelitoDescripcion)</option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="form-group" id="divSolicitante">
+                                <label class="col-sm-2 control-label">@Resources.Detalle_Relaciones_MASCResources.Solicitante</label>
+                                <div class="col-sm-8" data-field-id="Solicitante" data-attribute="269184" data-field-name="@Resources.Detalle_Relaciones_MASCResources.Solicitante">
+                                    <select class='fullWidth AutoCompleteDetalle_de_Datos_Generales form-control select2-dropdown' data-val="true" id="Detalle_Relaciones_MASCSolicitante" name="Detalle_Relaciones_MASCSolicitante">
+                                        <option value="@Model.Solicitante">@(Model.SolicitanteNombre_Completo2??Model.SolicitanteNombre_Completo2)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+								</div>	
+							</div>
+									<br />
+											<div class="form-actions fluid">
+												<input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+												<input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+												@if (!ViewBag.Consult)
+												{
+													<div id="dvSaveJob" style="display:inline-block"></div>
+
+													<button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton">
+														<i class="fa fa-cogs fa-spin"></i>
+													</button>
+													<a title="@Resources.Resources.Configure" id="Detalle_Relaciones_MASCConfigureSave" name="Detalle_Relaciones_MASCConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">@Resources.Resources.Configure</a>
+												}
+
+												<input type="hidden" id="hdnDetalle_Relaciones_MASCConfigureType" />
+												<input type="hidden" id="hdnDetalle_Relaciones_MASCBusinessRuleFieldId" />
+												<input type="hidden" id="hdnDetalle_Relaciones_MASCBusinessRuleFieldName" />
+												<input type="hidden" id="hdnDetalle_Relaciones_MASCBusinessRuleAttribute" />
+
+												<input data-dismiss="modal" type="button" value="@Resources.Resources.Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" />
+
+												<button onclick="Detalle_Relaciones_MASCGetBusinessRule('', 'Al Cancelar', '3')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Detalle_Relaciones_MASCBusinessRule-form">
+													<a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+														<i class="fa fa-cogs fa-spin"></i>
+													</a>
+												</button>
+											</div>
+										</div>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+				</div>
+			</div>
+		</div>
+</div>
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Detalle_Relaciones_MASC.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Detalle_Relaciones_MASCGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Detalle_Relaciones_MASCCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Relaciones_MASCCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        
+
+
+
+        $(document).ready(function () {
+			var currentIndex = @ViewBag.currentRowIndex
+
+            var Detalle_Relaciones_MASCRowElement = "Detalle_Relaciones_MASCPop_" + currentIndex.toString();
+            var abc = "if(dynamicFieldValidation('" + Detalle_Relaciones_MASCRowElement + "')){ Detalle_Relaciones_MASCInsertRowFromPopup(" + currentIndex + "); }";
+            var insertRowHTML = '<a class="btn btn-primary m-b" onclick="' + abc + '">Save</a>';
+            $('#dvSaveJob').html(insertRowHTML);
+			
+
+
+            initiateUIControls();
+            EjecutarValidacionesAlComienzo();
+			$('a').tooltip();
+        });
+       var AutoCompleteRequeridoData =[];
+       $(".AutoCompleteDetalle_Relaciones_MASC_Requerido").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_Relaciones_MASC/GetDetalle_Relaciones_MASC_Requerido_Detalle_de_Imputado")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Relaciones_MASC_Requerido_Detalle_de_ImputadoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Relaciones_MASC_Requerido");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteDelitoData =[];
+       $(".AutoCompleteDetalle_Relaciones_MASC_Delito").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_Relaciones_MASC/GetDetalle_Relaciones_MASC_Delito_Delito")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Relaciones_MASC_Delito_DelitoData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Relaciones_MASC_Delito");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteSolicitanteData =[];
+       $(".AutoCompleteDetalle_Relaciones_MASC_Solicitante").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Detalle_Relaciones_MASC/GetDetalle_Relaciones_MASC_Solicitante_Detalle_de_Datos_Generales")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteDetalle_Relaciones_MASC_Solicitante_Detalle_de_Datos_GeneralesData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteDetalle_Relaciones_MASC_Solicitante");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+		
+		function SendDetalle_Relaciones_MASCData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateDetalle_Relaciones_MASC").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateDetalle_Relaciones_MASC")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+
+            var isNew = $('#hdnIsNew').val();
+           
+            if (checkClientValidate('Detalle_Relaciones_MASCCreateForm')) {
+                $.ajax({
+                    url: '@Url.Content("~/Frontal/Detalle_Relaciones_MASC/Post?IsNew=")' + isNew,
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("@Resources.Resources.ErrorSave", "error");
+                        } else {
+
+                            showNotification("@Resources.Resources.SaveSuccess", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+		
+        function GetPropertyBag() {
+            $.get('@Url.Action("Detalle_Relaciones_MASCPropertyBag", "Detalle_Relaciones_MASC")', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function Detalle_Relaciones_MASCGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+				$('#hdnDetalle_Relaciones_MASCBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_Relaciones_MASCBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_Relaciones_MASCBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("BusinessRule", "BussinessRule")', { FieldId: $('#hdnDetalle_Relaciones_MASCBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Relaciones_MASCBusinessRuleFieldName').val(), ObjectId: '45705', Attribute: $('#hdnDetalle_Relaciones_MASCBusinessRuleAttribute').val(), Screen: 'Detalle_Relaciones_MASC' }, function (data) {
+                $(".Detalle_Relaciones_MASCBusinessRuleModal").html(data);
+            });
+        }
+        function Detalle_Relaciones_MASCGetAddBusinessRule(RuleId, FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null) {
+				$('#hdnDetalle_Relaciones_MASCBusinessRuleFieldId').val(FieldId);
+				$('#hdnDetalle_Relaciones_MASCBusinessRuleFieldName').val(FieldName);
+				$('#hdnDetalle_Relaciones_MASCBusinessRuleAttribute').val(Attribute);
+			}
+            $.get('@Url.Action("AddBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_Relaciones_MASCBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Relaciones_MASCBusinessRuleFieldName').val(), ObjectId: '45705', Attribute: $('#hdnDetalle_Relaciones_MASCBusinessRuleAttribute').val(), Screen: 'Detalle_Relaciones_MASC' }, function (data) {
+                $(".Detalle_Relaciones_MASCAddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+		function RemoveBusinessRule(RuleId) {
+			$.get('@Url.Action("RemoveBusinessRule", "BussinessRule")', { BusinessRuleId: RuleId, FieldId: $('#hdnDetalle_Relaciones_MASCBusinessRuleFieldId').val(), FieldName: $('#hdnDetalle_Relaciones_MASCBusinessRuleFieldName').val(), ObjectId: '45705', Attribute: $('#hdnDetalle_Relaciones_MASCBusinessRuleAttribute').val(), Screen: 'Detalle_Relaciones_MASC' }, function (data) {
+				$(".Detalle_Relaciones_MASCBusinessRuleModal").html(data);
+			});
+		}
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function BackToGrid() {
+        location.href = "@Url.Content("~/Frontal/Detalle_Relaciones_MASC/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Detalle_Relaciones_MASC/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Detalle_Relaciones_MASC/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnDetalle_Relaciones_MASCConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnDetalle_Relaciones_MASCConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Detalle_Relaciones_MASC/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnDetalle_Relaciones_MASCConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Detalle_Relaciones_MASC/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#Detalle_Relaciones_MASC' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#Detalle_Relaciones_MASC' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+					if (childElementObject != null) {
+						for (var i = 0; i < childElementObject.length; i++) {
+							$('.' + childElementObject[i].inputId + 'Header').show();
+							$('.' + childElementObject[i].inputId).parent().show();
+							$('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+						}
+					}
+                    $('#Detalle_Relaciones_MASCConfigureSave').text('Save Settings');
+                    $('#hdnDetalle_Relaciones_MASCConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateDetalle_Relaciones_MASC').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#hdnDetalle_Relaciones_MASCBusinessRuleFieldId').val(fieldId);
+			$('#hdnDetalle_Relaciones_MASCBusinessRuleFieldName').val(fieldName);
+			$('#hdnDetalle_Relaciones_MASCBusinessRuleAttribute').val(attribute);
+		});
+		//Initialize HTML Editors
+		
+    </script>

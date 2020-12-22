@@ -1431,6 +1431,14 @@
 <Compile Include="Tipo_de_Cuantia\Tipo_de_CuantiaService.cs" />
 <Compile Include="Resolucion_MASC\IResolucion_MASCService.cs" />
 <Compile Include="Resolucion_MASC\Resolucion_MASCService.cs" />
+<Compile Include="Canalizacion\ICanalizacionService.cs" />
+<Compile Include="Canalizacion\CanalizacionService.cs" />
+<Compile Include="Detalle_Diligencias_Canalizacion\IDetalle_Diligencias_CanalizacionService.cs" />
+<Compile Include="Detalle_Diligencias_Canalizacion\Detalle_Diligencias_CanalizacionService.cs" />
+<Compile Include="Detalle_Relaciones_MASC\IDetalle_Relaciones_MASCService.cs" />
+<Compile Include="Detalle_Relaciones_MASC\Detalle_Relaciones_MASCService.cs" />
+<Compile Include="Relaciones_MASC\IRelaciones_MASCService.cs" />
+<Compile Include="Relaciones_MASC\Relaciones_MASCService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1530,6 +1538,14 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
 
 
 

@@ -255,12 +255,7 @@ if(operation == 'Update'){
 
 
 
-//BusinessRuleId:3057, Attribute:2, Operation:Object, Event:AFTERSAVING
-if(operation == 'Update'){
-if( EvaluaQuery("select correo_electronico from Detalle_de_Datos_Generales where modulo_atencion_inicial = 244 and tipo_de_compareciente = 1",rowIndex, nameOfTable)!=TryParseInt('NULL', 'NULL') ) { SendEmailQuery('Prueba Envio Correo', EvaluaQuery(" select correo_electronico from Detalle_de_Datos_Generales where modulo_atencion_inicial = 244 and tipo_de_compareciente = 1"), "EXEC dbo.UspGeneraLinkEncuesta 1, FLDD[lblClave]",rowIndex,nameOfTable); alert(DecodifyText('Envío de encuesta.', rowIndex, nameOfTable));} else { alert(DecodifyText('No tiene correo electrónico configurado, por lo que no podrá contestar encuestas.', rowIndex, nameOfTable));}
-
-}
-//BusinessRuleId:3057, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

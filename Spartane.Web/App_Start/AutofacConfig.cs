@@ -1859,6 +1859,18 @@ using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Cuantia;
 using Spartane.Services.Resolucion_MASC;
 using Spartane.Core.Domain.Resolucion_MASC;
 using Spartane.Web.Areas.WebApiConsumer.Resolucion_MASC;
+using Spartane.Services.Canalizacion;
+using Spartane.Core.Domain.Canalizacion;
+using Spartane.Web.Areas.WebApiConsumer.Canalizacion;
+using Spartane.Services.Detalle_Diligencias_Canalizacion;
+using Spartane.Core.Domain.Detalle_Diligencias_Canalizacion;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Diligencias_Canalizacion;
+using Spartane.Services.Detalle_Relaciones_MASC;
+using Spartane.Core.Domain.Detalle_Relaciones_MASC;
+using Spartane.Web.Areas.WebApiConsumer.Detalle_Relaciones_MASC;
+using Spartane.Services.Relaciones_MASC;
+using Spartane.Core.Domain.Relaciones_MASC;
+using Spartane.Web.Areas.WebApiConsumer.Relaciones_MASC;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3221,6 +3233,14 @@ builder.RegisterType<Tipo_de_CuantiaService>().As<ITipo_de_CuantiaService>().Ins
 builder.RegisterType<Tipo_de_CuantiaApiConsumer>().As<ITipo_de_CuantiaApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Resolucion_MASCService>().As<IResolucion_MASCService>().InstancePerLifetimeScope();
 builder.RegisterType<Resolucion_MASCApiConsumer>().As<IResolucion_MASCApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<CanalizacionService>().As<ICanalizacionService>().InstancePerLifetimeScope();
+builder.RegisterType<CanalizacionApiConsumer>().As<ICanalizacionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Diligencias_CanalizacionService>().As<IDetalle_Diligencias_CanalizacionService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Diligencias_CanalizacionApiConsumer>().As<IDetalle_Diligencias_CanalizacionApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Relaciones_MASCService>().As<IDetalle_Relaciones_MASCService>().InstancePerLifetimeScope();
+builder.RegisterType<Detalle_Relaciones_MASCApiConsumer>().As<IDetalle_Relaciones_MASCApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Relaciones_MASCService>().As<IRelaciones_MASCService>().InstancePerLifetimeScope();
+builder.RegisterType<Relaciones_MASCApiConsumer>().As<IRelaciones_MASCApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3401,6 +3421,48 @@ builder.RegisterType<Resolucion_MASCApiConsumer>().As<IResolucion_MASCApiConsume
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,206 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.CanalizacionGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.CanalizacionResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.CanalizacionResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Expediente_MP
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Expediente_AT
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Fecha_de_Canalizacion
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Hora_de_Canalizacion
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Usuario_que_Canaliza
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Relacion_a_Canalizar
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Canalizar_a
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Unidad
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Fecha_de_Resolucion
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Hora_de_Resolucion
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Hubo_modificacion_en_la_relacion
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Nueva_Relacion
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.ResolucionId
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Resolucion
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Detalle_de_la_Resolucion
+            </td>
+            <td class="column1">
+                @Resources.CanalizacionResources.Observaciones
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Expediente_MP
+                    </td>
+                    <td>
+                        @item.Expediente_AT
+                    </td>
+                    <td>
+                        @item.Fecha_de_Canalizacion
+                    </td>
+                    <td>
+                        @item.Hora_de_Canalizacion
+                    </td>
+                    <td>
+                        @item.Usuario_que_Canaliza
+                    </td>
+                    <td>
+                        @item.Relacion_a_Canalizar
+                    </td>
+                    <td>
+                        @item.Canalizar_aDescripcion
+                    </td>
+                    <td>
+                        @item.Municipio
+                    </td>
+                    <td>
+                        @item.Unidad
+                    </td>
+                    <td>
+                        @item.Fecha_de_Resolucion
+                    </td>
+                    <td>
+                        @item.Hora_de_Resolucion
+                    </td>
+                    <td>
+                        @item.Hubo_modificacion_en_la_relacion
+                    </td>
+                    <td>
+                        @item.Nueva_Relacion
+                    </td>
+                    <td>
+                        @item.ResolucionId
+                    </td>
+                    <td>
+                        @item.Resolucion
+                    </td>
+                    <td>
+                        @item.Detalle_de_la_Resolucion
+                    </td>
+                    <td>
+                        @item.Observaciones
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

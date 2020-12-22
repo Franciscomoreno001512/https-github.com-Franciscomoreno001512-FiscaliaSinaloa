@@ -2776,6 +2776,7 @@ if(operation == 'New'){
 //BusinessRuleId:2997, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 
+
 //INI COD-MAN PARA ENVIAR CORREO DE ENCUESTA
 if(operation == 'New' || operation == 'Update'){
 	//CERRAR
@@ -2805,6 +2806,9 @@ if(operation == 'New' || operation == 'Update'){
 	}
 }
 //INI COD-MAN PARA ENVIAR CORREO DE ENCUESTA
+
+
+
 
 
 //NEWBUSINESSRULE_AFTERSAVING//
