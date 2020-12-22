@@ -167,6 +167,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Resolucion_Padre_para_Autorizacion = ResolucionData.Resolucion_Padre_para_Autorizacion
                     ,Resolucion_Padre_para_AutorizacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(ResolucionData.Resolucion_Padre_para_Autorizacion), "Resolucion") ??  (string)ResolucionData.Resolucion_Padre_para_Autorizacion_Resolucion.Descripcion
                     ,Generar_Judicializacion = ResolucionData.Generar_Judicializacion.GetValueOrDefault()
+                    ,ClaveFiscalia = ResolucionData.ClaveFiscalia
+                    ,Aplica_para_Adolescentes = ResolucionData.Aplica_para_Adolescentes.GetValueOrDefault()
 
 					};
 				}
@@ -259,6 +261,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Resolucion_Padre_para_Autorizacion = ResolucionData.Resolucion_Padre_para_Autorizacion
                     ,Resolucion_Padre_para_AutorizacionDescripcion = CultureHelper.GetTraduction(Convert.ToString(ResolucionData.Resolucion_Padre_para_Autorizacion), "Resolucion") ??  (string)ResolucionData.Resolucion_Padre_para_Autorizacion_Resolucion.Descripcion
                     ,Generar_Judicializacion = ResolucionData.Generar_Judicializacion.GetValueOrDefault()
+                    ,ClaveFiscalia = ResolucionData.ClaveFiscalia
+                    ,Aplica_para_Adolescentes = ResolucionData.Aplica_para_Adolescentes.GetValueOrDefault()
 
 					};
 				}
@@ -457,6 +461,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Resolucion.Descripcion
                         ,Resolucion_Padre_para_AutorizacionDescripcion = CultureHelper.GetTraduction(m.Resolucion_Padre_para_Autorizacion_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Resolucion_Padre_para_Autorizacion_Resolucion.Descripcion
 			,Generar_Judicializacion = m.Generar_Judicializacion
+			,ClaveFiscalia = m.ClaveFiscalia
+			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -575,6 +581,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Resolucion.Descripcion
                         ,Resolucion_Padre_para_AutorizacionDescripcion = CultureHelper.GetTraduction(m.Resolucion_Padre_para_Autorizacion_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Resolucion_Padre_para_Autorizacion_Resolucion.Descripcion
 			,Generar_Judicializacion = m.Generar_Judicializacion
+			,ClaveFiscalia = m.ClaveFiscalia
+			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -682,6 +690,31 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (filter.Generar_Judicializacion != RadioOptions.NoApply)
                 where += " AND Resolucion.Generar_Judicializacion = " + Convert.ToInt32(filter.Generar_Judicializacion);
 
+            if (!string.IsNullOrEmpty(filter.ClaveFiscalia))
+            {
+                switch (filter.ClaveFiscaliaFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Resolucion.ClaveFiscalia LIKE '" + filter.ClaveFiscalia + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Resolucion.ClaveFiscalia LIKE '%" + filter.ClaveFiscalia + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Resolucion.ClaveFiscalia = '" + filter.ClaveFiscalia + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Resolucion.ClaveFiscalia LIKE '%" + filter.ClaveFiscalia + "%'";
+                        break;
+                }
+            }
+
+            if (filter.Aplica_para_Adolescentes != RadioOptions.NoApply)
+                where += " AND Resolucion.Aplica_para_Adolescentes = " + Convert.ToInt32(filter.Aplica_para_Adolescentes);
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -741,6 +774,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo = varResolucion.Tipo
                         ,Resolucion_Padre_para_Autorizacion = varResolucion.Resolucion_Padre_para_Autorizacion
                         ,Generar_Judicializacion = varResolucion.Generar_Judicializacion
+                        ,ClaveFiscalia = varResolucion.ClaveFiscalia
+                        ,Aplica_para_Adolescentes = varResolucion.Aplica_para_Adolescentes
 
                     };
 
@@ -1132,6 +1167,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Resolucion.Descripcion
                         ,Resolucion_Padre_para_AutorizacionDescripcion = CultureHelper.GetTraduction(m.Resolucion_Padre_para_Autorizacion_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Resolucion_Padre_para_Autorizacion_Resolucion.Descripcion
 			,Generar_Judicializacion = m.Generar_Judicializacion
+			,ClaveFiscalia = m.ClaveFiscalia
+			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
 
             }).ToList();
 
@@ -1209,6 +1246,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,TipoDescripcion = CultureHelper.GetTraduction(m.Tipo_Tipo_de_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Tipo_Tipo_de_Resolucion.Descripcion
                         ,Resolucion_Padre_para_AutorizacionDescripcion = CultureHelper.GetTraduction(m.Resolucion_Padre_para_Autorizacion_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Resolucion_Padre_para_Autorizacion_Resolucion.Descripcion
 			,Generar_Judicializacion = m.Generar_Judicializacion
+			,ClaveFiscalia = m.ClaveFiscalia
+			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
 
             }).ToList();
 
@@ -1252,6 +1291,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Tipo = varResolucion.Tipo
                         ,Resolucion_Padre_para_Autorizacion = varResolucion.Resolucion_Padre_para_Autorizacion
                         ,Generar_Judicializacion = varResolucion.Generar_Judicializacion
+                        ,ClaveFiscalia = varResolucion.ClaveFiscalia
+                        ,Aplica_para_Adolescentes = varResolucion.Aplica_para_Adolescentes
                     
                 };
 
@@ -1286,6 +1327,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Resolucion_Padre_para_Autorizacion = m.Resolucion_Padre_para_Autorizacion
                         ,Resolucion_Padre_para_AutorizacionDescripcion = CultureHelper.GetTraduction(m.Resolucion_Padre_para_Autorizacion_Resolucion.Clave.ToString(), "Descripcion") ?? (string)m.Resolucion_Padre_para_Autorizacion_Resolucion.Descripcion
 			,Generar_Judicializacion = m.Generar_Judicializacion
+			,ClaveFiscalia = m.ClaveFiscalia
+			,Aplica_para_Adolescentes = m.Aplica_para_Adolescentes
 
                     
                 };

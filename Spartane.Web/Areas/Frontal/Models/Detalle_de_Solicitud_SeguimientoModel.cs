@@ -21,11 +21,16 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Solicitante { get; set; }
         public string SolicitanteNombre { get; set; }
         public string Fecha_Requerida { get; set; }
-        public string Fecha_de_Cumplimiento { get; set; }
         public int? Cumplimiento { get; set; }
         public string CumplimientoDescripcion { get; set; }
+        public string Fecha_de_Cumplimiento { get; set; }
+        public int? Forma_de_Pago { get; set; }
+        public string Forma_de_PagoDescripcion { get; set; }
         [Range(0.00, 999999.99)]
         public decimal? Cantidad_del_Monto { get; set; }
+        public string Descripcion_de_Cumplimiento { get; set; }
+        public short? Concluir_Acuerdo { get; set; }
+        public string Concluir_AcuerdoDescripcion { get; set; }
         public int? Especialista { get; set; }
         public string EspecialistaName { get; set; }
         public string Comentarios { get; set; }
@@ -48,11 +53,16 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Solicitante { get; set; }
         public string SolicitanteNombre { get; set; }
         public string Fecha_Requerida { get; set; }
-        public string Fecha_de_Cumplimiento { get; set; }
         public int? Cumplimiento { get; set; }
         public string CumplimientoDescripcion { get; set; }
+        public string Fecha_de_Cumplimiento { get; set; }
+        public int? Forma_de_Pago { get; set; }
+        public string Forma_de_PagoDescripcion { get; set; }
         [Range(0.00, 999999.99)]
         public decimal? Cantidad_del_Monto { get; set; }
+        public string Descripcion_de_Cumplimiento { get; set; }
+        public short? Concluir_Acuerdo { get; set; }
+        public string Concluir_AcuerdoDescripcion { get; set; }
         public int? Especialista { get; set; }
         public string EspecialistaName { get; set; }
         public string Comentarios { get; set; }

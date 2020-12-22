@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_de_telefono" value="Detalle de telefono"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Tipo_de_Telefono" value="Tipo de Teléfono"></resource>
+  <resource culture="es-es" name="Telefono" value="Teléfono"></resource>
+  <resource culture="es-es" name="Extension" value="Extensión"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

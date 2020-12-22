@@ -3,6 +3,8 @@ using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Detalle_Resumen_Denuncia;
 using Spartane.Core.Domain.Modulo_Atencion_Inicial;
+using Spartane.Core.Domain.Spartan_User;
+using Spartane.Core.Domain.Documento;
 
 using Spartane.Core.Enums;
 using Spartane.Core.Domain.Spartane_File;
@@ -14,6 +16,8 @@ using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Detalle_Resumen_Denuncia;
 using Spartane.Web.Areas.WebApiConsumer.Modulo_Atencion_Inicial;
+using Spartane.Web.Areas.WebApiConsumer.Spartan_User;
+using Spartane.Web.Areas.WebApiConsumer.Documento;
 
 using Spartane.Web.AuthFilters;
 using Spartane.Web.Helpers;
@@ -51,6 +55,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         private IDetalle_Resumen_DenunciaService service = null;
         private IDetalle_Resumen_DenunciaApiConsumer _IDetalle_Resumen_DenunciaApiConsumer;
         private IModulo_Atencion_InicialApiConsumer _IModulo_Atencion_InicialApiConsumer;
+        private ISpartan_UserApiConsumer _ISpartan_UserApiConsumer;
+        private IDocumentoApiConsumer _IDocumentoApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
         private ISpartan_BR_Process_Event_DetailApiConsumer _ISpartan_BR_Process_Event_DetailApiConsumer;
@@ -68,7 +74,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public Detalle_Resumen_DenunciaController(IDetalle_Resumen_DenunciaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Resumen_DenunciaApiConsumer Detalle_Resumen_DenunciaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer )
+        public Detalle_Resumen_DenunciaController(IDetalle_Resumen_DenunciaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IDetalle_Resumen_DenunciaApiConsumer Detalle_Resumen_DenunciaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_Atencion_InicialApiConsumer Modulo_Atencion_InicialApiConsumer , ISpartan_UserApiConsumer Spartan_UserApiConsumer , IDocumentoApiConsumer DocumentoApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -83,6 +89,8 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
             this._IModulo_Atencion_InicialApiConsumer = Modulo_Atencion_InicialApiConsumer;
+            this._ISpartan_UserApiConsumer = Spartan_UserApiConsumer;
+            this._IDocumentoApiConsumer = DocumentoApiConsumer;
 
         }
 
@@ -167,6 +175,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Hechos = Detalle_Resumen_DenunciaData.Hechos
                     ,Generado = Detalle_Resumen_DenunciaData.Generado.GetValueOrDefault()
                     ,Archivo_Descargado = Detalle_Resumen_DenunciaData.Archivo_Descargado.GetValueOrDefault()
+                    ,Usuario_que_registra = Detalle_Resumen_DenunciaData.Usuario_que_registra
+                    ,Usuario_que_registraName = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Usuario_que_registra), "Spartan_User") ??  (string)Detalle_Resumen_DenunciaData.Usuario_que_registra_Spartan_User.Name
+                    ,Documento = Detalle_Resumen_DenunciaData.Documento
+                    ,DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Documento), "Documento") ??  (string)Detalle_Resumen_DenunciaData.Documento_Documento.Descripcion
+                    ,Archivo = Detalle_Resumen_DenunciaData.Archivo
                     ,Fecha_de_registro = (Detalle_Resumen_DenunciaData.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(Detalle_Resumen_DenunciaData.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_de_registro = Detalle_Resumen_DenunciaData.Hora_de_registro
 
@@ -185,6 +198,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial = Modulo_Atencion_Inicials_Modulo_Atencion_Inicial.Resource.Where(m => m.NUAT != null).OrderBy(m => m.NUAT).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Atencion_Inicial", "NUAT") ?? m.NUAT.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IDocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Documentos_Documento = _IDocumentoApiConsumer.SelAll(true);
+            if (Documentos_Documento != null && Documentos_Documento.Resource != null)
+                ViewBag.Documentos_Documento = Documentos_Documento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -257,6 +277,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Hechos = Detalle_Resumen_DenunciaData.Hechos
                     ,Generado = Detalle_Resumen_DenunciaData.Generado.GetValueOrDefault()
                     ,Archivo_Descargado = Detalle_Resumen_DenunciaData.Archivo_Descargado.GetValueOrDefault()
+                    ,Usuario_que_registra = Detalle_Resumen_DenunciaData.Usuario_que_registra
+                    ,Usuario_que_registraName = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Usuario_que_registra), "Spartan_User") ??  (string)Detalle_Resumen_DenunciaData.Usuario_que_registra_Spartan_User.Name
+                    ,Documento = Detalle_Resumen_DenunciaData.Documento
+                    ,DocumentoDescripcion = CultureHelper.GetTraduction(Convert.ToString(Detalle_Resumen_DenunciaData.Documento), "Documento") ??  (string)Detalle_Resumen_DenunciaData.Documento_Documento.Descripcion
+                    ,Archivo = Detalle_Resumen_DenunciaData.Archivo
                     ,Fecha_de_registro = (Detalle_Resumen_DenunciaData.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(Detalle_Resumen_DenunciaData.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
                     ,Hora_de_registro = Detalle_Resumen_DenunciaData.Hora_de_registro
 
@@ -273,6 +298,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial = Modulo_Atencion_Inicials_Modulo_Atencion_Inicial.Resource.Where(m => m.NUAT != null).OrderBy(m => m.NUAT).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Atencion_Inicial", "NUAT") ?? m.NUAT.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IDocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Documentos_Documento = _IDocumentoApiConsumer.SelAll(true);
+            if (Documentos_Documento != null && Documentos_Documento.Resource != null)
+                ViewBag.Documentos_Documento = Documentos_Documento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -307,6 +339,48 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 return Json(result.OrderBy(m => m.NUAT).Select(m => new SelectListItem
                 {
                      Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Atencion_Inicial", "NUAT")?? m.NUAT,
+                    Value = Convert.ToString(m.Clave)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+		[HttpGet]
+        public ActionResult GetSpartan_UserAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _ISpartan_UserApiConsumer.SelAll(false).Resource;
+				
+                return Json(result.OrderBy(m => m.Name).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Id_User), "Spartan_User", "Name")?? m.Name,
+                    Value = Convert.ToString(m.Id_User)
+                }).ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public ActionResult GetDocumentoAll()
+        {
+            try
+            {
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _IDocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IDocumentoApiConsumer.SelAll(false).Resource;
+                
+                return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Documento", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -355,6 +429,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Atencion_Inicial", "NUAT") ?? m.NUAT.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
+            _IDocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Documentos_Documento = _IDocumentoApiConsumer.SelAll(true);
+            if (Documentos_Documento != null && Documentos_Documento.Resource != null)
+                ViewBag.Documentos_Documento = Documentos_Documento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
 
 
             return View(model);  
@@ -372,6 +453,13 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial = Modulo_Atencion_Inicials_Modulo_Atencion_Inicial.Resource.Where(m => m.NUAT != null).OrderBy(m => m.NUAT).Select(m => new SelectListItem
                 {
                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Atencion_Inicial", "NUAT") ?? m.NUAT.ToString(), Value = Convert.ToString(m.Clave)
+                }).ToList();
+            _IDocumentoApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Documentos_Documento = _IDocumentoApiConsumer.SelAll(true);
+            if (Documentos_Documento != null && Documentos_Documento.Resource != null)
+                ViewBag.Documentos_Documento = Documentos_Documento.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+                {
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Documento", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
 
 
@@ -419,6 +507,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hechos = m.Hechos
 			,Generado = m.Generado
 			,Archivo_Descargado = m.Archivo_Descargado
+                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
+                        ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
+			,Archivo = m.Archivo
                         ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_registro = m.Hora_de_registro
 
@@ -543,6 +634,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hechos = m.Hechos
 			,Generado = m.Generado
 			,Archivo_Descargado = m.Archivo_Descargado
+                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
+                        ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
+			,Archivo = m.Archivo
                         ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_registro = m.Hora_de_registro
 
@@ -554,6 +648,33 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
 
+        [HttpGet]
+        public JsonResult GetDetalle_Resumen_Denuncia_Usuario_que_registra_Spartan_User(string query, string where)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(where))
+                    where = "";
+                if (!_tokenManager.GenerateToken())
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                _ISpartan_UserApiConsumer.SetAuthHeader(_tokenManager.Token);
+
+				var elWhere = " (cast(Spartan_User.Id_User as nvarchar(max)) LIKE '%" + query.Trim() + "%' or cast(Spartan_User.Name as nvarchar(max)) LIKE '%" + query.Trim() + "%') " + where;
+				elWhere = HttpUtility.UrlEncode(elWhere);
+				var result = _ISpartan_UserApiConsumer.ListaSelAll(1, 20,elWhere , " Spartan_User.Name ASC ").Resource;
+               
+                foreach (var item in result.Spartan_Users)
+                {
+                    var trans =  CultureHelper.GetTraduction(Convert.ToString(item.Id_User), "Spartan_User", "Name");
+                    item.Name =trans ??item.Name;
+                }
+                return Json(result.Spartan_Users.ToArray(), JsonRequestBehavior.AllowGet);
+            }
+            catch (ServiceException ex)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
@@ -715,6 +836,70 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (filter.Archivo_Descargado != RadioOptions.NoApply)
                 where += " AND Detalle_Resumen_Denuncia.Archivo_Descargado = " + Convert.ToInt32(filter.Archivo_Descargado);
 
+            if (!string.IsNullOrEmpty(filter.AdvanceUsuario_que_registra))
+            {
+                switch (filter.Usuario_que_registraFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Spartan_User.Name LIKE '" + filter.AdvanceUsuario_que_registra + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_registra + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Spartan_User.Name = '" + filter.AdvanceUsuario_que_registra + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Spartan_User.Name LIKE '%" + filter.AdvanceUsuario_que_registra + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceUsuario_que_registraMultiple != null && filter.AdvanceUsuario_que_registraMultiple.Count() > 0)
+            {
+                var Usuario_que_registraIds = string.Join(",", filter.AdvanceUsuario_que_registraMultiple);
+
+                where += " AND Detalle_Resumen_Denuncia.Usuario_que_registra In (" + Usuario_que_registraIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.AdvanceDocumento))
+            {
+                switch (filter.DocumentoFilter)
+                {
+                    case Models.Filters.BeginWith:
+                        where += " AND Documento.Descripcion LIKE '" + filter.AdvanceDocumento + "%'";
+                        break;
+
+                    case Models.Filters.EndWith:
+                        where += " AND Documento.Descripcion LIKE '%" + filter.AdvanceDocumento + "'";
+                        break;
+
+                    case Models.Filters.Exact:
+                        where += " AND Documento.Descripcion = '" + filter.AdvanceDocumento + "'";
+                        break;
+
+                    case Models.Filters.Contains:
+                        where += " AND Documento.Descripcion LIKE '%" + filter.AdvanceDocumento + "%'";
+                        break;
+                }
+            }
+            else if (filter.AdvanceDocumentoMultiple != null && filter.AdvanceDocumentoMultiple.Count() > 0)
+            {
+                var DocumentoIds = string.Join(",", filter.AdvanceDocumentoMultiple);
+
+                where += " AND Detalle_Resumen_Denuncia.Documento In (" + DocumentoIds + ")";
+            }
+
+            if (!string.IsNullOrEmpty(filter.FromArchivo) || !string.IsNullOrEmpty(filter.ToArchivo))
+            {
+                if (!string.IsNullOrEmpty(filter.FromArchivo))
+                    where += " AND Detalle_Resumen_Denuncia.Archivo >= " + filter.FromArchivo;
+                if (!string.IsNullOrEmpty(filter.ToArchivo))
+                    where += " AND Detalle_Resumen_Denuncia.Archivo <= " + filter.ToArchivo;
+            }
+
             if (!string.IsNullOrEmpty(filter.FromFecha_de_registro) || !string.IsNullOrEmpty(filter.ToFecha_de_registro))
             {
                 var Fecha_de_registroFrom = DateTime.ParseExact(filter.FromFecha_de_registro, ConfigurationProperty.DateFormat,
@@ -799,6 +984,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Hechos = varDetalle_Resumen_Denuncia.Hechos
                         ,Generado = varDetalle_Resumen_Denuncia.Generado
                         ,Archivo_Descargado = varDetalle_Resumen_Denuncia.Archivo_Descargado
+                        ,Usuario_que_registra = varDetalle_Resumen_Denuncia.Usuario_que_registra
+                        ,Documento = varDetalle_Resumen_Denuncia.Documento
+                        ,Archivo = varDetalle_Resumen_Denuncia.Archivo
                         ,Fecha_de_registro = (!String.IsNullOrEmpty(varDetalle_Resumen_Denuncia.Fecha_de_registro)) ? DateTime.ParseExact(varDetalle_Resumen_Denuncia.Fecha_de_registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_registro = varDetalle_Resumen_Denuncia.Hora_de_registro
 
@@ -1196,6 +1384,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hechos = m.Hechos
 			,Generado = m.Generado
 			,Archivo_Descargado = m.Archivo_Descargado
+                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
+                        ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
+			,Archivo = m.Archivo
                         ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_registro = m.Hora_de_registro
 
@@ -1279,6 +1470,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hechos = m.Hechos
 			,Generado = m.Generado
 			,Archivo_Descargado = m.Archivo_Descargado
+                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
+                        ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
+			,Archivo = m.Archivo
                         ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_registro = m.Hora_de_registro
 
@@ -1328,6 +1522,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Hechos = varDetalle_Resumen_Denuncia.Hechos
                         ,Generado = varDetalle_Resumen_Denuncia.Generado
                         ,Archivo_Descargado = varDetalle_Resumen_Denuncia.Archivo_Descargado
+                        ,Usuario_que_registra = varDetalle_Resumen_Denuncia.Usuario_que_registra
+                        ,Documento = varDetalle_Resumen_Denuncia.Documento
+                        ,Archivo = varDetalle_Resumen_Denuncia.Archivo
                         ,Fecha_de_registro = (!String.IsNullOrEmpty(varDetalle_Resumen_Denuncia.Fecha_de_registro)) ? DateTime.ParseExact(varDetalle_Resumen_Denuncia.Fecha_de_registro, ConfigurationProperty.DateFormat, CultureInfo.InvariantCulture as IFormatProvider) : (DateTime?)null
                         ,Hora_de_registro = varDetalle_Resumen_Denuncia.Hora_de_registro
                     
@@ -1367,6 +1564,11 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Hechos = m.Hechos
 			,Generado = m.Generado
 			,Archivo_Descargado = m.Archivo_Descargado
+                        ,Usuario_que_registra = m.Usuario_que_registra
+                        ,Usuario_que_registraName = CultureHelper.GetTraduction(m.Usuario_que_registra_Spartan_User.Id_User.ToString(), "Spartan_User") ?? (string)m.Usuario_que_registra_Spartan_User.Name
+                        ,Documento = m.Documento
+                        ,DocumentoDescripcion = CultureHelper.GetTraduction(m.Documento_Documento.Clave.ToString(), "Descripcion") ?? (string)m.Documento_Documento.Descripcion
+			,Archivo = m.Archivo
                         ,Fecha_de_registro = (m.Fecha_de_registro == null ? string.Empty : Convert.ToDateTime(m.Fecha_de_registro).ToString(ConfigurationProperty.DateFormat))
 			,Hora_de_registro = m.Hora_de_registro
 

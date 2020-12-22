@@ -2,8 +2,8 @@
 <Roles>
   <Role culture="en-us" Id="1" value="Administrator"></Role>
   <Role culture="es-es" Id="1" value="Administrador"></Role>
-  <Role culture="en-us" Id="2" value="Coordinador de MASC"></Role>
-  <Role culture="es-es" Id="2" value="Coordinador de MASC"></Role>
+  <Role culture="en-us" Id="2" value="Director Regional MASC"></Role>
+  <Role culture="es-es" Id="2" value="Director Regional MASC"></Role>
   <Role culture="en-us" Id="3" value="Facilitador MASC"></Role>
   <Role culture="es-es" Id="3" value="Facilitador MASC"></Role>
   <Role culture="en-us" Id="4" value="Orientador"></Role>

@@ -18,14 +18,20 @@
 @using Spartane.Core.Domain.Municipio;
 @using Spartane.Core.Domain.Colonia;
 @using Spartane.Core.Domain.Colonia;
+@using Spartane.Core.Domain.Spartan_User;
 @using Spartane.Core.Domain.Motivo_de_Rechazo_de_Solicitud;
 @using Spartane.Core.Domain.A_Tiempo;
 @using Spartane.Core.Domain.Razon_de_Incumplimiento;
 @using Spartane.Core.Domain.Tipo_de_Conclusion_Anticipada;
 @using Spartane.Core.Domain.Spartan_User;
-@using Spartane.Core.Domain.Resultado_de_Revision;
-@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Resolucion_MASC;
 @using Spartane.Core.Domain.Tipo_de_Mecanismo_Alterno;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Resultado_de_Revision;
+@using Spartane.Core.Domain.Resolucion_MASC;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Spartan_User;
+@using Spartane.Core.Domain.Resultado_de_Revision;
 
 @using Spartane.Core.Domain.Permission
 @using Spartane.Web.Areas.WebApiConsumer
@@ -262,6 +268,14 @@
                                     <th>@Resources.SolicitudResources.y_Calle</th>
                                     <th>@Resources.SolicitudResources.LongitudH</th>
                                     <th>@Resources.SolicitudResources.LatitudH</th>
+                                    <th>@Resources.SolicitudResources.Especialista_AsignadoA</th>
+                                    <th>@Resources.SolicitudResources.Motivo_cambio_facilitador</th>
+                                    <th>@Resources.SolicitudResources.Asignar_Especialista_Automatico</th>
+                                    <th>@Resources.SolicitudResources.Razone</th>
+                                    <th>@Resources.SolicitudResources.Fecha_de_AsignacionA</th>
+                                    <th>@Resources.SolicitudResources.Hora_de_AsignacionA</th>
+                                    <th>@Resources.SolicitudResources.Fecha_de_Atencion_del_Especialista</th>
+                                    <th>@Resources.SolicitudResources.Hora_de_Atencion_del_Especialista</th>
                                     <th>@Resources.SolicitudResources.Rechazar</th>
                                     <th>@Resources.SolicitudResources.Motivo_de_Rechazo</th>
                                     <th>@Resources.SolicitudResources.Acuerdo_Cumplido</th>
@@ -269,20 +283,25 @@
                                     <th>@Resources.SolicitudResources.Tipo_de_Conclusion_Anticipada</th>
                                     <th>@Resources.SolicitudResources.Fecha_de_Cierre</th>
                                     <th>@Resources.SolicitudResources.Hora_de_Cierre</th>
+                                    <th>@Resources.SolicitudResources.Usuario_que_Resuelve_Solicitud</th>
+                                    <th>@Resources.SolicitudResources.Resolucion_Solicitud</th>
+                                    <th>@Resources.SolicitudResources.Tipo_de_Mecanismo</th>
+                                    <th>@Resources.SolicitudResources.Observaciones_Solicitud</th>
                                     <th>@Resources.SolicitudResources.Fecha_Validacion</th>
                                     <th>@Resources.SolicitudResources.Hora_Validacion</th>
                                     <th>@Resources.SolicitudResources.Usuario_que_Valida</th>
-                                    <th>@Resources.SolicitudResources.Resultado</th>
+                                    <th>@Resources.SolicitudResources.Autoriza_Cierre_de_Expediente</th>
                                     <th>@Resources.SolicitudResources.Motivo_de_Rechazo_Solicitud</th>
-                                    <th>@Resources.SolicitudResources.Especialista_AsignadoA</th>
-                                    <th>@Resources.SolicitudResources.Motivo_cambio_facilitador</th>
-                                    <th>@Resources.SolicitudResources.Asignar_Especialista_Automatico</th>
-                                    <th>@Resources.SolicitudResources.Razone</th>
-                                    <th>@Resources.SolicitudResources.Tipo_de_Mecanismo</th>
-                                    <th>@Resources.SolicitudResources.Fecha_de_AsignacionA</th>
-                                    <th>@Resources.SolicitudResources.Hora_de_AsignacionA</th>
-                                    <th>@Resources.SolicitudResources.Fecha_de_Atencion_del_Especialista</th>
-                                    <th>@Resources.SolicitudResources.Hora_de_Atencion_del_Especialista</th>
+                                    <th>@Resources.SolicitudResources.Fecha_de_Resolucion_Procedimiento</th>
+                                    <th>@Resources.SolicitudResources.Hora_de_Resolucion_Procedimiento</th>
+                                    <th>@Resources.SolicitudResources.Resolucion_de_Procedimiento</th>
+                                    <th>@Resources.SolicitudResources.Usuario_que_Resuelve_Procedimiento</th>
+                                    <th>@Resources.SolicitudResources.Observaciones_Procedimiento</th>
+                                    <th>@Resources.SolicitudResources.Fecha_de_Validacion_Procedimiento</th>
+                                    <th>@Resources.SolicitudResources.Hora_de_Validacion_Procedimiento</th>
+                                    <th>@Resources.SolicitudResources.Usuario_que_Valida_Procedimiento</th>
+                                    <th>@Resources.SolicitudResources.Resultado_Procedimiento</th>
+                                    <th>@Resources.SolicitudResources.Motivo_de_Rechazo_Procedimiento</th>
 
                                 </tr>
                             </thead>
@@ -330,6 +349,14 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -337,20 +364,25 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="text"></td>
-                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
-                                    <td class="filterColumn" s-spartan="date"></td>
-                                    <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
 
                                 </tr>
                             </tfoot>
@@ -507,6 +539,14 @@
         var y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LongitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LatitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Especialista_AsignadoA =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_cambio_facilitador =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Asignar_Especialista_Automatico = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Razone =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_AsignacionA = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_AsignacionA = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Atencion_del_Especialista = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Atencion_del_Especialista = $($('table td .filterData.form-control:input')[counter++]).val();
         var Rechazar = $($('table td .filterData.form-control:input')[counter++]).val();
         var Motivo_de_Rechazo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Acuerdo_Cumplido =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -514,20 +554,25 @@
         var Tipo_de_Conclusion_Anticipada =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Cierre = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Cierre = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Resuelve_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resolucion_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Mecanismo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_Validacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_Validacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Usuario_que_Valida =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Autoriza_Cierre_de_Expediente =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Motivo_de_Rechazo_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Especialista_AsignadoA =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Motivo_cambio_facilitador =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Asignar_Especialista_Automatico = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Razone =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Mecanismo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_AsignacionA = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_AsignacionA = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Atencion_del_Especialista = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Atencion_del_Especialista = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Resolucion_Procedimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Resolucion_Procedimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resolucion_de_Procedimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Resuelve_Procedimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_Procedimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Validacion_Procedimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Validacion_Procedimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Valida_Procedimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resultado_Procedimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_de_Rechazo_Procedimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -571,6 +616,14 @@
         + "&y_Calle=" + y_Calle
         + "&LongitudH=" + LongitudH
         + "&LatitudH=" + LatitudH
+        + "&Especialista_AsignadoA=" + Especialista_AsignadoA
+        + "&Motivo_cambio_facilitador=" + Motivo_cambio_facilitador
+        + "&Asignar_Especialista_Automatico=" + Asignar_Especialista_Automatico
+        + "&Razone=" + Razone
+        + "&Fecha_de_AsignacionA=" + Fecha_de_AsignacionA
+        + "&Hora_de_AsignacionA=" + Hora_de_AsignacionA
+        + "&Fecha_de_Atencion_del_Especialista=" + Fecha_de_Atencion_del_Especialista
+        + "&Hora_de_Atencion_del_Especialista=" + Hora_de_Atencion_del_Especialista
         + "&Rechazar=" + Rechazar
         + "&Motivo_de_Rechazo=" + Motivo_de_Rechazo
         + "&Acuerdo_Cumplido=" + Acuerdo_Cumplido
@@ -578,20 +631,25 @@
         + "&Tipo_de_Conclusion_Anticipada=" + Tipo_de_Conclusion_Anticipada
         + "&Fecha_de_Cierre=" + Fecha_de_Cierre
         + "&Hora_de_Cierre=" + Hora_de_Cierre
+        + "&Usuario_que_Resuelve_Solicitud=" + Usuario_que_Resuelve_Solicitud
+        + "&Resolucion_Solicitud=" + Resolucion_Solicitud
+        + "&Tipo_de_Mecanismo=" + Tipo_de_Mecanismo
+        + "&Observaciones_Solicitud=" + Observaciones_Solicitud
         + "&Fecha_Validacion=" + Fecha_Validacion
         + "&Hora_Validacion=" + Hora_Validacion
         + "&Usuario_que_Valida=" + Usuario_que_Valida
-        + "&Resultado=" + Resultado
+        + "&Autoriza_Cierre_de_Expediente=" + Autoriza_Cierre_de_Expediente
         + "&Motivo_de_Rechazo_Solicitud=" + Motivo_de_Rechazo_Solicitud
-        + "&Especialista_AsignadoA=" + Especialista_AsignadoA
-        + "&Motivo_cambio_facilitador=" + Motivo_cambio_facilitador
-        + "&Asignar_Especialista_Automatico=" + Asignar_Especialista_Automatico
-        + "&Razone=" + Razone
-        + "&Tipo_de_Mecanismo=" + Tipo_de_Mecanismo
-        + "&Fecha_de_AsignacionA=" + Fecha_de_AsignacionA
-        + "&Hora_de_AsignacionA=" + Hora_de_AsignacionA
-        + "&Fecha_de_Atencion_del_Especialista=" + Fecha_de_Atencion_del_Especialista
-        + "&Hora_de_Atencion_del_Especialista=" + Hora_de_Atencion_del_Especialista
+        + "&Fecha_de_Resolucion_Procedimiento=" + Fecha_de_Resolucion_Procedimiento
+        + "&Hora_de_Resolucion_Procedimiento=" + Hora_de_Resolucion_Procedimiento
+        + "&Resolucion_de_Procedimiento=" + Resolucion_de_Procedimiento
+        + "&Usuario_que_Resuelve_Procedimiento=" + Usuario_que_Resuelve_Procedimiento
+        + "&Observaciones_Procedimiento=" + Observaciones_Procedimiento
+        + "&Fecha_de_Validacion_Procedimiento=" + Fecha_de_Validacion_Procedimiento
+        + "&Hora_de_Validacion_Procedimiento=" + Hora_de_Validacion_Procedimiento
+        + "&Usuario_que_Valida_Procedimiento=" + Usuario_que_Valida_Procedimiento
+        + "&Resultado_Procedimiento=" + Resultado_Procedimiento
+        + "&Motivo_de_Rechazo_Procedimiento=" + Motivo_de_Rechazo_Procedimiento
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Solicitud/Export?format=")" + format
@@ -646,6 +704,14 @@
         var y_Calle =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LongitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
         var LatitudH =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Especialista_AsignadoA =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_cambio_facilitador =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Asignar_Especialista_Automatico = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Razone =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_AsignacionA = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_AsignacionA = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Atencion_del_Especialista = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Atencion_del_Especialista = $($('table td .filterData.form-control:input')[counter++]).val();
         var Rechazar = $($('table td .filterData.form-control:input')[counter++]).val();
         var Motivo_de_Rechazo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Acuerdo_Cumplido =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -653,20 +719,25 @@
         var Tipo_de_Conclusion_Anticipada =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_de_Cierre = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_de_Cierre = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Resuelve_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resolucion_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_de_Mecanismo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_Validacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Hora_Validacion = $($('table td .filterData.form-control:input')[counter++]).val();
         var Usuario_que_Valida =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Resultado =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Autoriza_Cierre_de_Expediente =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Motivo_de_Rechazo_Solicitud =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Especialista_AsignadoA =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Motivo_cambio_facilitador =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Asignar_Especialista_Automatico = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Razone =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Tipo_de_Mecanismo =  $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_AsignacionA = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_AsignacionA = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Atencion_del_Especialista = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Hora_de_Atencion_del_Especialista = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Resolucion_Procedimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Resolucion_Procedimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resolucion_de_Procedimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Resuelve_Procedimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Observaciones_Procedimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Validacion_Procedimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Hora_de_Validacion_Procedimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Usuario_que_Valida_Procedimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Resultado_Procedimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Motivo_de_Rechazo_Procedimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -710,6 +781,14 @@
         + "&y_Calle=" + y_Calle
         + "&LongitudH=" + LongitudH
         + "&LatitudH=" + LatitudH
+        + "&Especialista_AsignadoA=" + Especialista_AsignadoA
+        + "&Motivo_cambio_facilitador=" + Motivo_cambio_facilitador
+        + "&Asignar_Especialista_Automatico=" + Asignar_Especialista_Automatico
+        + "&Razone=" + Razone
+        + "&Fecha_de_AsignacionA=" + Fecha_de_AsignacionA
+        + "&Hora_de_AsignacionA=" + Hora_de_AsignacionA
+        + "&Fecha_de_Atencion_del_Especialista=" + Fecha_de_Atencion_del_Especialista
+        + "&Hora_de_Atencion_del_Especialista=" + Hora_de_Atencion_del_Especialista
         + "&Rechazar=" + Rechazar
         + "&Motivo_de_Rechazo=" + Motivo_de_Rechazo
         + "&Acuerdo_Cumplido=" + Acuerdo_Cumplido
@@ -717,20 +796,25 @@
         + "&Tipo_de_Conclusion_Anticipada=" + Tipo_de_Conclusion_Anticipada
         + "&Fecha_de_Cierre=" + Fecha_de_Cierre
         + "&Hora_de_Cierre=" + Hora_de_Cierre
+        + "&Usuario_que_Resuelve_Solicitud=" + Usuario_que_Resuelve_Solicitud
+        + "&Resolucion_Solicitud=" + Resolucion_Solicitud
+        + "&Tipo_de_Mecanismo=" + Tipo_de_Mecanismo
+        + "&Observaciones_Solicitud=" + Observaciones_Solicitud
         + "&Fecha_Validacion=" + Fecha_Validacion
         + "&Hora_Validacion=" + Hora_Validacion
         + "&Usuario_que_Valida=" + Usuario_que_Valida
-        + "&Resultado=" + Resultado
+        + "&Autoriza_Cierre_de_Expediente=" + Autoriza_Cierre_de_Expediente
         + "&Motivo_de_Rechazo_Solicitud=" + Motivo_de_Rechazo_Solicitud
-        + "&Especialista_AsignadoA=" + Especialista_AsignadoA
-        + "&Motivo_cambio_facilitador=" + Motivo_cambio_facilitador
-        + "&Asignar_Especialista_Automatico=" + Asignar_Especialista_Automatico
-        + "&Razone=" + Razone
-        + "&Tipo_de_Mecanismo=" + Tipo_de_Mecanismo
-        + "&Fecha_de_AsignacionA=" + Fecha_de_AsignacionA
-        + "&Hora_de_AsignacionA=" + Hora_de_AsignacionA
-        + "&Fecha_de_Atencion_del_Especialista=" + Fecha_de_Atencion_del_Especialista
-        + "&Hora_de_Atencion_del_Especialista=" + Hora_de_Atencion_del_Especialista
+        + "&Fecha_de_Resolucion_Procedimiento=" + Fecha_de_Resolucion_Procedimiento
+        + "&Hora_de_Resolucion_Procedimiento=" + Hora_de_Resolucion_Procedimiento
+        + "&Resolucion_de_Procedimiento=" + Resolucion_de_Procedimiento
+        + "&Usuario_que_Resuelve_Procedimiento=" + Usuario_que_Resuelve_Procedimiento
+        + "&Observaciones_Procedimiento=" + Observaciones_Procedimiento
+        + "&Fecha_de_Validacion_Procedimiento=" + Fecha_de_Validacion_Procedimiento
+        + "&Hora_de_Validacion_Procedimiento=" + Hora_de_Validacion_Procedimiento
+        + "&Usuario_que_Valida_Procedimiento=" + Usuario_que_Valida_Procedimiento
+        + "&Resultado_Procedimiento=" + Resultado_Procedimiento
+        + "&Motivo_de_Rechazo_Procedimiento=" + Motivo_de_Rechazo_Procedimiento
 ;
 
     }
@@ -911,11 +995,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -982,7 +1066,7 @@
                 ,{ "data": "Fecha_de_Registro", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Registro" }
                 ,{ "data": "Usuario_que_RegistraName", "orderable": true, "name": "Usuario_que_RegistraName"}
                 ,{ "data": "Numero_de_Folio", "orderable": true, "name": "Numero_de_Folio", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Unidad_MASCDescripcion", "orderable": true, "name": "Unidad_MASCDescripcion" }
+                ,{ "data": "Unidad_MASCDescripcion", "orderable": true, "name": "Unidad_MASCDescripcion"}
                 ,{ "data": "Remitente", "orderable": true, "name": "Remitente", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "NUATNUAT", "orderable": true, "name": "NUATNUAT"}
                 ,{ "data": "NUAT_Codigo", "orderable": true, "name": "NUAT_Codigo", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
@@ -1000,7 +1084,7 @@
                 ,{ "data": "Agente_del_Ministerio_Publico_OrientadorName", "orderable": true, "name": "Agente_del_Ministerio_Publico_OrientadorName"}
                 ,{ "data": "Agente_del_Ministerio_Publico_InvestName", "orderable": true, "name": "Agente_del_Ministerio_Publico_InvestName"}
                 ,{ "data": "Juez_de_Control", "orderable": true, "name": "Juez_de_Control", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "UnidadDescripcion", "orderable": true, "name": "UnidadDescripcion" }
+                ,{ "data": "UnidadDescripcion", "orderable": true, "name": "UnidadDescripcion"}
                 ,{ "data": "Titulo_del_Hecho", "orderable": true, "name": "Titulo_del_Hecho", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Fecha_del_Hecho", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_del_Hecho" }
                 ,{ "data": "Narrativa_Breve_de_los_Hechos", "orderable": true, "name": "Narrativa_Breve_de_los_Hechos", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
@@ -1019,6 +1103,14 @@
                 ,{ "data": "y_Calle", "orderable": true, "name": "y_Calle", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "LongitudH", "orderable": true, "name": "LongitudH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "LatitudH", "orderable": true, "name": "LatitudH", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Especialista_AsignadoAName", "orderable": true, "name": "Especialista_AsignadoAName"}
+                ,{ "data": "Motivo_cambio_facilitador", "orderable": true, "name": "Motivo_cambio_facilitador", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Asignar_Especialista_Automatico", "orderable": true, "name": "Asignar_Especialista_Automatico","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "Razone", "orderable": true, "name": "Razone", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_AsignacionA", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_AsignacionA" }
+                ,{ "data": "Hora_de_AsignacionA", "orderable": true, "name": "Hora_de_AsignacionA" }
+                ,{ "data": "Fecha_de_Atencion_del_Especialista", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Atencion_del_Especialista" }
+                ,{ "data": "Hora_de_Atencion_del_Especialista", "orderable": true, "name": "Hora_de_Atencion_del_Especialista" }
                 ,{ "data": "Rechazar", "orderable": true, "name": "Rechazar","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
                 ,{ "data": "Motivo_de_RechazoDescripcion", "orderable": true, "name": "Motivo_de_RechazoDescripcion" }
                 ,{ "data": "Acuerdo_CumplidoDescripcion", "orderable": true, "name": "Acuerdo_CumplidoDescripcion" }
@@ -1026,20 +1118,25 @@
                 ,{ "data": "Tipo_de_Conclusion_AnticipadaDescripcion", "orderable": true, "name": "Tipo_de_Conclusion_AnticipadaDescripcion" }
                 ,{ "data": "Fecha_de_Cierre", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Cierre" }
                 ,{ "data": "Hora_de_Cierre", "orderable": true, "name": "Hora_de_Cierre" }
+                ,{ "data": "Usuario_que_Resuelve_SolicitudName", "orderable": true, "name": "Usuario_que_Resuelve_SolicitudName"}
+                ,{ "data": "Resolucion_SolicitudDescripcion", "orderable": true, "name": "Resolucion_SolicitudDescripcion" }
+                ,{ "data": "Tipo_de_MecanismoDescripcion", "orderable": true, "name": "Tipo_de_MecanismoDescripcion" }
+                ,{ "data": "Observaciones_Solicitud", "orderable": true, "name": "Observaciones_Solicitud", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Fecha_Validacion", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_Validacion" }
                 ,{ "data": "Hora_Validacion", "orderable": true, "name": "Hora_Validacion" }
                 ,{ "data": "Usuario_que_ValidaName", "orderable": true, "name": "Usuario_que_ValidaName"}
-                ,{ "data": "ResultadoDescripcion", "orderable": true, "name": "ResultadoDescripcion" }
+                ,{ "data": "Autoriza_Cierre_de_ExpedienteDescripcion", "orderable": true, "name": "Autoriza_Cierre_de_ExpedienteDescripcion" }
                 ,{ "data": "Motivo_de_Rechazo_Solicitud", "orderable": true, "name": "Motivo_de_Rechazo_Solicitud", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Especialista_AsignadoAName", "orderable": true, "name": "Especialista_AsignadoAName"}
-                ,{ "data": "Motivo_cambio_facilitador", "orderable": true, "name": "Motivo_cambio_facilitador", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Asignar_Especialista_Automatico", "orderable": true, "name": "Asignar_Especialista_Automatico","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
-                ,{ "data": "Razone", "orderable": true, "name": "Razone", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
-                ,{ "data": "Tipo_de_MecanismoDescripcion", "orderable": true, "name": "Tipo_de_MecanismoDescripcion" }
-                ,{ "data": "Fecha_de_AsignacionA", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_AsignacionA" }
-                ,{ "data": "Hora_de_AsignacionA", "orderable": true, "name": "Hora_de_AsignacionA" }
-                ,{ "data": "Fecha_de_Atencion_del_Especialista", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Atencion_del_Especialista" }
-                ,{ "data": "Hora_de_Atencion_del_Especialista", "orderable": true, "name": "Hora_de_Atencion_del_Especialista" }
+                ,{ "data": "Fecha_de_Resolucion_Procedimiento", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Resolucion_Procedimiento" }
+                ,{ "data": "Hora_de_Resolucion_Procedimiento", "orderable": true, "name": "Hora_de_Resolucion_Procedimiento" }
+                ,{ "data": "Resolucion_de_ProcedimientoDescripcion", "orderable": true, "name": "Resolucion_de_ProcedimientoDescripcion" }
+                ,{ "data": "Usuario_que_Resuelve_ProcedimientoName", "orderable": true, "name": "Usuario_que_Resuelve_ProcedimientoName"}
+                ,{ "data": "Observaciones_Procedimiento", "orderable": true, "name": "Observaciones_Procedimiento", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Fecha_de_Validacion_Procedimiento", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Validacion_Procedimiento" }
+                ,{ "data": "Hora_de_Validacion_Procedimiento", "orderable": true, "name": "Hora_de_Validacion_Procedimiento" }
+                ,{ "data": "Usuario_que_Valida_ProcedimientoName", "orderable": true, "name": "Usuario_que_Valida_ProcedimientoName"}
+                ,{ "data": "Resultado_ProcedimientoDescripcion", "orderable": true, "name": "Resultado_ProcedimientoDescripcion" }
+                ,{ "data": "Motivo_de_Rechazo_Procedimiento", "orderable": true, "name": "Motivo_de_Rechazo_Procedimiento", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
 
             ],
 			"colReorder": true,

@@ -2,7 +2,7 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using Spartane.Core.Domain.Encuesta;
-using Spartane.Core.Domain.Estatus;
+using Spartane.Core.Domain.Modulo_Encuesta;
 using Spartane.Core.Domain.Catalogo_Numero_de_Preguntas;
 
 using Spartane.Core.Enums;
@@ -14,7 +14,7 @@ using Spartane.Web.Areas.WebApiConsumer;
 using Spartane.Web.Areas.WebApiConsumer.Spartane_File;
 using Spartane.Web.Areas.WebApiConsumer.ApiAuthentication;
 using Spartane.Web.Areas.WebApiConsumer.Encuesta;
-using Spartane.Web.Areas.WebApiConsumer.Estatus;
+using Spartane.Web.Areas.WebApiConsumer.Modulo_Encuesta;
 using Spartane.Web.Areas.WebApiConsumer.Catalogo_Numero_de_Preguntas;
 
 using Spartane.Web.AuthFilters;
@@ -52,7 +52,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
         private IEncuestaService service = null;
         private IEncuestaApiConsumer _IEncuestaApiConsumer;
-        private IEstatusApiConsumer _IEstatusApiConsumer;
+        private IModulo_EncuestaApiConsumer _IModulo_EncuestaApiConsumer;
         private ICatalogo_Numero_de_PreguntasApiConsumer _ICatalogo_Numero_de_PreguntasApiConsumer;
 
         private ISpartan_Business_RuleApiConsumer _ISpartan_Business_RuleApiConsumer;
@@ -71,7 +71,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         #region "Constructor Declaration"
 
         
-        public EncuestaController(IEncuestaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IEncuestaApiConsumer EncuestaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IEstatusApiConsumer EstatusApiConsumer , ICatalogo_Numero_de_PreguntasApiConsumer Catalogo_Numero_de_PreguntasApiConsumer )
+        public EncuestaController(IEncuestaService service,ITokenManager tokenManager, IAuthenticationApiConsumer authenticationApiConsumer, IEncuestaApiConsumer EncuestaApiConsumer, ISpartane_FileApiConsumer Spartane_FileApiConsumer, ISpartan_Business_RuleApiConsumer Spartan_Business_RuleApiConsumer, ISpartan_BR_Process_Event_DetailApiConsumer Spartan_BR_Process_Event_DetailApiConsumer, ISpartan_FormatApiConsumer Spartan_FormatApiConsumer, ISpartan_Format_PermissionsApiConsumer Spartan_Format_PermissionsApiConsumer, IGeneratePDFApiConsumer GeneratePDFApiConsumer, ISpartan_Format_RelatedApiConsumer Spartan_Format_RelatedApiConsumer , IModulo_EncuestaApiConsumer Modulo_EncuestaApiConsumer , ICatalogo_Numero_de_PreguntasApiConsumer Catalogo_Numero_de_PreguntasApiConsumer )
         {
             this.service = service;
             this._IAuthenticationApiConsumer = authenticationApiConsumer;
@@ -85,7 +85,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             this._ISpartan_Format_PermissionsApiConsumer = Spartan_Format_PermissionsApiConsumer;
             this._IGeneratePDFApiConsumer = GeneratePDFApiConsumer;
 			this._ISpartan_FormatRelatedApiConsumer = Spartan_Format_RelatedApiConsumer;
-            this._IEstatusApiConsumer = EstatusApiConsumer;
+            this._IModulo_EncuestaApiConsumer = Modulo_EncuestaApiConsumer;
             this._ICatalogo_Numero_de_PreguntasApiConsumer = Catalogo_Numero_de_PreguntasApiConsumer;
 
         }
@@ -163,7 +163,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = EncuestaData.Clave 
 	                    ,Modulo = EncuestaData.Modulo
-                    ,ModuloDescripcion = CultureHelper.GetTraduction(Convert.ToString(EncuestaData.Modulo), "Estatus") ??  (string)EncuestaData.Modulo_Estatus.Descripcion
+                    ,ModuloDescripcion = CultureHelper.GetTraduction(Convert.ToString(EncuestaData.Modulo), "Modulo_Encuesta") ??  (string)EncuestaData.Modulo_Modulo_Encuesta.Descripcion
                     ,Numero_de_Preguntas = EncuestaData.Numero_de_Preguntas
                     ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(Convert.ToString(EncuestaData.Numero_de_Preguntas), "Catalogo_Numero_de_Preguntas") ??  (string)EncuestaData.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
                     ,Pregunta_1 = EncuestaData.Pregunta_1
@@ -181,12 +181,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IEstatusApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Estatuss_Modulo = _IEstatusApiConsumer.SelAll(true);
-            if (Estatuss_Modulo != null && Estatuss_Modulo.Resource != null)
-                ViewBag.Estatuss_Modulo = Estatuss_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Modulo_Encuestas_Modulo = _IModulo_EncuestaApiConsumer.SelAll(true);
+            if (Modulo_Encuestas_Modulo != null && Modulo_Encuestas_Modulo.Resource != null)
+                ViewBag.Modulo_Encuestas_Modulo = Modulo_Encuestas_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_Numero_de_PreguntasApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Catalogo_Numero_de_Preguntass_Numero_de_Preguntas = _ICatalogo_Numero_de_PreguntasApiConsumer.SelAll(true);
@@ -258,7 +258,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 					{
 						Clave  = EncuestaData.Clave 
 	                    ,Modulo = EncuestaData.Modulo
-                    ,ModuloDescripcion = CultureHelper.GetTraduction(Convert.ToString(EncuestaData.Modulo), "Estatus") ??  (string)EncuestaData.Modulo_Estatus.Descripcion
+                    ,ModuloDescripcion = CultureHelper.GetTraduction(Convert.ToString(EncuestaData.Modulo), "Modulo_Encuesta") ??  (string)EncuestaData.Modulo_Modulo_Encuesta.Descripcion
                     ,Numero_de_Preguntas = EncuestaData.Numero_de_Preguntas
                     ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(Convert.ToString(EncuestaData.Numero_de_Preguntas), "Catalogo_Numero_de_Preguntas") ??  (string)EncuestaData.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
                     ,Pregunta_1 = EncuestaData.Pregunta_1
@@ -274,12 +274,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IEstatusApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Estatuss_Modulo = _IEstatusApiConsumer.SelAll(true);
-            if (Estatuss_Modulo != null && Estatuss_Modulo.Resource != null)
-                ViewBag.Estatuss_Modulo = Estatuss_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Modulo_Encuestas_Modulo = _IModulo_EncuestaApiConsumer.SelAll(true);
+            if (Modulo_Encuestas_Modulo != null && Modulo_Encuestas_Modulo.Resource != null)
+                ViewBag.Modulo_Encuestas_Modulo = Modulo_Encuestas_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_Numero_de_PreguntasApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Catalogo_Numero_de_Preguntass_Numero_de_Preguntas = _ICatalogo_Numero_de_PreguntasApiConsumer.SelAll(true);
@@ -309,18 +309,18 @@ namespace Spartane.Web.Areas.Frontal.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetEstatusAll()
+        public ActionResult GetModulo_EncuestaAll()
         {
             try
             {
                 if (!_tokenManager.GenerateToken())
                     return Json(null, JsonRequestBehavior.AllowGet);
-                _IEstatusApiConsumer.SetAuthHeader(_tokenManager.Token);
-                var result = _IEstatusApiConsumer.SelAll(false).Resource;
+                _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+                var result = _IModulo_EncuestaApiConsumer.SelAll(false).Resource;
                 
                 return Json(result.OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus", "Descripcion")?? m.Descripcion,
+                     Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion")?? m.Descripcion,
                     Value = Convert.ToString(m.Clave)
                 }).ToArray(), JsonRequestBehavior.AllowGet);
             }
@@ -383,12 +383,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IEstatusApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Estatuss_Modulo = _IEstatusApiConsumer.SelAll(true);
-            if (Estatuss_Modulo != null && Estatuss_Modulo.Resource != null)
-                ViewBag.Estatuss_Modulo = Estatuss_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Modulo_Encuestas_Modulo = _IModulo_EncuestaApiConsumer.SelAll(true);
+            if (Modulo_Encuestas_Modulo != null && Modulo_Encuestas_Modulo.Resource != null)
+                ViewBag.Modulo_Encuestas_Modulo = Modulo_Encuestas_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_Numero_de_PreguntasApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Catalogo_Numero_de_Preguntass_Numero_de_Preguntas = _ICatalogo_Numero_de_PreguntasApiConsumer.SelAll(true);
@@ -408,12 +408,12 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             if (!_tokenManager.GenerateToken())
                 return Json(null, JsonRequestBehavior.AllowGet);
 
-            _IEstatusApiConsumer.SetAuthHeader(_tokenManager.Token);
-            var Estatuss_Modulo = _IEstatusApiConsumer.SelAll(true);
-            if (Estatuss_Modulo != null && Estatuss_Modulo.Resource != null)
-                ViewBag.Estatuss_Modulo = Estatuss_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
+            _IModulo_EncuestaApiConsumer.SetAuthHeader(_tokenManager.Token);
+            var Modulo_Encuestas_Modulo = _IModulo_EncuestaApiConsumer.SelAll(true);
+            if (Modulo_Encuestas_Modulo != null && Modulo_Encuestas_Modulo.Resource != null)
+                ViewBag.Modulo_Encuestas_Modulo = Modulo_Encuestas_Modulo.Resource.Where(m => m.Descripcion != null).OrderBy(m => m.Descripcion).Select(m => new SelectListItem
                 {
-                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Estatus", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
+                    Text = CultureHelper.GetTraduction(Convert.ToString(m.Clave), "Modulo_Encuesta", "Descripcion") ?? m.Descripcion.ToString(), Value = Convert.ToString(m.Clave)
                 }).ToList();
             _ICatalogo_Numero_de_PreguntasApiConsumer.SetAuthHeader(_tokenManager.Token);
             var Catalogo_Numero_de_Preguntass_Numero_de_Preguntas = _ICatalogo_Numero_de_PreguntasApiConsumer.SelAll(true);
@@ -460,7 +460,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 data = result.Encuestas.Select(m => new EncuestaGridModel
                     {
                     Clave = m.Clave
-                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Estatus.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Estatus.Descripcion
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
                         ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
 			,Pregunta_1 = m.Pregunta_1
 			,Pregunta_2 = m.Pregunta_2
@@ -581,7 +581,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 aaData = result.Encuestas.Select(m => new EncuestaGridModel
             {
                     Clave = m.Clave
-                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Estatus.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Estatus.Descripcion
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
                         ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
 			,Pregunta_1 = m.Pregunta_1
 			,Pregunta_2 = m.Pregunta_2
@@ -619,19 +619,19 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 switch (filter.ModuloFilter)
                 {
                     case Models.Filters.BeginWith:
-                        where += " AND Estatus.Descripcion LIKE '" + filter.AdvanceModulo + "%'";
+                        where += " AND Modulo_Encuesta.Descripcion LIKE '" + filter.AdvanceModulo + "%'";
                         break;
 
                     case Models.Filters.EndWith:
-                        where += " AND Estatus.Descripcion LIKE '%" + filter.AdvanceModulo + "'";
+                        where += " AND Modulo_Encuesta.Descripcion LIKE '%" + filter.AdvanceModulo + "'";
                         break;
 
                     case Models.Filters.Exact:
-                        where += " AND Estatus.Descripcion = '" + filter.AdvanceModulo + "'";
+                        where += " AND Modulo_Encuesta.Descripcion = '" + filter.AdvanceModulo + "'";
                         break;
 
                     case Models.Filters.Contains:
-                        where += " AND Estatus.Descripcion LIKE '%" + filter.AdvanceModulo + "%'";
+                        where += " AND Modulo_Encuesta.Descripcion LIKE '%" + filter.AdvanceModulo + "%'";
                         break;
                 }
             }
@@ -1184,7 +1184,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = null;
+			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -1229,7 +1229,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Encuestas.Select(m => new EncuestaGridModel
             {
                 Clave = m.Clave
-                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Estatus.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Estatus.Descripcion
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
                         ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
 			,Pregunta_1 = m.Pregunta_1
 			,Pregunta_2 = m.Pregunta_2
@@ -1309,7 +1309,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var data = result.Encuestas.Select(m => new EncuestaGridModel
             {
                 Clave = m.Clave
-                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Estatus.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Estatus.Descripcion
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
                         ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
 			,Pregunta_1 = m.Pregunta_1
 			,Pregunta_2 = m.Pregunta_2
@@ -1391,7 +1391,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 {
                     Clave = m.Clave
                         ,Modulo = m.Modulo
-                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Estatus.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Estatus.Descripcion
+                        ,ModuloDescripcion = CultureHelper.GetTraduction(m.Modulo_Modulo_Encuesta.Clave.ToString(), "Descripcion") ?? (string)m.Modulo_Modulo_Encuesta.Descripcion
                         ,Numero_de_Preguntas = m.Numero_de_Preguntas
                         ,Numero_de_PreguntasDescripcion = CultureHelper.GetTraduction(m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Clave.ToString(), "Descripcion") ?? (string)m.Numero_de_Preguntas_Catalogo_Numero_de_Preguntas.Descripcion
 			,Pregunta_1 = m.Pregunta_1

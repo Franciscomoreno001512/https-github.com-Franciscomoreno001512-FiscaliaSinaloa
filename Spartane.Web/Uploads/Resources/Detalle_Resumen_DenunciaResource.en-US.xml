@@ -10,6 +10,9 @@
   <resource culture="en-US" name="Hechos" value="Hechos"></resource>
   <resource culture="en-US" name="Generado" value="Generado"></resource>
   <resource culture="en-US" name="Archivo_Descargado" value="Archivo Descargado"></resource>
+  <resource culture="en-US" name="Usuario_que_registra" value="Usuario que registra"></resource>
+  <resource culture="en-US" name="Documento" value="Documento"></resource>
+  <resource culture="en-US" name="Archivo" value="Archivo"></resource>
   <resource culture="en-US" name="Fecha_de_registro" value="Fecha de registro"></resource>
   <resource culture="en-US" name="Hora_de_registro" value="Hora de registro"></resource>
 

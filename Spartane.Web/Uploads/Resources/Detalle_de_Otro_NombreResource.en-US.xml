@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Otro_Nombre" value="Detalle de Otro Nombre"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Otro_Nombre_del_Individuo" value="Otro Nombre del Individuo"></resource>
+  <resource culture="en-US" name="Otro_Apellido_Paterno_del_Individuo" value="Otro Apellido Paterno del Individuo"></resource>
+  <resource culture="en-US" name="Otro_Apellido_Materno_del_Individuo" value="Otro Apellido Materno del Individuo"></resource>
+  <resource culture="en-US" name="Otro_Alias_del_Individuo" value="Otro Alias del Individuo"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

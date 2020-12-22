@@ -116,6 +116,36 @@ namespace Resources
             }
         }
 
+        /// <summary>Usuario_que_registra</summary>
+        public static string Usuario_que_registra
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Usuario_que_registra", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Documento</summary>
+        public static string Documento
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Documento", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Archivo</summary>
+        public static string Archivo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_Resumen_Denuncia.GetResource("Archivo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Fecha_de_registro</summary>
         public static string Fecha_de_registro
         {

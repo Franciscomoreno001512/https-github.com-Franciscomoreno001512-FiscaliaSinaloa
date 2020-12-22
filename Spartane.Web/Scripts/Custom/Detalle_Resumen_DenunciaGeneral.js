@@ -6,6 +6,17 @@ $(function () {
 
 });
 
+var AutoCompleteUsuario_que_registraData = [];
+function GetAutoCompleteDetalle_Resumen_Denuncia_Usuario_que_registra_Spartan_UserData(data) {
+	AutoCompleteUsuario_que_registraData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteUsuario_que_registraData.push({
+            id: data[i].Id_User,
+            text: data[i].Name
+        });
+    }
+    return AutoCompleteUsuario_que_registraData;
+}
 
 
 function getDropdown(elementKey) {
@@ -43,6 +54,9 @@ function ClearControls() {
     $('#CreateDetalle_Resumen_Denuncia')[0].reset();
     ClearFormControls();
     $("#ClaveId").val("0");
+    $('#Usuario_que_registra').empty();
+    $("#Usuario_que_registra").append('<option value=""></option>');
+    $('#Usuario_que_registra').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -172,7 +186,10 @@ $(document).ready(function () {
 			if (CheckValidation())
 				SendDetalle_Resumen_DenunciaData(function (currentId) {
 					$("#ClaveId").val("0");
-	
+	    $('#Usuario_que_registra').empty();
+    $("#Usuario_que_registra").append('<option value=""></option>');
+    $('#Usuario_que_registra').val('0').trigger('change');
+
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);
 	

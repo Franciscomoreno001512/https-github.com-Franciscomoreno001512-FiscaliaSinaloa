@@ -6,6 +6,12 @@
     List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
+ List<SelectListItem> varSpartan_User_Usuario_que_registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_registra != null)
+    { varSpartan_User_Usuario_que_registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_registra; }
+    List<SelectListItem> varDocumento_Documento = null;
+    if (ViewBag.Documentos_Documento != null)
+    { varDocumento_Documento = (List<SelectListItem>)ViewBag.Documentos_Documento; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -115,6 +121,41 @@
                     @Html.DropDownListFor(m => m.HechosFilter, filters, new { @class = "form-control", @id = "ddlHechosFilter" })
                     @Html.TextBoxFor(m => m.Hechos, new { @class = "form-control", @type = "text", @id = "txtHechos" })
                 </div>
+ List<SelectListItem> varSpartan_User_Usuario_que_registra = null;
+    if (ViewBag.Spartan_Users_Usuario_que_registra != null)
+    { varSpartan_User_Usuario_que_registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_registra; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Detalle_Resumen_DenunciaResources.Documento</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DocumentoFilter, filters, new { @class = "form-control", @id = "ddlDocumentoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceDocumento, new { @class = "form-control", @type = "text", @id = "txtAdvanceDocumento" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varDocumento_Documento!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceDocumentoMultiple, varDocumento_Documento,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceDocumento"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom ">
+                    <h3>@Resources.Detalle_Resumen_DenunciaResources.Archivo</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromArchivo, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromArchivo" })
+                    @Html.ValidationMessageFor(m => m.FromArchivo)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToArchivo, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToArchivo", @data_min = "txtAdvanceFromArchivo" })
+                    @Html.ValidationMessageFor(m => m.ToArchivo)
+                </div>
         <div class="MarginBottom ">
             <h3>@Resources.Detalle_Resumen_DenunciaResources.Fecha_de_registro</h3>
         </div>
@@ -218,6 +259,41 @@
             hasParameter = true;
             advanceSearch.Detalle_Resumen_DenunciaArchivo_Descargado = $("#ddlAdvanceArchivo_Descargado").val();
         }
+        advanceSearch.Usuario_que_registraSearchType = 0;
+        if ($('#ddlAdvanceUsuario_que_registra').val().length > 0 || $("#txtAdvanceUsuario_que_registra").val() == "") {
+
+
+            if (isDetalle_Resumen_DenunciaTextSearch) {
+                advanceSearch.Usuario_que_registraName = $("#txtAdvanceUsuario_que_registra").val();
+                advanceSearch.Usuario_que_registraNameSearchType = $("#ddlAdvanceUsuario_que_registra").val();
+                advanceSearch.Usuario_que_registraSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Usuario_que_registraToSearch = $("#ddlAdvanceUsuario_que_registra").val();
+                advanceSearch.Usuario_que_registraSearchType = 2;
+            }
+        }
+        advanceSearch.DocumentoSearchType = 0;
+        if ($('#ddlAdvanceDocumento').val().length > 0 || $("#txtAdvanceDocumento").val() == "") {
+
+
+            if (isDetalle_Resumen_DenunciaTextSearch) {
+                advanceSearch.DocumentoName = $("#txtAdvanceDocumento").val();
+                advanceSearch.DocumentoNameSearchType = $("#ddlAdvanceDocumento").val();
+                advanceSearch.DocumentoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.DocumentoToSearch = $("#ddlAdvanceDocumento").val();
+                advanceSearch.DocumentoSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceFromArchivo").val() != "" || $("#txtAdvanceToArchivo").val() != "") {
+            hasParameter = true;
+            advanceSearch.Detalle_Resumen_DenunciaArchivoFrom = $("#txtAdvanceFromArchivo").val();
+            advanceSearch.Detalle_Resumen_DenunciaArchivoTo = $("#txtAdvanceToArchivo").val();
+        }
         if ($("#txtAdvanceFromFecha_de_registro").val() != "" || $("#txtAdvanceToFecha_de_registro").val() != "") {
             hasParameter = true;
             advanceSearch.Detalle_Resumen_DenunciaFecha_de_registroFrom = $("#txtAdvanceFromFecha_de_registro").val();
@@ -254,6 +330,24 @@
         $("#ddlAdvanceModulo_Atencion_Inicial").change(function () {
             isDetalle_Resumen_DenunciaTextSearch = false;
             $("#txtAdvanceModulo_Atencion_Inicial").val('');
+        });
+        $("#txtAdvanceUsuario_que_registra").keypress(function () {
+            isDetalle_Resumen_DenunciaTextSearch = true;
+            $("#ddlAdvanceUsuario_que_registra").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceUsuario_que_registra").change(function () {
+            isDetalle_Resumen_DenunciaTextSearch = false;
+            $("#txtAdvanceUsuario_que_registra").val('');
+        });
+        $("#txtAdvanceDocumento").keypress(function () {
+            isDetalle_Resumen_DenunciaTextSearch = true;
+            $("#ddlAdvanceDocumento").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceDocumento").change(function () {
+            isDetalle_Resumen_DenunciaTextSearch = false;
+            $("#txtAdvanceDocumento").val('');
         });
 
     });

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_de_Amparo" value="Detalle de Amparo"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Tipo_de_Amparo" value="Tipo de Amparo"></resource>
+  <resource culture="es-es" name="Numero_de_Amparo" value="Número de Amparo"></resource>
+  <resource culture="es-es" name="Fecha_Amparo" value="Fecha de Amparo"></resource>
+  <resource culture="es-es" name="Entidad_que_Emitio_Amparo" value="Entidad del Juzgado que Emitio el Amparo"></resource>
+  <resource culture="es-es" name="Resolucion" value="Resolución"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

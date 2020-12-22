@@ -757,7 +757,10 @@ $(document).ready(function () {
 									control.html(eval('window.opener.Get' + nameMR + '_Detalle_de_Solicitudes_de_InvitacionesDropDown().get(0)').innerHTML);  
 								}								
 							}
-						}
+                        }
+
+                        RedireccionaX();
+
 						window.close();						
 						}
 				})) {

@@ -6,15 +6,6 @@ $('#Detalle_de_Solicitudes_de_InvitacionesGuardarYNuevo').hide();
 $('#Detalle_de_Solicitudes_de_InvitacionesGuardarYCopia').hide();
 function IniciaMR()
 {	
-	$('select[name="Detalle_de_Solicitante_en_InvitacionesGrid_length"]').val('-1').trigger('change');
-    $("#Detalle_de_Solicitante_en_InvitacionesGrid_length").css("display", "none");
-	$('select[name="Detalle_de_Requerido_en_InvitacionesGrid_length"]').val('-1').trigger('change');
-    $("#Detalle_de_Requerido_en_Invitaciones_length").css("display", "none");	
-
-	$('.dataTables_length').css("display", "none");
-	$('.dataTables_info').css("display", "none");
-	$('.pagination').css("display", "none");
-	
 	$('th[class="ActionHeader sorting_asc"]').each(function () {
 		$(this).css("width","10%");
     });	
@@ -285,12 +276,7 @@ if(operation == 'Consult'){
 }
 //BusinessRuleId:1961, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2492, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'Fecha_de_la_cita' + rowIndex),EvaluaQuery(" exec uspGetFechaSiguienteReunion GLOBAL[SpartanOperationId]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Hora_de_la_Cita' + rowIndex),EvaluaQuery(" exec uspGetHoraSiguienteReunion GLOBAL[SpartanOperationId]", rowIndex, nameOfTable));
-
-}
-//BusinessRuleId:2492, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 
 //BusinessRuleId:2505, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
@@ -319,6 +305,13 @@ if(operation == 'Consult'){
 
 }
 //BusinessRuleId:2995, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:2492, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ AsignarValor($('#' + nameOfTable + 'Fecha_de_la_cita' + rowIndex),EvaluaQuery(" exec uspGetFechaSiguienteReunion GLOBAL[SpartanOperationId]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Hora_de_la_Cita' + rowIndex),EvaluaQuery(" exec uspGetHoraSiguienteReunion GLOBAL[SpartanOperationId]", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Domicilio' + rowIndex),EvaluaQuery(" exec uspGetDomicilioSiguienteReunion GLOBAL[SpartanOperationId]	", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:2492, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

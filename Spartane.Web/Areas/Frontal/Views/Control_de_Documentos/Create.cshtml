@@ -341,12 +341,12 @@
                                                 var base64EncodedBytes = System.Convert.FromBase64String(ViewBag.body);
                                                 string bo = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
 
-                                                <textarea id="Cuerpo_del_Documento" data-type="ckEditor" class="form-control Documento" name="Cuerpo_del_Documento">@Html.Raw(bo)</textarea>
+                                                <textarea id="Cuerpo_del_Documento" data-type="ckEditor" class="form-control Documento" name="Cuerpo_del_Documento" style=" height: 62vh;">@Html.Raw(bo)</textarea>
                                             }
                                             else
 
                                             {
-                                                <textarea id="Cuerpo_del_Documento" data-type="ckEditor" class="form-control Documento" name="Cuerpo_del_Documento">@Html.Raw(Model.Cuerpo_del_Documento)</textarea>
+                                                <textarea id="Cuerpo_del_Documento" data-type="ckEditor" class="form-control Documento" name="Cuerpo_del_Documento" style=" height: 62vh;">@Html.Raw(Model.Cuerpo_del_Documento)</textarea>
                                             }
                                         </div>
                                         @if (attachedFileArchivo != null && attachedFileArchivo.File_Id > 0)
@@ -581,6 +581,14 @@
             .fullWidth {
                 width: 100%;
             }
+
+            div#divCuerpo_del_Documento {
+                height: 62vh;
+            }
+
+            #Cuerpo_del_Documento {
+                height: 62vh;
+            }
         </style>
     }
 
@@ -593,6 +601,20 @@
 
 
         <script type="text/javascript">
+
+
+            window.onload = function () {
+                debugger;
+
+                setTimeout(function () {
+                    $('#cke_1_contents').css("height", "");
+                    $('#cke_1_contents').css("height", "55vh");
+
+                    $('#divAttachmentArchivo').css("margin-top", "");
+                    $('#divAttachmentArchivo').css("margin-top", "15vh");
+
+                }, 300); 
+            }
 
         function RemoveAttachmentMainArchivo () {
             $("#hdnRemoveArchivo").val("1");

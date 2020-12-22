@@ -129,6 +129,27 @@ $('#Datos_de_los_Hechos_ATGuardarYNuevo').css('display', 'none');
 $('#Datos_de_los_Hechos_ATGuardarYCopia').css('display', 'none');
 //COD-MANI END OCULTAR BOTONES
 
+//BusinessRuleId:3016, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("SELECT Tipo_de_Denuncia FROM Modulo_Atencion_Inicial WHERE CLAVE = GLOBAL[SpartanOperationId]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { $('#divLatitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));$('#divLongitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex));} else {}
+
+}
+//BusinessRuleId:3016, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3016, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("SELECT Tipo_de_Denuncia FROM Modulo_Atencion_Inicial WHERE CLAVE = GLOBAL[SpartanOperationId]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { $('#divLatitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));$('#divLongitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex));} else {}
+
+}
+//BusinessRuleId:3016, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3016, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("SELECT Tipo_de_Denuncia FROM Modulo_Atencion_Inicial WHERE CLAVE = GLOBAL[SpartanOperationId]",rowIndex, nameOfTable)==TryParseInt('4', '4') ) { $('#divLatitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));$('#divLongitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Latitud' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Longitud' + rowIndex));} else {}
+
+}
+//BusinessRuleId:3016, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
@@ -197,3 +218,112 @@ if( EvaluaQuery("select GLOBAL[idTablero]",rowIndex, nameOfTable)==TryParseInt('
 }
 
 
+function CargaGoogleMaps() {
+    
+    debugger;
+    var map; // el mapa
+    var marker; //el marcador
+    var myLatlng; //el objeto latitud y longitud
+    var geocoder = new google.maps.Geocoder();
+    var infowindow = new google.maps.InfoWindow();
+    initialize();
+    function initialize() {
+        var mapOptions = {
+            zoom: 8,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        map = new google.maps.Map(document.getElementById("gmap"), mapOptions); //gmap es el DIV que contendrá el Mapa
+        marker = new google.maps.Marker({
+            map: map,
+            position: myLatlng,
+            draggable: true // se refiere a que se puede navagar por el mapa
+        });
+
+        // Se dispara despúes de que se mueve el marcador
+        geocoder.geocode({ 'latLng': myLatlng }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    $('#Latitud').val(marker.getPosition().lat());
+                    $('#Longitud').val(marker.getPosition().lng());
+                    infowindow.setContent(results[0].formatted_address); //presenta la direccion completa sobre el marquer donde estamos posicionados es como una especie de ToolTip
+                    infowindow.open(map, marker);
+                }
+            }
+        });
+
+        // Evento que se dispara cuando se mueve el marcador en en el mapa (es el Marcador de posicion de color Rojo)
+        // cada pixel que se mueve o se arrastra se recalcula la latitud y la longitud
+        google.maps.event.addListener(marker, 'dragend', function () {
+            geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        debugger;
+                        for (var i = 0; i < results[0].address_components.length; i++) {
+                            if (results[0].address_components[i].types[0] == "country") {
+                                $("#Pais").val((results[0].address_components[i].long_name));
+                            }
+                            if (results[0].address_components[i].types[0] == "administrative_area_level_1") {
+                                $("#Estado").val((results[0].address_components[i].long_name));
+                            }
+                            if (results[0].address_components[i].types[0] == "locality") {
+                                $("#Ciudad").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "political") {
+                                $("#Colonia").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "route") {
+                                $("#Calle").val((results[0].address_components[i].long_name));
+                            }
+
+                            if (results[0].address_components[i].types[0] == "street_number") {
+                                $("#NumExt").val((results[0].address_components[i].long_name));
+                            }
+                            if (results[0].address_components[i].types[0] == "postal_code") {
+                                $("#CodigoPostal").val((results[0].address_components[i].long_name));
+                            }
+
+
+                        }
+                        $('#Latitud').val(marker.getPosition().lat());
+                        $('#Longitud').val(marker.getPosition().lng());
+                        infowindow.setContent(results[0].formatted_address);
+                        infowindow.open(map, marker);
+                    }
+                }
+            });
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    // Buscamos la direccion escrita (solo busca todavia no asigna) y no posicionamos sobre ella, se dispara cuando se le da click al boton buscar dentro de la modal que contiene al mapa
+    // var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({
+        address: jQuery('input[name=address]').val() == "" ? "Badiraguto Sinaloa,Mexico" : $('input[name=address]').val(),
+        region: 'no'
+    },
+        function (results, status) {
+            if (status.toLowerCase() == 'ok') {
+                var coords = new google.maps.LatLng(
+                    results[0]['geometry']['location'].lat(), //asignamos Latitud de la dirección buscada
+                    results[0]['geometry']['location'].lng() //asignamos Longitud de la dirección buscada
+                );
+                map.setCenter(coords); //para que la direción buscada se muestre centrada en nel mapa
+
+                //map.setZoom(10) //zoom
+                marker = new google.maps.Marker({
+                    position: coords,
+                    map: map,
+                    title: jQuery('input[name=address]').val(),
+                });
+                myLatlng = coords;
+                initialize();
+            } else {
+                alert(status);
+                return;
+            }
+        });
+}

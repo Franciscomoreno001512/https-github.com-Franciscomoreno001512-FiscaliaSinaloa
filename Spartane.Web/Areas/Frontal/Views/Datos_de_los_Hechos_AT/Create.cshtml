@@ -95,16 +95,16 @@
                     <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
                 </li>
                 <li class="active">
-                @if (Session["PhaseName"] != null)
-                {
-                    <strong>@Session["PhaseName"].ToString()</strong>
-                }
-                else
-                {
-                    <strong>@Resources.Datos_de_los_Hechos_ATResources.Datos_de_los_Hechos_AT</strong>
-                }
-                
-            </li>
+                    @if (Session["PhaseName"] != null)
+                    {
+                        <strong>@Session["PhaseName"].ToString()</strong>
+                    }
+                    else
+                    {
+                        <strong>@Resources.Datos_de_los_Hechos_ATResources.Datos_de_los_Hechos_AT</strong>
+                    }
+
+                </li>
                 <li class="active">
                     <strong>@Resources.Resources.Create</strong>
                 </li>
@@ -125,7 +125,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title">
-                                          @Resources.Resources.titleBussinesRules
+                                        @Resources.Resources.titleBussinesRules
                                         <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
                                     </h4>
                                 </div>
@@ -144,10 +144,10 @@
                         </div>
                     </div>
 
-                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-					</div>
-					<div aria-hidden="true" data-backdrop="static" class="modal fade in Datos_de_los_Hechos_ATBusinessRuleModal" id="Datos_de_los_Hechos_ATBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
-					</div>
+                    <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
+                    <div aria-hidden="true" data-backdrop="static" class="modal fade in Datos_de_los_Hechos_ATBusinessRuleModal" id="Datos_de_los_Hechos_ATBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div>
 
 
                 }
@@ -156,376 +156,392 @@
         </div>
     </div>
 
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="ibox float-e-margins">
-        <div class="ibox-content">
-            @using (Html.BeginForm("Post", "Datos_de_los_Hechos_AT", FormMethod.Post, new { id = "CreateDatos_de_los_Hechos_AT", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
-            {
-                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
-                <span id="popupNotification"></span>
-                <div class="container-fluid Datos_de_los_Hechos_ATCreateForm" id="viewmodeledit">
-				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
-                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
-                        <span id="textRequired"></span>
-                 </div>
-			<div class="tabs-container">
-                        	<ul class="nav nav-tabs">
-<li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Datos_de_los_Hechos_ATResources.TabDatos_Generales</a></li>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                @using (Html.BeginForm("Post", "Datos_de_los_Hechos_AT", FormMethod.Post, new { id = "CreateDatos_de_los_Hechos_AT", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+                {
+                    <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                    <span id="popupNotification"></span>
+                    <div class="container-fluid Datos_de_los_Hechos_ATCreateForm" id="viewmodeledit">
+                        <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                            <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                            <span id="textRequired"></span>
+                        </div>
+                        <div class="tabs-container">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Datos_de_los_Hechos_ATResources.TabDatos_Generales</a></li>
 
-                        	</ul>
-	                	<div class="tab-content">
-                            <div id="tabDatos_Generales" class="tab-pane active">
-                                <div class="panel-body">
-                            <div class="form-group" id="divClave">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Clave</label>
-                                <div class="col-sm-8" data-field-id="Clave" data-attribute="268405" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Clave">
-                                    <label class="form-control" for="Clave" id="lblClave">
-                                    @if (Model.Clave== 0)
-                                        {
-                                            <text>@Resources.Resources.ClaveDefault</text>
-                                        }
-                                        else
-                                        { 
-                                            <text>@Model.Clave</text>
-                                        }
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group" id="divModulo_Atencion_Inicial">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Modulo_Atencion_Inicial</label>
-                                <div class="col-sm-8" data-field-id="Modulo_Atencion_Inicial" data-attribute="268425" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Modulo_Atencion_Inicial">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Modulo Atención Inicial must be a number." data-val-required="The Modulo Atención Inicial field is required." id="Modulo_Atencion_Inicial" name="Modulo_Atencion_Inicial">
-                                        <option value=""></option>
-                                        @if (varModulo_Atencion_Inicial_Modulo_Atencion_Inicial != null){ 
-                                            foreach (var itemModulo_Atencion_Inicial in varModulo_Atencion_Inicial_Modulo_Atencion_Inicial)
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tabDatos_Generales" class="tab-pane active">
+                                    <div class="panel-body">
+                                        <div class="form-group" id="divClave">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Clave</label>
+                                            <div class="col-sm-8" data-field-id="Clave" data-attribute="268405" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Clave">
+                                                <label class="form-control" for="Clave" id="lblClave">
+                                                    @if (Model.Clave == 0)
+                                                    {
+                                                        <text>@Resources.Resources.ClaveDefault</text>
+                                                    }
+                                                    else
+                                                    {
+                                                        <text>@Model.Clave</text>
+                                                    }
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divModulo_Atencion_Inicial">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Modulo_Atencion_Inicial</label>
+                                            <div class="col-sm-8" data-field-id="Modulo_Atencion_Inicial" data-attribute="268425" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Modulo_Atencion_Inicial">
+                                                <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Modulo Atención Inicial must be a number." data-val-required="The Modulo Atención Inicial field is required." id="Modulo_Atencion_Inicial" name="Modulo_Atencion_Inicial">
+                                                    <option value=""></option>
+                                                    @if (varModulo_Atencion_Inicial_Modulo_Atencion_Inicial != null)
+                                                    {
+                                                        foreach (var itemModulo_Atencion_Inicial in varModulo_Atencion_Inicial_Modulo_Atencion_Inicial)
+                                                        {
+                                                            if (itemModulo_Atencion_Inicial.Value == Convert.ToString(Model.Modulo_Atencion_Inicial))
+                                                            {
+                                                                <option value="@itemModulo_Atencion_Inicial.Value" selected>@itemModulo_Atencion_Inicial.Text</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@itemModulo_Atencion_Inicial.Value">@itemModulo_Atencion_Inicial.Text</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                                @*<span class="field-validation-valid" data-valmsg-for="Modulo_Atencion_Inicial" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268425).New)
                                             {
-                                                if (itemModulo_Atencion_Inicial.Value == Convert.ToString(Model.Modulo_Atencion_Inicial))
-                                                {
-                                                    <option value="@itemModulo_Atencion_Inicial.Value" selected>@itemModulo_Atencion_Inicial.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemModulo_Atencion_Inicial.Value">@itemModulo_Atencion_Inicial.Text</option>
-                                                }
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Modulo_Atencion_Inicial', 'Modulo_Atencion_Inicial');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
                                             }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Modulo_Atencion_Inicial" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268425).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Modulo_Atencion_Inicial', 'Modulo_Atencion_Inicial');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-				<div class="form-group" id="divExpediente_MP">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Expediente_MP</label>
-                                <div class="col-sm-8" data-field-id="Expediente_MP" data-attribute="268458" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Expediente_MP">
-                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_AT_Expediente_MP form-control select2-dropdown Datos_Generales' data-val="true" id="Expediente_MP" name="Expediente_MP">
-                                        <option value="@Model.Expediente_MP">@(Model.Expediente_MPnic??Model.Expediente_MPnic)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268458).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('expediente_ministerio_publico', 'Expediente_MP');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-				<div class="form-group" id="divExpediente_MASC">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Expediente_MASC</label>
-                                <div class="col-sm-8" data-field-id="Expediente_MASC" data-attribute="268459" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Expediente_MASC">
-                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_AT_Expediente_MASC form-control select2-dropdown Datos_Generales' data-val="true" id="Expediente_MASC" name="Expediente_MASC">
-                                        <option value="@Model.Expediente_MASC">@(Model.Expediente_MASCNumero_de_Folio??Model.Expediente_MASCNumero_de_Folio)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268459).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud', 'Expediente_MASC');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divTitulo_del_Hecho">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Titulo_del_Hecho</label>
-                                <div class="col-sm-8" data-field-id="Titulo_del_Hecho" data-attribute="268406" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Titulo_del_Hecho">
-                                    <input class="form-control Datos_Generales" id="Titulo_del_Hecho" name="Titulo_del_Hecho" type="text" value="@Model.Titulo_del_Hecho">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Titulo_del_Hecho" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divNarrativa_Breve_de_los_Hechos">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Narrativa_Breve_de_los_Hechos</label>
-                                <div class="col-sm-8" data-field-id="Narrativa_Breve_de_los_Hechos" data-attribute="268407" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Narrativa_Breve_de_los_Hechos">
-                                    <textarea id="Narrativa_Breve_de_los_Hechos" name="Narrativa_Breve_de_los_Hechos" class="form-control Datos_Generales" rows="4" cols="50">@Model.Narrativa_Breve_de_los_Hechos</textarea>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Narrativa_Breve_de_los_Hechos" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divPrioridad_del_Hecho">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Prioridad_del_Hecho</label>
-                                <div class="col-sm-8" data-field-id="Prioridad_del_Hecho" data-attribute="268408" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Prioridad_del_Hecho">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Prioridad del Hecho must be a number." data-val-required="The Prioridad del Hecho field is required." id="Prioridad_del_Hecho" name="Prioridad_del_Hecho">
-                                        <option value=""></option>
-                                        @if (varPrioridad_del_Hecho_Prioridad_del_Hecho != null){ 
-                                            foreach (var itemPrioridad_del_Hecho in varPrioridad_del_Hecho_Prioridad_del_Hecho)
+                                        </div>
+                                        <div class="form-group" id="divExpediente_MP">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Expediente_MP</label>
+                                            <div class="col-sm-8" data-field-id="Expediente_MP" data-attribute="268458" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Expediente_MP">
+                                                <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_AT_Expediente_MP form-control select2-dropdown Datos_Generales' data-val="true" id="Expediente_MP" name="Expediente_MP">
+                                                    <option value="@Model.Expediente_MP">@(Model.Expediente_MPnic ?? Model.Expediente_MPnic)</option>
+                                                </select>
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268458).New)
                                             {
-                                                if (itemPrioridad_del_Hecho.Value == Convert.ToString(Model.Prioridad_del_Hecho))
-                                                {
-                                                    <option value="@itemPrioridad_del_Hecho.Value" selected>@itemPrioridad_del_Hecho.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemPrioridad_del_Hecho.Value">@itemPrioridad_del_Hecho.Text</option>
-                                                }
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('expediente_ministerio_publico', 'Expediente_MP');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
                                             }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Prioridad_del_Hecho" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268408).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Prioridad_del_Hecho', 'Prioridad_del_Hecho');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divFecha_del_Hecho">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Fecha_del_Hecho</label>
-                                <div class="col-sm-8" data-field-id="Fecha_del_Hecho" data-attribute="268409" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Fecha_del_Hecho">
-                                    <div class='input-group date' id='datetimepicker1'>
-                                        <input class="form-control col-md-12 Datos_Generales" id="Fecha_del_Hecho"  name="Fecha_del_Hecho" type="text" value="@Model.Fecha_del_Hecho">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
+                                        </div>
+                                        <div class="form-group" id="divExpediente_MASC">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Expediente_MASC</label>
+                                            <div class="col-sm-8" data-field-id="Expediente_MASC" data-attribute="268459" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Expediente_MASC">
+                                                <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_AT_Expediente_MASC form-control select2-dropdown Datos_Generales' data-val="true" id="Expediente_MASC" name="Expediente_MASC">
+                                                    <option value="@Model.Expediente_MASC">@(Model.Expediente_MASCNumero_de_Folio ?? Model.Expediente_MASCNumero_de_Folio)</option>
+                                                </select>
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268459).New)
+                                            {
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Solicitud', 'Expediente_MASC');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="form-group" id="divTitulo_del_Hecho">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Titulo_del_Hecho</label>
+                                            <div class="col-sm-8" data-field-id="Titulo_del_Hecho" data-attribute="268406" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Titulo_del_Hecho">
+                                                <input class="form-control Datos_Generales" id="Titulo_del_Hecho" name="Titulo_del_Hecho" type="text" value="@Model.Titulo_del_Hecho">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Titulo_del_Hecho" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divNarrativa_Breve_de_los_Hechos">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Narrativa_Breve_de_los_Hechos</label>
+                                            <div class="col-sm-8" data-field-id="Narrativa_Breve_de_los_Hechos" data-attribute="268407" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Narrativa_Breve_de_los_Hechos">
+                                                <textarea id="Narrativa_Breve_de_los_Hechos" name="Narrativa_Breve_de_los_Hechos" class="form-control Datos_Generales" rows="4" cols="50">@Model.Narrativa_Breve_de_los_Hechos</textarea>
+                                                @*<span class="field-validation-valid" data-valmsg-for="Narrativa_Breve_de_los_Hechos" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divPrioridad_del_Hecho">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Prioridad_del_Hecho</label>
+                                            <div class="col-sm-8" data-field-id="Prioridad_del_Hecho" data-attribute="268408" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Prioridad_del_Hecho">
+                                                <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Prioridad del Hecho must be a number." data-val-required="The Prioridad del Hecho field is required." id="Prioridad_del_Hecho" name="Prioridad_del_Hecho">
+                                                    <option value=""></option>
+                                                    @if (varPrioridad_del_Hecho_Prioridad_del_Hecho != null)
+                                                    {
+                                                        foreach (var itemPrioridad_del_Hecho in varPrioridad_del_Hecho_Prioridad_del_Hecho)
+                                                        {
+                                                            if (itemPrioridad_del_Hecho.Value == Convert.ToString(Model.Prioridad_del_Hecho))
+                                                            {
+                                                                <option value="@itemPrioridad_del_Hecho.Value" selected>@itemPrioridad_del_Hecho.Text</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@itemPrioridad_del_Hecho.Value">@itemPrioridad_del_Hecho.Text</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                                @*<span class="field-validation-valid" data-valmsg-for="Prioridad_del_Hecho" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268408).New)
+                                            {
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Prioridad_del_Hecho', 'Prioridad_del_Hecho');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="form-group" id="divFecha_del_Hecho">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Fecha_del_Hecho</label>
+                                            <div class="col-sm-8" data-field-id="Fecha_del_Hecho" data-attribute="268409" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Fecha_del_Hecho">
+                                                <div class='input-group date' id='datetimepicker1'>
+                                                    <input class="form-control col-md-12 Datos_Generales" id="Fecha_del_Hecho" name="Fecha_del_Hecho" type="text" value="@Model.Fecha_del_Hecho">
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divHora_Aproximada_del_Hecho">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Hora_Aproximada_del_Hecho</label>
+                                            <div class="col-sm-8" data-field-id="Hora_Aproximada_del_Hecho" data-attribute="268410" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Hora_Aproximada_del_Hecho">
+                                                <div class='input-group date' id='timePicker'>
+                                                    <input class="form-control col-md-12 Datos_Generales" id="Hora_Aproximada_del_Hecho" name="Hora_Aproximada_del_Hecho" type="text" data-autoclose="true" value="@Model.Hora_Aproximada_del_Hecho">
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-time"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divPais">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Pais</label>
+                                            <div class="col-sm-8" data-field-id="Pais" data-attribute="268411" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Pais">
+                                                <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_AT_Pais form-control select2-dropdown Datos_Generales' data-val="true" id="Pais" name="Pais">
+                                                    <option value="@Model.Pais">@(Model.PaisNombre ?? Model.PaisNombre)</option>
+                                                </select>
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268411).New)
+                                            {
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Pais', 'Pais');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="form-group" id="divEstado">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Estado</label>
+                                            <div class="col-sm-8" data-field-id="Estado" data-attribute="268412" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Estado">
+                                                <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_AT_Estado form-control select2-dropdown Datos_Generales' data-val="true" id="Estado" name="Estado">
+                                                    <option value="@Model.Estado">@(Model.EstadoNombre ?? Model.EstadoNombre)</option>
+                                                </select>
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268412).New)
+                                            {
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Estado', 'Estado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="form-group" id="divMunicipio">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Municipio</label>
+                                            <div class="col-sm-8" data-field-id="Municipio" data-attribute="268413" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Municipio">
+                                                <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_AT_Municipio form-control select2-dropdown Datos_Generales' data-val="true" id="Municipio" name="Municipio">
+                                                    <option value="@Model.Municipio">@(Model.MunicipioNombre ?? Model.MunicipioNombre)</option>
+                                                </select>
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268413).New)
+                                            {
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Municipio', 'Municipio');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="form-group" id="divPoblacion">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Poblacion</label>
+                                            <div class="col-sm-8" data-field-id="Poblacion" data-attribute="268414" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Poblacion">
+                                                <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_AT_Poblacion form-control select2-dropdown Datos_Generales' data-val="true" id="Poblacion" name="Poblacion">
+                                                    <option value="@Model.Poblacion">@(Model.PoblacionNombre ?? Model.PoblacionNombre)</option>
+                                                </select>
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268414).New)
+                                            {
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Poblacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="form-group" id="divColonia">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Colonia</label>
+                                            <div class="col-sm-8" data-field-id="Colonia" data-attribute="268415" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Colonia">
+                                                <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_AT_Colonia form-control select2-dropdown Datos_Generales' data-val="true" id="Colonia" name="Colonia">
+                                                    <option value="@Model.Colonia">@(Model.ColoniaNombre ?? Model.ColoniaNombre)</option>
+                                                </select>
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268415).New)
+                                            {
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Colonia');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="form-group" id="divCodigo_Postal">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Codigo_Postal</label>
+                                            <div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="268416" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Codigo_Postal">
+                                                <input class="form-control inputNumber Datos_Generales" id="Codigo_Postal" name="Codigo_Postal" type="text" value="@Model.Codigo_Postal">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Codigo_Postal" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divCalle">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Calle</label>
+                                            <div class="col-sm-8" data-field-id="Calle" data-attribute="268417" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Calle">
+                                                <input class="form-control Datos_Generales" id="Calle" name="Calle" type="text" value="@Model.Calle">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Calle" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divEntre_Calle">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Entre_Calle</label>
+                                            <div class="col-sm-8" data-field-id="Entre_Calle" data-attribute="268418" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Entre_Calle">
+                                                <input class="form-control Datos_Generales" id="Entre_Calle" name="Entre_Calle" type="text" value="@Model.Entre_Calle">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Entre_Calle" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divY_Calle">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Y_Calle</label>
+                                            <div class="col-sm-8" data-field-id="Y_Calle" data-attribute="268419" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Y_Calle">
+                                                <input class="form-control Datos_Generales" id="Y_Calle" name="Y_Calle" type="text" value="@Model.Y_Calle">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Y_Calle" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divNumero_Exterior">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Numero_Exterior</label>
+                                            <div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="268420" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Numero_Exterior">
+                                                <input class="form-control Datos_Generales" id="Numero_Exterior" name="Numero_Exterior" type="text" value="@Model.Numero_Exterior">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Numero_Exterior" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divNumero_Interior">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Numero_Interior</label>
+                                            <div class="col-sm-8" data-field-id="Numero_Interior" data-attribute="268421" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Numero_Interior">
+                                                <input class="form-control Datos_Generales" id="Numero_Interior" name="Numero_Interior" type="text" value="@Model.Numero_Interior">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Numero_Interior" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divReferencia">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Referencia</label>
+                                            <div class="col-sm-8" data-field-id="Referencia" data-attribute="268428" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Referencia">
+                                                <input class="form-control Datos_Generales" id="Referencia" name="Referencia" type="text" value="@Model.Referencia">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Referencia" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divLatitud">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Latitud</label>
+                                            <div class="col-sm-8" data-field-id="Latitud" data-attribute="268422" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Latitud">
+                                                <input class="form-control Datos_Generales" id="Latitud" name="Latitud" type="text" value="@Model.Latitud">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divLongitud">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Longitud</label>
+                                            <div class="col-sm-8" data-field-id="Longitud" data-attribute="268423" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Longitud">
+                                                <input class="form-control Datos_Generales" id="Longitud" name="Longitud" type="text" value="@Model.Longitud">
+                                                @*<span class="field-validation-valid" data-valmsg-for="Longitud" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" id="divMapa">
+                                            <label class="col-sm-2 control-label" style="color:white!important;">Mapa</label>
+                                            <div class="col-sm-8">
+                                                <a href="#" class="btn btn-info btn-lg" style="float:right!important;" id="btnOpenMapa">
+                                                    <span class="glyphicon glyphicon-map-marker"></span> Ver Mapa
+                                                </a>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="form-group" id="divDocumento_Extraviado">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Documento_Extraviado</label>
+                                            <div class="col-sm-8" data-field-id="Documento_Extraviado" data-attribute="268426" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Documento_Extraviado">
+                                                @Html.CheckBoxFor(m => m.Documento_Extraviado, new { @class = "i-checks Datos_Generales" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divTipo_de_Documento_Extraviado">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Tipo_de_Documento_Extraviado</label>
+                                            <div class="col-sm-8" data-field-id="Tipo_de_Documento_Extraviado" data-attribute="268427" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Tipo_de_Documento_Extraviado">
+                                                <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Documento Extraviado must be a number." data-val-required="The Tipo de Documento Extraviado field is required." id="Tipo_de_Documento_Extraviado" name="Tipo_de_Documento_Extraviado">
+                                                    <option value=""></option>
+                                                    @if (varDocumento_Extraviado_Tipo_de_Documento_Extraviado != null)
+                                                    {
+                                                        foreach (var itemTipo_de_Documento_Extraviado in varDocumento_Extraviado_Tipo_de_Documento_Extraviado)
+                                                        {
+                                                            if (itemTipo_de_Documento_Extraviado.Value == Convert.ToString(Model.Tipo_de_Documento_Extraviado))
+                                                            {
+                                                                <option value="@itemTipo_de_Documento_Extraviado.Value" selected>@itemTipo_de_Documento_Extraviado.Text</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@itemTipo_de_Documento_Extraviado.Value">@itemTipo_de_Documento_Extraviado.Text</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                                @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Documento_Extraviado" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268427).New)
+                                            {
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Documento_Extraviado', 'Tipo_de_Documento_Extraviado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="form-group" id="divTipo_de_Lugar_del_Hecho">
+                                            <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Tipo_de_Lugar_del_Hecho</label>
+                                            <div class="col-sm-8" data-field-id="Tipo_de_Lugar_del_Hecho" data-attribute="268424" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Tipo_de_Lugar_del_Hecho">
+                                                <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Lugar del Hecho must be a number." data-val-required="The Tipo de Lugar del Hecho field is required." id="Tipo_de_Lugar_del_Hecho" name="Tipo_de_Lugar_del_Hecho">
+                                                    <option value=""></option>
+                                                    @if (varLugar_Tipo_Tipo_de_Lugar_del_Hecho != null)
+                                                    {
+                                                        foreach (var itemTipo_de_Lugar_del_Hecho in varLugar_Tipo_Tipo_de_Lugar_del_Hecho)
+                                                        {
+                                                            if (itemTipo_de_Lugar_del_Hecho.Value == Convert.ToString(Model.Tipo_de_Lugar_del_Hecho))
+                                                            {
+                                                                <option value="@itemTipo_de_Lugar_del_Hecho.Value" selected>@itemTipo_de_Lugar_del_Hecho.Text</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@itemTipo_de_Lugar_del_Hecho.Value">@itemTipo_de_Lugar_del_Hecho.Text</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                                @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Lugar_del_Hecho" data-valmsg-replace="true"></span>*@
+                                            </div>
+                                            @if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268424).New)
+                                            {
+                                                <div class="col-sm-1 abm-icons">
+                                                    <a id="Estado_New" onclick="GetCatalogPopup('Lugar_Tipo', 'Tipo_de_Lugar_del_Hecho');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                                </div>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group" id="divHora_Aproximada_del_Hecho">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Hora_Aproximada_del_Hecho</label>
-                                <div class="col-sm-8" data-field-id="Hora_Aproximada_del_Hecho" data-attribute="268410" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Hora_Aproximada_del_Hecho">
-                                    <div class='input-group date' id='timePicker'>
-                                        <input class="form-control col-md-12 Datos_Generales" id="Hora_Aproximada_del_Hecho"  name="Hora_Aproximada_del_Hecho" type="text" data-autoclose="true" value="@Model.Hora_Aproximada_del_Hecho">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-time"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-				<div class="form-group" id="divPais">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Pais</label>
-                                <div class="col-sm-8" data-field-id="Pais" data-attribute="268411" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Pais">
-                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_AT_Pais form-control select2-dropdown Datos_Generales' data-val="true" id="Pais" name="Pais">
-                                        <option value="@Model.Pais">@(Model.PaisNombre??Model.PaisNombre)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268411).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Pais', 'Pais');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-				<div class="form-group" id="divEstado">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Estado</label>
-                                <div class="col-sm-8" data-field-id="Estado" data-attribute="268412" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Estado">
-                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_AT_Estado form-control select2-dropdown Datos_Generales' data-val="true" id="Estado" name="Estado">
-                                        <option value="@Model.Estado">@(Model.EstadoNombre??Model.EstadoNombre)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268412).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Estado', 'Estado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-				<div class="form-group" id="divMunicipio">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Municipio</label>
-                                <div class="col-sm-8" data-field-id="Municipio" data-attribute="268413" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Municipio">
-                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_AT_Municipio form-control select2-dropdown Datos_Generales' data-val="true" id="Municipio" name="Municipio">
-                                        <option value="@Model.Municipio">@(Model.MunicipioNombre??Model.MunicipioNombre)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268413).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Municipio', 'Municipio');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-				<div class="form-group" id="divPoblacion">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Poblacion</label>
-                                <div class="col-sm-8" data-field-id="Poblacion" data-attribute="268414" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Poblacion">
-                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_AT_Poblacion form-control select2-dropdown Datos_Generales' data-val="true" id="Poblacion" name="Poblacion">
-                                        <option value="@Model.Poblacion">@(Model.PoblacionNombre??Model.PoblacionNombre)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268414).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Poblacion');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-				<div class="form-group" id="divColonia">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Colonia</label>
-                                <div class="col-sm-8" data-field-id="Colonia" data-attribute="268415" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Colonia">
-                                    <select class='fullWidth AutoComplete AutoCompleteDatos_de_los_Hechos_AT_Colonia form-control select2-dropdown Datos_Generales' data-val="true" id="Colonia" name="Colonia">
-                                        <option value="@Model.Colonia">@(Model.ColoniaNombre??Model.ColoniaNombre)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268415).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Colonia', 'Colonia');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divCodigo_Postal">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Codigo_Postal</label>
-                                <div class="col-sm-8" data-field-id="Codigo_Postal" data-attribute="268416" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Codigo_Postal">
-                                    <input class="form-control inputNumber Datos_Generales" id="Codigo_Postal" name="Codigo_Postal" type="text" value="@Model.Codigo_Postal">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Codigo_Postal" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divCalle">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Calle</label>
-                                <div class="col-sm-8" data-field-id="Calle" data-attribute="268417" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Calle">
-                                    <input class="form-control Datos_Generales" id="Calle" name="Calle" type="text" value="@Model.Calle">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Calle" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divEntre_Calle">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Entre_Calle</label>
-                                <div class="col-sm-8" data-field-id="Entre_Calle" data-attribute="268418" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Entre_Calle">
-                                    <input class="form-control Datos_Generales" id="Entre_Calle" name="Entre_Calle" type="text" value="@Model.Entre_Calle">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Entre_Calle" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divY_Calle">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Y_Calle</label>
-                                <div class="col-sm-8" data-field-id="Y_Calle" data-attribute="268419" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Y_Calle">
-                                    <input class="form-control Datos_Generales" id="Y_Calle" name="Y_Calle" type="text" value="@Model.Y_Calle">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Y_Calle" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divNumero_Exterior">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Numero_Exterior</label>
-                                <div class="col-sm-8" data-field-id="Numero_Exterior" data-attribute="268420" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Numero_Exterior">
-                                    <input class="form-control Datos_Generales" id="Numero_Exterior" name="Numero_Exterior" type="text" value="@Model.Numero_Exterior">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_Exterior" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divNumero_Interior">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Numero_Interior</label>
-                                <div class="col-sm-8" data-field-id="Numero_Interior" data-attribute="268421" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Numero_Interior">
-                                    <input class="form-control Datos_Generales" id="Numero_Interior" name="Numero_Interior" type="text" value="@Model.Numero_Interior">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Numero_Interior" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divReferencia">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Referencia</label>
-                                <div class="col-sm-8" data-field-id="Referencia" data-attribute="268428" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Referencia">
-                                    <input class="form-control Datos_Generales" id="Referencia" name="Referencia" type="text" value="@Model.Referencia">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Referencia" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divLatitud">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Latitud</label>
-                                <div class="col-sm-8" data-field-id="Latitud" data-attribute="268422" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Latitud">
-                                    <input class="form-control Datos_Generales" id="Latitud" name="Latitud" type="text" value="@Model.Latitud">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Latitud" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divLongitud">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Longitud</label>
-                                <div class="col-sm-8" data-field-id="Longitud" data-attribute="268423" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Longitud">
-                                    <input class="form-control Datos_Generales" id="Longitud" name="Longitud" type="text" value="@Model.Longitud">
-                                    @*<span class="field-validation-valid" data-valmsg-for="Longitud" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            <div class="form-group" id="divDocumento_Extraviado">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Documento_Extraviado</label>
-                                <div class="col-sm-8" data-field-id="Documento_Extraviado" data-attribute="268426" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Documento_Extraviado">
-                                    @Html.CheckBoxFor(m => m.Documento_Extraviado, new { @class = "i-checks Datos_Generales" })
-                                </div>
-                            </div>
-                            <div class="form-group" id="divTipo_de_Documento_Extraviado">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Tipo_de_Documento_Extraviado</label>
-                                <div class="col-sm-8" data-field-id="Tipo_de_Documento_Extraviado" data-attribute="268427" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Tipo_de_Documento_Extraviado">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Documento Extraviado must be a number." data-val-required="The Tipo de Documento Extraviado field is required." id="Tipo_de_Documento_Extraviado" name="Tipo_de_Documento_Extraviado">
-                                        <option value=""></option>
-                                        @if (varDocumento_Extraviado_Tipo_de_Documento_Extraviado != null){ 
-                                            foreach (var itemTipo_de_Documento_Extraviado in varDocumento_Extraviado_Tipo_de_Documento_Extraviado)
-                                            {
-                                                if (itemTipo_de_Documento_Extraviado.Value == Convert.ToString(Model.Tipo_de_Documento_Extraviado))
-                                                {
-                                                    <option value="@itemTipo_de_Documento_Extraviado.Value" selected>@itemTipo_de_Documento_Extraviado.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemTipo_de_Documento_Extraviado.Value">@itemTipo_de_Documento_Extraviado.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Documento_Extraviado" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268427).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Documento_Extraviado', 'Tipo_de_Documento_Extraviado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divTipo_de_Lugar_del_Hecho">
-                                <label class="col-sm-2 control-label">@Resources.Datos_de_los_Hechos_ATResources.Tipo_de_Lugar_del_Hecho</label>
-                                <div class="col-sm-8" data-field-id="Tipo_de_Lugar_del_Hecho" data-attribute="268424" data-field-name="@Resources.Datos_de_los_Hechos_ATResources.Tipo_de_Lugar_del_Hecho">
-                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo de Lugar del Hecho must be a number." data-val-required="The Tipo de Lugar del Hecho field is required." id="Tipo_de_Lugar_del_Hecho" name="Tipo_de_Lugar_del_Hecho">
-                                        <option value=""></option>
-                                        @if (varLugar_Tipo_Tipo_de_Lugar_del_Hecho != null){ 
-                                            foreach (var itemTipo_de_Lugar_del_Hecho in varLugar_Tipo_Tipo_de_Lugar_del_Hecho)
-                                            {
-                                                if (itemTipo_de_Lugar_del_Hecho.Value == Convert.ToString(Model.Tipo_de_Lugar_del_Hecho))
-                                                {
-                                                    <option value="@itemTipo_de_Lugar_del_Hecho.Value" selected>@itemTipo_de_Lugar_del_Hecho.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemTipo_de_Lugar_del_Hecho.Value">@itemTipo_de_Lugar_del_Hecho.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Lugar_del_Hecho" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 268424).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Lugar_Tipo', 'Tipo_de_Lugar_del_Hecho');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            </div>
-                                </div>
 
-				</div>	
-                    <br />
+                            </div>
+                            <br />
                             <div class="form-actions fluid">
                                 <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
                                 <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
                                 <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
                                 @if (!ViewBag.Consult)
                                 {
-                                    <input type="button" value="@Resources.Resources.Guardar" id="Datos_de_los_Hechos_ATGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Datos_de_los_Hechos_ATCreateForm');"  />
-									<button onclick="Datos_de_los_Hechos_ATGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Datos_de_los_Hechos_ATBusinessRule-form">
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Datos_de_los_Hechos_ATGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Datos_de_los_Hechos_ATCreateForm');" />
+                                    <button onclick="Datos_de_los_Hechos_ATGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Datos_de_los_Hechos_ATBusinessRule-form">
                                         <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
                                             <i class="fa fa-cogs fa-spin"></i>
                                         </a>
-                                    </button>                                    
+                                    </button>
 
-                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Datos_de_los_Hechos_ATGuardarYNuevo" onclick="return checkClientValidate('Datos_de_los_Hechos_ATCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
-                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Datos_de_los_Hechos_ATGuardarYCopia" onclick="return checkClientValidate('Datos_de_los_Hechos_ATCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Datos_de_los_Hechos_ATGuardarYNuevo" onclick="return checkClientValidate('Datos_de_los_Hechos_ATCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew" />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Datos_de_los_Hechos_ATGuardarYCopia" onclick="return checkClientValidate('Datos_de_los_Hechos_ATCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy" />
                                     if (permission.Configure)
                                     {
                                         <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
@@ -533,7 +549,7 @@
                                 }
 
                                 <input type="hidden" id="hdnConfigureType" />
-								<input type="hidden" id="hdnDatos_de_los_Hechos_ATBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnDatos_de_los_Hechos_ATBusinessRuleFieldId" />
                                 <input type="hidden" id="hdnDatos_de_los_Hechos_ATBusinessRuleFieldName" />
                                 <input type="hidden" id="hdnDatos_de_los_Hechos_ATBusinessRuleAttribute" />
 
@@ -545,76 +561,125 @@
                                     </a>
                                 </button>
                             </div>
-						</div>
-					</div>
+                        </div>
+                    </div>
                 }
+            </div>
         </div>
     </div>
-</div>
-<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+    <input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
 
-@section Styles {
-<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
-    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
-    @Styles.Render("~/plugins/dateRangeStyles")
-    @Styles.Render("~/plugins/dataPickerStyles")
-    @Styles.Render("~/plugins/clockpickerStyles")
-    @Styles.Render("~/plugins/awesomeCheckboxStyles")
-    @Styles.Render("~/plugins/select2Styles")
-    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
-<style>
-    .dataTables_filter {
-        display: none;
+
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" id="modalMapa" data-target="#myModal">Ver Mapa</button>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog" data-backdrop="static" tabindex="-1">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Seleccionar Dirección</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <label>Escriba la dirección</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="address" name="address" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            <div id="gmap" style="height:100%; width:100%;"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Asignar Dirección</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    @section Styles {
+        <link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+        @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+        @Styles.Render("~/plugins/dateRangeStyles")
+        @Styles.Render("~/plugins/dataPickerStyles")
+        @Styles.Render("~/plugins/clockpickerStyles")
+        @Styles.Render("~/plugins/awesomeCheckboxStyles")
+        @Styles.Render("~/plugins/select2Styles")
+        @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+        <style>
+            .dataTables_filter {
+                display: none;
+            }
+
+            .select2-results {
+                background-color: #fff;
+            }
+
+            .select2-container .select2-dropdown {
+                height: auto !important;
+            }
+
+            div.dataTables_info {
+                display: inline-block;
+                float: right;
+            }
+            /*i {
+                font-size: 25px !important;
+                display: block;
+                color: #676a6c;
+                margin-left: 6px;
+                margin-right: 6px;
+            }*/
+
+            .fullWidth {
+                width: 100%;
+            }
+        </style>
     }
-    .select2-results{background-color:#fff;}
-    .select2-container .select2-dropdown{height:auto !important;}
 
-    div.dataTables_info {
-        display: inline-block;
-        float: right;
-    }
-        /*i {
-        font-size: 25px !important;
-        display: block;
-        color: #676a6c;
-        margin-left: 6px;
-        margin-right: 6px;
-    }*/
+    <script type="text/javascript" src="~/Uploads/Scripts/Datos_de_los_Hechos_AT.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/Datos_de_los_Hechos_ATGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+    <script type="text/javascript" src="~/Uploads/Scripts/Rules/Datos_de_los_Hechos_ATCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+    <script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
 
-    .fullWidth {
-        width: 100%;
-    }
-</style>
-}
-
-<script type="text/javascript" src="~/Uploads/Scripts/Datos_de_los_Hechos_AT.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-<script type="text/javascript" src="~/Scripts/Custom/Datos_de_los_Hechos_ATGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-<script type="text/javascript" src="~/Uploads/Scripts/Rules/Datos_de_los_Hechos_ATCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
-<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
-
-@section Scripts {
+    @section Scripts {
 
 
-    <script type="text/javascript">
-        
+        <script type="text/javascript">
+
 
 
 	function GetTraduction(text) {
          switch (text.toLowerCase()) {
             case 'edit':
-                return "@Resources.Resources.Edit";          
+                return "@Resources.Resources.Edit";
             case 'delete':
-                return "@Resources.Resources.Delete";               
+                return "@Resources.Resources.Delete";
             case 'required':
-                return "@Resources.Resources.Required";              
+                return "@Resources.Resources.Required";
             case 'notrequired':
-                return "@Resources.Resources.NotRequired";           
+                return "@Resources.Resources.NotRequired";
             case 'enabled':
-                return "@Resources.Resources.Enabled";         
+                return "@Resources.Resources.Enabled";
             case 'disabled':
-                return "@Resources.Resources.Disabled";           
+                return "@Resources.Resources.Disabled";
             case 'visible':
-                return "@Resources.Resources.Visible";            
+                return "@Resources.Resources.Visible";
             case 'botvisible':
                 return "@Resources.Resources.InVisible";
             case 'messagednoinvisible':
@@ -624,12 +689,12 @@
             case 'defaultvalue':
                 return "@Resources.Resources.DefaultValue";
             case 'helptext':
-                return "@Resources.Resources.HelpText";                     
+                return "@Resources.Resources.HelpText";
             default:
                 return "";
         }
     }
-	
+
 	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
 	    var isPartial = ('@ViewBag.IsPartial' == 'True');
         var isMR = ('@ViewBag.isMR' == 'True');
@@ -640,8 +705,8 @@
 
         $(document).ready(function () {
             $('#ObjectId').val('45619');
-		    
-		   
+
+
                         $('#Fecha_del_Hecho').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -656,16 +721,16 @@
             initiateUIControls();
 			$('a').tooltip();
 			$('.loading').css('display', 'none');
-			
-			 if (viewInEframe) {             
+
+			 if (viewInEframe) {
                 $('#Datos_de_los_Hechos_ATGuardarYNuevo').hide();
                 $('#Datos_de_los_Hechos_ATGuardarYCopia').hide();
-                $('#Datos_de_los_Hechos_ATCancelar').hide(); 
+                $('#Datos_de_los_Hechos_ATCancelar').hide();
                 $('#ConfigureSave').hide();
                 $('#Datos_de_los_Hechos_ATGuardar').val('Actualizar Seccion ' + '@Resources.Datos_de_los_Hechos_ATResources.Datos_de_los_Hechos_AT' )
             }
 
-			
+
 			       var AutoCompleteExpediente_MPData =[];
        $(".AutoCompleteDatos_de_los_Hechos_AT_Expediente_MP").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -677,7 +742,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term, 
+                        query: params.term,
                     };
                 },
                 processResults: function (data, params) {
@@ -686,12 +751,12 @@
                     return {
                         results: GetAutoCompleteDatos_de_los_Hechos_AT_Expediente_MP_expediente_ministerio_publicoData(data),
                         pagination: {
-                            more: false 
+                            more: false
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; }, 
+            escapeMarkup: function (markup) { return markup; },
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDatos_de_los_Hechos_AT_Expediente_MP");
@@ -710,7 +775,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term, 
+                        query: params.term,
                     };
                 },
                 processResults: function (data, params) {
@@ -719,12 +784,12 @@
                     return {
                         results: GetAutoCompleteDatos_de_los_Hechos_AT_Expediente_MASC_SolicitudData(data),
                         pagination: {
-                            more: false 
+                            more: false
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; }, 
+            escapeMarkup: function (markup) { return markup; },
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDatos_de_los_Hechos_AT_Expediente_MASC");
@@ -743,7 +808,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term, 
+                        query: params.term,
                     };
                 },
                 processResults: function (data, params) {
@@ -752,12 +817,12 @@
                     return {
                         results: GetAutoCompleteDatos_de_los_Hechos_AT_Pais_PaisData(data),
                         pagination: {
-                            more: false 
+                            more: false
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; }, 
+            escapeMarkup: function (markup) { return markup; },
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDatos_de_los_Hechos_AT_Pais");
@@ -776,7 +841,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term, 
+                        query: params.term,
                     };
                 },
                 processResults: function (data, params) {
@@ -785,12 +850,12 @@
                     return {
                         results: GetAutoCompleteDatos_de_los_Hechos_AT_Estado_EstadoData(data),
                         pagination: {
-                            more: false 
+                            more: false
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; }, 
+            escapeMarkup: function (markup) { return markup; },
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDatos_de_los_Hechos_AT_Estado");
@@ -809,7 +874,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term, 
+                        query: params.term,
                     };
                 },
                 processResults: function (data, params) {
@@ -818,12 +883,12 @@
                     return {
                         results: GetAutoCompleteDatos_de_los_Hechos_AT_Municipio_MunicipioData(data),
                         pagination: {
-                            more: false 
+                            more: false
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; }, 
+            escapeMarkup: function (markup) { return markup; },
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDatos_de_los_Hechos_AT_Municipio");
@@ -842,7 +907,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term, 
+                        query: params.term,
                     };
                 },
                 processResults: function (data, params) {
@@ -851,12 +916,12 @@
                     return {
                         results: GetAutoCompleteDatos_de_los_Hechos_AT_Poblacion_ColoniaData(data),
                         pagination: {
-                            more: false 
+                            more: false
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; }, 
+            escapeMarkup: function (markup) { return markup; },
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDatos_de_los_Hechos_AT_Poblacion");
@@ -875,7 +940,7 @@
                 global: false,
                 data: function (params) {
                     return {
-                        query: params.term, 
+                        query: params.term,
                     };
                 },
                 processResults: function (data, params) {
@@ -884,12 +949,12 @@
                     return {
                         results: GetAutoCompleteDatos_de_los_Hechos_AT_Colonia_ColoniaData(data),
                         pagination: {
-                            more: false 
+                            more: false
                         }
                     };
                 }
             },
-            escapeMarkup: function (markup) { return markup; }, 
+            escapeMarkup: function (markup) { return markup; },
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteDatos_de_los_Hechos_AT_Colonia");
@@ -900,7 +965,7 @@
 
 
             @if(ViewBag.IsNew)
-            { 
+            {
                 <text>$('input:checkbox').prop('checked', false);</text>
             }
 			else
@@ -912,8 +977,8 @@
 
                 </text>
             }
-            EjecutarValidacionesAlComienzo(); 
-			
+            EjecutarValidacionesAlComienzo();
+
         });
 
 
@@ -935,9 +1000,9 @@
 
         }
 
-    </script>
+        </script>
 
-<script type="text/javascript">
+        <script type="text/javascript">
 
 
    function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
@@ -959,7 +1024,7 @@
 				return;
 			}
 		}
-			
+
 			var url = '@Url.Content("~/Frontal/Datos_de_los_Hechos_AT/GetCatalogAll")';
 			url = url.replace(/Catalog/g, catalog);
 
@@ -975,41 +1040,41 @@
 					showNotification("@Resources.Resources.ErrorContactingServer", "error");
 				}
 			});
-		
+
     }
 
 
         function SendDatos_de_los_Hechos_ATData(callBack) {
-			
-					
-		 var arr = []; 
-		 $("form#CreateDatos_de_los_Hechos_AT").find(':input').each(function( index ) {		 
+
+
+		 var arr = [];
+		 $("form#CreateDatos_de_los_Hechos_AT").find(':input').each(function( index ) {
 			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
-			{		
-				arr.push($(this).attr('id')); 
-				$(this).prop('disabled', false);  	
+			{
+				arr.push($(this).attr('id'));
+				$(this).prop('disabled', false);
 			}
 	    });
-		
+
              var formData = new FormData($("form#CreateDatos_de_los_Hechos_AT")[0]);
 			$.each( arr, function( key, value ) {
 			  $('#' +value).prop('disabled', true);
 			});
 			var id = $("#ReferenceClave").val();
             var isNew = $('#hdnIsNew').val();
-           
+
 			if (Tab_Datos_Generales && !checkClientValidate('Datos_de_los_Hechos_ATCreateForm', 'Datos_Generales')) {
 				return false;
-			}						
+			}
 
 
-			
+
 			if (isNew == "True")
             {
                 id = CreateID();
             }
-			
-			
+
+
 			if (Tab_Datos_Generales)
 				Save_Datos_Generales(id);
 
@@ -1041,7 +1106,7 @@
 			});
 			return newId;
 		}
-		
+
 		function OpenRules()
 		{
 			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
@@ -1070,7 +1135,7 @@
         Configure: '@permission.Configure' == 'True',
     };
 
-    
+
     //MR-var statusItems;
     //MR-var stateItems;
     //MR-var cityItems = [];
@@ -1091,7 +1156,7 @@
         else
 			location.href = "@Url.Content("~/Frontal/Datos_de_los_Hechos_AT/")";
     }
-	
+
 	function ReadScriptSettings(callback)
     {
         $.post("@Url.Content("~/Frontal/Datos_de_los_Hechos_AT/ReadScriptSettings")", function (data) {
@@ -1108,7 +1173,7 @@
             //$('#hdnConfigureType').val("0");
         }, "json");
     }
-	
+
         function SaveElementAttributes() {
             if ($('#hdnConfigureType').val() == "1") {
                 $.post("@Url.Content("~/Frontal/Datos_de_los_Hechos_AT/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
@@ -1162,13 +1227,13 @@
 			$('#Attribute').val(attribute);
                         Datos_de_los_Hechos_ATGetBusinessRule();
 		});
-		//Initialize HTML Editors            
+		//Initialize HTML Editors
   var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
   var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
   var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
   var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
-		
-		
+
+
 		function Fill_Datos_Generales()
         {
             $.ajax({
@@ -1266,7 +1331,7 @@
                 }
             });
         }
-		
+
 		function Save_Datos_Generales(newId) {
 			var data = new FormData();
 			data.append('Clave', newId);
@@ -1309,7 +1374,7 @@
 						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
 					} else {
 						newId = result;
-                    
+
 					}
 				},
 				error: function (result) {
@@ -1319,13 +1384,25 @@
 			});
 		}
 
+            $("body").on("click", "#btnOpenMapa", function () {
+                $("#modalMapa").click();
 
-    </script>
-}
+            });
+            $('#myModal').on('shown.bs.modal', function () {
+                CargaGoogleMaps();
+            });
+
+            $('#myModal').on('hidden.bs.modal', function () {
+
+            });
+
+        </script>
+    }
     <input type="hidden" id="FieldId" name="FieldId" value="" />
     <input type="hidden" id="FieldName" name="FieldName" value="" />
     <input type="hidden" id="ObjectId" name="ObjectId" value="" />
     <input type="hidden" id="Attribute" name="Attribute" value="" />
     <input type="hidden" id="Screen" name="Screen" value="" />
-     <input type="hidden" id="Datos_de_los_Hechos_AT_cmbLabelSelect" name="Datos_de_los_Hechos_AT_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+    <input type="hidden" id="Datos_de_los_Hechos_AT_cmbLabelSelect" name="Datos_de_los_Hechos_AT_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl6FOVgpwFjFmSSdVREMUzCQKSq7JQLdA" type="text/javascript"></script>
 

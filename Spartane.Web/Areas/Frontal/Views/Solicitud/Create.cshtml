@@ -20,24 +20,30 @@
     string Fecha_del_Hecho = "";
     if (Model.Fecha_del_Hecho == "")
     { Model.Fecha_del_Hecho = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
-    string Fecha_de_Cierre = "";
-    if (Model.Fecha_de_Cierre == "")
-    { Model.Fecha_de_Cierre = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
-    string Fecha_Validacion = "";
-    if (Model.Fecha_Validacion == "")
-    { Model.Fecha_Validacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
     string Fecha_de_AsignacionA = "";
     if (Model.Fecha_de_AsignacionA == "")
     { Model.Fecha_de_AsignacionA = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
     string Fecha_de_Atencion_del_Especialista = "";
     if (Model.Fecha_de_Atencion_del_Especialista == "")
     { Model.Fecha_de_Atencion_del_Especialista = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Cierre = "";
+    if (Model.Fecha_de_Cierre == "")
+    { Model.Fecha_de_Cierre = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_Validacion = "";
+    if (Model.Fecha_Validacion == "")
+    { Model.Fecha_Validacion = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Resolucion_Procedimiento = "";
+    if (Model.Fecha_de_Resolucion_Procedimiento == "")
+    { Model.Fecha_de_Resolucion_Procedimiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
+    string Fecha_de_Validacion_Procedimiento = "";
+    if (Model.Fecha_de_Validacion_Procedimiento == "")
+    { Model.Fecha_de_Validacion_Procedimiento = DateTime.Now.ToString(ConfigurationProperty.DateFormat); }
 
 */
  List<SelectListItem> varSpartan_User_Usuario_que_Registra = null;
     if (ViewBag.Spartan_Users_Usuario_que_Registra != null)
     { varSpartan_User_Usuario_que_Registra = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Registra; }
-    List<SelectListItem> varUnidad_Unidad_MASC = null;
+ List<SelectListItem> varUnidad_Unidad_MASC = null;
     if (ViewBag.Unidads_Unidad_MASC != null)
     { varUnidad_Unidad_MASC = (List<SelectListItem>)ViewBag.Unidads_Unidad_MASC; }
  List<SelectListItem> varModulo_Atencion_Inicial_NUAT = null;
@@ -64,7 +70,7 @@
  List<SelectListItem> varSpartan_User_Agente_del_Ministerio_Publico_Invest = null;
     if (ViewBag.Spartan_Users_Agente_del_Ministerio_Publico_Invest != null)
     { varSpartan_User_Agente_del_Ministerio_Publico_Invest = (List<SelectListItem>)ViewBag.Spartan_Users_Agente_del_Ministerio_Publico_Invest; }
-    List<SelectListItem> varUnidad_Unidad = null;
+ List<SelectListItem> varUnidad_Unidad = null;
     if (ViewBag.Unidads_Unidad != null)
     { varUnidad_Unidad = (List<SelectListItem>)ViewBag.Unidads_Unidad; }
     List<SelectListItem> varLugar_Tipo_Tipo_de_Lugar_del_Hecho = null;
@@ -85,6 +91,9 @@
  List<SelectListItem> varColonia_ColoniaH = null;
     if (ViewBag.Colonias_ColoniaH != null)
     { varColonia_ColoniaH = (List<SelectListItem>)ViewBag.Colonias_ColoniaH; }
+ List<SelectListItem> varSpartan_User_Especialista_AsignadoA = null;
+    if (ViewBag.Spartan_Users_Especialista_AsignadoA != null)
+    { varSpartan_User_Especialista_AsignadoA = (List<SelectListItem>)ViewBag.Spartan_Users_Especialista_AsignadoA; }
     List<SelectListItem> varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo = null;
     if (ViewBag.Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo != null)
     { varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo = (List<SelectListItem>)ViewBag.Motivo_de_Rechazo_de_Solicituds_Motivo_de_Rechazo; }
@@ -97,18 +106,33 @@
     List<SelectListItem> varTipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada = null;
     if (ViewBag.Tipo_de_Conclusion_Anticipadas_Tipo_de_Conclusion_Anticipada != null)
     { varTipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada = (List<SelectListItem>)ViewBag.Tipo_de_Conclusion_Anticipadas_Tipo_de_Conclusion_Anticipada; }
- List<SelectListItem> varSpartan_User_Usuario_que_Valida = null;
-    if (ViewBag.Spartan_Users_Usuario_que_Valida != null)
-    { varSpartan_User_Usuario_que_Valida = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Valida; }
-    List<SelectListItem> varResultado_de_Revision_Resultado = null;
-    if (ViewBag.Resultado_de_Revisions_Resultado != null)
-    { varResultado_de_Revision_Resultado = (List<SelectListItem>)ViewBag.Resultado_de_Revisions_Resultado; }
- List<SelectListItem> varSpartan_User_Especialista_AsignadoA = null;
-    if (ViewBag.Spartan_Users_Especialista_AsignadoA != null)
-    { varSpartan_User_Especialista_AsignadoA = (List<SelectListItem>)ViewBag.Spartan_Users_Especialista_AsignadoA; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Resuelve_Solicitud = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Resuelve_Solicitud != null)
+    { varSpartan_User_Usuario_que_Resuelve_Solicitud = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Resuelve_Solicitud; }
+    List<SelectListItem> varResolucion_MASC_Resolucion_Solicitud = null;
+    if (ViewBag.Resolucion_MASCs_Resolucion_Solicitud != null)
+    { varResolucion_MASC_Resolucion_Solicitud = (List<SelectListItem>)ViewBag.Resolucion_MASCs_Resolucion_Solicitud; }
     List<SelectListItem> varTipo_de_Mecanismo_Alterno_Tipo_de_Mecanismo = null;
     if (ViewBag.Tipo_de_Mecanismo_Alternos_Tipo_de_Mecanismo != null)
     { varTipo_de_Mecanismo_Alterno_Tipo_de_Mecanismo = (List<SelectListItem>)ViewBag.Tipo_de_Mecanismo_Alternos_Tipo_de_Mecanismo; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Valida = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Valida != null)
+    { varSpartan_User_Usuario_que_Valida = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Valida; }
+    List<SelectListItem> varResultado_de_Revision_Autoriza_Cierre_de_Expediente = null;
+    if (ViewBag.Resultado_de_Revisions_Autoriza_Cierre_de_Expediente != null)
+    { varResultado_de_Revision_Autoriza_Cierre_de_Expediente = (List<SelectListItem>)ViewBag.Resultado_de_Revisions_Autoriza_Cierre_de_Expediente; }
+    List<SelectListItem> varResolucion_MASC_Resolucion_de_Procedimiento = null;
+    if (ViewBag.Resolucion_MASCs_Resolucion_de_Procedimiento != null)
+    { varResolucion_MASC_Resolucion_de_Procedimiento = (List<SelectListItem>)ViewBag.Resolucion_MASCs_Resolucion_de_Procedimiento; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Resuelve_Procedimiento = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Resuelve_Procedimiento != null)
+    { varSpartan_User_Usuario_que_Resuelve_Procedimiento = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Resuelve_Procedimiento; }
+ List<SelectListItem> varSpartan_User_Usuario_que_Valida_Procedimiento = null;
+    if (ViewBag.Spartan_Users_Usuario_que_Valida_Procedimiento != null)
+    { varSpartan_User_Usuario_que_Valida_Procedimiento = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_que_Valida_Procedimiento; }
+    List<SelectListItem> varResultado_de_Revision_Resultado_Procedimiento = null;
+    if (ViewBag.Resultado_de_Revisions_Resultado_Procedimiento != null)
+    { varResultado_de_Revision_Resultado_Procedimiento = (List<SelectListItem>)ViewBag.Resultado_de_Revisions_Resultado_Procedimiento; }
 
     Permission permissionDetalle_Solicitud_Historial_de_Asignaciones = ViewBag.PermissionDetalle_Solicitud_Historial_de_Asignaciones;
     Permission permissionDetalle_de_Solicitud_Bitacora_de_Coincid = ViewBag.PermissionDetalle_de_Solicitud_Bitacora_de_Coincid;
@@ -248,8 +272,9 @@
 <li class="active"><a data-toggle="tab" href="#tabSolicitud"> @Resources.SolicitudResources.TabSolicitud</a></li>
 <li class=""><a data-toggle="tab" href="#tabControl"> @Resources.SolicitudResources.TabControl</a></li>
 <li class=""><a data-toggle="tab" href="#tabHechos"> @Resources.SolicitudResources.TabHechos</a></li>
-<li class=""><a data-toggle="tab" href="#tabCierre"> @Resources.SolicitudResources.TabCierre</a></li>
 <li class=""><a data-toggle="tab" href="#tabAsignacion"> @Resources.SolicitudResources.TabAsignacion</a></li>
+<li class=""><a data-toggle="tab" href="#tabResolucion_de_Solicitud"> @Resources.SolicitudResources.TabResolucion_de_Solicitud</a></li>
+<li class=""><a data-toggle="tab" href="#tabResolucion_de_Procedimiento"> @Resources.SolicitudResources.TabResolucion_de_Procedimiento</a></li>
 <li class=""><a data-toggle="tab" href="#tabBitacora_de_Coincidencias"> @Resources.SolicitudResources.TabBitacora_de_Coincidencias</a></li>
 <li class=""><a data-toggle="tab" href="#tabHistorial_de_Movimientos"> @Resources.SolicitudResources.TabHistorial_de_Movimientos</a></li>
 
@@ -304,28 +329,14 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Numero_de_Folio" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
-                            <div class="form-group" id="divUnidad_MASC">
+				<div class="form-group" id="divUnidad_MASC">
                                 <label class="col-sm-2 control-label">@Resources.SolicitudResources.Unidad_MASC</label>
                                 <div class="col-sm-8" data-field-id="Unidad_MASC" data-attribute="266573" data-field-name="@Resources.SolicitudResources.Unidad_MASC">
-                                    <select class="form-control Solicitud" data-val="true" data-val-number="The field Unidad MASC must be a number." data-val-required="The Unidad MASC field is required." id="Unidad_MASC" name="Unidad_MASC">
-                                        <option value=""></option>
-                                        @if (varUnidad_Unidad_MASC != null){ 
-                                            foreach (var itemUnidad_MASC in varUnidad_Unidad_MASC)
-                                            {
-                                                if (itemUnidad_MASC.Value == Convert.ToString(Model.Unidad_MASC))
-                                                {
-                                                    <option value="@itemUnidad_MASC.Value" selected>@itemUnidad_MASC.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemUnidad_MASC.Value">@itemUnidad_MASC.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_Unidad_MASC form-control select2-dropdown Solicitud' data-val="true" id="Unidad_MASC" name="Unidad_MASC">
+                                        <option value="@Model.Unidad_MASC">@(Model.Unidad_MASCDescripcion??Model.Unidad_MASCDescripcion)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Unidad_MASC" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266573).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266573).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Unidad', 'Unidad_MASC');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -549,28 +560,14 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Juez_de_Control" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
-                            <div class="form-group" id="divUnidad">
+				<div class="form-group" id="divUnidad">
                                 <label class="col-sm-2 control-label">@Resources.SolicitudResources.Unidad</label>
                                 <div class="col-sm-8" data-field-id="Unidad" data-attribute="266171" data-field-name="@Resources.SolicitudResources.Unidad">
-                                    <select class="form-control Control" data-val="true" data-val-number="The field Unidad que Remite must be a number." data-val-required="The Unidad que Remite field is required." id="Unidad" name="Unidad">
-                                        <option value=""></option>
-                                        @if (varUnidad_Unidad != null){ 
-                                            foreach (var itemUnidad in varUnidad_Unidad)
-                                            {
-                                                if (itemUnidad.Value == Convert.ToString(Model.Unidad))
-                                                {
-                                                    <option value="@itemUnidad.Value" selected>@itemUnidad.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemUnidad.Value">@itemUnidad.Text</option>
-                                                }
-                                            }
-                                        }
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_Unidad form-control select2-dropdown Control' data-val="true" id="Unidad" name="Unidad">
+                                        <option value="@Model.Unidad">@(Model.UnidadDescripcion??Model.UnidadDescripcion)</option>
                                     </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Unidad" data-valmsg-replace="true"></span>*@
                                 </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266171).New)
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266171).New)
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Unidad', 'Unidad');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
@@ -777,223 +774,6 @@
                                 </div>
 
 
-                            <div id="tabCierre" class="tab-pane">
-                                <div class="panel-body">
-                            <div class="form-group" id="divRechazar">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Rechazar</label>
-                                <div class="col-sm-8" data-field-id="Rechazar" data-attribute="263018" data-field-name="@Resources.SolicitudResources.Rechazar">
-                                    @Html.CheckBoxFor(m => m.Rechazar, new { @class = "i-checks Cierre" })
-                                </div>
-                            </div>
-                            <div class="form-group" id="divMotivo_de_Rechazo">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Motivo_de_Rechazo</label>
-                                <div class="col-sm-8" data-field-id="Motivo_de_Rechazo" data-attribute="266685" data-field-name="@Resources.SolicitudResources.Motivo_de_Rechazo">
-                                    <select class="form-control Cierre" data-val="true" data-val-number="The field Motivo de Rechazo must be a number." data-val-required="The Motivo de Rechazo field is required." id="Motivo_de_Rechazo" name="Motivo_de_Rechazo">
-                                        <option value=""></option>
-                                        @if (varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo != null){ 
-                                            foreach (var itemMotivo_de_Rechazo in varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo)
-                                            {
-                                                if (itemMotivo_de_Rechazo.Value == Convert.ToString(Model.Motivo_de_Rechazo))
-                                                {
-                                                    <option value="@itemMotivo_de_Rechazo.Value" selected>@itemMotivo_de_Rechazo.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemMotivo_de_Rechazo.Value">@itemMotivo_de_Rechazo.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Motivo_de_Rechazo" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266685).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Motivo_de_Rechazo_de_Solicitud', 'Motivo_de_Rechazo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divAcuerdo_Cumplido">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Acuerdo_Cumplido</label>
-                                <div class="col-sm-8" data-field-id="Acuerdo_Cumplido" data-attribute="262992" data-field-name="@Resources.SolicitudResources.Acuerdo_Cumplido">
-                                    <select class="form-control Cierre" data-val="true" data-val-number="The field Acuerdo Cumplido must be a number." data-val-required="The Acuerdo Cumplido field is required." id="Acuerdo_Cumplido" name="Acuerdo_Cumplido">
-                                        <option value=""></option>
-                                        @if (varA_Tiempo_Acuerdo_Cumplido != null){ 
-                                            foreach (var itemAcuerdo_Cumplido in varA_Tiempo_Acuerdo_Cumplido)
-                                            {
-                                                if (itemAcuerdo_Cumplido.Value == Convert.ToString(Model.Acuerdo_Cumplido))
-                                                {
-                                                    <option value="@itemAcuerdo_Cumplido.Value" selected>@itemAcuerdo_Cumplido.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemAcuerdo_Cumplido.Value">@itemAcuerdo_Cumplido.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Acuerdo_Cumplido" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262992).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('A_Tiempo', 'Acuerdo_Cumplido');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divRazon_de_Incumplimiento">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Razon_de_Incumplimiento</label>
-                                <div class="col-sm-8" data-field-id="Razon_de_Incumplimiento" data-attribute="262993" data-field-name="@Resources.SolicitudResources.Razon_de_Incumplimiento">
-                                    <select class="form-control Cierre" data-val="true" data-val-number="The field Razón de Incumplimiento must be a number." data-val-required="The Razón de Incumplimiento field is required." id="Razon_de_Incumplimiento" name="Razon_de_Incumplimiento">
-                                        <option value=""></option>
-                                        @if (varRazon_de_Incumplimiento_Razon_de_Incumplimiento != null){ 
-                                            foreach (var itemRazon_de_Incumplimiento in varRazon_de_Incumplimiento_Razon_de_Incumplimiento)
-                                            {
-                                                if (itemRazon_de_Incumplimiento.Value == Convert.ToString(Model.Razon_de_Incumplimiento))
-                                                {
-                                                    <option value="@itemRazon_de_Incumplimiento.Value" selected>@itemRazon_de_Incumplimiento.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemRazon_de_Incumplimiento.Value">@itemRazon_de_Incumplimiento.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Razon_de_Incumplimiento" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262993).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Razon_de_Incumplimiento', 'Razon_de_Incumplimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divTipo_de_Conclusion_Anticipada">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Tipo_de_Conclusion_Anticipada</label>
-                                <div class="col-sm-8" data-field-id="Tipo_de_Conclusion_Anticipada" data-attribute="266590" data-field-name="@Resources.SolicitudResources.Tipo_de_Conclusion_Anticipada">
-                                    <select class="form-control Cierre" data-val="true" data-val-number="The field Tipo de Conclusión Anticipada must be a number." data-val-required="The Tipo de Conclusión Anticipada field is required." id="Tipo_de_Conclusion_Anticipada" name="Tipo_de_Conclusion_Anticipada">
-                                        <option value=""></option>
-                                        @if (varTipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada != null){ 
-                                            foreach (var itemTipo_de_Conclusion_Anticipada in varTipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada)
-                                            {
-                                                if (itemTipo_de_Conclusion_Anticipada.Value == Convert.ToString(Model.Tipo_de_Conclusion_Anticipada))
-                                                {
-                                                    <option value="@itemTipo_de_Conclusion_Anticipada.Value" selected>@itemTipo_de_Conclusion_Anticipada.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemTipo_de_Conclusion_Anticipada.Value">@itemTipo_de_Conclusion_Anticipada.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Conclusion_Anticipada" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266590).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Conclusion_Anticipada', 'Tipo_de_Conclusion_Anticipada');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divFecha_de_Cierre">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Fecha_de_Cierre</label>
-                                <div class="col-sm-8" data-field-id="Fecha_de_Cierre" data-attribute="262994" data-field-name="@Resources.SolicitudResources.Fecha_de_Cierre">
-                                    <div class='input-group date' id='datetimepicker1'>
-                                        <input class="form-control col-md-12 Cierre" id="Fecha_de_Cierre"  name="Fecha_de_Cierre" type="text" value="@Model.Fecha_de_Cierre">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group" id="divHora_de_Cierre">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Hora_de_Cierre</label>
-                                <div class="col-sm-8" data-field-id="Hora_de_Cierre" data-attribute="262995" data-field-name="@Resources.SolicitudResources.Hora_de_Cierre">
-                                    <div class='input-group date' id='timePicker'>
-                                        <input class="form-control col-md-12 Cierre" id="Hora_de_Cierre"  name="Hora_de_Cierre" type="text" data-autoclose="true" value="@Model.Hora_de_Cierre">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-time"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group" id="divFecha_Validacion">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Fecha_Validacion</label>
-                                <div class="col-sm-8" data-field-id="Fecha_Validacion" data-attribute="266724" data-field-name="@Resources.SolicitudResources.Fecha_Validacion">
-                                    <div class='input-group date' id='datetimepicker1'>
-                                        <input class="form-control col-md-12 Cierre" id="Fecha_Validacion"  name="Fecha_Validacion" type="text" value="@Model.Fecha_Validacion">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group" id="divHora_Validacion">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Hora_Validacion</label>
-                                <div class="col-sm-8" data-field-id="Hora_Validacion" data-attribute="266725" data-field-name="@Resources.SolicitudResources.Hora_Validacion">
-                                    <div class='input-group date' id='timePicker'>
-                                        <input class="form-control col-md-12 Cierre" id="Hora_Validacion"  name="Hora_Validacion" type="text" data-autoclose="true" value="@Model.Hora_Validacion">
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-time"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-				<div class="form-group" id="divUsuario_que_Valida">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Usuario_que_Valida</label>
-                                <div class="col-sm-8" data-field-id="Usuario_que_Valida" data-attribute="266726" data-field-name="@Resources.SolicitudResources.Usuario_que_Valida">
-                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_Usuario_que_Valida form-control select2-dropdown Cierre' data-val="true" id="Usuario_que_Valida" name="Usuario_que_Valida">
-                                        <option value="@Model.Usuario_que_Valida">@(Model.Usuario_que_ValidaName??Model.Usuario_que_ValidaName)</option>
-                                    </select>
-                                </div>
-				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266726).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Valida');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divResultado">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Resultado</label>
-                                <div class="col-sm-8" data-field-id="Resultado" data-attribute="266727" data-field-name="@Resources.SolicitudResources.Resultado">
-                                    <select class="form-control Cierre" data-val="true" data-val-number="The field Resultado must be a number." data-val-required="The Resultado field is required." id="Resultado" name="Resultado">
-                                        <option value=""></option>
-                                        @if (varResultado_de_Revision_Resultado != null){ 
-                                            foreach (var itemResultado in varResultado_de_Revision_Resultado)
-                                            {
-                                                if (itemResultado.Value == Convert.ToString(Model.Resultado))
-                                                {
-                                                    <option value="@itemResultado.Value" selected>@itemResultado.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemResultado.Value">@itemResultado.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Resultado" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266727).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Resultado_de_Revision', 'Resultado');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
-                            </div>
-                            <div class="form-group" id="divMotivo_de_Rechazo_Solicitud">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Motivo_de_Rechazo_Solicitud</label>
-                                <div class="col-sm-8" data-field-id="Motivo_de_Rechazo_Solicitud" data-attribute="266728" data-field-name="@Resources.SolicitudResources.Motivo_de_Rechazo_Solicitud">
-                                    <textarea id="Motivo_de_Rechazo_Solicitud" name="Motivo_de_Rechazo_Solicitud" class="form-control Cierre" rows="4" cols="50">@Model.Motivo_de_Rechazo_Solicitud</textarea>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Motivo_de_Rechazo_Solicitud" data-valmsg-replace="true"></span>*@
-                                </div>
-                            </div>
-                            </div>
-                                </div>
-
-
                             <div id="tabAsignacion" class="tab-pane">
                                 <div class="panel-body">
 				<div class="form-group" id="divEspecialista_AsignadoA">
@@ -1029,34 +809,6 @@
                                     <textarea id="Razone" name="Razone" class="form-control Asignacion" rows="4" cols="50">@Model.Razone</textarea>
                                     @*<span class="field-validation-valid" data-valmsg-for="Razone" data-valmsg-replace="true"></span>*@
                                 </div>
-                            </div>
-                            <div class="form-group" id="divTipo_de_Mecanismo">
-                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Tipo_de_Mecanismo</label>
-                                <div class="col-sm-8" data-field-id="Tipo_de_Mecanismo" data-attribute="266587" data-field-name="@Resources.SolicitudResources.Tipo_de_Mecanismo">
-                                    <select class="form-control Asignacion" data-val="true" data-val-number="The field Tipo de Mecanismo must be a number." data-val-required="The Tipo de Mecanismo field is required." id="Tipo_de_Mecanismo" name="Tipo_de_Mecanismo">
-                                        <option value=""></option>
-                                        @if (varTipo_de_Mecanismo_Alterno_Tipo_de_Mecanismo != null){ 
-                                            foreach (var itemTipo_de_Mecanismo in varTipo_de_Mecanismo_Alterno_Tipo_de_Mecanismo)
-                                            {
-                                                if (itemTipo_de_Mecanismo.Value == Convert.ToString(Model.Tipo_de_Mecanismo))
-                                                {
-                                                    <option value="@itemTipo_de_Mecanismo.Value" selected>@itemTipo_de_Mecanismo.Text</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@itemTipo_de_Mecanismo.Value">@itemTipo_de_Mecanismo.Text</option>
-                                                }
-                                            }
-                                        }
-                                    </select>
-                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Mecanismo" data-valmsg-replace="true"></span>*@
-                                </div>
-								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266587).New)
-                                {                        
-                                <div class="col-sm-1 abm-icons">
-                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Mecanismo_Alterno', 'Tipo_de_Mecanismo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
-                                </div>
-                                }
                             </div>
                             <div class="form-group" id="divFecha_de_AsignacionA">
                                 <label class="col-sm-2 control-label">@Resources.SolicitudResources.Fecha_de_AsignacionA</label>
@@ -1174,6 +926,448 @@
                                     </table>
                                 </div>
                             </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabResolucion_de_Solicitud" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divRechazar">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Rechazar</label>
+                                <div class="col-sm-8" data-field-id="Rechazar" data-attribute="263018" data-field-name="@Resources.SolicitudResources.Rechazar">
+                                    @Html.CheckBoxFor(m => m.Rechazar, new { @class = "i-checks Resolucion_de_Solicitud" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divMotivo_de_Rechazo">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Motivo_de_Rechazo</label>
+                                <div class="col-sm-8" data-field-id="Motivo_de_Rechazo" data-attribute="266685" data-field-name="@Resources.SolicitudResources.Motivo_de_Rechazo">
+                                    <select class="form-control Resolucion_de_Solicitud" data-val="true" data-val-number="The field Motivo de Rechazo must be a number." data-val-required="The Motivo de Rechazo field is required." id="Motivo_de_Rechazo" name="Motivo_de_Rechazo">
+                                        <option value=""></option>
+                                        @if (varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo != null){ 
+                                            foreach (var itemMotivo_de_Rechazo in varMotivo_de_Rechazo_de_Solicitud_Motivo_de_Rechazo)
+                                            {
+                                                if (itemMotivo_de_Rechazo.Value == Convert.ToString(Model.Motivo_de_Rechazo))
+                                                {
+                                                    <option value="@itemMotivo_de_Rechazo.Value" selected>@itemMotivo_de_Rechazo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemMotivo_de_Rechazo.Value">@itemMotivo_de_Rechazo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Motivo_de_Rechazo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266685).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Motivo_de_Rechazo_de_Solicitud', 'Motivo_de_Rechazo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divAcuerdo_Cumplido">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Acuerdo_Cumplido</label>
+                                <div class="col-sm-8" data-field-id="Acuerdo_Cumplido" data-attribute="262992" data-field-name="@Resources.SolicitudResources.Acuerdo_Cumplido">
+                                    <select class="form-control Resolucion_de_Solicitud" data-val="true" data-val-number="The field Acuerdo Cumplido must be a number." data-val-required="The Acuerdo Cumplido field is required." id="Acuerdo_Cumplido" name="Acuerdo_Cumplido">
+                                        <option value=""></option>
+                                        @if (varA_Tiempo_Acuerdo_Cumplido != null){ 
+                                            foreach (var itemAcuerdo_Cumplido in varA_Tiempo_Acuerdo_Cumplido)
+                                            {
+                                                if (itemAcuerdo_Cumplido.Value == Convert.ToString(Model.Acuerdo_Cumplido))
+                                                {
+                                                    <option value="@itemAcuerdo_Cumplido.Value" selected>@itemAcuerdo_Cumplido.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemAcuerdo_Cumplido.Value">@itemAcuerdo_Cumplido.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Acuerdo_Cumplido" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262992).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('A_Tiempo', 'Acuerdo_Cumplido');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divRazon_de_Incumplimiento">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Razon_de_Incumplimiento</label>
+                                <div class="col-sm-8" data-field-id="Razon_de_Incumplimiento" data-attribute="262993" data-field-name="@Resources.SolicitudResources.Razon_de_Incumplimiento">
+                                    <select class="form-control Resolucion_de_Solicitud" data-val="true" data-val-number="The field Razón de Incumplimiento must be a number." data-val-required="The Razón de Incumplimiento field is required." id="Razon_de_Incumplimiento" name="Razon_de_Incumplimiento">
+                                        <option value=""></option>
+                                        @if (varRazon_de_Incumplimiento_Razon_de_Incumplimiento != null){ 
+                                            foreach (var itemRazon_de_Incumplimiento in varRazon_de_Incumplimiento_Razon_de_Incumplimiento)
+                                            {
+                                                if (itemRazon_de_Incumplimiento.Value == Convert.ToString(Model.Razon_de_Incumplimiento))
+                                                {
+                                                    <option value="@itemRazon_de_Incumplimiento.Value" selected>@itemRazon_de_Incumplimiento.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemRazon_de_Incumplimiento.Value">@itemRazon_de_Incumplimiento.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Razon_de_Incumplimiento" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 262993).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Razon_de_Incumplimiento', 'Razon_de_Incumplimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo_de_Conclusion_Anticipada">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Tipo_de_Conclusion_Anticipada</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Conclusion_Anticipada" data-attribute="266590" data-field-name="@Resources.SolicitudResources.Tipo_de_Conclusion_Anticipada">
+                                    <select class="form-control Resolucion_de_Solicitud" data-val="true" data-val-number="The field Tipo de Conclusión Anticipada must be a number." data-val-required="The Tipo de Conclusión Anticipada field is required." id="Tipo_de_Conclusion_Anticipada" name="Tipo_de_Conclusion_Anticipada">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada != null){ 
+                                            foreach (var itemTipo_de_Conclusion_Anticipada in varTipo_de_Conclusion_Anticipada_Tipo_de_Conclusion_Anticipada)
+                                            {
+                                                if (itemTipo_de_Conclusion_Anticipada.Value == Convert.ToString(Model.Tipo_de_Conclusion_Anticipada))
+                                                {
+                                                    <option value="@itemTipo_de_Conclusion_Anticipada.Value" selected>@itemTipo_de_Conclusion_Anticipada.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Conclusion_Anticipada.Value">@itemTipo_de_Conclusion_Anticipada.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Conclusion_Anticipada" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266590).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Conclusion_Anticipada', 'Tipo_de_Conclusion_Anticipada');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divFecha_de_Cierre">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Fecha_de_Cierre</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Cierre" data-attribute="262994" data-field-name="@Resources.SolicitudResources.Fecha_de_Cierre">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Resolucion_de_Solicitud" id="Fecha_de_Cierre"  name="Fecha_de_Cierre" type="text" value="@Model.Fecha_de_Cierre">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Cierre">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Hora_de_Cierre</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Cierre" data-attribute="262995" data-field-name="@Resources.SolicitudResources.Hora_de_Cierre">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Resolucion_de_Solicitud" id="Hora_de_Cierre"  name="Hora_de_Cierre" type="text" data-autoclose="true" value="@Model.Hora_de_Cierre">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Resuelve_Solicitud">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Usuario_que_Resuelve_Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Resuelve_Solicitud" data-attribute="269071" data-field-name="@Resources.SolicitudResources.Usuario_que_Resuelve_Solicitud">
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_Usuario_que_Resuelve_Solicitud form-control select2-dropdown Resolucion_de_Solicitud' data-val="true" id="Usuario_que_Resuelve_Solicitud" name="Usuario_que_Resuelve_Solicitud">
+                                        <option value="@Model.Usuario_que_Resuelve_Solicitud">@(Model.Usuario_que_Resuelve_SolicitudName??Model.Usuario_que_Resuelve_SolicitudName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269071).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Resuelve_Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divResolucion_Solicitud">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Resolucion_Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Resolucion_Solicitud" data-attribute="269077" data-field-name="@Resources.SolicitudResources.Resolucion_Solicitud">
+                                    <select class="form-control Resolucion_de_Solicitud" data-val="true" data-val-number="The field Resolución must be a number." data-val-required="The Resolución field is required." id="Resolucion_Solicitud" name="Resolucion_Solicitud">
+                                        <option value=""></option>
+                                        @if (varResolucion_MASC_Resolucion_Solicitud != null){ 
+                                            foreach (var itemResolucion_Solicitud in varResolucion_MASC_Resolucion_Solicitud)
+                                            {
+                                                if (itemResolucion_Solicitud.Value == Convert.ToString(Model.Resolucion_Solicitud))
+                                                {
+                                                    <option value="@itemResolucion_Solicitud.Value" selected>@itemResolucion_Solicitud.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemResolucion_Solicitud.Value">@itemResolucion_Solicitud.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Resolucion_Solicitud" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269077).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Resolucion_MASC', 'Resolucion_Solicitud');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo_de_Mecanismo">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Tipo_de_Mecanismo</label>
+                                <div class="col-sm-8" data-field-id="Tipo_de_Mecanismo" data-attribute="266587" data-field-name="@Resources.SolicitudResources.Tipo_de_Mecanismo">
+                                    <select class="form-control Resolucion_de_Solicitud" data-val="true" data-val-number="The field Tipo de Mecanismo must be a number." data-val-required="The Tipo de Mecanismo field is required." id="Tipo_de_Mecanismo" name="Tipo_de_Mecanismo">
+                                        <option value=""></option>
+                                        @if (varTipo_de_Mecanismo_Alterno_Tipo_de_Mecanismo != null){ 
+                                            foreach (var itemTipo_de_Mecanismo in varTipo_de_Mecanismo_Alterno_Tipo_de_Mecanismo)
+                                            {
+                                                if (itemTipo_de_Mecanismo.Value == Convert.ToString(Model.Tipo_de_Mecanismo))
+                                                {
+                                                    <option value="@itemTipo_de_Mecanismo.Value" selected>@itemTipo_de_Mecanismo.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_de_Mecanismo.Value">@itemTipo_de_Mecanismo.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_de_Mecanismo" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266587).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_de_Mecanismo_Alterno', 'Tipo_de_Mecanismo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divObservaciones_Solicitud">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Observaciones_Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_Solicitud" data-attribute="269078" data-field-name="@Resources.SolicitudResources.Observaciones_Solicitud">
+                                    <textarea id="Observaciones_Solicitud" name="Observaciones_Solicitud" class="form-control Resolucion_de_Solicitud" rows="4" cols="50">@Model.Observaciones_Solicitud</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Solicitud" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFecha_Validacion">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Fecha_Validacion</label>
+                                <div class="col-sm-8" data-field-id="Fecha_Validacion" data-attribute="266724" data-field-name="@Resources.SolicitudResources.Fecha_Validacion">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Resolucion_de_Solicitud" id="Fecha_Validacion"  name="Fecha_Validacion" type="text" value="@Model.Fecha_Validacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_Validacion">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Hora_Validacion</label>
+                                <div class="col-sm-8" data-field-id="Hora_Validacion" data-attribute="266725" data-field-name="@Resources.SolicitudResources.Hora_Validacion">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Resolucion_de_Solicitud" id="Hora_Validacion"  name="Hora_Validacion" type="text" data-autoclose="true" value="@Model.Hora_Validacion">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Valida">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Usuario_que_Valida</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Valida" data-attribute="266726" data-field-name="@Resources.SolicitudResources.Usuario_que_Valida">
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_Usuario_que_Valida form-control select2-dropdown Resolucion_de_Solicitud' data-val="true" id="Usuario_que_Valida" name="Usuario_que_Valida">
+                                        <option value="@Model.Usuario_que_Valida">@(Model.Usuario_que_ValidaName??Model.Usuario_que_ValidaName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266726).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Valida');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divAutoriza_Cierre_de_Expediente">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Autoriza_Cierre_de_Expediente</label>
+                                <div class="col-sm-8" data-field-id="Autoriza_Cierre_de_Expediente" data-attribute="266727" data-field-name="@Resources.SolicitudResources.Autoriza_Cierre_de_Expediente">
+                                    <select class="form-control Resolucion_de_Solicitud" data-val="true" data-val-number="The field ¿Autoriza Rechazo de Expediente? must be a number." data-val-required="The ¿Autoriza Rechazo de Expediente? field is required." id="Autoriza_Cierre_de_Expediente" name="Autoriza_Cierre_de_Expediente">
+                                        <option value=""></option>
+                                        @if (varResultado_de_Revision_Autoriza_Cierre_de_Expediente != null){ 
+                                            foreach (var itemAutoriza_Cierre_de_Expediente in varResultado_de_Revision_Autoriza_Cierre_de_Expediente)
+                                            {
+                                                if (itemAutoriza_Cierre_de_Expediente.Value == Convert.ToString(Model.Autoriza_Cierre_de_Expediente))
+                                                {
+                                                    <option value="@itemAutoriza_Cierre_de_Expediente.Value" selected>@itemAutoriza_Cierre_de_Expediente.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemAutoriza_Cierre_de_Expediente.Value">@itemAutoriza_Cierre_de_Expediente.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Autoriza_Cierre_de_Expediente" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 266727).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Resultado_de_Revision', 'Autoriza_Cierre_de_Expediente');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divMotivo_de_Rechazo_Solicitud">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Motivo_de_Rechazo_Solicitud</label>
+                                <div class="col-sm-8" data-field-id="Motivo_de_Rechazo_Solicitud" data-attribute="266728" data-field-name="@Resources.SolicitudResources.Motivo_de_Rechazo_Solicitud">
+                                    <textarea id="Motivo_de_Rechazo_Solicitud" name="Motivo_de_Rechazo_Solicitud" class="form-control Resolucion_de_Solicitud" rows="4" cols="50">@Model.Motivo_de_Rechazo_Solicitud</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Motivo_de_Rechazo_Solicitud" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabResolucion_de_Procedimiento" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divFecha_de_Resolucion_Procedimiento">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Fecha_de_Resolucion_Procedimiento</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Resolucion_Procedimiento" data-attribute="269079" data-field-name="@Resources.SolicitudResources.Fecha_de_Resolucion_Procedimiento">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Resolucion_de_Procedimiento" id="Fecha_de_Resolucion_Procedimiento"  name="Fecha_de_Resolucion_Procedimiento" type="text" value="@Model.Fecha_de_Resolucion_Procedimiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Resolucion_Procedimiento">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Hora_de_Resolucion_Procedimiento</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Resolucion_Procedimiento" data-attribute="269080" data-field-name="@Resources.SolicitudResources.Hora_de_Resolucion_Procedimiento">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Resolucion_de_Procedimiento" id="Hora_de_Resolucion_Procedimiento"  name="Hora_de_Resolucion_Procedimiento" type="text" data-autoclose="true" value="@Model.Hora_de_Resolucion_Procedimiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divResolucion_de_Procedimiento">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Resolucion_de_Procedimiento</label>
+                                <div class="col-sm-8" data-field-id="Resolucion_de_Procedimiento" data-attribute="269082" data-field-name="@Resources.SolicitudResources.Resolucion_de_Procedimiento">
+                                    <select class="form-control Resolucion_de_Procedimiento" data-val="true" data-val-number="The field Resolución de Procedimiento must be a number." data-val-required="The Resolución de Procedimiento field is required." id="Resolucion_de_Procedimiento" name="Resolucion_de_Procedimiento">
+                                        <option value=""></option>
+                                        @if (varResolucion_MASC_Resolucion_de_Procedimiento != null){ 
+                                            foreach (var itemResolucion_de_Procedimiento in varResolucion_MASC_Resolucion_de_Procedimiento)
+                                            {
+                                                if (itemResolucion_de_Procedimiento.Value == Convert.ToString(Model.Resolucion_de_Procedimiento))
+                                                {
+                                                    <option value="@itemResolucion_de_Procedimiento.Value" selected>@itemResolucion_de_Procedimiento.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemResolucion_de_Procedimiento.Value">@itemResolucion_de_Procedimiento.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Resolucion_de_Procedimiento" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269082).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Resolucion_MASC', 'Resolucion_de_Procedimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+				<div class="form-group" id="divUsuario_que_Resuelve_Procedimiento">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Usuario_que_Resuelve_Procedimiento</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Resuelve_Procedimiento" data-attribute="269081" data-field-name="@Resources.SolicitudResources.Usuario_que_Resuelve_Procedimiento">
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_Usuario_que_Resuelve_Procedimiento form-control select2-dropdown Resolucion_de_Procedimiento' data-val="true" id="Usuario_que_Resuelve_Procedimiento" name="Usuario_que_Resuelve_Procedimiento">
+                                        <option value="@Model.Usuario_que_Resuelve_Procedimiento">@(Model.Usuario_que_Resuelve_ProcedimientoName??Model.Usuario_que_Resuelve_ProcedimientoName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269081).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Resuelve_Procedimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divObservaciones_Procedimiento">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Observaciones_Procedimiento</label>
+                                <div class="col-sm-8" data-field-id="Observaciones_Procedimiento" data-attribute="269083" data-field-name="@Resources.SolicitudResources.Observaciones_Procedimiento">
+                                    <textarea id="Observaciones_Procedimiento" name="Observaciones_Procedimiento" class="form-control Resolucion_de_Procedimiento" rows="4" cols="50">@Model.Observaciones_Procedimiento</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Observaciones_Procedimiento" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divFecha_de_Validacion_Procedimiento">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Fecha_de_Validacion_Procedimiento</label>
+                                <div class="col-sm-8" data-field-id="Fecha_de_Validacion_Procedimiento" data-attribute="269084" data-field-name="@Resources.SolicitudResources.Fecha_de_Validacion_Procedimiento">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input class="form-control col-md-12 Resolucion_de_Procedimiento" id="Fecha_de_Validacion_Procedimiento"  name="Fecha_de_Validacion_Procedimiento" type="text" value="@Model.Fecha_de_Validacion_Procedimiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divHora_de_Validacion_Procedimiento">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Hora_de_Validacion_Procedimiento</label>
+                                <div class="col-sm-8" data-field-id="Hora_de_Validacion_Procedimiento" data-attribute="269085" data-field-name="@Resources.SolicitudResources.Hora_de_Validacion_Procedimiento">
+                                    <div class='input-group date' id='timePicker'>
+                                        <input class="form-control col-md-12 Resolucion_de_Procedimiento" id="Hora_de_Validacion_Procedimiento"  name="Hora_de_Validacion_Procedimiento" type="text" data-autoclose="true" value="@Model.Hora_de_Validacion_Procedimiento">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+				<div class="form-group" id="divUsuario_que_Valida_Procedimiento">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Usuario_que_Valida_Procedimiento</label>
+                                <div class="col-sm-8" data-field-id="Usuario_que_Valida_Procedimiento" data-attribute="269086" data-field-name="@Resources.SolicitudResources.Usuario_que_Valida_Procedimiento">
+                                    <select class='fullWidth AutoComplete AutoCompleteSolicitud_Usuario_que_Valida_Procedimiento form-control select2-dropdown Resolucion_de_Procedimiento' data-val="true" id="Usuario_que_Valida_Procedimiento" name="Usuario_que_Valida_Procedimiento">
+                                        <option value="@Model.Usuario_que_Valida_Procedimiento">@(Model.Usuario_que_Valida_ProcedimientoName??Model.Usuario_que_Valida_ProcedimientoName)</option>
+                                    </select>
+                                </div>
+				@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269086).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Spartan_User', 'Usuario_que_Valida_Procedimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divResultado_Procedimiento">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Resultado_Procedimiento</label>
+                                <div class="col-sm-8" data-field-id="Resultado_Procedimiento" data-attribute="269087" data-field-name="@Resources.SolicitudResources.Resultado_Procedimiento">
+                                    <select class="form-control Resolucion_de_Procedimiento" data-val="true" data-val-number="The field ¿Autoriza Resolución de Procedimiento? must be a number." data-val-required="The ¿Autoriza Resolución de Procedimiento? field is required." id="Resultado_Procedimiento" name="Resultado_Procedimiento">
+                                        <option value=""></option>
+                                        @if (varResultado_de_Revision_Resultado_Procedimiento != null){ 
+                                            foreach (var itemResultado_Procedimiento in varResultado_de_Revision_Resultado_Procedimiento)
+                                            {
+                                                if (itemResultado_Procedimiento.Value == Convert.ToString(Model.Resultado_Procedimiento))
+                                                {
+                                                    <option value="@itemResultado_Procedimiento.Value" selected>@itemResultado_Procedimiento.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemResultado_Procedimiento.Value">@itemResultado_Procedimiento.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Resultado_Procedimiento" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269087).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Resultado_de_Revision', 'Resultado_Procedimiento');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divMotivo_de_Rechazo_Procedimiento">
+                                <label class="col-sm-2 control-label">@Resources.SolicitudResources.Motivo_de_Rechazo_Procedimiento</label>
+                                <div class="col-sm-8" data-field-id="Motivo_de_Rechazo_Procedimiento" data-attribute="269088" data-field-name="@Resources.SolicitudResources.Motivo_de_Rechazo_Procedimiento">
+                                    <textarea id="Motivo_de_Rechazo_Procedimiento" name="Motivo_de_Rechazo_Procedimiento" class="form-control Resolucion_de_Procedimiento" rows="4" cols="50">@Model.Motivo_de_Rechazo_Procedimiento</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Motivo_de_Rechazo_Procedimiento" data-valmsg-replace="true"></span>*@
+                                </div>
                             </div>
                             </div>
                                 </div>
@@ -1480,9 +1674,11 @@
 
 		var Tab_Hechos = true;
 
-		var Tab_Cierre = true;
-
 		var Tab_Asignacion = true;
+
+		var Tab_Resolucion_de_Solicitud = true;
+
+		var Tab_Resolucion_de_Procedimiento = true;
 
 		var Tab_Bitacora_de_Coincidencias = true;
 
@@ -1552,24 +1748,6 @@
                 format: "@ConfigurationProperty.DateFormatDatePicker"
             });
             $('#Hora_Aproximada_del_Hecho').clockpicker();
-            $('#Fecha_de_Cierre').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true,
-                format: "@ConfigurationProperty.DateFormatDatePicker"
-            });
-            $('#Hora_de_Cierre').clockpicker();
-            $('#Fecha_Validacion').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true,
-                format: "@ConfigurationProperty.DateFormatDatePicker"
-            });
-            $('#Hora_Validacion').clockpicker();
             $('#Fecha_de_AsignacionA').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
@@ -1588,6 +1766,42 @@
                 format: "@ConfigurationProperty.DateFormatDatePicker"
             });
             $('#Hora_de_Atencion_del_Especialista').clockpicker();
+            $('#Fecha_de_Cierre').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_de_Cierre').clockpicker();
+            $('#Fecha_Validacion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_Validacion').clockpicker();
+            $('#Fecha_de_Resolucion_Procedimiento').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_de_Resolucion_Procedimiento').clockpicker();
+            $('#Fecha_de_Validacion_Procedimiento').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            $('#Hora_de_Validacion_Procedimiento').clockpicker();
 
 
             initiateUIControls();
@@ -1632,6 +1846,39 @@
             minimumInputLength: 1,
         });
         var $eventExternal = $(".AutoCompleteSolicitud_Usuario_que_Registra");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteUnidad_MASCData =[];
+       $(".AutoCompleteSolicitud_Unidad_MASC").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud/GetSolicitud_Unidad_MASC_Unidad")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_Unidad_MASC_UnidadData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_Unidad_MASC");
         $eventExternal.on("select2:open", function (e) {
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
@@ -1834,6 +2081,39 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
+       var AutoCompleteUnidadData =[];
+       $(".AutoCompleteSolicitud_Unidad").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud/GetSolicitud_Unidad_Unidad")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_Unidad_UnidadData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_Unidad");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
        var AutoCompletePaisHData =[];
        $(".AutoCompleteSolicitud_PaisH").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -1999,39 +2279,6 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
-       var AutoCompleteUsuario_que_ValidaData =[];
-       $(".AutoCompleteSolicitud_Usuario_que_Valida").select2({
-            dropdownCssClass: 'fullWidth form-control',
-            ajax: {
-                url: "@Url.Content("~/Frontal/Solicitud/GetSolicitud_Usuario_que_Valida_Spartan_User")",
-		cache: false,
-                dataType: 'json',
-                async: true,
-                global: false,
-                data: function (params) {
-                    return {
-                        query: params.term, 
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: GetAutoCompleteSolicitud_Usuario_que_Valida_Spartan_UserData(data),
-                        pagination: {
-                            more: false 
-                        }
-                    };
-                }
-            },
-            escapeMarkup: function (markup) { return markup; }, 
-            minimumInputLength: 1,
-        });
-        var $eventExternal = $(".AutoCompleteSolicitud_Usuario_que_Valida");
-        $eventExternal.on("select2:open", function (e) {
-            $('.select2-search__field').val('');
-            $('.select2-search__field').keyup();
-        });
        var AutoCompleteEspecialista_AsignadoAData =[];
        $(".AutoCompleteSolicitud_Especialista_AsignadoA").select2({
             dropdownCssClass: 'fullWidth form-control',
@@ -2065,6 +2312,138 @@
             $('.select2-search__field').val('');
             $('.select2-search__field').keyup();
         });
+       var AutoCompleteUsuario_que_Resuelve_SolicitudData =[];
+       $(".AutoCompleteSolicitud_Usuario_que_Resuelve_Solicitud").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud/GetSolicitud_Usuario_que_Resuelve_Solicitud_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_Usuario_que_Resuelve_Solicitud_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_Usuario_que_Resuelve_Solicitud");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteUsuario_que_ValidaData =[];
+       $(".AutoCompleteSolicitud_Usuario_que_Valida").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud/GetSolicitud_Usuario_que_Valida_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_Usuario_que_Valida_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_Usuario_que_Valida");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteUsuario_que_Resuelve_ProcedimientoData =[];
+       $(".AutoCompleteSolicitud_Usuario_que_Resuelve_Procedimiento").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud/GetSolicitud_Usuario_que_Resuelve_Procedimiento_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_Usuario_que_Resuelve_Procedimiento_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_Usuario_que_Resuelve_Procedimiento");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
+       var AutoCompleteUsuario_que_Valida_ProcedimientoData =[];
+       $(".AutoCompleteSolicitud_Usuario_que_Valida_Procedimiento").select2({
+            dropdownCssClass: 'fullWidth form-control',
+            ajax: {
+                url: "@Url.Content("~/Frontal/Solicitud/GetSolicitud_Usuario_que_Valida_Procedimiento_Spartan_User")",
+		cache: false,
+                dataType: 'json',
+                async: true,
+                global: false,
+                data: function (params) {
+                    return {
+                        query: params.term, 
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: GetAutoCompleteSolicitud_Usuario_que_Valida_Procedimiento_Spartan_UserData(data),
+                        pagination: {
+                            more: false 
+                        }
+                    };
+                }
+            },
+            escapeMarkup: function (markup) { return markup; }, 
+            minimumInputLength: 1,
+        });
+        var $eventExternal = $(".AutoCompleteSolicitud_Usuario_que_Valida_Procedimiento");
+        $eventExternal.on("select2:open", function (e) {
+            $('.select2-search__field').val('');
+            $('.select2-search__field').keyup();
+        });
 
 
             @if(ViewBag.IsNew)
@@ -2083,11 +2462,14 @@
 				if (Tab_Hechos)
 					Fill_Hechos();
 
-				if (Tab_Cierre)
-					Fill_Cierre();
-
 				if (Tab_Asignacion)
 					Fill_Asignacion();
+
+				if (Tab_Resolucion_de_Solicitud)
+					Fill_Resolucion_de_Solicitud();
+
+				if (Tab_Resolucion_de_Procedimiento)
+					Fill_Resolucion_de_Procedimiento();
 
 				if (Tab_Bitacora_de_Coincidencias)
 					Fill_Bitacora_de_Coincidencias();
@@ -3290,11 +3672,15 @@
 				return false;
 			}						
 
-			if (Tab_Cierre && !checkClientValidate('SolicitudCreateForm', 'Cierre')) {
+			if (Tab_Asignacion && !checkClientValidate('SolicitudCreateForm', 'Asignacion')) {
 				return false;
 			}						
 
-			if (Tab_Asignacion && !checkClientValidate('SolicitudCreateForm', 'Asignacion')) {
+			if (Tab_Resolucion_de_Solicitud && !checkClientValidate('SolicitudCreateForm', 'Resolucion_de_Solicitud')) {
+				return false;
+			}						
+
+			if (Tab_Resolucion_de_Procedimiento && !checkClientValidate('SolicitudCreateForm', 'Resolucion_de_Procedimiento')) {
 				return false;
 			}						
 
@@ -3323,11 +3709,14 @@
 			if (Tab_Hechos)
 				Save_Hechos(id);
 
-			if (Tab_Cierre)
-				Save_Cierre(id);
-
 			if (Tab_Asignacion)
 				Save_Asignacion(id);
+
+			if (Tab_Resolucion_de_Solicitud)
+				Save_Resolucion_de_Solicitud(id);
+
+			if (Tab_Resolucion_de_Procedimiento)
+				Save_Resolucion_de_Procedimiento(id);
 
 			if (Tab_Bitacora_de_Coincidencias)
 				Save_Bitacora_de_Coincidencias(id);
@@ -3511,7 +3900,15 @@
 	                    control.val(result.data.Usuario_que_Registra).trigger('change');
                     }, 3000);
                     $('#Numero_de_Folio').val(result.data.Numero_de_Folio);
-                    $('#Unidad_MASC').val(result.data.Unidad_MASC);
+                    var control = $('#Unidad_MASC');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Unidad_MASC).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Unidad_MASC).trigger('change');
+                    }, 3000);
                     $('#Remitente').val(result.data.Remitente);
                     var control = $('#NUAT');
                     control.select2('open');
@@ -3639,7 +4036,15 @@
 	                    control.val(result.data.Agente_del_Ministerio_Publico_Invest).trigger('change');
                     }, 3000);
                     $('#Juez_de_Control').val(result.data.Juez_de_Control);
-                    $('#Unidad').val(result.data.Unidad);
+                    var control = $('#Unidad');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Unidad).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Unidad).trigger('change');
+                    }, 3000);
 
                 },
                 error: function (result) {
@@ -3799,82 +4204,6 @@
 			});
 		}
 
-		function Fill_Cierre()
-        {
-            $.ajax({
-                url: "@Url.Content("~/Frontal/Solicitud/Get_Cierre")?Id=" + $("#ReferenceClave").val(),
-                type: 'GET',
-                dataType: "json",
-                async: false,
-                success: function (result) {
-                                        $('#Clave').val(result.data.Clave);
-                    $('#Rechazar').prop('checked', result.data.Rechazar);
-                    $('#Motivo_de_Rechazo').val(result.data.Motivo_de_Rechazo);
-                    $('#Acuerdo_Cumplido').val(result.data.Acuerdo_Cumplido);
-                    $('#Razon_de_Incumplimiento').val(result.data.Razon_de_Incumplimiento);
-                    $('#Tipo_de_Conclusion_Anticipada').val(result.data.Tipo_de_Conclusion_Anticipada);
-                    $('#Fecha_de_Cierre').val(result.data.Fecha_de_Cierre);
-                    $('#Hora_de_Cierre').val(result.data.Hora_de_Cierre);
-                    $('#Fecha_Validacion').val(result.data.Fecha_Validacion);
-                    $('#Hora_Validacion').val(result.data.Hora_Validacion);
-                    var control = $('#Usuario_que_Valida');
-                    control.select2('open');
-                    $('.select2-search__field').val(result.data.Usuario_que_Valida).trigger('keyup');
-                    control.select2('close');
-                    setTimeout(function () {
-	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
-	                    control.select2({ data: data });
-	                    control.val(result.data.Usuario_que_Valida).trigger('change');
-                    }, 3000);
-                    $('#Resultado').val(result.data.Resultado);
-                    $('#Motivo_de_Rechazo_Solicitud').val(result.data.Motivo_de_Rechazo_Solicitud);
-
-                },
-                error: function (result) {
-                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
-                }
-            });
-        }
-		
-		function Save_Cierre(newId) {
-			var data = new FormData();
-			data.append('Clave', newId);
-			                data.append('Rechazar', $('#Rechazar').prop('checked'));
-                data.append('Motivo_de_Rechazo', $('#Motivo_de_Rechazo').val());
-                data.append('Acuerdo_Cumplido', $('#Acuerdo_Cumplido').val());
-                data.append('Razon_de_Incumplimiento', $('#Razon_de_Incumplimiento').val());
-                data.append('Tipo_de_Conclusion_Anticipada', $('#Tipo_de_Conclusion_Anticipada').val());
-                data.append('Fecha_de_Cierre', $('#Fecha_de_Cierre').val());
-                data.append('Hora_de_Cierre', $('#Hora_de_Cierre').val());
-                data.append('Fecha_Validacion', $('#Fecha_Validacion').val());
-                data.append('Hora_Validacion', $('#Hora_Validacion').val());
-                data.append('Usuario_que_Valida', $('#Usuario_que_Valida').val());
-                data.append('Resultado', $('#Resultado').val());
-                data.append('Motivo_de_Rechazo_Solicitud', $('#Motivo_de_Rechazo_Solicitud').val());
-
-			$.ajax({
-				url: '@Url.Content("~/Frontal/Solicitud/Post_Cierre")',
-				type: 'POST',
-				data: data,
-				async: false,
-				dataType: "json",
-				contentType: false,
-				processData: false,
-				success: function (result) {
-					if (result < 0) {
-						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Cierre");
-					} else {
-						newId = result;
-                    
-					}
-				},
-				error: function (result) {
-					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Cierre");
-				},
-				cache: false
-			});
-		}
-
 		function Fill_Asignacion()
         {
             $.ajax({
@@ -3896,7 +4225,6 @@
                     $('#Motivo_cambio_facilitador').val(result.data.Motivo_cambio_facilitador);
                     $('#Asignar_Especialista_Automatico').prop('checked', result.data.Asignar_Especialista_Automatico);
                     $('#Razone').val(result.data.Razone);
-                    $('#Tipo_de_Mecanismo').val(result.data.Tipo_de_Mecanismo);
                     $('#Fecha_de_AsignacionA').val(result.data.Fecha_de_AsignacionA);
                     $('#Hora_de_AsignacionA').val(result.data.Hora_de_AsignacionA);
                     $('#Fecha_de_Atencion_del_Especialista').val(result.data.Fecha_de_Atencion_del_Especialista);
@@ -3920,7 +4248,6 @@
                 data.append('Motivo_cambio_facilitador', $('#Motivo_cambio_facilitador').val());
                 data.append('Asignar_Especialista_Automatico', $('#Asignar_Especialista_Automatico').prop('checked'));
                 data.append('Razone', $('#Razone').val());
-                data.append('Tipo_de_Mecanismo', $('#Tipo_de_Mecanismo').val());
                 data.append('Fecha_de_AsignacionA', $('#Fecha_de_AsignacionA').val());
                 data.append('Hora_de_AsignacionA', $('#Hora_de_AsignacionA').val());
                 data.append('Fecha_de_Atencion_del_Especialista', $('#Fecha_de_Atencion_del_Especialista').val());
@@ -3945,6 +4272,178 @@
 				},
 				error: function (result) {
 					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Asignacion");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Resolucion_de_Solicitud()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Solicitud/Get_Resolucion_de_Solicitud")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Rechazar').prop('checked', result.data.Rechazar);
+                    $('#Motivo_de_Rechazo').val(result.data.Motivo_de_Rechazo);
+                    $('#Acuerdo_Cumplido').val(result.data.Acuerdo_Cumplido);
+                    $('#Razon_de_Incumplimiento').val(result.data.Razon_de_Incumplimiento);
+                    $('#Tipo_de_Conclusion_Anticipada').val(result.data.Tipo_de_Conclusion_Anticipada);
+                    $('#Fecha_de_Cierre').val(result.data.Fecha_de_Cierre);
+                    $('#Hora_de_Cierre').val(result.data.Hora_de_Cierre);
+                    var control = $('#Usuario_que_Resuelve_Solicitud');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Resuelve_Solicitud).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Resuelve_Solicitud).trigger('change');
+                    }, 3000);
+                    $('#Resolucion_Solicitud').val(result.data.Resolucion_Solicitud);
+                    $('#Tipo_de_Mecanismo').val(result.data.Tipo_de_Mecanismo);
+                    $('#Observaciones_Solicitud').val(result.data.Observaciones_Solicitud);
+                    $('#Fecha_Validacion').val(result.data.Fecha_Validacion);
+                    $('#Hora_Validacion').val(result.data.Hora_Validacion);
+                    var control = $('#Usuario_que_Valida');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Valida).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Valida).trigger('change');
+                    }, 3000);
+                    $('#Autoriza_Cierre_de_Expediente').val(result.data.Autoriza_Cierre_de_Expediente);
+                    $('#Motivo_de_Rechazo_Solicitud').val(result.data.Motivo_de_Rechazo_Solicitud);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Resolucion_de_Solicitud(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Rechazar', $('#Rechazar').prop('checked'));
+                data.append('Motivo_de_Rechazo', $('#Motivo_de_Rechazo').val());
+                data.append('Acuerdo_Cumplido', $('#Acuerdo_Cumplido').val());
+                data.append('Razon_de_Incumplimiento', $('#Razon_de_Incumplimiento').val());
+                data.append('Tipo_de_Conclusion_Anticipada', $('#Tipo_de_Conclusion_Anticipada').val());
+                data.append('Fecha_de_Cierre', $('#Fecha_de_Cierre').val());
+                data.append('Hora_de_Cierre', $('#Hora_de_Cierre').val());
+                data.append('Usuario_que_Resuelve_Solicitud', $('#Usuario_que_Resuelve_Solicitud').val());
+                data.append('Resolucion_Solicitud', $('#Resolucion_Solicitud').val());
+                data.append('Tipo_de_Mecanismo', $('#Tipo_de_Mecanismo').val());
+                data.append('Observaciones_Solicitud', $('#Observaciones_Solicitud').val());
+                data.append('Fecha_Validacion', $('#Fecha_Validacion').val());
+                data.append('Hora_Validacion', $('#Hora_Validacion').val());
+                data.append('Usuario_que_Valida', $('#Usuario_que_Valida').val());
+                data.append('Autoriza_Cierre_de_Expediente', $('#Autoriza_Cierre_de_Expediente').val());
+                data.append('Motivo_de_Rechazo_Solicitud', $('#Motivo_de_Rechazo_Solicitud').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Solicitud/Post_Resolucion_de_Solicitud")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Resolucion_de_Solicitud");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Resolucion_de_Solicitud");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Resolucion_de_Procedimiento()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Solicitud/Get_Resolucion_de_Procedimiento")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Fecha_de_Resolucion_Procedimiento').val(result.data.Fecha_de_Resolucion_Procedimiento);
+                    $('#Hora_de_Resolucion_Procedimiento').val(result.data.Hora_de_Resolucion_Procedimiento);
+                    $('#Resolucion_de_Procedimiento').val(result.data.Resolucion_de_Procedimiento);
+                    var control = $('#Usuario_que_Resuelve_Procedimiento');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Resuelve_Procedimiento).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Resuelve_Procedimiento).trigger('change');
+                    }, 3000);
+                    $('#Observaciones_Procedimiento').val(result.data.Observaciones_Procedimiento);
+                    $('#Fecha_de_Validacion_Procedimiento').val(result.data.Fecha_de_Validacion_Procedimiento);
+                    $('#Hora_de_Validacion_Procedimiento').val(result.data.Hora_de_Validacion_Procedimiento);
+                    var control = $('#Usuario_que_Valida_Procedimiento');
+                    control.select2('open');
+                    $('.select2-search__field').val(result.data.Usuario_que_Valida_Procedimiento).trigger('keyup');
+                    control.select2('close');
+                    setTimeout(function () {
+	                    var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+	                    control.select2({ data: data });
+	                    control.val(result.data.Usuario_que_Valida_Procedimiento).trigger('change');
+                    }, 3000);
+                    $('#Resultado_Procedimiento').val(result.data.Resultado_Procedimiento);
+                    $('#Motivo_de_Rechazo_Procedimiento').val(result.data.Motivo_de_Rechazo_Procedimiento);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Resolucion_de_Procedimiento(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Fecha_de_Resolucion_Procedimiento', $('#Fecha_de_Resolucion_Procedimiento').val());
+                data.append('Hora_de_Resolucion_Procedimiento', $('#Hora_de_Resolucion_Procedimiento').val());
+                data.append('Resolucion_de_Procedimiento', $('#Resolucion_de_Procedimiento').val());
+                data.append('Usuario_que_Resuelve_Procedimiento', $('#Usuario_que_Resuelve_Procedimiento').val());
+                data.append('Observaciones_Procedimiento', $('#Observaciones_Procedimiento').val());
+                data.append('Fecha_de_Validacion_Procedimiento', $('#Fecha_de_Validacion_Procedimiento').val());
+                data.append('Hora_de_Validacion_Procedimiento', $('#Hora_de_Validacion_Procedimiento').val());
+                data.append('Usuario_que_Valida_Procedimiento', $('#Usuario_que_Valida_Procedimiento').val());
+                data.append('Resultado_Procedimiento', $('#Resultado_Procedimiento').val());
+                data.append('Motivo_de_Rechazo_Procedimiento', $('#Motivo_de_Rechazo_Procedimiento').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Solicitud/Post_Resolucion_de_Procedimiento")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Resolucion_de_Procedimiento");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Resolucion_de_Procedimiento");
 				},
 				cache: false
 			});

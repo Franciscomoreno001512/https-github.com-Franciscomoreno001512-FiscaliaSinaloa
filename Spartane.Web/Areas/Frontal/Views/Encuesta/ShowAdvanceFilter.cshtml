@@ -3,9 +3,9 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.EncuestaAdvanceSearchModel
 @{
-    List<SelectListItem> varEstatus_Modulo = null;
-    if (ViewBag.Estatuss_Modulo != null)
-    { varEstatus_Modulo = (List<SelectListItem>)ViewBag.Estatuss_Modulo; }
+    List<SelectListItem> varModulo_Encuesta_Modulo = null;
+    if (ViewBag.Modulo_Encuestas_Modulo != null)
+    { varModulo_Encuesta_Modulo = (List<SelectListItem>)ViewBag.Modulo_Encuestas_Modulo; }
     List<SelectListItem> varCatalogo_Numero_de_Preguntas_Numero_de_Preguntas = null;
     if (ViewBag.Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null)
     { varCatalogo_Numero_de_Preguntas_Numero_de_Preguntas = (List<SelectListItem>)ViewBag.Catalogo_Numero_de_Preguntass_Numero_de_Preguntas; }
@@ -65,9 +65,9 @@
                     @Html.DropDownListFor(m => m.ModuloFilter, filters, new { @class = "form-control", @id = "ddlModuloFilter" })
                     @Html.TextBoxFor(m => m.AdvanceModulo, new { @class = "form-control", @type = "text", @id = "txtAdvanceModulo" })
                     <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varEstatus_Modulo!=null)
+                    @if (varModulo_Encuesta_Modulo!=null)
                     {
-                        @Html.ListBoxFor(m => m.AdvanceModuloMultiple, varEstatus_Modulo,
+                        @Html.ListBoxFor(m => m.AdvanceModuloMultiple, varModulo_Encuesta_Modulo,
                         new
                         {
                             @class = "form-control chosen-select",

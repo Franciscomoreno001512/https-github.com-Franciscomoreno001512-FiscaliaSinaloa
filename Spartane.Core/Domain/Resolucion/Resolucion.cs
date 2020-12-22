@@ -22,6 +22,8 @@ namespace Spartane.Core.Domain.Resolucion
         public int? Tipo { get; set; }
         public int? Resolucion_Padre_para_Autorizacion { get; set; }
         public bool? Generar_Judicializacion { get; set; }
+        public string ClaveFiscalia { get; set; }
+        public bool? Aplica_para_Adolescentes { get; set; }
 
         [ForeignKey("Tipo")]
         public virtual Spartane.Core.Domain.Tipo_de_Resolucion.Tipo_de_Resolucion Tipo_Tipo_de_Resolucion { get; set; }
@@ -37,6 +39,8 @@ namespace Spartane.Core.Domain.Resolucion
         public int? Tipo { get; set; }
         public int? Resolucion_Padre_para_Autorizacion { get; set; }
         public bool? Generar_Judicializacion { get; set; }
+        public string ClaveFiscalia { get; set; }
+        public bool? Aplica_para_Adolescentes { get; set; }
 
 		        [ForeignKey("Tipo")]
         public virtual Spartane.Core.Domain.Tipo_de_Resolucion.Tipo_de_Resolucion Tipo_Tipo_de_Resolucion { get; set; }
