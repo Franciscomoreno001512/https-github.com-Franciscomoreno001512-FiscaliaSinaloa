@@ -12,6 +12,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public ResolucionAdvanceSearchModel()
         {
             Generar_Judicializacion = RadioOptions.NoApply;
+            Aplica_para_Adolescentes = RadioOptions.NoApply;
 
         }
         [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
@@ -32,6 +33,11 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int[] AdvanceResolucion_Padre_para_AutorizacionMultiple { set; get; }
 
         public RadioOptions Generar_Judicializacion { set; get; }
+
+        public Filters ClaveFiscaliaFilter { set; get; }
+        public string ClaveFiscalia { set; get; }
+
+        public RadioOptions Aplica_para_Adolescentes { set; get; }
 
 
     }

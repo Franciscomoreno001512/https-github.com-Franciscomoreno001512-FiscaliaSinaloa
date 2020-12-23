@@ -47,6 +47,10 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceModulo { set; get; }
         public int[] AdvanceModuloMultiple { set; get; }
 
+        public Filters Tipo_EncuestaFilter { set; get; }
+        public string AdvanceTipo_Encuesta { set; get; }
+        public int[] AdvanceTipo_EncuestaMultiple { set; get; }
+
         public Filters Numero_de_PreguntasFilter { set; get; }
         public string AdvanceNumero_de_Preguntas { set; get; }
         public int[] AdvanceNumero_de_PreguntasMultiple { set; get; }

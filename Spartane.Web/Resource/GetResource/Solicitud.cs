@@ -436,6 +436,96 @@ namespace Resources
             }
         }
 
+        /// <summary>Especialista_AsignadoA</summary>
+        public static string Especialista_AsignadoA
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Especialista_AsignadoA", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Motivo_cambio_facilitador</summary>
+        public static string Motivo_cambio_facilitador
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Motivo_cambio_facilitador", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Asignar_Especialista_Automatico</summary>
+        public static string Asignar_Especialista_Automatico
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Asignar_Especialista_Automatico", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Razone</summary>
+        public static string Razone
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Razone", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Fecha_de_AsignacionA</summary>
+        public static string Fecha_de_AsignacionA
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Fecha_de_AsignacionA", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_de_AsignacionA</summary>
+        public static string Hora_de_AsignacionA
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Hora_de_AsignacionA", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Fecha_de_Atencion_del_Especialista</summary>
+        public static string Fecha_de_Atencion_del_Especialista
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Fecha_de_Atencion_del_Especialista", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Hora_de_Atencion_del_Especialista</summary>
+        public static string Hora_de_Atencion_del_Especialista
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Hora_de_Atencion_del_Especialista", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Historial_de_Asignaciones</summary>
+        public static string Historial_de_Asignaciones
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Historial_de_Asignaciones", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Rechazar</summary>
         public static string Rechazar
         {
@@ -506,6 +596,46 @@ namespace Resources
             }
         }
 
+        /// <summary>Usuario_que_Resuelve_Solicitud</summary>
+        public static string Usuario_que_Resuelve_Solicitud
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Usuario_que_Resuelve_Solicitud", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Resolucion_Solicitud</summary>
+        public static string Resolucion_Solicitud
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Resolucion_Solicitud", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Tipo_de_Mecanismo</summary>
+        public static string Tipo_de_Mecanismo
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Tipo_de_Mecanismo", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Observaciones_Solicitud</summary>
+        public static string Observaciones_Solicitud
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderSolicitud.GetResource("Observaciones_Solicitud", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Fecha_Validacion</summary>
         public static string Fecha_Validacion
         {
@@ -536,13 +666,13 @@ namespace Resources
             }
         }
 
-        /// <summary>Resultado</summary>
-        public static string Resultado
+        /// <summary>Autoriza_Cierre_de_Expediente</summary>
+        public static string Autoriza_Cierre_de_Expediente
         {
             get
             {
                 SetPath();
-                return resourceProviderSolicitud.GetResource("Resultado", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderSolicitud.GetResource("Autoriza_Cierre_de_Expediente", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -556,103 +686,103 @@ namespace Resources
             }
         }
 
-        /// <summary>Especialista_AsignadoA</summary>
-        public static string Especialista_AsignadoA
+        /// <summary>Fecha_de_Resolucion_Procedimiento</summary>
+        public static string Fecha_de_Resolucion_Procedimiento
         {
             get
             {
                 SetPath();
-                return resourceProviderSolicitud.GetResource("Especialista_AsignadoA", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderSolicitud.GetResource("Fecha_de_Resolucion_Procedimiento", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Motivo_cambio_facilitador</summary>
-        public static string Motivo_cambio_facilitador
+        /// <summary>Hora_de_Resolucion_Procedimiento</summary>
+        public static string Hora_de_Resolucion_Procedimiento
         {
             get
             {
                 SetPath();
-                return resourceProviderSolicitud.GetResource("Motivo_cambio_facilitador", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderSolicitud.GetResource("Hora_de_Resolucion_Procedimiento", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Asignar_Especialista_Automatico</summary>
-        public static string Asignar_Especialista_Automatico
+        /// <summary>Resolucion_de_Procedimiento</summary>
+        public static string Resolucion_de_Procedimiento
         {
             get
             {
                 SetPath();
-                return resourceProviderSolicitud.GetResource("Asignar_Especialista_Automatico", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderSolicitud.GetResource("Resolucion_de_Procedimiento", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Razone</summary>
-        public static string Razone
+        /// <summary>Usuario_que_Resuelve_Procedimiento</summary>
+        public static string Usuario_que_Resuelve_Procedimiento
         {
             get
             {
                 SetPath();
-                return resourceProviderSolicitud.GetResource("Razone", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderSolicitud.GetResource("Usuario_que_Resuelve_Procedimiento", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Tipo_de_Mecanismo</summary>
-        public static string Tipo_de_Mecanismo
+        /// <summary>Observaciones_Procedimiento</summary>
+        public static string Observaciones_Procedimiento
         {
             get
             {
                 SetPath();
-                return resourceProviderSolicitud.GetResource("Tipo_de_Mecanismo", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderSolicitud.GetResource("Observaciones_Procedimiento", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Fecha_de_AsignacionA</summary>
-        public static string Fecha_de_AsignacionA
+        /// <summary>Fecha_de_Validacion_Procedimiento</summary>
+        public static string Fecha_de_Validacion_Procedimiento
         {
             get
             {
                 SetPath();
-                return resourceProviderSolicitud.GetResource("Fecha_de_AsignacionA", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderSolicitud.GetResource("Fecha_de_Validacion_Procedimiento", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Hora_de_AsignacionA</summary>
-        public static string Hora_de_AsignacionA
+        /// <summary>Hora_de_Validacion_Procedimiento</summary>
+        public static string Hora_de_Validacion_Procedimiento
         {
             get
             {
                 SetPath();
-                return resourceProviderSolicitud.GetResource("Hora_de_AsignacionA", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderSolicitud.GetResource("Hora_de_Validacion_Procedimiento", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Fecha_de_Atencion_del_Especialista</summary>
-        public static string Fecha_de_Atencion_del_Especialista
+        /// <summary>Usuario_que_Valida_Procedimiento</summary>
+        public static string Usuario_que_Valida_Procedimiento
         {
             get
             {
                 SetPath();
-                return resourceProviderSolicitud.GetResource("Fecha_de_Atencion_del_Especialista", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderSolicitud.GetResource("Usuario_que_Valida_Procedimiento", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Hora_de_Atencion_del_Especialista</summary>
-        public static string Hora_de_Atencion_del_Especialista
+        /// <summary>Resultado_Procedimiento</summary>
+        public static string Resultado_Procedimiento
         {
             get
             {
                 SetPath();
-                return resourceProviderSolicitud.GetResource("Hora_de_Atencion_del_Especialista", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderSolicitud.GetResource("Resultado_Procedimiento", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
-        /// <summary>Historial_de_Asignaciones</summary>
-        public static string Historial_de_Asignaciones
+        /// <summary>Motivo_de_Rechazo_Procedimiento</summary>
+        public static string Motivo_de_Rechazo_Procedimiento
         {
             get
             {
                 SetPath();
-                return resourceProviderSolicitud.GetResource("Historial_de_Asignaciones", CultureInfo.CurrentUICulture.Name) as String;
+                return resourceProviderSolicitud.GetResource("Motivo_de_Rechazo_Procedimiento", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
 
@@ -680,8 +810,9 @@ namespace Resources
 	/// <summary>Solicitud</summary>	public static string TabSolicitud 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabSolicitud", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Control</summary>	public static string TabControl 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabControl", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Hechos</summary>	public static string TabHechos 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabHechos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
-	/// <summary>Cierre</summary>	public static string TabCierre 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabCierre", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Asignación</summary>	public static string TabAsignacion 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabAsignacion", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Resolución de Solicitud</summary>	public static string TabResolucion_de_Solicitud 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabResolucion_de_Solicitud", CultureInfo.CurrentUICulture.Name) as String;             		}	}
+	/// <summary>Resolución de Procedimiento</summary>	public static string TabResolucion_de_Procedimiento 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabResolucion_de_Procedimiento", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Bitácora de Coincidencias</summary>	public static string TabBitacora_de_Coincidencias 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabBitacora_de_Coincidencias", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 	/// <summary>Historial de Movimientos</summary>	public static string TabHistorial_de_Movimientos 	{		get		{			SetPath();  			return resourceProviderSolicitud.GetResource("TabHistorial_de_Movimientos", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

@@ -1,0 +1,596 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Registro_de_Mandamiento_JudicialGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Folio_de_la_Orden_de_Aprehension
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Pais_al_que_Pertenece_la_Informacion
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Estado_que_Envia_la_Informacion
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Municipio_que_Envia_la_Informacion
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Institucion_que_Remite
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Entidad_que_Emite_Mandamiento
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Juzgado_que_Emitio_Mandamiento
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Numero_de_Mandamiento
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Oficio_de_Juzgado
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Nombre
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Alias
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Apellido_Paterno
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Apellido_Materno
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Nacimiento
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Edad
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Estatura
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Peso
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Usa_Anteojos
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Sexo
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Estado_Civil
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Tipo_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Numero_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Nacionalidad
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Escolaridad
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Ocupacion
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Pais_de_Nacimiento
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Estado_de_Nacimiento
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Tipo_de_Orden
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Orden
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Hora_de_Orden
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Dirigida_Por
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Ambito
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Juzgado
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Juez
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Especialidad
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Numero_de_Causa
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Oficio
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Tipo_de_Cuantia
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Observaciones
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Forma_Cara
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Cejas
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Cantidad_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Implantacion_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Complexion
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Color_Piel
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Frente
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Forma_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Color_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Calvicie
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Color_Ojos
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Ojos
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Forma_Ojos
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Nariz_Base
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Labios
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Boca
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Menton
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Barba
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Forma_Orejas
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Tamano_Orejas
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Tipo_Lobulo
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Bigote
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Situacion_Fisica
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Libramiento
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Fuerzo
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Tipo_Mandato
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Numero_de_Proceso_Judicial
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Numero_de_Averiguacion
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Captura
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Recepcion
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Prescripcion
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Cumplimiento
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Oficio_de_Cumplimiento
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Fecha_de_Cancelacion
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Motivo_de_Cancelacion
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Oficio_de_Cancelacion
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Tipo_de_Proceso
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Proceso_de_Extradiccion
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Observacionesx
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Huellas_Digitales
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Mano_Izquierda_dedos
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Mano_Derecha_Pulgar
+            </td>
+            <td class="column1">
+                @Resources.Registro_de_Mandamiento_JudicialResources.Mano_Derecha_Dedos
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Folio_de_la_Orden_de_Aprehension
+                    </td>
+                    <td>
+                        @item.Pais_al_que_Pertenece_la_Informacion
+                    </td>
+                    <td>
+                        @item.Estado_que_Envia_la_Informacion
+                    </td>
+                    <td>
+                        @item.Municipio_que_Envia_la_Informacion
+                    </td>
+                    <td>
+                        @item.Institucion_que_RemiteNombre
+                    </td>
+                    <td>
+                        @item.Entidad_que_Emite_Mandamiento
+                    </td>
+                    <td>
+                        @item.Juzgado_que_Emitio_MandamientoNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Mandamiento
+                    </td>
+                    <td>
+                        @item.Oficio_de_Juzgado
+                    </td>
+                    <td>
+                        @item.Nombre
+                    </td>
+                    <td>
+                        @item.Alias
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno
+                    </td>
+                    <td>
+                        @item.Apellido_Materno
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento
+                    </td>
+                    <td>
+                        @item.Edad
+                    </td>
+                    <td>
+                        @item.Estatura
+                    </td>
+                    <td>
+                        @item.Peso
+                    </td>
+                    <td>
+                        @item.Usa_Anteojos
+                    </td>
+                    <td>
+                        @item.SexoDescripcion
+                    </td>
+                    <td>
+                        @item.Estado_CivilDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_IdentificacionNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion
+                    </td>
+                    <td>
+                        @item.Nacionalidad
+                    </td>
+                    <td>
+                        @item.EscolaridadDescripcion
+                    </td>
+                    <td>
+                        @item.OcupacionDescripcion
+                    </td>
+                    <td>
+                        @item.Pais_de_Nacimiento
+                    </td>
+                    <td>
+                        @item.Estado_de_Nacimiento
+                    </td>
+                    <td>
+                        @item.Tipo_de_OrdenTipo_de_Ordenx
+                    </td>
+                    <td>
+                        @item.Fecha_de_Orden
+                    </td>
+                    <td>
+                        @item.Hora_de_Orden
+                    </td>
+                    <td>
+                        @item.Dirigida_Por
+                    </td>
+                    <td>
+                        @item.AmbitoAmbitox
+                    </td>
+                    <td>
+                        @item.JuzgadoNombre
+                    </td>
+                    <td>
+                        @item.Juez
+                    </td>
+                    <td>
+                        @item.EspecialidadDescripcion
+                    </td>
+                    <td>
+                        @item.Numero_de_Causa
+                    </td>
+                    <td>
+                        @item.Fecha_de_Oficio
+                    </td>
+                    <td>
+                        @item.Tipo_de_CuantiaDescripcion
+                    </td>
+                    <td>
+                        @item.Observaciones
+                    </td>
+                    <td>
+                        @item.Forma_CaraDescripcion
+                    </td>
+                    <td>
+                        @item.CejasDescripcion
+                    </td>
+                    <td>
+                        @item.Cantidad_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.Implantacion_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.ComplexionDescripcion
+                    </td>
+                    <td>
+                        @item.Color_PielDescrpicion
+                    </td>
+                    <td>
+                        @item.FrenteDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.Color_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.CalvicieDescripcion
+                    </td>
+                    <td>
+                        @item.Color_OjosDescripcion
+                    </td>
+                    <td>
+                        @item.OjosDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_OjosDescripcion
+                    </td>
+                    <td>
+                        @item.Nariz_BaseDescripcion
+                    </td>
+                    <td>
+                        @item.LabiosDescripcion
+                    </td>
+                    <td>
+                        @item.BocaDescripcion
+                    </td>
+                    <td>
+                        @item.MentonDescripcion
+                    </td>
+                    <td>
+                        @item.BarbaDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_OrejasDescripcion
+                    </td>
+                    <td>
+                        @item.Tamano_OrejasDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_LobuloDescripcion
+                    </td>
+                    <td>
+                        @item.BigoteDescripcion
+                    </td>
+                    <td>
+                        @item.Situacion_FisicaDescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_de_Libramiento
+                    </td>
+                    <td>
+                        @item.FuerzoDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_MandatoDescripcion
+                    </td>
+                    <td>
+                        @item.Numero_de_Proceso_Judicial
+                    </td>
+                    <td>
+                        @item.Numero_de_Averiguacion
+                    </td>
+                    <td>
+                        @item.Fecha_de_Captura
+                    </td>
+                    <td>
+                        @item.Fecha_de_Recepcion
+                    </td>
+                    <td>
+                        @item.Fecha_de_Prescripcion
+                    </td>
+                    <td>
+                        @item.Fecha_de_Cumplimiento
+                    </td>
+                    <td>
+                        @item.Oficio_de_Cumplimiento
+                    </td>
+                    <td>
+                        @item.Fecha_de_Cancelacion
+                    </td>
+                    <td>
+                        @item.Motivo_de_CancelacionDescripcion
+                    </td>
+                    <td>
+                        @item.Oficio_de_Cancelacion
+                    </td>
+                    <td>
+                        @item.Tipo_de_ProcesoDescripcion
+                    </td>
+                    <td>
+                        @item.Proceso_de_ExtradiccionDescripcion
+                    </td>
+                    <td>
+                        @item.Observacionesx
+                    </td>
+                    <td>
+                        @item.Huellas_Digitales
+                    </td>
+                    <td>
+                        @item.Mano_Izquierda_dedos
+                    </td>
+                    <td>
+                        @item.Mano_Derecha_Pulgar
+                    </td>
+                    <td>
+                        @item.Mano_Derecha_Dedos
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

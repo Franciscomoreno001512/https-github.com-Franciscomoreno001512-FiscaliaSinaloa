@@ -35,11 +35,14 @@ namespace Spartane.Web.Areas.WebApiConsumer.Solicitud
 		ApiResponse<int> Update_Hechos(Spartane.Core.Domain.Solicitud.Solicitud_Hechos entity);
 		ApiResponse<Spartane.Core.Domain.Solicitud.Solicitud_Hechos> Get_Hechos(string Key);
 
-		ApiResponse<int> Update_Cierre(Spartane.Core.Domain.Solicitud.Solicitud_Cierre entity);
-		ApiResponse<Spartane.Core.Domain.Solicitud.Solicitud_Cierre> Get_Cierre(string Key);
-
 		ApiResponse<int> Update_Asignacion(Spartane.Core.Domain.Solicitud.Solicitud_Asignacion entity);
 		ApiResponse<Spartane.Core.Domain.Solicitud.Solicitud_Asignacion> Get_Asignacion(string Key);
+
+		ApiResponse<int> Update_Resolucion_de_Solicitud(Spartane.Core.Domain.Solicitud.Solicitud_Resolucion_de_Solicitud entity);
+		ApiResponse<Spartane.Core.Domain.Solicitud.Solicitud_Resolucion_de_Solicitud> Get_Resolucion_de_Solicitud(string Key);
+
+		ApiResponse<int> Update_Resolucion_de_Procedimiento(Spartane.Core.Domain.Solicitud.Solicitud_Resolucion_de_Procedimiento entity);
+		ApiResponse<Spartane.Core.Domain.Solicitud.Solicitud_Resolucion_de_Procedimiento> Get_Resolucion_de_Procedimiento(string Key);
 
 		ApiResponse<int> Update_Bitacora_de_Coincidencias(Spartane.Core.Domain.Solicitud.Solicitud_Bitacora_de_Coincidencias entity);
 		ApiResponse<Spartane.Core.Domain.Solicitud.Solicitud_Bitacora_de_Coincidencias> Get_Bitacora_de_Coincidencias(string Key);

@@ -33,6 +33,14 @@ namespace Spartane.Web.SqlModelMapper
                     return "Detalle_Resumen_Denuncia.Generado";
                 case "Archivo_Descargado":
                     return "Detalle_Resumen_Denuncia.Archivo_Descargado";
+                case "Usuario_que_registra[Name]":
+                case "Usuario_que_registraName":
+                    return "Spartan_User.Name";
+                case "Documento[Descripcion]":
+                case "DocumentoDescripcion":
+                    return "Documento.Descripcion";
+                case "Archivo":
+                    return "Detalle_Resumen_Denuncia.Archivo";
                 case "Fecha_de_registro":
                     return "Detalle_Resumen_Denuncia.Fecha_de_registro";
                 case "Hora_de_registro":

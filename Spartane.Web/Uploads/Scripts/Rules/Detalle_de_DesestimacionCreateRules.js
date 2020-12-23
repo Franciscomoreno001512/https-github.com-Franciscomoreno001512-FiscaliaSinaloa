@@ -157,6 +157,12 @@ if(operation == 'Update'){
 }
 //BusinessRuleId:2601, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+//INI COD-MAN PARA ENVIAR CORREO DE ENCUESTA
+if(operation == 'Update' || operation == 'New'){
+if( EvaluaQuery("SELECT Correo_Electronico from Detalle_de_Datos_Generales where Modulo_Atencion_Inicial = FLD[Modulo_Atencion_Inicial] and Tipo_de_Compareciente = 1",rowIndex, nameOfTable)!=TryParseInt('NULL', 'NULL') ) { SendEmailQuery('Envio de Encuesta', EvaluaQuery(" SELECT Correo_Electronico from Detalle_de_Datos_Generales where Modulo_Atencion_Inicial = FLD[Modulo_Atencion_Inicial] and Tipo_de_Compareciente = 1"), EvaluaQuery("EXEC dbo.UspGeneraLinkEncuesta 1, FLD[Modulo_Atencion_Inicial], 1"),rowIndex,nameOfTable); alert(DecodifyText('Envío de encuesta.', rowIndex, nameOfTable));} else { alert(DecodifyText('No tiene correo electrónico configurado, por lo que no podrá contestar encuestas.', rowIndex, nameOfTable));}
+}
+//END COD-MAN PARA ENVIAR CORREO DE ENCUESTA
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

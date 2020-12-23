@@ -1,0 +1,512 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Probable_Responsable_PCGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Solicitud
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Tipo_de_Solicitud
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Tiene_informacion_responsable
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Quien_Resulte_Responsable
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Persona_moral
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Nombres
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Apellido_Paterno
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Apellido_Materno
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Nombre_Completo
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Alias
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Fecha_de_Nacimiento
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Edad
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Sexo
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Estado_Civil
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Tipo_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Numero_de_Identificacion
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Fotografia_de_la_identificacion
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.CURP
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.RFC
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Tiene_informacion__domicilio
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Pais
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Estado
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Municipio
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Poblacion
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Colonia
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Codigo_Postal
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Calle_del_Imputado
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Numero_Exterior
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Numero_Interior
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Referencia_de_Domicilio
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Latitud
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Longitud
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Peso
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Estatura
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Padecimiento_de_Enfermedad
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Forma_Cara
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Tipo_de_Cejas
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Tamano_de_Cejas
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Largo_de_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Cantidad_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Implantacion_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Complexion
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Color_Piel
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Frente
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Forma_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Color_Cabello
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Calvicie
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Color_Ojos
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Tamano_de_Ojos
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Forma_Ojos
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Anteojos
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Forma_de_Nariz
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Tamano_Nariz
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Labios
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Boca
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Grosor_de_Labios
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Menton
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Forma_de_Menton
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Barba
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Forma_Orejas
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Tamano_Orejas
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Tipo_Lobulo
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Bigote
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Senas_Particulares
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Imagen_Tatuaje
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Situacion_Fisica
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Otras_Senas_Particulares
+            </td>
+            <td class="column1">
+                @Resources.Probable_Responsable_PCResources.Imputado_Recluido
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Solicitud
+                    </td>
+                    <td>
+                        @item.Tipo_de_SolicitudDescripcion
+                    </td>
+                    <td>
+                        @item.Tiene_informacion_responsableDescripcion
+                    </td>
+                    <td>
+                        @item.Quien_Resulte_Responsable
+                    </td>
+                    <td>
+                        @item.Persona_moral
+                    </td>
+                    <td>
+                        @item.Nombres
+                    </td>
+                    <td>
+                        @item.Apellido_Paterno
+                    </td>
+                    <td>
+                        @item.Apellido_Materno
+                    </td>
+                    <td>
+                        @item.Nombre_Completo
+                    </td>
+                    <td>
+                        @item.Alias
+                    </td>
+                    <td>
+                        @item.Fecha_de_Nacimiento
+                    </td>
+                    <td>
+                        @item.Edad
+                    </td>
+                    <td>
+                        @item.SexoDescripcion
+                    </td>
+                    <td>
+                        @item.Estado_CivilDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_IdentificacionNombre
+                    </td>
+                    <td>
+                        @item.Numero_de_Identificacion
+                    </td>
+                    <td>
+                        @item.Fotografia_de_la_identificacion
+                    </td>
+                    <td>
+                        @item.CURP
+                    </td>
+                    <td>
+                        @item.RFC
+                    </td>
+                    <td>
+                        @item.Tiene_informacion__domicilioDescripcion
+                    </td>
+                    <td>
+                        @item.Pais
+                    </td>
+                    <td>
+                        @item.Estado
+                    </td>
+                    <td>
+                        @item.Municipio
+                    </td>
+                    <td>
+                        @item.Poblacion
+                    </td>
+                    <td>
+                        @item.Colonia
+                    </td>
+                    <td>
+                        @item.Codigo_Postal
+                    </td>
+                    <td>
+                        @item.Calle_del_Imputado
+                    </td>
+                    <td>
+                        @item.Numero_Exterior
+                    </td>
+                    <td>
+                        @item.Numero_Interior
+                    </td>
+                    <td>
+                        @item.Referencia_de_Domicilio
+                    </td>
+                    <td>
+                        @item.Latitud
+                    </td>
+                    <td>
+                        @item.Longitud
+                    </td>
+                    <td>
+                        @item.Peso
+                    </td>
+                    <td>
+                        @item.Estatura
+                    </td>
+                    <td>
+                        @item.Padecimiento_de_Enfermedad
+                    </td>
+                    <td>
+                        @item.Forma_CaraDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_CejasDescripcion
+                    </td>
+                    <td>
+                        @item.Tamano_de_CejasDescripcion
+                    </td>
+                    <td>
+                        @item.Largo_de_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.Cantidad_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.Implantacion_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.ComplexionDescripcion
+                    </td>
+                    <td>
+                        @item.Color_PielDescrpicion
+                    </td>
+                    <td>
+                        @item.FrenteDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.Color_CabelloDescripcion
+                    </td>
+                    <td>
+                        @item.CalvicieDescripcion
+                    </td>
+                    <td>
+                        @item.Color_OjosDescripcion
+                    </td>
+                    <td>
+                        @item.Tamano_de_OjosDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_OjosDescripcion
+                    </td>
+                    <td>
+                        @item.AnteojosDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_de_NarizDescripcion
+                    </td>
+                    <td>
+                        @item.Tamano_NarizDescripcion
+                    </td>
+                    <td>
+                        @item.LabiosDescripcion
+                    </td>
+                    <td>
+                        @item.BocaDescripcion
+                    </td>
+                    <td>
+                        @item.Grosor_de_LabiosDescripcion
+                    </td>
+                    <td>
+                        @item.MentonDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_de_MentonDescripcion
+                    </td>
+                    <td>
+                        @item.BarbaDescripcion
+                    </td>
+                    <td>
+                        @item.Forma_OrejasDescripcion
+                    </td>
+                    <td>
+                        @item.Tamano_OrejasDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_LobuloDescripcion
+                    </td>
+                    <td>
+                        @item.BigoteDescripcion
+                    </td>
+                    <td>
+                        @item.Senas_ParticularesDescripcion
+                    </td>
+                    <td>
+                        @item.Imagen_Tatuaje
+                    </td>
+                    <td>
+                        @item.Situacion_FisicaDescripcion
+                    </td>
+                    <td>
+                        @item.Otras_Senas_Particulares
+                    </td>
+                    <td>
+                        @item.Imputado_Recluido
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

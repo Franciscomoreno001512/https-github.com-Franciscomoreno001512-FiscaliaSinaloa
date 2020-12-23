@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Detalle_Diligencias_Canalizacion" value="Detalle Diligencias Canalización"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Diligencia" value="Diligencia"></resource>
+  <resource culture="es-es" name="Ver_Documento" value="Ver Documento"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -104,6 +104,17 @@ if( GetValueByControlType($('#' + nameOfTable + 'Numero_de_Preguntas' + rowIndex
 
 //BusinessRuleId:2616, Attribute:263924, Operation:Field, Event:None
 
+
+
+//BusinessRuleId:3100, Attribute:268254, Operation:Field, Event:None
+$("form#CreateEncuesta").on('change', '#Modulo', function () {
+	nameOfTable='';
+	rowIndex='';
+ var valor = $('#' + nameOfTable + 'Tipo_Encuesta' + rowIndex).val();   $('#' + nameOfTable + 'Tipo_Encuesta' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Tipo_Encuesta' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Tipo_Encuesta' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Tipo_Encuesta WHERE Modulo_Encuesta = FLD[Modulo]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Tipo_Encuesta' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Tipo_Encuesta WHERE Modulo_Encuesta = FLD[Modulo]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Tipo_Encuesta' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Tipo_Encuesta' + rowIndex).val(valor).trigger('change');
+});
+
+//BusinessRuleId:3100, Attribute:268254, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
@@ -113,6 +124,33 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:480, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+//BusinessRuleId:3101, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ var valor = $('#' + nameOfTable + 'Modulo' + rowIndex).val();   $('#' + nameOfTable + 'Modulo' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Modulo' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Modulo' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Modulo_Encuesta WHERE Clave IN(1)", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Modulo' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Modulo_Encuesta WHERE Clave IN(1)", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Modulo' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Modulo' + rowIndex).val(valor).trigger('change');
+
+}
+//BusinessRuleId:3101, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3101, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ var valor = $('#' + nameOfTable + 'Modulo' + rowIndex).val();   $('#' + nameOfTable + 'Modulo' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Modulo' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Modulo' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Modulo_Encuesta WHERE Clave IN(1)", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Modulo' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Modulo_Encuesta WHERE Clave IN(1)", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Modulo' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Modulo' + rowIndex).val(valor).trigger('change');
+
+}
+//BusinessRuleId:3101, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3101, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+ var valor = $('#' + nameOfTable + 'Modulo' + rowIndex).val();   $('#' + nameOfTable + 'Modulo' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Modulo' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Modulo' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Modulo_Encuesta WHERE Clave IN(1)", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Modulo' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT Clave, Descripcion FROM dbo.Modulo_Encuesta WHERE Clave IN(1)", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Modulo' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Modulo' + rowIndex).val(valor).trigger('change');
+
+}
+//BusinessRuleId:3101, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }
@@ -131,6 +169,21 @@ if(operation == 'Update'){
 
 }
 //BusinessRuleId:517, Attribute:0, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:3103, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'New'){
+if( EvaluaQuery("SELECT Valor= COUNT(*) FROM dbo.Encuesta WHERE Modulo = FLD[Modulo] AND Tipo_Encuesta = FLD[Tipo_Encuesta]",rowIndex, nameOfTable)>TryParseInt('0', '0') ) { alert(DecodifyText(' Ya existe una encuesta para el Modulo y Tipo de Encuesta seleccionados, favor de verificar.', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:3103, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:3104, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'Update'){
+if( EvaluaQuery("SELECT Valor= COUNT(*) FROM dbo.Encuesta WHERE Modulo = FLD[Modulo] AND Tipo_Encuesta = FLD[Tipo_Encuesta] AND Clave <> FLDD[lblClave]",rowIndex, nameOfTable)>TryParseInt('0', '0') ) { alert(DecodifyText('Ya existe una encuesta para el Modulo y Tipo de Encuesta seleccionados, favor de verificar.', rowIndex, nameOfTable));} else {}
+
+}
+//BusinessRuleId:3104, Attribute:2, Operation:Object, Event:BEFORESAVING
 
 //NEWBUSINESSRULE_BEFORESAVING//
     return result;

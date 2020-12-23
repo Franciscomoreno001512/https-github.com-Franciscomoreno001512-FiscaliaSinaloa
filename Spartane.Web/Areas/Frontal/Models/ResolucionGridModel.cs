@@ -15,6 +15,8 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Resolucion_Padre_para_Autorizacion { get; set; }
         public string Resolucion_Padre_para_AutorizacionDescripcion { get; set; }
         public bool? Generar_Judicializacion { get; set; }
+        public string ClaveFiscalia { get; set; }
+        public bool? Aplica_para_Adolescentes { get; set; }
         
     }
 }

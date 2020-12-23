@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Resolucion_MASC" value="Resolución MASC"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Descripcion" value="Descripción"></resource>
+  <resource culture="en-US" name="Rechazo" value="Rechazo"></resource>
+  <resource culture="en-US" name="Resolucion_para_Solicitud" value="Resolución para Solicitud"></resource>
+  <resource culture="en-US" name="Resolucion_para_Procedimiento" value="Resolución para Procedimiento"></resource>
+  <resource culture="en-US" name="ClaveFiscalia" value="ClaveFiscalia"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

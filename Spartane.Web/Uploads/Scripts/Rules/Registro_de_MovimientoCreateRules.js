@@ -244,17 +244,20 @@ function GuardarInformacion() {
                 case 7:                    
                     var lstDatosCombo = [];
                     lstDatosCombo = ExecuteQueryTabla(listaControlesDinamicos[i].Query_para_llenado);
-                    htmldinamico += ObtieneValor($("#idcampDinamico_" + i).val(),lstDatosCombo);
+                    if($("#idcampDinamico_" + i).val() != "0")						
+						htmldinamico += ObtieneValor($("#idcampDinamico_" + i).val(),lstDatosCombo);
                     break;
                 case 8:                    
                     var lstDatosComboM = [];
                     lstDatosComboM = ExecuteQueryTabla(listaControlesDinamicos[i].Query_para_llenado);
                     var valores = $("#idcampDinamico_" + i).val();
-                    for (var l = 0; l < valores.length; l++) {
-                        htmldinamico += ObtieneValor(valores[l], lstDatosComboM);
-                        if ((l + 1) < valores.length)
-                            htmldinamico += ", ";
-                        
+                    if (valores != null && valores.length > 0) {
+                        for (var l = 0; l < valores.length; l++) {
+                            htmldinamico += ObtieneValor(valores[l], lstDatosComboM);
+                            if ((l + 1) < valores.length)
+                                htmldinamico += ", ";
+
+                        }
                     }
                     break;
             }
@@ -407,12 +410,46 @@ if( EvaluaQuery("select GLOBAL[idFase]",rowIndex, nameOfTable)!=TryParseInt('', 
 }
 function EjecutarValidacionesAntesDeGuardar(){
 	var result = true;
-	GuardarInformacion();
+	
 	debugger;
 	if(operation == 'New'){
 		
 		
 	}
+	 debugger;
+    if (listaControlesDinamicos != null) {
+        for (var i = 0; i < listaControlesDinamicos.length; i++) {
+           
+            switch (listaControlesDinamicos[i].TipoControlId) {
+                
+                case 8:
+                    if (listaControlesDinamicos[i].Obligatorio == "1") {
+
+                        var valores = $("#idcampDinamico_" + i).val();
+                        if (valores == null) {
+                            result = false;
+                            break;
+                        }
+                    }
+                    //var lstDatosComboM = [];
+                    //lstDatosComboM = ExecuteQueryTabla(listaControlesDinamicos[i].Query_para_llenado);
+                    //var valores = $("#idcampDinamico_" + i).val();
+                    //if (valores != null && valores.length > 0) {
+                    //    for (var l = 0; l < valores.length; l++) {
+                    //        htmldinamico += ObtieneValor(valores[l], lstDatosComboM);
+                    //        if ((l + 1) < valores.length)
+                    //            htmldinamico += ", ";
+
+                    //    }
+                    //}
+                    break;
+            }
+           
+        }
+    }
+    if (result == true) {
+        GuardarInformacion();
+    }
 //NEWBUSINESSRULE_BEFORESAVING//
     return result;
 }

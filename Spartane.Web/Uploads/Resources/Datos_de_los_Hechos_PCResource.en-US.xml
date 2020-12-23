@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Datos_de_los_Hechos_PC" value="Datos de los Hechos PC"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Solicitud" value="Solicitud"></resource>
+  <resource culture="en-US" name="Tipo_de_Solicitud" value="Tipo de Solicitud"></resource>
+  <resource culture="en-US" name="Titulo_del_Hecho" value="Titulo del Hecho"></resource>
+  <resource culture="en-US" name="Narrativa_Breve_de_los_Hechos" value="Narrativa Breve de los Hechos"></resource>
+  <resource culture="en-US" name="Fecha_del_Hecho" value="Fecha del Hecho"></resource>
+  <resource culture="en-US" name="Hora_Aproximada_del_Hecho" value="Hora Aproximada del Hecho"></resource>
+  <resource culture="en-US" name="Tiene_alguna_Foto_o_Evidencia" value="¿Tiene alguna Foto o Evidencia?"></resource>
+  <resource culture="en-US" name="Fosa_clandestina" value="¿Quieres reportar una fosa clandestina?"></resource>
+  <resource culture="en-US" name="Conoce_la_direccion" value="¿Conoce la dirección donde sucedieron los hechos?"></resource>
+  <resource culture="en-US" name="Pais" value="País"></resource>
+  <resource culture="en-US" name="Estado" value="Estado"></resource>
+  <resource culture="en-US" name="Municipio" value="Municipio"></resource>
+  <resource culture="en-US" name="Poblacion" value="Población"></resource>
+  <resource culture="en-US" name="Colonia" value="Colonia"></resource>
+  <resource culture="en-US" name="Codigo_Postal" value="Código Postal"></resource>
+  <resource culture="en-US" name="Calle" value="Calle"></resource>
+  <resource culture="en-US" name="Entre_Calle" value="Entre Calle"></resource>
+  <resource culture="en-US" name="Y_Calle" value="Y Calle"></resource>
+  <resource culture="en-US" name="Numero_Exterior" value="Número Exterior"></resource>
+  <resource culture="en-US" name="Numero_Interior" value="Número Interior"></resource>
+  <resource culture="en-US" name="Referencia" value="Referencia"></resource>
+  <resource culture="en-US" name="Latitud" value="Latitud"></resource>
+  <resource culture="en-US" name="Longitud" value="Longitud"></resource>
+  <resource culture="en-US" name="Es_una_direccion_exacta_o_aproximada" value="¿Es una dirección exacta o apróximada?"></resource>
+
+<resource culture="en-US" name="TabDatos_de_los_hechos" value="Datos de los hechos"></resource>
+<resource culture="en-US" name="TabDomicilio_de_los_Hechos" value="Domicilio de los Hechos"></resource>
+
+</resources>
