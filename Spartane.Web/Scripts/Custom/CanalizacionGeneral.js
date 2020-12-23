@@ -12,9 +12,9 @@ function GetInsertDetalle_Diligencias_CanalizacionRowControls(index) {
     var columnData = [];
     var inputData = "<input type='text' class='fullWidth form-control'/>";
 
-    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Diligencias_Canalizacion_Diligencia Diligencia').attr('id', 'Detalle_Diligencias_Canalizacion_Diligencia_' + index).attr('data-field', 'Diligencia');
-    columnData[3] = $($.parseHTML(GetFileUploader())).addClass('Detalle_Diligencias_Canalizacion_Ver_Documento_FileUpload Ver_Documento').attr('id', 'Detalle_Diligencias_Canalizacion_Ver_Documento_' + index).attr('data-field', 'Ver_Documento');
-    columnData[4] = $($.parseHTML(inputData)).addClass('Detalle_Diligencias_Canalizacion_Observaciones Observaciones').attr('id', 'Detalle_Diligencias_Canalizacion_Observaciones_' + index).attr('data-field', 'Observaciones');
+    columnData[0] = $($.parseHTML(inputData)).addClass('Detalle_Diligencias_Canalizacion_Diligencia Diligencia').attr('id', 'Detalle_Diligencias_Canalizacion_Diligencia_' + index).attr('data-field', 'Diligencia');
+    columnData[1] = $($.parseHTML(GetFileUploader())).addClass('Detalle_Diligencias_Canalizacion_Ver_Documento_FileUpload Ver_Documento').attr('id', 'Detalle_Diligencias_Canalizacion_Ver_Documento_' + index).attr('data-field', 'Ver_Documento');
+    columnData[2] = $($.parseHTML(inputData)).addClass('Detalle_Diligencias_Canalizacion_Observaciones Observaciones').attr('id', 'Detalle_Diligencias_Canalizacion_Observaciones_' + index).attr('data-field', 'Observaciones');
 
 
     initiateUIControls();

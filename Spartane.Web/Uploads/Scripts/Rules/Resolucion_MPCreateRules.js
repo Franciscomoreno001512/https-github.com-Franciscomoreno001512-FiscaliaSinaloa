@@ -40,14 +40,9 @@ if( EvaluaQuery("select Tipo from resolucion where Clave = FLD[Resultado_de_Vali
 	// CambiarAConsulta();
 // }
 
-//BusinessRuleId:2978, Attribute:268502, Operation:Field, Event:None
-$("form#CreateResolucion_MP").on('change', '#Resolucion', function () {
-	nameOfTable='';
-	rowIndex='';
-if( EvaluaQuery("select generar_judicializacion from Resolucion where Clave=FLD[Resolucion]",rowIndex, nameOfTable)!=TryParseInt('1', '1') ) { $('#divJuzgado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Juzgado' + rowIndex));$('#divTipo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));$('#divNo__De_Causa_o_Cuadernillo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'No__De_Causa_o_Cuadernillo' + rowIndex));$('#divAno_de_Causa_o_Cuadernillo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Ano_de_Causa_o_Cuadernillo' + rowIndex));} else { $('#divJuzgado').css('display', 'block');$('#divTipo').css('display', 'block');$('#divNo__De_Causa_o_Cuadernillo').css('display', 'block');$('#divAno_de_Causa_o_Cuadernillo').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Juzgado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'No__De_Causa_o_Cuadernillo' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Ano_de_Causa_o_Cuadernillo' + rowIndex));}
-});
-
-//BusinessRuleId:2978, Attribute:268502, Operation:Field, Event:None
+
+
+
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -235,6 +230,26 @@ if(operation == 'Update'){
 }
 //BusinessRuleId:3068, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+
+
+
+
+//BusinessRuleId:3069, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ $('#divEstatus').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));
+
+}
+//BusinessRuleId:3069, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3069, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+ $('#divEstatus').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));
+
+}
+//BusinessRuleId:3069, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //BusinessRuleId:2977, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
 if( EvaluaQuery("declare @Var nvarchar(10)='FLD[Resolucion]'"
@@ -242,7 +257,7 @@ if( EvaluaQuery("declare @Var nvarchar(10)='FLD[Resolucion]'"
 +" if (@Var='')"
 +" set @var='0'"
 +" "
-+" select generar_judicializacion from Resolucion where Clave=cast(@var as int)",rowIndex, nameOfTable)!=TryParseInt('1', '1') ) { $('#divJuzgado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Juzgado' + rowIndex));$('#divTipo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));$('#divNo__De_Causa_o_Cuadernillo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'No__De_Causa_o_Cuadernillo' + rowIndex));$('#divAno_de_Causa_o_Cuadernillo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Ano_de_Causa_o_Cuadernillo' + rowIndex));} else { $('#divJuzgado').css('display', 'block');$('#divTipo').css('display', 'block');$('#divNo__De_Causa_o_Cuadernillo').css('display', 'block');$('#divAno_de_Causa_o_Cuadernillo').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Juzgado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'No__De_Causa_o_Cuadernillo' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Ano_de_Causa_o_Cuadernillo' + rowIndex));}
++" select generar_judicializacion from Resolucion where Clave=cast(@var as int)",rowIndex, nameOfTable)!=TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Resultado_de_Validacion' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divJuzgado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Juzgado' + rowIndex));$('#divTipo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));$('#divNo__De_Causa_o_Cuadernillo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'No__De_Causa_o_Cuadernillo' + rowIndex));$('#divAno_de_Causa_o_Cuadernillo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Ano_de_Causa_o_Cuadernillo' + rowIndex));} else { $('#divJuzgado').css('display', 'block');$('#divTipo').css('display', 'block');$('#divNo__De_Causa_o_Cuadernillo').css('display', 'block');$('#divAno_de_Causa_o_Cuadernillo').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Juzgado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'No__De_Causa_o_Cuadernillo' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Ano_de_Causa_o_Cuadernillo' + rowIndex));}
 
 }
 //BusinessRuleId:2977, Attribute:0, Operation:Object, Event:SCREENOPENING
@@ -254,7 +269,7 @@ if( EvaluaQuery("declare @Var nvarchar(10)='FLD[Resolucion]'"
 +" if (@Var='')"
 +" set @var='0'"
 +" "
-+" select generar_judicializacion from Resolucion where Clave=cast(@var as int)",rowIndex, nameOfTable)!=TryParseInt('1', '1') ) { $('#divJuzgado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Juzgado' + rowIndex));$('#divTipo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));$('#divNo__De_Causa_o_Cuadernillo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'No__De_Causa_o_Cuadernillo' + rowIndex));$('#divAno_de_Causa_o_Cuadernillo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Ano_de_Causa_o_Cuadernillo' + rowIndex));} else { $('#divJuzgado').css('display', 'block');$('#divTipo').css('display', 'block');$('#divNo__De_Causa_o_Cuadernillo').css('display', 'block');$('#divAno_de_Causa_o_Cuadernillo').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Juzgado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'No__De_Causa_o_Cuadernillo' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Ano_de_Causa_o_Cuadernillo' + rowIndex));}
++" select generar_judicializacion from Resolucion where Clave=cast(@var as int)",rowIndex, nameOfTable)!=TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Resultado_de_Validacion' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divJuzgado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Juzgado' + rowIndex));$('#divTipo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));$('#divNo__De_Causa_o_Cuadernillo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'No__De_Causa_o_Cuadernillo' + rowIndex));$('#divAno_de_Causa_o_Cuadernillo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Ano_de_Causa_o_Cuadernillo' + rowIndex));} else { $('#divJuzgado').css('display', 'block');$('#divTipo').css('display', 'block');$('#divNo__De_Causa_o_Cuadernillo').css('display', 'block');$('#divAno_de_Causa_o_Cuadernillo').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Juzgado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'No__De_Causa_o_Cuadernillo' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Ano_de_Causa_o_Cuadernillo' + rowIndex));}
 
 }
 //BusinessRuleId:2977, Attribute:0, Operation:Object, Event:SCREENOPENING
@@ -266,24 +281,10 @@ if( EvaluaQuery("declare @Var nvarchar(10)='FLD[Resolucion]'"
 +" if (@Var='')"
 +" set @var='0'"
 +" "
-+" select generar_judicializacion from Resolucion where Clave=cast(@var as int)",rowIndex, nameOfTable)!=TryParseInt('1', '1') ) { $('#divJuzgado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Juzgado' + rowIndex));$('#divTipo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));$('#divNo__De_Causa_o_Cuadernillo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'No__De_Causa_o_Cuadernillo' + rowIndex));$('#divAno_de_Causa_o_Cuadernillo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Ano_de_Causa_o_Cuadernillo' + rowIndex));} else { $('#divJuzgado').css('display', 'block');$('#divTipo').css('display', 'block');$('#divNo__De_Causa_o_Cuadernillo').css('display', 'block');$('#divAno_de_Causa_o_Cuadernillo').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Juzgado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'No__De_Causa_o_Cuadernillo' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Ano_de_Causa_o_Cuadernillo' + rowIndex));}
++" select generar_judicializacion from Resolucion where Clave=cast(@var as int)",rowIndex, nameOfTable)!=TryParseInt('1', '1') && GetValueByControlType($('#' + nameOfTable + 'Resultado_de_Validacion' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divJuzgado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Juzgado' + rowIndex));$('#divTipo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));$('#divNo__De_Causa_o_Cuadernillo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'No__De_Causa_o_Cuadernillo' + rowIndex));$('#divAno_de_Causa_o_Cuadernillo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Ano_de_Causa_o_Cuadernillo' + rowIndex));} else { $('#divJuzgado').css('display', 'block');$('#divTipo').css('display', 'block');$('#divNo__De_Causa_o_Cuadernillo').css('display', 'block');$('#divAno_de_Causa_o_Cuadernillo').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Juzgado' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'No__De_Causa_o_Cuadernillo' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Ano_de_Causa_o_Cuadernillo' + rowIndex));}
 
 }
 //BusinessRuleId:2977, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:3069, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- $('#divEstatus').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));
-
-}
-//BusinessRuleId:3069, Attribute:0, Operation:Object, Event:SCREENOPENING
-
-//BusinessRuleId:3069, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
- $('#divEstatus').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estatus' + rowIndex));
-
-}
-//BusinessRuleId:3069, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }

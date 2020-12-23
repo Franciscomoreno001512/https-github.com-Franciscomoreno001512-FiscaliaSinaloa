@@ -15074,6 +15074,206 @@
 <Content Include="Uploads\Scripts\Rules\Relaciones_MASCCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Relaciones_MASCIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Relaciones_MASC\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Solicitud\Tipo_de_SolicitudApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_de_Solicitud\ITipo_de_SolicitudApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_SolicitudModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_SolicitudGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_SolicitudMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_de_SolicitudController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Solicitud\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Solicitud\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_de_Solicitud.cs" />
+<Content Include="Uploads\Resources\Tipo_de_SolicitudResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_de_SolicitudPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_de_SolicitudResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_de_Solicitud.js" />
+<Content Include="Scripts\Custom\Tipo_de_SolicitudGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Solicitud\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_SolicitudAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_de_SolicitudBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_SolicitudCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_de_SolicitudIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_de_Solicitud\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Estatus_de_Solicitud\Estatus_de_SolicitudApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Estatus_de_Solicitud\IEstatus_de_SolicitudApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_SolicitudModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_SolicitudGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_SolicitudMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Estatus_de_SolicitudController.cs" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Solicitud\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Solicitud\Create.cshtml" />
+<Compile Include="Resource\GetResource\Estatus_de_Solicitud.cs" />
+<Content Include="Uploads\Resources\Estatus_de_SolicitudResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Estatus_de_SolicitudPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Estatus_de_SolicitudResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Estatus_de_Solicitud.js" />
+<Content Include="Scripts\Custom\Estatus_de_SolicitudGeneral.js" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Solicitud\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_SolicitudAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_de_SolicitudBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Estatus_de_SolicitudCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Estatus_de_SolicitudIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Estatus_de_Solicitud\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Solicitud_de_Denuncia_Ciudadana\Solicitud_de_Denuncia_CiudadanaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Solicitud_de_Denuncia_Ciudadana\ISolicitud_de_Denuncia_CiudadanaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Solicitud_de_Denuncia_CiudadanaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Solicitud_de_Denuncia_CiudadanaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Solicitud_de_Denuncia_CiudadanaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Solicitud_de_Denuncia_CiudadanaController.cs" />
+<Content Include="Areas\Frontal\Views\Solicitud_de_Denuncia_Ciudadana\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Solicitud_de_Denuncia_Ciudadana\Create.cshtml" />
+<Compile Include="Resource\GetResource\Solicitud_de_Denuncia_Ciudadana.cs" />
+<Content Include="Uploads\Resources\Solicitud_de_Denuncia_CiudadanaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Solicitud_de_Denuncia_CiudadanaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Solicitud_de_Denuncia_CiudadanaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Solicitud_de_Denuncia_Ciudadana.js" />
+<Content Include="Scripts\Custom\Solicitud_de_Denuncia_CiudadanaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Solicitud_de_Denuncia_Ciudadana\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Solicitud_de_Denuncia_CiudadanaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Solicitud_de_Denuncia_CiudadanaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Solicitud_de_Denuncia_CiudadanaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Solicitud_de_Denuncia_CiudadanaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Solicitud_de_Denuncia_Ciudadana\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Datos_de_los_Hechos_PC\Datos_de_los_Hechos_PCApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Datos_de_los_Hechos_PC\IDatos_de_los_Hechos_PCApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Datos_de_los_Hechos_PCModel.cs" />
+<Compile Include="Areas\Frontal\Models\Datos_de_los_Hechos_PCGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Datos_de_los_Hechos_PCMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Datos_de_los_Hechos_PCController.cs" />
+<Content Include="Areas\Frontal\Views\Datos_de_los_Hechos_PC\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Datos_de_los_Hechos_PC\Create.cshtml" />
+<Compile Include="Resource\GetResource\Datos_de_los_Hechos_PC.cs" />
+<Content Include="Uploads\Resources\Datos_de_los_Hechos_PCResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Datos_de_los_Hechos_PCPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Datos_de_los_Hechos_PCResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Datos_de_los_Hechos_PC.js" />
+<Content Include="Scripts\Custom\Datos_de_los_Hechos_PCGeneral.js" />
+<Content Include="Areas\Frontal\Views\Datos_de_los_Hechos_PC\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Datos_de_los_Hechos_PCAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Datos_de_los_Hechos_PCBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Datos_de_los_Hechos_PCCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Datos_de_los_Hechos_PCIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Datos_de_los_Hechos_PC\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Robo_de_Vehiculo_PC\Robo_de_Vehiculo_PCApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Robo_de_Vehiculo_PC\IRobo_de_Vehiculo_PCApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Robo_de_Vehiculo_PCModel.cs" />
+<Compile Include="Areas\Frontal\Models\Robo_de_Vehiculo_PCGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Robo_de_Vehiculo_PCMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Robo_de_Vehiculo_PCController.cs" />
+<Content Include="Areas\Frontal\Views\Robo_de_Vehiculo_PC\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Robo_de_Vehiculo_PC\Create.cshtml" />
+<Compile Include="Resource\GetResource\Robo_de_Vehiculo_PC.cs" />
+<Content Include="Uploads\Resources\Robo_de_Vehiculo_PCResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Robo_de_Vehiculo_PCPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Robo_de_Vehiculo_PCResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Robo_de_Vehiculo_PC.js" />
+<Content Include="Scripts\Custom\Robo_de_Vehiculo_PCGeneral.js" />
+<Content Include="Areas\Frontal\Views\Robo_de_Vehiculo_PC\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Robo_de_Vehiculo_PCAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Robo_de_Vehiculo_PCBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Robo_de_Vehiculo_PCCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Robo_de_Vehiculo_PCIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Robo_de_Vehiculo_PC\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Involucrados_PC\Involucrados_PCApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Involucrados_PC\IInvolucrados_PCApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Involucrados_PCModel.cs" />
+<Compile Include="Areas\Frontal\Models\Involucrados_PCGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Involucrados_PCMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Involucrados_PCController.cs" />
+<Content Include="Areas\Frontal\Views\Involucrados_PC\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Involucrados_PC\Create.cshtml" />
+<Compile Include="Resource\GetResource\Involucrados_PC.cs" />
+<Content Include="Uploads\Resources\Involucrados_PCResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Involucrados_PCPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Involucrados_PCResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Involucrados_PC.js" />
+<Content Include="Scripts\Custom\Involucrados_PCGeneral.js" />
+<Content Include="Areas\Frontal\Views\Involucrados_PC\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Involucrados_PCAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Involucrados_PCBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Involucrados_PCCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Involucrados_PCIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Involucrados_PC\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Probable_Responsable_PC\Probable_Responsable_PCApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Probable_Responsable_PC\IProbable_Responsable_PCApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Probable_Responsable_PCModel.cs" />
+<Compile Include="Areas\Frontal\Models\Probable_Responsable_PCGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Probable_Responsable_PCMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Probable_Responsable_PCController.cs" />
+<Content Include="Areas\Frontal\Views\Probable_Responsable_PC\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Probable_Responsable_PC\Create.cshtml" />
+<Compile Include="Resource\GetResource\Probable_Responsable_PC.cs" />
+<Content Include="Uploads\Resources\Probable_Responsable_PCResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Probable_Responsable_PCPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Probable_Responsable_PCResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Probable_Responsable_PC.js" />
+<Content Include="Scripts\Custom\Probable_Responsable_PCGeneral.js" />
+<Content Include="Areas\Frontal\Views\Probable_Responsable_PC\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Probable_Responsable_PCAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Probable_Responsable_PCBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Probable_Responsable_PCCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Probable_Responsable_PCIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Probable_Responsable_PC\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Tipo_Encuesta\Tipo_EncuestaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Tipo_Encuesta\ITipo_EncuestaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_EncuestaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_EncuestaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_EncuestaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Tipo_EncuestaController.cs" />
+<Content Include="Areas\Frontal\Views\Tipo_Encuesta\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Tipo_Encuesta\Create.cshtml" />
+<Compile Include="Resource\GetResource\Tipo_Encuesta.cs" />
+<Content Include="Uploads\Resources\Tipo_EncuestaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Tipo_EncuestaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Tipo_EncuestaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Tipo_Encuesta.js" />
+<Content Include="Scripts\Custom\Tipo_EncuestaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Tipo_Encuesta\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Tipo_EncuestaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Tipo_EncuestaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Tipo_EncuestaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Tipo_EncuestaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Tipo_Encuesta\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\PC_CanalizarA\PC_CanalizarAApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\PC_CanalizarA\IPC_CanalizarAApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\PC_CanalizarAModel.cs" />
+<Compile Include="Areas\Frontal\Models\PC_CanalizarAGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\PC_CanalizarAMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\PC_CanalizarAController.cs" />
+<Content Include="Areas\Frontal\Views\PC_CanalizarA\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\PC_CanalizarA\Create.cshtml" />
+<Compile Include="Resource\GetResource\PC_CanalizarA.cs" />
+<Content Include="Uploads\Resources\PC_CanalizarAResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\PC_CanalizarAPropertyMapper.cs" />
+<Content Include="Uploads\Resources\PC_CanalizarAResource.en-US.xml" />
+<Content Include="Uploads\Scripts\PC_CanalizarA.js" />
+<Content Include="Scripts\Custom\PC_CanalizarAGeneral.js" />
+<Content Include="Areas\Frontal\Views\PC_CanalizarA\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\PC_CanalizarAAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\PC_CanalizarABusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\PC_CanalizarACreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\PC_CanalizarAIndexRules.js" />
+<Content Include="Areas\Frontal\Views\PC_CanalizarA\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Direccion_Exacta\Direccion_ExactaApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Direccion_Exacta\IDireccion_ExactaApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Direccion_ExactaModel.cs" />
+<Compile Include="Areas\Frontal\Models\Direccion_ExactaGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Direccion_ExactaMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Direccion_ExactaController.cs" />
+<Content Include="Areas\Frontal\Views\Direccion_Exacta\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Direccion_Exacta\Create.cshtml" />
+<Compile Include="Resource\GetResource\Direccion_Exacta.cs" />
+<Content Include="Uploads\Resources\Direccion_ExactaResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Direccion_ExactaPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Direccion_ExactaResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Direccion_Exacta.js" />
+<Content Include="Scripts\Custom\Direccion_ExactaGeneral.js" />
+<Content Include="Areas\Frontal\Views\Direccion_Exacta\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Direccion_ExactaAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Direccion_ExactaBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Direccion_ExactaCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Direccion_ExactaIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Direccion_Exacta\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -16073,6 +16273,206 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

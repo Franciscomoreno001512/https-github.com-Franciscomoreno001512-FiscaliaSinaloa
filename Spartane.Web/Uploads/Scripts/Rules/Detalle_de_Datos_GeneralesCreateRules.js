@@ -1638,6 +1638,8 @@ if( GetValueByControlType($('#' + nameOfTable + 'Pais' + rowIndex),nameOfTable,r
 }
 //BusinessRuleId:2515, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){

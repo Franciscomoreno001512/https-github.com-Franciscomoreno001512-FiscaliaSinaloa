@@ -10,7 +10,8 @@ namespace Spartane.Web.Areas.Frontal.Models
     public class CanalizacionMainModel
     {
         public CanalizacionModel CanalizacionInfo { set; get; }
-        public Detalle_Diligencias_CanalizacionGridModelPost Detalle_Diligencias_CanalizacionGridInfo { set; get; } 
+        public Detalle_Diligencias_CanalizacionGridModelPost Detalle_Diligencias_CanalizacionGridInfo { set; get; }
+
     }
 
     public class Detalle_Diligencias_CanalizacionGridModelPost

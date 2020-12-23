@@ -19,6 +19,9 @@
     List<SelectListItem> varModulo_Encuesta_Modulo = null;
     if (ViewBag.Modulo_Encuestas_Modulo != null)
     { varModulo_Encuesta_Modulo = (List<SelectListItem>)ViewBag.Modulo_Encuestas_Modulo; }
+    List<SelectListItem> varTipo_Encuesta_Tipo_Encuesta = null;
+    if (ViewBag.Tipo_Encuestas_Tipo_Encuesta != null)
+    { varTipo_Encuesta_Tipo_Encuesta = (List<SelectListItem>)ViewBag.Tipo_Encuestas_Tipo_Encuesta; }
     List<SelectListItem> varCatalogo_Numero_de_Preguntas_Numero_de_Preguntas = null;
     if (ViewBag.Catalogo_Numero_de_Preguntass_Numero_de_Preguntas != null)
     { varCatalogo_Numero_de_Preguntas_Numero_de_Preguntas = (List<SelectListItem>)ViewBag.Catalogo_Numero_de_Preguntass_Numero_de_Preguntas; }
@@ -268,6 +271,34 @@
                                 {                        
                                 <div class="col-sm-1 abm-icons">
                                     <a id="Estado_New" onclick="GetCatalogPopup('Modulo_Encuesta', 'Modulo');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                                }
+                            </div>
+                            <div class="form-group" id="divTipo_Encuesta">
+                                <label class="col-sm-2 control-label">@Resources.Encuesta1Resources.Tipo_Encuesta</label>
+                                <div class="col-sm-8" data-field-id="Tipo_Encuesta" data-attribute="269383" data-field-name="@Resources.Encuesta1Resources.Tipo_Encuesta">
+                                    <select class="form-control Datos_Generales" data-val="true" data-val-number="The field Tipo Encuesta must be a number." data-val-required="The Tipo Encuesta field is required." id="Tipo_Encuesta" name="Tipo_Encuesta">
+                                        <option value=""></option>
+                                        @if (varTipo_Encuesta_Tipo_Encuesta != null){ 
+                                            foreach (var itemTipo_Encuesta in varTipo_Encuesta_Tipo_Encuesta)
+                                            {
+                                                if (itemTipo_Encuesta.Value == Convert.ToString(Model.Tipo_Encuesta))
+                                                {
+                                                    <option value="@itemTipo_Encuesta.Value" selected>@itemTipo_Encuesta.Text</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@itemTipo_Encuesta.Value">@itemTipo_Encuesta.Text</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Tipo_Encuesta" data-valmsg-replace="true"></span>*@
+                                </div>
+								@if (PermissionHelper.GetRoleObjectPermission(Convert.ToInt32(Spartane.Web.SessionHelper.Role), 0, 0, 269383).New)
+                                {                        
+                                <div class="col-sm-1 abm-icons">
+                                    <a id="Estado_New" onclick="GetCatalogPopup('Tipo_Encuesta', 'Tipo_Encuesta');" href="#"><i class="glyphicon glyphicon-plus"></i></a>
                                 </div>
                                 }
                             </div>
@@ -687,11 +718,7 @@
                 </text>
             }
             EjecutarValidacionesAlComienzo(); 
-
-			$("#side-menu").hide();
-			$("#logoutForm").hide();
-			$("nav").hide();
-
+			
         });
 
 
@@ -793,8 +820,6 @@
 
 
 			showNotification("@Resources.Resources.SaveSuccess", "success");
-			document.getElementById('logoutForm').submit();
-
 			callBack(id);
             return true;
         };
@@ -965,6 +990,7 @@
                     $('#Hora_Respuesta').val(result.data.Hora_Respuesta);
                     $('#NUAT').val(result.data.NUAT);
                     $('#Modulo').val(result.data.Modulo);
+                    $('#Tipo_Encuesta').val(result.data.Tipo_Encuesta);
                     $('#Numero_de_Preguntas').val(result.data.Numero_de_Preguntas);
                     $('#Pregunta1').val(result.data.Pregunta1);
                     $('#Respuesta_1').val(result.data.Respuesta_1);
@@ -995,6 +1021,7 @@
                 data.append('Hora_Respuesta', $('#Hora_Respuesta').val());
                 data.append('NUAT', $('#NUAT').val());
                 data.append('Modulo', $('#Modulo').val());
+                data.append('Tipo_Encuesta', $('#Tipo_Encuesta').val());
                 data.append('Numero_de_Preguntas', $('#Numero_de_Preguntas').val());
                 data.append('Pregunta1', $('#Pregunta1').val());
                 data.append('Respuesta_1', $('#Respuesta_1').val());

@@ -36,6 +36,34 @@ if( GetValueByControlType($('#' + nameOfTable + 'Municipio' + rowIndex),nameOfTa
 
 //BusinessRuleId:2933, Attribute:268413, Operation:Field, Event:None
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
@@ -231,40 +259,75 @@ if( EvaluaQuery("select GLOBAL[idTablero]",rowIndex, nameOfTable)==TryParseInt('
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 
+
+function CambiaPais(deesc) {
+    debugger;
+    $('#Pais').val(null).trigger('change');
+    var control = $('#Pais');
+    var query = "select top 1 clave from pais where nombre like '%" + deesc + "%'";
+    var valorPaisId = EvaluaQuery(query)
+    control.select2('open');
+    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    control.select2('close');
+    setTimeout(function () {
+        var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+        control.select2({ data: data });
+        control.val(valorPaisId).trigger('change');
+    }, 3000);
+}
+function CambiaEstado(deesc)
+{
+	debugger;
+    $('#Estado').val(null).trigger('change');
+    var control = $('#Estado');
+    var query = "select top 1 clave from Estado where nombre like '%" + deesc + "%'";
+    var valorPaisId = EvaluaQuery(query)
+    control.select2('open');
+    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    control.select2('close');
+    setTimeout(function () {
+        var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+        control.select2({ data: data });
+        control.val(valorPaisId).trigger('change');
+    }, 3000);
+}
+
+
+
+
+function CambiaMunicipio(deesc) {
+    debugger;
+    $('#Municipio').val(null).trigger('change');
+    var control = $('#Municipio');
+    var query = "select top 1 clave from Municipio where nombre like '%" + deesc + "%'";
+    var valorPaisId = EvaluaQuery(query)
+    control.select2('open');
+    $('.select2-search__field').val(valorPaisId).trigger('keyup');
+    control.select2('close');
+    setTimeout(function () {
+        var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
+        control.select2({ data: data });
+        control.val(valorPaisId).trigger('change');
+    }, 3000);
+}
+
 function CargaGoogleMaps() {
     
+  debugger;
+   
     debugger;
     $("#Codigo_Postal").val(("")); 
     $('#Pais').val(null).trigger('change');
     $('#Estado').val(null).trigger('change');
     $('#Municipio').val(null).trigger('change');
-
-
- 
-    
-
-
-
-
-
-
     $('#Colonia').val(null).trigger('change');
     $('#Poblacion').val(null).trigger('change');
-    
-  
-        $("#Calle").val((""));
-    
-    
-        $("#Numero_Exterior").val((""));
-   
-$('#Latitud').val("");
-$('#Longitud').val("");
-
-
-
-
-
-
+    $("#Calle").val((""));
+    $("#Numero_Exterior").val((""));
+    $('#Latitud').val("");
+    $('#Longitud').val("");
+	
+	
     var map; // el mapa
     var marker; //el marcador
     var myLatlng; //el objeto latitud y longitud
@@ -311,17 +374,20 @@ $('#Longitud').val("");
 
                             if (results[0].address_components[i].types[0] == "country") {
                                 debugger;
-                                AsignarValor($('#' + nameOfTable + 'Pais' + rowIndex), results[0].address_components[i].long_name);
+                                CambiaPais(results[0].address_components[i].long_name);
+                               // AsignarValor($('#' + nameOfTable + 'Pais' + rowIndex), results[0].address_components[i].long_name);
 
                               
                             }
 
                             if (results[0].address_components[i].types[0] == "administrative_area_level_1") {
-                                AsignarValor($('#' + nameOfTable + 'Estado' + rowIndex), results[0].address_components[i].long_name);
+                                CambiaEstado(results[0].address_components[i].long_name);
+                               // AsignarValor($('#' + nameOfTable + 'Estado' + rowIndex), results[0].address_components[i].long_name);
                             }
 
                             if (results[0].address_components[i].types[0] == "locality") {
-                                AsignarValor($('#' + nameOfTable + 'Municipio' + rowIndex), results[0].address_components[i].long_name);
+                                CambiaMunicipio(results[0].address_components[i].long_name);
+                               // AsignarValor($('#' + nameOfTable + 'Municipio' + rowIndex), results[0].address_components[i].long_name);
                             }
 
 

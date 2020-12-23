@@ -4,6 +4,16 @@ var rowIndex = '';
 var saltarValidacion = false;
 $(document).ready(function () {
 
+//VALIDAR CORREO ELECTRÓNICO
+$('#Correo').change(function(){ 
+	let email = $('#Correo').val(); 
+	let exp = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/); 
+	if (exp.test(email) == false){ 
+			$('#Correo').attr("placeholder", "Correo electrónico no válido.").val("").focus().blur(); 
+	} 
+});
+
+
 //COD-MANI INI OCULTAR CONTRASEÑA
 //$("#Contrasena").attr("type","password");
 //$("#Confirmar_Contrasena").attr("type","password");
@@ -95,8 +105,10 @@ function EjecutarValidacionesAntesDeGuardar(){
 //BusinessRuleId:3064, Attribute:2, Operation:Object, Event:BEFORESAVING
 if(operation == 'New'){
 if( GetValueByControlType($('#' + nameOfTable + 'Contrasena' + rowIndex),nameOfTable,rowIndex)!=GetValueByControlType($('#' + nameOfTable + 'Confirmar_Contrasena' + rowIndex),nameOfTable,rowIndex) ) { alert(DecodifyText('Las contraseñas no coinciden, favor de revisar.', rowIndex, nameOfTable));
-result=false;} else {}
-
+
+result=false;} else {}
+
+
 }
 //BusinessRuleId:3064, Attribute:2, Operation:Object, Event:BEFORESAVING
 

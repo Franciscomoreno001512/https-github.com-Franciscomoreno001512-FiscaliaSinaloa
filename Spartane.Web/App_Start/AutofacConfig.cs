@@ -1871,6 +1871,36 @@ using Spartane.Web.Areas.WebApiConsumer.Detalle_Relaciones_MASC;
 using Spartane.Services.Relaciones_MASC;
 using Spartane.Core.Domain.Relaciones_MASC;
 using Spartane.Web.Areas.WebApiConsumer.Relaciones_MASC;
+using Spartane.Services.Tipo_de_Solicitud;
+using Spartane.Core.Domain.Tipo_de_Solicitud;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_de_Solicitud;
+using Spartane.Services.Estatus_de_Solicitud;
+using Spartane.Core.Domain.Estatus_de_Solicitud;
+using Spartane.Web.Areas.WebApiConsumer.Estatus_de_Solicitud;
+using Spartane.Services.Solicitud_de_Denuncia_Ciudadana;
+using Spartane.Core.Domain.Solicitud_de_Denuncia_Ciudadana;
+using Spartane.Web.Areas.WebApiConsumer.Solicitud_de_Denuncia_Ciudadana;
+using Spartane.Services.Datos_de_los_Hechos_PC;
+using Spartane.Core.Domain.Datos_de_los_Hechos_PC;
+using Spartane.Web.Areas.WebApiConsumer.Datos_de_los_Hechos_PC;
+using Spartane.Services.Robo_de_Vehiculo_PC;
+using Spartane.Core.Domain.Robo_de_Vehiculo_PC;
+using Spartane.Web.Areas.WebApiConsumer.Robo_de_Vehiculo_PC;
+using Spartane.Services.Involucrados_PC;
+using Spartane.Core.Domain.Involucrados_PC;
+using Spartane.Web.Areas.WebApiConsumer.Involucrados_PC;
+using Spartane.Services.Probable_Responsable_PC;
+using Spartane.Core.Domain.Probable_Responsable_PC;
+using Spartane.Web.Areas.WebApiConsumer.Probable_Responsable_PC;
+using Spartane.Services.Tipo_Encuesta;
+using Spartane.Core.Domain.Tipo_Encuesta;
+using Spartane.Web.Areas.WebApiConsumer.Tipo_Encuesta;
+using Spartane.Services.PC_CanalizarA;
+using Spartane.Core.Domain.PC_CanalizarA;
+using Spartane.Web.Areas.WebApiConsumer.PC_CanalizarA;
+using Spartane.Services.Direccion_Exacta;
+using Spartane.Core.Domain.Direccion_Exacta;
+using Spartane.Web.Areas.WebApiConsumer.Direccion_Exacta;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3241,6 +3271,26 @@ builder.RegisterType<Detalle_Relaciones_MASCService>().As<IDetalle_Relaciones_MA
 builder.RegisterType<Detalle_Relaciones_MASCApiConsumer>().As<IDetalle_Relaciones_MASCApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Relaciones_MASCService>().As<IRelaciones_MASCService>().InstancePerLifetimeScope();
 builder.RegisterType<Relaciones_MASCApiConsumer>().As<IRelaciones_MASCApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_SolicitudService>().As<ITipo_de_SolicitudService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_de_SolicitudApiConsumer>().As<ITipo_de_SolicitudApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_de_SolicitudService>().As<IEstatus_de_SolicitudService>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_de_SolicitudApiConsumer>().As<IEstatus_de_SolicitudApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Solicitud_de_Denuncia_CiudadanaService>().As<ISolicitud_de_Denuncia_CiudadanaService>().InstancePerLifetimeScope();
+builder.RegisterType<Solicitud_de_Denuncia_CiudadanaApiConsumer>().As<ISolicitud_de_Denuncia_CiudadanaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Datos_de_los_Hechos_PCService>().As<IDatos_de_los_Hechos_PCService>().InstancePerLifetimeScope();
+builder.RegisterType<Datos_de_los_Hechos_PCApiConsumer>().As<IDatos_de_los_Hechos_PCApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Robo_de_Vehiculo_PCService>().As<IRobo_de_Vehiculo_PCService>().InstancePerLifetimeScope();
+builder.RegisterType<Robo_de_Vehiculo_PCApiConsumer>().As<IRobo_de_Vehiculo_PCApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Involucrados_PCService>().As<IInvolucrados_PCService>().InstancePerLifetimeScope();
+builder.RegisterType<Involucrados_PCApiConsumer>().As<IInvolucrados_PCApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Probable_Responsable_PCService>().As<IProbable_Responsable_PCService>().InstancePerLifetimeScope();
+builder.RegisterType<Probable_Responsable_PCApiConsumer>().As<IProbable_Responsable_PCApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_EncuestaService>().As<ITipo_EncuestaService>().InstancePerLifetimeScope();
+builder.RegisterType<Tipo_EncuestaApiConsumer>().As<ITipo_EncuestaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<PC_CanalizarAService>().As<IPC_CanalizarAService>().InstancePerLifetimeScope();
+builder.RegisterType<PC_CanalizarAApiConsumer>().As<IPC_CanalizarAApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Direccion_ExactaService>().As<IDireccion_ExactaService>().InstancePerLifetimeScope();
+builder.RegisterType<Direccion_ExactaApiConsumer>().As<IDireccion_ExactaApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3421,6 +3471,52 @@ builder.RegisterType<Relaciones_MASCApiConsumer>().As<IRelaciones_MASCApiConsume
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

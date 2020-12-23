@@ -9,6 +9,7 @@
   <resource culture="en-US" name="Hora_Respuesta" value="Hora Respuesta"></resource>
   <resource culture="en-US" name="NUAT" value="NUAT"></resource>
   <resource culture="en-US" name="Modulo" value="Módulo"></resource>
+  <resource culture="en-US" name="Tipo_Encuesta" value="Tipo Encuesta"></resource>
   <resource culture="en-US" name="Numero_de_Preguntas" value="Número de Preguntas"></resource>
   <resource culture="en-US" name="Pregunta1" value="Pregunta #1"></resource>
   <resource culture="en-US" name="Respuesta_1" value="Respuesta #1"></resource>

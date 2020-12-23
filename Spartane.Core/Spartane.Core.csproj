@@ -1548,6 +1548,26 @@
 <Compile Include="Domain\Detalle_Relaciones_MASC\Detalle_Relaciones_MASC.cs" />
 <Compile Include="Domain\Relaciones_MASC\Relaciones_MASC.cs" />
 <Compile Include="Domain\Relaciones_MASC\Relaciones_MASCPagingModel.cs" />
+<Compile Include="Domain\Tipo_de_Solicitud\Tipo_de_Solicitud.cs" />
+<Compile Include="Domain\Tipo_de_Solicitud\Tipo_de_SolicitudPagingModel.cs" />
+<Compile Include="Domain\Estatus_de_Solicitud\Estatus_de_Solicitud.cs" />
+<Compile Include="Domain\Estatus_de_Solicitud\Estatus_de_SolicitudPagingModel.cs" />
+<Compile Include="Domain\Solicitud_de_Denuncia_Ciudadana\Solicitud_de_Denuncia_Ciudadana.cs" />
+<Compile Include="Domain\Solicitud_de_Denuncia_Ciudadana\Solicitud_de_Denuncia_CiudadanaPagingModel.cs" />
+<Compile Include="Domain\Datos_de_los_Hechos_PC\Datos_de_los_Hechos_PC.cs" />
+<Compile Include="Domain\Datos_de_los_Hechos_PC\Datos_de_los_Hechos_PCPagingModel.cs" />
+<Compile Include="Domain\Robo_de_Vehiculo_PC\Robo_de_Vehiculo_PC.cs" />
+<Compile Include="Domain\Robo_de_Vehiculo_PC\Robo_de_Vehiculo_PCPagingModel.cs" />
+<Compile Include="Domain\Involucrados_PC\Involucrados_PC.cs" />
+<Compile Include="Domain\Involucrados_PC\Involucrados_PCPagingModel.cs" />
+<Compile Include="Domain\Probable_Responsable_PC\Probable_Responsable_PC.cs" />
+<Compile Include="Domain\Probable_Responsable_PC\Probable_Responsable_PCPagingModel.cs" />
+<Compile Include="Domain\Tipo_Encuesta\Tipo_Encuesta.cs" />
+<Compile Include="Domain\Tipo_Encuesta\Tipo_EncuestaPagingModel.cs" />
+<Compile Include="Domain\PC_CanalizarA\PC_CanalizarA.cs" />
+<Compile Include="Domain\PC_CanalizarA\PC_CanalizarAPagingModel.cs" />
+<Compile Include="Domain\Direccion_Exacta\Direccion_Exacta.cs" />
+<Compile Include="Domain\Direccion_Exacta\Direccion_ExactaPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1568,6 +1588,26 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

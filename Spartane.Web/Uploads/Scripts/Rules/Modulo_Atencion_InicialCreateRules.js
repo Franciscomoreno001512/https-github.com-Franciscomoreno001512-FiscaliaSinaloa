@@ -2782,7 +2782,7 @@ if(operation == 'New' || operation == 'Update'){
 	//CERRAR
 	if( GetValueByControlType($('#' + nameOfTable + 'Cerrar' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) 
 	{ 
-		if( EvaluaQuery("SELECT Correo_Electronico from Detalle_de_Datos_Generales where Modulo_Atencion_Inicial = FLDD[lblClave] and Tipo_de_Compareciente = 1",rowIndex, nameOfTable)!=TryParseInt('NULL', 'NULL') ) { SendEmailQuery('Envio de Encuesta', EvaluaQuery(" SELECT Correo_Electronico from Detalle_de_Datos_Generales where Modulo_Atencion_Inicial = FLDD[lblClave] and Tipo_de_Compareciente = 1"), EvaluaQuery("EXEC dbo.UspGeneraLinkEncuesta 1, FLDD[lblClave], 1"),rowIndex,nameOfTable); alert(DecodifyText('Envío de encuesta.', rowIndex, nameOfTable));} else { alert(DecodifyText('No tiene correo electrónico configurado, por lo que no podrá contestar encuestas.', rowIndex, nameOfTable));}
+		if( EvaluaQuery("SELECT Correo_Electronico from Detalle_de_Datos_Generales where Modulo_Atencion_Inicial = FLDD[lblClave] and Tipo_de_Compareciente = 1",rowIndex, nameOfTable)!=TryParseInt('NULL', 'NULL') ) { SendEmailQuery('Envio de Encuesta', EvaluaQuery(" SELECT Correo_Electronico from Detalle_de_Datos_Generales where Modulo_Atencion_Inicial = FLDD[lblClave] and Tipo_de_Compareciente = 1"), EvaluaQuery("EXEC dbo.UspGeneraLinkEncuesta 1, FLDD[lblClave], 4"),rowIndex,nameOfTable); alert(DecodifyText('Envío de encuesta.', rowIndex, nameOfTable));} else { alert(DecodifyText('No tiene correo electrónico configurado, por lo que no podrá contestar encuestas.', rowIndex, nameOfTable));}
 	}
 	else //CANALIZAR
 	{
@@ -2805,7 +2805,7 @@ if(operation == 'New' || operation == 'Update'){
 		}		 
 	}
 }
-//INI COD-MAN PARA ENVIAR CORREO DE ENCUESTA
+//END COD-MAN PARA ENVIAR CORREO DE ENCUESTA
 
 
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spartane.Core.Domain.Modulo_Encuesta;
+using Spartane.Core.Domain.Tipo_Encuesta;
 using Spartane.Core.Domain.Catalogo_Numero_de_Preguntas;
 
 using System.ComponentModel.DataAnnotations;
@@ -19,6 +20,7 @@ namespace Spartane.Core.Domain.Encuesta
     {
         public int Clave { get; set; }
         public int? Modulo { get; set; }
+        public int? Tipo_Encuesta { get; set; }
         public int? Numero_de_Preguntas { get; set; }
         public string Pregunta_1 { get; set; }
         public string Pregunta_2 { get; set; }
@@ -28,6 +30,8 @@ namespace Spartane.Core.Domain.Encuesta
 
         [ForeignKey("Modulo")]
         public virtual Spartane.Core.Domain.Modulo_Encuesta.Modulo_Encuesta Modulo_Modulo_Encuesta { get; set; }
+        [ForeignKey("Tipo_Encuesta")]
+        public virtual Spartane.Core.Domain.Tipo_Encuesta.Tipo_Encuesta Tipo_Encuesta_Tipo_Encuesta { get; set; }
         [ForeignKey("Numero_de_Preguntas")]
         public virtual Spartane.Core.Domain.Catalogo_Numero_de_Preguntas.Catalogo_Numero_de_Preguntas Numero_de_Preguntas_Catalogo_Numero_de_Preguntas { get; set; }
 
@@ -37,6 +41,7 @@ namespace Spartane.Core.Domain.Encuesta
     {
                 public int Clave { get; set; }
         public int? Modulo { get; set; }
+        public int? Tipo_Encuesta { get; set; }
         public int? Numero_de_Preguntas { get; set; }
         public string Pregunta_1 { get; set; }
         public string Pregunta_2 { get; set; }
@@ -46,6 +51,8 @@ namespace Spartane.Core.Domain.Encuesta
 
 		        [ForeignKey("Modulo")]
         public virtual Spartane.Core.Domain.Modulo_Encuesta.Modulo_Encuesta Modulo_Modulo_Encuesta { get; set; }
+        [ForeignKey("Tipo_Encuesta")]
+        public virtual Spartane.Core.Domain.Tipo_Encuesta.Tipo_Encuesta Tipo_Encuesta_Tipo_Encuesta { get; set; }
         [ForeignKey("Numero_de_Preguntas")]
         public virtual Spartane.Core.Domain.Catalogo_Numero_de_Preguntas.Catalogo_Numero_de_Preguntas Numero_de_Preguntas_Catalogo_Numero_de_Preguntas { get; set; }
 

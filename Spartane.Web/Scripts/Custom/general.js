@@ -1117,7 +1117,7 @@ function AsignarValor(nameOfControl, val) {
                 var data = eval('AutoComplete' + control.selector.replace('#', '') + 'Data');
                 control.select2({ data: data });
                 $.each(data, function (key, value) {
-                    if (value.text.toLowerCase() == val.toLowerCase())
+                    if (value.text == val)
                         control.val(value.id).trigger('change');
                 });
             }, 2000);

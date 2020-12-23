@@ -1439,6 +1439,26 @@
 <Compile Include="Detalle_Relaciones_MASC\Detalle_Relaciones_MASCService.cs" />
 <Compile Include="Relaciones_MASC\IRelaciones_MASCService.cs" />
 <Compile Include="Relaciones_MASC\Relaciones_MASCService.cs" />
+<Compile Include="Tipo_de_Solicitud\ITipo_de_SolicitudService.cs" />
+<Compile Include="Tipo_de_Solicitud\Tipo_de_SolicitudService.cs" />
+<Compile Include="Estatus_de_Solicitud\IEstatus_de_SolicitudService.cs" />
+<Compile Include="Estatus_de_Solicitud\Estatus_de_SolicitudService.cs" />
+<Compile Include="Solicitud_de_Denuncia_Ciudadana\ISolicitud_de_Denuncia_CiudadanaService.cs" />
+<Compile Include="Solicitud_de_Denuncia_Ciudadana\Solicitud_de_Denuncia_CiudadanaService.cs" />
+<Compile Include="Datos_de_los_Hechos_PC\IDatos_de_los_Hechos_PCService.cs" />
+<Compile Include="Datos_de_los_Hechos_PC\Datos_de_los_Hechos_PCService.cs" />
+<Compile Include="Robo_de_Vehiculo_PC\IRobo_de_Vehiculo_PCService.cs" />
+<Compile Include="Robo_de_Vehiculo_PC\Robo_de_Vehiculo_PCService.cs" />
+<Compile Include="Involucrados_PC\IInvolucrados_PCService.cs" />
+<Compile Include="Involucrados_PC\Involucrados_PCService.cs" />
+<Compile Include="Probable_Responsable_PC\IProbable_Responsable_PCService.cs" />
+<Compile Include="Probable_Responsable_PC\Probable_Responsable_PCService.cs" />
+<Compile Include="Tipo_Encuesta\ITipo_EncuestaService.cs" />
+<Compile Include="Tipo_Encuesta\Tipo_EncuestaService.cs" />
+<Compile Include="PC_CanalizarA\IPC_CanalizarAService.cs" />
+<Compile Include="PC_CanalizarA\PC_CanalizarAService.cs" />
+<Compile Include="Direccion_Exacta\IDireccion_ExactaService.cs" />
+<Compile Include="Direccion_Exacta\Direccion_ExactaService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1538,6 +1558,26 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1256,8 +1256,74 @@
 <Object Id="45705" culture="es-es" value="Detalle Relaciones MASC" />
 <Object Id="45702" culture="en-us" value="Relaciones MASC" />
 <Object Id="45702" culture="es-es" value="Relaciones MASC" />
+<Object Id="45708" culture="en-us" value="Tipo de Solicitud" />
+<Object Id="45708" culture="es-es" value="Tipo de Solicitud" />
+<Object Id="45709" culture="en-us" value="Estatus de Solicitud" />
+<Object Id="45709" culture="es-es" value="Estatus de Solicitud" />
+<Object Id="45710" culture="en-us" value="Solicitud de Denuncia Ciudadana" />
+<Object Id="45710" culture="es-es" value="Solicitud de Denuncia Ciudadana" />
+<Object Id="45711" culture="en-us" value="Datos de los Hechos PC" />
+<Object Id="45711" culture="es-es" value="Datos de los Hechos PC" />
+<Object Id="45712" culture="en-us" value="Robo de Vehículo PC" />
+<Object Id="45712" culture="es-es" value="Robo de Vehículo PC" />
+<Object Id="45713" culture="en-us" value="Involucrados PC" />
+<Object Id="45713" culture="es-es" value="Involucrados PC" />
+<Object Id="45714" culture="en-us" value="Probable Responsable PC" />
+<Object Id="45714" culture="es-es" value="Probable Responsable PC" />
+<Object Id="45719" culture="en-us" value="Tipo Encuesta" />
+<Object Id="45719" culture="es-es" value="Tipo Encuesta" />
+<Object Id="45722" culture="en-us" value="PC CanalizarA" />
+<Object Id="45722" culture="es-es" value="PC CanalizarA" />
+<Object Id="45723" culture="en-us" value="Dirección Exacta" />
+<Object Id="45723" culture="es-es" value="Dirección Exacta" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
