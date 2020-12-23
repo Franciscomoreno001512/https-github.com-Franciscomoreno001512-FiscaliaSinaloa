@@ -203,6 +203,8 @@
                                     <th>@Resources.ResolucionResources.Tipo</th>
                                     <th>@Resources.ResolucionResources.Resolucion_Padre_para_Autorizacion</th>
                                     <th>@Resources.ResolucionResources.Generar_Judicializacion</th>
+                                    <th>@Resources.ResolucionResources.ClaveFiscalia</th>
+                                    <th>@Resources.ResolucionResources.Aplica_para_Adolescentes</th>
 
                                 </tr>
                             </thead>
@@ -212,6 +214,8 @@
                                     <td class="filterColumn" s-spartan="number"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="checkbox"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="checkbox"></td>
 
@@ -334,6 +338,8 @@
         var Tipo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Resolucion_Padre_para_Autorizacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Generar_Judicializacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var ClaveFiscalia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Aplica_para_Adolescentes = $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         var queryString = "&Clave=" + Clave 
@@ -341,6 +347,8 @@
         + "&Tipo=" + Tipo
         + "&Resolucion_Padre_para_Autorizacion=" + Resolucion_Padre_para_Autorizacion
         + "&Generar_Judicializacion=" + Generar_Judicializacion
+        + "&ClaveFiscalia=" + ClaveFiscalia
+        + "&Aplica_para_Adolescentes=" + Aplica_para_Adolescentes
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
 
         var url = "@Url.Content("~/Frontal/Resolucion/Export?format=")" + format
@@ -359,6 +367,8 @@
         var Tipo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Resolucion_Padre_para_Autorizacion =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Generar_Judicializacion = $($('table td .filterData.form-control:input')[counter++]).val();
+        var ClaveFiscalia =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Aplica_para_Adolescentes = $($('table td .filterData.form-control:input')[counter++]).val();
 
 
         return "&Clave=" + Clave 
@@ -366,6 +376,8 @@
         + "&Tipo=" + Tipo
         + "&Resolucion_Padre_para_Autorizacion=" + Resolucion_Padre_para_Autorizacion
         + "&Generar_Judicializacion=" + Generar_Judicializacion
+        + "&ClaveFiscalia=" + ClaveFiscalia
+        + "&Aplica_para_Adolescentes=" + Aplica_para_Adolescentes
 ;
 
     }
@@ -546,11 +558,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -618,6 +630,8 @@
                 ,{ "data": "TipoDescripcion", "orderable": true, "name": "TipoDescripcion" }
                 ,{ "data": "Resolucion_Padre_para_AutorizacionDescripcion", "orderable": true, "name": "Resolucion_Padre_para_AutorizacionDescripcion" }
                 ,{ "data": "Generar_Judicializacion", "orderable": true, "name": "Generar_Judicializacion","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
+                ,{ "data": "ClaveFiscalia", "orderable": true, "name": "ClaveFiscalia", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Aplica_para_Adolescentes", "orderable": true, "name": "Aplica_para_Adolescentes","render": function (data) { return data == true ? "@Resources.Resources.Yes" : "@Resources.Resources.No"; }}
 
             ],
 			"colReorder": true,

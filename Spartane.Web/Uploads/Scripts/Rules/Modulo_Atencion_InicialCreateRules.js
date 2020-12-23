@@ -2775,6 +2775,42 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2997, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+
+
+//INI COD-MAN PARA ENVIAR CORREO DE ENCUESTA
+if(operation == 'New' || operation == 'Update'){
+	//CERRAR
+	if( GetValueByControlType($('#' + nameOfTable + 'Cerrar' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) 
+	{ 
+		if( EvaluaQuery("SELECT Correo_Electronico from Detalle_de_Datos_Generales where Modulo_Atencion_Inicial = FLDD[lblClave] and Tipo_de_Compareciente = 1",rowIndex, nameOfTable)!=TryParseInt('NULL', 'NULL') ) { SendEmailQuery('Envio de Encuesta', EvaluaQuery(" SELECT Correo_Electronico from Detalle_de_Datos_Generales where Modulo_Atencion_Inicial = FLDD[lblClave] and Tipo_de_Compareciente = 1"), EvaluaQuery("EXEC dbo.UspGeneraLinkEncuesta 1, FLDD[lblClave], 4"),rowIndex,nameOfTable); alert(DecodifyText('Envío de encuesta.', rowIndex, nameOfTable));} else { alert(DecodifyText('No tiene correo electrónico configurado, por lo que no podrá contestar encuestas.', rowIndex, nameOfTable));}
+	}
+	else //CANALIZAR
+	{
+		var OrigenSP = 0
+		
+		//OTRAS INSTANCIAS
+		if( GetValueByControlType($('#' + nameOfTable + 'Estatus2' + rowIndex),nameOfTable,rowIndex)==TryParseInt('4', '4')) 
+		{ 
+			OrigenSP = 2;
+		}
+		//MPO O MA = MPI
+		if( GetValueByControlType($('#' + nameOfTable + 'Estatus2' + rowIndex),nameOfTable,rowIndex)==TryParseInt('6', '6')) 
+		{ 
+			OrigenSP = 3;
+		}
+		
+		if(OrigenSP > 0)
+		{
+			if( EvaluaQuery("SELECT Correo_Electronico from Detalle_de_Datos_Generales where Modulo_Atencion_Inicial = FLDD[lblClave] and Tipo_de_Compareciente = 1",rowIndex, nameOfTable)!=TryParseInt('NULL', 'NULL') ) { SendEmailQuery('Envio de Encuesta', EvaluaQuery(" SELECT Correo_Electronico from Detalle_de_Datos_Generales where Modulo_Atencion_Inicial = FLDD[lblClave] and Tipo_de_Compareciente = 1"), EvaluaQuery("EXEC dbo.UspGeneraLinkEncuesta 1, FLDD[lblClave], " + OrigenSP.toString() ),rowIndex,nameOfTable); alert(DecodifyText('Envío de encuesta.', rowIndex, nameOfTable));} else { alert(DecodifyText('No tiene correo electrónico configurado, por lo que no podrá contestar encuestas.', rowIndex, nameOfTable));}			
+		}		 
+	}
+}
+//END COD-MAN PARA ENVIAR CORREO DE ENCUESTA
+
+
+
+
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 

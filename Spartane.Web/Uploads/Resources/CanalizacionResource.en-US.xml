@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Canalizacion" value="Canalización"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Expediente_MP" value="Expediente MP"></resource>
+  <resource culture="en-US" name="Expediente_AT" value="Expediente AT"></resource>
+  <resource culture="en-US" name="Fecha_de_Canalizacion" value="Fecha de Canalización"></resource>
+  <resource culture="en-US" name="Hora_de_Canalizacion" value="Hora de Canalización"></resource>
+  <resource culture="en-US" name="Usuario_que_Canaliza" value="Usuario que Canaliza"></resource>
+  <resource culture="en-US" name="Relacion_a_Canalizar" value="Relación a Canalizar"></resource>
+  <resource culture="en-US" name="Canalizar_a" value="Canalizar a"></resource>
+  <resource culture="en-US" name="Municipio" value="Municipio"></resource>
+  <resource culture="en-US" name="Unidad" value="Unidad"></resource>
+  <resource culture="en-US" name="Fecha_de_Resolucion" value="Fecha de Resolución"></resource>
+  <resource culture="en-US" name="Hora_de_Resolucion" value="Hora de Resolución"></resource>
+  <resource culture="en-US" name="Hubo_modificacion_en_la_relacion" value="¿Hubo modificación en la relación?"></resource>
+  <resource culture="en-US" name="Nueva_Relacion" value="Nueva Relación"></resource>
+  <resource culture="en-US" name="ResolucionId" value="ResolucionId"></resource>
+  <resource culture="en-US" name="Resolucion" value="Resolución"></resource>
+  <resource culture="en-US" name="Detalle_de_la_Resolucion" value="Detalle de la Resolución"></resource>
+  <resource culture="en-US" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="en-US" name="Diligencias_Generadas" value="Diligencias Generadas"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="en-US" name="TabResolucion" value="Resolución"></resource>
+
+</resources>

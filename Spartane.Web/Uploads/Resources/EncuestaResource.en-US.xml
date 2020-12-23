@@ -3,6 +3,7 @@
   <resource culture="en-us" name="Encuesta" value="Editor de Encuesta"></resource>
   <resource culture="en-US" name="Clave" value="Clave"></resource>
   <resource culture="en-US" name="Modulo" value="Módulo"></resource>
+  <resource culture="en-US" name="Tipo_Encuesta" value="Tipo Encuesta"></resource>
   <resource culture="en-US" name="Numero_de_Preguntas" value="Número de Preguntas"></resource>
   <resource culture="en-US" name="Pregunta_1" value="Pregunta #1"></resource>
   <resource culture="en-US" name="Pregunta_2" value="Pregunta #2"></resource>

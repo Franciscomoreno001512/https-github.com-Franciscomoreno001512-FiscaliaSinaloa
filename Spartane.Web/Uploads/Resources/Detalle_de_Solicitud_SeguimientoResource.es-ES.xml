@@ -8,9 +8,12 @@
   <resource culture="es-es" name="Requerido" value="Requerido"></resource>
   <resource culture="es-es" name="Solicitante" value="Solicitante"></resource>
   <resource culture="es-es" name="Fecha_Requerida" value="Fecha Requerida"></resource>
+  <resource culture="es-es" name="Cumplimiento" value="¿Cumplió?"></resource>
   <resource culture="es-es" name="Fecha_de_Cumplimiento" value="Fecha de Cumplimiento"></resource>
-  <resource culture="es-es" name="Cumplimiento" value="Cumplimiento"></resource>
+  <resource culture="es-es" name="Forma_de_Pago" value="Forma de Pago"></resource>
   <resource culture="es-es" name="Cantidad_del_Monto" value="Monto"></resource>
+  <resource culture="es-es" name="Descripcion_de_Cumplimiento" value="Descripción de Cumplimiento"></resource>
+  <resource culture="es-es" name="Concluir_Acuerdo" value="¿Se concluye Acuerdo?"></resource>
   <resource culture="es-es" name="Especialista" value="Facilitador"></resource>
   <resource culture="es-es" name="Comentarios" value="Comentarios"></resource>
   <resource culture="es-es" name="Archivo" value="Archivo"></resource>

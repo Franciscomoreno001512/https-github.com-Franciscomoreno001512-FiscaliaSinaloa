@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Solicitud_de_Denuncia_Ciudadana" value="Solicitud de Denuncia Ciudadana"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Folio" value="Folio"></resource>
+  <resource culture="en-US" name="Contrasena" value="Contraseña"></resource>
+  <resource culture="en-US" name="Fecha_de_Registro" value="Fecha de Registro"></resource>
+  <resource culture="en-US" name="Hora_de_Registro" value="Hora de Registro"></resource>
+  <resource culture="en-US" name="Usuario_que_Registra" value="Usuario que Registra"></resource>
+  <resource culture="en-US" name="Tipo_de_Solicitud" value="Tipo de Solicitud"></resource>
+  <resource culture="en-US" name="Estatus_de_Solicitud" value="Estatus de Solicitud"></resource>
+  <resource culture="en-US" name="Canalizar_a" value="Canalizar a"></resource>
+  <resource culture="en-US" name="Unidad_canaliza" value="Unidad"></resource>
+
+<resource culture="en-US" name="TabDatos_de_la_Solicitud" value="Datos de la Solicitud"></resource>
+<resource culture="en-US" name="TabCanalizar" value="Canalizar"></resource>
+
+</resources>

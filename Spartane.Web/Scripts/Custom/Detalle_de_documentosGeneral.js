@@ -191,9 +191,14 @@ $(document).ready(function () {
                         $('#Detalle_de_documentosGuardar').removeAttr('disabled');
                         $('#Detalle_de_documentosGuardar').bind()
                     }
-					else {						
-						if (!isMR)
-							window.opener.RefreshCatalog('Detalle_de_documentos', nameAttribute);
+                    else {
+                        debugger;					
+                        if (!isMR)
+                        {
+                            window.close();	 //fjmore
+                            window.opener.RefreshCatalog('Detalle_de_documentos', nameAttribute);
+                        }
+                       
 						else {
 							var control = $(window.opener.document.getElementsByClassName(nameMR +"_" + nameAttribute)[0]);
 							if(!control.hasClass('AutoComplete'))

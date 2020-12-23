@@ -114,9 +114,23 @@ if(operation == 'Update'){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //BusinessRuleId:1706, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
- AsignarValor($('#' + nameOfTable + 'Fecha_de_Registro' + rowIndex),EvaluaQuery("  select convert (varchar(11),getdate(),105)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Hora_de_Registro' + rowIndex),EvaluaQuery(" select convert (varchar(8),getdate(),108)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Especialista' + rowIndex),EvaluaQuery("select Name from  Spartan_User where id_user=GLOBAL[USERID]", rowIndex, nameOfTable)); $('#divSolicitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Solicitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Solicitud' + rowIndex));
+ AsignarValor($('#' + nameOfTable + 'Fecha_de_Registro' + rowIndex),EvaluaQuery("  select convert (varchar(11),getdate(),105)", rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Hora_de_Registro' + rowIndex),EvaluaQuery(" select convert (varchar(8),getdate(),108)", rowIndex, nameOfTable)); $('#divSolicitud').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Solicitud' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Solicitud' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Especialista' + rowIndex),EvaluaQuery("select name from spartan_user with(nolock) where id_user = GLOBAL[USERID]", rowIndex, nameOfTable));
 
 }
 //BusinessRuleId:1706, Attribute:0, Operation:Object, Event:SCREENOPENING

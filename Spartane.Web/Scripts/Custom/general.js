@@ -1403,7 +1403,7 @@ function utf8_to_b64(str) {
 }
 
 function ReadSesionVar() {
-    debugger;
+   
 
 
     var data = localStorage.getItem('controlDocumentoDynamiSeach');

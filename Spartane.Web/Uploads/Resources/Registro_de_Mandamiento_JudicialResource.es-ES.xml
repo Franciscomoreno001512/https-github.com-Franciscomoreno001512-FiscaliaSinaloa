@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Registro_de_Mandamiento_Judicial" value="Registro de Mandamiento Judicial"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Folio_de_la_Orden_de_Aprehension" value="Folio de la Orden de Aprehensión"></resource>
+  <resource culture="es-es" name="Pais_al_que_Pertenece_la_Informacion" value="País al que Pertenece la Información"></resource>
+  <resource culture="es-es" name="Estado_que_Envia_la_Informacion" value="Estado que Envia la Información"></resource>
+  <resource culture="es-es" name="Municipio_que_Envia_la_Informacion" value="Municipio que Envia la Información"></resource>
+  <resource culture="es-es" name="Institucion_que_Remite" value="Institución que Remite la Información"></resource>
+  <resource culture="es-es" name="Entidad_que_Emite_Mandamiento" value="Entidad del Juzgado que Emitió el Mandamiento"></resource>
+  <resource culture="es-es" name="Juzgado_que_Emitio_Mandamiento" value="Juzgado que Emitió el Mandamiento"></resource>
+  <resource culture="es-es" name="Numero_de_Mandamiento" value="Número de Mandamiento Judicial"></resource>
+  <resource culture="es-es" name="Oficio_de_Juzgado" value="Oficio de Juzgado Mediante el Cual Se Solicita la Ejecución del Mandamiento"></resource>
+  <resource culture="es-es" name="Nombre" value="Nombre(s)"></resource>
+  <resource culture="es-es" name="Alias" value="Alias"></resource>
+  <resource culture="es-es" name="Apellido_Paterno" value="Apellido Paterno"></resource>
+  <resource culture="es-es" name="Apellido_Materno" value="Apellido Materno"></resource>
+  <resource culture="es-es" name="Fecha_de_Nacimiento" value="Fecha de Nacimiento"></resource>
+  <resource culture="es-es" name="Edad" value="Edad"></resource>
+  <resource culture="es-es" name="Estatura" value="Estatura (cm)"></resource>
+  <resource culture="es-es" name="Peso" value="Peso (Kg)"></resource>
+  <resource culture="es-es" name="Usa_Anteojos" value="Usa Anteojos"></resource>
+  <resource culture="es-es" name="Sexo" value="Sexo"></resource>
+  <resource culture="es-es" name="Estado_Civil" value="Estado Civil"></resource>
+  <resource culture="es-es" name="Tipo_de_Identificacion" value="Tipo de Identificación"></resource>
+  <resource culture="es-es" name="Numero_de_Identificacion" value="Numero de Identificación"></resource>
+  <resource culture="es-es" name="Nacionalidad" value="Nacionalidad"></resource>
+  <resource culture="es-es" name="Escolaridad" value="Escolaridad"></resource>
+  <resource culture="es-es" name="Ocupacion" value="Ocupación"></resource>
+  <resource culture="es-es" name="Pais_de_Nacimiento" value="País de Nacimiento"></resource>
+  <resource culture="es-es" name="Estado_de_Nacimiento" value="Estado de Nacimiento"></resource>
+  <resource culture="es-es" name="Domicilio" value="Domicilio"></resource>
+  <resource culture="es-es" name="Telefonos" value="Teléfonos"></resource>
+  <resource culture="es-es" name="Otro_Nombre_del_Individuo" value="Otro Nombre del Individuo"></resource>
+  <resource culture="es-es" name="Tipo_de_Orden" value="Tipo de Orden"></resource>
+  <resource culture="es-es" name="Fecha_de_Orden" value="Fecha de Orden"></resource>
+  <resource culture="es-es" name="Hora_de_Orden" value="Hora de Orden"></resource>
+  <resource culture="es-es" name="Dirigida_Por" value="Dirigida Por"></resource>
+  <resource culture="es-es" name="Ambito" value="Ámbito"></resource>
+  <resource culture="es-es" name="Juzgado" value="Juzgado"></resource>
+  <resource culture="es-es" name="Juez" value="Juez"></resource>
+  <resource culture="es-es" name="Especialidad" value="Especialidad"></resource>
+  <resource culture="es-es" name="Numero_de_Causa" value="Número de Causa"></resource>
+  <resource culture="es-es" name="Fecha_de_Oficio" value="Fecha de Oficio Mediante el Cual Se Solicita La Ejecución Del Mandamiento"></resource>
+  <resource culture="es-es" name="Tipo_de_Cuantia" value="Tipo de Cuantia"></resource>
+  <resource culture="es-es" name="Observaciones" value="Observaciones"></resource>
+  <resource culture="es-es" name="Delitos" value="Delitos"></resource>
+  <resource culture="es-es" name="Amparo" value="Amparo"></resource>
+  <resource culture="es-es" name="Forma_Cara" value="Forma Cara"></resource>
+  <resource culture="es-es" name="Cejas" value="Cejas"></resource>
+  <resource culture="es-es" name="Cantidad_Cabello" value="Cantidad Cabello"></resource>
+  <resource culture="es-es" name="Implantacion_Cabello" value="Implantación Cabello"></resource>
+  <resource culture="es-es" name="Complexion" value="Complexión"></resource>
+  <resource culture="es-es" name="Color_Piel" value="Color Piel"></resource>
+  <resource culture="es-es" name="Frente" value="Frente"></resource>
+  <resource culture="es-es" name="Forma_Cabello" value="Forma Cabello"></resource>
+  <resource culture="es-es" name="Color_Cabello" value="Color Cabello"></resource>
+  <resource culture="es-es" name="Calvicie" value="Calvicie"></resource>
+  <resource culture="es-es" name="Color_Ojos" value="Color Ojos"></resource>
+  <resource culture="es-es" name="Ojos" value="Ojos"></resource>
+  <resource culture="es-es" name="Forma_Ojos" value="Forma Ojos"></resource>
+  <resource culture="es-es" name="Nariz_Base" value="Nariz Base"></resource>
+  <resource culture="es-es" name="Labios" value="Labios"></resource>
+  <resource culture="es-es" name="Boca" value="Boca"></resource>
+  <resource culture="es-es" name="Menton" value="Mentón"></resource>
+  <resource culture="es-es" name="Barba" value="Barba"></resource>
+  <resource culture="es-es" name="Forma_Orejas" value="Forma Orejas"></resource>
+  <resource culture="es-es" name="Tamano_Orejas" value="Tamaño Orejas"></resource>
+  <resource culture="es-es" name="Tipo_Lobulo" value="Tipo Lóbulo"></resource>
+  <resource culture="es-es" name="Bigote" value="Bigote"></resource>
+  <resource culture="es-es" name="Situacion_Fisica" value="Situación Física"></resource>
+  <resource culture="es-es" name="Fecha_de_Libramiento" value="Fecha de Libramiento"></resource>
+  <resource culture="es-es" name="Fuerzo" value="Fuerzo"></resource>
+  <resource culture="es-es" name="Tipo_Mandato" value="Tipo Mandato"></resource>
+  <resource culture="es-es" name="Numero_de_Proceso_Judicial" value="Número de Proceso Judicial"></resource>
+  <resource culture="es-es" name="Numero_de_Averiguacion" value="Numero de Averiguación"></resource>
+  <resource culture="es-es" name="Fecha_de_Captura" value="Fecha de Captura"></resource>
+  <resource culture="es-es" name="Fecha_de_Recepcion" value="Fecha de Recepción"></resource>
+  <resource culture="es-es" name="Fecha_de_Prescripcion" value="Fecha de Prescripción"></resource>
+  <resource culture="es-es" name="Fecha_de_Cumplimiento" value="Fecha de Cumplimiento"></resource>
+  <resource culture="es-es" name="Oficio_de_Cumplimiento" value="Oficio de Cumplimiento"></resource>
+  <resource culture="es-es" name="Fecha_de_Cancelacion" value="Fecha de Cancelación del Proceso"></resource>
+  <resource culture="es-es" name="Motivo_de_Cancelacion" value="Motivo de Cancelacion del Proceso"></resource>
+  <resource culture="es-es" name="Oficio_de_Cancelacion" value="Oficio de Cancelación"></resource>
+  <resource culture="es-es" name="Tipo_de_Proceso" value="Tipo de Proceso"></resource>
+  <resource culture="es-es" name="Proceso_de_Extradiccion" value="Proceso de Extradicción"></resource>
+  <resource culture="es-es" name="Observacionesx" value="Observacionesx"></resource>
+  <resource culture="es-es" name="Fotos" value="Fotos"></resource>
+  <resource culture="es-es" name="Documentos" value="Documentos"></resource>
+  <resource culture="es-es" name="Huellas_Digitales" value="Mano Izquierda Pulgar"></resource>
+  <resource culture="es-es" name="Mano_Izquierda_dedos" value="Mano Izquierda 4 dedos"></resource>
+  <resource culture="es-es" name="Mano_Derecha_Pulgar" value="Mano Derecha Pulgar"></resource>
+  <resource culture="es-es" name="Mano_Derecha_Dedos" value="Mano Derecha 4 Dedos"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+<resource culture="es-es" name="TabDomicilio" value="Domicilio"></resource>
+<resource culture="es-es" name="TabTelefonos" value="Teléfonos"></resource>
+<resource culture="es-es" name="TabOtros_Nombres" value="Otros Nombres"></resource>
+<resource culture="es-es" name="TabDatos_de_la_Orden" value="Datos de la Orden"></resource>
+<resource culture="es-es" name="TabDelito" value="Delito"></resource>
+<resource culture="es-es" name="TabAmparo" value="Amparo"></resource>
+<resource culture="es-es" name="TabMedia_Filiacion" value="Media Filiación"></resource>
+<resource culture="es-es" name="TabProceso" value="Proceso"></resource>
+<resource culture="es-es" name="TabFotos" value="Fotos"></resource>
+<resource culture="es-es" name="TabDocumentos" value="Documentos"></resource>
+<resource culture="es-es" name="TabHuellas_Digitales" value="Huellas Digitales"></resource>
+
+</resources>

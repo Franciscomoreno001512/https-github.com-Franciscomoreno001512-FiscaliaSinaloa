@@ -2,6 +2,7 @@
 @using System.Web.UI.WebControls
 @using Spartane.Core.Domain.Encuesta1;
 @using Spartane.Core.Domain.Modulo_Encuesta;
+@using Spartane.Core.Domain.Tipo_Encuesta;
 @using Spartane.Core.Domain.Catalogo_Numero_de_Preguntas;
 @using Spartane.Core.Domain.Catalogo_Respuesta;
 @using Spartane.Core.Domain.Catalogo_Respuesta;
@@ -212,6 +213,7 @@
                                     <th>@Resources.Encuesta1Resources.Hora_Respuesta</th>
                                     <th>@Resources.Encuesta1Resources.NUAT</th>
                                     <th>@Resources.Encuesta1Resources.Modulo</th>
+                                    <th>@Resources.Encuesta1Resources.Tipo_Encuesta</th>
                                     <th>@Resources.Encuesta1Resources.Numero_de_Preguntas</th>
                                     <th>@Resources.Encuesta1Resources.Pregunta1</th>
                                     <th>@Resources.Encuesta1Resources.Respuesta_1</th>
@@ -236,6 +238,7 @@
                                     <td class="filterColumn" s-spartan="time"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="time"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
@@ -373,6 +376,7 @@
         var Hora_Respuesta = $($('table td .filterData.form-control:input')[counter++]).val();
         var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Modulo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_Encuesta =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Preguntas =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta1 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Respuesta_1 =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -395,6 +399,7 @@
         + "&Hora_Respuesta=" + Hora_Respuesta
         + "&NUAT=" + NUAT
         + "&Modulo=" + Modulo
+        + "&Tipo_Encuesta=" + Tipo_Encuesta
         + "&Numero_de_Preguntas=" + Numero_de_Preguntas
         + "&Pregunta1=" + Pregunta1
         + "&Respuesta_1=" + Respuesta_1
@@ -428,6 +433,7 @@
         var Hora_Respuesta = $($('table td .filterData.form-control:input')[counter++]).val();
         var NUAT =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Modulo =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Tipo_Encuesta =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Numero_de_Preguntas =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Pregunta1 =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Respuesta_1 =  $($('table td .filterData.form-control:input')[counter++]).val();
@@ -450,6 +456,7 @@
         + "&Hora_Respuesta=" + Hora_Respuesta
         + "&NUAT=" + NUAT
         + "&Modulo=" + Modulo
+        + "&Tipo_Encuesta=" + Tipo_Encuesta
         + "&Numero_de_Preguntas=" + Numero_de_Preguntas
         + "&Pregunta1=" + Pregunta1
         + "&Respuesta_1=" + Respuesta_1
@@ -642,11 +649,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -717,6 +724,7 @@
                 ,{ "data": "Hora_Respuesta", "orderable": true, "name": "Hora_Respuesta" }
                 ,{ "data": "NUAT", "orderable": true, "name": "NUAT", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "ModuloDescripcion", "orderable": true, "name": "ModuloDescripcion" }
+                ,{ "data": "Tipo_EncuestaDescripcion", "orderable": true, "name": "Tipo_EncuestaDescripcion" }
                 ,{ "data": "Numero_de_PreguntasDescripcion", "orderable": true, "name": "Numero_de_PreguntasDescripcion" }
                 ,{ "data": "Pregunta1", "orderable": true, "name": "Pregunta1", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
                 ,{ "data": "Respuesta_1Descripcion", "orderable": true, "name": "Respuesta_1Descripcion" }

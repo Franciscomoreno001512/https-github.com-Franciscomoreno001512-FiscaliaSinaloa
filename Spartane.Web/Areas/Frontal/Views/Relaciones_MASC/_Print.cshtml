@@ -1,0 +1,272 @@
+﻿@model IList<Spartane.Web.Areas.Frontal.Models.Relaciones_MASCGridModel>
+
+@{
+    var rowCounter = 0;
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*border-collapse: separate !important;*/
+        font-size: 13px;
+    }
+
+        .table td {
+            padding: 2px;
+            border:1px solid #cccccc;
+        }
+
+    .table tr:nth-of-type(2n+1) {
+        background-color: #f9f9f9;
+    }
+
+        .table tr:nth-of-type(2n) {
+            background-color: #8da0c2;
+        }
+
+    .table-row-1 td, .table-row-1 th {
+    }
+
+    .table-row-2 td, .table-row-2 th, thead {
+    }
+
+    .tableHeaderRow {
+        font-weight: bold;
+        border: 1px solid #ff6a00;
+    }
+
+    .column1 {
+        width: 15%;
+    }
+
+    .column2 {
+        width: 15%;
+    }
+</style>
+<br />
+<body onbeforeprint="ocultarcolumnas();">
+ <span id="columnsVisible"></span>
+<table class="table" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+        <tr>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Clave
+            </td>
+                        <td class="column1">
+                @Resources.Relaciones_MASCResources.Clave
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Numero_de_Expediente
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Numero_de_Procedimiento
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.idRelacionOrigen
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Requiere_cambiar_la_relacion
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Motivo_de_Cambio
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Observaciones
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Descripcion
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Fecha_de_Resolucion_solicitud
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Hora_de_Resolucion_solicitud
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Usuario_que_Resuelve_solicitud
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Resolucion
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Tipo_de_Mecanismo
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Observaciones_solicitud
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Fecha_de_Validacion_solicitud
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Hora_de_Validacion_solicitud
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Usuario_que_Valida_solicitud
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.resultado_solicitud
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.motivo_rechazo_solicitud
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Fecha_de_Resolucion_proc
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.hora_resolucion_proc
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.usuario_resuelve_proc
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Resolucion_proc
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Observaciones_proc
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Fecha_de_Validacion_proc
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Hora_de_Validacion_proc
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Usuario_que_Valida_proc
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Resultado_proc
+            </td>
+            <td class="column1">
+                @Resources.Relaciones_MASCResources.Motivo_de_Rechazo_proc
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {                
+                <tr>
+                    <td>
+                        @item.Clave
+                    </td>
+					                    <td>
+                        @item.Clave
+                    </td>
+                    <td>
+                        @item.Numero_de_Expediente
+                    </td>
+                    <td>
+                        @item.Numero_de_Procedimiento
+                    </td>
+                    <td>
+                        @item.idRelacionOrigenDescripcion
+                    </td>
+                    <td>
+                        @item.Requiere_cambiar_la_relacion
+                    </td>
+                    <td>
+                        @item.Motivo_de_Cambio
+                    </td>
+                    <td>
+                        @item.Observaciones
+                    </td>
+                    <td>
+                        @item.Descripcion
+                    </td>
+                    <td>
+                        @item.Fecha_de_Resolucion_solicitud
+                    </td>
+                    <td>
+                        @item.Hora_de_Resolucion_solicitud
+                    </td>
+                    <td>
+                        @item.Usuario_que_Resuelve_solicitud
+                    </td>
+                    <td>
+                        @item.ResolucionDescripcion
+                    </td>
+                    <td>
+                        @item.Tipo_de_MecanismoDescripcion
+                    </td>
+                    <td>
+                        @item.Observaciones_solicitud
+                    </td>
+                    <td>
+                        @item.Fecha_de_Validacion_solicitud
+                    </td>
+                    <td>
+                        @item.Hora_de_Validacion_solicitud
+                    </td>
+                    <td>
+                        @item.Usuario_que_Valida_solicitud
+                    </td>
+                    <td>
+                        @item.resultado_solicitudDescripcion
+                    </td>
+                    <td>
+                        @item.motivo_rechazo_solicitud
+                    </td>
+                    <td>
+                        @item.Fecha_de_Resolucion_proc
+                    </td>
+                    <td>
+                        @item.hora_resolucion_proc
+                    </td>
+                    <td>
+                        @item.usuario_resuelve_proc
+                    </td>
+                    <td>
+                        @item.Resolucion_procDescripcion
+                    </td>
+                    <td>
+                        @item.Observaciones_proc
+                    </td>
+                    <td>
+                        @item.Fecha_de_Validacion_proc
+                    </td>
+                    <td>
+                        @item.Hora_de_Validacion_proc
+                    </td>
+                    <td>
+                        @item.Usuario_que_Valida_proc
+                    </td>
+                    <td>
+                        @item.Resultado_procDescripcion
+                    </td>
+                    <td>
+                        @item.Motivo_de_Rechazo_proc
+                    </td>
+
+                </tr>
+                rowCounter++;
+            }
+        }
+    </tbody>
+</table>
+</body>
+
+<script>
+    function ocultarcolumnas() {        
+        var arr = document.getElementById('columnsVisible').text.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "false") {
+                show_hide_column(i-1, false);
+            }
+        }    
+    };
+
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementsByClassName('table')[0].rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                console.log(col_no);
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+</script>
+

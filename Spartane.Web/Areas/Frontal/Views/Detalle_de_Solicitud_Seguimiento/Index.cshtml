@@ -5,6 +5,8 @@
 @using Spartane.Core.Domain.Detalle_de_Solicitud_Requerido;
 @using Spartane.Core.Domain.Detalle_de_Solicitud_Solicitante;
 @using Spartane.Core.Domain.Cumplimiento;
+@using Spartane.Core.Domain.Forma_de_Cumplimiento;
+@using Spartane.Core.Domain.A_Tiempo;
 @using Spartane.Core.Domain.Spartan_User;
 
 @using Spartane.Core.Domain.Permission
@@ -208,9 +210,12 @@
                                     <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Requerido</th>
                                     <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Solicitante</th>
                                     <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_Requerida</th>
-                                    <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Cumplimiento</th>
                                     <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Cumplimiento</th>
+                                    <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Fecha_de_Cumplimiento</th>
+                                    <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Forma_de_Pago</th>
                                     <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Cantidad_del_Monto</th>
+                                    <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Descripcion_de_Cumplimiento</th>
+                                    <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Concluir_Acuerdo</th>
                                     <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Especialista</th>
                                     <th>@Resources.Detalle_de_Solicitud_SeguimientoResources.Comentarios</th>
 
@@ -226,9 +231,12 @@
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="date"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="number"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
+                                    <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
                                     <td class="filterColumn" s-spartan="text"></td>
 
@@ -353,9 +361,12 @@
         var Requerido =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitante =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_Requerida = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Cumplimiento = $($('table td .filterData.form-control:input')[counter++]).val();
         var Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Cumplimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_de_Pago =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Cantidad_del_Monto =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Descripcion_de_Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Concluir_Acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Especialista =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Comentarios =  $($('table td .filterData.form-control:input')[counter++]).val();
 
@@ -367,9 +378,12 @@
         + "&Requerido=" + Requerido
         + "&Solicitante=" + Solicitante
         + "&Fecha_Requerida=" + Fecha_Requerida
-        + "&Fecha_de_Cumplimiento=" + Fecha_de_Cumplimiento
         + "&Cumplimiento=" + Cumplimiento
+        + "&Fecha_de_Cumplimiento=" + Fecha_de_Cumplimiento
+        + "&Forma_de_Pago=" + Forma_de_Pago
         + "&Cantidad_del_Monto=" + Cantidad_del_Monto
+        + "&Descripcion_de_Cumplimiento=" + Descripcion_de_Cumplimiento
+        + "&Concluir_Acuerdo=" + Concluir_Acuerdo
         + "&Especialista=" + Especialista
         + "&Comentarios=" + Comentarios
  + "&iSortCol=" + table.settings()[0].aoColumns[table.settings()[0].aLastSort[0].col].data + "&sSortDir=" + table.settings()[0].aLastSort[0].dir;
@@ -392,9 +406,12 @@
         var Requerido =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Solicitante =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Fecha_Requerida = $($('table td .filterData.form-control:input')[counter++]).val();
-        var Fecha_de_Cumplimiento = $($('table td .filterData.form-control:input')[counter++]).val();
         var Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Fecha_de_Cumplimiento = $($('table td .filterData.form-control:input')[counter++]).val();
+        var Forma_de_Pago =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Cantidad_del_Monto =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Descripcion_de_Cumplimiento =  $($('table td .filterData.form-control:input')[counter++]).val();
+        var Concluir_Acuerdo =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Especialista =  $($('table td .filterData.form-control:input')[counter++]).val();
         var Comentarios =  $($('table td .filterData.form-control:input')[counter++]).val();
 
@@ -406,9 +423,12 @@
         + "&Requerido=" + Requerido
         + "&Solicitante=" + Solicitante
         + "&Fecha_Requerida=" + Fecha_Requerida
-        + "&Fecha_de_Cumplimiento=" + Fecha_de_Cumplimiento
         + "&Cumplimiento=" + Cumplimiento
+        + "&Fecha_de_Cumplimiento=" + Fecha_de_Cumplimiento
+        + "&Forma_de_Pago=" + Forma_de_Pago
         + "&Cantidad_del_Monto=" + Cantidad_del_Monto
+        + "&Descripcion_de_Cumplimiento=" + Descripcion_de_Cumplimiento
+        + "&Concluir_Acuerdo=" + Concluir_Acuerdo
         + "&Especialista=" + Especialista
         + "&Comentarios=" + Comentarios
 ;
@@ -591,11 +611,11 @@
             //"dom": '<"top"f>rt<"bottom"ilp><"clear">'
             buttons: [
                 { extend: 'copy', text: '@Resources.Resources.Copy', exportOptions: { columns: [1 ,':visible'] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
-                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'csv', text: '@Resources.Resources.CSV', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'excel', title: '@Resources.Resources.Excel', text: '@Resources.Resources.Excel', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
+                { extend: 'pdf', title: '@Resources.Resources.PDF', text: '@Resources.Resources.PDF', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Export ? 'hide' : '', },
                 {
-                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
+                    extend: 'print', title: '@Resources.Resources.PrintText', text: '@Resources.Resources.Print', exportOptions: { columns: [1 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ] }, className: !permission.Print ? 'hide' : '',
                     customize: function (win) {
                         $(win.document.body).addClass('white-bg');
 
@@ -665,9 +685,12 @@
                 ,{ "data": "RequeridoNombre", "orderable": true, "name": "RequeridoNombre"}
                 ,{ "data": "SolicitanteNombre", "orderable": true, "name": "SolicitanteNombre"}
                 ,{ "data": "Fecha_Requerida", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_Requerida" }
-                ,{ "data": "Fecha_de_Cumplimiento", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Cumplimiento" }
                 ,{ "data": "CumplimientoDescripcion", "orderable": true, "name": "CumplimientoDescripcion" }
+                ,{ "data": "Fecha_de_Cumplimiento", "orderable": true, "searchable": true, "type": "date", "name": "Fecha_de_Cumplimiento" }
+                ,{ "data": "Forma_de_PagoDescripcion", "orderable": true, "name": "Forma_de_PagoDescripcion" }
                 ,{ "data": "Cantidad_del_Monto", "orderable": true, "name": "Cantidad_del_Monto", "className": "dt-right", render: $.fn.dataTable.render.number(',', '.', 2, '$') }
+                ,{ "data": "Descripcion_de_Cumplimiento", "orderable": true, "name": "Descripcion_de_Cumplimiento", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
+                ,{ "data": "Concluir_AcuerdoDescripcion", "orderable": true, "name": "Concluir_AcuerdoDescripcion" }
                 ,{ "data": "EspecialistaName", "orderable": true, "name": "EspecialistaName"}
                 ,{ "data": "Comentarios", "orderable": true, "name": "Comentarios", "render": function (data) { return htmlDecode(data != null && data.length > 100 ? (data.substring(0,100) + '...') : data ); } }
 

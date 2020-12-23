@@ -50,7 +50,7 @@
     }
 
     button#btnSearch {
-        bottom: -76px;
+        /*bottom: -76px;*/
         margin: 0 0px 0 0;
     }
 
@@ -94,6 +94,11 @@
 
     #claseverdocumento {
         margin-left: 10px;
+    }
+
+    .col-lg-10 {
+        height: 83px;
+        overflow-y: scroll;
     }
 </style>
 <div id="printFormatModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
@@ -184,9 +189,9 @@
 
 
 
-                                                <p style="font-weight:bold;position: relative;top: -10px;    width: 85px;">RESULTADOS</p>
+                                                <p style="font-weight:bold;position: relative; width: 85px;">RESULTADOS</p>
 
-                                                <div class="scroll-area-sm" style="top: -15px;position: relative;">
+                                                <div class="scroll-area-sm" style="top: -25px;position: relative;">
                                                     <div class="scrollbar-container">
                                                         <div class="table-responsive" style="height: 180px;">
                                                             <table style="width:100%;" class="align-middle mb-0 table table-borderless table-striped table-hover">
@@ -279,8 +284,8 @@
     var statusRegionBusqueda = 1;
     var sttusRegionInfoBusqueda = 1;
 	var alturaoriginal = 0;
-
-
+    var darclickaNuevoEndiligencias = false;
+    var esEdicionInvitaciones = false;
 
     $(document).ready(function () {
         setTimeout(function () {
@@ -316,6 +321,7 @@
         });
         $('#TabsBadget').on('click', 'button', function () {
             debugger;
+            esEdicionInvitaciones = false;
             $('#TabsBadget button').css('background-color', 'transparent');
             $(this).css('background-color', '#ddd');
             TabSelected = $(this).data('name');
@@ -336,7 +342,7 @@
             else {
                 $('#new').css('display', 'none');
             }
-			
+   
 			var value = $('#wf').val();
             switch (value) {
                 case "Canalizados":
@@ -354,10 +360,19 @@
                     break;
             }
 
-
+            debugger;
+            if (darclickaNuevoEndiligencias) {
+                $("#new").click();
+            }
 
         });//editDetails
         $('#TbodyDetails').on('click', '.editDetails', function () {
+            debugger;
+
+            if (ObjectSelected == "45033") { // es invitaciones (detalle_de_solicitud_de_invitacines)
+                esEdicionInvitaciones = true;
+            }
+            
             var id = $(this).parent().parent().find('td:nth-child(2)').text();
             GetCatalogName(ObjectSelected, $('#LabelDetalle').text());
             GetCatalogPopup(id)
@@ -369,6 +384,8 @@
             $("#printFormatModal").data('idrecord', idRecord);
         });
         $('#new').click(function () {
+            debugger;
+            esEdicionInvitaciones = false;
             var role = @Session["USERROLEID"] != null ? @Session["USERROLEID"] : 0;
             if($('#LabelDetalle').text() == "Informe" && (role==8 || role==9 || role==10 || role==11)){
                 ObjectSelected=44799;
@@ -487,7 +504,8 @@
     }
     var bPreguntar = true
     function GetCatalogPopup(id) {
-       
+        debugger;
+        darclickaNuevoEndiligencias = false;
         var edit = '';
         var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
         url = url.replace("Catalog", ObjectSelectedName);
@@ -498,8 +516,8 @@
 
         url += '&preguntar=1'
         //window.open(htmlDecode(url), '_blank', 'left=300,top=50,width=1200,height=700,toolbar=0,resizable=0');
-        window.open(htmlDecode(url), '_blank', 'left=300,top=50,width=' + screen.availWidth + ',height=' + screen.availHeight + ',toolbar=0,resizable=0');
-        
+        window.open(htmlDecode(url), '_blank', 'height='+screen.height+', width='+screen.width);
+
     }
 
     function preguntarAntesDeSalir() {
@@ -511,6 +529,13 @@
         debugger;
         GetDataToShow(IdSelected, @ViewBag.idTablero);
         FillDetailsByTab(TabSelected, ObjectSelected, IdSelected,@ViewBag.idTablero);
+
+        if (!esEdicionInvitaciones) {
+
+            if (catalog == "Detalle_de_Solicitudes_de_Invitaciones") {//fjmore, cuadno biene de Detalle_de_Solicitudes_de_Invitaciones automaticamente se debe de abrier el popup paa capturar una diligencia
+                LoadDiligencias();
+            }
+        }
     }
 
     function EditRow() {
@@ -589,7 +614,7 @@
     var ObjectSelectedName = '';
     var TabSelected = '';
     var IdSelected = "-1";
-	var idModule = getParameterByName('id');										
+	var idModule = getParameterByName('id');
     function FillDetailsByTab(idTab, object, id, idTablero) {
         debugger;
         ObjectSelected = object;
@@ -619,24 +644,24 @@
 
                         if (ObjectSelected == "45018") {
                             if (c == "Clave" || (c == "Documento" && idModule == '1') || (c == "Campo" && idModule == '1') || (c == "Archivo" && idModule == '1') || (c == "Descripcion" && idModule == '1')) {
-                                htmlColumns += '<th class="text-center" style="display:none;">' + c.replace(/_/g, " ") + '</th>';
+                                htmlColumns += '<th class="text-center" hidden>' + c.replace(/_/g, " ") + '</th>';
                             } else {
                                 htmlColumns += '<th class="text-center">' + c.replace(/_/g, " ") + '</th>';
                             }
                         } else {
                             if (c == "Clave") {
-                                htmlColumns += '<th class="text-center" style="display:none;">' + c.replace(/_/g, " ") + '</th>';
+                                htmlColumns += '<th class="text-center" hidden>' + c.replace(/_/g, " ") + '</th>';
                             } else {
                                 htmlColumns += '<th class="text-center">' + c.replace(/_/g, " ") + '</th>';
                             }
                         }
 
 
-																													   
-																															 
-							   
-																									   
-						 
+
+
+
+
+
 
                     });
                     $('#TrColumnsDetail').html(htmlColumns);
@@ -700,17 +725,18 @@
 
 
                         $.each(v.Values, function (i, v2) {
-                            if (ObjectSelected == "45018" || ObjectSelected == "45474" ) {
+                            if (ObjectSelected == "45018" ) {
+                                //if (ObjectSelected == "45018" || ObjectSelected == "45474") {
 							
-                                if (i == 0 || (i == 6 && idModule == '1') || (i == 10 && idModule == '1') || (i == 12 && idModule == '1') || (i == 11 && idModule == '1')) {
-                                    htmlValues += '<td class="text-center text-muted" style="display:none;">' + v2 + '</td>';
+                                if (i == 0 || (i == 7 && idModule == '1') || (i == 10 && idModule == '1') || (i == 12 && idModule == '1') || (i == 11 && idModule == '1')) {
+                                    htmlValues += '<td class="text-center text-muted" hidden>' + v2 + '</td>';
                                 } else {
                                     htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
                                 }
                             }
                             else {
                                 if (i == 0 ) {
-                                    htmlValues += '<td class="text-center text-muted" style="display:none;">' + v2 + '</td>';
+                                    htmlValues += '<td class="text-center text-muted" hidden>' + v2 + '</td>';
                                 } else {
                                     htmlValues += '<td class="text-center text-muted">' + v2 + '</td>';
                                 }
@@ -1035,18 +1061,31 @@
 
     $("body").on("click", ".claseeditardocumento", function (e) {
         debugger;
-        var documento = jQuery(this).closest('tr').find('td:eq(7)').text(); // id del formato de la tabla documento
+
+        var _idModule = getParameterByName('id');
+        var _columnadocumento = '7';
+        var _columna = '12';
+
+        if (_idModule == '1') { _columna = '11'; } 
+        if (_idModule == '1') { _columnadocumento = '8'; } 
+
+        var documento = jQuery(this).closest('tr').find('td:eq(' + _columnadocumento + ')').text(); // id del formato de la tabla documento
         var formatoid = GetIdFormatoFromDocumento(documento);
 
 
-        var FolioCcontrolDoc = jQuery(this).closest('tr').find('td:eq(13)').text(); // obtenemos el valor de la comluma clave oculta en la tabla perteneciente al td que se le dio click
+        var FolioCcontrolDoc = jQuery(this).closest('tr').find('td:eq(' + _columna + ')').text(); // obtenemos el valor de la comluma clave oculta en la tabla perteneciente al td que se le dio click
         var objectdID = "45018"
         OpenPrintFormats(FolioCcontrolDoc, @Spartane.Web.SessionHelper.Role, "", true, objectdID,formatoid);
     });
 
      $("body").on("click", ".claseverdocumento", function (e) {
-        debugger;
-        var folioControlDoc = jQuery(this).closest('tr').find('td:eq(13)').text();
+         debugger;
+
+        var _idModule = getParameterByName('id');
+        var _columna = '12';
+        if (_idModule == '1') { _columna = '11'; } 
+
+        var folioControlDoc = jQuery(this).closest('tr').find('td:eq(' + _columna + ')').text();
 
         var id = EvaluaQuery("select isnull(archivo,'') as Archivo from control_de_documentos where folio = " + folioControlDoc, "", "");// document.getElementById("Archivo").innerHTML;
             $.ajax({
@@ -1128,4 +1167,16 @@
         var formatoID = EvaluaQuery(" usp_getIdFormatoFromDocumento  " + doc + "");
         return formatoID;
     }
+
+   
+    function LoadDiligencias() {
+        debugger;
+        var dataObjectSelected = "45018";
+        var filterObj = '*[data-object="' + dataObjectSelected + '"]';
+        var badge = $("#TabsBadget").find(filterObj).find(".badge");
+        
+        darclickaNuevoEndiligencias = true;
+        $("#TabsBadget").find(filterObj).click()
+    }
+
 </script>

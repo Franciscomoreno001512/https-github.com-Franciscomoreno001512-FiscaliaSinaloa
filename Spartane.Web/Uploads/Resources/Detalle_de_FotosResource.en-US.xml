@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="en-us" name="Detalle_de_Fotos" value="Detalle de Fotos"></resource>
+  <resource culture="en-US" name="Clave" value="Clave"></resource>
+  <resource culture="en-US" name="Foto_Perfil_Izquierdo" value="Foto Perfil Izquierdo"></resource>
+  <resource culture="en-US" name="Foto_Perfil_Derecho" value="Foto Perfil Derecho"></resource>
+  <resource culture="en-US" name="Foto_de_Frente" value="Foto de Frente"></resource>
+
+<resource culture="en-US" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

@@ -70,6 +70,15 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string y_Calle { get; set; }
         public string LongitudH { get; set; }
         public string LatitudH { get; set; }
+        public int? Especialista_AsignadoA { get; set; }
+        public string Especialista_AsignadoAName { get; set; }
+        public string Motivo_cambio_facilitador { get; set; }
+        public bool Asignar_Especialista_Automatico { get; set; }
+        public string Razone { get; set; }
+        public string Fecha_de_AsignacionA { get; set; }
+        public string Hora_de_AsignacionA { get; set; }
+        public string Fecha_de_Atencion_del_Especialista { get; set; }
+        public string Hora_de_Atencion_del_Especialista { get; set; }
         public bool Rechazar { get; set; }
         public int? Motivo_de_Rechazo { get; set; }
         public string Motivo_de_RechazoDescripcion { get; set; }
@@ -81,24 +90,34 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Tipo_de_Conclusion_AnticipadaDescripcion { get; set; }
         public string Fecha_de_Cierre { get; set; }
         public string Hora_de_Cierre { get; set; }
+        public int? Usuario_que_Resuelve_Solicitud { get; set; }
+        public string Usuario_que_Resuelve_SolicitudName { get; set; }
+        public int? Resolucion_Solicitud { get; set; }
+        public string Resolucion_SolicitudDescripcion { get; set; }
+        public int? Tipo_de_Mecanismo { get; set; }
+        public string Tipo_de_MecanismoDescripcion { get; set; }
+        public string Observaciones_Solicitud { get; set; }
         public string Fecha_Validacion { get; set; }
         public string Hora_Validacion { get; set; }
         public int? Usuario_que_Valida { get; set; }
         public string Usuario_que_ValidaName { get; set; }
-        public short? Resultado { get; set; }
-        public string ResultadoDescripcion { get; set; }
+        public short? Autoriza_Cierre_de_Expediente { get; set; }
+        public string Autoriza_Cierre_de_ExpedienteDescripcion { get; set; }
         public string Motivo_de_Rechazo_Solicitud { get; set; }
-        public int? Especialista_AsignadoA { get; set; }
-        public string Especialista_AsignadoAName { get; set; }
-        public string Motivo_cambio_facilitador { get; set; }
-        public bool Asignar_Especialista_Automatico { get; set; }
-        public string Razone { get; set; }
-        public int? Tipo_de_Mecanismo { get; set; }
-        public string Tipo_de_MecanismoDescripcion { get; set; }
-        public string Fecha_de_AsignacionA { get; set; }
-        public string Hora_de_AsignacionA { get; set; }
-        public string Fecha_de_Atencion_del_Especialista { get; set; }
-        public string Hora_de_Atencion_del_Especialista { get; set; }
+        public string Fecha_de_Resolucion_Procedimiento { get; set; }
+        public string Hora_de_Resolucion_Procedimiento { get; set; }
+        public int? Resolucion_de_Procedimiento { get; set; }
+        public string Resolucion_de_ProcedimientoDescripcion { get; set; }
+        public int? Usuario_que_Resuelve_Procedimiento { get; set; }
+        public string Usuario_que_Resuelve_ProcedimientoName { get; set; }
+        public string Observaciones_Procedimiento { get; set; }
+        public string Fecha_de_Validacion_Procedimiento { get; set; }
+        public string Hora_de_Validacion_Procedimiento { get; set; }
+        public int? Usuario_que_Valida_Procedimiento { get; set; }
+        public string Usuario_que_Valida_ProcedimientoName { get; set; }
+        public short? Resultado_Procedimiento { get; set; }
+        public string Resultado_ProcedimientoDescripcion { get; set; }
+        public string Motivo_de_Rechazo_Procedimiento { get; set; }
 
     }
 	
@@ -181,7 +200,23 @@ namespace Spartane.Web.Areas.Frontal.Models
 
     }
 
-	public class Solicitud_CierreModel
+	public class Solicitud_AsignacionModel
+    {
+        [Required]
+        public int Clave { get; set; }
+        public int? Especialista_AsignadoA { get; set; }
+        public string Especialista_AsignadoAName { get; set; }
+        public string Motivo_cambio_facilitador { get; set; }
+        public bool? Asignar_Especialista_Automatico { get; set; }
+        public string Razone { get; set; }
+        public string Fecha_de_AsignacionA { get; set; }
+        public string Hora_de_AsignacionA { get; set; }
+        public string Fecha_de_Atencion_del_Especialista { get; set; }
+        public string Hora_de_Atencion_del_Especialista { get; set; }
+
+    }
+
+	public class Solicitud_Resolucion_de_SolicitudModel
     {
         [Required]
         public int Clave { get; set; }
@@ -196,31 +231,41 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Tipo_de_Conclusion_AnticipadaDescripcion { get; set; }
         public string Fecha_de_Cierre { get; set; }
         public string Hora_de_Cierre { get; set; }
+        public int? Usuario_que_Resuelve_Solicitud { get; set; }
+        public string Usuario_que_Resuelve_SolicitudName { get; set; }
+        public int? Resolucion_Solicitud { get; set; }
+        public string Resolucion_SolicitudDescripcion { get; set; }
+        public int? Tipo_de_Mecanismo { get; set; }
+        public string Tipo_de_MecanismoDescripcion { get; set; }
+        public string Observaciones_Solicitud { get; set; }
         public string Fecha_Validacion { get; set; }
         public string Hora_Validacion { get; set; }
         public int? Usuario_que_Valida { get; set; }
         public string Usuario_que_ValidaName { get; set; }
-        public short? Resultado { get; set; }
-        public string ResultadoDescripcion { get; set; }
+        public short? Autoriza_Cierre_de_Expediente { get; set; }
+        public string Autoriza_Cierre_de_ExpedienteDescripcion { get; set; }
         public string Motivo_de_Rechazo_Solicitud { get; set; }
 
     }
 
-	public class Solicitud_AsignacionModel
+	public class Solicitud_Resolucion_de_ProcedimientoModel
     {
         [Required]
         public int Clave { get; set; }
-        public int? Especialista_AsignadoA { get; set; }
-        public string Especialista_AsignadoAName { get; set; }
-        public string Motivo_cambio_facilitador { get; set; }
-        public bool? Asignar_Especialista_Automatico { get; set; }
-        public string Razone { get; set; }
-        public int? Tipo_de_Mecanismo { get; set; }
-        public string Tipo_de_MecanismoDescripcion { get; set; }
-        public string Fecha_de_AsignacionA { get; set; }
-        public string Hora_de_AsignacionA { get; set; }
-        public string Fecha_de_Atencion_del_Especialista { get; set; }
-        public string Hora_de_Atencion_del_Especialista { get; set; }
+        public string Fecha_de_Resolucion_Procedimiento { get; set; }
+        public string Hora_de_Resolucion_Procedimiento { get; set; }
+        public int? Resolucion_de_Procedimiento { get; set; }
+        public string Resolucion_de_ProcedimientoDescripcion { get; set; }
+        public int? Usuario_que_Resuelve_Procedimiento { get; set; }
+        public string Usuario_que_Resuelve_ProcedimientoName { get; set; }
+        public string Observaciones_Procedimiento { get; set; }
+        public string Fecha_de_Validacion_Procedimiento { get; set; }
+        public string Hora_de_Validacion_Procedimiento { get; set; }
+        public int? Usuario_que_Valida_Procedimiento { get; set; }
+        public string Usuario_que_Valida_ProcedimientoName { get; set; }
+        public short? Resultado_Procedimiento { get; set; }
+        public string Resultado_ProcedimientoDescripcion { get; set; }
+        public string Motivo_de_Rechazo_Procedimiento { get; set; }
 
     }
 

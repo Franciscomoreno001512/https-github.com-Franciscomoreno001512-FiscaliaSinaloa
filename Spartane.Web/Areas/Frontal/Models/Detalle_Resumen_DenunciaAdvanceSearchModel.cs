@@ -44,6 +44,20 @@ namespace Spartane.Web.Areas.Frontal.Models
 
         public RadioOptions Archivo_Descargado { set; get; }
 
+        public Filters Usuario_que_registraFilter { set; get; }
+        public string AdvanceUsuario_que_registra { set; get; }
+        public int[] AdvanceUsuario_que_registraMultiple { set; get; }
+
+        public Filters DocumentoFilter { set; get; }
+        public string AdvanceDocumento { set; get; }
+        public int[] AdvanceDocumentoMultiple { set; get; }
+
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        public string FromArchivo { set; get; }
+        [Range(1, int.MaxValue, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanZero")]
+        [IsNumberAfterAttribute("FromArchivo", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "GreaterThanFrom")]
+        public string ToArchivo { set; get; }
+
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
         public string FromFecha_de_registro { set; get; }
         [DataType(DataType.Date, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "InvalidDate")]
