@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Generador_Solicitud_Denuncia_Ciudadana" value="Generador Solicitud Denuncia Ciudadana"></resource>
+  <resource culture="es-es" name="Folio" value="Folio"></resource>
+  <resource culture="es-es" name="Fecha_Genera" value="Fecha Genera"></resource>
+  <resource culture="es-es" name="Anio_Genera" value="Anio Genera"></resource>
+  <resource culture="es-es" name="Consecutivo" value="Consecutivo"></resource>
+  <resource culture="es-es" name="Folio_Denuncia_Ultimo_Generado" value="Folio_Denuncia_Ultimo_Generado"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

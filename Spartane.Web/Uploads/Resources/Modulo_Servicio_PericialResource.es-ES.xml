@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Modulo_Servicio_Pericial" value="Modulo Servicio Pericial"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Modulo_Atencion_Inicial" value="Modulo Atención Inicial"></resource>
+  <resource culture="es-es" name="Estatus" value="Estatus"></resource>
+  <resource culture="es-es" name="Servicio_Pericial" value="Servicio Pericial"></resource>
+  <resource culture="es-es" name="Usuario_Asignado" value="Usuario Asignado"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>
