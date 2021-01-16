@@ -37,6 +37,7 @@ namespace Spartane.Core.Domain.Diligencias_MP
         public string Observaciones { get; set; }
         public int? Archivo { get; set; }
         public string Descripcion { get; set; }
+        public bool? Lista_para_periciales { get; set; }
 
         [ForeignKey("Expediente_MP")]
         public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }
@@ -72,6 +73,7 @@ namespace Spartane.Core.Domain.Diligencias_MP
         public string Observaciones { get; set; }
         public int? Archivo { get; set; }
         public string Descripcion { get; set; }
+        public bool? Lista_para_periciales { get; set; }
 
 		        [ForeignKey("Expediente_MP")]
         public virtual Spartane.Core.Domain.expediente_ministerio_publico.expediente_ministerio_publico Expediente_MP_expediente_ministerio_publico { get; set; }

@@ -196,6 +196,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Archivo_Adjunto = Detalle_de_documentosData.Archivo_Adjunto
                     ,Observaciones = Detalle_de_documentosData.Observaciones
                     ,Archivo = Detalle_de_documentosData.Archivo
+                    ,Lista_para_periciales = Detalle_de_documentosData.Lista_para_periciales.GetValueOrDefault()
                     ,Descripcion = Detalle_de_documentosData.Descripcion
 
 					};
@@ -296,6 +297,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Archivo_Adjunto = Detalle_de_documentosData.Archivo_Adjunto
                     ,Observaciones = Detalle_de_documentosData.Observaciones
                     ,Archivo = Detalle_de_documentosData.Archivo
+                    ,Lista_para_periciales = Detalle_de_documentosData.Lista_para_periciales.GetValueOrDefault()
                     ,Descripcion = Detalle_de_documentosData.Descripcion
 
 					};
@@ -568,6 +570,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Archivo_Adjunto = m.Archivo_Adjunto
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
+			,Lista_para_periciales = m.Lista_para_periciales
 			,Descripcion = m.Descripcion
 
                     }).ToList(),
@@ -695,6 +698,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Archivo_Adjunto = m.Archivo_Adjunto
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
+			,Lista_para_periciales = m.Lista_para_periciales
 			,Descripcion = m.Descripcion
 
                 }).ToList(),
@@ -1101,6 +1105,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     where += " AND Detalle_de_documentos.Archivo <= " + filter.ToArchivo;
             }
 
+            if (filter.Lista_para_periciales != RadioOptions.NoApply)
+                where += " AND Detalle_de_documentos.Lista_para_periciales = " + Convert.ToInt32(filter.Lista_para_periciales);
+
             if (!string.IsNullOrEmpty(filter.Descripcion))
             {
                 switch (filter.DescripcionFilter)
@@ -1207,6 +1214,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
                         ,Observaciones = varDetalle_de_documentos.Observaciones
                         ,Archivo = varDetalle_de_documentos.Archivo
+                        ,Lista_para_periciales = varDetalle_de_documentos.Lista_para_periciales
                         ,Descripcion = varDetalle_de_documentos.Descripcion
 
                     };
@@ -1550,7 +1558,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = null;
+			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -1607,6 +1615,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Archivo_Adjunto = m.Archivo_Adjunto
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
+			,Lista_para_periciales = m.Lista_para_periciales
 			,Descripcion = m.Descripcion
 
             }).ToList();
@@ -1693,6 +1702,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Archivo_Adjunto = m.Archivo_Adjunto
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
+			,Lista_para_periciales = m.Lista_para_periciales
 			,Descripcion = m.Descripcion
 
             }).ToList();
@@ -1762,6 +1772,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 
                         ,Observaciones = varDetalle_de_documentos.Observaciones
                         ,Archivo = varDetalle_de_documentos.Archivo
+                        ,Lista_para_periciales = varDetalle_de_documentos.Lista_para_periciales
                         ,Descripcion = varDetalle_de_documentos.Descripcion
                     
                 };
@@ -1809,6 +1820,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Archivo_Adjunto = m.Archivo_Adjunto
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
+			,Lista_para_periciales = m.Lista_para_periciales
 			,Descripcion = m.Descripcion
 
                     

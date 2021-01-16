@@ -1,4 +1,8 @@
-﻿
+﻿        function RemoveAttachmentMainImagen () {
+            $("#hdnRemoveImagen").val("1");
+            $("#divAttachmentImagen").hide();
+        }
+
 
 
 
@@ -12,10 +16,21 @@ function GetAutoCompleteDetalle_de_Servicio_de_Apoyo_Modulo_de_Atencion_Inicial_
     for (var i = 0; i < data.length; i++) {
         AutoCompleteModulo_de_Atencion_InicialData.push({
             id: data[i].Clave,
-            text: data[i].NUAT
+            text: data[i].Folio
         });
     }
     return AutoCompleteModulo_de_Atencion_InicialData;
+}
+var AutoCompleteDiligenciaData = [];
+function GetAutoCompleteDetalle_de_Servicio_de_Apoyo_Diligencia_DocumentoData(data) {
+	AutoCompleteDiligenciaData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteDiligenciaData.push({
+            id: data[i].Clave,
+            text: data[i].Descripcion
+        });
+    }
+    return AutoCompleteDiligenciaData;
 }
 
 
@@ -57,6 +72,9 @@ function ClearControls() {
     $('#Modulo_de_Atencion_Inicial').empty();
     $("#Modulo_de_Atencion_Inicial").append('<option value=""></option>');
     $('#Modulo_de_Atencion_Inicial').val('0').trigger('change');
+    $('#Diligencia').empty();
+    $("#Diligencia").append('<option value=""></option>');
+    $('#Diligencia').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -189,6 +207,9 @@ $(document).ready(function () {
 	    $('#Modulo_de_Atencion_Inicial').empty();
     $("#Modulo_de_Atencion_Inicial").append('<option value=""></option>');
     $('#Modulo_de_Atencion_Inicial').val('0').trigger('change');
+    $('#Diligencia').empty();
+    $("#Diligencia").append('<option value=""></option>');
+    $('#Diligencia').val('0').trigger('change');
 
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);

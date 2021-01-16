@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>PORTAL CIUDADANO | FGE-SINALOA</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+
+    <!-- CSS Files -->
+    <link href="Content/bootstrap.css" rel="stylesheet">
+    <link href="Content/style-red.css" rel="stylesheet">
+    <link href="Content/style.css" rel="stylesheet">
+
+    <!-- CSS File Detalles Envio-->
+    <link href="Content/portal-ciudadano.css" rel="stylesheet">
+    <link href="Content/fontello.css" rel="stylesheet">
+
+    <!-- JS Files -->
+    <script src="Scripts/jquery-2.1.1.js"></script>        
+    <script src="Scripts/bootstrap.min.js"></script>
+</head>
+<body class="fondo-azul">
+    <div class="container">
+        <header>
+            <div class="row" style="margin-top: 3.0rem;">
+                <div id="logo" class="col-xs-12 col-md-4">
+                    <img src="Images/Logo-white1.png" alt="Logotipo Fiscalia">
+                </div>
+                <div class="text-center col-xs-12 col-md-4 txt-blanco" style="margin-top: 2.0rem;">
+                    <h1 class="pildora">Bienvenido</h1>
+                    <br>
+                    <p class="txt-14">
+                        Da clic sobre la opción que deseas realizar y llena la información que te solicita.
+                        <br>¡Muchas gracias por tu valentía!
+                    </p>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="row text-center" style="margin-top: 3.0rem;">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <p class="txt-blanco">Los datos que se registren, están debidamente protegidos de acuerdo a lo establecido en la Ley General de Protección de Datos personales en Posesión de Sujetos Obligados, así como en la Ley Federal de Acceso a la Información Pública.</p>
+                </div>
+            </div>
+            <div class="row display-flex " style="margin-top: 3.0rem;">
+                <div class="col-xs-6 col-md-4">
+                    <a href="#" onclick="Finalizar()">
+                        <div class="card card-blanca">
+                            <div class="card-icon"><i class="icon-denuncia"></i></div>
+                            <div class="card-title">Denuncia</div>
+                            <div class="card-body">Aquí puedes realizar tu denuncia. Estamos para ayudarte.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-4 ">
+                    <a href="#" onclick="DenunciaAnonima()">
+                        <div class="card card-blanca">
+                            <div class="card-icon"><i class="icon-denunciaanonima"></i></div>
+                            <div class="card-title">Denuncia Anónima</div>
+                            <div class="card-body">Aquí puedes realizar tu denuncia de forma anónima. Tus datos  están seguros.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <a href="#" onclick="ConsultaEstatus()">
+                        <div class="card card-blanca">
+                           <div class="card-icon"><i class="icon-estatus"></i></div>
+                            <div class="card-title">Consultar Estatus</div>
+                            <div class="card-body">Aquí puedes revisar el estatus del proceso de tu denuncia.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <a href="#" onclick="QuejasSugerencias()">
+                        <div class="card card-blanca">
+                            <div class="card-icon"><i class="icon-queja"></i></div>
+                            <div class="card-title">Quejas y Sugerencias</div>
+                            <div class="card-body">Déjanos tus comentarios sobre nuestros servicios. Tu opinión es importante para nosotros.</div>
+                        </div>
+                    </a>
+                </div>
+				
+				<div class="col-xs-6 col-md-4">
+                    <a href="#"  onclick="Finalizar()">
+                        <div class="card card-blanca">
+                            <div class="card-icon"><i class="icon-quejafuncionario"></i></div>
+                            <div class="card-title">Quejas o Denuncia Sobre Servidor Público</div>
+                            <div class="card-body">Aquí puedes presentar una queja o denuncia de un servidor público perteneciente a la Fiscalía General del Estado de Sinaloa.
+                            </div>
+                        </div>
+                    </a>
+                </div>
+				
+            </div>
+        </main>
+    </div>
+
+    <script type="text/javascript">
+
+        function Finalizar() {       
+			localStorage.setItem("OrigenPC", "0");				
+            window.location.href = "Account/Login";
+        }
+		function DenunciaAnonima(){
+			 $.ajax({
+                    url: 'Account/ValidateLogin3',
+                    type: 'POST',
+                    data: {
+                        username: '',
+                        password: ''
+                    },
+                    cache: false,
+                    dataType: "json",
+                    async: false,
+                    success: function (result) {
+                        debugger;
+						localStorage.setItem("OrigenPC", "1");		
+						localStorage.setItem("EsTestigo", "0");	
+						try {
+							localStorage.setItem("IdVictima", null);
+							localStorage.setItem("IdTestigo", null);
+							localStorage.setItem("IdHechos", null);
+							localStorage.setItem("IdProbable", null);						
+						} catch (error) {
+									
+						}						
+						
+                        window.location = "Frontal/Involucrados_PC/Create";
+                    },
+                    error: function (result) {
+                        showNotification("Error desconocido", "error");
+                }
+            });
+		}
+		function ConsultaEstatus() {       
+			localStorage.setItem("OrigenPC", "2");				
+            window.location.href = "consultaciudadana.html";
+        }
+		
+		function QuejasSugerencias() {
+			$.ajax({
+                    url: 'Account/ValidateLogin3',
+                    type: 'POST',
+                    data: {
+                        username: '',
+                        password: ''
+                    },
+                    cache: false,
+                    dataType: "json",
+                    async: false,
+                    success: function (result) {
+                        debugger;
+						localStorage.setItem("OrigenPC", "3");											
+                        window.location = "Frontal/Queja_Sugerencia_Ciudadana/Create";
+                    },
+                    error: function (result) {
+                        showNotification("Error desconocido", "error");
+                }
+            });
+		}
+
+    </script>
+</body ></html >

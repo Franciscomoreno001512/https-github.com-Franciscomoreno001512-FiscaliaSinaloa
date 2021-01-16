@@ -432,8 +432,8 @@
 <Object Id="45031" culture="es-es" value="Detalle de Seguimiento" />
 <Object Id="45180" culture="en-us" value="Detalle de Sentencias Imputado MPI" />
 <Object Id="45180" culture="es-es" value="Detalle de Sentencias Imputado MPI" />
-<Object Id="45039" culture="en-us" value="Servicios de Apoyo AT" />
-<Object Id="45039" culture="es-es" value="Servicios de Apoyo AT" />
+<Object Id="45039" culture="en-us" value="Servicios Periciales AT" />
+<Object Id="45039" culture="es-es" value="Servicios Periciales AT" />
 <Object Id="45122" culture="en-us" value="Detalle de Servicio de Apoyo MPI" />
 <Object Id="45122" culture="es-es" value="Detalle de Servicio de Apoyo MPI" />
 <Object Id="45157" culture="en-us" value="Detalle de Servicios Periciales" />
@@ -1276,8 +1276,74 @@
 <Object Id="45722" culture="es-es" value="PC CanalizarA" />
 <Object Id="45723" culture="en-us" value="Dirección Exacta" />
 <Object Id="45723" culture="es-es" value="Dirección Exacta" />
+<Object Id="45748" culture="en-us" value="Agencia Servicio Pericial" />
+<Object Id="45748" culture="es-es" value="Agencia Servicio Pericial" />
+<Object Id="45743" culture="en-us" value="Área Pericial" />
+<Object Id="45743" culture="es-es" value="Área Pericial" />
+<Object Id="45747" culture="en-us" value="Autoridad Servicio Pericial" />
+<Object Id="45747" culture="es-es" value="Autoridad Servicio Pericial" />
+<Object Id="45749" culture="en-us" value="Dictamen Servicio Pericial" />
+<Object Id="45749" culture="es-es" value="Dictamen Servicio Pericial" />
+<Object Id="45741" culture="en-us" value="Modulo Servicio Pericial" />
+<Object Id="45741" culture="es-es" value="Modulo Servicio Pericial" />
+<Object Id="45742" culture="en-us" value="Estatus Servicio Pericial" />
+<Object Id="45742" culture="es-es" value="Estatus Servicio Pericial" />
+<Object Id="45750" culture="en-us" value="Historial Estatus Modulo Servicio Pericial" />
+<Object Id="45750" culture="es-es" value="Historial Estatus Modulo Servicio Pericial" />
 <!--@@INCLUDE@@-->
 </Objects>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

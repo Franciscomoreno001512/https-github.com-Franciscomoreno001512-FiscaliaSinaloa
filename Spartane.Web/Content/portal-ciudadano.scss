@@ -1,0 +1,213 @@
+@charset "UTF-8";
+/* DOCUMENTO CSS PRINCIPAL */
+/* Portal Ciudadano | FGE-Sinaloa */
+/* Autor: Yesenia Cazares, Eder Bermudez - Totaltech */
+
+
+/* * * FUENTE * * */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+/*
+font-family: 'Nunito', sans-serif;
+
+Extra-light 200 
+Extra-light 200 italic
+Light 300
+Light 300 italic
+Regular 400
+Regular 400 italic
+Semi-bold 600
+Semi-bold 600 italic
+Bold 700
+Bold 700 italic
+Extra-bold 800
+Extra-bold 800 italic
+Black 900
+Black 900 italic
+*/
+
+
+/* * * COLORES * * */
+$azul-1: #001A45;
+$azul-2: #0049C2;
+$azul-3: #CADFFF;
+$gris: #D1D3D4;
+$grisO: #262626;
+
+.txt-blanco {
+    color: white;
+}
+
+.txt-14 {
+    font-size: 0.875rem;
+}
+
+html,
+body {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+p {
+    font-size: 0.875rem;
+}
+
+body.fondo-azul {
+    background: url("../Images/bg-blue-sisweb-ciesa.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#logo {}
+
+#logo img {}
+
+h1{
+    font-weight: bold;
+    color: $azul-1;
+}
+
+h1.pildora {
+    display: block;
+    margin: 0.25rem 0.5rem;
+    background-color: $azul-3;
+    border-radius: 15px;
+}
+
+.row.display-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row.display-flex>[class*='col-'] card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    border-radius: 1rem;
+    background-color: white;
+    padding: 1rem 1rem 3rem 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 1.5rem;
+}
+
+.card-icon i {
+    font-size: 3.4rem;
+    line-height: 1;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: 900;
+    color: $azul-1;
+}
+
+.card-body {
+    color: $grisO;
+}
+
+a:hover .card {
+    background-color: $azul-1;
+}
+
+a:hover .card-icon i,
+a:hover .card-title,
+a:hover .card-body {
+    color: $azul-3;
+}
+
+/* * * * LOGIN * * * */
+body.login{
+    background-color: white;
+}
+
+
+#galeria{
+    display: flex;
+    overflow: hidden;
+    max-height: 45%;
+}
+
+#galeria img{
+    margin-top: -50%;
+    width: 100%;
+}
+
+.carousel {
+    position:unset;
+}
+
+@media (min-width: 992px) {
+    #galeria{
+        max-height: 100%;
+        position: relative;
+    }
+    #galeria img{
+        margin-top: 0%;
+    }
+}
+
+.align-v {
+   margin-top: 10%;
+}
+
+.carousel-indicators .active {
+    background-color: $azul-1;
+}
+
+.carousel-indicators li {
+    background-color: $azul-3;
+}
+
+
+
+/* * * * FORMULARIO * * * */
+input[type=text],
+input[type=password],
+select {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 0.75rem 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit],
+input[type=button] {
+    width: 100%;
+    background-color:$azul-2;
+    color: white;
+    padding: 6px 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover,
+input[type=button]:hover {
+    background-color:$azul-1 !important;
+    color: white !important;
+}
+
+.boton2{
+    background-color: $azul-3 !important;
+    color: $azul-1 !important;
+}
+
+.link-pass{
+    margin-top: 1rem;
+    text-align: center;
+}
+.link-pass a:hover{
+    text-decoration: underline;
+    color: $azul-1;
+}

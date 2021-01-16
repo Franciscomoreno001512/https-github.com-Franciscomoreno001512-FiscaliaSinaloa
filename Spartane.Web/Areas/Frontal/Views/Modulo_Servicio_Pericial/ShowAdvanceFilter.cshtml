@@ -1,0 +1,510 @@
+﻿@using System.Collections.Generic
+@using Spartane.Web.Areas.Frontal.Models
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Modulo_Servicio_PericialAdvanceSearchModel
+@{
+ List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
+    if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
+    { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
+    List<SelectListItem> varEstatus_Servicio_Pericial_Estatus = null;
+    if (ViewBag.Estatus_Servicio_Pericials_Estatus != null)
+    { varEstatus_Servicio_Pericial_Estatus = (List<SelectListItem>)ViewBag.Estatus_Servicio_Pericials_Estatus; }
+    List<SelectListItem> varDetalle_de_Servicio_de_Apoyo_Servicio_Pericial = null;
+    if (ViewBag.Detalle_de_Servicio_de_Apoyos_Servicio_Pericial != null)
+    { varDetalle_de_Servicio_de_Apoyo_Servicio_Pericial = (List<SelectListItem>)ViewBag.Detalle_de_Servicio_de_Apoyos_Servicio_Pericial; }
+    List<SelectListItem> varSpartan_User_Usuario_Asignado = null;
+    if (ViewBag.Spartan_Users_Usuario_Asignado != null)
+    { varSpartan_User_Usuario_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_Asignado; }
+ List<SelectListItem> varSolicitud_Modulo_Mecanismos_Alternos = null;
+    if (ViewBag.Solicituds_Modulo_Mecanismos_Alternos != null)
+    { varSolicitud_Modulo_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Solicituds_Modulo_Mecanismos_Alternos; }
+ List<SelectListItem> varexpediente_ministerio_publico_Modulo_Ministerio_Publico = null;
+    if (ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico != null)
+    { varexpediente_ministerio_publico_Modulo_Ministerio_Publico = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico; }
+    List<SelectListItem> varOrigen_de_Invitacion_Origen = null;
+    if (ViewBag.Origen_de_Invitacions_Origen != null)
+    { varOrigen_de_Invitacion_Origen = (List<SelectListItem>)ViewBag.Origen_de_Invitacions_Origen; }
+
+    var filters = (List<SelectListItem>)ViewBag.Filter;
+}
+<style>
+    .input-validation-error {
+        background: rgb(251, 227, 228);
+        border: 1px solid #fbc2c4;
+        color: #8a1f11;
+    }
+
+    .MarginBottom {
+        margin-bottom: 1%;
+    }
+
+    #divAdvanceSearch input {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch button {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch select {
+        margin-right: 2%;
+    }
+
+    #divAdvanceSearch h3 {
+        margin-top: 2%;
+    }
+
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins" id="divAdvanceSearch">
+        <div class="ibox-content">
+            @using (Html.BeginForm("ShowAdvanceFilter", "Modulo_Servicio_Pericial", FormMethod.Post, new { @id = "frmAdvanceSearch", @role = "form" }))
+            {
+				<input type="hidden" value="-1" name="idFilter" id="idFilter" />
+                <div class="MarginBottom ">
+                    <h3>@Resources.Modulo_Servicio_PericialResources.Clave</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.From:</label>
+                    @Html.TextBoxFor(m => m.FromClave, new { @class = "form-control greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.FromClave)
+                    <label class="">@Resources.Resources.To: </label>
+                    @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
+                    @Html.ValidationMessageFor(m => m.ToClave)
+                </div>
+ List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
+    if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
+    { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Modulo_Servicio_PericialResources.Estatus</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.EstatusFilter, filters, new { @class = "form-control", @id = "ddlEstatusFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceEstatus, new { @class = "form-control", @type = "text", @id = "txtAdvanceEstatus" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varEstatus_Servicio_Pericial_Estatus!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceEstatusMultiple, varEstatus_Servicio_Pericial_Estatus,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceEstatus"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Modulo_Servicio_PericialResources.Servicio_Pericial</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Servicio_PericialFilter, filters, new { @class = "form-control", @id = "ddlServicio_PericialFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceServicio_Pericial, new { @class = "form-control", @type = "text", @id = "txtAdvanceServicio_Pericial" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varDetalle_de_Servicio_de_Apoyo_Servicio_Pericial!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceServicio_PericialMultiple, varDetalle_de_Servicio_de_Apoyo_Servicio_Pericial,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceServicio_Pericial"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Modulo_Servicio_PericialResources.Usuario_Asignado</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.Usuario_AsignadoFilter, filters, new { @class = "form-control", @id = "ddlUsuario_AsignadoFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceUsuario_Asignado, new { @class = "form-control", @type = "text", @id = "txtAdvanceUsuario_Asignado" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varSpartan_User_Usuario_Asignado!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceUsuario_AsignadoMultiple, varSpartan_User_Usuario_Asignado,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceUsuario_Asignado"
+                        });
+                    }
+                </div>
+ List<SelectListItem> varSolicitud_Modulo_Mecanismos_Alternos = null;
+    if (ViewBag.Solicituds_Modulo_Mecanismos_Alternos != null)
+    { varSolicitud_Modulo_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Solicituds_Modulo_Mecanismos_Alternos; }
+ List<SelectListItem> varexpediente_ministerio_publico_Modulo_Ministerio_Publico = null;
+    if (ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico != null)
+    { varexpediente_ministerio_publico_Modulo_Ministerio_Publico = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Modulo_Servicio_PericialResources.Origen</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.OrigenFilter, filters, new { @class = "form-control", @id = "ddlOrigenFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceOrigen, new { @class = "form-control", @type = "text", @id = "txtAdvanceOrigen" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varOrigen_de_Invitacion_Origen!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceOrigenMultiple, varOrigen_de_Invitacion_Origen,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceOrigen"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Modulo_Servicio_PericialResources.Descripcion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
+                    @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
+                </div>
+
+                <div class="MarginBottom form-inline">
+                    <input type="submit" class="btn btn-primary" value="@Resources.Resources.Search"><a class="btn btn-primary" href="@Url.Content("~/Frontal/Modulo_Servicio_Pericial/")" value=" ">@Resources.Resources.Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function InitiateAdvanceSearch() {
+        var advanceSearch = {}, hasParameter = false;
+        if ($("#txtAdvanceFromClave").val() != "" || $("#txtAdvanceToClave").val() != "") {
+            hasParameter = true;
+            advanceSearch.Modulo_Servicio_PericialClaveFrom = $("#txtAdvanceFromClave").val();
+            advanceSearch.Modulo_Servicio_PericialClaveTo = $("#txtAdvanceToClave").val();
+        }
+        advanceSearch.Modulo_Atencion_InicialSearchType = 0;
+        if ($('#ddlAdvanceModulo_Atencion_Inicial').val().length > 0 || $("#txtAdvanceModulo_Atencion_Inicial").val() == "") {
+
+
+            if (isModulo_Servicio_PericialTextSearch) {
+                advanceSearch.Modulo_Atencion_InicialName = $("#txtAdvanceModulo_Atencion_Inicial").val();
+                advanceSearch.Modulo_Atencion_InicialNameSearchType = $("#ddlAdvanceModulo_Atencion_Inicial").val();
+                advanceSearch.Modulo_Atencion_InicialSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Modulo_Atencion_InicialToSearch = $("#ddlAdvanceModulo_Atencion_Inicial").val();
+                advanceSearch.Modulo_Atencion_InicialSearchType = 2;
+            }
+        }
+        advanceSearch.EstatusSearchType = 0;
+        if ($('#ddlAdvanceEstatus').val().length > 0 || $("#txtAdvanceEstatus").val() == "") {
+
+
+            if (isModulo_Servicio_PericialTextSearch) {
+                advanceSearch.EstatusName = $("#txtAdvanceEstatus").val();
+                advanceSearch.EstatusNameSearchType = $("#ddlAdvanceEstatus").val();
+                advanceSearch.EstatusSearchType = 1;
+            }
+            else {
+
+                advanceSearch.EstatusToSearch = $("#ddlAdvanceEstatus").val();
+                advanceSearch.EstatusSearchType = 2;
+            }
+        }
+        advanceSearch.Servicio_PericialSearchType = 0;
+        if ($('#ddlAdvanceServicio_Pericial').val().length > 0 || $("#txtAdvanceServicio_Pericial").val() == "") {
+
+
+            if (isModulo_Servicio_PericialTextSearch) {
+                advanceSearch.Servicio_PericialName = $("#txtAdvanceServicio_Pericial").val();
+                advanceSearch.Servicio_PericialNameSearchType = $("#ddlAdvanceServicio_Pericial").val();
+                advanceSearch.Servicio_PericialSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Servicio_PericialToSearch = $("#ddlAdvanceServicio_Pericial").val();
+                advanceSearch.Servicio_PericialSearchType = 2;
+            }
+        }
+        advanceSearch.Usuario_AsignadoSearchType = 0;
+        if ($('#ddlAdvanceUsuario_Asignado').val().length > 0 || $("#txtAdvanceUsuario_Asignado").val() == "") {
+
+
+            if (isModulo_Servicio_PericialTextSearch) {
+                advanceSearch.Usuario_AsignadoName = $("#txtAdvanceUsuario_Asignado").val();
+                advanceSearch.Usuario_AsignadoNameSearchType = $("#ddlAdvanceUsuario_Asignado").val();
+                advanceSearch.Usuario_AsignadoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Usuario_AsignadoToSearch = $("#ddlAdvanceUsuario_Asignado").val();
+                advanceSearch.Usuario_AsignadoSearchType = 2;
+            }
+        }
+        advanceSearch.Modulo_Mecanismos_AlternosSearchType = 0;
+        if ($('#ddlAdvanceModulo_Mecanismos_Alternos').val().length > 0 || $("#txtAdvanceModulo_Mecanismos_Alternos").val() == "") {
+
+
+            if (isModulo_Servicio_PericialTextSearch) {
+                advanceSearch.Modulo_Mecanismos_AlternosName = $("#txtAdvanceModulo_Mecanismos_Alternos").val();
+                advanceSearch.Modulo_Mecanismos_AlternosNameSearchType = $("#ddlAdvanceModulo_Mecanismos_Alternos").val();
+                advanceSearch.Modulo_Mecanismos_AlternosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Modulo_Mecanismos_AlternosToSearch = $("#ddlAdvanceModulo_Mecanismos_Alternos").val();
+                advanceSearch.Modulo_Mecanismos_AlternosSearchType = 2;
+            }
+        }
+        advanceSearch.Modulo_Ministerio_PublicoSearchType = 0;
+        if ($('#ddlAdvanceModulo_Ministerio_Publico').val().length > 0 || $("#txtAdvanceModulo_Ministerio_Publico").val() == "") {
+
+
+            if (isModulo_Servicio_PericialTextSearch) {
+                advanceSearch.Modulo_Ministerio_PublicoName = $("#txtAdvanceModulo_Ministerio_Publico").val();
+                advanceSearch.Modulo_Ministerio_PublicoNameSearchType = $("#ddlAdvanceModulo_Ministerio_Publico").val();
+                advanceSearch.Modulo_Ministerio_PublicoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Modulo_Ministerio_PublicoToSearch = $("#ddlAdvanceModulo_Ministerio_Publico").val();
+                advanceSearch.Modulo_Ministerio_PublicoSearchType = 2;
+            }
+        }
+        advanceSearch.OrigenSearchType = 0;
+        if ($('#ddlAdvanceOrigen').val().length > 0 || $("#txtAdvanceOrigen").val() == "") {
+
+
+            if (isModulo_Servicio_PericialTextSearch) {
+                advanceSearch.OrigenName = $("#txtAdvanceOrigen").val();
+                advanceSearch.OrigenNameSearchType = $("#ddlAdvanceOrigen").val();
+                advanceSearch.OrigenSearchType = 1;
+            }
+            else {
+
+                advanceSearch.OrigenToSearch = $("#ddlAdvanceOrigen").val();
+                advanceSearch.OrigenSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceDescripcion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Modulo_Servicio_PericialDescripcion = $("#txtAdvanceDescripcion").val();
+            advanceSearch.Modulo_Servicio_PericialDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
+        }
+
+        advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
+        $('#tblModulo_Servicio_Pericial').DataTable().draw();
+        return false;
+    }
+
+    var advanceSearchQuery = "", isModulo_Servicio_PericialTextSearch = true;
+
+    $(document).ready(function () {
+        $('.clock').clockpicker();
+		$('.date').datepicker({
+			todayBtn: "linked",
+			keyboardNavigation: false,
+			forceParse: false,
+			calendarWeeks: true,
+			autoclose: true,
+			format: "@ConfigurationProperty.DateFormatDatePicker"
+		});
+        $("#txtAdvanceModulo_Atencion_Inicial").keypress(function () {
+            isModulo_Servicio_PericialTextSearch = true;
+            $("#ddlAdvanceModulo_Atencion_Inicial").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceModulo_Atencion_Inicial").change(function () {
+            isModulo_Servicio_PericialTextSearch = false;
+            $("#txtAdvanceModulo_Atencion_Inicial").val('');
+        });
+        $("#txtAdvanceEstatus").keypress(function () {
+            isModulo_Servicio_PericialTextSearch = true;
+            $("#ddlAdvanceEstatus").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceEstatus").change(function () {
+            isModulo_Servicio_PericialTextSearch = false;
+            $("#txtAdvanceEstatus").val('');
+        });
+        $("#txtAdvanceServicio_Pericial").keypress(function () {
+            isModulo_Servicio_PericialTextSearch = true;
+            $("#ddlAdvanceServicio_Pericial").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceServicio_Pericial").change(function () {
+            isModulo_Servicio_PericialTextSearch = false;
+            $("#txtAdvanceServicio_Pericial").val('');
+        });
+        $("#txtAdvanceUsuario_Asignado").keypress(function () {
+            isModulo_Servicio_PericialTextSearch = true;
+            $("#ddlAdvanceUsuario_Asignado").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceUsuario_Asignado").change(function () {
+            isModulo_Servicio_PericialTextSearch = false;
+            $("#txtAdvanceUsuario_Asignado").val('');
+        });
+        $("#txtAdvanceModulo_Mecanismos_Alternos").keypress(function () {
+            isModulo_Servicio_PericialTextSearch = true;
+            $("#ddlAdvanceModulo_Mecanismos_Alternos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceModulo_Mecanismos_Alternos").change(function () {
+            isModulo_Servicio_PericialTextSearch = false;
+            $("#txtAdvanceModulo_Mecanismos_Alternos").val('');
+        });
+        $("#txtAdvanceModulo_Ministerio_Publico").keypress(function () {
+            isModulo_Servicio_PericialTextSearch = true;
+            $("#ddlAdvanceModulo_Ministerio_Publico").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceModulo_Ministerio_Publico").change(function () {
+            isModulo_Servicio_PericialTextSearch = false;
+            $("#txtAdvanceModulo_Ministerio_Publico").val('');
+        });
+        $("#txtAdvanceOrigen").keypress(function () {
+            isModulo_Servicio_PericialTextSearch = true;
+            $("#ddlAdvanceOrigen").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceOrigen").change(function () {
+            isModulo_Servicio_PericialTextSearch = false;
+            $("#txtAdvanceOrigen").val('');
+        });
+
+    });
+</script>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/clockpicker")
+
+
+    <script>
+        //Adding Rules
+        jQuery.validator.unobtrusive
+      .adapters.addSingleVal("isnumberafter", "propertyname");
+        jQuery.validator.unobtrusive
+    .adapters.addSingleVal("isdateafter", "propertyname");
+
+        //Number after method
+        jQuery.validator.addMethod("isnumberafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+                //if (Date.parse(val) <= Date.parse(otherVal)) {
+                if (Number(val) < Number(otherVal)) {
+                    return false;
+                }
+                        }
+            return true;
+        });
+
+        //Date after after method
+        jQuery.validator.addMethod("isdateafter", function (val, element, other) {
+            var modelPrefix = element.name.substr(
+                0, element.name.lastIndexOf(".") + 1);
+            var otherVal = $("[name=" + modelPrefix + other + "]").val();
+            if (val && otherVal) {
+
+                if (GetDateObject(val) < GetDateObject(otherVal)) {
+
+                    return false;
+                    }
+                }
+            return true;
+            });
+
+
+        function GetDateObject(value) {
+            var delimiter = GetDelimiter(dateFormat);
+            var dateCollection = value.split(delimiter);
+            var formatCollection = dateFormat.split(delimiter);
+            var dateModel = GetDateModel(dateCollection, formatCollection);
+            return new Date(dateModel.Year, dateModel.Month - 1, dateModel.Day);
+        }
+        //Used to get the date model by parsing the date and the format
+        function GetDateModel(dateCollection,formatCollection) {
+            var day, month, year;
+            for (var i = 0; i < formatCollection.length; i++) {
+                switch (formatCollection[i][0].toUpperCase()) {
+                
+                    case "D":
+                        day = dateCollection[i];
+                        break;
+
+                    case "Y":
+                        year = dateCollection[i];
+                        break;
+
+                    case "M":
+                        month = dateCollection[i];
+                        break;
+                }
+            }
+
+            return {
+                Day:day,
+                Month:month,
+                Year:year
+            };
+        }
+
+        function GetDelimiter(format) {
+
+            for (var i = 0; i < format.length; i++) {
+                if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(format[i])) {
+                    return format[i];
+                }
+            }
+            return null;
+        }
+
+        var dateFormat = "@ConfigurationProperty.DateFormatDatePicker";
+
+        $(document).ready(function () {
+            $('.input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: dateFormat,
+                message: 'The date is not a valid'
+            });
+
+            $(".chosen-select").chosen({ width: "22%", no_results_text: "Oops, nothing found!" });
+			if ($('#IsFilterModal').val() == 'true') {
+                $('.ShowAdvanceFilter #right-sidebar').css('display', 'none');
+                $('.ShowAdvanceFilter .navbar-default').css('display', 'none');
+                $('.ShowAdvanceFilter .border-bottom').css('display', 'none');
+                $('.ShowAdvanceFilter #page-wrapper').css('margin', '0 auto');
+                $('.ShowAdvanceFilter .btn-save').val('@Resources.Resources.Filter');
+                $('.ShowAdvanceFilter .btn-cancelar').attr('data-dismiss', 'modal');
+                $('.ShowAdvanceFilter .btn-cancelar').removeAttr('href');
+                $('#idFilter').val($('#IdReport').val());
+            }
+        });
+
+    </script>
+}
+

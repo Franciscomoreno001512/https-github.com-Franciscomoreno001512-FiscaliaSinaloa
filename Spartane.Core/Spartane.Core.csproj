@@ -1568,6 +1568,20 @@
 <Compile Include="Domain\PC_CanalizarA\PC_CanalizarAPagingModel.cs" />
 <Compile Include="Domain\Direccion_Exacta\Direccion_Exacta.cs" />
 <Compile Include="Domain\Direccion_Exacta\Direccion_ExactaPagingModel.cs" />
+<Compile Include="Domain\Agencia_Servicio_Pericial\Agencia_Servicio_Pericial.cs" />
+<Compile Include="Domain\Agencia_Servicio_Pericial\Agencia_Servicio_PericialPagingModel.cs" />
+<Compile Include="Domain\Area_Pericial\Area_Pericial.cs" />
+<Compile Include="Domain\Area_Pericial\Area_PericialPagingModel.cs" />
+<Compile Include="Domain\Autoridad_Servicio_Pericial\Autoridad_Servicio_Pericial.cs" />
+<Compile Include="Domain\Autoridad_Servicio_Pericial\Autoridad_Servicio_PericialPagingModel.cs" />
+<Compile Include="Domain\Dictamen_Servicio_Pericial\Dictamen_Servicio_Pericial.cs" />
+<Compile Include="Domain\Dictamen_Servicio_Pericial\Dictamen_Servicio_PericialPagingModel.cs" />
+<Compile Include="Domain\Modulo_Servicio_Pericial\Modulo_Servicio_Pericial.cs" />
+<Compile Include="Domain\Modulo_Servicio_Pericial\Modulo_Servicio_PericialPagingModel.cs" />
+<Compile Include="Domain\Estatus_Servicio_Pericial\Estatus_Servicio_Pericial.cs" />
+<Compile Include="Domain\Estatus_Servicio_Pericial\Estatus_Servicio_PericialPagingModel.cs" />
+<Compile Include="Domain\Historial_Estatus_Modulo_Servicio_Pericial\Historial_Estatus_Modulo_Servicio_Pericial.cs" />
+<Compile Include="Domain\Historial_Estatus_Modulo_Servicio_Pericial\Historial_Estatus_Modulo_Servicio_PericialPagingModel.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1588,6 +1602,20 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -15274,6 +15274,146 @@
 <Content Include="Uploads\Scripts\Rules\Direccion_ExactaCreateRules.js" />
 <Content Include="Uploads\Scripts\Rules\Direccion_ExactaIndexRules.js" />
 <Content Include="Areas\Frontal\Views\Direccion_Exacta\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Agencia_Servicio_Pericial\Agencia_Servicio_PericialApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Agencia_Servicio_Pericial\IAgencia_Servicio_PericialApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Agencia_Servicio_PericialModel.cs" />
+<Compile Include="Areas\Frontal\Models\Agencia_Servicio_PericialGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Agencia_Servicio_PericialMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Agencia_Servicio_PericialController.cs" />
+<Content Include="Areas\Frontal\Views\Agencia_Servicio_Pericial\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Agencia_Servicio_Pericial\Create.cshtml" />
+<Compile Include="Resource\GetResource\Agencia_Servicio_Pericial.cs" />
+<Content Include="Uploads\Resources\Agencia_Servicio_PericialResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Agencia_Servicio_PericialPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Agencia_Servicio_PericialResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Agencia_Servicio_Pericial.js" />
+<Content Include="Scripts\Custom\Agencia_Servicio_PericialGeneral.js" />
+<Content Include="Areas\Frontal\Views\Agencia_Servicio_Pericial\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Agencia_Servicio_PericialAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Agencia_Servicio_PericialBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Agencia_Servicio_PericialCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Agencia_Servicio_PericialIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Agencia_Servicio_Pericial\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Area_Pericial\Area_PericialApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Area_Pericial\IArea_PericialApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Area_PericialModel.cs" />
+<Compile Include="Areas\Frontal\Models\Area_PericialGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Area_PericialMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Area_PericialController.cs" />
+<Content Include="Areas\Frontal\Views\Area_Pericial\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Area_Pericial\Create.cshtml" />
+<Compile Include="Resource\GetResource\Area_Pericial.cs" />
+<Content Include="Uploads\Resources\Area_PericialResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Area_PericialPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Area_PericialResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Area_Pericial.js" />
+<Content Include="Scripts\Custom\Area_PericialGeneral.js" />
+<Content Include="Areas\Frontal\Views\Area_Pericial\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Area_PericialAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Area_PericialBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Area_PericialCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Area_PericialIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Area_Pericial\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Autoridad_Servicio_Pericial\Autoridad_Servicio_PericialApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Autoridad_Servicio_Pericial\IAutoridad_Servicio_PericialApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Autoridad_Servicio_PericialModel.cs" />
+<Compile Include="Areas\Frontal\Models\Autoridad_Servicio_PericialGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Autoridad_Servicio_PericialMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Autoridad_Servicio_PericialController.cs" />
+<Content Include="Areas\Frontal\Views\Autoridad_Servicio_Pericial\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Autoridad_Servicio_Pericial\Create.cshtml" />
+<Compile Include="Resource\GetResource\Autoridad_Servicio_Pericial.cs" />
+<Content Include="Uploads\Resources\Autoridad_Servicio_PericialResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Autoridad_Servicio_PericialPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Autoridad_Servicio_PericialResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Autoridad_Servicio_Pericial.js" />
+<Content Include="Scripts\Custom\Autoridad_Servicio_PericialGeneral.js" />
+<Content Include="Areas\Frontal\Views\Autoridad_Servicio_Pericial\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Autoridad_Servicio_PericialAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Autoridad_Servicio_PericialBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Autoridad_Servicio_PericialCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Autoridad_Servicio_PericialIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Autoridad_Servicio_Pericial\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Dictamen_Servicio_Pericial\Dictamen_Servicio_PericialApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Dictamen_Servicio_Pericial\IDictamen_Servicio_PericialApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Dictamen_Servicio_PericialModel.cs" />
+<Compile Include="Areas\Frontal\Models\Dictamen_Servicio_PericialGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Dictamen_Servicio_PericialMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Dictamen_Servicio_PericialController.cs" />
+<Content Include="Areas\Frontal\Views\Dictamen_Servicio_Pericial\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Dictamen_Servicio_Pericial\Create.cshtml" />
+<Compile Include="Resource\GetResource\Dictamen_Servicio_Pericial.cs" />
+<Content Include="Uploads\Resources\Dictamen_Servicio_PericialResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Dictamen_Servicio_PericialPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Dictamen_Servicio_PericialResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Dictamen_Servicio_Pericial.js" />
+<Content Include="Scripts\Custom\Dictamen_Servicio_PericialGeneral.js" />
+<Content Include="Areas\Frontal\Views\Dictamen_Servicio_Pericial\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Dictamen_Servicio_PericialAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Dictamen_Servicio_PericialBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Dictamen_Servicio_PericialCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Dictamen_Servicio_PericialIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Dictamen_Servicio_Pericial\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Modulo_Servicio_Pericial\Modulo_Servicio_PericialApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Modulo_Servicio_Pericial\IModulo_Servicio_PericialApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Modulo_Servicio_PericialModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modulo_Servicio_PericialGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modulo_Servicio_PericialMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Modulo_Servicio_PericialController.cs" />
+<Content Include="Areas\Frontal\Views\Modulo_Servicio_Pericial\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Modulo_Servicio_Pericial\Create.cshtml" />
+<Compile Include="Resource\GetResource\Modulo_Servicio_Pericial.cs" />
+<Content Include="Uploads\Resources\Modulo_Servicio_PericialResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Modulo_Servicio_PericialPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Modulo_Servicio_PericialResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Modulo_Servicio_Pericial.js" />
+<Content Include="Scripts\Custom\Modulo_Servicio_PericialGeneral.js" />
+<Content Include="Areas\Frontal\Views\Modulo_Servicio_Pericial\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Modulo_Servicio_PericialAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Modulo_Servicio_PericialBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Modulo_Servicio_PericialCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Modulo_Servicio_PericialIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Modulo_Servicio_Pericial\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Estatus_Servicio_Pericial\Estatus_Servicio_PericialApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Estatus_Servicio_Pericial\IEstatus_Servicio_PericialApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_Servicio_PericialModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_Servicio_PericialGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_Servicio_PericialMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Estatus_Servicio_PericialController.cs" />
+<Content Include="Areas\Frontal\Views\Estatus_Servicio_Pericial\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Estatus_Servicio_Pericial\Create.cshtml" />
+<Compile Include="Resource\GetResource\Estatus_Servicio_Pericial.cs" />
+<Content Include="Uploads\Resources\Estatus_Servicio_PericialResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Estatus_Servicio_PericialPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Estatus_Servicio_PericialResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Estatus_Servicio_Pericial.js" />
+<Content Include="Scripts\Custom\Estatus_Servicio_PericialGeneral.js" />
+<Content Include="Areas\Frontal\Views\Estatus_Servicio_Pericial\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Estatus_Servicio_PericialAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Estatus_Servicio_PericialBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Estatus_Servicio_PericialCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Estatus_Servicio_PericialIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Estatus_Servicio_Pericial\_Print.cshtml" />
+<Compile Include="Areas\WebApiConsumer\Historial_Estatus_Modulo_Servicio_Pericial\Historial_Estatus_Modulo_Servicio_PericialApiConsumer.cs" />
+<Compile Include="Areas\WebApiConsumer\Historial_Estatus_Modulo_Servicio_Pericial\IHistorial_Estatus_Modulo_Servicio_PericialApiConsumer.cs" />
+<Compile Include="Areas\Frontal\Models\Historial_Estatus_Modulo_Servicio_PericialModel.cs" />
+<Compile Include="Areas\Frontal\Models\Historial_Estatus_Modulo_Servicio_PericialGridModel.cs" />
+<Compile Include="Areas\Frontal\Models\Historial_Estatus_Modulo_Servicio_PericialMainModel.cs" />
+<Compile Include="Areas\Frontal\Controllers\Historial_Estatus_Modulo_Servicio_PericialController.cs" />
+<Content Include="Areas\Frontal\Views\Historial_Estatus_Modulo_Servicio_Pericial\Index.cshtml" />
+<Content Include="Areas\Frontal\Views\Historial_Estatus_Modulo_Servicio_Pericial\Create.cshtml" />
+<Compile Include="Resource\GetResource\Historial_Estatus_Modulo_Servicio_Pericial.cs" />
+<Content Include="Uploads\Resources\Historial_Estatus_Modulo_Servicio_PericialResource.es-ES.xml" />
+<Compile Include="SqlModelMapper\Historial_Estatus_Modulo_Servicio_PericialPropertyMapper.cs" />
+<Content Include="Uploads\Resources\Historial_Estatus_Modulo_Servicio_PericialResource.en-US.xml" />
+<Content Include="Uploads\Scripts\Historial_Estatus_Modulo_Servicio_Pericial.js" />
+<Content Include="Scripts\Custom\Historial_Estatus_Modulo_Servicio_PericialGeneral.js" />
+<Content Include="Areas\Frontal\Views\Historial_Estatus_Modulo_Servicio_Pericial\ShowAdvanceFilter.cshtml" />
+<Compile Include="Areas\Frontal\Models\Historial_Estatus_Modulo_Servicio_PericialAdvanceSearchModel.cs" />
+<Compile Include="Areas\Frontal\Models\Historial_Estatus_Modulo_Servicio_PericialBusinessRuleModel.cs" />
+<Content Include="Uploads\Scripts\Rules\Historial_Estatus_Modulo_Servicio_PericialCreateRules.js" />
+<Content Include="Uploads\Scripts\Rules\Historial_Estatus_Modulo_Servicio_PericialIndexRules.js" />
+<Content Include="Areas\Frontal\Views\Historial_Estatus_Modulo_Servicio_Pericial\_Print.cshtml" />
 <!--@@INCLUDE@@-->
  <Compile Include="Resource\GetResource\Dashboard_Config_Detail.cs" />
  <Compile Include="Resource\GetResource\Dashboard_Editor.cs" />
@@ -16273,6 +16413,146 @@
  <Target Name="AfterBuild">
  </Target> -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

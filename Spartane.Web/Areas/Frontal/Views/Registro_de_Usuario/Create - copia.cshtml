@@ -1,0 +1,1014 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Spartane.Core.Domain.Permission
+@using Spartane.Core.Domain.Spartane_File
+@using Spartane.Web.Helpers
+@model Spartane.Web.Areas.Frontal.Models.Registro_de_UsuarioModel
+@{
+
+/*
+
+*/
+
+
+    Permission permission = ViewBag.Permission;
+	
+	if (ViewBag.IsPartial || ViewBag.viewInEframe)
+   { 
+       Layout = "~/Areas/Frontal/Views/Shared/_LayoutPopup.cshtml";
+   }
+}
+<div class="loading style-2"><div class="loading-wheel"></div></div>
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">@Resources.Resources.Value</label>
+                    <div class="col-sm-7">
+                        <input type="text" title="Value" class="form-control" id="txtAttributeValue" />
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">@Resources.Resources.Submit</a>
+                    </div>
+                    <input type="hidden" id="hdnAttributType" />
+                    <input type="hidden" id="hdnAttributElement" />
+                    <input type="hidden" id="hdnAttributNumber" />
+                    <input type="hidden" id="hdnElementType" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                @Resources.Registro_de_UsuarioResources.Registro_de_Usuario
+                <button onclick="Registro_de_UsuarioGetBusinessRule('', 'Al Abrir Pantalla', '0')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Registro_de_UsuarioBusinessRule-form">
+                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </a>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">@Resources.Resources.Home</a>
+                </li>
+                <li class="active">
+                @if (Session["PhaseName"] != null)
+                {
+                    <strong>@Session["PhaseName"].ToString()</strong>
+                }
+                else
+                {
+                    <strong>@Resources.Registro_de_UsuarioResources.Registro_de_Usuario</strong>
+                }
+                
+            </li>
+                <li class="active">
+                    <strong>@Resources.Resources.Create</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+            @{
+                if (Convert.ToInt32(Spartane.Web.SessionHelper.Role) == (int)Spartane.Core.Enums.SpartanRoleEnum.Admin)
+                {
+                    <h2>&nbsp;</h2>
+                    <button onclick="Registro_de_UsuarioDisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+
+                    <div aria-hidden="true" class="modal fade in Registro_de_UsuarioPropertyBusinessModal" id="Registro_de_UsuarioPropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                          @Resources.Resources.titleBussinesRules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">@Resources.Resources.Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">@Resources.Resources.Property</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#Registro_de_UsuarioBusinessRule-form" onclick="Registro_de_UsuarioGetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div aria-hidden="true" data-backdrop="static" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+					<div aria-hidden="true" data-backdrop="static" class="modal fade in Registro_de_UsuarioBusinessRuleModal" id="Registro_de_UsuarioBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+					</div>
+
+
+                }
+            }
+
+        </div>
+    </div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            @using (Html.BeginForm("Post", "Registro_de_Usuario", FormMethod.Post, new { id = "CreateRegistro_de_Usuario", @readonly = "true", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                                <input type="hidden" id="hdnIsNew" name="hdnIsNew" value="@ViewBag.IsNew.ToString()" />
+                <span id="popupNotification"></span>
+                <div class="container-fluid Registro_de_UsuarioCreateForm" id="viewmodeledit">
+				 <div class="alert alert-warning" id="controlsRequerid" style="display:none">
+                        <a href="#" class="close" onclick="$('#controlsRequerid').hide();">&times;</a>
+                        <span id="textRequired"></span>
+                 </div>
+			<div class="tabs-container">
+                        	<ul class="nav nav-tabs">
+<li class="active" data-fase="0"><a data-toggle="tab" href="#tabDatos_Generales"> @Resources.Registro_de_UsuarioResources.TabDatos_Generales</a></li>
+<li class="" data-fase="1"><a data-toggle="tab" href="#tabDatos_para_Iniciar_Sesion"> @Resources.Registro_de_UsuarioResources.TabDatos_para_Iniciar_Sesion</a></li>
+<li class="" data-fase="2"><a data-toggle="tab" href="#tabDatos_para_validar_tu_cuenta"> @Resources.Registro_de_UsuarioResources.TabDatos_para_validar_tu_cuenta</a></li>
+<li class="" data-fase="3"><a data-toggle="tab" href="#tabValidacion"> @Resources.Registro_de_UsuarioResources.TabValidacion</a></li>
+<li class="" data-fase="4"><a data-toggle="tab" href="#tabLogica"> @Resources.Registro_de_UsuarioResources.TabLogica</a></li>
+
+                        	</ul>
+	                	<div class="tab-content">
+                            <div id="tabDatos_Generales" class="tab-pane active">
+                                <div class="panel-body">
+                            <div class="form-group" id="divClave">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Clave</label>
+                                <div class="col-sm-8" data-field-id="Clave" data-attribute="269001" data-field-name="@Resources.Registro_de_UsuarioResources.Clave">
+                                    <label class="form-control" for="Clave" id="lblClave">
+                                    @if (Model.Clave== 0)
+                                        {
+                                            <text>@Resources.Resources.ClaveDefault</text>
+                                        }
+                                        else
+                                        { 
+                                            <text>@Model.Clave</text>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNombres">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Nombres</label>
+                                <div class="col-sm-8" data-field-id="Nombres" data-attribute="269002" data-field-name="@Resources.Registro_de_UsuarioResources.Nombres">
+                                    <input class="form-control Datos_Generales" id="Nombres" name="Nombres" type="text" value="@Model.Nombres">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Nombres" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divApellido_Paterno">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Apellido_Paterno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Paterno" data-attribute="269003" data-field-name="@Resources.Registro_de_UsuarioResources.Apellido_Paterno">
+                                    <input class="form-control Datos_Generales" id="Apellido_Paterno" name="Apellido_Paterno" type="text" value="@Model.Apellido_Paterno">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Apellido_Paterno" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divApellido_Materno">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Apellido_Materno</label>
+                                <div class="col-sm-8" data-field-id="Apellido_Materno" data-attribute="269004" data-field-name="@Resources.Registro_de_UsuarioResources.Apellido_Materno">
+                                    <input class="form-control Datos_Generales" id="Apellido_Materno" name="Apellido_Materno" type="text" value="@Model.Apellido_Materno">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Apellido_Materno" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divNombre_Completo">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Nombre_Completo</label>
+                                <div class="col-sm-8" data-field-id="Nombre_Completo" data-attribute="269005" data-field-name="@Resources.Registro_de_UsuarioResources.Nombre_Completo">
+                                    <textarea id="Nombre_Completo" name="Nombre_Completo" class="form-control Datos_Generales" rows="4" cols="50">@Model.Nombre_Completo</textarea>
+                                    @*<span class="field-validation-valid" data-valmsg-for="Nombre_Completo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabDatos_para_Iniciar_Sesion" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divUsuario">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Usuario</label>
+                                <div class="col-sm-8" data-field-id="Usuario" data-attribute="269006" data-field-name="@Resources.Registro_de_UsuarioResources.Usuario">
+                                    <input class="form-control Datos_para_Iniciar_Sesion" id="Usuario" name="Usuario" type="text" value="@Model.Usuario">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Usuario" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divContrasena">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Contrasena</label>
+                                <div class="col-sm-8" data-field-id="Contrasena" data-attribute="269007" data-field-name="@Resources.Registro_de_UsuarioResources.Contrasena">
+                                    <input class="form-control Datos_para_Iniciar_Sesion" id="Contrasena" name="Contrasena" type="password" value="@Model.Contrasena">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Contrasena" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divConfirmar_Contrasena">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Confirmar_Contrasena</label>
+                                <div class="col-sm-8" data-field-id="Confirmar_Contrasena" data-attribute="269008" data-field-name="@Resources.Registro_de_UsuarioResources.Confirmar_Contrasena">
+                                    <input class="form-control Datos_para_Iniciar_Sesion" id="Confirmar_Contrasena" name="Confirmar_Contrasena" type="password" value="@Model.Confirmar_Contrasena">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Confirmar_Contrasena" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabDatos_para_validar_tu_cuenta" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divCorreo">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Correo</label>
+                                <div class="col-sm-8" data-field-id="Correo" data-attribute="269009" data-field-name="@Resources.Registro_de_UsuarioResources.Correo">
+                                    <input class="form-control Datos_para_validar_tu_cuenta" id="Correo" name="Correo" type="text" value="@Model.Correo">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Correo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCelular">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Celular</label>
+                                <div class="col-sm-8" data-field-id="Celular" data-attribute="269010" data-field-name="@Resources.Registro_de_UsuarioResources.Celular">
+                                    <input class="form-control Datos_para_validar_tu_cuenta" id="Celular" name="Celular" type="text" value="@Model.Celular">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Celular" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabValidacion" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divCodigo_Verificacion_Correo">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Codigo_Verificacion_Correo</label>
+                                <div class="col-sm-8" data-field-id="Codigo_Verificacion_Correo" data-attribute="269011" data-field-name="@Resources.Registro_de_UsuarioResources.Codigo_Verificacion_Correo">
+                                    <input class="form-control Validacion" id="Codigo_Verificacion_Correo" name="Codigo_Verificacion_Correo" type="text" value="@Model.Codigo_Verificacion_Correo">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Codigo_Verificacion_Correo" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCodigo_Verificacion_Celular">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Codigo_Verificacion_Celular</label>
+                                <div class="col-sm-8" data-field-id="Codigo_Verificacion_Celular" data-attribute="269012" data-field-name="@Resources.Registro_de_UsuarioResources.Codigo_Verificacion_Celular">
+                                    <input class="form-control Validacion" id="Codigo_Verificacion_Celular" name="Codigo_Verificacion_Celular" type="text" value="@Model.Codigo_Verificacion_Celular">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Codigo_Verificacion_Celular" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            <div class="form-group" id="divCodigo_Reestablecer_Contrasena">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.Codigo_Reestablecer_Contrasena</label>
+                                <div class="col-sm-8" data-field-id="Codigo_Reestablecer_Contrasena" data-attribute="269013" data-field-name="@Resources.Registro_de_UsuarioResources.Codigo_Reestablecer_Contrasena">
+                                    <input class="form-control Validacion" id="Codigo_Reestablecer_Contrasena" name="Codigo_Reestablecer_Contrasena" type="text" value="@Model.Codigo_Reestablecer_Contrasena">
+                                    @*<span class="field-validation-valid" data-valmsg-for="Codigo_Reestablecer_Contrasena" data-valmsg-replace="true"></span>*@
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+
+                            <div id="tabLogica" class="tab-pane">
+                                <div class="panel-body">
+                            <div class="form-group" id="divEl_correo_fue_Validado">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.El_correo_fue_Validado</label>
+                                <div class="col-sm-8" data-field-id="El_correo_fue_Validado" data-attribute="269014" data-field-name="@Resources.Registro_de_UsuarioResources.El_correo_fue_Validado">
+                                    @Html.CheckBoxFor(m => m.El_correo_fue_Validado, new { @class = "i-checks Logica" })
+                                </div>
+                            </div>
+                            <div class="form-group" id="divEl_Celular_fue_Validado">
+                                <label class="col-sm-2 control-label">@Resources.Registro_de_UsuarioResources.El_Celular_fue_Validado</label>
+                                <div class="col-sm-8" data-field-id="El_Celular_fue_Validado" data-attribute="269015" data-field-name="@Resources.Registro_de_UsuarioResources.El_Celular_fue_Validado">
+                                    @Html.CheckBoxFor(m => m.El_Celular_fue_Validado, new { @class = "i-checks Logica" })
+                                </div>
+                            </div>
+                            </div>
+                                </div>
+
+				</div>	
+                    <br />
+                            <div class="form-actions fluid">
+                                <input type="hidden" value="@Model.Clave" id="ReferenceClave" />
+                                <input type="hidden" value="@Model.Clave" name="Clave" id="ClaveId" />
+                                <input type="hidden" value="@ViewBag.Operation" name="Operation" id="Operation" />
+                                @if (!ViewBag.Consult)
+                                {
+                                    <input type="button" value="@Resources.Resources.Guardar" id="Registro_de_UsuarioGuardar" class="btn btn-w-m btn-primary btn_save" onclick="return checkClientValidate('Registro_de_UsuarioCreateForm');"  />
+									<button onclick="Registro_de_UsuarioGetBusinessRule('', 'Al Guardar o al Cerrar la Pantalla', '2')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Registro_de_UsuarioBusinessRule-form">
+                                        <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleBeforeSave">
+                                            <i class="fa fa-cogs fa-spin"></i>
+                                        </a>
+                                    </button>                                    
+
+                                    <input type="button" value="@Resources.Resources.GuardarNuevo" id="Registro_de_UsuarioGuardarYNuevo" onclick="return checkClientValidate('Registro_de_UsuarioCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandnew"  />
+                                    <input type="button" value="@Resources.Resources.GuardarCopia" id="Registro_de_UsuarioGuardarYCopia" onclick="return checkClientValidate('Registro_de_UsuarioCreateForm');" data-bind="    click: saveAndNew" class="btn btn-w-m btn-success btn_saveandcopy"  />
+                                    if (permission.Configure)
+                                    {
+                                        <a title="@Resources.Resources.Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success btn-configure">@Resources.Resources.Configure</a>
+                                    }
+                                }
+
+                                <input type="hidden" id="hdnConfigureType" />
+								<input type="hidden" id="hdnRegistro_de_UsuarioBusinessRuleFieldId" />
+                                <input type="hidden" id="hdnRegistro_de_UsuarioBusinessRuleFieldName" />
+                                <input type="hidden" id="hdnRegistro_de_UsuarioBusinessRuleAttribute" />
+
+                                <input type="button" value="@Resources.Resources.Cancelar" id="Registro_de_UsuarioCancelar" name="Registro_de_UsuarioCancelar" class="btn btn-danger noConsult btn_cancelar" data-bind="click: cancel" tabindex="16" />
+								<input type="button" value="Anterior" id="Registro_de_UsuarioAnterior" class="btn btn-w-m btn-primary btn_save" onclick="Anterior();"  />
+								<input type="button" value="Siguiente" id="Registro_de_UsuarioSiguiente" class="btn btn-w-m btn-primary btn_save" onclick="Siguiente();"  />								
+								<input type="button" value="Reenviar" id="Registro_de_UsuarioReenviar" class="btn btn-w-m btn-primary btn_save"   />		
+								
+                                <button onclick="Registro_de_UsuarioGetBusinessRule('', 'Al Cancelar', '4')" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#Registro_de_UsuarioBusinessRule-form">
+                                    <a class="top" title="" data-placement="right" data-toggle="tooltip" href="#" data-original-title="@Resources.Resources.BusinessRuleToBegin">
+                                        <i class="fa fa-cogs fa-spin"></i>
+                                    </a>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                }
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" type="hidden" value="@Url.Content("~/")" />
+
+@section Styles {
+<link href="@Url.Content("~/Content/BootstrapDatePicker/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+    .select2-results{background-color:#fff;}
+    .select2-container .select2-dropdown{height:auto !important;}
+
+    div.dataTables_info {
+        display: inline-block;
+        float: right;
+    }
+        /*i {
+        font-size: 25px !important;
+        display: block;
+        color: #676a6c;
+        margin-left: 6px;
+        margin-right: 6px;
+    }*/
+
+    .fullWidth {
+        width: 100%;
+    }
+</style>
+}
+
+<script type="text/javascript" src="~/Uploads/Scripts/Registro_de_Usuario.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Scripts/Custom/Registro_de_UsuarioGeneral.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script type="text/javascript" src="~/Uploads/Scripts/Rules/Registro_de_UsuarioCreateRules.js?v=@DateTime.Now.ToString("ddMMyyyyhhmmss")"></script>
+<script src="~/Scripts/plugins/chosen/chosen.jquery.js"></script>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        
+
+
+	function GetTraduction(text) {
+         switch (text.toLowerCase()) {
+            case 'edit':
+                return "@Resources.Resources.Edit";          
+            case 'delete':
+                return "@Resources.Resources.Delete";               
+            case 'required':
+                return "@Resources.Resources.Required";              
+            case 'notrequired':
+                return "@Resources.Resources.NotRequired";           
+            case 'enabled':
+                return "@Resources.Resources.Enabled";         
+            case 'disabled':
+                return "@Resources.Resources.Disabled";           
+            case 'visible':
+                return "@Resources.Resources.Visible";            
+            case 'botvisible':
+                return "@Resources.Resources.InVisible";
+            case 'messagednoinvisible':
+                return "@Resources.Resources.messagedNoInVisible";
+            case 'messagednoreadonly':
+                return "@Resources.Resources.messagedNoReadOnly";
+            case 'defaultvalue':
+                return "@Resources.Resources.DefaultValue";
+            case 'helptext':
+                return "@Resources.Resources.HelpText";                     
+            default:
+                return "";
+        }
+    }
+	
+	    var viewInEframe =  ('@ViewBag.viewInEframe' == 'True');
+	    var isPartial = ('@ViewBag.IsPartial' == 'True');
+        var isMR = ('@ViewBag.isMR' == 'True');
+        var nameMR = '@ViewBag.nameMR';
+		var nameAttribute = '@ViewBag.nameAttribute';
+		var Tab_Datos_Generales = true;
+
+		var Tab_Datos_para_Iniciar_Sesion = true;
+
+		var Tab_Datos_para_validar_tu_cuenta = true;
+
+		var Tab_Validacion = true;
+
+		var Tab_Logica = true;
+
+
+        $(document).ready(function () {
+            $('#ObjectId').val('45684');
+		    
+		   
+            
+
+            initiateUIControls();
+			$('a').tooltip();
+			$('.loading').css('display', 'none');
+			
+			 if (viewInEframe) {             
+                $('#Registro_de_UsuarioGuardarYNuevo').hide();
+                $('#Registro_de_UsuarioGuardarYCopia').hide();
+                $('#Registro_de_UsuarioCancelar').hide(); 
+                $('#ConfigureSave').hide();
+                $('#Registro_de_UsuarioGuardar').val('Actualizar Seccion ' + '@Resources.Registro_de_UsuarioResources.Registro_de_Usuario' )
+            }
+
+			
+			
+
+            @if(ViewBag.IsNew)
+            { 
+                <text>$('input:checkbox').prop('checked', false);</text>
+            }
+			else
+            {
+                <text>
+				if (Tab_Datos_Generales)
+					Fill_Datos_Generales();
+
+				if (Tab_Datos_para_Iniciar_Sesion)
+					Fill_Datos_para_Iniciar_Sesion();
+
+				if (Tab_Datos_para_validar_tu_cuenta)
+					Fill_Datos_para_validar_tu_cuenta();
+
+				if (Tab_Validacion)
+					Fill_Validacion();
+
+				if (Tab_Logica)
+					Fill_Logica();
+
+
+                </text>
+            }
+            EjecutarValidacionesAlComienzo(); 
+			
+        });
+
+
+
+        function initiateUIControls() {
+             $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "@ConfigurationProperty.DateFormatDatePicker"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+            $('.inputMoney').inputmask("currency", { greedy: false, prefix: "", rightAlign: false });
+			$('td.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+			$('td input.inputMoney').inputmask("currency", { greedy: false, prefix: "$ ", rightAlign: false });
+
+        }
+
+    </script>
+
+<script type="text/javascript">
+
+
+   function GetCatalogPopup(catalog, nameAttribute, isMR, nameMR) {
+        if (!isMR)
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, nameAttribute = "AttributoNombre" })";
+        else
+            var url = "@Url.Action("Create", "Catalog", new { Module_Id = "1", isPartial = true, isMR = true, nameMR = "Multirenglon",nameAttribute= "AttributoNombre" })";
+
+        url = url.replace("Catalog", catalog).replace("Multirenglon", nameMR).replace("AttributoNombre", nameAttribute);
+
+        window.open(htmlDecode(url), '_blank', 'left=200,top=100,width=850,height=550,toolbar=0,resizable=0');
+    }
+
+    function RefreshCatalog(catalog, control) {
+
+	 if ($('#' + control).hasClass('AutoComplete'))   {
+		   if ($('#' + control).attr("data-isfilter") == "true") {
+				eval(GetReglaFilter(control, $('#ObjectId').val()));
+				return;
+			}
+		}
+			
+			var url = '@Url.Content("~/Frontal/Registro_de_Usuario/GetCatalogAll")';
+			url = url.replace(/Catalog/g, catalog);
+
+			$.ajax({
+				url: url,
+				async: true,
+				success:function(result)
+				{
+					addItemsToSelect($('#' + control), result);
+				},
+				error: function (result)
+				{
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				}
+			});
+		
+    }
+
+		var NuevoIDV=0;
+        function SendRegistro_de_UsuarioData(callBack) {
+			
+					
+		 var arr = []; 
+		 $("form#CreateRegistro_de_Usuario").find(':input').each(function( index ) {		 
+			if ($(this).prop('disabled')==true|| $(this).prop('disabled')=="disabled")
+			{		
+				arr.push($(this).attr('id')); 
+				$(this).prop('disabled', false);  	
+			}
+	    });
+		
+             var formData = new FormData($("form#CreateRegistro_de_Usuario")[0]);
+			$.each( arr, function( key, value ) {
+			  $('#' +value).prop('disabled', true);
+			});
+			var id = $("#ReferenceClave").val();
+            var isNew = $('#hdnIsNew').val();
+           
+			if (Tab_Datos_Generales && !checkClientValidate('Registro_de_UsuarioCreateForm', 'Datos_Generales')) {
+				return false;
+			}						
+
+			if (Tab_Datos_para_Iniciar_Sesion && !checkClientValidate('Registro_de_UsuarioCreateForm', 'Datos_para_Iniciar_Sesion')) {
+				return false;
+			}						
+
+			if (Tab_Datos_para_validar_tu_cuenta && !checkClientValidate('Registro_de_UsuarioCreateForm', 'Datos_para_validar_tu_cuenta')) {
+				return false;
+			}						
+
+			if (Tab_Validacion && !checkClientValidate('Registro_de_UsuarioCreateForm', 'Validacion')) {
+				return false;
+			}						
+
+			if (Tab_Logica && !checkClientValidate('Registro_de_UsuarioCreateForm', 'Logica')) {
+				return false;
+			}						
+
+
+			
+			if (isNew == "True")
+            {
+                id = CreateID();
+				NuevoIDV=id;
+            }
+			
+			
+			if (Tab_Datos_Generales)
+				Save_Datos_Generales(id);
+
+			if (Tab_Datos_para_Iniciar_Sesion)
+				Save_Datos_para_Iniciar_Sesion(id);
+
+			if (Tab_Datos_para_validar_tu_cuenta)
+				Save_Datos_para_validar_tu_cuenta(id);
+
+			if (Tab_Validacion)
+				Save_Validacion(id);
+
+			if (Tab_Logica)
+				Save_Logica(id);
+
+
+			showNotification("@Resources.Resources.SaveSuccess", "success");
+			callBack(id);
+            return true;
+        };
+		function CreateID()
+		{
+			var newId = 0;
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Registro_de_Usuario/CreateID")',
+				type: 'GET',
+				async: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "error");
+					} else {
+						newId = result;
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "error");
+				},
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+			return newId;
+		}
+		
+		function OpenRules()
+		{
+			$.get('@Url.Action("Index", "Business_Rule_Creation")', {}, function (data) {
+				$(".Registro_de_UsuarioBusinessRuleModal").html(data);
+			});
+		}
+                function Registro_de_UsuarioGetBusinessRule(FieldId, FieldName, Attribute) {
+			if (FieldId != null && FieldName != null)
+			{
+			        $('#FieldId').val(FieldId);
+				$('#FieldName').val(FieldName);
+				$('#Attribute').val(Attribute);
+			}
+			$('#ObjectId').val('45684');
+			$('#Screen').val('Registro_de_Usuario');
+			OpenRules();
+               }
+
+    var permission = {
+        Consult: '@permission.Consult' == 'True',
+        New: '@permission.New' == 'True',
+        Edit: '@permission.Edit' == 'True',
+        Delete: '@permission.Delete' == 'True',
+        Export: '@permission.Export' == 'True',
+        Print: '@permission.Print' == 'True',
+        Configure: '@permission.Configure' == 'True',
+    };
+
+    
+    //MR-var statusItems;
+    //MR-var stateItems;
+    //MR-var cityItems = [];
+    var isConsultMode = "@ViewBag.Consult" == "True";
+    Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+    function Registro_de_UsuarioBackToGrid() {
+        		if (isPartial)
+			window.close('', '_parent', '');
+        else
+			location.href = "@Url.Content("~/Frontal/Registro_de_Usuario/")";
+    }
+	
+	function ReadScriptSettings(callback)
+    {
+        $.post("@Url.Content("~/Frontal/Registro_de_Usuario/ReadScriptSettings")", function (data) {
+            mainElementObject = JSON.parse(data.MainElement);
+			if (data.ChildElement != null) {
+                childElementObject = JSON.parse(data.ChildElement);
+            }
+            callback();
+        });
+    }
+
+    function SaveSettingsWithoutReload() {
+        $.post("@Url.Content("~/Frontal/Registro_de_Usuario/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+            //$('#hdnConfigureType').val("0");
+        }, "json");
+    }
+	
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("@Url.Content("~/Frontal/Registro_de_Usuario/WriteScriptSettings")", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("@Url.Content("~/Frontal/Registro_de_Usuario/ReadScriptSettings")", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+							var mainElementAttributes = '<div class="col-sm-2">';
+							mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "@Resources.Resources.Required" : "@Resources.Resources.NotRequired") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "@Url.Content("~/Images/Required.png")" : "@Url.Content("~/Images/Not-Required.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "@Resources.Resources.Visible" : "@Resources.Resources.InVisible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "@Url.Content("~/Images/Visible.png")" : "@Url.Content("~/Images/InVisible.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "@Resources.Resources.Disabled" : "@Resources.Resources.Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "@Url.Content("~/Images/Disabled.png")" : "@Url.Content("~/Images/Enabled.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "@Url.Content("~/Images/default-value.png")" : "@Url.Content("~/Images/Not-Default-Value.png")") + '" alt="" /></a></div>';
+							mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "@Url.Content("~/Images/green-help.png")" : "@Url.Content("~/Images/red-help.jpg")") + '" alt="" /></a></div>';
+							mainElementAttributes += '</div>';
+							$('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+							$('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                  }
+					 if (childElementObject != null) {
+                        for (var j = 0; j < childElementObject.length; j++) {
+                            var table = childElementObject[j].table.trim();
+                            var grid = '#' + table + 'Grid';
+                            $(grid).find("thead").find("tr").find("th").each(function () {
+                                for (var i = 0; i < childElementObject[j].elements.length; i++) {
+                                    if ($(this).hasClass(childElementObject[j].elements[i].inputId + 'Header')) {
+                                        $(this).show();
+                                        $(this).parent().show();
+                                        $(this).append(returnAttributeHTML(childElementObject[j].elements[i], table, i));
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                     $('#ConfigureSave').text('@Html.Raw(Resources.Resources.Save  +" "+ Resources.Resources.Settings)');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+		$('#CreateRegistro_de_Usuario').on('click', '.btnPopupBusinessRules', function () {
+			var fieldId = $(this).data('field-id');
+			var fieldName = $(this).data('field-name');
+			var attribute = $(this).data('attribute');
+			$('#FieldId').val(fieldId);
+			$('#FieldName').val(fieldName);
+			$('#Attribute').val(attribute);
+                        Registro_de_UsuarioGetBusinessRule();
+		});
+		//Initialize HTML Editors            
+  var filebrowserBrowseUrl = '../../ckfinder/ckfinder.html';
+  var filebrowserImageBrowseUrl = '../../ckfinder/ckfinder.html?type=Images';
+  var filebrowserUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Files';
+  var filebrowserImageUploadUrl = '../../ckfinder/connector?command=QuickUpload&type=Images';
+		
+		
+		function Fill_Datos_Generales()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Registro_de_Usuario/Get_Datos_Generales")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Nombres').val(result.data.Nombres);
+                    $('#Apellido_Paterno').val(result.data.Apellido_Paterno);
+                    $('#Apellido_Materno').val(result.data.Apellido_Materno);
+                    $('#Nombre_Completo').val(result.data.Nombre_Completo);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_Generales(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Nombres', $('#Nombres').val());
+                data.append('Apellido_Paterno', $('#Apellido_Paterno').val());
+                data.append('Apellido_Materno', $('#Apellido_Materno').val());
+                data.append('Nombre_Completo', $('#Nombre_Completo').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Registro_de_Usuario/Post_Datos_Generales")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_Generales");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_Generales");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Datos_para_Iniciar_Sesion()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Registro_de_Usuario/Get_Datos_para_Iniciar_Sesion")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Usuario').val(result.data.Usuario);
+                    $('#Contrasena').val(result.data.Contrasena);
+                    $('#Confirmar_Contrasena').val(result.data.Confirmar_Contrasena);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_para_Iniciar_Sesion(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Usuario', $('#Usuario').val());
+                data.append('Contrasena', $('#Contrasena').val());
+                data.append('Confirmar_Contrasena', $('#Confirmar_Contrasena').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Registro_de_Usuario/Post_Datos_para_Iniciar_Sesion")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_para_Iniciar_Sesion");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_para_Iniciar_Sesion");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Datos_para_validar_tu_cuenta()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Registro_de_Usuario/Get_Datos_para_validar_tu_cuenta")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Correo').val(result.data.Correo);
+                    $('#Celular').val(result.data.Celular);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Datos_para_validar_tu_cuenta(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Correo', $('#Correo').val());
+                data.append('Celular', $('#Celular').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Registro_de_Usuario/Post_Datos_para_validar_tu_cuenta")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Datos_para_validar_tu_cuenta");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Datos_para_validar_tu_cuenta");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Validacion()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Registro_de_Usuario/Get_Validacion")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#Codigo_Verificacion_Correo').val(result.data.Codigo_Verificacion_Correo);
+                    $('#Codigo_Verificacion_Celular').val(result.data.Codigo_Verificacion_Celular);
+                    $('#Codigo_Reestablecer_Contrasena').val(result.data.Codigo_Reestablecer_Contrasena);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Validacion(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('Codigo_Verificacion_Correo', $('#Codigo_Verificacion_Correo').val());
+                data.append('Codigo_Verificacion_Celular', $('#Codigo_Verificacion_Celular').val());
+                data.append('Codigo_Reestablecer_Contrasena', $('#Codigo_Reestablecer_Contrasena').val());
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Registro_de_Usuario/Post_Validacion")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Validacion");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Validacion");
+				},
+				cache: false
+			});
+		}
+
+		function Fill_Logica()
+        {
+            $.ajax({
+                url: "@Url.Content("~/Frontal/Registro_de_Usuario/Get_Logica")?Id=" + $("#ReferenceClave").val(),
+                type: 'GET',
+                dataType: "json",
+                async: false,
+                success: function (result) {
+                                        $('#Clave').val(result.data.Clave);
+                    $('#El_correo_fue_Validado').prop('checked', result.data.El_correo_fue_Validado);
+                    $('#El_Celular_fue_Validado').prop('checked', result.data.El_Celular_fue_Validado);
+
+                },
+                error: function (result) {
+                    showNotification("@Resources.Resources.ErrorContactingServer", "error");
+                }
+            });
+        }
+		
+		function Save_Logica(newId) {
+			var data = new FormData();
+			data.append('Clave', newId);
+			                data.append('El_correo_fue_Validado', $('#El_correo_fue_Validado').prop('checked'));
+                data.append('El_Celular_fue_Validado', $('#El_Celular_fue_Validado').prop('checked'));
+
+			$.ajax({
+				url: '@Url.Content("~/Frontal/Registro_de_Usuario/Post_Logica")',
+				type: 'POST',
+				data: data,
+				async: false,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (result) {
+					if (result < 0) {
+						showNotification("@Resources.Resources.ErrorSave", "Error al guardar Logica");
+					} else {
+						newId = result;
+                    
+					}
+				},
+				error: function (result) {
+					showNotification("@Resources.Resources.ErrorContactingServer", "Error al guardar Logica");
+				},
+				cache: false
+			});
+		}
+
+
+    </script>
+}
+    <input type="hidden" id="FieldId" name="FieldId" value="" />
+    <input type="hidden" id="FieldName" name="FieldName" value="" />
+    <input type="hidden" id="ObjectId" name="ObjectId" value="" />
+    <input type="hidden" id="Attribute" name="Attribute" value="" />
+    <input type="hidden" id="Screen" name="Screen" value="" />
+     <input type="hidden" id="Registro_de_Usuario_cmbLabelSelect" name="Registro_de_Usuario_cmbLabelSelect" value="@Resources.Resources.CmbSelect" />
+
