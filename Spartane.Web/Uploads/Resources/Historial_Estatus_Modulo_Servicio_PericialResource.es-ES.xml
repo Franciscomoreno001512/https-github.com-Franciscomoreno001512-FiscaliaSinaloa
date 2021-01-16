@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Historial_Estatus_Modulo_Servicio_Pericial" value="Historial Estatus Modulo Servicio Pericial"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Estatus_Servicio_Pericial" value="Estatus Servicio Pericial"></resource>
+  <resource culture="es-es" name="Fecha_Registro" value="Fecha Registro"></resource>
+  <resource culture="es-es" name="Activo" value="Activo"></resource>
+  <resource culture="es-es" name="Fecha_Cierre" value="Fecha Cierre"></resource>
+  <resource culture="es-es" name="Modulo_Servicio_Pericial" value="Modulo Servicio Pericial"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>

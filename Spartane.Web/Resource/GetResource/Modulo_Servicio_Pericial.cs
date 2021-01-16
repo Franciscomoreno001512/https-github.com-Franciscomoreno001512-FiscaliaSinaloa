@@ -76,6 +76,46 @@ namespace Resources
             }
         }
 
+        /// <summary>Modulo_Mecanismos_Alternos</summary>
+        public static string Modulo_Mecanismos_Alternos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderModulo_Servicio_Pericial.GetResource("Modulo_Mecanismos_Alternos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Modulo_Ministerio_Publico</summary>
+        public static string Modulo_Ministerio_Publico
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderModulo_Servicio_Pericial.GetResource("Modulo_Ministerio_Publico", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Origen</summary>
+        public static string Origen
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderModulo_Servicio_Pericial.GetResource("Origen", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Descripcion</summary>
+        public static string Descripcion
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderModulo_Servicio_Pericial.GetResource("Descripcion", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderModulo_Servicio_Pericial.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

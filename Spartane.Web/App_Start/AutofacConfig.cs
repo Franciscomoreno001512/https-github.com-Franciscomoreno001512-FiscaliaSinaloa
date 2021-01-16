@@ -1901,6 +1901,27 @@ using Spartane.Web.Areas.WebApiConsumer.PC_CanalizarA;
 using Spartane.Services.Direccion_Exacta;
 using Spartane.Core.Domain.Direccion_Exacta;
 using Spartane.Web.Areas.WebApiConsumer.Direccion_Exacta;
+using Spartane.Services.Agencia_Servicio_Pericial;
+using Spartane.Core.Domain.Agencia_Servicio_Pericial;
+using Spartane.Web.Areas.WebApiConsumer.Agencia_Servicio_Pericial;
+using Spartane.Services.Area_Pericial;
+using Spartane.Core.Domain.Area_Pericial;
+using Spartane.Web.Areas.WebApiConsumer.Area_Pericial;
+using Spartane.Services.Autoridad_Servicio_Pericial;
+using Spartane.Core.Domain.Autoridad_Servicio_Pericial;
+using Spartane.Web.Areas.WebApiConsumer.Autoridad_Servicio_Pericial;
+using Spartane.Services.Dictamen_Servicio_Pericial;
+using Spartane.Core.Domain.Dictamen_Servicio_Pericial;
+using Spartane.Web.Areas.WebApiConsumer.Dictamen_Servicio_Pericial;
+using Spartane.Services.Modulo_Servicio_Pericial;
+using Spartane.Core.Domain.Modulo_Servicio_Pericial;
+using Spartane.Web.Areas.WebApiConsumer.Modulo_Servicio_Pericial;
+using Spartane.Services.Estatus_Servicio_Pericial;
+using Spartane.Core.Domain.Estatus_Servicio_Pericial;
+using Spartane.Web.Areas.WebApiConsumer.Estatus_Servicio_Pericial;
+using Spartane.Services.Historial_Estatus_Modulo_Servicio_Pericial;
+using Spartane.Core.Domain.Historial_Estatus_Modulo_Servicio_Pericial;
+using Spartane.Web.Areas.WebApiConsumer.Historial_Estatus_Modulo_Servicio_Pericial;
 //**@@INCLUDE_DECLARE@@**//
 using Spartane.Services.Events;
 using Spartane.Data.EF;
@@ -3291,6 +3312,20 @@ builder.RegisterType<PC_CanalizarAService>().As<IPC_CanalizarAService>().Instanc
 builder.RegisterType<PC_CanalizarAApiConsumer>().As<IPC_CanalizarAApiConsumer>().InstancePerLifetimeScope();
 builder.RegisterType<Direccion_ExactaService>().As<IDireccion_ExactaService>().InstancePerLifetimeScope();
 builder.RegisterType<Direccion_ExactaApiConsumer>().As<IDireccion_ExactaApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Agencia_Servicio_PericialService>().As<IAgencia_Servicio_PericialService>().InstancePerLifetimeScope();
+builder.RegisterType<Agencia_Servicio_PericialApiConsumer>().As<IAgencia_Servicio_PericialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Area_PericialService>().As<IArea_PericialService>().InstancePerLifetimeScope();
+builder.RegisterType<Area_PericialApiConsumer>().As<IArea_PericialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Autoridad_Servicio_PericialService>().As<IAutoridad_Servicio_PericialService>().InstancePerLifetimeScope();
+builder.RegisterType<Autoridad_Servicio_PericialApiConsumer>().As<IAutoridad_Servicio_PericialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Dictamen_Servicio_PericialService>().As<IDictamen_Servicio_PericialService>().InstancePerLifetimeScope();
+builder.RegisterType<Dictamen_Servicio_PericialApiConsumer>().As<IDictamen_Servicio_PericialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Modulo_Servicio_PericialService>().As<IModulo_Servicio_PericialService>().InstancePerLifetimeScope();
+builder.RegisterType<Modulo_Servicio_PericialApiConsumer>().As<IModulo_Servicio_PericialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_Servicio_PericialService>().As<IEstatus_Servicio_PericialService>().InstancePerLifetimeScope();
+builder.RegisterType<Estatus_Servicio_PericialApiConsumer>().As<IEstatus_Servicio_PericialApiConsumer>().InstancePerLifetimeScope();
+builder.RegisterType<Historial_Estatus_Modulo_Servicio_PericialService>().As<IHistorial_Estatus_Modulo_Servicio_PericialService>().InstancePerLifetimeScope();
+builder.RegisterType<Historial_Estatus_Modulo_Servicio_PericialApiConsumer>().As<IHistorial_Estatus_Modulo_Servicio_PericialApiConsumer>().InstancePerLifetimeScope();
 //**@@INCLUDE_EXPOSE@@**//            
 
             builder.RegisterType<SpartanModuleApiConsumer>().As<ISpartanModuleApiConsumer>().InstancePerLifetimeScope();
@@ -3471,6 +3506,58 @@ builder.RegisterType<Direccion_ExactaApiConsumer>().As<IDireccion_ExactaApiConsu
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

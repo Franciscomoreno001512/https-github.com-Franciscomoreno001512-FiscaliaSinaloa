@@ -6,6 +6,10 @@
   <resource culture="es-es" name="Estatus" value="Estatus"></resource>
   <resource culture="es-es" name="Servicio_Pericial" value="Servicio Pericial"></resource>
   <resource culture="es-es" name="Usuario_Asignado" value="Usuario Asignado"></resource>
+  <resource culture="es-es" name="Modulo_Mecanismos_Alternos" value="Modulo Mecanismos Alternos"></resource>
+  <resource culture="es-es" name="Modulo_Ministerio_Publico" value="Modulo Ministerio Publico"></resource>
+  <resource culture="es-es" name="Origen" value="Origen"></resource>
+  <resource culture="es-es" name="Descripcion" value="Descripcion"></resource>
 
 <resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
 

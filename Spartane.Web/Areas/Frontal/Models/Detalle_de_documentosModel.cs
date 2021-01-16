@@ -33,6 +33,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Observaciones { get; set; }
         [Range(0, 9999999999)]
         public int? Archivo { get; set; }
+        public bool Lista_para_periciales { get; set; }
         public string Descripcion { get; set; }
 
     }
@@ -62,6 +63,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Observaciones { get; set; }
         [Range(0, 9999999999)]
         public int? Archivo { get; set; }
+        public bool? Lista_para_periciales { get; set; }
         public string Descripcion { get; set; }
 
     }

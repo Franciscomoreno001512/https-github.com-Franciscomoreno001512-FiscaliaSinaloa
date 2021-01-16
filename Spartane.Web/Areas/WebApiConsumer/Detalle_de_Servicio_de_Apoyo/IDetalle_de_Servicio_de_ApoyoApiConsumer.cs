@@ -29,6 +29,9 @@ namespace Spartane.Web.Areas.WebApiConsumer.Detalle_de_Servicio_de_Apoyo
 		ApiResponse<int> Update_Datos_Generales(Spartane.Core.Domain.Detalle_de_Servicio_de_Apoyo.Detalle_de_Servicio_de_Apoyo_Datos_Generales entity);
 		ApiResponse<Spartane.Core.Domain.Detalle_de_Servicio_de_Apoyo.Detalle_de_Servicio_de_Apoyo_Datos_Generales> Get_Datos_Generales(string Key);
 
+		ApiResponse<int> Update_Canalizar(Spartane.Core.Domain.Detalle_de_Servicio_de_Apoyo.Detalle_de_Servicio_de_Apoyo_Canalizar entity);
+		ApiResponse<Spartane.Core.Domain.Detalle_de_Servicio_de_Apoyo.Detalle_de_Servicio_de_Apoyo_Canalizar> Get_Canalizar(string Key);
+
 
     }
 }

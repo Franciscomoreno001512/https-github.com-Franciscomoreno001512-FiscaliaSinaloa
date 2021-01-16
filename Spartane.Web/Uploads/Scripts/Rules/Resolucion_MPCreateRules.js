@@ -310,12 +310,28 @@ if( TryParseInt(ReplaceGLOBAL('GLOBAL[idTablero]'), ReplaceGLOBAL('GLOBAL[idTabl
 }
 //BusinessRuleId:2976, Attribute:2, Operation:Object, Event:AFTERSAVING
 
+
+
+
+
+
+
 //BusinessRuleId:3010, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
-if( GetValueByControlType($('#' + nameOfTable + 'Tipo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { EvaluaQuery("  exec Insertjudicializacion  GLOBAL[idTablero],GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}
+if( EvaluaQuery("select tr.Clave from Resolucion_MP rmp"
++" inner join Resolucion r on rmp.Resolucion = r.Clave"
++" inner join Tipo_de_Resolucion tr on r.Tipo = tr.Clave"
++" where rmp.Clave = GLOBAL[keyvalueInserted]",rowIndex, nameOfTable)==TryParseInt('2', '2') ) { EvaluaQuery("exec Insertjudicializacion GLOBAL[keyvalueInserted]", rowIndex, nameOfTable);} else {}
 
 }
 //BusinessRuleId:3010, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:3280, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+if( EvaluaQuery("select tr.Clave from Resolucion_MP rmp inner join Resolucion r on rmp.Resultado_de_Validacion = r.Clave inner join Tipo_de_Resolucion tr on r.Tipo = tr.Clave where rmp.Clave = GLOBAL[lblClave]",rowIndex, nameOfTable)==TryParseInt('3', '3') ) { EvaluaQuery(" exec Insertjudicializacion GLOBAL[lblClave]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:3280, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

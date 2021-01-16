@@ -28,6 +28,17 @@ namespace Spartane.Web.SqlModelMapper
                 case "Usuario_Asignado[Name]":
                 case "Usuario_AsignadoName":
                     return "Spartan_User.Name";
+                case "Modulo_Mecanismos_Alternos[CDI]":
+                case "Modulo_Mecanismos_AlternosCDI":
+                    return "Solicitud.CDI";
+                case "Modulo_Ministerio_Publico[nic]":
+                case "Modulo_Ministerio_Publiconic":
+                    return "expediente_ministerio_publico.nic";
+                case "Origen[Descripcion]":
+                case "OrigenDescripcion":
+                    return "Origen_de_Invitacion.Descripcion";
+                case "Descripcion":
+                    return "Modulo_Servicio_Pericial.Descripcion";
 
                 default:
                     return propertyName;

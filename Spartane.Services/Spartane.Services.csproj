@@ -1459,6 +1459,20 @@
 <Compile Include="PC_CanalizarA\PC_CanalizarAService.cs" />
 <Compile Include="Direccion_Exacta\IDireccion_ExactaService.cs" />
 <Compile Include="Direccion_Exacta\Direccion_ExactaService.cs" />
+<Compile Include="Agencia_Servicio_Pericial\IAgencia_Servicio_PericialService.cs" />
+<Compile Include="Agencia_Servicio_Pericial\Agencia_Servicio_PericialService.cs" />
+<Compile Include="Area_Pericial\IArea_PericialService.cs" />
+<Compile Include="Area_Pericial\Area_PericialService.cs" />
+<Compile Include="Autoridad_Servicio_Pericial\IAutoridad_Servicio_PericialService.cs" />
+<Compile Include="Autoridad_Servicio_Pericial\Autoridad_Servicio_PericialService.cs" />
+<Compile Include="Dictamen_Servicio_Pericial\IDictamen_Servicio_PericialService.cs" />
+<Compile Include="Dictamen_Servicio_Pericial\Dictamen_Servicio_PericialService.cs" />
+<Compile Include="Modulo_Servicio_Pericial\IModulo_Servicio_PericialService.cs" />
+<Compile Include="Modulo_Servicio_Pericial\Modulo_Servicio_PericialService.cs" />
+<Compile Include="Estatus_Servicio_Pericial\IEstatus_Servicio_PericialService.cs" />
+<Compile Include="Estatus_Servicio_Pericial\Estatus_Servicio_PericialService.cs" />
+<Compile Include="Historial_Estatus_Modulo_Servicio_Pericial\IHistorial_Estatus_Modulo_Servicio_PericialService.cs" />
+<Compile Include="Historial_Estatus_Modulo_Servicio_Pericial\Historial_Estatus_Modulo_Servicio_PericialService.cs" />
 <!--@@INCLUDE@@-->
  </ItemGroup>
  <ItemGroup>
@@ -1558,6 +1572,20 @@
  </Target>
  -->
 </Project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -3,7 +3,7 @@
 @using Spartane.Web.Helpers
 @model Spartane.Web.Areas.Frontal.Models.Modulo_Servicio_PericialAdvanceSearchModel
 @{
-    List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
+ List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
     if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
     { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
     List<SelectListItem> varEstatus_Servicio_Pericial_Estatus = null;
@@ -15,6 +15,15 @@
     List<SelectListItem> varSpartan_User_Usuario_Asignado = null;
     if (ViewBag.Spartan_Users_Usuario_Asignado != null)
     { varSpartan_User_Usuario_Asignado = (List<SelectListItem>)ViewBag.Spartan_Users_Usuario_Asignado; }
+ List<SelectListItem> varSolicitud_Modulo_Mecanismos_Alternos = null;
+    if (ViewBag.Solicituds_Modulo_Mecanismos_Alternos != null)
+    { varSolicitud_Modulo_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Solicituds_Modulo_Mecanismos_Alternos; }
+ List<SelectListItem> varexpediente_ministerio_publico_Modulo_Ministerio_Publico = null;
+    if (ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico != null)
+    { varexpediente_ministerio_publico_Modulo_Ministerio_Publico = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico; }
+    List<SelectListItem> varOrigen_de_Invitacion_Origen = null;
+    if (ViewBag.Origen_de_Invitacions_Origen != null)
+    { varOrigen_de_Invitacion_Origen = (List<SelectListItem>)ViewBag.Origen_de_Invitacions_Origen; }
 
     var filters = (List<SelectListItem>)ViewBag.Filter;
 }
@@ -63,27 +72,9 @@
                     @Html.TextBoxFor(m => m.ToClave, new { @class = "form-control greaterThan greaterThanZero", @type = "text", @onkeypress = "return isNumberKey(this, event);", @id = "txtAdvanceToClave", @data_min = "txtAdvanceFromClave" })
                     @Html.ValidationMessageFor(m => m.ToClave)
                 </div>
-                <div class="MarginBottom">
-                    <h3>@Resources.Modulo_Servicio_PericialResources.Modulo_Atencion_Inicial</h3>
-                </div>
-                <div class="MarginBottom form-inline">
-                    <label class="">@Resources.Resources.Filter:</label>
-                    @Html.DropDownListFor(m => m.Modulo_Atencion_InicialFilter, filters, new { @class = "form-control", @id = "ddlModulo_Atencion_InicialFilter" })
-                    @Html.TextBoxFor(m => m.AdvanceModulo_Atencion_Inicial, new { @class = "form-control", @type = "text", @id = "txtAdvanceModulo_Atencion_Inicial" })
-                    <label class="">@Resources.Resources.OrSelect </label>
-                    @if (varModulo_Atencion_Inicial_Modulo_Atencion_Inicial!=null)
-                    {
-                        @Html.ListBoxFor(m => m.AdvanceModulo_Atencion_InicialMultiple, varModulo_Atencion_Inicial_Modulo_Atencion_Inicial,
-                        new
-                        {
-                            @class = "form-control chosen-select",
-                            @multiple = "multiple",
-                            @data_placeholder = "",
-                            @style = "width: 350px;",
-                            @id = "ddlAdvanceModulo_Atencion_Inicial"
-                        });
-                    }
-                </div>
+ List<SelectListItem> varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = null;
+    if (ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial != null)
+    { varModulo_Atencion_Inicial_Modulo_Atencion_Inicial = (List<SelectListItem>)ViewBag.Modulo_Atencion_Inicials_Modulo_Atencion_Inicial; }
                 <div class="MarginBottom">
                     <h3>@Resources.Modulo_Servicio_PericialResources.Estatus</h3>
                 </div>
@@ -146,6 +137,41 @@
                             @id = "ddlAdvanceUsuario_Asignado"
                         });
                     }
+                </div>
+ List<SelectListItem> varSolicitud_Modulo_Mecanismos_Alternos = null;
+    if (ViewBag.Solicituds_Modulo_Mecanismos_Alternos != null)
+    { varSolicitud_Modulo_Mecanismos_Alternos = (List<SelectListItem>)ViewBag.Solicituds_Modulo_Mecanismos_Alternos; }
+ List<SelectListItem> varexpediente_ministerio_publico_Modulo_Ministerio_Publico = null;
+    if (ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico != null)
+    { varexpediente_ministerio_publico_Modulo_Ministerio_Publico = (List<SelectListItem>)ViewBag.expediente_ministerio_publicos_Modulo_Ministerio_Publico; }
+                <div class="MarginBottom">
+                    <h3>@Resources.Modulo_Servicio_PericialResources.Origen</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.OrigenFilter, filters, new { @class = "form-control", @id = "ddlOrigenFilter" })
+                    @Html.TextBoxFor(m => m.AdvanceOrigen, new { @class = "form-control", @type = "text", @id = "txtAdvanceOrigen" })
+                    <label class="">@Resources.Resources.OrSelect </label>
+                    @if (varOrigen_de_Invitacion_Origen!=null)
+                    {
+                        @Html.ListBoxFor(m => m.AdvanceOrigenMultiple, varOrigen_de_Invitacion_Origen,
+                        new
+                        {
+                            @class = "form-control chosen-select",
+                            @multiple = "multiple",
+                            @data_placeholder = "",
+                            @style = "width: 350px;",
+                            @id = "ddlAdvanceOrigen"
+                        });
+                    }
+                </div>
+                <div class="MarginBottom">
+                    <h3>@Resources.Modulo_Servicio_PericialResources.Descripcion</h3>
+                </div>
+                <div class="MarginBottom form-inline">
+                    <label class="">@Resources.Resources.Filter:</label>
+                    @Html.DropDownListFor(m => m.DescripcionFilter, filters, new { @class = "form-control", @id = "ddlDescripcionFilter" })
+                    @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", @type = "text", @id = "txtDescripcion" })
                 </div>
 
                 <div class="MarginBottom form-inline">
@@ -224,6 +250,56 @@
                 advanceSearch.Usuario_AsignadoSearchType = 2;
             }
         }
+        advanceSearch.Modulo_Mecanismos_AlternosSearchType = 0;
+        if ($('#ddlAdvanceModulo_Mecanismos_Alternos').val().length > 0 || $("#txtAdvanceModulo_Mecanismos_Alternos").val() == "") {
+
+
+            if (isModulo_Servicio_PericialTextSearch) {
+                advanceSearch.Modulo_Mecanismos_AlternosName = $("#txtAdvanceModulo_Mecanismos_Alternos").val();
+                advanceSearch.Modulo_Mecanismos_AlternosNameSearchType = $("#ddlAdvanceModulo_Mecanismos_Alternos").val();
+                advanceSearch.Modulo_Mecanismos_AlternosSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Modulo_Mecanismos_AlternosToSearch = $("#ddlAdvanceModulo_Mecanismos_Alternos").val();
+                advanceSearch.Modulo_Mecanismos_AlternosSearchType = 2;
+            }
+        }
+        advanceSearch.Modulo_Ministerio_PublicoSearchType = 0;
+        if ($('#ddlAdvanceModulo_Ministerio_Publico').val().length > 0 || $("#txtAdvanceModulo_Ministerio_Publico").val() == "") {
+
+
+            if (isModulo_Servicio_PericialTextSearch) {
+                advanceSearch.Modulo_Ministerio_PublicoName = $("#txtAdvanceModulo_Ministerio_Publico").val();
+                advanceSearch.Modulo_Ministerio_PublicoNameSearchType = $("#ddlAdvanceModulo_Ministerio_Publico").val();
+                advanceSearch.Modulo_Ministerio_PublicoSearchType = 1;
+            }
+            else {
+
+                advanceSearch.Modulo_Ministerio_PublicoToSearch = $("#ddlAdvanceModulo_Ministerio_Publico").val();
+                advanceSearch.Modulo_Ministerio_PublicoSearchType = 2;
+            }
+        }
+        advanceSearch.OrigenSearchType = 0;
+        if ($('#ddlAdvanceOrigen').val().length > 0 || $("#txtAdvanceOrigen").val() == "") {
+
+
+            if (isModulo_Servicio_PericialTextSearch) {
+                advanceSearch.OrigenName = $("#txtAdvanceOrigen").val();
+                advanceSearch.OrigenNameSearchType = $("#ddlAdvanceOrigen").val();
+                advanceSearch.OrigenSearchType = 1;
+            }
+            else {
+
+                advanceSearch.OrigenToSearch = $("#ddlAdvanceOrigen").val();
+                advanceSearch.OrigenSearchType = 2;
+            }
+        }
+        if ($("#txtAdvanceDescripcion").val() != "") {
+            hasParameter = true;
+            advanceSearch.Modulo_Servicio_PericialDescripcion = $("#txtAdvanceDescripcion").val();
+            advanceSearch.Modulo_Servicio_PericialDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblModulo_Servicio_Pericial').DataTable().draw();
@@ -277,6 +353,33 @@
         $("#ddlAdvanceUsuario_Asignado").change(function () {
             isModulo_Servicio_PericialTextSearch = false;
             $("#txtAdvanceUsuario_Asignado").val('');
+        });
+        $("#txtAdvanceModulo_Mecanismos_Alternos").keypress(function () {
+            isModulo_Servicio_PericialTextSearch = true;
+            $("#ddlAdvanceModulo_Mecanismos_Alternos").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceModulo_Mecanismos_Alternos").change(function () {
+            isModulo_Servicio_PericialTextSearch = false;
+            $("#txtAdvanceModulo_Mecanismos_Alternos").val('');
+        });
+        $("#txtAdvanceModulo_Ministerio_Publico").keypress(function () {
+            isModulo_Servicio_PericialTextSearch = true;
+            $("#ddlAdvanceModulo_Ministerio_Publico").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceModulo_Ministerio_Publico").change(function () {
+            isModulo_Servicio_PericialTextSearch = false;
+            $("#txtAdvanceModulo_Ministerio_Publico").val('');
+        });
+        $("#txtAdvanceOrigen").keypress(function () {
+            isModulo_Servicio_PericialTextSearch = true;
+            $("#ddlAdvanceOrigen").val('').trigger("chosen:updated");
+        });
+
+        $("#ddlAdvanceOrigen").change(function () {
+            isModulo_Servicio_PericialTextSearch = false;
+            $("#txtAdvanceOrigen").val('');
         });
 
     });

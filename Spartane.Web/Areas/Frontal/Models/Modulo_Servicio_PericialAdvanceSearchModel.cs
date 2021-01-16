@@ -35,6 +35,21 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceUsuario_Asignado { set; get; }
         public int[] AdvanceUsuario_AsignadoMultiple { set; get; }
 
+        public Filters Modulo_Mecanismos_AlternosFilter { set; get; }
+        public string AdvanceModulo_Mecanismos_Alternos { set; get; }
+        public int[] AdvanceModulo_Mecanismos_AlternosMultiple { set; get; }
+
+        public Filters Modulo_Ministerio_PublicoFilter { set; get; }
+        public string AdvanceModulo_Ministerio_Publico { set; get; }
+        public int[] AdvanceModulo_Ministerio_PublicoMultiple { set; get; }
+
+        public Filters OrigenFilter { set; get; }
+        public string AdvanceOrigen { set; get; }
+        public int[] AdvanceOrigenMultiple { set; get; }
+
+        public Filters DescripcionFilter { set; get; }
+        public string Descripcion { set; get; }
+
 
     }
 }

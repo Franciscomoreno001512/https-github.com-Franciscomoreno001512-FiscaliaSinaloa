@@ -330,6 +330,10 @@
             advanceSearch.Diligencias_MPDescripcion = $("#txtAdvanceDescripcion").val();
             advanceSearch.Diligencias_MPDescripcionSearchType = $("#ddlAdvanceDescripcionFilter").val();
         }
+        if ($("#ddlAdvanceLista_para_periciales").val() != "") {
+            hasParameter = true;
+            advanceSearch.Diligencias_MPLista_para_periciales = $("#ddlAdvanceLista_para_periciales").val();
+        }
 
         advanceSearchQuery = hasParameter ? JSON.stringify(advanceSearch) : "";
         $('#tblDiligencias_MP').DataTable().draw();

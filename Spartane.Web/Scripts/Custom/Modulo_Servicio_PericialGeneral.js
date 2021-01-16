@@ -6,6 +6,39 @@ $(function () {
 
 });
 
+var AutoCompleteModulo_Atencion_InicialData = [];
+function GetAutoCompleteModulo_Servicio_Pericial_Modulo_Atencion_Inicial_Modulo_Atencion_InicialData(data) {
+	AutoCompleteModulo_Atencion_InicialData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteModulo_Atencion_InicialData.push({
+            id: data[i].Clave,
+            text: data[i].NUAT
+        });
+    }
+    return AutoCompleteModulo_Atencion_InicialData;
+}
+var AutoCompleteModulo_Mecanismos_AlternosData = [];
+function GetAutoCompleteModulo_Servicio_Pericial_Modulo_Mecanismos_Alternos_SolicitudData(data) {
+	AutoCompleteModulo_Mecanismos_AlternosData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteModulo_Mecanismos_AlternosData.push({
+            id: data[i].Clave,
+            text: data[i].CDI
+        });
+    }
+    return AutoCompleteModulo_Mecanismos_AlternosData;
+}
+var AutoCompleteModulo_Ministerio_PublicoData = [];
+function GetAutoCompleteModulo_Servicio_Pericial_Modulo_Ministerio_Publico_expediente_ministerio_publicoData(data) {
+	AutoCompleteModulo_Ministerio_PublicoData = [];
+    for (var i = 0; i < data.length; i++) {
+        AutoCompleteModulo_Ministerio_PublicoData.push({
+            id: data[i].clave,
+            text: data[i].nic
+        });
+    }
+    return AutoCompleteModulo_Ministerio_PublicoData;
+}
 
 
 function getDropdown(elementKey) {
@@ -43,6 +76,15 @@ function ClearControls() {
     $('#CreateModulo_Servicio_Pericial')[0].reset();
     ClearFormControls();
     $("#ClaveId").val("0");
+    $('#Modulo_Atencion_Inicial').empty();
+    $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
+    $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+    $('#Modulo_Mecanismos_Alternos').empty();
+    $("#Modulo_Mecanismos_Alternos").append('<option value=""></option>');
+    $('#Modulo_Mecanismos_Alternos').val('0').trigger('change');
+    $('#Modulo_Ministerio_Publico').empty();
+    $("#Modulo_Ministerio_Publico").append('<option value=""></option>');
+    $('#Modulo_Ministerio_Publico').val('0').trigger('change');
 
 }
 function ClearAttachmentsDiv() {
@@ -172,7 +214,16 @@ $(document).ready(function () {
 			if (CheckValidation())
 				SendModulo_Servicio_PericialData(function (currentId) {
 					$("#ClaveId").val("0");
-	
+	    $('#Modulo_Atencion_Inicial').empty();
+    $("#Modulo_Atencion_Inicial").append('<option value=""></option>');
+    $('#Modulo_Atencion_Inicial').val('0').trigger('change');
+    $('#Modulo_Mecanismos_Alternos').empty();
+    $("#Modulo_Mecanismos_Alternos").append('<option value=""></option>');
+    $('#Modulo_Mecanismos_Alternos').val('0').trigger('change');
+    $('#Modulo_Ministerio_Publico').empty();
+    $("#Modulo_Ministerio_Publico").append('<option value=""></option>');
+    $('#Modulo_Ministerio_Publico').val('0').trigger('change');
+
 					ResetClaveLabel();
 					$("#ReferenceClave").val(currentId);
 	

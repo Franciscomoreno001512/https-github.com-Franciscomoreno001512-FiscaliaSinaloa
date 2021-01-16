@@ -166,6 +166,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Lista_para_periciales</summary>
+        public static string Lista_para_periciales
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDiligencias_MP.GetResource("Lista_para_periciales", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDiligencias_MP.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

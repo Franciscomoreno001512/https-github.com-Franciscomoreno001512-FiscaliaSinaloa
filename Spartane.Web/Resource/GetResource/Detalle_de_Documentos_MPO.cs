@@ -156,6 +156,16 @@ namespace Resources
             }
         }
 
+        /// <summary>Lista_para_periciales</summary>
+        public static string Lista_para_periciales
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Documentos_MPO.GetResource("Lista_para_periciales", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
 
 	/// <summary>Datos Generales</summary>	public static string TabDatos_Generales 	{		get		{			SetPath();  			return resourceProviderDetalle_de_Documentos_MPO.GetResource("TabDatos_Generales", CultureInfo.CurrentUICulture.Name) as String;             		}	}
 

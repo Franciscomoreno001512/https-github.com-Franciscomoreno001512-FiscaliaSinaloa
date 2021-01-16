@@ -46,6 +46,8 @@ namespace Spartane.Web.SqlModelMapper
                     return "Diligencias_MP.Archivo";
                 case "Descripcion":
                     return "Diligencias_MP.Descripcion";
+                case "Lista_para_periciales":
+                    return "Diligencias_MP.Lista_para_periciales";
 
                 default:
                     return propertyName;
@@ -73,6 +75,10 @@ namespace Spartane.Web.SqlModelMapper
                 {
 
                 }
+            }
+            if (columnName == "Lista_para_periciales")
+            {
+                value = Convert.ToString(value) != string.Empty?(Convert.ToString(value) == "true"  ? 1 :0 ): value;
             }
 
 

@@ -167,6 +167,12 @@ if(operation == 'Update'){
 
 
 
+
+
+
+
+
+
 //BusinessRuleId:3020, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  var valor = $('#' + nameOfTable + 'Documento' + rowIndex).val();   $('#' + nameOfTable + 'Documento' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Documento' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Documento' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, DESCRIPCION FROM DOCUMENTO WHERE CLAVE = 179", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Documento' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, DESCRIPCION FROM DOCUMENTO WHERE CLAVE = 179", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Documento' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Documento' + rowIndex).val(valor).trigger('change'); AsignarValor($('#' + nameOfTable + 'Documento' + rowIndex),EvaluaQuery(" SELECT CLAVE FROM DOCUMENTO WHERE DESCRIPCION ='AVISO DE INICIO DENUNCIA'", rowIndex, nameOfTable)); $('#divTipo_de_Documento').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex));$('#divDocumento').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Documento' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Documento' + rowIndex)); $('#divUsuario_que_registra').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_registra' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Usuario_que_registra' + rowIndex)); $('#divArchivo_Descargado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo_Descargado' + rowIndex));$('#divArchivo').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo' + rowIndex)); SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo_Descargado' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Archivo' + rowIndex));

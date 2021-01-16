@@ -197,6 +197,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Observaciones = Diligencias_MPData.Observaciones
                     ,Archivo = Diligencias_MPData.Archivo
                     ,Descripcion = Diligencias_MPData.Descripcion
+                    ,Lista_para_periciales = Diligencias_MPData.Lista_para_periciales.GetValueOrDefault()
 
 					};
 				}
@@ -297,6 +298,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                     ,Observaciones = Diligencias_MPData.Observaciones
                     ,Archivo = Diligencias_MPData.Archivo
                     ,Descripcion = Diligencias_MPData.Descripcion
+                    ,Lista_para_periciales = Diligencias_MPData.Lista_para_periciales.GetValueOrDefault()
 
 					};
 				}
@@ -569,6 +571,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
 			,Descripcion = m.Descripcion
+			,Lista_para_periciales = m.Lista_para_periciales
 
                     }).ToList(),
                 itemsCount = result.RowCount
@@ -696,6 +699,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
 			,Descripcion = m.Descripcion
+			,Lista_para_periciales = m.Lista_para_periciales
 
                 }).ToList(),
                 iTotalRecords = result.RowCount,
@@ -1123,6 +1127,9 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                 }
             }
 
+            if (filter.Lista_para_periciales != RadioOptions.NoApply)
+                where += " AND Diligencias_MP.Lista_para_periciales = " + Convert.ToInt32(filter.Lista_para_periciales);
+
 
             where = new Regex(Regex.Escape("AND ")).Replace(where, "", 1);
             return where;
@@ -1208,6 +1215,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Observaciones = varDiligencias_MP.Observaciones
                         ,Archivo = varDiligencias_MP.Archivo
                         ,Descripcion = varDiligencias_MP.Descripcion
+                        ,Lista_para_periciales = varDiligencias_MP.Lista_para_periciales
 
                     };
 
@@ -1550,7 +1558,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
             var exportFormatType = (ExportFormatType)Enum.Parse(
                                           typeof(ExportFormatType), format, true);
 										  
-			string[] arrayColumnsVisible = null;
+			string[] arrayColumnsVisible = ((string[])columnsVisible)[0].ToString().Split(',');
 
 			 where = HttpUtility.UrlEncode(where);
             if (!_tokenManager.GenerateToken())
@@ -1608,6 +1616,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
 			,Descripcion = m.Descripcion
+			,Lista_para_periciales = m.Lista_para_periciales
 
             }).ToList();
 
@@ -1694,6 +1703,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
 			,Descripcion = m.Descripcion
+			,Lista_para_periciales = m.Lista_para_periciales
 
             }).ToList();
 
@@ -1763,6 +1773,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
                         ,Observaciones = varDiligencias_MP.Observaciones
                         ,Archivo = varDiligencias_MP.Archivo
                         ,Descripcion = varDiligencias_MP.Descripcion
+                        ,Lista_para_periciales = varDiligencias_MP.Lista_para_periciales
                     
                 };
 
@@ -1810,6 +1821,7 @@ namespace Spartane.Web.Areas.Frontal.Controllers
 			,Observaciones = m.Observaciones
 			,Archivo = m.Archivo
 			,Descripcion = m.Descripcion
+			,Lista_para_periciales = m.Lista_para_periciales
 
                     
                 };

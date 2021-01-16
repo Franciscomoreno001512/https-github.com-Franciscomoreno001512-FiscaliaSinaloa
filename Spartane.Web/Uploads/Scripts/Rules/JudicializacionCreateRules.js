@@ -15,53 +15,11 @@ if( GetValueByControlType($('#' + nameOfTable + 'Tribunal_de_Enjuiciamiento' + r
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {
-//BusinessRuleId:2982, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'New'){
- $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divExpediente_MP').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));$('#divResolucion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Resolucion' + rowIndex));$('#divObservaciones').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex)); DisabledControl($("#" + nameOfTable + "Tipo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));}DisabledControl($("#" + nameOfTable + "causa_o_cuadernillo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'causa_o_cuadernillo' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fase_Actual" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fase_Actual' + rowIndex));} if('true' == 'true')
-{
-	$('#divVinculacion a').attr('disabled', 'disabled');
-	$('#divVinculacion a').css("pointer-events","none");
-}
-else
-{
-	$('#divVinculacion a').attr('disabled', '');
-	$('#divVinculacion a').css("pointer-events","all");
-} SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Judicializacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Relacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Resolucion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'causa_o_cuadernillo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fase_Actual' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Actos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Actos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Actos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Genericos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Genericos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Genericos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Fase_Inicial' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Fase_Inicial' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Inicial' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Fase_Intermedia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Fase_Intermedia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Intermedia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Audiencia_de_Juicio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Audiencia_de_Juicio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tribunal_de_Enjuiciamiento' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Nombre_del_Juez' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Juez_Presidente' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Juez_Relator' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Juez_Vocal' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'medios_desahogo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Sentencia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cuantia_de_Pena_Anos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cuantia_de_Pena_Meses' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_Reparacion_del_Dano' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Juicio_Oral' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Fase_Salidas_Alternas' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Fase_Salidas_Alternas' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Salidas_Alternas' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Fase_Sobreseimientos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Fase_Sobreseimientos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Sobreseimientos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex)); $('#divTipo_de_Sentencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Sentencia' + rowIndex));$('#divCuantia_de_Pena_Anos').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Cuantia_de_Pena_Anos' + rowIndex));$('#divCuantia_de_Pena_Meses').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Cuantia_de_Pena_Meses' + rowIndex));$('#divMonto_de_Reparacion_del_Dano').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_Reparacion_del_Dano' + rowIndex));
-
-}
-//BusinessRuleId:2982, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2982, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Update'){
- $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divExpediente_MP').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));$('#divResolucion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Resolucion' + rowIndex));$('#divObservaciones').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex)); DisabledControl($("#" + nameOfTable + "Tipo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));}DisabledControl($("#" + nameOfTable + "causa_o_cuadernillo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'causa_o_cuadernillo' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fase_Actual" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fase_Actual' + rowIndex));} if('true' == 'true')
-{
-	$('#divVinculacion a').attr('disabled', 'disabled');
-	$('#divVinculacion a').css("pointer-events","none");
-}
-else
-{
-	$('#divVinculacion a').attr('disabled', '');
-	$('#divVinculacion a').css("pointer-events","all");
-} SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Judicializacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Relacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Resolucion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'causa_o_cuadernillo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fase_Actual' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Actos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Actos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Actos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Genericos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Genericos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Genericos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Fase_Inicial' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Fase_Inicial' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Inicial' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Fase_Intermedia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Fase_Intermedia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Intermedia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Audiencia_de_Juicio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Audiencia_de_Juicio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tribunal_de_Enjuiciamiento' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Nombre_del_Juez' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Juez_Presidente' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Juez_Relator' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Juez_Vocal' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'medios_desahogo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Sentencia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cuantia_de_Pena_Anos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cuantia_de_Pena_Meses' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_Reparacion_del_Dano' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Juicio_Oral' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Fase_Salidas_Alternas' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Fase_Salidas_Alternas' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Salidas_Alternas' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Fase_Sobreseimientos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Fase_Sobreseimientos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Sobreseimientos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex)); $('#divTipo_de_Sentencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Sentencia' + rowIndex));$('#divCuantia_de_Pena_Anos').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Cuantia_de_Pena_Anos' + rowIndex));$('#divCuantia_de_Pena_Meses').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Cuantia_de_Pena_Meses' + rowIndex));$('#divMonto_de_Reparacion_del_Dano').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_Reparacion_del_Dano' + rowIndex));
-
-}
-//BusinessRuleId:2982, Attribute:0, Operation:Object, Event:SCREENOPENING
 
-//BusinessRuleId:2982, Attribute:0, Operation:Object, Event:SCREENOPENING
-if(operation == 'Consult'){
- $('#divClave').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));$('#divExpediente_MP').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));$('#divResolucion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Resolucion' + rowIndex));$('#divObservaciones').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex)); DisabledControl($("#" + nameOfTable + "Tipo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));}DisabledControl($("#" + nameOfTable + "causa_o_cuadernillo" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'causa_o_cuadernillo' + rowIndex));}DisabledControl($("#" + nameOfTable + "Fase_Actual" + rowIndex), ("true" == "true"));if ('true'=='true'){SetNotRequiredToControl( $('#' + nameOfTable + 'Fase_Actual' + rowIndex));} if('true' == 'true')
-{
-	$('#divVinculacion a').attr('disabled', 'disabled');
-	$('#divVinculacion a').css("pointer-events","none");
-}
-else
-{
-	$('#divVinculacion a').attr('disabled', '');
-	$('#divVinculacion a').css("pointer-events","all");
-} SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Clave' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Judicializacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Relacion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MP' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Resolucion' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'causa_o_cuadernillo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fase_Actual' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Actos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Actos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Actos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Genericos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Genericos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Genericos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Fase_Inicial' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Fase_Inicial' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Inicial' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Fase_Intermedia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Fase_Intermedia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Intermedia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Audiencia_de_Juicio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_de_Audiencia_de_Juicio' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tribunal_de_Enjuiciamiento' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Nombre_del_Juez' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Juez_Presidente' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Juez_Relator' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Juez_Vocal' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'medios_desahogo' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Sentencia' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cuantia_de_Pena_Anos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Cuantia_de_Pena_Meses' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_Reparacion_del_Dano' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Juicio_Oral' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Fase_Salidas_Alternas' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Fase_Salidas_Alternas' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Salidas_Alternas' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_Fase_Sobreseimientos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Hora_Fase_Sobreseimientos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones_Fase_Sobreseimientos' + rowIndex));SetNotRequiredToControl( $('#' + nameOfTable + 'Observaciones' + rowIndex)); $('#divTipo_de_Sentencia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Tipo_de_Sentencia' + rowIndex));$('#divCuantia_de_Pena_Anos').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Cuantia_de_Pena_Anos' + rowIndex));$('#divCuantia_de_Pena_Meses').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Cuantia_de_Pena_Meses' + rowIndex));$('#divMonto_de_Reparacion_del_Dano').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Monto_de_Reparacion_del_Dano' + rowIndex));
-
-}
-//BusinessRuleId:2982, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
 
 //BusinessRuleId:2984, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
@@ -69,6 +27,19 @@ if( GetValueByControlType($('#' + nameOfTable + 'Tribunal_de_Enjuiciamiento' + r
 
 }
 //BusinessRuleId:2984, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+
+
+
+
+
+
+//BusinessRuleId:3345, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+ CreateSessionVar('prueba', '2');
+
+}
+//BusinessRuleId:3345, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //NEWBUSINESSRULE_SCREENOPENING//
 }
@@ -78,6 +49,13 @@ function EjecutarValidacionesAntesDeGuardar(){
     return result;
 }
 function EjecutarValidacionesDespuesDeGuardar(){
+//BusinessRuleId:3455, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+if(  EvaluaOperatorIn (TryParseInt(ReplaceGLOBAL('GLOBAL[global_etapa]'), ReplaceGLOBAL('GLOBAL[global_etapa]')), EvaluaQuery("select STUFF((    select ';' + Descripcion + ''   from Fase_de_Judicializacion where Clave in (1,2,3) for XML PATH('')  ), 1, 1, '')",rowIndex, nameOfTable) ) ) { AsignarValor($('#' + nameOfTable + 'Fase_Actual' + rowIndex),ReplaceGLOBAL('global_etapa'));} else {}
+
+}
+//BusinessRuleId:3455, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //NEWBUSINESSRULE_AFTERSAVING//
 }
 
