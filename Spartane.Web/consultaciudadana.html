@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+​
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+​
+    <title>PORTAL CIUDADANO | FGE-SINALOA</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+​
+    <!-- CSS Files -->
+    <link href="Content/bootstrap.css" rel="stylesheet">
+    <link href="Content/style-red.css" rel="stylesheet">
+    <link href="Content/style.css" rel="stylesheet">
+​
+    <!-- CSS File Detalles Envio-->
+    <link href="Content/portal-ciudadano.css" rel="stylesheet">
+    <link href="Content/fontello.css" rel="stylesheet">
+​
+    <!-- JS Files -->
+    <script src="assets/jquery/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/popper.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body class="fondo-azul">
+    <div class="container">
+        <header>
+            <div class="row" style="margin-top: 3.0rem;">
+                <div id="logo" class="col-xs-12 col-md-4">
+                    <img src="Images/Logo-white1.png" alt="Logotipo Fiscalia">
+                </div>
+                <div class="text-center col-xs-12 col-md-4 txt-blanco" style="margin-top: 2.0rem;">
+                    <h1 class="pildora">Consultar Denuncia</h1>
+                    <br>
+                    <p class="txt-14">Da clic sobre el dipo de Consulta que deseas realizar</p>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="row display-flex " style="margin-top: 3.0rem;">
+                <div class="col-xs-6 col-md-4">
+                    <a href="#" onclick="Finalizar()">
+                        <div class="card card-blanca">
+                            <div class="card-icon"><i class="icon-consultar-denuncia-normal"></i></div>
+                            <div class="card-title">Consulta una Denuncia</div>
+                            <div class="muted m-b">Con usuario registrado en el portal</div>
+                            <div class="card-body">Aquí puedes consultar el estatus de tu denuncia que realizaste, solamente ingresa con tus datos.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-4 ">
+                    <a href="#" onclick="ConsultaAnonima()">
+                        <div class="card card-blanca">
+                            <div class="card-icon"><i class="icon-consultar-denuncia-anonima"></i></div>
+                            <div class="card-title m-b">Consulta una Denuncia Anónima</div>
+                            <div class="card-body">Aquí puedes consultar el estatus de tu denuncia que realizaste anónimamente desde este portal.</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <a href="#">
+                        <div class="card card-blanca">
+                            <div class="card-icon"><i class="icon-consultar-denuncia-anterior"></i></div>
+                            <div class="card-title">Consultar Carpeta de Investigación</div>
+                            <div class="muted m-b">Denuncias previas al 1 de Febrero del 2021</div>
+                            <div class="card-body">
+                                Si realizaste una denuncia anterior al 1 de febrero del 2021, aquí puedes consultar su estatus. <br>
+                                Solamente necesitas el número de carpeta de investigación y una contraseña. En caso de no contar con estos datos favor de enviar un correo a vinculacion.ciudadana@fiscaliasinaloa.mx o comunicarse a los telefonos 667 7162 500 y 800 670 3600</div>
+                        </div>
+                    </a>
+                </div>
+                
+            </div>
+        </main>
+    </div>
+	<script type="text/javascript">
+
+        function Finalizar() {       
+			localStorage.setItem("OrigenPC", "0");				
+            window.location.href = "Account/Login";
+        }
+		function ConsultaAnonima(){
+		    window.location.href = "consultaanonima.html";
+		}			
+   </script>
+</body ></html>

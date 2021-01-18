@@ -1,0 +1,40 @@
+rEGISTRO
+aCENTO EN ELECTRÓNICO Y TELEFONO *****
+
+FELIPE
+FAVOR DE REVISAR-> DECIR INTENTE CON UN USUARIO DIFERENTE
+bug del tamaño de texto tipo de victima
+curp no requerido en la victima
+
+reenvia falta acento  ****
+
+agrego validacion de si no selecciona acuerdos y confirmacion no dejar pasar ****
+
+
+Texto SMS acento en la u y acento en la o fiscalía número y validación(verificación). "aguas parece que el servicio no acepta los acentos"
+
+Singos de admiración en Bienvenido, su cuenta ha sido correctamente verificada  ******
+
+quitar las comas del login  ******
+
+Es necesario que para efectos de verificacion proporcoines tu correo electrónico 
+o tu numero de celular o ambos *******
+
+no mostrar el ultimo mensaje para el rol 108 *******
+
+para seguimiento de su denuncia anonima anote y conserve sus credenciales ****************
+
+quejas
+,en breve recibirá respuesta de la fiscalía ************
+
+
+Recuperar contraseña solo aceptar el username y enviar correo y sms
+Fiscalía con acento su contraseña temporal
+
+
+
+
+
+
+
+

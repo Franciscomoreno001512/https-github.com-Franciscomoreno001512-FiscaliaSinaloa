@@ -385,23 +385,159 @@ if(operation == 'New'){
 }
 //BusinessRuleId:2991, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //BusinessRuleId:2996, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
-if( EvaluaQuery("select GLOBAL[idFase]",rowIndex, nameOfTable)!=TryParseInt('', '') ) { var valor = $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val();   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave, Descripcion From Configurador_de_Movimientos with(nolock) where Fase=GLOBAL[idFase]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave, Descripcion From Configurador_de_Movimientos with(nolock) where Fase=GLOBAL[idFase]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val(valor).trigger('change');} else { var valor = $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val();   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("	 select Clave, Descripcion From Configurador_de_Movimientos with(nolock) ", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("	 select Clave, Descripcion From Configurador_de_Movimientos with(nolock) ", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val(valor).trigger('change');}
+if( EvaluaQuery("select GLOBAL[[idFase]]",rowIndex, nameOfTable)!=TryParseInt('', '') ) { var valor = $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val();   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select DISTINCT CM.Clave, CM.Descripcion"
++" from Judicializacion J, Resolucion_MP RMP, Resolucion R, Registro_de_Movimiento M, Configurador_de_Movimientos CM"
++" WITH(NOLOCK)"
++" WHERE J.resolucion = RMP.Clave"
++" AND RMP.Resolucion = R.Clave"
++" AND R.Vigencia = 'S'"
++" and M.Judicializacion = J.Clave "
++" AND M.Movimiento_Realizado = CM.Clave"
++" AND CM.Fase = GLOBAL[[idFase]]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select DISTINCT CM.Clave, CM.Descripcion"
++" from Judicializacion J, Resolucion_MP RMP, Resolucion R, Registro_de_Movimiento M, Configurador_de_Movimientos CM"
++" WITH(NOLOCK)"
++" WHERE J.resolucion = RMP.Clave"
++" AND RMP.Resolucion = R.Clave"
++" AND R.Vigencia = 'S'"
++" and M.Judicializacion = J.Clave "
++" AND M.Movimiento_Realizado = CM.Clave"
++" AND CM.Fase = GLOBAL[[idFase]]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val(valor).trigger('change');} else { var valor = $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val();   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select clave, descripcion From Configurador_de_Movimientos with(nolock)", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select clave, descripcion From Configurador_de_Movimientos with(nolock)", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val(valor).trigger('change');}
 
 }
 //BusinessRuleId:2996, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2996, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
-if( EvaluaQuery("select GLOBAL[idFase]",rowIndex, nameOfTable)!=TryParseInt('', '') ) { var valor = $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val();   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave, Descripcion From Configurador_de_Movimientos with(nolock) where Fase=GLOBAL[idFase]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave, Descripcion From Configurador_de_Movimientos with(nolock) where Fase=GLOBAL[idFase]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val(valor).trigger('change');} else { var valor = $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val();   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("	 select Clave, Descripcion From Configurador_de_Movimientos with(nolock) ", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("	 select Clave, Descripcion From Configurador_de_Movimientos with(nolock) ", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val(valor).trigger('change');}
+if( EvaluaQuery("select GLOBAL[[idFase]]",rowIndex, nameOfTable)!=TryParseInt('', '') ) { var valor = $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val();   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select DISTINCT CM.Clave, CM.Descripcion"
++" from Judicializacion J, Resolucion_MP RMP, Resolucion R, Registro_de_Movimiento M, Configurador_de_Movimientos CM"
++" WITH(NOLOCK)"
++" WHERE J.resolucion = RMP.Clave"
++" AND RMP.Resolucion = R.Clave"
++" AND R.Vigencia = 'S'"
++" and M.Judicializacion = J.Clave "
++" AND M.Movimiento_Realizado = CM.Clave"
++" AND CM.Fase = GLOBAL[[idFase]]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select DISTINCT CM.Clave, CM.Descripcion"
++" from Judicializacion J, Resolucion_MP RMP, Resolucion R, Registro_de_Movimiento M, Configurador_de_Movimientos CM"
++" WITH(NOLOCK)"
++" WHERE J.resolucion = RMP.Clave"
++" AND RMP.Resolucion = R.Clave"
++" AND R.Vigencia = 'S'"
++" and M.Judicializacion = J.Clave "
++" AND M.Movimiento_Realizado = CM.Clave"
++" AND CM.Fase = GLOBAL[[idFase]]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val(valor).trigger('change');} else { var valor = $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val();   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select clave, descripcion From Configurador_de_Movimientos with(nolock)", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select clave, descripcion From Configurador_de_Movimientos with(nolock)", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val(valor).trigger('change');}
 
 }
 //BusinessRuleId:2996, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2996, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
-if( EvaluaQuery("select GLOBAL[idFase]",rowIndex, nameOfTable)!=TryParseInt('', '') ) { var valor = $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val();   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select Clave, Descripcion From Configurador_de_Movimientos with(nolock) where Fase=GLOBAL[idFase]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select Clave, Descripcion From Configurador_de_Movimientos with(nolock) where Fase=GLOBAL[idFase]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val(valor).trigger('change');} else { var valor = $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val();   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("	 select Clave, Descripcion From Configurador_de_Movimientos with(nolock) ", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("	 select Clave, Descripcion From Configurador_de_Movimientos with(nolock) ", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val(valor).trigger('change');}
+if( EvaluaQuery("select GLOBAL[[idFase]]",rowIndex, nameOfTable)!=TryParseInt('', '') ) { var valor = $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val();   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select DISTINCT CM.Clave, CM.Descripcion"
++" from Judicializacion J, Resolucion_MP RMP, Resolucion R, Registro_de_Movimiento M, Configurador_de_Movimientos CM"
++" WITH(NOLOCK)"
++" WHERE J.resolucion = RMP.Clave"
++" AND RMP.Resolucion = R.Clave"
++" AND R.Vigencia = 'S'"
++" and M.Judicializacion = J.Clave "
++" AND M.Movimiento_Realizado = CM.Clave"
++" AND CM.Fase = GLOBAL[[idFase]]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select DISTINCT CM.Clave, CM.Descripcion"
++" from Judicializacion J, Resolucion_MP RMP, Resolucion R, Registro_de_Movimiento M, Configurador_de_Movimientos CM"
++" WITH(NOLOCK)"
++" WHERE J.resolucion = RMP.Clave"
++" AND RMP.Resolucion = R.Clave"
++" AND R.Vigencia = 'S'"
++" and M.Judicializacion = J.Clave "
++" AND M.Movimiento_Realizado = CM.Clave"
++" AND CM.Fase = GLOBAL[[idFase]]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val(valor).trigger('change');} else { var valor = $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val();   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("select clave, descripcion From Configurador_de_Movimientos with(nolock)", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("select clave, descripcion From Configurador_de_Movimientos with(nolock)", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Movimiento_Realizado' + rowIndex).val(valor).trigger('change');}
 
 }
 //BusinessRuleId:2996, Attribute:0, Operation:Object, Event:SCREENOPENING
@@ -450,18 +586,70 @@ function EjecutarValidacionesAntesDeGuardar(){
     if (result == true) {
         GuardarInformacion();
     }
+//BusinessRuleId:3468, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'Update'){
+if( EvaluaQuery("EXEC _uspIfHayPreRequisitosNoExistentesEnJudicializacion FLD[Judicializacion], FLD[Movimiento_Realizado]",rowIndex, nameOfTable)>TryParseInt('0', '0') ) { alert(DecodifyText('No es posible capturar este movimiento ya que uno o varios prerrequisitos no existen como movimientos en la judicialización', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:3468, Attribute:2, Operation:Object, Event:BEFORESAVING
+
+//BusinessRuleId:3469, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'New'){
+if( EvaluaQuery("EXEC _uspIfHayPreRequisitosNoExistentesEnJudicializacion GLOBAL[GLOBAL_JUDICIALIZACION], FLD[Movimiento_Realizado]",rowIndex, nameOfTable)>TryParseInt('0', '0') ) { alert(DecodifyText('No es posible capturar este movimiento ya que uno o varios prerrequisitos no existen como movimientos en la judicialización', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:3469, Attribute:2, Operation:Object, Event:BEFORESAVING
+
 //NEWBUSINESSRULE_BEFORESAVING//
     return result;
 }
 function EjecutarValidacionesDespuesDeGuardar(){
 
 
+
+
+
+
 //BusinessRuleId:2992, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
- EvaluaQuery(" UPDATE registro_De_movimiento set judicializacion=GLOBAL[GLOBAL_JUDICIALIZACION], Fase=GLOBAL[GLOBAL_FASE] where clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);
+ EvaluaQuery("UPDATE registro_De_movimiento set judicializacion=GLOBAL[GLOBAL_JUDICIALIZACION], Fase=GLOBAL[GLOBAL_FASE] where clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);
 
 }
 //BusinessRuleId:2992, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:3464, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+if(  EvaluaOperatorIn (GetValueByControlType($('#' + nameOfTable + 'Fase' + rowIndex),nameOfTable,rowIndex), TryParseInt('1,2,3', '1,2,3') ) ) { EvaluaQuery(" EXEC usp_ActualizaFaseDeJudicializacion GLOBAL[GLOBAL_JUDICIALIZACION], FLD[Fase]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:3464, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:3464, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+if(  EvaluaOperatorIn (GetValueByControlType($('#' + nameOfTable + 'Fase' + rowIndex),nameOfTable,rowIndex), TryParseInt('1,2,3', '1,2,3') ) ) { EvaluaQuery(" EXEC usp_ActualizaFaseDeJudicializacion GLOBAL[GLOBAL_JUDICIALIZACION], FLD[Fase]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:3464, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+
+
+
+
+//BusinessRuleId:3465, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+ CreateSessionVar('global_etapa', EvaluaQuery("SELECT FLD[Fase]", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:3465, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:3465, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+ CreateSessionVar('global_etapa', EvaluaQuery("SELECT FLD[Fase]", rowIndex, nameOfTable));
+
+}
+//BusinessRuleId:3465, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

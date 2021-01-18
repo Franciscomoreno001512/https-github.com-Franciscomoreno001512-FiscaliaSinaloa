@@ -29,10 +29,10 @@ $( "#CURP" ).blur(function() {
       var v = $('#' + nameOfTable + 'CURP' + rowIndex).val(); 
       if (v != ""){
 		var valid = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
-		validado = v.toUpperCase().match(valid);
-			
+		//validado = v.toUpperCase().match(valid);
+        validado=valid.test(v)
 		if (!validado) { //Coincide con el formato general?
-			//$('#' + nameOfTable + 'CURP' + rowIndex).attr("placeholder", "El formato del CURP2 es incorrecto.").val("").focus().blur(); 
+			$('#' + nameOfTable + 'CURP' + rowIndex).attr("placeholder", "El formato del CURP es incorrecto.").val("").focus().blur(); 
             return false; 
 		}				
       } 
@@ -99,8 +99,8 @@ $( "#CURP_Tutor" ).blur(function() {
       var v = $('#' + nameOfTable + 'CURP_Tutor' + rowIndex).val(); 
       if (v != ""){
 		var valid = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
-		validado = v.toUpperCase().match(valid);
-			
+		//validado = v.toUpperCase().match(valid); 
+        validado=valid.test(v)
 		if (!validado) { //Coincide con el formato general?
 			$('#' + nameOfTable + 'CURP_Tutor' + rowIndex).attr("placeholder", "El formato del CURP es incorrecto.").val("").focus().blur(); 
             return false; 
@@ -483,7 +483,8 @@ $("form#CreateDetalle_de_Datos_Generales").on('change', '#Persona_Aparecio', fun
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'Persona_Aparecio' + rowIndex),nameOfTable,rowIndex)==TryParseInt('false', 'false') ) { $('#divFecha_de_Aparicion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Aparicion' + rowIndex));$('#divCon_Vida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Con_Vida' + rowIndex));} else { $('#divFecha_de_Aparicion').css('display', 'block');$('#divCon_Vida').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Aparicion' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Con_Vida' + rowIndex));}
 });
-
+
+
 //BusinessRuleId:2891, Attribute:268329, Operation:Field, Event:None
 
 
@@ -500,7 +501,8 @@ $("form#CreateDetalle_de_Datos_Generales").on('change', '#Persona_Desaparecida',
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'Persona_Desaparecida' + rowIndex),nameOfTable,rowIndex)==TryParseInt('false', 'false') ) { $('#divPersona_Aparecio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Persona_Aparecio' + rowIndex)); $('#divFecha_de_Aparicion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Aparicion' + rowIndex));$('#divCon_Vida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Con_Vida' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Persona_Aparecio' + rowIndex),'false');} else { $('#divPersona_Aparecio').css('display', 'block');}
 });
-
+
+
 //BusinessRuleId:2890, Attribute:268328, Operation:Field, Event:None
 
 //BusinessRuleId:1920, Attribute:263830, Operation:Field, Event:None
@@ -509,7 +511,8 @@ $("form#CreateDetalle_de_Datos_Generales").on('change', '#Tipo_de_Compareciente'
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divEs_victima').css('display', 'block');} else { $('#divEs_victima').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Es_victima' + rowIndex)); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'none');}
 });
-
+
+
 //BusinessRuleId:1920, Attribute:263830, Operation:Field, Event:None
 
 //BusinessRuleId:1919, Attribute:263830, Operation:Field, Event:None
@@ -518,7 +521,8 @@ $("form#CreateDetalle_de_Datos_Generales").on('change', '#Tipo_de_Compareciente'
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divOcupacion').css('display', 'block');$('#divEstado_de_Involucrado').css('display', 'block'); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'block'); $('#divMunicipio_Corporacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio_Corporacion' + rowIndex));$('#divCorporacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Corporacion' + rowIndex));} else {}
 });
-
+
+
 //BusinessRuleId:1919, Attribute:263830, Operation:Field, Event:None
 
 
@@ -529,7 +533,8 @@ $("form#CreateDetalle_de_Datos_Generales").on('change', '#Tipo_de_Compareciente'
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $("a[href='#tabDatos_de_los_Hechos']").css('display', 'none');} else {}
 });
-
+
+
 //BusinessRuleId:2935, Attribute:263830, Operation:Field, Event:None
 
 
@@ -540,7 +545,8 @@ $("form#CreateDetalle_de_Datos_Generales").on('change', '#Tipo_de_Compareciente'
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('2', '2') ) { $('#divPersona_Desaparecida').css('display', 'block');} else { $('#divPersona_Desaparecida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Persona_Desaparecida' + rowIndex)); $('#divPersona_Aparecio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Persona_Aparecio' + rowIndex));$('#divFecha_de_Aparicion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Aparicion' + rowIndex));$('#divCon_Vida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Con_Vida' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Persona_Desaparecida' + rowIndex),'false');AsignarValor($('#' + nameOfTable + 'Persona_Aparecio' + rowIndex),'false');}
 });
-
+
+
 //BusinessRuleId:2895, Attribute:263830, Operation:Field, Event:None
 
 
@@ -553,8 +559,19 @@ $("form#CreateDetalle_de_Datos_Generales").on('change', '#Pais', function () {
 	rowIndex='';
 if( GetValueByControlType($('#' + nameOfTable + 'Pais' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') && GetValueByControlType($('#' + nameOfTable + 'Pais' + rowIndex),nameOfTable,rowIndex)==TryParseInt('82', '82') ) { var valor = $('#' + nameOfTable + 'Estado' + rowIndex).val();   $('#' + nameOfTable + 'Estado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Estado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Estado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM ESTADO WHERE PAIS = FLD[Pais]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Estado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM ESTADO WHERE PAIS = FLD[Pais]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Estado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Estado' + rowIndex).val(valor).trigger('change'); $('#divEstado').css('display', 'block');$('#divMunicipio').css('display', 'block');$('#divColonia').css('display', 'block');$('#divPoblacion').css('display', 'block');} else { $('#divEstado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado' + rowIndex));$('#divMunicipio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio' + rowIndex));$('#divColonia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia' + rowIndex));$('#divPoblacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));}
 });
-
+
+
 //BusinessRuleId:556, Attribute:263791, Operation:Field, Event:None
+
+//BusinessRuleId:3463, Attribute:263784, Operation:Field, Event:None
+$("form#CreateDetalle_de_Datos_Generales").on('change', '#Sexo', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Sexo' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divGravidez').css('display', 'block');} else { $('#divGravidez').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Gravidez' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Gravidez' + rowIndex),'false');}
+});
+
+
+//BusinessRuleId:3463, Attribute:263784, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -1467,14 +1484,16 @@ if(operation == 'Update'){
 //BusinessRuleId:2863, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Forma_de_Cabello' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2863, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2863, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
  SetNotRequiredToControl( $('#' + nameOfTable + 'Forma_de_Cabello' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2863, Attribute:0, Operation:Object, Event:SCREENOPENING
 
@@ -1487,119 +1506,136 @@ if(operation == 'Update'){
 //BusinessRuleId:2889, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
 if( GetValueByControlType($('#' + nameOfTable + 'Persona_Desaparecida' + rowIndex),nameOfTable,rowIndex)==TryParseInt('false', 'false') ) { $('#divPersona_Aparecio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Persona_Aparecio' + rowIndex));} else { $('#divPersona_Aparecio').css('display', 'block');}
-
+
+
 }
 //BusinessRuleId:2889, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2889, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
 if( GetValueByControlType($('#' + nameOfTable + 'Persona_Desaparecida' + rowIndex),nameOfTable,rowIndex)==TryParseInt('false', 'false') ) { $('#divPersona_Aparecio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Persona_Aparecio' + rowIndex));} else { $('#divPersona_Aparecio').css('display', 'block');}
-
+
+
 }
 //BusinessRuleId:2889, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2889, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
 if( GetValueByControlType($('#' + nameOfTable + 'Persona_Desaparecida' + rowIndex),nameOfTable,rowIndex)==TryParseInt('false', 'false') ) { $('#divPersona_Aparecio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Persona_Aparecio' + rowIndex));} else { $('#divPersona_Aparecio').css('display', 'block');}
-
+
+
 }
 //BusinessRuleId:2889, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2892, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
 if( GetValueByControlType($('#' + nameOfTable + 'Persona_Aparecio' + rowIndex),nameOfTable,rowIndex)==TryParseInt('false', 'false') ) { $('#divFecha_de_Aparicion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Aparicion' + rowIndex));$('#divCon_Vida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Con_Vida' + rowIndex));} else { $('#divFecha_de_Aparicion').css('display', 'block');$('#divCon_Vida').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Aparicion' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Con_Vida' + rowIndex));}
-
+
+
 }
 //BusinessRuleId:2892, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2892, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
 if( GetValueByControlType($('#' + nameOfTable + 'Persona_Aparecio' + rowIndex),nameOfTable,rowIndex)==TryParseInt('false', 'false') ) { $('#divFecha_de_Aparicion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Aparicion' + rowIndex));$('#divCon_Vida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Con_Vida' + rowIndex));} else { $('#divFecha_de_Aparicion').css('display', 'block');$('#divCon_Vida').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Aparicion' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Con_Vida' + rowIndex));}
-
+
+
 }
 //BusinessRuleId:2892, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2892, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
 if( GetValueByControlType($('#' + nameOfTable + 'Persona_Aparecio' + rowIndex),nameOfTable,rowIndex)==TryParseInt('false', 'false') ) { $('#divFecha_de_Aparicion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Aparicion' + rowIndex));$('#divCon_Vida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Con_Vida' + rowIndex));} else { $('#divFecha_de_Aparicion').css('display', 'block');$('#divCon_Vida').css('display', 'block'); SetRequiredToControl( $('#' + nameOfTable + 'Fecha_de_Aparicion' + rowIndex));SetRequiredToControl( $('#' + nameOfTable + 'Con_Vida' + rowIndex));}
-
+
+
 }
 //BusinessRuleId:2892, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2902, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
 if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('2', '2') ) { $('#divPersona_Desaparecida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Persona_Desaparecida' + rowIndex));} else { $('#divPersona_Desaparecida').css('display', 'block');}
-
+
+
 }
 //BusinessRuleId:2902, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2902, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
 if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('2', '2') ) { $('#divPersona_Desaparecida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Persona_Desaparecida' + rowIndex));} else { $('#divPersona_Desaparecida').css('display', 'block');}
-
+
+
 }
 //BusinessRuleId:2902, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2902, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
 if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('2', '2') ) { $('#divPersona_Desaparecida').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Persona_Desaparecida' + rowIndex));} else { $('#divPersona_Desaparecida').css('display', 'block');}
-
+
+
 }
 //BusinessRuleId:2902, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2179, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
 if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divEs_victima').css('display', 'block'); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'block');} else { $('#divEs_victima').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Es_victima' + rowIndex));}
-
+
+
 }
 //BusinessRuleId:2179, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2179, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
 if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Compareciente' + rowIndex),nameOfTable,rowIndex)==TryParseInt('1', '1') ) { $('#divEs_victima').css('display', 'block'); $("a[href='#tabDatos_de_los_Hechos']").css('display', 'block');} else { $('#divEs_victima').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Es_victima' + rowIndex));}
-
+
+
 }
 //BusinessRuleId:2179, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2942, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  $('#divExpediente_MASC').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MASC' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2942, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2942, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
  $('#divExpediente_MASC').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MASC' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2942, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2942, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
  $('#divExpediente_MASC').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Expediente_MASC' + rowIndex));
-
+
+
 }
 //BusinessRuleId:2942, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2986, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
  $("a[href='#tabDatos_de_los_Hechos']").css('display', 'none');
-
+
+
 }
 //BusinessRuleId:2986, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2986, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
  $("a[href='#tabDatos_de_los_Hechos']").css('display', 'none');
-
+
+
 }
 //BusinessRuleId:2986, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2986, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
  $("a[href='#tabDatos_de_los_Hechos']").css('display', 'none');
-
+
+
 }
 //BusinessRuleId:2986, Attribute:0, Operation:Object, Event:SCREENOPENING
 
@@ -1620,21 +1656,24 @@ if(operation == 'Consult'){
 //BusinessRuleId:2515, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'New'){
 if( GetValueByControlType($('#' + nameOfTable + 'Pais' + rowIndex),nameOfTable,rowIndex)==TryParseInt('82', '82') ) { var valor = $('#' + nameOfTable + 'Estado' + rowIndex).val();   $('#' + nameOfTable + 'Estado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Estado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Estado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM ESTADO WHERE PAIS = FLD[Pais]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Estado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM ESTADO WHERE PAIS = FLD[Pais]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Estado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Estado' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Municipio' + rowIndex).val();   $('#' + nameOfTable + 'Municipio' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Municipio' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Municipio' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM Municipio WHERE ESTADO = FLD[Estado]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Municipio' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM Municipio WHERE ESTADO = FLD[Estado]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Municipio' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Municipio' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Colonia' + rowIndex).val();   $('#' + nameOfTable + 'Colonia' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Colonia' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Colonia' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Colonia' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Poblacion' + rowIndex).val();   $('#' + nameOfTable + 'Poblacion' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Poblacion' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Poblacion' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Poblacion' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Poblacion' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Poblacion' + rowIndex).val(valor).trigger('change'); $('#divEstado').css('display', 'block');$('#divMunicipio').css('display', 'block');$('#divColonia').css('display', 'block');$('#divPoblacion').css('display', 'block');} else { $('#divEstado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado' + rowIndex));$('#divMunicipio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio' + rowIndex));$('#divColonia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia' + rowIndex));$('#divPoblacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));}
-
+
+
 }
 //BusinessRuleId:2515, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2515, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Update'){
 if( GetValueByControlType($('#' + nameOfTable + 'Pais' + rowIndex),nameOfTable,rowIndex)==TryParseInt('82', '82') ) { var valor = $('#' + nameOfTable + 'Estado' + rowIndex).val();   $('#' + nameOfTable + 'Estado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Estado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Estado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM ESTADO WHERE PAIS = FLD[Pais]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Estado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM ESTADO WHERE PAIS = FLD[Pais]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Estado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Estado' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Municipio' + rowIndex).val();   $('#' + nameOfTable + 'Municipio' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Municipio' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Municipio' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM Municipio WHERE ESTADO = FLD[Estado]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Municipio' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM Municipio WHERE ESTADO = FLD[Estado]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Municipio' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Municipio' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Colonia' + rowIndex).val();   $('#' + nameOfTable + 'Colonia' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Colonia' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Colonia' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Colonia' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Poblacion' + rowIndex).val();   $('#' + nameOfTable + 'Poblacion' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Poblacion' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Poblacion' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Poblacion' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Poblacion' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Poblacion' + rowIndex).val(valor).trigger('change'); $('#divEstado').css('display', 'block');$('#divMunicipio').css('display', 'block');$('#divColonia').css('display', 'block');$('#divPoblacion').css('display', 'block');} else { $('#divEstado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado' + rowIndex));$('#divMunicipio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio' + rowIndex));$('#divColonia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia' + rowIndex));$('#divPoblacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));}
-
+
+
 }
 //BusinessRuleId:2515, Attribute:0, Operation:Object, Event:SCREENOPENING
 
 //BusinessRuleId:2515, Attribute:0, Operation:Object, Event:SCREENOPENING
 if(operation == 'Consult'){
 if( GetValueByControlType($('#' + nameOfTable + 'Pais' + rowIndex),nameOfTable,rowIndex)==TryParseInt('82', '82') ) { var valor = $('#' + nameOfTable + 'Estado' + rowIndex).val();   $('#' + nameOfTable + 'Estado' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Estado' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Estado' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM ESTADO WHERE PAIS = FLD[Pais]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Estado' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM ESTADO WHERE PAIS = FLD[Pais]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Estado' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Estado' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Municipio' + rowIndex).val();   $('#' + nameOfTable + 'Municipio' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Municipio' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Municipio' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM Municipio WHERE ESTADO = FLD[Estado]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Municipio' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM Municipio WHERE ESTADO = FLD[Estado]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Municipio' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Municipio' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Colonia' + rowIndex).val();   $('#' + nameOfTable + 'Colonia' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Colonia' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Colonia' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Colonia' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Colonia' + rowIndex).val(valor).trigger('change'); var valor = $('#' + nameOfTable + 'Poblacion' + rowIndex).val();   $('#' + nameOfTable + 'Poblacion' + rowIndex).empty();         if(!$('#' + nameOfTable + 'Poblacion' + rowIndex).hasClass('AutoComplete'))  {         $('#' + nameOfTable + 'Poblacion' + rowIndex).append($("<option selected />").val("").text(""));         $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {           $('#' + nameOfTable + 'Poblacion' + rowIndex).append($("<option />").val(index).text(value));      });  }       else    {    var selectData = [];   selectData.push({id: "",text: "" });      $.each(EvaluaQueryDictionary("SELECT CLAVE, NOMBRE FROM COLONIA WHERE Municipio = FLD[Municipio]", rowIndex, nameOfTable), function (index, value) {            selectData.push({              id: index,              text: value          });    });      $('#' + nameOfTable + 'Poblacion' + rowIndex).select2({data: selectData})    }   $('#' + nameOfTable + 'Poblacion' + rowIndex).val(valor).trigger('change'); $('#divEstado').css('display', 'block');$('#divMunicipio').css('display', 'block');$('#divColonia').css('display', 'block');$('#divPoblacion').css('display', 'block');} else { $('#divEstado').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Estado' + rowIndex));$('#divMunicipio').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Municipio' + rowIndex));$('#divColonia').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Colonia' + rowIndex));$('#divPoblacion').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Poblacion' + rowIndex));}
-
+
+
 }
 //BusinessRuleId:2515, Attribute:0, Operation:Object, Event:SCREENOPENING
 
@@ -2263,4 +2302,145 @@ if(operation == 'Update'){
 //NEWBUSINESSRULE_EDITROWMR_Otros_Domicilios_Involucrado//
     return result;
 }
+
+//regla para los permitir solo nombres y limite de 50
+$( "#Nombre" ).keyup(function() { 
+	var str = $('#' + nameOfTable + 'Nombre' + rowIndex).val(); 
+	if (str != ""){ 
+	   var regNUM = /^[ñÑa-zA-Z ]{1,50}$/ 
+	   var validacionnum=regNUM.test(str)
+		if (validacionnum==false ) { 
+			$('#' + nameOfTable + 'Nombre' + rowIndex).val($('#' + nameOfTable + 'Nombre' + rowIndex).val().slice(0, -1));
+		} 
+	} 
+});
+
+$( "#Apellido_Paterno" ).keyup(function() { 
+var str = $('#' + nameOfTable + 'Apellido_Paterno' + rowIndex).val(); 
+    if (str != ""){ 
+        var regNUM = /^[ñÑa-zA-Z ]{1,50}$/ 
+        var validacionnum=regNUM.test(str)
+        if (validacionnum==false ) { 
+            $('#' + nameOfTable + 'Apellido_Paterno' + rowIndex).val($('#' + nameOfTable + 'Apellido_Paterno' + rowIndex).val().slice(0, -1));
+        } 
+    } 
+});
+
+$( "#Apellido_Materno" ).keyup(function() { 
+var str = $('#' + nameOfTable + 'Apellido_Materno' + rowIndex).val(); 
+if (str != ""){ 
+    var regNUM = /^[ñÑa-zA-Z ]{1,50}$/ 
+    var validacionnum=regNUM.test(str)
+    if (validacionnum==false ) { 
+        $('#' + nameOfTable + 'Apellido_Materno' + rowIndex).val($('#' + nameOfTable + 'Apellido_Materno' + rowIndex).val().slice(0, -1));
+    } 
+} 
+});
+
+
+$( "#Codigo_Postal" ).keyup(function() { 
+    var str = $('#' + nameOfTable + 'Codigo_Postal' + rowIndex).val(); 
+    if (str != ""){ 
+        var regNUM = /^[0-9]{1,5}$/ 
+        var validacionnum=regNUM.test(str)
+        if (validacionnum==false ) { 
+            $('#' + nameOfTable + 'Codigo_Postal' + rowIndex).val($('#' + nameOfTable + 'Codigo_Postal' + rowIndex).val().slice(0, -1));
+        } 
+    } 
+    });
+
+$( "#Celular" ).keyup(function() { 
+    var str = $('#' + nameOfTable + 'Celular' + rowIndex).val(); 
+    if (str != ""){ 
+        var regNUM = /^[() 0-9 \-]{1,14}$/ 
+        var validacionnum=regNUM.test(str)
+        if (validacionnum==false ) { 
+            $('#' + nameOfTable + 'Celular' + rowIndex).val($('#' + nameOfTable + 'Celular' + rowIndex).val().slice(0, -1));
+        } 
+        else{
+            var formatted = str.replace(/^(\d{3})(\d{3})(\d{4}).*/, '($1) $2-$3');
+            $('#' + nameOfTable + 'Celular' + rowIndex).val(formatted);
+        }
+    } 
+});    
+
+$( "#Telefono" ).keyup(function() { 
+    var str = $('#' + nameOfTable + 'Telefono' + rowIndex).val(); 
+    if (str != ""){ 
+        var regNUM = /^[() 0-9 \-]{1,14}$/ 
+        var validacionnum=regNUM.test(str)
+        if (validacionnum==false ) { 
+            $('#' + nameOfTable + 'Telefono' + rowIndex).val($('#' + nameOfTable + 'Telefono' + rowIndex).val().slice(0, -1));
+        } 
+        else{
+            var formatted = str.replace(/^(\d{3})(\d{3})(\d{4}).*/, '($1) $2-$3');
+            $('#' + nameOfTable + 'Telefono' + rowIndex).val(formatted);
+        }
+    } 
+}); 
+
+$( "#Peso" ).keyup(function() { 
+    var str = $('#' + nameOfTable + 'Peso' + rowIndex).val(); 
+    if (str != ""){ 
+        var regNUM = /^([0-9]+([.][0-9]*)?|[.][0-9]+)$/ 
+        var validacionnum=regNUM.test(str)
+        if (validacionnum==false ) { 
+            $('#' + nameOfTable + 'Peso' + rowIndex).val($('#' + nameOfTable + 'Peso' + rowIndex).val().slice(0, -1));
+        } 
+    } 
+    });
+
+    
+$( "#Estatura" ).keyup(function() { 
+    var str = $('#' + nameOfTable + 'Estatura' + rowIndex).val(); 
+    if (str != ""){ 
+        var regNUM = /^([0-9]+([.][0-9]*)?|[.][0-9]+)$/ 
+        var validacionnum=regNUM.test(str)
+        if (validacionnum==false ) { 
+            $('#' + nameOfTable + 'Estatura' + rowIndex).val($('#' + nameOfTable + 'Estatura' + rowIndex).val().slice(0, -1));
+        } 
+    } 
+    });
+
+$( "#Numero_de_Identificacion" ).keyup(function() { 
+var str = $('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex).val(); 
+if (str != ""){ 
+    if (str.length>20 ) { 
+        $('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex).val($('#' + nameOfTable + 'Numero_de_Identificacion' + rowIndex).val().slice(0, -1));
+    } 
+} 
+});
+
+$( "#Nombre_del_Tutor" ).keyup(function() { 
+	var str = $('#' + nameOfTable + 'Nombre_del_Tutor' + rowIndex).val(); 
+	if (str != ""){ 
+	   var regNUM = /^[ñÑa-zA-Z ]{1,50}$/ 
+	   var validacionnum=regNUM.test(str)
+		if (validacionnum==false ) { 
+			$('#' + nameOfTable + 'Nombre_del_Tutor' + rowIndex).val($('#' + nameOfTable + 'Nombre_del_Tutor' + rowIndex).val().slice(0, -1));
+		} 
+	} 
+});
+
+$( "#Apellido_Paterno_del_Tutor" ).keyup(function() { 
+var str = $('#' + nameOfTable + 'Apellido_Paterno_del_Tutor' + rowIndex).val(); 
+    if (str != ""){ 
+        var regNUM = /^[ñÑa-zA-Z ]{1,50}$/ 
+        var validacionnum=regNUM.test(str)
+        if (validacionnum==false ) { 
+            $('#' + nameOfTable + 'Apellido_Paterno_del_Tutor' + rowIndex).val($('#' + nameOfTable + 'Apellido_Paterno_del_Tutor' + rowIndex).val().slice(0, -1));
+        } 
+    } 
+});
+
+$( "#Apellido_Materno_del_Tutor" ).keyup(function() { 
+var str = $('#' + nameOfTable + 'Apellido_Materno_del_Tutor' + rowIndex).val(); 
+if (str != ""){ 
+    var regNUM = /^[ñÑa-zA-Z ]{1,50}$/ 
+    var validacionnum=regNUM.test(str)
+    if (validacionnum==false ) { 
+        $('#' + nameOfTable + 'Apellido_Materno_del_Tutor' + rowIndex).val($('#' + nameOfTable + 'Apellido_Materno_del_Tutor' + rowIndex).val().slice(0, -1));
+    } 
+} 
+});
 

@@ -248,6 +248,17 @@ $("form#CreateDetalle_de_Delito").on('change', '#Delito', function () {
 
 //BusinessRuleId:3005, Attribute:263447, Operation:Field, Event:None
 
+
+
+//BusinessRuleId:3453, Attribute:265629, Operation:Field, Event:None
+$("form#CreateDetalle_de_Delito").on('change', '#Fecha_del_Robo', function () {
+	nameOfTable='';
+	rowIndex='';
+if( GetValueByControlType($('#' + nameOfTable + 'Fecha_del_Robo' + rowIndex),nameOfTable,rowIndex)!=TryParseInt('null', 'null') && EvaluaQuery("	SELECT DATEDIFF(DAY,CONVERT(DATE,CONVERT(VARCHAR(10),GETDATE(),103),103), CONVERT(DATE,CONVERT(VARCHAR(10),'FLD[Fecha_del_Robo]',103),103))",rowIndex, nameOfTable)>TryParseInt('0', '0') ) { alert(DecodifyText(' No se puede ingresar una fecha mayor al dia de hoy.', rowIndex, nameOfTable)); AsignarValor($('#' + nameOfTable + 'Fecha_del_Robo' + rowIndex),' ');} else {}
+});
+
+//BusinessRuleId:3453, Attribute:265629, Operation:Field, Event:None
+
 //NEWBUSINESSRULE_NONE//
 });
 function EjecutarValidacionesAlComienzo() {

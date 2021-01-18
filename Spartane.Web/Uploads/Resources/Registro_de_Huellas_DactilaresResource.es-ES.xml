@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<resources>
+  <resource culture="es-es" name="Registro_de_Huellas_Dactilares" value="Registro de Huellas Dactilares"></resource>
+  <resource culture="es-es" name="Clave" value="Clave"></resource>
+  <resource culture="es-es" name="Carpeta_de_Investigacion" value="Carpeta de Investigación"></resource>
+  <resource culture="es-es" name="Probable_Responsable" value="Probable Responsable"></resource>
+  <resource culture="es-es" name="Mano_Izquierda_4_Dedos" value="Mano Izquierda 4 Dedos"></resource>
+  <resource culture="es-es" name="Mano_Derecha_4_Dedos" value="Mano Derecha 4 Dedos"></resource>
+  <resource culture="es-es" name="Pulgares" value="Pulgares"></resource>
+  <resource culture="es-es" name="Izquierda_Menique" value="Izquierda Menique"></resource>
+  <resource culture="es-es" name="Izquierda_Anular" value="Izquierda Anular"></resource>
+  <resource culture="es-es" name="Izquierda_Medio" value="Izquierda Medio"></resource>
+  <resource culture="es-es" name="Izquierda_Indice" value="Izquierda Índice"></resource>
+  <resource culture="es-es" name="Izquierda_Pulgar" value="Izquierda Pulgar"></resource>
+  <resource culture="es-es" name="Derecha_Menique" value="Derecha Menique"></resource>
+  <resource culture="es-es" name="Derecha_Anular" value="Derecha Anular"></resource>
+  <resource culture="es-es" name="Derecha_Medio" value="Derecha Medio"></resource>
+  <resource culture="es-es" name="Derecha_Indice" value="Derecha Índice"></resource>
+  <resource culture="es-es" name="Derecha_Pulgar" value="Derecha Pulgar"></resource>
+
+<resource culture="es-es" name="TabDatos_Generales" value="Datos Generales"></resource>
+
+</resources>
