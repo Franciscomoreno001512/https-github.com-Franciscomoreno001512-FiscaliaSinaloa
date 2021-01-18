@@ -12,6 +12,9 @@
   <resource culture="es-es" name="Idioma" value="Idioma"></resource>
   <resource culture="es-es" name="Responsable" value="Responsable"></resource>
   <resource culture="es-es" name="Compareciente" value="Compareciente"></resource>
+  <resource culture="es-es" name="Documento_Atencion_Inicial" value="Documento Atención Inicial"></resource>
+  <resource culture="es-es" name="Documento_Mecanismos_Alternos" value="Documento Mecanismos Alternos"></resource>
+  <resource culture="es-es" name="Documento_Ministerio_Publico" value="Documento Ministerio Público"></resource>
   <resource culture="es-es" name="Diligencia" value="Diligencia"></resource>
   <resource culture="es-es" name="Archivo" value="Archivo"></resource>
   <resource culture="es-es" name="Fecha_de_Registro" value="Fecha de Registro"></resource>

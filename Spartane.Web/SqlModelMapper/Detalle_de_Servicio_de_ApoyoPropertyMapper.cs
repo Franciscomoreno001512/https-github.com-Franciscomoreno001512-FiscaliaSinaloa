@@ -19,9 +19,9 @@ namespace Spartane.Web.SqlModelMapper
                 case "Origen[Descripcion]":
                 case "OrigenDescripcion":
                     return "Origen_de_Invitacion.Descripcion";
-                case "Modulo_de_Atencion_Inicial[Folio]":
-                case "Modulo_de_Atencion_InicialFolio":
-                    return "Modulo_Atencion_Inicial.Folio";
+                case "Modulo_de_Atencion_Inicial[NUAT]":
+                case "Modulo_de_Atencion_InicialNUAT":
+                    return "Modulo_Atencion_Inicial.NUAT";
                 case "Modulo_Mecanismos_Alternos[CDI]":
                 case "Modulo_Mecanismos_AlternosCDI":
                     return "Solicitud.CDI";
@@ -44,6 +44,15 @@ namespace Spartane.Web.SqlModelMapper
                 case "Compareciente[Nombre_Completo]":
                 case "ComparecienteNombre_Completo":
                     return "Compareciente.Nombre_Completo";
+                case "Documento_Atencion_Inicial[Observaciones]":
+                case "Documento_Atencion_InicialObservaciones":
+                    return "Detalle_de_Documentos_MPO.Observaciones";
+                case "Documento_Mecanismos_Alternos[Descripcion]":
+                case "Documento_Mecanismos_AlternosDescripcion":
+                    return "Detalle_de_documentos.Descripcion";
+                case "Documento_Ministerio_Publico[Descripcion]":
+                case "Documento_Ministerio_PublicoDescripcion":
+                    return "Diligencias_MP.Descripcion";
                 case "Diligencia[Descripcion]":
                 case "DiligenciaDescripcion":
                     return "Documento.Descripcion";
