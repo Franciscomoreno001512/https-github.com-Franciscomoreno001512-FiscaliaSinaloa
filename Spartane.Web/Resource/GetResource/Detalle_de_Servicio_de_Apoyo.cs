@@ -136,6 +136,36 @@ namespace Resources
             }
         }
 
+        /// <summary>Documento_Atencion_Inicial</summary>
+        public static string Documento_Atencion_Inicial
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Servicio_de_Apoyo.GetResource("Documento_Atencion_Inicial", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Documento_Mecanismos_Alternos</summary>
+        public static string Documento_Mecanismos_Alternos
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Servicio_de_Apoyo.GetResource("Documento_Mecanismos_Alternos", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
+        /// <summary>Documento_Ministerio_Publico</summary>
+        public static string Documento_Ministerio_Publico
+        {
+            get
+            {
+                SetPath();
+                return resourceProviderDetalle_de_Servicio_de_Apoyo.GetResource("Documento_Ministerio_Publico", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+
         /// <summary>Diligencia</summary>
         public static string Diligencia
         {

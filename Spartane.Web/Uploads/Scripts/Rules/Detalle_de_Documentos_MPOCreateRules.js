@@ -2,6 +2,7 @@ var operation = $('#Operation').val();
 var nameOfTable = '';
 var rowIndex = '';
 var saltarValidacion = false;
+$("#Detalle_de_Documentos_MPOGuardarYNuevo , #Detalle_de_Documentos_MPOGuardarYCopia").hide()
 $(document).ready(function () {
 
 	//CONVERTIR A MAYUSCULAS AL BLUR
@@ -19,6 +20,15 @@ if( GetValueByControlType($('#' + nameOfTable + 'Fecha' + rowIndex),nameOfTable,
 });
 
 //BusinessRuleId:3456, Attribute:266646, Operation:Field, Event:None
+
+//BusinessRuleId:3488, Attribute:266650, Operation:Field, Event:None
+$("form#CreateDetalle_de_Documentos_MPO").on('change', '#Documento', function () {
+	nameOfTable='';
+	rowIndex='';
+if( EvaluaQuery("SELECT Tipo_de_Documento FROM dbo.Documento WHERE Clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}
+});
+
+//BusinessRuleId:3488, Attribute:266650, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -233,23 +243,77 @@ else
 }
 //BusinessRuleId:2313, Attribute:0, Operation:Object, Event:SCREENOPENING
 
+
+
+
+
+
+
+//BusinessRuleId:3485, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'New'){
+if( EvaluaQuery("SELECT Tipo_de_Documento FROM dbo.Documento WHERE Clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}
+
+}
+//BusinessRuleId:3485, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3485, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Update'){
+if( EvaluaQuery("SELECT Tipo_de_Documento FROM dbo.Documento WHERE Clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}
+
+}
+//BusinessRuleId:3485, Attribute:0, Operation:Object, Event:SCREENOPENING
+
+//BusinessRuleId:3485, Attribute:0, Operation:Object, Event:SCREENOPENING
+if(operation == 'Consult'){
+if( EvaluaQuery("SELECT Tipo_de_Documento FROM dbo.Documento WHERE Clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}
+
+}
+//BusinessRuleId:3485, Attribute:0, Operation:Object, Event:SCREENOPENING
+
 //NEWBUSINESSRULE_SCREENOPENING//
 }
 function EjecutarValidacionesAntesDeGuardar(){
 	var result = true;
+//BusinessRuleId:3496, Attribute:2, Operation:Object, Event:BEFORESAVING
+if(operation == 'Update'){
+if( EvaluaQuery("SELECT ISNULL(Lista_para_periciales, 0) FROM Detalle_de_Documentos_MPO WHERE Clave = FLDD[lblClave]",rowIndex, nameOfTable)==TryParseInt('1', '1') ) { alert(DecodifyText('El Documento ya se ha mandado a Servicios periciales, por lo que no se puede modificar.', rowIndex, nameOfTable));
+result=false;} else {}
+
+}
+//BusinessRuleId:3496, Attribute:2, Operation:Object, Event:BEFORESAVING
+
 //NEWBUSINESSRULE_BEFORESAVING//
     return result;
 }
 function EjecutarValidacionesDespuesDeGuardar(){
+
+
+
+
+
+
+//BusinessRuleId:3492, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Lista_para_periciales' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { EvaluaQuery("EXEC UspInsertar_Servicio_Pericial_Desde_Diligencias 1, GLOBAL[SpartanOperationId], FLDD[lblClave]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:3492, Attribute:2, Operation:Object, Event:AFTERSAVING
+
 //BusinessRuleId:1735, Attribute:2, Operation:Object, Event:AFTERSAVING
 if(operation == 'New'){
  EvaluaQuery(" update Detalle_de_Documentos_MPO"
 +" 	set Modulo_Atencion_Inicial= GLOBAL[SpartanOperationId]"
 +" 	where Clave=GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);
-
-
+
 }
 //BusinessRuleId:1735, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:3491, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+if( GetValueByControlType($('#' + nameOfTable + 'Lista_para_periciales' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { EvaluaQuery("EXEC UspInsertar_Servicio_Pericial_Desde_Diligencias 1, GLOBAL[SpartanOperationId], GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:3491, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }

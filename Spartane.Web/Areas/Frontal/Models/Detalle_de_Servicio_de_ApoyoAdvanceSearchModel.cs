@@ -59,6 +59,18 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string AdvanceCompareciente { set; get; }
         public int[] AdvanceComparecienteMultiple { set; get; }
 
+        public Filters Documento_Atencion_InicialFilter { set; get; }
+        public string AdvanceDocumento_Atencion_Inicial { set; get; }
+        public int[] AdvanceDocumento_Atencion_InicialMultiple { set; get; }
+
+        public Filters Documento_Mecanismos_AlternosFilter { set; get; }
+        public string AdvanceDocumento_Mecanismos_Alternos { set; get; }
+        public int[] AdvanceDocumento_Mecanismos_AlternosMultiple { set; get; }
+
+        public Filters Documento_Ministerio_PublicoFilter { set; get; }
+        public string AdvanceDocumento_Ministerio_Publico { set; get; }
+        public int[] AdvanceDocumento_Ministerio_PublicoMultiple { set; get; }
+
         public Filters DiligenciaFilter { set; get; }
         public string AdvanceDiligencia { set; get; }
         public int[] AdvanceDiligenciaMultiple { set; get; }

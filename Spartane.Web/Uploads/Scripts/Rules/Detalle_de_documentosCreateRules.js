@@ -88,14 +88,16 @@ $("form#CreateDetalle_de_documentos").on('change', '#Tipo_de_Documento', functio
 
 //BusinessRuleId:2049, Attribute:266641, Operation:Field, Event:None
 
-//BusinessRuleId:3481, Attribute:263060, Operation:Field, Event:None
-$("form#CreateDetalle_de_documentos").on('change', '#Documento', function () {
+
+
+//BusinessRuleId:3493, Attribute:266641, Operation:Field, Event:None
+$("form#CreateDetalle_de_documentos").on('change', '#Tipo_de_Documento', function () {
 	nameOfTable='';
 	rowIndex='';
-if( EvaluaQuery("select Tipo_de_Documento from Documento where Clave = FLD[Documento]",rowIndex, nameOfTable)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'block');} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));}
+if( GetValueByControlType($('#' + nameOfTable + 'Tipo_de_Documento' + rowIndex),nameOfTable,rowIndex)==TryParseInt('9', '9') ) { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex));} else { $('#divLista_para_periciales').css('display', 'none'); SetNotRequiredToControl( $('#' + nameOfTable + 'Lista_para_periciales' + rowIndex)); AsignarValor($('#' + nameOfTable + 'Lista_para_periciales' + rowIndex),'false');}
 });
 
-//BusinessRuleId:3481, Attribute:263060, Operation:Field, Event:None
+//BusinessRuleId:3493, Attribute:266641, Operation:Field, Event:None
 
 //NEWBUSINESSRULE_NONE//
 });
@@ -564,6 +566,24 @@ if(operation == 'New'){
 
 }
 //BusinessRuleId:2367, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+
+
+
+
+//BusinessRuleId:3487, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'Update'){
+if( GetValueByControlType($('#' + nameOfTable + 'Lista_para_periciales' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { EvaluaQuery("EXEC UspInsertar_Servicio_Pericial_Desde_Diligencias 2, GLOBAL[SpartanOperationId], FLDD[lblClave]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:3487, Attribute:2, Operation:Object, Event:AFTERSAVING
+
+//BusinessRuleId:3486, Attribute:2, Operation:Object, Event:AFTERSAVING
+if(operation == 'New'){
+if( GetValueByControlType($('#' + nameOfTable + 'Lista_para_periciales' + rowIndex),nameOfTable,rowIndex)==TryParseInt('true', 'true') ) { EvaluaQuery("EXEC UspInsertar_Servicio_Pericial_Desde_Diligencias 2, GLOBAL[SpartanOperationId], GLOBAL[keyvalueinserted]", rowIndex, nameOfTable);} else {}
+
+}
+//BusinessRuleId:3486, Attribute:2, Operation:Object, Event:AFTERSAVING
 
 //NEWBUSINESSRULE_AFTERSAVING//
 }
