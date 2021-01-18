@@ -16,7 +16,7 @@ function GetAutoCompleteDetalle_de_Servicio_de_Apoyo_Modulo_de_Atencion_Inicial_
     for (var i = 0; i < data.length; i++) {
         AutoCompleteModulo_de_Atencion_InicialData.push({
             id: data[i].Clave,
-            text: data[i].Folio
+            text: data[i].NUAT
         });
     }
     return AutoCompleteModulo_de_Atencion_InicialData;

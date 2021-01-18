@@ -12,7 +12,7 @@ namespace Spartane.Web.Areas.Frontal.Models
         public int? Origen { get; set; }
         public string OrigenDescripcion { get; set; }
         public int? Modulo_de_Atencion_Inicial { get; set; }
-        public string Modulo_de_Atencion_InicialFolio { get; set; }
+        public string Modulo_de_Atencion_InicialNUAT { get; set; }
         public int? Modulo_Mecanismos_Alternos { get; set; }
         public string Modulo_Mecanismos_AlternosCDI { get; set; }
         public int? Modulo_Ministerio_Publico { get; set; }
@@ -27,6 +27,12 @@ namespace Spartane.Web.Areas.Frontal.Models
         public string Responsable { get; set; }
         public int? Compareciente { get; set; }
         public string ComparecienteNombre_Completo { get; set; }
+        public int? Documento_Atencion_Inicial { get; set; }
+        public string Documento_Atencion_InicialObservaciones { get; set; }
+        public int? Documento_Mecanismos_Alternos { get; set; }
+        public string Documento_Mecanismos_AlternosDescripcion { get; set; }
+        public int? Documento_Ministerio_Publico { get; set; }
+        public string Documento_Ministerio_PublicoDescripcion { get; set; }
         public int? Diligencia { get; set; }
         public string DiligenciaDescripcion { get; set; }
         public int? Archivo { get; set; }

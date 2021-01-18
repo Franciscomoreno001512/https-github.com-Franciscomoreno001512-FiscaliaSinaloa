@@ -336,6 +336,28 @@
                                     @*<span class="field-validation-valid" data-valmsg-for="Archivo" data-valmsg-replace="true"></span>*@
                                 </div>
                             </div>
+
+                            <div class="form-group" id="divArchivo">
+										<div class="col-md-12">
+											<div class="col-md-6">
+												<div class="col-md-3">
+
+													<button id="Archivo_VerDocto" class="btn btn-w-m btn-primary btn_save hidden" onclick="VerDocto()"><img src="/MVCfiscaliasinaloa/Images/seguimiento.png" width="16" height="16" /> Ver Docto</button>
+
+												</div>
+												<div class="col-md-3">
+
+													<button id="Archivo_EditarDocto" class="btn btn-w-m btn-primary btn_save" onclick="EditarDocto()"><img src="/MVCfiscaliasinaloa/Images/seguimiento.png" width="16" height="16" /> Editar Docto</button>
+
+												</div>
+											</div>
+											<div class="col-md-6">
+
+											</div>
+
+										</div>
+
+									</div>
                             <div class="form-group" id="divDescripcion">
                                 <label class="col-sm-2 control-label">@Resources.Diligencias_MPResources.Descripcion</label>
                                 <div class="col-sm-8" data-field-id="Descripcion" data-attribute="267320" data-field-name="@Resources.Diligencias_MPResources.Descripcion">
@@ -694,6 +716,14 @@
                 </text>
             }
             EjecutarValidacionesAlComienzo(); 
+			var valorArchivo = $("#Archivo").val();
+			
+			
+			if (valorArchivo != "" && valorArchivo != "0") {
+				
+				$("#Archivo_VerDocto").removeClass("hidden");
+				
+			}
 			
         });
 
@@ -1063,6 +1093,102 @@
 				cache: false
 			});
 		}
+
+        	function GetIdFormatoFromDocumento()
+    {
+        debugger;
+        var formatoID = EvaluaQuery(" usp_getIdFormatoFromDocumento  " + $('#Documento').val() + "");
+        return formatoID;
+    }
+
+     function VerDocto() {
+        debugger;
+            var PathFile = "";
+            var BaseUrl = "";
+            var id = EvaluaQuery("select isnull(archivo,'') as Archivo from control_de_documentos where folio = " + $("#Archivo").val(), "", "");// document.getElementById("Archivo").innerHTML;
+
+
+            $.ajax({
+                async: false,
+                url: '@Url.Content("~/Frontal/General/GetArchivoFisico")',
+                data: { "Archivo": id },
+                type: 'POST',
+                success: function (result) {
+
+                    BaseUrl = result;
+
+                    window.open(BaseUrl);
+                }
+        });
+        }
+
+        function EditarDocto() {
+
+            debugger;
+
+
+            var _controlDocumentoDynamiSeach = localStorage.getItem('controlDocumentoDynamiSeach');
+            controlDocumentoDynamiSeach = false; 
+            if (_controlDocumentoDynamiSeach == "true" ) {
+                controlDocumentoDynamiSeach = true; 
+                
+            }
+
+            if ( controlDocumentoDynamiSeach == true ) {
+                alert('Existe una ventana abierta');
+            }
+            else {
+                permitirCerrar = false;
+                controlDocumentoDynamiSeach = true; 
+                localStorage.setItem('controlDocumentoDynamiSeach',"true");
+                var isedit = ($("#Archivo").val() != "" && $("#Archivo").val() != "0" && $("#Archivo").val() != "-1");
+                var folioControlDocumentos = $("#Archivo").val();
+                $('.loading').css('display', 'none');
+                var formaid = GetIdFormatoFromDocumento();
+                if (isedit) {
+                    OpenPrintFormats(folioControlDocumentos, @Spartane.Web.SessionHelper.Role, "", true, "45018", formaid);
+                }
+                else {
+                    GuardarRegistro(formaid);
+
+                }
+            }
+
+        }
+
+
+    function GuardarRegistro(formaid) {
+
+            debugger;
+            $("#Archivo").val("0");
+            if (EjecutarValidacionesAntesDeGuardar() && CheckValidation()) {
+                debugger
+                if (!SendDiligencias_MPData(function (idvalor) {
+                 debugger
+                    EjecutarValidacionesDespuesDeGuardar();
+                    $('.loading').css('display', 'none');
+                    $('#hdnIsNew').val("False");
+                    //aqui
+                    $("#ReferenceClave").text(idvalor);
+                    $("#ReferenceClave").val(idvalor);
+
+
+                    OpenPrintFormats(idvalor, @Spartane.Web.SessionHelper.Role, "", false, "45018", formaid);
+
+
+
+
+
+                }, false)) {
+					localStorage.setItem("controlDocumentoDynamiSeach", "False");
+
+                }
+            }
+
+
+
+
+        }
 
 
     </script>

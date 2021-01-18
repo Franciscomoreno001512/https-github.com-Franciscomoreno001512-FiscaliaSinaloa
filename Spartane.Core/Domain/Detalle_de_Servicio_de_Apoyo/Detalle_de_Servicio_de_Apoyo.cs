@@ -11,6 +11,9 @@ using Spartane.Core.Domain.Tipo_de_Servicio_de_Apoyo;
 using Spartane.Core.Domain.Dialecto;
 using Spartane.Core.Domain.Idioma;
 using Spartane.Core.Domain.Compareciente;
+using Spartane.Core.Domain.Detalle_de_Documentos_MPO;
+using Spartane.Core.Domain.Detalle_de_documentos;
+using Spartane.Core.Domain.Diligencias_MP;
 using Spartane.Core.Domain.Documento;
 using Spartane.Core.Domain.Spartane_File;
 using Spartane.Core.Domain.Autoridad_Servicio_Pericial;
@@ -41,6 +44,9 @@ namespace Spartane.Core.Domain.Detalle_de_Servicio_de_Apoyo
         public int? Idioma { get; set; }
         public string Responsable { get; set; }
         public int? Compareciente { get; set; }
+        public int? Documento_Atencion_Inicial { get; set; }
+        public int? Documento_Mecanismos_Alternos { get; set; }
+        public int? Documento_Ministerio_Publico { get; set; }
         public int? Diligencia { get; set; }
         public int? Archivo { get; set; }
         public DateTime? Fecha_de_Registro { get; set; }
@@ -74,6 +80,12 @@ namespace Spartane.Core.Domain.Detalle_de_Servicio_de_Apoyo
         public virtual Spartane.Core.Domain.Idioma.Idioma Idioma_Idioma { get; set; }
         [ForeignKey("Compareciente")]
         public virtual Spartane.Core.Domain.Compareciente.Compareciente Compareciente_Compareciente { get; set; }
+        [ForeignKey("Documento_Atencion_Inicial")]
+        public virtual Spartane.Core.Domain.Detalle_de_Documentos_MPO.Detalle_de_Documentos_MPO Documento_Atencion_Inicial_Detalle_de_Documentos_MPO { get; set; }
+        [ForeignKey("Documento_Mecanismos_Alternos")]
+        public virtual Spartane.Core.Domain.Detalle_de_documentos.Detalle_de_documentos Documento_Mecanismos_Alternos_Detalle_de_documentos { get; set; }
+        [ForeignKey("Documento_Ministerio_Publico")]
+        public virtual Spartane.Core.Domain.Diligencias_MP.Diligencias_MP Documento_Ministerio_Publico_Diligencias_MP { get; set; }
         [ForeignKey("Diligencia")]
         public virtual Spartane.Core.Domain.Documento.Documento Diligencia_Documento { get; set; }
         [ForeignKey("Imagen")]
@@ -104,6 +116,9 @@ namespace Spartane.Core.Domain.Detalle_de_Servicio_de_Apoyo
         public int? Idioma { get; set; }
         public string Responsable { get; set; }
         public int? Compareciente { get; set; }
+        public int? Documento_Atencion_Inicial { get; set; }
+        public int? Documento_Mecanismos_Alternos { get; set; }
+        public int? Documento_Ministerio_Publico { get; set; }
         public int? Diligencia { get; set; }
         public int? Archivo { get; set; }
         public DateTime? Fecha_de_Registro { get; set; }
@@ -135,6 +150,12 @@ namespace Spartane.Core.Domain.Detalle_de_Servicio_de_Apoyo
         public virtual Spartane.Core.Domain.Idioma.Idioma Idioma_Idioma { get; set; }
         [ForeignKey("Compareciente")]
         public virtual Spartane.Core.Domain.Compareciente.Compareciente Compareciente_Compareciente { get; set; }
+        [ForeignKey("Documento_Atencion_Inicial")]
+        public virtual Spartane.Core.Domain.Detalle_de_Documentos_MPO.Detalle_de_Documentos_MPO Documento_Atencion_Inicial_Detalle_de_Documentos_MPO { get; set; }
+        [ForeignKey("Documento_Mecanismos_Alternos")]
+        public virtual Spartane.Core.Domain.Detalle_de_documentos.Detalle_de_documentos Documento_Mecanismos_Alternos_Detalle_de_documentos { get; set; }
+        [ForeignKey("Documento_Ministerio_Publico")]
+        public virtual Spartane.Core.Domain.Diligencias_MP.Diligencias_MP Documento_Ministerio_Publico_Diligencias_MP { get; set; }
         [ForeignKey("Diligencia")]
         public virtual Spartane.Core.Domain.Documento.Documento Diligencia_Documento { get; set; }
         [ForeignKey("Imagen")]
